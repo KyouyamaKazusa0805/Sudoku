@@ -9,8 +9,10 @@ namespace Sudoku.Concepts;
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ChainPattern :
 	IComparable<ChainPattern>,
+	IComparisonOperators<ChainPattern, ChainPattern, bool>,
 	IEnumerable<Node>,
 	IEquatable<ChainPattern>,
+	IEqualityOperators<ChainPattern, ChainPattern, bool>,
 	IFormattable,
 	IReadOnlyList<Node>,
 	IReadOnlyCollection<Node>

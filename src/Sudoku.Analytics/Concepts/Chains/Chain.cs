@@ -248,7 +248,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	/// <remarks>
 	/// Order rule:
 	/// <list type="number">
-	/// <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+	/// <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
 	/// <item>
 	/// If <paramref name="other"/> is not <see langword="null"/>, checks on length:
 	/// <list type="number">
@@ -271,7 +271,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	/// </list>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IncludeIsOn);
+	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
 
 	/// <inheritdoc/>
 	public override int CompareTo(ChainPattern? other) => CompareTo(other as Chain);
@@ -281,7 +281,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	{
 		if (other is null)
 		{
-			return 1;
+			return -1;
 		}
 
 		if (Length.CompareTo(other.Length) is var lengthResult and not 0)

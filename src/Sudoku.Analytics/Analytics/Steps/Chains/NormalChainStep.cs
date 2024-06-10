@@ -73,7 +73,7 @@ public sealed partial class NormalChainStep(
 			? SortKey.CompareTo(comparer.SortKey) is var result and not 0
 				? result
 				: Pattern.CompareTo(comparer.Pattern)
-			: 1;
+			: -1;
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -112,20 +112,18 @@ file static class Extensions
 		{ Technique.ContinuousNiceLoop, 203 },
 		{ Technique.XChain, 204 },
 		{ Technique.XyChain, 205 },
-		{ Technique.XyChain, 206 },
-		{ Technique.SelfConstraint, 207 },
-		{ Technique.AlternatingInferenceChain, 209 },
-		{ Technique.DiscontinuousNiceLoop, 210 },
+		{ Technique.SelfConstraint, 206 },
+		{ Technique.AlternatingInferenceChain, 208 },
+		{ Technique.DiscontinuousNiceLoop, 209 },
 		{ Technique.GroupedFishyCycle, 211 },
 		{ Technique.GroupedXyCycle, 212 },
 		{ Technique.GroupedContinuousNiceLoop, 213 },
 		{ Technique.GroupedXChain, 214 },
 		{ Technique.GroupedXyChain, 215 },
-		{ Technique.GroupedXyChain, 216 },
-		{ Technique.GroupedSelfConstraint, 217 },
-		{ Technique.NodeCollision, 218 },
-		{ Technique.GroupedAlternatingInferenceChain, 219 },
-		{ Technique.GroupedDiscontinuousNiceLoop, 220 },
+		{ Technique.GroupedSelfConstraint, 216 },
+		{ Technique.NodeCollision, 217 },
+		{ Technique.GroupedAlternatingInferenceChain, 218 },
+		{ Technique.GroupedDiscontinuousNiceLoop, 219 },
 	};
 
 

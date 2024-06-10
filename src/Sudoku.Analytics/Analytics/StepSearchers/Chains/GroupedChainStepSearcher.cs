@@ -1,4 +1,3 @@
-#define LOCKED_CANDIDATES
 #define LOCKED_SET
 #undef HIDDEN_SET // Requires large memory
 #define UNIQUE_RECTANGLE
@@ -33,70 +32,6 @@ namespace Sudoku.Analytics.StepSearchers;
 
 	// Loops
 	Technique.GroupedContinuousNiceLoop, Technique.GroupedXyCycle, Technique.GroupedFishyCycle)]
-#if LOCKED_CANDIDATES
-[SplitStepSearcher(0, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates)]
-#endif
-#if LOCKED_SET
-[SplitStepSearcher(
-	1,
-	nameof(LinkTypes),
-	LinkType.NonGrouped
-#if LOCKED_CANDIDATES
-	| LinkType.LockedCandidates
-#endif
-	| LinkType.AlmostLockedSet
-	)]
-#endif
-#if HIDDEN_SET
-[SplitStepSearcher(
-	2,
-	nameof(LinkTypes),
-	LinkType.NonGrouped
-#if LOCKED_CANDIDATES
-	| LinkType.LockedCandidates
-#endif
-#if LOCKED_SET
-	| LinkType.AlmostLockedSet
-#endif
-	| LinkType.AlmostHiddenSet)]
-#endif
-#if UNIQUE_RECTANGLE
-[SplitStepSearcher(
-	3,
-	nameof(LinkTypes),
-	LinkType.NonGrouped
-#if LOCKED_CANDIDATES
-	| LinkType.LockedCandidates
-#endif
-#if LOCKED_SET
-	| LinkType.AlmostLockedSet
-#endif
-#if HIDDEN_SET
-	| LinkType.AlmostHiddenSet
-#endif
-	| LinkType.AlmostUniqueRectangle
-	)]
-#endif
-#if AVOIDABLE_RECTANGLE
-[SplitStepSearcher(
-	4,
-	nameof(LinkTypes),
-	LinkType.NonGrouped
-#if LOCKED_CANDIDATES
-	| LinkType.LockedCandidates
-#endif
-#if LOCKED_SET
-	| LinkType.AlmostLockedSet
-#endif
-#if HIDDEN_SET
-	| LinkType.AlmostHiddenSet
-#endif
-#if UNIQUE_RECTANGLE
-	| LinkType.AlmostUniqueRectangle
-#endif
-	| LinkType.AlmostAvoidableRectangle
-	)]
-#endif
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -106,9 +41,7 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	{
 		{ LinkType.SingleDigit, new CachedXChainingRule() },
 		{ LinkType.SingleCell, new CachedYChainingRule() },
-#if LOCKED_CANDIDATES
 		{ LinkType.LockedCandidates, new CachedLockedCandidatesChainingRule() },
-#endif
 #if LOCKED_SET
 		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() },
 #endif
@@ -124,12 +57,44 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	};
 
 
-	/// <summary>
-	/// Indicates the link types supported.
-	/// </summary>
-	public LinkType LinkTypes { get; init; }
-
-
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context) => ChainModule.CollectCore(ref context, LinkTypes, RuleRouter);
+	protected internal override Step? Collect(ref AnalysisContext context)
+	{
+		var accumulator = new List<NormalChainStep>();
+		var baseRules = LinkType.SingleDigit | LinkType.SingleCell;
+		foreach (var ruleKey in yieldLinkTypes())
+		{
+			baseRules |= ruleKey;
+
+			if (ChainModule.CollectCore(ref context, accumulator, baseRules, RuleRouter) is { } step)
+			{
+				return step;
+			}
+		}
+
+		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		{
+			StepMarshal.SortItems(accumulator);
+			context.Accumulator.AddRange(accumulator);
+		}
+		return null;
+
+
+		static IEnumerable<LinkType> yieldLinkTypes()
+		{
+			yield return LinkType.LockedCandidates;
+#if LOCKED_SET
+			yield return LinkType.AlmostLockedSet;
+#endif
+#if HIDDEN_SET
+			yield return LinkType.AlmostHiddenSet;
+#endif
+#if UNIQUE_RECTANGLE
+			yield return LinkType.AlmostUniqueRectangle;
+#endif
+#if AVOIDABLE_RECTANGLE
+			yield return LinkType.AlmostAvoidableRectangle;
+#endif
+		}
+	}
 }

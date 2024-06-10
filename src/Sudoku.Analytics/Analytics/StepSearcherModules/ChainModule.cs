@@ -9,10 +9,11 @@ internal static class ChainModule
 	/// The collect method called by chain step searchers.
 	/// </summary>
 	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="linkTypes">The link types supported in searching.</param>
 	/// <param name="ruleRouter">The rule router dictionary.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref AnalysisContext context, LinkType linkTypes, Dictionary<LinkType, ChainingRule> ruleRouter)
+	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, LinkType linkTypes, Dictionary<LinkType, ChainingRule> ruleRouter)
 	{
 		ref readonly var grid = ref context.Grid;
 		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
@@ -28,7 +29,10 @@ internal static class ChainModule
 			{
 				return step;
 			}
-			context.Accumulator.Add(step);
+			if (!accumulator.Contains(step))
+			{
+				accumulator.Add(step);
+			}
 		}
 		return null;
 

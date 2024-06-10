@@ -73,7 +73,7 @@ public sealed class ComplexSingleStep(
 	{
 		if (other is not ComplexSingleStep comparer)
 		{
-			return 1;
+			return -1;
 		}
 
 		var (countThis, countOther) = (IndirectTechniques.Length, comparer.IndirectTechniques.Length);

@@ -59,7 +59,7 @@ public sealed partial class GuardianStep(
 	{
 		if (other is not GuardianStep comparer)
 		{
-			return 1;
+			return -1;
 		}
 
 		var r1 = Math.Abs(LoopCells.Count - comparer.LoopCells.Count);

@@ -48,7 +48,7 @@ public abstract partial class BivalueOddagonStep(
 	{
 		if (other is not BivalueOddagonStep comparer)
 		{
-			return 1;
+			return -1;
 		}
 
 		var r1 = Math.Abs(LoopCells.Count - comparer.LoopCells.Count);

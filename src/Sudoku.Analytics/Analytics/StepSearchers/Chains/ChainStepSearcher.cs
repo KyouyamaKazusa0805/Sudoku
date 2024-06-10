@@ -25,8 +25,6 @@ namespace Sudoku.Analytics.StepSearchers;
 
 	// Loops
 	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle)]
-[SplitStepSearcher(0, nameof(LinkTypes), LinkType.SingleDigit)]
-[SplitStepSearcher(1, nameof(LinkTypes), LinkType.SingleDigit | LinkType.SingleCell)]
 public sealed partial class ChainStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -53,5 +51,32 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ChainingDriver"/>
-	protected internal override Step? Collect(ref AnalysisContext context) => ChainModule.CollectCore(ref context, LinkTypes, RuleRouter);
+	protected internal override Step? Collect(ref AnalysisContext context)
+	{
+		var accumulator = new List<NormalChainStep>();
+		var baseRules = LinkType.Unknown;
+		foreach (var ruleKey in yieldLinkTypes())
+		{
+			baseRules |= ruleKey;
+
+			if (ChainModule.CollectCore(ref context, accumulator, baseRules, RuleRouter) is { } step)
+			{
+				return step;
+			}
+		}
+
+		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		{
+			StepMarshal.SortItems(accumulator);
+			context.Accumulator.AddRange(accumulator);
+		}
+		return null;
+
+
+		static IEnumerable<LinkType> yieldLinkTypes()
+		{
+			yield return LinkType.SingleDigit;
+			yield return LinkType.SingleCell;
+		}
+	}
 }

@@ -75,7 +75,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	{
 		if (other is not NTimesAlmostLockedSetDeathBlossomStep comparer)
 		{
-			return 1;
+			return -1;
 		}
 
 		if (Branches.Count.CompareTo(comparer.Branches.Count) is var r1 and not 0)

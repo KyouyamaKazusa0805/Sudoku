@@ -187,7 +187,7 @@ public sealed partial class Node(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Node? other) => CompareTo(other, NodeComparison.IncludeIsOn);
+	public int CompareTo(Node? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
 
 	/// <inheritdoc cref="CompareTo(Node?)"/>
 	/// <exception cref="ArgumentOutOfRangeException">
@@ -196,7 +196,7 @@ public sealed partial class Node(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Node? other, NodeComparison comparison)
 		=> other is null
-			? 1
+			? -1
 			: comparison switch
 			{
 				NodeComparison.IncludeIsOn => IsOnPropertyValue.CompareTo(other.IsOnPropertyValue) switch

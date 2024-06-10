@@ -437,7 +437,7 @@
             <remarks>
             Order rule:
             <list type="number">
-            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
             <item>
             If <paramref name="other"/> is not <see langword="null"/>, checks on length:
             <list type="number">
@@ -1037,7 +1037,7 @@
             <remarks>
             Order rule:
             <list type="number">
-            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
             <item>
             If <paramref name="other"/> is not <see langword="null"/>, checks on length:
             <list type="number">
@@ -9742,11 +9742,12 @@
             Represents a chain module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.LinkType,System.Collections.Generic.Dictionary{Sudoku.Concepts.LinkType,Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},Sudoku.Concepts.LinkType,System.Collections.Generic.Dictionary{Sudoku.Concepts.LinkType,Sudoku.Analytics.Chaining.ChainingRule})">
             <summary>
             The collect method called by chain step searchers.
             </summary>
             <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="linkTypes">The link types supported in searching.</param>
             <param name="ruleRouter">The rule router dictionary.</param>
             <returns>The first found step.</returns>
@@ -10218,11 +10219,6 @@
         <member name="F:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.RuleRouter">
             <summary>
             Indicates the rule router.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.LinkTypes">
-            <summary>
-            Indicates the link types supported.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
