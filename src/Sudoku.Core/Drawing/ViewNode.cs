@@ -23,8 +23,7 @@ namespace Sudoku.Drawing;
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	IEquatable<ViewNode>,
-	IEqualityOperators<ViewNode, ViewNode, bool>,
-	IJsonSerializable<ViewNode>
+	IEqualityOperators<ViewNode, ViewNode, bool>
 {
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
@@ -47,10 +46,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 
 
 	/// <inheritdoc/>
-	static JsonSerializerOptions IJsonSerializable<ViewNode>.DefaultOptions => JsonSerializerOptions.Default;
-
-
-	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ViewNode? other);
 
 	/// <summary>
@@ -58,11 +53,4 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// </summary>
 	/// <returns>A new <see cref="View"/> instance with same values as the current instance.</returns>
 	public abstract ViewNode Clone();
-
-	/// <inheritdoc/>
-	string IJsonSerializable<ViewNode>.ToJsonString() => JsonSerializer.Serialize(this);
-
-
-	/// <inheritdoc/>
-	static ViewNode? IJsonSerializable<ViewNode>.FromJsonString(string jsonString) => JsonSerializer.Deserialize<ViewNode>(jsonString);
 }

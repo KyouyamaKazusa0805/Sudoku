@@ -20,7 +20,6 @@ public partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
-	IJsonSerializable<Grid>,
 	IMinMaxValue<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<Grid, Candidate>,
@@ -105,11 +104,6 @@ public partial struct Grid :
 	/// This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
 	/// </remarks>
 	public static readonly Grid Undefined;
-
-	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new Converter() } };
 
 
 	/// <summary>
@@ -539,9 +533,6 @@ public partial struct Grid :
 	/// This value is found out via backtracking algorithm.
 	/// </remarks>
 	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
-
-	/// <inheritdoc/>
-	static JsonSerializerOptions IJsonSerializable<Grid>.DefaultOptions => DefaultOptions;
 
 
 	/// <summary>
@@ -1104,9 +1095,6 @@ public partial struct Grid :
 	readonly int IComparable<Grid>.CompareTo(Grid other) => CompareTo(in other);
 
 	/// <inheritdoc/>
-	readonly string IJsonSerializable<Grid>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);
-
-	/// <inheritdoc/>
 	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
 
 	/// <inheritdoc/>
@@ -1432,9 +1420,6 @@ public partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
-
-	/// <inheritdoc/>
-	static Grid IJsonSerializable<Grid>.FromJsonString(string jsonString) => JsonSerializer.Deserialize<Grid>(jsonString, DefaultOptions);
 
 	/// <summary>
 	/// Event handler on value changed.

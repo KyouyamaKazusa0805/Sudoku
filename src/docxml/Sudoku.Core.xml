@@ -5011,9 +5011,6 @@
             This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.DefaultOptions">
-            <inheritdoc cref="P:System.Text.Json.IJsonSerializable`1.DefaultOptions"/>
-        </member>
         <member name="F:Sudoku.Concepts.Grid._values">
             <summary>
             Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
@@ -5237,9 +5234,6 @@
             <remarks>
             This value is found out via backtracking algorithm.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#DefaultOptions">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -5526,9 +5520,6 @@
         <member name="M:Sudoku.Concepts.Grid.System#IComparable{Sudoku#Concepts#Grid}#CompareTo(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#ToJsonString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -5637,9 +5628,6 @@
             <inheritdoc cref="M:System.ISpanParsable`1.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#FromJsonString(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
@@ -7701,9 +7689,6 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.ViewNode"/>
         </member>
-        <member name="P:Sudoku.Drawing.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Drawing#ViewNode}#DefaultOptions">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.ViewNode.Equals(Sudoku.Drawing.ViewNode)">
             <inheritdoc/>
         </member>
@@ -7712,12 +7697,6 @@
             Creates a new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance, with independency.
             </summary>
             <returns>A new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Drawing.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Drawing#ViewNode}#ToJsonString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Drawing#ViewNode}#FromJsonString(System.String)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
