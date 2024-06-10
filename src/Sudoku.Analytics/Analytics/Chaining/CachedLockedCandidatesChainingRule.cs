@@ -43,14 +43,18 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 					continue;
 				}
 
-				foreach (var cells1 in cells | cells.Count)
+				foreach (var cells1 in cells | 3)
 				{
-					var lastCellsMap = cells & ~cells1;
-					foreach (var cells2 in lastCellsMap | lastCellsMap.Count)
+					if (!cells1.IsInIntersection)
 					{
-						if (cells1.Count == 1 && cells2.Count == 1)
+						continue;
+					}
+
+					var lastCellsMap = cells & ~cells1;
+					foreach (var cells2 in lastCellsMap | 3)
+					{
+						if (cells1.Count == 1 && cells2.Count == 1 || !cells2.IsInIntersection)
 						{
-							// Skip for the case that both nodes only contain 1 cell.
 							continue;
 						}
 
