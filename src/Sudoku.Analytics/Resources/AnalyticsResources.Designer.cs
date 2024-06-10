@@ -2113,11 +2113,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped chaining.
+        ///   Looks up a localized string similar to Grouped nodes logic in chain.
         /// </summary>
         public static string Factor_ChainGroupedFactor {
             get {
                 return ResourceManager.GetString("Factor_ChainGroupedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped nodes.
+        /// </summary>
+        public static string Factor_ChainGroupedNodeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ChainGroupedNodeFactor", resourceCulture);
             }
         }
         

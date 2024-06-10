@@ -1107,11 +1107,6 @@
             Indicates the property <see cref="P:Sudoku.Concepts.Node.IsOn"/> format string.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Node._extraMap">
-            <summary>
-            Indicates the extra cells map.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
@@ -1154,17 +1149,6 @@
             <summary>
             Indicates the map of candidates the node uses.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Node.ExtraMap">
-            <summary>
-            Indicates the extra cells map to hold. This is used by representing extra candidates used inside the pattern.
-            </summary>
-            <remarks>
-            Please note that this property won't be used as comparison,
-            neither <see cref="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)"/> or <see cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)"/>
-            <seealso cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>
         </member>
         <member name="P:Sudoku.Concepts.Node.AncestorsLength">
             <summary>
@@ -22817,6 +22801,20 @@
         <member name="P:Sudoku.Measuring.Factors.ChainGroupedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ChainGroupedNodeFactor">
+            <summary>
+            Represents a factor that describes grouped nodes in a chain or a loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ChainLengthFactor">
             <summary>
             Represents a factor that describes the length of a <see cref="T:Sudoku.Concepts.ChainPattern"/>.
@@ -24948,7 +24946,12 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainGroupedFactor">
             <summary>
-              Looks up a localized string similar to Grouped chaining.
+              Looks up a localized string similar to Grouped nodes logic in chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainGroupedNodeFactor">
+            <summary>
+              Looks up a localized string similar to Grouped nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainLengthFactor">

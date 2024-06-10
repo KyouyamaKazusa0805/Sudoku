@@ -32,12 +32,6 @@ public sealed partial class Node(
 
 
 	/// <summary>
-	/// Indicates the extra cells map.
-	/// </summary>
-	private readonly CandidateMap _extraMap;
-
-
-	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the specified candidate.
 	/// </summary>
 	/// <param name="candidate">A candidate.</param>
@@ -88,17 +82,6 @@ public sealed partial class Node(
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
 	public ref readonly CandidateMap Map => ref _map;
-
-	/// <summary>
-	/// Indicates the extra cells map to hold. This is used by representing extra candidates used inside the pattern.
-	/// </summary>
-	/// <remarks>
-	/// Please note that this property won't be used as comparison,
-	/// neither <see cref="Equals(Node?)"/> or <see cref="CompareTo(Node?)"/>.
-	/// </remarks>
-	/// <seealso cref="Equals(Node?)"/>
-	/// <seealso cref="CompareTo(Node?)"/>
-	public ref readonly CandidateMap ExtraMap => ref _extraMap;
 
 	/// <summary>
 	/// Indicates the length of ancestors.

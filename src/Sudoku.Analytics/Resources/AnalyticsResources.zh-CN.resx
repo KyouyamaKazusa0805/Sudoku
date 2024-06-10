@@ -3411,4 +3411,7 @@
     <value>区块链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="Factor_ChainGroupedNodeFactor" xml:space="preserve">
+    <value>区块节点</value>
+  </data>
 </root>

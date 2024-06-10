@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Measuring.Factors;
+namespace Sudoku.Measuring.Factors;
 
 /// <summary>
 /// Represents a factor that describes the grouped logic in a chain or a loop.

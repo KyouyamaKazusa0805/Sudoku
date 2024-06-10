@@ -43,7 +43,7 @@ public sealed partial class NormalChainStep(
 	public bool IsLoop => Pattern is Loop;
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => Pattern is Loop ? 45 : 46;
+	public override int BaseDifficulty => 60;
 
 	/// <summary>
 	/// Indicates the chain length.
@@ -58,7 +58,7 @@ public sealed partial class NormalChainStep(
 		=> [new(EnglishLanguage, [ChainString]), new(ChineseLanguage, [ChainString])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor()];
+	public override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
 
 	private string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 
