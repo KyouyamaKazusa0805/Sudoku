@@ -9,12 +9,40 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
 	{
+		var maskTempList = (stackalloc Mask[81]);
 		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
 		{
 			if (als is not (_, var cells) { IsBivalueCell: false, StrongLinks: var strongLinks, House: var house })
 			{
 				// This ALS is special case - it only uses 2 digits in a cell.
 				// This will be handled as a normal bi-value strong link (Y rule).
+				continue;
+			}
+
+			// Avoid the ALS chosen contains a sub-subset, meaning some cells held by ALS forms a subset.
+			// If so, the ALS can be reduced.
+			var isAlsCanBeReduced = false;
+			maskTempList.Clear();
+			foreach (var cell in cells)
+			{
+				maskTempList[cell] = grid.GetCandidates(cell);
+			}
+			foreach (var subsetCells in cells | cells.Count - 1)
+			{
+				var mask = (Mask)0;
+				foreach (var cell in subsetCells)
+				{
+					mask |= maskTempList[cell];
+				}
+
+				if (PopCount((uint)mask) == subsetCells.Count)
+				{
+					isAlsCanBeReduced = true;
+					break;
+				}
+			}
+			if (isAlsCanBeReduced)
+			{
 				continue;
 			}
 

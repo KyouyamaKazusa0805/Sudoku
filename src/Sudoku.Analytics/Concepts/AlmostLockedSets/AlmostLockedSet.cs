@@ -38,6 +38,15 @@ public sealed partial class AlmostLockedSet(
 
 
 	/// <summary>
+	/// Indicates whether the ALS only uses a bi-value cell.
+	/// </summary>
+	public bool IsBivalueCell
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => Cells.Count == 1;
+	}
+
+	/// <summary>
 	/// Indicates the house used.
 	/// </summary>
 	public House House
@@ -48,15 +57,6 @@ public sealed partial class AlmostLockedSet(
 			Cells.InOneHouse(out var houseIndex);
 			return houseIndex;
 		}
-	}
-
-	/// <summary>
-	/// Indicates whether the ALS only uses a bi-value cell.
-	/// </summary>
-	public bool IsBivalueCell
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Cells.Count == 1;
 	}
 
 	/// <summary>
@@ -227,9 +227,9 @@ public sealed partial class AlmostLockedSet(
 		return result.AsReadOnlySpan();
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static AlmostLockedSet Parse(string str) => Parse(str, null);
+	public static AlmostLockedSet Parse(string s) => Parse(s, null);
 
 	/// <inheritdoc/>
 	public static AlmostLockedSet Parse(string s, IFormatProvider? provider)
