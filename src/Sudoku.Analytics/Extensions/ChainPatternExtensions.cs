@@ -28,23 +28,22 @@ public static class ChainPatternExtensions
 			Chain
 			{
 				SatisfyXRule: var isX,
-				SatisfyYRule: var isY,
 				IsGrouped: var isGrouped,
 				Links: var links,
-				Links.Length: var length
 			} instance => instance switch
 			{
-				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
-				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
+				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
+				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
-				{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
-				{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+				//{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
+				//{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
 				{ IsSplitWing: true } => isGrouped ? Technique.GroupedSWing : Technique.SWing,
 				{ IsLocalWing: true } => isGrouped ? Technique.GroupedLWing : Technique.LWing,
 				{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
-				{ Links.Length: 5 } => isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+				{ Links.Length: 5, IsWoodsWing: false, IsMedusaWing: false }
+					=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
 				{ Links.Length: 3 } when isX => links switch
 				{
 #pragma warning disable format
