@@ -21,7 +21,7 @@ public abstract partial class ChainingRule
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="strongLinks">The dictionary that stores a list of strong links.</param>
 	/// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
-	public abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
+	protected internal abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.
@@ -34,7 +34,7 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// The method by default will do nothing.
 	/// </remarks>
-	public virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
 		// Do nothing.
 	}
@@ -49,5 +49,5 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
-	public virtual ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid) => [];
+	protected internal virtual ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid) => [];
 }

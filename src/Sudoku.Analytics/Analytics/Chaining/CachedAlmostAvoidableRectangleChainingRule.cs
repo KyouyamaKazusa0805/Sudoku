@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		// Weak.
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
@@ -74,7 +74,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
 		var (view, id) = (views[0], ColorIdentifier.Auxiliary3);
 		foreach (var link in pattern.Links)
