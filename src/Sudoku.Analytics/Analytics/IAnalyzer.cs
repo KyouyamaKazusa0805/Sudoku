@@ -7,7 +7,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <typeparam name="TSelf">The type of the solver itself.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
-public interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf, TResult> where TResult : IAnalysisResult<TSelf, TResult>
+internal interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf, TResult> where TResult : IAnalysisResult<TSelf, TResult>
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
