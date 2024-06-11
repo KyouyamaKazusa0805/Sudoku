@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Chaining;
 /// <summary>
 /// Provides a driver module on chaining.
 /// </summary>
-public static class ChainingDriver
+internal static class ChainingDriver
 {
 	/// <summary>
 	/// Collect all <see cref="ChainPattern"/> instances appears in a grid.

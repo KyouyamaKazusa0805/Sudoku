@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedXChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		// Strong.
 		for (var digit = 0; digit < 9; digit++)
