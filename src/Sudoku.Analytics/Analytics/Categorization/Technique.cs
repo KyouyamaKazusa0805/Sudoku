@@ -2995,7 +2995,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 45,
-		DifficultyLevel = DifficultyLevel.Fiendish,
+		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.IrregularWing,
 		StepType = typeof(MWingStep),
 		StepSearcherType = typeof(IrregularWingStepSearcher))]

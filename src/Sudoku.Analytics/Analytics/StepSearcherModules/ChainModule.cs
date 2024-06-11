@@ -11,16 +11,15 @@ internal static class ChainModule
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="linkTypes">The link types supported in searching.</param>
-	/// <param name="ruleRouter">The rule router dictionary.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, LinkType linkTypes, Dictionary<LinkType, ChainingRule> ruleRouter)
+	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, LinkType linkTypes)
 	{
 		ref readonly var grid = ref context.Grid;
 		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
 		var supportedRules =
 			from type in linkTypes.GetAllFlags()
 			where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
-			select ruleRouter[type];
+			select ChainingRulePool.TryCreate(type)!;
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
 			var conclusions = collectConclusions(foundChain, in grid);

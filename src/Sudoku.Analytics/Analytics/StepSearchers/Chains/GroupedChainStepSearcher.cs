@@ -35,32 +35,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.GroupedContinuousNiceLoop, Technique.GroupedXyCycle, Technique.GroupedFishyCycle)]
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the rule router.
-	/// </summary>
-	private static readonly Dictionary<LinkType, ChainingRule> RuleRouter = new()
-	{
-		{ LinkType.SingleDigit, new CachedXChainingRule() },
-		{ LinkType.SingleCell, new CachedYChainingRule() },
-		{ LinkType.LockedCandidates, new CachedLockedCandidatesChainingRule() },
-#if LOCKED_SET
-		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() },
-#endif
-#if HIDDEN_SET
-		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
-#endif
-#if FISH
-		{ LinkType.KrakenNormalFish, new CachedKrakenNormalFishChainingRule() },
-#endif
-#if UNIQUE_RECTANGLE
-		{ LinkType.AlmostUniqueRectangle, new CachedAlmostUniqueRectangleChainingRule() },
-#endif
-#if AVOIDABLE_RECTANGLE
-		{ LinkType.AlmostAvoidableRectangle, new CachedAlmostAvoidableRectangleChainingRule() },
-#endif
-	};
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
@@ -69,8 +43,7 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 		foreach (var ruleKey in yieldLinkTypes())
 		{
 			baseRules |= ruleKey;
-
-			if (ChainModule.CollectCore(ref context, accumulator, baseRules, RuleRouter) is { } step)
+			if (ChainModule.CollectCore(ref context, accumulator, baseRules) is { } step)
 			{
 				return step;
 			}

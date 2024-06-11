@@ -162,8 +162,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				new UniqueLoopStepSearcher(),
 				new BivalueUniversalGraveStepSearcher { SearchExtendedTypes = false },
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
-				new ChainStepSearcher { LinkTypes = LinkType.SingleDigit },
-				new ChainStepSearcher { LinkTypes = LinkType.SingleDigit | LinkType.SingleCell }
+				new ChainStepSearcher()
 			)
 			.WithAlgorithmLimits(false, false)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });

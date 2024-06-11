@@ -27,22 +27,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle)]
 public sealed partial class ChainStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the rule router.
-	/// </summary>
-	private static readonly Dictionary<LinkType, ChainingRule> RuleRouter = new()
-	{
-		{ LinkType.SingleDigit, new CachedXChainingRule() },
-		{ LinkType.SingleCell, new CachedYChainingRule() }
-	};
-
-
-	/// <summary>
-	/// Indicates the link types supported.
-	/// </summary>
-	public LinkType LinkTypes { get; init; }
-
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -58,8 +42,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 		foreach (var ruleKey in yieldLinkTypes())
 		{
 			baseRules |= ruleKey;
-
-			if (ChainModule.CollectCore(ref context, accumulator, baseRules, RuleRouter) is { } step)
+			if (ChainModule.CollectCore(ref context, accumulator, baseRules) is { } step)
 			{
 				return step;
 			}

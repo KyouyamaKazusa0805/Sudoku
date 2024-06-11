@@ -8058,6 +8058,34 @@
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRulePool">
+            <summary>
+            Provides with an easy way to create <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRulePool.RuleRouter">
+            <summary>
+            Indicates the rule router.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRulePool.CachedRules">
+            <summary>
+            Indicates the cached rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRulePool.FlushCachedRules">
+            <summary>
+            Clears the cached rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRulePool.TryCreate(Sudoku.Concepts.LinkType)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance via the specified link type.
+            </summary>
+            <param name="linkType">The link type.</param>
+            <returns>The created <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance created.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.
@@ -9725,14 +9753,13 @@
             Represents a chain module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},Sudoku.Concepts.LinkType,System.Collections.Generic.Dictionary{Sudoku.Concepts.LinkType,Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},Sudoku.Concepts.LinkType)">
             <summary>
             The collect method called by chain step searchers.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="linkTypes">The link types supported in searching.</param>
-            <param name="ruleRouter">The rule router dictionary.</param>
             <returns>The first found step.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
@@ -10165,16 +10192,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ChainStepSearcher.RuleRouter">
-            <summary>
-            Indicates the rule router.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ChainStepSearcher.LinkTypes">
-            <summary>
-            Indicates the link types supported.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
@@ -10197,11 +10214,6 @@
             <item>Grouped Alternating Inference Chains</item>
             <item>Grouped Continuous Nice Loops</item>
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.RuleRouter">
-            <summary>
-            Indicates the rule router.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
