@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.Solvers;
+namespace Sudoku.Algorithms.Solving.Dlx;
 
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
@@ -273,8 +273,3 @@ file sealed class DancingLink(ColumnNode root)
 		}
 	}
 }
-
-/// <summary>
-/// Represents a type describing for a matrix row.
-/// </summary>
-file record struct MatrixRow(DancingLinkNode Cell, DancingLinkNode Row, DancingLinkNode Column, DancingLinkNode Block);

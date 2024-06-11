@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.Solvers;
+namespace Sudoku.Algorithms.Solving.Dlx;
 
 /// <summary>
 /// Represents a column node.

@@ -1,4 +1,4 @@
-namespace Sudoku.Solving;
+namespace Sudoku.Algorithms.Solving;
 
 /// <summary>
 /// Represents a flag describing the number of solutions to a puzzle.

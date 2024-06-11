@@ -12,7 +12,6 @@ global using System.Numerics;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using Sudoku.Concepts;
-global using Sudoku.Drawing.Drawing2D;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Runtime.MaskServices;
 global using static System.MathF;
