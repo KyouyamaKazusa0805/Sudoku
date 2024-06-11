@@ -923,11 +923,6 @@
             Indicates the link type is a single cell (Y rule).
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.LinkType.NonGrouped">
-            <summary>
-            Indicates non-grouped link types.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.LinkType.LockedCandidates">
             <summary>
             Indicates the link type is a locked candidates.
@@ -956,16 +951,6 @@
         <member name="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle">
             <summary>
             Indicates the link type is an almost avoidable rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.Grouped">
-            <summary>
-            Indicates all grouped link types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.All">
-            <summary>
-            Indicates all link types.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Loop">
