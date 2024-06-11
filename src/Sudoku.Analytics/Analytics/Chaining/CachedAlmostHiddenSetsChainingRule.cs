@@ -7,9 +7,12 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
-		foreach (var ahs in AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid))
+		var ahses = AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid);
+
+		// Strong.
+		foreach (var ahs in ahses)
 		{
 			var cells = ahs.Cells;
 			var subsetDigitsMask = ahs.SubsetDigitsMask;
@@ -21,15 +24,12 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 				var cells2 = cells & CandidatesMap[digit2];
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, true);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, true);
-				linkDictionary.AddEntry(node1, node2, true, ahs);
+				strongLinks.AddEntry(node1, node2, true, ahs);
 			}
 		}
-	}
 
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
-		foreach (var ahs in AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid))
+		// Weak.
+		foreach (var ahs in ahses)
 		{
 			var weakLinkCandidates = ahs.CandidatesCanFormWeakLink;
 			foreach (ref readonly var candidates1 in weakLinkCandidates | 3)
@@ -54,7 +54,7 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 
 					var node1 = new Node(in candidates1, true, true);
 					var node2 = new Node(in candidates2, false, true);
-					linkDictionary.AddEntry(node1, node2, false, ahs);
+					weakLinks.AddEntry(node1, node2, false, ahs);
 				}
 			}
 		}

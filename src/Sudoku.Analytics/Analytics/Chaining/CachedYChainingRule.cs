@@ -7,21 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedYChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
-		foreach (var cell in BivalueCells)
-		{
-			var mask = grid.GetCandidates(cell);
-			var digit1 = TrailingZeroCount(mask);
-			var digit2 = mask.GetNextSet(digit1);
-			var node1 = new Node(cell, digit1, false, false);
-			var node2 = new Node(cell, digit2, true, false);
-			linkDictionary.AddEntry(node1, node2);
-		}
-	}
-
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		foreach (var cell in EmptyCells)
 		{
@@ -31,11 +17,20 @@ internal sealed class CachedYChainingRule : ChainingRule
 				continue;
 			}
 
+			if (BivalueCells.Contains(cell))
+			{
+				var digit1 = TrailingZeroCount(mask);
+				var digit2 = mask.GetNextSet(digit1);
+				var node1 = new Node(cell, digit1, false, false);
+				var node2 = new Node(cell, digit2, true, false);
+				strongLinks.AddEntry(node1, node2);
+			}
+
 			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
 				var node1 = new Node(cell, combinationPair[0], true, false);
 				var node2 = new Node(cell, combinationPair[1], false, false);
-				linkDictionary.AddEntry(node1, node2);
+				weakLinks.AddEntry(node1, node2);
 			}
 		}
 	}

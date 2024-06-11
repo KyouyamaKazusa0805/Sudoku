@@ -7,8 +7,9 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
+		// Strong.
 		for (var house = 0; house < 27; house++)
 		{
 			for (var digit = 0; digit < 9; digit++)
@@ -26,14 +27,11 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 				var cells2 = cells & HousesMap[h2];
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), false, false);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), true, false);
-				linkDictionary.AddEntry(node1, node2);
+				strongLinks.AddEntry(node1, node2);
 			}
 		}
-	}
 
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
+		// Weak.
 		for (var house = 0; house < 27; house++)
 		{
 			for (var digit = 0; digit < 9; digit++)
@@ -60,7 +58,7 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 
 						var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true, false);
 						var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false, false);
-						linkDictionary.AddEntry(node1, node2);
+						weakLinks.AddEntry(node1, node2);
 					}
 				}
 			}

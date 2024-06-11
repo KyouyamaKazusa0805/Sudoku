@@ -7,14 +7,9 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
-		// AARs may not be necessary to collect strong links.
-	}
-
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
+		// Weak.
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
 		{
 			var (modifiableCells, emptyCells) = (CellMap.Empty, CellMap.Empty);
@@ -49,7 +44,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), true, true);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), false, true);
 				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCells);
-				linkDictionary.AddEntry(node1, node2, false, ar);
+				weakLinks.AddEntry(node1, node2, false, ar);
 			}
 			else if (digit1 == digit2)
 			{
@@ -72,7 +67,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 					var node1 = new Node(emptyCells[0], digit, true, true);
 					var node2 = new Node(emptyCells[1], digit, false, true);
 					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCells);
-					linkDictionary.AddEntry(node1, node2, false, ar);
+					weakLinks.AddEntry(node1, node2, false, ar);
 				}
 			}
 		}

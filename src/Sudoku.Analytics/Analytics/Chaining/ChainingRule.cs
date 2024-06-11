@@ -15,20 +15,13 @@ namespace Sudoku.Analytics.Chaining;
 public abstract partial class ChainingRule
 {
 	/// <summary>
-	/// Collects for strong links appeared in argument <paramref name="grid"/>
-	/// and insert all found values into argument <paramref name="linkDictionary"/>.
+	/// Collects for both strong links and weak links appeared in argument <paramref name="grid"/>
+	/// and insert all found links into <paramref name="strongLinks"/> and <paramref name="weakLinks"/> respectively.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="linkDictionary">The collection of strong links, grouped by its node.</param>
-	public abstract void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary);
-
-	/// <summary>
-	/// Collects for weak links appeared in argument <paramref name="grid"/>
-	/// and insert all found values into argument <paramref name="linkDictionary"/>.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="linkDictionary">The collection of weak links, grouped by its node.</param>
-	public abstract void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary);
+	/// <param name="strongLinks">The dictionary that stores a list of strong links.</param>
+	/// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
+	public abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.

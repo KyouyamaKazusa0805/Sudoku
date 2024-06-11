@@ -17,13 +17,14 @@ namespace Sudoku.Analytics.Chaining;
 /// ..7.+85.1.8..3..5...4..7...2.....7..42..8..3..+4.6.3..2..1....7..6..+7....8+7.4.5..6.:917 931 341 941 143 759 373 573 973 974 975 376 976 478 382 485 486 988 196 296 996
 /// .2.8.+16...+47..5..36..+4.3.2...25..3....4.1...7.5...4..+2..81..+49.4..+9.82...9..4...8:913 519 925 941 745 945 951 163 363 664 765 965 967 775 682 785 694
 /// 5.....9.+1.1..4..2...3..6..7..56..7.......7.5.8..+532+1.6.....12..2.+18......3.+26..1.:441 941 949 451 651 951 452 453 771 971 772 773 678 682 782
+/// .2......1..6+1.9.3..+1.3.49........+123....17.5.1..5..6.+7.8...5.+1.6....+13....18...7.:411 511 711 811 413 513 713 813 525 427 429 639 839 452 952 454 954 362 363 265 866 275 983 285 391 295 395 696 299
 /// ]]></code>
 /// </example>
 /// <seealso cref="LinkType.AlmostUniqueRectangle"/>
 internal sealed partial class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
 		{
@@ -68,29 +69,23 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 				{
 					case 1:
 					{
-						Type1Strong(otherDigitsMask, in urCells, ur, linkDictionary);
+						Type1Strong(otherDigitsMask, in urCells, ur, strongLinks);
 						break;
 					}
 					case 2:
 					{
-						Type2Strong(otherDigitsMask, in urCells, ur, linkDictionary);
+						Type2Strong(otherDigitsMask, in urCells, ur, strongLinks);
 						goto default;
 					}
 					default:
 					{
-						Type4Strong(otherDigitsMask, in grid, in urCells, ur, linkDictionary);
-						Type5Strong(otherDigitsMask, in grid, in urCells, ur, linkDictionary);
+						Type4Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks);
+						Type5Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks);
 						break;
 					}
 				}
 			}
 		}
-	}
-
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
-		// AURs may not be necessary to collect for weak links.
 	}
 
 	/// <inheritdoc/>

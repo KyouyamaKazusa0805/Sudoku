@@ -40,11 +40,7 @@ public static class ChainingDriver
 		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
 		foreach (var chainingRule in rules)
 		{
-			chainingRule.CollectStrongLinks(in grid, strongLinks);
-		}
-		foreach (var chainingRule in rules)
-		{
-			chainingRule.CollectWeakLinks(in grid, weakLinks);
+			chainingRule.CollectLinks(in grid, strongLinks, weakLinks);
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
@@ -53,7 +49,7 @@ public static class ChainingDriver
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				var node = new Node(cell, digit, true);
+				var node = new Node(cell, digit, true, false);
 				bfs(node, foundPatterns);
 				bfs(~node, foundPatterns);
 			}

@@ -12,7 +12,7 @@ namespace Sudoku.Concepts;
 public sealed partial class Node(
 	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map,
 	[PrimaryConstructorParameter, HashCodeMember] bool isOn,
-	[PrimaryConstructorParameter] bool isAdvanced = false
+	[PrimaryConstructorParameter] bool isAdvanced
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
@@ -38,7 +38,7 @@ public sealed partial class Node(
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Candidate candidate, bool isOn, bool isAdvanced = false) : this(candidate.AsCandidateMap(), isOn, isAdvanced)
+	public Node(Candidate candidate, bool isOn, bool isAdvanced) : this(candidate.AsCandidateMap(), isOn, isAdvanced)
 	{
 	}
 
@@ -50,7 +50,7 @@ public sealed partial class Node(
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Cell cell, Digit digit, bool isOn, bool isAdvanced = false) : this(cell * 9 + digit, isOn, isAdvanced)
+	public Node(Cell cell, Digit digit, bool isOn, bool isAdvanced) : this(cell * 9 + digit, isOn, isAdvanced)
 	{
 	}
 
@@ -236,7 +236,7 @@ public sealed partial class Node(
 	/// </summary>
 	/// <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node Clone() => new(in _map, IsOn) { Parent = Parent };
+	public Node Clone() => new(in _map, IsOn, IsAdvanced) { Parent = Parent };
 
 
 	/// <summary>

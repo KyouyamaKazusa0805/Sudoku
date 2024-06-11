@@ -4,15 +4,18 @@ namespace Sudoku.Analytics.Chaining;
 /// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSet"/>).
 /// </summary>
 /// <seealso cref="LinkType.AlmostLockedSet"/>
-internal class CachedAlmostLockedSetsChainingRule : ChainingRule
+internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
+	public override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
+		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+
+		// Strong.
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
+		foreach (var als in alses)
 		{
-			if (als is not (_, var cells) { IsBivalueCell: false, StrongLinks: var strongLinks, House: var house })
+			if (als is not (_, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{
 				// This ALS is special case - it only uses 2 digits in a cell.
 				// This will be handled as a normal bi-value strong link (Y rule).
@@ -46,7 +49,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 				continue;
 			}
 
-			foreach (var digitsPair in strongLinks)
+			foreach (var digitsPair in links)
 			{
 				var node1ExtraMap = CandidateMap.Empty;
 				foreach (var cell in cells)
@@ -65,15 +68,12 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in node1Cells, digit1), false, true);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, true);
-				linkDictionary.AddEntry(node1, node2, true, als);
+				strongLinks.AddEntry(node1, node2, true, als);
 			}
 		}
-	}
 
-	/// <inheritdoc/>
-	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
-	{
-		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
+		// Weak.
+		foreach (var als in alses)
 		{
 			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, House: var house })
 			{
@@ -99,7 +99,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 					}
 
 					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false, true);
-					linkDictionary.AddEntry(node1, node2, false, als);
+					weakLinks.AddEntry(node1, node2, false, als);
 				}
 			}
 		}
