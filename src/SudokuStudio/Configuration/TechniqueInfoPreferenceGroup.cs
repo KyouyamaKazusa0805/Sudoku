@@ -83,6 +83,9 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		delegate*<Technique, T, TechniqueData> dataCreator,
 		delegate*<ref readonly TechniqueData, T, TechniqueData> dataModifier
 	)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
 	{
 		ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
 		var isNullRef = @ref.IsNullRef(in data);

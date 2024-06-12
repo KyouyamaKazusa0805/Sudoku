@@ -14,6 +14,9 @@ public static class @ref
 	/// <param name="right">The second element to be swapped.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<T>(scoped ref T left, scoped ref T right)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
 	{
 		if (!AreSameRef(in left, in right))
 		{
@@ -43,7 +46,13 @@ public static class @ref
 	/// </param>
 	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(scoped ref readonly T reference, [CallerArgumentExpression(nameof(reference))] string paramName = null!)
+	public static void ThrowIfNullRef<T>(
+		scoped ref readonly T reference,
+		[CallerArgumentExpression(nameof(reference))] string paramName = null!
+	)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
 	{
 		if (IsNullRef(in reference))
 		{
@@ -64,7 +73,8 @@ public static class @ref
 
 	/// <inheritdoc cref="ByteRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly byte ReadOnlyByteRef<T>(scoped ref readonly T @ref) => ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
+	public static ref readonly byte ReadOnlyByteRef<T>(scoped ref readonly T @ref)
+		=> ref Unsafe.As<T, byte>(ref AsMutableRef(in @ref));
 
 	/// <summary>
 	/// Determines whether the current reference points to <see langword="null"/>.
@@ -73,7 +83,20 @@ public static class @ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullRef<T>(scoped ref readonly T reference) => Unsafe.IsNullRef(in reference);
+	public static bool IsNullRef<T>(scoped ref readonly T reference)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+	{
+#if NET9_0_OR_GREATER
+		unsafe
+		{
+			return ToPointer(in reference) == null;
+		}
+#else
+		return Unsafe.IsNullRef(in reference);
+#endif
+	}
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -83,7 +106,20 @@ public static class @ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool AreSameRef<T>(scoped ref readonly T left, scoped ref readonly T right) => Unsafe.AreSame(in left, in right);
+	public static bool AreSameRef<T>(scoped ref readonly T left, scoped ref readonly T right)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+	{
+#if NET9_0_OR_GREATER
+		unsafe
+		{
+			return ToPointer(in left) == ToPointer(in right);
+		}
+#else
+		Unsafe.AreSame(in left, in right);
+#endif
+	}
 
 	/// <summary>
 	/// Re-interpret the read-only reference to non-read-only reference.
@@ -92,7 +128,20 @@ public static class @ref
 	/// <param name="ref">The read-only reference.</param>
 	/// <returns>The non-read-only reference.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T AsMutableRef<T>(scoped ref readonly T @ref) => ref Unsafe.AsRef(in @ref);
+	public static ref T AsMutableRef<T>(scoped ref readonly T @ref)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+#if NET9_0_OR_GREATER
+	{
+		unsafe
+		{
+			return ref *ToPointer(in @ref);
+		}
+	}
+#else
+		=> ref Unsafe.AsRef(in @ref);
+#endif
 
 	/// <summary>
 	/// Advances the pointer to an element after the specified number of block memory elements.
@@ -107,7 +156,20 @@ public static class @ref
 	/// </remarks>
 	/// <seealso cref="Unsafe.Subtract{T}(ref T, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T Add<T>(ref T @ref, int length) => ref Unsafe.Add(ref @ref, length);
+	public static ref T Add<T>(ref T @ref, int length)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+#if NET9_0_OR_GREATER
+	{
+		unsafe
+		{
+			return ref ToPointer(in @ref)[length];
+		}
+	}
+#else
+		=> ref Unsafe.Add(ref @ref, length);
+#endif
 
 	/// <summary>
 	/// Converts the managed pointer into unmanaged one,
@@ -117,7 +179,23 @@ public static class @ref
 	/// <param name="ref">The reference to be converted.</param>
 	/// <returns>The unmanaged pointer as the result value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe T* ToPointer<T>(ref readonly T @ref) => (T*)Unsafe.AsPointer(ref AsMutableRef(in @ref));
+	public static unsafe T* ToPointer<T>(ref readonly T @ref)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+	{
+#if NET9_0_OR_GREATER
+		unsafe
+		{
+			fixed (T* pRef = &@ref)
+			{
+				return pRef;
+			}
+		}
+#else
+		return (T*)Unsafe.AsPointer(ref AsMutableRef(in @ref));
+#endif
+	}
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
@@ -127,7 +205,20 @@ public static class @ref
 	/// </typeparam>
 	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T NullRef<T>() => ref Unsafe.NullRef<T>();
+	public static ref readonly T NullRef<T>()
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
+#if NET9_0_OR_GREATER
+	{
+		unsafe
+		{
+			return ref *(T*)0;
+		}
+	}
+#else
+		=> ref Unsafe.NullRef<T>();
+#endif
 
 	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
@@ -147,7 +238,7 @@ public static class @ref
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = Add(ref Unsafe.AsRef(in memorySpan), i);
+			result[i - start] = Add(ref AsMutableRef(in memorySpan), i);
 		}
 		return result;
 	}

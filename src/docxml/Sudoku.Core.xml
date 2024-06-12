@@ -1674,9 +1674,6 @@
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Full">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#JsonConverterInstance">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Item(System.Int32)">
             <summary>
             Get the offset at the specified position index.
@@ -2167,9 +2164,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Full">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#JsonConverterInstance">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Item(System.Int32)">
@@ -5992,11 +5986,6 @@
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.MaxCount">
             <summary>
             Indicates the maximum number of elements that the collection can be reached.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`3.JsonConverterInstance">
-            <summary>
-            Indicates a converter instance that supports for serialization on the current instance.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">

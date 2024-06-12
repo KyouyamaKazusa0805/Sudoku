@@ -5,7 +5,13 @@ namespace SudokuStudio.Storage;
 /// </summary>
 /// <typeparam name="T">The type of the handled object.</typeparam>
 /// <seealso cref="FileExtensions"/>
-public interface IProgramSupportedFileHandler<T> where T : notnull
+public interface IProgramSupportedFileHandler<T>
+	where T :
+		notnull
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <summary>
 	/// Indicates the supported file extension.

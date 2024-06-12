@@ -336,7 +336,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -498,7 +498,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -598,7 +598,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -1361,7 +1361,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		ref readonly CellMap housesEmptyCells,
 		Mask baseCellsDigitsMask,
@@ -1679,7 +1679,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		ref readonly CellMap crosslineIncludingTarget,
 		Mask baseCellsDigitsMask,
@@ -2573,7 +2573,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		Mask baseCellsDigitsMask,
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
 		int chuteIndex,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		out Mask inferredLastTargetDigitsMask,
 		out Mask lockedDigitsMask
 	)
@@ -3080,7 +3080,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref AnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Cell valueDigitCell,
 		Cell missingValueCell,
@@ -3153,7 +3153,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref AnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Cell valueDigitCell,
 		Cell missingValueCell,
@@ -3241,7 +3241,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref AnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		ref readonly CellMap lastSixteenCells,
 		Cell valueDigitCell,
@@ -3344,7 +3344,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref AnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		ref readonly CellMap lastSixteenCells,
 		ref readonly CellMap cellsCanBeEliminated,
@@ -3594,7 +3594,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly CellMap expandedCrosslineIncludingTarget,
 		scoped ReadOnlySpan<LockedMember?> lockedMembers,
 		int chuteIndex,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		out Mask lockedDigitsMask,
 		out Mask inferredLastTargetDigitsMask
 	)
@@ -4337,7 +4337,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex,
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
 	)
 	{
 		// Adjacent target cannot be used for same-side target cells.
@@ -4460,7 +4460,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex,
 		HouseMask housesMask,
 		HouseMask extraHousesMask,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells
 	)
 	{
 		// Mirror conjugate pair cannot be used for same-side target cells.

@@ -248,10 +248,25 @@ public static class ImageHandler
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool colorIs<T>() where T : struct, IColor => typeof(TColor) == typeof(T);
+		static bool colorIs<T>()
+			where T :
+				struct,
+				IColor
+#if NET9_0_OR_GREATER
+				,
+				allows ref struct
+#endif
+			=> typeof(TColor) == typeof(T);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool depthIs<T>() where T : new() => typeof(TDepth) == typeof(T);
+		static bool depthIs<T>()
+			where T :
+				new()
+#if NET9_0_OR_GREATER
+				,
+				allows ref struct
+#endif
+			=> typeof(TDepth) == typeof(T);
 	}
 
 	/// <summary>

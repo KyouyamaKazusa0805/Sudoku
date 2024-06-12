@@ -221,7 +221,6 @@ public sealed partial class TechniqueSet :
 				return false;
 			}
 		}
-
 		return true;
 	}
 

@@ -90,11 +90,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	protected static abstract TElement MaxCount { get; }
 
-	/// <summary>
-	/// Indicates a converter instance that supports for serialization on the current instance.
-	/// </summary>
-	protected static abstract JsonConverter<TSelf> JsonConverterInstance { get; }
-
 	/// <inheritdoc/>
 	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
 

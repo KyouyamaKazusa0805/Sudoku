@@ -89,6 +89,9 @@ internal static partial class DrawableFactory
 	/// <exception cref="InvalidOperationException">Always throws.</exception>
 	[DoesNotReturn]
 	private static T? Throw<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)
+#if NET9_0_OR_GREATER
+		where T : allows ref struct
+#endif
 		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
 
 
