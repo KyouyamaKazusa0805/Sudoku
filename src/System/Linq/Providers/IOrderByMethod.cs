@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IOrderByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf : IOrderByMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IOrderByMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc/>
 	static bool ILinqMethod<TSelf, TSource>.IsValueLazilyCalculated => true;

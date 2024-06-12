@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IHasMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSource>
-	where TSelf : IHasMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IHasMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <summary>
 	/// Determine whether the collection contains an element of the specified type <typeparamref name="T"/>.

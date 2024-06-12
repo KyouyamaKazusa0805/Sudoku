@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IAllAreMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSource>
-	where TSelf : IAllAreMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IAllAreMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <summary>
 	/// Determine whether all elements are of type <typeparamref name="T"/>.

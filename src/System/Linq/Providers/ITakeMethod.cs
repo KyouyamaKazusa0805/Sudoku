@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ITakeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : ITakeMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		ITakeMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource> Take(int count) => new List<TSource>(this)[..count];

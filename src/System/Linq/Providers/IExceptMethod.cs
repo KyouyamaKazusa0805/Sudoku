@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IExceptMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IExceptMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IExceptMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.Except{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Except(IEnumerable<TSource> second) => Except(second, null);

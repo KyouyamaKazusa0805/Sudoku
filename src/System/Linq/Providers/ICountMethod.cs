@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ICountMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : ICountMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		ICountMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/>
 	public virtual int Count()

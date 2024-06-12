@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IAverageMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>, ISumMethod<TSelf, TSource>
-	where TSelf : IAverageMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IAverageMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 	where TSource : INumberBase<TSource>
 {
 	/// <inheritdoc/>

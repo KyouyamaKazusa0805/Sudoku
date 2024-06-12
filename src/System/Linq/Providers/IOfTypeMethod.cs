@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IOfTypeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IOfTypeMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IOfTypeMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.OfType{TResult}(IEnumerable)"/>
 	public virtual IEnumerable<TResult> OfType<TResult>() where TResult : TSource

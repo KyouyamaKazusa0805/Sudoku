@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IChunkMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IChunkMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IChunkMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.Chunk{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource[]> Chunk(int size)

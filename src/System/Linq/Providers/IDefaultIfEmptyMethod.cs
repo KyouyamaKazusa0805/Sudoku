@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IDefaultIfEmptyMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
-	where TSelf : IDefaultIfEmptyMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IDefaultIfEmptyMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.DefaultIfEmpty{TSource}(IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource?> DefaultIfEmpty() => Any() ? this : [default];

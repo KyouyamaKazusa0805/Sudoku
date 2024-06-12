@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ISumMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : ISumMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		ISumMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 	where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 {
 	/// <inheritdoc/>

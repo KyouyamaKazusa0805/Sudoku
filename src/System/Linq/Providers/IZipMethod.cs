@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IZipMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IZipMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IZipMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
 	public virtual IEnumerable<(TSource First, TSecond Second)> Zip<TSecond>(IEnumerable<TSecond> second)

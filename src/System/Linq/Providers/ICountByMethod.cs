@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : ICountByMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		ICountByMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc/>
 	public virtual IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull

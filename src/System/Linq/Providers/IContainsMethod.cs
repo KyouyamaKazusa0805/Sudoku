@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IContainsMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IContainsMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IContainsMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 	where TSource : notnull
 {
 	/// <inheritdoc cref="Enumerable.Contains{TSource}(IEnumerable{TSource}, TSource)"/>

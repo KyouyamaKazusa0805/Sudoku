@@ -5,7 +5,12 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IFirstLastMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
-	where TSelf : IFirstLastMethod<TSelf, TSource>, allows ref struct
+	where TSelf :
+		IFirstLastMethod<TSelf, TSource>
+#if NET9_0_OR_GREATER
+		,
+		allows ref struct
+#endif
 {
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
 	public virtual TSource First() => TryGetFirst(out var result) ? result : throw new InvalidOperationException();
