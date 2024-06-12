@@ -2091,15 +2091,74 @@
             <summary>
             Represents an XYZ-Wing pattern.
             </summary>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="house1">Indicates the house 1.</param>
+            <param name="house2">Indicates the house 2.</param>
             <param name="digitsMask">Indicates all digits.</param>
             <param name="zDigit">Indicates the digit Z.</param>
         </member>
-        <member name="M:Sudoku.Concepts.XyzWing.#ctor(System.Int16,System.Int32)">
+        <member name="M:Sudoku.Concepts.XyzWing.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int16,System.Int32)">
             <summary>
             Represents an XYZ-Wing pattern.
             </summary>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="leafCell1">Indicates the leaf cell 1.</param>
+            <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="house1">Indicates the house 1.</param>
+            <param name="house2">Indicates the house 2.</param>
             <param name="digitsMask">Indicates all digits.</param>
             <param name="zDigit">Indicates the digit Z.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.Cells">
+            <summary>
+            Indicates the full pattern of cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.Deconstruct(Sudoku.Concepts.CellMap@,System.Int16@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.Deconstruct(System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int16@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.Equals(Sudoku.Concepts.XyzWing)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.LeafCell1">
+            <summary>
+            The generated property declaration for parameter <c>leafCell1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.LeafCell2">
+            <summary>
+            The generated property declaration for parameter <c>leafCell2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.House1">
+            <summary>
+            The generated property declaration for parameter <c>house1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.XyzWing.House2">
+            <summary>
+            The generated property declaration for parameter <c>house2</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.XyzWing.DigitsMask">
             <summary>
@@ -2110,6 +2169,18 @@
             <summary>
             The generated property declaration for parameter <c>zDigit</c>.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.op_Equality(Sudoku.Concepts.XyzWing,Sudoku.Concepts.XyzWing)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.op_Inequality(Sudoku.Concepts.XyzWing,Sudoku.Concepts.XyzWing)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.CellMapExtensions">
             <summary>
@@ -9153,6 +9224,27 @@
             <remarks>
             This technique is specially-handled - it will be executed before all possible step searchers.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.PatternSearching.PatternSearcher`1">
+            <summary>
+            Represents a pattern searcher type.
+            </summary>
+            <typeparam name="T">The type of the found data.</typeparam>
+        </member>
+        <member name="M:Sudoku.Analytics.PatternSearching.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to search patterns, and return the found data.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>The found data.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.PatternSearching.XyzWingPatternSearcher">
+            <summary>
+            Represents a pattern searcher on XYZ-Wings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.PatternSearching.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">
             <summary>
