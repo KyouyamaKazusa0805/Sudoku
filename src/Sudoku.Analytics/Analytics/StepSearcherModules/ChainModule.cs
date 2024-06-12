@@ -41,6 +41,54 @@ internal static class ChainModule
 	}
 
 	/// <summary>
+	/// The collect method called by chain step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="linkTypes">The link types supported in searching.</param>
+	/// <param name="stepCreator">The creator method that creates a <see cref="Step"/> instance.</param>
+	/// <param name="chainPatternChecker">The checker method that filters the <see cref="ChainPattern"/>.</param>
+	/// <returns>The first found step.</returns>
+	public static unsafe T? CollectCore<T>(
+		ref AnalysisContext context,
+		List<T> accumulator,
+		LinkType linkTypes,
+		delegate*<ChainPattern, Conclusion[], View[], StepSearcherOptions, T> stepCreator,
+		delegate*<ChainPattern, bool> chainPatternChecker
+	) where T : ChainStep
+	{
+		ref readonly var grid = ref context.Grid;
+		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
+		var supportedRules =
+			from type in linkTypes.GetAllFlags()
+			where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
+			select ChainingRulePool.TryCreate(type)!;
+		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
+		{
+			if (!chainPatternChecker(foundChain))
+			{
+				continue;
+			}
+
+			var step = stepCreator(
+				foundChain,
+				CollectConclusions(foundChain, in grid, supportedRules),
+				CollectViews(in grid, foundChain, supportedRules),
+				context.Options
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+			if (!accumulator.Contains(step))
+			{
+				accumulator.Add(step);
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
 	/// Collect <see cref="CandidateViewNode"/> instances for the found chain.
 	/// </summary>
 	/// <param name="foundChain">The found chain.</param>

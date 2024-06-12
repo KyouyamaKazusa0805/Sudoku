@@ -2135,6 +2135,12 @@
         <member name="M:Sudoku.Concepts.XyzWing.Equals(Sudoku.Concepts.XyzWing)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.XyzWing.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.XyzWing.Pivot">
             <summary>
             The generated property declaration for parameter <c>pivot</c>.
@@ -2175,6 +2181,9 @@
         </member>
         <member name="M:Sudoku.Concepts.XyzWing.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.XyzWing.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.XyzWing.op_Equality(Sudoku.Concepts.XyzWing,Sudoku.Concepts.XyzWing)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -8005,6 +8014,9 @@
         <member name="M:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedYChainingRule">
             <summary>
             Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
@@ -9225,13 +9237,13 @@
             This technique is specially-handled - it will be executed before all possible step searchers.
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.PatternSearching.PatternSearcher`1">
+        <member name="T:Sudoku.Analytics.PatternSearching.IPatternSearcher`1">
             <summary>
             Represents a pattern searcher type.
             </summary>
             <typeparam name="T">The type of the found data.</typeparam>
         </member>
-        <member name="M:Sudoku.Analytics.PatternSearching.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.PatternSearching.IPatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
             <summary>
             Try to search patterns, and return the found data.
             </summary>
@@ -9782,6 +9794,17 @@
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="linkTypes">The link types supported in searching.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore``1(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{``0},Sudoku.Concepts.LinkType,,)">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="linkTypes">The link types supported in searching.</param>
+            <param name="stepCreator">The creator method that creates a <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
+            <param name="chainPatternChecker">The checker method that filters the <see cref="T:Sudoku.Concepts.ChainPattern"/>.</param>
             <returns>The first found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.GetNormalCandidateViewNodes(Sudoku.Concepts.ChainPattern)">

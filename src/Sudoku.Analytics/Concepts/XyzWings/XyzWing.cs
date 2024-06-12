@@ -10,7 +10,7 @@ namespace Sudoku.Concepts;
 /// <param name="house2">Indicates the house 2.</param>
 /// <param name="digitsMask">Indicates all digits.</param>
 /// <param name="zDigit">Indicates the digit Z.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public sealed partial class XyzWing(
 	[PrimaryConstructorParameter, HashCodeMember] Cell pivot,
 	[PrimaryConstructorParameter, HashCodeMember] Cell leafCell1,
@@ -19,7 +19,10 @@ public sealed partial class XyzWing(
 	[PrimaryConstructorParameter, HashCodeMember] House house2,
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter] Digit zDigit
-) : IEquatable<XyzWing>, IEqualityOperators<XyzWing, XyzWing, bool>
+) :
+	IEquatable<XyzWing>,
+	IEqualityOperators<XyzWing, XyzWing, bool>,
+	IFormattable
 {
 	/// <summary>
 	/// Indicates the full pattern of cells.
@@ -42,4 +45,21 @@ public sealed partial class XyzWing(
 	public bool Equals([NotNullWhen(true)] XyzWing? other)
 		=> other is not null && Cells == other.Cells && DigitsMask == other.DigitsMask
 		&& House1 == other.House1 && House2 == other.House2;
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider)
+	{
+		var converter = formatProvider switch
+		{
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			CoordinateConverter c => c,
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
+		var zDigitStr = converter.DigitConverter((Mask)(1 << ZDigit));
+		return $@"{converter.CellConverter(Pivot, LeafCell1, LeafCell2)}({DigitsMask}, {zDigitStr})";
+	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

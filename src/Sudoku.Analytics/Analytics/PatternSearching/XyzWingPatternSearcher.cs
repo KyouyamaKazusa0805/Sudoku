@@ -3,10 +3,10 @@ namespace Sudoku.Analytics.PatternSearching;
 /// <summary>
 /// Represents a pattern searcher on XYZ-Wings.
 /// </summary>
-internal sealed class XyzWingPatternSearcher : PatternSearcher<XyzWing>
+internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWing>
 {
 	/// <inheritdoc/>
-	public override ReadOnlySpan<XyzWing> Search(ref readonly Grid grid)
+	public static ReadOnlySpan<XyzWing> Search(ref readonly Grid grid)
 	{
 		// Collect for tri-value cells.
 		var trivalueCells = CellMap.Empty;
