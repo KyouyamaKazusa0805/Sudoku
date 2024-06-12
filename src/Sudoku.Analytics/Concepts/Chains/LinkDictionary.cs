@@ -14,10 +14,10 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 			static (left, right) => (left, right) switch
 			{
 				(null, null) => true,
-				(not null, not null) => left.Equals(right, LinkComparison.Undirected),
+				(not null, not null) => left.Equals(right, LinkComparison.Directed),
 				_ => false
 			},
-			static obj => obj.GetHashCode(LinkComparison.Undirected)
+			static obj => obj.GetHashCode(LinkComparison.Directed)
 		)
 	);
 
