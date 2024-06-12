@@ -64,20 +64,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				var baseSetsMask = HouseMaskOperations.Create(bs);
 				foreach (var cs in coverSetsToIterate.GetSubsets(size))
 				{
-					var (coverSetsMap, coverSetIsValid) = (CellMap.Empty, true);
+					var coverSetsMap = CellMap.Empty;
 					foreach (var p in cs)
 					{
 						var cells = CandidatesMap[digit] & HousesMap[p];
-						if (cells.IsInIntersection)
-						{
-							coverSetIsValid = false;
-							break;
-						}
 						coverSetsMap |= cells;
-					}
-					if (!coverSetIsValid)
-					{
-						continue;
 					}
 
 					var fins = baseSetsMap & ~coverSetsMap;
