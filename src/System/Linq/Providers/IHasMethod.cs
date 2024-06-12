@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Has</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IHasMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSource> where TSelf : IHasMethod<TSelf, TSource>
+public interface IHasMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSource>
+	where TSelf : IHasMethod<TSelf, TSource>, allows ref struct
 {
 	/// <summary>
 	/// Determine whether the collection contains an element of the specified type <typeparamref name="T"/>.

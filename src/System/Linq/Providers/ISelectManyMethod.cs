@@ -1,11 +1,11 @@
-﻿namespace System.Linq.Providers;
+namespace System.Linq.Providers;
 
 /// <summary>
 /// Represents a type that supports method group <c>SelectMany</c>.
 /// </summary>
 /// <inheritdoc/>
 public interface ISelectManyMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf : ISelectManyMethod<TSelf, TSource>
+	where TSelf : ISelectManyMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TResult}})"/>
 	public virtual IEnumerable<TResult> SelectMany<TResult>(Func<TSource, IEnumerable<TResult>> selector)

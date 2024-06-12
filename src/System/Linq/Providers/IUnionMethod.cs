@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Union</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IUnionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IUnionMethod<TSelf, TSource>
+public interface IUnionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : IUnionMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Union{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Union(IEnumerable<TSource> second) => Union(second, null);

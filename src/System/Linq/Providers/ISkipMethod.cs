@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Skip</c>, <c>SkipLast</c> and <c>SkipWhile</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ISkipMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ISkipMethod<TSelf, TSource>
+public interface ISkipMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : ISkipMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Skip{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource> Skip(int count) => new List<TSource>(this)[count..];

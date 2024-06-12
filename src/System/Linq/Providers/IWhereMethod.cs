@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Where</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IWhereMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : IWhereMethod<TSelf, TSource>
+public interface IWhereMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
+	where TSelf : IWhereMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public virtual IEnumerable<TSource> Where(Func<TSource, bool> predicate)

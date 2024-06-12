@@ -19,7 +19,6 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
 )
 #if false
-	:
 	IEnumerable<T>,
 	IGroupByMethod<SpanOrderedEnumerable<T>, T>,
 	IOrderedEnumerable<T>,

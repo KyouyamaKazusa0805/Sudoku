@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Select</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ISelectMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : ISelectMethod<TSelf, TSource>
+public interface ISelectMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
+	where TSelf : ISelectMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
 	public virtual IEnumerable<TResult> Select<TResult>(Func<TSource, TResult> selector)

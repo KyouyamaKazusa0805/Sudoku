@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Cast</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ICastMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICastMethod<TSelf, TSource>
+public interface ICastMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : ICastMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
 	public virtual IEnumerable<TResult> Cast<TResult>() where TResult : TSource

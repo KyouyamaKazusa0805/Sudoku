@@ -5,7 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IAverageMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>, ISumMethod<TSelf, TSource>
-	where TSelf : IAverageMethod<TSelf, TSource>
+	where TSelf : IAverageMethod<TSelf, TSource>, allows ref struct
 	where TSource : INumberBase<TSource>
 {
 	/// <inheritdoc/>

@@ -5,7 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IExceptMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf : IExceptMethod<TSelf, TSource>
+	where TSelf : IExceptMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Except{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Except(IEnumerable<TSource> second) => Except(second, null);

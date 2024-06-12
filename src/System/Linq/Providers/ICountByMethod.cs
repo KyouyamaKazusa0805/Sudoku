@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>CountBy</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICountByMethod<TSelf, TSource>
+public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : ICountByMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc/>
 	public virtual IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull

@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Intersect</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IIntersectionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IIntersectionMethod<TSelf, TSource>
+public interface IIntersectionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : IIntersectionMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Intersect{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Intersect(IEnumerable<TSource> second) => Intersect(second, null);

@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Join</c> and <c>GroupJoin</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : IJoinMethod<TSelf, TSource>
+public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
+	where TSelf : IJoinMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
 	public virtual IEnumerable<TResult> Join<TInner, TKey, TResult>(

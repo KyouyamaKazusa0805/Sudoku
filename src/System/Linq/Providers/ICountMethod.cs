@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Count</c> and <c>LongCount</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ICountMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICountMethod<TSelf, TSource>
+public interface ICountMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : ICountMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/>
 	public virtual int Count()

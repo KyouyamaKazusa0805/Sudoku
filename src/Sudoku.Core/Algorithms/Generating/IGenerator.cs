@@ -6,7 +6,7 @@ namespace Sudoku.Generating;
 /// </summary>
 /// <typeparam name="TResult">The type of the result. This type is generally <see cref="Grid"/>.</typeparam>
 /// <seealso cref="Grid"/>
-public interface IGenerator<out TResult>
+public interface IGenerator<out TResult> where TResult : allows ref struct
 {
 	/// <summary>
 	/// Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.

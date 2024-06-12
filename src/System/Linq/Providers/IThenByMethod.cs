@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>ThenBy</c> and <c>ThenByDescending</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IThenByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : IThenByMethod<TSelf, TSource>
+public interface IThenByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
+	where TSelf : IThenByMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc/>
 	static bool ILinqMethod<TSelf, TSource>.IsValueLazilyCalculated => true;

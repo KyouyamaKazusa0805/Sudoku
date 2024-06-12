@@ -4,7 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>OrderBy</c> and <c>OrderByDescending</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IOrderByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : IOrderByMethod<TSelf, TSource>
+public interface IOrderByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
+	where TSelf : IOrderByMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc/>
 	static bool ILinqMethod<TSelf, TSource>.IsValueLazilyCalculated => true;
