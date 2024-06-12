@@ -14,6 +14,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		sets.Clear();
 		for (var digit = 0; digit < 9; digit++)
 		{
+			if (ValuesMap[digit].Count == 9)
+			{
+				continue;
+			}
+
 			for (var house = 9; house < 27; house++)
 			{
 				if ((CandidatesMap[digit] & HousesMap[house]).Count >= 2)
