@@ -75,8 +75,12 @@
     <Configuration Solution="*|x64" Project="*|x64|Deploy" />
     <Configuration Solution="*|x86" Project="*|x86|Deploy" />
     <Configuration Solution="Build|*" Project="Debug|*" />
+    <Platform Solution="Release|x64" Project="x64" />
   </Project>
   <Project Path="src\System\SystemExtensions.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
+  <Properties Name="Visual Studio">
+    <Property Name="OpenWith" Value="17" />
+  </Properties>
 </Solution>
