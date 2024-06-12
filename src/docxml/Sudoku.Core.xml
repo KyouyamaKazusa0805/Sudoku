@@ -6571,14 +6571,6 @@
             <param name="house">The house to be checked.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Subview.ExpandedCellFromDigit(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Expands the current <see cref="T:Sudoku.Concepts.CellMap"/> instance, inserting into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance by specified digit.
-            </summary>
-            <param name="cells">The cells to be checked.</param>
-            <param name="digit">The digit to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Subview.ReduceCandidateByDigit(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <summary>
             Reduces the <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, only checks for candidates whose digit is equal to argument <paramref name="digit"/>,
@@ -6587,6 +6579,14 @@
             <param name="candidates">The candidates to be checked.</param>
             <param name="digit">The digit to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Subview.ExpandedCellFromDigit(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Expands the current <see cref="T:Sudoku.Concepts.CellMap"/> instance, inserting into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance by specified digit.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="digit">The digit to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>

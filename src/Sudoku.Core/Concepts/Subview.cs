@@ -27,22 +27,6 @@ public static class Subview
 	}
 
 	/// <summary>
-	/// Expands the current <see cref="CellMap"/> instance, inserting into a <see cref="CandidateMap"/> instance by specified digit.
-	/// </summary>
-	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="digit">The digit to be checked.</param>
-	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
-	public static CandidateMap ExpandedCellFromDigit(ref readonly CellMap cells, Digit digit)
-	{
-		var result = CandidateMap.Empty;
-		foreach (var cell in cells.Offsets)
-		{
-			result.Add(cell * 9 + digit);
-		}
-		return result;
-	}
-
-	/// <summary>
 	/// Reduces the <see cref="CandidateMap"/> instance, only checks for candidates whose digit is equal to argument <paramref name="digit"/>,
 	/// and merge into a <see cref="CellMap"/> value.
 	/// </summary>
@@ -58,6 +42,22 @@ public static class Subview
 			{
 				result.Add(element / 9);
 			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Expands the current <see cref="CellMap"/> instance, inserting into a <see cref="CandidateMap"/> instance by specified digit.
+	/// </summary>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
+	public static CandidateMap ExpandedCellFromDigit(ref readonly CellMap cells, Digit digit)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var cell in cells.Offsets)
+		{
+			result.Add(cell * 9 + digit);
 		}
 		return result;
 	}
