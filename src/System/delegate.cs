@@ -125,7 +125,7 @@ public static class @delegate
 	/// <param name="value">The value.</param>
 	/// <returns>The value itself.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T Self<T>(T value) => value;
+	public static T Self<T>(T value) where T : allows ref struct => value;
 
 	/// <summary>
 	/// Represents Y-Combinator. This method can allow you create recursive lambdas.

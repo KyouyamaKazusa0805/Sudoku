@@ -639,44 +639,6 @@
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
-        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
-            <summary>
-            Provides with extension methos on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.CollectionExtensions.Insert``1(System.Collections.ObjectModel.Collection{``0},System.Index,``0)">
-            <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)"/>
-            <param name="this">The current collection.</param>
-            <param name="index"/>
-            <param name="item"/>
-        </member>
-        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
-        </member>
         <member name="T:System.Collections.Generic.ICollectionExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
@@ -925,6 +887,32 @@
             </summary>
             <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
             <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
+        </member>
+        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>
