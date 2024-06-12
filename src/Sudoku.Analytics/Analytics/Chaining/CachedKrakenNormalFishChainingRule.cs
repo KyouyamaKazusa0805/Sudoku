@@ -45,12 +45,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 
 			foreach (var bs in baseSetsToIterate.GetSubsets(size))
 			{
-				var baseSetsMap = CellMap.Empty;
-				var baseSetIsValid = true;
+				var (baseSetsMap, baseSetIsValid) = (CellMap.Empty, true);
 				foreach (var p in bs)
 				{
 					var cells = CandidatesMap[digit] & HousesMap[p];
-					if (cells.Count <= 2 || cells.IsInIntersection)
+					if (cells.IsInIntersection)
 					{
 						baseSetIsValid = false;
 						break;
@@ -65,12 +64,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				var baseSetsMask = HouseMaskOperations.Create(bs);
 				foreach (var cs in coverSetsToIterate.GetSubsets(size))
 				{
-					var coverSetsMap = CellMap.Empty;
-					var coverSetIsValid = true;
+					var (coverSetsMap, coverSetIsValid) = (CellMap.Empty, true);
 					foreach (var p in cs)
 					{
 						var cells = CandidatesMap[digit] & HousesMap[p];
-						if (cells.Count <= 2 || cells.IsInIntersection)
+						if (cells.IsInIntersection)
 						{
 							coverSetIsValid = false;
 							break;
