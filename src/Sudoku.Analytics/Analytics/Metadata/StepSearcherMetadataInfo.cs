@@ -11,12 +11,6 @@ public sealed partial class StepSearcherMetadataInfo(
 	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcherAttribute backAttribute
 )
 {
-	/// <summary>
-	/// Determines whether the current step searcher contains split configuration,
-	/// meaning it can be created as multiple instances in a same step searchers collection.
-	/// </summary>
-	public bool IsSplit => _stepSearcher.GetType().GetCustomAttribute<SplitStepSearcherAttribute>() is not null;
-
 	/// <inheritdoc cref="StepSearcherAttribute.IsCachingSafe"/>
 	public bool IsCachingSafe => _backAttribute.IsCachingSafe;
 
@@ -64,7 +58,7 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
-	public DifficultyLevel[] DifficultyLevelRange => _backAttribute.DifficultyLevels.GetAllFlags();
+	public ReadOnlyMemory<DifficultyLevel> DifficultyLevelRange => _backAttribute.DifficultyLevels.GetAllFlags();
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => _backAttribute.SupportedTechniques;

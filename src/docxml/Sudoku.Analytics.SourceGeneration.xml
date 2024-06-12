@@ -26,7 +26,7 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
+        <member name="M:Sudoku.SourceGeneration.Handlers.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}})">
             <summary>
             Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
             </summary>

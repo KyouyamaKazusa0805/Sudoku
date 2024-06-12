@@ -50,4 +50,9 @@ public static class MemberInfoExtensions
 
 		static bool match(Type modreq) => modreq == typeof(IsExternalInit);
 	}
+
+	/// <inheritdoc cref="CustomAttributeExtensions.IsDefined(MemberInfo, Type)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsDefined<TAttribute>(this MemberInfo element) where TAttribute : Attribute
+		=> element.IsDefined(typeof(TAttribute));
 }

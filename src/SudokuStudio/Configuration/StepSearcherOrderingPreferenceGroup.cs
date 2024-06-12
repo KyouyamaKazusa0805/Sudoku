@@ -10,13 +10,15 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 {
 	[Default]
 	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = new(
-		from searcher in StepSearcherPool.BuiltInStepSearchers
-		select new StepSearcherInfo
-		{
-			IsEnabled = searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching),
-			Name = searcher.ToString(),
-			TypeName = searcher.GetType().Name
-		}
+		(
+			from searcher in StepSearcherPool.BuiltInStepSearchers
+			select new StepSearcherInfo
+			{
+				IsEnabled = searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching),
+				Name = searcher.ToString(),
+				TypeName = searcher.GetType().Name
+			}
+		).ToArray()
 	);
 
 
@@ -33,6 +35,6 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 			return;
 		}
 
-		analyzer.WithStepSearchers([.. from s in stepSearchers from stepSearcher in s.CreateStepSearchers() select stepSearcher]);
+		analyzer.WithStepSearchers([.. from s in stepSearchers select s.CreateStepSearcher()]);
 	}
 }

@@ -7,10 +7,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="supportedTechniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute(
-	[PrimaryConstructorParameter] string nameKey,
-	params Technique[] supportedTechniques
-) : Attribute
+public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] supportedTechniques) : Attribute
 {
 	/// <summary>
 	/// <para>

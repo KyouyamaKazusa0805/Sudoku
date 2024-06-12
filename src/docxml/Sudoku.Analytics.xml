@@ -3824,16 +3824,16 @@
             <summary>
             <para>
             Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
-            By default, the solver will use <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
+            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/> to solve a puzzle.
             If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/> to solve a puzzle.
+            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/> to solve a puzzle.
             </para>
             <para>
             Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
             however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
             </para>
             </summary>
-            <seealso cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)"/>
+            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerOrCollector.ResultStepSearchers">
             <summary>
@@ -3847,7 +3847,7 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerOrCollector.FilterStepSearchers(Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
+        <member name="M:Sudoku.Analytics.AnalyzerOrCollector.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
             Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
             </summary>
@@ -8743,42 +8743,6 @@
             Indicates the technique can be applied to indirect mode.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute">
-            <summary>
-            Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
-            to create multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s for the current type, ordering by split priority value.
-            </summary>
-            <param name="priority">Indicates the priority value that will be used for the ordering.</param>
-            <param name="propertyNamesAndValues">Indicates the property names and the values.</param>
-            <remarks>
-            Please note that this attribute is optional to be marked,
-            meaning it's unnecessary to be used to mark all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute.#ctor(System.Int32,System.Object[])">
-            <summary>
-            Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
-            to create multiple <see cref="T:Sudoku.Analytics.StepSearcher"/>s for the current type, ordering by split priority value.
-            </summary>
-            <param name="priority">Indicates the priority value that will be used for the ordering.</param>
-            <param name="propertyNamesAndValues">Indicates the property names and the values.</param>
-            <remarks>
-            Please note that this attribute is optional to be marked,
-            meaning it's unnecessary to be used to mark all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute.Priority">
-            <summary>
-            The generated property declaration for parameter <c>priority</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute.PropertyNamesAndValues">
-            <summary>
-            The generated property declaration for parameter <c>propertyNamesAndValues</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">
             <summary>
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
@@ -8881,12 +8845,6 @@
             <param name="stepSearcher">The step searcher instance.</param>
             <param name="backAttribute">The bound step searcher attribute.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsSplit">
-            <summary>
-            Determines whether the current step searcher contains split configuration,
-            meaning it can be created as multiple instances in a same step searchers collection.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsCachingSafe">
             <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
@@ -9026,16 +8984,6 @@
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce indirect techniques,
             which won't be used in direct views, i.e. all candidates aren't shown.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute">
-            <summary>
-            Represents an attribute type that can be detected by source generator, controlling for the generation behavior.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute.CanDeriveTypes">
-            <summary>
-            Indicates whether the current step searcher can be used for deriving. This property controls the behavior on generated members.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute">
@@ -9578,26 +9526,6 @@
             Indicates the implementation details of the current step searcher instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.PriorityId">
-            <summary>
-            Indicates the final priority value ID of the step searcher. This property is used as comparison.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.SplitPriority">
-            <summary>
-            Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>.
-            </summary>
-            <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.Name">
-            <summary>
-            Returns the real name of this instance.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
@@ -9659,12 +9587,6 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcher._splitPriority">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcher.SplitPriority"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule">
             <summary>
@@ -9911,11 +9833,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearcherPool.DefaultBindingFlags">
-            <summary>
-            Indicates the default binding flags.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.StepSearcherPool.ThisAssembly">
             <summary>
             Indicates the current assembly.
@@ -9926,46 +9843,22 @@
             Try to fetch a list of built-in step searchers.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchersExpanded">
+        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.String)">
             <summary>
-            Try to fetch a list of built-in step searchers, with expanded.
-            All step searcher types marked <see cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/> will be separate with multiple instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)">
-            <summary>
-            Indicates an array of all built-in <see cref="T:Sudoku.Analytics.StepSearcher"/>s that are defined in this assembly.
-            </summary>
-            <param name="expandSplitStepSearchers">
-            Indicates whether we should expand split step searchers, creating multiple instances and inserting into the full collection.
-            </param>
-            <returns>An array of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances found.</returns>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.String,System.Boolean)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)" path="/summary"/>
             </summary>
             <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
-            <param name="expandSplitStepSearchers">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/param[@name='expandSplitStepSearchers']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)" path="/returns"/></returns>
             <exception cref="T:System.InvalidOperationException">
             Throws when the corresponding <see cref="T:System.Type"/> reflection result is not found.
             </exception>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)">
             <summary>
             The internal method to get all <see cref="T:Sudoku.Analytics.StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
             </summary>
             <param name="type">The type of the step searcher.</param>
-            <param name="expandSplitStepSearchers">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/param[@name='expandSplitStepSearchers']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.Default(System.Boolean)" path="/returns"/></returns>
-            <seealso cref="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute"/>
+            <returns>An array of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances found.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher">
             <summary>

@@ -13,8 +13,6 @@ internal static class StepSearcherDefaultImportingHandler
 
 	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute<>";
 
-	private const string StepSearcherSourceGenerationAttributeName = "Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute";
-
 
 	/// <inheritdoc/>
 	public static void Output(SourceProductionContext spc, Compilation compilation)
@@ -60,7 +58,7 @@ internal static class StepSearcherDefaultImportingHandler
 								ContainingNamespace: var containingNamespace,
 								Name: var stepSearcherName,
 								BaseType: { } baseType
-							} stepSearcherType
+							}
 						]
 					} attributeClassSymbol,
 					ConstructorArguments: [{ Type.TypeKind: TypeKind.Struct, Value: int dl }],
@@ -78,21 +76,13 @@ internal static class StepSearcherDefaultImportingHandler
 				continue;
 			}
 
-			// Check whether the step searcher can be used for deriving.
-			var sourceGenerationAttributeType = compilation.GetTypeByMetadataName(StepSearcherSourceGenerationAttributeName)!;
-			var isPolymorphism = stepSearcherType.GetAttributes()
-				.Any(
-					a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, sourceGenerationAttributeType)
-						&& a.GetNamedArgument<bool>("CanDeriveTypes")
-				);
-
 			// Adds the necessary info into the collection.
-			foundAttributesData.Add(new(containingNamespace, baseType, priorityValue++, dl, stepSearcherName, namedArguments, isPolymorphism));
+			foundAttributesData.Add(new(containingNamespace, baseType, priorityValue++, dl, stepSearcherName, namedArguments));
 		}
 
 		// Iterate on each valid attribute data, and checks the inner value to be used by the source generator to output.
 		var (generatedCodeSnippets, namespaceUsed) = (new List<string>(), foundAttributesData[0].Namespace);
-		foreach (var (_, baseType, priority, level, name, namedArguments, isPolymorphism) in foundAttributesData)
+		foreach (var (_, baseType, priority, level, name, namedArguments) in foundAttributesData)
 		{
 			// Checks whether the attribute has configured any extra options.
 			var nullableRunningArea = default(int?);
@@ -122,45 +112,7 @@ internal static class StepSearcherDefaultImportingHandler
 
 			// Output the generated code.
 			var baseTypeFullName = baseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-			generatedCodeSnippets.Add(
-				isPolymorphism
-					? $$"""
-					partial class {{name}} : {{baseTypeFullName}}
-					{
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(StepSearcherDefaultImportingHandler).Name}}", "{{Value}}")]
-						public {{name}}() : base({{priority}}, {{level}}{{(runningAreaStr is not null ? $", {runningAreaStr}" : string.Empty)}})
-						{
-						}
-
-						/// <param name="priority">
-						/// <inheritdoc
-						///     cref="global::Sudoku.Analytics.StepSearcher(int, int, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
-						///     path="/param[@name='priority']"/>
-						/// </param>
-						/// <param name="level">
-						/// <inheritdoc
-						///     cref="global::Sudoku.Analytics.StepSearcher(int, int, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
-						///     path="/param[@name='level']"/>
-						/// </param>
-						/// <param name="runningArea">
-						/// <inheritdoc
-						///     cref="global::Sudoku.Analytics.StepSearcher(int, int, global::Sudoku.Analytics.Metadata.StepSearcherRunningArea)"
-						///     path="/param[@name='runningArea']"/>
-						/// </param>
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(StepSearcherDefaultImportingHandler).Name}}", "{{Value}}")]
-						public {{name}}(
-							int priority,
-							int level,
-							global::Sudoku.Analytics.Metadata.StepSearcherRunningArea runningArea = global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching | global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting
-						) : base(priority, level, runningArea)
-						{
-						}
-					}
-					"""
-					: $"partial class {name}() : {baseTypeFullName}({priority}, {sb});"
-			);
+			generatedCodeSnippets.Add($"partial class {name}() : {baseTypeFullName}({priority}, {sb});");
 		}
 
 		spc.AddSource(
@@ -210,6 +162,5 @@ file sealed record CollectedResult(
 	int PriorityValue,
 	int StepSearcherLevel,
 	string TypeName,
-	NamedArgs NamedArguments,
-	bool IsPolymorphism
+	NamedArgs NamedArguments
 );

@@ -7,7 +7,7 @@ namespace SudokuStudio.Interaction.Conversions;
 internal static class StepSearcherListViewConversion
 {
 	public static object? GetStepSearcherSupportedDifficultyLevelCollection(StepSearcherInfo? info)
-		=> info is null ? null : GetMatchedStepSearcher(info).Metadata.DifficultyLevelRange;
+		=> info is null ? null : GetMatchedStepSearcher(info).Metadata.DifficultyLevelRange.ToArray();
 
 	public static object? GetStepSearcherSupportedTechniqueCollection(StepSearcherInfo? info)
 		=> info is null ? null : from t in GetMatchedStepSearcher(info).Metadata.SupportedTechniques orderby t.GetDifficultyLevel() select t;
@@ -25,5 +25,5 @@ internal static class StepSearcherListViewConversion
 	public static Brush GetTechniqueBackground(Technique technique)
 		=> DifficultyLevelConversion.GetBackgroundColor(technique.GetDifficultyLevel());
 
-	private static StepSearcher GetMatchedStepSearcher(StepSearcherInfo info) => StepSearcherPool.GetStepSearchers(info.TypeName, false)[0];
+	private static StepSearcher GetMatchedStepSearcher(StepSearcherInfo info) => StepSearcherPool.GetStepSearcher(info.TypeName);
 }

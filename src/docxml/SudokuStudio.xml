@@ -1734,7 +1734,7 @@
             Indicates whether the technique option is not read-only and can be used for toggle operation.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.CreateStepSearchers">
+        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.CreateStepSearcher">
             <summary>
             Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>

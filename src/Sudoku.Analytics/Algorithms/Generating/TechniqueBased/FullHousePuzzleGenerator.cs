@@ -8,7 +8,10 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	/// <summary>
 	/// Represents an analyzer.
 	/// </summary>
-	private static readonly Analyzer Analyzer = new() { StepSearchers = [new SingleStepSearcher { EnableFullHouse = true }] };
+	private static readonly Analyzer Analyzer = new()
+	{
+		StepSearchers = (StepSearcher[])[new SingleStepSearcher { EnableFullHouse = true }]
+	};
 
 
 	/// <summary>

@@ -33,22 +33,22 @@
     <File Path="NuGet.config" />
   </Folder>
   <Folder Name="/Source Generators/">
-    <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-  </Folder>
+  <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
+    <Configuration Solution="Build|*" Project="Debug|*" />
+  </Project>
+  <Project Path="src\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj">
+    <Configuration Solution="Build|*" Project="Debug|*" />
+  </Project>
+  <Project Path="src\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj">
+    <Configuration Solution="Build|*" Project="Debug|*" />
+  </Project>
+  <Project Path="src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj">
+    <Configuration Solution="Build|*" Project="Debug|*" />
+  </Project>
+  <Project Path="src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj">
+    <Configuration Solution="Build|*" Project="Debug|*" />
+  </Project>
+</Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
@@ -83,4 +83,5 @@
   <Properties Name="Visual Studio">
     <Property Name="OpenWith" Value="17" />
   </Properties>
+  <Folder Name="/Global Items/Source Generators/" />
 </Solution>

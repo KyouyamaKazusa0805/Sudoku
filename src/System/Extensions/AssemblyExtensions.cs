@@ -22,6 +22,6 @@ public static class AssemblyExtensions
 	/// <param name="this"><inheritdoc/></param>
 	/// <returns><inheritdoc/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Type[] GetDerivedTypes<TBase>(this Assembly @this)
+	public static Type[] GetDerivedTypes<TBase>(this Assembly @this) where TBase : allows ref struct
 		=> from type in @this.GetTypes() where type.IsAssignableTo(typeof(TBase)) select type;
 }

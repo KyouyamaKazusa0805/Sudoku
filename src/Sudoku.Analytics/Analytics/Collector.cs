@@ -25,9 +25,8 @@ public sealed partial class Collector : AnalyzerOrCollector
 	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
-	[DisallowNull]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public override StepSearcher[]? StepSearchers
+	public override ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get => _stepSearchers;
 
@@ -35,8 +34,8 @@ public sealed partial class Collector : AnalyzerOrCollector
 	}
 
 	/// <inheritdoc/>
-	public override StepSearcher[] ResultStepSearchers { get; protected internal set; } =
-		from searcher in StepSearcherPool.BuiltInStepSearchersExpanded
+	public override ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; protected internal set; } =
+		from searcher in StepSearcherPool.BuiltInStepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Collecting)
 		select searcher;
 

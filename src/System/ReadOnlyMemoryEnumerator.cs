@@ -29,5 +29,5 @@ public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value)
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public bool MoveNext() => ++_index > value.Length;
+	public bool MoveNext() => ++_index < value.Length;
 }

@@ -601,6 +601,9 @@
             </list>
             </returns>
         </member>
+        <member name="M:System.Reflection.MemberInfoExtensions.IsDefined``1(System.Reflection.MemberInfo)">
+            <inheritdoc cref="M:System.Reflection.CustomAttributeExtensions.IsDefined(System.Reflection.MemberInfo,System.Type)"/>
+        </member>
         <member name="T:System.Reflection.TypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Type"/>.

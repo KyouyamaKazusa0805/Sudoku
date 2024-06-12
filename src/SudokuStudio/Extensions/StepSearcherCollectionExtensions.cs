@@ -18,12 +18,11 @@ public static class StepSearcherCollectionExtensions
 			..
 			from data in @this.Preference.StepSearcherOrdering.StepSearchersOrder
 			where data.IsEnabled
-			select data.CreateStepSearchers() into stepSearchers
-			from s in stepSearchers
-			let timeFlag = s.Metadata.IsConfiguredSlow
-			let spaceFlag = s.Metadata.IsConfiguredHighAllocation
+			select data.CreateStepSearcher() into stepSearcher
+			let timeFlag = stepSearcher.Metadata.IsConfiguredSlow
+			let spaceFlag = stepSearcher.Metadata.IsConfiguredHighAllocation
 			where !timeFlag || timeFlag && !disallowHighTimeComplexity || !spaceFlag || spaceFlag && !disallowSpaceTimeComplexity
-			select s
+			select stepSearcher
 		];
 	}
 }

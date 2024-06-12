@@ -42,35 +42,6 @@ public abstract partial class StepSearcher(
 	/// </summary>
 	public StepSearcherMetadataInfo Metadata => new(this, GetType().GetCustomAttribute<StepSearcherAttribute>()!);
 
-	/// <summary>
-	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
-	/// </summary>
-	internal int PriorityId => Priority << 4 | SplitPriority;
-
-	/// <summary>
-	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.
-	/// </summary>
-	/// <value>The value to be set. The value must be between 0 and 16 (i.e. <![CDATA[>= 0 and < 16]]>).</value>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when <see langword="value"/> is below 0, greater than 16 or equal to 16.
-	/// </exception>
-	/// <seealso cref="SplitStepSearcherAttribute"/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
-	internal int SplitPriority
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _splitPriority;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
-	}
-
-	/// <summary>
-	/// Returns the real name of this instance.
-	/// </summary>
-	[StringMember]
-	private string Name => Metadata.GetName(null);
-
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
