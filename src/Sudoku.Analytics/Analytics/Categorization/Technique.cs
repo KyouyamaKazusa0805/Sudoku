@@ -5204,6 +5204,22 @@ public enum Technique
 	#endregion
 
 	//
+	// Pattern Constructions
+	//
+	#region Pattern Constructions
+	/// <summary>
+	/// Indicates XYZ-Wing construction.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 55,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.PatternConstruction,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher))]
+	XyzWingConstruction,
+	#endregion
+
+	//
 	// Forcing Chains
 	//
 	#region Forcing Chains

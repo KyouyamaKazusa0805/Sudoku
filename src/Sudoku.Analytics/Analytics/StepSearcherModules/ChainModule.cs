@@ -22,8 +22,12 @@ internal static class ChainModule
 			select ChainingRulePool.TryCreate(type)!;
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
-			var conclusions = collectConclusions(foundChain, in grid);
-			var step = new NormalChainStep([.. conclusions], collectViews(in grid, foundChain), context.Options, foundChain);
+			var step = new NormalChainStep(
+				CollectConclusions(foundChain, in grid, supportedRules),
+				CollectViews(in grid, foundChain, supportedRules),
+				context.Options,
+				foundChain
+			);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -34,54 +38,72 @@ internal static class ChainModule
 			}
 		}
 		return null;
+	}
 
-
-		ConclusionSet collectConclusions(ChainPattern foundChain, ref readonly Grid grid)
+	/// <summary>
+	/// Collect <see cref="CandidateViewNode"/> instances for the found chain.
+	/// </summary>
+	/// <param name="foundChain">The found chain.</param>
+	/// <returns>The found nodes.</returns>
+	/// <seealso cref="CandidateViewNode"/>
+	private static ReadOnlySpan<CandidateViewNode> GetNormalCandidateViewNodes(ChainPattern foundChain)
+	{
+		var result = new List<CandidateViewNode>();
+		for (var i = 0; i < foundChain.Length; i++)
 		{
-			var conclusions = foundChain.GetConclusions(in grid);
-			if (foundChain is Loop loop)
+			ref readonly var map = ref foundChain[i].Map;
+			var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+			foreach (var candidate in map)
 			{
-				foreach (var r in supportedRules)
-				{
-					conclusions |= r.CollectLoopConclusions(loop, in grid);
-				}
-			}
-			return conclusions;
-		}
-
-		View[] collectViews(ref readonly Grid grid, ChainPattern foundChain)
-		{
-			var views = (View[])[
-				[
-					.. getCandidateNodes(foundChain),
-					..
-					from link in foundChain.Links
-					let node1 = link.FirstNode
-					let node2 = link.SecondNode
-					select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
-				]
-			];
-			foreach (var supportedRule in supportedRules)
-			{
-				supportedRule.CollectExtraViewNodes(in grid, foundChain, ref views);
-			}
-			return views;
-
-
-			static ReadOnlySpan<CandidateViewNode> getCandidateNodes(ChainPattern foundChain)
-			{
-				var result = new List<CandidateViewNode>();
-				for (var i = 0; i < foundChain.Length; i++)
-				{
-					ref readonly var map = ref foundChain[i].Map;
-					var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-					foreach (var candidate in map)
-					{
-						result.Add(new(id, candidate));
-					}
-				}
-				return result.AsReadOnlySpan();
+				result.Add(new(id, candidate));
 			}
 		}
+		return result.AsReadOnlySpan();
+	}
+
+	/// <summary>
+	/// The backing method to collect views.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="foundChain">The found chain.</param>
+	/// <param name="supportedRules">The supported rules.</param>
+	/// <returns>The views.</returns>
+	private static View[] CollectViews(ref readonly Grid grid, ChainPattern foundChain, ChainingRule[] supportedRules)
+	{
+		var views = (View[])[
+			[
+				.. GetNormalCandidateViewNodes(foundChain),
+				..
+				from link in foundChain.Links
+				let node1 = link.FirstNode
+				let node2 = link.SecondNode
+				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
+			]
+		];
+		foreach (var supportedRule in supportedRules)
+		{
+			supportedRule.CollectExtraViewNodes(in grid, foundChain, ref views);
+		}
+		return views;
+	}
+
+	/// <summary>
+	/// Collect conclusions (especially called by continuous nice loops).
+	/// </summary>
+	/// <param name="foundChain">The found chain.</param>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="supportedRules">The supported rules.</param>
+	/// <returns>The conclusions found.</returns>
+	private static Conclusion[] CollectConclusions(ChainPattern foundChain, ref readonly Grid grid, ChainingRule[] supportedRules)
+	{
+		var conclusions = foundChain.GetConclusions(in grid);
+		if (foundChain is Loop loop)
+		{
+			foreach (var r in supportedRules)
+			{
+				conclusions |= r.CollectLoopConclusions(loop, in grid);
+			}
+		}
+		return [.. conclusions];
 	}
 }

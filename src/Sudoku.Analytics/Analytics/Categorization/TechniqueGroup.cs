@@ -95,6 +95,11 @@ public enum TechniqueGroup
 	AlternatingInferenceChain,
 
 	/// <summary>
+	/// Indicates the pattern construction technique.
+	/// </summary>
+	PatternConstruction,
+
+	/// <summary>
 	/// Indicates the forcing chains technique.
 	/// </summary>
 	ForcingChains,

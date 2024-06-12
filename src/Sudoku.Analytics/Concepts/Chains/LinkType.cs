@@ -42,12 +42,17 @@ public enum LinkType
 	KrakenNormalFish = 1 << 5,
 
 	/// <summary>
+	/// Indicates the link type is an XYZ-Wing.
+	/// </summary>
+	XyzWing = 1 << 6,
+
+	/// <summary>
 	/// Indicates the link type is an almost unique rectangle.
 	/// </summary>
-	AlmostUniqueRectangle = 1 << 6,
+	AlmostUniqueRectangle = 1 << 7,
 
 	/// <summary>
 	/// Indicates the link type is an almost avoidable rectangle.
 	/// </summary>
-	AlmostAvoidableRectangle = 1 << 7
+	AlmostAvoidableRectangle = 1 << 8
 }

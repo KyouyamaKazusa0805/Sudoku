@@ -3303,6 +3303,33 @@
   <data name="TechniqueSetConstraint" xml:space="preserve">
     <value>技巧集：一个题可以只使用技巧{0}就可以完成题目</value>
   </data>
+  <data name="StepSearcherName_ChainStepSearcher" xml:space="preserve">
+    <value>链</value>
+  </data>
+  <data name="SelfConstraint" xml:space="preserve">
+    <value>自我约束</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="GroupedSelfConstraint" xml:space="preserve">
+    <value>区块自我约束</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_NormalChainStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="Factor_ChainLengthFactor" xml:space="preserve">
+    <value>长度</value>
+  </data>
+  <data name="Factor_ChainGroupedFactor" xml:space="preserve">
+    <value>链带区块</value>
+  </data>
+  <data name="StepSearcherName_GroupedChainStepSearcher" xml:space="preserve">
+    <value>区块链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="Factor_ChainGroupedNodeFactor" xml:space="preserve">
+    <value>区块节点</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3387,31 +3414,15 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
-  <data name="StepSearcherName_ChainStepSearcher" xml:space="preserve">
-    <value>链</value>
+  <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
+    <value>构造</value>
   </data>
-  <data name="SelfConstraint" xml:space="preserve">
-    <value>自我约束</value>
+  <data name="XyzWingConstruction" xml:space="preserve">
+    <value>XYZ 构造</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="GroupedSelfConstraint" xml:space="preserve">
-    <value>区块自我约束</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="TechniqueFormat_NormalChainStep" xml:space="preserve">
-    <value>{0}</value>
-  </data>
-  <data name="Factor_ChainLengthFactor" xml:space="preserve">
-    <value>长度</value>
-  </data>
-  <data name="Factor_ChainGroupedFactor" xml:space="preserve">
-    <value>链带区块</value>
-  </data>
-  <data name="StepSearcherName_GroupedChainStepSearcher" xml:space="preserve">
-    <value>区块链</value>
+  <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
+    <value>XYZ 构造</value>
     <comment>Step Searcher Name</comment>
-  </data>
-  <data name="Factor_ChainGroupedNodeFactor" xml:space="preserve">
-    <value>区块节点</value>
   </data>
 </root>

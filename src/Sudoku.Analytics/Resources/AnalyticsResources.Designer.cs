@@ -6049,6 +6049,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to XYZ-Wing Construction.
+        /// </summary>
+        public static string StepSearcherName_XyzWingConstructionStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_XyzWingConstructionStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to STUVWXYZ-Wing.
         /// </summary>
         public static string StuvwxyzWing {
@@ -8587,6 +8596,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pattern Constructions.
+        /// </summary>
+        public static string TechniqueGroup_PatternConstruction {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_PatternConstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pattern Overlay.
         /// </summary>
         public static string TechniqueGroup_PatternOverlay {
@@ -9393,6 +9411,15 @@ namespace Sudoku.Resources {
         public static string XyzWing {
             get {
                 return ResourceManager.GetString("XyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XYZ-Wing Construction.
+        /// </summary>
+        public static string XyzWingConstruction {
+            get {
+                return ResourceManager.GetString("XyzWingConstruction", resourceCulture);
             }
         }
         

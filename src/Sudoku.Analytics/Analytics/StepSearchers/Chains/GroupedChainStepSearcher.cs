@@ -1,9 +1,3 @@
-#define LOCKED_SET
-#undef HIDDEN_SET // Requires large memory
-#define FISH
-#define UNIQUE_RECTANGLE
-#define AVOIDABLE_RECTANGLE
-
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -40,7 +34,7 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	{
 		var accumulator = new List<NormalChainStep>();
 		var baseRules = LinkType.SingleDigit | LinkType.SingleCell;
-		foreach (var ruleKey in yieldLinkTypes())
+		foreach (var ruleKey in ChainingRule.ChainingLinkTypes)
 		{
 			baseRules |= ruleKey;
 			if (ChainModule.CollectCore(ref context, accumulator, baseRules) is { } step)
@@ -55,26 +49,5 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 			context.Accumulator.AddRange(accumulator);
 		}
 		return null;
-
-
-		static IEnumerable<LinkType> yieldLinkTypes()
-		{
-			yield return LinkType.LockedCandidates;
-#if LOCKED_SET
-			yield return LinkType.AlmostLockedSet;
-#endif
-#if HIDDEN_SET
-			yield return LinkType.AlmostHiddenSet;
-#endif
-#if FISH
-			yield return LinkType.KrakenNormalFish;
-#endif
-#if UNIQUE_RECTANGLE
-			yield return LinkType.AlmostUniqueRectangle;
-#endif
-#if AVOIDABLE_RECTANGLE
-			yield return LinkType.AlmostAvoidableRectangle;
-#endif
-		}
 	}
 }

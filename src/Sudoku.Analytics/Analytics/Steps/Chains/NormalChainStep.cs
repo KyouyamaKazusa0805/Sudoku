@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="pattern">Indicates the chain or loop pattern.</param>
-public sealed partial class NormalChainStep(
+public partial class NormalChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -21,10 +21,10 @@ public sealed partial class NormalChainStep(
 		=> (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + (IsGrouped ? 500 : 0) + Pattern.GetSortKey(Conclusions.AsSet());
 
 	/// <inheritdoc/>
-	public override bool IsMultiple => false;
+	public sealed override bool IsMultiple => false;
 
 	/// <inheritdoc/>
-	public override bool IsDynamic => false;
+	public sealed override bool IsDynamic => false;
 
 	/// <summary>
 	/// Indicates whether the chain is cannibalistic,
@@ -58,7 +58,7 @@ public sealed partial class NormalChainStep(
 		=> [new(EnglishLanguage, [ChainString]), new(ChineseLanguage, [ChainString])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
+	public sealed override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
 
 	private string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 
@@ -116,6 +116,7 @@ file static class Extensions
 		{ Technique.SelfConstraint, 207 },
 		{ Technique.AlternatingInferenceChain, 208 },
 		{ Technique.DiscontinuousNiceLoop, 209 },
+		{ Technique.XyzWingConstruction, 210 },
 		{ Technique.GroupedFishyCycle, 211 },
 		{ Technique.GroupedXyCycle, 212 },
 		{ Technique.GroupedContinuousNiceLoop, 213 },

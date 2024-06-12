@@ -1,3 +1,9 @@
+#define LOCKED_SET
+#undef HIDDEN_SET // Requires large memory
+#define FISH
+#define UNIQUE_RECTANGLE
+#define AVOIDABLE_RECTANGLE
+
 namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
@@ -14,6 +20,29 @@ namespace Sudoku.Analytics.Chaining;
 	OtherModifiersOnToString = "sealed")]
 internal abstract partial class ChainingRule
 {
+	/// <summary>
+	/// Indicates the link types.
+	/// </summary>
+	public static readonly LinkType[] ChainingLinkTypes = [
+		LinkType.LockedCandidates,
+#if LOCKED_SET
+		LinkType.AlmostLockedSet,
+#endif
+#if HIDDEN_SET
+		LinkType.AlmostHiddenSet,
+#endif
+#if FISH
+		LinkType.KrakenNormalFish,
+#endif
+#if UNIQUE_RECTANGLE
+		LinkType.AlmostUniqueRectangle,
+#endif
+#if AVOIDABLE_RECTANGLE
+		LinkType.AlmostAvoidableRectangle
+#endif
+	];
+
+
 	/// <summary>
 	/// Collects for both strong links and weak links appeared in argument <paramref name="grid"/>
 	/// and insert all found links into <paramref name="strongLinks"/> and <paramref name="weakLinks"/> respectively.
