@@ -13,12 +13,42 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 		foreach (var pattern in XyzWingPatternSearcher.Search(in grid))
 		{
 			var (pivot, leafCell1, leafCell2, _, _, _, zDigit) = pattern;
-			var cells = pivot.AsCellMap() + leafCell1 + leafCell2;
-			foreach (ref readonly var pair in cells & 2)
+			var patternCells = pivot.AsCellMap() + leafCell1 + leafCell2;
+			foreach (ref readonly var pair in patternCells & 2)
 			{
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in pair, zDigit), false, true);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(cells & ~pair, zDigit), true, true);
+				if (!pair.CanSeeEachOther)
+				{
+					continue;
+				}
+
+				var cells1 = pair;
+				var cells2 = patternCells & ~pair;
+				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, zDigit), false, true);
+				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, zDigit), true, true);
 				strongLinks.AddEntry(node1, node2, true, pattern);
+
+				foreach (var cells in cells1.PeerIntersection & CandidatesMap[zDigit] | 3)
+				{
+					if (!cells.IsInIntersection)
+					{
+						continue;
+					}
+
+					var node3 = new Node(Subview.ExpandedCellFromDigit(in cells1, zDigit), true, true);
+					var node4 = new Node(Subview.ExpandedCellFromDigit(in cells, zDigit), false, true);
+					weakLinks.AddEntry(node3, node4, false, pattern);
+				}
+				foreach (var cells in cells2.PeerIntersection & CandidatesMap[zDigit] | 3)
+				{
+					if (!cells.IsInIntersection)
+					{
+						continue;
+					}
+
+					var node3 = new Node(Subview.ExpandedCellFromDigit(in cells2, zDigit), true, true);
+					var node4 = new Node(Subview.ExpandedCellFromDigit(in cells, zDigit), false, true);
+					weakLinks.AddEntry(node3, node4, false, pattern);
+				}
 			}
 		}
 	}
