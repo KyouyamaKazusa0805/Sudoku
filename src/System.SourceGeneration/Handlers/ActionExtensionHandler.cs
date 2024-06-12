@@ -13,6 +13,9 @@ internal static class ActionExtensionHandler
 			var parametersReadOnly = i == 1
 				? "scoped ref readonly T arg"
 				: string.Join(", ", from value in values select $"scoped ref readonly T{value} arg{value}");
+			var allowsRefStructConstraint = i == 1
+				? "where T : allows ref struct"
+				: string.Join("\r\n\t", from value in values select $"where T{value} : allows ref struct");
 
 			code.Add(
 				$$"""
@@ -21,28 +24,34 @@ internal static class ActionExtensionHandler
 				/// </summary>
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
-				public delegate void ActionRef<{{typeParameters}}>({{parameters}});
+				public delegate void ActionRef<{{typeParameters}}>({{parameters}})
+					{{allowsRefStructConstraint}};
 
 				/// <summary>
 				/// Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
 				/// </summary>
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
-				public delegate void ActionRefReadOnly<{{typeParameters}}>({{parametersReadOnly}});
+				public delegate void ActionRefReadOnly<{{typeParameters}}>({{parametersReadOnly}})
+					{{allowsRefStructConstraint}};
 
 				/// <summary>
 				/// Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
 				/// </summary>
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
-				public delegate TResult FuncRef<{{typeParameters}}, out TResult>({{parameters}});
+				public delegate TResult FuncRef<{{typeParameters}}, out TResult>({{parameters}})
+					{{allowsRefStructConstraint}}
+					where TResult : allows ref struct;
 
 				/// <summary>
 				/// Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
 				/// </summary>
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
-				public delegate TResult FuncRefReadOnly<{{typeParameters}}, out TResult>({{parametersReadOnly}});
+				public delegate TResult FuncRefReadOnly<{{typeParameters}}, out TResult>({{parametersReadOnly}})
+					{{allowsRefStructConstraint}}
+					where TResult : allows ref struct;
 				"""
 			);
 		}
