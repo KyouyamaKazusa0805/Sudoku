@@ -11,7 +11,7 @@ public partial class NormalChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] ChainPattern pattern
+	[PrimaryConstructorParameter] ChainOrLoop pattern
 ) : ChainStep(conclusions, views, options)
 {
 	/// <summary>
@@ -137,6 +137,6 @@ file static class Extensions
 	/// <param name="conclusions">Indicates conclusions to be used.</param>
 	/// <returns>The pattern sort key.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetSortKey(this ChainPattern @this, ConclusionSet conclusions)
+	public static int GetSortKey(this ChainOrLoop @this, ConclusionSet conclusions)
 		=> SortKeyDictionary[@this.GetTechnique(conclusions)];
 }

@@ -16,7 +16,7 @@ public sealed class ChainGroupedNodeFactor : Factor
 		=> static args =>
 		{
 			var result = 0;
-			var p = (ChainPattern)args![0]!;
+			var p = (ChainOrLoop)args![0]!;
 			foreach (var link in p.Links)
 			{
 				result += link.GroupedLinkPattern switch

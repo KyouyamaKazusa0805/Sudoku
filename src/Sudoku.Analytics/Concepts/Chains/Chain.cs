@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainPattern(lastNode, false, strongLinkDictionary, weakLinkDictionary)
+	ChainOrLoop(lastNode, false, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.
@@ -137,7 +137,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	public bool Equals([NotNullWhen(true)] Chain? other)
 		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
 
-	/// <inheritdoc cref="ChainPattern.Equals(ChainPattern?, NodeComparison, ChainPatternComparison)"/>
+	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainPatternComparison)"/>
 	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
 		if (other is null)
@@ -198,10 +198,10 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	}
 
 	/// <inheritdoc/>
-	public override bool Equals(ChainPattern? other) => Equals(other as Chain);
+	public override bool Equals(ChainOrLoop? other) => Equals(other as Chain);
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 		=> Equals(other as Chain, nodeComparison, patternComparison);
 
 	/// <inheritdoc/>
@@ -274,7 +274,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
 
 	/// <inheritdoc/>
-	public override int CompareTo(ChainPattern? other) => CompareTo(other as Chain);
+	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as Chain);
 
 	/// <inheritdoc cref="CompareTo(Chain?)"/>
 	public int CompareTo(Chain? other, NodeComparison nodeComparison)

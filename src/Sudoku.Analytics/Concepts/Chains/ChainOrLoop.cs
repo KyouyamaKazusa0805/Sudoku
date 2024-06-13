@@ -7,12 +7,12 @@ namespace Sudoku.Concepts;
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators,
 	OtherModifiersOnEquals = "sealed",
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
-public abstract partial class ChainPattern :
-	IComparable<ChainPattern>,
-	IComparisonOperators<ChainPattern, ChainPattern, bool>,
+public abstract partial class ChainOrLoop :
+	IComparable<ChainOrLoop>,
+	IComparisonOperators<ChainOrLoop, ChainOrLoop, bool>,
 	IEnumerable<Node>,
-	IEquatable<ChainPattern>,
-	IEqualityOperators<ChainPattern, ChainPattern, bool>,
+	IEquatable<ChainOrLoop>,
+	IEqualityOperators<ChainOrLoop, ChainOrLoop, bool>,
 	IFormattable,
 	IReadOnlyList<Node>,
 	IReadOnlyCollection<Node>
@@ -40,13 +40,13 @@ public abstract partial class ChainPattern :
 
 
 	/// <summary>
-	/// Initializes <see cref="ChainPattern"/> data.
+	/// Initializes <see cref="ChainOrLoop"/> data.
 	/// </summary>
 	/// <param name="lastNode">The last node.</param>
 	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
 	/// <param name="strongLinkDictionary">Indicates the strong link dictionary.</param>
 	/// <param name="weakLinkDictionary">Indicates the weak link dictionary.</param>
-	protected ChainPattern(Node lastNode, bool isLoop, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary)
+	protected ChainOrLoop(Node lastNode, bool isLoop, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary)
 	{
 		(_strongGroupedLinkPool, _weakGroupedLinkPool) = (strongLinkDictionary.GroupedLinkPool, weakLinkDictionary.GroupedLinkPool);
 		var nodes = new List<Node> { lastNode };
@@ -215,7 +215,7 @@ public abstract partial class ChainPattern :
 	public abstract void Reverse();
 
 	/// <inheritdoc/>
-	public abstract bool Equals(ChainPattern? other);
+	public abstract bool Equals(ChainOrLoop? other);
 
 	/// <summary>
 	/// Determine whether two <see cref="Chain"/> or <see cref="Loop"/> instances are same, by using the specified comparison rule.
@@ -227,7 +227,7 @@ public abstract partial class ChainPattern :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public abstract bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+	public abstract bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
 	/// <summary>
 	/// Determines whether the current pattern (nodes) overlap with a list of conclusions,
@@ -324,7 +324,7 @@ public abstract partial class ChainPattern :
 	}
 
 	/// <inheritdoc/>
-	public abstract int CompareTo(ChainPattern? other);
+	public abstract int CompareTo(ChainOrLoop? other);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

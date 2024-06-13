@@ -9,13 +9,10 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
-		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
-
-		// Strong.
 		var maskTempList = (stackalloc Mask[81]);
-		foreach (var als in alses)
+		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
 		{
-			if (als is not (_, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
+			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, StrongLinks: var links, House: var house })
 			{
 				// This ALS is special case - it only uses 2 digits in a cell.
 				// This will be handled as a normal bi-value strong link (Y rule).
@@ -49,6 +46,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				continue;
 			}
 
+			// Strong.
 			foreach (var digitsPair in links)
 			{
 				var node1ExtraMap = CandidateMap.Empty;
@@ -70,43 +68,32 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, true);
 				strongLinks.AddEntry(node1, node2, true, als);
 			}
-		}
 
-		// Weak.
-		foreach (var als in alses)
-		{
-			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, House: var house })
-			{
-				continue;
-			}
-
+			// Weak.
 			foreach (var digit in digitsMask)
 			{
-				var cells1 = HousesMap[house] & cells;
-				var possibleCells2 = HousesMap[house] & CandidatesMap[digit] & ~cells;
-				if (!possibleCells2)
+				var cells3 = CandidatesMap[digit] & cells;
+				var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, digit), true, true);
+				foreach (var cells3House in cells3.SharedHouses)
 				{
-					// Cannot link to the other node.
-					continue;
-				}
-
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true, true);
-				foreach (ref readonly var cells2 in possibleCells2 | 3)
-				{
-					if (!cells2.IsInIntersection)
+					var otherCells = HousesMap[cells3House] & CandidatesMap[digit] & ~cells;
+					foreach (var cells4 in otherCells | 3)
 					{
-						continue;
-					}
+						if (!cells4.IsInIntersection)
+						{
+							continue;
+						}
 
-					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false, true);
-					weakLinks.AddEntry(node1, node2, false, als);
+						var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, digit), false, true);
+						weakLinks.AddEntry(node3, node4, false, als);
+					}
 				}
 			}
 		}
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (alsIndex, view) = (0, views[0]);
 		foreach (var link in pattern.Links)

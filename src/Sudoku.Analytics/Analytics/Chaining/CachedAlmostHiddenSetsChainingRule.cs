@@ -61,7 +61,7 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (ahsIndex, view) = (0, views[0]);
 		foreach (var link in pattern.Links)

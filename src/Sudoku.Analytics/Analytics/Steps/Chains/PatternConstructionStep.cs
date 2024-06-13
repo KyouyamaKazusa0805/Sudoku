@@ -12,7 +12,7 @@ public abstract partial class PatternConstructionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	ChainPattern pattern,
+	ChainOrLoop pattern,
 	[PrimaryConstructorParameter] object constructedPattern
 ) : NormalChainStep(conclusions, views, options, pattern)
 {

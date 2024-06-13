@@ -1,7 +1,7 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <summary>
-/// Represents a factor that describes the length of a <see cref="ChainPattern"/>.
+/// Represents a factor that describes the length of a <see cref="ChainOrLoop"/>.
 /// </summary>
 public sealed class ChainLengthFactor : Factor
 {

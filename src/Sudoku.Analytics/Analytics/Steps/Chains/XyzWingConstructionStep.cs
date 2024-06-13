@@ -12,7 +12,7 @@ public sealed class XyzWingConstructionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	ChainPattern pattern,
+	ChainOrLoop pattern,
 	XyzWing constructedPattern
 ) : PatternConstructionStep(conclusions, views, options, pattern, constructedPattern)
 {

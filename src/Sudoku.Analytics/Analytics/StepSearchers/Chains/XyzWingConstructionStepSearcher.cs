@@ -14,7 +14,9 @@ public sealed partial class XyzWingConstructionStepSearcher : StepSearcher
 	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
 		var accumulator = new List<NormalChainStep>();
-		var baseRules = ChainingRule.ChainingLinkTypes.Aggregate(@delegate.EnumFlagMerger) | LinkType.XyzWing;
+		var baseRules = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger)
+			| ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger)
+			| LinkType.XyzWing;
 		if (ChainModule.CollectCore(ref context, accumulator, baseRules, &createStep, &filter) is { } step)
 		{
 			return step;
@@ -28,7 +30,7 @@ public sealed partial class XyzWingConstructionStepSearcher : StepSearcher
 		return null;
 
 
-		static bool filter(ChainPattern pattern)
+		static bool filter(ChainOrLoop pattern)
 		{
 			var count = 0;
 			foreach (var link in pattern.Links)
@@ -42,7 +44,7 @@ public sealed partial class XyzWingConstructionStepSearcher : StepSearcher
 		}
 
 		static XyzWingConstructionStep createStep(
-			ChainPattern pattern,
+			ChainOrLoop pattern,
 			Conclusion[] conclusions,
 			View[] views,
 			StepSearcherOptions options

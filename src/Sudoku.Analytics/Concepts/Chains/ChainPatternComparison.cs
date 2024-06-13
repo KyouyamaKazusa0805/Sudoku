@@ -1,9 +1,9 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Provides with a comparison rule on <see cref="ChainPattern"/> instances (i.e. <see cref="Chain"/> or <see cref="Loop"/>).
+/// Provides with a comparison rule on <see cref="ChainOrLoop"/> instances (i.e. <see cref="Chain"/> or <see cref="Loop"/>).
 /// </summary>
-/// <seealso cref="ChainPattern"/>
+/// <seealso cref="ChainOrLoop"/>
 /// <seealso cref="Chain"/>
 /// <seealso cref="Loop"/>
 public enum ChainPatternComparison

@@ -21,9 +21,14 @@ namespace Sudoku.Analytics.Chaining;
 internal abstract partial class ChainingRule
 {
 	/// <summary>
-	/// Indicates the link types.
+	/// Indicates the elementary link types.
 	/// </summary>
-	public static readonly LinkType[] ChainingLinkTypes = [
+	public static readonly LinkType[] ElementaryLinkTypes = [LinkType.SingleDigit, LinkType.SingleCell];
+
+	/// <summary>
+	/// Indicates the advanced link types.
+	/// </summary>
+	public static readonly LinkType[] AdvancedLinkTypes = [
 		LinkType.LockedCandidates,
 #if LOCKED_SET
 		LinkType.AlmostLockedSet,
@@ -63,7 +68,7 @@ internal abstract partial class ChainingRule
 	/// <remarks>
 	/// The method by default will do nothing.
 	/// </remarks>
-	internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		// Do nothing.
 	}

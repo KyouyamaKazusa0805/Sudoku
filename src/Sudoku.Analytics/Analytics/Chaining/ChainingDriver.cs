@@ -6,13 +6,13 @@ namespace Sudoku.Analytics.Chaining;
 internal static class ChainingDriver
 {
 	/// <summary>
-	/// Collect all <see cref="ChainPattern"/> instances appears in a grid.
+	/// Collect all <see cref="ChainOrLoop"/> instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="rules">
 	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
 	/// </param>
-	/// <returns>All possible <see cref="ChainPattern"/> instances.</returns>
+	/// <returns>All possible <see cref="ChainOrLoop"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// A valid chain can only belong to the following three cases:
@@ -34,7 +34,7 @@ internal static class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<ChainPattern> CollectChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+	public static ReadOnlySpan<ChainOrLoop> CollectChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.
 		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
@@ -44,10 +44,10 @@ internal static class ChainingDriver
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
-		var foundPatterns = new HashSet<ChainPattern>(LocalComparer.ChainPatternComparer);
-		foreach (var cell in grid.EmptyCells)
+		var foundPatterns = new HashSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
+		foreach (var cell in EmptyCells)
 		{
-			foreach (var digit in grid.GetCandidates(cell))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
 				var node = new Node(cell, digit, true, false);
 				bfs(node, foundPatterns);
@@ -57,7 +57,7 @@ internal static class ChainingDriver
 
 		// Step 3: Check eliminations. If a chain doesn't contain any possible conclusions,
 		// it will be removed from the result collection.
-		var finalCollection = new List<ChainPattern>();
+		var finalCollection = new List<ChainOrLoop>();
 		foreach (var pattern in foundPatterns)
 		{
 			if (pattern.GetConclusions(in grid))
@@ -71,7 +71,7 @@ internal static class ChainingDriver
 		return finalCollection.AsReadOnlySpan();
 
 
-		void bfs(Node startNode, HashSet<ChainPattern> result)
+		void bfs(Node startNode, HashSet<ChainOrLoop> result)
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
@@ -79,8 +79,7 @@ internal static class ChainingDriver
 
 			var visitedStrong = new HashSet<Node>(LocalComparer.NodeMapComparer);
 			var visitedWeak = new HashSet<Node>(LocalComparer.NodeMapComparer);
-			visitedStrong.Add(startNode);
-			visitedWeak.Add(startNode);
+			_ = (visitedStrong.Add(startNode), visitedWeak.Add(startNode));
 
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
@@ -111,7 +110,7 @@ internal static class ChainingDriver
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
-							if (!node.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn) && visitedWeak.Add(node))
+							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedWeak.Add(node))
 							{
 								pendingWeak.AddLast(resultNode);
 							}
@@ -136,7 +135,7 @@ internal static class ChainingDriver
 								result.Add(new Chain(resultNode, strongLinks, weakLinks));
 							}
 
-							if (!node.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn) && visitedStrong.Add(node))
+							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedStrong.Add(node))
 							{
 								pendingStrong.AddLast(resultNode);
 							}
@@ -156,7 +155,7 @@ file static class LocalComparer
 	/// <summary>
 	/// Indicates the backing field of chain pattern comparer instance.
 	/// </summary>
-	private static IEqualityComparer<ChainPattern>? _chainPatternComparer;
+	private static IEqualityComparer<ChainOrLoop>? _chainPatternComparer;
 
 	/// <summary>
 	/// Indicates the backing field of node map comparer instance.
@@ -165,12 +164,12 @@ file static class LocalComparer
 
 
 	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainPattern"/> on equality comparison
+	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainOrLoop"/> on equality comparison
 	/// in order to filter duplicate chains.
 	/// </summary>
 	/// <returns>An <see cref="EqualityComparer{T}"/> instance.</returns>
-	public static IEqualityComparer<ChainPattern> ChainPatternComparer
-		=> _chainPatternComparer ??= EqualityComparer<ChainPattern>.Create(
+	public static IEqualityComparer<ChainOrLoop> ChainPatternComparer
+		=> _chainPatternComparer ??= EqualityComparer<ChainOrLoop>.Create(
 			static (left, right) => (left, right) switch
 			{
 				(null, null) => true,

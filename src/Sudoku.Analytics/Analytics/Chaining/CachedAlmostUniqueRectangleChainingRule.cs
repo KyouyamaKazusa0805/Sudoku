@@ -89,7 +89,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (view, id) = (views[0], ColorIdentifier.Auxiliary3);
 		foreach (var link in pattern.Links)

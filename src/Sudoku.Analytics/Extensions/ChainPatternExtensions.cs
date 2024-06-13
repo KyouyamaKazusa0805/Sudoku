@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ChainPattern"/> instances.
+/// Provides with extension methods on <see cref="ChainOrLoop"/> instances.
 /// </summary>
-/// <seealso cref="ChainPattern"/>
+/// <seealso cref="ChainOrLoop"/>
 public static class ChainPatternExtensions
 {
 	/// <summary>
@@ -13,7 +13,7 @@ public static class ChainPatternExtensions
 	/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetTechnique(this ChainPattern @this, scoped ref readonly Grid grid)
+	public static Technique GetTechnique(this ChainOrLoop @this, scoped ref readonly Grid grid)
 		=> @this.GetTechnique(@this.GetConclusions(in grid));
 
 	/// <summary>
@@ -22,7 +22,7 @@ public static class ChainPatternExtensions
 	/// <param name="this">The pattern to be checked.</param>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
-	public static Technique GetTechnique(this ChainPattern @this, ConclusionSet conclusions)
+	public static Technique GetTechnique(this ChainOrLoop @this, ConclusionSet conclusions)
 		=> @this switch
 		{
 			Chain

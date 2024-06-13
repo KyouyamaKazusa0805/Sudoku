@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainPattern(lastNode, true, strongLinkDictionary, weakLinkDictionary)
+	ChainOrLoop(lastNode, true, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <inheritdoc/>
 	public override int Length => _nodes.Length;
@@ -139,10 +139,10 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	}
 
 	/// <inheritdoc/>
-	public override bool Equals(ChainPattern? other) => Equals(other as Loop);
+	public override bool Equals(ChainOrLoop? other) => Equals(other as Loop);
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 		=> Equals(other as Loop, nodeComparison, patternComparison);
 
 	/// <summary>
@@ -268,7 +268,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	}
 
 	/// <inheritdoc/>
-	public override int CompareTo(ChainPattern? other) => CompareTo(other as Loop);
+	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as Loop);
 
 	/// <inheritdoc/>
 	public override string ToString(string? format, IFormatProvider? formatProvider)

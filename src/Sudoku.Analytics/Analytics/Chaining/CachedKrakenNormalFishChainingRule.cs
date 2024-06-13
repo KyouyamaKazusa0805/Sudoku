@@ -113,7 +113,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
+	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (view, id) = (views[0], ColorIdentifier.Auxiliary2);
 		var candidatesMap = grid.CandidatesMap;

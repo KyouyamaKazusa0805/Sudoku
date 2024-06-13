@@ -33,8 +33,9 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		var accumulator = new List<NormalChainStep>();
-		var extended = ChainingRule.ChainingLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		if (ChainModule.CollectCore(ref context, accumulator, LinkType.SingleDigit | LinkType.SingleCell | extended) is { } step)
+		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		if (ChainModule.CollectCore(ref context, accumulator, elementary | advanced) is { } step)
 		{
 			return step;
 		}

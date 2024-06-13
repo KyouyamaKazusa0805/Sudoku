@@ -44,14 +44,14 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="linkTypes">The link types supported in searching.</param>
 	/// <param name="stepCreator">The creator method that creates a <see cref="Step"/> instance.</param>
-	/// <param name="chainPatternChecker">The checker method that filters the <see cref="ChainPattern"/>.</param>
+	/// <param name="chainPatternChecker">The checker method that filters the <see cref="ChainOrLoop"/>.</param>
 	/// <returns>The first found step.</returns>
 	public static unsafe T? CollectCore<T>(
 		ref AnalysisContext context,
 		List<T> accumulator,
 		LinkType linkTypes,
-		delegate*<ChainPattern, Conclusion[], View[], StepSearcherOptions, T> stepCreator,
-		delegate*<ChainPattern, bool> chainPatternChecker
+		delegate*<ChainOrLoop, Conclusion[], View[], StepSearcherOptions, T> stepCreator,
+		delegate*<ChainOrLoop, bool> chainPatternChecker
 	) where T : ChainStep
 	{
 		ref readonly var grid = ref context.Grid;
@@ -87,7 +87,7 @@ internal static class ChainModule
 	/// <param name="foundChain">The found chain.</param>
 	/// <returns>The found nodes.</returns>
 	/// <seealso cref="CandidateViewNode"/>
-	private static ReadOnlySpan<CandidateViewNode> GetNormalCandidateViewNodes(ChainPattern foundChain)
+	private static ReadOnlySpan<CandidateViewNode> GetNormalCandidateViewNodes(ChainOrLoop foundChain)
 	{
 		var result = new List<CandidateViewNode>();
 		for (var i = 0; i < foundChain.Length; i++)
@@ -109,7 +109,7 @@ internal static class ChainModule
 	/// <param name="foundChain">The found chain.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	private static View[] CollectViews(ref readonly Grid grid, ChainPattern foundChain, ChainingRule[] supportedRules)
+	private static View[] CollectViews(ref readonly Grid grid, ChainOrLoop foundChain, ChainingRule[] supportedRules)
 	{
 		var views = (View[])[
 			[
@@ -135,7 +135,7 @@ internal static class ChainModule
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The conclusions found.</returns>
-	private static Conclusion[] CollectConclusions(ChainPattern foundChain, ref readonly Grid grid, ChainingRule[] supportedRules)
+	private static Conclusion[] CollectConclusions(ChainOrLoop foundChain, ref readonly Grid grid, ChainingRule[] supportedRules)
 	{
 		var conclusions = foundChain.GetConclusions(in grid);
 		if (foundChain is Loop loop)

@@ -1,12 +1,12 @@
 namespace Sudoku.Concepts;
 
-public partial class ChainPattern
+public partial class ChainOrLoop
 {
 	/// <summary>
 	/// Represents an enumerator type that can iterate on each <see cref="Node"/> inside the collection.
 	/// </summary>
-	/// <param name="nodes">The <see cref="ChainPattern"/> instance.</param>
-	public ref struct Enumerator(ChainPattern nodes)
+	/// <param name="nodes">The <see cref="ChainOrLoop"/> instance.</param>
+	public ref struct Enumerator(ChainOrLoop nodes)
 	{
 		/// <summary>
 		/// Indicates the number of nodes.
