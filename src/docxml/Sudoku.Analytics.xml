@@ -908,6 +908,10 @@
             Indicates the pool of grouped links and its corresponding pattern.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.LinkDictionary.Add(Sudoku.Concepts.Node,System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
+            <inheritdoc cref="M:System.Collections.Generic.Dictionary`2.Add(`0,`1)"/>
+            <exception cref="T:System.NotSupportedException">Always throws.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)">
             <summary>
             Add a link to the current collection with both entries on nodes of the link used.
@@ -9800,6 +9804,7 @@
             <summary>
             The collect method called by chain step searchers.
             </summary>
+            <typeparam name="T">The type of the step value to be added.</typeparam>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="linkTypes">The link types supported in searching.</param>
@@ -9832,6 +9837,14 @@
             <param name="grid">The grid to be checked.</param>
             <param name="supportedRules">The supported rules.</param>
             <returns>The conclusions found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.FilterSupportedChainingRules(Sudoku.Concepts.LinkType,System.Boolean)">
+            <summary>
+            Returns a new collection of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances that can be used in searching strong and weak links.
+            </summary>
+            <param name="linkTypes">The desired link types.</param>
+            <param name="isSukaku">Indicates whether the puzzle is a Sukaku.</param>
+            <returns>A list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
             <summary>

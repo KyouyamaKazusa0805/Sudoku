@@ -15,11 +15,7 @@ internal static class ChainModule
 	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, LinkType linkTypes)
 	{
 		ref readonly var grid = ref context.Grid;
-		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
-		var supportedRules =
-			from type in linkTypes.GetAllFlags()
-			where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
-			select ChainingRulePool.TryCreate(type)!;
+		var supportedRules = FilterSupportedChainingRules(linkTypes, grid.PuzzleType == SudokuType.Sukaku);
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
 			var step = new NormalChainStep(
@@ -43,6 +39,7 @@ internal static class ChainModule
 	/// <summary>
 	/// The collect method called by chain step searchers.
 	/// </summary>
+	/// <typeparam name="T">The type of the step value to be added.</typeparam>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="linkTypes">The link types supported in searching.</param>
@@ -58,11 +55,7 @@ internal static class ChainModule
 	) where T : ChainStep
 	{
 		ref readonly var grid = ref context.Grid;
-		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
-		var supportedRules =
-			from type in linkTypes.GetAllFlags()
-			where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
-			select ChainingRulePool.TryCreate(type)!;
+		var supportedRules = FilterSupportedChainingRules(linkTypes, grid.PuzzleType == SudokuType.Sukaku);
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
 			if (!chainPatternChecker(foundChain))
@@ -154,4 +147,17 @@ internal static class ChainModule
 		}
 		return [.. conclusions];
 	}
+
+	/// <summary>
+	/// Returns a new collection of <see cref="ChainingRule"/> instances that can be used in searching strong and weak links.
+	/// </summary>
+	/// <param name="linkTypes">The desired link types.</param>
+	/// <param name="isSukaku">Indicates whether the puzzle is a Sukaku.</param>
+	/// <returns>A list of <see cref="ChainingRule"/> instances.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static ChainingRule[] FilterSupportedChainingRules(LinkType linkTypes, bool isSukaku)
+		=>
+		from type in linkTypes.GetAllFlags()
+		where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
+		select ChainingRulePool.TryCreate(type)!;
 }

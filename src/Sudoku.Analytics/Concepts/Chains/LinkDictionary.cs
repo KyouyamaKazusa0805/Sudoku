@@ -28,6 +28,13 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	public FrozenDictionary<Link, object> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
 
 
+	/// <inheritdoc cref="Dictionary{TKey, TValue}.Add(TKey, TValue)"/>
+	/// <exception cref="NotSupportedException">Always throws.</exception>
+	[DoesNotReturn]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	[Obsolete($"This method should not be used. Use method '{nameof(AddEntry)}' instead.", true)]
+	public new void Add(Node key, HashSet<Node> value) => throw new NotSupportedException();
+
 	/// <summary>
 	/// Add a link to the current collection with both entries on nodes of the link used.
 	/// </summary>

@@ -38,9 +38,6 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 			}
 		}
 
-		// Missing example:
-		// ..5.7..3..3...9..18..4.......26..3..3....1.5..9..8...6..8.4..6..5.....897.....1..:264 764 274 374 574 774 276 277 279 181 281 483 683 384 386 292 493 693
-
 		void collect(bool isRow, int size, Digit digit, ReadOnlySpan<HouseMask> sets)
 		{
 			var baseSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllColumnsMask : HouseMaskOperations.AllRowsMask)).GetAllSets();
