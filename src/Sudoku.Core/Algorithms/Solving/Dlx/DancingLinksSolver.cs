@@ -32,11 +32,12 @@ public sealed class DancingLinksSolver : ISolver
 
 
 	/// <inheritdoc/>
+	[SuppressMessage("Style", "IDE0305:Simplify collection initialization", Justification = "<Pending>")]
 	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		try
 		{
-			_root = DancingLink.Entry.CreateLinkedList([.. grid]);
+			_root = DancingLink.Entry.CreateLinkedList(grid.ToArray());
 			Search();
 			result = _solution;
 			return true;
@@ -139,12 +140,9 @@ public sealed class DancingLinksSolver : ISolver
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the puzzle has no possible solutions.
 	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void RecordSolution(Stack<DancingLinkNode> answer, out Grid result)
-	{
-		var idList = (from k in answer orderby k.Id select k.Id).ToList();
-		var grid = Grid.Create(from id in idList select id % 9 + 1, GridCreatingOption.MinusOne);
-		result = grid.GetIsValid() ? grid : throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridNoSolution"));
-	}
+		=> result = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
 
 	/// <summary>
 	/// Try to choose the next column node.
