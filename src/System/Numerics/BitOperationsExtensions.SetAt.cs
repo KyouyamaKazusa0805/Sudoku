@@ -12,7 +12,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -31,7 +30,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -45,7 +43,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -59,7 +56,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -73,7 +69,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -87,7 +82,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -101,7 +95,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -115,7 +108,6 @@ public partial class BitOperationsExtensions
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -131,7 +123,6 @@ public partial class BitOperationsExtensions
 					return i;
 				}
 			}
-
 			return -1;
 		}
 	}
@@ -148,7 +139,6 @@ public partial class BitOperationsExtensions
 					return i;
 				}
 			}
-
 			return -1;
 		}
 	}
@@ -165,7 +155,6 @@ public partial class BitOperationsExtensions
 					return i;
 				}
 			}
-
 			return -1;
 		}
 	}
@@ -182,7 +171,6 @@ public partial class BitOperationsExtensions
 					return i;
 				}
 			}
-
 			return -1;
 		}
 	}

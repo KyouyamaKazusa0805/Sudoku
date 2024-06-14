@@ -23,7 +23,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -44,7 +43,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -65,7 +63,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -86,7 +83,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -107,7 +103,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -128,7 +123,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -149,7 +143,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -170,7 +163,6 @@ public partial class BitOperationsExtensions
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -194,7 +186,6 @@ public partial class BitOperationsExtensions
 					result[p++] = i;
 				}
 			}
-
 			return result;
 		}
 	}
@@ -219,7 +210,6 @@ public partial class BitOperationsExtensions
 					result[p++] = i;
 				}
 			}
-
 			return result;
 		}
 	}
@@ -243,7 +233,6 @@ public partial class BitOperationsExtensions
 					result[p++] = i;
 				}
 			}
-
 			return result;
 		}
 	}
@@ -267,7 +256,6 @@ public partial class BitOperationsExtensions
 					result[p++] = i;
 				}
 			}
-
 			return result;
 		}
 	}
@@ -290,7 +278,6 @@ public partial class BitOperationsExtensions
 					result[p++] = i;
 				}
 			}
-
 			return result.AsReadOnlySpan();
 		}
 	}

@@ -35,7 +35,6 @@ public partial class BitOperationsExtensions
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -55,7 +54,6 @@ public partial class BitOperationsExtensions
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -75,7 +73,6 @@ public partial class BitOperationsExtensions
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -95,7 +92,6 @@ public partial class BitOperationsExtensions
 				}
 			}
 		}
-
 		return result;
 	}
 }
