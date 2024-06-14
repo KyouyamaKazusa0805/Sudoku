@@ -17,4 +17,8 @@ public sealed class ColumnNode : DancingLinkNode
 	/// Indicates the size of the node.
 	/// </summary>
 	public int Size { get; set; }
+
+
+	/// <inheritdoc/>
+	public override string ToString() => $"{base.ToString()}, {nameof(Size)} = {Size}";
 }

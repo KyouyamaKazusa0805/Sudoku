@@ -189,35 +189,33 @@ file sealed class DancingLink(ColumnNode root)
 	/// <returns>The column node for the root node.</returns>
 	public ColumnNode CreateLinkedList(Digit[] gridArray)
 	{
-		var columns = new List<ColumnNode>();
+		var columns = new ColumnNode[324];
 		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
 		{
 			var col = new ColumnNode(columnIndex) { Right = root, Left = root.Left };
 			root.Left.Right = col;
 			root.Left = col;
-			columns.Add(col);
+			columns[columnIndex] = col;
 		}
 
-		for (var i = 0; i < 81; i++)
+		for (var cell = 0; cell < 81; cell++)
 		{
-			var x = i / 9;
-			var y = i % 9;
-			if (gridArray[i] == 0)
+			var (x, y) = (cell / 9, cell % 9);
+			if (gridArray[cell] == 0)
 			{
 				// The cell is empty.
-				for (var d = 0; d < 9; d++)
+				for (var digit = 0; digit < 9; digit++)
 				{
-					FormLinks(columns, x, y, d);
+					FormLinks(columns, x, y, digit);
 				}
 			}
 			else
 			{
 				// The cell is given.
-				var d = gridArray[i] - 1;
-				FormLinks(columns, x, y, d);
+				var digit = gridArray[cell] - 1;
+				FormLinks(columns, x, y, digit);
 			}
 		}
-
 		return root;
 	}
 
@@ -229,14 +227,13 @@ file sealed class DancingLink(ColumnNode root)
 	/// <param name="y">The current column index.</param>
 	/// <param name="d">The current digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void FormLinks(List<ColumnNode> columns, int x, int y, Digit d)
+	private void FormLinks(ColumnNode[] columns, RowIndex x, ColumnIndex y, Digit d)
 	{
 		var cell = new DancingLinkNode(x * 81 + y * 9 + d, columns[x * 9 + y]);
 		var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
 		var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
 		var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
 		var matrixRow = new MatrixRow(cell, row, column, block);
-
 		linkRow(ref matrixRow);
 		linkRowToColumn(matrixRow.Cell);
 		linkRowToColumn(matrixRow.Row);
@@ -245,7 +242,7 @@ file sealed class DancingLink(ColumnNode root)
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void linkRow(ref MatrixRow d)
+		static void linkRow(ref MatrixRow d)
 		{
 			d.Cell.Right = d.Column;
 			d.Cell.Left = d.Block;
@@ -258,7 +255,7 @@ file sealed class DancingLink(ColumnNode root)
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void linkRowToColumn(DancingLinkNode section)
+		static void linkRowToColumn(DancingLinkNode section)
 		{
 			if (section.Column is { } col)
 			{

@@ -994,6 +994,9 @@
             Indicates the size of the node.
             </summary>
         </member>
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.ColumnNode.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Algorithms.Solving.Dlx.DancingLinkNode">
             <summary>
             Represents a dancing link node.
@@ -1041,6 +1044,9 @@
             <summary>
             Indicates the pointer that points to the down node.
             </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLinkNode.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Algorithms.Solving.Dlx.DancingLinksSolver">
             <summary>
@@ -1131,7 +1137,7 @@
             <param name="gridArray">The grid array.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Algorithms.Solving.Dlx.ColumnNode},System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.FormLinks(Sudoku.Algorithms.Solving.Dlx.ColumnNode[],System.Int32,System.Int32,System.Int32)">
             <summary>
             To form the links via the specified columns, the cell index and the digit used.
             </summary>

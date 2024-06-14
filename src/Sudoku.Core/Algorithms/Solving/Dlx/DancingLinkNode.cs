@@ -3,6 +3,7 @@ namespace Sudoku.Algorithms.Solving.Dlx;
 /// <summary>
 /// Represents a dancing link node.
 /// </summary>
+[DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
 public class DancingLinkNode
 {
 	/// <summary>
@@ -50,4 +51,9 @@ public class DancingLinkNode
 	/// Indicates the pointer that points to the down node.
 	/// </summary>
 	public DancingLinkNode Down { get; set; }
+
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $"{nameof(Id)} = {Id}, {nameof(Up)} = {Up.Id}, {nameof(Down)} = {Down.Id}, {nameof(Left)} = {Left.Id}, {nameof(Right)} = {Right.Id}";
 }
