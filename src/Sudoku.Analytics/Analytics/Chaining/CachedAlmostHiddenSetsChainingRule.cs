@@ -7,7 +7,13 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	protected internal override void CollectLinks(
+		ref readonly Grid grid,
+		LinkDictionary strongLinks,
+		LinkDictionary weakLinks,
+		LinkOption linkOption,
+		LinkOption alsLinkOption
+	)
 	{
 		var ahses = AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid);
 

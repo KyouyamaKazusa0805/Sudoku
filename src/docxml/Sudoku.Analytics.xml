@@ -921,6 +921,31 @@
             <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
             <param name="pattern">The advanced pattern to be used.</param>
         </member>
+        <member name="T:Sudoku.Concepts.LinkOption">
+            <summary>
+            Represents an option that controls the link collecting rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkOption.Intersection">
+            <summary>
+            Indicates link collecting method only collects for node lying in an intersection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkOption.Line">
+            <summary>
+            Indicates link collecting method only collects for node lying in one row or one column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkOption.House">
+            <summary>
+            Indicates link collecting method only collects for node lying in one house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkOption.All">
+            <summary>
+            Indicates link collecting method collects for all possible nodes, regardless of position.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.LinkType">
             <summary>
             Represents a link type.
@@ -7911,7 +7936,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostAvoidableRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostAvoidableRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostAvoidableRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -7923,7 +7948,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostHiddenSet"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -7938,7 +7963,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -7970,7 +7995,7 @@
             </example>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -7982,7 +8007,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -7997,7 +8022,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedXChainingRule">
@@ -8006,7 +8031,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedXChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedXChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule">
@@ -8015,7 +8040,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.XyzWing"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedXyzWingChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
@@ -8027,7 +8052,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedYChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedYChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingDriver">
@@ -8115,7 +8140,7 @@
             Indicates the advanced link types.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <summary>
             Collects for both strong links and weak links appeared in argument <paramref name="grid"/>
             and insert all found links into <paramref name="strongLinks"/> and <paramref name="weakLinks"/> respectively.
@@ -8123,6 +8148,20 @@
             <param name="grid">The grid to be checked.</param>
             <param name="strongLinks">The dictionary that stores a list of strong links.</param>
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
+            <param name="linkOption">
+            An option that limits the collecting method rule for strong and weak links.
+            By default the value is <see cref="F:Sudoku.Concepts.LinkOption.Intersection"/>.
+            </param>
+            <param name="alsLinkOption">
+            <para>
+            An option that limits the collecting method rule for links <see cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>.
+            By default the value is <see cref="F:Sudoku.Concepts.LinkOption.House"/>.
+            </para>
+            <para>
+            This type of link is special. Most of cases we use all strong links in an ALS pattern.
+            Therefore, the option should be configured individually.
+            </para>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
             <summary>

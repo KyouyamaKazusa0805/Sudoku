@@ -7,7 +7,13 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedYChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	protected internal override void CollectLinks(
+		ref readonly Grid grid,
+		LinkDictionary strongLinks,
+		LinkDictionary weakLinks,
+		LinkOption linkOption,
+		LinkOption alsLinkOption
+	)
 	{
 		foreach (var cell in EmptyCells)
 		{

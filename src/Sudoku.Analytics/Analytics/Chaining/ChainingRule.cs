@@ -55,7 +55,27 @@ public abstract partial class ChainingRule
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="strongLinks">The dictionary that stores a list of strong links.</param>
 	/// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
-	protected internal abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
+	/// <param name="linkOption">
+	/// An option that limits the collecting method rule for strong and weak links.
+	/// By default the value is <see cref="LinkOption.Intersection"/>.
+	/// </param>
+	/// <param name="alsLinkOption">
+	/// <para>
+	/// An option that limits the collecting method rule for links <see cref="LinkType.AlmostLockedSet"/>.
+	/// By default the value is <see cref="LinkOption.House"/>.
+	/// </para>
+	/// <para>
+	/// This type of link is special. Most of cases we use all strong links in an ALS pattern.
+	/// Therefore, the option should be configured individually.
+	/// </para>
+	/// </param>
+	protected internal abstract void CollectLinks(
+		ref readonly Grid grid,
+		LinkDictionary strongLinks,
+		LinkDictionary weakLinks,
+		LinkOption linkOption,
+		LinkOption alsLinkOption
+	);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.

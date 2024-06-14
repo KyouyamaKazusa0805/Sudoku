@@ -40,7 +40,7 @@ internal static class ChainingDriver
 		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
 		foreach (var chainingRule in rules)
 		{
-			chainingRule.CollectLinks(in grid, strongLinks, weakLinks);
+			chainingRule.CollectLinks(in grid, strongLinks, weakLinks, LinkOption.Intersection, LinkOption.House);
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
