@@ -113,6 +113,9 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					strongLinks.AddEntry(node1, node2, true, fish);
 
 					// Weak.
+					// Please note that weak links may not contain pattern objects,
+					// because it will be rendered into view nodes; but they are plain ones,
+					// behaved as normal locked candidate nodes.
 					var elimMap = coverSetsMap & ~baseSetsMap;
 					var cells3 = baseSetsMap & ~fins;
 					if (IsPow2(cells3.BlockMask))
@@ -137,7 +140,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						}
 
 						var node4 = new Node(cells4 * digit, false, true);
-						weakLinks.AddEntry(node3, node4, false, fish);
+						weakLinks.AddEntry(node3, node4);
 					}
 				}
 			}

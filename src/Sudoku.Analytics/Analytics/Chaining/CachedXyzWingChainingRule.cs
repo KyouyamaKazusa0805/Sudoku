@@ -42,6 +42,9 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 			CollectWeak:
 				// Weak.
+				// Please note that weak links may not contain pattern objects,
+				// because it will be rendered into view nodes; but they are plain ones,
+				// behaved as normal locked candidate nodes.
 				var possibleCells1 = cells1.PeerIntersection & CandidatesMap[zDigit];
 				var possibleCells2 = cells2.PeerIntersection & CandidatesMap[zDigit];
 				var (limit1, limit2) = linkOption switch
@@ -60,7 +63,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 					var node3 = new Node(cells1 * zDigit, true, true);
 					var node4 = new Node(cells * zDigit, false, true);
-					weakLinks.AddEntry(node3, node4, false, pattern);
+					weakLinks.AddEntry(node3, node4);
 				}
 				foreach (ref readonly var cells in possibleCells2 | limit2)
 				{
@@ -72,7 +75,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 					var node3 = new Node(cells2 * zDigit, true, true);
 					var node4 = new Node(cells * zDigit, false, true);
-					weakLinks.AddEntry(node3, node4, false, pattern);
+					weakLinks.AddEntry(node3, node4);
 				}
 			}
 		}

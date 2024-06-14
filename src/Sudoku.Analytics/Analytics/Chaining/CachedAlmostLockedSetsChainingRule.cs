@@ -76,6 +76,9 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			}
 
 			// Weak.
+			// Please note that weak links may not contain pattern objects,
+			// because it will be rendered into view nodes; but they are plain ones,
+			// behaved as normal locked candidate nodes.
 			foreach (var digit in digitsMask)
 			{
 				var cells3 = CandidatesMap[digit] & cells;
@@ -96,7 +99,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 						}
 
 						var node4 = new Node(cells4 * digit, false, true);
-						weakLinks.AddEntry(node3, node4, false, als);
+						weakLinks.AddEntry(node3, node4);
 					}
 				}
 			}
