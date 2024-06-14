@@ -33,15 +33,8 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			{
 				maskTempList[cell] = grid.GetCandidates(cell);
 			}
-
-			var strongLimit = alsLinkOption switch { LinkOption.Intersection => 3, LinkOption.All or LinkOption.House => cells.Count };
-			foreach (var subsetCells in cells | strongLimit)
+			foreach (var subsetCells in cells | cells.Count - 1)
 			{
-				if (alsLinkOption == LinkOption.Intersection && !subsetCells.IsInIntersection)
-				{
-					continue;
-				}
-
 				var mask = (Mask)0;
 				foreach (var cell in subsetCells)
 				{

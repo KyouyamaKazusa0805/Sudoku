@@ -72,6 +72,12 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				}
 
 				var baseSetsMask = HouseMaskOperations.Create(bs);
+				var (split11, split12, split13) = MaskOperations.SplitMask((Mask)(baseSetsMask >> (isRow ? 9 : 18) & Grid.MaxCandidatesMask));
+				if ((split11, split12, split13) is (0, 0, _) or (0, _, 0) or (_, 0, 0))
+				{
+					continue;
+				}
+
 				foreach (var cs in coverSetsToIterate.GetSubsets(size))
 				{
 					var coverSetsMap = CellMap.Empty;
@@ -87,16 +93,23 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						continue;
 					}
 
-					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection)
+					var coverSetsMask = HouseMaskOperations.Create(cs);
+					var fish = new Fish(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
+					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection
+						|| linkOption == LinkOption.House && !fins.InOneHouse(out _))
 					{
 						continue;
 					}
 
 					// Strong.
-					var node1 = new Node((baseSetsMap & ~fins) * digit, false, true);
+					var cells1 = baseSetsMap & ~fins;
+					if (cells1.Count < size << 1)
+					{
+						continue;
+					}
+
+					var node1 = new Node(cells1 * digit, false, true);
 					var node2 = new Node(fins * digit, true, true);
-					var coverSetsMask = HouseMaskOperations.Create(cs);
-					var fish = new Fish(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
 					strongLinks.AddEntry(node1, node2, true, fish);
 
 					// Weak.
@@ -163,9 +176,15 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	{
 		var result = ConclusionSet.Empty;
 		var candidatesMap = grid.CandidatesMap;
-		foreach (var link in loop.Links)
+		var links = loop.Links;
+		foreach (var link in links)
 		{
-			if (link.GroupedLinkPattern is not Fish { Digit: var digit, BaseSets: var baseSets, CoverSets: var coverSets })
+			if (link is not
+				{
+					FirstNode.Map.Cells: var firstCells,
+					SecondNode.Map.Cells: var secondCells,
+					GroupedLinkPattern: Fish { Digit: var digit, BaseSets: var baseSets, CoverSets: var coverSets }
+				})
 			{
 				continue;
 			}
@@ -180,6 +199,15 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				elimMap &= ~HousesMap[baseSet];
 			}
 
+			// Filter eliminations on strong links.
+			foreach (var otherLink in links)
+			{
+				if (otherLink is { IsStrong: true, FirstNode.Map.Cells: var map1, SecondNode.Map.Cells: var map2 })
+				{
+					elimMap &= ~map1;
+					elimMap &= ~map2;
+				}
+			}
 			result.AddRange(from cell in elimMap select new Conclusion(Elimination, cell, digit));
 		}
 		return result;
