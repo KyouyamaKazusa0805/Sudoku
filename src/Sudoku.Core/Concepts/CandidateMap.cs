@@ -123,7 +123,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			var result = (Mask)0;
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if (Subview.ReduceCandidateByDigit(in this, digit))
+				if (this / digit)
 				{
 					result |= (Mask)(1 << digit);
 				}
@@ -167,7 +167,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			var dictionary = new Dictionary<Digit, CellMap>(9);
 			for (var digit = 0; digit < 9; digit++)
 			{
-				var map = Subview.ReduceCandidateByDigit(in this, digit);
+				var map = this / digit;
 				if (map)
 				{
 					dictionary.Add(digit, map);
@@ -861,6 +861,27 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			result.AddRangeRef(map & i);
 		}
 		return result.AsReadOnlySpan();
+	}
+
+	/// <summary>
+	/// Reduces the <see cref="CandidateMap"/> instance, only checks for candidates
+	/// whose digit is equal to argument <paramref name="digit"/>,
+	/// and merge into a <see cref="CellMap"/> value.
+	/// </summary>
+	/// <param name="candidates">The candidates to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <returns>A <see cref="CellMap"/> instance.</returns>
+	public static CellMap operator /(in CandidateMap candidates, Digit digit)
+	{
+		var result = CellMap.Empty;
+		foreach (var element in candidates)
+		{
+			if (element % 9 == digit)
+			{
+				result.Add(element / 9);
+			}
+		}
+		return result;
 	}
 }
 

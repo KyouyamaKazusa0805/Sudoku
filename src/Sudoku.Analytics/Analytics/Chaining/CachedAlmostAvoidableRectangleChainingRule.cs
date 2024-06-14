@@ -41,8 +41,8 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 					continue;
 				}
 
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), true, true);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), false, true);
+				var node1 = new Node(cells1 * digit1, true, true);
+				var node2 = new Node(cells2 * digit2, false, true);
 				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCells);
 				weakLinks.AddEntry(node1, node2, false, ar);
 			}

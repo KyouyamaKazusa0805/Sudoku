@@ -310,7 +310,7 @@ public partial struct Grid :
 			var result = 0;
 			for (var (house, valueCells) = (0, ~EmptyCells); house < 27; house++)
 			{
-				if (Subview.ReduceCellByHouse(in valueCells, house) == 0)
+				if (valueCells / house == 0)
 				{
 					result |= 1 << house;
 				}

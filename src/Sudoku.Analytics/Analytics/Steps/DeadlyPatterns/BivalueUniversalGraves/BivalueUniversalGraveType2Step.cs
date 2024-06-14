@@ -33,7 +33,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	int ICellListTrait.CellSize => Cells.Count;
 
 	/// <inheritdoc/>
-	CandidateMap ITrueCandidatesTrait.TrueCandidates => Subview.ExpandedCellFromDigit(Cells, ExtraDigit);
+	CandidateMap ITrueCandidatesTrait.TrueCandidates => Cells * ExtraDigit;
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 

@@ -19,7 +19,7 @@ internal sealed class CachedXChainingRule : ChainingRule
 					continue;
 				}
 
-				var mask = Subview.ReduceCellByHouse(in cellsInThisHouse, house);
+				var mask = cellsInThisHouse / house;
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -43,7 +43,7 @@ internal sealed class CachedXChainingRule : ChainingRule
 					continue;
 				}
 
-				var mask = Subview.ReduceCellByHouse(in cellsInThisHouse, house);
+				var mask = cellsInThisHouse / house;
 				foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 				{
 					var node1 = new Node(HousesCells[house][combinationPair[0]], digit, true, false);

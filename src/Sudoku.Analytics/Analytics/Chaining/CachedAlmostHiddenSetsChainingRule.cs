@@ -22,8 +22,8 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 				var digit2 = digitPair[1];
 				var cells1 = cells & CandidatesMap[digit1];
 				var cells2 = cells & CandidatesMap[digit2];
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, true);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, true);
+				var node1 = new Node(cells1 * digit1, false, true);
+				var node2 = new Node(cells2 * digit2, true, true);
 				strongLinks.AddEntry(node1, node2, true, ahs);
 			}
 		}

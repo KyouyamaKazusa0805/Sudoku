@@ -26,8 +26,8 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 				{
 					// Check whether digit appeared in both two houses can be treated as two grouped or normal nodes.
 					// i.e. For each house, we just determine whether 2 bit group is not 0 in each 3 bits in a mask.
-					var mask1 = Subview.ReduceCellByHouse(HousesMap[h1] & CandidatesMap[digit], h1);
-					var mask2 = Subview.ReduceCellByHouse(HousesMap[h2] & CandidatesMap[digit], h2);
+					var mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
+					var mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
 					var mask1Subgroups = new List<Mask>(3);
 					var mask2Subgroups = new List<Mask>(3);
 					for (var (tempMask, i) = (mask1, 0); i < 3; tempMask >>= 3, i++)

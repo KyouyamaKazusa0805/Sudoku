@@ -374,7 +374,7 @@ public abstract partial class ChainOrLoop :
 		{
 			// Two nodes are same, meaning the node must be true. Check whether it is grouped one.
 			var digit = node1.Map[0] % 9;
-			var map = Subview.ReduceCandidateByDigit(in node1.Map, digit);
+			var map = node1.Map / digit;
 			return node1.IsGroupedNode
 				? from cell in map.PeerIntersection & candidatesMap[digit] select new Conclusion(Elimination, cell, digit)
 				: (Conclusion[])[new(Assignment, node1.Map[0])];

@@ -25,8 +25,8 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 				for (var h2 = h1 + 1; h2 < 27; h2++)
 				{
 					// Get masks.
-					var mask1 = Subview.ReduceCellByHouse(HousesMap[h1] & CandidatesMap[digit], h1);
-					var mask2 = Subview.ReduceCellByHouse(HousesMap[h2] & CandidatesMap[digit], h2);
+					var mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
+					var mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
 					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
 					{
 						continue;

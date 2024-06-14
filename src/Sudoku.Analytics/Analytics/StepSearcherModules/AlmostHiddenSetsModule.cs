@@ -28,7 +28,7 @@ internal static class AlmostHiddenSetsModule
 			var digits = grid[in emptyCells].GetAllSets();
 			foreach (var digit in digits)
 			{
-				tempPosMask[digit] = Subview.ReduceCellByHouse(HousesMap[house] & CandidatesMap[digit], house);
+				tempPosMask[digit] = (HousesMap[house] & CandidatesMap[digit]) / house;
 			}
 
 			// Iterate on each combination of digit, to determine whether the digits in this combination of size (size)

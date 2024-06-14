@@ -15,8 +15,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var cells2 = cellsContainingThisDigit & HousesMap[row2];
 		if (cells1.IsInIntersection && cells2.IsInIntersection)
 		{
-			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), false, true);
-			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), true, true);
+			var node1 = new Node(cells1 * otherOnlyDigit, false, true);
+			var node2 = new Node(cells2 * otherOnlyDigit, true, true);
 			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
 		var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
@@ -26,8 +26,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var cells4 = cellsContainingThisDigit & HousesMap[column2];
 		if (cells3.IsInIntersection && cells4.IsInIntersection)
 		{
-			var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherOnlyDigit), false, true);
-			var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherOnlyDigit), true, true);
+			var node3 = new Node(cells3 * otherOnlyDigit, false, true);
+			var node4 = new Node(cells4 * otherOnlyDigit, true, true);
 			linkDictionary.AddEntry(node3, node4, false, ur);
 		}
 	}
@@ -40,8 +40,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
 		if (cells1.IsInIntersection && cells2.IsInIntersection)
 		{
-			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, theOtherDigit1), false, true);
-			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, theOtherDigit2), true, true);
+			var node1 = new Node(cells1 * theOtherDigit1, false, true);
+			var node2 = new Node(cells2 * theOtherDigit2, true, true);
 			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
 	}
@@ -75,7 +75,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 				continue;
 			}
 
-			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells, otherDigit), false, true);
+			var node1 = new Node(cells * otherDigit, false, true);
 			foreach (var lockedHouse in urOtherSideCells.SharedHouses)
 			{
 				var lockedUrDigitsMask = (Mask)0;
@@ -101,7 +101,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 					continue;
 				}
 
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in otherCellsContainingLastUrDigit, lastUrDigit), true, true);
+				var node2 = new Node(otherCellsContainingLastUrDigit * lastUrDigit, true, true);
 				linkDictionary.AddEntry(node1, node2, true, ur);
 			}
 		}
@@ -134,8 +134,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 				continue;
 			}
 
-			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, true);
-			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, true);
+			var node1 = new Node(cells1 * digit1, false, true);
+			var node2 = new Node(cells2 * digit2, true, true);
 			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
 	}

@@ -23,8 +23,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 				var cells1 = pair;
 				var cells2 = patternCells & ~pair;
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, zDigit), false, true);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, zDigit), true, true);
+				var node1 = new Node(cells1 * zDigit, false, true);
+				var node2 = new Node(cells2 * zDigit, true, true);
 				strongLinks.AddEntry(node1, node2, true, pattern);
 
 				foreach (var cells in cells1.PeerIntersection & CandidatesMap[zDigit] | 3)
@@ -34,8 +34,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 						continue;
 					}
 
-					var node3 = new Node(Subview.ExpandedCellFromDigit(in cells1, zDigit), true, true);
-					var node4 = new Node(Subview.ExpandedCellFromDigit(in cells, zDigit), false, true);
+					var node3 = new Node(cells1 * zDigit, true, true);
+					var node4 = new Node(cells * zDigit, false, true);
 					weakLinks.AddEntry(node3, node4, false, pattern);
 				}
 				foreach (var cells in cells2.PeerIntersection & CandidatesMap[zDigit] | 3)
@@ -45,8 +45,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 						continue;
 					}
 
-					var node3 = new Node(Subview.ExpandedCellFromDigit(in cells2, zDigit), true, true);
-					var node4 = new Node(Subview.ExpandedCellFromDigit(in cells, zDigit), false, true);
+					var node3 = new Node(cells2 * zDigit, true, true);
+					var node4 = new Node(cells * zDigit, false, true);
 					weakLinks.AddEntry(node3, node4, false, pattern);
 				}
 			}

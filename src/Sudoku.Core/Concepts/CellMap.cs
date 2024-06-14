@@ -1043,6 +1043,42 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		return result.AsReadOnlySpan();
 	}
 
+	/// <summary>
+	/// Expands the current <see cref="CellMap"/> instance, inserting into a <see cref="CandidateMap"/> instance by specified digit.
+	/// </summary>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="digit">The digit to be checked.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
+	public static CandidateMap operator *(in CellMap cells, Digit digit)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var cell in cells.Offsets)
+		{
+			result.Add(cell * 9 + digit);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Reduces the <see cref="CellMap"/> instances, only checks for cells in the specified cells, and merge into a <see cref="Mask"/> value.
+	/// </summary>
+	/// <param name="cells">The cells to be checked.</param>
+	/// <param name="house">The house to be checked.</param>
+	/// <returns>A <see cref="Mask"/> instance.</returns>
+	public static Mask operator /(in CellMap cells, House house)
+	{
+		var (result, i) = ((Mask)0, 0);
+		foreach (var cell in HousesCells[house])
+		{
+			if (cells.Contains(cell))
+			{
+				result |= (Mask)(1 << i);
+			}
+			i++;
+		}
+		return result;
+	}
+
 
 	/// <summary>
 	/// Implicit cast from a <see cref="CellMap"/> instance into a <see cref="llong"/> result.

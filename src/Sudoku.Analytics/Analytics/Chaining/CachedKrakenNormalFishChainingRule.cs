@@ -82,8 +82,8 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					}
 
 					// Strong.
-					var node1 = new Node(Subview.ExpandedCellFromDigit(baseSetsMap & ~fins, digit), false, true);
-					var node2 = new Node(Subview.ExpandedCellFromDigit(in fins, digit), true, true);
+					var node1 = new Node((baseSetsMap & ~fins) * digit, false, true);
+					var node2 = new Node(fins * digit, true, true);
 					var coverSetsMask = HouseMaskOperations.Create(cs);
 					var fish = new Fish(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
 					strongLinks.AddEntry(node1, node2, true, fish);
@@ -96,7 +96,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						continue;
 					}
 
-					var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, digit), true, true);
+					var node3 = new Node(cells3 * digit, true, true);
 					foreach (var cells4 in elimMap | 3)
 					{
 						if (!cells4.IsInIntersection)
@@ -104,7 +104,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 							continue;
 						}
 
-						var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, digit), false, true);
+						var node4 = new Node(cells4 * digit, false, true);
 						weakLinks.AddEntry(node3, node4, false, fish);
 					}
 				}
