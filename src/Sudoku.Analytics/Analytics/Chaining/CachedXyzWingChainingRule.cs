@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedXyzWingChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		// Iterate on each XYZ-Wing pattern, to get strong links.
 		foreach (var pattern in XyzWingPatternSearcher.Search(in grid))
@@ -54,7 +54,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (view, id) = (views[0], ColorIdentifier.Normal);
 		foreach (var link in pattern.Links)

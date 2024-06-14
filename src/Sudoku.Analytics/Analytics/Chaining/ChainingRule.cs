@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Chaining;
 	OtherModifiersOnGetHashCode = "sealed",
 	ToStringBehavior = ToStringBehavior.ThrowNotSupportedException,
 	OtherModifiersOnToString = "sealed")]
-internal abstract partial class ChainingRule
+public abstract partial class ChainingRule
 {
 	/// <summary>
 	/// Indicates the elementary link types.
@@ -55,7 +55,7 @@ internal abstract partial class ChainingRule
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="strongLinks">The dictionary that stores a list of strong links.</param>
 	/// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
-	internal abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
+	protected internal abstract void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.
@@ -68,7 +68,7 @@ internal abstract partial class ChainingRule
 	/// <remarks>
 	/// The method by default will do nothing.
 	/// </remarks>
-	internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		// Do nothing.
 	}
@@ -83,5 +83,5 @@ internal abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
-	internal virtual ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid) => [];
+	protected internal virtual ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid) => [];
 }

@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
+	protected internal override void CollectLinks(ref readonly Grid grid, LinkDictionary strongLinks, LinkDictionary weakLinks)
 	{
 		var ahses = AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid);
 
@@ -61,7 +61,7 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
 	{
 		var (ahsIndex, view) = (0, views[0]);
 		foreach (var link in pattern.Links)
@@ -86,7 +86,7 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	internal override ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid)
+	protected internal override ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid)
 	{
 		// A valid AHS can be eliminated as a real hidden subset.
 		var result = ConclusionSet.Empty;
