@@ -29,13 +29,31 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 				var cells1 = pair;
 				var cells2 = patternCells & ~pair;
+				if (linkOption == LinkOption.Intersection && !(cells1.IsInIntersection && cells2.IsInIntersection)
+					|| linkOption == LinkOption.House && !(cells1.InOneHouse(out _) && cells2.InOneHouse(out _)))
+				{
+					goto CollectWeak;
+				}
+
+				// Strong.
 				var node1 = new Node(cells1 * zDigit, false, true);
 				var node2 = new Node(cells2 * zDigit, true, true);
 				strongLinks.AddEntry(node1, node2, true, pattern);
 
-				foreach (var cells in cells1.PeerIntersection & CandidatesMap[zDigit] | 3)
+			CollectWeak:
+				// Weak.
+				var possibleCells1 = cells1.PeerIntersection & CandidatesMap[zDigit];
+				var possibleCells2 = cells2.PeerIntersection & CandidatesMap[zDigit];
+				var (limit1, limit2) = linkOption switch
 				{
-					if (!cells.IsInIntersection)
+					LinkOption.House => (Math.Min((EmptyCells & possibleCells1).Count, 9), Math.Min((EmptyCells & possibleCells2).Count, 9)),
+					LinkOption.All => (possibleCells1.Count, possibleCells2.Count),
+					_ => (3, 3)
+				};
+				foreach (ref readonly var cells in possibleCells1 | limit1)
+				{
+					if (linkOption == LinkOption.Intersection && !cells.IsInIntersection
+						|| linkOption == LinkOption.House && !cells.InOneHouse(out _))
 					{
 						continue;
 					}
@@ -44,9 +62,10 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 					var node4 = new Node(cells * zDigit, false, true);
 					weakLinks.AddEntry(node3, node4, false, pattern);
 				}
-				foreach (var cells in cells2.PeerIntersection & CandidatesMap[zDigit] | 3)
+				foreach (ref readonly var cells in possibleCells2 | limit2)
 				{
-					if (!cells.IsInIntersection)
+					if (linkOption == LinkOption.Intersection && !cells.IsInIntersection
+						|| linkOption == LinkOption.House && !cells.InOneHouse(out _))
 					{
 						continue;
 					}

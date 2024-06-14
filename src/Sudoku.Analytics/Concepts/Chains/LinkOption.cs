@@ -11,11 +11,6 @@ public enum LinkOption
 	Intersection,
 
 	/// <summary>
-	/// Indicates link collecting method only collects for node lying in one row or one column.
-	/// </summary>
-	Line,
-
-	/// <summary>
 	/// Indicates link collecting method only collects for node lying in one house.
 	/// </summary>
 	House,

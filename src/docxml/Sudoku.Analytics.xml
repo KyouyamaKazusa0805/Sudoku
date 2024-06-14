@@ -931,11 +931,6 @@
             Indicates link collecting method only collects for node lying in an intersection.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.LinkOption.Line">
-            <summary>
-            Indicates link collecting method only collects for node lying in one row or one column.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.LinkOption.House">
             <summary>
             Indicates link collecting method only collects for node lying in one house.
@@ -974,11 +969,6 @@
         <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSet">
             <summary>
             Indicates the link type is an almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.AlmostHiddenSet">
-            <summary>
-            Indicates the link type is an almost hidden set.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.LinkType.KrakenNormalFish">
@@ -7940,21 +7930,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostAvoidableRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule">
-            <summary>
-            Represents a chaining rule on AHS rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostHiddenSet"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostHiddenSet"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View[]@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostHiddenSetsChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule">

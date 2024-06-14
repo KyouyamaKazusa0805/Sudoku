@@ -18,30 +18,41 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 		// Weak.
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
 		{
-			var (modifiableCells, emptyCells) = (CellMap.Empty, CellMap.Empty);
+			var (modifiableCellsInPattern, emptyCellsInPattern, isValid) = (CellMap.Empty, CellMap.Empty, true);
 			foreach (var cell in urCells)
 			{
-				if (grid.GetState(cell) == CellState.Modifiable)
+				switch (grid.GetState(cell))
 				{
-					modifiableCells.Add(cell);
-				}
-				else if (EmptyCells.Contains(cell))
-				{
-					emptyCells.Add(cell);
+					case CellState.Modifiable:
+					{
+						modifiableCellsInPattern.Add(cell);
+						break;
+					}
+					case CellState.Given:
+					{
+						isValid = false;
+						goto OutsideValidityCheck;
+					}
+					default:
+					{
+						emptyCellsInPattern.Add(cell);
+						break;
+					}
 				}
 			}
-			if (modifiableCells.Count != 2 || emptyCells.Count != 2)
+		OutsideValidityCheck:
+			if (!isValid || modifiableCellsInPattern.Count != 2 || emptyCellsInPattern.Count != 2)
 			{
 				continue;
 			}
 
-			var digit1 = grid.GetDigit(modifiableCells[0]);
-			var digit2 = grid.GetDigit(modifiableCells[1]);
+			var digit1 = grid.GetDigit(modifiableCellsInPattern[0]);
+			var digit2 = grid.GetDigit(modifiableCellsInPattern[1]);
 			var digitsMask = (Mask)(1 << digit1 | 1 << digit2);
-			if (modifiableCells.CanSeeEachOther)
+			if (modifiableCellsInPattern.CanSeeEachOther)
 			{
-				var cells1 = emptyCells & CandidatesMap[digit1];
-				var cells2 = emptyCells & CandidatesMap[digit2];
+				var cells1 = emptyCellsInPattern & CandidatesMap[digit1];
+				var cells2 = emptyCellsInPattern & CandidatesMap[digit2];
 				if (!cells1 || !cells2)
 				{
 					continue;
@@ -49,16 +60,16 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 
 				var node1 = new Node(cells1 * digit1, true, true);
 				var node2 = new Node(cells2 * digit2, false, true);
-				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCells);
+				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCellsInPattern);
 				weakLinks.AddEntry(node1, node2, false, ar);
 			}
 			else if (digit1 == digit2)
 			{
 				var digitsOtherCellsContained = (Mask)0;
-				foreach (var digit in grid[in emptyCells])
+				foreach (var digit in grid[in emptyCellsInPattern])
 				{
-					if ((grid.GetCandidates(emptyCells[0]) >> digit & 1) != 0
-						&& (grid.GetCandidates(emptyCells[1]) >> digit & 1) != 0)
+					if ((grid.GetCandidates(emptyCellsInPattern[0]) >> digit & 1) != 0
+						&& (grid.GetCandidates(emptyCellsInPattern[1]) >> digit & 1) != 0)
 					{
 						digitsOtherCellsContained |= (Mask)(1 << digit);
 					}
@@ -70,9 +81,9 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 
 				foreach (var digit in digitsOtherCellsContained)
 				{
-					var node1 = new Node(emptyCells[0], digit, true, true);
-					var node2 = new Node(emptyCells[1], digit, false, true);
-					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCells);
+					var node1 = new Node(emptyCellsInPattern[0], digit, true, true);
+					var node2 = new Node(emptyCellsInPattern[1], digit, false, true);
+					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
 					weakLinks.AddEntry(node1, node2, false, ar);
 				}
 			}

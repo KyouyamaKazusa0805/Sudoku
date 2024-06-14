@@ -32,11 +32,6 @@ public enum LinkType
 	AlmostLockedSet = 1 << 3,
 
 	/// <summary>
-	/// Indicates the link type is an almost hidden set.
-	/// </summary>
-	AlmostHiddenSet = 1 << 4,
-
-	/// <summary>
 	/// Indicates the link type is a kraken normal fish.
 	/// </summary>
 	KrakenNormalFish = 1 << 5,

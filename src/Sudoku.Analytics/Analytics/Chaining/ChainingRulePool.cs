@@ -15,7 +15,6 @@ internal static class ChainingRulePool
 		{ LinkType.SingleCell, static () => new CachedYChainingRule() },
 		{ LinkType.LockedCandidates, static () => new CachedLockedCandidatesChainingRule() },
 		{ LinkType.AlmostLockedSet, static () => new CachedAlmostLockedSetsChainingRule() },
-		{ LinkType.AlmostHiddenSet, static () => new CachedAlmostHiddenSetsChainingRule() },
 		{ LinkType.KrakenNormalFish, static () => new CachedKrakenNormalFishChainingRule() },
 		{ LinkType.XyzWing, static () => new CachedXyzWingChainingRule() },
 		{ LinkType.AlmostUniqueRectangle, static () => new CachedAlmostUniqueRectangleChainingRule() },

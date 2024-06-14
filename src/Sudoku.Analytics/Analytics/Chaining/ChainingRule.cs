@@ -1,5 +1,4 @@
 #define LOCKED_SET
-#undef HIDDEN_SET // Requires large memory
 #define FISH
 #define UNIQUE_RECTANGLE
 #define AVOIDABLE_RECTANGLE
@@ -32,9 +31,6 @@ public abstract partial class ChainingRule
 		LinkType.LockedCandidates,
 #if LOCKED_SET
 		LinkType.AlmostLockedSet,
-#endif
-#if HIDDEN_SET
-		LinkType.AlmostHiddenSet,
 #endif
 #if FISH
 		LinkType.KrakenNormalFish,

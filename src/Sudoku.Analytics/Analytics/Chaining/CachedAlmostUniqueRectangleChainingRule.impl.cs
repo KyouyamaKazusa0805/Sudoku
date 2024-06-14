@@ -2,7 +2,7 @@ namespace Sudoku.Analytics.Chaining;
 
 internal partial class CachedAlmostUniqueRectangleChainingRule
 {
-	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		// Split the digit into two parts.
 		var otherOnlyDigit = Log2((uint)otherDigitsMask);
@@ -13,18 +13,19 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var row2 = rowsSpanned.GetNextSet(row1);
 		var cells1 = cellsContainingThisDigit & HousesMap[row1];
 		var cells2 = cellsContainingThisDigit & HousesMap[row2];
-		if (cells1.IsInIntersection && cells2.IsInIntersection)
+		if (linkOption != LinkOption.Intersection || cells1.IsInIntersection && cells2.IsInIntersection)
 		{
 			var node1 = new Node(cells1 * otherOnlyDigit, false, true);
 			var node2 = new Node(cells2 * otherOnlyDigit, true, true);
 			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
+
 		var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
 		var column1 = TrailingZeroCount(columnsSpanned);
 		var column2 = columnsSpanned.GetNextSet(column1);
 		var cells3 = cellsContainingThisDigit & HousesMap[column1];
 		var cells4 = cellsContainingThisDigit & HousesMap[column2];
-		if (cells3.IsInIntersection && cells4.IsInIntersection)
+		if (linkOption != LinkOption.Intersection || cells3.IsInIntersection && cells4.IsInIntersection)
 		{
 			var node3 = new Node(cells3 * otherOnlyDigit, false, true);
 			var node4 = new Node(cells4 * otherOnlyDigit, true, true);
@@ -32,13 +33,13 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		var theOtherDigit1 = TrailingZeroCount(otherDigitsMask);
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 		var cells1 = CandidatesMap[theOtherDigit1] & urCells;
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
-		if (cells1.IsInIntersection && cells2.IsInIntersection)
+		if (linkOption != LinkOption.Intersection || cells1.IsInIntersection && cells2.IsInIntersection)
 		{
 			var node1 = new Node(cells1 * theOtherDigit1, false, true);
 			var node2 = new Node(cells2 * theOtherDigit2, true, true);
@@ -46,7 +47,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		foreach (var otherDigit in otherDigitsMask)
 		{
@@ -70,7 +71,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 
 			// Determine whether the other cells are in an intersection.
 			var urOtherSideCells = urCells & ~cells;
-			if (!urOtherSideCells.IsInIntersection)
+			if (linkOption == LinkOption.Intersection && !urOtherSideCells.IsInIntersection)
 			{
 				continue;
 			}
@@ -96,7 +97,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 
 				var lastUrDigit = Log2((uint)(urDigitsMask & (Mask)~lockedUrDigitsMask));
 				var otherCellsContainingLastUrDigit = HousesMap[lockedHouse] & CandidatesMap[lastUrDigit] & ~urCells;
-				if (!otherCellsContainingLastUrDigit.IsInIntersection)
+				if (linkOption == LinkOption.Intersection && !otherCellsContainingLastUrDigit.IsInIntersection)
 				{
 					continue;
 				}
@@ -107,7 +108,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		var urCellsContainingOtherDigits = CellMap.Empty;
 		foreach (var cell in urCells)
@@ -117,7 +118,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 				urCellsContainingOtherDigits.Add(cell);
 			}
 		}
-		if (!urCellsContainingOtherDigits.IsInIntersection)
+		if (linkOption == LinkOption.Intersection && !urCellsContainingOtherDigits.IsInIntersection)
 		{
 			return;
 		}
@@ -129,7 +130,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		{
 			var cells1 = HousesMap[lockedHouse] & CandidatesMap[digit1] & ~urCells;
 			var cells2 = HousesMap[lockedHouse] & CandidatesMap[digit2] & ~urCells;
-			if (!cells1.IsInIntersection || !cells2.IsInIntersection)
+			if (linkOption == LinkOption.Intersection && !(cells1.IsInIntersection && cells2.IsInIntersection))
 			{
 				continue;
 			}

@@ -82,7 +82,12 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					}
 
 					var fins = baseSetsMap & ~coverSetsMap;
-					if (!fins || !fins.IsInIntersection)
+					if (!fins)
+					{
+						continue;
+					}
+
+					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection)
 					{
 						continue;
 					}
@@ -103,9 +108,17 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					}
 
 					var node3 = new Node(cells3 * digit, true, true);
-					foreach (var cells4 in elimMap | 3)
+					var limit = linkOption switch
 					{
-						if (!cells4.IsInIntersection)
+						LinkOption.Intersection => 3,
+						LinkOption.House => Math.Min(elimMap.Count, 9),
+						LinkOption.All => elimMap.Count,
+						_ => 3
+					};
+					foreach (var cells4 in elimMap | limit)
+					{
+						if (linkOption == LinkOption.Intersection && !cells4.IsInIntersection
+							|| linkOption == LinkOption.House && !cells4.InOneHouse(out _))
 						{
 							continue;
 						}

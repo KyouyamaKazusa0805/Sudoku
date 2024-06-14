@@ -75,18 +75,18 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 				{
 					case 1:
 					{
-						Type1Strong(otherDigitsMask, in urCells, ur, strongLinks);
+						Type1Strong(otherDigitsMask, in urCells, ur, strongLinks, linkOption);
 						break;
 					}
 					case 2:
 					{
-						Type2Strong(otherDigitsMask, in urCells, ur, strongLinks);
+						Type2Strong(otherDigitsMask, in urCells, ur, strongLinks, linkOption);
 						goto default;
 					}
 					default:
 					{
-						Type4Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks);
-						Type5Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks);
+						Type4Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks, linkOption);
+						Type5Strong(otherDigitsMask, in grid, in urCells, ur, strongLinks, linkOption);
 						break;
 					}
 				}
@@ -128,8 +128,8 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 
-	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
+	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
 }

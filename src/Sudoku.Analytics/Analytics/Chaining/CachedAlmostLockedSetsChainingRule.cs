@@ -33,8 +33,15 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			{
 				maskTempList[cell] = grid.GetCandidates(cell);
 			}
-			foreach (var subsetCells in cells | cells.Count - 1)
+
+			var strongLimit = alsLinkOption switch { LinkOption.Intersection => 3, LinkOption.All or LinkOption.House => cells.Count };
+			foreach (var subsetCells in cells | strongLimit)
 			{
+				if (alsLinkOption == LinkOption.Intersection && !subsetCells.IsInIntersection)
+				{
+					continue;
+				}
+
 				var mask = (Mask)0;
 				foreach (var cell in subsetCells)
 				{
@@ -83,9 +90,14 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				foreach (var cells3House in cells3.SharedHouses)
 				{
 					var otherCells = HousesMap[cells3House] & CandidatesMap[digit] & ~cells;
-					foreach (var cells4 in otherCells | 3)
+					var weakLimit = alsLinkOption switch
 					{
-						if (!cells4.IsInIntersection)
+						LinkOption.Intersection => 3,
+						LinkOption.House or LinkOption.All => otherCells.Count
+					};
+					foreach (var cells4 in otherCells | weakLimit)
+					{
+						if (alsLinkOption == LinkOption.Intersection && !cells4.IsInIntersection)
 						{
 							continue;
 						}
