@@ -65,8 +65,10 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				foreach (var p in bs)
 				{
 					var cells = CandidatesMap[digit] & HousesMap[p];
-					if (cells.IsInIntersection)
+					if (cells.Count < 2)
 					{
+						// Here we keep the pattern to be "readable", we don't allow Sashimi Kraken Fishes here.
+						// Sometimes the Sashimi Kraken Fishes may look very ugly (e.g. X-Wing with only 3 positions).
 						baseSetIsValid = false;
 						break;
 					}
@@ -78,12 +80,6 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				}
 
 				var baseSetsMask = HouseMaskOperations.Create(bs);
-				var (split11, split12, split13) = MaskOperations.SplitMask((Mask)(baseSetsMask >> (isRow ? 9 : 18) & Grid.MaxCandidatesMask));
-				if ((split11, split12, split13) is (0, 0, _) or (0, _, 0) or (_, 0, 0))
-				{
-					continue;
-				}
-
 				foreach (var cs in coverSetsToIterate.GetSubsets(size))
 				{
 					var coverSetsMap = CellMap.Empty;
