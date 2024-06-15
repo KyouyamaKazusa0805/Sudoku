@@ -18,19 +18,25 @@ internal static class ChainingDriver
 	/// A valid chain can only belong to the following three cases:
 	/// <list type="number">
 	/// <item>
-	/// <b>Discontinuous Nice Loop</b><br/>
-	/// Start with weak link, alternating strong and weak links and return to itself by weak link
+	/// <para><b>Discontinuous Nice Loop</b></para>
+	/// <para>
+	/// Start with weak link, alternating strong and weak links and return to itself of a weak link
 	/// (with an even number of nodes, odd number of links).
+	/// </para>
 	/// </item>
 	/// <item>
-	/// <b>Discontinuous Nice Loop</b><br/>
-	/// Start with strong link, alternating strong and weak links and return to itself by strong link
+	/// <para><b>Discontinuous Nice Loop</b></para>
+	/// <para>
+	/// Start with strong link, alternating strong and weak links and return to itself of a strong link
 	/// (with an even number of nodes, even number of links).
+	/// </para>
 	/// </item>
 	/// <item>
-	/// <b>Continuous Nice Loop</b><br/>
-	/// Start with strong link, alternating strong and weak links and return to itself by weak link
+	/// <para><b>Continuous Nice Loop</b></para>
+	/// <para>
+	/// Start with strong link, alternating strong and weak links and return to itself of a weak link
 	/// (with an even number of nodes, even number of links).
+	/// </para>
 	/// </item>
 	/// </list>
 	/// </remarks>
@@ -67,8 +73,22 @@ internal static class ChainingDriver
 		}
 
 		// Step 4: Sort found patterns and return.
-		finalCollection.Sort();
-		return finalCollection.AsReadOnlySpan();
+		switch (finalCollection.Count)
+		{
+			case 0:
+			{
+				return [];
+			}
+			case > 1:
+			{
+				finalCollection.Sort();
+				goto default;
+			}
+			default:
+			{
+				return finalCollection.AsReadOnlySpan();
+			}
+		}
 
 
 		void bfs(Node startNode, HashSet<ChainOrLoop> result)
