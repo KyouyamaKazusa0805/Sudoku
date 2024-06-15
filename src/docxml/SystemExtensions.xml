@@ -2293,6 +2293,9 @@
         <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.UIntPtr)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator``1(``0)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetNextSet(System.Byte,System.Int32)">
             <summary>
             Find an index of the binary representation of a value after the specified index whose bit is set <see langword="true"/>.

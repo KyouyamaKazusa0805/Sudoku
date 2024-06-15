@@ -1,5 +1,3 @@
-#undef NUMERIC_GENERIC_TYPE
-
 namespace System;
 
 /// <summary>

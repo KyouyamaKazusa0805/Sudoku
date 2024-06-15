@@ -1,3 +1,4 @@
+
 namespace System.Numerics;
 
 public partial class BitOperationsExtensions
@@ -63,4 +64,24 @@ public partial class BitOperationsExtensions
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this) => new(@this);
+
+	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static partial GenericNumberEnumerator<TNumber> GetEnumerator<TNumber>(this TNumber @this)
+#if NUMERIC_GENERIC_TYPE
+		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
+#else
+		where TNumber :
+			IAdditiveIdentity<TNumber, TNumber>,
+			IBitwiseOperators<TNumber, TNumber, TNumber>,
+			IEqualityOperators<TNumber, TNumber, bool>,
+			IMultiplicativeIdentity<TNumber, TNumber>,
+			IShiftOperators<TNumber, int, TNumber>
+#endif
+	{
+		unsafe
+		{
+			return new(@this, sizeof(TNumber) << 3);
+		}
+	}
 }
