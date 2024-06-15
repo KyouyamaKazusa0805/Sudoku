@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Analytics.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on X rule (i.e. <see cref="LinkType.SingleDigit"/>).

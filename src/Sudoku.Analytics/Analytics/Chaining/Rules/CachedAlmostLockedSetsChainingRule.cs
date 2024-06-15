@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Analytics.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSet"/>).
