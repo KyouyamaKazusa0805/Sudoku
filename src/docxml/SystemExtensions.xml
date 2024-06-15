@@ -2370,6 +2370,9 @@
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UIntPtr,System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt``1(``0,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SkipSetBit(System.Byte,System.Int32)">
             <summary>
             Skip the specified number of set bits and iterate on the integer with other set bits.

@@ -174,4 +174,30 @@ public partial class BitOperationsExtensions
 			return -1;
 		}
 	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt<TNumber>(this TNumber @this, int order)
+#if NUMERIC_GENERIC_TYPE
+		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
+#else
+		where TNumber :
+			IAdditiveIdentity<TNumber, TNumber>,
+			IBitwiseOperators<TNumber, TNumber, TNumber>,
+			IEqualityOperators<TNumber, TNumber, bool>,
+			IMultiplicativeIdentity<TNumber, TNumber>,
+			IShiftOperators<TNumber, int, TNumber>
+#endif
+	{
+		unsafe
+		{
+			for (int i = 0, count = -1; i < sizeof(TNumber) << 3; i++, @this >>= 1)
+			{
+				if ((@this & TNumber.MultiplicativeIdentity) != TNumber.AdditiveIdentity && ++count == order)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+	}
 }
