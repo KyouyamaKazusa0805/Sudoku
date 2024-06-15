@@ -1884,16 +1884,8 @@
     <value>区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
-    <value>强制链</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
     <value>网</value>
-    <comment>Step Searcher Name</comment>
-  </data>
-  <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
-    <value>链</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
@@ -2093,6 +2085,7 @@
   </data>
   <data name="StepSearcherName_AlignedExclusionStepSearcher" xml:space="preserve">
     <value>均衡数组</value>
+    <comment>Step Searcher Name</comment>
   </data>
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType1Step" xml:space="preserve">
     <value>全盘只有 {0} 是 {1} 和 {2} 的话，会造成这两个数字出现致命形式</value>
@@ -3272,6 +3265,7 @@
   </data>
   <data name="StepSearcherName_ComplexSingleStepSearcher" xml:space="preserve">
     <value>复杂出数</value>
+    <comment>Step Searcher Name</comment>
   </data>
   <data name="ComplexFullHouse" xml:space="preserve">
     <value>复杂同区九缺一</value>
@@ -3305,6 +3299,7 @@
   </data>
   <data name="StepSearcherName_ChainStepSearcher" xml:space="preserve">
     <value>链</value>
+    <comment>Step Searcher Name</comment>
   </data>
   <data name="SelfConstraint" xml:space="preserve">
     <value>自我约束</value>
@@ -3329,6 +3324,17 @@
   </data>
   <data name="Factor_ChainGroupedNodeFactor" xml:space="preserve">
     <value>区块节点</value>
+  </data>
+  <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
+    <value>构造</value>
+  </data>
+  <data name="XyzWingConstruction" xml:space="preserve">
+    <value>XYZ 构造</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
+    <value>XYZ 构造</value>
+    <comment>Step Searcher Name</comment>
   </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
@@ -3414,15 +3420,11 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
-  <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
-    <value>构造</value>
-  </data>
-  <data name="XyzWingConstruction" xml:space="preserve">
-    <value>XYZ 构造</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
-    <value>XYZ 构造</value>
+  <data name="StepSearcherName_MultipleForcingChainsStepSearcher" xml:space="preserve">
+    <value>强制链</value>
     <comment>Step Searcher Name</comment>
+  </data>
+  <data name="TechniqueFormat_MultipleForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
   </data>
 </root>

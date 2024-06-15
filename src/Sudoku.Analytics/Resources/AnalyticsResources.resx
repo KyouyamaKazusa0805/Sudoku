@@ -1569,14 +1569,8 @@
   <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>Locked Candidates</value>
   </data>
-  <data name="StepSearcherName_MultipleChainingStepSearcher" xml:space="preserve">
-    <value>Multiple Forcing Chains</value>
-  </data>
   <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
     <value>Multi-Sector Locked Sets</value>
-  </data>
-  <data name="StepSearcherName_NonMultipleChainingStepSearcher" xml:space="preserve">
-    <value>Alternating Inference Chains</value>
   </data>
   <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
     <value>Normal Fishes</value>
@@ -3245,5 +3239,11 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
     <value>XYZ-Wing Construction</value>
+  </data>
+  <data name="StepSearcherName_MultipleForcingChainsStepSearcher" xml:space="preserve">
+    <value>Multiple Forcing Chains</value>
+  </data>
+  <data name="TechniqueFormat_MultipleForcingChainsStep" xml:space="preserve">
+    <value>{0}</value>
   </data>
 </root>

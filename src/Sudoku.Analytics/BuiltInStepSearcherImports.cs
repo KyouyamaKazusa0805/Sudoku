@@ -40,6 +40,7 @@
 [assembly: BuiltInStepSearcher<ComplexFishStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<BivalueOddagonStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<ChromaticPatternStepSearcher>(2)]
+[assembly: BuiltInStepSearcher<MultipleForcingChainsStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<DeathBlossomStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<BowmanBingoStepSearcher>(3, Areas = 0)]
 [assembly: BuiltInStepSearcher<TemplateStepSearcher>(3, Areas = 0)]

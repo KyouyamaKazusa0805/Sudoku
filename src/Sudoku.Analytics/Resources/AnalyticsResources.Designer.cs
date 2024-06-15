@@ -5871,9 +5871,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multiple Forcing Chains.
         /// </summary>
-        public static string StepSearcherName_MultipleChainingStepSearcher {
+        public static string StepSearcherName_MultipleForcingChainsStepSearcher {
             get {
-                return ResourceManager.GetString("StepSearcherName_MultipleChainingStepSearcher", resourceCulture);
+                return ResourceManager.GetString("StepSearcherName_MultipleForcingChainsStepSearcher", resourceCulture);
             }
         }
         
@@ -5883,15 +5883,6 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_MultisectorLockedSetsStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetsStepSearcher", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Alternating Inference Chains.
-        /// </summary>
-        public static string StepSearcherName_NonMultipleChainingStepSearcher {
-            get {
-                return ResourceManager.GetString("StepSearcherName_NonMultipleChainingStepSearcher", resourceCulture);
             }
         }
         
@@ -7800,6 +7791,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_MultiBranchWWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_MultiBranchWWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_MultipleForcingChainsStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_MultipleForcingChainsStep", resourceCulture);
             }
         }
         

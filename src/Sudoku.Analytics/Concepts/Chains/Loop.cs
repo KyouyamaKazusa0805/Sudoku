@@ -8,34 +8,13 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	ChainOrLoop(lastNode, true, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <inheritdoc/>
-	public override int Length => _nodes.Length;
+	protected override int WeakStartIdentity => 1;
 
 	/// <inheritdoc/>
-	public override int Complexity => _nodes.Length;
-
-	/// <inheritdoc/>
-	public override ReadOnlySpan<Link> Links
-	{
-		get
-		{
-			var result = new Link[Length];
-			for (var (linkIndex, i) = (1, 0); i < Length; linkIndex++, i++)
-			{
-				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
-				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
-				pool.TryGetValue(new(_nodes[i], _nodes[(i + 1) % _nodes.Length], isStrong), out var pattern);
-				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], isStrong, pattern);
-			}
-			return result;
-		}
-	}
+	protected override int LoopIdentity => 0;
 
 	/// <inheritdoc/>
 	protected override ReadOnlySpan<Node> ValidNodes => _nodes;
-
-
-	/// <inheritdoc/>
-	public override Node this[int index] => _nodes[index];
 
 
 	/// <inheritdoc/>
@@ -53,7 +32,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Loop? other)
-		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
 	/// <summary>
 	/// Determine whether two <see cref="Loop"/> instances are same, by using the specified comparison rule.
@@ -65,7 +44,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="chainComparison"/> is not defined.
 	/// </exception>
-	public bool Equals([NotNullWhen(true)] Loop? other, NodeComparison nodeComparison, ChainPatternComparison chainComparison)
+	public bool Equals([NotNullWhen(true)] Loop? other, NodeComparison nodeComparison, ChainOrLoopComparison chainComparison)
 	{
 		if (other is null)
 		{
@@ -87,7 +66,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 		// Just check elements one by one.
 		switch (chainComparison)
 		{
-			case ChainPatternComparison.Undirected:
+			case ChainOrLoopComparison.Undirected:
 			{
 				// Check the second node.
 				var previousNode = other[(secondNodeStartIndex - 1 + Length) % Length];
@@ -120,7 +99,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 					return false;
 				}
 			}
-			case ChainPatternComparison.Directed:
+			case ChainOrLoopComparison.Directed:
 			{
 				for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos + 1) % Length)
 				{
@@ -139,10 +118,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	}
 
 	/// <inheritdoc/>
-	public override bool Equals(ChainOrLoop? other) => Equals(other as Loop);
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 		=> Equals(other as Loop, nodeComparison, patternComparison);
 
 	/// <summary>
@@ -154,11 +130,11 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public override int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
 		switch (patternComparison)
 		{
-			case ChainPatternComparison.Undirected:
+			case ChainOrLoopComparison.Undirected:
 			{
 				// To guarantee the final hash code is same on different direction, we should sort all nodes,
 				// in order to make same nodes are in the same position.
@@ -172,7 +148,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 				}
 				return hashCode.ToHashCode();
 			}
-			case ChainPatternComparison.Directed:
+			case ChainOrLoopComparison.Directed:
 			{
 				var result = new HashCode();
 				foreach (var element in _nodes)
@@ -269,23 +245,6 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 
 	/// <inheritdoc/>
 	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as Loop);
-
-	/// <inheritdoc/>
-	public override string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		var sb = new StringBuilder();
-		for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
-		{
-			var inference = Inferences[linkIndex & 1];
-			sb.Append(_nodes[i].ToString(format, formatProvider));
-			sb.Append(inference.ConnectingNotation());
-		}
-		sb.Append(_nodes[0].ToString(format, formatProvider));
-		return sb.ToString();
-	}
-
-	/// <inheritdoc/>
-	public override ReadOnlySpan<Node> Slice(int start, int length) => _nodes.AsReadOnlySpan()[start..(start + length)];
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(ref readonly Grid grid)

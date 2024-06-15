@@ -30,7 +30,13 @@ namespace Sudoku.Analytics;
 /// </para>
 /// </param>
 /// <seealso cref="Step"/>
-[TypeImpl(TypeImplFlag.Object_ToString, OtherModifiersOnToString = "sealed")]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods,
+	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
+	OtherModifiersOnEquals = "sealed",
+	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException,
+	OtherModifiersOnGetHashCode = "sealed",
+	OtherModifiersOnToString = "sealed")]
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,

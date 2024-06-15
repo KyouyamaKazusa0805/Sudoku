@@ -390,13 +390,13 @@
             A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.Length">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Chain.Complexity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.Links">
+        <member name="P:Sudoku.Concepts.Chain.WeakStartIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.LoopIdentity">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.ValidNodes">
@@ -407,25 +407,19 @@
             Split mask for 6 nodes.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.Item(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Chain.Reverse">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainOrLoop)">
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+        <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)">
@@ -465,12 +459,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
@@ -540,8 +528,14 @@
         <member name="P:Sudoku.Concepts.ChainOrLoop.Complexity">
             <summary>
             Indicates the complexity of the pattern.
-            The value is different with <see cref="P:Sudoku.Concepts.ChainOrLoop.Length"/> on a chain starting and ending with itself, both are by strong links.
             </summary>
+            <remarks>
+            The value is different with <see cref="P:Sudoku.Concepts.ChainOrLoop.Length"/> on a chain starting and ending with itself,
+            both are by strong links;
+            however it sometimes is equal to <see cref="P:Sudoku.Concepts.ChainOrLoop.Length"/>. It depends on the kind of the chain rule obeys.
+            For example, a loop has a same complexity and length.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.ChainOrLoop.Length"/>
         </member>
         <member name="P:Sudoku.Concepts.ChainOrLoop.Links">
             <summary>
@@ -568,6 +562,16 @@
             Indicates the tail node.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ChainOrLoop.WeakStartIdentity">
+            <summary>
+            Indicates the value as the start index of the chain link is from whether strong and weak.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainOrLoop.LoopIdentity">
+            <summary>
+            Indicates the value on loop checking for link construction usages.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ChainOrLoop.ValidNodes">
             <summary>
             Indicates the valid nodes to be used.
@@ -592,7 +596,7 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+        <member name="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <summary>
             Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
             </summary>
@@ -623,14 +627,14 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>
-            This method directly calls <see cref="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
-            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>.
+            This method directly calls <see cref="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
+            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainOrLoopComparison.Undirected"/>.
             </remarks>
-            <seealso cref="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            <seealso cref="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
             <seealso cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/>
-            <seealso cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>
+            <seealso cref="F:Sudoku.Concepts.ChainOrLoopComparison.Undirected"/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <summary>
             Computes hash code based on the current instance.
             </summary>
@@ -680,7 +684,7 @@
             Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
             </summary>
             <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -750,7 +754,7 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.op_LessThanOrEqual(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.ChainOrLoop)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ChainPatternComparison">
+        <member name="T:Sudoku.Concepts.ChainOrLoopComparison">
             <summary>
             Provides with a comparison rule on <see cref="T:Sudoku.Concepts.ChainOrLoop"/> instances (i.e. <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/>).
             </summary>
@@ -758,13 +762,13 @@
             <seealso cref="T:Sudoku.Concepts.Chain"/>
             <seealso cref="T:Sudoku.Concepts.Loop"/>
         </member>
-        <member name="F:Sudoku.Concepts.ChainPatternComparison.Undirected">
+        <member name="F:Sudoku.Concepts.ChainOrLoopComparison.Undirected">
             <summary>
             Indicates the comparison will ignore direction on chains.
             For example, <c>A == B -- C == D</c> is equal to <c>D == C -- B == A</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.ChainPatternComparison.Directed">
+        <member name="F:Sudoku.Concepts.ChainOrLoopComparison.Directed">
             <summary>
             Indicates the comparison will also check on direction.
             For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
@@ -1001,19 +1005,13 @@
             Represents a loop.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Loop.Length">
+        <member name="P:Sudoku.Concepts.Loop.WeakStartIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Loop.Complexity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Loop.Links">
+        <member name="P:Sudoku.Concepts.Loop.LoopIdentity">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.ValidNodes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.Reverse">
@@ -1022,7 +1020,7 @@
         <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <summary>
             Determine whether two <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
             </summary>
@@ -1034,13 +1032,10 @@
             Throws when the argument <paramref name="chainComparison"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainOrLoop)">
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+        <member name="M:Sudoku.Concepts.Loop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <summary>
             Creates a hash code based on the current instance.
             </summary>
@@ -1088,17 +1083,137 @@
         <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.ChainOrLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.MultipleForcingChains">
+            <summary>
+            Represents an instance that describes for multiple forcing chains.
+            </summary>
+            <remarks>
+            <para>
+            By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
+            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakChain"/> respectively.
+            </para>
+            <para>
+            For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
+            However, in fact this type can be replaced with other ones, in order to achieve the implementation goals
+            on generalized forcing chains logic.
+            </para>
+            <para>
+            For example, a UR forcing chains can be made key types to be <see cref="T:Sudoku.Concepts.Node"/>
+            instead of <see cref="T:System.Int32"/>.
+            </para>
+            <para>
+            Also, please note that the concept "Forcing Chains" is always represented as a plural noun,
+            i.e. the concept represents a list of chains, rather than "Forcing Chain".
+            </para>
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
+            <seealso cref="T:System.Int32"/>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.IsCellMultiple">
+            <summary>
+            Indicates whether the pattern is aimed to a cell, producing multiple branches.
+            </summary>
+            <remarks>
+            This value is conflict with <see cref="P:Sudoku.Concepts.MultipleForcingChains.IsHouseMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Concepts.MultipleForcingChains.IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.MultipleForcingChains.IsHouseMultiple"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.IsHouseMultiple">
+            <summary>
+            Indicates whether the pattern is aimed to a house, producing multiple branches.
+            </summary>
+            <remarks>
+            This value is conflict with <see cref="P:Sudoku.Concepts.MultipleForcingChains.IsCellMultiple"/>. If this property is <see langword="true"/>,
+            the property <see cref="P:Sudoku.Concepts.MultipleForcingChains.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.MultipleForcingChains.IsCellMultiple"/>
+        </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.Complexity">
+            <summary>
+            Indicates the complexity of the whole pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.BranchedComplexity">
+            <summary>
+            Indicates the complexity of each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.CandidatesUsed">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.CompareTo(Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.CompareTo(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares the value with the other one, to get which one is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.Equals(Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.Equals(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.MultipleForcingChains"/> are considered equal.
+            </summary>
+            <param name="other">The other instance to be checked.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <summary>
+            Calculates a hash code value used for comparison.
+            </summary>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>Hash code value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_Equality(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_Inequality(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_GreaterThan(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_LessThan(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_GreaterThanOrEqual(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.op_LessThanOrEqual(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Node">
             <summary>
@@ -1329,6 +1444,85 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
             <seealso cref="P:Sudoku.Concepts.Node.Map"/>
+        </member>
+        <member name="T:Sudoku.Concepts.WeakChain">
+            <summary>
+            Represents a weak chain, meaning a chain applying the normal rules of chaining (alternating strong and weak inferences),
+            except the start is weak instead of strong link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Represents a weak chain, meaning a chain applying the normal rules of chaining (alternating strong and weak inferences),
+            except the start is weak instead of strong link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.WeakChain.WeakStartIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.WeakChain.LoopIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.WeakChain.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.WeakChain)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.WeakChain"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            <list type="number">
+            <item>If so, it will be treated as "less than" the other one.</item>
+            <item>
+            Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            </item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.WeakChain,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares the value with the other one, to get which one is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.Equals(Sudoku.Concepts.WeakChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.WeakChain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">
             <summary>
@@ -7966,6 +8160,16 @@
             </list>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Collect all multiple forcing chain instances appears in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="rules">
+            Indicates the rule instances that will create strong and weak links by their own represented concept.
+            </param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.LocalComparer">
             <summary>
             The file-local comparer generator, lazily initialized.
@@ -9777,6 +9981,12 @@
             The generated property declaration for parameter <c>runningArea</c>.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -10303,6 +10513,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.MultipleForcingChainsStepSearcher">
+            <summary>
+            Provides with a <b>Multiple Forcing Chains</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Cell Forcing Chains</item>
+            <item>Region Forcing Chains (i.e. House Forcing Chains)</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultipleForcingChainsStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.XyzWingConstructionStepSearcher">
@@ -14916,6 +15139,61 @@
             Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainStep.Complexity">
+            <summary>
+            Indicates the length of the whole chain pattern, i.e. the number of links used in a pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.MultipleForcingChainsStep">
+            <summary>
+            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultipleForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.MultipleForcingChains)">
+            <summary>
+            Provides with a step that is a <b>Multiple Forcing Chains</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">The pattern to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.MultipleForcingChainsStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.NormalChainStep">
             <summary>
             Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
@@ -14964,10 +15242,8 @@
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.ChainLength">
-            <summary>
-            Indicates the chain length.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Complexity">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Code">
             <inheritdoc/>
@@ -27198,7 +27474,7 @@
               Looks up a localized string similar to Locked Subsets.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultipleChainingStepSearcher">
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultipleForcingChainsStepSearcher">
             <summary>
               Looks up a localized string similar to Multiple Forcing Chains.
             </summary>
@@ -27206,11 +27482,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultisectorLockedSetsStepSearcher">
             <summary>
               Looks up a localized string similar to Multi-Sector Locked Sets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_NonMultipleChainingStepSearcher">
-            <summary>
-              Looks up a localized string similar to Alternating Inference Chains.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_NormalFishStepSearcher">
@@ -28271,6 +28542,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultiBranchWWingStep">
             <summary>
               Looks up a localized string similar to Leaves {0}, root cells {1} in house {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultipleForcingChainsStep">
+            <summary>
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultisectorLockedSetsStep">

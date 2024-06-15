@@ -68,28 +68,13 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 		);
 
 	/// <inheritdoc/>
-	public override int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
-
-	/// <inheritdoc/>
 	public override int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
-	public override ReadOnlySpan<Link> Links
-	{
-		get
-		{
-			var span = ValidNodes;
-			var result = new Link[Length - 1];
-			for (var (linkIndex, i) = (0, 0); i < Length - 1; linkIndex++, i++)
-			{
-				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
-				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
-				pool.TryGetValue(new(span[i], span[i + 1], isStrong), out var pattern);
-				result[i] = new(span[i], span[i + 1], isStrong, pattern);
-			}
-			return result;
-		}
-	}
+	protected override int WeakStartIdentity => 0;
+
+	/// <inheritdoc/>
+	protected override int LoopIdentity => 1;
 
 	/// <inheritdoc/>
 	protected override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
@@ -117,10 +102,6 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 
 
 	/// <inheritdoc/>
-	public override Node this[int index] => ValidNodes[index];
-
-
-	/// <inheritdoc/>
 	public override void Reverse()
 	{
 		var newNodes = new Node[_nodes.Length];
@@ -135,10 +116,10 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Chain? other)
-		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
-	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainPatternComparison)"/>
-	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainOrLoopComparison)"/>
+	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -154,7 +135,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 		var span2 = other.ValidNodes;
 		switch (patternComparison)
 		{
-			case ChainPatternComparison.Undirected:
+			case ChainOrLoopComparison.Undirected:
 			{
 				if (span1[0].Equals(span2[0], nodeComparison))
 				{
@@ -179,7 +160,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 					return true;
 				}
 			}
-			case ChainPatternComparison.Directed:
+			case ChainOrLoopComparison.Directed:
 			{
 				for (var i = 0; i < Length; i++)
 				{
@@ -198,19 +179,16 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	}
 
 	/// <inheritdoc/>
-	public override bool Equals(ChainOrLoop? other) => Equals(other as Chain);
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 		=> Equals(other as Chain, nodeComparison, patternComparison);
 
 	/// <inheritdoc/>
-	public override int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
 		var span = ValidNodes;
 		switch (patternComparison)
 		{
-			case ChainPatternComparison.Undirected:
+			case ChainOrLoopComparison.Undirected:
 			{
 				// To guarantee the final hash code is same on different direction, we should sort all nodes,
 				// in order to make same nodes are in the same position.
@@ -224,7 +202,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 				}
 				return hashCode.ToHashCode();
 			}
-			case ChainPatternComparison.Directed:
+			case ChainOrLoopComparison.Directed:
 			{
 				var result = new HashCode();
 				foreach (var element in span)
@@ -307,27 +285,6 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 		}
 		return 0;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		var span = ValidNodes;
-		var sb = new StringBuilder();
-		for (var (linkIndex, i) = (0, 0); i < span.Length; linkIndex++, i++)
-		{
-			var inference = Inferences[linkIndex & 1];
-			sb.Append(span[i].ToString(format, formatProvider));
-			if (i != span.Length - 1)
-			{
-				sb.Append(inference.ConnectingNotation());
-			}
-		}
-		return sb.ToString();
-	}
-
-	/// <inheritdoc/>
-	public override ReadOnlySpan<Node> Slice(int start, int length) => ValidNodes[start..(start + length)];
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(ref readonly Grid grid) => [.. GetConclusions(in grid, First, Last)];

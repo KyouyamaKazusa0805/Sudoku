@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="ChainOrLoop"/>
 /// <seealso cref="Chain"/>
 /// <seealso cref="Loop"/>
-public enum ChainPatternComparison
+public enum ChainOrLoopComparison
 {
 	/// <summary>
 	/// Indicates the comparison will ignore direction on chains.

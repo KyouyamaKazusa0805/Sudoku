@@ -130,18 +130,40 @@ public abstract partial class ChainOrLoop :
 	/// <summary>
 	/// Indicates the length of the pattern.
 	/// </summary>
-	public abstract int Length { get; }
+	public int Length => ValidNodes.Length;
 
 	/// <summary>
 	/// Indicates the complexity of the pattern.
-	/// The value is different with <see cref="Length"/> on a chain starting and ending with itself, both are by strong links.
 	/// </summary>
-	public abstract int Complexity { get; }
+	/// <remarks>
+	/// The value is different with <see cref="Length"/> on a chain starting and ending with itself,
+	/// both are by strong links;
+	/// however it sometimes is equal to <see cref="Length"/>. It depends on the kind of the chain rule obeys.
+	/// For example, a loop has a same complexity and length.
+	/// </remarks>
+	/// <seealso cref="Length"/>
+	public virtual int Complexity => Length;
 
 	/// <summary>
 	/// Indicates the links used.
 	/// </summary>
-	public abstract ReadOnlySpan<Link> Links { get; }
+	public ReadOnlySpan<Link> Links
+	{
+		get
+		{
+			var span = ValidNodes;
+			var resultLength = Length - LoopIdentity;
+			var result = new Link[resultLength];
+			for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
+			{
+				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
+				pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
+				result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
+			}
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// Indicates the strong links.
@@ -192,6 +214,16 @@ public abstract partial class ChainOrLoop :
 	public Node Last => ValidNodes[^1];
 
 	/// <summary>
+	/// Indicates the value as the start index of the chain link is from whether strong and weak.
+	/// </summary>
+	protected abstract int WeakStartIdentity { get; }
+
+	/// <summary>
+	/// Indicates the value on loop checking for link construction usages.
+	/// </summary>
+	protected abstract int LoopIdentity { get; }
+
+	/// <summary>
 	/// Indicates the valid nodes to be used.
 	/// </summary>
 	protected abstract ReadOnlySpan<Node> ValidNodes { get; }
@@ -206,7 +238,7 @@ public abstract partial class ChainOrLoop :
 	/// <param name="index">The desired index.</param>
 	/// <returns>The <see cref="Node"/> instance.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
-	public abstract Node this[int index] { get; }
+	public Node this[int index] => ValidNodes[index];
 
 
 	/// <summary>
@@ -215,7 +247,7 @@ public abstract partial class ChainOrLoop :
 	public abstract void Reverse();
 
 	/// <inheritdoc/>
-	public abstract bool Equals(ChainOrLoop? other);
+	public bool Equals(ChainOrLoop? other) => Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
 	/// <summary>
 	/// Determine whether two <see cref="Chain"/> or <see cref="Loop"/> instances are same, by using the specified comparison rule.
@@ -227,7 +259,7 @@ public abstract partial class ChainOrLoop :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public abstract bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+	public abstract bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison);
 
 	/// <summary>
 	/// Determines whether the current pattern (nodes) overlap with a list of conclusions,
@@ -270,13 +302,13 @@ public abstract partial class ChainOrLoop :
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	/// <remarks>
-	/// This method directly calls <see cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>
-	/// with values <see cref="NodeComparison.IgnoreIsOn"/> and <see cref="ChainPatternComparison.Undirected"/>.
+	/// This method directly calls <see cref="GetHashCode(NodeComparison, ChainOrLoopComparison)"/>
+	/// with values <see cref="NodeComparison.IgnoreIsOn"/> and <see cref="ChainOrLoopComparison.Undirected"/>.
 	/// </remarks>
-	/// <seealso cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>
+	/// <seealso cref="GetHashCode(NodeComparison, ChainOrLoopComparison)"/>
 	/// <seealso cref="NodeComparison.IgnoreIsOn"/>
-	/// <seealso cref="ChainPatternComparison.Undirected"/>
-	public sealed override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+	/// <seealso cref="ChainOrLoopComparison.Undirected"/>
+	public sealed override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
 	/// <summary>
 	/// Computes hash code based on the current instance.
@@ -287,7 +319,7 @@ public abstract partial class ChainOrLoop :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public abstract int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+	public abstract int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison);
 
 	/// <summary>
 	/// Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
@@ -331,7 +363,21 @@ public abstract partial class ChainOrLoop :
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc/>
-	public abstract string ToString(string? format, IFormatProvider? formatProvider);
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		var span = ValidNodes;
+		var sb = new StringBuilder();
+		for (var (linkIndex, i) = (WeakStartIdentity, 0); i < span.Length; linkIndex++, i++)
+		{
+			var inference = Inferences[linkIndex & 1];
+			sb.Append(span[i].ToString(format, formatProvider));
+			if (i != span.Length - 1)
+			{
+				sb.Append(inference.ConnectingNotation());
+			}
+		}
+		return sb.ToString();
+	}
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.
@@ -339,7 +385,7 @@ public abstract partial class ChainOrLoop :
 	/// <param name="start">The start index.</param>
 	/// <param name="length">The number of <see cref="Node"/> instances to slice.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="Node"/> instances returned.</returns>
-	public abstract ReadOnlySpan<Node> Slice(int start, int length);
+	public ReadOnlySpan<Node> Slice(int start, int length) => ValidNodes[start..(start + length)];
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -349,8 +395,8 @@ public abstract partial class ChainOrLoop :
 	/// Try to get a <see cref="ConclusionSet"/> instance that contains all conclusions created by using the current chain.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>A <see cref="ConclusionSet"/> instance.</returns>
-	public abstract ConclusionSet GetConclusions(ref readonly Grid grid);
+	/// <returns>A <see cref="ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
+	public virtual ConclusionSet GetConclusions(ref readonly Grid grid) => ConclusionSet.Empty;
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();

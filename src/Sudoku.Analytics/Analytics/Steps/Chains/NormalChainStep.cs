@@ -45,10 +45,8 @@ public partial class NormalChainStep(
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 60;
 
-	/// <summary>
-	/// Indicates the chain length.
-	/// </summary>
-	public int ChainLength => Pattern.Length;
+	/// <inheritdoc/>
+	public override int Complexity => Pattern.Length;
 
 	/// <inheritdoc/>
 	public override Technique Code => Pattern.GetTechnique(Conclusions.AsSet());

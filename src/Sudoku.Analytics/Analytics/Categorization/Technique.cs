@@ -5230,7 +5230,8 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		Links = ["http://sudopedia.enjoysudoku.com/Nishio.html"])]
+		Links = ["http://sudopedia.enjoysudoku.com/Nishio.html"],
+		Features = TechniqueFeatures.NotImplemented)]
 	NishioForcingChains,
 
 	/// <summary>
@@ -5241,8 +5242,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -5253,8 +5253,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.ForcingChains,
-		Features = TechniqueFeatures.NotImplemented)]
+		ContainingGroup = TechniqueGroup.ForcingChains)]
 	CellForcingChains,
 
 	/// <summary>

@@ -6,7 +6,7 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ChainLengthFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(NormalChainStep.ChainLength)];
+	public override string[] ParameterNames => [nameof(NormalChainStep.Complexity)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(NormalChainStep);

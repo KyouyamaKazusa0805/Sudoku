@@ -17,4 +17,9 @@ public abstract class ChainStep(Conclusion[] conclusions, View[]? views, StepSea
 	/// Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm.
 	/// </summary>
 	public abstract bool IsDynamic { get; }
+
+	/// <summary>
+	/// Indicates the length of the whole chain pattern, i.e. the number of links used in a pattern.
+	/// </summary>
+	public abstract int Complexity { get; }
 }

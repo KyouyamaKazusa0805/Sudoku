@@ -165,6 +165,19 @@ internal static class ChainingDriver
 			}
 		}
 	}
+
+	/// <summary>
+	/// Collect all multiple forcing chain instances appears in a grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="rules">
+	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
+	/// </param>
+	/// <returns>All possible multiple forcing chain instances.</returns>
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+	{
+		return [];
+	}
 }
 
 /// <summary>
@@ -195,14 +208,14 @@ file static class LocalComparer
 				(null, null) => true,
 				(Chain a, Chain b) => a.Equals(b),
 				(Loop a, Loop b) => a.Equals(b),
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
+				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected),
 				_ => false
 			},
 			static obj => obj switch
 			{
 				Chain c => c.GetHashCode(),
 				Loop l => l.GetHashCode(),
-				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
+				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected)
 			}
 		);
 
