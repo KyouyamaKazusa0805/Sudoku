@@ -25,6 +25,16 @@ public abstract partial class ChainingRule
 	public static readonly LinkType[] ElementaryLinkTypes = [LinkType.SingleDigit, LinkType.SingleCell];
 
 	/// <summary>
+	/// Indicates the standard extended link types.
+	/// </summary>
+	public static readonly LinkType[] StandardExtendedLinkTypes = [
+		LinkType.LockedCandidates,
+#if LOCKED_SET
+		LinkType.AlmostLockedSet
+#endif
+	];
+
+	/// <summary>
 	/// Indicates the advanced link types.
 	/// </summary>
 	public static readonly LinkType[] AdvancedLinkTypes = [

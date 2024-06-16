@@ -2965,14 +2965,28 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
         </member>
+        <member name="M:System.Linq.HashSetEnumerable.ToArray``1(System.Collections.Generic.HashSet{``0})">
+            <summary>
+            Converts the collection into an array.
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The collection.</param>
+            <returns>An array of <typeparamref name="TSource"/> instances.</returns>
+        </member>
         <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0})">
             <summary>
             Indicates the first element of the collection.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The collection.</param>
             <returns>The first element of the collection.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the collection contains no elements.</exception>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.FirstOrDefault``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:System.Linq.IGroupingDataProvider`3">
             <summary>

@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents an instance that describes for multiple forcing chains.
 /// </summary>
+/// <param name="conclusion">Indicates the final conclusion.</param>
 /// <remarks>
 /// <para>
 /// By the way, this type is directly derived from <see cref="SortedDictionary{TKey, TValue}"/>
@@ -26,7 +27,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Candidate"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
-public sealed partial class MultipleForcingChains :
+public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] Conclusion conclusion) :
 	SortedDictionary<Candidate, WeakChain>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
@@ -67,7 +68,7 @@ public sealed partial class MultipleForcingChains :
 	/// <summary>
 	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
 	/// </summary>
-	private CandidateMap CandidatesUsed => [.. Keys];
+	public CandidateMap CandidatesUsed => [.. Keys];
 
 
 	/// <inheritdoc/>

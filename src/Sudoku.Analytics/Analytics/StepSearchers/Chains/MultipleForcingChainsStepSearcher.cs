@@ -16,6 +16,19 @@ public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		var accumulator = new List<MultipleForcingChainsStep>();
+		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		//var advanced = ChainingRule.StandardExtendedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		if (ChainModule.CollectMultipleCore(ref context, accumulator, elementary/* | advanced*/) is { } step)
+		{
+			return step;
+		}
+
+		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		{
+			StepMarshal.SortItems(accumulator);
+			context.Accumulator.AddRange(accumulator);
+		}
 		return null;
 	}
 }

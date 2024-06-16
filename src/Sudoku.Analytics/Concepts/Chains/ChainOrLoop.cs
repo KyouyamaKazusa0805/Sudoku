@@ -46,7 +46,23 @@ public abstract partial class ChainOrLoop :
 	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
 	/// <param name="strongLinkDictionary">Indicates the strong link dictionary.</param>
 	/// <param name="weakLinkDictionary">Indicates the weak link dictionary.</param>
-	protected ChainOrLoop(Node lastNode, bool isLoop, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary)
+	/// <param name="autoReversingOnComparison">
+	/// <para>
+	/// Indicates whether the constructor will automatically reverse the chain
+	/// if the first node is greater than the last node, in order to make a good look.
+	/// </para>
+	/// <para>
+	/// The default value is <see langword="true"/>. You can also set the value with <see langword="false"/>
+	/// if you don't want to make the constructor reverse the whole chain.
+	/// </para>
+	/// </param>
+	protected ChainOrLoop(
+		Node lastNode,
+		bool isLoop,
+		LinkDictionary strongLinkDictionary,
+		LinkDictionary weakLinkDictionary,
+		bool autoReversingOnComparison = true
+	)
 	{
 		(_strongGroupedLinkPool, _weakGroupedLinkPool) = (strongLinkDictionary.GroupedLinkPool, weakLinkDictionary.GroupedLinkPool);
 		var nodes = new List<Node> { lastNode };
@@ -56,10 +72,13 @@ public abstract partial class ChainOrLoop :
 		}
 		_nodes = [.. nodes];
 
-		// Reverse the whole chain if the first node is greater than the last node in logic.
-		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+		if (autoReversingOnComparison)
 		{
-			Reverse();
+			// Reverse the whole chain if the first node is greater than the last node in logic.
+			if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+			{
+				Reverse();
+			}
 		}
 	}
 

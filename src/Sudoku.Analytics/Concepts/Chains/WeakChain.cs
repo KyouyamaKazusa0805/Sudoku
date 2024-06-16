@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class WeakChain(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainOrLoop(lastNode, false, strongLinkDictionary, weakLinkDictionary)
+	ChainOrLoop(lastNode, false, strongLinkDictionary, weakLinkDictionary, false)
 {
 	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 1;
