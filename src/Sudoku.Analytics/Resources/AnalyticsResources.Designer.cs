@@ -2113,7 +2113,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped nodes logic in chain.
+        ///   Looks up a localized string similar to Chain contains grouped nodes.
         /// </summary>
         public static string Factor_ChainGroupedFactor {
             get {
@@ -2122,7 +2122,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grouped nodes.
+        ///   Looks up a localized string similar to Grouped nodes in chain.
         /// </summary>
         public static string Factor_ChainGroupedNodeFactor {
             get {
@@ -2131,7 +2131,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length.
+        ///   Looks up a localized string similar to Length of chain.
         /// </summary>
         public static string Factor_ChainLengthFactor {
             get {
@@ -2307,6 +2307,33 @@ namespace Sudoku.Resources {
         public static string Factor_MultiBranchWWingBranchesCountFactor {
             get {
                 return ResourceManager.GetString("Factor_MultiBranchWWingBranchesCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple forcing chains contains grouped nodes.
+        /// </summary>
+        public static string Factor_MultipleForcingChainsGroupedFactor {
+            get {
+                return ResourceManager.GetString("Factor_MultipleForcingChainsGroupedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped nodes in multiple forcing chains.
+        /// </summary>
+        public static string Factor_MultipleForcingChainsGroupedNodeFactor {
+            get {
+                return ResourceManager.GetString("Factor_MultipleForcingChainsGroupedNodeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of multiple forcing chains.
+        /// </summary>
+        public static string Factor_MultipleForcingChainsLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_MultipleForcingChainsLengthFactor", resourceCulture);
             }
         }
         

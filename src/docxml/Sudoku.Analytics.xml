@@ -1190,6 +1190,13 @@
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.Exists(System.Func{Sudoku.Concepts.WeakChain,System.Boolean})">
+            <summary>
+            Determines whether the collection contains at least one element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.CompareTo(Sudoku.Concepts.MultipleForcingChains)">
             <inheritdoc/>
         </member>
@@ -1228,6 +1235,15 @@
             <inheritdoc cref="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.WeakChain},System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.WeakChain},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MultipleForcingChains.Conclusion">
@@ -15260,6 +15276,11 @@
         <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.IsDynamic">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern uses grouped nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -23363,6 +23384,48 @@
         <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor">
+            <summary>
+            Represents a factor that describes the grouped logic in a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor">
+            <summary>
+            Represents a factor that describes grouped nodes in a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor">
+            <summary>
+            Represents a factor that describes the length of a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
             <summary>
             Represents a factor that describes whether the <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is cannibalism.
@@ -25480,17 +25543,17 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainGroupedFactor">
             <summary>
-              Looks up a localized string similar to Grouped nodes logic in chain.
+              Looks up a localized string similar to Chain contains grouped nodes.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainGroupedNodeFactor">
             <summary>
-              Looks up a localized string similar to Grouped nodes.
+              Looks up a localized string similar to Grouped nodes in chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainLengthFactor">
             <summary>
-              Looks up a localized string similar to Length.
+              Looks up a localized string similar to Length of chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishCannibalismFactor">
@@ -25586,6 +25649,21 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultiBranchWWingBranchesCountFactor">
             <summary>
               Looks up a localized string similar to The number of branches in W-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultipleForcingChainsGroupedFactor">
+            <summary>
+              Looks up a localized string similar to Multiple forcing chains contains grouped nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultipleForcingChainsGroupedNodeFactor">
+            <summary>
+              Looks up a localized string similar to Grouped nodes in multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultipleForcingChainsLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of multiple forcing chains.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultisectorLockedSetsSizeFactor">

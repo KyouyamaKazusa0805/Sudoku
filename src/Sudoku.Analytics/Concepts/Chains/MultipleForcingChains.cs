@@ -29,6 +29,7 @@ namespace Sudoku.Concepts;
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] Conclusion conclusion) :
 	SortedDictionary<Candidate, WeakChain>,
+	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IEquatable<MultipleForcingChains>,
@@ -70,6 +71,23 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// </summary>
 	public CandidateMap CandidatesUsed => [.. Keys];
 
+
+	/// <summary>
+	/// Determines whether the collection contains at least one element satisfying the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Exists(Func<WeakChain, bool> predicate)
+	{
+		foreach (var element in Values)
+		{
+			if (predicate(element))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -191,5 +209,34 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			let pattern = kvp.Value
 			select $"{converter.CandidateConverter(candidate)}: {pattern.ToString(format, converter)}"
 		);
+	}
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.Any() => Count != 0;
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.Any(Func<KeyValuePair<int, WeakChain>, bool> predicate)
+	{
+		foreach (var kvp in this)
+		{
+			if (predicate(kvp))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.All(Func<KeyValuePair<int, WeakChain>, bool> predicate)
+	{
+		foreach (var kvp in this)
+		{
+			if (!predicate(kvp))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }

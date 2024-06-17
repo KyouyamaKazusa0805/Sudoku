@@ -20,6 +20,11 @@ public sealed partial class MultipleForcingChainsStep(
 	/// <inheritdoc/>
 	public override bool IsDynamic => false;
 
+	/// <summary>
+	/// Indicates whether the pattern uses grouped nodes.
+	/// </summary>
+	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 70;
 
@@ -34,7 +39,12 @@ public sealed partial class MultipleForcingChainsStep(
 		=> [new(EnglishLanguage, [ChainsStr]), new(ChineseLanguage, [ChainsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => base.Factors;
+	public override FactorCollection Factors
+		=> [
+			new MultipleForcingChainsGroupedFactor(),
+			new MultipleForcingChainsGroupedNodeFactor(),
+			new MultipleForcingChainsLengthFactor()
+		];
 
 	private string ChainsStr => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 

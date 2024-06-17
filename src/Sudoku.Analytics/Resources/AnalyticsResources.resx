@@ -3220,16 +3220,16 @@ Error grid: '{0:#}'</value>
     <value>{0}</value>
   </data>
   <data name="Factor_ChainLengthFactor" xml:space="preserve">
-    <value>Length</value>
+    <value>Length of chain</value>
   </data>
   <data name="Factor_ChainGroupedFactor" xml:space="preserve">
-    <value>Grouped nodes logic in chain</value>
+    <value>Chain contains grouped nodes</value>
   </data>
   <data name="StepSearcherName_GroupedChainStepSearcher" xml:space="preserve">
     <value>Grouped Chains</value>
   </data>
   <data name="Factor_ChainGroupedNodeFactor" xml:space="preserve">
-    <value>Grouped nodes</value>
+    <value>Grouped nodes in chain</value>
   </data>
   <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
     <value>Pattern Constructions</value>
@@ -3245,5 +3245,14 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="TechniqueFormat_MultipleForcingChainsStep" xml:space="preserve">
     <value>{0}</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsGroupedFactor" xml:space="preserve">
+    <value>Multiple forcing chains contains grouped nodes</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsGroupedNodeFactor" xml:space="preserve">
+    <value>Grouped nodes in multiple forcing chains</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsLengthFactor" xml:space="preserve">
+    <value>Length of multiple forcing chains</value>
   </data>
 </root>

@@ -141,9 +141,9 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The value with the sum key in the sequence.</returns>
-	public static T Sum<T>(this scoped ReadOnlySpan<T> @this) where T : IMinMaxValue<T>?, IAdditionOperators<T, T, T>?
+	public static T Sum<T>(this scoped ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>?, IAdditionOperators<T, T, T>?
 	{
-		var result = T.MinValue;
+		var result = T.AdditiveIdentity;
 		foreach (ref readonly var element in @this)
 		{
 			result += element;
@@ -163,9 +163,9 @@ public static class SpanEnumerable
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
 	public static TKey Sum<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>?, IAdditionOperators<TKey, TKey, TKey>?
+		where TKey : IAdditiveIdentity<TKey, TKey>?, IAdditionOperators<TKey, TKey, TKey>?
 	{
-		var result = TKey.MinValue;
+		var result = TKey.AdditiveIdentity;
 		foreach (ref readonly var element in @this)
 		{
 			result += keySelector(in element);
