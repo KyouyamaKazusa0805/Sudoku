@@ -8254,13 +8254,6 @@
             in order to filter duplicate multiple forcing chains.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.NodeComparer">
-            <summary>
-            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison
-            in order to filter duplicate nodes on its containing map and "is on" property,
-            guaranteeing same nodes won't be traversed multiple times.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Chaining.LocalComparer.NodeMapComparer">
             <summary>
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison

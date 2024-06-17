@@ -435,22 +435,6 @@ file static class LocalComparer
 
 	/// <summary>
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="Node"/> on equality comparison
-	/// in order to filter duplicate nodes on its containing map and "is on" property,
-	/// guaranteeing same nodes won't be traversed multiple times.
-	/// </summary>
-	public static IEqualityComparer<Node> NodeComparer
-		=> EqualityComparer<Node>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(not null, not null) => left == right,
-				(null, null) => true,
-				_ => false
-			},
-			static obj => obj.GetHashCode()
-		);
-
-	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="Node"/> on equality comparison
 	/// in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
 	/// </summary>
 	public static IEqualityComparer<Node> NodeMapComparer
