@@ -23,9 +23,27 @@ public static class SingleSubtypeExtensions
 	public static bool IsUnnecessary(this SingleSubtype @this)
 		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
 		or SingleSubtype.NakedSingleBlock8 or SingleSubtype.NakedSingleRow8 or SingleSubtype.NakedSingleColumn8
+		or SingleSubtype.NakedSingleBlock0 or SingleSubtype.NakedSingleBlock1 or SingleSubtype.NakedSingleBlock2
+		or SingleSubtype.NakedSingleRow0 or SingleSubtype.NakedSingleRow1 or SingleSubtype.NakedSingleRow2
+		or SingleSubtype.NakedSingleColumn0 or SingleSubtype.NakedSingleColumn1 or SingleSubtype.NakedSingleColumn2
+		or SingleSubtype.NakedSingleColumn3
+		or SingleSubtype.NakedSingleBlock7 or SingleSubtype.NakedSingleRow7 or SingleSubtype.NakedSingleColumn7
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
 		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220;
 #pragma warning restore CS0618
+
+	/// <summary>
+	/// Indicates whether the specified subtype is unnecessary in solving algorithm,
+	/// but it can be appeared in a solving step produced by a user.
+	/// </summary>
+	/// <param name="this">The subtype.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the subtype is unnecessary.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsAlgorithmUnnecessary(this SingleSubtype @this)
+		=> @this.IsUnnecessary()
+		|| @this is SingleSubtype.ColumnHiddenSingle070 or SingleSubtype.RowHiddenSingle007
+		or SingleSubtype.RowHiddenSingle104 or SingleSubtype.ColumnHiddenSingle140
+		or SingleSubtype.RowHiddenSingle105 or SingleSubtype.ColumnHiddenSingle150;
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.

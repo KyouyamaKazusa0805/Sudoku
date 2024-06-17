@@ -305,18 +305,21 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with no values in target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS10", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleBlock0 = 701,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 1 value in target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS11", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleBlock1 = 702,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 2 values in target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS12", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleBlock2 = 703,
 
 	/// <summary>
@@ -347,6 +350,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 7 values in target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS17", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleBlock7 = 504,
 
 	/// <summary>
@@ -360,18 +364,21 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 0 values in target row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS20", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleRow0 = 708,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 1 value in target row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS21", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleRow1 = 709,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 2 values in target row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS22", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleRow2 = 710,
 
 	/// <summary>
@@ -402,6 +409,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 7 values in target row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS27", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleRow7 = 505,
 
 	/// <summary>
@@ -415,24 +423,28 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 0 values in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS30", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn0 = 715,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 1 value in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS31", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn1 = 716,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 2 values in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS32", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn2 = 717,
 
 	/// <summary>
 	/// Indicates the subtype is naked single with 3 values in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS33", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn3 = 718,
 
 	/// <summary>
@@ -457,6 +469,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 7 values in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS37", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn7 = 506,
 
 	/// <summary>

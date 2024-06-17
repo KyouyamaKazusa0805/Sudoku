@@ -7762,6 +7762,14 @@
             <param name="this">The subtype.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsAlgorithmUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Indicates whether the specified subtype is unnecessary in solving algorithm,
+            but it can be appeared in a solving step produced by a user.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetExcludersCount(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Try to get the number of excluders that the current single subtype will use.
