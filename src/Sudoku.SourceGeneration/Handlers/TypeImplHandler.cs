@@ -121,11 +121,13 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_Equals.g.cs"
 					partial {{typeKindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.Equals(object?)"/>
 						public {{otherModifiersString}}abstract override bool Equals([global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] object? obj);
 					}
+				#line default
 				}
 				""";
 		}
@@ -159,6 +161,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_Equals.g.cs"
 				{{suppress0809}}partial {{typeKindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.Equals(object?)"/>
@@ -168,6 +171,7 @@ internal static class TypeImplHandler
 						public {{otherModifiersString}}override {{readOnlyModifier}}bool Equals([global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] object? obj)
 							=> {{expressionString}};
 					}
+				#line default
 				{{enable0809}}}
 				""";
 		}
@@ -280,11 +284,13 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_GetHashCode.g.cs"
 					partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.GetHashCode"/>
 						public {{otherModifiersString}}abstract override int GetHashCode();
 					}
+				#line default
 				}
 				""";
 		}
@@ -336,6 +342,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_GetHashCode.g.cs"
 				{{suppress0809}}partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.GetHashCode"/>
@@ -344,6 +351,7 @@ internal static class TypeImplHandler
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public {{otherModifiersString}}override {{readOnlyModifier}}int GetHashCode()
 						{{codeBlock}}
+				#line default
 				{{enable0809}}}
 				}
 				""";
@@ -462,11 +470,13 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_ToString.g.cs"
 					partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.ToString"/>
 						public {{otherModifiersString}}abstract override string ToString();
 					}
+				#line default
 				}
 				""";
 		}
@@ -505,6 +515,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
+				#line 1 "TypeImpl.{{typeNameString}}_ToString.g.cs"
 				{{suppress0809}}partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.ToString"/>
@@ -513,6 +524,7 @@ internal static class TypeImplHandler
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public {{otherModifiersString}}override {{readOnlyModifier}}string ToString()
 							=> {{expression}};
+				#line default
 				{{enable0809}}}
 				}
 				""";
@@ -772,10 +784,12 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
+			#line 1 "TypeImpl.{{typeNameString}}_EqualityOperators.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					{{operatorDeclaration}}
 				}
+			#line default
 			}
 			""";
 	}
@@ -963,10 +977,12 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
+			#line 1 "TypeImpl.{{typeNameString}}_ComparisonOperators.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					{{operatorDeclaration}}
 				}
+			#line default
 			}
 			""";
 	}
