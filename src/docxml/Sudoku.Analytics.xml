@@ -8294,11 +8294,6 @@
             Indicates the elementary link types.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRule.StandardExtendedLinkTypes">
-            <summary>
-            Indicates the standard extended link types.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRule.AdvancedLinkTypes">
             <summary>
             Indicates the advanced link types.

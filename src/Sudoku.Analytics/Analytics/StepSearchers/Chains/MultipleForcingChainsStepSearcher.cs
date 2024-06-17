@@ -18,8 +18,7 @@ public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 	{
 		var accumulator = new List<MultipleForcingChainsStep>();
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		//var advanced = ChainingRule.StandardExtendedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		if (ChainModule.CollectMultipleCore(ref context, accumulator, elementary/* | advanced*/) is { } step)
+		if (ChainModule.CollectMultipleCore(ref context, accumulator, elementary | LinkType.LockedCandidates) is { } step)
 		{
 			return step;
 		}
