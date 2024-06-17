@@ -185,11 +185,11 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			_ => CoordinateConverter.InvariantCultureConverter
 		};
 		return string.Join(
-			format ?? ", ",
+			", ",
 			from kvp in this
 			let candidate = kvp.Key
 			let pattern = kvp.Value
-			select $"{converter.CandidateConverter(candidate)}: {pattern.ToString(converter)}"
+			select $"{converter.CandidateConverter(candidate)}: {pattern.ToString(format, converter)}"
 		);
 	}
 }

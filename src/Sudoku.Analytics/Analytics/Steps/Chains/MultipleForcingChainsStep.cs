@@ -36,7 +36,7 @@ public sealed partial class MultipleForcingChainsStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors => base.Factors;
 
-	private string ChainsStr => Pattern.ToString(Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+	private string ChainsStr => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 
 
 	/// <inheritdoc/>
