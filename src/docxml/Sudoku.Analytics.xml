@@ -8221,6 +8221,13 @@
             Indicates the rule instances that will create strong and weak links by their own represented concept.
             </param>
             <returns>All possible multiple forcing chain instances.</returns>
+            <example>
+            Test example:
+            <code><![CDATA[
+            070096000003520680006004702480000020000000000510000000000000070000030509168000003
+            ]]></code>
+            This example only contains one forcing chains pattern and direct singles.
+            </example>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.LocalComparer">
             <summary>

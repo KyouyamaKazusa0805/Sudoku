@@ -174,6 +174,13 @@ internal static class ChainingDriver
 	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
 	/// </param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
+	/// <example>
+	/// Test example:
+	/// <code><![CDATA[
+	/// 070096000003520680006004702480000020000000000510000000000000070000030509168000003
+	/// ]]></code>
+	/// This example only contains one forcing chains pattern and direct singles.
+	/// </example>
 	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.
@@ -201,7 +208,6 @@ internal static class ChainingDriver
 				{
 					var house = cell.ToHouseIndex(houseType);
 					var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
-					var firstCellInHouse = HousesCells[house][0];
 					if (cellsInHouse.Count <= 2)
 					{
 						// There's no need iterating on such house because the chain only contains 2 branches,
@@ -209,6 +215,7 @@ internal static class ChainingDriver
 						continue;
 					}
 
+					var firstCellInHouse = cellsInHouse[0];
 					if (firstCellInHouse != cell)
 					{
 						// We should skip the other cells in the house, in order to avoid duplicate forcing chains.
