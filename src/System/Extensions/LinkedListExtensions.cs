@@ -24,4 +24,32 @@ public static class LinkedListExtensions
 		}
 		return false;
 	}
+
+	/// <summary>
+	/// Removes the first element and return that element.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <returns>The first element to be removed.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T RemoveFirstNode<T>(this LinkedList<T> @this)
+	{
+		var node = @this.First!.Value;
+		@this.RemoveFirst();
+		return node;
+	}
+
+	/// <summary>
+	/// Removes the last element and return that element.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <returns>The last element to be removed.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T RemoveLastNode<T>(this LinkedList<T> @this)
+	{
+		var node = @this.Last!.Value;
+		@this.RemoveLast();
+		return node;
+	}
 }

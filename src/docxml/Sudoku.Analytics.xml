@@ -8209,7 +8209,7 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Boolean)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Boolean)">
             <summary>
             Collect all multiple forcing chain instances appears in a grid.
             </summary>
@@ -22388,9 +22388,14 @@
             <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
             <seealso cref="T:System.Collections.Generic.IComparer`1"/>
         </member>
-        <member name="F:Sudoku.Caching.CachedChainingComparers._chainPatternComparer">
+        <member name="F:Sudoku.Caching.CachedChainingComparers._chainComparer">
             <summary>
             Indicates the backing field of chain pattern comparer instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.CachedChainingComparers._multipleForcingChainsComparer">
+            <summary>
+            Indicates the backing field of multiple forcing chains comparer instance.
             </summary>
         </member>
         <member name="F:Sudoku.Caching.CachedChainingComparers._nodeComparer">
@@ -22398,18 +22403,13 @@
             Indicates the backing field of node map comparer instance.
             </summary>
         </member>
-        <member name="F:Sudoku.Caching.CachedChainingComparers._multipleForcingChainsPatternComparer">
-            <summary>
-            Indicates the backing field of multiple forcing chains comparer instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Caching.CachedChainingComparers.ChainPatternComparer">
+        <member name="P:Sudoku.Caching.CachedChainingComparers.ChainComparer">
             <summary>
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.ChainOrLoop"/> on equality comparison
             in order to filter duplicate chains.
             </summary>
         </member>
-        <member name="P:Sudoku.Caching.CachedChainingComparers.MultipleForcingChainsPatternComparer">
+        <member name="P:Sudoku.Caching.CachedChainingComparers.MultipleForcingChainsComparer">
             <summary>
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.MultipleForcingChains"/> on equality comparison
             in order to filter duplicate multiple forcing chains.

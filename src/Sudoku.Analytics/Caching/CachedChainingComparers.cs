@@ -10,40 +10,32 @@ internal static class CachedChainingComparers
 	/// <summary>
 	/// Indicates the backing field of chain pattern comparer instance.
 	/// </summary>
-	private static IComparer<ChainOrLoop>? _chainPatternComparer;
+	private static IComparer<ChainOrLoop>? _chainComparer;
+
+	/// <summary>
+	/// Indicates the backing field of multiple forcing chains comparer instance.
+	/// </summary>
+	private static IComparer<MultipleForcingChains>? _multipleForcingChainsComparer;
 
 	/// <summary>
 	/// Indicates the backing field of node map comparer instance.
 	/// </summary>
 	private static IEqualityComparer<Node>? _nodeComparer;
 
-	/// <summary>
-	/// Indicates the backing field of multiple forcing chains comparer instance.
-	/// </summary>
-	private static IEqualityComparer<MultipleForcingChains>? _multipleForcingChainsPatternComparer;
-
 
 	/// <summary>
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainOrLoop"/> on equality comparison
 	/// in order to filter duplicate chains.
 	/// </summary>
-	public static IComparer<ChainOrLoop> ChainPatternComparer
-		=> _chainPatternComparer ??= Comparer<ChainOrLoop>.Create(static (left, right) => left.CompareTo(right));
+	public static IComparer<ChainOrLoop> ChainComparer
+		=> _chainComparer ??= Comparer<ChainOrLoop>.Create(static (l, r) => l.CompareTo(r));
 
 	/// <summary>
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="MultipleForcingChains"/> on equality comparison
 	/// in order to filter duplicate multiple forcing chains.
 	/// </summary>
-	public static IEqualityComparer<MultipleForcingChains> MultipleForcingChainsPatternComparer
-		=> _multipleForcingChainsPatternComparer ??= EqualityComparer<MultipleForcingChains>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(null, null) => true,
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected),
-				_ => false
-			},
-			static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected)
-		);
+	public static IComparer<MultipleForcingChains> MultipleForcingChainsComparer
+		=> _multipleForcingChainsComparer ??= Comparer<MultipleForcingChains>.Create(static (l, r) => l.CompareTo(r));
 
 	/// <summary>
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="Node"/> on equality comparison

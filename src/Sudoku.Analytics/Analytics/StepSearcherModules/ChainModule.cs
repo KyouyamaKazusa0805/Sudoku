@@ -67,7 +67,7 @@ internal static class ChainModule
 	)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var foundChain in ChainingDriver.CollectMultipleChainPatterns(in context.Grid, supportedRules, context.OnlyFindOne))
+		foreach (var foundChain in ChainingDriver.CollectMultipleChains(in context.Grid, supportedRules, context.OnlyFindOne))
 		{
 			var step = new MultipleForcingChainsStep(
 				[foundChain.Conclusion],

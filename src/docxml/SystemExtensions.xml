@@ -671,6 +671,22 @@
             <param name="match">A method to be called.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveFirstNode``1(System.Collections.Generic.LinkedList{``0})">
+            <summary>
+            Removes the first element and return that element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The first element to be removed.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveLastNode``1(System.Collections.Generic.LinkedList{``0})">
+            <summary>
+            Removes the last element and return that element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The last element to be removed.</returns>
+        </member>
         <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.

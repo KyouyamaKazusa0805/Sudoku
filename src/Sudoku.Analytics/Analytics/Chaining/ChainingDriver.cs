@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.Chaining;
 
+using static CachedChainingComparers;
+
 /// <summary>
 /// Provides a driver module on chaining.
 /// </summary>
@@ -41,7 +43,7 @@ internal static class ChainingDriver
 	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		// Step 1: Iterate on dictionary to get chains.
-		var foundPatterns = new SortedSet<ChainOrLoop>(CachedChainingComparers.ChainPatternComparer);
+		var result = new SortedSet<ChainOrLoop>(ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
@@ -59,37 +61,37 @@ internal static class ChainingDriver
 		}
 
 		// Step 2: Sort found patterns and return.
-		return foundPatterns.ToArray();
+		return result.ToArray();
 
 
 		ChainOrLoop? bfs(ref readonly Grid grid, Node startNode)
 		{
-			var pendingStrong = new LinkedList<Node>();
-			var pendingWeak = new LinkedList<Node>();
-			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
+			var pendingNodesSupposedToOn = new LinkedList<Node>();
+			var pendingNodesSupposedToOff = new LinkedList<Node>();
+			(startNode.IsOn ? pendingNodesSupposedToOff : pendingNodesSupposedToOn).AddLast(startNode);
 
-			var visitedStrong = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-			var visitedWeak = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-			_ = (visitedStrong.Add(startNode), visitedWeak.Add(startNode));
+			var visitedNodesSupposedToOn = new HashSet<Node>(NodeMapComparer);
+			var visitedNodesSupposedToOff = new HashSet<Node>(NodeMapComparer);
+			visitedNodesSupposedToOn.Add(startNode);
+			visitedNodesSupposedToOff.Add(startNode);
 
-			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
+			while (pendingNodesSupposedToOn.Count != 0 || pendingNodesSupposedToOff.Count != 0)
 			{
-				while (pendingStrong.Count != 0)
+				while (pendingNodesSupposedToOn.Count != 0)
 				{
-					var currentNode = pendingStrong.First!.Value;
-					pendingStrong.RemoveFirst();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
+					var currentNode = pendingNodesSupposedToOn.RemoveFirstNode();
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOff))
 					{
-						foreach (var node in nodes)
+						foreach (var nodeSupposedToOff in nodesSupposedToOff)
 						{
-							var resultNode = new Node(node, currentNode);
+							var nextNode = new Node(nodeSupposedToOff, currentNode);
 
 							////////////////////////////////////////////
 							// Continuous Nice Loop 3) Strong -> Weak //
 							////////////////////////////////////////////
-							if (node == startNode && resultNode.AncestorsLength >= 4)
+							if (nodeSupposedToOff == startNode && nextNode.AncestorsLength >= 4)
 							{
-								var loop = new Loop(resultNode);
+								var loop = new Loop(nextNode);
 								if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
 								{
 									goto Next;
@@ -100,16 +102,16 @@ internal static class ChainingDriver
 									return loop;
 								}
 
-								foundPatterns.Add(loop);
+								result.Add(loop);
 							Next:;
 							}
 
 							/////////////////////////////////////////////////
 							// Discontinuous Nice Loop 2) Strong -> Strong //
 							/////////////////////////////////////////////////
-							if (node == ~startNode)
+							if (nodeSupposedToOff == ~startNode)
 							{
-								var chain = new Chain(resultNode);
+								var chain = new Chain(nextNode);
 								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
 								{
 									goto Next;
@@ -119,34 +121,34 @@ internal static class ChainingDriver
 								{
 									return chain;
 								}
-								foundPatterns.Add(chain);
+								result.Add(chain);
 							Next:;
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
-							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedWeak.Add(node))
+							if (!nodeSupposedToOff.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn)
+								&& visitedNodesSupposedToOff.Add(nodeSupposedToOff))
 							{
-								pendingWeak.AddLast(resultNode);
+								pendingNodesSupposedToOff.AddLast(nextNode);
 							}
 						}
 					}
 				}
-				while (pendingWeak.Count != 0)
+				while (pendingNodesSupposedToOff.Count != 0)
 				{
-					var currentNode = pendingWeak.First!.Value;
-					pendingWeak.RemoveFirst();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
+					var currentNode = pendingNodesSupposedToOff.RemoveFirstNode();
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOn))
 					{
-						foreach (var node in nodes)
+						foreach (var nodeSupposedToOn in nodesSupposedToOn)
 						{
-							var resultNode = new Node(node, currentNode);
+							var nextNode = new Node(nodeSupposedToOn, currentNode);
 
 							/////////////////////////////////////////////
 							// Discontinuous Nice Loop 1) Weak -> Weak //
 							/////////////////////////////////////////////
-							if (node == ~startNode)
+							if (nodeSupposedToOn == ~startNode)
 							{
-								var chain = new Chain(resultNode);
+								var chain = new Chain(nextNode);
 								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
 								{
 									goto Next;
@@ -156,13 +158,14 @@ internal static class ChainingDriver
 								{
 									return chain;
 								}
-								foundPatterns.Add(chain);
+								result.Add(chain);
 							Next:;
 							}
 
-							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedStrong.Add(node))
+							if (!nodeSupposedToOn.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn)
+								&& visitedNodesSupposedToOn.Add(nodeSupposedToOn))
 							{
-								pendingStrong.AddLast(resultNode);
+								pendingNodesSupposedToOn.AddLast(nextNode);
 							}
 						}
 					}
@@ -189,24 +192,25 @@ internal static class ChainingDriver
 	/// ]]></code>
 	/// This example only contains one forcing chains pattern and direct singles.
 	/// </example>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(
-		ref readonly Grid grid,
-		ReadOnlySpan<ChainingRule> rules,
-		bool onlyFindOne
-	)
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules, bool onlyFindOne)
 	{
 		// Step 1: Iterate on dictionary to get all forcing chains.
-		var foundPatterns = new HashSet<MultipleForcingChains>(CachedChainingComparers.MultipleForcingChainsPatternComparer);
+		var result = new SortedSet<MultipleForcingChains>(MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
 			var digitsMask = grid.GetCandidates(cell);
-			var digitToStrong = new Dictionary<Candidate, HashSet<Node>>();
-			var digitToWeak = new Dictionary<Candidate, HashSet<Node>>();
-			var cellToStrong = default(HashSet<Node>);
-			var cellToWeak = default(HashSet<Node>);
+			var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+			var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
+			var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell = default(HashSet<Node>);
+			var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCell = default(HashSet<Node>);
 			foreach (var digit in digitsMask)
 			{
-				bfs(new(cell, digit, true, false), out var onToStrong, out var onToWeak);
+				var currentNode = new Node(cell, digit, true, false);
+				bfs(
+					currentNode,
+					out var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode,
+					out var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode
+				);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -227,34 +231,38 @@ internal static class ChainingDriver
 						continue;
 					}
 
-					var houseCellToStrong = new Dictionary<Candidate, HashSet<Node>>();
-					var houseCellToWeak = new Dictionary<Candidate, HashSet<Node>>();
-					var regionToStrong = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-					var regionToWeak = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
+					var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+					var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
+					var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse = new HashSet<Node>(NodeMapComparer);
+					var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse = new HashSet<Node>(NodeMapComparer);
 					foreach (var otherCell in cellsInHouse)
 					{
 						if (otherCell == cell)
 						{
-							houseCellToStrong.Add(otherCell * 9 + digit, onToStrong);
-							houseCellToWeak.Add(otherCell * 9 + digit, onToWeak);
-							regionToStrong.UnionWith(onToStrong);
-							regionToWeak.UnionWith(onToWeak);
+							nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
+							nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
+							nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse.UnionWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
+							nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse.UnionWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
 						}
 						else
 						{
 							var other = new Node(otherCell, digit, true, false);
-							bfs(other, out var otherToStrong, out var otherToWeak);
-							houseCellToStrong.Add(otherCell * 9 + digit, otherToStrong);
-							houseCellToWeak.Add(otherCell * 9 + digit, otherToWeak);
-							regionToStrong.IntersectWith(otherToStrong);
-							regionToWeak.IntersectWith(otherToWeak);
+							bfs(
+								other,
+								out var otherNodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse,
+								out var otherNodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse
+							);
+							nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse);
+							nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse);
+							nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse.IntersectWith(otherNodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse);
+							nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse.IntersectWith(otherNodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse);
 						}
 					}
 
 					////////////////////////////////////////
 					// Collect with region forcing chains //
 					////////////////////////////////////////
-					foreach (var node in regionToStrong)
+					foreach (var node in nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -268,22 +276,22 @@ internal static class ChainingDriver
 							continue;
 						}
 
-						var regionForcingChains = new MultipleForcingChains(conclusion);
+						var rfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = houseCellToStrong[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							regionForcingChains.Add(
+							var branchNode = nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							rfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 							);
 						}
 						if (onlyFindOne)
 						{
-							return (MultipleForcingChains[])[regionForcingChains];
+							return (MultipleForcingChains[])[rfc];
 						}
-						foundPatterns.Add(regionForcingChains);
+						result.Add(rfc);
 					}
-					foreach (var node in regionToWeak)
+					foreach (var node in nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCurrentHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -297,44 +305,43 @@ internal static class ChainingDriver
 							continue;
 						}
 
-						var regionForcingChains = new MultipleForcingChains(conclusion);
+						var rfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = houseCellToWeak[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							regionForcingChains.Add(
+							var branchNode = nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							rfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 							);
 						}
 						if (onlyFindOne)
 						{
-							return (MultipleForcingChains[])[regionForcingChains];
+							return (MultipleForcingChains[])[rfc];
 						}
-						foundPatterns.Add(regionForcingChains);
+						result.Add(rfc);
 					}
 				}
 
-				digitToStrong.Add(cell * 9 + digit, onToStrong);
-				digitToWeak.Add(cell * 9 + digit, onToWeak);
-				if (cellToStrong is null)
+				nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit.Add(cell * 9 + digit, nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
+				nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit.Add(cell * 9 + digit, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
+				if (nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell is null)
 				{
-					cellToStrong = new(CachedChainingComparers.NodeMapComparer);
-					cellToWeak = new(CachedChainingComparers.NodeMapComparer);
-					cellToStrong.UnionWith(onToStrong);
-					cellToWeak.UnionWith(onToWeak);
+					nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell = new(NodeMapComparer);
+					nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCell = new(NodeMapComparer);
+					nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell.UnionWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
+					nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCell.UnionWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
 				}
 				else
 				{
-					Debug.Assert(cellToWeak is not null);
-					cellToStrong.IntersectWith(onToStrong);
-					cellToWeak.IntersectWith(onToWeak);
+					nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell.IntersectWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
+					nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCell!.IntersectWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
 				}
 			}
 
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
-			foreach (var node in cellToStrong ?? [])
+			foreach (var node in nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeLyingInCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -348,19 +355,19 @@ internal static class ChainingDriver
 					continue;
 				}
 
-				var cellForcingChains = new MultipleForcingChains(conclusion);
+				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = digitToStrong[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cellForcingChains.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					var branchNode = nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
 				{
-					return (MultipleForcingChains[])[cellForcingChains];
+					return (MultipleForcingChains[])[cfc];
 				}
-				foundPatterns.Add(cellForcingChains);
+				result.Add(cfc);
 			}
-			foreach (var node in cellToWeak ?? [])
+			foreach (var node in nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeLyingInCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -374,72 +381,74 @@ internal static class ChainingDriver
 					continue;
 				}
 
-				var cellForcingChains = new MultipleForcingChains(conclusion);
+				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = digitToWeak[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					cellForcingChains.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
+					var branchNode = nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNodeAndGroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
 				{
-					return (MultipleForcingChains[])[cellForcingChains];
+					return (MultipleForcingChains[])[cfc];
 				}
-				foundPatterns.Add(cellForcingChains);
+				result.Add(cfc);
 			}
 		}
 
 		// Step 2: Return the values.
-		return foundPatterns.ToArray();
+		return result.ToArray();
 
 
-		static void bfs(Node startNode, out HashSet<Node> toStrong, out HashSet<Node> toWeak)
+		static void bfs(
+			Node startNode,
+			out HashSet<Node> nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode,
+			out HashSet<Node> nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode
+		)
 		{
-			var (pendingStrong, pendingWeak) = (new LinkedList<Node>(), new LinkedList<Node>());
-			(startNode.IsOn ? pendingStrong : pendingWeak).AddLast(startNode);
-			(toStrong, toWeak) = (new(CachedChainingComparers.NodeMapComparer), new(CachedChainingComparers.NodeMapComparer));
+			var (pendingNodesSupposedToOn, pendingNodesSupposedToOff) = (new LinkedList<Node>(), new LinkedList<Node>());
+			(startNode.IsOn ? pendingNodesSupposedToOn : pendingNodesSupposedToOff).AddLast(startNode);
+			(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode) = (new(NodeMapComparer), new(NodeMapComparer));
 
-			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
+			while (pendingNodesSupposedToOn.Count != 0 || pendingNodesSupposedToOff.Count != 0)
 			{
-				if (pendingStrong.Count != 0)
+				if (pendingNodesSupposedToOn.Count != 0)
 				{
-					var currentNode = pendingStrong.First!.Value;
-					pendingStrong.RemoveFirst();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
+					var currentNode = pendingNodesSupposedToOn.RemoveFirstNode();
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOff))
 					{
-						foreach (var node in nodes)
+						foreach (var node in nodesSupposedToOff)
 						{
-							var resultNode = new Node(node, currentNode);
-							if (toStrong.Contains(~resultNode))
+							var nextNode = new Node(node, currentNode);
+							if (nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (toWeak.Add(resultNode))
+							if (nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode.Add(nextNode))
 							{
-								pendingWeak.AddLast(resultNode);
+								pendingNodesSupposedToOff.AddLast(nextNode);
 							}
 						}
 					}
 				}
 				else
 				{
-					var currentNode = pendingWeak.First!.Value;
-					pendingWeak.RemoveFirst();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
+					var currentNode = pendingNodesSupposedToOff.RemoveFirstNode();
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOn))
 					{
-						foreach (var node in nodes)
+						foreach (var node in nodesSupposedToOn)
 						{
-							var resultNode = new Node(node, currentNode);
-							if (toWeak.Contains(~resultNode))
+							var nextNode = new Node(node, currentNode);
+							if (nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (toStrong.Add(resultNode))
+							if (nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode.Add(nextNode))
 							{
-								pendingStrong.AddLast(resultNode);
+								pendingNodesSupposedToOn.AddLast(nextNode);
 							}
 						}
 					}
