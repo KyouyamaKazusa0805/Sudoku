@@ -91,9 +91,8 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
 	{
-		var (view, id) = (views[0], ColorIdentifier.Auxiliary3);
 		foreach (var link in pattern.Links)
 		{
 			if (link.GroupedLinkPattern is not AvoidableRectangle { Cells: var urCells })
@@ -107,7 +106,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 				{
 					view.Remove(cellViewNode);
 				}
-				view.Add(new CellViewNode(id, cell));
+				view.Add(new CellViewNode(ColorIdentifier.Auxiliary3, cell));
 			}
 		}
 	}

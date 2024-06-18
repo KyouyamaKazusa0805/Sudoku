@@ -63,7 +63,6 @@ public sealed partial class ConclusionSet :
 					return true;
 				}
 			}
-
 			return false;
 		}
 	}
@@ -82,7 +81,6 @@ public sealed partial class ConclusionSet :
 					return true;
 				}
 			}
-
 			return false;
 		}
 	}
@@ -105,6 +103,7 @@ public sealed partial class ConclusionSet :
 	/// </summary>
 	public static ConclusionSet Empty => [];
 
+	/// <inheritdoc/>
 	int ICollection<Conclusion>.Count { get; }
 
 
@@ -275,6 +274,23 @@ public sealed partial class ConclusionSet :
 			}
 		}
 		return true;
+	}
+
+	/// <summary>
+	/// Determine whether the conclusion set contains valid conclusions that can be applied to grid.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool IsWorthFor(ref readonly Grid grid)
+	{
+		foreach (var element in this)
+		{
+			if (grid.Exists(element.Candidate) is true)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/// <inheritdoc/>

@@ -150,9 +150,8 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
 	{
-		var (view, id) = (views[0], ColorIdentifier.Auxiliary2);
 		var candidatesMap = grid.CandidatesMap;
 		foreach (var link in pattern.Links)
 		{
@@ -170,7 +169,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					{
 						view.Remove(candidateViewNode);
 					}
-					view.Add(new CandidateViewNode(id, candidate));
+					view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
 				}
 			}
 		}

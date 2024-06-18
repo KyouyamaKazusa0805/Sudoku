@@ -75,16 +75,32 @@ public abstract partial class ChainingRule
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.
-	/// This method will be useful in advanced chaining rules such as ALS, AHS and AUR extra maps checking.
+	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
 	/// </summary>
 	/// <param name="grid">The grid as candidate references.</param>
 	/// <param name="pattern">The pattern to collect view nodes.</param>
-	/// <param name="views">The views.</param>
-	/// <returns>A list of <see cref="ViewNode"/> instances.</returns>
+	/// <param name="view">The <see cref="View"/> instance to be updated.</param>
 	/// <remarks>
 	/// The method by default will do nothing.
 	/// </remarks>
-	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	/// <seealso cref="View"/>
+	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
+	{
+		// Do nothing.
+	}
+
+	/// <summary>
+	/// Collects for extra view nodes for the pattern on multiple forcing chains.
+	/// This method will be useful in advanced chaining rules such as ALS, and AUR extra maps checking.
+	/// </summary>
+	/// <param name="grid">The grid as candidate references.</param>
+	/// <param name="pattern">The pattern to collect view nodes.</param>
+	/// <param name="views">The <see cref="View"/> instances to be updated.</param>
+	/// <remarks>
+	/// The method by default will do nothing.
+	/// </remarks>
+	/// <seealso cref="View"/>
+	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, MultipleForcingChains pattern, View[] views)
 	{
 		// Do nothing.
 	}

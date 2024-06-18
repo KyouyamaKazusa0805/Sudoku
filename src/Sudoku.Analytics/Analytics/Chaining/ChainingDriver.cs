@@ -9,6 +9,7 @@ internal static class ChainingDriver
 	/// Collect all <see cref="ChainOrLoop"/> instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
 	/// <returns>All possible <see cref="ChainOrLoop"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -37,7 +38,7 @@ internal static class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<ChainOrLoop> CollectChainPatterns(ref readonly Grid grid)
+	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		// Step 1: Iterate on dictionary to get chains.
 		var foundPatterns = new HashSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
@@ -46,8 +47,14 @@ internal static class ChainingDriver
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
 				var node = new Node(cell, digit, true, false);
-				bfs(node, foundPatterns);
-				bfs(~node, foundPatterns);
+				if (bfs(in grid, node, foundPatterns, onlyFindOne) is { } chain1)
+				{
+					return (ChainOrLoop[])[chain1];
+				}
+				if (bfs(in grid, ~node, foundPatterns, onlyFindOne) is { } chain2)
+				{
+					return (ChainOrLoop[])[chain2];
+				}
 			}
 		}
 
@@ -56,10 +63,7 @@ internal static class ChainingDriver
 		var finalCollection = new List<ChainOrLoop>();
 		foreach (var pattern in foundPatterns)
 		{
-			if (pattern.GetConclusions(in grid))
-			{
-				finalCollection.Add(pattern);
-			}
+			finalCollection.Add(pattern);
 		}
 
 		// Step 3: Sort found patterns and return.
@@ -81,7 +85,7 @@ internal static class ChainingDriver
 		}
 
 
-		static void bfs(Node startNode, HashSet<ChainOrLoop> result)
+		static ChainOrLoop? bfs(ref readonly Grid grid, Node startNode, HashSet<ChainOrLoop> result, bool onlyFindOne)
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
@@ -108,7 +112,19 @@ internal static class ChainingDriver
 							////////////////////////////////////////////
 							if (node == startNode && resultNode.AncestorsLength >= 4)
 							{
-								result.Add(new Loop(resultNode));
+								var loop = new Loop(resultNode);
+								if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
+								{
+									goto Next;
+								}
+
+								if (onlyFindOne)
+								{
+									return loop;
+								}
+
+								result.Add(loop);
+							Next:;
 							}
 
 							/////////////////////////////////////////////////
@@ -116,7 +132,18 @@ internal static class ChainingDriver
 							/////////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode));
+								var chain = new Chain(resultNode);
+								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
+								{
+									goto Next;
+								}
+
+								if (onlyFindOne)
+								{
+									return chain;
+								}
+								result.Add(chain);
+							Next:;
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
@@ -142,7 +169,18 @@ internal static class ChainingDriver
 							/////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode));
+								var chain = new Chain(resultNode);
+								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
+								{
+									goto Next;
+								}
+
+								if (onlyFindOne)
+								{
+									return chain;
+								}
+								result.Add(chain);
+							Next:;
 							}
 
 							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedStrong.Add(node))
@@ -153,6 +191,8 @@ internal static class ChainingDriver
 					}
 				}
 			}
+
+			return null;
 		}
 	}
 
@@ -163,6 +203,7 @@ internal static class ChainingDriver
 	/// <param name="rules">
 	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
 	/// </param>
+	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	/// <example>
 	/// Test example:
@@ -171,7 +212,11 @@ internal static class ChainingDriver
 	/// ]]></code>
 	/// This example only contains one forcing chains pattern and direct singles.
 	/// </example>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(
+		ref readonly Grid grid,
+		ReadOnlySpan<ChainingRule> rules,
+		bool onlyFindOne
+	)
 	{
 		// Step 1: Iterate on dictionary to get all forcing chains.
 		var foundPatterns = new HashSet<MultipleForcingChains>(LocalComparer.MultipleForcingChainsPatternComparer);
@@ -234,7 +279,18 @@ internal static class ChainingDriver
 					////////////////////////////////////////
 					foreach (var node in regionToStrong)
 					{
+						if (node.IsGroupedNode)
+						{
+							// Grouped nodes are not supported as target node.
+							continue;
+						}
+
 						var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+						if (grid.Exists(conclusion.Candidate) is not true)
+						{
+							continue;
+						}
+
 						var regionForcingChains = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
@@ -242,17 +298,36 @@ internal static class ChainingDriver
 							var chain = new WeakChain(branchNode);
 							regionForcingChains.Add(c * 9 + digit, chain);
 						}
+						if (onlyFindOne)
+						{
+							return (MultipleForcingChains[])[regionForcingChains];
+						}
 						foundPatterns.Add(regionForcingChains);
 					}
 					foreach (var node in regionToWeak)
 					{
+						if (node.IsGroupedNode)
+						{
+							// Grouped nodes are not supported as target node.
+							continue;
+						}
+
 						var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+						if (grid.Exists(conclusion.Candidate) is not true)
+						{
+							continue;
+						}
+
 						var regionForcingChains = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = houseCellToWeak[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 							var chain = new WeakChain(branchNode);
 							regionForcingChains.Add(c * 9 + digit, chain);
+						}
+						if (onlyFindOne)
+						{
+							return (MultipleForcingChains[])[regionForcingChains];
 						}
 						foundPatterns.Add(regionForcingChains);
 					}
@@ -280,7 +355,18 @@ internal static class ChainingDriver
 			//////////////////////////////////////
 			foreach (var node in cellToStrong ?? [])
 			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
 				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
 				var cellForcingChains = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
@@ -288,17 +374,36 @@ internal static class ChainingDriver
 					var chain = new WeakChain(branchNode);
 					cellForcingChains.Add(cell * 9 + d, chain);
 				}
+				if (onlyFindOne)
+				{
+					return (MultipleForcingChains[])[cellForcingChains];
+				}
 				foundPatterns.Add(cellForcingChains);
 			}
 			foreach (var node in cellToWeak ?? [])
 			{
+				if (node.IsGroupedNode)
+				{
+					// Grouped nodes are not supported as target node.
+					continue;
+				}
+
 				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				if (grid.Exists(conclusion.Candidate) is not true)
+				{
+					continue;
+				}
+
 				var cellForcingChains = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
 					var branchNode = digitToWeak[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					var chain = new WeakChain(branchNode);
 					cellForcingChains.Add(cell * 9 + d, chain);
+				}
+				if (onlyFindOne)
+				{
+					return (MultipleForcingChains[])[cellForcingChains];
 				}
 				foundPatterns.Add(cellForcingChains);
 			}

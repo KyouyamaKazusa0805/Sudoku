@@ -82,9 +82,8 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View[] views)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
 	{
-		var (view, id) = (views[0], ColorIdentifier.Normal);
 		foreach (var link in pattern.Links)
 		{
 			if (link.GroupedLinkPattern is not XyzWing { Cells: var cells })
@@ -94,7 +93,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 			foreach (var cell in cells)
 			{
-				view.Add(new CellViewNode(id, cell));
+				view.Add(new CellViewNode(ColorIdentifier.Normal, cell));
 			}
 		}
 	}
