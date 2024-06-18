@@ -10120,18 +10120,6 @@
             <param name="linkTypes">The link types supported in searching.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore``1(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{``0},Sudoku.Concepts.LinkType,,)">
-            <summary>
-            The collect method called by chain step searchers.
-            </summary>
-            <typeparam name="T">The type of the step value to be added.</typeparam>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="linkTypes">The link types supported in searching.</param>
-            <param name="stepCreator">The creator method that creates a <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
-            <param name="chainPatternChecker">The checker method that filters the <see cref="T:Sudoku.Concepts.ChainOrLoop"/>.</param>
-            <returns>The first found step.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.MultipleForcingChainsStep},Sudoku.Concepts.LinkType)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
