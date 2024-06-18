@@ -41,51 +41,28 @@ internal static class ChainingDriver
 	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		// Step 1: Iterate on dictionary to get chains.
-		var foundPatterns = new HashSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
+		var foundPatterns = new SortedSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
 				var node = new Node(cell, digit, true, false);
-				if (bfs(in grid, node, foundPatterns, onlyFindOne) is { } chain1)
+				if (bfs(in grid, node) is { } chain1)
 				{
 					return (ChainOrLoop[])[chain1];
 				}
-				if (bfs(in grid, ~node, foundPatterns, onlyFindOne) is { } chain2)
+				if (bfs(in grid, ~node) is { } chain2)
 				{
 					return (ChainOrLoop[])[chain2];
 				}
 			}
 		}
 
-		// Step 2: Check eliminations. If a chain doesn't contain any possible conclusions,
-		// it will be removed from the result collection.
-		var finalCollection = new List<ChainOrLoop>();
-		foreach (var pattern in foundPatterns)
-		{
-			finalCollection.Add(pattern);
-		}
-
-		// Step 3: Sort found patterns and return.
-		switch (finalCollection.Count)
-		{
-			case 0:
-			{
-				return [];
-			}
-			case > 1:
-			{
-				finalCollection.Sort();
-				goto default;
-			}
-			default:
-			{
-				return finalCollection.AsReadOnlySpan();
-			}
-		}
+		// Step 2: Sort found patterns and return.
+		return foundPatterns.ToArray();
 
 
-		static ChainOrLoop? bfs(ref readonly Grid grid, Node startNode, HashSet<ChainOrLoop> result, bool onlyFindOne)
+		ChainOrLoop? bfs(ref readonly Grid grid, Node startNode)
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
@@ -123,7 +100,7 @@ internal static class ChainingDriver
 									return loop;
 								}
 
-								result.Add(loop);
+								foundPatterns.Add(loop);
 							Next:;
 							}
 
@@ -142,7 +119,7 @@ internal static class ChainingDriver
 								{
 									return chain;
 								}
-								result.Add(chain);
+								foundPatterns.Add(chain);
 							Next:;
 							}
 
@@ -179,7 +156,7 @@ internal static class ChainingDriver
 								{
 									return chain;
 								}
-								result.Add(chain);
+								foundPatterns.Add(chain);
 							Next:;
 							}
 
@@ -480,7 +457,7 @@ file static class LocalComparer
 	/// <summary>
 	/// Indicates the backing field of chain pattern comparer instance.
 	/// </summary>
-	private static IEqualityComparer<ChainOrLoop>? _chainPatternComparer;
+	private static IComparer<ChainOrLoop>? _chainPatternComparer;
 
 	/// <summary>
 	/// Indicates the backing field of node map comparer instance.
@@ -497,23 +474,8 @@ file static class LocalComparer
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainOrLoop"/> on equality comparison
 	/// in order to filter duplicate chains.
 	/// </summary>
-	public static IEqualityComparer<ChainOrLoop> ChainPatternComparer
-		=> _chainPatternComparer ??= EqualityComparer<ChainOrLoop>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(null, null) => true,
-				(Chain a, Chain b) => a.Equals(b),
-				(Loop a, Loop b) => a.Equals(b),
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected),
-				_ => false
-			},
-			static obj => obj switch
-			{
-				Chain c => c.GetHashCode(),
-				Loop l => l.GetHashCode(),
-				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected)
-			}
-		);
+	public static IComparer<ChainOrLoop> ChainPatternComparer
+		=> _chainPatternComparer ??= Comparer<ChainOrLoop>.Create(static (left, right) => left.CompareTo(right));
 
 	/// <summary>
 	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="MultipleForcingChains"/> on equality comparison

@@ -191,7 +191,7 @@ internal static class ChainModule
 				result[++i] = [houseOrCellNode, .. subview];
 			}
 			result[0] = [houseOrCellNode, .. globalView];
-			return result.AsReadOnlySpan();
+			return result;
 		}
 	}
 }

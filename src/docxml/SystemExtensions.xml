@@ -878,6 +878,20 @@
 				</target>
             </remarks>
         </member>
+        <member name="T:System.Collections.Generic.SortedSetExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.SortedSet`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSetExtensions.ToArray``1(System.Collections.Generic.SortedSet{``0})">
+            <summary>
+            Try to convert the current instance into an array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>An array of <typeparamref name="T"/> elements.</returns>
+        </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.

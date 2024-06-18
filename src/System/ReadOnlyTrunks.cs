@@ -17,7 +17,7 @@ public readonly partial struct ReadOnlyChunk<T>([PrimaryConstructorParameter(Mem
 	/// <summary>
 	/// Indicates the span of values.
 	/// </summary>
-	public ReadOnlySpan<ChunkNode<T>> Span => _chunks.AsReadOnlySpan();
+	public ReadOnlySpan<ChunkNode<T>> Span => _chunks;
 
 
 	/// <summary>
