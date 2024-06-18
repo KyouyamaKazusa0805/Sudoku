@@ -4,12 +4,6 @@ namespace Sudoku.Analytics.Chaining.Rules;
 /// Represents a chaining rule on normal fish rule (i.e. <see cref="LinkType.KrakenNormalFish"/>).
 /// </summary>
 /// <seealso cref="LinkType.KrakenNormalFish"/>
-/// <example>
-/// Test example:
-/// <code><![CDATA[
-/// .2+81.+9..7..6..38..9...8+4.2..9.+8.531.8....27.......6.+847+8...+1....3.9.+85+7...9..7..8:639 552 553 355 455 365 765 374 279 192 394 695 697
-/// ]]></code>
-/// </example>
 internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
