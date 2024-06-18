@@ -4,8 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a loop.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainOrLoop(lastNode, true, strongLinkDictionary, weakLinkDictionary)
+public sealed partial class Loop(Node lastNode) : ChainOrLoop(lastNode, true)
 {
 	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 1;

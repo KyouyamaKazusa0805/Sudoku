@@ -10,13 +10,16 @@ internal static class ChainModule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
-	/// <param name="linkTypes">The link types supported in searching.</param>
+	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, LinkType linkTypes)
+	public static Step? CollectCore(
+		ref AnalysisContext context,
+		List<NormalChainStep> accumulator,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
 	{
 		ref readonly var grid = ref context.Grid;
-		var supportedRules = FilterSupportedChainingRules(linkTypes, grid.PuzzleType == SudokuType.Sukaku);
-		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
+		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid))
 		{
 			var step = new NormalChainStep(
 				CollectConclusions(foundChain, in grid, supportedRules),
@@ -41,12 +44,15 @@ internal static class ChainModule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
-	/// <param name="linkTypes">The link types supported in searching.</param>
+	/// <param name="supportedRules">Indicates the supported rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectMultipleCore(ref AnalysisContext context, List<MultipleForcingChainsStep> accumulator, LinkType linkTypes)
+	public static Step? CollectMultipleCore(
+		ref AnalysisContext context,
+		List<MultipleForcingChainsStep> accumulator,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
 	{
 		ref readonly var grid = ref context.Grid;
-		var supportedRules = FilterSupportedChainingRules(linkTypes, grid.PuzzleType == SudokuType.Sukaku);
 		foreach (var foundChain in ChainingDriver.CollectMultipleChainPatterns(in context.Grid, supportedRules))
 		{
 			var step = new MultipleForcingChainsStep(
@@ -138,7 +144,7 @@ internal static class ChainModule
 	/// <param name="foundChain">The found chain.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	private static View[] CollectViews(ref readonly Grid grid, ChainOrLoop foundChain, ChainingRule[] supportedRules)
+	private static View[] CollectViews(ref readonly Grid grid, ChainOrLoop foundChain, ReadOnlySpan<ChainingRule> supportedRules)
 	{
 		var views = (View[])[
 			[
@@ -157,8 +163,13 @@ internal static class ChainModule
 		return views;
 	}
 
-	/// <inheritdoc cref="CollectViews(ref readonly Grid, ChainOrLoop, ChainingRule[])"/>
-	private static View[] CollectViews(ref readonly Grid grid, Conclusion conclusion, MultipleForcingChains foundChain, ChainingRule[] supportedRules)
+	/// <inheritdoc cref="CollectViews(ref readonly Grid, ChainOrLoop, ReadOnlySpan{ChainingRule})"/>
+	private static View[] CollectViews(
+		ref readonly Grid grid,
+		Conclusion conclusion,
+		MultipleForcingChains foundChain,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
 	{
 		var nodesList = GetNormalCandidateViewNodes(foundChain);
 		var result = new View[nodesList.Length];
@@ -181,7 +192,11 @@ internal static class ChainModule
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The conclusions found.</returns>
-	private static Conclusion[] CollectConclusions(ChainOrLoop foundChain, ref readonly Grid grid, ChainingRule[] supportedRules)
+	private static Conclusion[] CollectConclusions(
+		ChainOrLoop foundChain,
+		ref readonly Grid grid,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
 	{
 		var conclusions = foundChain.GetConclusions(in grid);
 		if (foundChain is Loop loop)
@@ -193,17 +208,4 @@ internal static class ChainModule
 		}
 		return [.. conclusions];
 	}
-
-	/// <summary>
-	/// Returns a new collection of <see cref="ChainingRule"/> instances that can be used in searching strong and weak links.
-	/// </summary>
-	/// <param name="linkTypes">The desired link types.</param>
-	/// <param name="isSukaku">Indicates whether the puzzle is a Sukaku.</param>
-	/// <returns>A list of <see cref="ChainingRule"/> instances.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static ChainingRule[] FilterSupportedChainingRules(LinkType linkTypes, bool isSukaku)
-		=>
-		from type in linkTypes.GetAllFlags()
-		where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
-		select ChainingRulePool.TryCreate(type)!;
 }

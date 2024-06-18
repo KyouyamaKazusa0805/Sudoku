@@ -5,8 +5,7 @@ namespace Sudoku.Concepts;
 /// except the start is weak instead of strong link.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class WeakChain(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainOrLoop(lastNode, false, strongLinkDictionary, weakLinkDictionary, false)
+public sealed partial class WeakChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
 {
 	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 1;

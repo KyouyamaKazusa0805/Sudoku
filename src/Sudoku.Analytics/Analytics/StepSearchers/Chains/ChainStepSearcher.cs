@@ -38,14 +38,12 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		var accumulator = new List<NormalChainStep>();
-		var baseRules = LinkType.Unknown;
-		foreach (var ruleKey in yieldLinkTypes())
+		ref readonly var grid = ref context.Grid;
+		var linkTypes = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		LinkPool.Initialize(in grid, linkTypes, LinkOption.House, LinkOption.House, out var rules);
+		if (ChainModule.CollectCore(ref context, accumulator, rules) is { } step)
 		{
-			baseRules |= ruleKey;
-			if (ChainModule.CollectCore(ref context, accumulator, baseRules) is { } step)
-			{
-				return step;
-			}
+			return step;
 		}
 
 		if (accumulator.Count != 0 && !context.OnlyFindOne)
@@ -54,12 +52,5 @@ public sealed partial class ChainStepSearcher : StepSearcher
 			context.Accumulator.AddRange(accumulator);
 		}
 		return null;
-
-
-		static IEnumerable<LinkType> yieldLinkTypes()
-		{
-			yield return LinkType.SingleDigit;
-			yield return LinkType.SingleCell;
-		}
 	}
 }

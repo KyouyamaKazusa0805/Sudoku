@@ -28,12 +28,24 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	public FrozenDictionary<Link, object> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
 
 
-	/// <inheritdoc cref="Dictionary{TKey, TValue}.Add(TKey, TValue)"/>
-	/// <exception cref="NotSupportedException">Always throws.</exception>
-	[DoesNotReturn]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	[Obsolete($"This method should not be used. Use method '{nameof(AddEntry)}' instead.", true)]
-	public new void Add(Node key, HashSet<Node> value) => throw new NotSupportedException();
+	/// <summary>
+	/// Try to append grouped links from the other dictionary.
+	/// </summary>
+	/// <param name="other">The other dictionary.</param>
+	public void Merge(LinkDictionary other)
+	{
+		foreach (var (k, v) in other)
+		{
+			if (!TryAdd(k, v))
+			{
+				this[k].UnionWith(v);
+			}
+		}
+		foreach (var (k, v) in other._groupedLinkPool)
+		{
+			_groupedLinkPool.TryAdd(k, v);
+		}
+	}
 
 	/// <summary>
 	/// Add a link to the current collection with both entries on nodes of the link used.

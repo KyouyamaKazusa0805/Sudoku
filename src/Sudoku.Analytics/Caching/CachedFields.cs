@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Caching;
 
 /// <summary>
 /// <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
@@ -27,7 +27,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Grid"/>
-public static class CachedFields
+internal static class CachedFields
 {
 	/// <summary>
 	/// <inheritdoc cref="Grid.EmptyCells"/>
@@ -38,7 +38,7 @@ public static class CachedFields
 	/// </remarks>
 	/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
 	/// <seealso cref="StepSearcherAttribute.IsCachingSafe"/>
-	internal static CellMap EmptyCells;
+	public static CellMap EmptyCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.BivalueCells"/>
@@ -46,7 +46,7 @@ public static class CachedFields
 	/// <remarks>
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
-	internal static CellMap BivalueCells;
+	public static CellMap BivalueCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
@@ -55,7 +55,7 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] CandidatesMap = null!;
+	public static CellMap[] CandidatesMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -64,7 +64,7 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] DigitsMap = null!;
+	public static CellMap[] DigitsMap = null!;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -73,12 +73,12 @@ public static class CachedFields
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	internal static CellMap[] ValuesMap = null!;
+	public static CellMap[] ValuesMap = null!;
 
 	/// <summary>
 	/// Indicates the solution.
 	/// </summary>
-	internal static Grid Solution;
+	public static Grid Solution;
 
 
 	/// <summary>
@@ -87,7 +87,7 @@ public static class CachedFields
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static void Initialize(ref readonly Grid g, ref readonly Grid s)
+	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;

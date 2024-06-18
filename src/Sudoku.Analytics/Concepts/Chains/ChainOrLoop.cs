@@ -20,7 +20,7 @@ public abstract partial class ChainOrLoop :
 	/// <summary>
 	/// Indicates the possible inferences to be used.
 	/// </summary>
-	private protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
+	protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
 
 
 	/// <summary>
@@ -44,8 +44,6 @@ public abstract partial class ChainOrLoop :
 	/// </summary>
 	/// <param name="lastNode">The last node.</param>
 	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
-	/// <param name="strongLinkDictionary">Indicates the strong link dictionary.</param>
-	/// <param name="weakLinkDictionary">Indicates the weak link dictionary.</param>
 	/// <param name="autoReversingOnComparison">
 	/// <para>
 	/// Indicates whether the constructor will automatically reverse the chain
@@ -56,16 +54,11 @@ public abstract partial class ChainOrLoop :
 	/// if you don't want to make the constructor reverse the whole chain.
 	/// </para>
 	/// </param>
-	protected ChainOrLoop(
-		Node lastNode,
-		bool isLoop,
-		LinkDictionary strongLinkDictionary,
-		LinkDictionary weakLinkDictionary,
-		bool autoReversingOnComparison = true
-	)
+	protected ChainOrLoop(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
 	{
-		(_strongGroupedLinkPool, _weakGroupedLinkPool) = (strongLinkDictionary.GroupedLinkPool, weakLinkDictionary.GroupedLinkPool);
-		var nodes = new List<Node> { lastNode };
+		_strongGroupedLinkPool = LinkPool.StrongLinkDictionary.GroupedLinkPool;
+		_weakGroupedLinkPool = LinkPool.WeakLinkDictionary.GroupedLinkPool;
+		var nodes = (List<Node>)[lastNode];
 		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{
 			nodes.Add(new Node(node, null));

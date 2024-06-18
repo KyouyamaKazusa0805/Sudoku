@@ -4,8 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a chain.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
-	ChainOrLoop(lastNode, false, strongLinkDictionary, weakLinkDictionary)
+public sealed partial class Chain(Node lastNode) : ChainOrLoop(lastNode, false)
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.

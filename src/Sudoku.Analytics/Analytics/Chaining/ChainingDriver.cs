@@ -9,9 +9,6 @@ internal static class ChainingDriver
 	/// Collect all <see cref="ChainOrLoop"/> instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="rules">
-	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
-	/// </param>
 	/// <returns>All possible <see cref="ChainOrLoop"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -40,16 +37,9 @@ internal static class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<ChainOrLoop> CollectChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+	public static ReadOnlySpan<ChainOrLoop> CollectChainPatterns(ref readonly Grid grid)
 	{
-		// Step 1: Collect for all strong and weak links appeared in the grid.
-		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
-		foreach (var chainingRule in rules)
-		{
-			chainingRule.CollectLinks(in grid, strongLinks, weakLinks, LinkOption.House, LinkOption.House);
-		}
-
-		// Step 2: Iterate on dictionary to get chains.
+		// Step 1: Iterate on dictionary to get chains.
 		var foundPatterns = new HashSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
 		foreach (var cell in EmptyCells)
 		{
@@ -61,7 +51,7 @@ internal static class ChainingDriver
 			}
 		}
 
-		// Step 3: Check eliminations. If a chain doesn't contain any possible conclusions,
+		// Step 2: Check eliminations. If a chain doesn't contain any possible conclusions,
 		// it will be removed from the result collection.
 		var finalCollection = new List<ChainOrLoop>();
 		foreach (var pattern in foundPatterns)
@@ -72,7 +62,7 @@ internal static class ChainingDriver
 			}
 		}
 
-		// Step 4: Sort found patterns and return.
+		// Step 3: Sort found patterns and return.
 		switch (finalCollection.Count)
 		{
 			case 0:
@@ -91,7 +81,7 @@ internal static class ChainingDriver
 		}
 
 
-		void bfs(Node startNode, HashSet<ChainOrLoop> result)
+		static void bfs(Node startNode, HashSet<ChainOrLoop> result)
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
@@ -107,7 +97,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingStrong.First!.Value;
 					pendingStrong.RemoveFirst();
-					if (weakLinks.TryGetValue(currentNode, out var nodes))
+					if (LinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -118,7 +108,7 @@ internal static class ChainingDriver
 							////////////////////////////////////////////
 							if (node == startNode && resultNode.AncestorsLength >= 4)
 							{
-								result.Add(new Loop(resultNode, strongLinks, weakLinks));
+								result.Add(new Loop(resultNode));
 							}
 
 							/////////////////////////////////////////////////
@@ -126,7 +116,7 @@ internal static class ChainingDriver
 							/////////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode, strongLinks, weakLinks));
+								result.Add(new Chain(resultNode));
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
@@ -141,7 +131,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingWeak.First!.Value;
 					pendingWeak.RemoveFirst();
-					if (strongLinks.TryGetValue(currentNode, out var nodes))
+					if (LinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -152,7 +142,7 @@ internal static class ChainingDriver
 							/////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode, strongLinks, weakLinks));
+								result.Add(new Chain(resultNode));
 							}
 
 							if (!node.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn) && visitedStrong.Add(node))
@@ -183,14 +173,7 @@ internal static class ChainingDriver
 	/// </example>
 	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 	{
-		// Step 1: Collect for all strong and weak links appeared in the grid.
-		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
-		foreach (var chainingRule in rules)
-		{
-			chainingRule.CollectLinks(in grid, strongLinks, weakLinks, LinkOption.House, LinkOption.House);
-		}
-
-		// Step 2: Iterate on dictionary to get all forcing chains.
+		// Step 1: Iterate on dictionary to get all forcing chains.
 		var foundPatterns = new HashSet<MultipleForcingChains>(LocalComparer.MultipleForcingChainsPatternComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
@@ -256,7 +239,7 @@ internal static class ChainingDriver
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = houseCellToStrong[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							var chain = new WeakChain(branchNode, strongLinks, weakLinks);
+							var chain = new WeakChain(branchNode);
 							regionForcingChains.Add(c * 9 + digit, chain);
 						}
 						foundPatterns.Add(regionForcingChains);
@@ -268,7 +251,7 @@ internal static class ChainingDriver
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = houseCellToWeak[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							var chain = new WeakChain(branchNode, strongLinks, weakLinks);
+							var chain = new WeakChain(branchNode);
 							regionForcingChains.Add(c * 9 + digit, chain);
 						}
 						foundPatterns.Add(regionForcingChains);
@@ -302,7 +285,7 @@ internal static class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = digitToStrong[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					var chain = new WeakChain(branchNode, strongLinks, weakLinks);
+					var chain = new WeakChain(branchNode);
 					cellForcingChains.Add(cell * 9 + d, chain);
 				}
 				foundPatterns.Add(cellForcingChains);
@@ -314,18 +297,18 @@ internal static class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = digitToWeak[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					var chain = new WeakChain(branchNode, strongLinks, weakLinks);
+					var chain = new WeakChain(branchNode);
 					cellForcingChains.Add(cell * 9 + d, chain);
 				}
 				foundPatterns.Add(cellForcingChains);
 			}
 		}
 
-		// Step 3: Return the values.
+		// Step 2: Return the values.
 		return foundPatterns.ToArray();
 
 
-		void bfs(Node startNode, out HashSet<Node> toStrong, out HashSet<Node> toWeak)
+		static void bfs(Node startNode, out HashSet<Node> toStrong, out HashSet<Node> toWeak)
 		{
 			var (pendingStrong, pendingWeak) = (new LinkedList<Node>(), new LinkedList<Node>());
 			(startNode.IsOn ? pendingStrong : pendingWeak).AddLast(startNode);
@@ -337,7 +320,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingStrong.First!.Value;
 					pendingStrong.RemoveFirst();
-					if (weakLinks.TryGetValue(currentNode, out var nodes))
+					if (LinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -359,7 +342,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingWeak.First!.Value;
 					pendingWeak.RemoveFirst();
-					if (strongLinks.TryGetValue(currentNode, out var nodes))
+					if (LinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
