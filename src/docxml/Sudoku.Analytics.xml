@@ -1107,7 +1107,7 @@
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakChain"/> respectively.
+            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakForcingChain"/> respectively.
             </para>
             <para>
             For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
@@ -1135,7 +1135,7 @@
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakChain"/> respectively.
+            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakForcingChain"/> respectively.
             </para>
             <para>
             For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
@@ -1505,28 +1505,28 @@
             <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
             <seealso cref="P:Sudoku.Concepts.Node.Map"/>
         </member>
-        <member name="T:Sudoku.Concepts.StrongChain">
+        <member name="T:Sudoku.Concepts.StrongForcingChain">
             <summary>
-            Represents a chain segment starting with strong link.
+            Represents a chain segment (forcing chain) starting with strong link.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.#ctor(Sudoku.Concepts.Node)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.#ctor(Sudoku.Concepts.Node)">
             <summary>
-            Represents a chain segment starting with strong link.
+            Represents a chain segment (forcing chain) starting with strong link.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.StrongChain.WeakStartIdentity">
+        <member name="P:Sudoku.Concepts.StrongForcingChain.WeakStartIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.StrongChain.LoopIdentity">
+        <member name="P:Sudoku.Concepts.StrongForcingChain.LoopIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.StrongChain.ValidNodes">
+        <member name="P:Sudoku.Concepts.StrongForcingChain.ValidNodes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.StrongChain)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.CompareTo(Sudoku.Concepts.StrongForcingChain)">
             <summary>
-            Determine which <see cref="T:Sudoku.Concepts.StrongChain"/> instance is greater.
+            Determine which <see cref="T:Sudoku.Concepts.StrongForcingChain"/> instance is greater.
             </summary>
             <param name="other">The other instance to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> result.</returns>
@@ -1556,10 +1556,10 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.StrongChain,Sudoku.Concepts.NodeComparison)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.CompareTo(Sudoku.Concepts.StrongForcingChain,Sudoku.Concepts.NodeComparison)">
             <summary>
             Compares the value with the other one, to get which one is greater.
             </summary>
@@ -1567,43 +1567,43 @@
             <param name="nodeComparison">The node comparison rule.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.Equals(Sudoku.Concepts.StrongChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.Equals(Sudoku.Concepts.StrongForcingChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.Reverse">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.Reverse">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.StrongChain.ToString">
+        <member name="M:Sudoku.Concepts.StrongForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Concepts.WeakChain">
+        <member name="T:Sudoku.Concepts.WeakForcingChain">
             <summary>
-            Represents a chain segment starting with weak link.
+            Represents a chain segment (forcing chain) starting with weak link.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.#ctor(Sudoku.Concepts.Node)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.#ctor(Sudoku.Concepts.Node)">
             <summary>
-            Represents a chain segment starting with weak link.
+            Represents a chain segment (forcing chain) starting with weak link.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.WeakChain.WeakStartIdentity">
+        <member name="P:Sudoku.Concepts.WeakForcingChain.WeakStartIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.WeakChain.LoopIdentity">
+        <member name="P:Sudoku.Concepts.WeakForcingChain.LoopIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.WeakChain.ValidNodes">
+        <member name="P:Sudoku.Concepts.WeakForcingChain.ValidNodes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.WeakChain)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.CompareTo(Sudoku.Concepts.WeakForcingChain)">
             <summary>
-            Determine which <see cref="T:Sudoku.Concepts.WeakChain"/> instance is greater.
+            Determine which <see cref="T:Sudoku.Concepts.WeakForcingChain"/> instance is greater.
             </summary>
             <param name="other">The other instance to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> result.</returns>
@@ -1633,10 +1633,10 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.CompareTo(Sudoku.Concepts.WeakChain,Sudoku.Concepts.NodeComparison)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.CompareTo(Sudoku.Concepts.WeakForcingChain,Sudoku.Concepts.NodeComparison)">
             <summary>
             Compares the value with the other one, to get which one is greater.
             </summary>
@@ -1644,19 +1644,19 @@
             <param name="nodeComparison">The node comparison rule.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.Equals(Sudoku.Concepts.WeakChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.Equals(Sudoku.Concepts.WeakForcingChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.Reverse">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.Reverse">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.WeakChain.ToString">
+        <member name="M:Sudoku.Concepts.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">

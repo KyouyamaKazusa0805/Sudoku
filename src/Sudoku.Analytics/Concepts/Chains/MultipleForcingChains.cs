@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <para>
 /// By the way, this type is directly derived from <see cref="SortedDictionary{TKey, TValue}"/>
-/// of key and value types <see cref="Candidate"/> and <see cref="WeakChain"/> respectively.
+/// of key and value types <see cref="Candidate"/> and <see cref="WeakForcingChain"/> respectively.
 /// </para>
 /// <para>
 /// For keys, <see cref="Candidate"/> describes for a candidate used as the start of a branch.
@@ -121,11 +121,11 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		{
 			switch (this[candidate], other[candidate])
 			{
-				case (StrongChain c, StrongChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
+				case (StrongForcingChain c, StrongForcingChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
 				{
 					return r3;
 				}
-				case (WeakChain c, WeakChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
+				case (WeakForcingChain c, WeakForcingChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
 				{
 					return r3;
 				}

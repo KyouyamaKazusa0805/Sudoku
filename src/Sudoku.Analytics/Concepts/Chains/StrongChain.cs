@@ -1,10 +1,10 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a chain segment starting with strong link.
+/// Represents a chain segment (forcing chain) starting with strong link.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
+public sealed partial class StrongForcingChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
 {
 	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 0;
@@ -17,7 +17,7 @@ public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, f
 
 
 	/// <summary>
-	/// Determine which <see cref="StrongChain"/> instance is greater.
+	/// Determine which <see cref="StrongForcingChain"/> instance is greater.
 	/// </summary>
 	/// <param name="other">The other instance to be compared.</param>
 	/// <returns>An <see cref="int"/> result.</returns>
@@ -47,10 +47,10 @@ public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, f
 	/// </list>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(StrongChain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
+	public int CompareTo(StrongForcingChain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
 
 	/// <inheritdoc/>
-	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as StrongChain);
+	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as StrongForcingChain);
 
 	/// <summary>
 	/// Compares the value with the other one, to get which one is greater.
@@ -58,7 +58,7 @@ public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, f
 	/// <param name="other">The other instance to be compared.</param>
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <returns>An <see cref="int"/> value indicating which instance is better.</returns>
-	public int CompareTo(StrongChain? other, NodeComparison nodeComparison)
+	public int CompareTo(StrongForcingChain? other, NodeComparison nodeComparison)
 	{
 		if (other is null)
 		{
@@ -90,7 +90,7 @@ public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, f
 	}
 
 	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainOrLoopComparison)"/>
-	public bool Equals([NotNullWhen(true)] StrongChain? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public bool Equals([NotNullWhen(true)] StrongForcingChain? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -151,7 +151,7 @@ public sealed partial class StrongChain(Node lastNode) : ChainOrLoop(lastNode, f
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
-		=> Equals(other as StrongChain, nodeComparison, patternComparison);
+		=> Equals(other as StrongForcingChain, nodeComparison, patternComparison);
 
 	/// <inheritdoc/>
 	public override int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
