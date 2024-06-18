@@ -41,7 +41,7 @@ internal static class ChainingDriver
 	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		// Step 1: Iterate on dictionary to get chains.
-		var foundPatterns = new SortedSet<ChainOrLoop>(LocalComparer.ChainPatternComparer);
+		var foundPatterns = new SortedSet<ChainOrLoop>(CachedChainingComparers.ChainPatternComparer);
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
@@ -68,8 +68,8 @@ internal static class ChainingDriver
 			var pendingWeak = new LinkedList<Node>();
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
-			var visitedStrong = new HashSet<Node>(LocalComparer.NodeMapComparer);
-			var visitedWeak = new HashSet<Node>(LocalComparer.NodeMapComparer);
+			var visitedStrong = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
+			var visitedWeak = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
 			_ = (visitedStrong.Add(startNode), visitedWeak.Add(startNode));
 
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
@@ -78,7 +78,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingStrong.First!.Value;
 					pendingStrong.RemoveFirst();
-					if (LinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -135,7 +135,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingWeak.First!.Value;
 					pendingWeak.RemoveFirst();
-					if (LinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -196,7 +196,7 @@ internal static class ChainingDriver
 	)
 	{
 		// Step 1: Iterate on dictionary to get all forcing chains.
-		var foundPatterns = new HashSet<MultipleForcingChains>(LocalComparer.MultipleForcingChainsPatternComparer);
+		var foundPatterns = new HashSet<MultipleForcingChains>(CachedChainingComparers.MultipleForcingChainsPatternComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
 			var digitsMask = grid.GetCandidates(cell);
@@ -229,8 +229,8 @@ internal static class ChainingDriver
 
 					var houseCellToStrong = new Dictionary<Candidate, HashSet<Node>>();
 					var houseCellToWeak = new Dictionary<Candidate, HashSet<Node>>();
-					var regionToStrong = new HashSet<Node>(LocalComparer.NodeMapComparer);
-					var regionToWeak = new HashSet<Node>(LocalComparer.NodeMapComparer);
+					var regionToStrong = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
+					var regionToWeak = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
 					foreach (var otherCell in cellsInHouse)
 					{
 						if (otherCell == cell)
@@ -318,8 +318,8 @@ internal static class ChainingDriver
 				digitToWeak.Add(cell * 9 + digit, onToWeak);
 				if (cellToStrong is null)
 				{
-					cellToStrong = new(LocalComparer.NodeMapComparer);
-					cellToWeak = new(LocalComparer.NodeMapComparer);
+					cellToStrong = new(CachedChainingComparers.NodeMapComparer);
+					cellToWeak = new(CachedChainingComparers.NodeMapComparer);
 					cellToStrong.UnionWith(onToStrong);
 					cellToWeak.UnionWith(onToWeak);
 				}
@@ -396,7 +396,7 @@ internal static class ChainingDriver
 		{
 			var (pendingStrong, pendingWeak) = (new LinkedList<Node>(), new LinkedList<Node>());
 			(startNode.IsOn ? pendingStrong : pendingWeak).AddLast(startNode);
-			(toStrong, toWeak) = (new(LocalComparer.NodeMapComparer), new(LocalComparer.NodeMapComparer));
+			(toStrong, toWeak) = (new(CachedChainingComparers.NodeMapComparer), new(CachedChainingComparers.NodeMapComparer));
 
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
@@ -404,7 +404,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingStrong.First!.Value;
 					pendingStrong.RemoveFirst();
-					if (LinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -426,7 +426,7 @@ internal static class ChainingDriver
 				{
 					var currentNode = pendingWeak.First!.Value;
 					pendingWeak.RemoveFirst();
-					if (LinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodes))
 					{
 						foreach (var node in nodes)
 						{
@@ -447,63 +447,4 @@ internal static class ChainingDriver
 			}
 		}
 	}
-}
-
-/// <summary>
-/// The file-local comparer generator, lazily initialized.
-/// </summary>
-file static class LocalComparer
-{
-	/// <summary>
-	/// Indicates the backing field of chain pattern comparer instance.
-	/// </summary>
-	private static IComparer<ChainOrLoop>? _chainPatternComparer;
-
-	/// <summary>
-	/// Indicates the backing field of node map comparer instance.
-	/// </summary>
-	private static IEqualityComparer<Node>? _nodeComparer;
-
-	/// <summary>
-	/// Indicates the backing field of multiple forcing chains comparer instance.
-	/// </summary>
-	private static IEqualityComparer<MultipleForcingChains>? _multipleForcingChainsPatternComparer;
-
-
-	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainOrLoop"/> on equality comparison
-	/// in order to filter duplicate chains.
-	/// </summary>
-	public static IComparer<ChainOrLoop> ChainPatternComparer
-		=> _chainPatternComparer ??= Comparer<ChainOrLoop>.Create(static (left, right) => left.CompareTo(right));
-
-	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="MultipleForcingChains"/> on equality comparison
-	/// in order to filter duplicate multiple forcing chains.
-	/// </summary>
-	public static IEqualityComparer<MultipleForcingChains> MultipleForcingChainsPatternComparer
-		=> _multipleForcingChainsPatternComparer ??= EqualityComparer<MultipleForcingChains>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(null, null) => true,
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected),
-				_ => false
-			},
-			static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected)
-		);
-
-	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="Node"/> on equality comparison
-	/// in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
-	/// </summary>
-	public static IEqualityComparer<Node> NodeMapComparer
-		=> _nodeComparer ??= EqualityComparer<Node>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn),
-				(null, null) => true,
-				_ => false
-			},
-			static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn)
-		);
 }

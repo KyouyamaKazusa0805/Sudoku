@@ -56,8 +56,8 @@ public abstract partial class ChainOrLoop :
 	/// </param>
 	protected ChainOrLoop(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
 	{
-		_strongGroupedLinkPool = LinkPool.StrongLinkDictionary.GroupedLinkPool;
-		_weakGroupedLinkPool = LinkPool.WeakLinkDictionary.GroupedLinkPool;
+		_strongGroupedLinkPool = CachedLinkPool.StrongLinkDictionary.GroupedLinkPool;
+		_weakGroupedLinkPool = CachedLinkPool.WeakLinkDictionary.GroupedLinkPool;
 		var nodes = (List<Node>)[lastNode];
 		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{

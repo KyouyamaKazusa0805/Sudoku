@@ -5,7 +5,7 @@ namespace Sudoku.Caching;
 /// especially for chaining-related step searchers.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-internal static class LinkPool
+internal static class CachedLinkPool
 {
 	/// <summary>
 	/// The backing field storing on strong links, grouped by link type.
