@@ -28,8 +28,8 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] Conclusion conclusion) :
-	SortedDictionary<Candidate, WeakChain>,
-	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>,
+	SortedDictionary<Candidate, ChainOrLoop>,
+	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IEquatable<MultipleForcingChains>,
@@ -77,7 +77,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Func<WeakChain, bool> predicate)
+	public bool Exists(Func<ChainOrLoop, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -119,10 +119,16 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 
 		foreach (var candidate in map1)
 		{
-			var (chain1, chain2) = (this[candidate], other[candidate]);
-			if (chain1.CompareTo(chain2, nodeComparison) is var r3 and not 0)
+			switch (this[candidate], other[candidate])
 			{
-				return r3;
+				case (StrongChain c, StrongChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
+				{
+					return r3;
+				}
+				case (WeakChain c, WeakChain d) when c.CompareTo(d, nodeComparison) is var r3 and not 0:
+				{
+					return r3;
+				}
 			}
 		}
 		return 0;
@@ -212,10 +218,10 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.Any() => Count != 0;
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.Any(Func<KeyValuePair<int, WeakChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.Any(Func<KeyValuePair<int, ChainOrLoop>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -228,7 +234,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, WeakChain>>.All(Func<KeyValuePair<int, WeakChain>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.All(Func<KeyValuePair<int, ChainOrLoop>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{

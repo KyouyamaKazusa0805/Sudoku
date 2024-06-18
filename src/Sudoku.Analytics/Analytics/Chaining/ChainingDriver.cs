@@ -295,8 +295,10 @@ internal static class ChainingDriver
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = houseCellToStrong[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							var chain = new WeakChain(branchNode);
-							regionForcingChains.Add(c * 9 + digit, chain);
+							regionForcingChains.Add(
+								c * 9 + digit,
+								node.IsOn ? new StrongChain(branchNode) : new WeakChain(branchNode)
+							);
 						}
 						if (onlyFindOne)
 						{
@@ -322,8 +324,10 @@ internal static class ChainingDriver
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = houseCellToWeak[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							var chain = new WeakChain(branchNode);
-							regionForcingChains.Add(c * 9 + digit, chain);
+							regionForcingChains.Add(
+								c * 9 + digit,
+								node.IsOn ? new StrongChain(branchNode) : new WeakChain(branchNode)
+							);
 						}
 						if (onlyFindOne)
 						{
@@ -371,8 +375,7 @@ internal static class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = digitToStrong[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					var chain = new WeakChain(branchNode);
-					cellForcingChains.Add(cell * 9 + d, chain);
+					cellForcingChains.Add(cell * 9 + d, node.IsOn ? new StrongChain(branchNode) : new WeakChain(branchNode));
 				}
 				if (onlyFindOne)
 				{
@@ -398,8 +401,7 @@ internal static class ChainingDriver
 				foreach (var d in digitsMask)
 				{
 					var branchNode = digitToWeak[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-					var chain = new WeakChain(branchNode);
-					cellForcingChains.Add(cell * 9 + d, chain);
+					cellForcingChains.Add(cell * 9 + d, node.IsOn ? new StrongChain(branchNode) : new WeakChain(branchNode));
 				}
 				if (onlyFindOne)
 				{

@@ -1190,7 +1190,7 @@
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.Exists(System.Func{Sudoku.Concepts.WeakChain,System.Boolean})">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.Exists(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
             <summary>
             Determines whether the collection contains at least one element satisfying the specified condition.
             </summary>
@@ -1237,13 +1237,13 @@
         <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#Any">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.WeakChain},System.Boolean})">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#WeakChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.WeakChain},System.Boolean})">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MultipleForcingChains.Conclusion">
@@ -1505,16 +1505,91 @@
             <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
             <seealso cref="P:Sudoku.Concepts.Node.Map"/>
         </member>
+        <member name="T:Sudoku.Concepts.StrongChain">
+            <summary>
+            Represents a chain segment starting with strong link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.#ctor(Sudoku.Concepts.Node)">
+            <summary>
+            Represents a chain segment starting with strong link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.StrongChain.WeakStartIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.StrongChain.LoopIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.StrongChain.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.StrongChain)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.StrongChain"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            <list type="number">
+            <item>If so, it will be treated as "less than" the other one.</item>
+            <item>
+            Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            </item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.ChainOrLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.CompareTo(Sudoku.Concepts.StrongChain,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares the value with the other one, to get which one is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.Equals(Sudoku.Concepts.StrongChain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.Equals(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.StrongChain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Concepts.WeakChain">
             <summary>
-            Represents a weak chain, meaning a chain applying the normal rules of chaining (alternating strong and weak inferences),
-            except the start is weak instead of strong link.
+            Represents a chain segment starting with weak link.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.WeakChain.#ctor(Sudoku.Concepts.Node)">
             <summary>
-            Represents a weak chain, meaning a chain applying the normal rules of chaining (alternating strong and weak inferences),
-            except the start is weak instead of strong link.
+            Represents a chain segment starting with weak link.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.WeakChain.WeakStartIdentity">
