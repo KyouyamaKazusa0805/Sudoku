@@ -6696,11 +6696,6 @@
             Indicates special case that a grouped alternating inference chain has a collision between start and end node.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.XyzWingConstruction">
-            <summary>
-            Indicates XYZ-Wing construction.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NishioForcingChains">
             <summary>
             Indicates nishio forcing chains.
@@ -10629,18 +10624,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultipleForcingChainsStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.XyzWingConstructionStepSearcher">
-            <summary>
-            Provides with a <b>XYZ-Wing Construction</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>XYZ-Wing Construction</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.XyzWingConstructionStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
@@ -15392,63 +15375,6 @@
             <param name="this">The pattern.</param>
             <param name="conclusions">Indicates conclusions to be used.</param>
             <returns>The pattern sort key.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.PatternConstructionStep">
-            <summary>
-            Provides with a step that is a <b>Pattern Construction</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="constructedPattern">Indicates the constructed pattern used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.PatternConstructionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainOrLoop,System.Object)">
-            <summary>
-            Provides with a step that is a <b>Pattern Construction</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="constructedPattern">Indicates the constructed pattern used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.PatternConstructionStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.PatternConstructionStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.PatternConstructionStep.Format">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.PatternConstructionStep.ConstructedPattern">
-            <summary>
-            The generated property declaration for parameter <c>constructedPattern</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.XyzWingConstructionStep">
-            <summary>
-            Provides with a step that is an <b>XYZ-Wing Construction</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="constructedPattern"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzWingConstructionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.XyzWing)">
-            <summary>
-            Provides with a step that is an <b>XYZ-Wing Construction</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="pattern"><inheritdoc/></param>
-            <param name="constructedPattern"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzWingConstructionStep.Code">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
@@ -27734,11 +27660,6 @@
               Looks up a localized string similar to XYZ-Ring.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_XyzWingConstructionStepSearcher">
-            <summary>
-              Looks up a localized string similar to XYZ-Wing Construction.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StuvwxyzWing">
             <summary>
               Looks up a localized string similar to STUVWXYZ-Wing.
@@ -29607,11 +29528,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.XyzWing">
             <summary>
               Looks up a localized string similar to XYZ-Wing.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.XyzWingConstruction">
-            <summary>
-              Looks up a localized string similar to XYZ-Wing Construction.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.YAxisSymmetry">

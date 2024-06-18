@@ -3328,20 +3328,21 @@
   <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
     <value>构造</value>
   </data>
-  <data name="XyzWingConstruction" xml:space="preserve">
-    <value>XYZ 构造</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
-    <value>XYZ 构造</value>
-    <comment>Step Searcher Name</comment>
-  </data>
   <data name="StepSearcherName_MultipleForcingChainsStepSearcher" xml:space="preserve">
     <value>强制链</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="TechniqueFormat_MultipleForcingChainsStep" xml:space="preserve">
     <value>{0}</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsGroupedFactor" xml:space="preserve">
+    <value>强制链带区块</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsGroupedNodeFactor" xml:space="preserve">
+    <value>强制链里的区块节点</value>
+  </data>
+  <data name="Factor_MultipleForcingChainsLengthFactor" xml:space="preserve">
+    <value>强制链的总长度</value>
   </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
@@ -3426,14 +3427,5 @@
   </data>
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
-  </data>
-  <data name="Factor_MultipleForcingChainsGroupedFactor" xml:space="preserve">
-    <value>强制链带区块</value>
-  </data>
-  <data name="Factor_MultipleForcingChainsGroupedNodeFactor" xml:space="preserve">
-    <value>强制链里的区块节点</value>
-  </data>
-  <data name="Factor_MultipleForcingChainsLengthFactor" xml:space="preserve">
-    <value>强制链的总长度</value>
   </data>
 </root>

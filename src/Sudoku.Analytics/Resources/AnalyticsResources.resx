@@ -3234,12 +3234,6 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueGroup_PatternConstruction" xml:space="preserve">
     <value>Pattern Constructions</value>
   </data>
-  <data name="XyzWingConstruction" xml:space="preserve">
-    <value>XYZ-Wing Construction</value>
-  </data>
-  <data name="StepSearcherName_XyzWingConstructionStepSearcher" xml:space="preserve">
-    <value>XYZ-Wing Construction</value>
-  </data>
   <data name="StepSearcherName_MultipleForcingChainsStepSearcher" xml:space="preserve">
     <value>Multiple Forcing Chains</value>
   </data>

@@ -114,7 +114,6 @@ file static class Extensions
 		{ Technique.SelfConstraint, 207 },
 		{ Technique.AlternatingInferenceChain, 208 },
 		{ Technique.DiscontinuousNiceLoop, 209 },
-		{ Technique.XyzWingConstruction, 210 },
 		{ Technique.GroupedFishyCycle, 211 },
 		{ Technique.GroupedXyCycle, 212 },
 		{ Technique.GroupedContinuousNiceLoop, 213 },
