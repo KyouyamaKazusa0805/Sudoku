@@ -1,8 +1,3 @@
-#define LOCKED_SET
-#define FISH
-#define UNIQUE_RECTANGLE
-#define AVOIDABLE_RECTANGLE
-
 namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
@@ -29,18 +24,10 @@ public abstract partial class ChainingRule
 	/// </summary>
 	public static readonly LinkType[] AdvancedLinkTypes = [
 		LinkType.LockedCandidates,
-#if LOCKED_SET
 		LinkType.AlmostLockedSet,
-#endif
-#if FISH
 		LinkType.KrakenNormalFish,
-#endif
-#if UNIQUE_RECTANGLE
 		LinkType.AlmostUniqueRectangle,
-#endif
-#if AVOIDABLE_RECTANGLE
 		LinkType.AlmostAvoidableRectangle
-#endif
 	];
 
 
