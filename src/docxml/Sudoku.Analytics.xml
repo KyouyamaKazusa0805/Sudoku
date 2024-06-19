@@ -463,15 +463,6 @@
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.Create(System.ReadOnlySpan{Sudoku.Concepts.Node},Sudoku.Concepts.Conclusion)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Chain"/> instance via a list of nodes.
-            </summary>
-            <param name="nodes">A list of nodes.</param>
-            <param name="conclusion">The conclusion.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.Chain"/> instance returned.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when conclusion cannot be found inside node list.</exception>
-        </member>
         <member name="M:Sudoku.Concepts.Chain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>

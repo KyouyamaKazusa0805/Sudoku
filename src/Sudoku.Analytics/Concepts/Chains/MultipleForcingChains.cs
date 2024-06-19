@@ -211,19 +211,52 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		}
 
 		// Only if the number of kraken branches is exact 2.
-		if (krakenBranches.Count != 2)
+		if (krakenBranches is not [[_, .. var firstKraken], [.. var secondKraken]])
 		{
 			goto ReturnFalse;
 		}
 
 		// If so, a finned chain is found. Now we should merge two branches into one, by rotating one of two branches,
 		// and concat two branches.
-		(result, fins) = (Chain.Create([.. krakenBranches[0][1..].Reverse(), .. krakenBranches[1][..]], Conclusion), finsFound);
+		(result, fins) = (c([.. firstKraken.Reverse(), .. secondKraken], Conclusion), finsFound);
 		return true;
 
 	ReturnFalse:
 		(result, fins) = (null, null);
 		return false;
+
+
+		static Chain c(ReadOnlySpan<Node> nodes, Conclusion conclusion)
+		{
+			// Find the node at the specified position in nodes.
+			var i = 0;
+			for (; i < nodes.Length; i++)
+			{
+				if (nodes[i].Map is [var c] && c == conclusion.Candidate)
+				{
+					break;
+				}
+			}
+			if (i == nodes.Length)
+			{
+				throw new InvalidOperationException();
+			}
+
+			var isOn = conclusion.ConclusionType == Elimination;
+			var currentNode = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+			var lastNode = currentNode;
+			i = (i + 1) % nodes.Length;
+			isOn = !isOn;
+
+			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
+			{
+				currentNode.Parent = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+				currentNode = currentNode.Parent;
+
+				isOn = !isOn;
+			}
+			return new(lastNode);
+		}
 	}
 
 	/// <inheritdoc/>
