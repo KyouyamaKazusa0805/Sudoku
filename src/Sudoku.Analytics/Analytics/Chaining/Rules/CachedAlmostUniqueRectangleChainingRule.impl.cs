@@ -4,32 +4,38 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 {
 	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
-		// Split the digit into two parts.
 		var otherOnlyDigit = Log2((uint)otherDigitsMask);
 		var cellsContainingThisDigit = CandidatesMap[otherOnlyDigit] & urCells;
-
 		var rowsSpanned = cellsContainingThisDigit.RowMask << 9;
-		var row1 = TrailingZeroCount(rowsSpanned);
-		var row2 = rowsSpanned.GetNextSet(row1);
-		var cells1 = cellsContainingThisDigit & HousesMap[row1];
-		var cells2 = cellsContainingThisDigit & HousesMap[row2];
-		if (linkOption != LinkOption.Intersection || cells1.IsInIntersection && cells2.IsInIntersection)
+		if (PopCount((uint)rowsSpanned) == 2)
 		{
-			var node1 = new Node(cells1 * otherOnlyDigit, false, true);
-			var node2 = new Node(cells2 * otherOnlyDigit, true, true);
-			linkDictionary.AddEntry(node1, node2, true, ur);
+			var row1 = TrailingZeroCount(rowsSpanned);
+			var row2 = rowsSpanned.GetNextSet(row1);
+			var cells1 = cellsContainingThisDigit & HousesMap[row1];
+			var cells2 = cellsContainingThisDigit & HousesMap[row2];
+			if (linkOption == LinkOption.Intersection && cells1.IsInIntersection && cells2.IsInIntersection
+				|| linkOption != LinkOption.Intersection)
+			{
+				var node1 = new Node(cells1 * otherOnlyDigit, false, true);
+				var node2 = new Node(cells2 * otherOnlyDigit, true, true);
+				linkDictionary.AddEntry(node1, node2, true, ur);
+			}
 		}
 
 		var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
-		var column1 = TrailingZeroCount(columnsSpanned);
-		var column2 = columnsSpanned.GetNextSet(column1);
-		var cells3 = cellsContainingThisDigit & HousesMap[column1];
-		var cells4 = cellsContainingThisDigit & HousesMap[column2];
-		if (linkOption != LinkOption.Intersection || cells3.IsInIntersection && cells4.IsInIntersection)
+		if (PopCount((uint)columnsSpanned) == 2)
 		{
-			var node3 = new Node(cells3 * otherOnlyDigit, false, true);
-			var node4 = new Node(cells4 * otherOnlyDigit, true, true);
-			linkDictionary.AddEntry(node3, node4, false, ur);
+			var column1 = TrailingZeroCount(columnsSpanned);
+			var column2 = columnsSpanned.GetNextSet(column1);
+			var cells3 = cellsContainingThisDigit & HousesMap[column1];
+			var cells4 = cellsContainingThisDigit & HousesMap[column2];
+			if (linkOption == LinkOption.Intersection && cells3.IsInIntersection && cells4.IsInIntersection
+				|| linkOption != LinkOption.Intersection)
+			{
+				var node3 = new Node(cells3 * otherOnlyDigit, false, true);
+				var node4 = new Node(cells4 * otherOnlyDigit, true, true);
+				linkDictionary.AddEntry(node3, node4, false, ur);
+			}
 		}
 	}
 
@@ -39,7 +45,8 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 		var cells1 = CandidatesMap[theOtherDigit1] & urCells;
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
-		if (linkOption != LinkOption.Intersection || cells1.IsInIntersection && cells2.IsInIntersection)
+		if (linkOption == LinkOption.Intersection && cells1.IsInIntersection && cells2.IsInIntersection
+			|| linkOption != LinkOption.Intersection)
 		{
 			var node1 = new Node(cells1 * theOtherDigit1, false, true);
 			var node2 = new Node(cells2 * theOtherDigit2, true, true);
