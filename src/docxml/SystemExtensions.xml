@@ -1464,6 +1464,15 @@
             The <see cref="T:System.ActionRefReadOnly`1"/> delegate to perform on each element of the <see cref="T:System.ReadOnlySpan`1"/>.
             </param>
         </member>
+        <member name="M:System.ReadOnlySpanExtensions.Reverse``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Returns a new <see cref="T:System.ReadOnlySpan`1"/> instance whose internal elements are all come from the current collection,
+            with reversed order.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The current collection.</param>
+            <returns>A new collection whose elements are in reversed order.</returns>
+        </member>
         <member name="M:System.ReadOnlySpanExtensions.EnumerateReversely``1(System.ReadOnlySpan{``0})">
             <summary>
             Iterates on each element, in reverse order.

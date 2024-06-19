@@ -3,7 +3,7 @@
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Represents a technique instance, which is used for comparison.
+/// Represents a technique as unique identifier on describing different techniques and their own patterns used.
 /// </summary>
 /// <remarks><b><i>
 /// Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
@@ -5201,6 +5201,28 @@ public enum Technique
 		StepType = typeof(NormalChainStep),
 		StepSearcherType = typeof(GroupedChainStepSearcher))]
 	NodeCollision,
+
+	/// <summary>
+	/// Indicates finned chain.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 62,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
+		StepType = typeof(FinnedChainStep),
+		StepSearcherType = typeof(MultipleForcingChainsStepSearcher))]
+	FinnedChain,
+
+	/// <summary>
+	/// Indicates finned grouped chain.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 62,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
+		StepType = typeof(FinnedChainStep),
+		StepSearcherType = typeof(MultipleForcingChainsStepSearcher))]
+	FinnedGroupedChain,
 	#endregion
 
 	//

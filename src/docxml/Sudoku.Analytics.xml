@@ -463,6 +463,15 @@
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Chain.Create(System.ReadOnlySpan{Sudoku.Concepts.Node},Sudoku.Concepts.Conclusion)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Chain"/> instance via a list of nodes.
+            </summary>
+            <param name="nodes">A list of nodes.</param>
+            <param name="conclusion">The conclusion.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Chain"/> instance returned.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when conclusion cannot be found inside node list.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.Chain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -1220,6 +1229,16 @@
             <param name="patternComparison">The chain comparison rule.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.TryCastToFinnedChain(Sudoku.Concepts.ChainOrLoop@,System.Nullable{Sudoku.Concepts.CandidateMap}@)">
+            <summary>
+            Try to cast the current instance into a finned chain pattern.
+            </summary>
+            <param name="result">The chain pattern result.</param>
+            <param name="fins">The fins of the chain.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the current instance can convert into a valid finned chain pattern.
+            </returns>
+        </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.GetHashCode">
             <inheritdoc/>
         </member>
@@ -1236,6 +1255,15 @@
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.CastToFinnedChain(Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Cast the current instance into a valid finned chain, or throws <see cref="T:System.InvalidOperationException"/>
+            if the current instance cannot be converted.
+            </summary>
+            <param name="fins">The fins converted.</param>
+            <returns>The pattern converted.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#Any">
             <inheritdoc/>
@@ -4824,7 +4852,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
-            Represents a technique instance, which is used for comparison.
+            Represents a technique as unique identifier on describing different techniques and their own patterns used.
             </summary>
             <remarks><b><i>
             Please note that some fields declared in this type may not be used by neither direct reference nor reflection,
@@ -6682,6 +6710,16 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.NodeCollision">
             <summary>
             Indicates special case that a grouped alternating inference chain has a collision between start and end node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedChain">
+            <summary>
+            Indicates finned chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedGroupedChain">
+            <summary>
+            Indicates finned grouped chain.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NishioForcingChains">
@@ -10047,7 +10085,7 @@
             <param name="supportedRules">Indicates the supported chaining rules.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.MultipleForcingChainsStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
             <summary>
             The collect method called by multiple forcing chains step searcher.
             </summary>
@@ -10503,6 +10541,8 @@
             <list type="bullet">
             <item>Cell Forcing Chains</item>
             <item>Region Forcing Chains (i.e. House Forcing Chains)</item>
+            <item>Finned Chain</item>
+            <item>Grouped Finned Chain</item>
             </list>
             </summary>
         </member>
@@ -15111,6 +15151,45 @@
         <member name="P:Sudoku.Analytics.Steps.ChainStep.Complexity">
             <summary>
             Indicates the length of the whole chain pattern, i.e. the number of links used in a pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.FinnedChainStep">
+            <summary>
+            Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="fins">Indicates the extra fins.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern"><inheritdoc/></param>
+            <param name="fins">Indicates the extra fins.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.BasedOn">
+            <summary>
+            Indicates the base technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.Fins">
+            <summary>
+            The generated property declaration for parameter <c>fins</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.MultipleForcingChainsStep">
@@ -25127,6 +25206,11 @@
               Looks up a localized string similar to The argument must be a single..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_CannotCastFinnedChain">
+            <summary>
+              Looks up a localized string similar to The current chain cannot convert into a valid finned chain..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ChainMemberNotOverridden">
             <summary>
               Looks up a localized string similar to The target type of the chain is not supported. You should override this property for that type..
@@ -25882,6 +25966,11 @@
               Looks up a localized string similar to  f.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.FinnedChain">
+            <summary>
+              Looks up a localized string similar to Finned Chain.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FinnedFrankenJellyfish">
             <summary>
               Looks up a localized string similar to Finned Franken Jellyfish.
@@ -25910,6 +25999,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.FinnedFrankenXWing">
             <summary>
               Looks up a localized string similar to Finned Franken X-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.FinnedGroupedChain">
+            <summary>
+              Looks up a localized string similar to Grouped Finned Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FinnedJellyfish">
@@ -28618,6 +28712,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ExtendedSubsetPrincipleStep">
             <summary>
               Looks up a localized string similar to Only the digit {0} can be duplicate in cells {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_FinnedChainStep">
+            <summary>
+              Looks up a localized string similar to {0}, with fins {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_FireworkPairType1Step">

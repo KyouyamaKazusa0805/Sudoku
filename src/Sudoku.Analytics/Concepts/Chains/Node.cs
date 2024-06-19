@@ -102,7 +102,7 @@ public sealed partial class Node(
 	/// <summary>
 	/// Indicates the parent node. The value doesn't participate in equality comparison.
 	/// </summary>
-	internal Node? Parent { get; init; }
+	internal Node? Parent { get; set; }
 
 	/// <summary>
 	/// The backing comparing value on <see cref="IsOn"/> property.

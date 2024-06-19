@@ -1366,6 +1366,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current chain cannot convert into a valid finned chain..
+        /// </summary>
+        public static string ErrorInfo_CannotCastFinnedChain {
+            get {
+                return ResourceManager.GetString("ErrorInfo_CannotCastFinnedChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target type of the chain is not supported. You should override this property for that type..
         /// </summary>
         public static string ErrorInfo_ChainMemberNotOverridden {
@@ -2725,6 +2734,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finned Chain.
+        /// </summary>
+        public static string FinnedChain {
+            get {
+                return ResourceManager.GetString("FinnedChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finned Franken Jellyfish.
         /// </summary>
         public static string FinnedFrankenJellyfish {
@@ -2775,6 +2793,15 @@ namespace Sudoku.Resources {
         public static string FinnedFrankenXWing {
             get {
                 return ResourceManager.GetString("FinnedFrankenXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Finned Chain.
+        /// </summary>
+        public static string FinnedGroupedChain {
+            get {
+                return ResourceManager.GetString("FinnedGroupedChain", resourceCulture);
             }
         }
         
@@ -7647,6 +7674,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_ExtendedSubsetPrincipleStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ExtendedSubsetPrincipleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}, with fins {1}.
+        /// </summary>
+        public static string TechniqueFormat_FinnedChainStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_FinnedChainStep", resourceCulture);
             }
         }
         

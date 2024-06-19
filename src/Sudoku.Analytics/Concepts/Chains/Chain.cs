@@ -287,4 +287,44 @@ public sealed partial class Chain(Node lastNode) : ChainOrLoop(lastNode, false)
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(ref readonly Grid grid) => [.. GetConclusions(in grid, First, Last)];
+
+
+	/// <summary>
+	/// Creates a <see cref="Chain"/> instance via a list of nodes.
+	/// </summary>
+	/// <param name="nodes">A list of nodes.</param>
+	/// <param name="conclusion">The conclusion.</param>
+	/// <returns>A <see cref="Chain"/> instance returned.</returns>
+	/// <exception cref="InvalidOperationException">Throws when conclusion cannot be found inside node list.</exception>
+	internal static Chain Create(ReadOnlySpan<Node> nodes, Conclusion conclusion)
+	{
+		// Find the node at the specified position in nodes.
+		var i = 0;
+		for (; i < nodes.Length; i++)
+		{
+			if (nodes[i].Map is [var c] && c == conclusion.Candidate)
+			{
+				break;
+			}
+		}
+		if (i == nodes.Length)
+		{
+			throw new InvalidOperationException();
+		}
+
+		var isOn = conclusion.ConclusionType == Elimination;
+		var currentNode = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+		var lastNode = currentNode;
+		i = (i + 1) % nodes.Length;
+		isOn = !isOn;
+
+		for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
+		{
+			currentNode.Parent = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+			currentNode = currentNode.Parent;
+
+			isOn = !isOn;
+		}
+		return new(lastNode);
+	}
 }

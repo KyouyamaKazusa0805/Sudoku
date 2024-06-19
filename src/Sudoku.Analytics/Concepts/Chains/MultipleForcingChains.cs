@@ -175,6 +175,57 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		return true;
 	}
 
+	/// <summary>
+	/// Try to cast the current instance into a finned chain pattern.
+	/// </summary>
+	/// <param name="result">The chain pattern result.</param>
+	/// <param name="fins">The fins of the chain.</param>
+	/// <returns>
+	/// A <see cref="bool"/> result indicating whether the current instance can convert into a valid finned chain pattern.
+	/// </returns>
+	public bool TryCastToFinnedChain([NotNullWhen(true)] out ChainOrLoop? result, [NotNullWhen(true)] out CandidateMap? fins)
+	{
+		// Determine whether the pattern is an elimination.
+		if (Conclusion.ConclusionType == Assignment)
+		{
+			goto ReturnFalse;
+		}
+
+		// Iterate on each branch, to get whether they can directly points to conclusion.
+		var finsFound = CandidateMap.Empty;
+		var krakenBranches = new List<ChainOrLoop>(2);
+		foreach (var branch in Values)
+		{
+			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(Conclusion.Candidate))
+			{
+				finsFound |= lastMap;
+				continue;
+			}
+
+			if (krakenBranches.Count >= 2)
+			{
+				goto ReturnFalse;
+			}
+
+			krakenBranches.Add(branch);
+		}
+
+		// Only if the number of kraken branches is exact 2.
+		if (krakenBranches.Count != 2)
+		{
+			goto ReturnFalse;
+		}
+
+		// If so, a finned chain is found. Now we should merge two branches into one, by rotating one of two branches,
+		// and concat two branches.
+		(result, fins) = (Chain.Create([.. krakenBranches[0][1..].Reverse(), .. krakenBranches[1][..]], Conclusion), finsFound);
+		return true;
+
+	ReturnFalse:
+		(result, fins) = (null, null);
+		return false;
+	}
+
 	/// <inheritdoc/>
 	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
@@ -215,6 +266,25 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			let pattern = kvp.Value
 			select $"{converter.CandidateConverter(candidate)}: {pattern.ToString(format, converter)}"
 		);
+	}
+
+	/// <summary>
+	/// Cast the current instance into a valid finned chain, or throws <see cref="InvalidOperationException"/>
+	/// if the current instance cannot be converted.
+	/// </summary>
+	/// <param name="fins">The fins converted.</param>
+	/// <returns>The pattern converted.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the current instance cannot be converted.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ChainOrLoop CastToFinnedChain(out CandidateMap fins)
+	{
+		if (TryCastToFinnedChain(out var result, out var f))
+		{
+			fins = f.Value;
+			return result;
+		}
+
+		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotCastFinnedChain"));
 	}
 
 	/// <inheritdoc/>

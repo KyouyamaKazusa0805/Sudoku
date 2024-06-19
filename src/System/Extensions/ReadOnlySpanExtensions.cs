@@ -13,7 +13,7 @@ public static class ReadOnlySpanExtensions
 	/// <typeparam name="T">The type of elements in the span.</typeparam>
 	/// <param name="this">The current collection.</param>
 	/// <param name="action">The <see cref="ActionRef{T}"/> delegate to perform on each element of the <see cref="Span{T}"/>.</param>
-	public static void ForEach<T>(this Span<T> @this, ActionRef<T> action)
+	public static void ForEach<T>(this scoped Span<T> @this, ActionRef<T> action)
 	{
 		foreach (ref var element in @this)
 		{
@@ -29,12 +29,29 @@ public static class ReadOnlySpanExtensions
 	/// <param name="action">
 	/// The <see cref="ActionRefReadOnly{T}"/> delegate to perform on each element of the <see cref="ReadOnlySpan{T}"/>.
 	/// </param>
-	public static void ForEach<T>(this ReadOnlySpan<T> @this, ActionRefReadOnly<T> action)
+	public static void ForEach<T>(this scoped ReadOnlySpan<T> @this, ActionRefReadOnly<T> action)
 	{
 		foreach (ref readonly var element in @this)
 		{
 			action(in element);
 		}
+	}
+
+	/// <summary>
+	/// Returns a new <see cref="ReadOnlySpan{T}"/> instance whose internal elements are all come from the current collection,
+	/// with reversed order.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The current collection.</param>
+	/// <returns>A new collection whose elements are in reversed order.</returns>
+	public static ReadOnlySpan<T> Reverse<T>(this scoped ReadOnlySpan<T> @this)
+	{
+		var result = new T[@this.Length];
+		for (var (i, j) = (@this.Length - 1, 0); i >= 0; i--, j++)
+		{
+			result[j] = @this[i];
+		}
+		return result;
 	}
 
 	/// <summary>

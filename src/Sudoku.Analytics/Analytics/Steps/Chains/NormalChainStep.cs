@@ -46,7 +46,7 @@ public partial class NormalChainStep(
 	public override int BaseDifficulty => 60;
 
 	/// <inheritdoc/>
-	public override int Complexity => Pattern.Length;
+	public sealed override int Complexity => Pattern.Length;
 
 	/// <inheritdoc/>
 	public override Technique Code => Pattern.GetTechnique(Conclusions.AsSet());
@@ -58,15 +58,15 @@ public partial class NormalChainStep(
 	/// <inheritdoc/>
 	public sealed override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
 
-	private string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+	private protected string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Step? other)
+	public sealed override bool Equals([NotNullWhen(true)] Step? other)
 		=> other is NormalChainStep comparer && Pattern.Equals(comparer.Pattern);
 
 	/// <inheritdoc/>
-	public override int CompareTo(Step? other)
+	public sealed override int CompareTo(Step? other)
 		=> other is NormalChainStep comparer
 			? SortKey.CompareTo(comparer.SortKey) is var result and not 0
 				? result

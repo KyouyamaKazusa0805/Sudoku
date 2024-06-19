@@ -3249,4 +3249,16 @@ Error grid: '{0:#}'</value>
   <data name="Factor_MultipleForcingChainsLengthFactor" xml:space="preserve">
     <value>Length of multiple forcing chains</value>
   </data>
+  <data name="FinnedChain" xml:space="preserve">
+    <value>Finned Chain</value>
+  </data>
+  <data name="FinnedGroupedChain" xml:space="preserve">
+    <value>Grouped Finned Chain</value>
+  </data>
+  <data name="ErrorInfo_CannotCastFinnedChain" xml:space="preserve">
+    <value>The current chain cannot convert into a valid finned chain.</value>
+  </data>
+  <data name="TechniqueFormat_FinnedChainStep" xml:space="preserve">
+    <value>{0}, with fins {1}</value>
+  </data>
 </root>

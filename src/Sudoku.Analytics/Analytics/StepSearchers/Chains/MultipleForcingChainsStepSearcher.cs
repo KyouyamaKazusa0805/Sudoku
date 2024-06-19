@@ -6,17 +6,19 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Cell Forcing Chains</item>
 /// <item>Region Forcing Chains (i.e. House Forcing Chains)</item>
+/// <item>Finned Chain</item>
+/// <item>Grouped Finned Chain</item>
 /// </list>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_MultipleForcingChainsStepSearcher",
-	Technique.CellForcingChains, Technique.RegionForcingChains)]
+	Technique.CellForcingChains, Technique.RegionForcingChains, Technique.FinnedChain, Technique.FinnedGroupedChain)]
 public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		var accumulator = new List<MultipleForcingChainsStep>();
+		var accumulator = new List<ChainStep>();
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;

@@ -12,20 +12,16 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(
-		ref AnalysisContext context,
-		List<NormalChainStep> accumulator,
-		ReadOnlySpan<ChainingRule> supportedRules
-	)
+	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var foundChain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
+		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
 		{
 			var step = new NormalChainStep(
-				c(foundChain, in grid, supportedRules),
-				CollectViews(in grid, foundChain, supportedRules),
+				c(chain, in grid, supportedRules),
+				CollectViews(in grid, chain, supportedRules),
 				context.Options,
-				foundChain
+				chain
 			);
 			if (context.OnlyFindOne)
 			{
@@ -60,29 +56,57 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectMultipleCore(
-		ref AnalysisContext context,
-		List<MultipleForcingChainsStep> accumulator,
-		ReadOnlySpan<ChainingRule> supportedRules
-	)
+	public static Step? CollectMultipleCore(ref AnalysisContext context, List<ChainStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var foundChain in ChainingDriver.CollectMultipleChains(in context.Grid, supportedRules, context.OnlyFindOne))
+		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, supportedRules, context.OnlyFindOne))
 		{
-			var step = new MultipleForcingChainsStep(
-				[foundChain.Conclusion],
-				CollectViews(in grid, foundChain.Conclusion, foundChain, supportedRules),
+			if (chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			{
+				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
+				var views = (View[])[
+					[
+						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
+						.. CollectViews(in grid, finnedChain, supportedRules)[0]
+					]
+				];
+
+				// Change nodes into fin-like view nodes.
+				foreach (var node in views[0].ToArray())
+				{
+					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
+					{
+						views[0].Remove(node);
+						views[0].Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+					}
+				}
+
+				var finnedChainStep = new FinnedChainStep(
+					[chain.Conclusion],
+					views,
+					context.Options,
+					finnedChain,
+					in fins
+				);
+				if (context.OnlyFindOne)
+				{
+					return finnedChainStep;
+				}
+				accumulator.Add(finnedChainStep);
+				continue;
+			}
+
+			var mfcStep = new MultipleForcingChainsStep(
+				[chain.Conclusion],
+				CollectViews(in grid, chain.Conclusion, chain, supportedRules),
 				context.Options,
-				foundChain
+				chain
 			);
 			if (context.OnlyFindOne)
 			{
-				return step;
+				return mfcStep;
 			}
-			if (!accumulator.Contains(step))
-			{
-				accumulator.Add(step);
-			}
+			accumulator.Add(mfcStep);
 		}
 		return null;
 	}
