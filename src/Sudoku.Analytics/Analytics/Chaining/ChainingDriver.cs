@@ -126,7 +126,10 @@ internal static class ChainingDriver
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
-							if (!nodeSupposedToOff.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn)
+							// The second argument must be 'NodeComparison.IgnoreIsOn' because we should explicitly ignore them.
+							// Counter-example:
+							//   4.+3.6+85...+57.....8+89.5...3..7..+8+6.2.23..94.+8..+84.....15..6..8+7+3+3..+871.5.+7+68.....2:114 124 324 425 427 627 943 366 667 967 272 273 495 497
+							if (!nodeSupposedToOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
 								&& visitedNodesSupposedToOff.Add(nodeSupposedToOff))
 							{
 								pendingNodesSupposedToOff.AddLast(nextNode);
@@ -162,7 +165,7 @@ internal static class ChainingDriver
 							Next:;
 							}
 
-							if (!nodeSupposedToOn.IsAncestorOf(currentNode, NodeComparison.IncludeIsOn)
+							if (!nodeSupposedToOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
 								&& visitedNodesSupposedToOn.Add(nodeSupposedToOn))
 							{
 								pendingNodesSupposedToOn.AddLast(nextNode);
