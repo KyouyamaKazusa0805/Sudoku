@@ -10076,13 +10076,14 @@
             <param name="supportedRules">Indicates the supported chaining rules.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Boolean)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
             <param name="supportedRules">Indicates the supported rules.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
             <returns>The first found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
@@ -10512,6 +10513,19 @@
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Chaining.ChainingDriver" />
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.FinnedChainStepSearcher">
+            <summary>
+            Provides with a <b>Finned Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Finned Chain</item>
+            <item>Grouped Finned Chain</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.FinnedChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher">
             <summary>
             Provides with a <b>Grouped Chain</b> step searcher.
@@ -10532,8 +10546,6 @@
             <list type="bullet">
             <item>Cell Forcing Chains</item>
             <item>Region Forcing Chains (i.e. House Forcing Chains)</item>
-            <item>Finned Chain</item>
-            <item>Grouped Finned Chain</item>
             </list>
             </summary>
         </member>
@@ -27688,6 +27700,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ExtendedSubsetPrincipleStepSearcher">
             <summary>
               Looks up a localized string similar to Extended Subset Principle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_FinnedChainStepSearcher">
+            <summary>
+              Looks up a localized string similar to Finned Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_FireworkStepSearcher">

@@ -5851,6 +5851,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finned Chain.
+        /// </summary>
+        public static string StepSearcherName_FinnedChainStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_FinnedChainStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firework.
         /// </summary>
         public static string StepSearcherName_FireworkStepSearcher {

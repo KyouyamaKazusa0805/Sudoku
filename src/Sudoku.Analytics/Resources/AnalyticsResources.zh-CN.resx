@@ -3344,6 +3344,21 @@
   <data name="Factor_MultipleForcingChainsLengthFactor" xml:space="preserve">
     <value>强制链的总长度</value>
   </data>
+  <data name="FinnedChain" xml:space="preserve">
+    <value>鳍链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="FinnedGroupedChain" xml:space="preserve">
+    <value>区块鳍链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ErrorInfo_CannotCastFinnedChain" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TechniqueFormat_FinnedChainStep" xml:space="preserve">
+    <value>{0}，鱼鳍为 {1}</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3428,19 +3443,8 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
-  <data name="FinnedChain" xml:space="preserve">
-    <value>鳍链</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="FinnedGroupedChain" xml:space="preserve">
-    <value>区块鳍链</value>
-    <comment>Technique Name</comment>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ErrorInfo_CannotCastFinnedChain" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="TechniqueFormat_FinnedChainStep" xml:space="preserve">
-    <value>{0}，鱼鳍为 {1}</value>
+  <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
+    <value>鳍链/区块鳍链</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

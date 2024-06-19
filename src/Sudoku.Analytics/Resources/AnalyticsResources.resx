@@ -3261,4 +3261,7 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueFormat_FinnedChainStep" xml:space="preserve">
     <value>{0}, with fins {1}</value>
   </data>
+  <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
+    <value>Finned Chain</value>
+  </data>
 </root>

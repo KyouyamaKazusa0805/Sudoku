@@ -55,13 +55,19 @@ internal static class ChainModule
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported rules.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectMultipleCore(ref AnalysisContext context, List<ChainStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
+	public static Step? CollectMultipleCore(
+		ref AnalysisContext context,
+		List<ChainStep> accumulator,
+		ReadOnlySpan<ChainingRule> supportedRules,
+		bool onlyFindFinnedChain
+	)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, supportedRules, context.OnlyFindOne))
 		{
-			if (chain.TryCastToFinnedChain(out var finnedChain, out var f))
+			if (chain.TryCastToFinnedChain(out var finnedChain, out var f) && onlyFindFinnedChain)
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
 				var views = (View[])[
@@ -96,17 +102,20 @@ internal static class ChainModule
 				continue;
 			}
 
-			var mfcStep = new MultipleForcingChainsStep(
-				[chain.Conclusion],
-				CollectViews(in grid, chain.Conclusion, chain, supportedRules),
-				context.Options,
-				chain
-			);
-			if (context.OnlyFindOne)
+			if (!onlyFindFinnedChain)
 			{
-				return mfcStep;
+				var mfcStep = new MultipleForcingChainsStep(
+					[chain.Conclusion],
+					CollectViews(in grid, chain.Conclusion, chain, supportedRules),
+					context.Options,
+					chain
+				);
+				if (context.OnlyFindOne)
+				{
+					return mfcStep;
+				}
+				accumulator.Add(mfcStep);
 			}
-			accumulator.Add(mfcStep);
 		}
 		return null;
 	}
