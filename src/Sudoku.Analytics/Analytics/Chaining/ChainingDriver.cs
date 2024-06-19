@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Chaining;
 using static CachedChainingComparers;
 
 /// <summary>
-/// Provides a driver module on chaining.
+/// Provides a driver that can generate normal chains and forcing chains.
 /// </summary>
 internal static class ChainingDriver
 {

@@ -108,7 +108,7 @@ internal static class ChainModule
 		];
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.CollectExtraViewNodes(in grid, foundChain, ref result[0]);
+			supportedRule.CollectExtraViewNodes(in grid, foundChain, result[0], out _);
 		}
 		return result;
 
@@ -136,18 +136,17 @@ internal static class ChainModule
 		ReadOnlySpan<ChainingRule> supportedRules
 	)
 	{
-		var nodesList = v(in grid, foundChain, supportedRules);
-		var result = new View[nodesList.Length];
-		for (var i = 0; i < nodesList.Length; i++)
+		var viewNodes = v(in grid, foundChain, supportedRules);
+		var result = new View[viewNodes.Length];
+		for (var i = 0; i < viewNodes.Length; i++)
 		{
 			result[i] = [
 				..
-				from node in nodesList[i]
+				from node in viewNodes[i]
 				where node is not CandidateViewNode { Candidate: var c } || c != conclusion.Candidate
 				select node
 			];
 		}
-
 		foreach (var supportedRule in supportedRules)
 		{
 			supportedRule.CollectExtraViewNodes(in grid, foundChain, result);

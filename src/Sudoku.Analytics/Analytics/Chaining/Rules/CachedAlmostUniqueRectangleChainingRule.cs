@@ -95,8 +95,9 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
 	{
+		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
 			if (link.GroupedLinkPattern is UniqueRectangle { Cells: var cells, DigitsMask: var digitsMask })
@@ -111,7 +112,9 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 						{
 							view.Remove(candidateViewNode);
 						}
-						view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary3, candidate));
+						var node = new CandidateViewNode(ColorIdentifier.Auxiliary3, candidate);
+						view.Add(node);
+						result.Add(node);
 					}
 				}
 				foreach (var cell in cells)
@@ -120,10 +123,13 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 					{
 						view.Remove(cellViewNode);
 					}
-					view.Add(new CellViewNode(ColorIdentifier.Auxiliary3, cell));
+					var node = new CellViewNode(ColorIdentifier.Auxiliary3, cell);
+					view.Add(node);
+					result.Add(node);
 				}
 			}
 		}
+		nodes = result.AsReadOnlySpan();
 	}
 
 

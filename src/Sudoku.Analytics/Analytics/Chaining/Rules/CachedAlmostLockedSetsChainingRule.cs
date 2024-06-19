@@ -107,9 +107,10 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
 	{
 		var alsIndex = 0;
+		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
 			if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells })
@@ -121,56 +122,23 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			var id = (ColorIdentifier)(alsIndex + WellKnownColorIdentifierKind.AlmostLockedSet1);
 			foreach (var cell in cells)
 			{
-				view.Add(new CellViewNode(id, cell));
+				var node1 = new CellViewNode(id, cell);
+				view.Add(node1);
+				result.Add(node1);
 				foreach (var digit in grid.GetCandidates(cell))
 				{
 					var candidate = cell * 9 + digit;
 					if (!linkMap.Contains(candidate))
 					{
-						view.Add(new CandidateViewNode(id, cell * 9 + digit));
+						var node2 = new CandidateViewNode(id, cell * 9 + digit);
+						view.Add(node2);
+						result.Add(node2);
 					}
 				}
 			}
-
 			alsIndex = (alsIndex + 1) % 5;
 		}
-	}
-
-	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, MultipleForcingChains pattern, View[] views)
-	{
-		var alsIndex = 0;
-		var branchIndex = 1;
-		foreach (var branch in pattern.Values)
-		{
-			foreach (var link in branch.Links)
-			{
-				if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells })
-				{
-					continue;
-				}
-
-				var linkMap = link.FirstNode.Map | link.SecondNode.Map;
-				var id = (ColorIdentifier)(alsIndex + WellKnownColorIdentifierKind.AlmostLockedSet1);
-				foreach (var cell in cells)
-				{
-					views[branchIndex].Add(new CellViewNode(id, cell));
-					views[0].Add(new CellViewNode(id, cell));
-					foreach (var digit in grid.GetCandidates(cell))
-					{
-						var candidate = cell * 9 + digit;
-						if (!linkMap.Contains(candidate))
-						{
-							views[branchIndex].Add(new CandidateViewNode(id, candidate));
-							views[0].Add(new CandidateViewNode(id, candidate));
-						}
-					}
-				}
-
-				alsIndex = (alsIndex + 1) % 5;
-			}
-			branchIndex++;
-		}
+		nodes = result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc/>

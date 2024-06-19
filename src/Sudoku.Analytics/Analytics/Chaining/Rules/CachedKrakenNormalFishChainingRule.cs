@@ -144,9 +144,10 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
+	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
 	{
 		var candidatesMap = grid.CandidatesMap;
+		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
 			if (link.GroupedLinkPattern is not Fish { Digit: var digit, BaseSets: var baseSets, Exofins: var fins })
@@ -163,10 +164,14 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					{
 						view.Remove(candidateViewNode);
 					}
-					view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate));
+
+					var node = new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate);
+					view.Add(node);
+					result.Add(node);
 				}
 			}
 		}
+		nodes = result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc/>

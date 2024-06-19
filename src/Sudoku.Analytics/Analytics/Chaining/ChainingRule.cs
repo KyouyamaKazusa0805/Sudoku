@@ -66,15 +66,15 @@ public abstract partial class ChainingRule
 	/// </summary>
 	/// <param name="grid">The grid as candidate references.</param>
 	/// <param name="pattern">The pattern to collect view nodes.</param>
-	/// <param name="view">The <see cref="View"/> instance to be updated.</param>
+	/// <param name="view">A <see cref="View"/> instance that is applied for view nodes appended.</param>
+	/// <param name="nodes">A list of <see cref="ViewNode"/> that is created from this method.</param>
 	/// <remarks>
-	/// The method by default will do nothing.
+	/// The method by default will do nothing, with an empty <see cref="ReadOnlySpan{T}"/> returned
+	/// from argument <paramref name="nodes"/>.
 	/// </remarks>
 	/// <seealso cref="View"/>
-	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, ref View view)
-	{
-		// Do nothing.
-	}
+	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+		=> nodes = [];
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern on multiple forcing chains.
@@ -83,13 +83,17 @@ public abstract partial class ChainingRule
 	/// <param name="grid">The grid as candidate references.</param>
 	/// <param name="pattern">The pattern to collect view nodes.</param>
 	/// <param name="views">The <see cref="View"/> instances to be updated.</param>
-	/// <remarks>
-	/// The method by default will do nothing.
-	/// </remarks>
 	/// <seealso cref="View"/>
 	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, MultipleForcingChains pattern, View[] views)
 	{
-		// Do nothing.
+		var viewIndex = 1;
+		foreach (var branch in pattern.Values)
+		{
+			CollectExtraViewNodes(in grid, branch, views[viewIndex], out var nodes);
+			views[0].AddRange(nodes);
+
+			viewIndex++;
+		}
 	}
 
 	/// <summary>
