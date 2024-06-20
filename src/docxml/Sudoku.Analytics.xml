@@ -1197,6 +1197,13 @@
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
+            <summary>
+            Determines whether all elements in this collection satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.CompareTo(Sudoku.Concepts.MultipleForcingChains)">
             <inheritdoc/>
         </member>

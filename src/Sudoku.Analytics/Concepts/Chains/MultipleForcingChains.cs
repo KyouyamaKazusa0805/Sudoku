@@ -89,6 +89,23 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		return false;
 	}
 
+	/// <summary>
+	/// Determines whether all elements in this collection satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool TrueForAll(Func<ChainOrLoop, bool> predicate)
+	{
+		foreach (var element in Values)
+		{
+			if (!predicate(element))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(MultipleForcingChains? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
@@ -244,15 +261,11 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 
 			var isOn = conclusion.ConclusionType == Elimination;
 			var currentNode = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
-			var lastNode = currentNode;
-			i = (i + 1) % nodes.Length;
-			isOn = !isOn;
-
+			(var lastNode, i, isOn) = (currentNode, (i + 1) % nodes.Length, !isOn);
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
 				currentNode.Parent = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
 				currentNode = currentNode.Parent;
-
 				isOn = !isOn;
 			}
 			return new(lastNode);
