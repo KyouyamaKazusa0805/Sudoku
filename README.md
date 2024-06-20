@@ -113,6 +113,9 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Grouped Alternating Inference Chains
       * Grouped Continuous Nice Loops
       * Node Collision
+    * Burred logic
+      * Finned Chain
+      * Grouped Finned Chain
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Extended Subset Principle
