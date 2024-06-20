@@ -3633,15 +3633,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Check whether the target cell is lying in two cross-line cells houses, and lying in the block for the locked member.
 			// If so, we should treat this as an invalid case.
 			// This is because the intersection cell (this target cell) will be counted twice instead of once.
-			// This will fixes issue #603 and #605:
-			//
+			// This will fix issue #603 and #605:
 			//   * https://github.com/SunnieShine/Sudoku/issues/603
 			//   * https://github.com/SunnieShine/Sudoku/issues/605
-			//
 			// This rule is just like an endo-fin. 
 			//
 			// Example:
-			//
 			//   +71..+8...4..27..83.+3+85..6+19+7+1.8.+625+7+35+2.13+7.+8..37+85..1..+7.5.836.2+5.6..+7+48+86..7....:
 			//     214 425 426 175 975
 			var endofinTargetCounter = 0;

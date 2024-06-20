@@ -99,7 +99,18 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 
 					// Strong.
 					var cells1 = baseSetsMap & ~fins;
-					if (cells1.Count < size << 1)
+					if (cells1.Count < size << 1 || IsPow2(cells1.BlockMask))
+					{
+						// A valid fish node cannot be degenerated, or all cells are inside a block.
+						continue;
+					}
+
+					// Verification: avoid X-Wing nodes that can also be used as UR nodes.
+					// This will fix issue #672:
+					//   * https://github.com/SunnieShine/Sudoku/issues/672
+					// Counter-example:
+					//   .+1..6...5..9....1.3....12..2..4+98...+9.1.5..8..68..39...9..3......4..5..91..2+4+97..:714 814 724 824 327 734 834 657 659 169 571 674 184 885
+					if (PopCount((uint)cells1.BlockMask) == 2)
 					{
 						continue;
 					}
@@ -113,13 +124,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					// because it will be rendered into view nodes; but they are plain ones,
 					// behaved as normal locked candidate nodes.
 					var elimMap = coverSetsMap & ~baseSetsMap;
-					var cells3 = baseSetsMap & ~fins;
-					if (IsPow2(cells3.BlockMask))
-					{
-						continue;
-					}
-
-					var node3 = new Node(cells3 * digit, true, true);
+					var node3 = ~node1;
 					var limit = linkOption switch
 					{
 						LinkOption.Intersection => 3,
