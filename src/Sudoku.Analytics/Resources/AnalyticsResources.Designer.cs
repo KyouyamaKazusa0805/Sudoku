@@ -2095,6 +2095,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blossom loop is grouped.
+        /// </summary>
+        public static string Factor_BlossomLoopGroupedFactor {
+            get {
+                return ResourceManager.GetString("Factor_BlossomLoopGroupedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped nodes in blossom loop.
+        /// </summary>
+        public static string Factor_BlossomLoopGroupedNodeFactor {
+            get {
+                return ResourceManager.GetString("Factor_BlossomLoopGroupedNodeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length of blossom loop.
         /// </summary>
         public static string Factor_BlossomLoopLengthFactor {

@@ -20,6 +20,11 @@ public sealed partial class BlossomLoopStep(
 	/// <inheritdoc/>
 	public override bool IsDynamic => false;
 
+	/// <summary>
+	/// Indicates whether the pattern uses grouped nodes.
+	/// </summary>
+	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+
 	/// <inheritdoc/>
 	public override int Complexity => Pattern.Complexity;
 
@@ -28,4 +33,24 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BlossomLoop;
+
+
+	/// <inheritdoc/>
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [ChainsStr]), new(ChineseLanguage, [ChainsStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new BlossomLoopGroupedFactor(), new BlossomLoopGroupedNodeFactor(), new BlossomLoopLengthFactor()];
+
+	private string ChainsStr => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is BlossomLoopStep comparer && Pattern.Equals(comparer.Pattern);
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
+		=> other is BlossomLoopStep comparer ? Pattern.CompareTo(comparer.Pattern) : -1;
 }

@@ -3359,6 +3359,10 @@
   <data name="TechniqueFormat_FinnedChainStep" xml:space="preserve">
     <value>{0}，鱼鳍为 {1}</value>
   </data>
+  <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
+    <value>鳍链/区块鳍链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3443,8 +3447,10 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
-  <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
-    <value>鳍链/区块鳍链</value>
-    <comment>Step Searcher Name</comment>
+  <data name="Factor_BlossomLoopGroupedFactor" xml:space="preserve">
+    <value>绽放环是否带区块</value>
+  </data>
+  <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
+    <value>绽放环里的区块节点</value>
   </data>
 </root>

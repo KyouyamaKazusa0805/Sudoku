@@ -15284,6 +15284,11 @@
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.IsDynamic">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.IsGrouped">
+            <summary>
+            Indicates whether the pattern uses grouped nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Complexity">
             <inheritdoc/>
         </member>
@@ -15291,6 +15296,18 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Pattern">
@@ -23568,6 +23585,48 @@
         <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor">
+            <summary>
+            Represents a factor that describes the grouped logic in a blossom loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor">
+            <summary>
+            Represents a factor that describes grouped nodes in a blossom loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
+            <summary>
+            Represents a factor that describes the length of a blossom loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor">
             <summary>
             Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>.
@@ -23638,48 +23697,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor">
-            <summary>
-            Represents a factor that describes the grouped logic in a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor">
-            <summary>
-            Represents a factor that describes grouped nodes in a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor">
-            <summary>
-            Represents a factor that describes the length of a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
@@ -23966,6 +23983,48 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor">
+            <summary>
+            Represents a factor that describes the grouped logic in a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor">
+            <summary>
+            Represents a factor that describes grouped nodes in a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor">
+            <summary>
+            Represents a factor that describes the length of a multiple forcing chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor">
@@ -25785,6 +25844,16 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueUniversalGraveType2TrueCandidateFactor">
             <summary>
               Looks up a localized string similar to Number of true candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopGroupedFactor">
+            <summary>
+              Looks up a localized string similar to Blossom loop is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopGroupedNodeFactor">
+            <summary>
+              Looks up a localized string similar to Grouped nodes in blossom loop.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopLengthFactor">

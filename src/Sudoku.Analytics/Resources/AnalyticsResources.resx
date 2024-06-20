@@ -3264,4 +3264,10 @@ Error grid: '{0:#}'</value>
   <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
     <value>Finned Chain</value>
   </data>
+  <data name="Factor_BlossomLoopGroupedFactor" xml:space="preserve">
+    <value>Blossom loop is grouped</value>
+  </data>
+  <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
+    <value>Grouped nodes in blossom loop</value>
+  </data>
 </root>

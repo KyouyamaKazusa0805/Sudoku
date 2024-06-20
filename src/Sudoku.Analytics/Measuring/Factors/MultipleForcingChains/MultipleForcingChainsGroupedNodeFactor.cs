@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Measuring.Factors;
+namespace Sudoku.Measuring.Factors;
 
 /// <summary>
 /// Represents a factor that describes grouped nodes in a multiple forcing chains.
