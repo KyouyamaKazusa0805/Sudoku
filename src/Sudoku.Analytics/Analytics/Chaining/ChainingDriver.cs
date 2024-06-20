@@ -274,20 +274,20 @@ internal static class ChainingDriver
 							continue;
 						}
 
-						var rfc = new MultipleForcingChains(conclusion);
+						var mfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							rfc.Add(
+							mfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 							);
 						}
 						if (onlyFindOne)
 						{
-							return (MultipleForcingChains[])[rfc];
+							return (MultipleForcingChains[])[mfc];
 						}
-						result.Add(rfc);
+						result.Add(mfc);
 					}
 					foreach (var node in nodesSupposedOff_ImplicitlyToCurrentNode_InHouse)
 					{
@@ -303,20 +303,20 @@ internal static class ChainingDriver
 							continue;
 						}
 
-						var rfc = new MultipleForcingChains(conclusion);
+						var mfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
 							var branchNode = nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
-							rfc.Add(
+							mfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 							);
 						}
 						if (onlyFindOne)
 						{
-							return (MultipleForcingChains[])[rfc];
+							return (MultipleForcingChains[])[mfc];
 						}
-						result.Add(rfc);
+						result.Add(mfc);
 					}
 				}
 
