@@ -241,7 +241,7 @@ public abstract partial class Step(
 		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
 		var currentCultureName = culture.Name;
 		var colonToken = ResourceDictionary.Get("Colon", culture ?? ResultCurrentCulture);
-		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
+		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageName, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
 			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(culture),
