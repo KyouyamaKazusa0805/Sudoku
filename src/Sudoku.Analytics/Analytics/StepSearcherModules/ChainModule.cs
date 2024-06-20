@@ -192,7 +192,7 @@ internal static class ChainModule
 			var result = new ViewNode[foundChain.Count + 1][];
 			ViewNode houseOrCellNode = foundChain.IsCellMultiple
 				? new CellViewNode(ColorIdentifier.Normal, foundChain.First().Key / 9)
-				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(foundChain.CandidatesUsed.Cells.SharedHouses));
+				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(foundChain.Candidates.Cells.SharedHouses));
 
 			var i = 0;
 			var globalView = new List<ViewNode>();

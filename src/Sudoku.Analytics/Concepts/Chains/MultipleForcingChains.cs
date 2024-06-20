@@ -7,7 +7,8 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <para>
 /// By the way, this type is directly derived from <see cref="SortedDictionary{TKey, TValue}"/>
-/// of key and value types <see cref="Candidate"/> and <see cref="WeakForcingChain"/> respectively.
+/// of key and value types <see cref="Candidate"/> and <see cref="StrongForcingChain"/> or <see cref="WeakForcingChain"/>
+/// respectively.
 /// </para>
 /// <para>
 /// For keys, <see cref="Candidate"/> describes for a candidate used as the start of a branch.
@@ -25,6 +26,8 @@ namespace Sudoku.Concepts;
 /// </remarks>
 /// <seealso cref="SortedDictionary{TKey, TValue}"/>
 /// <seealso cref="Candidate"/>
+/// <seealso cref="StrongForcingChain"/>
+/// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] Conclusion conclusion) :
@@ -44,7 +47,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// the property <see cref="IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsHouseMultiple"/>
-	public bool IsCellMultiple => CandidatesUsed.Cells.Count == 1;
+	public bool IsCellMultiple => Candidates.Cells.Count == 1;
 
 	/// <summary>
 	/// Indicates whether the pattern is aimed to a house, producing multiple branches.
@@ -54,7 +57,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// the property <see cref="IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsCellMultiple"/>
-	public bool IsHouseMultiple => IsPow2(CandidatesUsed.Digits);
+	public bool IsHouseMultiple => IsPow2(Candidates.Digits);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.
@@ -69,7 +72,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// <summary>
 	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
 	/// </summary>
-	public CandidateMap CandidatesUsed => [.. Keys];
+	public CandidateMap Candidates => [.. Keys];
 
 
 	/// <summary>
@@ -128,7 +131,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			return r1;
 		}
 
-		var (map1, map2) = (CandidatesUsed, other.CandidatesUsed);
+		var (map1, map2) = (Candidates, other.Candidates);
 		if (map1.CompareTo(in map2) is var r2 and not 0)
 		{
 			return r2;
@@ -175,7 +178,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			return false;
 		}
 
-		var (map1, map2) = (CandidatesUsed, other.CandidatesUsed);
+		var (map1, map2) = (Candidates, other.Candidates);
 		if (map1 != map2)
 		{
 			return false;

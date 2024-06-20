@@ -335,6 +335,118 @@
             <returns>All true candidates.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.BlossomLoop">
+            <summary>
+            Represents a blossom loop pattern that starts with a house or a candidate, and ends with a hosue or a candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.Complexity">
+            <summary>
+            Indicates the complexity of the whole pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.BranchedComplexity">
+            <summary>
+            Indicates the complexity of each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.StartCandidates">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.EndCandidates">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the end.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.Exists(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
+            <summary>
+            Determines whether the collection contains at least one element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.TrueForAll(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
+            <summary>
+            Determines whether all elements in this collection satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.Equals(Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.Equals(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Concepts.BlossomLoop"/> are considered equal.
+            </summary>
+            <param name="other">The other instance to be checked.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.CompareTo(Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.CompareTo(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares the value with the other one, to get which one is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainOrLoopComparison)">
+            <summary>
+            Calculates a hash code value used for comparison.
+            </summary>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>Hash code value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.BlossomLoop.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.ValueTuple{System.Int32,System.Int32},Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.ValueTuple{System.Int32,System.Int32},Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_Equality(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_Inequality(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_GreaterThan(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_LessThan(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_GreaterThanOrEqual(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.op_LessThanOrEqual(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
             Represents a chain.
@@ -764,11 +876,9 @@
         </member>
         <member name="T:Sudoku.Concepts.ChainOrLoopComparison">
             <summary>
-            Provides with a comparison rule on <see cref="T:Sudoku.Concepts.ChainOrLoop"/> instances (i.e. <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/>).
+            Provides with a comparison rule on <see cref="T:Sudoku.Concepts.ChainOrLoop"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
-            <seealso cref="T:Sudoku.Concepts.Chain"/>
-            <seealso cref="T:Sudoku.Concepts.Loop"/>
         </member>
         <member name="F:Sudoku.Concepts.ChainOrLoopComparison.Undirected">
             <summary>
@@ -1107,7 +1217,8 @@
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakForcingChain"/> respectively.
+            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.StrongForcingChain"/> or <see cref="T:Sudoku.Concepts.WeakForcingChain"/>
+            respectively.
             </para>
             <para>
             For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
@@ -1125,6 +1236,8 @@
             </remarks>
             <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
             <seealso cref="T:System.Int32"/>
+            <seealso cref="T:Sudoku.Concepts.StrongForcingChain"/>
+            <seealso cref="T:Sudoku.Concepts.WeakForcingChain"/>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion)">
@@ -1135,7 +1248,8 @@
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
-            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.WeakForcingChain"/> respectively.
+            of key and value types <see cref="T:System.Int32"/> and <see cref="T:Sudoku.Concepts.StrongForcingChain"/> or <see cref="T:Sudoku.Concepts.WeakForcingChain"/>
+            respectively.
             </para>
             <para>
             For keys, <see cref="T:System.Int32"/> describes for a candidate used as the start of a branch.
@@ -1153,6 +1267,8 @@
             </remarks>
             <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
             <seealso cref="T:System.Int32"/>
+            <seealso cref="T:Sudoku.Concepts.StrongForcingChain"/>
+            <seealso cref="T:Sudoku.Concepts.WeakForcingChain"/>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
         <member name="P:Sudoku.Concepts.MultipleForcingChains.IsCellMultiple">
@@ -1185,7 +1301,7 @@
             Indicates the complexity of each branch.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.MultipleForcingChains.CandidatesUsed">
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.Candidates">
             <summary>
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
@@ -10496,6 +10612,18 @@
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedSubsetPrincipleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
+            <summary>
+            Provides with a <b>Blossom Loop</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Blossom Loop</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher.
@@ -15130,6 +15258,44 @@
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
+            <summary>
+            Provides with a step that is a <b>Blossom Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the backing pattern.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.BlossomLoop)">
+            <summary>
+            Provides with a step that is a <b>Blossom Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the backing pattern.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ChainStep">

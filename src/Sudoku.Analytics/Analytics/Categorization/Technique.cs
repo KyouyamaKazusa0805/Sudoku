@@ -5328,10 +5328,9 @@ public enum Technique
 	/// Indicates blossom loop.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 80,
+		Rating = 65,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.BlossomLoop,
-		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
 	BlossomLoop,
 	#endregion
