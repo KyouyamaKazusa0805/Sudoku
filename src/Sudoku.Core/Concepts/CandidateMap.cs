@@ -381,9 +381,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> formatProvider switch
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
-			CultureInfo c => CoordinateConverter.GetConverter(c).CandidateConverter(this),
-			CoordinateConverter c => c.CandidateConverter(this),
-			_ => CoordinateConverter.InvariantCultureConverter.CandidateConverter(this)
+			_ => CoordinateConverter.GetConverter(formatProvider).CandidateConverter(this)
 		};
 
 	/// <inheritdoc/>
@@ -637,14 +635,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse(string s, IFormatProvider? provider)
-		=> provider switch
-		{
-			CandidateMapFormatInfo i => i.ParseMap(s),
-			CoordinateParser c => c.CandidateParser(s),
-			CultureInfo c => Parse(s, CoordinateParser.GetParser(c)),
-			_ => Parse(s)
-		};
+	public static CandidateMap Parse(string s, IFormatProvider? provider) => CoordinateParser.GetParser(provider).CandidateParser(s);
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

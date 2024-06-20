@@ -3468,12 +3468,12 @@
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetConverter(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetConverter(System.IFormatProvider)">
             <summary>
-            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance from the specified culture.
+            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance from the specified format provider.
             </summary>
-            <param name="culture">The culture.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance from the specified culture.</returns>
+            <param name="formatProvider">The format provider instance.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance as the final result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateParser">
             <summary>
@@ -3545,11 +3545,11 @@
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetParser(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetParser(System.IFormatProvider)">
             <summary>
             Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.
             </summary>
-            <param name="culture">The culture.</param>
+            <param name="formatProvider">The format provider instance.</param>
             <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">

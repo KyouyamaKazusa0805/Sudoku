@@ -591,9 +591,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		=> formatProvider switch
 		{
 			CellMapFormatInfo i => i.FormatMap(in this),
-			CoordinateConverter c => c.CellConverter(this),
-			CultureInfo c => CoordinateConverter.GetConverter(c).CellConverter(this),
-			_ => CoordinateConverter.InvariantCultureConverter.CellConverter(this)
+			_ => CoordinateConverter.GetConverter(formatProvider).CellConverter(this)
 		};
 
 	/// <inheritdoc/>
@@ -856,9 +854,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		=> provider switch
 		{
 			CellMapFormatInfo i => i.ParseMap(s),
-			CoordinateParser c => c.CellParser(s),
-			CultureInfo c => CoordinateParser.GetParser(c).CellParser(s),
-			_ => CoordinateParser.InvariantCultureParser.CellParser(s)
+			_ => CoordinateParser.GetParser(provider).CellParser(s)
 		};
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>

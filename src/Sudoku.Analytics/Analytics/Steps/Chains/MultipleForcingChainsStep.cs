@@ -46,7 +46,7 @@ public sealed partial class MultipleForcingChainsStep(
 			new MultipleForcingChainsLengthFactor()
 		];
 
-	private string ChainsStr => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+	private string ChainsStr => Pattern.ToString("m", CoordinateConverter.GetConverter(Options.Converter));
 
 
 	/// <inheritdoc/>

@@ -50,12 +50,7 @@ public sealed partial class XyzWing(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		var converter = formatProvider switch
-		{
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			CoordinateConverter c => c,
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
+		var converter = CoordinateConverter.GetConverter(formatProvider);
 		var zDigitStr = converter.DigitConverter((Mask)(1 << ZDigit));
 		return $@"{converter.CellConverter(Pivot, LeafCell1, LeafCell2)}({DigitsMask}, {zDigitStr})";
 	}

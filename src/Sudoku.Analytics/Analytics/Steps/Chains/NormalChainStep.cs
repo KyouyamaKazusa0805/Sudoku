@@ -56,9 +56,10 @@ public partial class NormalChainStep(
 		=> [new(EnglishLanguage, [ChainString]), new(ChineseLanguage, [ChainString])];
 
 	/// <inheritdoc/>
-	public sealed override FactorCollection Factors => [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
+	public sealed override FactorCollection Factors
+		=> [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
 
-	private protected string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+	private protected string ChainString => Pattern.ToString("m", CoordinateConverter.GetConverter(Options.Converter));
 
 
 	/// <inheritdoc/>

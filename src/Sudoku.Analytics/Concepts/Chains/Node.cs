@@ -195,12 +195,7 @@ public sealed partial class Node(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		var converter = formatProvider switch
-		{
-			CoordinateConverter c => c,
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
+		var converter = CoordinateConverter.GetConverter(formatProvider);
 		return $"{converter.CandidateConverter(_map)}: {IsOn}";
 	}
 

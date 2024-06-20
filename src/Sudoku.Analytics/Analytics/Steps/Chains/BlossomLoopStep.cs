@@ -42,7 +42,7 @@ public sealed partial class BlossomLoopStep(
 	public override FactorCollection Factors
 		=> [new BlossomLoopGroupedFactor(), new BlossomLoopGroupedNodeFactor(), new BlossomLoopLengthFactor()];
 
-	private string ChainsStr => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
+	private string ChainsStr => Pattern.ToString("m", CoordinateConverter.GetConverter(Options.Converter));
 
 
 	/// <inheritdoc/>

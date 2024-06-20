@@ -218,21 +218,15 @@ file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candi
 	public void Deconstruct(out Grid grid, out House house, out Cell cell, out Digit digit)
 		=> ((grid, house, _), cell, digit) = (this, Candidate / 9, Candidate % 9);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter)
-		=> House != -1
+	{
+		var converter = CoordinateConverter.GetConverter(formatProvider);
+		return House != -1
 			? $"Full House / Hidden Single: {converter.CandidateConverter(Candidate)} in house {converter.HouseConverter(1 << House)}"
 			: $"Naked Single: {converter.CandidateConverter(Candidate)}";
+	}
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

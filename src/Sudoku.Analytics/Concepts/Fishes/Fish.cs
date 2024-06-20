@@ -68,13 +68,7 @@ public readonly partial struct Fish(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		var converter = formatProvider switch
-		{
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			CoordinateConverter c => c,
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
-		switch (converter)
+		switch (CoordinateConverter.GetConverter(formatProvider))
 		{
 			case RxCyConverter c:
 			{
@@ -95,8 +89,8 @@ public readonly partial struct Fish(
 			}
 			case var c:
 			{
-				var exofinsAre = ResourceDictionary.Get("ExofinsAre", converter.CurrentCulture);
-				var comma = ResourceDictionary.Get("Comma", converter.CurrentCulture);
+				var exofinsAre = ResourceDictionary.Get("ExofinsAre", c.CurrentCulture);
+				var comma = ResourceDictionary.Get("Comma", c.CurrentCulture);
 				var digitString = c.DigitConverter((Mask)(1 << Digit));
 				var bs = c.HouseConverter(BaseSets);
 				var cs = c.HouseConverter(CoverSets);

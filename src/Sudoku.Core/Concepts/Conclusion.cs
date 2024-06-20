@@ -123,14 +123,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> (
-			formatProvider switch
-			{
-				CoordinateConverter c => c,
-				CultureInfo c => CoordinateConverter.GetConverter(c),
-				_ => CoordinateConverter.InvariantCultureConverter
-			}
-		).ConclusionConverter(this);
+		=> CoordinateConverter.GetConverter(formatProvider).ConclusionConverter(this);
 
 	/// <summary>
 	/// Try to get a new <see cref="Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.

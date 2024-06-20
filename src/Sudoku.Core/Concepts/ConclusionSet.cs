@@ -312,15 +312,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-	{
-		var converter = formatProvider switch
-		{
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			CoordinateConverter c => c,
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
-		return converter.ConclusionConverter([.. _conclusionsEntry]);
-	}
+		=> CoordinateConverter.GetConverter(formatProvider).ConclusionConverter([.. _conclusionsEntry]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -506,16 +498,9 @@ public sealed partial class ConclusionSet :
 	public static ConclusionSet Parse(string str) => Parse(str, null);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet Parse(string s, IFormatProvider? provider)
-	{
-		var parser = provider switch
-		{
-			CultureInfo c => CoordinateParser.GetParser(c),
-			CoordinateParser c => c,
-			_ => CoordinateParser.InvariantCultureParser
-		};
-		return parser.ConclusionParser(s);
-	}
+		=> CoordinateParser.GetParser(provider).ConclusionParser(s);
 
 
 	/// <inheritdoc/>

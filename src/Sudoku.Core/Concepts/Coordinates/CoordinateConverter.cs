@@ -89,15 +89,22 @@ public abstract record CoordinateConverter(
 
 
 	/// <summary>
-	/// Try to get a <see cref="CoordinateConverter"/> instance from the specified culture.
+	/// Try to get a <see cref="CoordinateConverter"/> instance from the specified format provider.
 	/// </summary>
-	/// <param name="culture">The culture.</param>
-	/// <returns>The <see cref="CoordinateConverter"/> instance from the specified culture.</returns>
+	/// <param name="formatProvider">The format provider instance.</param>
+	/// <returns>A <see cref="CoordinateConverter"/> instance as the final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateConverter GetConverter(CultureInfo culture)
-		=> culture switch
+	public static CoordinateConverter GetConverter(IFormatProvider? formatProvider)
+		=> formatProvider switch
 		{
-			{ Name: ['Z' or 'z', 'H' or 'h', ..] } => new K9Converter(true, CurrentCulture: culture),
-			_ => new RxCyConverter(true, true, CurrentCulture: culture)
+			CultureInfo c => c switch
+			{
+				{ Name: var name } when name.StartsWith("zh", StringComparison.OrdinalIgnoreCase)
+					=> new K9Converter(true, CurrentCulture: c),
+				_
+					=> new RxCyConverter(true, true, CurrentCulture: c)
+			},
+			CoordinateConverter c => c,
+			_ => InvariantCultureConverter
 		};
 }

@@ -78,9 +78,14 @@ public abstract record CoordinateParser : IFormatProvider
 	/// <summary>
 	/// Try to get a <see cref="CoordinateParser"/> instance from the specified culture.
 	/// </summary>
-	/// <param name="culture">The culture.</param>
+	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>The <see cref="CoordinateParser"/> instance from the specified culture.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateParser GetParser(CultureInfo culture)
-		=> culture switch { { Name: ['Z' or 'z', 'H' or 'h', ..] } => new K9Parser(), _ => new RxCyParser() };
+	public static CoordinateParser GetParser(IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			CultureInfo { Name: var name } when name.StartsWith("zh", StringComparison.OrdinalIgnoreCase) => new K9Parser(),
+			CoordinateParser c => c,
+			_ => InvariantCultureParser
+		};
 }

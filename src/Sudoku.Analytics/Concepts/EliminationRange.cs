@@ -168,12 +168,7 @@ public partial struct EliminationRange :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public readonly string ToString(IFormatProvider? formatProvider)
 	{
-		var converter = formatProvider switch
-		{
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			CoordinateConverter c => c,
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
+		var converter = CoordinateConverter.GetConverter(formatProvider);
 		var result = new List<string>();
 		for (var digit = 0; digit < 9; digit++)
 		{

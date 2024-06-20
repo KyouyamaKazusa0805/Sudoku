@@ -427,34 +427,25 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	public bool HasTechnique(Technique technique) => TechniquesUsed.Contains(technique);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => Puzzle.GetHashCode();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(DefaultOptions, CoordinateConverter.InvariantCultureConverter);
+	public override string ToString() => ToString(DefaultOptions, null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(
-			formatProvider is CultureInfo culture
-				? CoordinateConverter.GetConverter(culture)
-				: CoordinateConverter.InvariantCultureConverter
-		);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => ToString(DefaultOptions, converter);
+		=> ToString(DefaultOptions, CoordinateConverter.GetConverter(formatProvider));
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.
 	/// </summary>
 	/// <param name="options">The formatting options.</param>
-	/// <param name="converter">The converter to be used.</param>
+	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(AnalysisResultFormattingOptions options, CoordinateConverter converter)
+	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider)
 	{
+		var converter = CoordinateConverter.GetConverter(formatProvider);
 		if (this is not
 			{
 				IsSolved: var isSolved,

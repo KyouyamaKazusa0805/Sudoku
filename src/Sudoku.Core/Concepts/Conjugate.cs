@@ -82,14 +82,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> (
-			formatProvider switch
-			{
-				CultureInfo c => CoordinateConverter.GetConverter(c),
-				CoordinateConverter c => c,
-				_ => CoordinateConverter.InvariantCultureConverter
-			}
-		).ConjugateConverter(this);
+		=> CoordinateConverter.GetConverter(formatProvider).ConjugateConverter(this);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -97,7 +90,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string s, out Conjugate result) => TryParse(s, new RxCyParser(), out result);
+	public static bool TryParse(string s, out Conjugate result) => TryParse(s, null, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Conjugate result)
@@ -126,15 +119,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conjugate Parse(string s, IFormatProvider? provider)
-	{
-		var parser = provider switch
-		{
-			CultureInfo c => CoordinateParser.GetParser(c),
-			CoordinateParser c => c,
-			_ => CoordinateParser.InvariantCultureParser
-		};
-		return parser.ConjuagteParser(s) is [var result]
+		=> CoordinateParser.GetParser(provider).ConjuagteParser(s) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleConjugatePairValuesFound"));
-	}
 }

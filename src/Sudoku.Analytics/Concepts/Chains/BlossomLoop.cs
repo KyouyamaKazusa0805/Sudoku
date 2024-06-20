@@ -198,12 +198,7 @@ public sealed partial class BlossomLoop :
 	/// <inheritdoc/>
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		var converter = formatProvider switch
-		{
-			CultureInfo c => CoordinateConverter.GetConverter(c),
-			CoordinateConverter c => c,
-			_ => CoordinateConverter.InvariantCultureConverter
-		};
+		var converter = CoordinateConverter.GetConverter(formatProvider);
 		return string.Join(
 			", ",
 			from kvp in this
