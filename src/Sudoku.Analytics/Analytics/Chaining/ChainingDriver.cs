@@ -43,7 +43,6 @@ internal static class ChainingDriver
 	/// </remarks>
 	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		// Step 1: Iterate on dictionary to get chains.
 		var result = new SortedSet<ChainOrLoop>(ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
@@ -60,8 +59,6 @@ internal static class ChainingDriver
 				}
 			}
 		}
-
-		// Step 2: Sort found patterns and return.
 		return result.ToArray();
 
 
@@ -200,7 +197,6 @@ internal static class ChainingDriver
 	/// </example>
 	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules, bool onlyFindOne)
 	{
-		// Step 1: Iterate on dictionary to get all forcing chains.
 		var result = new SortedSet<MultipleForcingChains>(MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
@@ -396,8 +392,6 @@ internal static class ChainingDriver
 				result.Add(cfc);
 			}
 		}
-
-		// Step 2: Return the values.
 		return result.ToArray();
 
 
