@@ -34,7 +34,6 @@ public sealed partial class BlossomLoopStep(
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BlossomLoop;
 
-
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ChainsStr]), new(ChineseLanguage, [ChainsStr])];
