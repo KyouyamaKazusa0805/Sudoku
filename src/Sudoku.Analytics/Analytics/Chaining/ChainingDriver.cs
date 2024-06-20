@@ -395,15 +395,11 @@ internal static class ChainingDriver
 		return result.ToArray();
 
 
-		static void bfs(
-			Node startNode,
-			out HashSet<Node> nodesSupposedOnWhichCanImplicitlyToCurrentNode,
-			out HashSet<Node> nodesSupposedOffWhichCanImplicitlyToCurrentNode
-		)
+		static void bfs(Node startNode, out HashSet<Node> resultNodesSupposedOn, out HashSet<Node> resultNodesSupposedOff)
 		{
 			var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 			(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
-			(nodesSupposedOnWhichCanImplicitlyToCurrentNode, nodesSupposedOffWhichCanImplicitlyToCurrentNode) = (new(NodeMapComparer), new(NodeMapComparer));
+			(resultNodesSupposedOn, resultNodesSupposedOff) = (new(NodeMapComparer), new(NodeMapComparer));
 
 			while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 			{
@@ -415,13 +411,13 @@ internal static class ChainingDriver
 						foreach (var node in nodesSupposedOff)
 						{
 							var nextNode = new Node(node, currentNode);
-							if (nodesSupposedOnWhichCanImplicitlyToCurrentNode.Contains(~nextNode))
+							if (resultNodesSupposedOn.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (nodesSupposedOffWhichCanImplicitlyToCurrentNode.Add(nextNode))
+							if (resultNodesSupposedOff.Add(nextNode))
 							{
 								pendingNodesSupposedOff.AddLast(nextNode);
 							}
@@ -436,13 +432,13 @@ internal static class ChainingDriver
 						foreach (var node in nodesSupposedOn)
 						{
 							var nextNode = new Node(node, currentNode);
-							if (nodesSupposedOffWhichCanImplicitlyToCurrentNode.Contains(~nextNode))
+							if (resultNodesSupposedOff.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (nodesSupposedOnWhichCanImplicitlyToCurrentNode.Add(nextNode))
+							if (resultNodesSupposedOn.Add(nextNode))
 							{
 								pendingNodesSupposedOn.AddLast(nextNode);
 							}
