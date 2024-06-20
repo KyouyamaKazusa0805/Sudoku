@@ -67,30 +67,30 @@ internal static class ChainingDriver
 
 		ChainOrLoop? bfs(ref readonly Grid grid, Node startNode)
 		{
-			var pendingNodesSupposedToOn = new LinkedList<Node>();
-			var pendingNodesSupposedToOff = new LinkedList<Node>();
-			(startNode.IsOn ? pendingNodesSupposedToOff : pendingNodesSupposedToOn).AddLast(startNode);
+			var pendingNodesSupposedOn = new LinkedList<Node>();
+			var pendingNodesSupposedOff = new LinkedList<Node>();
+			(startNode.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(startNode);
 
-			var visitedNodesSupposedToOn = new HashSet<Node>(NodeMapComparer);
-			var visitedNodesSupposedToOff = new HashSet<Node>(NodeMapComparer);
-			visitedNodesSupposedToOn.Add(startNode);
-			visitedNodesSupposedToOff.Add(startNode);
+			var visitedNodesSupposedOn = new HashSet<Node>(NodeMapComparer);
+			var visitedNodesSupposedOff = new HashSet<Node>(NodeMapComparer);
+			visitedNodesSupposedOn.Add(startNode);
+			visitedNodesSupposedOff.Add(startNode);
 
-			while (pendingNodesSupposedToOn.Count != 0 || pendingNodesSupposedToOff.Count != 0)
+			while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 			{
-				while (pendingNodesSupposedToOn.Count != 0)
+				while (pendingNodesSupposedOn.Count != 0)
 				{
-					var currentNode = pendingNodesSupposedToOn.RemoveFirstNode();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOff))
+					var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
 					{
-						foreach (var nodeSupposedToOff in nodesSupposedToOff)
+						foreach (var nodeSupposedOff in nodesSupposedOff)
 						{
-							var nextNode = new Node(nodeSupposedToOff, currentNode);
+							var nextNode = new Node(nodeSupposedOff, currentNode);
 
 							////////////////////////////////////////////
 							// Continuous Nice Loop 3) Strong -> Weak //
 							////////////////////////////////////////////
-							if (nodeSupposedToOff == startNode && nextNode.AncestorsLength >= 4)
+							if (nodeSupposedOff == startNode && nextNode.AncestorsLength >= 4)
 							{
 								var loop = new Loop(nextNode);
 								if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
@@ -110,7 +110,7 @@ internal static class ChainingDriver
 							/////////////////////////////////////////////////
 							// Discontinuous Nice Loop 2) Strong -> Strong //
 							/////////////////////////////////////////////////
-							if (nodeSupposedToOff == ~startNode)
+							if (nodeSupposedOff == ~startNode)
 							{
 								var chain = new Chain(nextNode);
 								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
@@ -128,29 +128,31 @@ internal static class ChainingDriver
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
 							// The second argument must be 'NodeComparison.IgnoreIsOn' because we should explicitly ignore them.
+							// This will fix issue #673:
+							//   * https://github.com/SunnieShine/Sudoku/issues/673
 							// Counter-example:
 							//   4.+3.6+85...+57.....8+89.5...3..7..+8+6.2.23..94.+8..+84.....15..6..8+7+3+3..+871.5.+7+68.....2:114 124 324 425 427 627 943 366 667 967 272 273 495 497
-							if (!nodeSupposedToOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-								&& visitedNodesSupposedToOff.Add(nodeSupposedToOff))
+							if (!nodeSupposedOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
+								&& visitedNodesSupposedOff.Add(nodeSupposedOff))
 							{
-								pendingNodesSupposedToOff.AddLast(nextNode);
+								pendingNodesSupposedOff.AddLast(nextNode);
 							}
 						}
 					}
 				}
-				while (pendingNodesSupposedToOff.Count != 0)
+				while (pendingNodesSupposedOff.Count != 0)
 				{
-					var currentNode = pendingNodesSupposedToOff.RemoveFirstNode();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOn))
+					var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
 					{
-						foreach (var nodeSupposedToOn in nodesSupposedToOn)
+						foreach (var nodeSupposedOn in nodesSupposedOn)
 						{
-							var nextNode = new Node(nodeSupposedToOn, currentNode);
+							var nextNode = new Node(nodeSupposedOn, currentNode);
 
 							/////////////////////////////////////////////
 							// Discontinuous Nice Loop 1) Weak -> Weak //
 							/////////////////////////////////////////////
-							if (nodeSupposedToOn == ~startNode)
+							if (nodeSupposedOn == ~startNode)
 							{
 								var chain = new Chain(nextNode);
 								if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
@@ -166,10 +168,10 @@ internal static class ChainingDriver
 							Next:;
 							}
 
-							if (!nodeSupposedToOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-								&& visitedNodesSupposedToOn.Add(nodeSupposedToOn))
+							if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
+								&& visitedNodesSupposedOn.Add(nodeSupposedOn))
 							{
-								pendingNodesSupposedToOn.AddLast(nextNode);
+								pendingNodesSupposedOn.AddLast(nextNode);
 							}
 						}
 					}
@@ -203,18 +205,14 @@ internal static class ChainingDriver
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
 			var digitsMask = grid.GetCandidates(cell);
-			var nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByDigit = new NodeDictionary();
-			var nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByDigit = new NodeDictionary();
-			var nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell = default(HashSet<Node>);
-			var nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInCell = default(HashSet<Node>);
+			var nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit = new NodeDictionary();
+			var nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit = new NodeDictionary();
+			var nodesSupposedOn_ImplicitlyToCurrentNode_InCell = default(HashSet<Node>);
+			var nodesSupposedOff_ImplicitlyToCurrentNode_InCell = default(HashSet<Node>);
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node(cell, digit, true, false);
-				bfs(
-					currentNode,
-					out var nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode,
-					out var nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode
-				);
+				bfs(currentNode, out var nodesSupposedOn_ImplicitlyToCurrentNode, out var nodesSupposedOff_ImplicitlyToCurrentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -235,38 +233,38 @@ internal static class ChainingDriver
 						continue;
 					}
 
-					var nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByHouse = new NodeDictionary();
-					var nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByHouse = new NodeDictionary();
-					var nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse = new HashSet<Node>(NodeMapComparer);
-					var nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse = new HashSet<Node>(NodeMapComparer);
+					var nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse = new NodeDictionary();
+					var nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse = new NodeDictionary();
+					var nodesSupposedOn_ImplicitlyToCurrentNode_InHouse = new HashSet<Node>(NodeMapComparer);
+					var nodesSupposedOff_ImplicitlyToCurrentNode_InHouse = new HashSet<Node>(NodeMapComparer);
 					foreach (var otherCell in cellsInHouse)
 					{
 						if (otherCell == cell)
 						{
-							nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
-							nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
-							nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse.UnionWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
-							nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse.UnionWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
+							nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedOn_ImplicitlyToCurrentNode);
+							nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedOff_ImplicitlyToCurrentNode);
+							nodesSupposedOn_ImplicitlyToCurrentNode_InHouse.UnionWith(nodesSupposedOn_ImplicitlyToCurrentNode);
+							nodesSupposedOff_ImplicitlyToCurrentNode_InHouse.UnionWith(nodesSupposedOff_ImplicitlyToCurrentNode);
 						}
 						else
 						{
 							var other = new Node(otherCell, digit, true, false);
 							bfs(
 								other,
-								out var otherNodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse,
-								out var otherNodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse
+								out var otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse,
+								out var otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse
 							);
-							nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse);
-							nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse);
-							nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse.IntersectWith(otherNodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse);
-							nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse.IntersectWith(otherNodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse);
+							nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse);
+							nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse);
+							nodesSupposedOn_ImplicitlyToCurrentNode_InHouse.IntersectWith(otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse);
+							nodesSupposedOff_ImplicitlyToCurrentNode_InHouse.IntersectWith(otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse);
 						}
 					}
 
 					////////////////////////////////////////
 					// Collect with region forcing chains //
 					////////////////////////////////////////
-					foreach (var node in nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInHouse)
+					foreach (var node in nodesSupposedOn_ImplicitlyToCurrentNode_InHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -283,7 +281,7 @@ internal static class ChainingDriver
 						var rfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							var branchNode = nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 							rfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
@@ -295,7 +293,7 @@ internal static class ChainingDriver
 						}
 						result.Add(rfc);
 					}
-					foreach (var node in nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInHouse)
+					foreach (var node in nodesSupposedOff_ImplicitlyToCurrentNode_InHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -312,7 +310,7 @@ internal static class ChainingDriver
 						var rfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							var branchNode = nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 							rfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
@@ -326,26 +324,26 @@ internal static class ChainingDriver
 					}
 				}
 
-				nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
-				nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
-				if (nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell is null)
+				nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn_ImplicitlyToCurrentNode);
+				nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff_ImplicitlyToCurrentNode);
+				if (nodesSupposedOn_ImplicitlyToCurrentNode_InCell is null)
 				{
-					nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell = new(NodeMapComparer);
-					nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInCell = new(NodeMapComparer);
-					nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell.UnionWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
-					nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInCell.UnionWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
+					nodesSupposedOn_ImplicitlyToCurrentNode_InCell = new(NodeMapComparer);
+					nodesSupposedOff_ImplicitlyToCurrentNode_InCell = new(NodeMapComparer);
+					nodesSupposedOn_ImplicitlyToCurrentNode_InCell.UnionWith(nodesSupposedOn_ImplicitlyToCurrentNode);
+					nodesSupposedOff_ImplicitlyToCurrentNode_InCell.UnionWith(nodesSupposedOff_ImplicitlyToCurrentNode);
 				}
 				else
 				{
-					nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell.IntersectWith(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode);
-					nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInCell!.IntersectWith(nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode);
+					nodesSupposedOn_ImplicitlyToCurrentNode_InCell.IntersectWith(nodesSupposedOn_ImplicitlyToCurrentNode);
+					nodesSupposedOff_ImplicitlyToCurrentNode_InCell!.IntersectWith(nodesSupposedOff_ImplicitlyToCurrentNode);
 				}
 			}
 
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
-			foreach (var node in nodesSupposedToOn_ImplicitlyConnectToCurrentNode_LyingInCell ?? [])
+			foreach (var node in nodesSupposedOn_ImplicitlyToCurrentNode_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -362,7 +360,7 @@ internal static class ChainingDriver
 				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = nodesSupposedToOn_ImplicitlyConnectToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					var branchNode = nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
@@ -371,7 +369,7 @@ internal static class ChainingDriver
 				}
 				result.Add(cfc);
 			}
-			foreach (var node in nodesSupposedToOff_ImplicitlyConnectToCurrentNode_LyingInCell ?? [])
+			foreach (var node in nodesSupposedOff_ImplicitlyToCurrentNode_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -388,7 +386,7 @@ internal static class ChainingDriver
 				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = nodesSupposedToOff_ImplicitlyConnectToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					var branchNode = nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
@@ -405,54 +403,54 @@ internal static class ChainingDriver
 
 		static void bfs(
 			Node startNode,
-			out HashSet<Node> nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode,
-			out HashSet<Node> nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode
+			out HashSet<Node> nodesSupposedOnWhichCanImplicitlyToCurrentNode,
+			out HashSet<Node> nodesSupposedOffWhichCanImplicitlyToCurrentNode
 		)
 		{
-			var (pendingNodesSupposedToOn, pendingNodesSupposedToOff) = (new LinkedList<Node>(), new LinkedList<Node>());
-			(startNode.IsOn ? pendingNodesSupposedToOn : pendingNodesSupposedToOff).AddLast(startNode);
-			(nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode, nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode) = (new(NodeMapComparer), new(NodeMapComparer));
+			var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
+			(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
+			(nodesSupposedOnWhichCanImplicitlyToCurrentNode, nodesSupposedOffWhichCanImplicitlyToCurrentNode) = (new(NodeMapComparer), new(NodeMapComparer));
 
-			while (pendingNodesSupposedToOn.Count != 0 || pendingNodesSupposedToOff.Count != 0)
+			while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 			{
-				if (pendingNodesSupposedToOn.Count != 0)
+				if (pendingNodesSupposedOn.Count != 0)
 				{
-					var currentNode = pendingNodesSupposedToOn.RemoveFirstNode();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOff))
+					var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
 					{
-						foreach (var node in nodesSupposedToOff)
+						foreach (var node in nodesSupposedOff)
 						{
 							var nextNode = new Node(node, currentNode);
-							if (nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode.Contains(~nextNode))
+							if (nodesSupposedOnWhichCanImplicitlyToCurrentNode.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode.Add(nextNode))
+							if (nodesSupposedOffWhichCanImplicitlyToCurrentNode.Add(nextNode))
 							{
-								pendingNodesSupposedToOff.AddLast(nextNode);
+								pendingNodesSupposedOff.AddLast(nextNode);
 							}
 						}
 					}
 				}
 				else
 				{
-					var currentNode = pendingNodesSupposedToOff.RemoveFirstNode();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedToOn))
+					var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
 					{
-						foreach (var node in nodesSupposedToOn)
+						foreach (var node in nodesSupposedOn)
 						{
 							var nextNode = new Node(node, currentNode);
-							if (nodesSupposedToOffWhichCanImplicitlyConnectToCurrentNode.Contains(~nextNode))
+							if (nodesSupposedOffWhichCanImplicitlyToCurrentNode.Contains(~nextNode))
 							{
 								// Contradiction is found.
 								return;
 							}
 
-							if (nodesSupposedToOnWhichCanImplicitlyConnectToCurrentNode.Add(nextNode))
+							if (nodesSupposedOnWhichCanImplicitlyToCurrentNode.Add(nextNode))
 							{
-								pendingNodesSupposedToOn.AddLast(nextNode);
+								pendingNodesSupposedOn.AddLast(nextNode);
 							}
 						}
 					}
