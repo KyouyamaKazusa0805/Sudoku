@@ -8315,7 +8315,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
-            Collect all <see cref="T:Sudoku.Concepts.ChainOrLoop" /> instances appears in a grid.
+            Collect all chains and loops appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
@@ -8354,7 +8354,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
-            Collect all multiple forcing chain instances appears in a grid.
+            Collect all multiple forcing chains appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
@@ -8366,6 +8366,14 @@
             ]]></code>
             This example only contains one forcing chains pattern and direct singles.
             </example>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all blossom loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
             <summary>

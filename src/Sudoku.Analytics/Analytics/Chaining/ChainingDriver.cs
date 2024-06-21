@@ -9,7 +9,7 @@ using NodeDictionary = Dictionary<Candidate, HashSet<Node>>;
 internal static class ChainingDriver
 {
 	/// <summary>
-	/// Collect all <see cref="ChainOrLoop"/> instances appears in a grid.
+	/// Collect all chains and loops appeared in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
@@ -63,7 +63,7 @@ internal static class ChainingDriver
 	}
 
 	/// <summary>
-	/// Collect all multiple forcing chain instances appears in a grid.
+	/// Collect all multiple forcing chains appeared in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
@@ -80,15 +80,14 @@ internal static class ChainingDriver
 		var result = new SortedSet<MultipleForcingChains>(MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
+			var (nodesSupposedOn_GroupedByDigit, nodesSupposedOff_GroupedByDigit) = (new NodeDictionary(), new NodeDictionary());
+			var (nodesSupposedOn_InCell, nodesSupposedOff_InCell) = default((HashSet<Node>, HashSet<Node>));
+
 			var digitsMask = grid.GetCandidates(cell);
-			var nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit = new NodeDictionary();
-			var nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit = new NodeDictionary();
-			var nodesSupposedOn_ImplicitlyToCurrentNode_InCell = default(HashSet<Node>);
-			var nodesSupposedOff_ImplicitlyToCurrentNode_InCell = default(HashSet<Node>);
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node(cell, digit, true, false);
-				var (nodesSupposedOn_ImplicitlyToCurrentNode, nodesSupposedOff_ImplicitlyToCurrentNode) = FindNodesImplicitTo(currentNode);
+				var (nodesSupposedOn, nodesSupposedOff) = FindNodesImplicitTo(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -109,34 +108,33 @@ internal static class ChainingDriver
 						continue;
 					}
 
-					var nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse = new NodeDictionary();
-					var nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse = new NodeDictionary();
-					var nodesSupposedOn_ImplicitlyToCurrentNode_InHouse = new HashSet<Node>(NodeMapComparer);
-					var nodesSupposedOff_ImplicitlyToCurrentNode_InHouse = new HashSet<Node>(NodeMapComparer);
+					var (nodesSupposedOn_GroupedByHouse, nodesSupposedOff_GroupedByHouse) = (new NodeDictionary(), new NodeDictionary());
+					var (nodesSupposedOn_InHouse, nodesSupposedOff_InHouse) = (new HashSet<Node>(NodeMapComparer), new HashSet<Node>(NodeMapComparer));
 					foreach (var otherCell in cellsInHouse)
 					{
+						var otherCandidate = otherCell * 9 + digit;
 						if (otherCell == cell)
 						{
-							nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedOn_ImplicitlyToCurrentNode);
-							nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, nodesSupposedOff_ImplicitlyToCurrentNode);
-							nodesSupposedOn_ImplicitlyToCurrentNode_InHouse.UnionWith(nodesSupposedOn_ImplicitlyToCurrentNode);
-							nodesSupposedOff_ImplicitlyToCurrentNode_InHouse.UnionWith(nodesSupposedOff_ImplicitlyToCurrentNode);
+							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, nodesSupposedOn);
+							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, nodesSupposedOff);
+							nodesSupposedOn_InHouse.UnionWith(nodesSupposedOn);
+							nodesSupposedOff_InHouse.UnionWith(nodesSupposedOff);
 						}
 						else
 						{
-							var other = new Node(otherCell, digit, true, false);
-							var (otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse, otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse) = FindNodesImplicitTo(other);
-							nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse);
-							nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse.Add(otherCell * 9 + digit, otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse);
-							nodesSupposedOn_ImplicitlyToCurrentNode_InHouse.IntersectWith(otherNodesSupposedOn_ImplicitlyToCurrentNode_InHouse);
-							nodesSupposedOff_ImplicitlyToCurrentNode_InHouse.IntersectWith(otherNodesSupposedOff_ImplicitlyToCurrentNode_InHouse);
+							var other = new Node(otherCandidate, true, false);
+							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindNodesImplicitTo(other);
+							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
+							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
+							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
+							nodesSupposedOff_InHouse.IntersectWith(otherNodesSupposedOff_InHouse);
 						}
 					}
 
 					////////////////////////////////////////
 					// Collect with region forcing chains //
 					////////////////////////////////////////
-					foreach (var node in nodesSupposedOn_ImplicitlyToCurrentNode_InHouse)
+					foreach (var node in nodesSupposedOn_InHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -153,7 +151,7 @@ internal static class ChainingDriver
 						var mfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							var branchNode = nodesSupposedOn_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 							mfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
@@ -165,7 +163,7 @@ internal static class ChainingDriver
 						}
 						result.Add(mfc);
 					}
-					foreach (var node in nodesSupposedOff_ImplicitlyToCurrentNode_InHouse)
+					foreach (var node in nodesSupposedOff_InHouse)
 					{
 						if (node.IsGroupedNode)
 						{
@@ -182,7 +180,7 @@ internal static class ChainingDriver
 						var mfc = new MultipleForcingChains(conclusion);
 						foreach (var c in cellsInHouse)
 						{
-							var branchNode = nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							var branchNode = nodesSupposedOff_GroupedByHouse[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 							mfc.Add(
 								c * 9 + digit,
 								node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
@@ -196,26 +194,26 @@ internal static class ChainingDriver
 					}
 				}
 
-				nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn_ImplicitlyToCurrentNode);
-				nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff_ImplicitlyToCurrentNode);
-				if (nodesSupposedOn_ImplicitlyToCurrentNode_InCell is null)
+				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
+				nodesSupposedOff_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff);
+				if (nodesSupposedOn_InCell is null)
 				{
-					nodesSupposedOn_ImplicitlyToCurrentNode_InCell = new(NodeMapComparer);
-					nodesSupposedOff_ImplicitlyToCurrentNode_InCell = new(NodeMapComparer);
-					nodesSupposedOn_ImplicitlyToCurrentNode_InCell.UnionWith(nodesSupposedOn_ImplicitlyToCurrentNode);
-					nodesSupposedOff_ImplicitlyToCurrentNode_InCell.UnionWith(nodesSupposedOff_ImplicitlyToCurrentNode);
+					(nodesSupposedOn_InCell, nodesSupposedOff_InCell) = (new(NodeMapComparer), new(NodeMapComparer));
+					nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
+					nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
 				}
 				else
 				{
-					nodesSupposedOn_ImplicitlyToCurrentNode_InCell.IntersectWith(nodesSupposedOn_ImplicitlyToCurrentNode);
-					nodesSupposedOff_ImplicitlyToCurrentNode_InCell!.IntersectWith(nodesSupposedOff_ImplicitlyToCurrentNode);
+					Debug.Assert(nodesSupposedOff_InCell is not null);
+					nodesSupposedOn_InCell.IntersectWith(nodesSupposedOn);
+					nodesSupposedOff_InCell.IntersectWith(nodesSupposedOff);
 				}
 			}
 
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
-			foreach (var node in nodesSupposedOn_ImplicitlyToCurrentNode_InCell ?? [])
+			foreach (var node in nodesSupposedOn_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -232,7 +230,7 @@ internal static class ChainingDriver
 				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = nodesSupposedOn_ImplicitlyToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					var branchNode = nodesSupposedOn_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
@@ -241,7 +239,7 @@ internal static class ChainingDriver
 				}
 				result.Add(cfc);
 			}
-			foreach (var node in nodesSupposedOff_ImplicitlyToCurrentNode_InCell ?? [])
+			foreach (var node in nodesSupposedOff_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
 				{
@@ -258,7 +256,7 @@ internal static class ChainingDriver
 				var cfc = new MultipleForcingChains(conclusion);
 				foreach (var d in digitsMask)
 				{
-					var branchNode = nodesSupposedOff_ImplicitlyToCurrentNode_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
+					var branchNode = nodesSupposedOff_GroupedByDigit[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
 				if (onlyFindOne)
@@ -271,6 +269,16 @@ internal static class ChainingDriver
 		return result.ToArray();
 	}
 
+	/// <summary>
+	/// Collect all blossom loops appeared in a grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+	/// <returns>All possible multiple forcing chain instances.</returns>
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne)
+	{
+		return [];
+	}
 
 	/// <summary>
 	/// <para>
