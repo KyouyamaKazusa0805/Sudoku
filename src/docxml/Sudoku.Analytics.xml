@@ -9868,10 +9868,15 @@
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.ResultCurrentCulture">
+        <member name="P:Sudoku.Analytics.Step.Culture">
             <summary>
-            Indicates the result culture.
+            Indicates the runtime culture to be used. The culture is by default <see cref="P:System.Globalization.CultureInfo.CurrentUICulture"/>,
+            but it can be replaced with <see cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CurrentCulture"/> property
+            specified by property <see cref="P:Sudoku.Analytics.Step.Options"/> if it is not <see langword="null"/>.
             </summary>
+            <seealso cref="P:System.Globalization.CultureInfo.CurrentUICulture"/>
+            <seealso cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CurrentCulture"/>
+            <seealso cref="P:Sudoku.Analytics.Step.Options"/>
         </member>
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>

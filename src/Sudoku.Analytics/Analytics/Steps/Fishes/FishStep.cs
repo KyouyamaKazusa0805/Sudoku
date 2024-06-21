@@ -94,6 +94,5 @@ public abstract partial class FishStep(
 
 	/// <inheritdoc cref="Step.ToString(IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public new string ToString(IFormatProvider? formatProvider)
-		=> Pattern.ToString(CoordinateConverter.GetConverter(formatProvider ?? ResultCurrentCulture));
+	public new string ToString(IFormatProvider? formatProvider) => Pattern.ToString(formatProvider);
 }

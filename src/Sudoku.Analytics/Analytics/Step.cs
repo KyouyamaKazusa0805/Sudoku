@@ -181,9 +181,14 @@ public abstract partial class Step(
 	internal string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
-	/// Indicates the result culture.
+	/// Indicates the runtime culture to be used. The culture is by default <see cref="CultureInfo.CurrentUICulture"/>,
+	/// but it can be replaced with <see cref="CoordinateConverter.CurrentCulture"/> property
+	/// specified by property <see cref="Options"/> if it is not <see langword="null"/>.
 	/// </summary>
-	private protected CultureInfo ResultCurrentCulture => Options.Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
+	/// <seealso cref="CultureInfo.CurrentUICulture"/>
+	/// <seealso cref="CoordinateConverter.CurrentCulture"/>
+	/// <seealso cref="Options"/>
+	private protected CultureInfo Culture => Options.Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 
 	/// <inheritdoc/>
@@ -224,23 +229,24 @@ public abstract partial class Step(
 	/// <param name="formatProvider">The culture information provider instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string GetName(IFormatProvider? formatProvider) => Code.GetName(formatProvider as CultureInfo ?? ResultCurrentCulture);
+	public virtual string GetName(IFormatProvider? formatProvider)
+		=> Code.GetName(formatProvider as CultureInfo ?? Culture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
 	/// </summary>
 	/// <returns>The string instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => ToString(ResultCurrentCulture);
+	public sealed override string ToString() => ToString(Culture);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
+		var culture = formatProvider as CultureInfo ?? Culture;
 		var currentCultureName = culture.Name;
-		var colonToken = ResourceDictionary.Get("Colon", culture ?? ResultCurrentCulture);
+		var colonToken = ResourceDictionary.Get("Colon", culture ?? Culture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageName, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
 		{
@@ -257,7 +263,7 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(IFormatProvider? formatProvider)
-		=> $"{GetName(formatProvider as CultureInfo ?? ResultCurrentCulture)} => {ConclusionText}";
+		=> $"{GetName(formatProvider as CultureInfo ?? Culture)} => {ConclusionText}";
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

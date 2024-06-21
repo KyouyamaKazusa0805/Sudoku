@@ -78,5 +78,5 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string AppearLimitKeyword => ResourceDictionary.Get("Appear", ResultCurrentCulture);
+	private string AppearLimitKeyword => ResourceDictionary.Get("Appear", Culture);
 }

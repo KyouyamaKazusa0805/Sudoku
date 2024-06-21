@@ -72,5 +72,5 @@ public sealed partial class DirectIntersectionStep(
 
 	private string InterimDigitStr => Options.Converter.DigitConverter((Mask)(1 << InterimDigit));
 
-	private string TechniqueNameStr => BasedOn.GetName(ResultCurrentCulture);
+	private string TechniqueNameStr => BasedOn.GetName(Culture);
 }

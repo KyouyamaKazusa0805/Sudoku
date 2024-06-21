@@ -123,7 +123,7 @@ public sealed class ComplexSingleStep(
 			}
 		}
 
-		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
+		var culture = formatProvider as CultureInfo ?? Culture;
 		var lockedCandidatesName = ResourceDictionary.Get("Concept_LockedCandidates", culture);
 		var subsetName = ResourceDictionary.Get("Concept_Subset", culture);
 		var basedOnName = BasedOn.GetName(culture);
