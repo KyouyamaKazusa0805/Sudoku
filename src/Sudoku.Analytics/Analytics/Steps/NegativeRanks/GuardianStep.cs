@@ -45,7 +45,8 @@ public sealed partial class GuardianStep(
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 
-	private string GuardianSingularOrPlural => ResourceDictionary.Get(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", Culture);
+	private string GuardianSingularOrPlural
+		=> ResourceDictionary.Get(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", GetCulture(null));
 
 	private string GuardianStr => Options.Converter.CellConverter(Guardians);
 

@@ -24,6 +24,11 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// <inheritdoc cref="CoordinateConverter"/>
 	public CoordinateConverter Converter { get; init; } = CoordinateConverter.InvariantCultureConverter;
 
+	/// <summary>
+	/// Indicates the current culture used.
+	/// </summary>
+	public CultureInfo CurrentCulture => Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
+
 
 	/// <inheritdoc/>
 	/// <remarks>

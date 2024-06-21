@@ -74,9 +74,9 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 
-	private string OnlyKeywordZhCn => ResourceDictionary.Get("Only", ChineseCulture)!;
+	private string OnlyKeywordZhCn => ResourceDictionary.Get("Only", GetCulture(null));
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string AppearLimitKeyword => ResourceDictionary.Get("Appear", Culture);
+	private string AppearLimitKeyword => ResourceDictionary.Get("Appear", GetCulture(null));
 }

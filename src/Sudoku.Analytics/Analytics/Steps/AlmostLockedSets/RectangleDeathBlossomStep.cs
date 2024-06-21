@@ -44,7 +44,7 @@ public sealed partial class RectangleDeathBlossomStep(
 
 	private string BranchesStr
 		=> string.Join(
-			ResourceDictionary.Get("Comma", Culture),
+			ResourceDictionary.Get("Comma", GetCulture(null)),
 #if !NET9_0_OR_GREATER
 			[
 			..

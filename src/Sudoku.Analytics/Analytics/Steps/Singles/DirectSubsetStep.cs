@@ -87,11 +87,11 @@ public sealed partial class DirectSubsetStep(
 
 	private string InterimDigitStr => Options.Converter.DigitConverter(InterimDigitsMask);
 
-	private string TechniqueNameStr => BasedOn.GetName(Culture);
+	private string TechniqueNameStr => BasedOn.GetName(GetCulture(null));
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetNameStr => SubsetTechnique.GetName(Culture);
+	private string SubsetNameStr => SubsetTechnique.GetName(GetCulture(null));
 
 
 	/// <inheritdoc/>

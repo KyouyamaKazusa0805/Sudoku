@@ -10,8 +10,9 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllOperators,
-	OtherModifiersOnEquals = "sealed")]
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators,
+	OtherModifiersOnEquals = "sealed",
+	OtherModifiersOnToString = "sealed")]
 public abstract partial class Step(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[PrimaryConstructorParameter] View[]? views,
@@ -79,6 +80,12 @@ public abstract partial class Step(
 	/// <seealso cref="Factors"/>
 	/// <seealso cref="Factor"/>
 	public int Difficulty => BaseDifficulty + Factors.Sum(this);
+
+	/// <summary>
+	/// Indicates the string representation of the conclusions of the step.
+	/// </summary>
+	[HashCodeMember]
+	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -174,22 +181,6 @@ public abstract partial class Step(
 	/// </summary>
 	public virtual FactorCollection Factors => [];
 
-	/// <summary>
-	/// Indicates the string representation of the conclusions of the step.
-	/// </summary>
-	[HashCodeMember]
-	internal string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
-
-	/// <summary>
-	/// Indicates the runtime culture to be used. The culture is by default <see cref="CultureInfo.CurrentUICulture"/>,
-	/// but it can be replaced with <see cref="CoordinateConverter.CurrentCulture"/> property
-	/// specified by property <see cref="Options"/> if it is not <see langword="null"/>.
-	/// </summary>
-	/// <seealso cref="CultureInfo.CurrentUICulture"/>
-	/// <seealso cref="CoordinateConverter.CurrentCulture"/>
-	/// <seealso cref="Options"/>
-	private protected CultureInfo Culture => Options.Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
-
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -229,31 +220,24 @@ public abstract partial class Step(
 	/// <param name="formatProvider">The culture information provider instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string GetName(IFormatProvider? formatProvider)
-		=> Code.GetName(formatProvider as CultureInfo ?? Culture);
-
-	/// <summary>
-	/// Returns a string that only contains the name and the basic description.
-	/// </summary>
-	/// <returns>The string instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => ToString(Culture);
+	public virtual string GetName(IFormatProvider? formatProvider) => Code.GetName(GetCulture(formatProvider));
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var culture = formatProvider as CultureInfo ?? Culture;
-		var currentCultureName = culture.Name;
-		var colonToken = ResourceDictionary.Get("Colon", culture ?? Culture);
-		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageName, casingOption);
-		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
+		var culture = GetCulture(formatProvider);
+		var colonToken = ResourceDictionary.Get("Colon", culture);
+		return (Format, FormatInterpolationParts?.FirstOrDefault(matcher).ResourcePlaceholderValues) switch
 		{
 			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(culture),
 			(_, null) => $"{GetName(culture)}{colonToken}{Format} => {ConclusionText}",
 			var (_, formatArgs) => $"{GetName(culture)}{colonToken}{Format.ToString(culture, formatArgs)} => {ConclusionText}"
 		};
+
+
+		bool matcher(FormatInterpolation kvp)
+			=> culture.Name.StartsWith(kvp.LanguageName, StringComparison.CurrentCultureIgnoreCase);
 	}
 
 	/// <summary>
@@ -262,8 +246,20 @@ public abstract partial class Step(
 	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString(IFormatProvider? formatProvider)
-		=> $"{GetName(formatProvider as CultureInfo ?? Culture)} => {ConclusionText}";
+	public string ToSimpleString(IFormatProvider? formatProvider) => $"{GetName(formatProvider)} => {ConclusionText}";
+
+	/// <summary>
+	/// Try to get the current culture used. The return value cannot be <see langword="null"/>.
+	/// </summary>
+	/// <param name="formatProvider">
+	/// The format provider instance.
+	/// The value can be <see langword="null"/> if you want to check for default culture used in <see cref="Options"/>.
+	/// </param>
+	/// <returns>The corresponding culture information.</returns>
+	/// <seealso cref="Options"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private protected CultureInfo GetCulture(IFormatProvider? formatProvider)
+		=> formatProvider as CultureInfo ?? Options.CurrentCulture;
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

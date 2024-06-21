@@ -61,5 +61,5 @@ public sealed partial class NakedSubsetStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string SubsetName => ResourceDictionary.Get($"SubsetNamesSize{Size}", Culture);
+	private string SubsetName => ResourceDictionary.Get($"SubsetNamesSize{Size}", GetCulture(null));
 }
