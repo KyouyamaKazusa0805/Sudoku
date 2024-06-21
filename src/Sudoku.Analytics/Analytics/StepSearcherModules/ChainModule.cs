@@ -65,7 +65,7 @@ internal static class ChainModule
 	)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, supportedRules, context.OnlyFindOne))
+		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
 			if (chain.TryCastToFinnedChain(out var finnedChain, out var f) && onlyFindFinnedChain)
 			{

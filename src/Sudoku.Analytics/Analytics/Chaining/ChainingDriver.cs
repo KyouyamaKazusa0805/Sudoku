@@ -66,9 +66,6 @@ internal static class ChainingDriver
 	/// Collect all multiple forcing chain instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="rules">
-	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
-	/// </param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	/// <example>
@@ -78,7 +75,7 @@ internal static class ChainingDriver
 	/// ]]></code>
 	/// This example only contains one forcing chains pattern and direct singles.
 	/// </example>
-	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules, bool onlyFindOne)
+	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<MultipleForcingChains>(MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
