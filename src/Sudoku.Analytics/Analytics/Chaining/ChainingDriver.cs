@@ -134,6 +134,7 @@ internal static class ChainingDriver
 					////////////////////////////////////////
 					// Collect with region forcing chains //
 					////////////////////////////////////////
+					#region Region forcing chains - On
 					foreach (var node in nodesSupposedOn_InHouse)
 					{
 						if (node.IsGroupedNode)
@@ -163,6 +164,8 @@ internal static class ChainingDriver
 						}
 						result.Add(mfc);
 					}
+					#endregion
+					#region Region forcing chains - Off
 					foreach (var node in nodesSupposedOff_InHouse)
 					{
 						if (node.IsGroupedNode)
@@ -192,6 +195,7 @@ internal static class ChainingDriver
 						}
 						result.Add(mfc);
 					}
+					#endregion
 				}
 
 				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
@@ -213,6 +217,7 @@ internal static class ChainingDriver
 			//////////////////////////////////////
 			// Collect with cell forcing chains //
 			//////////////////////////////////////
+			#region Cell forcing chains - On
 			foreach (var node in nodesSupposedOn_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
@@ -239,6 +244,8 @@ internal static class ChainingDriver
 				}
 				result.Add(cfc);
 			}
+			#endregion
+			#region Cell forcing chains - Off
 			foreach (var node in nodesSupposedOff_InCell ?? [])
 			{
 				if (node.IsGroupedNode)
@@ -265,6 +272,7 @@ internal static class ChainingDriver
 				}
 				result.Add(cfc);
 			}
+			#endregion
 		}
 		return result.ToArray();
 	}
