@@ -146,7 +146,7 @@ public abstract partial class Step(
 	/// If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
 	/// </para>
 	/// <para>
-	/// Please note the type of this property is <see cref="TechniqueFormat"/>, which is not a plain string text.
+	/// Please note the type of this property is <see cref="StepFormat"/>, which is not a plain string text.
 	/// However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
 	/// where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
 	/// The format text will be expanded to this expression in runtime:
@@ -164,9 +164,9 @@ public abstract partial class Step(
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="SR.Get(string, CultureInfo?, Assembly?)"/>
-	/// <seealso cref="TechniqueFormat"/>
+	/// <seealso cref="StepFormat"/>
 	/// <seealso cref="ToString(IFormatProvider?)"/>
-	public virtual TechniqueFormat Format => GetType().Name;
+	public StepFormat Format => new(GetType().Name);
 
 	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.
@@ -228,16 +228,15 @@ public abstract partial class Step(
 	{
 		var culture = GetCulture(formatProvider);
 		var colonToken = SR.Get("Colon", culture);
-		return (Format, FormatInterpolationParts?.FirstOrDefault(matcher).ResourcePlaceholderValues) switch
+		return (Format, FormatInterpolationParts?.FirstOrDefault(m).ResourcePlaceholderValues) switch
 		{
-			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(culture),
-			(_, null) => $"{GetName(culture)}{colonToken}{Format} => {ConclusionText}",
-			var (_, formatArgs) => $"{GetName(culture)}{colonToken}{Format.ToString(culture, formatArgs)} => {ConclusionText}"
+			({ } p, _) when p.GetResourceFormat(null) is null => ToSimpleString(formatProvider),
+			(_, null) => $"{GetName(formatProvider)}{colonToken}{Format} => {ConclusionText}",
+			var (_, formatArgs) => $"{GetName(formatProvider)}{colonToken}{Format.Format(culture, formatArgs)} => {ConclusionText}"
 		};
 
 
-		bool matcher(FormatInterpolation kvp)
-			=> culture.Name.StartsWith(kvp.LanguageName, StringComparison.CurrentCultureIgnoreCase);
+		bool m(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.CurrentCultureIgnoreCase);
 	}
 
 	/// <summary>

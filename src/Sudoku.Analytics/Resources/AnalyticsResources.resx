@@ -282,7 +282,7 @@
   <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
     <value>{0} -&gt; {1} -&gt; {2}, X = {3}, Y = {4}, Z = {5}</value>
   </data>
-  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
+  <data name="TechniqueFormat_AlmostLockedSetsXzStep" xml:space="preserve">
     <value>ALS #1: {0}, ALS #2: {1}, X = {2}{3}</value>
   </data>
   <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">

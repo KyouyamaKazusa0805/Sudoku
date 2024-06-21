@@ -33,9 +33,6 @@ public sealed partial class AlmostLockedSetsXzStep(
 	public override int BaseDifficulty => IsDoublyLinked is true ? 57 : 55;
 
 	/// <inheritdoc/>
-	public override TechniqueFormat Format => "AlmostLockedSetsXzRule";
-
-	/// <inheritdoc/>
 	public override Technique Code
 		=> IsDoublyLinked ? Technique.DoublyLinkedAlmostLockedSetsXzRule : Technique.SinglyLinkedAlmostLockedSetsXzRule;
 

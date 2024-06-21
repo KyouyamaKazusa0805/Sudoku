@@ -7365,9 +7365,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ALS #1: {0}, ALS #2: {1}, X = {2}{3}.
         /// </summary>
-        public static string TechniqueFormat_AlmostLockedSetsXzRule {
+        public static string TechniqueFormat_AlmostLockedSetsXzStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXzRule", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXzStep", resourceCulture);
             }
         }
         

@@ -9839,7 +9839,7 @@
             If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
             </para>
             <para>
-            Please note the type of this property is <see cref="T:Sudoku.Text.TechniqueFormat"/>, which is not a plain string text.
+            Please note the type of this property is <see cref="T:Sudoku.Text.StepFormat"/>, which is not a plain string text.
             However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
             where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
             The format text will be expanded to this expression in runtime:
@@ -9857,7 +9857,7 @@
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
             <seealso cref="M:System.Resources.SR.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <seealso cref="T:Sudoku.Text.TechniqueFormat"/>
+            <seealso cref="T:Sudoku.Text.StepFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolationParts">
@@ -14854,9 +14854,6 @@
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Format">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Code">
@@ -28773,7 +28770,7 @@
               Looks up a localized string similar to {0} -&gt; {1} -&gt; {2}, X = {3}, Y = {4}, Z = {5}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AlmostLockedSetsXzRule">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AlmostLockedSetsXzStep">
             <summary>
               Looks up a localized string similar to ALS #1: {0}, ALS #2: {1}, X = {2}{3}.
             </summary>
@@ -30943,42 +30940,37 @@
         <member name="P:Sudoku.Text.FormatInterpolation.ResourcePlaceholderValues">
             <summary>The values of the interpolation.</summary>
         </member>
-        <member name="T:Sudoku.Text.TechniqueFormat">
+        <member name="T:Sudoku.Text.StepFormat">
             <summary>
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="techniqueName">Indicates the technique identifier name.</param>
+            <param name="name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.#ctor(System.String)">
+        <member name="M:Sudoku.Text.StepFormat.#ctor(System.String)">
             <summary>
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="techniqueName">Indicates the technique identifier name.</param>
+            <param name="name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="F:Sudoku.Text.TechniqueFormat.FormatPrefix">
-            <summary>
-            The format prefix.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.TechniqueFormat.TechniqueResourceName">
+        <member name="P:Sudoku.Text.StepFormat.TechniqueResourceName">
             <summary>
             Full name of the format.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.GetTargetFormat(System.IFormatProvider)">
+        <member name="M:Sudoku.Text.StepFormat.GetResourceFormat(System.IFormatProvider)">
             <summary>
             Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
             </summary>
             <param name="formatProvider">The culture information.</param>
         </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.ToString">
+        <member name="M:Sudoku.Text.StepFormat.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.ToString(System.Globalization.CultureInfo,System.String[])">
+        <member name="M:Sudoku.Text.StepFormat.Format(System.Globalization.CultureInfo,System.String[])">
             <summary>
             Get the format string for the current instance.
             </summary>
@@ -30986,29 +30978,6 @@
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
-        </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.op_Implicit(System.String)~Sudoku.Text.TechniqueFormat">
-            <summary>
-            Creates a <see cref="T:Sudoku.Text.TechniqueFormat"/> instance using the specified format name stored in resource file.
-            </summary>
-            <param name="techniqueName">TThe format name.</param>
-        </member>
-        <member name="F:Sudoku.Text.TechniqueFormat._techniqueName">
-            <summary>
-            The generated field declaration for parameter <c>techniqueName</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.op_Equality(Sudoku.Text.TechniqueFormat,Sudoku.Text.TechniqueFormat)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.op_Inequality(Sudoku.Text.TechniqueFormat,Sudoku.Text.TechniqueFormat)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Traits.IBranchTrait">
             <summary>
