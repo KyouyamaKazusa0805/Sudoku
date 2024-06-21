@@ -78,11 +78,12 @@ public partial class App : Application
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
 	/// <summary>
-	/// Indicates the current culture, used by <see cref="SR.Get(string, CultureInfo?, Assembly?)"/>.
+	/// Indicates the current culture.
 	/// </summary>
-	/// <seealso cref="SR.Get(string, CultureInfo?, Assembly?)"/>
 	internal static CultureInfo CurrentCulture
-		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0 ? new(cultureInfoId) : CultureInfo.CurrentUICulture;
+		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0
+			? new(cultureInfoId)
+			: CultureInfo.CurrentUICulture;
 
 	/// <summary>
 	/// Indicates the configured application theme.

@@ -1211,7 +1211,7 @@
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
-            Represents an instance that describes for multiple forcing chains.
+            Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
             </summary>
             <param name="conclusion">Indicates the final conclusion.</param>
             <remarks>
@@ -1242,7 +1242,7 @@
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion)">
             <summary>
-            Represents an instance that describes for multiple forcing chains.
+            Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
             </summary>
             <param name="conclusion">Indicates the final conclusion.</param>
             <remarks>

@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents an instance that describes for multiple forcing chains.
+/// Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
 /// </summary>
 /// <param name="conclusion">Indicates the final conclusion.</param>
 /// <remarks>

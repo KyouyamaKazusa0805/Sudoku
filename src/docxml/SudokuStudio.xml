@@ -81,9 +81,8 @@
         </member>
         <member name="P:SudokuStudio.App.CurrentCulture">
             <summary>
-            Indicates the current culture, used by <see cref="!:SR.Get(string, CultureInfo?, Assembly?)"/>.
+            Indicates the current culture.
             </summary>
-            <seealso cref="!:SR.Get(string, CultureInfo?, Assembly?)"/>
         </member>
         <member name="P:SudokuStudio.App.CurrentTheme">
             <summary>
