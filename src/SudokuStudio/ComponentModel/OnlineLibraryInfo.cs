@@ -14,7 +14,7 @@ public sealed class OnlineLibraryInfo
 	/// <summary>
 	/// Indicates the author.
 	/// </summary>
-	public string Author { get; set; } = ResourceDictionary.Get("AnonymousAuthor", App.CurrentCulture);
+	public string Author { get; set; } = SR.Get("AnonymousAuthor", App.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the extra link that can visit to learn more information about the library.

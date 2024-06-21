@@ -37,7 +37,7 @@ public static class HashSetEnumerable
 		using var enumerator = source.GetEnumerator();
 		return enumerator.MoveNext()
 			? enumerator.Current
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsFoundInCollection"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 	}
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
@@ -50,7 +50,7 @@ public static class HashSetEnumerable
 				return element;
 			}
 		}
-		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsFoundInCollection"));
+		throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>

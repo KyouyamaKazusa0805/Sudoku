@@ -146,7 +146,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 					}
 					default:
 					{
-						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidStateOnParsing"));
+						throw new InvalidOperationException(SR.ExceptionMessage("InvalidStateOnParsing"));
 					}
 				}
 			}

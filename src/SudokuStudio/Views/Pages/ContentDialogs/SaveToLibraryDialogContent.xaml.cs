@@ -64,7 +64,7 @@ public sealed partial class SaveToLibraryDialogContent : Page
 			}
 		}
 
-		throw new(ResourceDictionary.ExceptionMessage("NoAvailableNameCanBeUsed"));
+		throw new(SR.ExceptionMessage("NoAvailableNameCanBeUsed"));
 	}
 
 

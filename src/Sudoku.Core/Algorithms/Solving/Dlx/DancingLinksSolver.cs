@@ -57,7 +57,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		if (_solutionCount > 1)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
+			throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
 		}
 
 		Debug.Assert(_root is not null);

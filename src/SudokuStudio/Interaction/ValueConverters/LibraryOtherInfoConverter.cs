@@ -14,10 +14,10 @@ public sealed class LibraryOtherInfoConverter : IValueConverter
 			LibraryInfo { Tags: var tags, LastModifiedTime: var time }
 				=> $"{tags switch
 				{
-					{ Length: not 0 } => string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), tags),
-					_ => ResourceDictionary.Get("NoTags", App.CurrentCulture)
+					{ Length: not 0 } => string.Join(SR.Get("_Token_Comma", App.CurrentCulture), tags),
+					_ => SR.Get("NoTags", App.CurrentCulture)
 				}} | {time.ToString(App.CurrentCulture)}",
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidLibraryBindableSource"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("InvalidLibraryBindableSource"))
 		};
 
 	/// <inheritdoc/>

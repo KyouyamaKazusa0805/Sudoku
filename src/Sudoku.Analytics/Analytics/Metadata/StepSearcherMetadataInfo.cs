@@ -76,8 +76,8 @@ public sealed partial class StepSearcherMetadataInfo(
 		{
 			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
 			{
-				{ NameKey: { } r } => ResourceDictionary.Get(r, culture),
-				_ => ResourceDictionary.TryGet($"StepSearcherName_{typeName}", out var resource, culture ?? CultureInfo.CurrentUICulture)
+				{ NameKey: { } r } => SR.Get(r, culture),
+				_ => SR.TryGet($"StepSearcherName_{typeName}", out var resource, culture ?? CultureInfo.CurrentUICulture)
 					? resource
 					: typeName
 			}

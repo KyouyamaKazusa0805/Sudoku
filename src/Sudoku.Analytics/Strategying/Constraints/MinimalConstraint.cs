@@ -25,8 +25,8 @@ public sealed partial class MinimalConstraint : Constraint
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("MinimalConstraint", culture),
-			ShouldBeMinimal ? string.Empty : ResourceDictionary.Get("NoString", culture)
+			SR.Get("MinimalConstraint", culture),
+			ShouldBeMinimal ? string.Empty : SR.Get("NoString", culture)
 		);
 	}
 

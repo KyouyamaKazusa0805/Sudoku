@@ -137,35 +137,35 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				{
 					new SegmentedItem
 					{
-						Content = ResourceDictionary.Get("DifficultyLevel_Easy", App.CurrentCulture),
+						Content = SR.Get("DifficultyLevel_Easy", App.CurrentCulture),
 						Foreground = DifficultyLevelConversion.GetForegroundColor(DifficultyLevel.Easy),
 						Background = DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel.Easy),
 						Tag = DifficultyLevel.Easy
 					},
 					new SegmentedItem
 					{
-						Content = ResourceDictionary.Get("DifficultyLevel_Moderate", App.CurrentCulture),
+						Content = SR.Get("DifficultyLevel_Moderate", App.CurrentCulture),
 						Foreground = DifficultyLevelConversion.GetForegroundColor(DifficultyLevel.Moderate),
 						Background = DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel.Moderate),
 						Tag = DifficultyLevel.Moderate
 					},
 					new SegmentedItem
 					{
-						Content = ResourceDictionary.Get("DifficultyLevel_Hard", App.CurrentCulture),
+						Content = SR.Get("DifficultyLevel_Hard", App.CurrentCulture),
 						Foreground = DifficultyLevelConversion.GetForegroundColor(DifficultyLevel.Hard),
 						Background = DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel.Hard),
 						Tag = DifficultyLevel.Hard
 					},
 					new SegmentedItem
 					{
-						Content = ResourceDictionary.Get("DifficultyLevel_Fiendish", App.CurrentCulture),
+						Content = SR.Get("DifficultyLevel_Fiendish", App.CurrentCulture),
 						Foreground = DifficultyLevelConversion.GetForegroundColor(DifficultyLevel.Fiendish),
 						Background = DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel.Fiendish),
 						Tag = DifficultyLevel.Fiendish
 					},
 					new SegmentedItem
 					{
-						Content = ResourceDictionary.Get("DifficultyLevel_Nightmare", App.CurrentCulture),
+						Content = SR.Get("DifficultyLevel_Nightmare", App.CurrentCulture),
 						Foreground = DifficultyLevelConversion.GetForegroundColor(DifficultyLevel.Nightmare),
 						Background = DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel.Nightmare),
 						Tag = DifficultyLevel.Nightmare
@@ -313,7 +313,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		{
 			var result = new TextBlock
 			{
-				Text = ResourceDictionary.Get(resourceKey, App.CurrentCulture),
+				Text = SR.Get(resourceKey, App.CurrentCulture),
 				HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
 				FontWeight = FontWeights.Bold,

@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Ocr;
 public sealed class TesseractException(string detail) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => string.Format(ResourceDictionary.Get("Message_TesseractException"), detail);
+	public override string Message => string.Format(SR.Get("Message_TesseractException"), detail);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

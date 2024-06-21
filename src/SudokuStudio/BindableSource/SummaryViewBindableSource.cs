@@ -35,7 +35,7 @@ internal sealed partial class SummaryViewBindableSource(
 		{
 			{ IsSolved: true, InterimSteps: var steps } => [.. g(steps, pref)],
 			{ IsPartiallySolved: true, InterimSteps: var steps } => [.. g(steps, pref)],
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrNotBad"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridMustBeSolvedOrNotBad"))
 		};
 
 

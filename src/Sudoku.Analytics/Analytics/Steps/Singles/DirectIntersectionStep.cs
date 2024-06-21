@@ -51,7 +51,7 @@ public sealed partial class DirectIntersectionStep(
 			Technique.HiddenSingleRow or Technique.HiddenSingleColumn => 23,
 #endif
 			Technique.NakedSingle => 23,
-			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("TechiqueIsNotSupported"))
+			_ => throw new NotSupportedException(SR.ExceptionMessage("TechiqueIsNotSupported"))
 		} + 2;
 
 	/// <inheritdoc/>

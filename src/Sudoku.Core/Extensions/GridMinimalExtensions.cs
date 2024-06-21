@@ -33,7 +33,7 @@ public static class GridMinimalExtensions
 	{
 		if (!@this.GetIsValid())
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
+			throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
 		}
 
 		switch (@this)

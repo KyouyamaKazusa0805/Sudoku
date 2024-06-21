@@ -9856,7 +9856,7 @@
             </para>
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
-            <seealso cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <seealso cref="M:System.Resources.SR.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
             <seealso cref="T:Sudoku.Text.TechniqueFormat"/>
             <seealso cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
         </member>

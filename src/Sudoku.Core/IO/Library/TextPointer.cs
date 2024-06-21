@@ -43,7 +43,7 @@ public sealed partial class TextPointer :
 		=> _stream = (Library = library) switch
 		{
 			(var p, _) { IsInitialized: true } => File.OpenRead(p),
-			(var p, _) => throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("LibraryShouldBeInitialized"), p)
+			(var p, _) => throw new FileNotFoundException(SR.ExceptionMessage("LibraryShouldBeInitialized"), p)
 		};
 
 
@@ -484,7 +484,7 @@ public sealed partial class TextPointer :
 	public static TextPointer operator checked ++(TextPointer value)
 		=> value.TryReadNextPuzzle(out _)
 			? value
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("PointerCannotMove"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("PointerCannotMove"));
 
 	/// <summary>
 	/// Moves the pointer to the previous puzzle. If the pointer is at the start of the sequence, moves to the last element.
@@ -515,7 +515,7 @@ public sealed partial class TextPointer :
 	public static TextPointer operator checked --(TextPointer value)
 		=> value.TryReadPreviousPuzzle(out _)
 			? value
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("PointerCannotMove"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("PointerCannotMove"));
 
 	/// <summary>
 	/// Skips the specified number of puzzles forward.
@@ -542,7 +542,7 @@ public sealed partial class TextPointer :
 	public static TextPointer operator checked +(TextPointer value, int count)
 		=> (count > 0 ? value.TrySkipNext(count) : value.TrySkipPrevious(count)) == count
 			? value
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("PointerCannotMove"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("PointerCannotMove"));
 
 	/// <summary>
 	/// Skips the specified number of puzzles back.
@@ -569,5 +569,5 @@ public sealed partial class TextPointer :
 	public static TextPointer operator checked -(TextPointer value, int count)
 		=> (count > 0 ? value.TrySkipPrevious(count) : value.TrySkipNext(count)) == count
 			? value
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("PointerCannotMove"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("PointerCannotMove"));
 }

@@ -106,7 +106,7 @@ internal static class AnalyzeConversion
 
 		if (displayKind.HasFlag(StepTooltipDisplayItems.TechniqueName))
 		{
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueName", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_TechniqueName", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = step.GetName(App.CurrentCulture) });
 		}
@@ -115,7 +115,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueIndex", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_TechniqueIndex", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = (index + 1).ToString() });
 		}
@@ -124,23 +124,23 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_Abbreviation", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_Abbreviation", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = technique.GetAbbreviation() ?? ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
+			result.Add(new Run { Text = technique.GetAbbreviation() ?? SR.Get("AnalyzePage_None", App.CurrentCulture) });
 		}
 
 		if (displayKind.HasFlag(StepTooltipDisplayItems.Aliases))
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_Aliases", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_Aliases", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(
 				new Run
 				{
 					Text = technique.GetAliasedNames(App.CurrentCulture) is { } aliases and not []
-						? string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), aliases)
-						: ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture)
+						? string.Join(SR.Get("_Token_Comma", App.CurrentCulture), aliases)
+						: SR.Get("AnalyzePage_None", App.CurrentCulture)
 				}
 			);
 		}
@@ -151,7 +151,7 @@ internal static class AnalyzeConversion
 
 			var difficultyValue = pref.GetRating(technique) switch { { } v => v, _ => difficulty } / pref.RatingScale;
 			var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = difficultyValueString });
 		}
@@ -160,7 +160,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_ExtraDifficultyCase", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_ExtraDifficultyCase", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 
 			switch (factors)
@@ -169,14 +169,14 @@ internal static class AnalyzeConversion
 				{
 					var baseDifficulty = pref.GetRating(technique) switch { { } v => v, _ => @base } / pref.RatingScale;
 					var baseDifficultyString = baseDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
-					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
+					result.Add(new Run { Text = $"{SR.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(factors));
 					break;
 				}
 				default:
 				{
-					result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
+					result.Add(new Run { Text = SR.Get("AnalyzePage_None", App.CurrentCulture) });
 					break;
 				}
 			}
@@ -186,7 +186,7 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_SimpleDescription", App.CurrentCulture) }.SingletonSpan<Bold>());
+			result.Add(new Run { Text = SR.Get("AnalyzePage_SimpleDescription", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = step.ToString(App.CurrentCulture) });
 		}
@@ -234,7 +234,7 @@ file static class Extensions
 	public static string ToString(this Factor @this, Step step, decimal scale, IFormatProvider? formatProvider)
 	{
 		var culture = formatProvider as CultureInfo;
-		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
+		var colonCharacter = SR.Get("_Token_Colon", culture);
 		return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
 		{
 			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value

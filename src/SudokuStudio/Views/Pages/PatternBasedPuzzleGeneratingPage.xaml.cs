@@ -206,7 +206,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		pane.ViewUnit = null;
 		pane.ViewUnit = view;
 
-		var p = ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
+		var p = SR.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
 		counterTextBlock.Text = $"{p}{newValue.Count}";
 	}
 
@@ -285,7 +285,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			{
 				SudokuPane.Puzzle = grid;
 				RatingDisplayer.Text = string.Format(
-					ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_RatingInfo", App.CurrentCulture),
+					SR.Get("PatternBasedPuzzleGeneratingPage_RatingInfo", App.CurrentCulture),
 #if NET9_0_OR_GREATER
 					[
 #endif
@@ -369,7 +369,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	{
 		MissingDigit = -1;
 
-		var p = ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
+		var p = SR.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
 		PatternCounter.Text = $"{p}0";
 	}
 

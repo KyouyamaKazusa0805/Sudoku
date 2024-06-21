@@ -26,7 +26,7 @@ public sealed class LibraryInitializationException(string directory, string file
 	/// <inheritdoc/>
 	public override string Message
 		=> string.Format(
-			ResourceDictionary.Get("Message_LibraryInitializedException"),
+			SR.Get("Message_LibraryInitializedException"),
 #if NET9_0_OR_GREATER
 			[
 #endif

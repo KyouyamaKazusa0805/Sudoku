@@ -40,7 +40,7 @@ public sealed class ProgramPreference
 				=> propertyInfo.GetValue(p) switch
 				{
 					PreferenceGroup t => t,
-					_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("PropertyValueCannotBeFoundInPropertyGroupType"))
+					_ => throw new NotSupportedException(SR.ExceptionMessage("PropertyValueCannotBeFoundInPropertyGroupType"))
 				};
 		}
 	}

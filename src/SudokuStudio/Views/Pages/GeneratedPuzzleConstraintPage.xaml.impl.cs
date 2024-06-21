@@ -45,12 +45,12 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var textBlock1 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 		var textBlock2 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -61,7 +61,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckRating", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_BottleneckRating", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -106,7 +106,7 @@ public partial class GeneratedPuzzleConstraintPage
 		// Reference link: https://github.com/CommunityToolkit/Windows/issues/302#issuecomment-1857686711
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckTechnique", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_BottleneckTechnique", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -135,7 +135,7 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var difficultyLevelControl = new ComboBox
 		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseDifficultyLevel", App.CurrentCulture),
+			PlaceholderText = SR.Get("GeneratedPuzzleConstraintPage_ChooseDifficultyLevel", App.CurrentCulture),
 			Items =
 			{
 				new ComboBoxItem { Content = DifficultyLevel.Easy.GetName(App.CurrentCulture), Tag = DifficultyLevel.Easy },
@@ -149,7 +149,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_DifficultyLevel", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_DifficultyLevel", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -178,14 +178,14 @@ public partial class GeneratedPuzzleConstraintPage
 			Style = (Style)Application.Current.Resources["ButtonSegmentedStyle"]!,
 			Items =
 			{
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Central", App.CurrentCulture), Tag = SymmetricType.Central },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Diagonal", App.CurrentCulture), Tag = SymmetricType.Diagonal },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Diagonal", App.CurrentCulture), Tag = SymmetricType.AntiDiagonal },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_YAxis", App.CurrentCulture), Tag = SymmetricType.YAxis },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_XAxis", App.CurrentCulture), Tag = SymmetricType.XAxis },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_AxisBoth", App.CurrentCulture), Tag = SymmetricType.AxisBoth },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_DiagonalBoth", App.CurrentCulture), Tag = SymmetricType.DiagonalBoth },
-				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_All", App.CurrentCulture), Tag = SymmetricType.All }
+				new SegmentedItem { Content = SR.Get("SymmetricType_Central", App.CurrentCulture), Tag = SymmetricType.Central },
+				new SegmentedItem { Content = SR.Get("SymmetricType_Diagonal", App.CurrentCulture), Tag = SymmetricType.Diagonal },
+				new SegmentedItem { Content = SR.Get("SymmetricType_Diagonal", App.CurrentCulture), Tag = SymmetricType.AntiDiagonal },
+				new SegmentedItem { Content = SR.Get("SymmetricType_YAxis", App.CurrentCulture), Tag = SymmetricType.YAxis },
+				new SegmentedItem { Content = SR.Get("SymmetricType_XAxis", App.CurrentCulture), Tag = SymmetricType.XAxis },
+				new SegmentedItem { Content = SR.Get("SymmetricType_AxisBoth", App.CurrentCulture), Tag = SymmetricType.AxisBoth },
+				new SegmentedItem { Content = SR.Get("SymmetricType_DiagonalBoth", App.CurrentCulture), Tag = SymmetricType.DiagonalBoth },
+				new SegmentedItem { Content = SR.Get("SymmetricType_All", App.CurrentCulture), Tag = SymmetricType.All }
 			}
 		};
 		symmetryControl.SelectionChanged += (_, _) =>
@@ -220,7 +220,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Symmetry", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Symmetry", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = symmetryControl,
 			Tag = constraint
@@ -242,12 +242,12 @@ public partial class GeneratedPuzzleConstraintPage
 			{
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Equality", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_Equality", App.CurrentCulture),
 					Tag = Assignment
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
 					Tag = Elimination
 				}
 			},
@@ -267,7 +267,7 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var appearLabelControl = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ShouldAppearLabel", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_ShouldAppearLabel", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -279,7 +279,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -318,17 +318,17 @@ public partial class GeneratedPuzzleConstraintPage
 			{
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.FullHouse
 				},
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.HiddenSingle
 				},
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
@@ -342,7 +342,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Lasting", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Lasting", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -368,7 +368,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Minimal", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Minimal", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = minimalControl,
 			Tag = constraint
@@ -389,7 +389,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}", App.CurrentCulture),
+			Header = SR.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = control,
 			Tag = constraint
@@ -436,12 +436,12 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var cellStateControl = new ComboBox
 		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseCellState", App.CurrentCulture),
+			PlaceholderText = SR.Get("GeneratedPuzzleConstraintPage_ChooseCellState", App.CurrentCulture),
 			Items =
 			{
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_GivensCount", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_GivensCount", App.CurrentCulture),
 					Tag = CellState.Given
 				},
 #if false
@@ -453,7 +453,7 @@ public partial class GeneratedPuzzleConstraintPage
 #endif
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EmptiesCount", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_EmptiesCount", App.CurrentCulture),
 					Tag = CellState.Empty
 				}
 			}
@@ -482,7 +482,7 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var andTextBlockControl = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AndTextBlock", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_AndTextBlock", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -493,7 +493,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_CountBetween", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_CountBetween", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -526,7 +526,7 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var highestTechniqueControl = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_HighestSingleTechnique", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_HighestSingleTechnique", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -574,7 +574,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Ittoryu", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Ittoryu", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -604,7 +604,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_IttoryuLength", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_IttoryuLength", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -646,7 +646,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_Technique", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -673,7 +673,7 @@ public partial class GeneratedPuzzleConstraintPage
 			MaxWidth = 400,
 			TextWrapping = TextWrapping.WrapWholeWords,
 			VerticalAlignment = VerticalAlignment.Center,
-			Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}{ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearingTimes", App.CurrentCulture)}"
+			Text = $"{technique.GetName(App.CurrentCulture)}{SR.Get("_Token_Comma2", App.CurrentCulture)}{SR.Get("GeneratedPuzzleConstraintPage_AppearingTimes", App.CurrentCulture)}"
 		};
 
 		//
@@ -689,7 +689,7 @@ public partial class GeneratedPuzzleConstraintPage
 		{
 			var technique = e.Technique;
 			constraint.Technique = technique;
-			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}{ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearingTimes", App.CurrentCulture)}";
+			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{SR.Get("_Token_Comma2", App.CurrentCulture)}{SR.Get("GeneratedPuzzleConstraintPage_AppearingTimes", App.CurrentCulture)}";
 		};
 
 		//
@@ -704,7 +704,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_TechniqueCount", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_TechniqueCount", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -747,7 +747,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_TechniqueSet", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_TechniqueSet", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -784,7 +784,7 @@ public partial class GeneratedPuzzleConstraintPage
 			MaxWidth = 400,
 			TextWrapping = TextWrapping.WrapWholeWords,
 			VerticalAlignment = VerticalAlignment.Center,
-			Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}"
+			Text = $"{technique.GetName(App.CurrentCulture)}{SR.Get("_Token_Comma2", App.CurrentCulture)}"
 		};
 
 		//
@@ -801,12 +801,12 @@ public partial class GeneratedPuzzleConstraintPage
 		{
 			var technique = e.Technique;
 			constraint.Technique = technique;
-			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}";
+			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{SR.Get("_Token_Comma2", App.CurrentCulture)}";
 		};
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -830,12 +830,12 @@ public partial class GeneratedPuzzleConstraintPage
 		//
 		var preferredLabel1 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 		var preferredLabel2 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2", App.CurrentCulture),
+			Text = SR.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -849,17 +849,17 @@ public partial class GeneratedPuzzleConstraintPage
 			{
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.FullHouse
 				},
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.HiddenSingle
 				},
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
@@ -881,7 +881,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimarySingle", App.CurrentCulture),
+			Header = SR.Get("GeneratedPuzzleConstraintPage_PrimarySingle", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -967,38 +967,38 @@ public partial class GeneratedPuzzleConstraintPage
 	{
 		var operatorControl = new ComboBox
 		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseComparisonOperator", App.CurrentCulture),
+			PlaceholderText = SR.Get("GeneratedPuzzleConstraintPage_ChooseComparisonOperator", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center,
 			Items =
 			{
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Equality", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_Equality", App.CurrentCulture),
 					Tag = ComparisonOperator.Equality
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
 					Tag = ComparisonOperator.Inequality
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThan", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_GreaterThan", App.CurrentCulture),
 					Tag = ComparisonOperator.GreaterThan
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_GreaterThanOrEqual", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_GreaterThanOrEqual", App.CurrentCulture),
 					Tag = ComparisonOperator.GreaterThanOrEqual
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_LessThan", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_LessThan", App.CurrentCulture),
 					Tag = ComparisonOperator.LessThan
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("_ComparisonOperator_LessThanOrEqual", App.CurrentCulture),
+					Content = SR.Get("_ComparisonOperator_LessThanOrEqual", App.CurrentCulture),
 					Tag = ComparisonOperator.LessThanOrEqual
 				}
 			}
@@ -1040,27 +1040,27 @@ public partial class GeneratedPuzzleConstraintPage
 	{
 		var betweenRuleControl = new ComboBox
 		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseBetweenRule", App.CurrentCulture),
+			PlaceholderText = SR.Get("GeneratedPuzzleConstraintPage_ChooseBetweenRule", App.CurrentCulture),
 			Items =
 			{
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothOpen", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_BothOpen", App.CurrentCulture),
 					Tag = BetweenRule.BothOpen
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyLeftOpen", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_OnlyLeftOpen", App.CurrentCulture),
 					Tag = BetweenRule.LeftOpen
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyRightOpen", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_OnlyRightOpen", App.CurrentCulture),
 					Tag = BetweenRule.RightOpen
 				},
 				new ComboBoxItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothClosed", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_BothClosed", App.CurrentCulture),
 					Tag = BetweenRule.BothClosed
 				}
 			}
@@ -1082,10 +1082,10 @@ file static class Extensions
 	public static string GetTechniqueString(this TechniqueSet @this)
 		=> @this switch
 		{
-			[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
+			[] => SR.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
 			[var technique] => technique.GetName(App.CurrentCulture),
 			_ => string.Join(
-				ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
+				SR.Get("_Token_Comma", App.CurrentCulture),
 #if !NET9_0_OR_GREATER
 				[
 				..

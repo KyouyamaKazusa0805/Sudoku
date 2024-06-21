@@ -58,11 +58,11 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	/// </summary>
 	internal string ThemeDescription
 		=> string.Format(
-			ResourceDictionary.Get("SettingsPage_CurrentlySelectedThemeIs", App.CurrentCulture),
+			SR.Get("SettingsPage_CurrentlySelectedThemeIs", App.CurrentCulture),
 #if NET9_0_OR_GREATER
 			[
 #endif
-			ResourceDictionary.Get(
+			SR.Get(
 				App.CurrentTheme switch
 				{
 					ApplicationTheme.Light => "SettingsPage_LightThemeFullName",
@@ -70,7 +70,7 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 				},
 				App.CurrentCulture
 			),
-			ResourceDictionary.Get(
+			SR.Get(
 				App.CurrentTheme switch
 				{
 					ApplicationTheme.Light => "SettingsPage_DarkThemeFullName",

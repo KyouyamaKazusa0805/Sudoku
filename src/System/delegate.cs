@@ -147,7 +147,7 @@ public static class @delegate
 		{
 			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
 			8 when (Unsafe.As<T, long>(ref left) | Unsafe.As<T, long>(ref right)) is var f => Unsafe.As<long, T>(ref f),
-			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("UnderlyingTypeNotSupported"))
+			_ => throw new NotSupportedException(SR.ExceptionMessage("UnderlyingTypeNotSupported"))
 		};
 
 	/// <summary>

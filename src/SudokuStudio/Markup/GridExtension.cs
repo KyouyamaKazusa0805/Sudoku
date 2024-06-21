@@ -40,7 +40,7 @@ public sealed class GridExtension : MarkupExtension
 
 		var targetGrid = Grid.Parse(Text);
 		return !string.IsNullOrEmpty(ExactFormatString) && targetGrid.ToString(ExactFormatString) != Text
-			? throw new FormatException(ResourceDictionary.ExceptionMessage("FormatInvalid"))
+			? throw new FormatException(SR.ExceptionMessage("FormatInvalid"))
 			: targetGrid;
 	}
 }

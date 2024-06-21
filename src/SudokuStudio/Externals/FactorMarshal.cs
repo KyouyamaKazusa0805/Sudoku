@@ -14,7 +14,7 @@ public static class FactorMarshal
 	public static int GetScaleUnitLength(decimal scale)
 		=> scale switch
 		{
-			< 0 => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ScaleValueCannotBeNegative")),
+			< 0 => throw new InvalidOperationException(SR.ExceptionMessage("ScaleValueCannotBeNegative")),
 			0 => 0, // Special case: return 0 if scale is 0.
 			_ when scale.ToString() is var str && str.IndexOf('.') is var posOfPeriod => posOfPeriod switch
 			{

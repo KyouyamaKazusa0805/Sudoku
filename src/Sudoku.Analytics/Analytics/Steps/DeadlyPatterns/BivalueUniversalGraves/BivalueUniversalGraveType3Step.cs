@@ -53,7 +53,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string TrueCandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 
-	private string SubsetTypeStr => ResourceDictionary.Get(IsNaked ? "NakedKeyword" : "HiddenKeyword", GetCulture(null));
+	private string SubsetTypeStr => SR.Get(IsNaked ? "NakedKeyword" : "HiddenKeyword", GetCulture(null));
 
 	private string SizeStr => TechniqueMarshal.GetSubsetName(Size);
 

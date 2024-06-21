@@ -328,7 +328,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			return result;
 		}
 
-		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotCastFinnedChain"));
+		throw new InvalidOperationException(SR.ExceptionMessage("CannotCastFinnedChain"));
 	}
 
 	/// <inheritdoc/>

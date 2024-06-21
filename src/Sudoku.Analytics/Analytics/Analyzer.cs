@@ -173,7 +173,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	{
 		if (puzzle.IsSolved)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridAlreadySolved"));
+			throw new InvalidOperationException(SR.ExceptionMessage("GridAlreadySolved"));
 		}
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };

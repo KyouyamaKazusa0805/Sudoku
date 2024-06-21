@@ -118,7 +118,7 @@ public sealed partial class AlmostLockedSet(
 		var cellsStr = converter.CellConverter(Cells);
 		return IsBivalueCell
 			? $"{digitsStr}/{cellsStr}"
-			: $"{digitsStr}/{cellsStr} {ResourceDictionary.Get("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
+			: $"{digitsStr}/{cellsStr} {SR.Get("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
 	}
 
 	/// <inheritdoc/>
@@ -233,7 +233,7 @@ public sealed partial class AlmostLockedSet(
 		return s.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
 			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
-				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
+				: throw new FormatException(SR.ExceptionMessage("AlsMissingCellsInTargetHouse"))
+			: throw new FormatException(SR.ExceptionMessage("AlsMissingSlash"));
 	}
 }

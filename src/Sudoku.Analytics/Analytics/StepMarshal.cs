@@ -51,7 +51,7 @@ public static class StepMarshal
 		{
 			throw new InvalidOperationException(
 				string.Format(
-					ResourceDictionary.ExceptionMessage("LengthMustBeSame"),
+					SR.ExceptionMessage("LengthMustBeSame"),
 #if NET9_0_OR_GREATER
 					[
 #endif

@@ -36,12 +36,12 @@ public sealed partial class SymmetryConstraint : Constraint
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("SymmetryConstraint", culture),
+			SR.Get("SymmetryConstraint", culture),
 			SymmetricTypes switch
 			{
-				InvalidSymmetricType => ResourceDictionary.Get("SymmetryConstraint_NoSymmetrySelected"),
+				InvalidSymmetricType => SR.Get("SymmetryConstraint_NoSymmetrySelected"),
 				_ => string.Join(
-					ResourceDictionary.Get("_Token_Comma"),
+					SR.Get("_Token_Comma"),
 					from type in SymmetricTypes.GetAllFlags() select type.GetName(culture)
 				)
 			}

@@ -10,5 +10,5 @@ namespace Sudoku.Analytics.Metadata;
 public sealed class MissingTechniqueGroupException(string memberName) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingTechniqueGroupException"), memberName);
+	public override string Message => string.Format(SR.Get("Message_MissingTechniqueGroupException"), memberName);
 }

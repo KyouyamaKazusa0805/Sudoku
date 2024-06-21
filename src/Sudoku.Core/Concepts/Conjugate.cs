@@ -121,5 +121,5 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	public static Conjugate Parse(string s, IFormatProvider? provider)
 		=> CoordinateParser.GetParser(provider).ConjuagteParser(s) is [var result]
 			? result
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleConjugatePairValuesFound"));
+			: throw new FormatException(SR.ExceptionMessage("MultipleConjugatePairValuesFound"));
 }

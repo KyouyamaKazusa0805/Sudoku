@@ -36,7 +36,7 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("BottleneckStepRatingConstraint", culture),
+			SR.Get("BottleneckStepRatingConstraint", culture),
 #if NET9_0_OR_GREATER
 			[
 #endif
@@ -44,10 +44,10 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 			Maximum,
 			BetweenRule switch
 			{
-				BetweenRule.BothOpen => ResourceDictionary.Get("BothOpen", culture),
-				BetweenRule.LeftOpen => ResourceDictionary.Get("LeftOpen", culture),
-				BetweenRule.RightOpen => ResourceDictionary.Get("RightOpen", culture),
-				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
+				BetweenRule.BothOpen => SR.Get("BothOpen", culture),
+				BetweenRule.LeftOpen => SR.Get("LeftOpen", culture),
+				BetweenRule.RightOpen => SR.Get("RightOpen", culture),
+				BetweenRule.BothClosed => SR.Get("BothClosed", culture)
 			}
 #if NET9_0_OR_GREATER
 			]

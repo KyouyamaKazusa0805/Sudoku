@@ -50,7 +50,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 	private string BranchesStr
 		=> string.Join(
-			ResourceDictionary.Get("Comma", GetCulture(null)),
+			SR.Get("Comma", GetCulture(null)),
 #if !NET9_0_OR_GREATER
 			[
 			..

@@ -753,7 +753,7 @@ public partial struct Grid :
 	public readonly int CompareTo(ref readonly Grid other)
 		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"));
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -866,7 +866,7 @@ public partial struct Grid :
 		{
 			CellState.Empty => -1,
 			CellState.Modifiable or CellState.Given => TrailingZeroCount(this[cell]),
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridInvalidCellState"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 
 	/// <summary>

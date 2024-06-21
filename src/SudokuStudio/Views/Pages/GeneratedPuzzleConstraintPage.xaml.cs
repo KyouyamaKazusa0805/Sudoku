@@ -94,7 +94,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 			var negatingButton = new ToggleButton
 			{
-				Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
+				Content = SR.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
 				Margin = new(6),
 				VerticalAlignment = VerticalAlignment.Center,
 				IsChecked = constraint.IsNegated
@@ -113,7 +113,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 			var deleteButton = new Button
 			{
-				Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Delete", App.CurrentCulture),
+				Content = SR.Get("GeneratedPuzzleConstraintPage_Delete", App.CurrentCulture),
 				Foreground = new SolidColorBrush(Colors.White),
 				Background = new SolidColorBrush(Colors.Red),
 				Margin = new(6),

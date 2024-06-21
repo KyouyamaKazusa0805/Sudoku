@@ -15,5 +15,5 @@ public sealed partial class PuzzleInvalidException(ref readonly Grid grid, [Prim
 	RuntimeAnalysisException(in grid)
 {
 	/// <inheritdoc/>
-	public override string Message => string.Format(ResourceDictionary.Get("Message_PuzzleInvalidException"), InvalidGrid);
+	public override string Message => string.Format(SR.Get("Message_PuzzleInvalidException"), InvalidGrid);
 }

@@ -50,7 +50,7 @@ public static class TechniqueGroupExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this TechniqueGroup @this, IFormatProvider? formatProvider)
-		=> ResourceDictionary.Get($"{nameof(TechniqueGroup)}_{@this}", formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture);
+		=> SR.Get($"{nameof(TechniqueGroup)}_{@this}", formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture);
 
 	/// <summary>
 	/// Try to get abbreviation of the current <see cref="TechniqueGroup"/> instance.

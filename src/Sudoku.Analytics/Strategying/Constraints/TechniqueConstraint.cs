@@ -27,7 +27,7 @@ public sealed partial class TechniqueConstraint : Constraint
 	public override string ToString(IFormatProvider? formatProvider)
 	{
 		var culture = formatProvider as CultureInfo;
-		return string.Format(ResourceDictionary.Get("TechniqueConstraint", culture), Techniques.ToString(culture));
+		return string.Format(SR.Get("TechniqueConstraint", culture), Techniques.ToString(culture));
 	}
 
 	/// <inheritdoc/>

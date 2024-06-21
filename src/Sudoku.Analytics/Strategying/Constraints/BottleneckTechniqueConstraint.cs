@@ -25,7 +25,7 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 	public override string ToString(IFormatProvider? formatProvider)
 	{
 		var culture = formatProvider as CultureInfo;
-		return string.Format(ResourceDictionary.Get("BottleneckTechniqueConstraint", culture), Techniques.ToString(culture));
+		return string.Format(SR.Get("BottleneckTechniqueConstraint", culture), Techniques.ToString(culture));
 	}
 
 	/// <inheritdoc/>

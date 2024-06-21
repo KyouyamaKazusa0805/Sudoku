@@ -124,8 +124,8 @@ public sealed class ComplexSingleStep(
 		}
 
 		var culture = GetCulture(formatProvider);
-		var lockedCandidatesName = ResourceDictionary.Get("Concept_LockedCandidates", culture);
-		var subsetName = ResourceDictionary.Get("Concept_Subset", culture);
+		var lockedCandidatesName = SR.Get("Concept_LockedCandidates", culture);
+		var subsetName = SR.Get("Concept_Subset", culture);
 		var basedOnName = BasedOn.GetName(culture);
 		var isChinese = culture?.Name is ['Z' or 'z', 'H' or 'h', ..];
 		var spacing = isChinese ? string.Empty : " ";
@@ -136,7 +136,7 @@ public sealed class ComplexSingleStep(
 			(false, true) => $"{subsetName}"
 		};
 		return isChinese
-			? $"{base.GetName(culture)}{ResourceDictionary.Get("_Token_CenterDot", culture)}{prefix}{basedOnName}"
+			? $"{base.GetName(culture)}{SR.Get("_Token_CenterDot", culture)}{prefix}{basedOnName}"
 			: $"{base.GetName(culture)} ({prefix}{spacing}{basedOnName})";
 	}
 }

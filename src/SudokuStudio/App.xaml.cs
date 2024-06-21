@@ -78,9 +78,9 @@ public partial class App : Application
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
 
 	/// <summary>
-	/// Indicates the current culture, used by <see cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>.
+	/// Indicates the current culture, used by <see cref="SR.Get(string, CultureInfo?, Assembly?)"/>.
 	/// </summary>
-	/// <seealso cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>
+	/// <seealso cref="SR.Get(string, CultureInfo?, Assembly?)"/>
 	internal static CultureInfo CurrentCulture
 		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0 ? new(cultureInfoId) : CultureInfo.CurrentUICulture;
 
@@ -305,7 +305,7 @@ public partial class App : Application
 		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("EnsureFileIsUnsnapped"));
+			throw new InvalidOperationException(SR.ExceptionMessage("EnsureFileIsUnsnapped"));
 		}
 
 		return unsnapped;
@@ -322,7 +322,7 @@ public partial class App : Application
 		=> ((App)Current).WindowManager.GetWindowForElement(@this) switch
 		{
 			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MainWindowNotFound"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("MainWindowNotFound"))
 		};
 
 	/// <summary>

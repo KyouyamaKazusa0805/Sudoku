@@ -69,6 +69,6 @@ public static class CellMapToken
 				),
 				new BitmapCellMapFormatInfo()
 			),
-			_ => throw new FormatException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 18))
+			_ => throw new FormatException(string.Format(SR.ExceptionMessage("LengthMustBeMatched"), 18))
 		};
 }

@@ -845,7 +845,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 				return result;
 			}
 		}
-		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+		throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
 	/// <inheritdoc/>
@@ -986,7 +986,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		{
 			if (n > MaxLimit && subsetSize > MaxLimit)
 			{
-				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
+				throw new NotSupportedException(SR.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CellMap>();
 			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r.AddRef(c.AsCellMap()));

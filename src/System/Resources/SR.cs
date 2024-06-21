@@ -3,7 +3,7 @@ namespace System.Resources;
 /// <summary>
 /// Represents a easy way to fetch resource values using the specified key and culture information.
 /// </summary>
-public static class ResourceDictionary
+public static class SR
 {
 	/// <summary>
 	/// Indicates the resource manager reflection binding flags.

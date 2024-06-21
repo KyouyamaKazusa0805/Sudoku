@@ -39,10 +39,10 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("EliminationCountConstraint", culture),
+			SR.Get("EliminationCountConstraint", culture),
 			Operator.GetOperatorString(),
 			LimitCount,
-			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture),
+			LimitCount != 1 ? string.Empty : SR.Get("NounPluralSuffix", culture),
 			Technique.GetName(culture)
 		);
 	}

@@ -264,7 +264,7 @@ public sealed partial class AnalyzePage : Page
 		var fsp = new FileSavePicker();
 		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = ResourceDictionary.Get("Sudoku", App.CurrentCulture);
+		fsp.SuggestedFileName = SR.Get("Sudoku", App.CurrentCulture);
 		fsp.AddFileFormat(FileFormats.Text);
 		fsp.AddFileFormat(FileFormats.PlainText);
 		fsp.AddFileFormat(FileFormats.PortablePicture);
@@ -477,22 +477,22 @@ public sealed partial class AnalyzePage : Page
 	{
 		_tabsRoutingData = [
 			new(
-				ResourceDictionary.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
+				SR.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Flag },
 				new Summary { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
-				ResourceDictionary.Get("AnalyzePage_StepDetail", App.CurrentCulture),
+				SR.Get("AnalyzePage_StepDetail", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.ShowResults },
 				new SolvingPath { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
-				ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
+				SR.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Shuffle },
 				new StepCollecting { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
-				ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
+				SR.Get("AnalyzePage_Drawing", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Edit },
 				new Analyze.Drawing { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			)
@@ -1039,7 +1039,7 @@ public sealed partial class AnalyzePage : Page
 		ClearAnalyzeTabsData();
 		IsAnalyzerLaunched = true;
 
-		var textFormat = ResourceDictionary.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
+		var textFormat = SR.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
 		_ctsForAnalyzingRelatedOperations = cts;
@@ -1085,13 +1085,13 @@ public sealed partial class AnalyzePage : Page
 					{
 						XamlRoot = XamlRoot,
 						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-						Title = ResourceDictionary.Get("AnalyzePage_ErrorStepEncounteredTitle", App.CurrentCulture),
-						CloseButtonText = ResourceDictionary.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
+						Title = SR.Get("AnalyzePage_ErrorStepEncounteredTitle", App.CurrentCulture),
+						CloseButtonText = SR.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
 						DefaultButton = ContentDialogButton.Close,
 						Content = new ErrorStepDialogContent
 						{
 							ErrorStepGrid = invalidGrid,
-							ErrorStepText = string.Format(ResourceDictionary.Get("AnalyzePage_ErrorStepDescription", App.CurrentCulture), wrongStep),
+							ErrorStepText = string.Format(SR.Get("AnalyzePage_ErrorStepDescription", App.CurrentCulture), wrongStep),
 							ViewUnit = new() { View = views?[0] ?? [], Conclusions = conclusions }
 						}
 					}.ShowAsync();
@@ -1104,8 +1104,8 @@ public sealed partial class AnalyzePage : Page
 					{
 						XamlRoot = XamlRoot,
 						Style = (Style)Application.Current.Resources["DefaultContentDialogStyle"]!,
-						Title = ResourceDictionary.Get("AnalyzePage_ExceptionThrownTitle", App.CurrentCulture),
-						CloseButtonText = ResourceDictionary.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
+						Title = SR.Get("AnalyzePage_ExceptionThrownTitle", App.CurrentCulture),
+						CloseButtonText = SR.Get("AnalyzePage_ErrorStepDialogCloseButtonText", App.CurrentCulture),
 						DefaultButton = ContentDialogButton.Close,
 						Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
 					}.ShowAsync();
@@ -1299,11 +1299,11 @@ public sealed partial class AnalyzePage : Page
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
+			Title = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
 			IsPrimaryButtonEnabled = true,
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
-			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
+			PrimaryButtonText = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
+			CloseButtonText = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
 			Content = new SaveToLibraryDialogContent { AvailableLibraries = LibraryBindableSource.GetLibrariesFromLocal() }
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)

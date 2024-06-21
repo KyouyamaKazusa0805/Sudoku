@@ -113,7 +113,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 				}
 				default:
 				{
-					throw new ArgumentException(ResourceDictionary.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
+					throw new ArgumentException(SR.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
 				}
 			}
 
@@ -164,7 +164,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 				);
 				var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
 				page.ResultDataDisplayer.Text = string.Format(
-					ResourceDictionary.Get("SingleCountingPracticingPage_ResultDisplayLabel", App.CurrentCulture),
+					SR.Get("SingleCountingPracticingPage_ResultDisplayLabel", App.CurrentCulture),
 					totalTimeSpan,
 					testedCount,
 					totalTimeSpan / testedCount,

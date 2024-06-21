@@ -604,7 +604,7 @@ public static class SpanEnumerable
 			}
 		}
 
-		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchElementSatisfyingCondition"));
+		throw new InvalidOperationException(SR.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
@@ -630,7 +630,7 @@ public static class SpanEnumerable
 				return element;
 			}
 		}
-		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchElementSatisfyingCondition"));
+		throw new InvalidOperationException(SR.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
@@ -663,7 +663,7 @@ public static class SpanEnumerable
 		var maxIndex = range.End.GetOffset(@this.Length);
 		if (maxIndex <= minIndex)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsFoundInCollection"));
+			throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 		}
 
 		var result = new List<TSource>(maxIndex - minIndex);

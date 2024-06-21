@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Ocr;
 public sealed class RecognizerNotInitializedException : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => ResourceDictionary.Get("Message_RecognizerNotInitializedException");
+	public override string Message => SR.Get("Message_RecognizerNotInitializedException");
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

@@ -135,7 +135,7 @@ public sealed record K9Converter(
 				var house = Log2((uint)housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
-					ResourceDictionary.Get(
+					SR.Get(
 						houseType switch
 						{
 							HouseType.Row => "RowLabel",
@@ -164,7 +164,7 @@ public sealed record K9Converter(
 			{
 				sb.Append(
 					string.Format(
-						ResourceDictionary.Get(
+						SR.Get(
 							houseType switch
 							{
 								HouseType.Row => "RowLabel",
@@ -260,21 +260,21 @@ public sealed record K9Converter(
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
-					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 					[
 #endif
 					((House)baseSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 					},
 					((House)coverSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
 #if NET9_0_OR_GREATER
 					]
@@ -294,21 +294,21 @@ public sealed record K9Converter(
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
-					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 					[
 #endif
 					((House)baseSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
 					},
 					((House)coverSet).ToHouseType() switch
 					{
-						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
+						HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
 #if NET9_0_OR_GREATER
 					]

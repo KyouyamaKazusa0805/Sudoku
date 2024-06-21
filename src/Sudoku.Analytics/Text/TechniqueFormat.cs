@@ -34,7 +34,7 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	/// <param name="formatProvider">The culture information.</param>
 	public readonly string? GetTargetFormat(IFormatProvider? formatProvider)
 		=> _techniqueName is not null
-		&& ResourceDictionary.TryGet(TechniqueResourceName, out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
+		&& SR.TryGet(TechniqueResourceName, out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
 			: null;
 

@@ -57,7 +57,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ModeIsUndefined"));
+			throw new InvalidOperationException(SR.ExceptionMessage("ModeIsUndefined"));
 		}
 
 		if ((puzzle.PuzzleType == SudokuType.Sukaku) is var isSukaku && puzzle.IsSolved)

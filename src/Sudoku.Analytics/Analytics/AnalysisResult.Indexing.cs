@@ -26,7 +26,7 @@ public partial record AnalysisResult
 		{
 			if (!IsSolved)
 			{
-				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolved"));
+				throw new InvalidOperationException(SR.ExceptionMessage("GridMustBeSolved"));
 			}
 
 			foreach (var (g, s) in Span)
@@ -37,7 +37,7 @@ public partial record AnalysisResult
 				}
 			}
 
-			throw new ArgumentOutOfRangeException(ResourceDictionary.ExceptionMessage("GridInvalid"));
+			throw new ArgumentOutOfRangeException(SR.ExceptionMessage("GridInvalid"));
 		}
 	}
 

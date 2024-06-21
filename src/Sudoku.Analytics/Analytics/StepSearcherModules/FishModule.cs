@@ -112,7 +112,7 @@ internal static class FishModule
 				(true, not null) or (not null, true) => true,
 				(false, false) => false,
 				(null, null) => default(bool?),
-				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("SashimiPropertyInvalid"))
+				_ => throw new InvalidOperationException(SR.ExceptionMessage("SashimiPropertyInvalid"))
 			};
 
 			// Check for cannibalism.
@@ -166,13 +166,13 @@ internal static class FishModule
 					{
 						FishShapeKind.Franken => true,
 						FishShapeKind.Mutant => false,
-						_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComplexFishCannotBeNormal"))
+						_ => throw new InvalidOperationException(SR.ExceptionMessage("ComplexFishCannotBeNormal"))
 					},
 					isSashimi,
 					isCannibalism,
 					true
 				),
-				_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("MemberNotSupported"))
+				_ => throw new NotSupportedException(SR.ExceptionMessage("MemberNotSupported"))
 			};
 			return true;
 
@@ -194,7 +194,7 @@ internal static class FishModule
 					var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode(_, var candidate2) && candidate1 == candidate2);
 					if (n?.Identifier is not WellKnownColorIdentifier id2)
 					{
-						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NormalFishViewInvalid"));
+						throw new InvalidOperationException(SR.ExceptionMessage("NormalFishViewInvalid"));
 					}
 
 					result.Add(

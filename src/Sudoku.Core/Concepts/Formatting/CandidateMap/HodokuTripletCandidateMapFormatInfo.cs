@@ -43,7 +43,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 		var segments = str.SplitBy(' ');
 		if (Array.IndexOf(segments, string.Empty) != -1)
 		{
-			throw new FormatException(ResourceDictionary.ExceptionMessage("ContainsEmptySegmentOnParsing"));
+			throw new FormatException(SR.ExceptionMessage("ContainsEmptySegmentOnParsing"));
 		}
 
 		var result = CandidateMap.Empty;
@@ -55,7 +55,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 				continue;
 			}
 
-			throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+			throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 		}
 		return result;
 	}

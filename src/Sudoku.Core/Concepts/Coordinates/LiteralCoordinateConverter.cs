@@ -15,7 +15,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		{
 			[] => string.Empty,
 			[var p] => string.Format(
-				ResourceDictionary.Get("CellLabel", TargetCurrentCulture),
+				SR.Get("CellLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 				[
 #endif
@@ -26,7 +26,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 #endif
 			),
 			_ => string.Format(
-				ResourceDictionary.Get("CellsLabel", TargetCurrentCulture),
+				SR.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(
 					DefaultSeparator,
 #if !NET9_0_OR_GREATER
@@ -35,7 +35,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 #endif
 					from cell in cells
 					select string.Format(
-						ResourceDictionary.Get("CellLabel", TargetCurrentCulture),
+						SR.Get("CellLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 						[
 #endif
@@ -63,7 +63,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
 				snippets.Add(
 					string.Format(
-						ResourceDictionary.Get("CandidateLabel", TargetCurrentCulture),
+						SR.Get("CandidateLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 						[
 #endif
@@ -93,7 +93,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var house = Log2((uint)housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
-					ResourceDictionary.Get(
+					SR.Get(
 						houseType switch
 						{
 							HouseType.Row => "RowLabel",
@@ -113,7 +113,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var houseType = house.ToHouseType();
 				snippets.Add(
 					string.Format(
-						ResourceDictionary.Get(
+						SR.Get(
 							houseType switch
 							{
 								HouseType.Row => "RowLabel",
@@ -128,7 +128,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				);
 			}
 
-			return string.Format(ResourceDictionary.Get("HousesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
+			return string.Format(SR.Get("HousesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
 	/// <inheritdoc/>
@@ -225,7 +225,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
-					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 					[
 #endif
@@ -245,9 +245,9 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			string labelKey(byte house)
 				=> ((House)house).ToHouseType() switch
 				{
-					HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), house % 9 + 1),
-					HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), house % 9 + 1),
-					HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), house % 9 + 1),
+					HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), house % 9 + 1),
 					_ => throw new ArgumentOutOfRangeException(nameof(house))
 				};
 		};
@@ -259,10 +259,10 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>(6);
 			foreach (var (index, _, isRow, _) in chutes)
 			{
-				snippets.Add(string.Format(ResourceDictionary.Get("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
+				snippets.Add(string.Format(SR.Get("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
 			}
 
-			return string.Format(ResourceDictionary.Get("MegaLinesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
+			return string.Format(SR.Get("MegaLinesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
 	/// <inheritdoc/>
@@ -282,7 +282,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
 				snippets.Add(
 					string.Format(
-						ResourceDictionary.Get("ConjugatePairWith", TargetCurrentCulture),
+						SR.Get("ConjugatePairWith", TargetCurrentCulture),
 #if NET9_0_OR_GREATER
 						[
 #endif

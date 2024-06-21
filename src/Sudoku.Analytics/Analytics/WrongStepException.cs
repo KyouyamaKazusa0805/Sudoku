@@ -10,7 +10,7 @@ public sealed partial class WrongStepException(ref readonly Grid grid, [PrimaryC
 	/// <inheritdoc/>
 	public override string Message
 		=> string.Format(
-			ResourceDictionary.Get("Message_WrongStepException"),
+			SR.Get("Message_WrongStepException"),
 #if NET9_0_OR_GREATER
 			[
 #endif

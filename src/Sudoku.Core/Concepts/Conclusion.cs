@@ -183,7 +183,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 						return result;
 					}
 				}
-				throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+				throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 			}
 			case CultureInfo c:
 			{

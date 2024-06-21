@@ -114,9 +114,9 @@ public static class TechniqueExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, IFormatProvider? formatProvider)
-		=> ResourceDictionary.TryGet(@this.ToString(), out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
+		=> SR.TryGet(@this.ToString(), out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
-			: ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
+			: SR.Get(@this.ToString(), SR.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -125,7 +125,7 @@ public static class TechniqueExtensions
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetEnglishName(this Technique @this) => ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
+	public static string GetEnglishName(this Technique @this) => SR.Get(@this.ToString(), SR.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.
@@ -137,7 +137,7 @@ public static class TechniqueExtensions
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.Abbreviation
 		?? (
-			ResourceDictionary.TryGet($"TechniqueAbbr_{@this}", out var resource, ResourceDictionary.DefaultCulture)
+			SR.TryGet($"TechniqueAbbr_{@this}", out var resource, SR.DefaultCulture)
 				? resource
 				: @this.GetGroup().GetAbbreviation()
 		);
@@ -162,7 +162,7 @@ public static class TechniqueExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliasedNames(this Technique @this, IFormatProvider? formatProvider)
-		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
+		=> SR.TryGet($"TechniqueAlias_{@this}", out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource.SplitBy(';')
 			: null;
 
@@ -200,7 +200,7 @@ public static class TechniqueExtensions
 					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset
 						=> Enum.Parse<Technique>($"{indirect}{@this}"),
 					_ when Enum.IsDefined(indirect)
-						=> throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ComplexSingleNotSupportedToday")),
+						=> throw new NotSupportedException(SR.ExceptionMessage("ComplexSingleNotSupportedToday")),
 					_
 						=> throw new ArgumentOutOfRangeException(nameof(indirect))
 				},
@@ -264,7 +264,7 @@ public static class TechniqueExtensions
 			Technique.CrosshatchingRow or Technique.HiddenSingleRow => SingleTechniqueFlag.HiddenSingleRow,
 			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => SingleTechniqueFlag.HiddenSingleColumn,
 			Technique.NakedSingle => SingleTechniqueFlag.NakedSingle,
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgumentMustBeSingle"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("ArgumentMustBeSingle"))
 		};
 
 	/// <summary>

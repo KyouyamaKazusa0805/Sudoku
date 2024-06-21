@@ -75,7 +75,7 @@ public static class GridSolvingExtensions
 	{
 		if (@this.IsSolved)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
+			throw new InvalidOperationException(SR.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
 		}
 
 		long count;

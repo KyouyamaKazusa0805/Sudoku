@@ -97,7 +97,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
 
-		var processingText = ResourceDictionary.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
+		var processingText = SR.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
 		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
 		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
@@ -343,11 +343,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
-			Title = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
+			Title = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogTitle", App.CurrentCulture),
 			IsPrimaryButtonEnabled = true,
 			DefaultButton = ContentDialogButton.Primary,
-			PrimaryButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
-			CloseButtonText = ResourceDictionary.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
+			PrimaryButtonText = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogSure", App.CurrentCulture),
+			CloseButtonText = SR.Get("AnalyzePage_AddPuzzleToLibraryDialogCancel", App.CurrentCulture),
 			Content = new SaveToLibraryDialogContent { AvailableLibraries = LibraryBindableSource.GetLibrariesFromLocal() }
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
@@ -436,7 +436,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var fsp = new FileSavePicker();
 		fsp.Initialize(this);
 		fsp.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-		fsp.SuggestedFileName = ResourceDictionary.Get("Sudoku", App.CurrentCulture);
+		fsp.SuggestedFileName = SR.Get("Sudoku", App.CurrentCulture);
 		fsp.AddFileFormat(FileFormats.PlainText);
 
 		if (await fsp.PickSaveFileAsync() is not { Path: var filePath })
@@ -519,7 +519,7 @@ file static class Extensions
 	{
 		if (!@this.IsInitialized)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		var rng = new Random();

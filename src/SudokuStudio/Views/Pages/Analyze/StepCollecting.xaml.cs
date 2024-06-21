@@ -65,9 +65,9 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			let sortkey = keyPair.ConclusionTypeSortKey
 			let conclusionsCount = keyPair.Count
 			let segment = sortkey switch { 1 => nameof(Assignment), 2 => nameof(Elimination), _ => "Both" }
-			let format = ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture)
-			let pluralSuffix = conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture)
-			let conclusionTypeString = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{segment}", App.CurrentCulture)
+			let format = SR.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture)
+			let pluralSuffix = conclusionsCount == 1 ? string.Empty : SR.Get("_PluralSuffix", App.CurrentCulture)
+			let conclusionTypeString = SR.Get($"AnalyzePage_ConclusionType_{segment}", App.CurrentCulture)
 			let displayKey = string.Format(
 				format,
 #if NET9_0_OR_GREATER
@@ -135,7 +135,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		BasePage.IsGathererLaunched = true;
 		TreeViewItemsSource = null;
 
-		var textFormat = ResourceDictionary.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
+		var textFormat = SR.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
 		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;

@@ -30,7 +30,7 @@ public static partial class StringExtensions
 	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
 		=> pattern?.IsRegexPattern() ?? false
 			? @this.Match(pattern) == @this
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Check whether the specified string instance can match the value
@@ -52,7 +52,7 @@ public static partial class StringExtensions
 	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
 		=> pattern.IsRegexPattern()
 			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Try to get the reference to the first character from a string, and immutable by default.
@@ -102,7 +102,7 @@ public static partial class StringExtensions
 	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
 		=> pattern.IsRegexPattern()
 			? @this.Match(pattern, RegexOptions.None)
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Searches the input string for the first occurrence of the specified regular
@@ -128,7 +128,7 @@ public static partial class StringExtensions
 	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Gets a new <see cref="string"/>[] result, with each element (a <see cref="string"/> with a single character)
@@ -177,7 +177,7 @@ public static partial class StringExtensions
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
 		=> pattern.IsRegexPattern()
 			? @this.MatchAll(pattern, RegexOptions.None)
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -204,7 +204,7 @@ public static partial class StringExtensions
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? [.. from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value]
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <inheritdoc cref="string.Split(char[], StringSplitOptions)"/>
 	/// <param name="this">The array itself.</param>

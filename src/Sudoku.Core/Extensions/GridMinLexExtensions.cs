@@ -64,6 +64,6 @@ public static class GridMinLexExtensions
 				GridComparison.IncludingTransforms => @this.GetMinLexGrid().ToString("#").CompareTo(other.GetMinLexGrid().ToString("#")),
 				_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 			},
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"))
 		};
 }

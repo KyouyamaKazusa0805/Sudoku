@@ -74,6 +74,6 @@ public static class ReadOnlySpanExtensions
 		=> new(
 			(@this.Length & 1) == 0
 				? @this
-				: throw new ArgumentException(ResourceDictionary.ExceptionMessage("SpecifiedValueMustBeEven"), nameof(@this))
+				: throw new ArgumentException(SR.ExceptionMessage("SpecifiedValueMustBeEven"), nameof(@this))
 		);
 }

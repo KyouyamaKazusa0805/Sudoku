@@ -58,7 +58,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 				}
 				default:
 				{
-					throw new FormatException(ResourceDictionary.ExceptionMessage("GridInvalid"));
+					throw new FormatException(SR.ExceptionMessage("GridInvalid"));
 				}
 			}
 		}

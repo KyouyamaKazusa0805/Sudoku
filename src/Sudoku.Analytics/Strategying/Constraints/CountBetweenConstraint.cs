@@ -40,16 +40,16 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("CountBetweenConstraint", culture),
-			ResourceDictionary.Get(CellState switch { CellState.Given => "GivenCell", _ => "EmptyCell" }, culture),
+			SR.Get("CountBetweenConstraint", culture),
+			SR.Get(CellState switch { CellState.Given => "GivenCell", _ => "EmptyCell" }, culture),
 			Range.Start.Value,
 			Range.End.Value,
 			BetweenRule switch
 			{
-				BetweenRule.BothOpen => ResourceDictionary.Get("BothOpen", culture),
-				BetweenRule.LeftOpen => ResourceDictionary.Get("LeftOpen", culture),
-				BetweenRule.RightOpen => ResourceDictionary.Get("RightOpen", culture),
-				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
+				BetweenRule.BothOpen => SR.Get("BothOpen", culture),
+				BetweenRule.LeftOpen => SR.Get("LeftOpen", culture),
+				BetweenRule.RightOpen => SR.Get("RightOpen", culture),
+				BetweenRule.BothClosed => SR.Get("BothClosed", culture)
 			}
 		);
 	}

@@ -46,7 +46,7 @@ internal sealed partial class MainNavigationPage : Page
 	internal void SetFrameDisplayTitle(Type pageType)
 	{
 		var titleKey = $"{nameof(MainWindow)}_{pageType.Name}Title";
-		MainNavigationView.Header = ResourceDictionary.TryGet(titleKey, out var resource, App.CurrentCulture) ? resource : string.Empty;
+		MainNavigationView.Header = SR.TryGet(titleKey, out var resource, App.CurrentCulture) ? resource : string.Empty;
 	}
 
 	/// <summary>

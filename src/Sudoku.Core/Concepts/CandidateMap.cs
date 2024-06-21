@@ -630,7 +630,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			}
 		}
 
-		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+		throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
 	/// <inheritdoc/>
@@ -801,7 +801,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		{
 			if (n > MaxLimit && subsetSize > MaxLimit)
 			{
-				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
+				throw new NotSupportedException(SR.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CandidateMap>();
 			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => result.AddRef(c.AsCandidateMap()));

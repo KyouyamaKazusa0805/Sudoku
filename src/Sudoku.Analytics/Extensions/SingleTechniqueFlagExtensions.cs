@@ -19,7 +19,7 @@ public static class SingleTechniqueFlagExtensions
 		{
 			SingleTechniqueFlag.FullHouse => Technique.FullHouse.GetName(formatProvider),
 			SingleTechniqueFlag.LastDigit => Technique.LastDigit.GetName(formatProvider),
-			SingleTechniqueFlag.HiddenSingle => ResourceDictionary.Get("SingleTechnique_HiddenSingle", formatProvider as CultureInfo),
+			SingleTechniqueFlag.HiddenSingle => SR.Get("SingleTechnique_HiddenSingle", formatProvider as CultureInfo),
 			SingleTechniqueFlag.HiddenSingleBlock => Technique.CrosshatchingBlock.GetName(formatProvider),
 			SingleTechniqueFlag.HiddenSingleRow => Technique.CrosshatchingRow.GetName(formatProvider),
 			SingleTechniqueFlag.HiddenSingleColumn => Technique.CrosshatchingColumn.GetName(formatProvider),

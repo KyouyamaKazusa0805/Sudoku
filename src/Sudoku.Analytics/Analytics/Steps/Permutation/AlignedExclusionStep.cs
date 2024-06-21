@@ -24,7 +24,7 @@ public sealed partial class AlignedExclusionStep(
 			3 => 75,
 			4 => 81,
 			5 => 84,
-			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
+			_ => throw new NotSupportedException(SR.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
 	/// <inheritdoc/>
@@ -35,7 +35,7 @@ public sealed partial class AlignedExclusionStep(
 		=> Size switch
 		{
 			>= 2 and <= 5 => Technique.AlignedPairExclusion + (short)(Size - 2),
-			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
+			_ => throw new NotSupportedException(SR.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
 	/// <inheritdoc/>

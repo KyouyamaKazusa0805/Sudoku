@@ -263,11 +263,11 @@ public partial struct EliminationRange :
 	{
 		if ((values.Length & 1) != 0)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("LengthMustBeAnEven"));
+			throw new InvalidOperationException(SR.ExceptionMessage("LengthMustBeAnEven"));
 		}
 		if (values.Length > 18)
 		{
-			throw new InvalidOperationException(string.Format(ResourceDictionary.ExceptionMessage("LengthExceeded"), 18));
+			throw new InvalidOperationException(string.Format(SR.ExceptionMessage("LengthExceeded"), 18));
 		}
 
 		var result = Empty;

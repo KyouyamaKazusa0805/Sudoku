@@ -44,7 +44,7 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("IttoryuLengthConstraint", culture),
+			SR.Get("IttoryuLengthConstraint", culture),
 #if NET9_0_OR_GREATER
 			[
 #endif

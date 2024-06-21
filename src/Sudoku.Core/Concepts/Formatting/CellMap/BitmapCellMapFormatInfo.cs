@@ -39,7 +39,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	{
 		if (str.Length != 81)
 		{
-			throw new InvalidOperationException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 81));
+			throw new InvalidOperationException(string.Format(SR.ExceptionMessage("LengthMustBeMatched"), 81));
 		}
 
 		var result = CellMap.Empty;
@@ -57,7 +57,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 				continue;
 			}
 
-			throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+			throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 		}
 		return result;
 	}

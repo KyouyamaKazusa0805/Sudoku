@@ -7,7 +7,7 @@ public sealed class LengthMultipliedByRootOf2Converter : IValueConverter
 {
 	/// <inheritdoc/>
 	public object Convert(object? value, Type? targetType, object? parameter, string? language)
-		=> value is double d ? d * Sqrt(2) : throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidBaseType"));
+		=> value is double d ? d * Sqrt(2) : throw new InvalidOperationException(SR.ExceptionMessage("InvalidBaseType"));
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

@@ -85,8 +85,8 @@ public static class SymmetricTypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this SymmetricType @this, IFormatProvider? formatProvider)
 		=> PopCount((uint)(int)@this) < 2
-			? ResourceDictionary.Get($"SymmetricType_{@this}", formatProvider as CultureInfo)
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleFlagsExist"));
+			? SR.Get($"SymmetricType_{@this}", formatProvider as CultureInfo)
+			: throw new InvalidOperationException(SR.ExceptionMessage("MultipleFlagsExist"));
 
 	/// <summary>
 	/// Try to get all possible cells in symmetry axis (or point).

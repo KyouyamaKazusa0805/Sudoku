@@ -39,7 +39,7 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 	{
 		if (str.Length != 729)
 		{
-			throw new InvalidOperationException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 729));
+			throw new InvalidOperationException(string.Format(SR.ExceptionMessage("LengthMustBeMatched"), 729));
 		}
 
 		var result = CandidateMap.Empty;
@@ -57,7 +57,7 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 				continue;
 			}
 
-			throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+			throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 		}
 		return result;
 	}

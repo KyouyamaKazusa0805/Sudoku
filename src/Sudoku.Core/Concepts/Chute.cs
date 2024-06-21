@@ -53,5 +53,5 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 	public static Chute Parse(string s, IFormatProvider? provider)
 		=> CoordinateParser.GetParser(provider).ChuteParser(s) is [var result]
 			? result
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleChuteValuesFound"));
+			: throw new FormatException(SR.ExceptionMessage("MultipleChuteValuesFound"));
 }

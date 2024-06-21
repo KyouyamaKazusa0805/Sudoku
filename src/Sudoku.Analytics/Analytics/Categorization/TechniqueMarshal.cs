@@ -12,7 +12,7 @@ public static class TechniqueMarshal
 	/// <param name="size">The number of cells used in a subset.</param>
 	/// <returns>The name of the subset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetSubsetName(int size) => ResourceDictionary.Get($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture);
+	public static string GetSubsetName(int size) => SR.Get($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture);
 
 	/// <summary>
 	/// Make the real name of the regular wing.

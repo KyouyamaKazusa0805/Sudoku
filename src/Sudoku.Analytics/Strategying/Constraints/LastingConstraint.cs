@@ -40,7 +40,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	{
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
-			ResourceDictionary.Get("LastingConstraint", culture),
+			SR.Get("LastingConstraint", culture),
 #if NET9_0_OR_GREATER
 			[
 #endif

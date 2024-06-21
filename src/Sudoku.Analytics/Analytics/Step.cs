@@ -53,7 +53,7 @@ public abstract partial class Step(
 			0b11 => null,
 			0b01 => true,
 			0b10 => false,
-			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("StepContainsNoConclusions"))
+			_ => throw new NotSupportedException(SR.ExceptionMessage("StepContainsNoConclusions"))
 		};
 
 	/// <summary>
@@ -108,7 +108,7 @@ public abstract partial class Step(
 	public DifficultyLevel DifficultyLevel
 		=> Code.GetDifficultyLevel() is var level and not 0
 			? level
-			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
+			: throw new InvalidOperationException(SR.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
 
 	/// <summary>
 	/// Gets the format of the current instance.
@@ -163,7 +163,7 @@ public abstract partial class Step(
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
-	/// <seealso cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>
+	/// <seealso cref="SR.Get(string, CultureInfo?, Assembly?)"/>
 	/// <seealso cref="TechniqueFormat"/>
 	/// <seealso cref="ToString(IFormatProvider?)"/>
 	public virtual TechniqueFormat Format => GetType().Name;
@@ -227,7 +227,7 @@ public abstract partial class Step(
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var culture = GetCulture(formatProvider);
-		var colonToken = ResourceDictionary.Get("Colon", culture);
+		var colonToken = SR.Get("Colon", culture);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(matcher).ResourcePlaceholderValues) switch
 		{
 			({ } p, _) when p.GetTargetFormat(null) is null => ToSimpleString(culture),

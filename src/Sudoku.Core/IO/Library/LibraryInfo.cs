@@ -42,7 +42,7 @@ public readonly partial struct LibraryInfo(
 		{
 			(true, true) => true,
 			(false, false) => false,
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("DifferentExistenceOfConfigAndLibraryFile"))
+			_ => throw new InvalidOperationException(SR.ExceptionMessage("DifferentExistenceOfConfigAndLibraryFile"))
 		};
 
 	/// <summary>
@@ -93,14 +93,14 @@ public readonly partial struct LibraryInfo(
 					where groups.Count == 2
 					select groups[1].Value
 				).FirstOrDefault()
-				: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+				: throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		set
 		{
 			if (!File.Exists(ConfigFilePath))
 			{
-				throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("NotExist"));
+				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
 			ConfigFileReplaceOrAppend(AuthorPattern().IsMatch, value);
@@ -124,14 +124,14 @@ public readonly partial struct LibraryInfo(
 					where groups.Count == 2
 					select groups[1].Value
 				).FirstOrDefault()
-				: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+				: throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		set
 		{
 			if (!File.Exists(ConfigFilePath))
 			{
-				throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("NotExist"));
+				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
 			ConfigFileReplaceOrAppend(NamePattern().IsMatch, value);
@@ -155,14 +155,14 @@ public readonly partial struct LibraryInfo(
 					where groups.Count == 2
 					select groups[1].Value
 				).FirstOrDefault()
-				: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+				: throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		set
 		{
 			if (!File.Exists(ConfigFilePath))
 			{
-				throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("NotExist"));
+				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
 			ConfigFileReplaceOrAppend(DescriptionPattern().IsMatch, value);
@@ -187,14 +187,14 @@ public readonly partial struct LibraryInfo(
 					select groups[1].Value into line
 					select line.Split(SeparatorChar)
 				).FirstOrDefault()
-				: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+				: throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		set
 		{
 			if (!File.Exists(ConfigFilePath))
 			{
-				throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("NotExist"));
+				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
 			ConfigFileReplaceOrAppend(TagsPattern().IsMatch, value is not null ? string.Join(SeparatorChar, value) : null);
@@ -281,7 +281,7 @@ public readonly partial struct LibraryInfo(
 			return;
 		}
 
-		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+		throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 	}
 
 	/// <inheritdoc/>
@@ -326,7 +326,7 @@ public readonly partial struct LibraryInfo(
 
 		if (!Grid.TryParse(grid, out _))
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("UnrecognizedGridFormat"));
+			throw new InvalidOperationException(SR.ExceptionMessage("UnrecognizedGridFormat"));
 		}
 
 		sb.AppendLine(grid);
@@ -453,7 +453,7 @@ public readonly partial struct LibraryInfo(
 	{
 		if (!IsInitialized)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		var linesToKeep = new List<string>();
@@ -485,7 +485,7 @@ public readonly partial struct LibraryInfo(
 	{
 		if (!IsInitialized)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		var textSet = new HashSet<string>();
@@ -545,7 +545,7 @@ public readonly partial struct LibraryInfo(
 	{
 		if (!IsInitialized)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		var result = 0;
@@ -569,7 +569,7 @@ public readonly partial struct LibraryInfo(
 	{
 		if (!IsInitialized)
 		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileShouldBeInitializedFirst"));
+			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
 		var i = -1;
@@ -654,7 +654,7 @@ public readonly partial struct LibraryInfo(
 
 			if (isFound)
 			{
-				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleSamePropertiesFound"));
+				throw new InvalidOperationException(SR.ExceptionMessage("MultipleSamePropertiesFound"));
 			}
 
 			a(linesToKeep, callerPropertyName, replaceOrAppendValue);
@@ -693,7 +693,7 @@ public readonly partial struct LibraryInfo(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RegisterConfigFileExtension(string extension)
 		=> ConfigFileExtension = extension.Any(Path.GetInvalidPathChars().Contains)
-			? throw new ArgumentException(ResourceDictionary.ExceptionMessage("ArgExtensionShouldBeValid"), nameof(extension))
+			? throw new ArgumentException(SR.ExceptionMessage("ArgExtensionShouldBeValid"), nameof(extension))
 			: extension;
 
 	/// <summary>

@@ -41,14 +41,14 @@ public partial class GurthSymmetricalPlacementStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [SymmetryTypeStr, MappingStr]), new(ChineseLanguage, [SymmetryTypeStr, MappingStr])];
 
-	private string SymmetryTypeStr => ResourceDictionary.Get($"{SymmetricType}Symmetry", GetCulture(null));
+	private string SymmetryTypeStr => SR.Get($"{SymmetricType}Symmetry", GetCulture(null));
 
 	private string MappingStr
 	{
 		get
 		{
 			var culture = GetCulture(null);
-			var comma = ResourceDictionary.Get("Comma", culture);
+			var comma = SR.Get("Comma", culture);
 			if (Mapping is not null)
 			{
 				var sb = new StringBuilder(10);
@@ -61,7 +61,7 @@ public partial class GurthSymmetricalPlacementStep(
 				}
 				return sb.RemoveFrom(^comma.Length).ToString();
 			}
-			return ResourceDictionary.Get("NoMappingRelation", culture);
+			return SR.Get("NoMappingRelation", culture);
 		}
 	}
 }

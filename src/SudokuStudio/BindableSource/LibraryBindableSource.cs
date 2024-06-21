@@ -14,13 +14,13 @@ namespace SudokuStudio.BindableSource;
 public sealed partial class LibraryBindableSource : DependencyObject
 {
 	[Default]
-	internal static readonly string NameDefaultValue = ResourceDictionary.Get("NoName", App.CurrentCulture);
+	internal static readonly string NameDefaultValue = SR.Get("NoName", App.CurrentCulture);
 
 	[Default]
-	internal static readonly string AuthorDefaultValue = ResourceDictionary.Get("Anonymous", App.CurrentCulture);
+	internal static readonly string AuthorDefaultValue = SR.Get("Anonymous", App.CurrentCulture);
 
 	[Default]
-	internal static readonly string DescriptionDefaultValue = ResourceDictionary.Get("NoDescription", App.CurrentCulture);
+	internal static readonly string DescriptionDefaultValue = SR.Get("NoDescription", App.CurrentCulture);
 
 
 	/// <summary>

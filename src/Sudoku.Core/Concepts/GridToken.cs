@@ -40,7 +40,7 @@ public static class GridToken
 	{
 		if (@this.PuzzleType == SudokuType.Sukaku)
 		{
-			throw new NotSupportedException(ResourceDictionary.ExceptionMessage("NotSupportedForSukakuPuzzles"));
+			throw new NotSupportedException(SR.ExceptionMessage("NotSupportedForSukakuPuzzles"));
 		}
 
 		var convertedString = @this.ToString("0");
@@ -86,7 +86,7 @@ public static class GridToken
 					select segment.PadLeft(9, '0')
 				)
 			),
-			_ => throw new FormatException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 54))
+			_ => throw new FormatException(string.Format(SR.ExceptionMessage("LengthMustBeMatched"), 54))
 		};
 
 	/// <summary>

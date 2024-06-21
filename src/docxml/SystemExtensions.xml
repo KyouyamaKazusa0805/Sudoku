@@ -4963,72 +4963,6 @@
         <member name="P:System.Resources.MissingResourceManagerException.Data">
             <inheritdoc/>
         </member>
-        <member name="T:System.Resources.ResourceDictionary">
-            <summary>
-            Represents a easy way to fetch resource values using the specified key and culture information.
-            </summary>
-        </member>
-        <member name="F:System.Resources.ResourceDictionary.DefaultBindingFlags">
-            <summary>
-            Indicates the resource manager reflection binding flags.
-            </summary>
-        </member>
-        <member name="F:System.Resources.ResourceDictionary.DefaultCulture">
-            <summary>
-            Indicates the default culture.
-            </summary>
-        </member>
-        <member name="F:System.Resources.ResourceDictionary.ResourceManagers">
-            <summary>
-            The internal resource managers.
-            </summary>
-        </member>
-        <member name="P:System.Resources.ResourceDictionary.ResourceFetchingHandler">
-            <summary>
-            Represents the resource fetching rule. This method can control the fetching rule,
-            especially for the cases using culture-switching.
-            </summary>
-        </member>
-        <member name="M:System.Resources.ResourceDictionary.RegisterResourceManager``1">
-            <summary>
-            Register a new resource manager for the current assembly calling this method.
-            </summary>
-            <typeparam name="TResourceManagerProvider">
-            <para>The type of the resource manager provider.</para>
-            <para>
-            This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
-            For example, if you create a resource dictionary manifest file called <c>Resource.resx</c>, a generated type will be named <c>Resource</c>.
-            You should pass in this type (<c>Resource</c> here) as type argument to this method.
-            </para>
-            </typeparam>
-            <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
-        </member>
-        <member name="M:System.Resources.ResourceDictionary.ExceptionMessage(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
-            <summary>
-            Try to get error information (used by exception message, <see cref="P:System.Exception.Message"/> property) values,
-            or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
-            </summary>
-            <inheritdoc cref="M:System.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
-        </member>
-        <member name="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
-            <summary>
-            Try to get resource via the key, or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
-            </summary>
-            <inheritdoc cref="M:System.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
-        </member>
-        <member name="M:System.Resources.ResourceDictionary.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)">
-            <summary>
-            Try to get resource via the key, or return <see langword="null"/> if failed.
-            </summary>
-            <param name="resourceKey">The resource key.</param>
-            <param name="resource">Indicates the target resource.</param>
-            <param name="culture">The culture.</param>
-            <param name="assembly">The assembly storing the resource dictionaries.</param>
-            <returns>The result string result.</returns>
-            <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the resource manager object is missing.</exception>
-        </member>
         <member name="T:System.Resources.ResourceException">
             <summary>
             Represents an exception type that relates to resource dictionary.
@@ -5088,6 +5022,72 @@
             <summary>
             The generated field declaration for parameter <c>culture</c>.
             </summary>
+        </member>
+        <member name="T:System.Resources.SR">
+            <summary>
+            Represents a easy way to fetch resource values using the specified key and culture information.
+            </summary>
+        </member>
+        <member name="F:System.Resources.SR.DefaultBindingFlags">
+            <summary>
+            Indicates the resource manager reflection binding flags.
+            </summary>
+        </member>
+        <member name="F:System.Resources.SR.DefaultCulture">
+            <summary>
+            Indicates the default culture.
+            </summary>
+        </member>
+        <member name="F:System.Resources.SR.ResourceManagers">
+            <summary>
+            The internal resource managers.
+            </summary>
+        </member>
+        <member name="P:System.Resources.SR.ResourceFetchingHandler">
+            <summary>
+            Represents the resource fetching rule. This method can control the fetching rule,
+            especially for the cases using culture-switching.
+            </summary>
+        </member>
+        <member name="M:System.Resources.SR.RegisterResourceManager``1">
+            <summary>
+            Register a new resource manager for the current assembly calling this method.
+            </summary>
+            <typeparam name="TResourceManagerProvider">
+            <para>The type of the resource manager provider.</para>
+            <para>
+            This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
+            For example, if you create a resource dictionary manifest file called <c>Resource.resx</c>, a generated type will be named <c>Resource</c>.
+            You should pass in this type (<c>Resource</c> here) as type argument to this method.
+            </para>
+            </typeparam>
+            <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
+        </member>
+        <member name="M:System.Resources.SR.ExceptionMessage(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get error information (used by exception message, <see cref="P:System.Exception.Message"/> property) values,
+            or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
+            </summary>
+            <inheritdoc cref="M:System.Resources.SR.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
+        </member>
+        <member name="M:System.Resources.SR.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get resource via the key, or throw a <see cref="T:System.Resources.ResourceNotFoundException"/> if resource is not found.
+            </summary>
+            <inheritdoc cref="M:System.Resources.SR.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified resource is not found.</exception>
+        </member>
+        <member name="M:System.Resources.SR.TryGet(System.String,System.String@,System.Globalization.CultureInfo,System.Reflection.Assembly)">
+            <summary>
+            Try to get resource via the key, or return <see langword="null"/> if failed.
+            </summary>
+            <param name="resourceKey">The resource key.</param>
+            <param name="resource">Indicates the target resource.</param>
+            <param name="culture">The culture.</param>
+            <param name="assembly">The assembly storing the resource dictionaries.</param>
+            <returns>The result string result.</returns>
+            <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the resource manager object is missing.</exception>
         </member>
         <member name="T:System.Resources.SystemExtensionsResources">
             <summary>
