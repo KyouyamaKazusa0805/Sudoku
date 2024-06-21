@@ -8370,6 +8370,46 @@
             This example only contains one forcing chains pattern and direct singles.
             </example>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
+            <summary>
+            <para>
+            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with <paramref name="startNode"/>,
+            and to make an confliction with itself.
+            </para>
+            <para>
+            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or the method cannot find a valid chain that forms a confliction with <paramref name="startNode"/>.
+            </para>
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="startNode">The node as the start.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
+            <param name="result">
+            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
+            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
+            </param>
+            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
+            <remarks>
+            This method uses breadth-first searching (BFS) algorithm.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindNodesImplicitTo(Sudoku.Concepts.Node)">
+            <summary>
+            <para>Finds a list of nodes that can implicitly connects to <paramref name="startNode"/> via a forcing chain.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
+            </summary>
+            <param name="startNode">The node as the start.</param>
+            <returns>
+            Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
+            that can implicitly connects to the <paramref name="startNode"/> via the whole forcing chain,
+            grouped by their own initial states.
+            </returns>
+            <remarks>
+            This method uses breadth-first searching (BFS) algorithm.
+            </remarks>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
