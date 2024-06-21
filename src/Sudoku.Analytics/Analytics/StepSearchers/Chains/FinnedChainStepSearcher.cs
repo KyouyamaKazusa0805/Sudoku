@@ -20,7 +20,7 @@ public sealed partial class FinnedChainStepSearcher : StepSearcher
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		CachedLinkPool.Initialize(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
+		Initialize(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
 		if (ChainModule.CollectMultipleCore(ref context, accumulator, rules, true) is { } step)
 		{
 			return step;

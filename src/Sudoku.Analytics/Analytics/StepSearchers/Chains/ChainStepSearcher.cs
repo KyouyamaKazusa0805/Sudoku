@@ -40,7 +40,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 		var accumulator = new List<NormalChainStep>();
 		ref readonly var grid = ref context.Grid;
 		var linkTypes = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		CachedLinkPool.Initialize(in grid, linkTypes, LinkOption.House, LinkOption.House, out var rules);
+		Initialize(in grid, linkTypes, LinkOption.House, LinkOption.House, out var rules);
 		if (ChainModule.CollectCore(ref context, accumulator, rules) is { } step)
 		{
 			return step;

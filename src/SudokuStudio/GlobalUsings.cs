@@ -139,7 +139,6 @@ global using PathGeometry = Microsoft.UI.Xaml.Media.PathGeometry;
 global using PdfColors = QuestPDF.Helpers.Colors;
 global using PdfContainer = QuestPDF.Infrastructure.IContainer;
 global using Range = System.Range;
-global using ResourceDictionary = System.Resources.SR;
 global using Size = Windows.Foundation.Size;
 global using SolvingPath = SudokuStudio.Views.Pages.Analyze.SolvingPath;
 global using SpecialFolder = System.Environment.SpecialFolder;

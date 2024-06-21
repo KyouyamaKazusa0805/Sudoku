@@ -78,7 +78,7 @@ internal static class ChainingDriver
 				while (pendingNodesSupposedOn.Count != 0)
 				{
 					var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
+					if (WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
 					{
 						foreach (var nodeSupposedOff in nodesSupposedOff)
 						{
@@ -140,7 +140,7 @@ internal static class ChainingDriver
 				while (pendingNodesSupposedOff.Count != 0)
 				{
 					var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
+					if (StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
 					{
 						foreach (var nodeSupposedOn in nodesSupposedOn)
 						{
@@ -406,7 +406,7 @@ internal static class ChainingDriver
 				if (pendingNodesSupposedOn.Count != 0)
 				{
 					var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
-					if (CachedLinkPool.WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
+					if (WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
 					{
 						foreach (var node in nodesSupposedOff)
 						{
@@ -427,7 +427,7 @@ internal static class ChainingDriver
 				else
 				{
 					var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
-					if (CachedLinkPool.StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
+					if (StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
 					{
 						foreach (var node in nodesSupposedOn)
 						{

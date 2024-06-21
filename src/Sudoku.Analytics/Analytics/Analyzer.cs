@@ -282,7 +282,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 		FindNextStep:
 			Initialize(in playground, in solution);
-			CachedLinkPool.FlushDictionaries();
+			FlushDictionaries();
 
 			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)

@@ -22538,93 +22538,6 @@
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.CachedFields">
-            <summary>
-            <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
-            <para>
-            All names of fields given in this type can also be found in type <see cref="T:Sudoku.Concepts.Grid"/>, but those values are defined as instant properties,
-            which means the value will be calculated after you invoke them.
-            For example, if we use a property of them for 5 times, the result value will be calculated for 5 times.
-            </para>
-            <para>
-            Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
-            For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
-            we can use them if we can ensure that such fields have already been initialized.
-            For calling the method <see cref="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
-            In other words,
-            <b>you must ensure the method <see cref="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
-            otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
-            </para>
-            <para>
-            The reason why I defined them as <see langword="static"/> fields is that they are cached values.
-            "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
-            for a better performance.
-            </para>
-            <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
-            </summary>
-            <seealso cref="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.EmptyCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.BivalueCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Caching.CachedFields.EmptyCells" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.CandidatesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Caching.CachedFields.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.DigitsMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Caching.CachedFields.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.ValuesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Analytics.Caching.CachedFields.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.CachedFields.Solution">
-            <summary>
-            Indicates the solution.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            Initialize the maps that used later.
-            </summary>
-            <param name="g">The grid.</param>
-            <param name="s">The solution of <paramref name="g"/>.</param>
-        </member>
         <member name="T:Sudoku.Analytics.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
@@ -22678,6 +22591,93 @@
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison
             in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
             </summary>
+        </member>
+        <member name="T:Sudoku.Caching.CachedFields">
+            <summary>
+            <para>Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.</para>
+            <para>
+            All names of fields given in this type can also be found in type <see cref="T:Sudoku.Concepts.Grid"/>, but those values are defined as instant properties,
+            which means the value will be calculated after you invoke them.
+            For example, if we use a property of them for 5 times, the result value will be calculated for 5 times.
+            </para>
+            <para>
+            Sometimes, such values may only be calculated only once, and we just use those return values after the value had been calculated.
+            For the consideration of the calculation result caching, those results will be stored here as <see langword="static"/> fields,
+            we can use them if we can ensure that such fields have already been initialized.
+            For calling the method <see cref="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>, we can ensure those fields are initialized, in order to be used later.
+            In other words,
+            <b>you must ensure the method <see cref="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> having been called before using such fields if you want to use them</b>;
+            otherwise, <see cref="T:System.NullReferenceException"/> will be thrown for cached fields whose types are reference ones.
+            </para>
+            <para>
+            The reason why I defined them as <see langword="static"/> fields is that they are cached values.
+            "<see langword="static"/>" means caching, and "field" means the value to be fetched without encapsulation,
+            for a better performance.
+            </para>
+            <para>Some <see cref="T:Sudoku.Analytics.StepSearcher"/>s may rely on this type.</para>
+            </summary>
+            <seealso cref="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.EmptyCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.BivalueCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.CachedFields.EmptyCells" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.CandidatesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.CachedFields.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.DigitsMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.CachedFields.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.ValuesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.CachedFields.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.CachedFields.Solution">
+            <summary>
+            Indicates the solution.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Caching.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="g">The grid.</param>
+            <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
         <member name="T:Sudoku.Caching.CachedLinkPool">
             <summary>
