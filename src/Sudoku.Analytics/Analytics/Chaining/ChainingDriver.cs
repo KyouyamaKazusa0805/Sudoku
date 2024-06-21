@@ -358,7 +358,8 @@ internal static class ChainingDriver
 						}
 
 						// This step will filter duplicate nodes in order not to make a internal loop on chains.
-						// The second argument must be 'NodeComparison.IgnoreIsOn' because we should explicitly ignore them.
+						// The second argument must be 'NodeComparison.IgnoreIsOn' because we should explicitly ignore them
+						// no matter what state the node is.
 						// This will fix issue #673:
 						//   * https://github.com/SunnieShine/Sudoku/issues/673
 						// Counter-example:
