@@ -212,7 +212,7 @@ public abstract partial class Step(
 	/// <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual int CompareTo(Step? other) => other is null ? 1 : Math.Sign(Code - other.Code);
+	public virtual int CompareTo(Step? other) => other is null ? -1 : Math.Sign(Code - other.Code);
 
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
