@@ -100,3 +100,4 @@ impls
 readonly'
 init'
 subview
+pinnable
