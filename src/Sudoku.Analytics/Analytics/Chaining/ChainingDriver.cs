@@ -49,11 +49,11 @@ internal static class ChainingDriver
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
 				var node = new Node(cell, digit, true, false);
-				if (FindChain(in grid, node, onlyFindOne, result) is { } chain1)
+				if (bfs_Chain(in grid, node, onlyFindOne, result) is { } chain1)
 				{
 					return (ChainOrLoop[])[chain1];
 				}
-				if (FindChain(in grid, ~node, onlyFindOne, result) is { } chain2)
+				if (bfs_Chain(in grid, ~node, onlyFindOne, result) is { } chain2)
 				{
 					return (ChainOrLoop[])[chain2];
 				}
@@ -87,7 +87,7 @@ internal static class ChainingDriver
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node(cell, digit, true, false);
-				var (nodesSupposedOn, nodesSupposedOff) = FindNodesImplicitTo(currentNode);
+				var (nodesSupposedOn, nodesSupposedOff) = bfs_ForcingChain(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -123,7 +123,7 @@ internal static class ChainingDriver
 						else
 						{
 							var other = new Node(otherCandidate, true, false);
-							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindNodesImplicitTo(other);
+							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = bfs_ForcingChain(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
 							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
@@ -306,10 +306,9 @@ internal static class ChainingDriver
 	/// if <paramref name="onlyFindOne"/> is <see langword="false"/>.
 	/// </param>
 	/// <returns>The first found <see cref="ChainOrLoop"/> pattern.</returns>
-	/// <remarks>
-	/// This method uses breadth-first searching (BFS) algorithm.
-	/// </remarks>
-	private static ChainOrLoop? FindChain(ref readonly Grid grid, Node startNode, bool onlyFindOne, SortedSet<ChainOrLoop> result)
+	/// <seealso cref="ChainOrLoop"/>
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	private static ChainOrLoop? bfs_Chain(ref readonly Grid grid, Node startNode, bool onlyFindOne, SortedSet<ChainOrLoop> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
@@ -435,12 +434,10 @@ internal static class ChainingDriver
 	/// that can implicitly connects to the <paramref name="startNode"/> via the whole forcing chain,
 	/// grouped by their own initial states.
 	/// </returns>
-	/// <remarks>
-	/// This method uses breadth-first searching (BFS) algorithm.
-	/// </remarks>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
-	private static (HashSet<Node> OnNodes, HashSet<Node> OffNodes) FindNodesImplicitTo(Node startNode)
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	private static (HashSet<Node> OnNodes, HashSet<Node> OffNodes) bfs_ForcingChain(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);

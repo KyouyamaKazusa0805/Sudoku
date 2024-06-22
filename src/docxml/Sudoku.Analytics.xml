@@ -8375,7 +8375,7 @@
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.bfs_Chain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
             <summary>
             <para>
             Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with <paramref name="startNode"/>,
@@ -8394,11 +8394,9 @@
             if <paramref name="onlyFindOne"/> is <see langword="false"/>.
             </param>
             <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
-            <remarks>
-            This method uses breadth-first searching (BFS) algorithm.
-            </remarks>
+            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindNodesImplicitTo(Sudoku.Concepts.Node)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.bfs_ForcingChain(Sudoku.Concepts.Node)">
             <summary>
             <para>Finds a list of nodes that can implicitly connects to <paramref name="startNode"/> via a forcing chain.</para>
             <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
@@ -8409,9 +8407,6 @@
             that can implicitly connects to the <paramref name="startNode"/> via the whole forcing chain,
             grouped by their own initial states.
             </returns>
-            <remarks>
-            This method uses breadth-first searching (BFS) algorithm.
-            </remarks>
             <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
             <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
         </member>
