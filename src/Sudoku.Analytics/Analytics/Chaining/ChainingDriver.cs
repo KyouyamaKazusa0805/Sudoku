@@ -282,10 +282,90 @@ internal static class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-	/// <returns>All possible multiple forcing chain instances.</returns>
+	/// <returns>All possible blossom loop instances.</returns>
 	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne)
 	{
-		return [];
+		// Collect for all possible forcing chains that can connect with start and end candidates.
+		var routeDictionary = new Dictionary<BlossomLoopEntry, HashSet<Node>>();
+		var (startCandidates, endCandidates) = (CandidateMap.Empty, CandidateMap.Empty);
+		foreach (var cell in EmptyCells & ~BivalueCells)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				var startCandidate = cell * 9 + digit;
+				var currentNode = new Node(startCandidate, true, false);
+				var (onNodes, offNodes) = bfs_ForcingChain(currentNode);
+				foreach (var node in onNodes)
+				{
+					if (node.IsGroupedNode)
+					{
+						continue;
+					}
+
+					var endCandidate = node.Map[0];
+					var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, true);
+					if (!routeDictionary.TryAdd(entry, [node]))
+					{
+						routeDictionary[entry].Add(node);
+					}
+
+					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
+				}
+				foreach (var node in offNodes)
+				{
+					if (node.IsGroupedNode)
+					{
+						continue;
+					}
+
+					var endCandidate = node.Map[0];
+					var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, false);
+					if (!routeDictionary.TryAdd(entry, [node]))
+					{
+						routeDictionary[entry].Add(node);
+					}
+
+					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
+				}
+
+				(onNodes, offNodes) = bfs_ForcingChain(~currentNode);
+				foreach (var node in onNodes)
+				{
+					if (node.IsGroupedNode)
+					{
+						continue;
+					}
+
+					var endCandidate = node.Map[0];
+					var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, true);
+					if (!routeDictionary.TryAdd(entry, [node]))
+					{
+						routeDictionary[entry].Add(node);
+					}
+
+					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
+				}
+				foreach (var node in offNodes)
+				{
+					if (node.IsGroupedNode)
+					{
+						continue;
+					}
+
+					var endCandidate = node.Map[0];
+					var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, false);
+					if (!routeDictionary.TryAdd(entry, [node]))
+					{
+						routeDictionary[entry].Add(node);
+					}
+
+					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
+				}
+			}
+		}
+
+		// TODO: Implement.
+		return null;
 	}
 
 	/// <summary>

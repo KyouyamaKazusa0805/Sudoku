@@ -24,15 +24,13 @@ internal static class CachedChainingComparers
 
 
 	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainOrLoop"/> on equality comparison
-	/// in order to filter duplicate chains.
+	/// Creates an instance of type <see cref="Comparer{T}"/> of <see cref="ChainOrLoop"/> on comparison.
 	/// </summary>
 	public static IComparer<ChainOrLoop> ChainComparer
 		=> _chainComparer ??= Comparer<ChainOrLoop>.Create(static (l, r) => l.CompareTo(r));
 
 	/// <summary>
-	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="MultipleForcingChains"/> on equality comparison
-	/// in order to filter duplicate multiple forcing chains.
+	/// Creates an instance of type <see cref="Comparer{T}"/> of <see cref="MultipleForcingChains"/> on comparison.
 	/// </summary>
 	public static IComparer<MultipleForcingChains> MultipleForcingChainsComparer
 		=> _multipleForcingChainsComparer ??= Comparer<MultipleForcingChains>.Create(static (l, r) => l.CompareTo(r));

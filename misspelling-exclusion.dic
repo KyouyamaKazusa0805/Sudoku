@@ -101,3 +101,5 @@ readonly'
 init'
 subview
 pinnable
+equatable
+nand

@@ -1315,7 +1315,7 @@ public partial struct Grid :
 
 		// Here need an extra check. Sukaku puzzles can be output as a normal pencil-mark grid format.
 		// We should check whether the puzzle is a Sukaku in fact or not.
-		// This is a bug fix for type 'PencilmarkingGridParser', which cannot determine whether a puzzle is a Sukaku.
+		// This is a bug fix for pencilmark grid parser, which cannot determine whether a puzzle is a Sukaku.
 		// I define that a Sukaku must contain 0 given cells, meaning all values should be candidates or modifiable values.
 		// If so, we should treat it as a Sukaku instead of a standard sudoku puzzle.
 		if (grid.GivensCount < 17)
