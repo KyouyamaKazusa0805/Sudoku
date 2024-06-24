@@ -414,13 +414,13 @@
         <member name="M:Sudoku.Concepts.BlossomLoop.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#Any">
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.ValueTuple{System.Int32,System.Int32},Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{System#ValueTuple{System#Int32,System#Int32},Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.ValueTuple{System.Int32,System.Int32},Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.BlossomLoop.Equals(System.Object)">
@@ -446,6 +446,42 @@
         </member>
         <member name="M:Sudoku.Concepts.BlossomLoop.op_LessThanOrEqual(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.BlossomLoop)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.BlossomLoopEntry">
+            <summary>
+            Represents an entry for blossom loop data used.
+            </summary>
+            <param name="Start">Indicates the start candidate.</param>
+            <param name="StartIsOn">Indicates whether the start node is on.</param>
+            <param name="End">Indicates the end candidate.</param>
+            <param name="EndIsOn">Indicates whether the end node is on.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.#ctor(System.Int32,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Represents an entry for blossom loop data used.
+            </summary>
+            <param name="Start">Indicates the start candidate.</param>
+            <param name="StartIsOn">Indicates whether the start node is on.</param>
+            <param name="End">Indicates the end candidate.</param>
+            <param name="EndIsOn">Indicates whether the end node is on.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoopEntry.Start">
+            <summary>Indicates the start candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoopEntry.StartIsOn">
+            <summary>Indicates whether the start node is on.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoopEntry.End">
+            <summary>Indicates the end candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoopEntry.EndIsOn">
+            <summary>Indicates whether the end node is on.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.Equals(Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
@@ -8373,7 +8409,7 @@
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
+            <returns>All possible blossom loop instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.bfs_Chain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
             <summary>
@@ -22616,14 +22652,12 @@
         </member>
         <member name="P:Sudoku.Caching.CachedChainingComparers.ChainComparer">
             <summary>
-            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.ChainOrLoop"/> on equality comparison
-            in order to filter duplicate chains.
+            Creates an instance of type <see cref="T:System.Collections.Generic.Comparer`1"/> of <see cref="T:Sudoku.Concepts.ChainOrLoop"/> on comparison.
             </summary>
         </member>
         <member name="P:Sudoku.Caching.CachedChainingComparers.MultipleForcingChainsComparer">
             <summary>
-            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.MultipleForcingChains"/> on equality comparison
-            in order to filter duplicate multiple forcing chains.
+            Creates an instance of type <see cref="T:System.Collections.Generic.Comparer`1"/> of <see cref="T:Sudoku.Concepts.MultipleForcingChains"/> on comparison.
             </summary>
         </member>
         <member name="P:Sudoku.Caching.CachedChainingComparers.NodeMapComparer">

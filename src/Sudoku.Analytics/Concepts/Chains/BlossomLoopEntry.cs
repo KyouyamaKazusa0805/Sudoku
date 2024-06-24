@@ -13,4 +13,13 @@ public readonly record struct BlossomLoopEntry(
 	[field: FieldOffset(3)] bool StartIsOn,
 	[field: FieldOffset(4)] Candidate End,
 	[field: FieldOffset(7)] bool EndIsOn
-);
+)
+{
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(BlossomLoopEntry other)
+		=> Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in this)) == Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in other));
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in this)).GetHashCode();
+}

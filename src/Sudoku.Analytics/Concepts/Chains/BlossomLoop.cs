@@ -1,14 +1,12 @@
 namespace Sudoku.Concepts;
 
-using BlossomLoopKey = (Candidate Start, Candidate End);
-
 /// <summary>
 /// Represents a blossom loop pattern that starts with a house or a candidate, and ends with a hosue or a candidate.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class BlossomLoop :
-	SortedDictionary<BlossomLoopKey, ChainOrLoop>,
-	IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopKey, ChainOrLoop>>,
+	SortedDictionary<BlossomLoopEntry, ChainOrLoop>,
+	IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
 	IEquatable<BlossomLoop>,
@@ -100,7 +98,7 @@ public sealed partial class BlossomLoop :
 		{
 			var kvp1 = e1.Current;
 			var kvp2 = e2.Current;
-			var ((a1, b1), (a2, b2)) = (kvp1, kvp2);
+			var ((a1, _, b1, _), (a2, _, b2, _)) = (kvp1, kvp2);
 			if (a1 != a2 || b1 != b2)
 			{
 				return false;
@@ -141,8 +139,8 @@ public sealed partial class BlossomLoop :
 		using var e2 = other.Keys.GetEnumerator();
 		while (e1.MoveNext() && e2.MoveNext())
 		{
-			var (a1, b1) = e1.Current;
-			var (a2, b2) = e2.Current;
+			var (a1, _, b1, _) = e1.Current;
+			var (a2, _, b2, _) = e2.Current;
 			if (a1.CompareTo(a2) is var r2 and not 0)
 			{
 				return r2;
@@ -210,10 +208,10 @@ public sealed partial class BlossomLoop :
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopKey, ChainOrLoop>>.Any() => Count != 0;
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopKey, ChainOrLoop>>.Any(Func<KeyValuePair<BlossomLoopKey, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.Any(Func<KeyValuePair<BlossomLoopEntry, ChainOrLoop>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -226,7 +224,7 @@ public sealed partial class BlossomLoop :
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopKey, ChainOrLoop>>.All(Func<KeyValuePair<BlossomLoopKey, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.All(Func<KeyValuePair<BlossomLoopEntry, ChainOrLoop>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
