@@ -196,7 +196,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public abstract int CompareTo(ref readonly TSelf other);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public abstract bool Equals(scoped ref readonly TSelf other);
+	public abstract bool Equals(ref readonly TSelf other);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
