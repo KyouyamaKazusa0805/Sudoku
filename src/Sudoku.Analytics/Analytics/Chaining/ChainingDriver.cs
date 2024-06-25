@@ -1,6 +1,7 @@
 namespace Sudoku.Analytics.Chaining;
 
 using static CachedChainingComparers;
+using BlossomLoopRouteDictionary = Dictionary<BlossomLoopEntry, HashSet<Node>>;
 using NodeDictionary = Dictionary<Candidate, HashSet<Node>>;
 
 /// <summary>
@@ -285,87 +286,122 @@ internal static class ChainingDriver
 	/// <returns>All possible blossom loop instances.</returns>
 	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne)
 	{
-		// Collect for all possible forcing chains that can connect with start and end candidates.
-		var routeDictionary = new Dictionary<BlossomLoopEntry, HashSet<Node>>();
-		var (startCandidates, endCandidates) = (CandidateMap.Empty, CandidateMap.Empty);
-		foreach (var cell in EmptyCells & ~BivalueCells)
-		{
-			foreach (var digit in grid.GetCandidates(cell))
-			{
-				var startCandidate = cell * 9 + digit;
-				var currentNode = new Node(startCandidate, true, false);
-				var (onNodes, offNodes) = bfs_ForcingChain(currentNode);
-				foreach (var node in onNodes)
-				{
-					if (node.IsGroupedNode)
-					{
-						continue;
-					}
-
-					var endCandidate = node.Map[0];
-					var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, true);
-					if (!routeDictionary.TryAdd(entry, [node]))
-					{
-						routeDictionary[entry].Add(node);
-					}
-
-					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
-				}
-				foreach (var node in offNodes)
-				{
-					if (node.IsGroupedNode)
-					{
-						continue;
-					}
-
-					var endCandidate = node.Map[0];
-					var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, false);
-					if (!routeDictionary.TryAdd(entry, [node]))
-					{
-						routeDictionary[entry].Add(node);
-					}
-
-					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
-				}
-
-				(onNodes, offNodes) = bfs_ForcingChain(~currentNode);
-				foreach (var node in onNodes)
-				{
-					if (node.IsGroupedNode)
-					{
-						continue;
-					}
-
-					var endCandidate = node.Map[0];
-					var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, true);
-					if (!routeDictionary.TryAdd(entry, [node]))
-					{
-						routeDictionary[entry].Add(node);
-					}
-
-					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
-				}
-				foreach (var node in offNodes)
-				{
-					if (node.IsGroupedNode)
-					{
-						continue;
-					}
-
-					var endCandidate = node.Map[0];
-					var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, false);
-					if (!routeDictionary.TryAdd(entry, [node]))
-					{
-						routeDictionary[entry].Add(node);
-					}
-
-					_ = (startCandidates.Add(startCandidate), endCandidates.Add(endCandidate));
-				}
-			}
-		}
-
 		// TODO: Implement.
 		return null;
+
+		// Collect for all possible forcing chains that can connect with start and end candidates.
+		var routeDictionary = collectRouteDictionary(
+			in grid,
+			out var startCandidatesOn,
+			out var startCandidatesOff,
+			out var endCandidatesOn,
+			out var endCandidatesOff
+		);
+
+		// Iterate on each combination (cell or house) to get branches.
+		foreach (var startCandidate in startCandidatesOn)
+		{
+			// This 'if' statement will filter duplicate chains -
+			// only the first candidate encountered in this cell can be collected with blossom loops if worth.
+			var (cell, digit) = (startCandidate / 9, startCandidate % 9);
+			if (TrailingZeroCount(grid.GetCandidates(cell)) != digit)
+			{
+				continue;
+			}
+
+			// TODO: Implement.
+		}
+		return null;
+
+
+		static BlossomLoopRouteDictionary collectRouteDictionary(
+			ref readonly Grid grid,
+			out CandidateMap startCandidatesOn,
+			out CandidateMap startCandidatesOff,
+			out CandidateMap endCandidatesOn,
+			out CandidateMap endCandidatesOff
+		)
+		{
+			(startCandidatesOn, startCandidatesOff) = (CandidateMap.Empty, CandidateMap.Empty);
+			(endCandidatesOn, endCandidatesOff) = (CandidateMap.Empty, CandidateMap.Empty);
+			var routeDictionary = new BlossomLoopRouteDictionary();
+			foreach (var cell in EmptyCells & ~BivalueCells)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					var startCandidate = cell * 9 + digit;
+					var currentNode = new Node(startCandidate, true, false);
+					var (onNodes, offNodes) = bfs_ForcingChain(currentNode);
+					foreach (var node in onNodes)
+					{
+						if (node.IsGroupedNode)
+						{
+							continue;
+						}
+
+						var endCandidate = node.Map[0];
+						var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, true);
+						if (!routeDictionary.TryAdd(entry, [node]))
+						{
+							routeDictionary[entry].Add(node);
+						}
+
+						_ = (startCandidatesOn.Add(startCandidate), endCandidatesOn.Add(endCandidate));
+					}
+					foreach (var node in offNodes)
+					{
+						if (node.IsGroupedNode)
+						{
+							continue;
+						}
+
+						var endCandidate = node.Map[0];
+						var entry = new BlossomLoopEntry(startCandidate, true, endCandidate, false);
+						if (!routeDictionary.TryAdd(entry, [node]))
+						{
+							routeDictionary[entry].Add(node);
+						}
+
+						_ = (startCandidatesOn.Add(startCandidate), endCandidatesOn.Add(endCandidate));
+					}
+
+					(onNodes, offNodes) = bfs_ForcingChain(~currentNode);
+					foreach (var node in onNodes)
+					{
+						if (node.IsGroupedNode)
+						{
+							continue;
+						}
+
+						var endCandidate = node.Map[0];
+						var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, true);
+						if (!routeDictionary.TryAdd(entry, [node]))
+						{
+							routeDictionary[entry].Add(node);
+						}
+
+						_ = (startCandidatesOff.Add(startCandidate), endCandidatesOff.Add(endCandidate));
+					}
+					foreach (var node in offNodes)
+					{
+						if (node.IsGroupedNode)
+						{
+							continue;
+						}
+
+						var endCandidate = node.Map[0];
+						var entry = new BlossomLoopEntry(startCandidate, false, endCandidate, false);
+						if (!routeDictionary.TryAdd(entry, [node]))
+						{
+							routeDictionary[entry].Add(node);
+						}
+
+						_ = (startCandidatesOff.Add(startCandidate), endCandidatesOff.Add(endCandidate));
+					}
+				}
+			}
+			return routeDictionary;
+		}
 	}
 
 	/// <summary>
