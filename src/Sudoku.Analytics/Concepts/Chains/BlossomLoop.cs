@@ -5,8 +5,8 @@ namespace Sudoku.Concepts;
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class BlossomLoop :
-	SortedDictionary<BlossomLoopEntry, ChainOrLoop>,
-	IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>,
+	SortedDictionary<BlossomLoopEntry, WeakForcingChain>,
+	IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
 	IEquatable<BlossomLoop>,
@@ -96,9 +96,8 @@ public sealed partial class BlossomLoop :
 		using var e2 = other.Keys.GetEnumerator();
 		while (e1.MoveNext() && e2.MoveNext())
 		{
-			var kvp1 = e1.Current;
-			var kvp2 = e2.Current;
-			var ((a1, _, b1, _), (a2, _, b2, _)) = (kvp1, kvp2);
+			var (kvp1, kvp2) = (e1.Current, e2.Current);
+			var ((a1, b1), (a2, b2)) = (kvp1, kvp2);
 			if (a1 != a2 || b1 != b2)
 			{
 				return false;
@@ -139,8 +138,7 @@ public sealed partial class BlossomLoop :
 		using var e2 = other.Keys.GetEnumerator();
 		while (e1.MoveNext() && e2.MoveNext())
 		{
-			var (a1, _, b1, _) = e1.Current;
-			var (a2, _, b2, _) = e2.Current;
+			var ((a1, b1), (a2, b2)) = (e1.Current, e2.Current);
 			if (a1.CompareTo(a2) is var r2 and not 0)
 			{
 				return r2;
@@ -155,11 +153,7 @@ public sealed partial class BlossomLoop :
 		{
 			switch (this[key], other[key])
 			{
-				case (StrongForcingChain c, StrongForcingChain d) when c.CompareTo(d, nodeComparison) is var r4 and not 0:
-				{
-					return r4;
-				}
-				case (WeakForcingChain c, WeakForcingChain d) when c.CompareTo(d, nodeComparison) is var r4 and not 0:
+				case var (c, d) when c.CompareTo(d, nodeComparison) is var r4 and not 0:
 				{
 					return r4;
 				}
@@ -207,11 +201,29 @@ public sealed partial class BlossomLoop :
 		);
 	}
 
-	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.Any() => Count != 0;
+	/// <summary>
+	/// Try to get all possible conclusions for the current pattern.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <returns>A list of conclusions.</returns>
+	public ConclusionSet GetConclusions(ref readonly Grid grid)
+	{
+		var result = ConclusionSet.Empty;
+		foreach (var branch in Values)
+		{
+			for (var i = 0; i < branch.Length; i += 2)
+			{
+				result.AddRange(ChainOrLoop.GetConclusions(in grid, branch[i], branch[i + 1]));
+			}
+		}
+		return result;
+	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.Any(Func<KeyValuePair<BlossomLoopEntry, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.Any() => Count != 0;
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.Any(Func<KeyValuePair<BlossomLoopEntry, WeakForcingChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -224,7 +236,7 @@ public sealed partial class BlossomLoop :
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, ChainOrLoop>>.All(Func<KeyValuePair<BlossomLoopEntry, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.All(Func<KeyValuePair<BlossomLoopEntry, WeakForcingChain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{

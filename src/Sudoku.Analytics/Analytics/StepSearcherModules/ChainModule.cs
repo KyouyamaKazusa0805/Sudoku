@@ -35,15 +35,54 @@ internal static class ChainModule
 		return null;
 
 
-		static Conclusion[] c(ChainOrLoop foundChain, ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+		static Conclusion[] c(ChainOrLoop pattern, ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 		{
-			var conclusions = foundChain.GetConclusions(in grid);
-			if (foundChain is Loop loop)
+			var conclusions = pattern.GetConclusions(in grid);
+			if (pattern is Loop loop)
 			{
 				foreach (var r in rules)
 				{
 					conclusions |= r.CollectLoopConclusions(loop, in grid);
 				}
+			}
+			return [.. conclusions];
+		}
+	}
+
+	/// <summary>
+	/// The collect method called by blossom loop step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectBlossomCore(ref AnalysisContext context, List<ChainStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
+	{
+		ref readonly var grid = ref context.Grid;
+		foreach (var loop in ChainingDriver.CollectBlossomLoops(in grid, context.OnlyFindOne))
+		{
+			var conclusions = c(loop, in grid, supportedRules);
+			var step = new BlossomLoopStep(
+				conclusions,
+				CollectViews(in grid, conclusions, loop, supportedRules),
+				context.Options,
+				loop
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+			accumulator.Add(step);
+		}
+		return null;
+
+
+		static Conclusion[] c(BlossomLoop loop, ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+		{
+			var conclusions = loop.GetConclusions(in grid);
+			foreach (var r in rules)
+			{
+				conclusions |= r.CollectBlossomConclusions(loop, in grid);
 			}
 			return [.. conclusions];
 		}
@@ -223,6 +262,75 @@ internal static class ChainModule
 				result[++i] = [houseOrCellNode, .. subview];
 			}
 			result[0] = [houseOrCellNode, .. globalView];
+			return result;
+		}
+	}
+
+	/// <inheritdoc cref="CollectViews(ref readonly Grid, ChainOrLoop, ReadOnlySpan{ChainingRule})"/>
+	private static View[] CollectViews(
+		ref readonly Grid grid,
+		Conclusion[] conclusions,
+		BlossomLoop loop,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
+	{
+		var viewNodes = v(in grid, loop, supportedRules);
+		var result = new View[viewNodes.Length];
+		for (var i = 0; i < viewNodes.Length; i++)
+		{
+			result[i] = [
+				..
+				from node in viewNodes[i]
+				where node is not CandidateViewNode { Candidate: var c }
+				select node
+			];
+		}
+		foreach (var supportedRule in supportedRules)
+		{
+			supportedRule.CollectExtraViewNodes(in grid, loop, result);
+		}
+		return result;
+
+
+		static ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, BlossomLoop loop, ReadOnlySpan<ChainingRule> rules)
+		{
+			var result = new ViewNode[loop.Count + 1][];
+			var i = 0;
+			var globalView = (List<ViewNode>)[
+				loop.StartCandidates.Cells is [var c1]
+					? new CellViewNode(ColorIdentifier.Normal, c1)
+					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(loop.StartCandidates.Cells.SharedHouses)),
+				loop.EndCandidates.Cells is [var c2]
+					? new CellViewNode(ColorIdentifier.Normal, c2)
+					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(loop.EndCandidates.Cells.SharedHouses))
+			];
+			foreach (var key in loop.Keys)
+			{
+				var chain = loop[key];
+				var subview = new View();
+				var j = 0;
+				foreach (var node in chain)
+				{
+					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+					foreach (var candidate in node.Map)
+					{
+						var currentViewNode = new CandidateViewNode(id, candidate);
+						globalView.Add(currentViewNode);
+						subview.Add(currentViewNode);
+					}
+				}
+
+				j = 0;
+				foreach (var link in chain.Links)
+				{
+					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+					var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
+					globalView.Add(currentViewNode);
+					subview.Add(currentViewNode);
+				}
+				result[++i] = [.. subview];
+			}
+			result[0] = [.. globalView];
 			return result;
 		}
 	}

@@ -1,25 +1,37 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents an entry for blossom loop data used.
+/// Represents a pair of candidates as start and end candidates in a blossom loop branch.
 /// </summary>
 /// <param name="Start">Indicates the start candidate.</param>
-/// <param name="StartIsOn">Indicates whether the start node is on.</param>
 /// <param name="End">Indicates the end candidate.</param>
-/// <param name="EndIsOn">Indicates whether the end node is on.</param>
-[StructLayout(LayoutKind.Explicit)]
-public readonly record struct BlossomLoopEntry(
-	[field: FieldOffset(0)] Candidate Start,
-	[field: FieldOffset(3)] bool StartIsOn,
-	[field: FieldOffset(4)] Candidate End,
-	[field: FieldOffset(7)] bool EndIsOn
-)
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.ComparisonOperators)]
+public readonly partial record struct BlossomLoopEntry(
+	[property: HashCodeMember] Candidate Start,
+	[property: HashCodeMember] Candidate End
+) : IComparable<BlossomLoopEntry>, IDictionaryEntry<BlossomLoopEntry>, IFormattable
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(BlossomLoopEntry other)
-		=> Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in this)) == Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in other));
+	public int CompareTo(BlossomLoopEntry other)
+		=> Start.CompareTo(other.Start) is var r1 and not 0
+			? r1
+			: End.CompareTo(other.End) is var r2 and not 0 ? r2 : 0;
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => Unsafe.As<BlossomLoopEntry, long>(ref Unsafe.AsRef(in this)).GetHashCode();
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(BlossomLoopEntry other) => (Start, End) == (other.Start, other.End);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider)
+	{
+		var converter = CoordinateConverter.GetConverter(formatProvider);
+		var startStr = converter.CandidateConverter(Start);
+		var endStr = converter.CandidateConverter(End);
+		return $"{startStr} -> {endStr}";
+	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

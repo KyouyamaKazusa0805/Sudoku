@@ -198,6 +198,350 @@
             Indicates the type is list.
             </summary>
         </member>
+        <member name="T:System.Collections.Generic.IDictionaryEntry`1">
+            <summary>
+            Represents an entry that can be used as a type parameter <c>TKey</c> in <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <remarks>
+            <b>The type is only used as a constraint, while implementing a data type for key usages temporarily.</b>
+            </remarks>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="T:System.Collections.Generic.DictionaryExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.GetValueRef``2(System.Collections.Generic.Dictionary{``0,``1},``0@)">
+            <summary>
+            Try to get the reference to the value whose corresponding key is specified one.
+            </summary>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="this">The current dictionary instance.</param>
+            <param name="key">The key to be checked.</param>
+            <returns>The reference to the value; or a <see langword="null"/> reference if the key is not found.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.ICollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ICollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The source collection.</param>
+            <param name="elements">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
+        <member name="T:System.Collections.Generic.LinkedListExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.Exists``1(System.Collections.Generic.LinkedList{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Checks whether the collection exists at least one element satisfying the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
+            <param name="match">A method to be called.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveFirstNode``1(System.Collections.Generic.LinkedList{``0})">
+            <summary>
+            Removes the first element and return that element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The first element to be removed.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveLastNode``1(System.Collections.Generic.LinkedList{``0})">
+            <summary>
+            Removes the last element and return that element.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The last element to be removed.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.ListExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddRef``1(System.Collections.Generic.List{``0},``0@)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="item">The object to be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+					supports with generic-typed references.
+				</para>
+			</feature>
+            <para>
+            This method passes with a reference to an object, which is unnecessary to be called by a referece-typed object,
+            or a value-typed object whose memory size is less than a pointer. <b>Always measure the necessity of the usage.</b>
+            </para>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddRangeRef``1(System.Collections.Generic.List{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Adds the elements of the specified <see cref="T:System.ReadOnlySpan`1" /> to the end of the <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="items">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+					supports with generic-typed references.
+				</para>
+			</feature>
+            <para>
+            This method passes with a <see cref="T:System.ReadOnlySpan`1" /> instead of <see cref="T:System.Collections.Generic.IEnumerable`1" />,
+            allowing iterating on read-only references of collection elements, which is unnecessary to be called
+            by a reference-typed object, or a value-typed object whose memory size is less than a pointer.
+            <b>Always measure the necessity of the usage.</b>
+            </para>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+            <seealso cref="T:System.ReadOnlySpan`1" />
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1" />
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list to be modified.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.SequenceEqual``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
+            <summary>
+            Determines whether two sequences are equal by comparing the elements by using <see cref="M:System.IEquatable`1.Equals(`0)"/> for their type.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="other"/>.</param>
+            <param name="other">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="this"/>.</param>
+            <returns>
+            <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
+            to <see cref="M:System.IEquatable`1.Equals(`0)"/> for their type; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AsSpan``1(System.Collections.Generic.List{``0})">
+            <inheritdoc cref="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})"/>
+            <param name="this">The instance to be transformed.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlySpan``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> view over the data in a list. Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/>
+            while the <see cref="T:System.ReadOnlySpan`1"/> is in use.
+            </summary>
+            <param name="this">The instance to be transformed.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance over the <see cref="T:System.Collections.Generic.List`1"/>.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddWithResize``1(System.Collections.Generic.List{``0},``0@)">
+            <summary>
+            Add an item and resize the <see cref="T:System.Collections.Generic.List`1" /> of <typeparamref name="T" />.
+            </summary>
+            <typeparam name="T">The type of the target value to be added.</typeparam>
+            <param name="this">The list.</param>
+            <param name="item">An instance of type <typeparamref name="T" /> to be added.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetNewCapacity``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Try to get a new capacity value by the desired capacity to be set.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="capacity">The desired capacity to be set.</param>
+            <returns>The result value to be set.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetSize``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal field <c>_size</c> in type <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetVersion``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal field <c>_version</c> in type <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal reference to the first <typeparamref name="T" /> in a <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list of <typeparamref name="T" /> instances.</param>
+            <returns>The reference to the first <typeparamref name="T" />.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="T:System.Collections.Generic.SortedSetExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.SortedSet`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSetExtensions.ToArray``1(System.Collections.Generic.SortedSet{``0})">
+            <summary>
+            Try to convert the current instance into an array.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>An array of <typeparamref name="T"/> elements.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.StackExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Stack`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.StackExtensions.Reverse``1(System.Collections.Generic.Stack{``0})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/summary"/>
+            </summary>
+            <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
+            <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
+        </member>
+        <member name="T:System.Collections.BitArrayExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <seealso cref="T:System.Collections.BitArray"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
+            <summary>
+            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
+            </summary>
+            <param name="this">The array.</param>
+            <returns>The total number of bits set <see langword="true"/>.</returns>
+        </member>
+        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
+        </member>
+        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Searches for an element that matches the conditions defined by the specified predicate,
+            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
+            <param name="this">The current collection.</param>
+            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
+            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
+        </member>
         <member name="T:System.Combinatorial">
             <summary>
             Extracts the type that includes the methods that operates with combinatorial values.
@@ -628,324 +972,6 @@
             </summary>
             <param name="type">The type.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:System.Collections.BitArrayExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <seealso cref="T:System.Collections.BitArray"/>
-        </member>
-        <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
-            <summary>
-            Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.
-            </summary>
-            <param name="this">The array.</param>
-            <returns>The total number of bits set <see langword="true"/>.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.ICollectionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.ICollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Adds the elements of the specified collection to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.
-            </summary>
-            <typeparam name="T">The type of elements in the list.</typeparam>
-            <param name="this">The source collection.</param>
-            <param name="elements">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-        </member>
-        <member name="T:System.Collections.Generic.LinkedListExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.LinkedListExtensions.Exists``1(System.Collections.Generic.LinkedList{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Checks whether the collection exists at least one element satisfying the specified condition.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
-            <param name="match">A method to be called.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveFirstNode``1(System.Collections.Generic.LinkedList{``0})">
-            <summary>
-            Removes the first element and return that element.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <returns>The first element to be removed.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.LinkedListExtensions.RemoveLastNode``1(System.Collections.Generic.LinkedList{``0})">
-            <summary>
-            Removes the last element and return that element.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <returns>The last element to be removed.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.ListExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AddRef``1(System.Collections.Generic.List{``0},``0@)">
-            <summary>
-            Adds an object to the end of the <see cref="T:System.Collections.Generic.List`1" />.
-            </summary>
-            <typeparam name="T">The type of elements in the list.</typeparam>
-            <param name="this">The current instance.</param>
-            <param name="item">The object to be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            <feature name="unsafe-accessor">
-				<para>
-					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
-					supports with generic-typed references.
-				</para>
-			</feature>
-            <para>
-            This method passes with a reference to an object, which is unnecessary to be called by a referece-typed object,
-            or a value-typed object whose memory size is less than a pointer. <b>Always measure the necessity of the usage.</b>
-            </para>
-            </remarks>
-            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AddRangeRef``1(System.Collections.Generic.List{``0},System.ReadOnlySpan{``0})">
-            <summary>
-            Adds the elements of the specified <see cref="T:System.ReadOnlySpan`1" /> to the end of the <see cref="T:System.Collections.Generic.List`1" />.
-            </summary>
-            <typeparam name="T">The type of elements in the list.</typeparam>
-            <param name="this">The current instance.</param>
-            <param name="items">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            <feature name="unsafe-accessor">
-				<para>
-					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
-					supports with generic-typed references.
-				</para>
-			</feature>
-            <para>
-            This method passes with a <see cref="T:System.ReadOnlySpan`1" /> instead of <see cref="T:System.Collections.Generic.IEnumerable`1" />,
-            allowing iterating on read-only references of collection elements, which is unnecessary to be called
-            by a reference-typed object, or a value-typed object whose memory size is less than a pointer.
-            <b>Always measure the necessity of the usage.</b>
-            </para>
-            </remarks>
-            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
-            <seealso cref="T:System.ReadOnlySpan`1" />
-            <seealso cref="T:System.Collections.Generic.IEnumerable`1" />
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list to be modified.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.SequenceEqual``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
-            <summary>
-            Determines whether two sequences are equal by comparing the elements by using <see cref="M:System.IEquatable`1.Equals(`0)"/> for their type.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="other"/>.</param>
-            <param name="other">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="this"/>.</param>
-            <returns>
-            <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
-            to <see cref="M:System.IEquatable`1.Equals(`0)"/> for their type; otherwise, <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AsSpan``1(System.Collections.Generic.List{``0})">
-            <inheritdoc cref="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})"/>
-            <param name="this">The instance to be transformed.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlySpan``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Gets a <see cref="T:System.ReadOnlySpan`1"/> view over the data in a list. Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/>
-            while the <see cref="T:System.ReadOnlySpan`1"/> is in use.
-            </summary>
-            <param name="this">The instance to be transformed.</param>
-            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance over the <see cref="T:System.Collections.Generic.List`1"/>.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AddWithResize``1(System.Collections.Generic.List{``0},``0@)">
-            <summary>
-            Add an item and resize the <see cref="T:System.Collections.Generic.List`1" /> of <typeparamref name="T" />.
-            </summary>
-            <typeparam name="T">The type of the target value to be added.</typeparam>
-            <param name="this">The list.</param>
-            <param name="item">An instance of type <typeparamref name="T" /> to be added.</param>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            </remarks>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetNewCapacity``1(System.Collections.Generic.List{``0},System.Int32)">
-            <summary>
-            Try to get a new capacity value by the desired capacity to be set.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="capacity">The desired capacity to be set.</param>
-            <returns>The result value to be set.</returns>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            </remarks>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetSize``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Try to fetch the internal field <c>_size</c> in type <see cref="T:System.Collections.Generic.List`1" />.
-            </summary>
-            <param name="this">The list.</param>
-            <returns>The reference to the internal field.</returns>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            <target name="field-related-method">
-					<para>
-						<b>
-							Please note that this method will return the reference to the internal field,
-							but this doesn't mean you can use its reference and re-assign it.
-							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
-							it will raise an exception to report this wrong usage.
-						</b>
-					</para>
-				</target>
-            </remarks>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetVersion``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Try to fetch the internal field <c>_version</c> in type <see cref="T:System.Collections.Generic.List`1" />.
-            </summary>
-            <param name="this">The list.</param>
-            <returns>The reference to the internal field.</returns>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            <target name="field-related-method">
-					<para>
-						<b>
-							Please note that this method will return the reference to the internal field,
-							but this doesn't mean you can use its reference and re-assign it.
-							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
-							it will raise an exception to report this wrong usage.
-						</b>
-					</para>
-				</target>
-            </remarks>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetItems``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Try to fetch the internal reference to the first <typeparamref name="T" /> in a <see cref="T:System.Collections.Generic.List`1" />.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list of <typeparamref name="T" /> instances.</param>
-            <returns>The reference to the first <typeparamref name="T" />.</returns>
-            <remarks>
-            <target name="others">
-					<para>
-						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
-						which is just like inserting .NET implementation into the current project directly.
-					</para>
-				</target>
-            <target name="field-related-method">
-					<para>
-						<b>
-							Please note that this method will return the reference to the internal field,
-							but this doesn't mean you can use its reference and re-assign it.
-							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
-							it will raise an exception to report this wrong usage.
-						</b>
-					</para>
-				</target>
-            </remarks>
-        </member>
-        <member name="T:System.Collections.Generic.SortedSetExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.SortedSet`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.SortedSetExtensions.ToArray``1(System.Collections.Generic.SortedSet{``0})">
-            <summary>
-            Try to convert the current instance into an array.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>An array of <typeparamref name="T"/> elements.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.StackExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.Stack`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.StackExtensions.Reverse``1(System.Collections.Generic.Stack{``0})">
-            <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/summary"/>
-            </summary>
-            <param name="this"><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/param[@name='source']"/></param>
-            <returns><inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" path="/returns"/></returns>
-        </member>
-        <member name="T:System.Collections.ObjectModel.ObservableCollectionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the first occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})" path="/returns"/></returns>
-        </member>
-        <member name="M:System.Collections.ObjectModel.ObservableCollectionExtensions.FindLastIndex``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Searches for an element that matches the conditions defined by the specified predicate,
-            and returns the zero-based index of the last occurrence within the entire <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
-            </summary>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.List`1" path="/typeparam[@name='T']"/></typeparam>
-            <param name="this">The current collection.</param>
-            <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
-            <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>

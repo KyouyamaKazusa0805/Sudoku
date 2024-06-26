@@ -13,6 +13,21 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		var accumulator = new List<ChainStep>();
+		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
+		ref readonly var grid = ref context.Grid;
+		Initialize(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
+		if (ChainModule.CollectBlossomCore(ref context, accumulator, rules) is { } step)
+		{
+			return step;
+		}
+
+		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		{
+			StepMarshal.SortItems(accumulator);
+			context.Accumulator.AddRange(accumulator);
+		}
 		return null;
 	}
 }

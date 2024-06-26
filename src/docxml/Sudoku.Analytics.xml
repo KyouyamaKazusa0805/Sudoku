@@ -414,13 +414,20 @@
         <member name="M:Sudoku.Concepts.BlossomLoop.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#Any">
+        <member name="M:Sudoku.Concepts.BlossomLoop.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible conclusions for the current pattern.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#WeakForcingChain}}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#WeakForcingChain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.WeakForcingChain},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Concepts.BlossomLoop.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#BlossomLoop,System#Collections#Generic#KeyValuePair{Sudoku#Concepts#BlossomLoopEntry,Sudoku#Concepts#WeakForcingChain}}#All(System.Func{System.Collections.Generic.KeyValuePair{Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.WeakForcingChain},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.BlossomLoop.Equals(System.Object)">
@@ -449,39 +456,53 @@
         </member>
         <member name="T:Sudoku.Concepts.BlossomLoopEntry">
             <summary>
-            Represents an entry for blossom loop data used.
+            Represents a pair of candidates as start and end candidates in a blossom loop branch.
             </summary>
             <param name="Start">Indicates the start candidate.</param>
-            <param name="StartIsOn">Indicates whether the start node is on.</param>
             <param name="End">Indicates the end candidate.</param>
-            <param name="EndIsOn">Indicates whether the end node is on.</param>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoopEntry.#ctor(System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.#ctor(System.Int32,System.Int32)">
             <summary>
-            Represents an entry for blossom loop data used.
+            Represents a pair of candidates as start and end candidates in a blossom loop branch.
             </summary>
             <param name="Start">Indicates the start candidate.</param>
-            <param name="StartIsOn">Indicates whether the start node is on.</param>
             <param name="End">Indicates the end candidate.</param>
-            <param name="EndIsOn">Indicates whether the end node is on.</param>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoopEntry.Start">
             <summary>Indicates the start candidate.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.BlossomLoopEntry.StartIsOn">
-            <summary>Indicates whether the start node is on.</summary>
-        </member>
         <member name="P:Sudoku.Concepts.BlossomLoopEntry.End">
             <summary>Indicates the end candidate.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.BlossomLoopEntry.EndIsOn">
-            <summary>Indicates whether the end node is on.</summary>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.CompareTo(Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.BlossomLoopEntry.Equals(Sudoku.Concepts.BlossomLoopEntry)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoopEntry.GetHashCode">
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.op_GreaterThan(Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.op_LessThan(Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.op_GreaterThanOrEqual(Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.BlossomLoopEntry.op_LessThanOrEqual(Sudoku.Concepts.BlossomLoopEntry,Sudoku.Concepts.BlossomLoopEntry)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
@@ -1521,14 +1542,14 @@
             Indicates whether the node is a grouped node.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Node.Map">
-            <summary>
-            Indicates the map of candidates the node uses.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Node.AncestorsLength">
             <summary>
             Indicates the length of ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Map">
+            <summary>
+            Indicates the map of candidates the node uses.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Node.Parent">
@@ -1541,6 +1562,22 @@
             The backing comparing value on <see cref="P:Sudoku.Concepts.Node.IsOn"/> property.
             </summary>
             <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Deconstruct(System.Boolean@,Sudoku.Concepts.CandidateMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Deconstruct(System.Boolean@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Node@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)">
             <inheritdoc/>
@@ -1614,6 +1651,38 @@
             Creates a copy of the current instance.
             </summary>
             <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.FindChains(Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
+            <summary>
+            <para>
+            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with the current node,
+            and to make an confliction with itself.
+            </para>
+            <para>
+            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or the method cannot find a valid chain that forms a confliction with the current node.
+            </para>
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
+            <param name="result">
+            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
+            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
+            </param>
+            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
+            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.FindForcingChains">
+            <summary>
+            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
+            </summary>
+            <returns>
+            Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
+            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
+            </returns>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
         </member>
         <member name="M:Sudoku.Concepts.Node.op_OnesComplement(Sudoku.Concepts.Node)">
             <summary>
@@ -8411,41 +8480,6 @@
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible blossom loop instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.bfs_Chain(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
-            <summary>
-            <para>
-            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with <paramref name="startNode"/>,
-            and to make an confliction with itself.
-            </para>
-            <para>
-            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the method cannot find a valid chain that forms a confliction with <paramref name="startNode"/>.
-            </para>
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="startNode">The node as the start.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
-            <param name="result">
-            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
-            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
-            </param>
-            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
-            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.bfs_ForcingChain(Sudoku.Concepts.Node)">
-            <summary>
-            <para>Finds a list of nodes that can implicitly connects to <paramref name="startNode"/> via a forcing chain.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
-            </summary>
-            <param name="startNode">The node as the start.</param>
-            <returns>
-            Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
-            that can implicitly connects to the <paramref name="startNode"/> via the whole forcing chain,
-            grouped by their own initial states.
-            </returns>
-            <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
-        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
@@ -8500,12 +8534,33 @@
             </remarks>
             <seealso cref="T:Sudoku.Drawing.View"/>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.BlossomLoop,Sudoku.Drawing.View[])">
+            <summary>
+            Collects for extra view nodes for the pattern.
+            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+            </summary>
+            <param name="grid">The grid as candidate references.</param>
+            <param name="loop">The pattern to collect view nodes.</param>
+            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.View"/> that is created from this method.</param>
+        </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
             <summary>
             Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
             This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
             </summary>
             <param name="loop">Indicates the base loop to be used.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of found conclusions.</returns>
+            <remarks>
+            This method should not be overridden if no eliminations exists in the loop pattern.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectBlossomConclusions(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find extra eliminations that can only be created inside a Blossom Loop.
+            This method will be useful in advanced chaining rules such as ALS and Fish eliminations checking.
+            </summary>
+            <param name="loop">Indicates the base blossom loop to be used.</param>
             <param name="grid">The grid to be checked.</param>
             <returns>A list of found conclusions.</returns>
             <remarks>
@@ -8558,6 +8613,9 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectBlossomConclusions(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
             <summary>
             Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>).
@@ -8571,6 +8629,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectBlossomConclusions(Sudoku.Concepts.BlossomLoop,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule">
@@ -10274,6 +10335,15 @@
             <param name="supportedRules">Indicates the supported chaining rules.</param>
             <returns>The first found step.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="supportedRules">Indicates the supported chaining rules.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.AnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Boolean)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
@@ -10294,6 +10364,9 @@
             <returns>The views.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion,Sudoku.Concepts.MultipleForcingChains,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Concepts.BlossomLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
             <inheritdoc cref="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">

@@ -210,13 +210,59 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 			// Filter eliminations on strong links.
 			foreach (var otherLink in links)
 			{
-				if (otherLink is { IsStrong: true, FirstNode.Map.Cells: var map1, SecondNode.Map.Cells: var map2 })
+				if (otherLink is { IsStrong: true, FirstNode.Map.Cells: var map1, SecondNode.Map.Cells: var map2 }
+					&& otherLink != link)
 				{
 					elimMap &= ~map1;
 					elimMap &= ~map2;
 				}
 			}
 			result.AddRange(from cell in elimMap select new Conclusion(Elimination, cell, digit));
+		}
+		return result;
+	}
+
+	/// <inheritdoc/>
+	protected internal override ConclusionSet CollectBlossomConclusions(BlossomLoop loop, ref readonly Grid grid)
+	{
+		var result = ConclusionSet.Empty;
+		var candidatesMap = grid.CandidatesMap;
+		foreach (var branch in loop.Values)
+		{
+			foreach (var link in branch.Links)
+			{
+				if (link is not
+					{
+						FirstNode.Map.Cells: var firstCells,
+						SecondNode.Map.Cells: var secondCells,
+						GroupedLinkPattern: Fish { Digit: var digit, BaseSets: var baseSets, CoverSets: var coverSets }
+					})
+				{
+					continue;
+				}
+
+				var elimMap = CellMap.Empty;
+				foreach (var coverSet in coverSets)
+				{
+					elimMap |= HousesMap[coverSet] & candidatesMap[digit];
+				}
+				foreach (var baseSet in baseSets)
+				{
+					elimMap &= ~HousesMap[baseSet];
+				}
+
+				// Filter eliminations on strong links.
+				foreach (var otherLink in branch.Links)
+				{
+					if (otherLink is { IsStrong: true, FirstNode.Map.Cells: var map1, SecondNode.Map.Cells: var map2 }
+						&& otherLink != link)
+					{
+						elimMap &= ~map1;
+						elimMap &= ~map2;
+					}
+				}
+				result.AddRange(from cell in elimMap select new Conclusion(Elimination, cell, digit));
+			}
 		}
 		return result;
 	}

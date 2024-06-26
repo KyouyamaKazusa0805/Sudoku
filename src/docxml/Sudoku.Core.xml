@@ -2602,15 +2602,12 @@
         <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Byte)">
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Int32)">
             <summary>
             Get the house indices for the specified cell.
             </summary>
             <param name="this">The cell.</param>
             <returns>A <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Byte)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMarshal.ToBandIndex(System.Int32)">
             <summary>

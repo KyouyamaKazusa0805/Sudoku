@@ -66,23 +66,12 @@ public static class CellMarshal
 	/// <param name="this">The cell.</param>
 	/// <returns>A <see cref="HouseMask"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static HouseMask ToHouseIndices(this byte @this)
-	{
-		var result = 0;
-		result |= @this.ToHouseIndex(HouseType.Block);
-		result |= @this.ToHouseIndex(HouseType.Row);
-		result |= @this.ToHouseIndex(HouseType.Column);
-		return result;
-	}
-
-	/// <inheritdoc cref="ToHouseIndices(byte)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static HouseMask ToHouseIndices(this Cell @this)
 	{
 		var result = 0;
-		result |= @this.ToHouseIndex(HouseType.Block);
-		result |= @this.ToHouseIndex(HouseType.Row);
-		result |= @this.ToHouseIndex(HouseType.Column);
+		result |= 1 << @this.ToHouseIndex(HouseType.Block);
+		result |= 1 << @this.ToHouseIndex(HouseType.Row);
+		result |= 1 << @this.ToHouseIndex(HouseType.Column);
 		return result;
 	}
 

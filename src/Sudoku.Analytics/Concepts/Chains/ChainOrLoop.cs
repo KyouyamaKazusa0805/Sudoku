@@ -425,7 +425,7 @@ public abstract partial class ChainOrLoop :
 	/// <param name="node2">The second node.</param>
 	/// <returns>A sequence of <see cref="Conclusion"/> instances.</returns>
 	/// <seealso cref="Conclusion"/>
-	private protected static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
+	protected internal static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
 	{
 		var candidatesMap = grid.CandidatesMap;
 		if (node1 == ~node2)

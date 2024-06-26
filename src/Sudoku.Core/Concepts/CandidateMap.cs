@@ -635,7 +635,12 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse(string s, IFormatProvider? provider) => CoordinateParser.GetParser(provider).CandidateParser(s);
+	public static CandidateMap Parse(string s, IFormatProvider? provider)
+		=> provider switch
+		{
+			CandidateMapFormatInfo c => c.ParseMap(s),
+			_ => CoordinateParser.GetParser(provider).CandidateParser(s)
+		};
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
