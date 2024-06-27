@@ -1652,38 +1652,6 @@
             </summary>
             <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Node.FindChains(Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
-            <summary>
-            <para>
-            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with the current node,
-            and to make an confliction with itself.
-            </para>
-            <para>
-            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the method cannot find a valid chain that forms a confliction with the current node.
-            </para>
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
-            <param name="result">
-            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
-            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
-            </param>
-            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
-            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.FindForcingChains">
-            <summary>
-            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
-            </summary>
-            <returns>
-            Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
-            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
-            </returns>
-            <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
-        </member>
         <member name="M:Sudoku.Concepts.Node.op_OnesComplement(Sudoku.Concepts.Node)">
             <summary>
             Negates the node with <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
@@ -8479,6 +8447,40 @@
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <returns>All possible blossom loop instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
+            <summary>
+            <para>
+            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with the current node,
+            and to make an confliction with itself.
+            </para>
+            <para>
+            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or the method cannot find a valid chain that forms a confliction with the current node.
+            </para>
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
+            <param name="result">
+            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
+            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
+            </param>
+            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
+            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindForcingChains(Sudoku.Concepts.Node)">
+            <summary>
+            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>.</para>
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
+            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
+            </returns>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.CachedLinkPool.WeakLinkDictionary"/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
