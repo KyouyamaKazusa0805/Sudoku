@@ -593,10 +593,7 @@ internal static class ChainingDriver
 		var pendingNodesSupposedOff = new LinkedList<Node>();
 		(@this.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(@this);
 
-		var visitedNodesSupposedOn = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-		var visitedNodesSupposedOff = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-		_ = (visitedNodesSupposedOn.Add(@this), visitedNodesSupposedOff.Add(@this));
-
+		var visitedNodes = new HashSet<Node>(CachedChainingComparers.NodeMapComparer) { @this };
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			while (pendingNodesSupposedOn.Count != 0)
@@ -655,7 +652,7 @@ internal static class ChainingDriver
 						// Counter-example:
 						//   4.+3.6+85...+57.....8+89.5...3..7..+8+6.2.23..94.+8..+84.....15..6..8+7+3+3..+871.5.+7+68.....2:114 124 324 425 427 627 943 366 667 967 272 273 495 497
 						if (!nodeSupposedOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-							&& visitedNodesSupposedOff.Add(nodeSupposedOff))
+							&& visitedNodes.Add(nodeSupposedOff))
 						{
 							pendingNodesSupposedOff.AddLast(nextNode);
 						}
@@ -691,7 +688,7 @@ internal static class ChainingDriver
 						}
 
 						if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-							&& visitedNodesSupposedOn.Add(nodeSupposedOn))
+							&& visitedNodes.Add(nodeSupposedOn))
 						{
 							pendingNodesSupposedOn.AddLast(nextNode);
 						}
