@@ -20,7 +20,7 @@ public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		Initialize(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
+		InitializeLinkPool(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
 		if (ChainModule.CollectMultipleCore(ref context, accumulator, rules, false) is { } step)
 		{
 			return step;

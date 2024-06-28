@@ -36,7 +36,7 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
 		ref readonly var grid = ref context.Grid;
-		Initialize(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
+		InitializeLinkPool(in grid, elementary | advanced, LinkOption.House, LinkOption.House, out var rules);
 		if (ChainModule.CollectCore(ref context, accumulator, rules) is { } step)
 		{
 			return step;

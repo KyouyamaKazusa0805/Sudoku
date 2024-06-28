@@ -5,7 +5,7 @@ namespace Sudoku.Caching;
 /// </summary>
 /// <seealso cref="IEqualityComparer{T}"/>
 /// <seealso cref="IComparer{T}"/>
-internal static class CachedChainingComparers
+internal static class ChainingComparers
 {
 	/// <summary>
 	/// Indicates the backing field of chain pattern comparer instance.

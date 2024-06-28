@@ -88,7 +88,6 @@ public sealed partial class Collector : AnalyzerOrCollector
 
 			var playground = puzzle;
 			Initialize(in playground, playground.GetSolutionGrid());
-			FlushDictionaries();
 
 			var accumulator = new List<Step>();
 			var context = new AnalysisContext(in playground, in puzzle)

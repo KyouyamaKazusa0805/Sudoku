@@ -282,7 +282,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 		FindNextStep:
 			Initialize(in playground, in solution);
-			FlushDictionaries();
 
 			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)

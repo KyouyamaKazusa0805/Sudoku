@@ -40,7 +40,7 @@ internal static class ChainingDriver
 	/// </remarks>
 	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		var result = new SortedSet<ChainOrLoop>(CachedChainingComparers.ChainComparer);
+		var result = new SortedSet<ChainOrLoop>(ChainingComparers.ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
@@ -74,7 +74,7 @@ internal static class ChainingDriver
 	/// </example>
 	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		var result = new SortedSet<MultipleForcingChains>(CachedChainingComparers.MultipleForcingChainsComparer);
+		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
 		foreach (var cell in EmptyCells & ~BivalueCells)
 		{
 			var nodesSupposedOn_GroupedByDigit = new Dictionary<Candidate, HashSet<Node>>();
@@ -108,8 +108,8 @@ internal static class ChainingDriver
 
 					var nodesSupposedOn_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
 					var nodesSupposedOff_GroupedByHouse = new Dictionary<Candidate, HashSet<Node>>();
-					var nodesSupposedOn_InHouse = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-					var nodesSupposedOff_InHouse = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
+					var nodesSupposedOn_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+					var nodesSupposedOff_InHouse = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 					foreach (var otherCell in cellsInHouse)
 					{
 						var otherCandidate = otherCell * 9 + digit;
@@ -156,8 +156,8 @@ internal static class ChainingDriver
 				nodesSupposedOff_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff);
 				if (nodesSupposedOn_InCell is null)
 				{
-					nodesSupposedOn_InCell = new(CachedChainingComparers.NodeMapComparer);
-					nodesSupposedOff_InCell = new(CachedChainingComparers.NodeMapComparer);
+					nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
+					nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
 					nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
 					nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
 				}
@@ -593,7 +593,10 @@ internal static class ChainingDriver
 		var pendingNodesSupposedOff = new LinkedList<Node>();
 		(@this.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(@this);
 
-		var visitedNodes = new HashSet<Node>(CachedChainingComparers.NodeMapComparer) { @this };
+		var visitedNodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		var visitedNodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		_ = (visitedNodesSupposedOn.Add(@this), visitedNodesSupposedOff.Add(@this));
+
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			while (pendingNodesSupposedOn.Count != 0)
@@ -652,7 +655,7 @@ internal static class ChainingDriver
 						// Counter-example:
 						//   4.+3.6+85...+57.....8+89.5...3..7..+8+6.2.23..94.+8..+84.....15..6..8+7+3+3..+871.5.+7+68.....2:114 124 324 425 427 627 943 366 667 967 272 273 495 497
 						if (!nodeSupposedOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-							&& visitedNodes.Add(nodeSupposedOff))
+							&& visitedNodesSupposedOff.Add(nodeSupposedOff))
 						{
 							pendingNodesSupposedOff.AddLast(nextNode);
 						}
@@ -688,7 +691,7 @@ internal static class ChainingDriver
 						}
 
 						if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
-							&& visitedNodes.Add(nodeSupposedOn))
+							&& visitedNodesSupposedOn.Add(nodeSupposedOn))
 						{
 							pendingNodesSupposedOn.AddLast(nextNode);
 						}
@@ -715,8 +718,8 @@ internal static class ChainingDriver
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 		(@this.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(@this);
 
-		var nodesSupposedOn = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
-		var nodesSupposedOff = new HashSet<Node>(CachedChainingComparers.NodeMapComparer);
+		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			if (pendingNodesSupposedOn.Count != 0)

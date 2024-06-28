@@ -57,7 +57,6 @@ global using Sudoku.Text;
 global using Sudoku.Traits;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Languages;
-global using static Sudoku.Caching.CachedFields;
-global using static Sudoku.Caching.CachedLinkPool;
+global using static Sudoku.Caching.CachingData;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;
