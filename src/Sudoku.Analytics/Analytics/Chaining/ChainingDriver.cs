@@ -134,22 +134,17 @@ internal static class ChainingDriver
 					////////////////////////////////////////
 					// Collect with region forcing chains //
 					////////////////////////////////////////
-#pragma warning disable CS9080
-					unsafe
+					var _a = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
+					if (!_a.IsEmpty)
 					{
-						var _a = rfcOn(in grid, digit, in cellsInHouse, nodesSupposedOn_GroupedByHouse, nodesSupposedOn_InHouse);
-						if (!_a.IsEmpty)
-						{
-							return _a;
-						}
-
-						var _b = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
-						if (!_b.IsEmpty)
-						{
-							return _b;
-						}
+						return _a;
 					}
-#pragma warning restore CS9080
+
+					var _b = rfcOff(in grid, digit, in cellsInHouse, nodesSupposedOff_GroupedByHouse, nodesSupposedOff_InHouse);
+					if (!_b.IsEmpty)
+					{
+						return _b;
+					}
 				}
 
 				nodesSupposedOn_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOn);
@@ -264,7 +259,7 @@ internal static class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> rfcOn(
 			ref readonly Grid grid,
 			Digit digit,
-			ref readonly CellMap cellsInHouse,
+			scoped ref readonly CellMap cellsInHouse,
 			Dictionary<Candidate, HashSet<Node>> onNodes,
 			HashSet<Node> houseOnNodes
 		)
@@ -304,7 +299,7 @@ internal static class ChainingDriver
 		ReadOnlySpan<MultipleForcingChains> rfcOff(
 			ref readonly Grid grid,
 			Digit digit,
-			ref readonly CellMap cellsInHouse,
+			scoped ref readonly CellMap cellsInHouse,
 			Dictionary<Candidate, HashSet<Node>> offNodes,
 			HashSet<Node> houseOffNodes
 		)
