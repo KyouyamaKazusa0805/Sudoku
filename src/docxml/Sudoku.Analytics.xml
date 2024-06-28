@@ -8459,7 +8459,7 @@
             or the method cannot find a valid chain that forms a confliction with the current node.
             </para>
             </summary>
-            <param name="this">The current instance.</param>
+            <param name="startNode">The current instance.</param>
             <param name="grid">The grid to be checked.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
             <param name="result">
@@ -8474,7 +8474,7 @@
             <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
             <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>.</para>
             </summary>
-            <param name="this">The current instance.</param>
+            <param name="startNode">The current instance.</param>
             <returns>
             Returns a pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
             that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
@@ -8521,30 +8521,6 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
-            <summary>
-            Collects for extra view nodes for the pattern.
-            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-            </summary>
-            <param name="grid">The grid as candidate references.</param>
-            <param name="pattern">The pattern to collect view nodes.</param>
-            <param name="view">A <see cref="T:Sudoku.Drawing.View"/> instance that is applied for view nodes appended.</param>
-            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.ViewNode"/> that is created from this method.</param>
-            <remarks>
-            The method by default will do nothing, with an empty <see cref="T:System.ReadOnlySpan`1"/> returned
-            from argument <paramref name="nodes"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Drawing.View"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.BlossomLoop,Sudoku.Drawing.View[])">
-            <summary>
-            Collects for extra view nodes for the pattern.
-            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-            </summary>
-            <param name="grid">The grid as candidate references.</param>
-            <param name="loop">The pattern to collect view nodes.</param>
-            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.View"/> that is created from this method.</param>
-        </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
             <summary>
             Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
@@ -8569,7 +8545,31 @@
             This method should not be overridden if no eliminations exists in the loop pattern.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.MultipleForcingChains,Sudoku.Drawing.View[])">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+            <summary>
+            Collects for extra view nodes for the pattern.
+            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+            </summary>
+            <param name="grid">The grid as candidate references.</param>
+            <param name="pattern">The pattern to collect view nodes.</param>
+            <param name="view">A <see cref="T:Sudoku.Drawing.View"/> instance that is applied for view nodes appended.</param>
+            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.ViewNode"/> that is created from this method.</param>
+            <remarks>
+            The method by default will do nothing, with an empty <see cref="T:System.ReadOnlySpan`1"/> returned
+            from argument <paramref name="nodes"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Drawing.View"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.BlossomLoop,Sudoku.Drawing.View[])">
+            <summary>
+            Collects for extra view nodes for the pattern.
+            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+            </summary>
+            <param name="grid">The grid as candidate references.</param>
+            <param name="loop">The pattern to collect view nodes.</param>
+            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.View"/> that is created from this method.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.MultipleForcingChains,Sudoku.Drawing.View[])">
             <summary>
             Collects for extra view nodes for the pattern on multiple forcing chains.
             This method will be useful in advanced chaining rules such as ALS, and AUR extra maps checking.
@@ -8597,7 +8597,7 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule">
@@ -8609,7 +8609,7 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
@@ -8627,7 +8627,7 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
@@ -8663,7 +8663,7 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule">
@@ -8701,7 +8701,7 @@
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkOption,Sudoku.Concepts.LinkOption)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">

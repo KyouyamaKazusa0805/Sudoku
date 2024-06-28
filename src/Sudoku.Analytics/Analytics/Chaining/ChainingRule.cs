@@ -61,40 +61,6 @@ public abstract partial class ChainingRule
 	);
 
 	/// <summary>
-	/// Collects for extra view nodes for the pattern.
-	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-	/// </summary>
-	/// <param name="grid">The grid as candidate references.</param>
-	/// <param name="pattern">The pattern to collect view nodes.</param>
-	/// <param name="view">A <see cref="View"/> instance that is applied for view nodes appended.</param>
-	/// <param name="nodes">A list of <see cref="ViewNode"/> that is created from this method.</param>
-	/// <remarks>
-	/// The method by default will do nothing, with an empty <see cref="ReadOnlySpan{T}"/> returned
-	/// from argument <paramref name="nodes"/>.
-	/// </remarks>
-	/// <seealso cref="View"/>
-	protected internal virtual void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
-		=> nodes = [];
-
-	/// <summary>
-	/// Collects for extra view nodes for the pattern.
-	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-	/// </summary>
-	/// <param name="grid">The grid as candidate references.</param>
-	/// <param name="loop">The pattern to collect view nodes.</param>
-	/// <param name="nodes">A list of <see cref="View"/> that is created from this method.</param>
-	protected internal void CollectExtraViewNodes(ref readonly Grid grid, BlossomLoop loop, View[] nodes)
-	{
-		var i = 0;
-		foreach (var branch in loop.Values)
-		{
-			CollectExtraViewNodes(in grid, branch, nodes[i], out var array);
-			nodes[i] = [.. array];
-			i++;
-		}
-	}
-
-	/// <summary>
 	/// Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
 	/// This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
 	/// </summary>
@@ -119,6 +85,39 @@ public abstract partial class ChainingRule
 	protected internal virtual ConclusionSet CollectBlossomConclusions(BlossomLoop loop, ref readonly Grid grid) => [];
 
 	/// <summary>
+	/// Collects for extra view nodes for the pattern.
+	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+	/// </summary>
+	/// <param name="grid">The grid as candidate references.</param>
+	/// <param name="pattern">The pattern to collect view nodes.</param>
+	/// <param name="view">A <see cref="View"/> instance that is applied for view nodes appended.</param>
+	/// <param name="nodes">A list of <see cref="ViewNode"/> that is created from this method.</param>
+	/// <remarks>
+	/// The method by default will do nothing, with an empty <see cref="ReadOnlySpan{T}"/> returned
+	/// from argument <paramref name="nodes"/>.
+	/// </remarks>
+	/// <seealso cref="View"/>
+	protected internal virtual void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+		=> nodes = [];
+
+	/// <summary>
+	/// Collects for extra view nodes for the pattern.
+	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+	/// </summary>
+	/// <param name="grid">The grid as candidate references.</param>
+	/// <param name="loop">The pattern to collect view nodes.</param>
+	/// <param name="nodes">A list of <see cref="View"/> that is created from this method.</param>
+	protected internal void MapViewNodes(ref readonly Grid grid, BlossomLoop loop, View[] nodes)
+	{
+		var i = 0;
+		foreach (var branch in loop.Values)
+		{
+			MapViewNodes(in grid, branch, nodes[i], out var array);
+			nodes[i++] = [.. array];
+		}
+	}
+
+	/// <summary>
 	/// Collects for extra view nodes for the pattern on multiple forcing chains.
 	/// This method will be useful in advanced chaining rules such as ALS, and AUR extra maps checking.
 	/// </summary>
@@ -126,12 +125,12 @@ public abstract partial class ChainingRule
 	/// <param name="pattern">The pattern to collect view nodes.</param>
 	/// <param name="views">The <see cref="View"/> instances to be updated.</param>
 	/// <seealso cref="View"/>
-	internal void CollectExtraViewNodes(ref readonly Grid grid, MultipleForcingChains pattern, View[] views)
+	protected internal void MapViewNodes(ref readonly Grid grid, MultipleForcingChains pattern, View[] views)
 	{
 		var viewIndex = 1;
 		foreach (var branch in pattern.Values)
 		{
-			CollectExtraViewNodes(in grid, branch, views[viewIndex++], out var nodes);
+			MapViewNodes(in grid, branch, views[viewIndex++], out var nodes);
 			views[0].AddRange(nodes);
 		}
 	}

@@ -82,7 +82,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void CollectExtraViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+	protected internal override void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
 	{
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)

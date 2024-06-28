@@ -180,7 +180,7 @@ internal static class ChainModule
 		];
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.CollectExtraViewNodes(in grid, foundChain, result[0], out _);
+			supportedRule.MapViewNodes(in grid, foundChain, result[0], out _);
 		}
 		return result;
 
@@ -221,7 +221,7 @@ internal static class ChainModule
 		}
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.CollectExtraViewNodes(in grid, foundChain, result);
+			supportedRule.MapViewNodes(in grid, foundChain, result);
 		}
 		return result;
 
@@ -287,7 +287,7 @@ internal static class ChainModule
 		}
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.CollectExtraViewNodes(in grid, loop, result);
+			supportedRule.MapViewNodes(in grid, loop, result);
 		}
 		return result;
 

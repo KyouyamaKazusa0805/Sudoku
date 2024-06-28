@@ -46,11 +46,11 @@ internal static class ChainingDriver
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
 				var node = new Node(cell, digit, true, false);
-				if (node.FindChains(in grid, onlyFindOne, result) is { } chain1)
+				if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
 					return (ChainOrLoop[])[chain1];
 				}
-				if ((~node).FindChains(in grid, onlyFindOne, result) is { } chain2)
+				if (FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
 				{
 					return (ChainOrLoop[])[chain2];
 				}
@@ -85,7 +85,7 @@ internal static class ChainingDriver
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node(cell, digit, true, false);
-				var (nodesSupposedOn, nodesSupposedOff) = currentNode.FindForcingChains();
+				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -123,7 +123,7 @@ internal static class ChainingDriver
 						else
 						{
 							var other = new Node(otherCandidate, true, false);
-							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = other.FindForcingChains();
+							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
 							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
@@ -360,7 +360,7 @@ internal static class ChainingDriver
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var startCandidate = cell * 9 + digit;
-				foreach (var node in new Node(startCandidate, true, false).FindForcingChains().OnNodes)
+				foreach (var node in FindForcingChains(new(startCandidate, true, false)).OnNodes)
 				{
 					if (node is (false, [var endCandidate]))
 					{
@@ -578,7 +578,7 @@ internal static class ChainingDriver
 	/// or the method cannot find a valid chain that forms a confliction with the current node.
 	/// </para>
 	/// </summary>
-	/// <param name="this">The current instance.</param>
+	/// <param name="startNode">The current instance.</param>
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="ChainOrLoop"/> and return.</param>
 	/// <param name="result">
@@ -587,15 +587,15 @@ internal static class ChainingDriver
 	/// </param>
 	/// <returns>The first found <see cref="ChainOrLoop"/> pattern.</returns>
 	/// <seealso cref="ChainOrLoop"/>
-	private static ChainOrLoop? FindChains(this Node @this, ref readonly Grid grid, bool onlyFindOne, SortedSet<ChainOrLoop> result)
+	private static ChainOrLoop? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<ChainOrLoop> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
-		(@this.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(@this);
+		(startNode.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(startNode);
 
 		var visitedNodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var visitedNodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
-		_ = (visitedNodesSupposedOn.Add(@this), visitedNodesSupposedOff.Add(@this));
+		_ = (visitedNodesSupposedOn.Add(startNode), visitedNodesSupposedOff.Add(startNode));
 
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
@@ -611,7 +611,7 @@ internal static class ChainingDriver
 						////////////////////////////////////////////
 						// Continuous Nice Loop 3) Strong -> Weak //
 						////////////////////////////////////////////
-						if (nodeSupposedOff == @this && nextNode.AncestorsLength >= 4)
+						if (nodeSupposedOff == startNode && nextNode.AncestorsLength >= 4)
 						{
 							var loop = new Loop(nextNode);
 							if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
@@ -631,7 +631,7 @@ internal static class ChainingDriver
 						/////////////////////////////////////////////////
 						// Discontinuous Nice Loop 2) Strong -> Strong //
 						/////////////////////////////////////////////////
-						if (nodeSupposedOff == ~@this)
+						if (nodeSupposedOff == ~startNode)
 						{
 							var chain = new Chain(nextNode);
 							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
@@ -674,7 +674,7 @@ internal static class ChainingDriver
 						/////////////////////////////////////////////
 						// Discontinuous Nice Loop 1) Weak -> Weak //
 						/////////////////////////////////////////////
-						if (nodeSupposedOn == ~@this)
+						if (nodeSupposedOn == ~startNode)
 						{
 							var chain = new Chain(nextNode);
 							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
@@ -706,17 +706,17 @@ internal static class ChainingDriver
 	/// <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
 	/// <para>This method only uses cached fields <see cref="StrongLinkDictionary"/> and <see cref="WeakLinkDictionary"/>.</para>
 	/// </summary>
-	/// <param name="this">The current instance.</param>
+	/// <param name="startNode">The current instance.</param>
 	/// <returns>
 	/// Returns a pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
 	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
 	/// </returns>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
-	private static (HashSet<Node> OnNodes, HashSet<Node> OffNodes) FindForcingChains(this Node @this)
+	private static (HashSet<Node> OnNodes, HashSet<Node> OffNodes) FindForcingChains(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
-		(@this.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(@this);
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
 
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
