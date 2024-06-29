@@ -380,7 +380,7 @@ internal partial class DrawableFactory
 				Height = height,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
-				Fill = new SolidColorBrush(color),
+				Fill = getFillBrush(color),
 				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
@@ -422,7 +422,7 @@ internal partial class DrawableFactory
 				Height = height,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
-				Fill = new SolidColorBrush(color),
+				Fill = getFillBrush(color),
 				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
@@ -454,7 +454,7 @@ internal partial class DrawableFactory
 				Height = height,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
-				Fill = new SolidColorBrush(color),
+				Fill = getFillBrush(color),
 				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
@@ -476,7 +476,7 @@ internal partial class DrawableFactory
 				Height = height,
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
-				Fill = new SolidColorBrush(color),
+				Fill = getFillBrush(color),
 				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
@@ -496,6 +496,23 @@ internal partial class DrawableFactory
 		}
 
 		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
+
+
+		static Brush getFillBrush(Color color)
+#if !true
+			=> new RadialGradientBrush
+			{
+				Center = new(.5, .5),
+				GradientOrigin = new(.5, .5),
+				RadiusX = .64,
+				RadiusY = .64,
+				SpreadMethod = GradientSpreadMethod.Pad,
+				MappingMode = BrushMappingMode.RelativeToBoundingBox,
+				GradientStops = { new() { Color = color }, new() { Color = Colors.Transparent, Offset = 1.5 } }
+			};
+#else
+			=> new SolidColorBrush(color);
+#endif
 	}
 
 	/// <summary>
