@@ -25,9 +25,10 @@ public abstract partial class ChainingRule
 	public static readonly LinkType[] AdvancedLinkTypes = [
 		LinkType.LockedCandidates,
 		LinkType.AlmostLockedSet,
-		LinkType.KrakenNormalFish,
+		//LinkType.KrakenNormalFish,
 		LinkType.AlmostUniqueRectangle,
-		LinkType.AlmostAvoidableRectangle
+		LinkType.AlmostAvoidableRectangle,
+		//LinkType.XyzWing,
 	];
 
 

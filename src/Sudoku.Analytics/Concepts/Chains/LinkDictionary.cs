@@ -29,6 +29,16 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 
 
 	/// <summary>
+	/// Clears the collection.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public new void Clear()
+	{
+		base.Clear();
+		_groupedLinkPool.Clear();
+	}
+
+	/// <summary>
 	/// Try to append grouped links from the other dictionary.
 	/// </summary>
 	/// <param name="other">The other dictionary.</param>

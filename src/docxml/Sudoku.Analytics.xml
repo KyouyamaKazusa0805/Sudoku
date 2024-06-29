@@ -1087,6 +1087,11 @@
             Indicates the pool of grouped links and its corresponding pattern.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.LinkDictionary.Clear">
+            <summary>
+            Clears the collection.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.LinkDictionary.Merge(Sudoku.Concepts.LinkDictionary)">
             <summary>
             Try to append grouped links from the other dictionary.
