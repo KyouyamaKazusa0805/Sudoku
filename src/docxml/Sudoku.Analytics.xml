@@ -863,6 +863,14 @@
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Collect views for the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="supportedRules">The supported rules.</param>
+            <returns>The views.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -1440,6 +1448,15 @@
             <param name="fins">The fins converted.</param>
             <returns>The pattern converted.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Collect views for the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="conclusion">The conclusion.</param>
+            <param name="supportedRules">The supported rules.</param>
+            <returns>The views.</returns>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#Any">
             <inheritdoc/>
@@ -10316,18 +10333,6 @@
             <param name="supportedRules">Indicates the supported rules.</param>
             <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
             <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            The backing method to collect views.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="foundChain">The found chain.</param>
-            <param name="supportedRules">The supported rules.</param>
-            <returns>The views.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion,Sudoku.Concepts.MultipleForcingChains,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
             <summary>

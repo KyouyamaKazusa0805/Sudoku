@@ -19,7 +19,7 @@ internal static class ChainModule
 		{
 			var step = new NormalChainStep(
 				c(chain, in grid, supportedRules),
-				CollectViews(in grid, chain, supportedRules),
+				chain.GetViews(in grid, supportedRules),
 				context.Options,
 				chain
 			);
@@ -73,7 +73,7 @@ internal static class ChainModule
 				var views = (View[])[
 					[
 						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. CollectViews(in grid, finnedChain, supportedRules)[0]
+						.. finnedChain.GetViews(in grid, supportedRules)[0]
 					]
 				];
 
@@ -106,7 +106,7 @@ internal static class ChainModule
 			{
 				var mfcStep = new MultipleForcingChainsStep(
 					[chain.Conclusion],
-					CollectViews(in grid, chain.Conclusion, chain, supportedRules),
+					chain.GetViews(in grid, chain.Conclusion, supportedRules),
 					context.Options,
 					chain
 				);
@@ -118,112 +118,5 @@ internal static class ChainModule
 			}
 		}
 		return null;
-	}
-
-	/// <summary>
-	/// The backing method to collect views.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="foundChain">The found chain.</param>
-	/// <param name="supportedRules">The supported rules.</param>
-	/// <returns>The views.</returns>
-	private static View[] CollectViews(ref readonly Grid grid, ChainOrLoop foundChain, ReadOnlySpan<ChainingRule> supportedRules)
-	{
-		var result = (View[])[
-			[
-				.. v(foundChain),
-				..
-				from link in foundChain.Links
-				let node1 = link.FirstNode
-				let node2 = link.SecondNode
-				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
-			]
-		];
-		foreach (var supportedRule in supportedRules)
-		{
-			supportedRule.MapViewNodes(in grid, foundChain, result[0], out _);
-		}
-		return result;
-
-
-		static ReadOnlySpan<CandidateViewNode> v(ChainOrLoop foundChain)
-		{
-			var result = new List<CandidateViewNode>();
-			for (var i = 0; i < foundChain.Length; i++)
-			{
-				var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-				foreach (var candidate in foundChain[i].Map)
-				{
-					result.Add(new(id, candidate));
-				}
-			}
-			return result.AsReadOnlySpan();
-		}
-	}
-
-	/// <inheritdoc cref="CollectViews(ref readonly Grid, ChainOrLoop, ReadOnlySpan{ChainingRule})"/>
-	private static View[] CollectViews(
-		ref readonly Grid grid,
-		Conclusion conclusion,
-		MultipleForcingChains foundChain,
-		ReadOnlySpan<ChainingRule> supportedRules
-	)
-	{
-		var viewNodes = v(in grid, foundChain, supportedRules);
-		var result = new View[viewNodes.Length];
-		for (var i = 0; i < viewNodes.Length; i++)
-		{
-			result[i] = [
-				..
-				from node in viewNodes[i]
-				where node is not CandidateViewNode { Candidate: var c } || c != conclusion.Candidate
-				select node
-			];
-		}
-		foreach (var supportedRule in supportedRules)
-		{
-			supportedRule.MapViewNodes(in grid, foundChain, result);
-		}
-		return result;
-
-
-		static ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, MultipleForcingChains foundChain, ReadOnlySpan<ChainingRule> rules)
-		{
-			var result = new ViewNode[foundChain.Count + 1][];
-			ViewNode houseOrCellNode = foundChain.IsCellMultiple
-				? new CellViewNode(ColorIdentifier.Normal, foundChain.First().Key / 9)
-				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(foundChain.Candidates.Cells.SharedHouses));
-
-			var i = 0;
-			var globalView = new List<ViewNode>();
-			foreach (var key in foundChain.Keys)
-			{
-				var chain = foundChain[key];
-				var subview = new View();
-				var j = 0;
-				foreach (var node in chain)
-				{
-					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-					foreach (var candidate in node.Map)
-					{
-						var currentViewNode = new CandidateViewNode(id, candidate);
-						globalView.Add(currentViewNode);
-						subview.Add(currentViewNode);
-					}
-				}
-
-				j = 0;
-				foreach (var link in chain.Links)
-				{
-					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-					var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
-					globalView.Add(currentViewNode);
-					subview.Add(currentViewNode);
-				}
-				result[++i] = [houseOrCellNode, .. subview];
-			}
-			result[0] = [houseOrCellNode, .. globalView];
-			return result;
-		}
 	}
 }

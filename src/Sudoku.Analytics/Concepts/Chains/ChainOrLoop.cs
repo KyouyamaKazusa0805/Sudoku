@@ -410,6 +410,46 @@ public abstract partial class ChainOrLoop :
 	/// <returns>A <see cref="ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
 	public virtual ConclusionSet GetConclusions(ref readonly Grid grid) => ConclusionSet.Empty;
 
+	/// <summary>
+	/// Collect views for the current chain.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="supportedRules">The supported rules.</param>
+	/// <returns>The views.</returns>
+	public View[] GetViews(ref readonly Grid grid, ReadOnlySpan<ChainingRule> supportedRules)
+	{
+		var result = (View[])[
+			[
+				.. v(),
+				..
+				from link in Links
+				let node1 = link.FirstNode
+				let node2 = link.SecondNode
+				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
+			]
+		];
+		foreach (var supportedRule in supportedRules)
+		{
+			supportedRule.MapViewNodes(in grid, this, result[0], out _);
+		}
+		return result;
+
+
+		ReadOnlySpan<CandidateViewNode> v()
+		{
+			var result = new List<CandidateViewNode>();
+			for (var i = 0; i < Length; i++)
+			{
+				var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				foreach (var candidate in this[i].Map)
+				{
+					result.Add(new(id, candidate));
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
+
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
 

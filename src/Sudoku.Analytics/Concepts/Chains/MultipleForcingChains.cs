@@ -331,6 +331,73 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		throw new InvalidOperationException(SR.ExceptionMessage("CannotCastFinnedChain"));
 	}
 
+	/// <summary>
+	/// Collect views for the current chain.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="conclusion">The conclusion.</param>
+	/// <param name="supportedRules">The supported rules.</param>
+	/// <returns>The views.</returns>
+	public View[] GetViews(ref readonly Grid grid, Conclusion conclusion, ReadOnlySpan<ChainingRule> supportedRules)
+	{
+		var viewNodes = v(in grid, supportedRules);
+		var result = new View[viewNodes.Length];
+		for (var i = 0; i < viewNodes.Length; i++)
+		{
+			result[i] = [
+				..
+				from node in viewNodes[i]
+				where node is not CandidateViewNode { Candidate: var c } || c != conclusion.Candidate
+				select node
+			];
+		}
+		foreach (var supportedRule in supportedRules)
+		{
+			supportedRule.MapViewNodes(in grid, this, result);
+		}
+		return result;
+
+
+		ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+		{
+			var result = new ViewNode[Count + 1][];
+			ViewNode houseOrCellNode = IsCellMultiple
+				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
+				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(Candidates.Cells.SharedHouses));
+
+			var i = 0;
+			var globalView = new List<ViewNode>();
+			foreach (var key in Keys)
+			{
+				var chain = this[key];
+				var subview = new View();
+				var j = 0;
+				foreach (var node in chain)
+				{
+					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+					foreach (var candidate in node.Map)
+					{
+						var currentViewNode = new CandidateViewNode(id, candidate);
+						globalView.Add(currentViewNode);
+						subview.Add(currentViewNode);
+					}
+				}
+
+				j = 0;
+				foreach (var link in chain.Links)
+				{
+					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+					var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
+					globalView.Add(currentViewNode);
+					subview.Add(currentViewNode);
+				}
+				result[++i] = [houseOrCellNode, .. subview];
+			}
+			result[0] = [houseOrCellNode, .. globalView];
+			return result;
+		}
+	}
+
 	/// <inheritdoc/>
 	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.Any() => Count != 0;
 
