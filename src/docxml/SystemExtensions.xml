@@ -1096,6 +1096,20 @@
             because I have already forgotten them...
             </i></remarks>
         </member>
+        <member name="T:System.IndexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Index"/> instances.
+            </summary>
+            <seealso cref="T:System.Index"/>
+        </member>
+        <member name="M:System.IndexExtensions.Deconstruct(System.Index,System.Int32@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
         <member name="T:System.Int32Extensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Int32"/>.
@@ -1438,6 +1452,20 @@
             <param name="mu">Mu μ value.</param>
             <param name="sigma">Sigma σ value.</param>
             <returns>The result value.</returns>
+        </member>
+        <member name="T:System.RangeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Range"/> instances.
+            </summary>
+            <seealso cref="T:System.Range"/>
+        </member>
+        <member name="M:System.RangeExtensions.Deconstruct(System.Range,System.Index@,System.Index@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:System.ReadOnlyMemoryExtensions">
             <summary>

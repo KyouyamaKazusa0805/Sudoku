@@ -1039,6 +1039,23 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc/>
+	public static ReadOnlySpan<CellMap> operator |(in CellMap map, Range subsetSizeRange)
+	{
+		if (!map)
+		{
+			return [];
+		}
+
+		var (s, e) = subsetSizeRange;
+		var result = new List<CellMap>();
+		for (var i = s.GetOffset(map.Count); i <= e.GetOffset(map.Count); i++)
+		{
+			result.AddRangeRef(map & i);
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <summary>
 	/// Expands the current <see cref="CellMap"/> instance, inserting into a <see cref="CandidateMap"/> instance by specified digit.
 	/// </summary>

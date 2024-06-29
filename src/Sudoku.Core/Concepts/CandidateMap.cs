@@ -859,6 +859,23 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc/>
+	public static ReadOnlySpan<CandidateMap> operator |(in CandidateMap map, Range subsetSizeRange)
+	{
+		if (!map)
+		{
+			return [];
+		}
+
+		var (s, e) = subsetSizeRange;
+		var result = new List<CandidateMap>();
+		for (var i = s.GetOffset(map.Count); i <= e.GetOffset(map.Count); i++)
+		{
+			result.AddRangeRef(map & i);
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <summary>
 	/// Reduces the <see cref="CandidateMap"/> instance, only checks for candidates
 	/// whose digit is equal to argument <paramref name="digit"/>,

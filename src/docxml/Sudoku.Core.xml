@@ -1885,6 +1885,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseOr(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseOr(Sudoku.Concepts.CandidateMap@,System.Range)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Division(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <summary>
             Reduces the <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, only checks for candidates
@@ -2412,6 +2415,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,System.Range)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Multiply(Sudoku.Concepts.CellMap@,System.Int32)">
@@ -6397,24 +6403,19 @@
             indicating the <b>maximum</b> number of elements of the each subset.
             </summary>
             <param name="map">The instance to check subsets.</param>
-            <param name="subsetSize">The size to get.</param>
+            <param name="subsetSize">The desired size.</param>
             <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
+            All possible subsets. If <paramref name="subsetSize"/> is greater than <see cref="P:Sudoku.Concepts.IBitStatusMap`3.Count"/>,
+            this method will return all possible subsets without throwing exceptions.
             </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_BitwiseOr(`0@,System.Range)">
+            <summary>
+            Gets all subsets of the current collection via the specified range of the subset size.
+            </summary>
+            <param name="map">The instance to check subsets.</param>
+            <param name="subsetSizeRange">The desired size.</param>
+            <returns>All possible subsets.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_True(`0)">
             <inheritdoc/>

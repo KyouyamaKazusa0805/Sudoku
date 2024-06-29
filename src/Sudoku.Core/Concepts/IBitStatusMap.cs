@@ -539,25 +539,20 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// indicating the <b>maximum</b> number of elements of the each subset.
 	/// </summary>
 	/// <param name="map">The instance to check subsets.</param>
-	/// <param name="subsetSize">The size to get.</param>
+	/// <param name="subsetSize">The desired size.</param>
 	/// <returns>
-	/// All possible subsets. If:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Condition</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
-	/// <description>Will return an empty array</description>
-	/// </item>
-	/// <item>
-	/// <term>Other cases</term>
-	/// <description>The valid combinations.</description>
-	/// </item>
-	/// </list>
+	/// All possible subsets. If <paramref name="subsetSize"/> is greater than <see cref="Count"/>,
+	/// this method will return all possible subsets without throwing exceptions.
 	/// </returns>
 	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, int subsetSize);
+
+	/// <summary>
+	/// Gets all subsets of the current collection via the specified range of the subset size.
+	/// </summary>
+	/// <param name="map">The instance to check subsets.</param>
+	/// <param name="subsetSizeRange">The desired size.</param>
+	/// <returns>All possible subsets.</returns>
+	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, Range subsetSizeRange);
 
 	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;
