@@ -171,34 +171,4 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectBlossomConclusions(BlossomLoop loop, ref readonly Grid grid)
-	{
-		var result = ConclusionSet.Empty;
-		foreach (var branch in loop.Values)
-		{
-			foreach (var element in branch.Links)
-			{
-				if (element is
-					{
-						IsStrong: true,
-						FirstNode.Map.Digits: var digitsMask1,
-						SecondNode.Map.Digits: var digitsMask2,
-						GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells)
-					})
-				{
-					var elimDigitsMask = (Mask)(digitsMask & (Mask)~(Mask)(digitsMask1 | digitsMask2));
-					foreach (var digit in elimDigitsMask)
-					{
-						foreach (var cell in alsCells % CandidatesMap[digit])
-						{
-							result.Add(new Conclusion(Elimination, cell, digit));
-						}
-					}
-				}
-			}
-		}
-		return result;
-	}
 }

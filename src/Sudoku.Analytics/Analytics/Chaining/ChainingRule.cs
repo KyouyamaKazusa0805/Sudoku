@@ -73,18 +73,6 @@ public abstract partial class ChainingRule
 	protected internal virtual ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid) => [];
 
 	/// <summary>
-	/// Try to find extra eliminations that can only be created inside a Blossom Loop.
-	/// This method will be useful in advanced chaining rules such as ALS and Fish eliminations checking.
-	/// </summary>
-	/// <param name="loop">Indicates the base blossom loop to be used.</param>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>A list of found conclusions.</returns>
-	/// <remarks>
-	/// This method should not be overridden if no eliminations exists in the loop pattern.
-	/// </remarks>
-	protected internal virtual ConclusionSet CollectBlossomConclusions(BlossomLoop loop, ref readonly Grid grid) => [];
-
-	/// <summary>
 	/// Collects for extra view nodes for the pattern.
 	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
 	/// </summary>
@@ -99,23 +87,6 @@ public abstract partial class ChainingRule
 	/// <seealso cref="View"/>
 	protected internal virtual void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
 		=> nodes = [];
-
-	/// <summary>
-	/// Collects for extra view nodes for the pattern.
-	/// This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-	/// </summary>
-	/// <param name="grid">The grid as candidate references.</param>
-	/// <param name="loop">The pattern to collect view nodes.</param>
-	/// <param name="nodes">A list of <see cref="View"/> that is created from this method.</param>
-	protected internal void MapViewNodes(ref readonly Grid grid, BlossomLoop loop, View[] nodes)
-	{
-		var i = 0;
-		foreach (var branch in loop.Values)
-		{
-			MapViewNodes(in grid, branch, nodes[i], out var array);
-			nodes[i++] = [.. array];
-		}
-	}
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern on multiple forcing chains.
