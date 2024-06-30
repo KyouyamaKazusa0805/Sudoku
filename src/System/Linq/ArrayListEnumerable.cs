@@ -14,7 +14,6 @@ public static class ArrayListEnumerable
 		{
 			result[i] = (TResult?)@this[i];
 		}
-
 		return result;
 	}
 
@@ -26,7 +25,6 @@ public static class ArrayListEnumerable
 		{
 			result[i] = selector(@this[i]);
 		}
-
 		return result;
 	}
 }
