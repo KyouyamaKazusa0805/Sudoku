@@ -19,7 +19,7 @@ public static class TechniqueSets
 	/// <summary>
 	/// Indicates all <see cref="Technique"/> fields included.
 	/// </summary>
-	public static TechniqueSet All => [.. Enum.GetValues<Technique>()[1..]];
+	public static TechniqueSet All => [.. Enum.GetValues<Technique>().AsReadOnlySpan()[1..]];
 
 	/// <summary>
 	/// Indicates all assignment techniques.

@@ -280,7 +280,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 
 				return symmetry;
 			}
-
 			return SymmetricType.None;
 		}
 	}
