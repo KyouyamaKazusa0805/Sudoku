@@ -7,13 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedXChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(
-		ref readonly Grid grid,
-		LinkDictionary strongLinks,
-		LinkDictionary weakLinks,
-		LinkOption linkOption,
-		LinkOption alsLinkOption
-	)
+	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
 	{
 		// Strong.
 		for (var digit = 0; digit < 9; digit++)
@@ -35,7 +29,7 @@ internal sealed class CachedXChainingRule : ChainingRule
 				var pos2 = mask.GetNextSet(pos1);
 				var node1 = new Node(HousesCells[house][pos1], digit, false, false);
 				var node2 = new Node(HousesCells[house][pos2], digit, true, false);
-				strongLinks.AddEntry(node1, node2);
+				context.StrongLinks.AddEntry(node1, node2);
 			}
 		}
 
@@ -54,7 +48,7 @@ internal sealed class CachedXChainingRule : ChainingRule
 				{
 					var node1 = new Node(HousesCells[house][combinationPair[0]], digit, true, false);
 					var node2 = new Node(HousesCells[house][combinationPair[1]], digit, false, false);
-					weakLinks.AddEntry(node1, node2);
+					context.WeakLinks.AddEntry(node1, node2);
 				}
 			}
 		}

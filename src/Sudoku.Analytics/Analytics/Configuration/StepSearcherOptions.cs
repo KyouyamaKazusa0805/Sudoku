@@ -21,6 +21,11 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// </summary>
 	public bool IsDirectMode { get; init; } = false;
 
+	/// <summary>
+	/// Indicates the default link option.
+	/// </summary>
+	public LinkOption DefaultLinkOption { get; init; } = LinkOption.House;
+
 	/// <inheritdoc cref="CoordinateConverter"/>
 	public CoordinateConverter Converter { get; init; } = CoordinateConverter.InvariantCultureConverter;
 
@@ -28,6 +33,11 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// Indicates the current culture used.
 	/// </summary>
 	public CultureInfo CurrentCulture => Converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
+
+	/// <summary>
+	/// Indicates the link options overridden.
+	/// </summary>
+	public IDictionary<LinkType, LinkOption> OverriddenLinkOptions { get; } = new Dictionary<LinkType, LinkOption>();
 
 
 	/// <inheritdoc/>
@@ -37,6 +47,8 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
 	/// <item><see cref="DistinctDirectMode"/>: <see langword="false"/></item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
+	/// <item><see cref="DefaultLinkOption"/>: <see cref="LinkOption.House"/></item>
+	/// <item><see cref="OverriddenLinkOptions"/>: <c>[]</c></item>
 	/// </list>
 	/// </remarks>
 	public static StepSearcherOptions Default => new();

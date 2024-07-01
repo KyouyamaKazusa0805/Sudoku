@@ -7,13 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(
-		ref readonly Grid grid,
-		LinkDictionary strongLinks,
-		LinkDictionary weakLinks,
-		LinkOption linkOption,
-		LinkOption alsLinkOption
-	)
+	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
 	{
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
@@ -39,13 +33,15 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		{
 			for (var digit = 0; digit < 9; digit++)
 			{
-				collect(true, size, digit, sets);
-				collect(false, size, digit, sets);
+				collect(in context, true, size, digit, sets);
+				collect(in context, false, size, digit, sets);
 			}
 		}
 
-		void collect(bool isRow, int size, Digit digit, ReadOnlySpan<HouseMask> sets)
+
+		static void collect(ref readonly ChainingRuleContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
 		{
+			var linkOption = context.GetLinkOption(LinkType.KrakenNormalFish);
 			var baseSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllColumnsMask : HouseMaskOperations.AllRowsMask)).GetAllSets();
 			var coverSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask)).GetAllSets();
 			if (baseSetsToIterate.Length < size || coverSetsToIterate.Length < size)
@@ -117,7 +113,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 
 					var node1 = new Node(cells1 * digit, false, true);
 					var node2 = new Node(fins * digit, true, true);
-					strongLinks.AddEntry(node1, node2, true, fish);
+					context.StrongLinks.AddEntry(node1, node2, true, fish);
 
 					// Weak.
 					// Please note that weak links may not contain pattern objects,
@@ -141,7 +137,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						}
 
 						var node4 = new Node(cells4 * digit, false, true);
-						weakLinks.AddEntry(node3, node4);
+						context.WeakLinks.AddEntry(node3, node4);
 					}
 				}
 			}

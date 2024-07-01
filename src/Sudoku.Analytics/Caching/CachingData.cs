@@ -100,29 +100,23 @@ internal static class CachingData
 	}
 
 	/// <summary>
-	/// Try to collect strong and weak links appeared inside a grid statically.
+	/// Try to collect strong and weak links appeared in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="linkTypes">The link types to be checked.</param>
-	/// <param name="linkOption">Indicates the applied link option.</param>
-	/// <param name="alsLinkOption">Indicates the applied link option that only applied to ALS rules.</param>
+	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void InitializeLinkPool(
-		ref readonly Grid grid,
-		LinkType linkTypes,
-		LinkOption linkOption,
-		LinkOption alsLinkOption,
-		out ReadOnlySpan<ChainingRule> rules
-	)
+	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepSearcherOptions options, out ReadOnlySpan<ChainingRule> rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
 		if (!StrongLinkTypesEntried.HasFlag(linkTypes) || !WeakLinkTypesEntried.HasFlag(linkTypes))
 		{
 			var (strongDic, weakDic) = (new LinkDictionary(), new LinkDictionary());
+			var context = new ChainingRuleContext(in grid, strongDic, weakDic, options);
 			foreach (var rule in rules)
 			{
-				rule.CollectLinks(in grid, strongDic, weakDic, linkOption, alsLinkOption);
+				rule.CollectLinks(in context);
 			}
 
 			if (strongDic.Count != 0)

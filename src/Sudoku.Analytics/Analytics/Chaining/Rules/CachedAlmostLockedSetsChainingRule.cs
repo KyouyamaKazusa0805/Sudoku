@@ -7,14 +7,10 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(
-		ref readonly Grid grid,
-		LinkDictionary strongLinks,
-		LinkDictionary weakLinks,
-		LinkOption linkOption,
-		LinkOption alsLinkOption
-	)
+	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSet);
 		var maskTempList = (stackalloc Mask[81]);
 		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
 		{
@@ -72,7 +68,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
 				var node1 = new Node(node1Cells * digit1, false, true);
 				var node2 = new Node(node2Cells * digit2, true, true);
-				strongLinks.AddEntry(node1, node2, true, als);
+				context.StrongLinks.AddEntry(node1, node2, true, als);
 			}
 
 			// Weak.
@@ -86,20 +82,20 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				foreach (var cells3House in cells3.SharedHouses)
 				{
 					var otherCells = HousesMap[cells3House] & CandidatesMap[digit] & ~cells;
-					var weakLimit = alsLinkOption switch
+					var weakLimit = linkOption switch
 					{
 						LinkOption.Intersection => 3,
 						LinkOption.House or LinkOption.All => otherCells.Count
 					};
 					foreach (var cells4 in otherCells | weakLimit)
 					{
-						if (alsLinkOption == LinkOption.Intersection && !cells4.IsInIntersection)
+						if (linkOption == LinkOption.Intersection && !cells4.IsInIntersection)
 						{
 							continue;
 						}
 
 						var node4 = new Node(cells4 * digit, false, true);
-						weakLinks.AddEntry(node3, node4);
+						context.WeakLinks.AddEntry(node3, node4);
 					}
 				}
 			}

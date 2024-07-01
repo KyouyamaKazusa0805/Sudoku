@@ -7,14 +7,11 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedXyzWingChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(
-		ref readonly Grid grid,
-		LinkDictionary strongLinks,
-		LinkDictionary weakLinks,
-		LinkOption linkOption,
-		LinkOption alsLinkOption
-	)
+	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var linkOption = context.GetLinkOption(LinkType.XyzWing);
+
 		// Iterate on each XYZ-Wing pattern, to get strong links.
 		foreach (var pattern in XyzWingPatternSearcher.Search(in grid))
 		{
@@ -38,7 +35,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				// Strong.
 				var node1 = new Node(cells1 * zDigit, false, true);
 				var node2 = new Node(cells2 * zDigit, true, true);
-				strongLinks.AddEntry(node1, node2, true, pattern);
+				context.StrongLinks.AddEntry(node1, node2, true, pattern);
 
 			CollectWeak:
 				// Weak.
@@ -63,7 +60,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 					var node3 = new Node(cells1 * zDigit, true, true);
 					var node4 = new Node(cells * zDigit, false, true);
-					weakLinks.AddEntry(node3, node4);
+					context.WeakLinks.AddEntry(node3, node4);
 				}
 				foreach (ref readonly var cells in possibleCells2 | limit2)
 				{
@@ -75,7 +72,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 
 					var node3 = new Node(cells2 * zDigit, true, true);
 					var node4 = new Node(cells * zDigit, false, true);
-					weakLinks.AddEntry(node3, node4);
+					context.WeakLinks.AddEntry(node3, node4);
 				}
 			}
 		}

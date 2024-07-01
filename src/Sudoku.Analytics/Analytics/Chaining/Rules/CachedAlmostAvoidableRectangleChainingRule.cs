@@ -7,14 +7,10 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(
-		ref readonly Grid grid,
-		LinkDictionary strongLinks,
-		LinkDictionary weakLinks,
-		LinkOption linkOption,
-		LinkOption alsLinkOption
-	)
+	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+
 		// Weak.
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
 		{
@@ -61,7 +57,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 				var node1 = new Node(cells1 * digit1, true, true);
 				var node2 = new Node(cells2 * digit2, false, true);
 				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCellsInPattern);
-				weakLinks.AddEntry(node1, node2, false, ar);
+				context.WeakLinks.AddEntry(node1, node2, false, ar);
 			}
 			else if (digit1 == digit2)
 			{
@@ -84,7 +80,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 					var node1 = new Node(emptyCellsInPattern[0], digit, true, true);
 					var node2 = new Node(emptyCellsInPattern[1], digit, false, true);
 					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
-					weakLinks.AddEntry(node1, node2, false, ar);
+					context.WeakLinks.AddEntry(node1, node2, false, ar);
 				}
 			}
 		}
