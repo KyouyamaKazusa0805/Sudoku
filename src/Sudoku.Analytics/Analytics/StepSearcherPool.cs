@@ -32,7 +32,7 @@ public static class StepSearcherPool
 					continue;
 				}
 
-				var instance = GetStepSearchers(type);
+				var instance = GetStepSearcher(type);
 				result.Add(instance.Priority, instance);
 			}
 			return result.Values.ToArray().AsMemory();
@@ -41,16 +41,16 @@ public static class StepSearcherPool
 
 
 	/// <summary>
-	/// <inheritdoc cref="GetStepSearchers(Type)" path="/summary"/>
+	/// <inheritdoc cref="GetStepSearcher(Type)" path="/summary"/>
 	/// </summary>
 	/// <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
-	/// <returns><inheritdoc cref="GetStepSearchers(Type)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="GetStepSearcher(Type)" path="/returns"/></returns>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the corresponding <see cref="Type"/> reflection result is not found.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static StepSearcher GetStepSearcher(string typeName)
-		=> GetStepSearchers(ThisAssembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")!);
+		=> GetStepSearcher(ThisAssembly.GetType($"Sudoku.Analytics.StepSearchers.{typeName}")!);
 
 	/// <summary>
 	/// The internal method to get all <see cref="StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
@@ -58,5 +58,5 @@ public static class StepSearcherPool
 	/// <param name="type">The type of the step searcher.</param>
 	/// <returns>An array of <see cref="StepSearcher"/> instances found.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static StepSearcher GetStepSearchers(Type type) => (StepSearcher)Activator.CreateInstance(type)!;
+	public static StepSearcher GetStepSearcher(Type type) => (StepSearcher)Activator.CreateInstance(type)!;
 }

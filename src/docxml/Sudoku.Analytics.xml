@@ -10666,15 +10666,15 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.String)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)" path="/summary"/>
             </summary>
             <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)" path="/returns"/></returns>
             <exception cref="T:System.InvalidOperationException">
             Throws when the corresponding <see cref="T:System.Type"/> reflection result is not found.
             </exception>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearchers(System.Type)">
+        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)">
             <summary>
             The internal method to get all <see cref="T:Sudoku.Analytics.StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
             </summary>
