@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe HouseVector = House*;
+
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
@@ -37,23 +39,18 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_NormalFishStepSearcher",
 
-	// Normal fishes
+	// Normal Fishes
 	Technique.XWing, Technique.Swordfish, Technique.Jellyfish,
-	Technique.Squirmbag, Technique.Whale, Technique.Leviathan,
 
-	// Finned fishes
+	// Finned Fishes
 	Technique.FinnedXWing, Technique.FinnedSwordfish, Technique.FinnedJellyfish,
-	Technique.FinnedSquirmbag, Technique.FinnedWhale, Technique.FinnedLeviathan,
 
-	// Sashimi fishes
+	// Sashimi Fishes
 	Technique.SashimiXWing, Technique.SashimiSwordfish, Technique.SashimiJellyfish,
-	Technique.SashimiSquirmbag, Technique.SashimiWhale, Technique.SashimiLeviathan,
 
-	// Siamese fishes
+	// Siamese Fishes
 	Technique.SiameseFinnedXWing, Technique.SiameseFinnedSwordfish, Technique.SiameseFinnedJellyfish,
-	Technique.SiameseFinnedSquirmbag, Technique.SiameseFinnedWhale, Technique.SiameseFinnedLeviathan,
-	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish,
-	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
+	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish)]
 public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -76,10 +73,10 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
-		var r = stackalloc House*[9];
-		var c = stackalloc House*[9];
-		Unsafe.InitBlock(r, 0, (uint)sizeof(House*) * 9);
-		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
+		var r = stackalloc HouseVector[9];
+		var c = stackalloc HouseVector[9];
+		Unsafe.InitBlock(r, 0, (uint)sizeof(HouseVector) * 9);
+		Unsafe.InitBlock(c, 0, (uint)sizeof(HouseVector) * 9);
 
 		ref readonly var grid = ref context.Grid;
 		var accumulator = new List<FishStep>();
@@ -152,7 +149,6 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		{
 			context.Accumulator.AddRange(accumulator);
 		}
-
 		return null;
 	}
 
@@ -175,8 +171,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref AnalysisContext context,
 		int size,
-		House** r,
-		House** c,
+		HouseVector* r,
+		HouseVector* c,
 		bool withFin,
 		bool searchRow
 	)

@@ -1925,7 +1925,10 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.NormalFish,
 		StepType = typeof(NormalFishStep),
 		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Jellyfish.html"])]
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://sudopedia.enjoysudoku.com/Jellyfish.html"
+		])]
 	Jellyfish,
 
 	/// <summary>
@@ -1974,7 +1977,10 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.NormalFish,
 		StepType = typeof(NormalFishStep),
 		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
+		])]
 	SiameseFinnedJellyfish,
 
 	/// <summary>
@@ -2158,63 +2164,6 @@ public enum Technique
 	SiameseSashimiMutantJellyfish,
 
 	/// <summary>
-	/// Indicates squirmbag.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0303")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	Squirmbag,
-
-	/// <summary>
-	/// Indicates finned squirmbag.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0313")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	FinnedSquirmbag,
-
-	/// <summary>
-	/// Indicates sashimi squirmbag.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0323")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
-	SashimiSquirmbag,
-
-	/// <summary>
-	/// Indicates Siamese finned squirmbag.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	SiameseFinnedSquirmbag,
-
-	/// <summary>
-	/// Indicates Siamese sashimi squirmbag.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
-	SiameseSashimiSquirmbag,
-
-	/// <summary>
 	/// Indicates franken squirmbag.
 	/// </summary>
 	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0333")]
@@ -2353,63 +2302,6 @@ public enum Technique
 		StepSearcherType = typeof(ComplexFishStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantSquirmbag,
-
-	/// <summary>
-	/// Indicates whale.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0304")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	Whale,
-
-	/// <summary>
-	/// Indicates finned whale.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0314")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	FinnedWhale,
-
-	/// <summary>
-	/// Indicates sashimi whale.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0324")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
-	SashimiWhale,
-
-	/// <summary>
-	/// Indicates Siamese finned whale.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	SiameseFinnedWhale,
-
-	/// <summary>
-	/// Indicates Siamese sashimi whale.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
-	SiameseSashimiWhale,
 
 	/// <summary>
 	/// Indicates franken whale.
@@ -2553,63 +2445,6 @@ public enum Technique
 		StepSearcherType = typeof(ComplexFishStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantWhale,
-
-	/// <summary>
-	/// Indicates leviathan.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0305")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	Leviathan,
-
-	/// <summary>
-	/// Indicates finned leviathan.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0315")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	FinnedLeviathan,
-
-	/// <summary>
-	/// Indicates sashimi leviathan.
-	/// </summary>
-	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0325")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",])]
-	SashimiLeviathan,
-
-	/// <summary>
-	/// Indicates Siamese finned leviathan.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
-	SiameseFinnedLeviathan,
-
-	/// <summary>
-	/// Indicates Siamese sashimi leviathan.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeatures.OnlyExistInTheory,
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	SiameseSashimiLeviathan,
 
 	/// <summary>
 	/// Indicates franken leviathan.

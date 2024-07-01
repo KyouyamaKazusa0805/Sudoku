@@ -5818,31 +5818,6 @@
             Indicates Siamese sashimi mutant jellyfish.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Squirmbag">
-            <summary>
-            Indicates squirmbag.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedSquirmbag">
-            <summary>
-            Indicates finned squirmbag.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiSquirmbag">
-            <summary>
-            Indicates sashimi squirmbag.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSquirmbag">
-            <summary>
-            Indicates Siamese finned squirmbag.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSquirmbag">
-            <summary>
-            Indicates Siamese sashimi squirmbag.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSquirmbag">
             <summary>
             Indicates franken squirmbag.
@@ -5893,31 +5868,6 @@
             Indicates Siamese sashimi mutant squirmbag.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Whale">
-            <summary>
-            Indicates whale.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedWhale">
-            <summary>
-            Indicates finned whale.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiWhale">
-            <summary>
-            Indicates sashimi whale.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedWhale">
-            <summary>
-            Indicates Siamese finned whale.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiWhale">
-            <summary>
-            Indicates Siamese sashimi whale.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenWhale">
             <summary>
             Indicates franken whale.
@@ -5966,31 +5916,6 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantWhale">
             <summary>
             Indicates Siamese sashimi mutant whale.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Leviathan">
-            <summary>
-            Indicates leviathan.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedLeviathan">
-            <summary>
-            Indicates finned leviathan.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiLeviathan">
-            <summary>
-            Indicates sashimi leviathan.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedLeviathan">
-            <summary>
-            Indicates Siamese finned leviathan.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiLeviathan">
-            <summary>
-            Indicates Siamese sashimi leviathan.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenLeviathan">
