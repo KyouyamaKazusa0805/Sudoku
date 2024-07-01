@@ -248,25 +248,10 @@ public static class ImageHandler
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool colorIs<T>()
-			where T :
-				struct,
-				IColor
-#if NET9_0_OR_GREATER
-				,
-				allows ref struct
-#endif
-			=> typeof(TColor) == typeof(T);
+		static bool colorIs<T>() where T : struct, IColor, allows ref struct => typeof(TColor) == typeof(T);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool depthIs<T>()
-			where T :
-				new()
-#if NET9_0_OR_GREATER
-				,
-				allows ref struct
-#endif
-			=> typeof(TDepth) == typeof(T);
+		static bool depthIs<T>() where T : new(), allows ref struct => typeof(TDepth) == typeof(T);
 	}
 
 	/// <summary>
@@ -278,7 +263,7 @@ public static class ImageHandler
 	/// <param name="rTable">Lookup table for the R channel.</param>
 	/// <param name="aTable">Lookup table for the A channel.</param>
 	public static void ColorPaletteToLookupTable(
-		@imaging::ColorPalette palette,
+		ColorPalette palette,
 		out Matrix<byte> bTable,
 		out Matrix<byte> gTable,
 		out Matrix<byte> rTable,

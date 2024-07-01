@@ -4,13 +4,7 @@ namespace System;
 /// Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.
 /// </summary>
 /// <typeparam name="TSelf">The implementation.</typeparam>
-public interface ILogicalOperators<TSelf>
-	where TSelf :
-		ILogicalOperators<TSelf>?
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>?, allows ref struct
 {
 	/// <summary>
 	/// Make logical and for two <typeparamref name="TSelf"/> instances.

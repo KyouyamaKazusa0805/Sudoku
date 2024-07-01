@@ -49,19 +49,8 @@ public static class StepMarshal
 	{
 		if (interimGrids.Length != interimSteps.Length)
 		{
-			throw new InvalidOperationException(
-				string.Format(
-					SR.ExceptionMessage("LengthMustBeSame"),
-#if NET9_0_OR_GREATER
-					[
-#endif
-					nameof(interimGrids),
-					nameof(interimSteps)
-#if NET9_0_OR_GREATER
-					]
-#endif
-				)
-			);
+			var message = string.Format(SR.ExceptionMessage("LengthMustBeSame"), [nameof(interimGrids), nameof(interimSteps)]);
+			throw new InvalidOperationException(message);
 		}
 
 		var result = new List<(Grid, Step)>(interimGrids.Length);

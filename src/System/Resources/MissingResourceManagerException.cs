@@ -10,15 +10,7 @@ public sealed class MissingResourceManagerException(Assembly assembly) : Resourc
 	public override string Message
 		=> string.Format(
 			SR.Get("Message_MissingResourceManagerException"),
-#if NET9_0_OR_GREATER
-			[
-#endif
-			_assembly,
-			nameof(SR),
-			nameof(SR.RegisterResourceManager)
-#if NET9_0_OR_GREATER
-			]
-#endif
+			[_assembly, nameof(SR), nameof(SR.RegisterResourceManager)]
 		);
 
 	/// <inheritdoc/>

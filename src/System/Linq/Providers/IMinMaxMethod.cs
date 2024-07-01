@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IMinMaxMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		IMinMaxMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IMinMaxMethod<TSelf, TSource>, allows ref struct
 	where TSource : IComparable<TSource>, IComparisonOperators<TSource, TSource, bool>, IMinMaxValue<TSource>
 {
 	/// <inheritdoc cref="Enumerable.Min{TSource}(IEnumerable{TSource})"/>

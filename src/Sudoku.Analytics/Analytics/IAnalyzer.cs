@@ -8,18 +8,8 @@ namespace Sudoku.Analytics;
 /// <typeparam name="TSelf">The type of the solver itself.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
 public interface IAnalyzer<in TSelf, out TResult>
-	where TSelf :
-		IAnalyzer<TSelf, TResult>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
-	where TResult :
-		IAnalysisResult<TSelf, TResult>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IAnalyzer<TSelf, TResult>, allows ref struct
+	where TResult : IAnalysisResult<TSelf, TResult>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.

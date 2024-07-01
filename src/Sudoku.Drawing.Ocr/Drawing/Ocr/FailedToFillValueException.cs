@@ -9,17 +9,7 @@ public sealed class FailedToFillValueException(Cell cell, Digit digit) : Excepti
 {
 	/// <inheritdoc/>
 	public override string Message
-		=> string.Format(
-			SR.Get("Message_FailedToFillValueException"),
-#if NET9_0_OR_GREATER
-			[
-#endif
-			cell.AsCellMap().ToString(),
-			digit + 1
-#if NET9_0_OR_GREATER
-			]
-#endif
-		);
+		=> string.Format(SR.Get("Message_FailedToFillValueException"), [cell.AsCellMap().ToString(), digit + 1]);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

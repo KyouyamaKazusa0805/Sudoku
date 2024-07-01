@@ -308,16 +308,9 @@ public sealed partial class TechniqueSet :
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			SR.Get("Comma", culture),
-#if !NET9_0_OR_GREATER
-			[
-			..
-#endif
 			from technique in this
 			let name = technique.GetName(culture)
 			select isCurrentCountryOrRegionUseEnglish ? $"{name}" : $"{name} ({technique.GetEnglishName()})"
-#if !NET9_0_OR_GREATER
-			]
-#endif
 		);
 	}
 

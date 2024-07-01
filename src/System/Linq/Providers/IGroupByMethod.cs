@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IGroupByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf :
-		IGroupByMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IGroupByMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
 	public virtual IEnumerable<IGrouping<TKey, TSource>> GroupBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull

@@ -25,10 +25,7 @@ internal static class ActionExtensionHandler
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
 				public delegate void ActionRef<{{typeParameters}}>({{parameters}})
-				#if NET9_0_OR_GREATER
-					{{allowsRefStructConstraint}}
-				#endif
-					;
+					{{allowsRefStructConstraint}};
 
 				/// <summary>
 				/// Encapsulates a method that returns void but pass in a read-only reference or a list of read-only references.
@@ -36,10 +33,7 @@ internal static class ActionExtensionHandler
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
 				public delegate void ActionRefReadOnly<{{typeParameters}}>({{parametersReadOnly}})
-				#if NET9_0_OR_GREATER
-					{{allowsRefStructConstraint}}
-				#endif
-					;
+					{{allowsRefStructConstraint}};
 
 				/// <summary>
 				/// Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a reference or a list of references.
@@ -47,11 +41,8 @@ internal static class ActionExtensionHandler
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
 				public delegate TResult FuncRef<{{typeParameters}}, out TResult>({{parameters}})
-				#if NET9_0_OR_GREATER
 					{{allowsRefStructConstraint}}
-					where TResult : allows ref struct
-				#endif
-					;
+					where TResult : allows ref struct;
 
 				/// <summary>
 				/// Encapsulates a method that returns a <typeparamref name="TResult"/> and pass in a read-only reference or a list of read-only references.
@@ -59,11 +50,8 @@ internal static class ActionExtensionHandler
 				[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 				[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{nameof(ActionExtensionHandler)}}", "{{Value}}")]
 				public delegate TResult FuncRefReadOnly<{{typeParameters}}, out TResult>({{parametersReadOnly}})
-				#if NET9_0_OR_GREATER
 					{{allowsRefStructConstraint}}
-					where TResult : allows ref struct
-				#endif
-					;
+					where TResult : allows ref struct;
 				"""
 			);
 		}

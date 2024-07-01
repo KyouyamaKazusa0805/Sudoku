@@ -6,7 +6,6 @@ namespace System.Collections.Generic;
 /// <seealso cref="List{T}"/>
 public static class ListExtensions
 {
-#if NET9_0_OR_GREATER
 	/// <summary>
 	/// Adds an object to the end of the <see cref="List{T}"/>.
 	/// </summary>
@@ -73,7 +72,6 @@ public static class ListExtensions
 			@this.AddRef(in item);
 		}
 	}
-#endif
 
 	/// <summary>
 	/// Removes the last element stored in the current <see cref="List{T}"/>.
@@ -115,7 +113,6 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<T> AsReadOnlySpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 
-#if NET9_0_OR_GREATER
 	/// <summary>
 	/// Add an item and resize the <see cref="List{T}"/> of <typeparamref name="T"/>.
 	/// </summary>
@@ -203,5 +200,4 @@ public static class ListExtensions
 	/// </remarks>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Items)]
 	private static extern ref T[] GetItems<T>(this List<T> @this);
-#endif
 }

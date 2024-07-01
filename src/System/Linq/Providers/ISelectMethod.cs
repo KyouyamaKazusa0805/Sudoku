@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ISelectMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf :
-		ISelectMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : ISelectMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
 	public virtual IEnumerable<TResult> Select<TResult>(Func<TSource, TResult> selector)

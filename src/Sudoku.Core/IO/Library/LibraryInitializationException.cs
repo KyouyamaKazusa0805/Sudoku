@@ -24,16 +24,5 @@ public sealed class LibraryInitializationException(string directory, string file
 
 
 	/// <inheritdoc/>
-	public override string Message
-		=> string.Format(
-			SR.Get("Message_LibraryInitializedException"),
-#if NET9_0_OR_GREATER
-			[
-#endif
-			directory,
-			fileId
-#if NET9_0_OR_GREATER
-			]
-#endif
-		);
+	public override string Message => string.Format(SR.Get("Message_LibraryInitializedException"), [directory, fileId]);
 }

@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IIndexMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		IIndexMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IIndexMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc/>
 	public virtual IEnumerable<(int Index, TSource Item)> Index()

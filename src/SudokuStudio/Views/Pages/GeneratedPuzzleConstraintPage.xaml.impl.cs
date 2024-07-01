@@ -1086,14 +1086,7 @@ file static class Extensions
 			[var technique] => technique.GetName(App.CurrentCulture),
 			_ => string.Join(
 				SR.Get("_Token_Comma", App.CurrentCulture),
-#if !NET9_0_OR_GREATER
-				[
-				..
-#endif
 				from technique in @this select technique.GetName(App.CurrentCulture)
-#if !NET9_0_OR_GREATER
-				]
-#endif
 			)
 		};
 }

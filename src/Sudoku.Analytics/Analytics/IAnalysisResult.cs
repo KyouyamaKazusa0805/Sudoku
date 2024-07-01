@@ -8,18 +8,8 @@ namespace Sudoku.Analytics;
 /// <typeparam name="TSelf">The type of the target result itself.</typeparam>
 /// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalysisProgress}, CancellationToken)"/>
 public interface IAnalysisResult<in TSolver, out TSelf>
-	where TSolver :
-		IAnalyzer<TSolver, TSelf>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
-	where TSelf :
-		IAnalysisResult<TSolver, TSelf>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSolver : IAnalyzer<TSolver, TSelf>, allows ref struct
+	where TSelf : IAnalysisResult<TSolver, TSelf>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.

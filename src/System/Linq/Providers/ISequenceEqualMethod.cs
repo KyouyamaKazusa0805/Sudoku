@@ -5,12 +5,8 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ISequenceEqualMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		ISequenceEqualMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : ISequenceEqualMethod<TSelf, TSource>, allows ref struct
+	where TSource : notnull
 {
 	/// <inheritdoc cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual bool SequenceEqual(IEnumerable<TSource> second) => SequenceEqual(second, null);
@@ -24,7 +20,12 @@ public interface ISequenceEqualMethod<TSelf, TSource> : ILinqMethod<TSelf, TSour
 
 		while (e1.MoveNext())
 		{
-			if (!e2.MoveNext() || !comparer.Equals(e1.Current, e2.Current))
+			if (!e2.MoveNext())
+			{
+				return false;
+			}
+
+			if (comparer.GetHashCode(e1.Current) != comparer.GetHashCode(e2.Current) || !comparer.Equals(e1.Current, e2.Current))
 			{
 				return false;
 			}

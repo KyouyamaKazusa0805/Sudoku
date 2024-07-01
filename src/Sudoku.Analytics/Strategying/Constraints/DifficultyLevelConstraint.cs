@@ -70,18 +70,14 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			SR.Get("DifficultyLevelConstraint", culture),
-#if NET9_0_OR_GREATER
 			[
-#endif
-			Operator.GetOperatorString(),
-			DifficultyLevel.GetName(culture),
-			string.Join(
-				SR.Get("_Token_Comma", culture),
-				from value in ValidDifficultyLevels.GetAllFlags() select value.GetName(culture)
-			)
-#if NET9_0_OR_GREATER
+				Operator.GetOperatorString(),
+				DifficultyLevel.GetName(culture),
+				string.Join(
+					SR.Get("_Token_Comma", culture),
+					from value in ValidDifficultyLevels.GetAllFlags() select value.GetName(culture)
+				)
 			]
-#endif
 		);
 	}
 

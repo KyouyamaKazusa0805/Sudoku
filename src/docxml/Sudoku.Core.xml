@@ -6812,21 +6812,6 @@
             Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
             </exception>
         </member>
-        <member name="T:Sudoku.Concepts.ListBitStatusMapExtensions">
-            <summary>
-            Represents a list of extension methods operating with <see cref="T:System.Collections.Generic.List`1"/>
-            of <see cref="T:Sudoku.Concepts.IBitStatusMap`3"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-            <seealso cref="T:Sudoku.Concepts.IBitStatusMap`3"/>
-        </member>
-        <member name="T:Sudoku.Concepts.ListGridExtensions">
-            <summary>
-            Represents a list of extension methods operating with <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.List`1"/>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.SymmetricType"/>.

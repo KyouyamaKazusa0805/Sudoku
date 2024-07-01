@@ -27,15 +27,11 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			SR.Get("PearlOrDiamondConstraint", culture),
-#if NET9_0_OR_GREATER
 			[
-#endif
-			SR.Get(CheckPearl ? "PearlString" : "DiamondString", culture).ToUpper(),
-			ShouldBePearlOrDiamond ? string.Empty : SR.Get("NoString", culture),
-			SR.Get(CheckPearl ? "PearlString" : "DiamondString", culture)
-#if NET9_0_OR_GREATER
+				SR.Get(CheckPearl ? "PearlString" : "DiamondString", culture).ToUpper(),
+				ShouldBePearlOrDiamond ? string.Empty : SR.Get("NoString", culture),
+				SR.Get(CheckPearl ? "PearlString" : "DiamondString", culture)
 			]
-#endif
 		);
 	}
 

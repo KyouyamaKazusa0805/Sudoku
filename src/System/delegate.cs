@@ -42,25 +42,11 @@ public static class @delegate
 	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(T value)
-		where T :
-			ILogicalOperators<T>
-#if NET9_0_OR_GREATER
-			,
-			allows ref struct
-#endif
-		=> !!value;
+	public static bool True<T>(T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
 
 	/// <inheritdoc cref="True{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(scoped ref readonly T value)
-		where T :
-			ILogicalOperators<T>
-#if NET9_0_OR_GREATER
-			,
-			allows ref struct
-#endif
-		=> !!value;
+	public static bool True<T>(scoped ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
 
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
@@ -72,25 +58,11 @@ public static class @delegate
 	/// <inheritdoc cref="True{T}(T)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(T value)
-		where T :
-			ILogicalOperators<T>
-#if NET9_0_OR_GREATER
-			,
-			allows ref struct
-#endif
-		=> !value;
+	public static bool False<T>(T value) where T : ILogicalOperators<T>, allows ref struct => !value;
 
 	/// <inheritdoc cref="False{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(scoped ref readonly T value)
-		where T :
-			ILogicalOperators<T>
-#if NET9_0_OR_GREATER
-			,
-			allows ref struct
-#endif
-		=> !value;
+	public static bool False<T>(scoped ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
 
 	/// <summary>
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
@@ -104,8 +76,7 @@ public static class @delegate
 	/// as the <c>ToString</c> method result.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull
-		=> @this.ToString().Unwrap();
+	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull => @this.ToString().Unwrap();
 
 	/// <summary>
 	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.
@@ -115,11 +86,7 @@ public static class @delegate
 	/// <returns>A string that is equal to <see cref="string.Empty"/>.</returns>
 	/// <seealso cref="string.Empty"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ReturnEmptyString<T>(T instance)
-#if NET9_0_OR_GREATER
-		where T : allows ref struct
-#endif
-		=> string.Empty;
+	public static string ReturnEmptyString<T>(T instance) where T : allows ref struct => string.Empty;
 
 	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method
@@ -157,11 +124,7 @@ public static class @delegate
 	/// <param name="value">The value.</param>
 	/// <returns>The value itself.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T Self<T>(T value)
-#if NET9_0_OR_GREATER
-		where T : allows ref struct
-#endif
-		=> value;
+	public static T Self<T>(T value) where T : allows ref struct => value;
 
 	/// <summary>
 	/// Represents Y-Combinator. This method can allow you create recursive lambdas.

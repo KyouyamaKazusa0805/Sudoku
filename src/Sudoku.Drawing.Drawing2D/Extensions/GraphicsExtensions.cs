@@ -18,12 +18,7 @@ internal static class GraphicsExtensions
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, PointF point, StringFormat stringFormat)
-		where T :
-			IFormattable
-#if NET9_0_OR_GREATER
-			,
-			allows ref struct
-#endif
+		where T : IFormattable, allows ref struct
 		=> @this.DrawString(value.ToString(null, null), font, brush, point, stringFormat);
 
 	/// <summary>

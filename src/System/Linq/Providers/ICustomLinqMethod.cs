@@ -5,10 +5,4 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ICustomLinqMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		ICustomLinqMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
-	;
+	where TSelf : ICustomLinqMethod<TSelf, TSource>, allows ref struct;

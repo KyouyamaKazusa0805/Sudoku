@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IWhereMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf :
-		IWhereMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IWhereMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public virtual IEnumerable<TSource> Where(Func<TSource, bool> predicate)

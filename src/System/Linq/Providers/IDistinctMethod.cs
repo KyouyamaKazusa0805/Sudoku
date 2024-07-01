@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IDistinctMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		IDistinctMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IDistinctMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Distinct{TSource}(IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Distinct() => Distinct(EqualityComparer<TSource>.Default);

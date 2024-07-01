@@ -293,14 +293,7 @@ public sealed partial class AnalyzePage : Page
 						filePath,
 						string.Join(
 							"\r\n\r\n",
-#if !NET9_0_OR_GREATER
-							[
-							..
-#endif
 							from formatter in gridFormatters select grid.ToString(formatter)
-#if !NET9_0_OR_GREATER
-							]
-#endif
 						)
 					);
 				}

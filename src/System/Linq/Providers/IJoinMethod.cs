@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
-	where TSelf :
-		IJoinMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IJoinMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
 	public virtual IEnumerable<TResult> Join<TInner, TKey, TResult>(

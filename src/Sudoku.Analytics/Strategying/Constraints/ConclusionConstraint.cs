@@ -32,14 +32,10 @@ public sealed partial class ConclusionConstraint : Constraint
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			SR.Get("ConclusionConstraint", culture),
-#if NET9_0_OR_GREATER
 			[
-#endif
-			Conclusion.ToString(culture),
-			ShouldAppear ? string.Empty : SR.Get("NoString", culture)
-#if NET9_0_OR_GREATER
+				Conclusion.ToString(culture),
+				ShouldAppear ? string.Empty : SR.Get("NoString", culture)
 			]
-#endif
 		);
 	}
 

@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IQueryExpressionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		IQueryExpressionMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IQueryExpressionMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc/>
 	static bool ILinqMethod<TSelf, TSource>.SupportsQuerySyntax => true;

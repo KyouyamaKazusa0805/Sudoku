@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface IAggregateMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		IAggregateMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : IAggregateMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
 	public virtual TSource? Aggregate(Func<TSource?, TSource?, TSource> func) => Aggregate(default, func, @delegate.Self);

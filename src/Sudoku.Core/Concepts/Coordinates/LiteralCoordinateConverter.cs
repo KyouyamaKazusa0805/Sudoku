@@ -14,40 +14,13 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		=> cells => cells switch
 		{
 			[] => string.Empty,
-			[var p] => string.Format(
-				SR.Get("CellLabel", TargetCurrentCulture),
-#if NET9_0_OR_GREATER
-				[
-#endif
-				(p / 9 + 1).ToString(),
-				(p % 9 + 1).ToString()
-#if NET9_0_OR_GREATER
-				]
-#endif
-			),
+			[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
 			_ => string.Format(
 				SR.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(
 					DefaultSeparator,
-#if !NET9_0_OR_GREATER
-					[
-					..
-#endif
 					from cell in cells
-					select string.Format(
-						SR.Get("CellLabel", TargetCurrentCulture),
-#if NET9_0_OR_GREATER
-						[
-#endif
-						cell / 9 + 1,
-						cell % 9 + 1
-#if NET9_0_OR_GREATER
-						]
-#endif
-					)
-#if !NET9_0_OR_GREATER
-					]
-#endif
+					select string.Format(SR.Get("CellLabel", TargetCurrentCulture), [cell / 9 + 1, cell % 9 + 1])
 				)
 			)
 		};
@@ -61,21 +34,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			{
 				var cellString = CellConverter(candidate / 9);
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
-				snippets.Add(
-					string.Format(
-						SR.Get("CandidateLabel", TargetCurrentCulture),
-#if NET9_0_OR_GREATER
-						[
-#endif
-						cellString,
-						digitString
-#if NET9_0_OR_GREATER
-						]
-#endif
-					)
-				);
+				snippets.Add(string.Format(SR.Get("CandidateLabel", TargetCurrentCulture), [cellString, digitString]));
 			}
-
 			return string.Join(DefaultSeparator, snippets);
 		};
 
@@ -127,7 +87,6 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 					)
 				);
 			}
-
 			return string.Format(SR.Get("HousesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
@@ -137,8 +96,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -153,7 +112,6 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				);
 
 				var sb = new StringBuilder(50);
-
 				Array.Sort(conclusions, static (left, right) => left.CompareTo(right));
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.Length == 1;
@@ -179,7 +137,6 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				{
 					sb.RemoveFrom(^DefaultSeparator.Length);
 				}
-
 				return sb.ToString();
 			}
 		};
@@ -188,27 +145,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	public override DigitNotationConverter DigitConverter
 		=> mask => DigitsSeparator switch
 		{
-			null or [] => string.Concat(
-#if !NET9_0_OR_GREATER
-				[
-				..
-#endif
-				from digit in mask select (digit + 1).ToString()
-#if !NET9_0_OR_GREATER
-				]
-#endif
-			),
-			_ => string.Join(
-				DigitsSeparator,
-#if !NET9_0_OR_GREATER
-				[
-				..
-#endif
-				from digit in mask select (digit + 1).ToString()
-#if !NET9_0_OR_GREATER
-				]
-#endif
-			)
+			null or [] => string.Concat(from digit in mask select (digit + 1).ToString()),
+			_ => string.Join(DigitsSeparator, from digit in mask select (digit + 1).ToString())
 		};
 
 	/// <inheritdoc/>
@@ -217,27 +155,13 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		{
 			return string.Join(
 				DefaultSeparator,
-#if !NET9_0_OR_GREATER
-				[
-				..
-#endif
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select string.Format(
 					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
-#if NET9_0_OR_GREATER
-					[
-#endif
-					labelKey(baseSet),
-					labelKey(coverSet)
-#if NET9_0_OR_GREATER
-					]
-#endif
+					[labelKey(baseSet), labelKey(coverSet)]
 				)
-#if !NET9_0_OR_GREATER
-				]
-#endif
 			);
 
 
@@ -261,7 +185,6 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			{
 				snippets.Add(string.Format(SR.Get("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
 			}
-
 			return string.Format(SR.Get("MegaLinesLabel", TargetCurrentCulture), string.Join(DefaultSeparator, snippets));
 		};
 
@@ -280,22 +203,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var fromCellString = CellConverter(conjugatePair.From);
 				var toCellString = CellConverter(conjugatePair.To);
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
-				snippets.Add(
-					string.Format(
-						SR.Get("ConjugatePairWith", TargetCurrentCulture),
-#if NET9_0_OR_GREATER
-						[
-#endif
-						fromCellString,
-						toCellString,
-						digitString
-#if NET9_0_OR_GREATER
-						]
-#endif
-					)
-				);
+				snippets.Add(string.Format(SR.Get("ConjugatePairWith", TargetCurrentCulture), [fromCellString, toCellString, digitString]));
 			}
-
 			return string.Join(DefaultSeparator, snippets);
 		};
 

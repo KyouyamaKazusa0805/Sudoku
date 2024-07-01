@@ -5,12 +5,7 @@ namespace System.Linq.Providers;
 /// </summary>
 /// <inheritdoc/>
 public interface ISkipMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
-	where TSelf :
-		ISkipMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+	where TSelf : ISkipMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Skip{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource> Skip(int count) => new List<TSource>(this)[count..];

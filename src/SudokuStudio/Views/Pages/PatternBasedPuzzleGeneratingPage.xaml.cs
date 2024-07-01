@@ -286,15 +286,11 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 				SudokuPane.Puzzle = grid;
 				RatingDisplayer.Text = string.Format(
 					SR.Get("PatternBasedPuzzleGeneratingPage_RatingInfo", App.CurrentCulture),
-#if NET9_0_OR_GREATER
 					[
-#endif
-					(rating / ratingScale).ToString(ratingScaleFormat),
-					(ratingSum / ratingScale).ToString(ratingScaleFormat),
-					difficultyLevel.GetName(App.CurrentCulture)
-#if NET9_0_OR_GREATER
+						(rating / ratingScale).ToString(ratingScaleFormat),
+						(ratingSum / ratingScale).ToString(ratingScaleFormat),
+						difficultyLevel.GetName(App.CurrentCulture)
 					]
-#endif
 				);
 			}
 		}

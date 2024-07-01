@@ -51,17 +51,10 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			SR.Get("Comma", GetCulture(null)),
-#if !NET9_0_OR_GREATER
-			[
-			..
-#endif
 			from branch in Branches
 			let p = Options.Converter.CandidateConverter(branch.Key)
 			let q = branch.AlsPattern.ToString(Options.Converter)
 			select $"{p} - {q}"
-#if !NET9_0_OR_GREATER
-			]
-#endif
 		);
 
 

@@ -6,8 +6,4 @@ namespace System;
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="value">The value to be initialized.</param>
-public delegate void ArrayInitializer<T>([NotNull] ref T? value)
-#if NET9_0_OR_GREATER
-	where T : allows ref struct
-#endif
-	;
+public delegate void ArrayInitializer<T>([NotNull] ref T? value) where T : allows ref struct;

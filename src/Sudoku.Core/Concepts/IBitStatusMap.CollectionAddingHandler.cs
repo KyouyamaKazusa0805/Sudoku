@@ -9,8 +9,5 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator>
 	/// <param name="result">The result instance.</param>
 	/// <param name="cells">The values to be added.</param>
 	private protected delegate void CollectionAddingHandler<TCollection>(TCollection result, TElement[] cells)
-#if NET9_0_OR_GREATER
-		where TCollection : allows ref struct
-#endif
-		;
+		where TCollection : allows ref struct;
 }

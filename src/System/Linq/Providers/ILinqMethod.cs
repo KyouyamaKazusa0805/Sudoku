@@ -6,13 +6,7 @@ namespace System.Linq.Providers;
 /// <typeparam name="TSelf">The type of itself.</typeparam>
 /// <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
 /// <seealso cref="Enumerable"/>
-public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource>
-	where TSelf :
-		ILinqMethod<TSelf, TSource>
-#if NET9_0_OR_GREATER
-		,
-		allows ref struct
-#endif
+public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource> where TSelf : ILinqMethod<TSelf, TSource>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the provider type <typeparamref name="TSelf"/> won't calculate the final result immediately.

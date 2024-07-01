@@ -126,10 +126,7 @@ public partial class GridCanvas
 
 
 					[MethodImpl(MethodImplOptions.AggressiveInlining)]
-					static T f<T>(CellState state, T given, T modifiable)
-#if NET9_0_OR_GREATER
-						where T : allows ref struct
-#endif
+					static T f<T>(CellState state, T given, T modifiable) where T : allows ref struct
 						=> state == CellState.Given ? given : modifiable;
 				}
 			}
