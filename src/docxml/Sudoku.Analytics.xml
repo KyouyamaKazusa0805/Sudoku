@@ -8524,51 +8524,37 @@
             Indicates the advanced link types.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <summary>
-            Collects for both strong links and weak links appeared <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleContext.Grid"/>
-            and insert all found links into <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleContext.StrongLinks"/>
-            and <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleContext.WeakLinks"/> respectively.
+            Collects for both strong links and weak links appeared <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.Grid"/>
+            and insert all found links into <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.StrongLinks"/>
+            and <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.WeakLinks"/> respectively.
             </summary>
             <param name="context">The context.</param>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRuleContext"/>
+            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
-            This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
-            </summary>
-            <param name="loop">Indicates the base loop to be used.</param>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of found conclusions.</returns>
-            <remarks>
-            This method should not be overridden if no eliminations exists in the loop pattern.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <summary>
             Collects for extra view nodes for the pattern.
             This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
             </summary>
-            <param name="grid">The grid as candidate references.</param>
-            <param name="pattern">The pattern to collect view nodes.</param>
-            <param name="view">A <see cref="T:Sudoku.Drawing.View"/> instance that is applied for view nodes appended.</param>
-            <param name="nodes">A list of <see cref="T:Sudoku.Drawing.ViewNode"/> that is created from this method.</param>
+            <param name="context">The context.</param>
             <remarks>
-            The method by default will do nothing, with an empty <see cref="T:System.ReadOnlySpan`1"/> returned
-            from argument <paramref name="nodes"/>.
+            The method by default will do nothing, with an empty sequence
+            assigned to <see cref="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
             </remarks>
-            <seealso cref="T:Sudoku.Drawing.View"/>
+            <seealso cref="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.MultipleForcingChains,Sudoku.Drawing.View[])">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext@)">
             <summary>
-            Collects for extra view nodes for the pattern on multiple forcing chains.
-            This method will be useful in advanced chaining rules such as ALS, and AUR extra maps checking.
+            Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
+            This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
             </summary>
-            <param name="grid">The grid as candidate references.</param>
-            <param name="pattern">The pattern to collect view nodes.</param>
-            <param name="views">The <see cref="T:Sudoku.Drawing.View"/> instances to be updated.</param>
-            <seealso cref="T:Sudoku.Drawing.View"/>
+            <param name="context">The context.</param>
+            <returns>A list of found conclusions.</returns>
+            <remarks>
+            This method should not be overridden if no eliminations exists in the loop pattern.
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -8579,7 +8565,7 @@
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleContext">
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext">
             <summary>
             Represents the properties used while chaining.
             </summary>
@@ -8588,7 +8574,7 @@
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents the properties used while chaining.
             </summary>
@@ -8597,7 +8583,7 @@
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleContext.GetLinkOption(Sudoku.Concepts.LinkType)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.GetLinkOption(Sudoku.Concepts.LinkType)">
             <summary>
             Try to get the link option for the specified link type.
             </summary>
@@ -8608,33 +8594,111 @@
             </returns>
             <seealso cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption"/>
         </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleContext.Grid">
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleContext.StrongLinks">
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.StrongLinks">
             <summary>
             The generated field declaration for parameter <c>strongLinks</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleContext.WeakLinks">
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.WeakLinks">
             <summary>
             The generated field declaration for parameter <c>weakLinks</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleContext.Options">
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.Options">
             <summary>
             The generated field declaration for parameter <c>options</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleContext.Equals(System.Object)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleContext.GetHashCode">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleContext.ToString">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="loop">The loop to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Loop)">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="loop">The loop to be checked.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Loop">
+            <summary>
+            The generated field declaration for parameter <c>loop</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View)">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="view">The view.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ProducedViewNodes">
+            <summary>
+            Indicates the view nodes produced.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.Pattern">
+            <summary>
+            The generated field declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.View">
+            <summary>
+            The generated field declaration for parameter <c>view</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule">
@@ -8643,10 +8707,10 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule">
@@ -8655,13 +8719,13 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
@@ -8670,13 +8734,13 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.CollectLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule">
@@ -8685,7 +8749,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule">
@@ -8694,7 +8758,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule">
@@ -8703,10 +8767,10 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.XyzWing"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule">
@@ -8715,7 +8779,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule">
@@ -8724,10 +8788,10 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleContext@)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View,System.ReadOnlySpan{Sudoku.Drawing.ViewNode}@)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">

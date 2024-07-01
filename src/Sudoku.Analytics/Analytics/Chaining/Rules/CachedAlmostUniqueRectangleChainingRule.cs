@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 internal sealed partial class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
+	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var strongLinks = context.StrongLinks;
@@ -75,8 +75,12 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var pattern = context.Pattern;
+		var view = context.View;
+
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
@@ -109,7 +113,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 				}
 			}
 		}
-		nodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 
 

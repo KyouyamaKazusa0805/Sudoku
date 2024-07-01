@@ -113,7 +113,7 @@ internal static class CachingData
 		if (!StrongLinkTypesEntried.HasFlag(linkTypes) || !WeakLinkTypesEntried.HasFlag(linkTypes))
 		{
 			var (strongDic, weakDic) = (new LinkDictionary(), new LinkDictionary());
-			var context = new ChainingRuleContext(in grid, strongDic, weakDic, options);
+			var context = new ChainingRuleLinkCollectingContext(in grid, strongDic, weakDic, options);
 			foreach (var rule in rules)
 			{
 				rule.CollectLinks(in context);

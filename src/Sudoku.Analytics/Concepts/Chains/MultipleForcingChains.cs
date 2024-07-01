@@ -353,7 +353,13 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		}
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.MapViewNodes(in grid, this, result);
+			var viewIndex = 1;
+			foreach (var branch in Values)
+			{
+				var context = new ChainingRuleViewNodesMappingContext(in grid, branch, result[viewIndex++]);
+				supportedRule.MapViewNodes(ref context);
+				result[0].AddRange(context.ProducedViewNodes);
+			}
 		}
 		return result;
 

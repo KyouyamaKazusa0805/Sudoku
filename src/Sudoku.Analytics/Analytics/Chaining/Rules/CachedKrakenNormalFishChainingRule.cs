@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
+	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
@@ -39,7 +39,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		}
 
 
-		static void collect(ref readonly ChainingRuleContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
+		static void collect(ref readonly ChainingRuleLinkCollectingContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
 		{
 			var linkOption = context.GetLinkOption(LinkType.KrakenNormalFish);
 			var baseSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllColumnsMask : HouseMaskOperations.AllRowsMask)).GetAllSets();
@@ -145,8 +145,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var pattern = context.Pattern;
+		var view = context.View;
 		var candidatesMap = grid.CandidatesMap;
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
@@ -172,12 +175,15 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				}
 			}
 		}
-		nodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid)
+	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var loop = context.Loop;
+
 		var result = ConclusionSet.Empty;
 		var candidatesMap = grid.CandidatesMap;
 		var links = loop.Links;

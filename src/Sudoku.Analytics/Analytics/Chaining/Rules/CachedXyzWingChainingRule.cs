@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedXyzWingChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
+	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.XyzWing);
@@ -79,8 +79,10 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
+		var pattern = context.Pattern;
+		var view = context.View;
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
@@ -96,6 +98,6 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				result.Add(node);
 			}
 		}
-		nodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 }

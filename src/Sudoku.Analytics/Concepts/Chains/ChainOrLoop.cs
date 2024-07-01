@@ -430,7 +430,8 @@ public abstract partial class ChainOrLoop :
 		];
 		foreach (var supportedRule in supportedRules)
 		{
-			supportedRule.MapViewNodes(in grid, this, result[0], out _);
+			var context = new ChainingRuleViewNodesMappingContext(in grid, this, result[0]);
+			supportedRule.MapViewNodes(ref context);
 		}
 		return result;
 

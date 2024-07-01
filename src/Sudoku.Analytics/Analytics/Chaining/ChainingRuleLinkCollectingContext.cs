@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Chaining;
 /// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
 /// <param name="options">Indicates the step searcher options to be used.</param>
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public readonly ref partial struct ChainingRuleContext(
+public readonly ref partial struct ChainingRuleLinkCollectingContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary strongLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary weakLinks,

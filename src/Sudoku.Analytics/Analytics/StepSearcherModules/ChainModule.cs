@@ -40,9 +40,10 @@ internal static class ChainModule
 			var conclusions = pattern.GetConclusions(in grid);
 			if (pattern is Loop loop)
 			{
+				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, loop);
 				foreach (var r in rules)
 				{
-					conclusions |= r.CollectLoopConclusions(loop, in grid);
+					conclusions |= r.CollectLoopConclusions(in context);
 				}
 			}
 			return [.. conclusions];

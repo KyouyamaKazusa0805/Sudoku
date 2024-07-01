@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleContext context)
+	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSet);
@@ -103,8 +103,12 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref readonly Grid grid, ChainOrLoop pattern, View view, out ReadOnlySpan<ViewNode> nodes)
+	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
+		ref readonly var grid = ref context.Grid;
+		var pattern = context.Pattern;
+		var view = context.View;
+
 		var alsIndex = 0;
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
@@ -134,14 +138,17 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			}
 			alsIndex = (alsIndex + 1) % 5;
 		}
-		nodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid)
+	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
 		// An example with 19 eliminations:
 		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
+
+		ref readonly var grid = ref context.Grid;
+		var loop = context.Loop;
 
 		// A valid ALS can be eliminated as a real naked subset.
 		var result = ConclusionSet.Empty;
