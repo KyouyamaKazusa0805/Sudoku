@@ -33,6 +33,7 @@
           "ILogicalOperators.cs": [ "__Types" ],
           "ArgumentNullRefException.cs": [ "__Types" ],
           "HashCodeNativeConstants.cs": [ "__Types" ],
+          "PointerOperations.cs": [ "__Types" ],
           "delegate.cs": [ "__Types" ],
           "ref.cs": [ "__Types" ]
         }
