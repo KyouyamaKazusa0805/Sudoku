@@ -5,7 +5,7 @@ public partial struct LinkedListReversed<T>
 	/// <summary>
 	/// Indicates the enumerator type of the <see cref="LinkedListReversed{T}"/> instance.
 	/// </summary>
-	public ref struct Enumerator(LinkedList<T> baseList)
+	public ref struct Enumerator(LinkedList<T> baseList) : IEnumerator<T>
 	{
 		/// <summary>
 		/// Indicates the last node.
@@ -15,6 +15,12 @@ public partial struct LinkedListReversed<T>
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
 		public readonly ref T Current => ref _node!.ValueRef;
+
+		/// <inheritdoc/>
+		readonly object? IEnumerator.Current => _node!.Value;
+
+		/// <inheritdoc/>
+		readonly T IEnumerator<T>.Current => _node!.Value;
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -29,5 +35,12 @@ public partial struct LinkedListReversed<T>
 			_node = _node.Previous;
 			return true;
 		}
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

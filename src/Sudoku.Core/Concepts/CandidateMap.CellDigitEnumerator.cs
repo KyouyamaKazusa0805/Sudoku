@@ -7,7 +7,7 @@ public partial struct CandidateMap
 	/// with its cell and digit value in the target tuple.
 	/// </summary>
 	/// <param name="candidates">Indicates the candidate offsets.</param>
-	public ref struct CellDigitEnumerator(Candidate[] candidates)
+	public ref struct CellDigitEnumerator(Candidate[] candidates) : IEnumerator<(Candidate Candidate, Cell Cell, Digit Digit)>
 	{
 		/// <summary>
 		/// Indicates the index.
@@ -26,6 +26,9 @@ public partial struct CandidateMap
 			}
 		}
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <summary>
 		/// Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
@@ -37,5 +40,12 @@ public partial struct CandidateMap
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext() => ++_index < candidates.Length;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

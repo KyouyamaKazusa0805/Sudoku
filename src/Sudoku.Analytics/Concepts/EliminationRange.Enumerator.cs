@@ -6,7 +6,7 @@ public partial struct EliminationRange
 	/// Indicates the enumerator of the current instance.
 	/// </summary>
 	/// <param name="range">The range to be used.</param>
-	public ref struct Enumerator(ref readonly EliminationRange range)
+	public ref struct Enumerator(ref readonly EliminationRange range) : IEnumerator<KeyValuePair<Digit, HouseMask>>
 	{
 		/// <summary>
 		/// Indicates the internal field.
@@ -22,6 +22,9 @@ public partial struct EliminationRange
 		/// <inheritdoc cref="IEnumerator.Current"/>
 		public readonly KeyValuePair<Digit, HouseMask> Current => new(_digitIndex, _range.GetAtRef(_digitIndex));
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		public bool MoveNext()
@@ -35,5 +38,12 @@ public partial struct EliminationRange
 			}
 			return false;
 		}
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

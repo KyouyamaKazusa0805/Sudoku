@@ -6,7 +6,7 @@ public partial class FactorCollection
 	/// The back enumerator of this type.
 	/// </summary>
 	/// <param name="factors">Indicates the back factors to be iterated.</param>
-	public ref struct Enumerator(ReadOnlySpan<Factor> factors)
+	public ref struct Enumerator(ReadOnlySpan<Factor> factors) : IEnumerator<Factor>
 	{
 		/// <summary>
 		/// Indicates the field of factors.
@@ -26,9 +26,19 @@ public partial class FactorCollection
 			get => _factors[_index];
 		}
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext() => ++_index < _factors.Length;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

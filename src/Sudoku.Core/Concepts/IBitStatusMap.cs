@@ -35,7 +35,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IWhereMethod<TSelf, TElement>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
-	where TEnumerator : struct, IEnumerator<TElement>
+	where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 {
 	/// <summary>
 	/// Indicates the size of combinatorial calculation.

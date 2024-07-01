@@ -6,7 +6,7 @@ public partial struct CandidateMap
 	/// Represents an enumerator type that iterates on each candidate offsets.
 	/// </summary>
 	/// <param name="offsets">Indicates the offsets.</param>
-	public struct Enumerator(Candidate[] offsets) : IEnumerator<Candidate>
+	public ref struct Enumerator(Candidate[] offsets) : IEnumerator<Candidate>
 	{
 		/// <summary>
 		/// Indicates the index.

@@ -817,8 +817,17 @@
         <member name="P:SudokuStudio.Collection.DashArray.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:SudokuStudio.Collection.DashArray.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Collection.DashArray.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

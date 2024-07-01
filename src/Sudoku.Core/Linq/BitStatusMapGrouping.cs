@@ -24,7 +24,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	IWhereMethod<TMap, TElement>
 	where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
-	where TEnumerator : struct, IEnumerator<TElement>
+	where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 	where TKey : notnull
 {
 	/// <summary>

@@ -154,8 +154,20 @@
         <member name="P:System.ChunkNode`1.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.ChunkNode`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.ChunkNode`1.Enumerator.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ChunkNode`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.ChunkNode`1.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.ChunkNode`1.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:System.ChunkNode`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2143,11 +2155,20 @@
         <member name="P:System.Numerics.Int128Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.Numerics.Int128Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Numerics.Int128Enumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.Int128Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Numerics.Int32Enumerator">
             <summary>
@@ -2174,11 +2195,20 @@
         <member name="P:System.Numerics.Int32Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.Numerics.Int32Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Numerics.Int32Enumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.Int32Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Numerics.Int64Enumerator">
             <summary>
@@ -2205,11 +2235,20 @@
         <member name="P:System.Numerics.Int64Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.Numerics.Int64Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Numerics.Int64Enumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.Int64Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Numerics.MaskCombinationEnumerator">
             <summary>
@@ -2281,11 +2320,20 @@
         <member name="P:System.Numerics.NativeIntegerEnumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.Numerics.NativeIntegerEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Numerics.NativeIntegerEnumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.NativeIntegerEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
@@ -3189,8 +3237,20 @@
         <member name="P:System.Linq.LinkedListReversed`1.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.Linq.LinkedListReversed`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.LinkedListReversed`1.Enumerator.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Linq.LinkedListReversed`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Linq.ListEnumerable">
             <summary>
@@ -4870,8 +4930,17 @@
         <member name="P:System.ReadOnlyChunk`1.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.ReadOnlyChunk`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ReadOnlyChunk`1.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.ReadOnlyChunk`1.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.ReadOnlyChunk`1.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="F:System.ReadOnlyChunk`1._chunks">
             <summary>

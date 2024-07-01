@@ -1567,6 +1567,9 @@
         <member name="P:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.GetEnumerator">
             <summary>
             Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
@@ -1575,6 +1578,12 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap.CellEnumerator">
             <summary>
@@ -1596,6 +1605,9 @@
         <member name="P:Sudoku.Concepts.CandidateMap.CellEnumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.CellEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.GetEnumerator">
             <summary>
             Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
@@ -1604,6 +1616,12 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
@@ -3202,8 +3220,17 @@
             Indicates the current iterated element.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

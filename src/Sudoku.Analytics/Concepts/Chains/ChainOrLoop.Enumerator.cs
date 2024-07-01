@@ -6,13 +6,8 @@ public partial class ChainOrLoop
 	/// Represents an enumerator type that can iterate on each <see cref="Node"/> inside the collection.
 	/// </summary>
 	/// <param name="nodes">The <see cref="ChainOrLoop"/> instance.</param>
-	public ref struct Enumerator(ChainOrLoop nodes)
+	public ref struct Enumerator(ChainOrLoop nodes) : IEnumerator<Node>
 	{
-		/// <summary>
-		/// Indicates the number of nodes.
-		/// </summary>
-		private readonly int _length = nodes.Length;
-
 		/// <summary>
 		/// Indicates the current index iterated.
 		/// </summary>
@@ -26,9 +21,19 @@ public partial class ChainOrLoop
 			get => nodes[_index];
 		}
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool MoveNext() => ++_index < _length;
+		public bool MoveNext() => ++_index < nodes.Length;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

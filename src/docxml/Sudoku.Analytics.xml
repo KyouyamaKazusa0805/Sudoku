@@ -899,11 +899,6 @@
             </summary>
             <param name="nodes">The <see cref="T:Sudoku.Concepts.ChainOrLoop"/> instance.</param>
         </member>
-        <member name="F:Sudoku.Concepts.ChainOrLoop.Enumerator._length">
-            <summary>
-            Indicates the number of nodes.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.ChainOrLoop.Enumerator._index">
             <summary>
             Indicates the current index iterated.
@@ -912,8 +907,17 @@
         <member name="P:Sudoku.Concepts.ChainOrLoop.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:Sudoku.Concepts.ChainOrLoop.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainOrLoop.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainOrLoop.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2224,8 +2228,17 @@
         <member name="P:Sudoku.Concepts.EliminationRange.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:Sudoku.Concepts.EliminationRange.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.EliminationRange.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -7913,16 +7926,6 @@
             </summary>
             <param name="bits">The internal bits.</param>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._bits">
-            <summary>
-            The internal fields.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._length">
-            <summary>
-            The total length.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator._currentIndex">
             <summary>
             The current index.
@@ -7931,8 +7934,17 @@
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -23534,8 +23546,17 @@
         <member name="P:Sudoku.Measuring.FactorCollection.Enumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
             <summary>

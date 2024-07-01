@@ -6,18 +6,8 @@ public partial class TechniqueSet
 	/// The enumerator that can iterate with <see cref="Technique"/> fields for a <see cref="TechniqueSet"/> instance.
 	/// </summary>
 	/// <param name="bits">The internal bits.</param>
-	public ref struct Enumerator(BitArray bits)
+	public ref struct Enumerator(BitArray bits) : IEnumerator<Technique>
 	{
-		/// <summary>
-		/// The internal fields.
-		/// </summary>
-		private readonly BitArray _bits = bits;
-
-		/// <summary>
-		/// The total length.
-		/// </summary>
-		private readonly int _length = bits.Length;
-
 		/// <summary>
 		/// The current index.
 		/// </summary>
@@ -27,19 +17,28 @@ public partial class TechniqueSet
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
 		public readonly Technique Current => TechniqueProjectionBack(_currentIndex);
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		public bool MoveNext()
 		{
-			for (_currentIndex++; _currentIndex < _length; _currentIndex++)
+			for (_currentIndex++; _currentIndex < bits.Length; _currentIndex++)
 			{
-				if (_bits[_currentIndex])
+				if (bits[_currentIndex])
 				{
 					return true;
 				}
 			}
-
 			return false;
 		}
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

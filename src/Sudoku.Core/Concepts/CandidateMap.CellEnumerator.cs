@@ -6,7 +6,7 @@ public partial struct CandidateMap
 	/// Represents an enumerator type that can iterate on each cell of the collection.
 	/// </summary>
 	/// <param name="candidates">Indicates the candidate offsets.</param>
-	public ref struct CellEnumerator(Candidate[] candidates)
+	public ref struct CellEnumerator(Candidate[] candidates) : IEnumerator<Cell>
 	{
 		/// <summary>
 		/// Indicates the index.
@@ -21,6 +21,9 @@ public partial struct CandidateMap
 			get => candidates[_index] / 9;
 		}
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <summary>
 		/// Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
@@ -32,5 +35,12 @@ public partial struct CandidateMap
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext() => ++_index < candidates.Length;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

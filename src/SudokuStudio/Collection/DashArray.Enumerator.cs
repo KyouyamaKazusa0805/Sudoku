@@ -6,7 +6,7 @@ public partial struct DashArray
 	/// Defines an enumerator of this type.
 	/// </summary>
 	/// <param name="doubles">The double values.</param>
-	public ref struct Enumerator(List<double> doubles)
+	public ref struct Enumerator(List<double> doubles) : IEnumerator<double>
 	{
 		/// <summary>
 		/// The internal array to be iterated.
@@ -22,8 +22,18 @@ public partial struct DashArray
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
 		public readonly double Current => _doubles[_index];
 
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		public bool MoveNext() => ++_index < _doubles.Count;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }

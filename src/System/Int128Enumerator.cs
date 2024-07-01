@@ -5,7 +5,7 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref struct Int128Enumerator(ullong value)
+public ref struct Int128Enumerator(ullong value) : IEnumerator<int>
 {
 	/// <summary>
 	/// Indicates the population count of the value.
@@ -27,6 +27,9 @@ public ref struct Int128Enumerator(ullong value)
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public int Current { get; private set; } = -1;
 
+	/// <inheritdoc/>
+	readonly object IEnumerator.Current => Current;
+
 
 	/// <inheritdoc cref="BitOperationsExtensions.SetAt(uint, int)"/>
 	public readonly int this[int index] => value.SetAt(index);
@@ -42,7 +45,13 @@ public ref struct Int128Enumerator(ullong value)
 				return true;
 			}
 		}
-
 		return false;
 	}
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
 }

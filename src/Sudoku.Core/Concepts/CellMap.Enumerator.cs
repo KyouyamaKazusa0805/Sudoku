@@ -6,7 +6,7 @@ public partial struct CellMap
 	/// Represents an enumerator type that iterates on each cell offsets.
 	/// </summary>
 	/// <param name="offset">Indicates the offsets.</param>
-	public struct Enumerator(Cell[] offset) : IEnumerator<Cell>
+	public ref struct Enumerator(Cell[] offset) : IEnumerator<Cell>
 	{
 		/// <summary>
 		/// The internal field for offsets.

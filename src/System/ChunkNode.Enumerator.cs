@@ -6,7 +6,7 @@ public partial struct ChunkNode<T>
 	/// Indicates the enumerator of current type.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	public ref struct Enumerator(scoped ref readonly ChunkNode<T> value)
+	public ref struct Enumerator(scoped ref readonly ChunkNode<T> value) : IEnumerator<T>
 	{
 		/// <summary>
 		/// Indicates the values.
@@ -28,9 +28,22 @@ public partial struct ChunkNode<T>
 		/// <inheritdoc cref="IEnumerator.Current"/>
 		public readonly ref readonly T Current => ref _values[_index];
 
+		/// <inheritdoc/>
+		readonly object? IEnumerator.Current => Current;
+
+		/// <inheritdoc/>
+		readonly T IEnumerator<T>.Current => Current;
+
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext() => ++_index < _values.Length;
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose() { }
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
 	}
 }
