@@ -1507,18 +1507,34 @@
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
             <param name="isAdvanced">
-            Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+            <para>Indicates whether the node is advanced one.</para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Node" path="/shared-comments"/></para>
             </param>
+            <param name="parent">
+            <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Node" path="/shared-comments"/></para>
+            </param>
+            <shared-comments>
+            Please note that this value doesn't participate in equality comparison.
+            </shared-comments>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,System.Boolean,Sudoku.Concepts.Node)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
             <param name="isAdvanced">
-            Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+            <para>Indicates whether the node is advanced one.</para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Node" path="/shared-comments"/></para>
             </param>
+            <param name="parent">
+            <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
+            <para><inheritdoc cref="T:Sudoku.Concepts.Node" path="/shared-comments"/></para>
+            </param>
+            <shared-comments>
+            Please note that this value doesn't participate in equality comparison.
+            </shared-comments>
         </member>
         <member name="F:Sudoku.Concepts.Node.MapFormatString">
             <summary>
@@ -1529,39 +1545,6 @@
             <summary>
             Indicates the property <see cref="P:Sudoku.Concepts.Node.IsOn"/> format string.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
-            </summary>
-            <param name="candidate">A candidate.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
-            <param name="isAdvanced">Indicates whether the node is advanced.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified cell and digit.
-            </summary>
-            <param name="cell">A cell.</param>
-            <param name="digit">A digit.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
-            <param name="isAdvanced">Indicates whether the node is advanced.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <summary>
-            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
-            and appends its parent node.
-            </summary>
-            <param name="base">The data provider.</param>
-            <param name="parent">The parent node.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,System.Boolean)">
-            <summary>
-            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
-            and appends its parent node, and modify <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
-            </summary>
-            <param name="base">The data provider.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
         </member>
         <member name="P:Sudoku.Concepts.Node.IsGroupedNode">
             <summary>
@@ -1576,11 +1559,6 @@
         <member name="P:Sudoku.Concepts.Node.Map">
             <summary>
             Indicates the map of candidates the node uses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Node.Parent">
-            <summary>
-            Indicates the parent node. The value doesn't participate in equality comparison.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Node.IsOnPropertyValue">
@@ -1706,6 +1684,11 @@
         <member name="P:Sudoku.Concepts.Node.IsAdvanced">
             <summary>
             The generated property declaration for parameter <c>isAdvanced</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Parent">
+            <summary>
+            The generated property declaration for parameter <c>parent</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Node.Equals(System.Object)">

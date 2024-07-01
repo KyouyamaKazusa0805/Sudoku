@@ -6,13 +6,22 @@ namespace Sudoku.Concepts;
 /// <param name="map">Indicates the backing map.</param>
 /// <param name="isOn">Indicates whether the node is on.</param>
 /// <param name="isAdvanced">
-/// Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+/// <para>Indicates whether the node is advanced one.</para>
+/// <para><inheritdoc cref="Node" path="/shared-comments"/></para>
 /// </param>
+/// <param name="parent">
+/// <para>Indicates the parent node. The value can be <see langword="null"/> in handling.</para>
+/// <para><inheritdoc cref="Node" path="/shared-comments"/></para>
+/// </param>
+/// <shared-comments>
+/// Please note that this value doesn't participate in equality comparison.
+/// </shared-comments>
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
 public sealed partial class Node(
 	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map,
 	[PrimaryConstructorParameter, HashCodeMember] bool isOn,
-	[PrimaryConstructorParameter] bool isAdvanced
+	[PrimaryConstructorParameter] bool isAdvanced,
+	[PrimaryConstructorParameter(SetterExpression = "set")] Node? parent = null
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
@@ -29,48 +38,6 @@ public sealed partial class Node(
 	/// Indicates the property <see cref="IsOn"/> format string.
 	/// </summary>
 	private const string IsOnFormatString = "s";
-
-
-	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via the specified candidate.
-	/// </summary>
-	/// <param name="candidate">A candidate.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Candidate candidate, bool isOn, bool isAdvanced) : this(candidate.AsCandidateMap(), isOn, isAdvanced)
-	{
-	}
-
-	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via the specified cell and digit.
-	/// </summary>
-	/// <param name="cell">A cell.</param>
-	/// <param name="digit">A digit.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Cell cell, Digit digit, bool isOn, bool isAdvanced) : this(cell * 9 + digit, isOn, isAdvanced)
-	{
-	}
-
-	/// <summary>
-	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
-	/// and appends its parent node.
-	/// </summary>
-	/// <param name="base">The data provider.</param>
-	/// <param name="parent">The parent node.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Node @base, Node? parent) : this(in @base._map, @base.IsOn, @base.IsAdvanced) => Parent = parent;
-
-	/// <summary>
-	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
-	/// and appends its parent node, and modify <see cref="IsOn"/> property value.
-	/// </summary>
-	/// <param name="base">The data provider.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Node(Node @base, bool isOn) : this(in @base._map, isOn, @base.IsAdvanced) => Parent = @base.Parent;
 
 
 	/// <summary>
@@ -98,11 +65,6 @@ public sealed partial class Node(
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
 	public ref readonly CandidateMap Map => ref _map;
-
-	/// <summary>
-	/// Indicates the parent node. The value doesn't participate in equality comparison.
-	/// </summary>
-	public Node? Parent { get; set; }
 
 	/// <summary>
 	/// The backing comparing value on <see cref="IsOn"/> property.
@@ -249,7 +211,7 @@ public sealed partial class Node(
 	/// <param name="value">The current node.</param>
 	/// <returns>The node negated.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator ~(Node value) => new(value, !value.IsOn);
+	public static Node operator ~(Node value) => new(in value._map, !value.IsOn, value.IsAdvanced) { Parent = value.Parent };
 
 	/// <summary>
 	/// Creates a <see cref="Node"/> instance with parent node.
@@ -258,5 +220,5 @@ public sealed partial class Node(
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator >>(Node current, Node? parent) => new(current, parent);
+	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, current.IsAdvanced, parent);
 }

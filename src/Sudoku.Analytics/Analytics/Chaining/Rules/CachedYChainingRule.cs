@@ -22,15 +22,15 @@ internal sealed class CachedYChainingRule : ChainingRule
 			{
 				var digit1 = TrailingZeroCount(mask);
 				var digit2 = mask.GetNextSet(digit1);
-				var node1 = new Node(cell, digit1, false, false);
-				var node2 = new Node(cell, digit2, true, false);
+				var node1 = new Node((cell * 9 + digit1).AsCandidateMap(), false, false);
+				var node2 = new Node((cell * 9 + digit2).AsCandidateMap(), true, false);
 				context.StrongLinks.AddEntry(node1, node2);
 			}
 
 			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
-				var node1 = new Node(cell, combinationPair[0], true, false);
-				var node2 = new Node(cell, combinationPair[1], false, false);
+				var node1 = new Node((cell * 9 + combinationPair[0]).AsCandidateMap(), true, false);
+				var node2 = new Node((cell * 9 + combinationPair[1]).AsCandidateMap(), false, false);
 				context.WeakLinks.AddEntry(node1, node2);
 			}
 		}

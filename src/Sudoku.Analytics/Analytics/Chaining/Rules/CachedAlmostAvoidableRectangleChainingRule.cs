@@ -77,8 +77,8 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 
 				foreach (var digit in digitsOtherCellsContained)
 				{
-					var node1 = new Node(emptyCellsInPattern[0], digit, true, true);
-					var node2 = new Node(emptyCellsInPattern[1], digit, false, true);
+					var node1 = new Node((emptyCellsInPattern[0] * 9 + digit).AsCandidateMap(), true, true);
+					var node2 = new Node((emptyCellsInPattern[1] * 9 + digit).AsCandidateMap(), false, true);
 					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
 					context.WeakLinks.AddEntry(node1, node2, false, ar);
 				}

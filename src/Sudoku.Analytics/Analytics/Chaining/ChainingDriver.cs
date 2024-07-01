@@ -45,7 +45,7 @@ internal static class ChainingDriver
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~(1 << Solution.GetDigit(cell))))
 			{
-				var node = new Node(cell, digit, true, false);
+				var node = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
 				if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
 					return (ChainOrLoop[])[chain1];
@@ -84,7 +84,7 @@ internal static class ChainingDriver
 			var digitsMask = grid.GetCandidates(cell);
 			foreach (var digit in digitsMask)
 			{
-				var currentNode = new Node(cell, digit, true, false);
+				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
 				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
@@ -122,7 +122,7 @@ internal static class ChainingDriver
 						}
 						else
 						{
-							var other = new Node(otherCandidate, true, false);
+							var other = new Node(otherCandidate.AsCandidateMap(), true, false);
 							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
