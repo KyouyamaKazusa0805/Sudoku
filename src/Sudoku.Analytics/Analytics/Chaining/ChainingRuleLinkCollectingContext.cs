@@ -13,8 +13,12 @@ public readonly ref partial struct ChainingRuleLinkCollectingContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary strongLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary weakLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] StepSearcherOptions options
-)
+) : IChainingRuleContext
 {
+	/// <inheritdoc/>
+	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
+
+
 	/// <summary>
 	/// Try to get the link option for the specified link type.
 	/// </summary>

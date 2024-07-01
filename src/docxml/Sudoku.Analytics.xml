@@ -8583,6 +8583,9 @@
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext.GetLinkOption(Sudoku.Concepts.LinkType)">
             <summary>
             Try to get the link option for the specified link type.
@@ -8637,6 +8640,9 @@
             <param name="grid">The grid to be checked.</param>
             <param name="loop">The loop to be checked.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+            <inheritdoc/>
+        </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
@@ -8677,6 +8683,9 @@
             Indicates the view nodes produced.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+            <inheritdoc/>
+        </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
@@ -8700,6 +8709,17 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.IChainingRuleContext">
+            <summary>
+            Represents a context type consumed by <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.IChainingRuleContext.Grid">
+            <summary>
+            Indicates the grid to be used.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule">
             <summary>

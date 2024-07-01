@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
 /// Represents the properties used while chaining.
@@ -12,10 +12,13 @@ public ref partial struct ChainingRuleViewNodesMappingContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ChainOrLoop pattern,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] View view
-)
+) : IChainingRuleContext
 {
 	/// <summary>
 	/// Indicates the view nodes produced.
 	/// </summary>
 	public ReadOnlySpan<ViewNode> ProducedViewNodes { get; set; }
+
+	/// <inheritdoc/>
+	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
 }

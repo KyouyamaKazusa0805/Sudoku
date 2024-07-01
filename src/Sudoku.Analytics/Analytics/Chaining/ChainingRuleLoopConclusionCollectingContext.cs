@@ -9,4 +9,8 @@ namespace Sudoku.Analytics.Chaining;
 public readonly ref partial struct ChainingRuleLoopConclusionCollectingContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] Loop loop
-);
+) : IChainingRuleContext
+{
+	/// <inheritdoc/>
+	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
+}
