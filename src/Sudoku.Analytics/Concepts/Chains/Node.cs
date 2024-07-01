@@ -250,4 +250,13 @@ public sealed partial class Node(
 	/// <returns>The node negated.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Node operator ~(Node value) => new(value, !value.IsOn);
+
+	/// <summary>
+	/// Creates a <see cref="Node"/> instance with parent node.
+	/// </summary>
+	/// <param name="current">The current node.</param>
+	/// <param name="parent">The parent node.</param>
+	/// <returns>The new node created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Node operator >>(Node current, Node? parent) => new(current, parent);
 }

@@ -375,7 +375,7 @@ internal static class ChainingDriver
 				{
 					foreach (var nodeSupposedOff in nodesSupposedOff)
 					{
-						var nextNode = new Node(nodeSupposedOff, currentNode);
+						var nextNode = nodeSupposedOff >> currentNode;
 
 						////////////////////////////////////////////
 						// Continuous Nice Loop 3) Strong -> Weak //
@@ -438,7 +438,7 @@ internal static class ChainingDriver
 				{
 					foreach (var nodeSupposedOn in nodesSupposedOn)
 					{
-						var nextNode = new Node(nodeSupposedOn, currentNode);
+						var nextNode = nodeSupposedOn >> currentNode;
 
 						/////////////////////////////////////////////
 						// Discontinuous Nice Loop 1) Weak -> Weak //
@@ -498,7 +498,7 @@ internal static class ChainingDriver
 				{
 					foreach (var node in supposedOff)
 					{
-						var nextNode = new Node(node, currentNode);
+						var nextNode = node >> currentNode;
 						if (nodesSupposedOn.Contains(~nextNode))
 						{
 							// Contradiction is found.
@@ -519,7 +519,7 @@ internal static class ChainingDriver
 				{
 					foreach (var node in supposedOn)
 					{
-						var nextNode = new Node(node, currentNode);
+						var nextNode = node >> currentNode;
 						if (nodesSupposedOff.Contains(~nextNode))
 						{
 							// Contradiction is found.

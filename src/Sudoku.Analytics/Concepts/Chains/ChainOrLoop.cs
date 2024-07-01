@@ -61,7 +61,7 @@ public abstract partial class ChainOrLoop :
 		var nodes = (List<Node>)[lastNode];
 		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{
-			nodes.Add(new Node(node, null));
+			nodes.Add(node >> null);
 		}
 		_nodes = [.. nodes];
 

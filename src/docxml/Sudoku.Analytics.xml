@@ -1685,6 +1685,14 @@
             <param name="value">The current node.</param>
             <returns>The node negated.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Node.op_RightShift(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Node"/> instance with parent node.
+            </summary>
+            <param name="current">The current node.</param>
+            <param name="parent">The parent node.</param>
+            <returns>The new node created.</returns>
+        </member>
         <member name="F:Sudoku.Concepts.Node._map">
             <summary>
             The generated field declaration for parameter <c>map</c>.
