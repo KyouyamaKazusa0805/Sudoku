@@ -13,9 +13,9 @@ public static class StepSearcherPool
 
 
 	/// <summary>
-	/// Try to fetch a list of built-in step searchers.
+	/// Indicates built-in step searchers defined.
 	/// </summary>
-	public static ReadOnlyMemory<StepSearcher> BuiltInStepSearchers
+	public static ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get
 		{

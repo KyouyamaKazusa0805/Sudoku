@@ -4513,16 +4513,16 @@
             <summary>
             <para>
             Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
-            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/> to solve a puzzle.
+            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
             If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/> to solve a puzzle.
+            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
             </para>
             <para>
             Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
             however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
             </para>
             </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers"/>
+            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerOrCollector.ResultStepSearchers">
             <summary>
@@ -9361,7 +9361,7 @@
             Indicates the Chinese culture.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1">
+        <member name="T:Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute`1">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
@@ -9372,7 +9372,7 @@
             The value can be 0, 1, 2, 3 and 4.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.#ctor(System.Int32)">
+        <member name="M:Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute`1.#ctor(System.Int32)">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
@@ -9383,7 +9383,7 @@
             The value can be 0, 1, 2, 3 and 4.
             </param>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.Areas">
+        <member name="P:Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute`1.Areas">
             <summary>
             Indicates the area that the step searcher can be used and available.
             </summary>
@@ -9392,7 +9392,7 @@
             and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.Level">
+        <member name="P:Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute`1.Level">
             <summary>
             The generated property declaration for parameter <c>level</c>.
             </summary>
@@ -10659,9 +10659,9 @@
             Indicates the current assembly.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcherPool.BuiltInStepSearchers">
+        <member name="P:Sudoku.Analytics.StepSearcherPool.StepSearchers">
             <summary>
-            Try to fetch a list of built-in step searchers.
+            Indicates built-in step searchers defined.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.String)">

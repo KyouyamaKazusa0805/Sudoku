@@ -11,7 +11,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 	[Default]
 	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = new(
 		(
-			from searcher in StepSearcherPool.BuiltInStepSearchers
+			from searcher in StepSearcherPool.StepSearchers
 			select new StepSearcherInfo
 			{
 				IsEnabled = searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching),

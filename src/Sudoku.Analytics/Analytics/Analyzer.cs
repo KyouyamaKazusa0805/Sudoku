@@ -61,7 +61,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 	/// <inheritdoc/>
 	public override ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; protected internal set; } =
-		from searcher in StepSearcherPool.BuiltInStepSearchers
+		from searcher in StepSearcherPool.StepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching)
 		select searcher;
 

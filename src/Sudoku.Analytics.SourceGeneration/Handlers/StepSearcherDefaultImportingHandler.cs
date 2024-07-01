@@ -11,7 +11,7 @@ internal static class StepSearcherDefaultImportingHandler
 
 	private const string StepSearcherRunningAreaTypeName = "Sudoku.Analytics.Metadata.StepSearcherRunningArea";
 
-	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute<>";
+	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute<>";
 
 
 	/// <inheritdoc/>
