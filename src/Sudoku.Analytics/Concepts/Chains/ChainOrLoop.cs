@@ -106,15 +106,11 @@ public abstract partial class ChainOrLoop :
 		{
 			foreach (var link in StrongLinks)
 			{
-				if (link is { FirstNode.Map.Digits: var digits1, SecondNode.Map.Digits: var digits2 }
-					&& digits1 == digits2)
+				if (link is { FirstNode.Map.Digits: var digits1, SecondNode.Map.Digits: var digits2 } && digits1 == digits2)
 				{
-					// All strong links must hold different kinds of digits.
 					return false;
 				}
 			}
-
-			// The first node and the last node must use same digits.
 			return First.Map.Digits == Last.Map.Digits;
 		}
 	}
