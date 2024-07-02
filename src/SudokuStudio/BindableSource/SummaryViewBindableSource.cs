@@ -28,7 +28,7 @@ internal sealed partial class SummaryViewBindableSource(
 	/// </param>
 	/// <returns>The result list of <see cref="SummaryViewBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static unsafe ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalysisResult analysisResult)
+	public static ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalysisResult analysisResult)
 	{
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		return analysisResult switch
@@ -45,7 +45,7 @@ internal sealed partial class SummaryViewBindableSource(
 			return pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		}
 
-		static SummaryViewBindableSource[] g(Step[] steps, TechniqueInfoPreferenceGroup pref)
+		static unsafe SummaryViewBindableSource[] g(Step[] steps, TechniqueInfoPreferenceGroup pref)
 			=>
 			from step in steps
 			orderby step.DifficultyLevel, step.Code

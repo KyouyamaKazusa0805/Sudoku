@@ -11,7 +11,7 @@ public partial struct ChunkNode<T>
 		/// <summary>
 		/// Indicates the values.
 		/// </summary>
-		private readonly unsafe ReadOnlySpan<T> _values =
+		private readonly ReadOnlySpan<T> _values =
 			value.Type switch
 			{
 				ChunkNodeType.Value => (T[])[value.Value!],

@@ -974,7 +974,7 @@ public partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="state">The state.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void SetState(Cell cell, CellState state)
+	public void SetState(Cell cell, CellState state)
 	{
 		ref var mask = ref this[cell];
 		var copied = mask;
@@ -988,7 +988,7 @@ public partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void SetMask(Cell cell, Mask mask)
+	public void SetMask(Cell cell, Mask mask)
 	{
 		ref var newMask = ref this[cell];
 		var originalMask = newMask;
@@ -1027,7 +1027,7 @@ public partial struct Grid :
 	/// </para>
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void SetDigit(Cell cell, Digit digit)
+	public void SetDigit(Cell cell, Digit digit)
 	{
 		switch (digit)
 		{
@@ -1065,7 +1065,7 @@ public partial struct Grid :
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public unsafe void SetExistence(Cell cell, Digit digit, bool isOn)
+	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
 		if (cell is >= 0 and < CellsCount && digit is >= 0 and < CellCandidatesCount)
 		{

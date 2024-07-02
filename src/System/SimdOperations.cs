@@ -5,7 +5,7 @@ namespace System;
 /// </summary>
 /// <seealso href="https://learn.microsoft.com/en-us/dotnet/standard/simd">Microsoft Learn - SIMD</seealso>
 /// <seealso href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">Wikipedia - SIMD</seealso>
-public static unsafe class SimdOperations
+public static class SimdOperations
 {
 	/// <summary>
 	/// Iterates all possible set bits in the target array.
@@ -17,7 +17,7 @@ public static unsafe class SimdOperations
 	/// <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
 	/// Iterating over set bits quickly (SIMD edition)
 	/// </seealso>
-	public static int IterateBits(long* array, int length, int* outBuffer)
+	public static unsafe int IterateBits(long* array, int length, int* outBuffer)
 	{
 		var baseVector = Vector256.Create(-1); // _mm256_set1_epi32
 		var steppingVector = Vector256.Create(64); // _mm256_set1_epi32

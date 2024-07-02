@@ -13,7 +13,7 @@ namespace System;
 	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
 	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException)]
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
-public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>
+public readonly partial struct ChunkNode<T> : IEnumerable<T>
 {
 	/// <summary>
 	/// Represents an empty instance.

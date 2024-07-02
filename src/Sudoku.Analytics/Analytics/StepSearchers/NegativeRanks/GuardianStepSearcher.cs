@@ -126,7 +126,6 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		{
 			dfs(cell, cell, 0, [cell], [], digit, &predicate, result);
 		}
-
 		return [.. result.Distinct()];
 
 
