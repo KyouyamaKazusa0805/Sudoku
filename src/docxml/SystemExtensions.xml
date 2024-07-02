@@ -590,6 +590,25 @@
             3 cases.
             </returns>
         </member>
+        <member name="M:System.Combinatorial.GetSubsets``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Get all subsets from the collection.
+            </summary>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>
+            All possible combinations returned.
+            </returns>
+        </member>
         <member name="M:System.Combinatorial.GetExtractedCombinations``1(``0[][])">
             <summary>
             Get all combinations that each sub-array only choose one.

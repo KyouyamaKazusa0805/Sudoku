@@ -503,7 +503,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					],
 					context.Options,
 					MaskOperations.Create(digits),
-					[.. cells],
+					in cells,
 					new(c1, c2, conjugatePairDigit)
 				);
 				if (onlyFindOne)

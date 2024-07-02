@@ -9761,7 +9761,11 @@
             </param>
             <returns>A <see cref="T:System.Int16" /> instance.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.Collections.Generic.HashSet{System.Int32})">
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create``1(``0)">
+            <typeparam name="T">The type of the enumerable sequence.</typeparam>
             <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToDigits(System.Int16)">
@@ -9786,21 +9790,6 @@
             <param name="mask">The mask.</param>
             <returns>The cell state.</returns>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.GetMaskSubsets(System.Int16)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <returns>The result list.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.GetMaskSubsets(System.Int16,System.Int32)">
-            <summary>
-            Get all mask combinations.
-            </summary>
-            <param name="value">The mask.</param>
-            <param name="size">The size.</param>
-            <returns>The result list.</returns>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.SplitMask(System.Int16)">
             <summary>

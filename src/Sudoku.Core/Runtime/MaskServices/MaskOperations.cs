@@ -24,7 +24,12 @@ public static class MaskOperations
 	}
 
 	/// <inheritdoc cref="Create(ReadOnlySpan{Digit})"/>
-	public static Mask Create(HashSet<Digit> digits)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Mask Create(Digit[] digits) => Create(digits.AsReadOnlySpan());
+
+	/// <typeparam name="T">The type of the enumerable sequence.</typeparam>
+	/// <inheritdoc cref="Create(ReadOnlySpan{Digit})"/>
+	public static Mask Create<T>(scoped T digits) where T : IEnumerable<Digit>, allows ref struct
 	{
 		var result = (Mask)0;
 		foreach (var digit in digits)
@@ -70,43 +75,6 @@ public static class MaskOperations
 	/// <seealso cref="Grid"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellState MaskToCellState(Mask mask) => (CellState)(mask >> 9 & 7);
-
-	/// <summary>
-	/// Get all mask combinations.
-	/// </summary>
-	/// <param name="value">The mask.</param>
-	/// <returns>The result list.</returns>
-	public static ReadOnlySpan<Mask> GetMaskSubsets(Mask value)
-	{
-		var maskSubsets = new Mask[9][];
-		for (var size = 1; size <= 9; size++)
-		{
-			maskSubsets[size - 1] = [.. GetMaskSubsets(value, size)];
-		}
-		return from maskSubset in maskSubsets from mask in maskSubset select mask;
-	}
-
-	/// <summary>
-	/// Get all mask combinations.
-	/// </summary>
-	/// <param name="value">The mask.</param>
-	/// <param name="size">The size.</param>
-	/// <returns>The result list.</returns>
-	public static ReadOnlySpan<Mask> GetMaskSubsets(Mask value, int size)
-	{
-		var listToIterate = value.GetAllSets().GetSubsets(size);
-		var (result, index) = (new Mask[listToIterate.Length], 0);
-		foreach (var target in listToIterate)
-		{
-			var mask = (Mask)0;
-			foreach (var targetValue in target)
-			{
-				mask |= (Mask)(1 << targetValue);
-			}
-			result[index++] = mask;
-		}
-		return result;
-	}
 
 	/// <summary>
 	/// Try to split a mask into 3 parts, 3-bit as a unit.

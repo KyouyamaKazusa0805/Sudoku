@@ -87,11 +87,33 @@ public static class Combinatorial
 					{
 						temp[j] = @this[tempArray[j]];
 					}
-
 					resultList.Add(temp);
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Get all subsets from the collection.
+	/// </summary>
+	/// <param name="this">
+	/// <para>The collection to be used and checked.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
+	/// <returns>
+	/// All possible combinations returned.
+	/// </returns>
+	public static ReadOnlySpan<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this)
+	{
+		var result = new List<T[]>();
+		for (var size = 0; size < @this.Length; size++)
+		{
+			foreach (var element in @this.GetSubsets(size))
+			{
+				result.Add(element);
+			}
+		}
+		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

@@ -73,13 +73,13 @@ public static class TrueCandidate
 			mask = grid.GetCandidates(multivalueCells[i]);
 
 			// e.g. [[2, 4], [4, 6], [2, 6]] ([10, 40, 34])
-			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
+			var pairList = mask.GetAllSets().GetSubsets(2);
 
 			// e.g. pairs[i, ..] = [3, [2, 4], [4, 6], [2, 6]] ([3, 10, 40, 34])
 			pairs[i, 0] = (Mask)pairList.Length;
 			for (var z = 1; z <= pairList.Length; z++)
 			{
-				pairs[i, z] = pairList[z - 1];
+				pairs[i, z] = MaskOperations.Create(pairList[z - 1]);
 			}
 		}
 

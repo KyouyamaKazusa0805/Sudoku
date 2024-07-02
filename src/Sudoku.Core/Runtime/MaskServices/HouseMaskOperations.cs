@@ -39,7 +39,6 @@ public static class HouseMaskOperations
 		{
 			result |= 1 << house;
 		}
-
 		return result;
 	}
 

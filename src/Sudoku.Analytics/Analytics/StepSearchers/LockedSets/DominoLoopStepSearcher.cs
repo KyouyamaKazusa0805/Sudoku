@@ -131,16 +131,17 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				continue;
 			}
 
-			if ((Mask)(pairs[0] & pairs[1]) is not (var candidateMask and not 0))
+			var candidateMask = (Mask)(pairs[0] & pairs[1]);
+			if (candidateMask == 0)
 			{
 				continue;
 			}
 
 			// Check all combinations.
-			var masks = MaskOperations.GetMaskSubsets(candidateMask);
+			var masks = candidateMask.GetAllSets().GetSubsets();
 			for (var j = masks.Length - 1; j >= 0; j--)
 			{
-				var mask = masks[j];
+				var mask = MaskOperations.Create(masks[j]);
 				if (mask == 0)
 				{
 					continue;
