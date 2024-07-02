@@ -388,10 +388,10 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>
-	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => Empty;
+	static ref readonly CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => Full;
+	static ref readonly CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => ref Full;
 
 
 	/// <summary>
@@ -720,7 +720,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector) => this.Select(selector).ToArray();
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string, IFormatProvider?, out TSelf)"/>
 	public static bool TryParse(string str, out CellMap result)
 	{
 		try

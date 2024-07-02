@@ -78,12 +78,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <summary>
 	/// Indicates an empty instance containing no elements.
 	/// </summary>
-	public static abstract TSelf Empty { get; }
+	public static abstract ref readonly TSelf Empty { get; }
 
 	/// <summary>
 	/// Indicates an instance that contains all possible elements.
 	/// </summary>
-	public static abstract TSelf Full { get; }
+	public static abstract ref readonly TSelf Full { get; }
 
 	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
@@ -97,7 +97,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	static TSelf IMinMaxValue<TSelf>.MinValue => TSelf.Empty;
 
 	/// <inheritdoc/>
-	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Empty;
+	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Full;
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
@@ -245,7 +245,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 		{
 			otherCells.Add(element);
 		}
-
 		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
 	}
 

@@ -232,10 +232,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
 
 	/// <inheritdoc/>
-	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => Empty;
+	static ref readonly CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => Full;
+	static ref readonly CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => ref Full;
 
 
 	/// <summary>

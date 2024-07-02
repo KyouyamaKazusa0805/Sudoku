@@ -2319,7 +2319,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
