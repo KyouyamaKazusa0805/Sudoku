@@ -831,17 +831,14 @@ public partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> this switch
+		=> (this, formatProvider) switch
 		{
-			{ IsEmpty: true } => $"<{nameof(Empty)}>",
-			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => formatProvider switch
-			{
-				GridFormatInfo f => f.FormatGrid(in this),
-				CultureInfo c => ToString(c),
-				not null when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
-				_ => GridFormatInfo.GetInstance(format).Unwrap().FormatGrid(in this)
-			}
+			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
+			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
+			(_, GridFormatInfo f) => f.FormatGrid(in this),
+			(_, CultureInfo c) => ToString(c),
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
+			_ => GridFormatInfo.GetInstance(format).Unwrap().FormatGrid(in this)
 		};
 
 	/// <summary>
