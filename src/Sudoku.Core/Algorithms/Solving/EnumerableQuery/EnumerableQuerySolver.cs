@@ -33,7 +33,7 @@ public sealed class EnumerableQuerySolver : ISolver
 			var result = (ReadOnlySpan<string>)(string[])[puzzle];
 			while (result is [var r, ..] && r.Contains('.'))
 			{
-				result = (
+				result =
 					from solution in result
 					let index = solution.IndexOf('.')
 					let column = index % 9
@@ -50,8 +50,7 @@ public sealed class EnumerableQuerySolver : ISolver
 						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
 						select pos
 					where duplicateCases.Length == 0
-					select $"{solution[..index]}{digit}{solution[(index + 1)..]}"
-				).ToArray();
+					select $"{solution[..index]}{digit}{solution[(index + 1)..]}";
 			}
 
 			// Return the result value.
