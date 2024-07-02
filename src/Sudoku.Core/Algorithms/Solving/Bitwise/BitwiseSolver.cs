@@ -389,7 +389,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 			1 => (result = Grid.Parse(new ReadOnlySpan<char>(solutionStr, BufferLength)), true),
 			_ => (Grid.Undefined, (bool?)false)
 		};
-
 		return @return;
 	}
 
@@ -1299,7 +1298,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 		{
 			result++;
 		}
-
 		return result;
 	}
 }
