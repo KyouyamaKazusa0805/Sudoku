@@ -21,8 +21,8 @@ public sealed class EnumerableQuerySolver : ISolver
 		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch
 		{
-			[] => (Grid.Undefined, default(bool?)),
-			[var resultString] => (result = Grid.Parse(resultString), true),
+		[] => (Grid.Undefined, default(bool?)),
+		[var resultString] => (result = Grid.Parse(resultString), true),
 			_ => (Grid.Undefined, false)
 		};
 		return @return;
@@ -40,14 +40,11 @@ public sealed class EnumerableQuerySolver : ISolver
 					let block = index - index % 27 + column - index % 3
 					from digit in DigitCharacters.ToCharArray()
 					let duplicateCases =
-						// Here we cannot replace it with a read-only span (i.e. 'Digits' -> '(ReadOnlySpan<Digit>)Digits')
-						// because it will make the query expression create a new unsafe object in nested query expression,
-						// which will cause the solver to be unsafe.
 						from pos in Digits
-						let duplicatesInRow = solution[index - column + pos] == digit
-						let duplicatesInColumn = solution[column + pos * 9] == digit
-						let duplicatesInBlock = solution[block + pos % 3 + pos / 3 * 9] == digit
-						where duplicatesInRow || duplicatesInColumn || duplicatesInBlock
+						let rowContainsDuplicateDigits = solution[index - column + pos] == digit
+						let columnContainsDuplicateDigits = solution[column + pos * 9] == digit
+						let blockContainsDuplicateDigits = solution[block + pos % 3 + pos / 3 * 9] == digit
+						where rowContainsDuplicateDigits || columnContainsDuplicateDigits || blockContainsDuplicateDigits
 						select pos
 					where duplicateCases.Length == 0
 					select $"{solution[..index]}{digit}{solution[(index + 1)..]}";
