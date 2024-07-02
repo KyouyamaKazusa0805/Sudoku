@@ -1531,6 +1531,167 @@ public enum Technique
 	SiameseSashimiXWing,
 
 	/// <summary>
+	/// Indicates swordfish.
+	/// </summary>
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0301")]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Swordfish, RatingOriginal = [3.8])]
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Swordfish.html"])]
+	Swordfish,
+
+	/// <summary>
+	/// Indicates finned swordfish.
+	/// </summary>
+	[Hodoku(Rating = 200, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0311")]
+	[SudokuExplainer(RatingAdvanced = [4.0])]
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Finned_Fish.html",
+			"http://sudopedia.enjoysudoku.com/Finned_Swordfish.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
+		])]
+	FinnedSwordfish,
+
+	/// <summary>
+	/// Indicates sashimi swordfish.
+	/// </summary>
+	[Hodoku(
+		Rating = 240,
+		DifficultyLevel = HodokuDifficultyLevel.Unfair,
+		Prefix = "0321")]
+	[SudokuExplainer(RatingAdvanced = [4.1])]
+	[TechniqueMetadata(
+		Rating = 32, DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
+			"http://sudopedia.enjoysudoku.com/Sashimi_Swordfish.html"
+		])]
+	SashimiSwordfish,
+
+	/// <summary>
+	/// Indicates Siamese finned swordfish.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
+	SiameseFinnedSwordfish,
+
+	/// <summary>
+	/// Indicates Siamese sashimi swordfish.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+	SiameseSashimiSwordfish,
+
+	/// <summary>
+	/// Indicates jellyfish.
+	/// </summary>
+	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0302")]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Jellyfish, RatingOriginal = [5.2])]
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://sudopedia.enjoysudoku.com/Jellyfish.html"
+		])]
+	Jellyfish,
+
+	/// <summary>
+	/// Indicates finned jellyfish.
+	/// </summary>
+	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0312")]
+	[SudokuExplainer(RatingAdvanced = [5.4])]
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
+			"http://sudopedia.enjoysudoku.com/Finned_Jellyfish.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
+		])]
+	FinnedJellyfish,
+
+	/// <summary>
+	/// Indicates sashimi jellyfish.
+	/// </summary>
+	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0322")]
+	[SudokuExplainer(RatingAdvanced = [5.6])]
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
+			"http://sudopedia.enjoysudoku.com/Sashimi_Jellyfish.html"
+		])]
+	SashimiJellyfish,
+
+	/// <summary>
+	/// Indicates Siamese finned jellyfish.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = [
+			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
+		])]
+	SiameseFinnedJellyfish,
+
+	/// <summary>
+	/// Indicates Siamese sashimi jellyfish.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 32,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.NormalFish,
+		StepType = typeof(NormalFishStep),
+		StepSearcherType = typeof(NormalFishStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+	SiameseSashimiJellyfish,
+	#endregion
+
+	//
+	// Complex Fishes
+	//
+	#region Complex Fishes
+	/// <summary>
 	/// Indicates franken X-Wing.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0330")]
@@ -1666,81 +1827,6 @@ public enum Technique
 		StepSearcherType = typeof(ComplexFishStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantXWing,
-
-	/// <summary>
-	/// Indicates swordfish.
-	/// </summary>
-	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0301")]
-	[SudokuExplainer(Technique = SudokuExplainerTechnique.Swordfish, RatingOriginal = [3.8])]
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Swordfish.html"])]
-	Swordfish,
-
-	/// <summary>
-	/// Indicates finned swordfish.
-	/// </summary>
-	[Hodoku(Rating = 200, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0311")]
-	[SudokuExplainer(RatingAdvanced = [4.0])]
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Finned_Fish.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Swordfish.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	FinnedSwordfish,
-
-	/// <summary>
-	/// Indicates sashimi swordfish.
-	/// </summary>
-	[Hodoku(
-		Rating = 240,
-		DifficultyLevel = HodokuDifficultyLevel.Unfair,
-		Prefix = "0321")]
-	[SudokuExplainer(RatingAdvanced = [4.1])]
-	[TechniqueMetadata(
-		Rating = 32, DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
-			"http://sudopedia.enjoysudoku.com/Sashimi_Swordfish.html"
-		])]
-	SashimiSwordfish,
-
-	/// <summary>
-	/// Indicates Siamese finned swordfish.
-	/// </summary>
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
-	SiameseFinnedSwordfish,
-
-	/// <summary>
-	/// Indicates Siamese sashimi swordfish.
-	/// </summary>
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	SiameseSashimiSwordfish,
 
 	/// <summary>
 	/// Indicates swordfish.
@@ -1913,87 +1999,6 @@ public enum Technique
 			"http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html"
 		])]
 	SiameseSashimiMutantSwordfish,
-
-	/// <summary>
-	/// Indicates jellyfish.
-	/// </summary>
-	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0302")]
-	[SudokuExplainer(Technique = SudokuExplainerTechnique.Jellyfish, RatingOriginal = [5.2])]
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Jellyfish.html"
-		])]
-	Jellyfish,
-
-	/// <summary>
-	/// Indicates finned jellyfish.
-	/// </summary>
-	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0312")]
-	[SudokuExplainer(RatingAdvanced = [5.4])]
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
-			"http://sudopedia.enjoysudoku.com/Finned_Jellyfish.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	FinnedJellyfish,
-
-	/// <summary>
-	/// Indicates sashimi jellyfish.
-	/// </summary>
-	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0322")]
-	[SudokuExplainer(RatingAdvanced = [5.6])]
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
-			"http://sudopedia.enjoysudoku.com/Sashimi_Jellyfish.html"
-		])]
-	SashimiJellyfish,
-
-	/// <summary>
-	/// Indicates Siamese finned jellyfish.
-	/// </summary>
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = [
-			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
-			"http://forum.enjoysudoku.com/viewtopic.php?t=2793"
-		])]
-	SiameseFinnedJellyfish,
-
-	/// <summary>
-	/// Indicates Siamese sashimi jellyfish.
-	/// </summary>
-	[TechniqueMetadata(
-		Rating = 32,
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.NormalFish,
-		StepType = typeof(NormalFishStep),
-		StepSearcherType = typeof(NormalFishStepSearcher),
-		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
-	SiameseSashimiJellyfish,
 
 	/// <summary>
 	/// Indicates franken jellyfish.

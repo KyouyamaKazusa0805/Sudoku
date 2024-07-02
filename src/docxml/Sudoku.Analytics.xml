@@ -5618,6 +5618,56 @@
             Indicates Siamese sashimi X-Wing.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Swordfish">
+            <summary>
+            Indicates swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedSwordfish">
+            <summary>
+            Indicates finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiSwordfish">
+            <summary>
+            Indicates sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSwordfish">
+            <summary>
+            Indicates Siamese finned swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSwordfish">
+            <summary>
+            Indicates Siamese sashimi swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.Jellyfish">
+            <summary>
+            Indicates jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedJellyfish">
+            <summary>
+            Indicates finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiJellyfish">
+            <summary>
+            Indicates sashimi jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedJellyfish">
+            <summary>
+            Indicates Siamese finned jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiJellyfish">
+            <summary>
+            Indicates Siamese sashimi jellyfish.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenXWing">
             <summary>
             Indicates franken X-Wing.
@@ -5668,31 +5718,6 @@
             Indicates Siamese sashimi mutant X-Wing.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Swordfish">
-            <summary>
-            Indicates swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedSwordfish">
-            <summary>
-            Indicates finned swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiSwordfish">
-            <summary>
-            Indicates sashimi swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedSwordfish">
-            <summary>
-            Indicates Siamese finned swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiSwordfish">
-            <summary>
-            Indicates Siamese sashimi swordfish.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenSwordfish">
             <summary>
             Indicates swordfish.
@@ -5741,31 +5766,6 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiMutantSwordfish">
             <summary>
             Indicates Siamese sashimi mutant swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.Jellyfish">
-            <summary>
-            Indicates jellyfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.FinnedJellyfish">
-            <summary>
-            Indicates finned jellyfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SashimiJellyfish">
-            <summary>
-            Indicates sashimi jellyfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseFinnedJellyfish">
-            <summary>
-            Indicates Siamese finned jellyfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.SiameseSashimiJellyfish">
-            <summary>
-            Indicates Siamese sashimi jellyfish.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.FrankenJellyfish">
