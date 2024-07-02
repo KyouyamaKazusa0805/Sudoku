@@ -14,6 +14,7 @@ global using System.Reflection;
 global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
+global using System.Runtime.Intrinsics;
 global using System.Runtime.Versioning;
 global using System.SourceGeneration;
 global using System.Text;

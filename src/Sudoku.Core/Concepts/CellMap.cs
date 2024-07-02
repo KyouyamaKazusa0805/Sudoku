@@ -25,6 +25,50 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
 	public static readonly CellMap Full = ~default(CellMap);
 
+	/// <summary>
+	/// Indicates the <see cref="Vector128{T}"/> instances to be used for checking shared houses.
+	/// </summary>
+	/// <seealso cref="Vector128{T}"/>
+	private static readonly ReadOnlyMemory<Vector128<long>> SharedHouseConstants = (Vector128<long>[])[
+		Vector128.Create(~     0x1C0E07L,            -1L),
+		Vector128.Create(~     0xE07038L,            -1L),
+		Vector128.Create(~    0x70381C0L,            -1L),
+		Vector128.Create(~ 0x7038000000L, ~        0x70L),
+		Vector128.Create(~0x181C0000000L, ~       0x381L),
+		Vector128.Create(~  0xE00000000L, ~      0x1C0EL),
+		Vector128.Create(            -1L, ~ 0x381C0E000L),
+		Vector128.Create(            -1L, ~0x1C0E070000L),
+		Vector128.Create(            -1L, ~0xE070380000L),
+		Vector128.Create(~        0x1FFL,            -1L),
+		Vector128.Create(~      0x3FE00L,            -1L),
+		Vector128.Create(~    0x7FC0000L,            -1L),
+		Vector128.Create(~  0xFF8000000L,            -1L),
+		Vector128.Create(~0x1F000000000L, ~         0xFL),
+		Vector128.Create(            -1L, ~      0x1FF0L),
+		Vector128.Create(            -1L, ~    0x3FE000L),
+		Vector128.Create(            -1L, ~  0x7FC00000L),
+		Vector128.Create(            -1L, ~0xFF80000000L),
+		Vector128.Create(~ 0x1008040201L, ~  0x80402010L),
+		Vector128.Create(~ 0x2010080402L, ~ 0x100804020L),
+		Vector128.Create(~ 0x4020100804L, ~ 0x201008040L),
+		Vector128.Create(~ 0x8040201008L, ~ 0x402010080L),
+		Vector128.Create(~0x10080402010L, ~ 0x804020100L),
+		Vector128.Create(~  0x100804020L, ~0x1008040201L),
+		Vector128.Create(~  0x201008040L, ~0x2010080402L),
+		Vector128.Create(~  0x402010080L, ~0x4020100804L),
+		Vector128.Create(~  0x804020100L, ~0x8040201008L)
+	];
+
+	/// <summary>
+	/// Indicates the factor values for property <see cref="SharedHouses"/>.
+	/// </summary>
+	/// <seealso cref="SharedHouses"/>
+	private static readonly HouseMask[] SharedHouseFactorValues = [
+		0x1, 0x2, 0x4, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100,
+		0x200, 0x400, 0x800, 0x1000, 0x2000, 0x4000, 0x8000, 0x10000, 0x20000,
+		0x40000, 0x80000, 0x100000, 0x200000, 0x400000, 0x800000, 0x1000000, 0x2000000, 0x4000000
+	];
+
 
 	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
@@ -203,42 +247,19 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// </remarks>
 	public readonly HouseMask SharedHouses
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			var z = 0;
-
-#pragma warning disable format
-			if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { z |=       0x1; }
-			if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { z |=       0x2; }
-			if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { z |=       0x4; }
-			if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { z |=       0x8; }
-			if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { z |=      0x10; }
-			if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { z |=      0x20; }
-			if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { z |=      0x40; }
-			if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { z |=      0x80; }
-			if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { z |=     0x100; }
-			if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { z |=     0x200; }
-			if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { z |=     0x400; }
-			if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { z |=     0x800; }
-			if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { z |=    0x1000; }
-			if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { z |=    0x2000; }
-			if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { z |=    0x4000; }
-			if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { z |=    0x8000; }
-			if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { z |=   0x10000; }
-			if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { z |=   0x20000; }
-			if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { z |=   0x40000; }
-			if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { z |=   0x80000; }
-			if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { z |=  0x100000; }
-			if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { z |=  0x200000; }
-			if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { z |=  0x400000; }
-			if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { z |=  0x800000; }
-			if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { z |= 0x1000000; }
-			if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { z |= 0x2000000; }
-			if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { z |= 0x4000000; }
-#pragma warning restore format
-
-			return z;
+			var result = 0;
+			var tempSpan = SharedHouseConstants.Span;
+			var bits = Vector128.Create(_low, _high);
+			for (var i = 0; i < 27; i++)
+			{
+				if ((bits & tempSpan[i]) == Vector128<long>.Zero)
+				{
+					result |= SharedHouseFactorValues[i];
+				}
+			}
+			return result;
 		}
 	}
 
@@ -332,7 +353,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 					higherBits &= high;
 				}
 			}
-
 			return CreateByBits(higherBits, lowerBits);
 		}
 	}
@@ -493,35 +513,16 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public readonly bool InOneHouse(out House houseIndex)
 	{
-#pragma warning disable format
-		if ((_high &            -1L) == 0 && (_low & ~     0x1C0E07L) == 0) { houseIndex =  0; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~     0xE07038L) == 0) { houseIndex =  1; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~    0x70381C0L) == 0) { houseIndex =  2; return true; }
-		if ((_high & ~        0x70L) == 0 && (_low & ~ 0x7038000000L) == 0) { houseIndex =  3; return true; }
-		if ((_high & ~       0x381L) == 0 && (_low & ~0x181C0000000L) == 0) { houseIndex =  4; return true; }
-		if ((_high & ~      0x1C0EL) == 0 && (_low & ~  0xE00000000L) == 0) { houseIndex =  5; return true; }
-		if ((_high & ~ 0x381C0E000L) == 0 && (_low &             -1L) == 0) { houseIndex =  6; return true; }
-		if ((_high & ~0x1C0E070000L) == 0 && (_low &             -1L) == 0) { houseIndex =  7; return true; }
-		if ((_high & ~0xE070380000L) == 0 && (_low &             -1L) == 0) { houseIndex =  8; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~        0x1FFL) == 0) { houseIndex =  9; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~      0x3FE00L) == 0) { houseIndex = 10; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~    0x7FC0000L) == 0) { houseIndex = 11; return true; }
-		if ((_high &            -1L) == 0 && (_low & ~  0xFF8000000L) == 0) { houseIndex = 12; return true; }
-		if ((_high & ~         0xFL) == 0 && (_low & ~0x1F000000000L) == 0) { houseIndex = 13; return true; }
-		if ((_high & ~      0x1FF0L) == 0 && (_low &             -1L) == 0) { houseIndex = 14; return true; }
-		if ((_high & ~    0x3FE000L) == 0 && (_low &             -1L) == 0) { houseIndex = 15; return true; }
-		if ((_high & ~  0x7FC00000L) == 0 && (_low &             -1L) == 0) { houseIndex = 16; return true; }
-		if ((_high & ~0xFF80000000L) == 0 && (_low &             -1L) == 0) { houseIndex = 17; return true; }
-		if ((_high & ~  0x80402010L) == 0 && (_low & ~ 0x1008040201L) == 0) { houseIndex = 18; return true; }
-		if ((_high & ~ 0x100804020L) == 0 && (_low & ~ 0x2010080402L) == 0) { houseIndex = 19; return true; }
-		if ((_high & ~ 0x201008040L) == 0 && (_low & ~ 0x4020100804L) == 0) { houseIndex = 20; return true; }
-		if ((_high & ~ 0x402010080L) == 0 && (_low & ~ 0x8040201008L) == 0) { houseIndex = 21; return true; }
-		if ((_high & ~ 0x804020100L) == 0 && (_low & ~0x10080402010L) == 0) { houseIndex = 22; return true; }
-		if ((_high & ~0x1008040201L) == 0 && (_low & ~  0x100804020L) == 0) { houseIndex = 23; return true; }
-		if ((_high & ~0x2010080402L) == 0 && (_low & ~  0x201008040L) == 0) { houseIndex = 24; return true; }
-		if ((_high & ~0x4020100804L) == 0 && (_low & ~  0x402010080L) == 0) { houseIndex = 25; return true; }
-		if ((_high & ~0x8040201008L) == 0 && (_low & ~  0x804020100L) == 0) { houseIndex = 26; return true; }
-#pragma warning restore format
+		var tempSpan = SharedHouseConstants.Span;
+		var bits = Vector128.Create(_low, _high);
+		for (var i = 0; i < 27; i++)
+		{
+			if ((bits & tempSpan[i]) == Vector128<long>.Zero)
+			{
+				houseIndex = i;
+				return true;
+			}
+		}
 
 		houseIndex = -1;
 		return false;
@@ -887,13 +888,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	public static CellMap operator +(in CellMap collection, Cell offset)
 	{
 		var result = collection;
-		if (result.Contains(offset))
-		{
-			return result;
-		}
-
-		(offset / Shifting == 0 ? ref result._low : ref result._high) |= 1L << offset % Shifting;
-		result.Count++;
+		result.Add(offset);
 		return result;
 	}
 
@@ -902,13 +897,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	public static CellMap operator -(in CellMap collection, Cell offset)
 	{
 		var result = collection;
-		if (!result.Contains(offset))
-		{
-			return collection;
-		}
-
-		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
-		result.Count--;
+		result.Remove(offset);
 		return result;
 	}
 

@@ -2053,6 +2053,18 @@
         <member name="F:Sudoku.Concepts.CellMap.Full">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Full"/>
         </member>
+        <member name="F:Sudoku.Concepts.CellMap.SharedHouseConstants">
+            <summary>
+            Indicates the <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> instances to be used for checking shared houses.
+            </summary>
+            <seealso cref="T:System.Runtime.Intrinsics.Vector128`1"/>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.SharedHouseFactorValues">
+            <summary>
+            Indicates the factor values for property <see cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>
+        </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
