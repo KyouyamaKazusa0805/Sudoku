@@ -230,15 +230,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate, Enumerator>.Offsets => Offsets;
 
-	/// <summary>
-	/// Indicates the vectors created.
-	/// </summary>
-	private readonly (Vector512<long> First, Vector256<long> Second) Vectors
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (Vector512.Create(_bits[..8]), Vector256.Create(_bits[8..]));
-	}
-
 
 	/// <inheritdoc/>
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;

@@ -1694,11 +1694,6 @@
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Vectors">
-            <summary>
-            Indicates the vectors created.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
