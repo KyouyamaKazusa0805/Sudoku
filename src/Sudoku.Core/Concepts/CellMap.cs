@@ -360,7 +360,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	internal readonly unsafe Cell[] Offsets
+	internal readonly Cell[] Offsets
 	{
 		get
 		{

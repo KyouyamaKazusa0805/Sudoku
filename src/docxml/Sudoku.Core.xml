@@ -1497,7 +1497,6 @@
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
-            The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
             </summary>
             <remarks>
             <large-structure>
@@ -1623,6 +1622,12 @@
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.Length">
+            <summary>
+            Indicates the length of the backing buffer.
+            The size of the buffer is 12 <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
@@ -1688,6 +1693,11 @@
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Vectors">
+            <summary>
+            Indicates the vectors created.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>

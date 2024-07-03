@@ -6,13 +6,13 @@ public partial struct CandidateMap
 	/// Indicates the internal buffer type.
 	/// </summary>
 	[InlineArray(12)]
-	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private struct BackingBuffer : IEquatable<BackingBuffer>, IEqualityOperators<BackingBuffer, BackingBuffer, bool>
 	{
 		/// <summary>
 		/// Indicates the first element of the whole buffer.
 		/// </summary>
+		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private long _firstElement;
 
 
@@ -23,7 +23,7 @@ public partial struct CandidateMap
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public readonly bool Equals(ref readonly BackingBuffer other)
 		{
-			for (var i = 0; i < 12; i++)
+			for (var i = 0; i < Length; i++)
 			{
 				if (this[i] != other[i])
 				{
@@ -37,7 +37,7 @@ public partial struct CandidateMap
 		public override readonly int GetHashCode()
 		{
 			var hashCode = new HashCode();
-			for (var i = 0; i < 12; i++)
+			for (var i = 0; i < Length; i++)
 			{
 				hashCode.Add(this[i]);
 			}
@@ -58,9 +58,11 @@ public partial struct CandidateMap
 		public static bool operator !=(in BackingBuffer left, in BackingBuffer right) => !(left == right);
 
 		/// <inheritdoc/>
-		static bool IEqualityOperators<BackingBuffer, BackingBuffer, bool>.operator ==(BackingBuffer left, BackingBuffer right) => left == right;
+		static bool IEqualityOperators<BackingBuffer, BackingBuffer, bool>.operator ==(BackingBuffer left, BackingBuffer right)
+			=> left == right;
 
 		/// <inheritdoc/>
-		static bool IEqualityOperators<BackingBuffer, BackingBuffer, bool>.operator !=(BackingBuffer left, BackingBuffer right) => left != right;
+		static bool IEqualityOperators<BackingBuffer, BackingBuffer, bool>.operator !=(BackingBuffer left, BackingBuffer right)
+			=> left != right;
 	}
 }

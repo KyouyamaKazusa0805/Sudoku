@@ -4,7 +4,6 @@ using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 
 /// <summary>
 /// Encapsulates a binary series of candidate state table.
-/// The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
 /// </summary>
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
@@ -16,6 +15,13 @@ using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators, IsLargeStructure = true)]
 public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
+	/// <summary>
+	/// Indicates the length of the backing buffer.
+	/// The size of the buffer is 12 <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
+	/// </summary>
+	private const int Length = 12;
+
+
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CandidateMap Empty = [];
 
@@ -199,6 +205,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
+	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	internal readonly Candidate[] Offsets
 	{
 		get
@@ -208,14 +215,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 				return [];
 			}
 
-			var arr = new Candidate[Count];
-			var pos = 0;
-			for (var i = 0; i < 729; i++)
+			var (pos, arr) = (0, new Candidate[Count]);
+			for (var i = 0; i < Length; i++)
 			{
-				if (Contains(i))
-				{
-					arr[pos++] = i;
-				}
+				for (var value = _bits[i]; value != 0; arr[pos++] = (i << 6) + TrailingZeroCount((ulong)value), value &= value - 1) ;
 			}
 			return arr;
 		}
@@ -226,6 +229,15 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate, Enumerator>.Offsets => Offsets;
+
+	/// <summary>
+	/// Indicates the vectors created.
+	/// </summary>
+	private readonly (Vector512<long> First, Vector256<long> Second) Vectors
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => (Vector512.Create(_bits[..8]), Vector256.Create(_bits[8..]));
+	}
 
 
 	/// <inheritdoc/>
@@ -254,15 +266,25 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 				return -1;
 			}
 
-			var pos = 0;
-			for (var i = 0; i < 729; i++)
+			var bmi2IsSupported = Bmi2.X64.IsSupported;
+			var popCountSum = 0;
+			for (var i = 0; i < Length; i++)
 			{
-				if (Contains(i) && pos++ == index)
+				var bits = (ulong)_bits[i];
+				var z = bmi2IsSupported
+					? TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - popCountSum, bits))
+					: bits.SetAt(index - popCountSum);
+				switch (bmi2IsSupported)
 				{
-					return i;
+					case true when z != TrailingZeroCountFallbackLong:
+					case false when z != -1:
+					{
+						return z + (i << 6); // * 64
+					}
 				}
-			}
 
+				popCountSum += PopCount(bits);
+			}
 			return -1;
 		}
 	}
