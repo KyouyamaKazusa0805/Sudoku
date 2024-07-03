@@ -359,6 +359,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
+	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	internal readonly unsafe Cell[] Offsets
 	{
 		get
@@ -368,29 +369,9 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 				return [];
 			}
 
-			long value;
-			int i, pos = 0;
-			var arr = new Cell[Count];
-			if (_low != 0)
-			{
-				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						arr[pos++] = i;
-					}
-				}
-			}
-			if (_high != 0)
-			{
-				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
-				{
-					if ((value & 1) != 0)
-					{
-						arr[pos++] = i;
-					}
-				}
-			}
+			var (pos, arr) = (0, new Cell[Count]);
+			for (var value = _low; value != 0; arr[pos++] = TrailingZeroCount((ulong)value), value &= value - 1) ;
+			for (var value = _high; value != 0; arr[pos++] = Shifting + TrailingZeroCount((ulong)value), value &= value - 1) ;
 			return arr;
 		}
 	}

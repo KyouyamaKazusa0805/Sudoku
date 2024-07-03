@@ -14,14 +14,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount((uint)@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(sbyte) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= (sbyte)(@this - 1);
 		}
 		return result;
 	}
@@ -34,14 +31,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount(@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(byte) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= (byte)(@this - 1);
 		}
 		return result;
 	}
@@ -54,14 +48,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount((uint)@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(short) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= (short)(@this - 1);
 		}
 		return result;
 	}
@@ -74,14 +65,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount(@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(ushort) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= (ushort)(@this - 1);
 		}
 		return result;
 	}
@@ -94,14 +82,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount((uint)@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(int) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
 		return result;
 	}
@@ -114,14 +99,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount(@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(uint) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
 		return result;
 	}
@@ -134,14 +116,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount((ulong)@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(long) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount((ulong)@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
 		return result;
 	}
@@ -154,14 +133,11 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var length = PopCount(@this);
-		var result = new int[length];
-		for (byte i = 0, p = 0; i < sizeof(ulong) << 3; i++, @this >>= 1)
+		var (result, p) = (new int[PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			if ((@this & 1) != 0)
-			{
-				result[p++] = i;
-			}
+			result[p++] = TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
 		return result;
 	}
@@ -174,20 +150,13 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		unsafe
+		var (result, p) = (new int[(int)llong.PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			var (upper, lower) = ((ulong)(@this >>> 64), (ulong)(@this & ulong.MaxValue));
-			var length = PopCount(upper) + PopCount(lower);
-			var result = new int[length];
-			for (byte i = 0, p = 0; i < sizeof(llong) << 3; i++, @this >>= 1)
-			{
-				if ((@this & 1) != 0)
-				{
-					result[p++] = i;
-				}
-			}
-			return result;
+			result[p++] = (int)llong.TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
+		return result;
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
@@ -198,20 +167,13 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		unsafe
+		var (result, p) = (new int[(int)ullong.PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			var (upper, lower) = ((ulong)(@this >>> 64), (ulong)(@this & ulong.MaxValue));
-			var length = PopCount(upper) + PopCount(lower);
-			var result = new int[length];
-			for (byte i = 0, p = 0; i < sizeof(ullong) << 3; i++, @this >>= 1)
-			{
-				if ((@this & 1) != 0)
-				{
-					result[p++] = i;
-				}
-			}
-			return result;
+			result[p++] = (int)ullong.TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
+		return result;
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
@@ -222,19 +184,13 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		unsafe
+		var (result, p) = (new int[(int)nint.PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			var length = PopCount((nuint)@this);
-			var result = new int[length];
-			for (byte i = 0, p = 0; i < sizeof(nint) << 3; i++, @this >>= 1)
-			{
-				if ((@this & 1) != 0)
-				{
-					result[p++] = i;
-				}
-			}
-			return result;
+			result[p++] = (int)nint.TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
+		return result;
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
@@ -245,19 +201,13 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		unsafe
+		var (result, p) = (new int[(int)nuint.PopCount(@this)], 0);
+		while (@this != 0)
 		{
-			var length = PopCount(@this);
-			var result = new int[length];
-			for (byte i = 0, p = 0; i < sizeof(nuint) << 3; i++, @this >>= 1)
-			{
-				if ((@this & 1) != 0)
-				{
-					result[p++] = i;
-				}
-			}
-			return result;
+			result[p++] = (int)nuint.TrailingZeroCount(@this);
+			@this &= @this - 1;
 		}
+		return result;
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
@@ -268,17 +218,12 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		unsafe
+		var (result, p) = (new int[int.CreateChecked(T.PopCount(@this))], 0);
+		while (@this != T.Zero)
 		{
-			var result = new List<int>();
-			for (byte i = 0, p = 0; i < sizeof(T) << 3; i++, @this >>= 1)
-			{
-				if ((@this & T.One) != T.Zero)
-				{
-					result[p++] = i;
-				}
-			}
-			return result.AsReadOnlySpan();
+			result[p++] = int.CreateChecked(T.TrailingZeroCount(@this));
+			@this &= @this - T.One;
 		}
+		return result;
 	}
 }
