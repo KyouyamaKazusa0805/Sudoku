@@ -5410,43 +5410,6 @@
             <param name="value">The value to be returned.</param>
             <returns>The instance to be returned.</returns>
         </member>
-        <member name="T:System.SimdOperations">
-            <summary>
-            Encapsulates a list of methods to handle with bits, using SIMD.
-            </summary>
-            <seealso href="https://learn.microsoft.com/en-us/dotnet/standard/simd">Microsoft Learn - SIMD</seealso>
-            <seealso href="https://en.wikipedia.org/wiki/Single_instruction,_multiple_data">Wikipedia - SIMD</seealso>
-        </member>
-        <member name="M:System.SimdOperations.IterateBits(System.Int64*,System.Int32,System.Int32*)">
-            <summary>
-            Iterates all possible set bits in the target array.
-            </summary>
-            <param name="array">The array specified as a pointer that points to an array or other collection, of <see cref="T:System.Int64"/> integers.</param>
-            <param name="length">The length of the argument <paramref name="array"/>.</param>
-            <param name="outBuffer">The set bit indices specified as a buffer.</param>
-            <returns>Returns the number of set bit indices. This return value is used with argument <paramref name="outBuffer"/>.</returns>
-            <seealso href="https://lemire.me/blog/2018/03/08/iterating-over-set-bits-quickly-simd-edition/">
-            Iterating over set bits quickly (SIMD edition)
-            </seealso>
-        </member>
-        <member name="T:System.Constants">
-            <target name="class" when="constant">
-				<summary>
-					Provides with constants and read-only values used by code in the current file.
-				</summary>
-			</target>
-        </member>
-        <member name="F:System.Constants.LengthTable">
-            <summary>
-            The length table. Indicates how many bits are set in the specified integer.
-            </summary>
-        </member>
-        <member name="F:System.Constants.BitPosTable">
-            <summary>
-            The bit position table. In other words, <c>BitPosTable[n]</c> means the n-th integer's (i.e. <c>n</c>'s) set bit positions
-            represented as indices.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>
             Defines a kind of accessibility being defined in C#.
