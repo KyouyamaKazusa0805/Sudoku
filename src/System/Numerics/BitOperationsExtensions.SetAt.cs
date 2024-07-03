@@ -86,29 +86,33 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
-	public static partial int SetAt(this long @this, int order)
-	{
-		for (int i = 0, count = -1; i < sizeof(long) << 3; i++, @this >>= 1)
-		{
-			if ((@this & 1) != 0 && ++count == order)
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static partial int SetAt(this long @this, int order) => SetAt((ulong)@this, order);
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
 	public static partial int SetAt(this ulong @this, int order)
 	{
-		for (int i = 0, count = -1; i < sizeof(ulong) << 3; i++, @this >>= 1)
+		var (mask, size, @base) = (0x0000FFFFu, 16u, 0u);
+		if (order++ >= PopCount(@this))
 		{
-			if ((@this & 1) != 0 && ++count == order)
+			return -1;
+		}
+
+		while (size > 0)
+		{
+			if (order > PopCount(@this & mask))
 			{
-				return i;
+				@base += size;
+				size >>= 1;
+				mask |= mask << (int)size;
+			}
+			else
+			{
+				size >>= 1;
+				mask >>= (int)size;
 			}
 		}
-		return -1;
+		return @base == 64 ? -1 : (int)@base;
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>

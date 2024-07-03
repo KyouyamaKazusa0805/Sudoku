@@ -298,7 +298,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 				{
 					continue;
 				}
-
 				return symmetry;
 			}
 			return SymmetricType.None;
@@ -360,7 +359,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	internal readonly Cell[] Offsets
+	internal readonly unsafe Cell[] Offsets
 	{
 		get
 		{
@@ -392,7 +391,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 					}
 				}
 			}
-
 			return arr;
 		}
 	}
@@ -423,6 +421,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	/// </returns>
 	public readonly Cell this[int index]
 	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
 			if (!this || index >= Count)
@@ -430,36 +429,33 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 				return -1;
 			}
 
-			long value;
-			int i, pos = -1;
-			if (_low != 0)
+			if (Bmi2.X64.IsSupported)
 			{
-				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
+				// https://stackoverflow.com/questions/7669057/find-nth-set-bit-in-an-int
+
+				return TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index, (ulong)_low)) switch
 				{
-					if ((value & 1) != 0 && ++pos == index)
+					var low and not TrailingZeroCountFallbackLong => low,
+					_ => TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - PopCount((ulong)_low), (ulong)_high)) switch
 					{
-						return i;
+						var high and not TrailingZeroCountFallbackLong => high + Shifting,
+						_ => -1
 					}
-				}
-			}
-			if (_high != 0)
-			{
-				for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
-				{
-					if ((value & 1) != 0 && ++pos == index)
-					{
-						return i;
-					}
-				}
+				};
 			}
 
-			return -1;
+			return PopCount((ulong)_low) is var popCountLow && popCountLow == index
+				? 63 - LeadingZeroCount((ulong)_low)
+				: popCountLow > index
+					? _low.SetAt(index)
+					: _high.SetAt(index - popCountLow) is var z and not TrailingZeroCountFallbackLong ? z + Shifting : -1;
 		}
 	}
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(ref Cell sequence, int length)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly unsafe void CopyTo(ref Cell sequence, int length)
 	{
 		@ref.ThrowIfNullRef(in sequence);
 
@@ -470,27 +466,9 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 
 		ArgumentOutOfRangeException.ThrowIfGreaterThan(Count, length);
 
-		long value;
-		int i, pos = 0;
-		if (_low != 0)
+		fixed (Cell* pSequence = &sequence)
 		{
-			for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
-			{
-				if ((value & 1) != 0)
-				{
-					@ref.Add(ref sequence, pos++) = i;
-				}
-			}
-		}
-		if (_high != 0)
-		{
-			for (value = _high, i = Shifting; i < 81; i++, value >>= 1)
-			{
-				if ((value & 1) != 0)
-				{
-					@ref.Add(ref sequence, pos++) = i;
-				}
-			}
+			Offsets[..length].AsReadOnlySpan().CopyTo(new(pSequence, length));
 		}
 	}
 
