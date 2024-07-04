@@ -36,7 +36,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
-	private static readonly (Cell[], Cell[], Cell[], Cell[])[] PatternOffsets;
+	private static readonly ChromaticPattern[] Patterns;
 
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
@@ -67,7 +67,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		var patternOffsetsList = new List<(Cell[], Cell[], Cell[], Cell[])>();
+		var patternOffsetsList = new List<ChromaticPattern>();
 		foreach (var (aCase, bCase, cCase, dCase) in (
 			(true, false, false, false),
 			(false, true, false, false),
@@ -84,7 +84,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 					{
 						foreach (var d in dCase ? DiagonalCases : AntidiagonalCases)
 						{
-							patternOffsetsList.Add((a, b, c, d));
+							patternOffsetsList.Add(new(a, b, c, d));
 						}
 					}
 				}
@@ -99,14 +99,13 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 					{
 						foreach (var d in dCase ? AntidiagonalCases : DiagonalCases)
 						{
-							patternOffsetsList.Add((a, b, c, d));
+							patternOffsetsList.Add(new(a, b, c, d));
 						}
 					}
 				}
 			}
 		}
-
-		PatternOffsets = [.. patternOffsetsList];
+		Patterns = [.. patternOffsetsList];
 	}
 
 
@@ -156,7 +155,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			var c2 = HousesCells[blocks[1]][0];
 			var c3 = HousesCells[blocks[2]][0];
 			var c4 = HousesCells[blocks[3]][0];
-			foreach (var (a, b, c, d) in PatternOffsets)
+			foreach (var (a, b, c, d) in Patterns)
 			{
 				var pattern = f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);
 				if ((EmptyCells & pattern) != pattern)
@@ -191,13 +190,12 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				}
 			}
 		}
-
 		return null;
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static CellMap f(Cell[] offsets, Cell currentOffset)
-			=> [offsets[0] + currentOffset, offsets[1] + currentOffset, offsets[2] + currentOffset];
+		static CellMap f(Cell[] cells, Cell currentCellOffset)
+			=> [cells[0] + currentCellOffset, cells[1] + currentCellOffset, cells[2] + currentCellOffset];
 	}
 
 	/// <summary>

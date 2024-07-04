@@ -2078,6 +2078,36 @@
         <member name="M:Sudoku.Concepts.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Concepts.ChromaticPattern">
+            <summary>
+            Represents a chromatic pattern.
+            </summary>
+            <param name="Block1Cells">Indicates the cells used in first block.</param>
+            <param name="Block2Cells">Indicates the cells used in second block.</param>
+            <param name="Block3Cells">Indicates the cells used in third block.</param>
+            <param name="Block4Cells">Indicates the cells used in fourth block.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ChromaticPattern.#ctor(System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
+            <summary>
+            Represents a chromatic pattern.
+            </summary>
+            <param name="Block1Cells">Indicates the cells used in first block.</param>
+            <param name="Block2Cells">Indicates the cells used in second block.</param>
+            <param name="Block3Cells">Indicates the cells used in third block.</param>
+            <param name="Block4Cells">Indicates the cells used in fourth block.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ChromaticPattern.Block1Cells">
+            <summary>Indicates the cells used in first block.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChromaticPattern.Block2Cells">
+            <summary>Indicates the cells used in second block.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChromaticPattern.Block3Cells">
+            <summary>Indicates the cells used in third block.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChromaticPattern.Block4Cells">
+            <summary>Indicates the cells used in fourth block.</summary>
+        </member>
         <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">
             <summary>
             Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
@@ -13940,7 +13970,7 @@
             please visit <see href="http://forum.enjoysudoku.com/chromatic-patterns-t39885.html">this link</see>.
             </remarks>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.PatternOffsets">
+        <member name="F:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher.Patterns">
             <summary>
             The possible pattern offsets.
             </summary>
