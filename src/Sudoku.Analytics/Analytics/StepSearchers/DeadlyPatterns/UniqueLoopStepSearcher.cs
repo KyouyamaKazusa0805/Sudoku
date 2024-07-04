@@ -29,9 +29,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		ref readonly var grid = ref context.Grid;
-		var accumulator = context.Accumulator!;
-		var onlyFindOne = context.OnlyFindOne;
-		var resultAccumulator = new List<UniqueLoopStep>();
+		var tempAccumulator = new List<UniqueLoopStep>();
 		foreach (var cell in BivalueCells)
 		{
 			var mask = grid.GetCandidates(cell);
@@ -61,50 +59,47 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						if (CheckType1(resultAccumulator, ref context, d1, d2, in loop, in extraCellsMap, onlyFindOne, path) is { } step1)
+						if (CheckType1(tempAccumulator, ref context, d1, d2, in loop, in extraCellsMap, context.OnlyFindOne, path) is { } step1)
 						{
 							return step1;
 						}
-
 						break;
 					}
 					default:
 					{
 						// Type 2, 3, 4.
-						if (CheckType2(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step2)
+						if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step2)
 						{
 							return step2;
 						}
-						if (CheckType3(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step3)
+						if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step3)
 						{
 							return step3;
 						}
-						if (CheckType4(resultAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, onlyFindOne, path) is { } step4)
+						if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step4)
 						{
 							return step4;
 						}
-
 						break;
 					}
 				}
 			}
 		}
 
-		if (resultAccumulator.Count == 0)
+		if (tempAccumulator.Count == 0)
 		{
 			return null;
 		}
 
-		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
+		var resultList = StepMarshal.RemoveDuplicateItems(tempAccumulator).ToList();
 		StepMarshal.SortItems(resultList);
 
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			return resultList[0];
 		}
 
-		accumulator.AddRange(resultList);
-
+		context.Accumulator.AddRange(resultList);
 		return null;
 	}
 
@@ -548,7 +543,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					new(first, second, digit),
 					path
 				);
-
 				if (onlyFindOne)
 				{
 					return step;
@@ -670,7 +664,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					{
 						return false;
 					}
-
 					visitedOdd |= 1 << house;
 				}
 				else
@@ -679,7 +672,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					{
 						return false;
 					}
-
 					visitedEven |= 1 << house;
 				}
 			}
