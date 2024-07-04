@@ -40,7 +40,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		};
 		ElimsSearcher.Collect(ref pomContext);
 
-		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
+		foreach (PatternOverlayStep step in pomSteps)
 		{
 			ref var currentMap = ref eliminationMaps[step.Digit];
 			foreach (var conclusion in step.Conclusions)

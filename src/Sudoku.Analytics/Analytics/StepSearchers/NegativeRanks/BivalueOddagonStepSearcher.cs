@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <para>
 /// <i>
 /// In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-/// and a type 4 cannot be formed as a stable technique pattern.
+/// and a type 4 cannot be formed as a stable pattern.
 /// </i>
 /// </para>
 /// <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
@@ -95,9 +95,9 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		return null;
 
 
-		static HashSet<BivalueOddagonInfo> collect(ref readonly Grid grid)
+		static HashSet<BivalueOddagon> collect(ref readonly Grid grid)
 		{
-			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagonInfo>(MaximumCount));
+			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagon>(MaximumCount));
 			for (var d1 = 0; d1 < 8; d1++)
 			{
 				for (var d2 = d1 + 1; d2 < 9; d2++)
@@ -112,7 +112,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							cell,
 							-1,
 							in cellsContainingBothTwoDigits,
-							[cell],
+							in cell.AsCellMap(),
 							PopCount((uint)grid.GetCandidates(cell)) > 2 ? [cell] : [],
 							result,
 							ref foundLoopsCount,
@@ -134,7 +134,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			ref readonly CellMap cellsContainingBothDigits,
 			ref readonly CellMap loop,
 			ref readonly CellMap extraCells,
-			HashSet<BivalueOddagonInfo> result,
+			HashSet<BivalueOddagon> result,
 			ref int loopsCount,
 			Mask comparer,
 			Mask extraDigitsMask
@@ -395,21 +395,4 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	ReturnNull:
 		return null;
 	}
-}
-
-/// <summary>
-/// Defines a temporary type that records a pair of data for a bi-value oddagon.
-/// </summary>
-/// <param name="LoopCells">Indicates the cells of the whole loop.</param>
-/// <param name="ExtraCells">Indicates the extra cells.</param>
-/// <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
-file sealed record BivalueOddagonInfo(ref readonly CellMap LoopCells, ref readonly CellMap ExtraCells, Mask DigitsMask)
-{
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] BivalueOddagonInfo? other) => other is not null && LoopCells == other.LoopCells;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override int GetHashCode() => LoopCells.GetHashCode();
 }

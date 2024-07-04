@@ -321,6 +321,37 @@
         <member name="M:Sudoku.Concepts.AvoidableRectangle.op_Inequality(Sudoku.Concepts.AvoidableRectangle,Sudoku.Concepts.AvoidableRectangle)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Concepts.BivalueOddagon">
+            <summary>
+            Defines a temporary type that records a pair of data for a bi-value oddagon.
+            </summary>
+            <param name="LoopCells">Indicates the cells of the whole loop.</param>
+            <param name="ExtraCells">Indicates the extra cells.</param>
+            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.BivalueOddagon.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Defines a temporary type that records a pair of data for a bi-value oddagon.
+            </summary>
+            <param name="LoopCells">Indicates the cells of the whole loop.</param>
+            <param name="ExtraCells">Indicates the extra cells.</param>
+            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.BivalueOddagon.LoopCells">
+            <summary>Indicates the cells of the whole loop.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BivalueOddagon.ExtraCells">
+            <summary>Indicates the extra cells.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BivalueOddagon.DigitsMask">
+            <summary>Indicates the mask of digits that the loop used.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.BivalueOddagon.Equals(Sudoku.Concepts.BivalueOddagon)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BivalueOddagon.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
         <member name="T:Sudoku.Concepts.TrueCandidate">
             <summary>
             Defines a searcher that searches for the true candidates of the current sudoku grid.
@@ -13856,7 +13887,7 @@
             <para>
             <i>
             In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-            and a type 4 cannot be formed as a stable technique pattern.
+            and a type 4 cannot be formed as a stable pattern.
             </i>
             </para>
             <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
@@ -13879,37 +13910,6 @@
             <summary>
             Check for type 3.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo">
-            <summary>
-            Defines a temporary type that records a pair of data for a bi-value oddagon.
-            </summary>
-            <param name="LoopCells">Indicates the cells of the whole loop.</param>
-            <param name="ExtraCells">Indicates the extra cells.</param>
-            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
-            <summary>
-            Defines a temporary type that records a pair of data for a bi-value oddagon.
-            </summary>
-            <param name="LoopCells">Indicates the cells of the whole loop.</param>
-            <param name="ExtraCells">Indicates the extra cells.</param>
-            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.LoopCells">
-            <summary>Indicates the cells of the whole loop.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.ExtraCells">
-            <summary>Indicates the extra cells.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.DigitsMask">
-            <summary>Indicates the mask of digits that the loop used.</summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.Equals(Sudoku.Analytics.StepSearchers.BivalueOddagonInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonInfo.GetHashCode">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChromaticPatternStepSearcher">
             <summary>

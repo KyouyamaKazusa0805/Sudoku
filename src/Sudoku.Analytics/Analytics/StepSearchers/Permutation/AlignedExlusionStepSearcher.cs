@@ -332,7 +332,6 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				}
 			}
 		}
-
 		return result;
 
 
@@ -355,7 +354,6 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					return true;
 				}
 			}
-
 			return false;
 		}
 	}
