@@ -138,7 +138,6 @@ public sealed partial class TechniqueSet :
 			{
 				result |= technique.GetDifficultyLevel();
 			}
-
 			return result;
 		}
 	}
@@ -165,7 +164,6 @@ public sealed partial class TechniqueSet :
 					return technique;
 				}
 			}
-
 			throw new IndexOutOfRangeException();
 		}
 	}
@@ -186,10 +184,8 @@ public sealed partial class TechniqueSet :
 				{
 					return result;
 				}
-
 				result++;
 			}
-
 			return -1;
 		}
 	}
@@ -289,10 +285,8 @@ public sealed partial class TechniqueSet :
 			var target = (int)technique.GetGroup() * 1000000 + (int)technique;
 			result |= flag ? target >> 10 : target;
 			result += flag ? 7 : 31;
-
 			flag = !flag;
 		}
-
 		return result;
 	}
 
@@ -330,7 +324,6 @@ public sealed partial class TechniqueSet :
 				result.Add(technique);
 			}
 		}
-
 		return result;
 	}
 
