@@ -106,7 +106,7 @@ public static class Combinatorial
 	public static ReadOnlySpan<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this)
 	{
 		var result = new List<T[]>();
-		for (var size = 0; size < @this.Length; size++)
+		for (var size = 1; size <= @this.Length; size++)
 		{
 			foreach (var element in @this.GetSubsets(size))
 			{

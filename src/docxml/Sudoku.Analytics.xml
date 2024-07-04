@@ -2252,6 +2252,35 @@
             <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
             <returns>The result pair.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.DominoLoop">
+            <summary>
+            Represents a domino loop pattern.
+            </summary>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DominoLoop.#ctor(System.Int32[])">
+            <summary>
+            Represents a domino loop pattern.
+            </summary>
+            <param name="Cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.DominoLoop.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.DominoLoop.Map">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.DominoLoop.Equals(Sudoku.Concepts.DominoLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DominoLoop.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DominoLoop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Concepts.EliminationRange">
             <summary>
             Represents a type that includes a list of houses and a list of digits, indicating the eliminations range.
@@ -13815,9 +13844,9 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.SkLoopTable">
+        <member name="F:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.Patterns">
             <summary>
-            The position table of all SK-loops.
+            Indicateds all possible patterns.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.#cctor">

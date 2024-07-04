@@ -11,16 +11,15 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class DominoLoopStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// The position table of all SK-loops.
+	/// Indicateds all possible patterns.
 	/// </summary>
-	private static readonly Cell[][] SkLoopTable;
+	private static readonly DominoLoop[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static DominoLoopStepSearcher()
 	{
-		// Initialize for SK-loop table.
-		SkLoopTable = new Cell[729][];
+		Patterns = new DominoLoop[729];
 
 		var s = (stackalloc int[4]);
 		for (var (a, n) = (9, 0); a < 18; a++)
@@ -55,26 +54,28 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						all &= HousesMap[s[0]] | HousesMap[s[1]] | HousesMap[s[2]] | HousesMap[s[3]];
 						all &= ~overlap;
 
-						SkLoopTable[n] = new Cell[16];
+						var patternCells = new Cell[16];
 						var pos = 0;
 						foreach (var cell in all & HousesMap[a])
 						{
-							SkLoopTable[n][pos++] = cell;
+							patternCells[pos++] = cell;
 						}
 						foreach (var cell in all & HousesMap[d])
 						{
-							SkLoopTable[n][pos++] = cell;
+							patternCells[pos++] = cell;
 						}
-						var cells = (Cell[])[.. all & HousesMap[b]];
-						SkLoopTable[n][pos++] = cells[2];
-						SkLoopTable[n][pos++] = cells[3];
-						SkLoopTable[n][pos++] = cells[0];
-						SkLoopTable[n][pos++] = cells[1];
-						cells = [.. all & HousesMap[c]];
-						SkLoopTable[n][pos++] = cells[2];
-						SkLoopTable[n][pos++] = cells[3];
-						SkLoopTable[n][pos++] = cells[0];
-						SkLoopTable[n++][pos++] = cells[1];
+						var cells1 = (Cell[])[.. all & HousesMap[b]];
+						patternCells[pos++] = cells1[2];
+						patternCells[pos++] = cells1[3];
+						patternCells[pos++] = cells1[0];
+						patternCells[pos++] = cells1[1];
+						var cells2 = (Cell[])[.. all & HousesMap[c]];
+						patternCells[pos++] = cells2[2];
+						patternCells[pos++] = cells2[3];
+						patternCells[pos++] = cells2[0];
+						patternCells[pos++] = cells2[1];
+
+						Patterns[n++] = new(patternCells);
 					}
 				}
 			}
@@ -89,8 +90,10 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 		var tempLink = (stackalloc Mask[8]);
 		var linkHouse = (stackalloc House[8]);
 		ref readonly var grid = ref context.Grid;
-		foreach (var cells in SkLoopTable)
+		foreach (var pattern in Patterns)
 		{
+			var cells = pattern.Cells;
+
 			// Initialize the elements.
 			var (n, i, candidateCount) = (0, 0, 0);
 			pairs.Clear();
