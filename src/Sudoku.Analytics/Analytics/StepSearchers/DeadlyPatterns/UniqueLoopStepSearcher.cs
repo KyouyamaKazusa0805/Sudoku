@@ -693,7 +693,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="path">The loop, specified as its path.</param>
 	/// <returns>A list of <see cref="ChainLinkViewNode"/> instances.</returns>
-	private static List<ChainLinkViewNode> GetLoopLinks(Cell[] path)
+	private static ReadOnlySpan<ChainLinkViewNode> GetLoopLinks(Cell[] path)
 	{
 		const Digit digit = 4;
 		var result = new List<ChainLinkViewNode>();
@@ -708,7 +708,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				)
 			);
 		}
-		return result;
+		return result.AsReadOnlySpan();
 	}
 
 
