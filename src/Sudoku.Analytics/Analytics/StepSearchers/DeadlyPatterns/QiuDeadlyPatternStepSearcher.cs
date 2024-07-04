@@ -25,8 +25,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_QiuDeadlyPatternStepSearcher",
-	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2, Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4,
-	Technique.LockedQiuDeadlyPattern, Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2,
+	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
+	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
+	Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2,
 	SupportedSudokuTypes = SudokuType.Standard,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
@@ -34,12 +35,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns for case 1.
 	/// </summary>
-	private static readonly Pattern1[] PatternsForCase1;
+	private static readonly QiuDeadlyPattern1[] PatternsForCase1;
 
 	/// <summary>
 	/// Indicates the patterns for case 2.
 	/// </summary>
-	private static readonly Pattern2[] PatternsForCase2;
+	private static readonly QiuDeadlyPattern2[] PatternsForCase2;
 
 	/// <summary>
 	/// Indicates the line offsets of the patterns.
@@ -58,7 +59,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	static QiuDeadlyPatternStepSearcher()
 	{
 		// Case 1: 2 lines + 2 cells.
-		var patternsForCase1 = new List<Pattern1>();
+		var patternsForCase1 = new List<QiuDeadlyPattern1>();
 		foreach (var isRow in (true, false))
 		{
 			var (@base, fullHousesMask) = isRow ? (9, HouseMaskOperations.AllRowsMask) : (18, HouseMaskOperations.AllColumnsMask);
@@ -78,7 +79,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		PatternsForCase1 = [.. patternsForCase1];
 
 		// Case 2: 2 rows + 2 columns.
-		var patternsForCase2 = new List<Pattern2>();
+		var patternsForCase2 = new List<QiuDeadlyPattern2>();
 		var rows = HouseMaskOperations.AllRowsMask.GetAllSets();
 		var columns = HouseMaskOperations.AllColumnsMask.GetAllSets();
 		foreach (var lineOffsetPairRow in LineOffsets)
@@ -124,7 +125,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly Pattern1 pattern)
+	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly QiuDeadlyPattern1 pattern)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -162,7 +163,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly Pattern2 pattern)
+	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly QiuDeadlyPattern2 pattern)
 	{
 		// TODO: Re-implement later.
 		return null;
@@ -174,7 +175,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		ref AnalysisContext context,
 		ref readonly Grid grid,
-		ref readonly Pattern1 pattern,
+		ref readonly QiuDeadlyPattern1 pattern,
 		ref readonly CellMap valueCellsInBothLines,
 		bool isRow
 	)
@@ -1101,111 +1102,5 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		context.Accumulator.Add(step);
 		return null;
-	}
-
-
-	/// <summary>
-	/// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
-	/// <code><![CDATA[
-	/// .-------.-------.-------.
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// | P P . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | S S B | B B B | B B B |
-	/// | S S B | B B B | B B B |
-	/// | . . . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// '-------'-------'-------'
-	/// ]]></code>
-	/// Where:
-	/// <list type="table">
-	/// <item><term>P</term><description>Corner Cells.</description></item>
-	/// <item><term>S</term><description>Cross-line Cells.</description></item>
-	/// <item><term>B</term><description>Base-line Cells.</description></item>
-	/// </list>
-	/// </summary>
-	/// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
-	/// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
-	private readonly record struct Pattern1(ref readonly CellMap Corner, HouseMask Lines)
-	{
-		/// <summary>
-		/// Indicates the crossline cells.
-		/// </summary>
-		public CellMap Crossline
-		{
-			get
-			{
-				var l1 = TrailingZeroCount(Lines);
-				var l2 = Lines.GetNextSet(l1);
-				return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
-			}
-		}
-
-		/// <summary>
-		/// Indicates the mirror cells.
-		/// </summary>
-		public CellMap Mirror
-		{
-			get
-			{
-				Crossline.InOneHouse(out var block);
-				var l1 = TrailingZeroCount(Lines);
-				var l2 = Lines.GetNextSet(l1);
-				return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
-	/// <code><![CDATA[
-	/// .-------.-------.-------.
-	/// | B B . | . . . | . . . |
-	/// | B B . | . . . | . . . |
-	/// | B B . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | S S B | B B B | B B B |
-	/// | S S B | B B B | B B B |
-	/// | B B . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | B B . | . . . | . . . |
-	/// | B B . | . . . | . . . |
-	/// | B B . | . . . | . . . |
-	/// '-------'-------'-------'
-	/// ]]></code>
-	/// Where:
-	/// <list type="table">
-	/// <item><term>S</term><description>Cross-line Cells.</description></item>
-	/// <item><term>B</term><description>Base-line Cells.</description></item>
-	/// </list>
-	/// </summary>
-	/// <param name="Lines1">The first pair of lines.</param>
-	/// <param name="Lines2">The second pair of lines.</param>
-	private readonly record struct Pattern2(HouseMask Lines1, HouseMask Lines2)
-	{
-		/// <summary>
-		/// Indicates the crossline cells.
-		/// </summary>
-		public CellMap Crossline
-		{
-			get
-			{
-				var l11 = TrailingZeroCount(Lines1);
-				var l21 = Lines1.GetNextSet(l11);
-				var l12 = TrailingZeroCount(Lines2);
-				var l22 = Lines2.GetNextSet(l12);
-				var result = CellMap.Empty;
-				foreach (var (a, b) in ((l11, l12), (l11, l22), (l21, l12), (l21, l22)))
-				{
-					result |= HousesMap[a] & HousesMap[b];
-				}
-
-				return result;
-			}
-		}
 	}
 }

@@ -40,7 +40,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			var tempLoop = new List<Cell>(14);
 			var loopMap = CellMap.Empty;
-			var patterns = new HashSet<Pattern>();
+			var patterns = new HashSet<UniqueLoop>();
 			CollectUniqueLoops(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
 
 			if (patterns.Count == 0)
@@ -584,7 +584,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		Digit d2,
 		List<Cell> loopPath,
 		ref CellMap loopMap,
-		HashSet<Pattern> result,
+		HashSet<UniqueLoop> result,
 		Mask extraDigits = Grid.MaxCandidatesMask,
 		int allowedEx = 2,
 		HouseType lastHouseType = unchecked((HouseType)(-1))
@@ -709,21 +709,5 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			);
 		}
 		return result.AsReadOnlySpan();
-	}
-
-
-	/// <summary>
-	/// Represents for a data set that describes the complete information about a unique loop technique.
-	/// </summary>
-	/// <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-	/// <param name="Path">Indicates the detail path of the loop.</param>
-	/// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
-	private readonly record struct Pattern(ref readonly CellMap Loop, Cell[] Path, Mask DigitsMask)
-	{
-		/// <inheritdoc/>
-		public override int GetHashCode() => Loop.GetHashCode();
-
-		/// <inheritdoc/>
-		public bool Equals(Pattern other) => Loop == other.Loop;
 	}
 }

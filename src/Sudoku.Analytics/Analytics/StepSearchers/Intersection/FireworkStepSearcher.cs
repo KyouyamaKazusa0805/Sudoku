@@ -26,7 +26,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
-	private static readonly Pattern[] Patterns;
+	private static readonly Firework[] Patterns;
 
 	/// <summary>
 	/// Indicates the house combinations.
@@ -44,7 +44,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		Patterns = new Pattern[3645];
+		Patterns = new Firework[3645];
 
 		var i = 0;
 		foreach (var houseQuad in HouseCombinations)
@@ -157,7 +157,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref AnalysisContext context,
 		bool onlyFindOne,
-		ref readonly Pattern pattern,
+		ref readonly Firework pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -268,7 +268,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref AnalysisContext context,
 		bool onlyFindOne,
-		ref readonly Pattern pattern
+		ref readonly Firework pattern
 	)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
@@ -489,27 +489,4 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			return true;
 		}
 	}
-
-
-	/// <summary>
-	/// Indicates a firework pattern. The pattern will be like:
-	/// <code><![CDATA[
-	/// .-------.-------.-------.
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | . . . | B . . | . C . |
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// :-------+-------+-------:
-	/// | . . . | . . . | . . . |
-	/// | . . . | . . . | . . . |
-	/// | . . . | A . . | .(D). |
-	/// '-------'-------'-------'
-	/// ]]></code>
-	/// </summary>
-	/// <param name="Map">Indicates the full map of all cells used.</param>
-	/// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-	private readonly record struct Pattern(ref readonly CellMap Map, Cell? Pivot);
 }
