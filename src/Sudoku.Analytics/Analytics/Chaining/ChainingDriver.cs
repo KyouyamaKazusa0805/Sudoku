@@ -85,7 +85,7 @@ internal static class ChainingDriver
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
-				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
+				var (_, nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -123,7 +123,7 @@ internal static class ChainingDriver
 						else
 						{
 							var other = new Node(otherCandidate.AsCandidateMap(), true, false);
-							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
+							var (_, otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
 							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
@@ -482,7 +482,7 @@ internal static class ChainingDriver
 	/// </returns>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
-	private static (HashSet<Node> OnNodes, HashSet<Node> OffNodes) FindForcingChains(Node startNode)
+	private static ForcingChainInfo FindForcingChains(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
@@ -537,6 +537,6 @@ internal static class ChainingDriver
 
 	ReturnResult:
 		// Returns the found result.
-		return (nodesSupposedOn, nodesSupposedOff);
+		return new(startNode, nodesSupposedOn, nodesSupposedOff);
 	}
 }

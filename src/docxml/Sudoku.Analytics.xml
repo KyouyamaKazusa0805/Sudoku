@@ -9140,6 +9140,55 @@
         <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.ForcingChainInfo">
+            <summary>
+            Represents a pair of data on a centain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="StartNode">Indicates the start node.</param>
+            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
+            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.#ctor(Sudoku.Concepts.Node,System.Collections.Generic.HashSet{Sudoku.Concepts.Node},System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
+            <summary>
+            Represents a pair of data on a centain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="StartNode">Indicates the start node.</param>
+            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
+            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.StartNode">
+            <summary>Indicates the start node.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.OnNodes">
+            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "on".</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.OffNodes">
+            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "off".</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Equals(Sudoku.Analytics.Chaining.ForcingChainInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Equals(Sudoku.Analytics.Chaining.ForcingChainInfo,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/> instances contain a same <see cref="P:Sudoku.Analytics.Chaining.ForcingChainInfo.StartNode"/> property,
+            with the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.IChainingRuleContext">
             <summary>
             Represents a context type consumed by <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>.
