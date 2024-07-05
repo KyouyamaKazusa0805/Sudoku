@@ -67,6 +67,22 @@ public sealed partial class Node(
 	public ref readonly CandidateMap Map => ref _map;
 
 	/// <summary>
+	/// Indicates the root node.
+	/// </summary>
+	public Node Root
+	{
+		get
+		{
+			var (result, p) = (this, Parent);
+			while (p is not null)
+			{
+				_ = (result = p, p = p.Parent);
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// The backing comparing value on <see cref="IsOn"/> property.
 	/// </summary>
 	/// <seealso cref="IsOn"/>

@@ -85,7 +85,7 @@ internal static class ChainingDriver
 			foreach (var digit in digitsMask)
 			{
 				var currentNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
-				var (_, nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
+				var (nodesSupposedOn, nodesSupposedOff) = FindForcingChains(currentNode);
 
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
@@ -123,7 +123,7 @@ internal static class ChainingDriver
 						else
 						{
 							var other = new Node(otherCandidate.AsCandidateMap(), true, false);
-							var (_, otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
+							var (otherNodesSupposedOn_InHouse, otherNodesSupposedOff_InHouse) = FindForcingChains(other);
 							nodesSupposedOn_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOn_InHouse);
 							nodesSupposedOff_GroupedByHouse.Add(otherCandidate, otherNodesSupposedOff_InHouse);
 							nodesSupposedOn_InHouse.IntersectWith(otherNodesSupposedOn_InHouse);
@@ -338,6 +338,110 @@ internal static class ChainingDriver
 	}
 
 	/// <summary>
+	/// Collect all blossom loops appeared in a grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+	/// <returns>All possible multiple forcing chain instances.</returns>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
+	/// <para>Our goal is to find a loop with multiple branches. We can simplify the algorithm as follows:</para>
+	/// <para>
+	/// Starts with weak link (by supposing a value with "on"), and iterate the links to find the final positions,
+	/// where the end node is a single candidate with "off", and either:
+	/// <list type="number">
+	/// <item>the node is lying in a same house with the start node, but with a different position, with a same digit.</item>
+	/// <item>the node is lying in a same cell, with a different digit.</item>
+	/// </list>
+	/// If an end node truly exists, we can determine that a "burred loop" will be formed.
+	/// </para>
+	/// <para>
+	/// By setting the target house (or target cell) a strong link, we can make extra cell positions (or digit values) burrs.
+	/// </para>
+	/// <para>
+	/// In addition, the concept "burr" describes a case that a technique that contains "rough" candidates.
+	/// The technique is formed if and only if such rough candidates have already removed from the grid.
+	/// </para>
+	/// <para>
+	/// The concept is nearly equal to "finned", which is used in a fish. However, "burr" stands for a implicitly concept
+	/// with "cannot directly remove some candidates", meaning some candidates can be removed if and only if a forcing chain
+	/// is formed, with the start node of it, a burred candidate.
+	/// </para>
+	/// <para>
+	/// Concept "Burr" is raised by Borescoper, my friend. The Chinese name of this concept is "Mao Ci".
+	/// </para>
+	/// </remarks>
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne)
+	{
+		var result = new List<BlossomLoop>();
+		foreach (var cell in EmptyCells)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				// Suppose the node with "on", to check all burred loops.
+				var startNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
+
+				// Iterate on each nodes supposed with "off",
+				// to determine whether they are in same house with start node, or a same cell with start node.
+				foreach (var endNode in FindForcingChains(startNode).OffNodes)
+				{
+					// We should ignore grouped nodes as end nodes, in order to keep the algorithm behaving well.
+					if (endNode.IsGroupedNode)
+					{
+						continue;
+					}
+
+					// Check whether the end node is lying on the same house with start node, with same digit;
+					// or same cell, with different digits.
+					var startCandidate = startNode.Map[0];
+					var endCandidate = endNode.Map[0];
+					var (startCell, startDigit) = (startCandidate / 9, startCandidate % 9);
+					var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
+
+					// Find burrs, recording into branch dictionary.
+					var (branches, isCellType) = (new Dictionary<Node, HashSet<Node>>(), default(bool?));
+					switch (startCell == endCell, startDigit != endDigit)
+					{
+						case (true, true):
+						{
+							foreach (var d in (Mask)(grid.GetCandidates(startCell) & (Mask)~(1 << startDigit | 1 << endDigit)))
+							{
+								branches.Add(new((startCell * 9 + d).AsCandidateMap(), true, false), []);
+							}
+							isCellType = true;
+							break;
+						}
+						case (false, false) when (startCell.AsCellMap() + endCell).InOneHouse(out var targetHouse):
+						{
+							foreach (var c in HousesMap[targetHouse] - startCell - endCell)
+							{
+								branches.Add(new((c * 9 + startDigit).AsCandidateMap(), true, false), []);
+							}
+							isCellType = false;
+							break;
+						}
+					}
+					if (isCellType is null)
+					{
+						// There's no branches exist. The loop is a normal loop.
+						continue;
+					}
+
+					// Start to find forcing chains starting with those burrs, in order to make the burred loop valid.
+					foreach (var burredBranchStartNode in branches.Keys)
+					{
+						foreach (var burredBranchEndNode in FindForcingChains(burredBranchStartNode))
+						{
+							// TODO: Implement later.
+						}
+					}
+				}
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
+
+	/// <summary>
 	/// <para>
 	/// Find all possible <see cref="ChainOrLoop"/> patterns starting with the current node,
 	/// and to make an confliction with itself.
@@ -478,10 +582,14 @@ internal static class ChainingDriver
 	/// <param name="startNode">The current instance.</param>
 	/// <returns>
 	/// Returns a pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
-	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states.
+	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
+	/// encapsulating with type <see cref="ForcingChainInfo"/>.
 	/// </returns>
 	/// <seealso cref="StrongLinkDictionary"/>
 	/// <seealso cref="WeakLinkDictionary"/>
+	/// <seealso cref="HashSet{T}"/>
+	/// <seealso cref="Node"/>
+	/// <seealso cref="ForcingChainInfo"/>
 	private static ForcingChainInfo FindForcingChains(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
@@ -537,6 +645,6 @@ internal static class ChainingDriver
 
 	ReturnResult:
 		// Returns the found result.
-		return new(startNode, nodesSupposedOn, nodesSupposedOff);
+		return new(nodesSupposedOn, nodesSupposedOff);
 	}
 }
