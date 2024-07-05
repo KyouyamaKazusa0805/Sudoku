@@ -140,7 +140,6 @@ public static class DeadlyPattern
 						}
 					}
 				}
-
 				return true;
 			}
 		}
