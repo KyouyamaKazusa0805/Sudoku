@@ -26,7 +26,7 @@ public static class BitStatusMapGroupingEnumerable
 	)
 		where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 		where TElement : unmanaged, IBinaryInteger<TElement>
-		where TEnumerator : struct, IEnumerator<TElement>
+		where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 		where TKey : notnull
 	{
 		var result = new TElement[@this.Values.Count];
@@ -73,7 +73,7 @@ public static class BitStatusMapGroupingEnumerable
 	)
 		where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 		where TElement : unmanaged, IBinaryInteger<TElement>
-		where TEnumerator : struct, IEnumerator<TElement>
+		where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 		where TKey : notnull
 	{
 		var result = new TResult[@this.Values.Count];
