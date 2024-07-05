@@ -1,24 +1,24 @@
-#define SEARCH_JUNIOR_EXOCET
-#define SEARCH_SENIOR_EXOCET
-#define SEARCH_WEAK_EXOCET
-#define SEARCH_DOUBLE_EXOCET
-#define SEARCH_COMPLEX
-#define SEARCH_COMPLEX_JUNIOR_EXOCET
-#define SEARCH_COMPLEX_SENIOR_EXOCET
-#define SEARCH_ADVANCED
-#define SEARCH_ADVANCED_SENIOR_EXOCET
-#define SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET
-#define SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
+#define JUNIOR_EXOCET
+#define SENIOR_EXOCET
+#define WEAK_EXOCET
+#define DOUBLE_EXOCET
+#define COMPLEX
+#define COMPLEX_JUNIOR_EXOCET
+#define COMPLEX_SENIOR_EXOCET
+#define ADVANCED
+#define ADVANCED_SENIOR_EXOCET
+#define ADVANCED_COMPLEX_JUNIOR_EXOCET
+#define ADVANCED_COMPLEX_SENIOR_EXOCET
 #undef SIZE_ONLY_THREE
 #undef BASE_SIZE_ONLY_TWO
-#if (SEARCH_COMPLEX_JUNIOR_EXOCET || SEARCH_COMPLEX_SENIOR_EXOCET) && !SEARCH_COMPLEX
+#if (COMPLEX_JUNIOR_EXOCET || COMPLEX_SENIOR_EXOCET) && !COMPLEX
 #line 1 "ExocetStepSearcher.cs"
-#warning 'SEARCH_COMPLEX' should be set if 'SEARCH_COMPLEX_JUNIOR_EXOCET' or 'SEARCH_COMPLEX_SENIOR_EXOCET' is set.
+#warning 'COMPLEX' should be set if 'COMPLEX_JUNIOR_EXOCET' or 'COMPLEX_SENIOR_EXOCET' is set.
 #line default
 #endif
-#if (SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET || SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET) && !SEARCH_ADVANCED
+#if (ADVANCED_COMPLEX_JUNIOR_EXOCET || ADVANCED_COMPLEX_SENIOR_EXOCET) && !ADVANCED
 #line 1 "ExocetStepSearcher.cs"
-#warning 'SEARCH_ADVANCED' should be set if 'SEARCH_ADVANCED_COMPLEX_JUNIOR_EXOCET' or 'SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET' is set.
+#warning 'ADVANCED' should be set if 'ADVANCED_COMPLEX_JUNIOR_EXOCET' or 'ADVANCED_COMPLEX_SENIOR_EXOCET' is set.
 #line default
 #endif
 
@@ -88,7 +88,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var chuteIndexBox = (stackalloc int[3]);
 		foreach (var isRow in (true, false))
 		{
-#if !SIZE_ONLY_THREE && (SEARCH_COMPLEX_SENIOR_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET)
+#if !SIZE_ONLY_THREE && (COMPLEX_SENIOR_EXOCET || COMPLEX_JUNIOR_EXOCET)
 			// Iterate by size of houses to be iterated. The possible values should be 3 or 4,
 			// but we can allow on size = 2 for Complex Senior Exocets.
 			for (var size = 2; size <= 4; size++)
@@ -221,12 +221,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									//   * (Advanced) Complex Senior Exocet
 									// because the pre-condition are not same with each other.
 
-#if SEARCH_SENIOR_EXOCET || SEARCH_COMPLEX_SENIOR_EXOCET
+#if SENIOR_EXOCET || COMPLEX_SENIOR_EXOCET
 									if (baseCells.Count == 2)
 									{
 										foreach (var targetCell in targetCells)
 										{
-#if SEARCH_SENIOR_EXOCET
+#if SENIOR_EXOCET
 											if (CollectSeniorExocets(
 												ref context, in grid, in baseCells, targetCell, groupsOfTargetCells, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i
@@ -235,7 +235,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 												return seniorExocet;
 											}
 #endif
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 											if (CollectComplexSeniorExocets(
 												ref context, in grid, in baseCells, targetCell, in crossline,
 												baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
@@ -248,7 +248,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 #endif
 
-#if SEARCH_WEAK_EXOCET || SEARCH_JUNIOR_EXOCET || SEARCH_DOUBLE_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET
+#if WEAK_EXOCET || JUNIOR_EXOCET || DOUBLE_EXOCET || COMPLEX_JUNIOR_EXOCET
 									if (groupsOfTargetCells.Length == baseSize)
 									{
 										if (!grid.CheckTargetCellsDigitsValidity(in targetCells, baseCellsDigitsMask))
@@ -256,7 +256,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											continue;
 										}
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 										if (CollectWeakExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -265,7 +265,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return weakExocet;
 										}
 #endif
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 										if (CollectJuniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i
@@ -274,7 +274,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return juniorExocet;
 										}
 #endif
-#if SEARCH_DOUBLE_EXOCET
+#if DOUBLE_EXOCET
 										if (CollectDoubleExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											in housesEmptyCells, baseCellsDigitsMask, housesMask, isRow, size, i
@@ -283,7 +283,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return doubleExocet;
 										}
 #endif
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 										if (CollectComplexJuniorExocets(
 											ref context, in grid, in baseCells, in targetCells, groupsOfTargetCells, in crossline,
 											baseCellsDigitsMask, housesMask, isRow, size, i, in housesCells
@@ -308,7 +308,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	//
 	// Sub-type Entry
 	//
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Junior Exocet sub-types.
 	/// </summary>
@@ -472,7 +472,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_SENIOR_EXOCET
+#if SENIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Senior Exocet sub-types.
 	/// </summary>
@@ -569,7 +569,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Complex Junior Exocet sub-types.
 	/// </summary>
@@ -721,7 +721,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 	/// <summary>
 	/// The core method to check for Complex Senior Exocet sub-types.
 	/// </summary>
@@ -918,7 +918,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										return complexSeniorLockedMemberTypeStep;
 									}
 
-#if SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
+#if ADVANCED_COMPLEX_SENIOR_EXOCET
 									if (CheckAdvancedComplexSenior(
 										ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 										baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
@@ -984,7 +984,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											return complexSeniorLockedMemberTypeStep;
 										}
 
-#if SEARCH_ADVANCED_COMPLEX_SENIOR_EXOCET
+#if ADVANCED_COMPLEX_SENIOR_EXOCET
 										if (CheckAdvancedComplexSenior(
 											ref context, grid, in baseCells, targetCell, in endoTargetCellsGroup, in crossline,
 											baseCellsDigitsMask, inferredBaseDigitsMask, housesMask, 1 << extraHouse, size,
@@ -1010,7 +1010,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 	/// <summary>
 	/// The core method to check for Weak Exocet sub-types.
 	/// </summary>
@@ -1332,7 +1332,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_DOUBLE_EXOCET
+#if DOUBLE_EXOCET
 	/// <summary>
 	/// The core method to check for Double Exocet sub-types.
 	/// </summary>
@@ -1479,7 +1479,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET || SEARCH_SENIOR_EXOCET
+#if JUNIOR_EXOCET || SENIOR_EXOCET
 	private static ExocetBaseStep? CheckJuniorOrSeniorBase(
 		ref AnalysisContext context,
 		Grid grid,
@@ -1673,7 +1673,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_SENIOR_EXOCET
+#if SENIOR_EXOCET
 	private static ExocetStep? CheckSeniorExocetNoValueCells(
 		ref AnalysisContext context,
 		ref readonly Grid grid,
@@ -1772,7 +1772,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	//
 	// Sub-type Declaration
 	//
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static ExocetMirrorConjugatePairStep? CheckMirrorConjugatePair(
 		ref AnalysisContext context,
 		Grid grid,
@@ -1892,7 +1892,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetAdjacentTargetStep? CheckAdjacentTarget(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2011,7 +2011,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetIncompatiblePairStep? CheckIncompatiblePair(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2213,7 +2213,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetTargetPairStep? CheckTargetPair(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2331,7 +2331,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetGeneralizedFishStep? CheckGeneralizedFish(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2424,7 +2424,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetMirrorAlmostHiddenSetStep? CheckMirrorAlmostHiddenSet(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2563,7 +2563,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static ExocetLockedMemberStep? CheckJuniorLockedMember(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2734,7 +2734,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_JUNIOR_EXOCET
+#if JUNIOR_EXOCET
 	private static JuniorExocetMirrorSyncStep? CheckMirrorSync(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2857,7 +2857,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_SENIOR_EXOCET
+#if SENIOR_EXOCET
 	private static SeniorExocetTrueBaseStep? CheckSeniorTrueBase(
 		ref AnalysisContext context,
 		Grid grid,
@@ -2953,7 +2953,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_SENIOR_EXOCET
+#if SENIOR_EXOCET
 	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3075,7 +3075,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 	private static WeakExocetStep? CheckBaseWeak(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3148,7 +3148,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 	private static WeakExocetAdjacentTargetStep? CheckWeakAdjacentTarget(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3236,7 +3236,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 	private static WeakExocetSlashStep? CheckWeakExocetSlash(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3339,7 +3339,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_WEAK_EXOCET
+#if WEAK_EXOCET
 	private static WeakExocetBzRectangleStep? CheckWeakExocetBzRectangle(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3420,7 +3420,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_DOUBLE_EXOCET
+#if DOUBLE_EXOCET
 	private static DoubleExocetBaseStep? CheckDoubleBase(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3491,7 +3491,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_DOUBLE_EXOCET
+#if DOUBLE_EXOCET
 	private static DoubleExocetGeneralizedFishStep? CheckDoubleGeneralizedFish(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3580,7 +3580,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexJuniorLockedMember(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3748,7 +3748,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexSeniorLockedMember(
 		ref AnalysisContext context,
 		Grid grid,
@@ -3932,7 +3932,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexSeniorLockedMemberGrouped(
 		ref AnalysisContext context,
 		Grid grid,
@@ -4067,7 +4067,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 	private static ComplexExocetBaseStep? CheckComplexJuniorBase(
 		ref AnalysisContext context,
 		Grid grid,
@@ -4152,7 +4152,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetBaseStep? CheckComplexSeniorBase(
 		ref AnalysisContext context,
 		Grid grid,
@@ -4238,7 +4238,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_SENIOR_EXOCET
+#if COMPLEX_SENIOR_EXOCET
 	private static AdvancedComplexSeniorExocetStep? CheckAdvancedComplexSenior(
 		ref AnalysisContext context,
 		Grid grid,
@@ -4322,7 +4322,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 	private static ComplexJuniorExocetAdjacentTargetStep? CheckComplexJuniorAdjacentTarget(
 		ref AnalysisContext context,
 		Grid grid,
@@ -4445,7 +4445,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 #endif
 
-#if SEARCH_COMPLEX_JUNIOR_EXOCET
+#if COMPLEX_JUNIOR_EXOCET
 	private static ComplexJuniorExocetMirrorConjugatePairStep? CheckComplexJuniorMirrorConjugatePair(
 		ref AnalysisContext context,
 		Grid grid,
