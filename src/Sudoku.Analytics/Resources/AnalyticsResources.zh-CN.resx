@@ -282,9 +282,6 @@
   <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
     <value>{0} -&gt; {1} -&gt; {2}；其中 X = {3}、Y = {4}、Z = {5}</value>
   </data>
-  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
-    <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
-  </data>
   <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
@@ -2101,7 +2098,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
-    <value>所有位于 {0} 里的数字 {1} 都会归拢合并到同一单元格内，形成动态环结构</value>
+    <value>毛刺环：{0}，并带分支：{1}</value>
   </data>
   <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
     <value>绽放环</value>
@@ -3363,6 +3360,15 @@
     <value>鳍链/区块鳍链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="Factor_BlossomLoopGroupedFactor" xml:space="preserve">
+    <value>绽放环是否带区块</value>
+  </data>
+  <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
+    <value>绽放环里的区块节点</value>
+  </data>
+  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
+    <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3446,11 +3452,5 @@
   </data>
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
-  </data>
-  <data name="Factor_BlossomLoopGroupedFactor" xml:space="preserve">
-    <value>绽放环是否带区块</value>
-  </data>
-  <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
-    <value>绽放环里的区块节点</value>
   </data>
 </root>

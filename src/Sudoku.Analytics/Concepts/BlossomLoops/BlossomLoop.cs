@@ -1,12 +1,20 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a blossom loop pattern that starts with a house or a candidate, and ends with a hosue or a candidate.
+/// Represents a blossom loop.
 /// </summary>
+/// <param name="burredLoop">Indicates the burred loop used.</param>
+/// <param name="isCellType">Indicates whether the loop is cell type.</param>
+/// <param name="krakenCellOrHouse">Indicates the kraken cell or house used.</param>
+/// <param name="conclusions">Indicates the conclusions used.</param>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
-public sealed partial class BlossomLoop :
-	SortedDictionary<BlossomLoopEntry, WeakForcingChain>,
-	IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>,
+public sealed partial class BlossomLoop(
+	[PrimaryConstructorParameter] Loop burredLoop,
+	[PrimaryConstructorParameter] bool isCellType,
+	[PrimaryConstructorParameter] int krakenCellOrHouse,
+	[PrimaryConstructorParameter] params Conclusion[] conclusions
+) :
+	SortedDictionary<Node, WeakForcingChain>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
 	IEquatable<BlossomLoop>,
@@ -23,23 +31,13 @@ public sealed partial class BlossomLoop :
 	/// </summary>
 	public ReadOnlySpan<int> BranchedComplexity => (from kvp in Values select kvp.Length).ToArray();
 
-	/// <summary>
-	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
-	/// </summary>
-	public CandidateMap StartCandidates => [.. from pair in Keys select pair.Start];
 
 	/// <summary>
-	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the end.
-	/// </summary>
-	public CandidateMap EndCandidates => [.. from pair in Keys select pair.End];
-
-
-	/// <summary>
-	/// Determines whether the collection contains at least one element satisfying the specified condition.
+	/// Determines whether at least one branch contains at least one element satisfying the specified condition.
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Func<ChainOrLoop, bool> predicate)
+	public bool BranchesExist(Func<ChainOrLoop, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -49,23 +47,6 @@ public sealed partial class BlossomLoop :
 			}
 		}
 		return false;
-	}
-
-	/// <summary>
-	/// Determines whether all elements in this collection satisfy the specified condition.
-	/// </summary>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool TrueForAll(Func<ChainOrLoop, bool> predicate)
-	{
-		foreach (var element in Values)
-		{
-			if (!predicate(element))
-			{
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/// <inheritdoc/>
@@ -88,6 +69,11 @@ public sealed partial class BlossomLoop :
 		}
 
 		if (Count != other.Count)
+		{
+			return false;
+		}
+
+		if (!BurredLoop.Equals(other.BurredLoop, nodeComparison, patternComparison))
 		{
 			return false;
 		}
@@ -134,16 +120,16 @@ public sealed partial class BlossomLoop :
 			return r1;
 		}
 
+		if (BurredLoop.CompareTo(other.BurredLoop, nodeComparison) is var r2 and not 0)
+		{
+			return r2;
+		}
+
 		using var e1 = Keys.GetEnumerator();
 		using var e2 = other.Keys.GetEnumerator();
 		while (e1.MoveNext() && e2.MoveNext())
 		{
-			var ((a1, b1), (a2, b2)) = (e1.Current, e2.Current);
-			if (a1.CompareTo(a2) is var r2 and not 0)
-			{
-				return r2;
-			}
-			if (b1.CompareTo(b2) is var r3 and not 0)
+			if (e1.Current.CompareTo(e2.Current) is var r3 and not 0)
 			{
 				return r3;
 			}
@@ -174,11 +160,11 @@ public sealed partial class BlossomLoop :
 	public int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
 		var hashCode = new HashCode();
-		foreach (var (key, chain) in this)
+		foreach (var (branchStartNode, forcingChain) in this)
 		{
-			hashCode.Add(key.Start);
-			hashCode.Add(key.End);
-			hashCode.Add(chain.GetHashCode(nodeComparison, patternComparison));
+			hashCode.Add(branchStartNode);
+			hashCode.Add(BurredLoop.GetHashCode(nodeComparison, patternComparison));
+			hashCode.Add(forcingChain.GetHashCode(nodeComparison, patternComparison));
 		}
 		return hashCode.ToHashCode();
 	}
@@ -188,63 +174,42 @@ public sealed partial class BlossomLoop :
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format, IFormatProvider? formatProvider)
+		=> $"{ToBurredLoopString(format, formatProvider)}, {ToBranchesString(format, formatProvider)}";
+
+	/// <inheritdoc cref="ToBranchesString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToBranchesString(IFormatProvider? formatProvider) => ToBranchesString(null, formatProvider);
+
+	/// <summary>
+	/// Formats the branches into a string.
+	/// </summary>
+	/// <param name="format">The format string value used by formatting a node.</param>
+	/// <param name="formatProvider">The format provider.</param>
+	/// <returns>A <see cref="string"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToBranchesString(string? format, IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetConverter(formatProvider);
 		return string.Join(
 			", ",
 			from kvp in this
-			let start = kvp.Key.Start
-			let end = kvp.Key.End
-			let pattern = kvp.Value
-			select $"{converter.CandidateConverter(start)} - {converter.CandidateConverter(end)}: {pattern.ToString(format, converter)}"
+			select $"{converter.CandidateConverter(kvp.Key.Map)}: {kvp.Value.ToString(format, converter)}"
 		);
 	}
 
+	/// <inheritdoc cref="ToBurredLoopString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToBurredLoopString(IFormatProvider? formatProvider) => ToBurredLoopString(null, formatProvider);
+
 	/// <summary>
-	/// Try to get all possible conclusions for the current pattern.
+	/// Formats the burred loop into a string.
 	/// </summary>
-	/// <param name="grid">The grid to be used.</param>
-	/// <returns>A list of conclusions.</returns>
-	public ConclusionSet GetConclusions(ref readonly Grid grid)
-	{
-		var result = ConclusionSet.Empty;
-		foreach (var branch in Values)
-		{
-			for (var i = 0; i < branch.Length; i += 2)
-			{
-				result.AddRange(ChainOrLoop.GetConclusions(in grid, branch[i], branch[i + 1]));
-			}
-		}
-		return result;
-	}
-
-	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.Any() => Count != 0;
-
-	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.Any(Func<KeyValuePair<BlossomLoopEntry, WeakForcingChain>, bool> predicate)
-	{
-		foreach (var kvp in this)
-		{
-			if (predicate(kvp))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <inheritdoc/>
-	bool IAnyAllMethod<BlossomLoop, KeyValuePair<BlossomLoopEntry, WeakForcingChain>>.All(Func<KeyValuePair<BlossomLoopEntry, WeakForcingChain>, bool> predicate)
-	{
-		foreach (var kvp in this)
-		{
-			if (!predicate(kvp))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
+	/// <param name="format">The format string value used by formatting a node.</param>
+	/// <param name="formatProvider">The format provider.</param>
+	/// <returns>A <see cref="string"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToBurredLoopString(string? format, IFormatProvider? formatProvider)
+		=> BurredLoop.ToString(format, formatProvider);
 }

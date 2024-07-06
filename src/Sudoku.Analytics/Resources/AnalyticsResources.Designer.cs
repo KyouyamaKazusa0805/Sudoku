@@ -7498,7 +7498,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There will be a dynamic nice loop, starting with digit {0} in house {1}, and ending with a same cell.
+        ///   Looks up a localized string similar to Burred loop: {0}, with branches: {1}.
         /// </summary>
         public static string TechniqueFormat_BlossomLoopStep {
             get {

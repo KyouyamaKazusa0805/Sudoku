@@ -38,9 +38,9 @@ internal static class ChainModule
 		static Conclusion[] c(ChainOrLoop pattern, ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 		{
 			var conclusions = pattern.GetConclusions(in grid);
-			if (pattern is Loop loop)
+			if (pattern is Loop { Links: var links })
 			{
-				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, loop);
+				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, links);
 				foreach (var r in rules)
 				{
 					conclusions |= r.CollectLoopConclusions(in context);
@@ -119,5 +119,87 @@ internal static class ChainModule
 			}
 		}
 		return null;
+	}
+
+	/// <summary>
+	/// The collect method called by blossom loop step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectBlossomLoopCore(ref AnalysisContext context, List<BlossomLoopStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
+	{
+		ref readonly var grid = ref context.Grid;
+		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
+		{
+			var step = new BlossomLoopStep(
+				blossomLoop.Conclusions,
+				getViews(blossomLoop, in grid, supportedRules),
+				context.Options,
+				blossomLoop
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+			if (!accumulator.Contains(step))
+			{
+				accumulator.Add(step);
+			}
+		}
+		return null;
+
+
+		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ReadOnlySpan<ChainingRule> supportedRules)
+		{
+			var globalView = new View();
+			var loopView = blossomLoop.BurredLoop.GetViews(in grid, supportedRules)[0];
+			globalView.AddRange(loopView);
+
+			var otherViews = new View[blossomLoop.Count];
+			var i = 0;
+			foreach (var branch in blossomLoop.Values)
+			{
+				ref var view = ref otherViews[i++];
+				view = [];
+
+				foreach (var rule in supportedRules)
+				{
+					var context = new ChainingRuleViewNodesMappingContext(in grid, branch, view);
+					rule.MapViewNodes(ref context);
+					globalView.AddRange(context.ProducedViewNodes);
+				}
+			}
+
+			// Append kraken house or cell (target cell or house that expands branches).
+			var result = (View[])[globalView, loopView, .. otherViews];
+#pragma warning disable IDE0004
+			var node = blossomLoop.IsCellType
+				? new CellViewNode(ColorIdentifier.Normal, (Cell)blossomLoop.KrakenCellOrHouse)
+				: (ViewNode)new HouseViewNode(ColorIdentifier.Normal, (House)blossomLoop.KrakenCellOrHouse);
+#pragma warning restore IDE0004
+			foreach (var view in result)
+			{
+				view.Add(node);
+			}
+
+			// Adjust the burred branch start nodes to the color as same as fins.
+			var krakenNodes = CandidateMap.Empty;
+			foreach (var startNode in blossomLoop.Keys)
+			{
+				krakenNodes.Add(startNode.Map[0]);
+			}
+			foreach (var view in result)
+			{
+				var foundNode = view.FirstOrDefault(n => n is CandidateViewNode { Candidate: var c } && krakenNodes.Contains(c));
+				if (foundNode is not null)
+				{
+					view.Remove(foundNode);
+					view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, ((CandidateViewNode)foundNode).Candidate));
+				}
+			}
+			return result;
+		}
 	}
 }

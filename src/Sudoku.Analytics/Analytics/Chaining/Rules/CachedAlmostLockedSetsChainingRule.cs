@@ -148,11 +148,10 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
 
 		ref readonly var grid = ref context.Grid;
-		var loop = context.Loop;
 
 		// A valid ALS can be eliminated as a real naked subset.
 		var result = ConclusionSet.Empty;
-		foreach (var element in loop.Links)
+		foreach (var element in context.Links)
 		{
 			if (element is
 				{

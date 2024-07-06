@@ -182,11 +182,10 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var loop = context.Loop;
 
 		var result = ConclusionSet.Empty;
 		var candidatesMap = grid.CandidatesMap;
-		var links = loop.Links;
+		var links = context.Links;
 		foreach (var link in links)
 		{
 			if (link is not

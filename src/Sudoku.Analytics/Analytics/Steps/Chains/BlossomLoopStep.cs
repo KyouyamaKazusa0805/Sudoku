@@ -23,7 +23,7 @@ public sealed partial class BlossomLoopStep(
 	/// <summary>
 	/// Indicates whether the pattern uses grouped nodes.
 	/// </summary>
-	public bool IsGrouped => Pattern.Exists(static chain => chain.IsGrouped);
+	public bool IsGrouped => Pattern.BranchesExist(static chain => chain.IsGrouped) || Pattern.BurredLoop.IsGrouped;
 
 	/// <inheritdoc/>
 	public override int Complexity => Pattern.Complexity;
@@ -36,13 +36,15 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [new(EnglishLanguage, [ChainsStr]), new(ChineseLanguage, [ChainsStr])];
+		=> [new(EnglishLanguage, [BurredLoopStr, BranchesStr]), new(ChineseLanguage, [BurredLoopStr, BranchesStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [new BlossomLoopGroupedFactor(), new BlossomLoopGroupedNodeFactor(), new BlossomLoopLengthFactor()];
 
-	private string ChainsStr => Pattern.ToString("m", CoordinateConverter.GetConverter(Options.Converter));
+	private string BurredLoopStr => Pattern.ToBurredLoopString("m", CoordinateConverter.GetConverter(Options.Converter));
+
+	private string BranchesStr => Pattern.ToBranchesString("m", CoordinateConverter.GetConverter(Options.Converter));
 
 
 	/// <inheritdoc/>

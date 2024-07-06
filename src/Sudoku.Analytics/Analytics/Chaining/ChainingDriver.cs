@@ -342,6 +342,7 @@ internal static class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+	/// <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
@@ -371,7 +372,11 @@ internal static class ChainingDriver
 	/// Concept "Burr" is raised by Borescoper, my friend. The Chinese name of this concept is "Mao Ci".
 	/// </para>
 	/// </remarks>
-	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(
+		ref readonly Grid grid,
+		bool onlyFindOne,
+		ReadOnlySpan<ChainingRule> supportedRules
+	)
 	{
 		var result = new List<BlossomLoop>();
 		foreach (var cell in EmptyCells)
@@ -383,10 +388,11 @@ internal static class ChainingDriver
 
 				// Iterate on each nodes supposed with "off",
 				// to determine whether they are in same house with start node, or a same cell with start node.
-				foreach (var endNode in FindForcingChains(startNode).OffNodes)
+				var foundNodesSupposesToOff = FindForcingChains(startNode).OffNodes;
+				foreach (var endNode in foundNodesSupposesToOff)
 				{
 					// We should ignore grouped nodes as end nodes, in order to keep the algorithm behaving well.
-					if (endNode.IsGroupedNode)
+					if (endNode is not { IsGroupedNode: false, AncestorsLength: >= 3 })
 					{
 						continue;
 					}
@@ -399,7 +405,7 @@ internal static class ChainingDriver
 					var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
 
 					// Find burrs, recording into branch dictionary.
-					var (branches, isCellType) = (new Dictionary<Node, HashSet<Node>>(), default(bool?));
+					var (branches, isCellType, krakenCellOrHouse) = (new Dictionary<Node, HashSet<Node>>(), default(bool?), -1);
 					switch (startCell == endCell, startDigit != endDigit)
 					{
 						case (true, true):
@@ -408,23 +414,50 @@ internal static class ChainingDriver
 							{
 								branches.Add(new((startCell * 9 + d).AsCandidateMap(), true, false), []);
 							}
-							isCellType = true;
+							(isCellType, krakenCellOrHouse) = (true, startCell);
 							break;
 						}
 						case (false, false) when (startCell.AsCellMap() + endCell).InOneHouse(out var targetHouse):
 						{
-							foreach (var c in HousesMap[targetHouse] - startCell - endCell)
+							foreach (var c in (HousesMap[targetHouse] & CandidatesMap[startDigit]) - startCell - endCell)
 							{
 								branches.Add(new((c * 9 + startDigit).AsCandidateMap(), true, false), []);
 							}
-							isCellType = false;
+							(isCellType, krakenCellOrHouse) = (false, targetHouse);
 							break;
 						}
 					}
 					if (isCellType is null)
 					{
-						// There's no branches exist. The loop is a normal loop.
+						// There're no branches exist. The loop is a normal loop.
 						continue;
+					}
+
+					// Try to create a list of burred loop nodes, and remove nodes that is in a same house or a same cell.
+					// Here, the end node cannot be connected with start node using a loop. We should manually connect them
+					// by forcing appending a strong link with those two nodes.
+					var loop = new Loop(endNode >> startNode);
+					var burredLoopNodes = new HashSet<Node>(loop);
+					switch (isCellType)
+					{
+						case true:
+						{
+							foreach (var d in grid.GetCandidates(startCell))
+							{
+								var node = new Node((startCell * 9 + d).AsCandidateMap(), default, false);
+								burredLoopNodes.RemoveWhere(n => n.Equals(node, NodeComparison.IncludeIsOn));
+							}
+							break;
+						}
+						case false when (startCell.AsCellMap() + endCell).InOneHouse(out var targetHouse):
+						{
+							foreach (var c in HousesMap[targetHouse] & CandidatesMap[startDigit])
+							{
+								var node = new Node((c * 9 + startDigit).AsCandidateMap(), default, false);
+								burredLoopNodes.RemoveWhere(n => n.Equals(node, NodeComparison.IgnoreIsOn));
+							}
+							break;
+						}
 					}
 
 					// Start to find forcing chains starting with those burrs, in order to make the burred loop valid.
@@ -432,8 +465,74 @@ internal static class ChainingDriver
 					{
 						foreach (var burredBranchEndNode in FindForcingChains(burredBranchStartNode))
 						{
-							// TODO: Implement later.
+							if (!burredLoopNodes.Contains(burredBranchEndNode))
+							{
+								// The end node must merge into the burred loop.
+								continue;
+							}
+
+							branches[burredBranchStartNode].Add(burredBranchEndNode);
 						}
+					}
+
+					// Check whether all branches contain at least one end node that can implicitly connect to one of loop nodes.
+					// If so, a blossom loop will be formed.
+					var blossomLoopValid = true;
+					foreach (var key in branches.Keys)
+					{
+						if (branches[key].Count == 0)
+						{
+							blossomLoopValid = false;
+							break;
+						}
+					}
+					if (!blossomLoopValid)
+					{
+						continue;
+					}
+
+					// Blossom loops may exist here. Now we should check for eliminations.
+					var groups = new Node[branches.Count][];
+					var groupIndex = 0;
+					foreach (var branchEndNodes in branches.Values)
+					{
+						groups[groupIndex++] = [.. branchEndNodes];
+					}
+
+					var linksBase = loop.Links.ToArray();
+					foreach (var branchEndNodes in groups.GetExtractedCombinations())
+					{
+						var links = (List<Link>)[.. linksBase];
+						var currentBranches = new List<WeakForcingChain>();
+						foreach (var branchEndNode in branchEndNodes)
+						{
+							var forcingChains = new WeakForcingChain(branchEndNode);
+							links.AddRange(forcingChains.Links);
+							currentBranches.Add(forcingChains);
+						}
+
+						var context = new ChainingRuleLoopConclusionCollectingContext(in grid, links.AsReadOnlySpan());
+						var conclusions = ConclusionSet.Empty;
+						foreach (var rule in supportedRules)
+						{
+							conclusions |= rule.CollectLoopConclusions(in context);
+						}
+						if (!conclusions)
+						{
+							continue;
+						}
+
+						var pattern = new BlossomLoop(loop, isCellType.Value, krakenCellOrHouse, [.. conclusions]);
+						foreach (var branch in currentBranches)
+						{
+							pattern.Add(branch[0], branch);
+						}
+
+						if (onlyFindOne)
+						{
+							return (BlossomLoop[])[pattern];
+						}
+						result.Add(pattern);
 					}
 				}
 			}
@@ -581,7 +680,7 @@ internal static class ChainingDriver
 	/// </summary>
 	/// <param name="startNode">The current instance.</param>
 	/// <returns>
-	/// Returns a pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
+	/// A pair of <see cref="HashSet{T}"/> of <see cref="Node"/> instances, indicating all possible nodes
 	/// that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
 	/// encapsulating with type <see cref="ForcingChainInfo"/>.
 	/// </returns>
