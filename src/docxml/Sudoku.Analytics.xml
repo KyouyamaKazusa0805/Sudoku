@@ -29153,7 +29153,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BlossomLoopStep">
             <summary>
-              Looks up a localized string similar to Burred loop: {0}, with branches: {1}.
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BowmanBingoStep">

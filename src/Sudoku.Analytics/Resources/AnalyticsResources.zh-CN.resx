@@ -2098,7 +2098,7 @@
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
-    <value>毛刺环：{0}，并带分支：{1}</value>
+    <value>{0}</value>
   </data>
   <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
     <value>绽放环</value>

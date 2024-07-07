@@ -2071,7 +2071,7 @@
     <value>Blossom Loop</value>
   </data>
   <data name="TechniqueFormat_BlossomLoopStep" xml:space="preserve">
-    <value>Burred loop: {0}, with branches: {1}</value>
+    <value>{0}</value>
   </data>
   <data name="StepSearcherName_BlossomLoopStepSearcher" xml:space="preserve">
     <value>Blossom Loop</value>

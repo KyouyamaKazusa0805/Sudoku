@@ -7498,7 +7498,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Burred loop: {0}, with branches: {1}.
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string TechniqueFormat_BlossomLoopStep {
             get {
