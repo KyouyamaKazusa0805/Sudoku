@@ -388,19 +388,13 @@ internal static class ChainingDriver
 
 				// Iterate on each nodes supposed with "off",
 				// to determine whether they are in same house with start node, or a same cell with start node.
-				var foundNodesSupposesToOff = FindForcingChains(startNode).OffNodes;
-				foreach (var endNode in foundNodesSupposesToOff)
+				var foundLoop = FindBlossomLoopForcingChains(startNode);
+				foreach (var loop in foundLoop)
 				{
-					// We should ignore grouped nodes as end nodes, in order to keep the algorithm behaving well.
-					if (endNode is not { IsGroupedNode: false, AncestorsLength: >= 3 })
-					{
-						continue;
-					}
-
 					// Check whether the end node is lying on the same house with start node, with same digit;
 					// or same cell, with different digits.
 					var startCandidate = startNode.Map[0];
-					var endCandidate = endNode.Map[0];
+					var endCandidate = loop[^1].Map[0];
 					var (startCell, startDigit) = (startCandidate / 9, startCandidate % 9);
 					var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
 
@@ -436,7 +430,6 @@ internal static class ChainingDriver
 					// Try to create a list of burred loop nodes, and remove nodes that is in a same house or a same cell.
 					// Here, the end node cannot be connected with start node using a loop. We should manually connect them
 					// by forcing appending a strong link with those two nodes.
-					var loop = new Loop(endNode >> startNode);
 					var burredLoopNodes = new HashSet<Node>(loop);
 					switch (isCellType)
 					{
@@ -745,5 +738,89 @@ internal static class ChainingDriver
 	ReturnResult:
 		// Returns the found result.
 		return new(nodesSupposedOn, nodesSupposedOff);
+	}
+
+	/// <summary>
+	/// <para>Finds a list of burred loops used by blossom loop.</para>
+	/// <para>This method only uses cached fields <see cref="StrongLinkDictionary"/> and <see cref="WeakLinkDictionary"/>.</para>
+	/// </summary>
+	/// <param name="startNode">The current instance.</param>
+	/// <returns>A list of burred loops.</returns>
+	/// <seealso cref="StrongLinkDictionary"/>
+	/// <seealso cref="WeakLinkDictionary"/>
+	/// <seealso cref="HashSet{T}"/>
+	/// <seealso cref="Node"/>
+	private static HashSet<Loop> FindBlossomLoopForcingChains(Node startNode)
+	{
+		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
+
+		var visitedNodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		var visitedNodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
+		_ = (visitedNodesSupposedOn.Add(startNode), visitedNodesSupposedOff.Add(startNode));
+
+		var startNodeCandidate = startNode.Map[0];
+		var startNodeCell = startNodeCandidate / 9;
+		var startNodeDigit = startNodeCandidate % 9;
+
+		var result = new HashSet<Loop>();
+		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
+		{
+			while (pendingNodesSupposedOn.Count != 0)
+			{
+				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+				if (WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
+				{
+					foreach (var nodeSupposedOff in nodesSupposedOff)
+					{
+						var nextNode = nodeSupposedOff >> currentNode;
+						if (nodeSupposedOff.Map is not [var nodeSupposedOffCandidate]
+							|| nextNode.AncestorsLength < 4)
+						{
+							goto SkipChecking;
+						}
+
+						// Check whether the current node is in a same house as the start node with same digit,
+						// or in a same cell with a different digit.
+						var nodeSupposedOffCell = nodeSupposedOffCandidate / 9;
+						var nodeSupposedOffDigit = nodeSupposedOffCandidate % 9;
+						if (nodeSupposedOffCell == startNodeCell
+							&& nodeSupposedOffDigit != startNodeDigit
+							|| nodeSupposedOffDigit == startNodeDigit
+							&& (nodeSupposedOffCell.AsCellMap() + startNodeCell).InOneHouse(out _))
+						{
+							var loop = new Loop(startNode >> nextNode);
+							result.Add(loop);
+						}
+
+					SkipChecking:
+						if (!nodeSupposedOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
+							&& visitedNodesSupposedOff.Add(nodeSupposedOff))
+						{
+							pendingNodesSupposedOff.AddLast(nextNode);
+						}
+					}
+				}
+			}
+			while (pendingNodesSupposedOff.Count != 0)
+			{
+				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				if (StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
+				{
+					foreach (var nodeSupposedOn in nodesSupposedOn)
+					{
+						var nextNode = nodeSupposedOn >> currentNode;
+						if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
+							&& visitedNodesSupposedOn.Add(nodeSupposedOn))
+						{
+							pendingNodesSupposedOn.AddLast(nextNode);
+						}
+					}
+				}
+			}
+		}
+
+		// Returns the found result.
+		return result;
 	}
 }

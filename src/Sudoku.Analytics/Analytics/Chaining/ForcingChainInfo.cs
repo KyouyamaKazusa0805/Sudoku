@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
-/// Represents a pair of data on a centain <see cref="Node"/>, describing all possible <see cref="Node"/> instances
+/// Represents a pair of data on a certain <see cref="Node"/>, describing all possible <see cref="Node"/> instances
 /// that can implicitly connect to it, grouped by its <see cref="Node.IsOn"/> property value.
 /// </summary>
 /// <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>

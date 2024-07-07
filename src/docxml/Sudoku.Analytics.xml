@@ -8960,6 +8960,18 @@
             <seealso cref="T:Sudoku.Concepts.Node"/>
             <seealso cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindBlossomLoopForcingChains(Sudoku.Concepts.Node)">
+            <summary>
+            <para>Finds a list of burred loops used by blossom loop.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>.</para>
+            </summary>
+            <param name="startNode">The current instance.</param>
+            <returns>A list of burred loops.</returns>
+            <seealso cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>
+            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
@@ -9164,7 +9176,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ForcingChainInfo">
             <summary>
-            Represents a pair of data on a centain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
             that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
             </summary>
             <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
@@ -9174,7 +9186,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node},System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
             <summary>
-            Represents a pair of data on a centain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
             that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
             </summary>
             <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
