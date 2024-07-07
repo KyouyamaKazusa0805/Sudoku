@@ -393,8 +393,8 @@ internal static class ChainingDriver
 				{
 					// Check whether the end node is lying on the same house with start node, with same digit;
 					// or same cell, with different digits.
-					var startCandidate = startNode.Map[0];
-					var endCandidate = loop[^1].Map[0];
+					var startCandidate = loop[0].Map[0];
+					var endCandidate = loop[1].Map[0];
 					var (startCell, startDigit) = (startCandidate / 9, startCandidate % 9);
 					var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
 
@@ -479,7 +479,7 @@ internal static class ChainingDriver
 							break;
 						}
 					}
-					if (!blossomLoopValid)
+					if (!blossomLoopValid || branches.Count == 0)
 					{
 						continue;
 					}
@@ -496,10 +496,10 @@ internal static class ChainingDriver
 					foreach (var branchEndNodes in groups.GetExtractedCombinations())
 					{
 						var links = (List<Link>)[.. linksBase];
-						var currentBranches = new List<WeakForcingChain>();
+						var currentBranches = new List<StrongForcingChain>();
 						foreach (var branchEndNode in branchEndNodes)
 						{
-							var forcingChains = new WeakForcingChain(branchEndNode);
+							var forcingChains = new StrongForcingChain(branchEndNode);
 							links.AddRange(forcingChains.Links);
 							currentBranches.Add(forcingChains);
 						}
@@ -518,7 +518,7 @@ internal static class ChainingDriver
 						var pattern = new BlossomLoop(loop, isCellType.Value, krakenCellOrHouse, [.. conclusions]);
 						foreach (var branch in currentBranches)
 						{
-							pattern.Add(branch[0], branch);
+							pattern.TryAdd(branch[^1], branch);
 						}
 
 						if (onlyFindOne)
@@ -750,7 +750,7 @@ internal static class ChainingDriver
 	/// <seealso cref="WeakLinkDictionary"/>
 	/// <seealso cref="HashSet{T}"/>
 	/// <seealso cref="Node"/>
-	private static HashSet<Loop> FindBlossomLoopForcingChains(Node startNode)
+	private static HashSet<StrongForcingChain> FindBlossomLoopForcingChains(Node startNode)
 	{
 		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
 		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
@@ -763,7 +763,7 @@ internal static class ChainingDriver
 		var startNodeCell = startNodeCandidate / 9;
 		var startNodeDigit = startNodeCandidate % 9;
 
-		var result = new HashSet<Loop>();
+		var result = new HashSet<StrongForcingChain>();
 		while (pendingNodesSupposedOn.Count != 0 || pendingNodesSupposedOff.Count != 0)
 		{
 			while (pendingNodesSupposedOn.Count != 0)
@@ -774,6 +774,12 @@ internal static class ChainingDriver
 					foreach (var nodeSupposedOff in nodesSupposedOff)
 					{
 						var nextNode = nodeSupposedOff >> currentNode;
+						if (currentNode.Parent?.Equals(nodeSupposedOff, NodeComparison.IncludeIsOn) ?? false)
+						{
+							// Skip the case that the parent node of 'currentNode' is same as 'nodeSupposedOff'.
+							continue;
+						}
+
 						if (nodeSupposedOff.Map is not [var nodeSupposedOffCandidate]
 							|| nextNode.AncestorsLength < 4)
 						{
@@ -786,10 +792,16 @@ internal static class ChainingDriver
 						var nodeSupposedOffDigit = nodeSupposedOffCandidate % 9;
 						if (nodeSupposedOffCell == startNodeCell
 							&& nodeSupposedOffDigit != startNodeDigit
-							|| nodeSupposedOffDigit == startNodeDigit
+							|| nodeSupposedOffCell != startNodeCell
+							&& nodeSupposedOffDigit == startNodeDigit
 							&& (nodeSupposedOffCell.AsCellMap() + startNodeCell).InOneHouse(out _))
 						{
-							var loop = new Loop(startNode >> nextNode);
+							var loop = new StrongForcingChain(startNode >> nextNode);
+							if (loop[1].Equals(loop[^2], NodeComparison.IgnoreIsOn))
+							{
+								goto SkipChecking;
+							}
+
 							result.Add(loop);
 						}
 
@@ -810,6 +822,11 @@ internal static class ChainingDriver
 					foreach (var nodeSupposedOn in nodesSupposedOn)
 					{
 						var nextNode = nodeSupposedOn >> currentNode;
+						if (currentNode.Parent?.Equals(nodeSupposedOn, NodeComparison.IncludeIsOn) ?? false)
+						{
+							continue;
+						}
+
 						if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
 							&& visitedNodesSupposedOn.Add(nodeSupposedOn))
 						{

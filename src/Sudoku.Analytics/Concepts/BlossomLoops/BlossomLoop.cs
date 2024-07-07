@@ -9,12 +9,12 @@ namespace Sudoku.Concepts;
 /// <param name="conclusions">Indicates the conclusions used.</param>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class BlossomLoop(
-	[PrimaryConstructorParameter] Loop burredLoop,
+	[PrimaryConstructorParameter] StrongForcingChain burredLoop,
 	[PrimaryConstructorParameter] bool isCellType,
 	[PrimaryConstructorParameter] int krakenCellOrHouse,
 	[PrimaryConstructorParameter] params Conclusion[] conclusions
 ) :
-	SortedDictionary<Node, WeakForcingChain>,
+	SortedDictionary<Node, StrongForcingChain>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
 	IEquatable<BlossomLoop>,

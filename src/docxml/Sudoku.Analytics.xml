@@ -375,7 +375,7 @@
             <param name="krakenCellOrHouse">Indicates the kraken cell or house used.</param>
             <param name="conclusions">Indicates the conclusions used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.Loop,System.Boolean,System.Int32,Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.StrongForcingChain,System.Boolean,System.Int32,Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents a blossom loop.
             </summary>
@@ -9344,6 +9344,18 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
             <summary>
             Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>).
@@ -9396,18 +9408,6 @@
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkCollectingContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">
