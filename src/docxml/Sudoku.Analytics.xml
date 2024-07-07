@@ -8856,38 +8856,6 @@
             <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
             <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
             <returns>All possible multiple forcing chain instances.</returns>
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            <para>Our goal is to find a loop with multiple branches. We can simplify the algorithm as follows:</para>
-            <para>
-            Starts with weak link (by supposing a value with "on"), and iterate the links to find the final positions,
-            where the end node is a single candidate with "off", and either:
-            <list type="number">
-            <item>the node is lying in a same house with the start node, but with a different position, with a same digit.</item>
-            <item>the node is lying in a same cell, with a different digit.</item>
-            </list>
-            If an end node truly exists, we can determine that a "burred loop" will be formed.
-            </para>
-            <para>
-            By setting the target house (or target cell) a strong link, we can make extra cell positions (or digit values) burrs.
-            </para>
-            <para>
-            In addition, the concept "burr" describes a case that a technique that contains "rough" candidates.
-            The technique is formed if and only if such rough candidates have already removed from the grid.
-            </para>
-            <para>
-            The concept is nearly equal to "finned", which is used in a fish. However, "burr" stands for a implicitly concept
-            with "cannot directly remove some candidates", meaning some candidates can be removed if and only if a forcing chain
-            is formed, with the start node of it, a burred candidate.
-            </para>
-            <para>
-            Concept "Burr" is raised by Borescoper, my friend. The Chinese name of this concept is "Mao Ci".
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
             <summary>

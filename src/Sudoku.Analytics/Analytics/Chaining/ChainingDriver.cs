@@ -344,34 +344,6 @@ internal static class ChainingDriver
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	/// <remarks>
-	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// <para>Our goal is to find a loop with multiple branches. We can simplify the algorithm as follows:</para>
-	/// <para>
-	/// Starts with weak link (by supposing a value with "on"), and iterate the links to find the final positions,
-	/// where the end node is a single candidate with "off", and either:
-	/// <list type="number">
-	/// <item>the node is lying in a same house with the start node, but with a different position, with a same digit.</item>
-	/// <item>the node is lying in a same cell, with a different digit.</item>
-	/// </list>
-	/// If an end node truly exists, we can determine that a "burred loop" will be formed.
-	/// </para>
-	/// <para>
-	/// By setting the target house (or target cell) a strong link, we can make extra cell positions (or digit values) burrs.
-	/// </para>
-	/// <para>
-	/// In addition, the concept "burr" describes a case that a technique that contains "rough" candidates.
-	/// The technique is formed if and only if such rough candidates have already removed from the grid.
-	/// </para>
-	/// <para>
-	/// The concept is nearly equal to "finned", which is used in a fish. However, "burr" stands for a implicitly concept
-	/// with "cannot directly remove some candidates", meaning some candidates can be removed if and only if a forcing chain
-	/// is formed, with the start node of it, a burred candidate.
-	/// </para>
-	/// <para>
-	/// Concept "Burr" is raised by Borescoper, my friend. The Chinese name of this concept is "Mao Ci".
-	/// </para>
-	/// </remarks>
 	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(
 		ref readonly Grid grid,
 		bool onlyFindOne,
@@ -379,16 +351,154 @@ internal static class ChainingDriver
 	)
 	{
 		var result = new List<BlossomLoop>();
+
+		// Collect all branches, in order to group them up by its start and end candidate.
+		var allBranches = new Dictionary<Candidate, SortedDictionary<Candidate, Node>>();
+		var allBranchesMap = new Dictionary<Candidate, CandidateMap>();
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				// Suppose the node with "on", to check all burred loops.
-				var startNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
+				var startCandidate = cell * 9 + digit;
+				var startNode = new Node(startCandidate.AsCandidateMap(), true, false);
+				var endNodes = FindForcingChains(startNode).OnNodes;
+				foreach (var endNode in endNodes)
+				{
+					if (endNode.Map is not [var endCandidate])
+					{
+						continue;
+					}
+
+					if (!allBranches.TryAdd(startCandidate, new() { { endCandidate, endNode } }))
+					{
+						allBranches[startCandidate].TryAdd(endCandidate, endNode);
+					}
+
+					if (!allBranchesMap.TryAdd(startCandidate, endCandidate.AsCandidateMap()))
+					{
+						ref var map = ref allBranchesMap.GetValueRef(in startCandidate);
+						map.Add(endCandidate);
+					}
+				}
+			}
+		}
+
+		// For cell.
+		foreach (var startCell in EmptyCells & ~BivalueCells)
+		{
+			var cellsDistribution = new Dictionary<Cell, SortedSet<Node>>();
+			var housesDistribution = new Dictionary<(House House, Digit Digit), SortedSet<Node>>();
+			foreach (var startDigit in grid.GetCandidates(startCell))
+			{
+				var startCandidate = startCell * 9 + startDigit;
+				if (allBranches.TryGetValue(startCandidate, out var dictionarySubview))
+				{
+					foreach (var (endCandidate, endNode) in dictionarySubview)
+					{
+						var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
+						if (!cellsDistribution.TryAdd(endCell, [endNode]))
+						{
+							cellsDistribution[endCell].Add(endNode);
+						}
+
+						foreach (var houseType in HouseTypes)
+						{
+							var house = endCell.ToHouseIndex(houseType);
+							var entry = (house, endDigit);
+							if (!housesDistribution.TryAdd(entry, [endNode]))
+							{
+								housesDistribution[entry].Add(endNode);
+							}
+						}
+					}
+				}
+			}
+
+			// Iterate on cells' distribution.
+			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
+			{
+				if (currentStartCell == startCell)
+				{
+					continue;
+				}
+
+				var digitsMask = grid.GetCandidates(startCell);
+				if (cellDistribution.Count != PopCount((uint)digitsMask))
+				{
+					continue;
+				}
+
+				var rootMap = CandidateMap.Empty;
+				foreach (var node in cellDistribution)
+				{
+					rootMap.Add(node.Root.Map[0]);
+				}
+				if (rootMap.GetDigitsFor(startCell) != digitsMask)
+				{
+					continue;
+				}
+
+				// Calculate conclusions.
+				var conclusions = ConclusionSet.Empty;
+				var patternUsedCandidates = CandidateMap.Empty;
+				var patternLinks = new List<Link>();
+				var arrayCellDistribution = cellDistribution.ToArray();
+				var strongForcingChains = from branch in arrayCellDistribution select new StrongForcingChain(branch);
+				for (var i = 0; i < cellDistribution.Count; i++)
+				{
+					var currentForcingChain = strongForcingChains[i];
+					patternLinks.AddRange(currentForcingChain.Links);
+					conclusions |= currentForcingChain.GetConclusions(in grid);
+				}
+				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
+				foreach (var rule in supportedRules)
+				{
+					conclusions |= rule.CollectLoopConclusions(in context);
+				}
+#if false
+				foreach (var usedCandidate in patternUsedCandidates)
+				{
+					var unexpectedConclusion = new Conclusion(Elimination, usedCandidate);
+					if (conclusions.Contains(unexpectedConclusion))
+					{
+						conclusions.Remove(unexpectedConclusion);
+					}
+				}
+#endif
+				if (!conclusions)
+				{
+					// There's no eliminations found.
+					continue;
+				}
+
+				// Collect pattern.
+				var blossomLoop = new BlossomLoop([.. conclusions]);
+				for (var i = 0; i < cellDistribution.Count; i++)
+				{
+					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
+				}
+				result.Add(blossomLoop);
+			}
+
+			// Iterate on houses' distribution.
+
+		}
+
+		// For house.
+		for (var house = 0; house < 27; house++)
+		{
+			foreach (var digit in grid[HousesMap[house] & EmptyCells])
+			{
+				if ((CandidatesMap[digit] & HousesMap[house]).Count < 3)
+				{
+					// It may be a normal continuous nice loop.
+					continue;
+				}
 
 
 			}
 		}
+
 		return result.AsReadOnlySpan();
 	}
 

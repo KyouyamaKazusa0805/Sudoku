@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 /// <param name="conclusions">Indicates the conclusions used.</param>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
 public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Conclusion[] conclusions) :
-	SortedDictionary<Candidate, WeakForcingChain>,
+	SortedDictionary<Candidate, StrongForcingChain>,
 	IComparable<BlossomLoop>,
 	IComparisonOperators<BlossomLoop, BlossomLoop, bool>,
 	IEquatable<BlossomLoop>,
@@ -171,7 +171,9 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 		return string.Join(
 			", ",
 			from kvp in this
-			select $"{converter.CandidateConverter(kvp.Key)}: {kvp.Value.ToString(format, converter)}"
+			let candidate = kvp.Key
+			let chain = kvp.Value
+			select $"{converter.CandidateConverter(candidate)}: {chain.ToString(format, converter)}"
 		);
 	}
 }
