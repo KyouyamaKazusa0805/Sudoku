@@ -370,23 +370,27 @@
             <summary>
             Represents a blossom loop.
             </summary>
-            <param name="burredLoop">Indicates the burred loop used.</param>
-            <param name="isCellType">Indicates whether the loop is cell type.</param>
-            <param name="krakenCellOrHouse">Indicates the kraken cell or house used.</param>
             <param name="conclusions">Indicates the conclusions used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.StrongForcingChain,System.Boolean,System.Int32,Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents a blossom loop.
             </summary>
-            <param name="burredLoop">Indicates the burred loop used.</param>
-            <param name="isCellType">Indicates whether the loop is cell type.</param>
-            <param name="krakenCellOrHouse">Indicates the kraken cell or house used.</param>
             <param name="conclusions">Indicates the conclusions used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.IsCellType">
+            <summary>
+            Indicates whether the loop is cell type.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.Entries">
+            <summary>
+            Indicates the entry candidates that start each branch.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.BranchedComplexity">
@@ -394,7 +398,7 @@
             Indicates the complexity of each branch.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.BranchesExist(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
+        <member name="M:Sudoku.Concepts.BlossomLoop.Exists(System.Func{Sudoku.Concepts.ChainOrLoop,System.Boolean})">
             <summary>
             Determines whether at least one branch contains at least one element satisfying the specified condition.
             </summary>
@@ -440,43 +444,6 @@
         </member>
         <member name="M:Sudoku.Concepts.BlossomLoop.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.ToBranchesString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Concepts.BlossomLoop.ToBranchesString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.ToBranchesString(System.String,System.IFormatProvider)">
-            <summary>
-            Formats the branches into a string.
-            </summary>
-            <param name="format">The format string value used by formatting a node.</param>
-            <param name="formatProvider">The format provider.</param>
-            <returns>A <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.ToBurredLoopString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Concepts.BlossomLoop.ToBurredLoopString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.ToBurredLoopString(System.String,System.IFormatProvider)">
-            <summary>
-            Formats the burred loop into a string.
-            </summary>
-            <param name="format">The format string value used by formatting a node.</param>
-            <param name="formatProvider">The format provider.</param>
-            <returns>A <see cref="T:System.String"/> result.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.BlossomLoop.BurredLoop">
-            <summary>
-            The generated property declaration for parameter <c>burredLoop</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.BlossomLoop.IsCellType">
-            <summary>
-            The generated property declaration for parameter <c>isCellType</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.BlossomLoop.KrakenCellOrHouse">
-            <summary>
-            The generated property declaration for parameter <c>krakenCellOrHouse</c>.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.Conclusions">
             <summary>
@@ -8959,18 +8926,6 @@
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Concepts.Node"/>
             <seealso cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindBlossomLoopForcingChains(Sudoku.Concepts.Node)">
-            <summary>
-            <para>Finds a list of burred loops used by blossom loop.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>.</para>
-            </summary>
-            <param name="startNode">The current instance.</param>
-            <returns>A list of burred loops.</returns>
-            <seealso cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>
-            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
-            <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
