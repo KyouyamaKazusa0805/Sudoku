@@ -378,9 +378,14 @@
             </summary>
             <param name="conclusions">Indicates the conclusions used.</param>
         </member>
-        <member name="P:Sudoku.Concepts.BlossomLoop.IsCellType">
+        <member name="P:Sudoku.Concepts.BlossomLoop.EntryIsCellType">
             <summary>
-            Indicates whether the loop is cell type.
+            Indicates whether the loop entry is cell type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.ExitIsCellType">
+            <summary>
+            Indicates whether the loop exit is cell type.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.Complexity">
@@ -391,6 +396,11 @@
         <member name="P:Sudoku.Concepts.BlossomLoop.Entries">
             <summary>
             Indicates the entry candidates that start each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.Exits">
+            <summary>
+            Indicates the exit candidates that end each branch.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.BranchedComplexity">

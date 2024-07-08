@@ -153,7 +153,39 @@ internal static class ChainModule
 
 		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ReadOnlySpan<ChainingRule> supportedRules)
 		{
-			return [];
+			var globalView = View.Empty;
+			var otherViews = new View[blossomLoop.Count];
+			otherViews.InitializeArray(static ([NotNull] ref View? view) => view = View.Empty);
+
+			var i = 0;
+			foreach (var (startCandidate, branch) in blossomLoop)
+			{
+				var viewNodes = branch.GetViews(in grid, supportedRules)[0];
+				globalView |= viewNodes;
+				otherViews[i] |= viewNodes;
+
+				var context = new ChainingRuleViewNodesMappingContext(in grid, branch, otherViews[i]);
+				foreach (var rule in supportedRules)
+				{
+					rule.MapViewNodes(ref context);
+					globalView.AddRange(context.ProducedViewNodes);
+				}
+				globalView.Add(new CandidateViewNode(ColorIdentifier.Normal, startCandidate));
+
+				i++;
+			}
+
+			globalView.Add(
+				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
+					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(entryCandidates.Cells.SharedHouses))
+			);
+			globalView.Add(
+				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
+					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifier.Auxiliary1, TrailingZeroCount(exitCandidates.Cells.SharedHouses))
+			);
+			return [globalView, .. otherViews];
 		}
 	}
 }

@@ -14,9 +14,14 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	IFormattable
 {
 	/// <summary>
-	/// Indicates whether the loop is cell type.
+	/// Indicates whether the loop entry is cell type.
 	/// </summary>
-	public bool IsCellType => !IsPow2(Entries.Digits);
+	public bool EntryIsCellType => !IsPow2(Entries.Digits);
+
+	/// <summary>
+	/// Indicates whether the loop exit is cell type.
+	/// </summary>
+	public bool ExitIsCellType => !IsPow2(Exits.Digits);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.
@@ -27,6 +32,11 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	/// Indicates the entry candidates that start each branch.
 	/// </summary>
 	public CandidateMap Entries => [.. Keys];
+
+	/// <summary>
+	/// Indicates the exit candidates that end each branch.
+	/// </summary>
+	public CandidateMap Exits => [.. from value in Values select value[0].Map[0]];
 
 	/// <summary>
 	/// Indicates the complexity of each branch.

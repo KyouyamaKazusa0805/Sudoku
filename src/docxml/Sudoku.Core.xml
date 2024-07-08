@@ -7581,6 +7581,11 @@
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.View.Empty">
+            <summary>
+            Indicates an empty <see cref="T:Sudoku.Drawing.View"/> instance. You can use this property to create a new instance.
+            </summary>
+        </member>
         <member name="M:Sudoku.Drawing.View.AddRange``1(System.ReadOnlySpan{``0})">
             <summary>
             Adds a list of <see cref="T:Sudoku.Drawing.ViewNode"/>s into the collection.
@@ -7620,6 +7625,15 @@
             Creates a new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance, with independency.
             </summary>
             <returns>A new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.View.ShallowClone">
+            <summary>
+            Creates a new <see cref="T:Sudoku.Drawing.View"/> instance whose contents are all come from the current instance,
+            with reference cloned.
+            </summary>
+            <returns>
+            A new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance, with reference cloned.
+            </returns>
         </member>
         <member name="M:Sudoku.Drawing.View.AsSpan">
             <summary>

@@ -14,6 +14,12 @@ public sealed partial class View :
 	IWhereMethod<View, ViewNode>
 {
 	/// <summary>
+	/// Indicates an empty <see cref="View"/> instance. You can use this property to create a new instance.
+	/// </summary>
+	public static View Empty => [];
+
+
+	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
@@ -134,6 +140,16 @@ public sealed partial class View :
 	public View Clone() => Count == 0 ? [] : [.. from node in this select node.Clone()];
 
 	/// <summary>
+	/// Creates a new <see cref="View"/> instance whose contents are all come from the current instance,
+	/// with reference cloned.
+	/// </summary>
+	/// <returns>
+	/// A new <see cref="View"/> instance with same values as the current instance, with reference cloned.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View ShallowClone() => Count == 0 ? [] : [.. this];
+
+	/// <summary>
 	/// Try to convert this collection as a <see cref="ReadOnlySpan{T}"/> instance.
 	/// </summary>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
@@ -176,23 +192,11 @@ public sealed partial class View :
 	/// <param name="left">The left-side <see cref="View"/> instance.</param>
 	/// <param name="right">The right-side <see cref="View"/> instance.</param>
 	/// <returns>A <see cref="View"/> result created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static View operator &(View left, View right)
 	{
-		var result = new View();
-		foreach (var element in left)
-		{
-			if (right.Contains(element))
-			{
-				result.Add(element);
-			}
-		}
-		foreach (var element in right)
-		{
-			if (left.Contains(element))
-			{
-				result.Add(element);
-			}
-		}
+		var result = left.ShallowClone();
+		result.IntersectWith(right);
 		return result;
 	}
 
@@ -202,17 +206,11 @@ public sealed partial class View :
 	/// <param name="left">Indicates the left-side <see cref="View"/> instance.</param>
 	/// <param name="right">Indicates the right-side <see cref="View"/> instance.</param>
 	/// <returns>A <see cref="View"/> result merged.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static View operator |(View left, View right)
 	{
-		var result = new View();
-		foreach (var element in left)
-		{
-			result.Add(element);
-		}
-		foreach (var element in right)
-		{
-			result.Add(element);
-		}
+		var result = left.ShallowClone();
+		result.UnionWith(right);
 		return result;
 	}
 
@@ -223,23 +221,11 @@ public sealed partial class View :
 	/// <param name="left">The left-side <see cref="View"/> instance.</param>
 	/// <param name="right">The right-side <see cref="View"/> instance.</param>
 	/// <returns>A <see cref="View"/> result created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static View operator ^(View left, View right)
 	{
-		var result = new View();
-		foreach (var element in left)
-		{
-			if (!right.Contains(element))
-			{
-				result.Add(element);
-			}
-		}
-		foreach (var element in right)
-		{
-			if (!left.Contains(element))
-			{
-				result.Add(element);
-			}
-		}
+		var result = left.ShallowClone();
+		result.SymmetricExceptWith(right);
 		return result;
 	}
 }

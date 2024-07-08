@@ -376,7 +376,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			foreach (var key in Keys)
 			{
 				var chain = this[key];
-				var subview = new View();
+				var subview = View.Empty;
 				var j = 0;
 				foreach (var node in chain)
 				{
