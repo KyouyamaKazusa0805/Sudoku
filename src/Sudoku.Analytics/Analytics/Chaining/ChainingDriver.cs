@@ -1,6 +1,7 @@
 namespace Sudoku.Analytics.Chaining;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
+using DistributionPair = (Dictionary<Cell, SortedSet<Node>>, Dictionary<(House, Digit), SortedSet<Node>>);
 using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;
 
 /// <summary>
@@ -385,23 +386,23 @@ internal static class ChainingDriver
 		// For cell.
 		foreach (var startCell in EmptyCells & ~BivalueCells)
 		{
-			var (cellsDistribution, housesDistribution) = getDistributions(in grid, startCell);
+			var (cellsDistribution, housesDistribution) = distributionsCell(in grid, startCell);
 			cellToCell(in grid, cellsDistribution, startCell, supportedRules);
 			cellToHouse(in grid, housesDistribution, startCell, supportedRules);
 		}
 
 		// For house.
-		for (var house = 0; house < 27; house++)
+		for (var startHouse = 0; startHouse < 27; startHouse++)
 		{
-			foreach (var digit in grid[HousesMap[house] & EmptyCells])
+			foreach (var startDigit in grid[HousesMap[startHouse] & EmptyCells])
 			{
-				if ((CandidatesMap[digit] & HousesMap[house]).Count < 3)
+				// Check whether the length of the digits appeared in house is at least 3.
+				// If not, the pattern may be degenerated to a normal continuous nice loop, or just not contain such digit.
+				if ((CandidatesMap[startDigit] & HousesMap[startHouse]).Count >= 3)
 				{
-					// It may be a normal continuous nice loop.
-					continue;
+					var (cellsDistribution, housesDistribution) = distributionsHouse(in grid, startHouse, startDigit);
+
 				}
-
-
 			}
 		}
 
@@ -531,7 +532,7 @@ internal static class ChainingDriver
 			}
 		}
 
-		(CellsDistribution, HousesDistribution) getDistributions(ref readonly Grid grid, Cell startCell)
+		DistributionPair distributionsCell(ref readonly Grid grid, Cell startCell)
 		{
 			var cellsDistribution = new CellsDistribution();
 			var housesDistribution = new HousesDistribution();
@@ -560,6 +561,13 @@ internal static class ChainingDriver
 					}
 				}
 			}
+			return (cellsDistribution, housesDistribution);
+		}
+
+		DistributionPair distributionsHouse(ref readonly Grid grid, House startHouse, Digit startDigit)
+		{
+			var cellsDistribution = new CellsDistribution();
+			var housesDistribution = new HousesDistribution();
 			return (cellsDistribution, housesDistribution);
 		}
 	}
