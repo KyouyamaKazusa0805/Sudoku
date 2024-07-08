@@ -385,34 +385,7 @@ internal static class ChainingDriver
 		// For cell.
 		foreach (var startCell in EmptyCells & ~BivalueCells)
 		{
-			var cellsDistribution = new CellsDistribution();
-			var housesDistribution = new HousesDistribution();
-			foreach (var startDigit in grid.GetCandidates(startCell))
-			{
-				var startCandidate = startCell * 9 + startDigit;
-				if (allBranches.TryGetValue(startCandidate, out var dictionarySubview))
-				{
-					foreach (var (endCandidate, endNode) in dictionarySubview)
-					{
-						var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
-						if (!cellsDistribution.TryAdd(endCell, [endNode]))
-						{
-							cellsDistribution[endCell].Add(endNode);
-						}
-
-						foreach (var houseType in HouseTypes)
-						{
-							var house = endCell.ToHouseIndex(houseType);
-							var entry = (house, endDigit);
-							if (!housesDistribution.TryAdd(entry, [endNode]))
-							{
-								housesDistribution[entry].Add(endNode);
-							}
-						}
-					}
-				}
-			}
-
+			var (cellsDistribution, housesDistribution) = getDistributions(in grid, startCell);
 			cellToCell(in grid, cellsDistribution, startCell, supportedRules);
 			cellToHouse(in grid, housesDistribution, startCell, supportedRules);
 		}
@@ -556,6 +529,38 @@ internal static class ChainingDriver
 				}
 				result.Add(blossomLoop);
 			}
+		}
+
+		(CellsDistribution, HousesDistribution) getDistributions(ref readonly Grid grid, Cell startCell)
+		{
+			var cellsDistribution = new CellsDistribution();
+			var housesDistribution = new HousesDistribution();
+			foreach (var startDigit in grid.GetCandidates(startCell))
+			{
+				var startCandidate = startCell * 9 + startDigit;
+				if (allBranches.TryGetValue(startCandidate, out var dictionarySubview))
+				{
+					foreach (var (endCandidate, endNode) in dictionarySubview)
+					{
+						var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
+						if (!cellsDistribution.TryAdd(endCell, [endNode]))
+						{
+							cellsDistribution[endCell].Add(endNode);
+						}
+
+						foreach (var houseType in HouseTypes)
+						{
+							var house = endCell.ToHouseIndex(houseType);
+							var entry = (house, endDigit);
+							if (!housesDistribution.TryAdd(entry, [endNode]))
+							{
+								housesDistribution[entry].Add(endNode);
+							}
+						}
+					}
+				}
+			}
+			return (cellsDistribution, housesDistribution);
 		}
 	}
 
