@@ -1,5 +1,9 @@
 namespace Sudoku.Analytics.Chaining;
 
+using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
+using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;
+using ChainingRules = ReadOnlySpan<ChainingRule>;
+
 /// <summary>
 /// Provides a driver that can generate normal chains and forcing chains.
 /// </summary>
@@ -344,11 +348,7 @@ internal static class ChainingDriver
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(
-		ref readonly Grid grid,
-		bool onlyFindOne,
-		ReadOnlySpan<ChainingRule> supportedRules
-	)
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne, ChainingRules supportedRules)
 	{
 		var result = new List<BlossomLoop>();
 
@@ -386,8 +386,8 @@ internal static class ChainingDriver
 		// For cell.
 		foreach (var startCell in EmptyCells & ~BivalueCells)
 		{
-			var cellsDistribution = new Dictionary<Cell, SortedSet<Node>>();
-			var housesDistribution = new Dictionary<(House, Digit), SortedSet<Node>>();
+			var cellsDistribution = new CellsDistribution();
+			var housesDistribution = new HousesDistribution();
 			foreach (var startDigit in grid.GetCandidates(startCell))
 			{
 				var startCandidate = startCell * 9 + startDigit;
@@ -414,6 +414,61 @@ internal static class ChainingDriver
 				}
 			}
 
+			cellToCell(in grid, cellsDistribution, startCell, supportedRules);
+			cellToHouse(in grid, housesDistribution, startCell, supportedRules);
+		}
+
+#if false
+		// For house.
+		for (var house = 0; house < 27; house++)
+		{
+			foreach (var digit in grid[HousesMap[house] & EmptyCells])
+			{
+				if ((CandidatesMap[digit] & HousesMap[house]).Count < 3)
+				{
+					// It may be a normal continuous nice loop.
+					continue;
+				}
+
+
+			}
+		}
+#endif
+
+		return result.AsReadOnlySpan();
+
+
+		static CandidateMap getRootMap(SortedSet<Node> distribution)
+		{
+			var rootMap = CandidateMap.Empty;
+			foreach (var node in distribution)
+			{
+				rootMap.Add(node.Root.Map[0]);
+			}
+			return rootMap;
+		}
+
+		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ChainingRules supportedRules)
+		{
+			var result = ConclusionSet.Empty;
+			foreach (var link in patternLinks)
+			{
+				foreach (var conclusion in ChainOrLoop.GetConclusions(in grid, link))
+				{
+					result.Add(conclusion);
+				}
+			}
+
+			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
+			foreach (var rule in supportedRules)
+			{
+				result |= rule.CollectLoopConclusions(in context);
+			}
+			return result;
+		}
+
+		void cellToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRules supportedRules)
+		{
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
 			{
@@ -456,7 +511,10 @@ internal static class ChainingDriver
 				}
 				result.Add(blossomLoop);
 			}
+		}
 
+		void cellToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRules supportedRules)
+		{
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
 			{
@@ -501,57 +559,6 @@ internal static class ChainingDriver
 				}
 				result.Add(blossomLoop);
 			}
-		}
-
-		// For house.
-		for (var house = 0; house < 27; house++)
-		{
-			foreach (var digit in grid[HousesMap[house] & EmptyCells])
-			{
-				if ((CandidatesMap[digit] & HousesMap[house]).Count < 3)
-				{
-					// It may be a normal continuous nice loop.
-					continue;
-				}
-
-
-			}
-		}
-
-		return result.AsReadOnlySpan();
-
-
-		static CandidateMap getRootMap(SortedSet<Node> distribution)
-		{
-			var rootMap = CandidateMap.Empty;
-			foreach (var node in distribution)
-			{
-				rootMap.Add(node.Root.Map[0]);
-			}
-			return rootMap;
-		}
-
-		static ConclusionSet collectConclusions(
-			ref readonly Grid grid,
-			List<Link> patternLinks,
-			ReadOnlySpan<ChainingRule> supportedRules
-		)
-		{
-			var result = ConclusionSet.Empty;
-			foreach (var link in patternLinks)
-			{
-				foreach (var conclusion in ChainOrLoop.GetConclusions(in grid, link))
-				{
-					result.Add(conclusion);
-				}
-			}
-
-			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
-			foreach (var rule in supportedRules)
-			{
-				result |= rule.CollectLoopConclusions(in context);
-			}
-			return result;
 		}
 	}
 
