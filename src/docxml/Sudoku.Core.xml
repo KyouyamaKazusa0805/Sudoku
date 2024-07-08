@@ -2371,13 +2371,6 @@
             <param name="low">Lower 27 bits.</param>
             <returns>The result instance created.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CreateByInt128(System.Int128@)">
-            <summary>
-            Initializes an instance with an <see cref="T:System.Int128"/> integer.
-            </summary>
-            <param name="llong">The <see cref="T:System.Int128"/> integer.</param>
-            <returns>The result instance created.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc/>
         </member>
@@ -2471,18 +2464,6 @@
             <param name="house">The house to be checked.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int128">
-            <summary>
-            Implicit cast from a <see cref="T:Sudoku.Concepts.CellMap"/> instance into a <see cref="T:System.Int128"/> result.
-            </summary>
-            <param name="this">A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Implicit(System.Int128)~Sudoku.Concepts.CellMap">
-            <summary>
-            Implicit cast from a <see cref="T:System.Int128"/> value into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="value">A <see cref="T:System.Int128"/> value.</param>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <summary>
             Explicit cast from a <see cref="T:System.Int32"/> array into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
@@ -2525,6 +2506,282 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.Size">
+            <summary>
+            Indicates the size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.MaxValueDouble">
+            <summary>
+            Indicates the possible maximal value in <see cref="T:System.Double"/> representation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.MaxValueUInt128">
+            <summary>
+            Indicates the max bits on numeric representation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.NumericValue">
+            <summary>
+            Indicates the back numeric value to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#Radix">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#One">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#Zero">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMultiplicativeIdentity{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#MultiplicativeIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#ISignedNumber{Sudoku#Concepts#CellMap}#NegativeOne">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ISpanFormattable#TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TryWriteBigEndian(System.Span{System.Byte},System.Int32@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TryWriteLittleEndian(System.Span{System.Byte},System.Int32@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IComparable#CompareTo(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#GetByteCount">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#GetShortestBitLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.CreateByNumericValue(System.Int128)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a <see cref="T:System.Int128"/> as numeric value.
+            </summary>
+            <param name="numericValue">The numeric value.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.CreateByNumericValueChecked(System.Int128)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance via a <see cref="T:System.Int128"/> as numeric value.
+            </summary>
+            <param name="numericValue">The numeric value.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+            <exception cref="T:System.OverflowException">Throws when the numeric value has exceeded bits of position greater than 81.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsCanonical(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsComplexNumber(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsEvenInteger(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsFinite(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsImaginaryNumber(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsInfinity(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsInteger(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsNaN(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsNegative(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsNegativeInfinity(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsNormal(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsOddInteger(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsPositive(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsPositiveInfinity(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryNumber{Sudoku#Concepts#CellMap}#IsPow2(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsRealNumber(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsSubnormal(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#IsZero(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertFromChecked``1(``0,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertFromSaturating``1(``0,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertFromTruncating``1(``0,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertToChecked``1(Sudoku.Concepts.CellMap,``0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertToSaturating``1(Sudoku.Concepts.CellMap,``0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryConvertToTruncating``1(Sudoku.Concepts.CellMap,``0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryParse(System.ReadOnlySpan{System.Char},System.Globalization.NumberStyles,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#TryParse(System.String,System.Globalization.NumberStyles,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ISpanParsable{Sudoku#Concepts#CellMap}#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IParsable{Sudoku#Concepts#CellMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TryReadBigEndian(System.ReadOnlySpan{System.Byte},System.Boolean,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TryReadLittleEndian(System.ReadOnlySpan{System.Byte},System.Boolean,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#Abs(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryNumber{Sudoku#Concepts#CellMap}#Log2(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#MaxMagnitude(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#MaxMagnitudeNumber(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#MinMagnitude(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#MinMagnitudeNumber(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#Parse(System.ReadOnlySpan{System.Char},System.Globalization.NumberStyles,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#INumberBase{Sudoku#Concepts#CellMap}#Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ISpanParsable{Sudoku#Concepts#CellMap}#Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IParsable{Sudoku#Concepts#CellMap}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#PopCount(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TrailingZeroCount(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.LeadingZeroCountAsInt32(System.Int128)">
+            <summary>
+            Calculates leading zeros count, try casting the value as two parts of bits.
+            </summary>
+            <param name="value">The values.</param>
+            <returns>The final value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IUnaryPlusOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryPlus(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Addition(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IAdditionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_CheckedAddition(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IUnaryNegationOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_UnaryNegation(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IUnaryNegationOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_CheckedUnaryNegation(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Subtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_CheckedSubtraction(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IIncrementOperators{Sudoku#Concepts#CellMap}#op_Increment(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IIncrementOperators{Sudoku#Concepts#CellMap}#op_CheckedIncrement(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDecrementOperators{Sudoku#Concepts#CellMap}#op_Decrement(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDecrementOperators{Sudoku#Concepts#CellMap}#op_CheckedDecrement(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Multiply(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IMultiplyOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_CheckedMultiply(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap}#op_CheckedDivision(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IShiftOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_LeftShift(Sudoku.Concepts.CellMap,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IShiftOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_RightShift(Sudoku.Concepts.CellMap,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IShiftOperators{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap}#op_UnsignedRightShift(Sudoku.Concepts.CellMap,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(Sudoku.Concepts.CellMap@)~System.Int128">
+            <summary>
+            Creates a <see cref="T:System.Int128"/> instance as its numeric representation via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int128)~Sudoku.Concepts.CellMap">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance as its bit representation via the specified <see cref="T:System.Int128"/> instance.
+            </summary>
+            <param name="value">An <see cref="T:System.Int128"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_CheckedExplicit(System.Int128)~Sudoku.Concepts.CellMap">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance as its bit representation via the specified <see cref="T:System.Int128"/> instance;
+            with overflow checking - throws <see cref="T:System.OverflowException"/> if the argument uses exceeded bits
+            whose position is greater than 81.
+            </summary>
+            <param name="value">An <see cref="T:System.Int128"/> instance.</param>
+            <exception cref="T:System.OverflowException">Throws when the value uses exceeded bits whose position is greater than 81.</exception>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

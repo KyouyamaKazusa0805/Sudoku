@@ -781,15 +781,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	public static CellMap CreateByBits(int high, int mid, int low)
 		=> CreateByBits((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL);
 
-	/// <summary>
-	/// Initializes an instance with an <see cref="llong"/> integer.
-	/// </summary>
-	/// <param name="llong">The <see cref="llong"/> integer.</param>
-	/// <returns>The result instance created.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByInt128(ref readonly llong llong)
-		=> CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
-
 	/// <inheritdoc/>
 	public static CellMap Parse(string str)
 	{
@@ -1038,21 +1029,6 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		}
 		return result;
 	}
-
-
-	/// <summary>
-	/// Implicit cast from a <see cref="CellMap"/> instance into a <see cref="llong"/> result.
-	/// </summary>
-	/// <param name="this">A <see cref="CellMap"/> instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator llong(in CellMap @this) => new((ulong)@this._high, (ulong)@this._low);
-
-	/// <summary>
-	/// Implicit cast from a <see cref="llong"/> value into a <see cref="CellMap"/> instance.
-	/// </summary>
-	/// <param name="value">A <see cref="llong"/> value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator CellMap(llong value) => CreateByInt128(in value);
 
 
 	/// <summary>
