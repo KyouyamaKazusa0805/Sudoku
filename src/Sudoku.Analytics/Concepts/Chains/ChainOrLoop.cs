@@ -454,6 +454,11 @@ public abstract partial class ChainOrLoop :
 	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
 
 
+	/// <inheritdoc cref="GetConclusions(ref readonly Grid, Node, Node)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected internal static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Link link)
+		=> GetConclusions(in grid, link.FirstNode, link.SecondNode);
+
 	/// <summary>
 	/// Try to get all possible conclusions via the specified grid and two <see cref="Node"/> instances.
 	/// </summary>

@@ -387,7 +387,7 @@ internal static class ChainingDriver
 		foreach (var startCell in EmptyCells & ~BivalueCells)
 		{
 			var cellsDistribution = new Dictionary<Cell, SortedSet<Node>>();
-			var housesDistribution = new Dictionary<(House House, Digit Digit), SortedSet<Node>>();
+			var housesDistribution = new Dictionary<(House, Digit), SortedSet<Node>>();
 			foreach (var startDigit in grid.GetCandidates(startCell))
 			{
 				var startCandidate = startCell * 9 + startDigit;
@@ -428,43 +428,20 @@ internal static class ChainingDriver
 					continue;
 				}
 
-				var rootMap = CandidateMap.Empty;
-				foreach (var node in cellDistribution)
-				{
-					rootMap.Add(node.Root.Map[0]);
-				}
-				if (rootMap.GetDigitsFor(startCell) != digitsMask)
+				if (getRootMap(cellDistribution).GetDigitsFor(startCell) != digitsMask)
 				{
 					continue;
 				}
 
 				// Calculate conclusions.
-				var conclusions = ConclusionSet.Empty;
-				var patternUsedCandidates = CandidateMap.Empty;
 				var patternLinks = new List<Link>();
 				var arrayCellDistribution = cellDistribution.ToArray();
 				var strongForcingChains = from branch in arrayCellDistribution select new StrongForcingChain(branch);
 				for (var i = 0; i < cellDistribution.Count; i++)
 				{
-					var currentForcingChain = strongForcingChains[i];
-					patternLinks.AddRange(currentForcingChain.Links);
-					conclusions |= currentForcingChain.GetConclusions(in grid);
+					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
-				foreach (var rule in supportedRules)
-				{
-					conclusions |= rule.CollectLoopConclusions(in context);
-				}
-#if false
-				foreach (var usedCandidate in patternUsedCandidates)
-				{
-					var unexpectedConclusion = new Conclusion(Elimination, usedCandidate);
-					if (conclusions.Contains(unexpectedConclusion))
-					{
-						conclusions.Remove(unexpectedConclusion);
-					}
-				}
-#endif
+				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -481,7 +458,49 @@ internal static class ChainingDriver
 			}
 
 			// Iterate on houses' distribution.
+			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
+			{
+				if (startCell.ToHouseIndex(HouseType.Block) == startCurrentHouse
+					|| startCell.ToHouseIndex(HouseType.Row) == startCurrentHouse
+					|| startCell.ToHouseIndex(HouseType.Column) == startCurrentHouse)
+				{
+					continue;
+				}
 
+				var digitsMask = grid.GetCandidates(startCell);
+				if (houseDistribution.Count != PopCount((uint)digitsMask))
+				{
+					continue;
+				}
+
+				if (getRootMap(houseDistribution).GetDigitsFor(startCell) != digitsMask)
+				{
+					continue;
+				}
+
+				// Calculate conclusions.
+				var patternLinks = new List<Link>();
+				var arrayCellDistribution = houseDistribution.ToArray();
+				var strongForcingChains = from branch in arrayCellDistribution select new StrongForcingChain(branch);
+				for (var i = 0; i < houseDistribution.Count; i++)
+				{
+					patternLinks.AddRange(strongForcingChains[i].Links);
+				}
+				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				if (!conclusions)
+				{
+					// There's no eliminations found.
+					continue;
+				}
+
+				// Collect pattern.
+				var blossomLoop = new BlossomLoop([.. conclusions]);
+				for (var i = 0; i < houseDistribution.Count; i++)
+				{
+					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
+				}
+				result.Add(blossomLoop);
+			}
 		}
 
 		// For house.
@@ -500,6 +519,40 @@ internal static class ChainingDriver
 		}
 
 		return result.AsReadOnlySpan();
+
+
+		static CandidateMap getRootMap(SortedSet<Node> distribution)
+		{
+			var rootMap = CandidateMap.Empty;
+			foreach (var node in distribution)
+			{
+				rootMap.Add(node.Root.Map[0]);
+			}
+			return rootMap;
+		}
+
+		static ConclusionSet collectConclusions(
+			ref readonly Grid grid,
+			List<Link> patternLinks,
+			ReadOnlySpan<ChainingRule> supportedRules
+		)
+		{
+			var result = ConclusionSet.Empty;
+			foreach (var link in patternLinks)
+			{
+				foreach (var conclusion in ChainOrLoop.GetConclusions(in grid, link))
+				{
+					result.Add(conclusion);
+				}
+			}
+
+			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
+			foreach (var rule in supportedRules)
+			{
+				result |= rule.CollectLoopConclusions(in context);
+			}
+			return result;
+		}
 	}
 
 	/// <summary>

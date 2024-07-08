@@ -1003,6 +1003,9 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Link)">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/>
+        </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <summary>
             Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
