@@ -2,7 +2,6 @@ namespace Sudoku.Analytics.Chaining;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
 using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;
-using ChainingRules = ReadOnlySpan<ChainingRule>;
 
 /// <summary>
 /// Provides a driver that can generate normal chains and forcing chains.

@@ -412,7 +412,7 @@ public abstract partial class ChainOrLoop :
 	/// <param name="grid">The grid.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, ReadOnlySpan<ChainingRule> supportedRules)
+	public View[] GetViews(ref readonly Grid grid, ChainingRules supportedRules)
 	{
 		var result = (View[])[
 			[

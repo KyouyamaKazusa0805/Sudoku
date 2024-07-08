@@ -12,7 +12,7 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
+	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, ChainingRules supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
@@ -35,7 +35,7 @@ internal static class ChainModule
 		return null;
 
 
-		static Conclusion[] c(ChainOrLoop pattern, ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+		static Conclusion[] c(ChainOrLoop pattern, ref readonly Grid grid, ChainingRules rules)
 		{
 			var conclusions = pattern.GetConclusions(in grid);
 			if (pattern is Loop { Links: var links })
@@ -61,7 +61,7 @@ internal static class ChainModule
 	public static Step? CollectMultipleCore(
 		ref AnalysisContext context,
 		List<ChainStep> accumulator,
-		ReadOnlySpan<ChainingRule> supportedRules,
+		ChainingRules supportedRules,
 		bool onlyFindFinnedChain
 	)
 	{
@@ -128,7 +128,7 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectBlossomLoopCore(ref AnalysisContext context, List<BlossomLoopStep> accumulator, ReadOnlySpan<ChainingRule> supportedRules)
+	public static Step? CollectBlossomLoopCore(ref AnalysisContext context, List<BlossomLoopStep> accumulator, ChainingRules supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
@@ -151,7 +151,7 @@ internal static class ChainModule
 		return null;
 
 
-		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ReadOnlySpan<ChainingRule> supportedRules)
+		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ChainingRules supportedRules)
 		{
 			var globalView = View.Empty;
 			var otherViews = new View[blossomLoop.Count];

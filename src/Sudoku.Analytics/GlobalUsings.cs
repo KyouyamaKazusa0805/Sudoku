@@ -60,3 +60,4 @@ global using static Sudoku.Analytics.Languages;
 global using static Sudoku.Caching.CachingData;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;
+global using ChainingRules = System.ReadOnlySpan<Sudoku.Analytics.Chaining.ChainingRule>;

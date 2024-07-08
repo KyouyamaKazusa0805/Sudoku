@@ -338,7 +338,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// <param name="conclusion">The conclusion.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, Conclusion conclusion, ReadOnlySpan<ChainingRule> supportedRules)
+	public View[] GetViews(ref readonly Grid grid, Conclusion conclusion, ChainingRules supportedRules)
 	{
 		var viewNodes = v(in grid, supportedRules);
 		var result = new View[viewNodes.Length];
@@ -364,7 +364,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		return result;
 
 
-		ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
+		ReadOnlySpan<ViewNode[]> v(ref readonly Grid grid, ChainingRules rules)
 		{
 			var result = new ViewNode[Count + 1][];
 			ViewNode houseOrCellNode = IsCellMultiple

@@ -107,7 +107,7 @@ internal static class CachingData
 	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepSearcherOptions options, out ReadOnlySpan<ChainingRule> rules)
+	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepSearcherOptions options, out ChainingRules rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
 		if (!StrongLinkTypesEntried.HasFlag(linkTypes) || !WeakLinkTypesEntried.HasFlag(linkTypes))
