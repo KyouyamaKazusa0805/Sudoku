@@ -137,7 +137,7 @@ public sealed partial class View :
 	/// </summary>
 	/// <returns>A new <see cref="View"/> instance with same values as the current instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View Clone() => Count == 0 ? [] : [.. from node in this select node.Clone()];
+	public View Clone() => Count == 0 ? Empty : [.. from node in this select node.Clone()];
 
 	/// <summary>
 	/// Creates a new <see cref="View"/> instance whose contents are all come from the current instance,
@@ -147,7 +147,7 @@ public sealed partial class View :
 	/// A new <see cref="View"/> instance with same values as the current instance, with reference cloned.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public View ShallowClone() => Count == 0 ? [] : [.. this];
+	public View ShallowClone() => Count == 0 ? Empty : [.. this];
 
 	/// <summary>
 	/// Try to convert this collection as a <see cref="ReadOnlySpan{T}"/> instance.

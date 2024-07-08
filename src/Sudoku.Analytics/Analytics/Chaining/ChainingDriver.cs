@@ -418,7 +418,6 @@ internal static class ChainingDriver
 			cellToHouse(in grid, housesDistribution, startCell, supportedRules);
 		}
 
-#if false
 		// For house.
 		for (var house = 0; house < 27; house++)
 		{
@@ -433,7 +432,6 @@ internal static class ChainingDriver
 
 			}
 		}
-#endif
 
 		return result.AsReadOnlySpan();
 
