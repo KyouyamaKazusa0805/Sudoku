@@ -26,10 +26,11 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	{
 		get
 		{
-			var result = (Int128)0;
+			var one = Int128.One;
+			var result = Int128.Zero;
 			foreach (var offset in Offsets)
 			{
-				result |= (Int128)1 << offset;
+				result |= one << offset;
 			}
 			return result;
 		}

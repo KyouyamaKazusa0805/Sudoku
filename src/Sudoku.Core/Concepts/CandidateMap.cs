@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
+using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 
 /// <summary>
 /// Encapsulates a binary series of candidate state table.
@@ -13,7 +13,7 @@ using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
+public partial struct CandidateMap : CandidateMapBase
 {
 	/// <summary>
 	/// Indicates the length of the backing buffer.
@@ -22,10 +22,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	private const int Length = 12;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CandidateMap Empty = [];
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Full"/>
 	public static readonly CandidateMap Full = ~default(CandidateMap);
 
 
@@ -225,20 +225,20 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CandidateMap, Candidate, Enumerator>.Shifting => sizeof(long) << 3;
+	readonly int CandidateMapBase.Shifting => sizeof(long) << 3;
 
 	/// <inheritdoc/>
-	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate, Enumerator>.Offsets => Offsets;
+	readonly Candidate[] CandidateMapBase.Offsets => Offsets;
 
 
 	/// <inheritdoc/>
-	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
+	static Candidate CandidateMapBase.MaxCount => 9 * 9 * 9;
 
 	/// <inheritdoc/>
-	static ref readonly CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => ref Empty;
+	static ref readonly CandidateMap CandidateMapBase.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static ref readonly CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => ref Full;
+	static ref readonly CandidateMap CandidateMapBase.Full => ref Full;
 
 
 	/// <summary>
@@ -807,34 +807,35 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 		var n = map.Count;
 		var buffer = stackalloc int[subsetSize];
-		if (n <= MaxLimit && subsetSize <= MaxLimit)
+		if (n <= CandidateMapBase.MaxLimit && subsetSize <= CandidateMapBase.MaxLimit)
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CandidateMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCandidateMap());
+			e(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCandidateMap());
 			return result;
 		}
 		else
 		{
-			if (n > MaxLimit && subsetSize > MaxLimit)
+			if (n > CandidateMapBase.MaxLimit && subsetSize > CandidateMapBase.MaxLimit)
 			{
 				throw new NotSupportedException(SR.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CandidateMap>();
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => result.AddRef(c.AsCandidateMap()));
+			e(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCandidateMap()));
 			return result.AsReadOnlySpan();
 		}
 
 
-		void enumerate<T>(T result, int size, int last, int index, Candidate[] offsets, CollectionAddingHandler<T> addingAction)
+		void e<T>(T result, int size, int last, int index, Candidate[] offsets, CandidateMapBase.CollectionAddingHandler<T> addingAction)
+			where T : allows ref struct
 		{
 			for (var i = last; i >= index; i--)
 			{
 				buffer[index - 1] = i - 1;
 				if (index > 1)
 				{
-					enumerate(result, size, i - 1, index - 1, offsets, addingAction);
+					e(result, size, i - 1, index - 1, offsets, addingAction);
 				}
 				else
 				{

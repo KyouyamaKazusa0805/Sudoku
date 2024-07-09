@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
 [TypeImpl(TypeImplFlag.EqualityOperators, EqualityOperatorsBehavior = EqualityOperatorsBehavior.MakeVirtual, IsLargeStructure = true)]
-public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
+public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IAnyAllMethod<TSelf, TElement>,
@@ -33,7 +33,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	ISpanParsable<TSelf>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
 	IWhereMethod<TSelf, TElement>
-	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
+	where TSelf : unmanaged, ICellMapOrCandidateMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 {

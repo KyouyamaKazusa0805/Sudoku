@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-using static IBitStatusMap<CellMap, Cell, CellMap.Enumerator>;
+using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 
 /// <summary>
 /// Encapsulates a binary series of cell state table.
@@ -13,16 +13,16 @@ using static IBitStatusMap<CellMap, Cell, CellMap.Enumerator>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
+public partial struct CellMap : CellMapBase
 {
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CellMap Empty = [];
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Full"/>
 	public static readonly CellMap Full = ~default(CellMap);
 
 	/// <summary>
@@ -377,20 +377,20 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	}
 
 	/// <inheritdoc/>
-	readonly int IBitStatusMap<CellMap, Cell, Enumerator>.Shifting => Shifting;
+	readonly int CellMapBase.Shifting => Shifting;
 
 	/// <inheritdoc/>
-	readonly Cell[] IBitStatusMap<CellMap, Cell, Enumerator>.Offsets => Offsets;
+	readonly Cell[] CellMapBase.Offsets => Offsets;
 
 
 	/// <inheritdoc/>
-	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
+	static Cell CellMapBase.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>
-	static ref readonly CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => ref Empty;
+	static ref readonly CellMap CellMapBase.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static ref readonly CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => ref Full;
+	static ref readonly CellMap CellMapBase.Full => ref Full;
 
 
 	/// <summary>
@@ -912,34 +912,35 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 
 		var n = map.Count;
 		var buffer = stackalloc int[subsetSize];
-		if (n <= MaxLimit && subsetSize <= MaxLimit)
+		if (n <= CellMapBase.MaxLimit && subsetSize <= CellMapBase.MaxLimit)
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CellMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCellMap());
+			e(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCellMap());
 			return result;
 		}
 		else
 		{
-			if (n > MaxLimit && subsetSize > MaxLimit)
+			if (n > CellMapBase.MaxLimit && subsetSize > CellMapBase.MaxLimit)
 			{
 				throw new NotSupportedException(SR.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CellMap>();
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCellMap()));
+			e(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCellMap()));
 			return result.AsReadOnlySpan();
 		}
 
 
-		void enumerate<T>(T result, int size, int last, int index, Cell[] offsets, CollectionAddingHandler<T> addingAction)
+		void e<T>(T result, int size, int last, int index, Cell[] offsets, CellMapBase.CollectionAddingHandler<T> addingAction)
+			where T : allows ref struct
 		{
 			for (var i = last; i >= index; i--)
 			{
 				buffer[index - 1] = i - 1;
 				if (index > 1)
 				{
-					enumerate(result, size, i - 1, index - 1, offsets, addingAction);
+					e(result, size, i - 1, index - 1, offsets, addingAction);
 				}
 				else
 				{

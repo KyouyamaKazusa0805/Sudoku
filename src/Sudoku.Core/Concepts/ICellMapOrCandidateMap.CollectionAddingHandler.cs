@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-public partial interface IBitStatusMap<TSelf, TElement, TEnumerator>
+public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator>
 {
 	/// <summary>
 	/// Represents a local handler on <typeparamref name="TCollection"/> adding operation, with a new element.

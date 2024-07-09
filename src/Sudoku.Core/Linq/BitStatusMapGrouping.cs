@@ -22,7 +22,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	IGrouping<TKey, TElement>,
 	ISelectMethod<TMap, TElement>,
 	IWhereMethod<TMap, TElement>
-	where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
+	where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 	where TKey : notnull
@@ -34,7 +34,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	public int Count => Values.Count;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.this[int]"/>
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.this[int]"/>
 	public TElement this[int index] => Values[index];
 
 

@@ -24,7 +24,7 @@ public static class BitStatusMapGroupingEnumerable
 		this BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
 		Func<TElement, bool> predicate
 	)
-		where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
+		where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement, TEnumerator>
 		where TElement : unmanaged, IBinaryInteger<TElement>
 		where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 		where TKey : notnull
@@ -71,7 +71,7 @@ public static class BitStatusMapGroupingEnumerable
 		this BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
 		Func<TElement, TResult> selector
 	)
-		where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
+		where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement, TEnumerator>
 		where TElement : unmanaged, IBinaryInteger<TElement>
 		where TEnumerator : struct, IEnumerator<TElement>, allows ref struct
 		where TKey : notnull
