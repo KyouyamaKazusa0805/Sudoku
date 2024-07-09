@@ -117,7 +117,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
 	{
 		// This example will contain extra eliminations:
 		//   4.........2..5...6..8..23...9..8.7....59.+7.6.7+8.3.4..2.7..4.6....3..1..91......8.:548 549 167 168 695
@@ -141,7 +141,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 		// because AUR eliminations should be treated as "forced" ones, meaning we should check them by supposing it with "true"
 		// to make a contradiction.
 		// This will be implemented in the future.
-		return base.CollectLoopConclusions(in context);
+		base.CollectLoopConclusions(ref context);
 	}
 
 	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);

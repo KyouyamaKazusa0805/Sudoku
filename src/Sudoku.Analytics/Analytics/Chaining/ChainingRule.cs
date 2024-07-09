@@ -62,5 +62,7 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
-	public virtual ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context) => [];
+	public virtual void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
+	{
+	}
 }

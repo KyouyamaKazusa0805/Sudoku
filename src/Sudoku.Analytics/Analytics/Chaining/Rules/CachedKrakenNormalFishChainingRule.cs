@@ -179,10 +179,9 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-
 		var result = ConclusionSet.Empty;
 		var candidatesMap = grid.CandidatesMap;
 		var links = context.Links;
@@ -220,6 +219,6 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 			}
 			result.AddRange(from cell in elimMap select new Conclusion(Elimination, cell, digit));
 		}
-		return result;
+		context.Conclusions = result;
 	}
 }

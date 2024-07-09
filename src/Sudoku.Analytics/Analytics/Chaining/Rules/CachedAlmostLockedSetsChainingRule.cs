@@ -144,14 +144,13 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
 	{
 		// An example with 19 eliminations:
 		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
 
-		ref readonly var grid = ref context.Grid;
-
 		// A valid ALS can be eliminated as a real naked subset.
+		ref readonly var grid = ref context.Grid;
 		var result = ConclusionSet.Empty;
 		foreach (var element in context.Links)
 		{
@@ -173,6 +172,6 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				}
 			}
 		}
-		return result;
+		context.Conclusions = result;
 	}
 }

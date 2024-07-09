@@ -44,7 +44,8 @@ internal static class ChainModule
 				var context = new ChainingRuleLoopConclusionCollectingContext(in grid, links);
 				foreach (var r in rules)
 				{
-					conclusions |= r.CollectLoopConclusions(in context);
+					r.CollectLoopConclusions(ref context);
+					conclusions |= context.Conclusions;
 				}
 			}
 			return [.. conclusions];

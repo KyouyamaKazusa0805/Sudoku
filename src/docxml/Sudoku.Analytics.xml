@@ -9041,6 +9041,11 @@
             <param name="grid">The grid to be checked.</param>
             <param name="links">The links inside the loop or loop-like pattern.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Conclusions">
+            <summary>
+            Indicates the found conclusions.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
             <inheritdoc/>
         </member>

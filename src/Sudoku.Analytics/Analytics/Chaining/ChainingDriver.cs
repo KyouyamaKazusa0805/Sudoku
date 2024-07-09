@@ -431,7 +431,8 @@ internal static class ChainingDriver
 			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
 			foreach (var rule in supportedRules)
 			{
-				result |= rule.CollectLoopConclusions(in context);
+				rule.CollectLoopConclusions(ref context);
+				result |= context.Conclusions;
 			}
 
 			// Collect on end-point nodes.
