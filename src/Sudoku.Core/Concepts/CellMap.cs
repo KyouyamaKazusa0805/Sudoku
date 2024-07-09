@@ -927,7 +927,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 				throw new NotSupportedException(SR.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CellMap>();
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r.AddRef(c.AsCellMap()));
+			enumerate(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCellMap()));
 			return result.AsReadOnlySpan();
 		}
 

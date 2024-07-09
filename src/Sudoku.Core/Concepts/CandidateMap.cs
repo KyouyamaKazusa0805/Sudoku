@@ -812,7 +812,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CandidateMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
-			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => result[totalIndex++] = c.AsCandidateMap());
+			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCandidateMap());
 			return result;
 		}
 		else
