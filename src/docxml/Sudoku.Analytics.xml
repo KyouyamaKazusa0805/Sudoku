@@ -14897,31 +14897,6 @@
             ]]></code>
             </example>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo">
-            <summary>
-            Represents data describing for an H-Wing pattern.
-            </summary>
-            <param name="CommonDigit">The common digit for those two digits.</param>
-            <param name="OtherDigitsMask">Indicates the other digits used.</param>
-            <param name="Cells">Indicates the two cells.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.#ctor(System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Represents data describing for an H-Wing pattern.
-            </summary>
-            <param name="CommonDigit">The common digit for those two digits.</param>
-            <param name="OtherDigitsMask">Indicates the other digits used.</param>
-            <param name="Cells">Indicates the two cells.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.CommonDigit">
-            <summary>The common digit for those two digits.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.OtherDigitsMask">
-            <summary>Indicates the other digits used.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo.Cells">
-            <summary>Indicates the two cells.</summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher">
             <summary>
             Provides with a <b>Regular Wing</b> step searcher.
