@@ -1,7 +1,6 @@
 namespace Sudoku.Analytics.Chaining;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
-using DistributionPair = (Dictionary<Cell, SortedSet<Node>>, Dictionary<(House, Digit), SortedSet<Node>>);
 using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;
 
 /// <summary>
@@ -401,11 +400,11 @@ internal static class ChainingDriver
 				if ((CandidatesMap[startDigit] & HousesMap[startHouse]).Count >= 3)
 				{
 					var (cellsDistribution, housesDistribution) = distributionsHouse(in grid, startHouse, startDigit);
-
+					houseToCell(in grid, cellsDistribution, startHouse, startDigit, supportedRules);
+					houseToHouse(in grid, housesDistribution, startHouse, startDigit, supportedRules);
 				}
 			}
 		}
-
 		return result.AsReadOnlySpan();
 
 
@@ -532,7 +531,101 @@ internal static class ChainingDriver
 			}
 		}
 
-		DistributionPair distributionsCell(ref readonly Grid grid, Cell startCell)
+		void houseToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, House startHouse, Digit startDigit, ChainingRules supportedRules)
+		{
+			// Iterate on cells' distribution.
+			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
+			{
+				if (currentStartCell.ToHouseIndex(HouseType.Block) == startHouse
+					|| currentStartCell.ToHouseIndex(HouseType.Row) == startHouse
+					|| currentStartCell.ToHouseIndex(HouseType.Column) == startHouse)
+				{
+					continue;
+				}
+
+				var cells = HousesMap[startHouse] & CandidatesMap[startDigit];
+				if (cellDistribution.Count != cells.Count)
+				{
+					continue;
+				}
+
+				if ((getRootMap(cellDistribution).Cells & HousesMap[startHouse]) != cells)
+				{
+					continue;
+				}
+
+				// Calculate conclusions.
+				var patternLinks = new List<Link>();
+				var arrayCellDistribution = cellDistribution.ToArray();
+				var strongForcingChains = from branch in arrayCellDistribution select new StrongForcingChain(branch);
+				for (var i = 0; i < cellDistribution.Count; i++)
+				{
+					patternLinks.AddRange(strongForcingChains[i].Links);
+				}
+				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				if (!conclusions)
+				{
+					// There's no eliminations found.
+					continue;
+				}
+
+				// Collect pattern.
+				var blossomLoop = new BlossomLoop([.. conclusions]);
+				for (var i = 0; i < cellDistribution.Count; i++)
+				{
+					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
+				}
+				result.Add(blossomLoop);
+			}
+		}
+
+		void houseToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRules supportedRules)
+		{
+			// Iterate on houses' distribution.
+			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
+			{
+				if (startCurrentHouse == startHouse)
+				{
+					continue;
+				}
+
+				var cells = HousesMap[startCurrentHouse] & CandidatesMap[startDigit];
+				if (houseDistribution.Count != cells.Count)
+				{
+					continue;
+				}
+
+				if (getRootMap(houseDistribution).Cells != cells)
+				{
+					continue;
+				}
+
+				// Calculate conclusions.
+				var patternLinks = new List<Link>();
+				var arrayCellDistribution = houseDistribution.ToArray();
+				var strongForcingChains = from branch in arrayCellDistribution select new StrongForcingChain(branch);
+				for (var i = 0; i < houseDistribution.Count; i++)
+				{
+					patternLinks.AddRange(strongForcingChains[i].Links);
+				}
+				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				if (!conclusions)
+				{
+					// There's no eliminations found.
+					continue;
+				}
+
+				// Collect pattern.
+				var blossomLoop = new BlossomLoop([.. conclusions]);
+				for (var i = 0; i < houseDistribution.Count; i++)
+				{
+					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
+				}
+				result.Add(blossomLoop);
+			}
+		}
+
+		(CellsDistribution, HousesDistribution) distributionsCell(ref readonly Grid grid, Cell startCell)
 		{
 			var cellsDistribution = new CellsDistribution();
 			var housesDistribution = new HousesDistribution();
@@ -564,10 +657,35 @@ internal static class ChainingDriver
 			return (cellsDistribution, housesDistribution);
 		}
 
-		DistributionPair distributionsHouse(ref readonly Grid grid, House startHouse, Digit startDigit)
+		(CellsDistribution, HousesDistribution) distributionsHouse(ref readonly Grid grid, House startHouse, Digit startDigit)
 		{
 			var cellsDistribution = new CellsDistribution();
 			var housesDistribution = new HousesDistribution();
+			foreach (var cell in HousesMap[startHouse] & CandidatesMap[startDigit])
+			{
+				var startCandidate = cell * 9 + startDigit;
+				if (allBranches.TryGetValue(startCandidate, out var dictionarySubview))
+				{
+					foreach (var (endCandidate, endNode) in dictionarySubview)
+					{
+						var (endCell, endDigit) = (endCandidate / 9, endCandidate % 9);
+						if (!cellsDistribution.TryAdd(endCell, [endNode]))
+						{
+							cellsDistribution[endCell].Add(endNode);
+						}
+
+						foreach (var houseType in HouseTypes)
+						{
+							var house = endCell.ToHouseIndex(houseType);
+							var entry = (house, endDigit);
+							if (!housesDistribution.TryAdd(entry, [endNode]))
+							{
+								housesDistribution[entry].Add(endNode);
+							}
+						}
+					}
+				}
+			}
 			return (cellsDistribution, housesDistribution);
 		}
 	}

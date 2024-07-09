@@ -175,16 +175,24 @@ internal static class ChainModule
 				i++;
 			}
 
-			globalView.Add(
+			var entryHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
 					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
 					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(entryCandidates.Cells.SharedHouses))
 			);
-			globalView.Add(
+			var exitHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
 					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
 					: new HouseViewNode(ColorIdentifier.Auxiliary1, TrailingZeroCount(exitCandidates.Cells.SharedHouses))
 			);
+
+			globalView.Add(entryHouseOrCellViewNode);
+			globalView.Add(exitHouseOrCellViewNode);
+			foreach (ref var otherView in otherViews.AsSpan())
+			{
+				otherView.Add(entryHouseOrCellViewNode);
+				otherView.Add(exitHouseOrCellViewNode);
+			}
 			return [globalView, .. otherViews];
 		}
 	}
