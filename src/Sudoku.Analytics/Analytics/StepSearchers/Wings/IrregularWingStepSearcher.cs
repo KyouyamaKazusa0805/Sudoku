@@ -19,111 +19,28 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped M-Wing</item>
 /// </list>
 /// </item>
-/// <!--
-/// <item>
-/// S-Wing (Split Wing) family:
-/// <list type="bullet">
-/// <item>S-Wing</item>
-/// <item>Grouped S-Wing</item>
-/// </list>
-/// </item>
-/// <item>
-/// L-Wing (Local Wing) family:
-/// <list type="bullet">
-/// <item>L-Wing</item>
-/// <item>Grouped L-Wing</item>
-/// </list>
-/// </item>
-/// <item>
-/// H-Wing (Hybrid Wing) family:
-/// <list type="bullet">
-/// <item>H-Wing</item>
-/// <item>Grouped H-Wing</item>
-/// </list>
-/// </item>
-/// -->
 /// </list>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_IrregularWingStepSearcher",
-	Technique.WWing, Technique.GroupedWWing, Technique.MultiBranchWWing, Technique.MWing, Technique.GroupedMWing
-#if false
-	,
-	Technique.SWing, Technique.GroupedSWing, Technique.LWing, Technique.GroupedLWing, Technique.HWing, Technique.GroupedHWing
-#endif
-	)]
+	Technique.WWing, Technique.GroupedWWing, Technique.MultiBranchWWing, Technique.MWing, Technique.GroupedMWing)]
 public sealed partial class IrregularWingStepSearcher : StepSearcher
 {
-#if false
-	/// <summary>
-	/// Indicates the iterable house pairs.
-	/// </summary>
-	private static readonly (BlockIndex Left, BlockIndex Right)[] IterableHousePairOffsets =
-		[(0, 1), (0, 2), (1, 2), (3, 4), (3, 5), (4, 5), (6, 7), (6, 8), (7, 8)];
-
-
-	/// <summary>
-	/// Indicates whether the step searcher allows searching for W-Wings.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowWWing)]
-	public bool AllowWWing { get; set; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows searching for M-Wings.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowMWing)]
-	public bool AllowMWing { get; set; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows searching for S-Wings.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowSWing)]
-	public bool AllowSWing { get; set; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows searching for L-Wings.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowLWing)]
-	public bool AllowLWing { get; set; }
-
-	/// <summary>
-	/// Indicates whether the step searcher allows searching for H-Wings.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowHWing)]
-	public bool AllowHWing { get; set; }
-#endif
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		if (/*AllowWWing && */Collect_WWing(ref context) is { } w)
+		if (Collect_WWing(ref context) is { } w)
 		{
 			return w;
 		}
-		if (/*AllowWWing && */Collect_MultiBranchWWing(ref context) is { } w2)
+		if (Collect_MultiBranchWWing(ref context) is { } w2)
 		{
 			return w2;
 		}
-		if (/*AllowMWing && */Collect_MWing(ref context) is { } m)
+		if (Collect_MWing(ref context) is { } m)
 		{
 			return m;
 		}
-#if false
-		if (AllowSWing && Collect_SWing(ref context) is { } s)
-		{
-			return s;
-		}
-		if (AllowLWing && Collect_LWing(ref context) is { } l)
-		{
-			return l;
-		}
-		if (AllowHWing && Collect_HWing(ref context) is { } h)
-		{
-			return h;
-		}
-#endif
-
 		return null;
 	}
 
