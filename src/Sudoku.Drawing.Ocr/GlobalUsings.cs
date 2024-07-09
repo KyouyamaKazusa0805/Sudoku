@@ -16,4 +16,3 @@ global using Emgu.CV.Util;
 global using Sudoku.Algorithms.Transformation;
 global using Sudoku.Concepts;
 global using Sudoku.Resources;
-global using @imaging = System.Drawing.Imaging;

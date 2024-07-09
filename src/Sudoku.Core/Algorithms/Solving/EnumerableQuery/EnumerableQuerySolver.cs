@@ -21,8 +21,8 @@ public sealed class EnumerableQuerySolver : ISolver
 		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch
 		{
-		[] => (Grid.Undefined, default(bool?)),
-		[var resultString] => (result = Grid.Parse(resultString), true),
+			[] => (Grid.Undefined, default(bool?)),
+			[var resultString] => (result = Grid.Parse(resultString), true),
 			_ => (Grid.Undefined, false)
 		};
 		return @return;
@@ -40,7 +40,7 @@ public sealed class EnumerableQuerySolver : ISolver
 					let block = index - index % 27 + column - index % 3
 					from digit in DigitCharacters.ToCharArray()
 					let duplicateCases =
-						from pos in Digits
+						from pos in Digits/*.AsReadOnlySpan()*/
 						let rowContainsDuplicateDigits = solution[index - column + pos] == digit
 						let columnContainsDuplicateDigits = solution[column + pos * 9] == digit
 						let blockContainsDuplicateDigits = solution[block + pos % 3 + pos / 3 * 9] == digit
