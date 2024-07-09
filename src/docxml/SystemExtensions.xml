@@ -3146,6 +3146,9 @@
             <summary>
             Represents a grouping data structure for LINQ grouping methods.
             </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TKey">Indicates the type of keys that group values.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
         </member>
         <member name="P:System.Linq.IGroupingDataProvider`3.Elements">
             <summary>

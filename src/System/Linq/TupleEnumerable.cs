@@ -15,7 +15,6 @@ public static class TupleEnumerable
 		{
 			result[i++] = (T)element!;
 		}
-
 		return result;
 	}
 
@@ -28,7 +27,6 @@ public static class TupleEnumerable
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 }
