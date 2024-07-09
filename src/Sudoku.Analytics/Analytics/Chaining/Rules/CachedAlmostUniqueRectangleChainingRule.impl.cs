@@ -13,7 +13,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			var row2 = rowsSpanned.GetNextSet(row1);
 			var cells1 = cellsContainingThisDigit & HousesMap[row1];
 			var cells2 = cellsContainingThisDigit & HousesMap[row2];
-			if (linkOption == LinkOption.Intersection && cells1.IsInIntersection && cells2.IsInIntersection
+			if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
 				|| linkOption != LinkOption.Intersection)
 			{
 				var node1 = new Node(cells1 * otherOnlyDigit, false, true);
@@ -29,7 +29,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			var column2 = columnsSpanned.GetNextSet(column1);
 			var cells3 = cellsContainingThisDigit & HousesMap[column1];
 			var cells4 = cellsContainingThisDigit & HousesMap[column2];
-			if (linkOption == LinkOption.Intersection && cells3.IsInIntersection && cells4.IsInIntersection
+			if (linkOption == LinkOption.Intersection && (cells3.IsInIntersection || cells4.IsInIntersection)
 				|| linkOption != LinkOption.Intersection)
 			{
 				var node3 = new Node(cells3 * otherOnlyDigit, false, true);
@@ -45,7 +45,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 		var cells1 = CandidatesMap[theOtherDigit1] & urCells;
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
-		if (linkOption == LinkOption.Intersection && cells1.IsInIntersection && cells2.IsInIntersection
+		if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
 			|| linkOption != LinkOption.Intersection)
 		{
 			var node1 = new Node(cells1 * theOtherDigit1, false, true);
@@ -137,14 +137,13 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		{
 			var cells1 = HousesMap[lockedHouse] & CandidatesMap[digit1] & ~urCells;
 			var cells2 = HousesMap[lockedHouse] & CandidatesMap[digit2] & ~urCells;
-			if (linkOption == LinkOption.Intersection && !(cells1.IsInIntersection && cells2.IsInIntersection))
+			if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)
+				|| linkOption != LinkOption.Intersection)
 			{
-				continue;
+				var node1 = new Node(cells1 * digit1, false, true);
+				var node2 = new Node(cells2 * digit2, true, true);
+				linkDictionary.AddEntry(node1, node2, true, ur);
 			}
-
-			var node1 = new Node(cells1 * digit1, false, true);
-			var node2 = new Node(cells2 * digit2, true, true);
-			linkDictionary.AddEntry(node1, node2, true, ur);
 		}
 	}
 }
