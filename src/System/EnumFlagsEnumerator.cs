@@ -8,10 +8,7 @@ namespace System;
 /// </typeparam>
 /// <param name="baseField">Indicates the base field.</param>
 [StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T baseField)
+public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T baseField) : IEnumerator<T>
 	where T : unmanaged, Enum
 {
 	/// <summary>
@@ -27,6 +24,9 @@ public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(Me
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
 	public T Current { get; private set; } = default;
+
+	/// <inheritdoc/>
+	readonly object IEnumerator.Current => Current;
 
 
 	/// <summary>
@@ -58,4 +58,11 @@ public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(Me
 
 		return false;
 	}
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
 }

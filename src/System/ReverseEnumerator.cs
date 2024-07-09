@@ -6,10 +6,7 @@ namespace System;
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="sequence">The internal sequence to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
+public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the current index.
@@ -25,6 +22,12 @@ public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(Memb
 	/// <inheritdoc cref="IEnumerator.Current"/>
 	public readonly ref readonly T Current => ref _sequence[_index];
 
+	/// <inheritdoc/>
+	readonly object? IEnumerator.Current => Current;
+
+	/// <inheritdoc/>
+	readonly T IEnumerator<T>.Current => Current;
+
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext() => --_index >= 0;
@@ -34,4 +37,11 @@ public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(Memb
 	/// </summary>
 	/// <returns>The current enumerator.</returns>
 	public readonly ReverseEnumerator<T> GetEnumerator() => this;
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
 }

@@ -6,10 +6,7 @@ namespace System;
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <seealso cref="ReadOnlyMemory{T}"/>
 [StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value)
+public ref struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value) : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the span to the memory.
@@ -27,7 +24,20 @@ public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value)
 	/// </summary>
 	public readonly ref readonly T Current => ref _span[_index];
 
+	/// <inheritdoc/>
+	readonly object? IEnumerator.Current => Current;
+
+	/// <inheritdoc/>
+	readonly T IEnumerator<T>.Current => Current;
+
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext() => ++_index < value.Length;
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
 }

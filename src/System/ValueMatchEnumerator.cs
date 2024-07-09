@@ -9,7 +9,7 @@ namespace System;
 public ref partial struct ValueMatchEnumerator(
 	string originalString,
 	[PrimaryConstructorParameter(MemberKinds.Field, IsImplicitlyReadOnly = false)] Regex.ValueMatchEnumerator backingEnumerator
-)
+)/* : IEnumerator<ReadOnlySpan<char>>*/
 {
 	/// <inheritdoc cref="IEnumerator.Current"/>
 	public readonly ReadOnlySpan<char> Current
@@ -17,6 +17,9 @@ public ref partial struct ValueMatchEnumerator(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => originalString.AsSpan().Slice(_backingEnumerator.Current.Index, _backingEnumerator.Current.Length);
 	}
+
+	///// <inheritdoc/>
+	//readonly object IEnumerator.Current => Current.ToString();
 
 
 	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.Any()"/>
@@ -34,4 +37,11 @@ public ref partial struct ValueMatchEnumerator(
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext() => _backingEnumerator.MoveNext();
+
+	///// <inheritdoc/>
+	//readonly void IDisposable.Dispose() { }
+
+	///// <inheritdoc/>
+	//[DoesNotReturn]
+	//readonly void IEnumerator.Reset() => throw new NotImplementedException();
 }

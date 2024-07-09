@@ -4,7 +4,6 @@ namespace System.Numerics;
 /// Represents an enumerator that iterates an <see cref="nint"/> or <see cref="nuint"/> value.
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
-[StructLayout(LayoutKind.Auto)]
 public ref struct NativeIntegerEnumerator(nuint value) : IEnumerator<int>
 {
 	/// <summary>

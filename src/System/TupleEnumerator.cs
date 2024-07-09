@@ -4,9 +4,7 @@ namespace System.Runtime.CompilerServices;
 /// Represents for an enumerator that iterates on each elements stored in a <see cref="ITuple"/>.
 /// </summary>
 /// <param name="tuple">A tuple instance.</param>
-[StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct TupleEnumerator([PrimaryConstructorParameter(MemberKinds.Field)] ITuple tuple)
+public ref struct TupleEnumerator(ITuple tuple) : IEnumerator, IEnumerator<object?>
 {
 	/// <summary>
 	/// The current index.
@@ -15,9 +13,16 @@ public ref partial struct TupleEnumerator([PrimaryConstructorParameter(MemberKin
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public readonly object? Current => _tuple[_index];
+	public readonly object? Current => tuple[_index];
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public bool MoveNext() => ++_index < _tuple.Length;
+	public bool MoveNext() => ++_index < tuple.Length;
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
 }

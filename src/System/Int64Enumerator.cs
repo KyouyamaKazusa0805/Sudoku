@@ -4,7 +4,6 @@ namespace System.Numerics;
 /// Represents an enumerator that iterates a <see cref="long"/> or <see cref="ulong"/> value.
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
-[StructLayout(LayoutKind.Auto)]
 public ref struct Int64Enumerator(ulong value) : IEnumerator<int>
 {
 	/// <summary>

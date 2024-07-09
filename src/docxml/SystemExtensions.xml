@@ -659,17 +659,20 @@
         <member name="P:System.ComplexValueTupleEnumerator`2.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.ComplexValueTupleEnumerator`2.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ComplexValueTupleEnumerator`2.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        <member name="M:System.ComplexValueTupleEnumerator`2.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+        <member name="M:System.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.delegate">
             <summary>
@@ -827,6 +830,9 @@
         <member name="P:System.EnumFlagsEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="P:System.EnumFlagsEnumerator`1.SizeOfT">
             <summary>
             Indicates the size of <typeparamref name="T"/>.
@@ -835,19 +841,16 @@
         <member name="M:System.EnumFlagsEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
+        <member name="M:System.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.EnumFlagsEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
         <member name="F:System.EnumFlagsEnumerator`1._baseField">
             <summary>
             The generated field declaration for parameter <c>baseField</c>.
             </summary>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>
@@ -1937,19 +1940,11 @@
         <member name="M:System.Runtime.CompilerServices.TupleEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.Runtime.CompilerServices.TupleEnumerator._tuple">
-            <summary>
-            The generated field declaration for parameter <c>tuple</c>.
-            </summary>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Runtime.Versioning.PlatformNames">
             <summary>
@@ -2049,18 +2044,17 @@
         <member name="P:System.GenericNumberEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.GenericNumberEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.GenericNumberEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.GenericNumberEnumerator`1._value">
-            <summary>
-            The generated field declaration for parameter <c>value</c>.
-            </summary>
+        <member name="M:System.GenericNumberEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
-        <member name="F:System.GenericNumberEnumerator`1._bitsCount">
-            <summary>
-            The generated field declaration for parameter <c>bitsCount</c>.
-            </summary>
+        <member name="M:System.GenericNumberEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.HashCodeNativeConstants">
             <summary>
@@ -2296,23 +2290,23 @@
         <member name="P:System.Numerics.MaskCombinationEnumerator.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.Numerics.MaskCombinationEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Numerics.MaskCombinationEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.MaskCombinationEnumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.MaskCombinationEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
         <member name="M:System.Numerics.MaskCombinationEnumerator.HasNext">
             <summary>
             Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Numerics.NativeIntegerEnumerator">
             <summary>
@@ -4704,6 +4698,9 @@
         <member name="P:System.PairEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.PairEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.PairEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
@@ -4723,19 +4720,16 @@
             </typeparam>
             <returns>A <see cref="T:System.PairEnumeratorCasted`3"/> instance.</returns>
         </member>
+        <member name="M:System.PairEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.PairEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
         <member name="F:System.PairEnumerator`1._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
-        </member>
-        <member name="M:System.PairEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.PairEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.PairEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.PairEnumeratorCasted`3">
             <inheritdoc cref="T:System.PairEnumerator`1"/>
@@ -4757,25 +4751,25 @@
         <member name="P:System.PairEnumeratorCasted`3.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.PairEnumeratorCasted`3.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.PairEnumeratorCasted`3.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:System.PairEnumeratorCasted`3.GetEnumerator">
             <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
         </member>
+        <member name="M:System.PairEnumeratorCasted`3.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.PairEnumeratorCasted`3.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
         <member name="F:System.PairEnumeratorCasted`3._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.PointerOperations">
             <summary>
@@ -4867,17 +4861,20 @@
             Indicates the current instance.
             </summary>
         </member>
+        <member name="P:System.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.ReadOnlyMemoryEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ReadOnlyMemoryEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+        <member name="M:System.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.ReadOnlyChunk`1">
             <summary>
@@ -5369,6 +5366,12 @@
         <member name="P:System.ReverseEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
+        <member name="P:System.ReverseEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.ReverseEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ReverseEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
@@ -5378,19 +5381,16 @@
             </summary>
             <returns>The current enumerator.</returns>
         </member>
+        <member name="M:System.ReverseEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.ReverseEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
         <member name="F:System.ReverseEnumerator`1._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.SelfReturner`1">
             <summary>
@@ -6158,17 +6158,20 @@
         <member name="P:System.ValueTupleEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
+        <member name="P:System.ValueTupleEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.ValueTupleEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
         <member name="M:System.ValueTupleEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.ValueTupleEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        <member name="M:System.ValueTupleEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
         </member>
-        <member name="M:System.ValueTupleEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+        <member name="M:System.ValueTupleEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.ActionRef`1">
             <summary>

@@ -6,10 +6,8 @@ namespace System;
 /// <typeparam name="T">The type of each element to be iterated.</typeparam>
 /// <param name="sequence">The sequence value.</param>
 [StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) where T : notnull
+public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) : IEnumerator<(T First, T Second)>
+	where T : notnull
 {
 	/// <summary>
 	/// Indicates the index.
@@ -19,6 +17,9 @@ public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberK
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
 	public readonly (T First, T Second) Current => (_sequence[_index], _sequence[_index + 1]);
+
+	/// <inheritdoc/>
+	readonly object IEnumerator.Current => Current;
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -42,4 +43,11 @@ public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberK
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly PairEnumeratorCasted<T, TFirst, TSecond> Cast<TFirst, TSecond>() where TFirst : T where TSecond : T
 		=> new(_sequence);
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
 }

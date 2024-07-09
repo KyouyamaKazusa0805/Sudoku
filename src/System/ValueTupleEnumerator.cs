@@ -4,8 +4,7 @@ namespace System;
 /// Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
 /// </summary>
 /// <typeparam name="T">The uniform type of a pair of instances.</typeparam>
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct ValueTupleEnumerator<T>
+public ref struct ValueTupleEnumerator<T> : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the maximum number of values to be iterated.
@@ -93,8 +92,21 @@ public ref partial struct ValueTupleEnumerator<T>
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public readonly ref readonly T Current => ref _innerTuple[_index];
 
+	/// <inheritdoc/>
+	readonly object? IEnumerator.Current => Current;
+
+	/// <inheritdoc/>
+	readonly T IEnumerator<T>.Current => Current;
+
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext() => ++_index < _limit;
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
 }

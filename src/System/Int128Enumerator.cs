@@ -4,7 +4,6 @@ namespace System.Numerics;
 /// Represents an enumerator that iterates a <see cref="Int128"/> or <see cref="UInt128"/> value.
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
-[StructLayout(LayoutKind.Auto)]
 public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 {
 	/// <summary>

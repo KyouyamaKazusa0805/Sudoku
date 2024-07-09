@@ -5,10 +5,7 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-[DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
+public ref struct MaskCombinationEnumerator(int bitCount, int oneCount) : IEnumerator<long>
 {
 	/// <summary>
 	/// The mask.
@@ -24,6 +21,9 @@ public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 	/// <inheritdoc cref="IEnumerator.Current"/>
 	public long Current { get; private set; } = (1 << oneCount) - 1;
 
+	/// <inheritdoc/>
+	readonly object IEnumerator.Current => Current;
+
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -38,9 +38,15 @@ public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 			ones = (ones >> 2) / smallest;
 			Current = ripple | ones;
 		}
-
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	readonly void IEnumerator.Reset() => throw new NotImplementedException();
+
+	/// <inheritdoc/>
+	readonly void IDisposable.Dispose() { }
 
 	/// <summary>
 	/// Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
