@@ -36,7 +36,6 @@ public static class CellMapToken
 					result |= 1 << i;
 				}
 			}
-
 			return result;
 		}
 
