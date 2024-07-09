@@ -9292,6 +9292,9 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.MapViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.CollectLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionCollectingContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
             <summary>
             Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>).
