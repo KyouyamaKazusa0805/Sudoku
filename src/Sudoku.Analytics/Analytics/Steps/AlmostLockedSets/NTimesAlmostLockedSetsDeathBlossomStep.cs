@@ -6,16 +6,16 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="nTimesAlmostLockedSetDigitsMask">Indicates the digits A^nLS used.</param>
-/// <param name="nTimesAlmostLockedSetCells">Indicates the A^nLS cells used.</param>
+/// <param name="nTimesAlmostLockedSetsDigitsMask">Indicates the digits A^nLS used.</param>
+/// <param name="nTimesAlmostLockedSetsCells">Indicates the A^nLS cells used.</param>
 /// <param name="branches">Indicates the detail branches.</param>
 /// <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
-public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
+public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] Mask nTimesAlmostLockedSetDigitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap nTimesAlmostLockedSetCells,
+	[PrimaryConstructorParameter] Mask nTimesAlmostLockedSetsDigitsMask,
+	[PrimaryConstructorParameter] ref readonly CellMap nTimesAlmostLockedSetsCells,
 	[PrimaryConstructorParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] int freedomDegree
 ) :
@@ -27,7 +27,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.NTimesAlmostLockedSetDeathBlossom;
+	public override Technique Code => Technique.NTimesAlmostLockedSetsDeathBlossom;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -44,9 +44,9 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 	private string FreedomDegreeStr => FreedomDegree.ToString();
 
-	private string CellsStr => Options.Converter.CellConverter(NTimesAlmostLockedSetCells);
+	private string CellsStr => Options.Converter.CellConverter(NTimesAlmostLockedSetsCells);
 
-	private string DigitsStr => Options.Converter.DigitConverter(NTimesAlmostLockedSetDigitsMask);
+	private string DigitsStr => Options.Converter.DigitConverter(NTimesAlmostLockedSetsDigitsMask);
 
 	private string BranchesStr
 		=> string.Join(
@@ -60,13 +60,13 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is NTimesAlmostLockedSetDeathBlossomStep comparer
-		&& (NTimesAlmostLockedSetCells, NTimesAlmostLockedSetDigitsMask, Branches) == (comparer.NTimesAlmostLockedSetCells, comparer.NTimesAlmostLockedSetDigitsMask, comparer.Branches);
+		=> other is NTimesAlmostLockedSetsDeathBlossomStep comparer
+		&& (NTimesAlmostLockedSetsCells, NTimesAlmostLockedSetsDigitsMask, Branches) == (comparer.NTimesAlmostLockedSetsCells, comparer.NTimesAlmostLockedSetsDigitsMask, comparer.Branches);
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
 	{
-		if (other is not NTimesAlmostLockedSetDeathBlossomStep comparer)
+		if (other is not NTimesAlmostLockedSetsDeathBlossomStep comparer)
 		{
 			return -1;
 		}
@@ -88,12 +88,12 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 			return r3;
 		}
 
-		if (NTimesAlmostLockedSetCells.CompareTo(comparer.NTimesAlmostLockedSetCells) is var r4 and not 0)
+		if (NTimesAlmostLockedSetsCells.CompareTo(comparer.NTimesAlmostLockedSetsCells) is var r4 and not 0)
 		{
 			return r4;
 		}
 
-		if (NTimesAlmostLockedSetDigitsMask.CompareTo(comparer.NTimesAlmostLockedSetDigitsMask) is var r5 and not 0)
+		if (NTimesAlmostLockedSetsDigitsMask.CompareTo(comparer.NTimesAlmostLockedSetsDigitsMask) is var r5 and not 0)
 		{
 			return r5;
 		}

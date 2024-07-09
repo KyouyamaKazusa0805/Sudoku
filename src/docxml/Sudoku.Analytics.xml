@@ -1304,7 +1304,7 @@
             Indicates the link type is a locked candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSet">
+        <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSets">
             <summary>
             Indicates the link type is an almost locked set.
             </summary>
@@ -7473,7 +7473,7 @@
             Indicates death blossom (rectangle blooming).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.NTimesAlmostLockedSetDeathBlossom">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NTimesAlmostLockedSetsDeathBlossom">
             <summary>
             Indicates death blossom (A^nLS blooming).
             </summary>
@@ -9278,9 +9278,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule">
             <summary>
-            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>).
+            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostLockedSets"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>
+            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSets"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -9623,16 +9623,16 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchExtendedBivalueUniversalGraveTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetXzRule">
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetsXzRule">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetXzRule">
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetsXzRule">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing">
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetsXyWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetWWing">
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetsWWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
         </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForReverseBugPartiallyUsedTypes">
@@ -11385,9 +11385,9 @@
             and add it into the accumulator if worth.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NTimesAlsType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NTimesAlsType(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Span{Sudoku.Concepts.CellMap},System.Span{System.Int32},System.Span{System.Int32},System.Int32,System.Span{System.Int16},System.Int32,System.Span{System.Int32},System.Collections.Generic.List{Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep})">
             <summary>
-            Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep"/> instance
+            Search for A^nLS blooming type, and create a <see cref="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep"/> instance
             and add it into the accumulator if worth.
             </summary>
         </member>
@@ -15460,67 +15460,67 @@
             The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep">
+        <member name="T:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="nTimesAlmostLockedSetDigitsMask">Indicates the digits A^nLS used.</param>
-            <param name="nTimesAlmostLockedSetCells">Indicates the A^nLS cells used.</param>
+            <param name="nTimesAlmostLockedSetsDigitsMask">Indicates the digits A^nLS used.</param>
+            <param name="nTimesAlmostLockedSetsCells">Indicates the A^nLS cells used.</param>
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="nTimesAlmostLockedSetDigitsMask">Indicates the digits A^nLS used.</param>
-            <param name="nTimesAlmostLockedSetCells">Indicates the A^nLS cells used.</param>
+            <param name="nTimesAlmostLockedSetsDigitsMask">Indicates the digits A^nLS used.</param>
+            <param name="nTimesAlmostLockedSetsCells">Indicates the A^nLS cells used.</param>
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Factors">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.CompareTo(Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.NTimesAlmostLockedSetsDigitsMask">
             <summary>
-            The generated property declaration for parameter <c>nTimesAlmostLockedSetDigitsMask</c>.
+            The generated property declaration for parameter <c>nTimesAlmostLockedSetsDigitsMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetCells">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.NTimesAlmostLockedSetsCells">
             <summary>
-            The generated property declaration for parameter <c>nTimesAlmostLockedSetCells</c>.
+            The generated property declaration for parameter <c>nTimesAlmostLockedSetsCells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Branches">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Branches">
             <summary>
             The generated property declaration for parameter <c>branches</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FreedomDegree">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.FreedomDegree">
             <summary>
             The generated property declaration for parameter <c>freedomDegree</c>.
             </summary>
@@ -27616,7 +27616,7 @@
               Looks up a localized string similar to s.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.NTimesAlmostLockedSetDeathBlossom">
+        <member name="P:Sudoku.Resources.AnalyticsResources.NTimesAlmostLockedSetsDeathBlossom">
             <summary>
               Looks up a localized string similar to Death Blossom (ALS Blooming).
             </summary>
@@ -29386,7 +29386,7 @@
               Looks up a localized string similar to {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep">
             <summary>
               Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
             </summary>

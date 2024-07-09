@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_DeathBlossomStepSearcher",
-	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.RectangleDeathBlossom, Technique.NTimesAlmostLockedSetDeathBlossom,
+	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.RectangleDeathBlossom, Technique.NTimesAlmostLockedSetsDeathBlossom,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class DeathBlossomStepSearcher : StepSearcher
 {
@@ -68,7 +68,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorHouse = new List<HouseDeathBlossomStep>();
 		var accumulatorRectangle = new List<RectangleDeathBlossomStep>();
-		var accumulatorNTimesAls = new List<NTimesAlmostLockedSetDeathBlossomStep>();
+		var accumulatorNTimesAls = new List<NTimesAlmostLockedSetsDeathBlossomStep>();
 
 		// Iterate on each cell to collect cell-blooming type.
 		var playgroundCached = grid.ToCandidateMaskArray();
@@ -777,10 +777,10 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 #endif
 
 	/// <summary>
-	/// Search for A^nLS blooming type, and create a <see cref="NTimesAlmostLockedSetDeathBlossomStep"/> instance
+	/// Search for A^nLS blooming type, and create a <see cref="NTimesAlmostLockedSetsDeathBlossomStep"/> instance
 	/// and add it into the accumulator if worth.
 	/// </summary>
-	private NTimesAlmostLockedSetDeathBlossomStep? CreateStep_NTimesAlsType(
+	private NTimesAlmostLockedSetsDeathBlossomStep? CreateStep_NTimesAlsType(
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ReadOnlySpan<AlmostLockedSet> alses,
@@ -791,7 +791,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped Span<Mask> selectedCellDigitsMask,
 		Digit wrongDigit,
 		scoped Span<Candidate> alsReferenceTable,
-		List<NTimesAlmostLockedSetDeathBlossomStep> accumulator
+		List<NTimesAlmostLockedSetsDeathBlossomStep> accumulator
 	)
 	{
 		alsesUsed[9..].Clear();
@@ -935,7 +935,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new NTimesAlmostLockedSetDeathBlossomStep(
+		var step = new NTimesAlmostLockedSetsDeathBlossomStep(
 			[.. conclusions],
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
 			context.Options,

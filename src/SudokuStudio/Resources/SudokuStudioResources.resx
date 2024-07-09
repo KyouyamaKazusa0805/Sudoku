@@ -1173,10 +1173,10 @@
   <data name="SettingsPage_AllowAlmostLockedQuadruples" xml:space="preserve">
     <value>Allow Almost Locked Quadruples (ALQs)</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing" xml:space="preserve">
     <value>Allow collision on ALS-XY-Wing</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule" xml:space="preserve">
     <value>Allow collision on ALS-XZ</value>
   </data>
   <data name="SettingsPage_AllowDirectClaiming" xml:space="preserve">
@@ -1212,7 +1212,7 @@
   <data name="SettingsPage_AllowIrregularWingSubtypesDescription" xml:space="preserve">
     <value>The name of the subtypes are "terrible", so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells</value>
   </data>
-  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
+  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule" xml:space="preserve">
     <value>Allow Doubly-Linked ALS-XZ</value>
   </data>
   <data name="SettingsPage_AllowSiameseComplexFish" xml:space="preserve">
@@ -2576,7 +2576,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
     <value>Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}.</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsWWing" xml:space="preserve">
     <value>Allow collision on ALS-W-Wing</value>
   </data>
   <data name="SettingsPage_GroupedNodeBackgroundColor" xml:space="preserve">

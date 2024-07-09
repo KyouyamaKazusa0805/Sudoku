@@ -2451,10 +2451,10 @@
   <data name="TechniqueFormat_LawOfLeftoverStep" xml:space="preserve">
     <value>The filling digits from set {0} is equal to {1}</value>
   </data>
-  <data name="NTimesAlmostLockedSetDeathBlossom" xml:space="preserve">
+  <data name="NTimesAlmostLockedSetsDeathBlossom" xml:space="preserve">
     <value>Death Blossom (ALS Blooming)</value>
   </data>
-  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}</value>
   </data>
   <data name="HouseDeathBlossom" xml:space="preserve">

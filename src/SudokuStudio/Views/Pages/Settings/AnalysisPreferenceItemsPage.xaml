@@ -262,19 +262,19 @@
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXzRule}">
 				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetsXzRule,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule}">
 				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=TwoWay}" />
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetsXzRule,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetXyWing}">
 				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}" />
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetsXyWing,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetWWing}">
 				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetWWing,Mode=TwoWay}" />
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetsWWing,Mode=TwoWay}" />
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfRegularWing}">
 				<c:IntegerBox

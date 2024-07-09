@@ -64,23 +64,6 @@ public static class SettingItemNames
 	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
 	public const string AllowSiameseXyzRing = nameof(AllowSiameseXyzRing);
 
-#if false
-	/// <inheritdoc cref="IrregularWingStepSearcher.AllowWWing"/>
-	public const string AllowWWing = nameof(AllowWWing);
-
-	/// <inheritdoc cref="IrregularWingStepSearcher.AllowMWing"/>
-	public const string AllowMWing = nameof(AllowMWing);
-
-	/// <inheritdoc cref="IrregularWingStepSearcher.AllowSWing"/>
-	public const string AllowSWing = nameof(AllowSWing);
-
-	/// <inheritdoc cref="IrregularWingStepSearcher.AllowLWing"/>
-	public const string AllowLWing = nameof(AllowLWing);
-
-	/// <inheritdoc cref="IrregularWingStepSearcher.AllowHWing"/>
-	public const string AllowHWing = nameof(AllowHWing);
-#endif
-
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	public const string AllowIncompleteUniqueRectangles = nameof(AllowIncompleteUniqueRectangles);
 
@@ -91,16 +74,16 @@ public static class SettingItemNames
 	public const string SearchExtendedBivalueUniversalGraveTypes = nameof(SearchExtendedBivalueUniversalGraveTypes);
 
 	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetXzRule = nameof(AllowCollisionOnAlmostLockedSetXzRule);
+	public const string AllowCollisionOnAlmostLockedSetsXzRule = nameof(AllowCollisionOnAlmostLockedSetsXzRule);
 
 	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-	public const string AllowLoopedPatternsOnAlmostLockedSetXzRule = nameof(AllowLoopedPatternsOnAlmostLockedSetXzRule);
+	public const string AllowLoopedPatternsOnAlmostLockedSetsXzRule = nameof(AllowLoopedPatternsOnAlmostLockedSetsXzRule);
 
 	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetXyWing = nameof(AllowCollisionOnAlmostLockedSetXyWing);
+	public const string AllowCollisionOnAlmostLockedSetsXyWing = nameof(AllowCollisionOnAlmostLockedSetsXyWing);
 
 	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
-	public const string AllowCollisionOnAlmostLockedSetWWing = nameof(AllowCollisionOnAlmostLockedSetWWing);
+	public const string AllowCollisionOnAlmostLockedSetsWWing = nameof(AllowCollisionOnAlmostLockedSetsWWing);
 
 	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
 	public const string SearchForReverseBugPartiallyUsedTypes = nameof(SearchForReverseBugPartiallyUsedTypes);

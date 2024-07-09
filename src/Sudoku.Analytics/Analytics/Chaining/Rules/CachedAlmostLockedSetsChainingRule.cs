@@ -1,16 +1,16 @@
 namespace Sudoku.Analytics.Chaining.Rules;
 
 /// <summary>
-/// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSet"/>).
+/// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSets"/>).
 /// </summary>
-/// <seealso cref="LinkType.AlmostLockedSet"/>
+/// <seealso cref="LinkType.AlmostLockedSets"/>
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSet);
+		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);
 		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
 		{

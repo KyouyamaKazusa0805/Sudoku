@@ -4746,9 +4746,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Death Blossom (ALS Blooming).
         /// </summary>
-        public static string NTimesAlmostLockedSetDeathBlossom {
+        public static string NTimesAlmostLockedSetsDeathBlossom {
             get {
-                return ResourceManager.GetString("NTimesAlmostLockedSetDeathBlossom", resourceCulture);
+                return ResourceManager.GetString("NTimesAlmostLockedSetsDeathBlossom", resourceCulture);
             }
         }
         
@@ -7932,9 +7932,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
         /// </summary>
-        public static string TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep {
+        public static string TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep", resourceCulture);
             }
         }
         

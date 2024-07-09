@@ -5482,10 +5482,10 @@ public enum Technique
 		Rating = 87,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
-		StepType = typeof(NTimesAlmostLockedSetDeathBlossomStep),
+		StepType = typeof(NTimesAlmostLockedSetsDeathBlossomStep),
 		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
-	NTimesAlmostLockedSetDeathBlossom,
+	NTimesAlmostLockedSetsDeathBlossom,
 	#endregion
 
 	//

@@ -14,7 +14,7 @@ internal static class ChainingRulePool
 		{ LinkType.SingleDigit, static () => new CachedXChainingRule() },
 		{ LinkType.SingleCell, static () => new CachedYChainingRule() },
 		{ LinkType.LockedCandidates, static () => new CachedLockedCandidatesChainingRule() },
-		{ LinkType.AlmostLockedSet, static () => new CachedAlmostLockedSetsChainingRule() },
+		{ LinkType.AlmostLockedSets, static () => new CachedAlmostLockedSetsChainingRule() },
 		{ LinkType.KrakenNormalFish, static () => new CachedKrakenNormalFishChainingRule() },
 		{ LinkType.XyzWing, static () => new CachedXyzWingChainingRule() },
 		{ LinkType.AlmostUniqueRectangle, static () => new CachedAlmostUniqueRectangleChainingRule() },

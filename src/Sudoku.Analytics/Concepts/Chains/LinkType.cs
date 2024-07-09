@@ -29,7 +29,7 @@ public enum LinkType
 	/// <summary>
 	/// Indicates the link type is an almost locked set.
 	/// </summary>
-	AlmostLockedSet = 1 << 3,
+	AlmostLockedSets = 1 << 3,
 
 	/// <summary>
 	/// Indicates the link type is a kraken normal fish.
