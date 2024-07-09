@@ -428,10 +428,10 @@ internal static class ChainingDriver
 			}
 
 			// Collect on patterns (like ALSes).
-			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
+			var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsReadOnlySpan());
 			foreach (var rule in supportedRules)
 			{
-				rule.CollectLoopConclusions(ref context);
+				rule.GetLoopConclusions(ref context);
 				result |= context.Conclusions;
 			}
 

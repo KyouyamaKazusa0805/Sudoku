@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		// Strong.
 		for (var house = 0; house < 27; house++)

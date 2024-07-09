@@ -428,9 +428,9 @@ public abstract partial class ChainOrLoop :
 
 		foreach (var supportedRule in supportedRules)
 		{
-			var context = new ChainingRuleViewNodesMappingContext(in grid, this, result[0]) { AlmostLockedSetIndex = alsIndex };
-			supportedRule.MapViewNodes(ref context);
-			alsIndex = context.AlmostLockedSetIndex;
+			var context = new ChainingRuleViewNodeContext(in grid, this, result[0]) { CurrentAlmostLockedSetIndex = alsIndex };
+			supportedRule.GetViewNodes(ref context);
+			alsIndex = context.CurrentAlmostLockedSetIndex;
 		}
 		return result;
 

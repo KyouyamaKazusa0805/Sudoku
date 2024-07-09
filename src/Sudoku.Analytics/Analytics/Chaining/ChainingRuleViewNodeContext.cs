@@ -8,16 +8,16 @@ namespace Sudoku.Analytics.Chaining;
 /// <param name="view">The view.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct ChainingRuleViewNodesMappingContext(
+public ref partial struct ChainingRuleViewNodeContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ChainOrLoop pattern,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] View view
 ) : IChainingRuleContext
 {
 	/// <summary>
-	/// Indicates the currently used almost locked set index to be used.
+	/// Indicates the currently used almost locked set index.
 	/// </summary>
-	public int AlmostLockedSetIndex { get; set; }
+	public int CurrentAlmostLockedSetIndex { get; set; }
 
 	/// <summary>
 	/// Indicates the view nodes produced.

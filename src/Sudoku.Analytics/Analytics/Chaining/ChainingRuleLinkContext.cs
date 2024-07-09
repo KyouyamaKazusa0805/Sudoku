@@ -8,7 +8,8 @@ namespace Sudoku.Analytics.Chaining;
 /// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
 /// <param name="options">Indicates the step searcher options to be used.</param>
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public readonly ref partial struct ChainingRuleLinkCollectingContext(
+[SuppressMessage("Style", "IDE0250:Make struct 'readonly'", Justification = "<Pending>")]
+public ref partial struct ChainingRuleLinkContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary strongLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary weakLinks,
@@ -29,6 +30,6 @@ public readonly ref partial struct ChainingRuleLinkCollectingContext(
 	/// </returns>
 	/// <seealso cref="StepSearcherOptions.DefaultLinkOption"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public LinkOption GetLinkOption(LinkType linkType)
+	public readonly LinkOption GetLinkOption(LinkType linkType)
 		=> Options.OverriddenLinkOptions.TryGetValue(linkType, out var lo) ? lo : Options.DefaultLinkOption;
 }

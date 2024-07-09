@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -87,7 +87,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void GetViewNodes(ref ChainingRuleViewNodeContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;

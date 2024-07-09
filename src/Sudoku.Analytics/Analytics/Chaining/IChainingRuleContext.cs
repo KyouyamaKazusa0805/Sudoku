@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Chaining;
 /// Represents a context type consumed by <see cref="ChainingRule"/>.
 /// </summary>
 /// <seealso cref="ChainingRule"/>
-internal interface IChainingRuleContext
+public interface IChainingRuleContext
 {
 	/// <summary>
 	/// Indicates the grid to be used.

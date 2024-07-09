@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
@@ -39,7 +39,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		}
 
 
-		static void collect(ref readonly ChainingRuleLinkCollectingContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
+		static void collect(ref readonly ChainingRuleLinkContext context, bool isRow, Digit size, Digit digit, Span<HouseMask> sets)
 		{
 			var linkOption = context.GetLinkOption(LinkType.KrakenNormalFish);
 			var baseSetsToIterate = (sets[digit] & ~(isRow ? HouseMaskOperations.AllColumnsMask : HouseMaskOperations.AllRowsMask)).GetAllSets();
@@ -145,7 +145,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void GetViewNodes(ref ChainingRuleViewNodeContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;
@@ -179,7 +179,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
+	public override void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var result = ConclusionSet.Empty;

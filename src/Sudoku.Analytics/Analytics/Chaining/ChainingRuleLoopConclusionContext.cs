@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining;
 /// <param name="links">The links inside the loop or loop-like pattern.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct ChainingRuleLoopConclusionCollectingContext(
+public ref partial struct ChainingRuleLoopConclusionContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ReadOnlySpan<Link> links
 ) : IChainingRuleContext

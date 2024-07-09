@@ -355,13 +355,13 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		var (viewIndex, cachedAlsIndex) = (1, 0);
 		foreach (var branch in Values)
 		{
-			var context = new ChainingRuleViewNodesMappingContext(in grid, branch, result[viewIndex++]) { AlmostLockedSetIndex = cachedAlsIndex };
+			var context = new ChainingRuleViewNodeContext(in grid, branch, result[viewIndex++]) { CurrentAlmostLockedSetIndex = cachedAlsIndex };
 			foreach (var supportedRule in supportedRules)
 			{
-				supportedRule.MapViewNodes(ref context);
+				supportedRule.GetViewNodes(ref context);
 				result[0].AddRange(context.ProducedViewNodes);
 			}
-			cachedAlsIndex = context.AlmostLockedSetIndex;
+			cachedAlsIndex = context.CurrentAlmostLockedSetIndex;
 		}
 		return result;
 

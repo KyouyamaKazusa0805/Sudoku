@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSet);
@@ -103,13 +103,13 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void GetViewNodes(ref ChainingRuleViewNodeContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;
 		var view = context.View;
 
-		var alsIndex = context.AlmostLockedSetIndex;
+		var alsIndex = context.CurrentAlmostLockedSetIndex;
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
@@ -139,12 +139,12 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			alsIndex = (alsIndex + 1) % 5;
 		}
 
-		context.AlmostLockedSetIndex = alsIndex;
+		context.CurrentAlmostLockedSetIndex = alsIndex;
 		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc/>
-	public override void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
+	public override void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context)
 	{
 		// An example with 19 eliminations:
 		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388

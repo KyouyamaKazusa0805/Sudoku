@@ -33,13 +33,13 @@ public abstract partial class ChainingRule
 
 
 	/// <summary>
-	/// Collects for both strong links and weak links appeared <see cref="ChainingRuleLinkCollectingContext.Grid"/>
-	/// and insert all found links into <see cref="ChainingRuleLinkCollectingContext.StrongLinks"/>
-	/// and <see cref="ChainingRuleLinkCollectingContext.WeakLinks"/> respectively.
+	/// Collects for both strong links and weak links appeared <see cref="ChainingRuleLinkContext.Grid"/>
+	/// and insert all found links into <see cref="ChainingRuleLinkContext.StrongLinks"/>
+	/// and <see cref="ChainingRuleLinkContext.WeakLinks"/> respectively.
 	/// </summary>
 	/// <param name="context">The context.</param>
-	/// <seealso cref="ChainingRuleLinkCollectingContext"/>
-	public abstract void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context);
+	/// <seealso cref="ChainingRuleLinkContext"/>
+	public abstract void GetLinks(ref ChainingRuleLinkContext context);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.
@@ -48,10 +48,10 @@ public abstract partial class ChainingRule
 	/// <param name="context">The context.</param>
 	/// <remarks>
 	/// The method by default will do nothing, with an empty sequence
-	/// assigned to <see cref="ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
+	/// assigned to <see cref="ChainingRuleViewNodeContext.ProducedViewNodes"/>
 	/// </remarks>
-	/// <seealso cref="ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
-	public virtual void MapViewNodes(ref ChainingRuleViewNodesMappingContext context) => context.ProducedViewNodes = [];
+	/// <seealso cref="ChainingRuleViewNodeContext.ProducedViewNodes"/>
+	public virtual void GetViewNodes(ref ChainingRuleViewNodeContext context) => context.ProducedViewNodes = [];
 
 	/// <summary>
 	/// Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
@@ -62,7 +62,5 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
-	public virtual void CollectLoopConclusions(ref ChainingRuleLoopConclusionCollectingContext context)
-	{
-	}
+	public virtual void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context) => context.Conclusions = ConclusionSet.Empty;
 }
