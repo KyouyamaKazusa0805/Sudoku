@@ -3721,11 +3721,7 @@
             <description><see cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
             </item>
             <item>
-            <term><see langword="orderby"/> { variable | expression }</term>
-            <description><see cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
-            </item>
-            <item>
-            <term><see langword="orderby"/> { variable | expression } <see langword="ascending"/></term>
+            <term><see langword="orderby"/> { variable | expression } <see langword="ascending"/>?</term>
             <description><see cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
             </item>
             <item>
@@ -3735,13 +3731,7 @@
             </description>
             </item>
             <item>
-            <term><see langword="orderby"/> { v1 | e1 }, { v2 | e2 } ...</term>
-            <description><see cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/></description>
-            </item>
-            <item>
-            <term>
-            <see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="ascending"/> ...
-            </term>
+            <term><see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="ascending"/>? ...</term>
             <description><see cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/></description>
             </item>
             <item>

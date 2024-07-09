@@ -55,11 +55,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource> where TSelf 
 	/// <description><see cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/></description>
 	/// </item>
 	/// <item>
-	/// <term><see langword="orderby"/> { variable | expression }</term>
-	/// <description><see cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/></description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="orderby"/> { variable | expression } <see langword="ascending"/></term>
+	/// <term><see langword="orderby"/> { variable | expression } <see langword="ascending"/>?</term>
 	/// <description><see cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/></description>
 	/// </item>
 	/// <item>
@@ -69,13 +65,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource> where TSelf 
 	/// </description>
 	/// </item>
 	/// <item>
-	/// <term><see langword="orderby"/> { v1 | e1 }, { v2 | e2 } ...</term>
-	/// <description><see cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/></description>
-	/// </item>
-	/// <item>
-	/// <term>
-	/// <see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="ascending"/> ...
-	/// </term>
+	/// <term><see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="ascending"/>? ...</term>
 	/// <description><see cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/></description>
 	/// </item>
 	/// <item>
