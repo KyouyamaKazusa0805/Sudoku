@@ -61,18 +61,18 @@ public static class SudokuExplainerCompatibility
 			: (SudokuExplainerAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerAttribute>() switch
 			{
 				[] => null,
-				[{ RatingOriginal: [var min], RatingAdvanced: null }] => new(new((half)min, (half)min), null),
-				[{ RatingOriginal: [var min, var max], RatingAdvanced: null }] => new(new((half)min, (half)max), null),
-				[{ RatingAdvanced: [var min], RatingOriginal: null }] => new(null, new((half)min, (half)min)),
-				[{ RatingAdvanced: [var min, var max], RatingOriginal: null }] => new(null, new((half)min, (half)max)),
+				[{ RatingOriginal: [var min], RatingAdvanced: null }] => new(new((Half)min, (Half)min), null),
+				[{ RatingOriginal: [var min, var max], RatingAdvanced: null }] => new(new((Half)min, (Half)max), null),
+				[{ RatingAdvanced: [var min], RatingOriginal: null }] => new(null, new((Half)min, (Half)min)),
+				[{ RatingAdvanced: [var min, var max], RatingOriginal: null }] => new(null, new((Half)min, (Half)max)),
 				[{ RatingOriginal: [var min1], RatingAdvanced: [var min2] }]
-					=> new(new((half)min1, (half)min1), new((half)min2, (half)min2)),
+					=> new(new((Half)min1, (Half)min1), new((Half)min2, (Half)min2)),
 				[{ RatingOriginal: [var min1, var max1], RatingAdvanced: [var min2] }]
-					=> new(new((half)min1, (half)max1), new((half)min2, (half)min2)),
+					=> new(new((Half)min1, (Half)max1), new((Half)min2, (Half)min2)),
 				[{ RatingOriginal: [var min1], RatingAdvanced: [var min2, var max2] }]
-					=> new(new((half)min1, (half)min1), new((half)min2, (half)max2)),
+					=> new(new((Half)min1, (Half)min1), new((Half)min2, (Half)max2)),
 				[{ RatingOriginal: [var min1, var max1], RatingAdvanced: [var min2, var max2] }]
-					=> new(new((half)min1, (half)max1), new((half)min2, (half)max2)),
+					=> new(new((Half)min1, (Half)max1), new((Half)min2, (Half)max2)),
 				_ => throw new InvalidOperationException(SR.ExceptionMessage("TooMuchAttributes"))
 			};
 #pragma warning restore format

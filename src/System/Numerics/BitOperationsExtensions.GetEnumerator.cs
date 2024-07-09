@@ -51,11 +51,11 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial Int128Enumerator GetEnumerator(this llong @this) => new((ullong)@this);
+	public static partial Int128Enumerator GetEnumerator(this Int128 @this) => new((UInt128)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial Int128Enumerator GetEnumerator(this ullong @this) => new(@this);
+	public static partial Int128Enumerator GetEnumerator(this UInt128 @this) => new(@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

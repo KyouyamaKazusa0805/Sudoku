@@ -57,9 +57,6 @@
 		<Using Include="System.Int32" Alias="RowIndex" />
 		<Using Include="System.Int32" Alias="ColumnIndex" />
 		<Using Include="System.Int16" Alias="Mask" />
-		<Using Include="System.Half" Alias="@half" />
-		<Using Include="System.Int128" Alias="@llong" />
-		<Using Include="System.UInt128" Alias="@ullong" />
 	</ItemGroup>
 
 	<!--

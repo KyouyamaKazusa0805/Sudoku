@@ -143,34 +143,34 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<int> GetAllSets(this llong @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this Int128 @this)
 	{
 		if (@this == 0)
 		{
 			return [];
 		}
 
-		var (result, p) = (new int[(int)llong.PopCount(@this)], 0);
+		var (result, p) = (new int[(int)Int128.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = (int)llong.TrailingZeroCount(@this);
+			result[p++] = (int)Int128.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<int> GetAllSets(this ullong @this)
+	public static partial ReadOnlySpan<int> GetAllSets(this UInt128 @this)
 	{
 		if (@this == 0)
 		{
 			return [];
 		}
 
-		var (result, p) = (new int[(int)ullong.PopCount(@this)], 0);
+		var (result, p) = (new int[(int)UInt128.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = (int)ullong.TrailingZeroCount(@this);
+			result[p++] = (int)UInt128.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;

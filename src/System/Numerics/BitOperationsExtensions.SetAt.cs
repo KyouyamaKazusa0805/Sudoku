@@ -116,11 +116,11 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
-	public static partial int SetAt(this llong @this, int order)
+	public static partial int SetAt(this Int128 @this, int order)
 	{
 		unsafe
 		{
-			for (int i = 0, count = -1; i < sizeof(llong) << 3; i++, @this >>= 1)
+			for (int i = 0, count = -1; i < sizeof(Int128) << 3; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0 && ++count == order)
 				{
@@ -132,11 +132,11 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
-	public static partial int SetAt(this ullong @this, int order)
+	public static partial int SetAt(this UInt128 @this, int order)
 	{
 		unsafe
 		{
-			for (int i = 0, count = -1; i < sizeof(ullong) << 3; i++, @this >>= 1)
+			for (int i = 0, count = -1; i < sizeof(UInt128) << 3; i++, @this >>= 1)
 			{
 				if ((@this & 1) != 0 && ++count == order)
 				{

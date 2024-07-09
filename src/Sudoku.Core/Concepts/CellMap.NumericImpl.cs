@@ -16,20 +16,20 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <summary>
 	/// Indicates the max bits on numeric representation.
 	/// </summary>
-	private static readonly ullong MaxValueUInt128 = new(0x1FFFFUL, ulong.MaxValue);
+	private static readonly UInt128 MaxValueUInt128 = new(0x1FFFFUL, ulong.MaxValue);
 
 
 	/// <summary>
 	/// Indicates the back numeric value to be used.
 	/// </summary>
-	private readonly llong NumericValue
+	private readonly Int128 NumericValue
 	{
 		get
 		{
-			var result = (llong)0;
+			var result = (Int128)0;
 			foreach (var offset in Offsets)
 			{
-				result |= (llong)1 << offset;
+				result |= (Int128)1 << offset;
 			}
 			return result;
 		}
@@ -58,11 +58,11 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 
 	/// <inheritdoc/>
 	readonly bool IBinaryInteger<CellMap>.TryWriteBigEndian(Span<byte> destination, out int bytesWritten)
-		=> ((IBinaryInteger<llong>)NumericValue).TryWriteBigEndian(destination, out bytesWritten);
+		=> ((IBinaryInteger<Int128>)NumericValue).TryWriteBigEndian(destination, out bytesWritten);
 
 	/// <inheritdoc/>
 	readonly bool IBinaryInteger<CellMap>.TryWriteLittleEndian(Span<byte> destination, out int bytesWritten)
-		=> ((IBinaryInteger<llong>)NumericValue).TryWriteLittleEndian(destination, out bytesWritten);
+		=> ((IBinaryInteger<Int128>)NumericValue).TryWriteLittleEndian(destination, out bytesWritten);
 
 	/// <inheritdoc/>
 	readonly int IComparable.CompareTo(object? obj) => obj is CellMap value ? CompareTo(in value) : -1;
@@ -75,14 +75,14 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 
 
 	/// <summary>
-	/// Creates a <see cref="CellMap"/> instance via a <see cref="llong"/> as numeric value.
+	/// Creates a <see cref="CellMap"/> instance via a <see cref="Int128"/> as numeric value.
 	/// </summary>
 	/// <param name="numericValue">The numeric value.</param>
 	/// <returns>A valid <see cref="CellMap"/> instance.</returns>
-	public static CellMap CreateByNumericValue(llong numericValue)
+	public static CellMap CreateByNumericValue(Int128 numericValue)
 	{
 		var result = Empty;
-		foreach (var element in (ullong)numericValue & MaxValueUInt128)
+		foreach (var element in (UInt128)numericValue & MaxValueUInt128)
 		{
 			result.Add(element);
 		}
@@ -90,14 +90,14 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	}
 
 	/// <summary>
-	/// Creates a <see cref="CellMap"/> instance via a <see cref="llong"/> as numeric value.
+	/// Creates a <see cref="CellMap"/> instance via a <see cref="Int128"/> as numeric value.
 	/// </summary>
 	/// <param name="numericValue">The numeric value.</param>
 	/// <returns>A valid <see cref="CellMap"/> instance.</returns>
 	/// <exception cref="OverflowException">Throws when the numeric value has exceeded bits of position greater than 81.</exception>
-	public static CellMap CreateByNumericValueChecked(llong numericValue)
+	public static CellMap CreateByNumericValueChecked(Int128 numericValue)
 	{
-		if ((ullong)numericValue >= MaxValueUInt128)
+		if ((UInt128)numericValue >= MaxValueUInt128)
 		{
 			throw new OverflowException();
 		}
@@ -117,7 +117,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	static bool INumberBase<CellMap>.IsComplexNumber(CellMap value) => false;
 
 	/// <inheritdoc/>
-	static bool INumberBase<CellMap>.IsEvenInteger(CellMap value) => llong.IsEvenInteger((llong)value);
+	static bool INumberBase<CellMap>.IsEvenInteger(CellMap value) => Int128.IsEvenInteger((Int128)value);
 
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.IsFinite(CellMap value) => true;
@@ -144,16 +144,16 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	static bool INumberBase<CellMap>.IsNormal(CellMap value) => value.NumericValue != 0;
 
 	/// <inheritdoc/>
-	static bool INumberBase<CellMap>.IsOddInteger(CellMap value) => llong.IsOddInteger((llong)value);
+	static bool INumberBase<CellMap>.IsOddInteger(CellMap value) => Int128.IsOddInteger((Int128)value);
 
 	/// <inheritdoc/>
-	static bool INumberBase<CellMap>.IsPositive(CellMap value) => llong.IsPositive((llong)value);
+	static bool INumberBase<CellMap>.IsPositive(CellMap value) => Int128.IsPositive((Int128)value);
 
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.IsPositiveInfinity(CellMap value) => false;
 
 	/// <inheritdoc/>
-	static bool IBinaryNumber<CellMap>.IsPow2(CellMap value) => llong.IsPow2((llong)value);
+	static bool IBinaryNumber<CellMap>.IsPow2(CellMap value) => Int128.IsPow2((Int128)value);
 
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.IsRealNumber(CellMap value) => true;
@@ -167,28 +167,28 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.TryConvertFromChecked<TOther>(TOther value, out CellMap result)
 	{
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualValue = (llong)(object)value;
+			var actualValue = (Int128)(object)value;
 			result = CreateByNumericValueChecked(actualValue);
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualValue = (ullong)(object)value;
-			result = CreateByNumericValueChecked(checked((llong)actualValue));
+			var actualValue = (UInt128)(object)value;
+			result = CreateByNumericValueChecked(checked((Int128)actualValue));
 			return true;
 		}
 		else if (typeof(TOther) == typeof(double))
 		{
 			var actualValue = (double)(object)value;
-			result = CreateByNumericValueChecked(checked((llong)actualValue));
+			result = CreateByNumericValueChecked(checked((Int128)actualValue));
 			return true;
 		}
-		else if (typeof(TOther) == typeof(half))
+		else if (typeof(TOther) == typeof(Half))
 		{
-			var actualValue = (half)(object)value;
-			result = CreateByNumericValueChecked(checked((llong)actualValue));
+			var actualValue = (Half)(object)value;
+			result = CreateByNumericValueChecked(checked((Int128)actualValue));
 			return true;
 		}
 		else if (typeof(TOther) == typeof(short))
@@ -224,7 +224,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		else if (typeof(TOther) == typeof(float))
 		{
 			var actualValue = (float)(object)value;
-			result = CreateByNumericValueChecked(checked((llong)actualValue));
+			result = CreateByNumericValueChecked(checked((Int128)actualValue));
 			return true;
 		}
 		else
@@ -237,31 +237,31 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.TryConvertFromSaturating<TOther>(TOther value, out CellMap result)
 	{
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualValue = (llong)(object)value;
-			result = CreateByNumericValue(actualValue >= (llong)MaxValueUInt128 ? (llong)MaxValueUInt128 : actualValue <= 0 ? (llong)0 : actualValue);
+			var actualValue = (Int128)(object)value;
+			result = CreateByNumericValue(actualValue >= (Int128)MaxValueUInt128 ? (Int128)MaxValueUInt128 : actualValue <= 0 ? (Int128)0 : actualValue);
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualValue = (ullong)(object)value;
-			result = CreateByNumericValue((llong)(actualValue >= MaxValueUInt128 ? MaxValueUInt128 : actualValue));
+			var actualValue = (UInt128)(object)value;
+			result = CreateByNumericValue((Int128)(actualValue >= MaxValueUInt128 ? MaxValueUInt128 : actualValue));
 			return true;
 		}
 		else if (typeof(TOther) == typeof(double))
 		{
 			var actualValue = (double)(object)value;
-			result = CreateByNumericValue(actualValue >= MaxValueDouble ? (llong)MaxValueUInt128 : actualValue <= 0 ? 0 : (llong)actualValue);
+			result = CreateByNumericValue(actualValue >= MaxValueDouble ? (Int128)MaxValueUInt128 : actualValue <= 0 ? 0 : (Int128)actualValue);
 			return true;
 		}
-		else if (typeof(TOther) == typeof(half))
+		else if (typeof(TOther) == typeof(Half))
 		{
-			var actualValue = (half)(object)value;
+			var actualValue = (Half)(object)value;
 			result = CreateByNumericValue(
-				actualValue == half.PositiveInfinity
-					? llong.MaxValue
-					: actualValue <= (half)0 ? llong.MinValue : (llong)actualValue
+				actualValue == Half.PositiveInfinity
+					? Int128.MaxValue
+					: actualValue <= (Half)0 ? Int128.MinValue : (Int128)actualValue
 			);
 			return true;
 		}
@@ -298,7 +298,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		else if (typeof(TOther) == typeof(float))
 		{
 			var actualValue = (float)(object)value;
-			result = CreateByNumericValue((llong)(actualValue >= MaxValueDouble ? MaxValueUInt128 : actualValue <= 0 ? 0 : (ullong)actualValue));
+			result = CreateByNumericValue((Int128)(actualValue >= MaxValueDouble ? MaxValueUInt128 : actualValue <= 0 ? 0 : (UInt128)actualValue));
 			return true;
 		}
 		else
@@ -311,28 +311,28 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.TryConvertFromTruncating<TOther>(TOther value, out CellMap result)
 	{
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualValue = (llong)(object)value;
-			result = CreateByNumericValue(actualValue >= (llong)MaxValueUInt128 ? (llong)MaxValueUInt128 : actualValue <= 0 ? (llong)0 : actualValue);
+			var actualValue = (Int128)(object)value;
+			result = CreateByNumericValue(actualValue >= (Int128)MaxValueUInt128 ? (Int128)MaxValueUInt128 : actualValue <= 0 ? (Int128)0 : actualValue);
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualValue = (ullong)(object)value;
-			result = CreateByNumericValue((llong)(actualValue >= MaxValueUInt128 ? MaxValueUInt128 : actualValue));
+			var actualValue = (UInt128)(object)value;
+			result = CreateByNumericValue((Int128)(actualValue >= MaxValueUInt128 ? MaxValueUInt128 : actualValue));
 			return true;
 		}
 		else if (typeof(TOther) == typeof(double))
 		{
 			var actualValue = (double)(object)value;
-			result = CreateByNumericValue(actualValue >= MaxValueDouble ? llong.MaxValue : actualValue <= 0 ? llong.MinValue : (llong)actualValue);
+			result = CreateByNumericValue(actualValue >= MaxValueDouble ? Int128.MaxValue : actualValue <= 0 ? Int128.MinValue : (Int128)actualValue);
 			return true;
 		}
-		else if (typeof(TOther) == typeof(half))
+		else if (typeof(TOther) == typeof(Half))
 		{
-			var actualValue = (half)(object)value;
-			result = CreateByNumericValue(actualValue == half.PositiveInfinity ? llong.MaxValue : actualValue <= (half)0 ? llong.MinValue : (llong)actualValue);
+			var actualValue = (Half)(object)value;
+			result = CreateByNumericValue(actualValue == Half.PositiveInfinity ? Int128.MaxValue : actualValue <= (Half)0 ? Int128.MinValue : (Int128)actualValue);
 			return true;
 		}
 		else if (typeof(TOther) == typeof(short))
@@ -368,7 +368,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		else if (typeof(TOther) == typeof(float))
 		{
 			var actualValue = (double)(object)value;
-			result = CreateByNumericValue(actualValue >= MaxValueDouble ? llong.MaxValue : actualValue <= 0 ? llong.MinValue : (llong)actualValue);
+			result = CreateByNumericValue(actualValue >= MaxValueDouble ? Int128.MaxValue : actualValue <= 0 ? Int128.MinValue : (Int128)actualValue);
 			return true;
 		}
 		else
@@ -382,15 +382,15 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	static bool INumberBase<CellMap>.TryConvertToChecked<TOther>(CellMap value, [MaybeNullWhen(false)] out TOther result)
 	{
 		var numericValue = value.NumericValue;
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualResult = checked((ullong)numericValue);
+			var actualResult = checked((UInt128)numericValue);
 			result = (TOther)(object)actualResult;
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualResult = checked((ullong)numericValue);
+			var actualResult = checked((UInt128)numericValue);
 			result = (TOther)(object)actualResult;
 			return true;
 		}
@@ -447,15 +447,15 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	static bool INumberBase<CellMap>.TryConvertToSaturating<TOther>(CellMap value, [MaybeNullWhen(false)] out TOther result)
 	{
 		var numericValue = value.NumericValue;
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualResult = checked((ullong)numericValue);
+			var actualResult = checked((UInt128)numericValue);
 			result = (TOther)(object)actualResult;
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualResult = numericValue <= 0 ? ullong.MinValue : (ullong)numericValue;
+			var actualResult = numericValue <= 0 ? UInt128.MinValue : (UInt128)numericValue;
 			result = (TOther)(object)actualResult;
 			return true;
 		}
@@ -477,9 +477,9 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		}
 		else if (typeof(TOther) == typeof(decimal))
 		{
-			var actualResult = numericValue >= new llong(0x0000_0000_FFFF_FFFF, 0xFFFF_FFFF_FFFF_FFFF)
+			var actualResult = numericValue >= new Int128(0x0000_0000_FFFF_FFFF, 0xFFFF_FFFF_FFFF_FFFF)
 				? decimal.MaxValue
-				: numericValue <= new llong(0xFFFF_FFFF_0000_0000, 0x0000_0000_0000_0001)
+				: numericValue <= new Int128(0xFFFF_FFFF_0000_0000, 0x0000_0000_0000_0001)
 					? decimal.MinValue
 					: (decimal)numericValue;
 			result = (TOther)(object)actualResult;
@@ -528,15 +528,15 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	static bool INumberBase<CellMap>.TryConvertToTruncating<TOther>(CellMap value, [MaybeNullWhen(false)] out TOther result)
 	{
 		var numericValue = value.NumericValue;
-		if (typeof(TOther) == typeof(llong))
+		if (typeof(TOther) == typeof(Int128))
 		{
-			var actualResult = checked((ullong)numericValue);
+			var actualResult = checked((UInt128)numericValue);
 			result = (TOther)(object)actualResult;
 			return true;
 		}
-		else if (typeof(TOther) == typeof(ullong))
+		else if (typeof(TOther) == typeof(UInt128))
 		{
-			var actualResult = (ullong)numericValue <= 0 ? 0 : numericValue;
+			var actualResult = (UInt128)numericValue <= 0 ? 0 : numericValue;
 			result = (TOther)(object)actualResult;
 			return true;
 		}
@@ -554,9 +554,9 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		}
 		else if (typeof(TOther) == typeof(decimal))
 		{
-			var actualResult = numericValue >= new llong(0x0000_0000_FFFF_FFFF, 0xFFFF_FFFF_FFFF_FFFF)
+			var actualResult = numericValue >= new Int128(0x0000_0000_FFFF_FFFF, 0xFFFF_FFFF_FFFF_FFFF)
 				? decimal.MaxValue
-				: numericValue <= new llong(0xFFFF_FFFF_0000_0000, 0x0000_0000_0000_0001)
+				: numericValue <= new Int128(0xFFFF_FFFF_0000_0000, 0x0000_0000_0000_0001)
 					? decimal.MinValue
 					: (decimal)numericValue;
 			result = (TOther)(object)actualResult;
@@ -596,7 +596,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.TryParse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider, out CellMap result)
 	{
-		var returnValue = llong.TryParse(s, style, provider, out var r);
+		var returnValue = Int128.TryParse(s, style, provider, out var r);
 		result = CreateByNumericValue(r);
 		return returnValue;
 	}
@@ -604,7 +604,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool INumberBase<CellMap>.TryParse(string? s, NumberStyles style, IFormatProvider? provider, out CellMap result)
 	{
-		var returnValue = llong.TryParse(s, style, provider, out var r);
+		var returnValue = Int128.TryParse(s, style, provider, out var r);
 		result = CreateByNumericValue(r);
 		return returnValue;
 	}
@@ -612,7 +612,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool ISpanParsable<CellMap>.TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
 	{
-		var returnValue = llong.TryParse(s, provider, out var r);
+		var returnValue = Int128.TryParse(s, provider, out var r);
 		result = CreateByNumericValue(r);
 		return returnValue;
 	}
@@ -620,7 +620,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse(string? s, IFormatProvider? provider, out CellMap result)
 	{
-		var returnValue = llong.TryParse(s, provider, out var r);
+		var returnValue = Int128.TryParse(s, provider, out var r);
 		result = CreateByNumericValue(r);
 		return returnValue;
 	}
@@ -628,7 +628,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool IBinaryInteger<CellMap>.TryReadBigEndian(ReadOnlySpan<byte> source, bool isUnsigned, out CellMap value)
 	{
-		var result = tryReadBigEndian<llong>(source, isUnsigned, out var v);
+		var result = tryReadBigEndian<Int128>(source, isUnsigned, out var v);
 		value = CreateByNumericValue(v);
 		return result;
 
@@ -640,7 +640,7 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	/// <inheritdoc/>
 	static bool IBinaryInteger<CellMap>.TryReadLittleEndian(ReadOnlySpan<byte> source, bool isUnsigned, out CellMap value)
 	{
-		var result = tryReadLittleEndian<llong>(source, isUnsigned, out var v);
+		var result = tryReadLittleEndian<Int128>(source, isUnsigned, out var v);
 		value = CreateByNumericValue(v);
 		return result;
 
@@ -650,55 +650,55 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 	}
 
 	/// <inheritdoc/>
-	static CellMap INumberBase<CellMap>.Abs(CellMap value) => CreateByNumericValue(llong.Abs(value.NumericValue));
+	static CellMap INumberBase<CellMap>.Abs(CellMap value) => CreateByNumericValue(Int128.Abs(value.NumericValue));
 
 	/// <inheritdoc/>
-	static CellMap IBinaryNumber<CellMap>.Log2(CellMap value) => CreateByNumericValue(llong.Log2((llong)value));
+	static CellMap IBinaryNumber<CellMap>.Log2(CellMap value) => CreateByNumericValue(Int128.Log2((Int128)value));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.MaxMagnitude(CellMap x, CellMap y)
-		=> CreateByNumericValue(llong.MaxMagnitude((llong)x, (llong)y));
+		=> CreateByNumericValue(Int128.MaxMagnitude((Int128)x, (Int128)y));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.MaxMagnitudeNumber(CellMap x, CellMap y)
-		=> CreateByNumericValue(llong.MaxMagnitude((llong)x, (llong)y));
+		=> CreateByNumericValue(Int128.MaxMagnitude((Int128)x, (Int128)y));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.MinMagnitude(CellMap x, CellMap y)
-		=> CreateByNumericValue(llong.MinMagnitude((llong)x, (llong)y));
+		=> CreateByNumericValue(Int128.MinMagnitude((Int128)x, (Int128)y));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.MinMagnitudeNumber(CellMap x, CellMap y)
-		=> CreateByNumericValue(llong.MinMagnitude((llong)x, (llong)y));
+		=> CreateByNumericValue(Int128.MinMagnitude((Int128)x, (Int128)y));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.Parse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider)
-		=> CreateByNumericValue(llong.Parse(s, style, provider));
+		=> CreateByNumericValue(Int128.Parse(s, style, provider));
 
 	/// <inheritdoc/>
 	static CellMap INumberBase<CellMap>.Parse(string s, NumberStyles style, IFormatProvider? provider)
-		=> CreateByNumericValue(llong.Parse(s, style, provider));
+		=> CreateByNumericValue(Int128.Parse(s, style, provider));
 
 	/// <inheritdoc/>
 	static CellMap ISpanParsable<CellMap>.Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
-		=> CreateByNumericValue(llong.Parse(s, provider));
+		=> CreateByNumericValue(Int128.Parse(s, provider));
 
 	/// <inheritdoc/>
-	static CellMap IParsable<CellMap>.Parse(string s, IFormatProvider? provider) => CreateByNumericValue(llong.Parse(s, provider));
+	static CellMap IParsable<CellMap>.Parse(string s, IFormatProvider? provider) => CreateByNumericValue(Int128.Parse(s, provider));
 
 	/// <inheritdoc/>
-	static CellMap IBinaryInteger<CellMap>.PopCount(CellMap value) => CreateByNumericValue(llong.PopCount(value.NumericValue));
+	static CellMap IBinaryInteger<CellMap>.PopCount(CellMap value) => CreateByNumericValue(Int128.PopCount(value.NumericValue));
 
 	/// <inheritdoc/>
 	static CellMap IBinaryInteger<CellMap>.TrailingZeroCount(CellMap value)
-		=> CreateByNumericValue(llong.TrailingZeroCount(value.NumericValue));
+		=> CreateByNumericValue(Int128.TrailingZeroCount(value.NumericValue));
 
 	/// <summary>
 	/// Calculates leading zeros count, try casting the value as two parts of bits.
 	/// </summary>
 	/// <param name="value">The values.</param>
 	/// <returns>The final value.</returns>
-	private static int LeadingZeroCountAsInt32(llong value)
+	private static int LeadingZeroCountAsInt32(Int128 value)
 		=> value >> 64 == 0 ? 64 + LeadingZeroCount((ulong)(value & ulong.MaxValue)) : LeadingZeroCount((ulong)(value >> 64));
 
 
@@ -772,26 +772,26 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 
 
 	/// <summary>
-	/// Creates a <see cref="llong"/> instance as its numeric representation via the specified <see cref="CellMap"/> instance.
+	/// Creates a <see cref="Int128"/> instance as its numeric representation via the specified <see cref="CellMap"/> instance.
 	/// </summary>
 	/// <param name="this">A <see cref="CellMap"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator llong(in CellMap @this) => @this.NumericValue;
+	public static explicit operator Int128(in CellMap @this) => @this.NumericValue;
 
 	/// <summary>
-	/// Creates a <see cref="CellMap"/> instance as its bit representation via the specified <see cref="llong"/> instance.
+	/// Creates a <see cref="CellMap"/> instance as its bit representation via the specified <see cref="Int128"/> instance.
 	/// </summary>
-	/// <param name="value">An <see cref="llong"/> instance.</param>
+	/// <param name="value">An <see cref="Int128"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(llong value) => CreateByNumericValue(value);
+	public static explicit operator CellMap(Int128 value) => CreateByNumericValue(value);
 
 	/// <summary>
-	/// Creates a <see cref="CellMap"/> instance as its bit representation via the specified <see cref="llong"/> instance;
+	/// Creates a <see cref="CellMap"/> instance as its bit representation via the specified <see cref="Int128"/> instance;
 	/// with overflow checking - throws <see cref="OverflowException"/> if the argument uses exceeded bits
 	/// whose position is greater than 81.
 	/// </summary>
-	/// <param name="value">An <see cref="llong"/> instance.</param>
+	/// <param name="value">An <see cref="Int128"/> instance.</param>
 	/// <exception cref="OverflowException">Throws when the value uses exceeded bits whose position is greater than 81.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator checked CellMap(llong value) => CreateByNumericValueChecked(value);
+	public static explicit operator checked CellMap(Int128 value) => CreateByNumericValueChecked(value);
 }
