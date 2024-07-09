@@ -39,7 +39,7 @@ public abstract partial class ChainingRule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <seealso cref="ChainingRuleLinkCollectingContext"/>
-	protected internal abstract void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context);
+	public abstract void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context);
 
 	/// <summary>
 	/// Collects for extra view nodes for the pattern.
@@ -51,7 +51,7 @@ public abstract partial class ChainingRule
 	/// assigned to <see cref="ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
 	/// </remarks>
 	/// <seealso cref="ChainingRuleViewNodesMappingContext.ProducedViewNodes"/>
-	protected internal virtual void MapViewNodes(ref ChainingRuleViewNodesMappingContext context) => context.ProducedViewNodes = [];
+	public virtual void MapViewNodes(ref ChainingRuleViewNodesMappingContext context) => context.ProducedViewNodes = [];
 
 	/// <summary>
 	/// Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
@@ -62,6 +62,5 @@ public abstract partial class ChainingRule
 	/// <remarks>
 	/// This method should not be overridden if no eliminations exists in the loop pattern.
 	/// </remarks>
-	protected internal virtual ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
-		=> [];
+	public virtual ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context) => [];
 }

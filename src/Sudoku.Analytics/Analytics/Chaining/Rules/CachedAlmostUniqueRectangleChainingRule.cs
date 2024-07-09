@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed partial class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var strongLinks = context.StrongLinks;
@@ -75,7 +75,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;
@@ -117,7 +117,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	}
 
 	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
 		// This example will contain extra eliminations:
 		//   4.........2..5...6..8..23...9..8.7....59.+7.6.7+8.3.4..2.7..4.6....3..1..91......8.:548 549 167 168 695

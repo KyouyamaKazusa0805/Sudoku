@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
@@ -145,7 +145,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;
@@ -179,7 +179,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 

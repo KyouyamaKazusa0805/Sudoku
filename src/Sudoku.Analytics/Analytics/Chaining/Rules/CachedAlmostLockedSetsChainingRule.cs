@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Chaining.Rules;
 internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
-	protected internal override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
+	public override void CollectLinks(ref readonly ChainingRuleLinkCollectingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSet);
@@ -103,7 +103,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
+	public override void MapViewNodes(ref ChainingRuleViewNodesMappingContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var pattern = context.Pattern;
@@ -144,7 +144,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	protected internal override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
+	public override ConclusionSet CollectLoopConclusions(ref readonly ChainingRuleLoopConclusionCollectingContext context)
 	{
 		// An example with 19 eliminations:
 		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
