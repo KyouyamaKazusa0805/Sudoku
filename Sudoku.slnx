@@ -28,7 +28,6 @@
     <File Path=".filenesting.json" />
     <File Path="Directory.Build.props" />
     <File Path="global-doc-comments.xml" />
-    <File Path="GlobalAttributes.cs" />
     <File Path="misspelling-exclusion.dic" />
     <File Path="NuGet.config" />
   </Folder>
