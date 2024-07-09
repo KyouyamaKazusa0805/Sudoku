@@ -1393,7 +1393,6 @@ public partial struct Grid :
 		}
 	}
 
-#pragma warning disable format
 	/// <inheritdoc/>
 	public static Grid Parse(string s, IFormatProvider? provider)
 		=> provider switch
@@ -1407,7 +1406,6 @@ public partial struct Grid :
 			},
 			_ => Parse(s)
 		};
-#pragma warning restore format
 
 	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
