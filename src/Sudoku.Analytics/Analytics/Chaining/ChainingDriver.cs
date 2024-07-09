@@ -353,15 +353,13 @@ internal static class ChainingDriver
 
 		// Collect all branches, in order to group them up by its start and end candidate.
 		var allBranches = new Dictionary<Candidate, SortedDictionary<Candidate, Node>>();
-		var allBranchesMap = new Dictionary<Candidate, CandidateMap>();
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var startCandidate = cell * 9 + digit;
 				var startNode = new Node(startCandidate.AsCandidateMap(), true, false);
-				var endNodes = FindForcingChains(startNode).OnNodes;
-				foreach (var endNode in endNodes)
+				foreach (var endNode in FindForcingChains(startNode).OnNodes)
 				{
 					if (endNode.Map is not [var endCandidate])
 					{
@@ -371,12 +369,6 @@ internal static class ChainingDriver
 					if (!allBranches.TryAdd(startCandidate, new() { { endCandidate, endNode } }))
 					{
 						allBranches[startCandidate].TryAdd(endCandidate, endNode);
-					}
-
-					if (!allBranchesMap.TryAdd(startCandidate, endCandidate.AsCandidateMap()))
-					{
-						ref var map = ref allBranchesMap.GetValueRef(in startCandidate);
-						map.Add(endCandidate);
 					}
 				}
 			}
@@ -408,6 +400,10 @@ internal static class ChainingDriver
 		return result.AsReadOnlySpan();
 
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static CandidateMap getExitsMap(StrongForcingChain[] strongForcingChains)
+			=> [.. from branch in strongForcingChains select branch[0].Map[0]];
+
 		static CandidateMap getRootMap(SortedSet<Node> distribution)
 		{
 			var rootMap = CandidateMap.Empty;
@@ -418,9 +414,11 @@ internal static class ChainingDriver
 			return rootMap;
 		}
 
-		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ChainingRules supportedRules)
+		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ref readonly CandidateMap exits, ChainingRules supportedRules)
 		{
 			var result = ConclusionSet.Empty;
+
+			// Collect on eliminations from weak links.
 			foreach (var link in patternLinks)
 			{
 				foreach (var conclusion in ChainOrLoop.GetConclusions(in grid, link))
@@ -429,10 +427,20 @@ internal static class ChainingDriver
 				}
 			}
 
+			// Collect on patterns (like ALSes).
 			var context = new ChainingRuleLoopConclusionCollectingContext(in grid, patternLinks.AsReadOnlySpan());
 			foreach (var rule in supportedRules)
 			{
 				result |= rule.CollectLoopConclusions(in context);
+			}
+
+			// Collect on end-point nodes.
+			foreach (var candidate in exits.PeerIntersection)
+			{
+				if (grid.Exists(candidate) is true)
+				{
+					result.Add(new Conclusion(Elimination, candidate));
+				}
 			}
 			return result;
 		}
@@ -466,7 +474,7 @@ internal static class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -514,7 +522,7 @@ internal static class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -562,7 +570,7 @@ internal static class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
@@ -608,7 +616,7 @@ internal static class ChainingDriver
 				{
 					patternLinks.AddRange(strongForcingChains[i].Links);
 				}
-				var conclusions = collectConclusions(in grid, patternLinks, supportedRules);
+				var conclusions = collectConclusions(in grid, patternLinks, getExitsMap(strongForcingChains), supportedRules);
 				if (!conclusions)
 				{
 					// There's no eliminations found.
