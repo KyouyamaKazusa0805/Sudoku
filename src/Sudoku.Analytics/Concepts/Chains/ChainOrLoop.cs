@@ -411,8 +411,9 @@ public abstract partial class ChainOrLoop :
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="supportedRules">The supported rules.</param>
+	/// <param name="alsIndex">Indicates the currently operated ALS index.</param>
 	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, ChainingRules supportedRules)
+	public View[] GetViews(ref readonly Grid grid, ChainingRules supportedRules, ref int alsIndex)
 	{
 		var result = (View[])[
 			[
@@ -424,10 +425,12 @@ public abstract partial class ChainOrLoop :
 				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
 			]
 		];
+
 		foreach (var supportedRule in supportedRules)
 		{
-			var context = new ChainingRuleViewNodesMappingContext(in grid, this, result[0]);
+			var context = new ChainingRuleViewNodesMappingContext(in grid, this, result[0]) { AlmostLockedSetIndex = alsIndex };
 			supportedRule.MapViewNodes(ref context);
+			alsIndex = context.AlmostLockedSetIndex;
 		}
 		return result;
 

@@ -999,12 +999,13 @@
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Int32@)">
             <summary>
             Collect views for the current chain.
             </summary>
             <param name="grid">The grid.</param>
             <param name="supportedRules">The supported rules.</param>
+            <param name="alsIndex">Indicates the currently operated ALS index.</param>
             <returns>The views.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.System#Collections#IEnumerable#GetEnumerator">
@@ -9077,6 +9078,11 @@
             <param name="grid">The grid to be checked.</param>
             <param name="pattern">The pattern.</param>
             <param name="view">The view.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.AlmostLockedSetIndex">
+            <summary>
+            Indicates the currently used almost locked set index to be used.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodesMappingContext.ProducedViewNodes">
             <summary>

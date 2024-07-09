@@ -15,11 +15,12 @@ internal static class ChainModule
 	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, ChainingRules supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
+		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
 		{
 			var step = new NormalChainStep(
 				c(chain, in grid, supportedRules),
-				chain.GetViews(in grid, supportedRules),
+				chain.GetViews(in grid, supportedRules, ref cachedAlsIndex),
 				context.Options,
 				chain
 			);
@@ -66,6 +67,7 @@ internal static class ChainModule
 	)
 	{
 		ref readonly var grid = ref context.Grid;
+		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
 			if (chain.TryCastToFinnedChain(out var finnedChain, out var f) && onlyFindFinnedChain)
@@ -74,7 +76,7 @@ internal static class ChainModule
 				var views = (View[])[
 					[
 						.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-						.. finnedChain.GetViews(in grid, supportedRules)[0]
+						.. finnedChain.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0]
 					]
 				];
 
@@ -157,21 +159,13 @@ internal static class ChainModule
 			var otherViews = new View[blossomLoop.Count];
 			otherViews.InitializeArray(static ([NotNull] ref View? view) => view = View.Empty);
 
-			var i = 0;
+			var (i, cachedAlsIndex) = (0, 0);
 			foreach (var (startCandidate, branch) in blossomLoop)
 			{
-				var viewNodes = branch.GetViews(in grid, supportedRules)[0];
+				var viewNodes = branch.GetViews(in grid, supportedRules, ref cachedAlsIndex)[0];
 				globalView |= viewNodes;
 				otherViews[i] |= viewNodes;
-
-				var context = new ChainingRuleViewNodesMappingContext(in grid, branch, otherViews[i]);
-				foreach (var rule in supportedRules)
-				{
-					rule.MapViewNodes(ref context);
-					globalView.AddRange(context.ProducedViewNodes);
-				}
 				globalView.Add(new CandidateViewNode(ColorIdentifier.Normal, startCandidate));
-
 				i++;
 			}
 

@@ -15,6 +15,11 @@ public ref partial struct ChainingRuleViewNodesMappingContext(
 ) : IChainingRuleContext
 {
 	/// <summary>
+	/// Indicates the currently used almost locked set index to be used.
+	/// </summary>
+	public int AlmostLockedSetIndex { get; set; }
+
+	/// <summary>
 	/// Indicates the view nodes produced.
 	/// </summary>
 	public ReadOnlySpan<ViewNode> ProducedViewNodes { get; set; }

@@ -109,7 +109,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		var pattern = context.Pattern;
 		var view = context.View;
 
-		var alsIndex = 0;
+		var alsIndex = context.AlmostLockedSetIndex;
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
@@ -138,6 +138,8 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 			}
 			alsIndex = (alsIndex + 1) % 5;
 		}
+
+		context.AlmostLockedSetIndex = alsIndex;
 		context.ProducedViewNodes = result.AsReadOnlySpan();
 	}
 
