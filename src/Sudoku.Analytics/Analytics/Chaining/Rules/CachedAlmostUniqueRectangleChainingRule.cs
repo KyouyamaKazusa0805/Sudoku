@@ -141,6 +141,9 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 		// because AUR eliminations should be treated as "forced" ones, meaning we should check them by supposing it with "true"
 		// to make a contradiction.
 		// This will be implemented in the future.
+		//
+		// Binds with issue #680:
+		//    https://github.com/SunnieShine/Sudoku/issues/680
 		base.GetLoopConclusions(ref context);
 	}
 
