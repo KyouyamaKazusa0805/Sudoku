@@ -3,67 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Defines a sudoku pane control.
 /// </summary>
-[DependencyProperty<bool>("DisplayCandidates", DefaultValue = true, DocSummary = "Indicates whether the pane displays for candidates.")]
-[DependencyProperty<bool>("DisplayCursors", DefaultValue = true, DocSummary = "Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell that is the one your mouse points to.")]
-[DependencyProperty<bool>("UseDifferentColorToDisplayDeltaDigits", DefaultValue = true, DocSummary = "Indicates whether the pane displays for delta Digits using different colors.")]
-[DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
-[DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocSummary = "Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the Digits in its containing houses, this pane will do nothing by this value being <see langword=\"true\"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.")]
-[DependencyProperty<bool>("EnableDoubleTapFilling", DefaultValue = true, DocSummary = "Indicates whether the digit will be automatically input by double tapping a candidate.")]
-[DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
-[DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocSummary = "Indicates whether sudoku pane enables for animation feedback.")]
-[DependencyProperty<bool>("TransparentBackground", DocSummary = "Indicates whether sudoku pane does not use background color to display a sudoku puzzle.")]
-[DependencyProperty<bool>("ClearViewWhenUpdated", DefaultValue = true, DocSummary = "Indicates whether the view unit will be cleared if grid updated.")]
-[DependencyProperty<decimal>("HighlightCandidateCircleScale", DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("HighlightBackgroundOpacity", DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("ChainStrokeThickness", DocSummary = "Indicates the chain stroke thickness.")]
-[DependencyProperty<decimal>("GivenFontScale", DocSummary = "Indicates the font scale of given Digits. The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("ModifiableFontScale", DocSummary = "Indicates the font scale of modifiable Digits. The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("PencilmarkFontScale", DocSummary = "Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("BabaGroupLabelFontScale", DocSummary = "Indicates the font scale of baba group characters. The value should generally be below 1.0.")]
-[DependencyProperty<decimal>("CoordinateLabelFontScale", DocSummary = "Indicates the coordinate label font scale. The value should generally be below 1.0.")]
-[DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
-[DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
-[DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
-[DependencyProperty<CoordinateLabelDisplay>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplay.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Drawing.CoordinateLabelDisplay\"/>.")]
-[DependencyProperty<CandidateViewNodeDisplay>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
-[DependencyProperty<EliminationDisplay>("EliminationDisplayMode", DefaultValue = EliminationDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
-[DependencyProperty<AssignmentDisplay>("AssignmentDisplayMode", DefaultValue = AssignmentDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an assignment.")]
-[DependencyProperty<CandidateMap>("ViewUnitUsedCandidates", DocSummary = "Indicates a map that stores candidates used in a view unit.")]
-[DependencyProperty<Color>("GivenColor", DocSummary = "Indicates the given color.")]
-[DependencyProperty<Color>("ModifiableColor", DocSummary = "Indicates the modifiable color.")]
-[DependencyProperty<Color>("PencilmarkColor", DocSummary = "Indicates the pencilmark color.")]
-[DependencyProperty<Color>("CoordinateLabelColor", DocSummary = "Indicates the coordinate label color.")]
-[DependencyProperty<Color>("BabaGroupLabelColor", DocSummary = "Indicates the baba group label color.")]
-[DependencyProperty<Color>("DeltaCandidateColor", DocSummary = "Indicates the color that is used for displaying candidates that are wrongly removed, but correct.")]
-[DependencyProperty<Color>("DeltaCellColor", DocSummary = "Indicates the color that is used for displaying cell Digits that are wrongly filled.")]
-[DependencyProperty<Color>("BorderColor", DocSummary = "Indicates the border color.")]
-[DependencyProperty<Color>("CursorBackgroundColor", DocSummary = "Indicates the cursor background color.")]
-[DependencyProperty<Color>("LinkColor", DocSummary = "Indicates the link color.")]
-[DependencyProperty<Color>("NormalColor", DocSummary = "Indicates the normal color.")]
-[DependencyProperty<Color>("AssignmentColor", DocSummary = "Indicates the assignment color.")]
-[DependencyProperty<Color>("OverlappedAssignmentColor", DocSummary = "Indicates the overlapped assignment color.")]
-[DependencyProperty<Color>("EliminationColor", DocSummary = "Indicates the elimination color.")]
-[DependencyProperty<Color>("CannibalismColor", DocSummary = "Indicates the cannibalism color.")]
-[DependencyProperty<Color>("ExofinColor", DocSummary = "Indicates the exofin color.")]
-[DependencyProperty<Color>("EndofinColor", DocSummary = "Indicates the endofin color.")]
-[DependencyProperty<Color>("GroupedNodeStrokeColor", DocSummary = "Indicates the grouped node stroke color.")]
-[DependencyProperty<Color>("GroupedNodeBackgroundColor", DocSummary = "Indicates the grouped node background color.")]
-[DependencyProperty<Color>("HouseCompletedFeedbackColor", DocSummary = "Indicates the feedback color when a house is completed.")]
-[DependencyProperty<DashArray>("StrongLinkDashStyle", DocSummary = "Indicates the dash style of the strong links.")]
-[DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
-[DependencyProperty<Thickness>("CellsInnerPadding", DocSummary = "Indicates the value that describes the padding value displaying cell view nodes.")]
-[DependencyProperty<CornerRadius>("CellsInnerCornerRadius", DocSummary = "Indicates the value that describes corner radiuse for displaying cell view nodes.")]
-[DependencyProperty<FontFamily>("GivenFont", DocSummary = "Indicates the given font.")]
-[DependencyProperty<FontFamily>("ModifiableFont", DocSummary = "Indicates the modifiable font.")]
-[DependencyProperty<FontFamily>("PencilmarkFont", DocSummary = "Indicates the candidate font.")]
-[DependencyProperty<FontFamily>("CoordinateLabelFont", DocSummary = "Indicates the coordinate label font.")]
-[DependencyProperty<FontFamily>("BabaGroupLabelFont", DocSummary = "Indicates the baba group label font.")]
-[DependencyProperty<ViewUnitBindableSource>("ViewUnit?", DocSummary = "Indicates the view unit used.")]
-[DependencyProperty<ColorPalette>("AuxiliaryColors", DocSummary = "Indicates the auxiliary colors.")]
-[DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocSummary = "Indicates the foreground colors of all 6 kinds of difficulty levels.")]
-[DependencyProperty<ColorPalette>("DifficultyLevelBackgrounds", DocSummary = "Indicates the background colors of all 6 kinds of difficulty levels.")]
-[DependencyProperty<ColorPalette>("UserDefinedColorPalette", DocSummary = "Indicates the user-defined colors used by customized views.")]
-[DependencyProperty<ColorPalette>("AlmostLockedSetsColors", DocSummary = "Indicates the colors applied to technique structure Almost Locked Sets.")]
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
 	[Default]
@@ -277,11 +216,169 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
+	/// Indicates whether the pane displays for candidates.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool DisplayCandidates { get; set; }
+
+	/// <summary>
+	/// Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers
+	/// of the target cell that is the one your mouse points to.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool DisplayCursors { get; set; }
+
+	/// <summary>
+	/// Indicates whether the pane displays for delta Digits using different colors.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool UseDifferentColorToDisplayDeltaDigits { get; set; }
+
+	/// <summary>
+	/// Indicates whether the pane disable flyout open.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool DisableFlyout { get; set; }
+
+	/// <summary>
+	/// Indicates whether the pane prevent the simple conflict, which means,
+	/// if you input a digit that is conflict with the Digits in its containing houses,
+	/// this pane will do nothing by this value being <see langword="true"/>.
+	/// If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool PreventConflictingInput { get; set; }
+
+	/// <summary>
 	/// Indicates whether the pane enables for undoing and redoing operation.
 	/// </summary>
 	[AutoDependencyProperty(DefaultValue = true)]
 	[MemberNotNullWhen(true, nameof(_redoStack), nameof(_undoStack))]
 	public partial bool EnableUndoRedoStacking { get; set; }
+
+	/// <summary>
+	/// Indicates whether the digit will be automatically input by double tapping a candidate.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool EnableDoubleTapFilling { get; set; }
+
+	/// <summary>
+	/// Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool EnableRightTapRemoving { get; set; }
+
+	/// <summary>
+	/// Indicates whether sudoku pane enables for animation feedback.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool EnableAnimationFeedback { get; set; }
+
+	/// <summary>
+	/// Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool TransparentBackground { get; set; }
+
+	/// <summary>
+	/// Indicates whether the view unit will be cleared if grid updated.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	public partial bool ClearViewWhenUpdated { get; set; }
+
+	/// <summary>
+	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal HighlightCandidateCircleScale { get; set; }
+
+	/// <summary>
+	/// Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal HighlightBackgroundOpacity { get; set; }
+
+	/// <summary>
+	/// Indicates the chain stroke thickness.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal ChainStrokeThickness { get; set; }
+
+	/// <summary>
+	/// Indicates the font scale of given Digits. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal GivenFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal ModifiableFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal PencilmarkFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the font scale of baba group characters. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal BabaGroupLabelFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the coordinate label font scale. The value should generally be below 1.0.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal CoordinateLabelFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the duration of feedback when a house is completed.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = 800)]
+	public partial int HouseCompletedFeedbackDuration { get; set; }
+
+	/// <summary>
+	/// Indicates the displaying kind of coordinate labels.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = CoordinateType.RxCy)]
+	public partial CoordinateType CoordinateLabelDisplayKind { get; set; }
+
+	/// <summary>
+	/// Indicates the displaying mode of coordinate labels.
+	/// </summary>
+	/// <remarks>
+	/// For more information please visit <see cref="CoordinateLabelDisplay"/>.
+	/// </remarks>
+	/// <seealso cref="CoordinateLabelDisplay"/>
+	[AutoDependencyProperty(DefaultValue = CoordinateLabelDisplay.UpperAndLeft)]
+	public partial CoordinateLabelDisplay CoordinateLabelDisplayMode { get; set; }
+
+	/// <summary>
+	/// Indicates the displaying mode of candidate view nodes.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = CandidateViewNodeDisplay.CircleSolid)]
+	public partial CandidateViewNodeDisplay CandidateViewNodeDisplayMode { get; set; }
+
+	/// <summary>
+	/// Indicates the displaying mode of an assignment.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = AssignmentDisplay.CircleSolid)]
+	public partial AssignmentDisplay AssignmentDisplayMode { get; set; }
+
+	/// <summary>
+	/// Indicates the displaying mode of an elimination.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = EliminationDisplay.CircleSolid)]
+	public partial EliminationDisplay EliminationDisplayMode { get; set; }
+
+	/// <summary>
+	/// Indicates the currently selected cell.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Cell SelectedCell { get; set; }
 
 	/// <summary>
 	/// Indicates the core-operating sudoku puzzle.
@@ -297,6 +394,222 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Replacing, value));
 		}
 	}
+
+	/// <summary>
+	/// Indicates a map that stores candidates used in a view unit.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial CandidateMap ViewUnitUsedCandidates { get; set; }
+
+	/// <summary>
+	/// Indicates the value that describes corner radiuse for displaying cell view nodes.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial CornerRadius CellsInnerCornerRadius { get; set; }
+
+	/// <summary>
+	/// Indicates the given color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color GivenColor { get; set; }
+
+	/// <summary>
+	/// Indicates the modifiable color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color ModifiableColor { get; set; }
+
+	/// <summary>
+	/// Indicates the pencilmark color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color PencilmarkColor { get; set; }
+
+	/// <summary>
+	/// Indicates the coordinate label color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color CoordinateLabelColor { get; set; }
+
+	/// <summary>
+	/// Indicates the baba group label color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color BabaGroupLabelColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color DeltaCandidateColor { get; set; }
+
+	/// <summary>
+	/// Indicates the color that is used for displaying cell Digits that are wrongly filled.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color DeltaCellColor { get; set; }
+
+	/// <summary>
+	/// Indicates the border color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color BorderColor { get; set; }
+
+	/// <summary>
+	/// Indicates the cursor background color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color CursorBackgroundColor { get; set; }
+
+	/// <summary>
+	/// Indicates the link color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color LinkColor { get; set; }
+
+	/// <summary>
+	/// Indicates the normal color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color NormalColor { get; set; }
+
+	/// <summary>
+	/// Indicates the assignment color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color AssignmentColor { get; set; }
+
+	/// <summary>
+	/// Indicates the overlapped assignment color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color OverlappedAssignmentColor { get; set; }
+
+	/// <summary>
+	/// Indicates the elimination color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color EliminationColor { get; set; }
+
+	/// <summary>
+	/// Indicates the cannibalism color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color CannibalismColor { get; set; }
+
+	/// <summary>
+	/// Indicates the exofin color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color ExofinColor { get; set; }
+
+	/// <summary>
+	/// Indicates the endofin color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color EndofinColor { get; set; }
+
+	/// <summary>
+	/// Indicates the grouped node stroke color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color GroupedNodeStrokeColor { get; set; }
+
+	/// <summary>
+	/// Indicates the grouped node background color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color GroupedNodeBackgroundColor { get; set; }
+
+	/// <summary>
+	/// Indicates the feedback color when a house is completed.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color HouseCompletedFeedbackColor { get; set; }
+
+	/// <summary>
+	/// Indicates the dash style of the strong links.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial DashArray StrongLinkDashStyle { get; set; }
+
+	/// <summary>
+	/// Indicates the dash style of the weak links.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial DashArray WeakLinkDashStyle { get; set; }
+
+	/// <summary>
+	/// Indicates the value that describes the padding value displaying cell view nodes.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Thickness CellsInnerPadding { get; set; }
+
+	/// <summary>
+	/// Indicates the given font.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial FontFamily GivenFont { get; set; }
+
+	/// <summary>
+	/// Indicates the modifiable font.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial FontFamily ModifiableFont { get; set; }
+
+	/// <summary>
+	/// Indicates the candidate font.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial FontFamily PencilmarkFont { get; set; }
+
+	/// <summary>
+	/// Indicates the coordinate label font.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial FontFamily CoordinateLabelFont { get; set; }
+
+	/// <summary>
+	/// Indicates the baba group label font.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial FontFamily BabaGroupLabelFont { get; set; }
+
+	/// <summary>
+	/// Indicates the view unit used.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ViewUnitBindableSource? ViewUnit { get; set; }
+
+	/// <summary>
+	/// Indicates the auxiliary colors.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ColorPalette AuxiliaryColors { get; set; }
+
+	/// <summary>
+	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ColorPalette DifficultyLevelForegrounds { get; set; }
+
+	/// <summary>
+	/// Indicates the background colors of all 6 kinds of difficulty levels.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ColorPalette DifficultyLevelBackgrounds { get; set; }
+
+	/// <summary>
+	/// Indicates the user-defined colors used by customized views.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ColorPalette UserDefinedColorPalette { get; set; }
+
+	/// <summary>
+	/// Indicates the colors applied to technique pattern Almost Locked Sets.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ColorPalette AlmostLockedSetsColors { get; set; }
 
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.

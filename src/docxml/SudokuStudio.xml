@@ -11845,14 +11845,327 @@
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
+            <summary>
+            Indicates whether the pane displays for candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors">
+            <summary>
+            Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers
+            of the target cell that is the one your mouse points to.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
+            <summary>
+            Indicates whether the pane displays for delta Digits using different colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
+            <summary>
+            Indicates whether the pane disable flyout open.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
+            <summary>
+            Indicates whether the pane prevent the simple conflict, which means,
+            if you input a digit that is conflict with the Digits in its containing houses,
+            this pane will do nothing by this value being <see langword="true"/>.
+            If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">
             <summary>
             Indicates whether the pane enables for undoing and redoing operation.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling">
+            <summary>
+            Indicates whether the digit will be automatically input by double tapping a candidate.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving">
+            <summary>
+            Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback">
+            <summary>
+            Indicates whether sudoku pane enables for animation feedback.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground">
+            <summary>
+            Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdated">
+            <summary>
+            Indicates whether the view unit will be cleared if grid updated.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale">
+            <summary>
+            Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity">
+            <summary>
+            Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness">
+            <summary>
+            Indicates the chain stroke thickness.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
+            <summary>
+            Indicates the font scale of given Digits. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale">
+            <summary>
+            Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
+            <summary>
+            Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale">
+            <summary>
+            Indicates the font scale of baba group characters. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale">
+            <summary>
+            Indicates the coordinate label font scale. The value should generally be below 1.0.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration">
+            <summary>
+            Indicates the duration of feedback when a house is completed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind">
+            <summary>
+            Indicates the displaying kind of coordinate labels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">
+            <summary>
+            Indicates the displaying mode of coordinate labels.
+            </summary>
+            <remarks>
+            For more information please visit <see cref="T:SudokuStudio.Drawing.CoordinateLabelDisplay"/>.
+            </remarks>
+            <seealso cref="T:SudokuStudio.Drawing.CoordinateLabelDisplay"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">
+            <summary>
+            Indicates the displaying mode of candidate view nodes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode">
+            <summary>
+            Indicates the displaying mode of an assignment.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode">
+            <summary>
+            Indicates the displaying mode of an elimination.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
+            <summary>
+            Indicates the currently selected cell.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle">
             <summary>
             Indicates the core-operating sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">
+            <summary>
+            Indicates a map that stores candidates used in a view unit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius">
+            <summary>
+            Indicates the value that describes corner radiuse for displaying cell view nodes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor">
+            <summary>
+            Indicates the given color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor">
+            <summary>
+            Indicates the modifiable color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor">
+            <summary>
+            Indicates the pencilmark color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor">
+            <summary>
+            Indicates the coordinate label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor">
+            <summary>
+            Indicates the baba group label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor">
+            <summary>
+            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor">
+            <summary>
+            Indicates the color that is used for displaying cell Digits that are wrongly filled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor">
+            <summary>
+            Indicates the border color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor">
+            <summary>
+            Indicates the cursor background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor">
+            <summary>
+            Indicates the link color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor">
+            <summary>
+            Indicates the exofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor">
+            <summary>
+            Indicates the endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor">
+            <summary>
+            Indicates the grouped node stroke color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor">
+            <summary>
+            Indicates the grouped node background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor">
+            <summary>
+            Indicates the feedback color when a house is completed.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
+            <summary>
+            Indicates the dash style of the strong links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
+            <summary>
+            Indicates the dash style of the weak links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding">
+            <summary>
+            Indicates the value that describes the padding value displaying cell view nodes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont">
+            <summary>
+            Indicates the given font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont">
+            <summary>
+            Indicates the modifiable font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont">
+            <summary>
+            Indicates the candidate font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
+            <summary>
+            Indicates the coordinate label font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
+            <summary>
+            Indicates the baba group label font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit">
+            <summary>
+            Indicates the view unit used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors">
+            <summary>
+            Indicates the auxiliary colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds">
+            <summary>
+            Indicates the foreground colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds">
+            <summary>
+            Indicates the background colors of all 6 kinds of difficulty levels.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette">
+            <summary>
+            Indicates the user-defined colors used by customized views.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors">
+            <summary>
+            Indicates the colors applied to technique pattern Almost Locked Sets.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ApproximateCellWidth">
@@ -12088,6 +12401,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStackingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFillingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling"/>.
@@ -12172,12 +12491,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.SelectedCellProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKindProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind"/>.
@@ -12196,23 +12509,35 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.SelectedCellProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadiusProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenColorProperty">
             <summary>
@@ -12352,12 +12677,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadiusProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>.
@@ -12423,320 +12742,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates">
-            <summary>
-            Indicates whether the pane displays for candidates.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors">
-            <summary>
-            Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers of the target cell that is the one your mouse points to.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
-            <summary>
-            Indicates whether the pane displays for delta Digits using different colors.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
-            <summary>
-            Indicates whether the pane disable flyout open.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
-            <summary>
-            Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the Digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableDoubleTapFilling">
-            <summary>
-            Indicates whether the digit will be automatically input by double tapping a candidate.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableRightTapRemoving">
-            <summary>
-            Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback">
-            <summary>
-            Indicates whether sudoku pane enables for animation feedback.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground">
-            <summary>
-            Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdated">
-            <summary>
-            Indicates whether the view unit will be cleared if grid updated.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale">
-            <summary>
-            Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity">
-            <summary>
-            Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness">
-            <summary>
-            Indicates the chain stroke thickness.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
-            <summary>
-            Indicates the font scale of given Digits. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale">
-            <summary>
-            Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
-            <summary>
-            Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale">
-            <summary>
-            Indicates the font scale of baba group characters. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFontScale">
-            <summary>
-            Indicates the coordinate label font scale. The value should generally be below 1.0.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackDuration">
-            <summary>
-            Indicates the duration of feedback when a house is completed.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell">
-            <summary>
-            Indicates the currently selected cell.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayKind">
-            <summary>
-            Indicates the displaying kind of coordinate labels.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode">
-            <summary>
-            Indicates the displaying mode of coordinate labels.
-            </summary>
-            <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Drawing.CoordinateLabelDisplay"/>.
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">
-            <summary>
-            Indicates the displaying mode of candidate view nodes.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode">
-            <summary>
-            Indicates the displaying mode of an elimination.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode">
-            <summary>
-            Indicates the displaying mode of an assignment.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">
-            <summary>
-            Indicates a map that stores candidates used in a view unit.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor">
-            <summary>
-            Indicates the given color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableColor">
-            <summary>
-            Indicates the modifiable color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkColor">
-            <summary>
-            Indicates the pencilmark color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelColor">
-            <summary>
-            Indicates the coordinate label color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelColor">
-            <summary>
-            Indicates the baba group label color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor">
-            <summary>
-            Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor">
-            <summary>
-            Indicates the color that is used for displaying cell Digits that are wrongly filled.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor">
-            <summary>
-            Indicates the border color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor">
-            <summary>
-            Indicates the cursor background color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor">
-            <summary>
-            Indicates the link color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor">
-            <summary>
-            Indicates the normal color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor">
-            <summary>
-            Indicates the assignment color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor">
-            <summary>
-            Indicates the overlapped assignment color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor">
-            <summary>
-            Indicates the elimination color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor">
-            <summary>
-            Indicates the cannibalism color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor">
-            <summary>
-            Indicates the exofin color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor">
-            <summary>
-            Indicates the endofin color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor">
-            <summary>
-            Indicates the grouped node stroke color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor">
-            <summary>
-            Indicates the grouped node background color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor">
-            <summary>
-            Indicates the feedback color when a house is completed.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
-            <summary>
-            Indicates the dash style of the strong links.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
-            <summary>
-            Indicates the dash style of the weak links.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding">
-            <summary>
-            Indicates the value that describes the padding value displaying cell view nodes.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius">
-            <summary>
-            Indicates the value that describes corner radiuse for displaying cell view nodes.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont">
-            <summary>
-            Indicates the given font.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFont">
-            <summary>
-            Indicates the modifiable font.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFont">
-            <summary>
-            Indicates the candidate font.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelFont">
-            <summary>
-            Indicates the coordinate label font.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFont">
-            <summary>
-            Indicates the baba group label font.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnit">
-            <summary>
-            Indicates the view unit used.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors">
-            <summary>
-            Indicates the auxiliary colors.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds">
-            <summary>
-            Indicates the foreground colors of all 6 kinds of difficulty levels.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds">
-            <summary>
-            Indicates the background colors of all 6 kinds of difficulty levels.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette">
-            <summary>
-            Indicates the user-defined colors used by customized views.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors">
-            <summary>
-            Indicates the colors applied to technique structure Almost Locked Sets.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStackingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneModeProperty">
             <summary>
