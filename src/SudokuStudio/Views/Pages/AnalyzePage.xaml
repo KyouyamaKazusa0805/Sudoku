@@ -112,16 +112,16 @@
 								Click="AnalyzeButton_ClickAsync" />
 							<AppBarToggleButton
 								Icon="List" Label="{m:R Key=AnalyzePage_LogicalSolverIsFullyApplied}"
-								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=TwoWay}" />
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIsFullApplying,Mode=TwoWay}" />
 							<AppBarToggleButton
 								Icon="RepeatOne" Label="{m:R Key=AnalyzePage_AnalyzerUseIttoryuMode}"
 								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=TwoWay}" />
 							<AppBarToggleButton
 								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresSlowAlgorithms}"
-								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=TwoWay}" />
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms,Mode=TwoWay}" />
 							<AppBarToggleButton
 								Icon="Accept" Label="{m:R Key=AnalyzePage_LogicalSolverIgnoresHighAllocationAlgorithms}"
-								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
+								IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms,Mode=TwoWay}" />
 						</CommandBar>
 					</Border>
 				</Grid>
@@ -222,10 +222,10 @@
 							a:AnalyzerProperties.AlignedExclusionMaxSearchingSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=OneWay}"
 							a:AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForReverseBugPartiallyUsedTypes,Mode=OneWay}"
 							a:AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=OneWay}"
-							a:AnalyzerProperties.LogicalSolverIsFullApplying="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIsFullApplying,Mode=OneWay}"
+							a:AnalyzerProperties.AnalyzerIsFullApplying="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIsFullApplying,Mode=OneWay}"
 							a:AnalyzerProperties.AnalyzerUseIttoryuMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=OneWay}"
-							a:AnalyzerProperties.LogicalSolverIgnoresSlowAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms,Mode=OneWay}"
-							a:AnalyzerProperties.LogicalSolverIgnoresHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms,Mode=OneWay}"
+							a:AnalyzerProperties.AnalyzerIgnoresSlowAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms,Mode=OneWay}"
+							a:AnalyzerProperties.AnalyzerIgnoresHighAllocationAlgorithms="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms,Mode=OneWay}"
 							a:AnalyzerProperties.TemplateDeleteOnly="False"
 							a:AnalyzerProperties.BowmanBingoMaxLength="64"
 							a:AnalyzerProperties.SearchExtendedDeathBlossomTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedDeathBlossomTypes,Mode=OneWay}"
@@ -233,7 +233,7 @@
 							a:AnalyzerProperties.CheckAlmostLockedQuadruple="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CheckAlmostLockedQuadruple,Mode=OneWay}"
 							a:AnalyzerProperties.IttoryuSupportedTechniques="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=OneWay}"
 							a:GathererProperties.DifficultyLevelMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=OneWay}"
-							a:GathererProperties.StepGathererMaxStepsGathered="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.StepGathererMaxStepsGathered,Mode=OneWay}"
+							a:GathererProperties.CollectorMaxStepsCollected="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.CollectorMaxStepsCollected,Mode=OneWay}"
 							Loaded="SudokuPane_Loaded" Clicked="SudokuPane_Clicked" MouseWheelChanged="SudokuPane_MouseWheelChanged"
 							GridUpdated="SudokuPane_GridUpdated" ReceivedDroppedFileSuccessfully="SudokuPane_ReceivedDroppedFileSuccessfully"
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"

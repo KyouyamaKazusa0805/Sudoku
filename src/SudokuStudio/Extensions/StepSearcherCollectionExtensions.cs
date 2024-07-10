@@ -12,8 +12,8 @@ public static class StepSearcherCollectionExtensions
 	/// <returns>A list of <see cref="StepSearcher"/> instances.</returns>
 	public static StepSearcher[] GetStepSearchers(this App @this)
 	{
-		var disallowHighTimeComplexity = @this.Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
-		var disallowSpaceTimeComplexity = @this.Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
+		var disallowHighTimeComplexity = @this.Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms;
+		var disallowSpaceTimeComplexity = @this.Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms;
 		return [
 			..
 			from data in @this.Preference.StepSearcherOrdering.StepSearchersOrder

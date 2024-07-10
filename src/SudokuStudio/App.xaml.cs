@@ -179,8 +179,8 @@ public partial class App : Application
 	/// <returns>The final <see cref="Sudoku.Analytics.Analyzer"/> instance.</returns>
 	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = default)
 	{
-		var disallowHighTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresSlowAlgorithms;
-		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.LogicalSolverIgnoresHighAllocationAlgorithms;
+		var disallowHighTimeComplexity = Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms;
+		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms;
 		return Analyzer
 			.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(sudokuPane)

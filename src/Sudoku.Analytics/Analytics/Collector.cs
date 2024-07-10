@@ -6,12 +6,12 @@ namespace Sudoku.Analytics;
 public sealed partial class Collector : AnalyzerOrCollector
 {
 	/// <summary>
-	/// Indicates the maximum steps can be gathered.
+	/// Indicates the maximum steps can be collected.
 	/// </summary>
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
-	public int MaxStepsGathered { get; set; } = 1000;
+	public int MaxStepsCollected { get; set; } = 1000;
 
 	/// <summary>
 	/// Indicates whether the solver only displays the techniques with the same displaying level.
@@ -137,7 +137,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 						}
 
 						l = currentLevel;
-						bag.AddRange(count > MaxStepsGathered ? accumulator[..MaxStepsGathered] : accumulator);
+						bag.AddRange(count > MaxStepsCollected ? accumulator[..MaxStepsCollected] : accumulator);
 						break;
 					}
 				}

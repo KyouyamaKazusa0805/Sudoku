@@ -135,7 +135,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		var analysisPref = ((App)Application.Current).Preference.AnalysisPreferences;
 		var collector = ((App)Application.Current)
 			.Collector
-			.WithMaxSteps(analysisPref.StepGathererMaxStepsGathered)
+			.WithMaxSteps(analysisPref.CollectorMaxStepsCollected)
 			.WithCulture(App.CurrentCulture)
 			.WithSameLevelConfigruation((CollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())

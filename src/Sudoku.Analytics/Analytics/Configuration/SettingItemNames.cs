@@ -119,19 +119,19 @@ public static class SettingItemNames
 	// Analyzer & Collector property names
 	//
 	/// <inheritdoc cref="Analyzer.IsFullApplying"/>
-	public const string LogicalSolverIsFullApplying = nameof(LogicalSolverIsFullApplying);
+	public const string AnalyzerIsFullApplying = nameof(AnalyzerIsFullApplying);
 
 	/// <inheritdoc cref="Analyzer.IgnoreSlowAlgorithms"/>
-	public const string LogicalSolverIgnoresSlowAlgorithms = nameof(LogicalSolverIgnoresSlowAlgorithms);
+	public const string AnalyzerIgnoresSlowAlgorithms = nameof(AnalyzerIgnoresSlowAlgorithms);
 
 	/// <inheritdoc cref="Analyzer.IgnoreHighAllocationAlgorithms"/>
-	public const string LogicalSolverIgnoresHighAllocationAlgorithms = nameof(LogicalSolverIgnoresHighAllocationAlgorithms);
+	public const string AnalyzerIgnoresHighAllocationAlgorithms = nameof(AnalyzerIgnoresHighAllocationAlgorithms);
 
 	/// <inheritdoc cref="Collector.DifficultyLevelMode"/>
 	public const string DifficultyLevelMode = nameof(DifficultyLevelMode);
 
-	/// <inheritdoc cref="Collector.MaxStepsGathered"/>
-	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);
+	/// <inheritdoc cref="Collector.MaxStepsCollected"/>
+	public const string CollectorMaxStepsCollected = nameof(CollectorMaxStepsCollected);
 
 	/// <summary>
 	/// Indicates the supported techniques used in ittoryu mode.

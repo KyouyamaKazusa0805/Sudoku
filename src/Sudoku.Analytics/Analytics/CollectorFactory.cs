@@ -7,14 +7,14 @@ namespace Sudoku.Analytics;
 public static class CollectorFactory
 {
 	/// <summary>
-	/// Sets the property <see cref="Collector.MaxStepsGathered"/> with the target value.
+	/// Sets the property <see cref="Collector.MaxStepsCollected"/> with the target value.
 	/// </summary>
 	/// <param name="this">The collector instance.</param>
 	/// <param name="count">The number of maximum value.</param>
 	/// <returns>The reference same as <see cref="Collector"/>.</returns>
 	public static Collector WithMaxSteps(this Collector @this, int count)
 	{
-		@this.MaxStepsGathered = count;
+		@this.MaxStepsCollected = count;
 		return @this;
 	}
 
