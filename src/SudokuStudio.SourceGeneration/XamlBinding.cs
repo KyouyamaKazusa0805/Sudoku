@@ -56,35 +56,33 @@ internal static class XamlBinding
 		string? propertyTypeStr
 	)
 	{
+		const string typeName = "global::Microsoft.UI.Xaml.PropertyMetadata";
 		var propertyNameFullName = propertyType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 		return (defaultValue, propertyType, generatorMemberName, generatorMemberKind, callbackMethodName) switch
 		{
-			(char c, _, _, _, null) => $"new('{c}')",
-			(char c, _, _, _, _) => $"new('{c}', {callbackMethodName})",
-			(string s, _, _, _, null) => $"""new("{s}")""",
-			(string s, _, _, _, _) => $"""new("{s}", {callbackMethodName})""",
-			(not null, { TypeKind: TypeKind.Enum }, _, _, null) => $"new(({propertyNameFullName}){f()})",
-			(not null, _, _, _, null) => $"new({f()})",
-			(not null, { TypeKind: TypeKind.Enum }, _, _, _) => $"new(({propertyNameFullName}){f()}, {callbackMethodName})",
-			(not null, _, _, _, _) => $"new({f()}, {callbackMethodName})",
-			(_, _, null, _, null) => $"new(default({propertyTypeStr}))",
-			(_, _, null, _, _) => $"new(default({propertyTypeStr}), {callbackMethodName})",
+			(char c, _, _, _, null) => $"new {typeName}('{c}')",
+			(char c, _, _, _, _) => $"new {typeName}('{c}', {callbackMethodName})",
+			(string s, _, _, _, null) => $"""new {typeName}("{s}")""",
+			(string s, _, _, _, _) => $"""new {typeName}("{s}", {callbackMethodName})""",
+			(not null, { TypeKind: TypeKind.Enum }, _, _, null) => $"new {typeName}(({propertyNameFullName}){f()})",
+			(not null, _, _, _, null) => $"new {typeName}(({propertyNameFullName}){f()})",
+			(not null, { TypeKind: TypeKind.Enum }, _, _, _) => $"new {typeName}(({propertyNameFullName}){f()}, {callbackMethodName})",
+			(not null, _, _, _, _) => $"new {typeName}(({propertyNameFullName}){f()}, {callbackMethodName})",
+			(_, _, null, _, null) => $"new {typeName}(default({propertyTypeStr}))",
+			(_, _, null, _, _) => $"new {typeName}(default({propertyTypeStr}), {callbackMethodName})",
 			(_, _, not null, { } kind, _) => kind switch
 			{
-				DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property
-					=> callbackMethodName switch
-					{
-						null => $"new({generatorMemberName})",
-						_ => $"new({generatorMemberName}, {callbackMethodName})"
-					},
-				DefaultValueGeneratingMemberKind.ParameterlessMethod
-					=> callbackMethodName switch
-					{
-						null => $"new({generatorMemberName}())",
-						_ => $"new({generatorMemberName}(), {callbackMethodName})"
-					},
-				_
-					=> null
+				DefaultValueGeneratingMemberKind.Field or DefaultValueGeneratingMemberKind.Property => callbackMethodName switch
+				{
+					null => $"new {typeName}({generatorMemberName})",
+					_ => $"new {typeName}({generatorMemberName}, {callbackMethodName})"
+				},
+				DefaultValueGeneratingMemberKind.ParameterlessMethod => callbackMethodName switch
+				{
+					null => $"new {typeName}({generatorMemberName}())",
+					_ => $"new {typeName}({generatorMemberName}(), {callbackMethodName})"
+				},
+				_ => null
 			},
 			_ => null
 		};

@@ -8,3 +8,4 @@ global using Microsoft.CodeAnalysis.CSharp;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
 global using Sudoku.SourceGeneration.Handlers;
 global using static SolutionVersion;
+global using DeclaredAccessibility = Microsoft.CodeAnalysis.Accessibility;

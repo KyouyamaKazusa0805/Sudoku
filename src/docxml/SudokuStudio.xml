@@ -922,6 +922,16 @@
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
             <param name="propertyName"><inheritdoc/></param>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute">
+            <summary>
+            Defines an attribute that defines a dependency property.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute.DefaultValue">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.CallbackAttribute">
             <summary>
             Defines an attribute that indicates the callback method of the bound dependency property or attached property.
@@ -936,15 +946,15 @@
             <summary>
             Defines an attribute that defines a dependency property.
             </summary>
-            <param name="propertyName"><inheritdoc/></param>
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+            <param name="propertyName"><inheritdoc/></param>
         </member>
         <member name="M:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.#ctor(System.String)">
             <summary>
             Defines an attribute that defines a dependency property.
             </summary>
-            <param name="propertyName"><inheritdoc/></param>
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
+            <param name="propertyName"><inheritdoc/></param>
         </member>
         <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.MembersNotNullWhenReturnsTrue">
             <summary>
@@ -1088,37 +1098,6 @@
             <summary>
             Indicates the <c>remarks</c> content of the dependency property displayed in XML documentation comment.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValueGeneratingMemberName">
-            <summary>
-            Indicates the referenced member name that points to a member that can create a default value of the current dependency property.
-            </summary>
-            <remarks>
-            <para>This property will be used if the property <see cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/> cannot be assigned due to not being a constant.</para>
-            <para>
-            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.DefaultAttribute"/> instead:</i>
-            <code><![CDATA[
-            [DefaultValue]
-            private static readonly object DependencyPropertyNameDefaultValue = ...;
-            ]]></code>
-            </para>
-            </remarks>
-            <seealso cref="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue"/>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.CallbackMethodName">
-            <summary>
-            Indicates the callback method name.
-            </summary>
-            <remarks>
-            <i>This property is being deprecated. Please use type <see cref="T:SudokuStudio.ComponentModel.CallbackAttribute"/> instead:</i>
-            <code><![CDATA[
-            [Callback]
-            private static void PropertyNamePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-            {
-                // ...
-            }
-            ]]></code>
-            </remarks>
         </member>
         <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
             <summary>
@@ -12814,6 +12793,11 @@
             Initializes a <see cref="T:SudokuStudio.Views.Controls.SudokuPaneCell"/> instance.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration">
+            <summary>
+            Indicates the duration time of fthe feedback on house completed.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.BasePane">
             <summary>
             Indicates the base pane.
@@ -12822,6 +12806,16 @@
         <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CellIndex">
             <summary>
             Indicates the cell index.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
+            <summary>
+            Indicates the candidates mask.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.State">
+            <summary>
+            Indicates the cell state.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.LightUpAsync(System.Int32)">
@@ -12859,35 +12853,17 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration">
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty"/> to get or set value.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty" />
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.State">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty" />
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty" />
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>

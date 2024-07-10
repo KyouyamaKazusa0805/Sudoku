@@ -10,8 +10,7 @@ public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> // Advanced generators
-		SudokuStudioXamlBindings(context);
+		=> SudokuStudioXamlBindings(context);
 
 	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)
 	{
@@ -49,6 +48,29 @@ public sealed class Generator : IIncrementalGenerator
 						.Collect()
 				),
 			static (spc, c) => { if (c.Left.AssemblyName == "SudokuStudio") { AttachedPropertyHandler.Output(spc, c.Right); } }
+		);
+
+		context.RegisterSourceOutput(
+			context.CompilationProvider
+				.Combine(
+					context.SyntaxProvider
+						.ForAttributeWithMetadataName(
+							"SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute",
+							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
+								&& m.Any(SyntaxKind.PartialKeyword),
+							DependencyPropertyAutoImplementationHandler.Transform
+						)
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+				),
+			static (spc, c) =>
+			{
+				if (c.Left.AssemblyName == "SudokuStudio")
+				{
+					DependencyPropertyAutoImplementationHandler.Output(spc, c.Right);
+				}
+			}
 		);
 	}
 }

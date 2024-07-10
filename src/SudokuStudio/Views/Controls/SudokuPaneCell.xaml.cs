@@ -4,9 +4,6 @@ namespace SudokuStudio.Views.Controls;
 /// Defines a cell displayed in a <see cref="SudokuPane"/>.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-[DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800)]
-[DependencyProperty<CellState>("State", DefaultValue = CellState.Empty)]
-[DependencyProperty<Mask>("CandidatesMask", DefaultValue = Grid.MaxCandidatesMask)]
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
@@ -26,6 +23,12 @@ internal sealed partial class SudokuPaneCell : UserControl
 
 
 	/// <summary>
+	/// Indicates the duration time of fthe feedback on house completed.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = 800)]
+	public partial int HouseCompletedFeedbackDuration { get; set; }
+
+	/// <summary>
 	/// Indicates the base pane.
 	/// </summary>
 	public SudokuPane BasePane { get; set; } = null!;
@@ -34,6 +37,18 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// Indicates the cell index.
 	/// </summary>
 	public Cell CellIndex { get; internal init; }
+
+	/// <summary>
+	/// Indicates the candidates mask.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = Grid.MaxCandidatesMask)]
+	public partial Mask CandidatesMask { get; set; }
+
+	/// <summary>
+	/// Indicates the cell state.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = CellState.Empty)]
+	public partial CellState State { get; set; }
 
 
 	/// <summary>
