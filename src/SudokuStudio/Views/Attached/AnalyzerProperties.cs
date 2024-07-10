@@ -35,13 +35,6 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseNormalFish)]
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseComplexFish)]
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseXyzRing)]
-#if false
-[AttachedProperty<bool>(SettingItemNames.AllowWWing)]
-[AttachedProperty<bool>(SettingItemNames.AllowMWing)]
-[AttachedProperty<bool>(SettingItemNames.AllowSWing)]
-[AttachedProperty<bool>(SettingItemNames.AllowLWing)]
-[AttachedProperty<bool>(SettingItemNames.AllowHWing)]
-#endif
 [AttachedProperty<int>(SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
 [AttachedProperty<int>(SettingItemNames.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
 [AttachedProperty<int>(SettingItemNames.MaxSizeOfRegularWing, DefaultValue = 5)]
@@ -177,19 +170,19 @@ public static partial class AnalyzerProperties
 		=> A<BivalueUniversalGraveStepSearcher>(d, s => s.SearchExtendedTypes = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowCollisionOnAlmostLockedSetXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowCollisionOnAlmostLockedSetsXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXzStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowLoopedPatternsOnAlmostLockedSetXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowLoopedPatternsOnAlmostLockedSetsXzRulePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXzStepSearcher>(d, s => s.AllowLoopedPatterns = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowCollisionOnAlmostLockedSetXyWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowCollisionOnAlmostLockedSetsXyWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXyWingStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
-	private static void AllowCollisionOnAlmostLockedSetWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AllowCollisionOnAlmostLockedSetsWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsWWingStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
