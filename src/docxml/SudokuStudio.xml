@@ -942,20 +942,6 @@
             Defines an attribute that indicates the default-value generator member, whose name is bound with a dependency property or attached property.
             </summary>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1">
-            <summary>
-            Defines an attribute that defines a dependency property.
-            </summary>
-            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
-            <param name="propertyName"><inheritdoc/></param>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.DependencyPropertyAttribute`1.#ctor(System.String)">
-            <summary>
-            Defines an attribute that defines a dependency property.
-            </summary>
-            <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
-            <param name="propertyName"><inheritdoc/></param>
-        </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
@@ -1890,6 +1876,465 @@
             because they are controlled by UI only, not by users.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory">
+            <summary>
+            Indicates whether the program saves for puzzle-generating history.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane">
+            <summary>
+            Indicates whether sudoku pane in analysis page provides with a simpler way to fill with Digits via double tapping.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane">
+            <summary>
+            Indicates whether sudoku pane in analysis page provides with a simpler way to delete Digits via right tapping.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView">
+            <summary>
+            Indicates whether the last puzzle and its views should be cached to local path,
+            in order to recover them after you re-start or launch the program.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotation">
+            <summary>
+            Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation">
+            <summary>
+            Indicates whether UI makes Digits displaying before cells.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation">
+            <summary>
+            Indicates whether UI makes houses display its capital letters.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory">
+            <summary>
+            Indicates whether the program also save for batch generated puzzles into history.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanes">
+            <summary>
+            Indicates whether the program uses corner radius property to apply to sudoku panes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
+            <summary>
+            Indicates the default empty character you want to use. The value can be '0' or '.'.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation">
+            <summary>
+            Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLength">
+            <summary>
+            Indicates the open-pane length of main navigation page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScale">
+            <summary>
+            Indicates the given font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScale">
+            <summary>
+            Indicates the modifiable font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScale">
+            <summary>
+            Indicates the pencilmark font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScale">
+            <summary>
+            Indicates the babe grouping font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale">
+            <summary>
+            Indicates the coordinate label font scale.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayMode">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
+            <summary>
+            Indicates the desired size of output picture while saving.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength">
+            <summary>
+            Indicates the ittoryu length for the generated puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Language">
+            <summary>
+            Indicates the language of UI.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
+            <summary>
+            Indicates the given font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontName">
+            <summary>
+            Indicates the modifiable font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontName">
+            <summary>
+            Indicates the pencilmark font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontName">
+            <summary>
+            Indicates the baba grouping font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName">
+            <summary>
+            Indicates the coordinate label font name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotation">
+            <summary>
+            Indicates the default separators for separating with coordinates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation">
+            <summary>
+            Indicates the default digit separators for displaying Digits.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary">
+            <summary>
+            Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
+            <summary>
+            Indicates the backdrop.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems">
+            <summary>
+            Indicates the tooltip display items.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
+            <summary>
+            Indicates the based type for displaying a concept notation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CurrentTheme">
+            <summary>
+            Indicates the theme used in this program.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
+            <summary>
+            Indicates the given font color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_Dark">
+            <summary>
+            Indicates the given font color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor">
+            <summary>
+            Indicates the modifiable font color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_Dark">
+            <summary>
+            Indicates the modifiable font color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor">
+            <summary>
+            Indicates the pencilmark font color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_Dark">
+            <summary>
+            Indicates the pencilmark font color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor">
+            <summary>
+            Indicates the baba grouping font color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_Dark">
+            <summary>
+            Indicates the baba grouping font color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor">
+            <summary>
+            Indicates the coordinate label font color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_Dark">
+            <summary>
+            Indicates the coordinate label font color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor">
+            <summary>
+            Indicates the default value color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_Dark">
+            <summary>
+            Indicates the default value color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor">
+            <summary>
+            Indicates the delta pencilmark color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_Dark">
+            <summary>
+            Indicates the delta pencilmark color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor">
+            <summary>
+            Indicates the sudoku pane border color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_Dark">
+            <summary>
+            Indicates the sudoku pane border color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor">
+            <summary>
+            Indicates the cursor background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_Dark">
+            <summary>
+            Indicates the cursor background color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor">
+            <summary>
+            Indicates the chain color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_Dark">
+            <summary>
+            Indicates the chain color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor">
+            <summary>
+            Indicates the normal color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_Dark">
+            <summary>
+            Indicates the normal color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor">
+            <summary>
+            Indicates the assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_Dark">
+            <summary>
+            Indicates the assignment color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor">
+            <summary>
+            Indicates the overlapped assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_Dark">
+            <summary>
+            Indicates the overlapped assignment color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor">
+            <summary>
+            Indicates the elimination color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_Dark">
+            <summary>
+            Indicates the elimination color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor">
+            <summary>
+            Indicates the cannibalism color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_Dark">
+            <summary>
+            Indicates the cannibalism color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor">
+            <summary>
+            Indicates the exo-fin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_Dark">
+            <summary>
+            Indicates the exo-fin color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor">
+            <summary>
+            Indicates the endo-fin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark">
+            <summary>
+            Indicates the endo-fin color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor">
+            <summary>
+            Indicates grouped node stroke color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_Dark">
+            <summary>
+            Indicates grouped node stroke color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor">
+            <summary>
+            Indicates grouped node background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_Dark">
+            <summary>
+            Indicates grouped node background color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor">
+            <summary>
+            Indicates house completed feedback color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark">
+            <summary>
+            Indicates house completed feedback color, in dark theme.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
+            <summary>
+            Indicates the last opened puzzle to be loaded or saved.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
+            <summary>
+            Indicates the drawable items produced by last opened puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidatesProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>.
@@ -2501,426 +2946,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DistinctWithDeltaDigits">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisableSudokuPaneLayout">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PreventConflictingInput">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SavePuzzleGeneratingHistory">
-            <summary>
-            Indicates whether the program saves for puzzle-generating history.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane">
-            <summary>
-            Indicates whether sudoku pane in analysis page provides with a simpler way to fill with Digits via double tapping.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane">
-            <summary>
-            Indicates whether sudoku pane in analysis page provides with a simpler way to delete Digits via right tapping.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView">
-            <summary>
-            Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation">
-            <summary>
-            Indicates whether UI makes letters upper-casing on displaying coordinates if worth.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInK9Notation">
-            <summary>
-            Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInExcelNotation">
-            <summary>
-            Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation">
-            <summary>
-            Indicates whether UI makes Digits displaying before cells.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation">
-            <summary>
-            Indicates whether UI makes houses display its capital letters.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlsoSaveBatchGeneratedPuzzlesIntoHistory">
-            <summary>
-            Indicates whether the program also save for batch generated puzzles into history.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableCornerRadiusForSudokuPanes">
-            <summary>
-            Indicates whether the program uses corner radius property to apply to sudoku panes.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EmptyCellCharacter">
-            <summary>
-            Indicates the default empty character you want to use. The value can be '0' or '.'.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FinalRowLetterInK9Notation">
-            <summary>
-            Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MainNavigationPageOpenPaneLength">
-            <summary>
-            Indicates the open-pane length of main navigation page.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedPencilmarkBackgroundEllipseScale">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HighlightedBackgroundOpacity">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightBackgroundOpacity"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainStrokeThickness">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ChainStrokeThickness"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScaleProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CandidateViewNodeDisplayMode">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationDisplayMode">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentDisplayMode">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength">
-            <summary>
-            Indicates the ittoryu length for the generated puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Language">
-            <summary>
-            Indicates the language of UI.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontName">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontNameProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DefaultSeparatorInNotation">
-            <summary>
-            Indicates the default separators for separating with coordinates.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation">
-            <summary>
-            Indicates the default digit separators for displaying Digits.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary">
-            <summary>
-            Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems">
-            <summary>
-            Indicates the tooltip display items.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
-            <summary>
-            Indicates the based type for displaying a concept notation.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CurrentTheme">
-            <summary>
-            Indicates the theme used in this program.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColorProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_Dark">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_DarkProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.GivenFontColor_DarkProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColorProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_Dark">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_DarkProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.ModifiableFontColor_DarkProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColorProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_Dark">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_DarkProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.PencilmarkFontColor_DarkProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColorProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_Dark">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_DarkProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.BabaGroupingFontColor_DarkProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColorProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_Dark">
-            <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_DarkProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontColor_DarkProperty" />
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaValueColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DeltaPencilmarkColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCandidateColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuPaneBorderColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CursorBackgroundColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CursorBackgroundColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ChainColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.LinkColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.NormalColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.NormalColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AssignmentColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AssignmentColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OverlappedAssignmentColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OverlappedAssignmentColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EliminationColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EliminationColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CannibalismColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CannibalismColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ExofinColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.ExofinColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
-            <summary>
-            Indicates the last opened puzzle to be loaded or saved.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
-            <summary>
-            Indicates the drawable items produced by last opened puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelForegrounds_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DifficultyLevelBackgrounds_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelBackgrounds"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.UserDefinedColorPalette_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.UserDefinedColorPalette"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
         </member>
         <member name="T:SudokuStudio.Configuration.UserDefinedDrawable">
             <summary>

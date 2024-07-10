@@ -127,50 +127,15 @@
         </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler.CollectedResult">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler"/>.
             </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler"/>
         </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler.Data)">
             <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler"/>.
             </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler">
-            <summary>
-            The generator handler for dependency properties.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Accessibility,System.String[])">
-            <summary>
-            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data})">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyAutoImplementationHandler"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.XamlBinding">
             <summary>

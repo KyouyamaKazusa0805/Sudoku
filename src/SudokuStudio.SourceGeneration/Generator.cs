@@ -19,22 +19,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Combine(
 					context.SyntaxProvider
 						.ForAttributeWithMetadataName(
-							"SudokuStudio.ComponentModel.DependencyPropertyAttribute`1",
-							static (n, _) => n is ClassDeclarationSyntax { TypeParameterList: null, Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword),
-							DependencyPropertyHandler.Transform
-						)
-						.Where(NotNullPredicate)
-						.Select(NotNullSelector)
-						.Collect()
-				),
-			static (spc, c) => { if (c.Left.AssemblyName == "SudokuStudio") { DependencyPropertyHandler.Output(spc, c.Right); } }
-		);
-
-		context.RegisterSourceOutput(
-			context.CompilationProvider
-				.Combine(
-					context.SyntaxProvider
-						.ForAttributeWithMetadataName(
 							"SudokuStudio.ComponentModel.AttachedPropertyAttribute`1",
 							static (n, _) => n is ClassDeclarationSyntax
 							{
