@@ -23,12 +23,12 @@ public sealed partial class ViewUnitBindableSource : DependencyObject
 	/// <summary>
 	/// Indicates the candidates as conclusions in a single <see cref="Step"/>.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Conclusion[] Conclusions { get; set; }
 
 	/// <summary>
 	/// Indicates a view of highlight elements.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial View View { get; set; }
 }

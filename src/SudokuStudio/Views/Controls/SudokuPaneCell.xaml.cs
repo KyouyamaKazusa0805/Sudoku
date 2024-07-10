@@ -25,7 +25,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the duration time of fthe feedback on house completed.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 800)]
+	[DependencyProperty(DefaultValue = 800)]
 	public partial int HouseCompletedFeedbackDuration { get; set; }
 
 	/// <summary>
@@ -41,13 +41,13 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the candidates mask.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = Grid.MaxCandidatesMask)]
+	[DependencyProperty(DefaultValue = Grid.MaxCandidatesMask)]
 	public partial Mask CandidatesMask { get; set; }
 
 	/// <summary>
 	/// Indicates the cell state.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = CellState.Empty)]
+	[DependencyProperty(DefaultValue = CellState.Empty)]
 	public partial CellState State { get; set; }
 
 

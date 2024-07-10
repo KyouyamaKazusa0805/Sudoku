@@ -20,37 +20,37 @@ public sealed partial class LibraryBindableSource : DependencyObject
 	/// <summary>
 	/// Indicates whether the current library is loading, updating, etc..
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool IsActive { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string Name { get; set; }
 
 	/// <summary>
 	/// Indicates the unique file name of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string FileId { get; set; }
 
 	/// <summary>
 	/// Indicates the author of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string Author { get; set; }
 
 	/// <summary>
 	/// Indicates the description to the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string Description { get; set; }
 
 	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string[] Tags { get; set; }
 
 

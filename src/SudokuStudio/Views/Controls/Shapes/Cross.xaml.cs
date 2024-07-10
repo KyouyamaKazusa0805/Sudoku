@@ -22,18 +22,18 @@ public sealed partial class Cross : UserControl
 	/// <summary>
 	/// Indicates the stroke thickness.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial double StrokeThickness { get; set; }
 
 	/// <summary>
 	/// Indicates whether the forward line is shown.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = Visibility.Visible)]
+	[DependencyProperty(DefaultValue = Visibility.Visible)]
 	public partial Visibility ForwardLineVisibility { get; set; }
 
 	/// <summary>
 	/// Indicates whether the backward line is shown.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = Visibility.Visible)]
+	[DependencyProperty(DefaultValue = Visibility.Visible)]
 	public partial Visibility BackwardLineVisibility { get; set; }
 }

@@ -33,7 +33,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	/// <summary>
 	/// Indicates the tree view items source.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ObservableCollection<CollectedStepBindableSource>? TreeViewItemsSource { get; set; }
 
 	/// <inheritdoc/>

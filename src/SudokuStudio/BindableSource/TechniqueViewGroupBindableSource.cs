@@ -9,7 +9,7 @@ public sealed partial class TechniqueViewGroupBindableSource : DependencyObject
 	/// <summary>
 	/// Indicates whether the "Select all" button should be shown.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool ShowSelectAllButton { get; set; }
 
 	/// <summary>
@@ -30,12 +30,12 @@ public sealed partial class TechniqueViewGroupBindableSource : DependencyObject
 	/// <summary>
 	/// Indicates the group of the techniques.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial TechniqueGroup Group { get; set; }
 
 	/// <summary>
 	/// Indicates the items belonging to the group.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial TechniqueViewBindableSource[] Items { get; set; }
 }

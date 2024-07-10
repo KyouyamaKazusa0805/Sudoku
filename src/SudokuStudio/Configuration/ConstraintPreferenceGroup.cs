@@ -12,6 +12,6 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 	/// <summary>
 	/// Indicates the constraints created.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ConstraintCollection Constraints { get; set; }
 }

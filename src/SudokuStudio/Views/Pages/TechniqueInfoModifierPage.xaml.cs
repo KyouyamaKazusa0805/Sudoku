@@ -42,7 +42,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	/// <summary>
 	/// Indicates the current index used.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	internal partial int CurrentIndex { get; set; }
 
 

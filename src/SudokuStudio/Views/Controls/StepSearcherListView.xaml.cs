@@ -15,7 +15,7 @@ public sealed partial class StepSearcherListView : UserControl
 	/// <summary>
 	/// Indicates the step searchers.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ObservableCollection<StepSearcherInfo> StepSearchers { get; set; }
 
 

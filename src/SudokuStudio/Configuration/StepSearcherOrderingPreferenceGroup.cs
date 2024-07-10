@@ -24,7 +24,7 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 	/// <summary>
 	/// Indicates the order of step searchers.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ObservableCollection<StepSearcherInfo> StepSearchersOrder { get; set; }
 
 

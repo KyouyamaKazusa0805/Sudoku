@@ -70,13 +70,13 @@ public partial class TokenView : ListViewBase
 	/// <summary>
 	/// Gets or sets if tokens are wrapped.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool IsWrapped { get; set; }
 
 	/// <summary>
 	/// Gets or sets if tokens can be removed.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool CanRemoveTokens { get; set; }
 
 	/// <summary>

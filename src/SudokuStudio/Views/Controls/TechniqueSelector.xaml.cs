@@ -14,7 +14,7 @@ public sealed partial class TechniqueSelector : UserControl
 	/// <summary>
 	/// Indicates the selected index.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial int SelectedIndex { get; set; }
 
 	/// <summary>

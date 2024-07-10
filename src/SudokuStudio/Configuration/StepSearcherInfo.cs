@@ -20,14 +20,14 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// <summary>
 	/// Indicates whether the step searcher is enabled.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	[StringMember]
 	public partial bool IsEnabled { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the step searcher.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	[StringMember]
 	public partial string Name { get; set; }
 
@@ -36,7 +36,7 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// This property can be used for creating instances via reflection using getMetaProperties <see cref="Activator.CreateInstance(Type)"/>.
 	/// </summary>
 	/// <seealso cref="Activator.CreateInstance(Type)"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	[StringMember]
 	public partial string TypeName { get; set; }
 

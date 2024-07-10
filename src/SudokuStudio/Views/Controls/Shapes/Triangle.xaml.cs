@@ -18,7 +18,7 @@ public sealed partial class Triangle : UserControl
 	/// <summary>
 	/// Indicates the stroke thickness for the star.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial double StrokeThickness { get; set; }
 
 

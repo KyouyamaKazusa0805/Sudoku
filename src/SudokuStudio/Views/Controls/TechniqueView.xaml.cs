@@ -48,31 +48,31 @@ public sealed partial class TechniqueView : UserControl
 	/// <summary>
 	/// Indicates the horizontal spacing.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial double HorizontalSpacing { get; set; }
 
 	/// <summary>
 	/// Indicates the vertical spacing.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial double VerticalSpacing { get; set; }
 
 	/// <summary>
 	/// Indicates which techniques whose conclusion types are specified will be shown.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = TechniqueViewShowMode.Both)]
+	[DependencyProperty(DefaultValue = TechniqueViewShowMode.Both)]
 	public partial TechniqueViewShowMode ShowMode { get; set; }
 
 	/// <summary>
 	/// Indicates the selection mode.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = TechniqueViewSelectionMode.Single)]
+	[DependencyProperty(DefaultValue = TechniqueViewSelectionMode.Single)]
 	public partial TechniqueViewSelectionMode SelectionMode { get; set; }
 
 	/// <summary>
 	/// Indicates the final selected techniques.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial TechniqueSet SelectedTechniques { get; set; }
 
 

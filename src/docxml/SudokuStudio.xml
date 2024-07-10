@@ -922,16 +922,6 @@
             <typeparam name="T">Indicates the type of the property evaluated.</typeparam>
             <param name="propertyName"><inheritdoc/></param>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute">
-            <summary>
-            Defines an attribute that defines a dependency property.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute.DefaultValue">
-            <summary>
-            Indicates the default value.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.ComponentModel.CallbackAttribute">
             <summary>
             Defines an attribute that indicates the callback method of the bound dependency property or attached property.
@@ -940,6 +930,16 @@
         <member name="T:SudokuStudio.ComponentModel.DefaultAttribute">
             <summary>
             Defines an attribute that indicates the default-value generator member, whose name is bound with a dependency property or attached property.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.DependencyPropertyAttribute">
+            <summary>
+            Defines an attribute that defines a dependency property.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.DependencyPropertyAttribute.DefaultValue">
+            <summary>
+            Indicates the default value.
             </summary>
         </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">

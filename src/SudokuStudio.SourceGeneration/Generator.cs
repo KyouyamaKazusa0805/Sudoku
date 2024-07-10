@@ -39,7 +39,7 @@ public sealed class Generator : IIncrementalGenerator
 				.Combine(
 					context.SyntaxProvider
 						.ForAttributeWithMetadataName(
-							"SudokuStudio.ComponentModel.AutoDependencyPropertyAttribute",
+							"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
 							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
 								&& m.Any(SyntaxKind.PartialKeyword),
 							DependencyPropertyAutoImplementationHandler.Transform

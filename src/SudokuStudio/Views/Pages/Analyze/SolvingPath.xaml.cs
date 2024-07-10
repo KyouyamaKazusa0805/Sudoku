@@ -17,7 +17,7 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial AnalysisResult? AnalysisResult { get; set; }
 
 

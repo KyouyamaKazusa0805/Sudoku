@@ -14,7 +14,7 @@ public sealed partial class DashArrayTextBox : UserControl
 	/// <summary>
 	/// Indicates the dash array input.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial DashArray DashArray { get; set; }
 
 

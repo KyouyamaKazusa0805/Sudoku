@@ -16,25 +16,25 @@ public sealed partial class AddLibraryDialogContent : Page
 
 
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsNameValidAsFileId { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string FileId { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string FilePath { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryName { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryAuthor { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryDescription { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ObservableCollection<string> LibraryTags { get; set; }
 
 

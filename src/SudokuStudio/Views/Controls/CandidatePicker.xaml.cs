@@ -18,7 +18,7 @@ public sealed partial class CandidatePicker : UserControl
 	/// <summary>
 	/// Indicates the selected candidate.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	public partial Candidate SelectedCandidate { get; set; }
 
 

@@ -57,13 +57,13 @@ public partial class TokenItem : ListViewItem
 	/// <summary>
 	/// Gets or sets a value indicating whether the tab can be closed by the user with the close button.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool IsRemoveable { get; set; }
 
 	/// <summary>
 	/// Gets or sets the icon.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial IconElement Icon { get; set; }
 
 

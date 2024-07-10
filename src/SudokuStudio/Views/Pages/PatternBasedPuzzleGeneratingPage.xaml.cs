@@ -41,31 +41,31 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// <summary>
 	/// Indicates whether the generator is running.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsGeneratorLaunched { get; set; }
 
 	/// <summary>
 	/// Indicates the progress.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial double ProgressPercent { get; set; }
 
 	/// <summary>
 	/// Indicates the missing digit.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial Digit MissingDigit { get; set; }
 
 	/// <summary>
 	/// Indicates all selected cells.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial CellMap SelectedCells { get; set; }
 
 	/// <summary>
 	/// Indicates the fixed candidates.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial CandidateMap FixedCandidates { get; set; }
 
 

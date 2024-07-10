@@ -16,13 +16,13 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	/// Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref="CustomizedTechniqueData"/>.
 	/// </summary>
 	/// <seealso cref="CustomizedTechniqueData"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal RatingScale { get; set; }
 
 	/// <summary>
 	/// Indicates the customized technique Data.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Dictionary<Technique, TechniqueData> CustomizedTechniqueData { get; set; }
 
 

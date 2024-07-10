@@ -12,12 +12,12 @@ public sealed partial class LibraryPreferenceGroup : PreferenceGroup
 	/// <summary>
 	/// Indicates whether the candidates in a puzzle defined in puzzle libraries should be shown.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial LibraryCandidatesVisibility LibraryCandidatesVisibility { get; set; }
 
 	/// <summary>
 	/// Indicates the transforming kinds for library puzzles.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 0)]
+	[DependencyProperty(DefaultValue = 0)]
 	public partial TransformType LibraryPuzzleTransformations { get; set; }
 }

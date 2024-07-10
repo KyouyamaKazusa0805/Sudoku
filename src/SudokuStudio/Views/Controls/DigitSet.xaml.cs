@@ -20,7 +20,7 @@ public sealed partial class DigitSet : UserControl
 	/// <summary>
 	/// Indicates the selected digit.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	public partial Digit SelectedDigit { get; set; }
 
 

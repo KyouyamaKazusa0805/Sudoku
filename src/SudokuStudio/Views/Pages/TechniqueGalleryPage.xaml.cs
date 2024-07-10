@@ -14,7 +14,7 @@ public sealed partial class TechniqueGalleryPage : Page
 	/// <summary>
 	/// Indicates the currently selected technique.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial Technique CurrentSelectedTechnique { get; set; }
 
 

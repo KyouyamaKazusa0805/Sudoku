@@ -18,7 +18,7 @@ public sealed partial class Star : UserControl
 	/// <summary>
 	/// Indicates the stroke thickness for the star.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial double StrokeThickness { get; set; }
 
 

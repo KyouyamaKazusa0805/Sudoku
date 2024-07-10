@@ -19,37 +19,37 @@ public sealed partial class LibraryPropertiesDialogContent : Page
 	/// <summary>
 	/// Indicates whether the page is loading.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsLoadingPuzzlesCount { get; set; }
 
 	/// <summary>
 	/// Indicates the library name.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string LibraryName { get; set; }
 
 	/// <summary>
 	/// Indicates the author of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string LibraryAuthor { get; set; }
 
 	/// <summary>
 	/// Indicates the library description.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string LibraryDescription { get; set; }
 
 	/// <summary>
 	/// Indicates the last modified time of library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial DateTime LibraryLastModifiedTime { get; set; }
 
 	/// <summary>
 	/// Indicates the library information.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial LibraryInfo LibraryInfo { get; set; }
 
 

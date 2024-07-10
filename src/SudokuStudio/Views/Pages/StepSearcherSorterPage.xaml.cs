@@ -14,7 +14,7 @@ public sealed partial class StepSearcherSorterPage : Page
 	/// <summary>
 	/// Indicates the currently selected step searcher and its details.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial StepSearcherInfo? CurrentSelectedStepSearcher { get; set; }
 
 

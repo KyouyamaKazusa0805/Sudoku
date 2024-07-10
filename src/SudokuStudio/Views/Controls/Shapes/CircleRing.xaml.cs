@@ -8,7 +8,7 @@ public sealed partial class CircleRing : UserControl
 	/// <summary>
 	/// Indicates the stroke thickness.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 6D)]
+	[DependencyProperty(DefaultValue = 6D)]
 	public partial double StrokeThickness { get; set; }
 
 

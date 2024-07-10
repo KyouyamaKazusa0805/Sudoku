@@ -74,19 +74,19 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// </item>
 	/// </list>
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	public partial int SelectedMode { get; set; }
 
 	/// <summary>
 	/// Indicates the tested puzzles count.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 10)]
+	[DependencyProperty(DefaultValue = 10)]
 	public partial int TestedPuzzlesCount { get; set; }
 
 	/// <summary>
 	/// Indicates whether the game is running.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsRunning { get; set; }
 
 

@@ -18,7 +18,7 @@ public sealed partial class ColorSelector : UserControl
 	/// <summary>
 	/// Indicates the inner color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color SelectedColor { get; set; }
 
 

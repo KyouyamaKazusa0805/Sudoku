@@ -20,19 +20,19 @@ public sealed partial class FontPicker : UserControl
 	/// <summary>
 	/// Indicates the selected font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal SelectedFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the selected font name.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string SelectedFont { get; set; }
 
 	/// <summary>
 	/// Indicates the selected font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color SelectedFontColor { get; set; }
 
 

@@ -218,26 +218,26 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates whether the pane displays for candidates.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers
 	/// of the target cell that is the one your mouse points to.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCursors { get; set; }
 
 	/// <summary>
 	/// Indicates whether the pane displays for delta Digits using different colors.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool UseDifferentColorToDisplayDeltaDigits { get; set; }
 
 	/// <summary>
 	/// Indicates whether the pane disable flyout open.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool DisableFlyout { get; set; }
 
 	/// <summary>
@@ -246,104 +246,104 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// this pane will do nothing by this value being <see langword="true"/>.
 	/// If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool PreventConflictingInput { get; set; }
 
 	/// <summary>
 	/// Indicates whether the pane enables for undoing and redoing operation.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	[MemberNotNullWhen(true, nameof(_redoStack), nameof(_undoStack))]
 	public partial bool EnableUndoRedoStacking { get; set; }
 
 	/// <summary>
 	/// Indicates whether the digit will be automatically input by double tapping a candidate.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool EnableDoubleTapFilling { get; set; }
 
 	/// <summary>
 	/// Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool EnableRightTapRemoving { get; set; }
 
 	/// <summary>
 	/// Indicates whether sudoku pane enables for animation feedback.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool EnableAnimationFeedback { get; set; }
 
 	/// <summary>
 	/// Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool TransparentBackground { get; set; }
 
 	/// <summary>
 	/// Indicates whether the view unit will be cleared if grid updated.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool ClearViewWhenUpdated { get; set; }
 
 	/// <summary>
 	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal HighlightCandidateCircleScale { get; set; }
 
 	/// <summary>
 	/// Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal HighlightBackgroundOpacity { get; set; }
 
 	/// <summary>
 	/// Indicates the chain stroke thickness.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal ChainStrokeThickness { get; set; }
 
 	/// <summary>
 	/// Indicates the font scale of given Digits. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal GivenFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal ModifiableFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal PencilmarkFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the font scale of baba group characters. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal BabaGroupLabelFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font scale. The value should generally be below 1.0.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal CoordinateLabelFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the duration of feedback when a house is completed.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 800)]
+	[DependencyProperty(DefaultValue = 800)]
 	public partial int HouseCompletedFeedbackDuration { get; set; }
 
 	/// <summary>
 	/// Indicates the displaying kind of coordinate labels.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = CoordinateType.RxCy)]
+	[DependencyProperty(DefaultValue = CoordinateType.RxCy)]
 	public partial CoordinateType CoordinateLabelDisplayKind { get; set; }
 
 	/// <summary>
@@ -353,31 +353,31 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// For more information please visit <see cref="CoordinateLabelDisplay"/>.
 	/// </remarks>
 	/// <seealso cref="CoordinateLabelDisplay"/>
-	[AutoDependencyProperty(DefaultValue = CoordinateLabelDisplay.UpperAndLeft)]
+	[DependencyProperty(DefaultValue = CoordinateLabelDisplay.UpperAndLeft)]
 	public partial CoordinateLabelDisplay CoordinateLabelDisplayMode { get; set; }
 
 	/// <summary>
 	/// Indicates the displaying mode of candidate view nodes.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = CandidateViewNodeDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = CandidateViewNodeDisplay.CircleSolid)]
 	public partial CandidateViewNodeDisplay CandidateViewNodeDisplayMode { get; set; }
 
 	/// <summary>
 	/// Indicates the displaying mode of an assignment.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = AssignmentDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = AssignmentDisplay.CircleSolid)]
 	public partial AssignmentDisplay AssignmentDisplayMode { get; set; }
 
 	/// <summary>
 	/// Indicates the displaying mode of an elimination.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = EliminationDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = EliminationDisplay.CircleSolid)]
 	public partial EliminationDisplay EliminationDisplayMode { get; set; }
 
 	/// <summary>
 	/// Indicates the currently selected cell.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Cell SelectedCell { get; set; }
 
 	/// <summary>
@@ -398,217 +398,217 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates a map that stores candidates used in a view unit.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial CandidateMap ViewUnitUsedCandidates { get; set; }
 
 	/// <summary>
 	/// Indicates the value that describes corner radiuse for displaying cell view nodes.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial CornerRadius CellsInnerCornerRadius { get; set; }
 
 	/// <summary>
 	/// Indicates the given color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GivenColor { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ModifiableColor { get; set; }
 
 	/// <summary>
 	/// Indicates the pencilmark color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color PencilmarkColor { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CoordinateLabelColor { get; set; }
 
 	/// <summary>
 	/// Indicates the baba group label color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color BabaGroupLabelColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaCandidateColor { get; set; }
 
 	/// <summary>
 	/// Indicates the color that is used for displaying cell Digits that are wrongly filled.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaCellColor { get; set; }
 
 	/// <summary>
 	/// Indicates the border color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color BorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cursor background color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CursorBackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the link color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color LinkColor { get; set; }
 
 	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color NormalColor { get; set; }
 
 	/// <summary>
 	/// Indicates the assignment color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color AssignmentColor { get; set; }
 
 	/// <summary>
 	/// Indicates the overlapped assignment color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color OverlappedAssignmentColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the exofin color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ExofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the endofin color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EndofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the grouped node stroke color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeStrokeColor { get; set; }
 
 	/// <summary>
 	/// Indicates the grouped node background color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeBackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the feedback color when a house is completed.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color HouseCompletedFeedbackColor { get; set; }
 
 	/// <summary>
 	/// Indicates the dash style of the strong links.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial DashArray StrongLinkDashStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the dash style of the weak links.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial DashArray WeakLinkDashStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the value that describes the padding value displaying cell view nodes.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Thickness CellsInnerPadding { get; set; }
 
 	/// <summary>
 	/// Indicates the given font.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial FontFamily GivenFont { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable font.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial FontFamily ModifiableFont { get; set; }
 
 	/// <summary>
 	/// Indicates the candidate font.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial FontFamily PencilmarkFont { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial FontFamily CoordinateLabelFont { get; set; }
 
 	/// <summary>
 	/// Indicates the baba group label font.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial FontFamily BabaGroupLabelFont { get; set; }
 
 	/// <summary>
 	/// Indicates the view unit used.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ViewUnitBindableSource? ViewUnit { get; set; }
 
 	/// <summary>
 	/// Indicates the auxiliary colors.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AuxiliaryColors { get; set; }
 
 	/// <summary>
 	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelForegrounds { get; set; }
 
 	/// <summary>
 	/// Indicates the background colors of all 6 kinds of difficulty levels.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelBackgrounds { get; set; }
 
 	/// <summary>
 	/// Indicates the user-defined colors used by customized views.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette UserDefinedColorPalette { get; set; }
 
 	/// <summary>
 	/// Indicates the colors applied to technique pattern Almost Locked Sets.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AlmostLockedSetsColors { get; set; }
 
 	/// <summary>
@@ -625,7 +625,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the mode that the current pane uses.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = PaneMode.Normal)]
+	[DependencyProperty(DefaultValue = PaneMode.Normal)]
 	internal partial PaneMode CurrentPaneMode { get; set; }
 
 

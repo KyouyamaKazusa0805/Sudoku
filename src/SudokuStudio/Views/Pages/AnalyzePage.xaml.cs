@@ -77,74 +77,74 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Indicates whether the analyzer is launched.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsAnalyzerLaunched { get; set; }
 
 	/// <summary>
 	/// Indicates whether the gatherer is launched.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsGathererLaunched { get; set; }
 
 	/// <summary>
 	/// Indicates whether the generator is launched.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsGeneratorLaunched { get; set; }
 
 	/// <summary>
 	/// Indicates the progress percent value.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial double ProgressPercent { get; set; }
 
 	/// <summary>
 	/// Indicates the current index of the view of property <see cref="IDrawable.Views"/> displayed.
 	/// </summary>
 	/// <seealso cref="IDrawable.Views"/>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	internal partial int CurrentViewIndex { get; set; }
 
 	/// <summary>
 	/// Indicates the selected color index.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = -1)]
+	[DependencyProperty(DefaultValue = -1)]
 	internal partial int SelectedColorIndex { get; set; }
 
 	/// <summary>
 	/// Indicates the input character that is used as a baba group variable.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? BabaGroupNameInput { get; set; }
 
 	/// <summary>
 	/// Indicates the selected drawing mode.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = DrawingMode.Cell)]
+	[DependencyProperty(DefaultValue = DrawingMode.Cell)]
 	internal partial DrawingMode SelectedMode { get; set; }
 
 	/// <summary>
 	/// Indicates the link type.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = Inference.Strong)]
+	[DependencyProperty(DefaultValue = Inference.Strong)]
 	internal partial Inference LinkKind { get; set; }
 
 	/// <summary>
 	/// Indicates the analysis result cache.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial AnalysisResult? AnalysisResultCache { get; set; }
 
 	/// <summary>
 	/// Indicates the user-defined colors.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ColorPalette UserDefinedPalette { get; set; }
 
 	/// <summary>
 	/// Indicates the visual unit.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial IDrawable? VisualUnit { get; set; }
 
 

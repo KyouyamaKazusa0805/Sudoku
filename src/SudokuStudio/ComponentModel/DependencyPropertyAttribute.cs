@@ -4,7 +4,7 @@ namespace SudokuStudio.ComponentModel;
 /// Defines an attribute that defines a dependency property.
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public sealed class AutoDependencyPropertyAttribute : Attribute
+public sealed class DependencyPropertyAttribute : Attribute
 {
 	/// <summary>
 	/// Indicates the default value.

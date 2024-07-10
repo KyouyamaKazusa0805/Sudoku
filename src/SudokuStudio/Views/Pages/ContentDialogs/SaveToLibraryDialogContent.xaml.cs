@@ -21,61 +21,61 @@ public sealed partial class SaveToLibraryDialogContent : Page
 	/// <summary>
 	/// Indicates the selected library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial object SelectedLibrary { get; set; }
 
 	/// <summary>
 	/// Indicates whether the name is valid as a file ID.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial bool IsNameValidAsFileId { get; set; }
 
 	/// <summary>
 	/// Indicates the selected mode.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial int SelectedMode { get; set; }
 
 	/// <summary>
 	/// Indicates the file ID.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string FileId { get; set; }
 
 	/// <summary>
 	/// Indicates the target file path.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string FilePath { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryName { get; set; }
 
 	/// <summary>
 	/// Indicatdes the author of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryAuthor { get; set; }
 
 	/// <summary>
 	/// Indicates the description to the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryDescription { get; set; }
 
 	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ObservableCollection<string> LibraryTags { get; set; }
 
 	/// <summary>
 	/// Indicates all available libraries.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ObservableCollection<LibraryBindableSource> AvailableLibraries { get; set; }
 
 

@@ -9,16 +9,16 @@ public sealed partial class LibraryModifyPropertiesDialogContent : Page
 	private static readonly ObservableCollection<string> LibraryTagsDefaultValue = [];
 
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryName { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryAuthor { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial string? LibraryDescription { get; set; }
 
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	internal partial ObservableCollection<string> LibraryTags { get; set; }
 
 

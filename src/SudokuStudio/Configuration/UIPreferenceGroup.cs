@@ -274,252 +274,252 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 
 	/// <inheritdoc cref="SudokuPane.DisplayCandidates"/>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCandidates { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DisplayCursors"/>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCursors { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.UseDifferentColorToDisplayDeltaDigits"/>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool DistinctWithDeltaDigits { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DisableFlyout"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool DisableSudokuPaneLayout { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.PreventConflictingInput"/>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool PreventConflictingInput { get; set; }
 
 	/// <summary>
 	/// Indicates whether the program saves for puzzle-generating history.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool SavePuzzleGeneratingHistory { get; set; }
 
 	/// <summary>
 	/// Indicates whether sudoku pane in analysis page provides with a simpler way to fill with Digits via double tapping.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool EnableDoubleTapFillingForSudokuPane { get; set; }
 
 	/// <summary>
 	/// Indicates whether sudoku pane in analysis page provides with a simpler way to delete Digits via right tapping.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool EnableRightTapRemovingForSudokuPane { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.EnableAnimationFeedback"/>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool EnableAnimationFeedback { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.TransparentBackground"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool TransparentBackground { get; set; }
 
 	/// <summary>
 	/// Indicates whether the last puzzle and its views should be cached to local path,
 	/// in order to recover them after you re-start or launch the program.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool AutoCachePuzzleAndView { get; set; }
 
 	/// <summary>
 	/// Indicates whether UI makes letters upper-casing on displaying coordinates if worth.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool MakeLettersUpperCaseInRxCyNotation { get; set; }
 
 	/// <summary>
 	/// Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool MakeLettersUpperCaseInK9Notation { get; set; }
 
 	/// <summary>
 	/// Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool MakeLettersUpperCaseInExcelNotation { get; set; }
 
 	/// <summary>
 	/// Indicates whether UI makes Digits displaying before cells.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool MakeDigitBeforeCellInRxCyNotation { get; set; }
 
 	/// <summary>
 	/// Indicates whether UI makes houses display its capital letters.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool HouseNotationOnlyDisplayCapitalsInRxCyNotation { get; set; }
 
 	/// <summary>
 	/// Indicates whether the program also save for batch generated puzzles into history.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial bool AlsoSaveBatchGeneratedPuzzlesIntoHistory { get; set; }
 
 	/// <summary>
 	/// Indicates whether the program uses corner radius property to apply to sudoku panes.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = true)]
+	[DependencyProperty(DefaultValue = true)]
 	public partial bool EnableCornerRadiusForSudokuPanes { get; set; }
 
 	/// <summary>
 	/// Indicates the default empty character you want to use. The value can be '0' or '.'.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = '0')]
+	[DependencyProperty(DefaultValue = '0')]
 	public partial char EmptyCellCharacter { get; set; }
 
 	/// <summary>
 	/// Indicates the last letter representing the last row of the grid in displaying coordinates in K9 notation.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 'I')]
+	[DependencyProperty(DefaultValue = 'I')]
 	public partial char FinalRowLetterInK9Notation { get; set; }
 
 	/// <summary>
 	/// Indicates the open-pane length of main navigation page.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal MainNavigationPageOpenPaneLength { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.HighlightCandidateCircleScale"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal HighlightedPencilmarkBackgroundEllipseScale { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.HighlightBackgroundOpacity"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal HighlightedBackgroundOpacity { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.ChainStrokeThickness"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal ChainStrokeThickness { get; set; }
 
 	/// <summary>
 	/// Indicates the given font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal GivenFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal ModifiableFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the pencilmark font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal PencilmarkFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the babe grouping font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal BabaGroupingFontScale { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font scale.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial decimal CoordinateLabelFontScale { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayMode"/>
-	[AutoDependencyProperty(DefaultValue = (int)CoordinateLabelDisplay.FourDirection)]
+	[DependencyProperty(DefaultValue = (int)CoordinateLabelDisplay.FourDirection)]
 	public partial int CoordinateLabelDisplayMode { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CandidateViewNodeDisplayMode"/>
-	[AutoDependencyProperty(DefaultValue = (int)CandidateViewNodeDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = (int)CandidateViewNodeDisplay.CircleSolid)]
 	public partial int CandidateViewNodeDisplayMode { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.EliminationDisplayMode"/>
-	[AutoDependencyProperty(DefaultValue = (int)EliminationDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = (int)EliminationDisplay.CircleSolid)]
 	public partial int EliminationDisplayMode { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.AssignmentDisplayMode"/>
-	[AutoDependencyProperty(DefaultValue = (int)EliminationDisplay.CircleSolid)]
+	[DependencyProperty(DefaultValue = (int)EliminationDisplay.CircleSolid)]
 	public partial int AssignmentDisplayMode { get; set; }
 
 	/// <summary>
 	/// Indicates the desired size of output picture while saving.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 1000)]
+	[DependencyProperty(DefaultValue = 1000)]
 	public partial int DesiredPictureSizeOnSaving { get; set; }
 
 	/// <summary>
 	/// Indicates the ittoryu length for the generated puzzles.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 0)]
+	[DependencyProperty(DefaultValue = 0)]
 	public partial int IttoryuLength { get; set; }
 
 	/// <summary>
 	/// Indicates the language of UI.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = 0)]
+	[DependencyProperty(DefaultValue = 0)]
 	public partial int Language { get; set; }
 
 	/// <summary>
 	/// Indicates the given font name.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = "Cascadia Code")]
+	[DependencyProperty(DefaultValue = "Cascadia Code")]
 	public partial string GivenFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable font name.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = "Cascadia Code")]
+	[DependencyProperty(DefaultValue = "Cascadia Code")]
 	public partial string ModifiableFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the pencilmark font name.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = "Cascadia Code")]
+	[DependencyProperty(DefaultValue = "Cascadia Code")]
 	public partial string PencilmarkFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the baba grouping font name.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = "Times New Roman")]
+	[DependencyProperty(DefaultValue = "Times New Roman")]
 	public partial string BabaGroupingFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font name.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = "Cascadia Code")]
+	[DependencyProperty(DefaultValue = "Cascadia Code")]
 	public partial string CoordinateLabelFontName { get; set; }
 
 	/// <summary>
 	/// Indicates the default separators for separating with coordinates.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = ", ")]
+	[DependencyProperty(DefaultValue = ", ")]
 	public partial string DefaultSeparatorInNotation { get; set; }
 
 	/// <summary>
 	/// Indicates the default digit separators for displaying Digits.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string? DigitsSeparatorInNotation { get; set; }
 
 	/// <summary>
 	/// Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial string? FetchingPuzzleLibrary { get; set; }
 
 	/// <summary>
 	/// Indicates the backdrop.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = BackdropKind.Acrylic)]
+	[DependencyProperty(DefaultValue = BackdropKind.Acrylic)]
 	public partial BackdropKind Backdrop { get; set; }
 
 	/// <summary>
 	/// Indicates the tooltip display items.
 	/// </summary>
-	[AutoDependencyProperty(
+	[DependencyProperty(
 		DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating
 		| StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases)]
 	public partial StepTooltipDisplayItems StepDisplayItems { get; set; }
@@ -527,313 +527,313 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	/// <summary>
 	/// Indicates the based type for displaying a concept notation.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = CoordinateType.RxCy)]
+	[DependencyProperty(DefaultValue = CoordinateType.RxCy)]
 	public partial CoordinateType ConceptNotationBasedKind { get; set; }
 
 	/// <summary>
 	/// Indicates the theme used in this program.
 	/// </summary>
-	[AutoDependencyProperty(DefaultValue = Theme.Default)]
+	[DependencyProperty(DefaultValue = Theme.Default)]
 	public partial Theme CurrentTheme { get; set; }
 
 	/// <summary>
 	/// Indicates the given font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GivenFontColor { get; set; }
 
 	/// <summary>
 	/// Indicates the given font color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GivenFontColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ModifiableFontColor { get; set; }
 
 	/// <summary>
 	/// Indicates the modifiable font color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ModifiableFontColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the pencilmark font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color PencilmarkFontColor { get; set; }
 
 	/// <summary>
 	/// Indicates the pencilmark font color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color PencilmarkFontColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the baba grouping font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color BabaGroupingFontColor { get; set; }
 
 	/// <summary>
 	/// Indicates the baba grouping font color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color BabaGroupingFontColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CoordinateLabelFontColor { get; set; }
 
 	/// <summary>
 	/// Indicates the coordinate label font color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CoordinateLabelFontColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the default value color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaValueColor { get; set; }
 
 	/// <summary>
 	/// Indicates the default value color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaValueColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the delta pencilmark color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaPencilmarkColor { get; set; }
 
 	/// <summary>
 	/// Indicates the delta pencilmark color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color DeltaPencilmarkColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the sudoku pane border color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color SudokuPaneBorderColor { get; set; }
 
 	/// <summary>
 	/// Indicates the sudoku pane border color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color SudokuPaneBorderColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the cursor background color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CursorBackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cursor background color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CursorBackgroundColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ChainColor { get; set; }
 
 	/// <summary>
 	/// Indicates the chain color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ChainColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color NormalColor { get; set; }
 
 	/// <summary>
 	/// Indicates the normal color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color NormalColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the assignment color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color AssignmentColor { get; set; }
 
 	/// <summary>
 	/// Indicates the assignment color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color AssignmentColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the overlapped assignment color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color OverlappedAssignmentColor { get; set; }
 
 	/// <summary>
 	/// Indicates the overlapped assignment color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color OverlappedAssignmentColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EliminationColor { get; set; }
 
 	/// <summary>
 	/// Indicates the elimination color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EliminationColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CannibalismColor { get; set; }
 
 	/// <summary>
 	/// Indicates the cannibalism color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color CannibalismColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the exo-fin color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ExofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the exo-fin color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color ExofinColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates the endo-fin color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EndofinColor { get; set; }
 
 	/// <summary>
 	/// Indicates the endo-fin color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color EndofinColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates grouped node stroke color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeStrokeColor { get; set; }
 
 	/// <summary>
 	/// Indicates grouped node stroke color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeStrokeColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates grouped node background color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeBackgroundColor { get; set; }
 
 	/// <summary>
 	/// Indicates grouped node background color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color GroupedNodeBackgroundColor_Dark { get; set; }
 
 	/// <summary>
 	/// Indicates house completed feedback color.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color HouseCompletedFeedbackColor { get; set; }
 
 	/// <summary>
 	/// Indicates house completed feedback color, in dark theme.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Color HouseCompletedFeedbackColor_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.StrongLinkDashStyle"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial DashArray StrongLinkDashStyle { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.WeakLinkDashStyle"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial DashArray WeakLinkDashStyle { get; set; }
 
 	/// <summary>
 	/// Indicates the last opened puzzle to be loaded or saved.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial Grid LastGridPuzzle { get; set; }
 
 	/// <summary>
 	/// Indicates the drawable items produced by last opened puzzle.
 	/// </summary>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial UserDefinedDrawable? LastRenderable { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.AuxiliaryColors"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AuxiliaryColors { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.AuxiliaryColors"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AuxiliaryColors_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelForegrounds"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelForegrounds { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelForegrounds"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelForegrounds_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelBackgrounds"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelBackgrounds { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.DifficultyLevelBackgrounds"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette DifficultyLevelBackgrounds_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.UserDefinedColorPalette"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette UserDefinedColorPalette { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.UserDefinedColorPalette"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette UserDefinedColorPalette_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.AlmostLockedSetsColors"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AlmostLockedSetsColors { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.AlmostLockedSetsColors"/>
-	[AutoDependencyProperty]
+	[DependencyProperty]
 	public partial ColorPalette AlmostLockedSetsColors_Dark { get; set; }
 
 
