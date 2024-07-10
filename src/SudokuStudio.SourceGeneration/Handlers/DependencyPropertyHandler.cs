@@ -175,19 +175,9 @@ internal static class DependencyPropertyHandler
 						docPath = v;
 						break;
 					}
-					case ("DefaultValueGeneratingMemberName", { Value: string v }):
-					{
-						defaultValueGenerator = v;
-						break;
-					}
 					case ("DefaultValue", { Value: { } v }):
 					{
 						defaultValue = v;
-						break;
-					}
-					case ("CallbackMethodName", { Value: string v }):
-					{
-						callbackMethodName = v;
 						break;
 					}
 					case ("DocSummary", { Value: string v }):
