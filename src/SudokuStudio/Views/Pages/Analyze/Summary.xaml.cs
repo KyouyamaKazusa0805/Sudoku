@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
-[DependencyProperty<AnalysisResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
 public sealed partial class Summary : Page, IAnalyzerTab
 {
 	/// <summary>
@@ -14,6 +13,12 @@ public sealed partial class Summary : Page, IAnalyzerTab
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+	/// <summary>
+	/// Indicates the analysis result.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial AnalysisResult? AnalysisResult { get; set; }
 
 
 	[Callback]

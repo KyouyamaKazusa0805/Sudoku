@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a digit set control.
 /// </summary>
-[DependencyProperty<Digit>("SelectedDigit", DefaultValue = -1, DocSummary = "Indicates the selected digit.")]
 public sealed partial class DigitSet : UserControl
 {
 	/// <summary>
@@ -16,6 +15,13 @@ public sealed partial class DigitSet : UserControl
 	/// Initializes a <see cref="DigitSet"/> instance.
 	/// </summary>
 	public DigitSet() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the selected digit.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	public partial Digit SelectedDigit { get; set; }
 
 
 	/// <summary>

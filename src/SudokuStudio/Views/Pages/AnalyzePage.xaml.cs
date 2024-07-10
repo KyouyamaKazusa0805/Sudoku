@@ -3,18 +3,6 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Defines a new page that stores a set of controls to analyze a sudoku grid.
 /// </summary>
-[DependencyProperty<bool>("IsAnalyzerLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the analyzer is launched.")]
-[DependencyProperty<bool>("IsGathererLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
-[DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is launched.")]
-[DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"global::Sudoku.Drawing.IDrawable.Views\"/> displayed.")]
-[DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected color index.")]
-[DependencyProperty<string>("BabaGroupNameInput?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
-[DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
-[DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = Accessibility.Internal, DocSummary = "Indicates the link type.")]
-[DependencyProperty<AnalysisResult>("AnalysisResultCache?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
-[DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = Accessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
-[DependencyProperty<IDrawable>("VisualUnit?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
 {
 	[Default]
@@ -84,6 +72,80 @@ public sealed partial class AnalyzePage : Page
 		InitializeFields();
 		LoadInitialGrid();
 	}
+
+
+	/// <summary>
+	/// Indicates whether the analyzer is launched.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsAnalyzerLaunched { get; set; }
+
+	/// <summary>
+	/// Indicates whether the gatherer is launched.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsGathererLaunched { get; set; }
+
+	/// <summary>
+	/// Indicates whether the generator is launched.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsGeneratorLaunched { get; set; }
+
+	/// <summary>
+	/// Indicates the progress percent value.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial double ProgressPercent { get; set; }
+
+	/// <summary>
+	/// Indicates the current index of the view of property <see cref="IDrawable.Views"/> displayed.
+	/// </summary>
+	/// <seealso cref="IDrawable.Views"/>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	internal partial int CurrentViewIndex { get; set; }
+
+	/// <summary>
+	/// Indicates the selected color index.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	internal partial int SelectedColorIndex { get; set; }
+
+	/// <summary>
+	/// Indicates the input character that is used as a baba group variable.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string? BabaGroupNameInput { get; set; }
+
+	/// <summary>
+	/// Indicates the selected drawing mode.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = DrawingMode.Cell)]
+	internal partial DrawingMode SelectedMode { get; set; }
+
+	/// <summary>
+	/// Indicates the link type.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = Inference.Strong)]
+	internal partial Inference LinkKind { get; set; }
+
+	/// <summary>
+	/// Indicates the analysis result cache.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial AnalysisResult? AnalysisResultCache { get; set; }
+
+	/// <summary>
+	/// Indicates the user-defined colors.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial ColorPalette UserDefinedPalette { get; set; }
+
+	/// <summary>
+	/// Indicates the visual unit.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial IDrawable? VisualUnit { get; set; }
 
 
 	/// <summary>

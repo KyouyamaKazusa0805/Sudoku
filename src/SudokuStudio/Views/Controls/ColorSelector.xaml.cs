@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a color selector.
 /// </summary>
-[DependencyProperty<Color>("SelectedColor", DocSummary = "Indicates the inner color.")]
 public sealed partial class ColorSelector : UserControl
 {
 	[Default]
@@ -14,6 +13,13 @@ public sealed partial class ColorSelector : UserControl
 	/// Initializes a <see cref="ColorSelector"/> instance.
 	/// </summary>
 	public ColorSelector() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the inner color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color SelectedColor { get; set; }
 
 
 	/// <summary>

@@ -9,8 +9,6 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 [ContentProperty(Name = nameof(Content))]
 [TemplatePart(Name = TokenItemRemoveButtonName, Type = typeof(ButtonBase))]
-[DependencyProperty<bool>("IsRemoveable", DocSummary = "Gets or sets a value indicating whether the tab can be closed by the user with the close button.")]
-[DependencyProperty<IconElement>("Icon", DocSummary = "Gets or sets the icon.")]
 public partial class TokenItem : ListViewItem
 {
 	/// <summary>
@@ -54,6 +52,19 @@ public partial class TokenItem : ListViewItem
 	/// Initializes a <see cref="TokenItem"/> instance.
 	/// </summary>
 	public TokenItem() => DefaultStyleKey = typeof(TokenItem);
+
+
+	/// <summary>
+	/// Gets or sets a value indicating whether the tab can be closed by the user with the close button.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool IsRemoveable { get; set; }
+
+	/// <summary>
+	/// Gets or sets the icon.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial IconElement Icon { get; set; }
 
 
 	/// <summary>

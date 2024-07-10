@@ -9,7 +9,6 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a technique information modifier page.
 /// </summary>
-[DependencyProperty<int>("CurrentIndex", DefaultValue = -1, Accessibility = Accessibility.Internal)]
 public sealed partial class TechniqueInfoModifierPage : Page
 {
 	/// <summary>
@@ -38,6 +37,13 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	/// Initializes a <see cref="TechniqueInfoModifierPage"/> instance.
 	/// </summary>
 	public TechniqueInfoModifierPage() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the current index used.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	internal partial int CurrentIndex { get; set; }
 
 
 	[Callback]

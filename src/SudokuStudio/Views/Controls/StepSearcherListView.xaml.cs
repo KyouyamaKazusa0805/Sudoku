@@ -4,13 +4,19 @@ namespace SudokuStudio.Views.Controls;
 /// Represents a <see cref="ListView"/> control that displays for <see cref="StepSearcher"/> instances.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherInfo>>("StepSearchers", DocSummary = "Indicates the step searchers.")]
 public sealed partial class StepSearcherListView : UserControl
 {
 	/// <summary>
 	/// Initializes a <see cref="StepSearcherListView"/> instance.
 	/// </summary>
 	public StepSearcherListView() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the step searchers.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ObservableCollection<StepSearcherInfo> StepSearchers { get; set; }
 
 
 	/// <summary>

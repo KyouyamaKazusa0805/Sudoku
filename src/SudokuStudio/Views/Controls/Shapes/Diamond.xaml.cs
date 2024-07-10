@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls.Shapes;
 /// <summary>
 /// Represents a diamond shape.
 /// </summary>
-[DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness for the star.")]
 public sealed partial class Diamond : UserControl
 {
 	[Default]
@@ -14,6 +13,13 @@ public sealed partial class Diamond : UserControl
 	/// Initializes a <see cref="Diamond"/> instance.
 	/// </summary>
 	public Diamond() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the stroke thickness for the star.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial double StrokeThickness { get; set; }
 
 
 	private void ParentViewBox_SizeChanged(object sender, SizeChangedEventArgs e)

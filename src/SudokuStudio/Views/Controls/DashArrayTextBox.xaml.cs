@@ -3,13 +3,19 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a dash array text box.
 /// </summary>
-[DependencyProperty<DashArray>("DashArray")]
 public sealed partial class DashArrayTextBox : UserControl
 {
 	/// <summary>
 	/// Initializes a <see cref="DashArrayTextBox"/> instance.
 	/// </summary>
 	public DashArrayTextBox() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the dash array input.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial DashArray DashArray { get; set; }
 
 
 	/// <summary>

@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a candidate picker.
 /// </summary>
-[DependencyProperty<Candidate>("SelectedCandidate", DefaultValue = -1, DocSummary = "Indicates the selected candidate.")]
 public sealed partial class CandidatePicker : UserControl
 {
 	/// <summary>
@@ -14,6 +13,13 @@ public sealed partial class CandidatePicker : UserControl
 		InitializeComponent();
 		InitializeControls();
 	}
+
+
+	/// <summary>
+	/// Indicates the selected candidate.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	public partial Candidate SelectedCandidate { get; set; }
 
 
 	/// <summary>

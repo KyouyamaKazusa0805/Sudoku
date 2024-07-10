@@ -3,9 +3,6 @@ namespace SudokuStudio.Views.Controls.Shapes;
 /// <summary>
 /// Represents a cross-sign shape.
 /// </summary>
-[DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness.")]
-[DependencyProperty<Visibility>("BackwardLineVisibility", DefaultValue = Visibility.Visible, DocSummary = "Indicates whether the backward line is shown.")]
-[DependencyProperty<Visibility>("ForwardLineVisibility", DefaultValue = Visibility.Visible, DocSummary = "Indicates whether the forward line is shown.")]
 public sealed partial class Cross : UserControl
 {
 	[Default]
@@ -20,4 +17,23 @@ public sealed partial class Cross : UserControl
 		InitializeComponent();
 		Background = new SolidColorBrush(Colors.DimGray with { A = 64 });
 	}
+
+
+	/// <summary>
+	/// Indicates the stroke thickness.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial double StrokeThickness { get; set; }
+
+	/// <summary>
+	/// Indicates whether the forward line is shown.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = Visibility.Visible)]
+	public partial Visibility ForwardLineVisibility { get; set; }
+
+	/// <summary>
+	/// Indicates whether the backward line is shown.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = Visibility.Visible)]
+	public partial Visibility BackwardLineVisibility { get; set; }
 }

@@ -3,9 +3,6 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
 /// </summary>
-[DependencyProperty<bool>("IsRunning", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the game is running.")]
-[DependencyProperty<int>("SelectedMode", DefaultValue = -1)]
-[DependencyProperty<int>("TestedPuzzlesCount", DefaultValue = 10)]
 public sealed partial class SingleCountingPracticingPage : Page
 {
 	/// <summary>
@@ -50,6 +47,47 @@ public sealed partial class SingleCountingPracticingPage : Page
 		InitializeEvents();
 		InitializeFields();
 	}
+
+
+	/// <summary>
+	/// Indicates the selection mode. The value is as follows:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>0</term>
+	/// <description>Indicates the generator generates the puzzle that only uses row/column/block 5.</description>
+	/// </item>
+	/// <item>
+	/// <term>1</term>
+	/// <description>Indicates the generator generates the puzzle that relies on full houses.</description>
+	/// </item>
+	/// <item>
+	/// <term>2</term>
+	/// <description>Indicates the generator generates the puzzle that relies on naked singles.</description>
+	/// </item>
+	/// <item>
+	/// <term>3</term>
+	/// <description>Indicates both selection 1 and 2.</description>
+	/// </item>
+	/// </list>
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = -1)]
+	public partial int SelectedMode { get; set; }
+
+	/// <summary>
+	/// Indicates the tested puzzles count.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = 10)]
+	public partial int TestedPuzzlesCount { get; set; }
+
+	/// <summary>
+	/// Indicates whether the game is running.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsRunning { get; set; }
 
 
 	/// <summary>

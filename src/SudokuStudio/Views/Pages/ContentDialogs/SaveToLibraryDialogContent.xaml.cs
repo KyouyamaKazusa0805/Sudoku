@@ -3,16 +3,6 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents "save to library" page.
 /// </summary>
-[DependencyProperty<object>("SelectedLibrary", Accessibility = Accessibility.Internal)]
-[DependencyProperty<bool>("IsNameValidAsFileId", Accessibility = Accessibility.Internal)]
-[DependencyProperty<int>("SelectedMode", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("FileId", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("FilePath", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryName?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryAuthor?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryDescription?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<ObservableCollection<string>>("LibraryTags", Accessibility = Accessibility.Internal)]
-[DependencyProperty<ObservableCollection<LibraryBindableSource>>("AvailableLibraries", Accessibility = Accessibility.Internal)]
 public sealed partial class SaveToLibraryDialogContent : Page
 {
 	[Default]
@@ -26,6 +16,67 @@ public sealed partial class SaveToLibraryDialogContent : Page
 	/// Initializes a <see cref="SaveToLibraryDialogContent"/> instance.
 	/// </summary>
 	public SaveToLibraryDialogContent() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the selected library.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial object SelectedLibrary { get; set; }
+
+	/// <summary>
+	/// Indicates whether the name is valid as a file ID.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsNameValidAsFileId { get; set; }
+
+	/// <summary>
+	/// Indicates the selected mode.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial int SelectedMode { get; set; }
+
+	/// <summary>
+	/// Indicates the file ID.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string FileId { get; set; }
+
+	/// <summary>
+	/// Indicates the target file path.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string FilePath { get; set; }
+
+	/// <summary>
+	/// Indicates the name of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string? LibraryName { get; set; }
+
+	/// <summary>
+	/// Indicatdes the author of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string? LibraryAuthor { get; set; }
+
+	/// <summary>
+	/// Indicates the description to the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial string? LibraryDescription { get; set; }
+
+	/// <summary>
+	/// Indicates the tags of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial ObservableCollection<string> LibraryTags { get; set; }
+
+	/// <summary>
+	/// Indicates all available libraries.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial ObservableCollection<LibraryBindableSource> AvailableLibraries { get; set; }
 
 
 	/// <summary>

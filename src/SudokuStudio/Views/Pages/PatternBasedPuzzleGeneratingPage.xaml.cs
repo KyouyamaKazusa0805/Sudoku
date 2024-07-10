@@ -3,11 +3,6 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a page that generates for pattern-based puzzles.
 /// </summary>
-[DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is running.")]
-[DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress.")]
-[DependencyProperty<Digit>("MissingDigit", Accessibility = Accessibility.Internal, DocSummary = "Indicates the missing digit.")]
-[DependencyProperty<CellMap>("SelectedCells", Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected cells.")]
-[DependencyProperty<CandidateMap>("FixedCandidates", Accessibility = Accessibility.Internal, DocSummary = "Indicates the fixed candidates.")]
 public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 {
 	/// <summary>
@@ -43,6 +38,37 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	}
 
 
+	/// <summary>
+	/// Indicates whether the generator is running.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial bool IsGeneratorLaunched { get; set; }
+
+	/// <summary>
+	/// Indicates the progress.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial double ProgressPercent { get; set; }
+
+	/// <summary>
+	/// Indicates the missing digit.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial Digit MissingDigit { get; set; }
+
+	/// <summary>
+	/// Indicates all selected cells.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial CellMap SelectedCells { get; set; }
+
+	/// <summary>
+	/// Indicates the fixed candidates.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial CandidateMap FixedCandidates { get; set; }
+
+
 	/// <inheritdoc/>
 	protected override void OnKeyDown(KeyRoutedEventArgs e)
 	{
@@ -58,7 +84,6 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 				break;
 			}
 		}
-
 		e.Handled = false;
 	}
 

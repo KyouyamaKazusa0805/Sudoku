@@ -3,11 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents for a technique view.
 /// </summary>
-[DependencyProperty<double>("HorizontalSpacing", DocSummary = "Indicates the horizontal spacing.")]
-[DependencyProperty<double>("VerticalSpacing", DocSummary = "Indicates the vertical spacing.")]
-[DependencyProperty<TechniqueViewShowMode>("ShowMode", DefaultValue = TechniqueViewShowMode.Both, DocSummary = "Indicates which techniques whose conclusion types are specified will be shown.")]
-[DependencyProperty<TechniqueViewSelectionMode>("SelectionMode", DefaultValue = TechniqueViewSelectionMode.Single, DocSummary = "Indicates the selection mode.")]
-[DependencyProperty<TechniqueSet>("SelectedTechniques", DocSummary = "Indicates the final selected techniques.")]
 public sealed partial class TechniqueView : UserControl
 {
 	[Default]
@@ -48,6 +43,37 @@ public sealed partial class TechniqueView : UserControl
 			let content = (TechniqueViewBindableSource)tokenItem.Content
 			select new KeyValuePair<Technique, TokenItem>(content.TechniqueField, tokenItem)
 		]);
+
+
+	/// <summary>
+	/// Indicates the horizontal spacing.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial double HorizontalSpacing { get; set; }
+
+	/// <summary>
+	/// Indicates the vertical spacing.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial double VerticalSpacing { get; set; }
+
+	/// <summary>
+	/// Indicates which techniques whose conclusion types are specified will be shown.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = TechniqueViewShowMode.Both)]
+	public partial TechniqueViewShowMode ShowMode { get; set; }
+
+	/// <summary>
+	/// Indicates the selection mode.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = TechniqueViewSelectionMode.Single)]
+	public partial TechniqueViewSelectionMode SelectionMode { get; set; }
+
+	/// <summary>
+	/// Indicates the final selected techniques.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial TechniqueSet SelectedTechniques { get; set; }
 
 
 	/// <summary>

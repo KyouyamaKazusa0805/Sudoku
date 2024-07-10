@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a technique selector control.
 /// </summary>
-[DependencyProperty<int>("SelectedIndex", DocSummary = "Indicates the selected index.")]
 public sealed partial class TechniqueSelector : UserControl
 {
 	/// <summary>
@@ -13,15 +12,21 @@ public sealed partial class TechniqueSelector : UserControl
 
 
 	/// <summary>
+	/// Indicates the selected index.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial int SelectedIndex { get; set; }
+
+	/// <summary>
 	/// Indicates the base items source.
 	/// </summary>
 	internal TechniqueBindableSource[] ItemsSource
 		=>
-		from field in Enum.GetValues<Technique>()
-		let feature = field.GetFeature()
+		from @field in Enum.GetValues<Technique>()
+		let feature = @field.GetFeature()
 		where feature is 0 or TechniqueFeatures.HardToBeGenerated or TechniqueFeatures.DirectTechniques
-		let displayName = field == 0 ? SR.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture) : field.GetName(App.CurrentCulture)
-		select new TechniqueBindableSource { DisplayName = displayName, Technique = field, Feature = feature };
+		let displayName = @field == 0 ? SR.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture) : @field.GetName(App.CurrentCulture)
+		select new TechniqueBindableSource { DisplayName = displayName, Technique = @field, Feature = feature };
 
 
 	/// <inheritdoc cref="Selector.SelectionChanged"/>

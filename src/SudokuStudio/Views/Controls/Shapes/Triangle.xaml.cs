@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Controls.Shapes;
 /// <summary>
 /// Represents a triangle control.
 /// </summary>
-[DependencyProperty<double>("StrokeThickness", DocSummary = "Indicates the stroke thickness for the star.")]
 public sealed partial class Triangle : UserControl
 {
 	[Default]
@@ -14,6 +13,13 @@ public sealed partial class Triangle : UserControl
 	/// Initializes a <see cref="Triangle"/> instance.
 	/// </summary>
 	public Triangle() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the stroke thickness for the star.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial double StrokeThickness { get; set; }
 
 
 	private void ParentViewBox_SizeChanged(object sender, SizeChangedEventArgs e)

@@ -4,11 +4,14 @@ namespace SudokuStudio.BindableSource;
 /// Represents a bindable source for a group of <see cref="Technique"/> instances.
 /// </summary>
 /// <seealso cref="Technique"/>
-[DependencyProperty<bool>("ShowSelectAllButton", DocSummary = "Indicates whether the \"Select all\" button should be shown.")]
-[DependencyProperty<TechniqueGroup>("Group", DocSummary = "Indicates the group of the techniques.")]
-[DependencyProperty<TechniqueViewBindableSource[]>("Items", DocSummary = "Indicates the items belonging to the group.")]
 public sealed partial class TechniqueViewGroupBindableSource : DependencyObject
 {
+	/// <summary>
+	/// Indicates whether the "Select all" button should be shown.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool ShowSelectAllButton { get; set; }
+
 	/// <summary>
 	/// Indicates the full name of the group.
 	/// </summary>
@@ -23,4 +26,16 @@ public sealed partial class TechniqueViewGroupBindableSource : DependencyObject
 	/// Indicates the shortened name of the group.
 	/// </summary>
 	public string ShortenedName => Group.GetShortenedName(App.CurrentCulture);
+
+	/// <summary>
+	/// Indicates the group of the techniques.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial TechniqueGroup Group { get; set; }
+
+	/// <summary>
+	/// Indicates the items belonging to the group.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial TechniqueViewBindableSource[] Items { get; set; }
 }

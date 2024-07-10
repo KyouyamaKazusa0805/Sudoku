@@ -3,25 +3,37 @@ namespace SudokuStudio.Views.Controls;
 /// <summary>
 /// Represents a font picker.
 /// </summary>
-[DependencyProperty<string>("SelectedFont")]
-[DependencyProperty<decimal>("SelectedFontScale")]
-[DependencyProperty<Color>("SelectedFontColor")]
 public sealed partial class FontPicker : UserControl
 {
 	/// <summary>
 	/// Indicates the <see cref="TextBlock"/> list that represents with fonts.
 	/// </summary>
-	private readonly IList<TextBlock> _fontTextBlocks =
-		(
-			from font in CanvasTextFormat.GetSystemFontFamilies()
-			select new TextBlock { Text = font, FontFamily = new(font) }
-		).ToList();
+	private readonly IList<TextBlock> _fontTextBlocks = [.. from font in CanvasTextFormat.GetSystemFontFamilies() select new TextBlock { Text = font, FontFamily = new(font) }];
 
 
 	/// <summary>
 	/// Initializes a <see cref="FontPicker"/> instance.
 	/// </summary>
 	public FontPicker() => InitializeComponent();
+
+
+	/// <summary>
+	/// Indicates the selected font scale.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial decimal SelectedFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the selected font name.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string SelectedFont { get; set; }
+
+	/// <summary>
+	/// Indicates the selected font color.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Color SelectedFontColor { get; set; }
 
 
 	/// <summary>

@@ -3,13 +3,6 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// <summary>
 /// Represents an "add library" page.
 /// </summary>
-[DependencyProperty<bool>("IsNameValidAsFileId", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("FileId", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("FilePath", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryName?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryAuthor?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<string>("LibraryDescription?", Accessibility = Accessibility.Internal)]
-[DependencyProperty<ObservableCollection<string>>("LibraryTags", Accessibility = Accessibility.Internal)]
 public sealed partial class AddLibraryDialogContent : Page
 {
 	[Default]
@@ -20,6 +13,29 @@ public sealed partial class AddLibraryDialogContent : Page
 	/// Initializes an <see cref="AddLibraryDialogContent"/> instance.
 	/// </summary>
 	public AddLibraryDialogContent() => InitializeComponent();
+
+
+
+	[AutoDependencyProperty]
+	internal partial bool IsNameValidAsFileId { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial string FileId { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial string FilePath { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial string? LibraryName { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial string? LibraryAuthor { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial string? LibraryDescription { get; set; }
+
+	[AutoDependencyProperty]
+	internal partial ObservableCollection<string> LibraryTags { get; set; }
 
 
 	/// <summary>

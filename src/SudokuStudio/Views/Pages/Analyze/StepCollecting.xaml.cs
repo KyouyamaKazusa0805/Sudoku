@@ -3,7 +3,6 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a step collecting page.
 /// </summary>
-[DependencyProperty<ObservableCollection<CollectedStepBindableSource>>("TreeViewItemsSource?", Accessibility = Accessibility.Internal)]
 public sealed partial class StepCollecting : Page, IAnalyzerTab
 {
 	/// <summary>
@@ -30,6 +29,12 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 
 	/// <inheritdoc/>
 	public AnalyzePage BasePage { get; set; } = null!;
+
+	/// <summary>
+	/// Indicates the tree view items source.
+	/// </summary>
+	[AutoDependencyProperty]
+	internal partial ObservableCollection<CollectedStepBindableSource>? TreeViewItemsSource { get; set; }
 
 	/// <inheritdoc/>
 	AnalysisResult? IAnalyzerTab.AnalysisResult { get; set; }

@@ -3,8 +3,6 @@ namespace SudokuStudio.Configuration;
 /// <summary>
 /// Represents a preference group that defines the custom difficulty level and rating values for the techniques.
 /// </summary>
-[DependencyProperty<decimal>("RatingScale", DocSummary = "Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref=\"CustomizedTechniqueData\"/>.")]
-[DependencyProperty<Dictionary<Technique, TechniqueData>>("CustomizedTechniqueData", DocSummary = "Indicates the customized technique Data.")]
 public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 {
 	[Default]
@@ -12,6 +10,20 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 	[Default]
 	private static readonly Dictionary<Technique, TechniqueData> CustomizedTechniqueDataDefaultValue = [];
+
+
+	/// <summary>
+	/// Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref="CustomizedTechniqueData"/>.
+	/// </summary>
+	/// <seealso cref="CustomizedTechniqueData"/>
+	[AutoDependencyProperty]
+	public partial decimal RatingScale { get; set; }
+
+	/// <summary>
+	/// Indicates the customized technique Data.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Dictionary<Technique, TechniqueData> CustomizedTechniqueData { get; set; }
 
 
 	/// <summary>

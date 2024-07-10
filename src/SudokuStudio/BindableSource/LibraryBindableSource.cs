@@ -5,12 +5,6 @@ namespace SudokuStudio.BindableSource;
 /// - this type contains more properties that can be bound with UI.
 /// </summary>
 /// <seealso cref="LibrarySimpleBindableSource"/>
-[DependencyProperty<bool>("IsActive", DocSummary = "Indicates whether the current library is loading, updating, etc..")]
-[DependencyProperty<string>("Name", DocSummary = "Indicates the name of the library.")]
-[DependencyProperty<string>("FileId", DocSummary = "Indicates the unique file name of the library.")]
-[DependencyProperty<string>("Author", DocSummary = "Indicates the author of the library.")]
-[DependencyProperty<string>("Description", DocSummary = "Indicates the description to the library.")]
-[DependencyProperty<string[]>("Tags", DocSummary = "Indicates the tags of the library.")]
 public sealed partial class LibraryBindableSource : DependencyObject
 {
 	[Default]
@@ -21,6 +15,43 @@ public sealed partial class LibraryBindableSource : DependencyObject
 
 	[Default]
 	internal static readonly string DescriptionDefaultValue = SR.Get("NoDescription", App.CurrentCulture);
+
+
+	/// <summary>
+	/// Indicates whether the current library is loading, updating, etc..
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool IsActive { get; set; }
+
+	/// <summary>
+	/// Indicates the name of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string Name { get; set; }
+
+	/// <summary>
+	/// Indicates the unique file name of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string FileId { get; set; }
+
+	/// <summary>
+	/// Indicates the author of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string Author { get; set; }
+
+	/// <summary>
+	/// Indicates the description to the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string Description { get; set; }
+
+	/// <summary>
+	/// Indicates the tags of the library.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial string[] Tags { get; set; }
 
 
 	/// <summary>

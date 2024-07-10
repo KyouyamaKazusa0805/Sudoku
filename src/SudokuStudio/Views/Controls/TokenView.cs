@@ -10,8 +10,6 @@ namespace SudokuStudio.Views.Controls;
 [TemplatePart(Name = TokenViewScrollViewerName, Type = typeof(ScrollViewer))]
 [TemplatePart(Name = TokenViewScrollBackButtonName, Type = typeof(ButtonBase))]
 [TemplatePart(Name = TokenViewScrollForwardButtonName, Type = typeof(ButtonBase))]
-[DependencyProperty<bool>("IsWrapped", DocSummary = "Gets or sets if tokens are wrapped.")]
-[DependencyProperty<bool>("CanRemoveTokens", DocSummary = "Gets or sets if tokens can be removed.")]
 public partial class TokenView : ListViewBase
 {
 	/// <summary>
@@ -68,6 +66,18 @@ public partial class TokenView : ListViewBase
 		RegisterPropertyChangedCallback(SelectedIndexProperty, SelectedIndex_PropertyChanged);
 	}
 
+
+	/// <summary>
+	/// Gets or sets if tokens are wrapped.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool IsWrapped { get; set; }
+
+	/// <summary>
+	/// Gets or sets if tokens can be removed.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial bool CanRemoveTokens { get; set; }
 
 	/// <summary>
 	/// Triggers when an item is removing.

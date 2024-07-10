@@ -8,7 +8,6 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("UseDifferentColorToDisplayDeltaDigits", DefaultValue = true, DocSummary = "Indicates whether the pane displays for delta Digits using different colors.")]
 [DependencyProperty<bool>("DisableFlyout", DocSummary = "Indicates whether the pane disable flyout open.")]
 [DependencyProperty<bool>("PreventConflictingInput", DefaultValue = true, DocSummary = "Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the Digits in its containing houses, this pane will do nothing by this value being <see langword=\"true\"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.")]
-[DependencyProperty<bool>("EnableUndoRedoStacking", DefaultValue = true, MembersNotNullWhenReturnsTrue = [nameof(_redoStack), nameof(_undoStack)], DocSummary = "Indicates whether the pane enables for undoing and redoing operation.")]
 [DependencyProperty<bool>("EnableDoubleTapFilling", DefaultValue = true, DocSummary = "Indicates whether the digit will be automatically input by double tapping a candidate.")]
 [DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
 [DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocSummary = "Indicates whether sudoku pane enables for animation feedback.")]
@@ -25,7 +24,6 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<int>("HouseCompletedFeedbackDuration", DefaultValue = 800, DocSummary = "Indicates the duration of feedback when a house is completed.")]
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
-[DependencyProperty<PaneMode>("CurrentPaneMode", Accessibility = Accessibility.Internal, DefaultValue = PaneMode.Normal, DocSummary = "Indicates the mode that the current pane uses.")]
 [DependencyProperty<CoordinateLabelDisplay>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplay.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Drawing.CoordinateLabelDisplay\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplay>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
 [DependencyProperty<EliminationDisplay>("EliminationDisplayMode", DefaultValue = EliminationDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
@@ -279,6 +277,13 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 
 	/// <summary>
+	/// Indicates whether the pane enables for undoing and redoing operation.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = true)]
+	[MemberNotNullWhen(true, nameof(_redoStack), nameof(_undoStack))]
+	public partial bool EnableUndoRedoStacking { get; set; }
+
+	/// <summary>
 	/// Indicates the core-operating sudoku puzzle.
 	/// </summary>
 	[ImplicitField]
@@ -303,6 +308,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <seealso cref="Puzzle"/>
 	internal Grid Solution => _puzzle.GetSolutionGrid();
+
+	/// <summary>
+	/// Indicates the mode that the current pane uses.
+	/// </summary>
+	[AutoDependencyProperty(DefaultValue = PaneMode.Normal)]
+	internal partial PaneMode CurrentPaneMode { get; set; }
 
 
 	/// <inheritdoc/>

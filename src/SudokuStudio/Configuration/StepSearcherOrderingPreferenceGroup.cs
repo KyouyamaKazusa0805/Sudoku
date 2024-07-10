@@ -5,7 +5,6 @@ namespace SudokuStudio.Configuration;
 /// </summary>
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
-[DependencyProperty<ObservableCollection<StepSearcherInfo>>("StepSearchersOrder")]
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
 	[Default]
@@ -20,6 +19,13 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 			}
 		).ToArray()
 	);
+
+
+	/// <summary>
+	/// Indicates the order of step searchers.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial ObservableCollection<StepSearcherInfo> StepSearchersOrder { get; set; }
 
 
 	[Callback]

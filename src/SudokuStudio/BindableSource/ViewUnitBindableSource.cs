@@ -3,8 +3,6 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a type that can be used for binding as source, for a view unit.
 /// </summary>
-[DependencyProperty<Conclusion[]>("Conclusions", DocSummary = "Indicates the candidates as conclusions in a single <see cref=\"global::Sudoku.Analytics.Step\"/>.")]
-[DependencyProperty<View>("View", DocSummary = "Indicates a view of highlight elements.")]
 public sealed partial class ViewUnitBindableSource : DependencyObject
 {
 	/// <summary>
@@ -20,4 +18,17 @@ public sealed partial class ViewUnitBindableSource : DependencyObject
 	/// <param name="conclusions">The conclusions.</param>
 	/// <param name="view">The view.</param>
 	public ViewUnitBindableSource(Conclusion[] conclusions, View view) => (Conclusions, View) = (conclusions, view);
+
+
+	/// <summary>
+	/// Indicates the candidates as conclusions in a single <see cref="Step"/>.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial Conclusion[] Conclusions { get; set; }
+
+	/// <summary>
+	/// Indicates a view of highlight elements.
+	/// </summary>
+	[AutoDependencyProperty]
+	public partial View View { get; set; }
 }
