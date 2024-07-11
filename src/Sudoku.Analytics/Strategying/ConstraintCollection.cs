@@ -154,7 +154,7 @@ public sealed class ConstraintCollection :
 
 	/// <inheritdoc/>
 	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.First(Func<Constraint, bool> predicate)
-		=> FirstOrDefault(predicate).Unwrap();
+		=> FirstOrDefault(predicate)!;
 
 	/// <inheritdoc/>
 	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.FirstOrDefault() => this[0];

@@ -76,7 +76,7 @@ public static class @delegate
 	/// as the <c>ToString</c> method result.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull => @this.ToString().Unwrap();
+	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull => @this.ToString()!;
 
 	/// <summary>
 	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.

@@ -44,15 +44,14 @@ public static class SR
 	/// <exception cref="MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RegisterResourceManager<TResourceManagerProvider>() where TResourceManagerProvider : class
-	{
-		var assembly = Assembly.GetCallingAssembly();
-		var manager = typeof(TResourceManagerProvider).GetProperty("ResourceManager", DefaultBindingFlags) switch
-		{
-			{ } pi => (ResourceManager)pi.GetValue(null)!,
-			_ => null
-		};
-		ResourceManagers.Add((assembly, manager.Unwrap()));
-	}
+		=> ResourceManagers.Add(
+			(
+				Assembly.GetCallingAssembly(),
+				(ResourceManager)typeof(TResourceManagerProvider)
+					.GetProperty("ResourceManager", DefaultBindingFlags)!
+					.GetValue(null)!
+			)
+		);
 
 	/// <summary>
 	/// Try to get error information (used by exception message, <see cref="Exception.Message"/> property) values,

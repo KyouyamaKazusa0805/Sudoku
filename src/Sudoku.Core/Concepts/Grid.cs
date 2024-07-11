@@ -838,7 +838,7 @@ public partial struct Grid :
 			(_, GridFormatInfo f) => f.FormatGrid(in this),
 			(_, CultureInfo c) => ToString(c),
 			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
-			_ => GridFormatInfo.GetInstance(format).Unwrap().FormatGrid(in this)
+			_ => GridFormatInfo.GetInstance(format)!.FormatGrid(in this)
 		};
 
 	/// <summary>

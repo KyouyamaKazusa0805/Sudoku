@@ -238,7 +238,7 @@ public static partial class AnalyzerProperties
 		{
 			if (methodInfo.Name.StartsWith(GetSetterName))
 			{
-				@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane]).Unwrap(), methodInfo.Name, out _);
+				@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane])!, methodInfo.Name, out _);
 			}
 		}
 		return @this;

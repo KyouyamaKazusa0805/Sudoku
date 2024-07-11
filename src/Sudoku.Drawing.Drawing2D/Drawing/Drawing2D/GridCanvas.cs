@@ -217,7 +217,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// <returns>The font.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Font GetFooterTextFont(float size, GridCanvasSettings? settings)
-		=> new((settings ??= new()).FooterTextFontName.Unwrap(), size * (float)settings.FooterTextScale, settings.FooterTextFontStyle);
+		=> new((settings ??= new()).FooterTextFontName!, size * (float)settings.FooterTextScale, settings.FooterTextFontStyle);
 
 	/// <summary>
 	/// Get the font via the specified name, size and the scale.
@@ -230,7 +230,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// <exception cref="ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
-		=> new(fontName.Unwrap(), size * (float)scale, style);
+		=> new(fontName!, size * (float)scale, style);
 
 	/// <summary>
 	/// Creates a <see cref="Graphics"/> instance via values.

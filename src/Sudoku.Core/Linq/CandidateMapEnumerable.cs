@@ -17,7 +17,7 @@ public static class CandidateMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidate First(this scoped in CandidateMap @this, Func<Candidate, bool> match)
-		=> @this.FirstOrNull(match).Unwrap();
+		=> @this.FirstOrNull(match)!.Value;
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
@@ -29,7 +29,7 @@ public static class CandidateMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidate First(this scoped in CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
-		=> @this.FirstOrNull(in grid, match).Unwrap();
+		=> @this.FirstOrNull(in grid, match)!.Value;
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
