@@ -27,7 +27,7 @@
 											a:TextBlockBindable.Inlines="{x:Bind cvt:AnalyzeConversion.GetInlinesOfTooltip((bs:SolvingPathStepBindableSource))}" />
 									</ToolTipService.ToolTip>
 
-									<Grid RowDefinitions="*,*" ColumnDefinitions="20,Auto,Auto,Auto,*,*">
+									<Grid RowDefinitions="*,*" ColumnDefinitions="24,Auto,Auto,Auto,*,*">
 										<!--Step index-->
 										<TextBlock
 											Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center"
