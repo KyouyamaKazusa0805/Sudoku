@@ -135,7 +135,7 @@ public static partial class AnalyzerProperties
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
 	[DependencyProperty]
-	public static partial bool CheckValueTypes { get; set; }
+	public static partial bool CheckAlmostLockedCandidatesValueTypes { get; set; }
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	[DependencyProperty]
@@ -265,6 +265,30 @@ public static partial class AnalyzerProperties
 		=> A<ComplexSingleStepSearcher>(d, s => s.NakedSubsetMaxSize = (int)e.NewValue);
 
 	[Callback]
+	private static void AllowDirectPointingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectIntersectionStepSearcher>(d, s => s.AllowDirectPointing = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowDirectClaimingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectIntersectionStepSearcher>(d, s => s.AllowDirectClaiming = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowDirectLockedSubsetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.AllowDirectLockedSubset = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowDirectLockedHiddenSubsetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.AllowDirectLockedHiddenSubset = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowDirectNakedSubsetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.AllowDirectNakedSubset = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowDirectHiddenSubsetPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.AllowDirectHiddenSubset = (bool)e.NewValue);
+
+	[Callback]
 	private static void DirectNakedSubsetMaxSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<DirectSubsetStepSearcher>(d, s => s.DirectNakedSubsetMaxSize = (int)e.NewValue);
 
@@ -325,7 +349,7 @@ public static partial class AnalyzerProperties
 		=> A<AlmostLockedCandidatesStepSearcher>(d, s => s.CheckAlmostLockedQuadruple = (bool)e.NewValue);
 
 	[Callback]
-	private static void CheckValueTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void CheckAlmostLockedCandidatesValueTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedCandidatesStepSearcher>(d, s => s.CheckValueTypes = (bool)e.NewValue);
 
 	[Callback]
@@ -343,28 +367,6 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AllowSiameseXyzRingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<XyzRingStepSearcher>(d, s => s.AllowSiamese = (bool)e.NewValue);
-
-#if false
-	[Callback]
-	private static void AllowWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<IrregularWingStepSearcher>(d, s => s.AllowWWing = (bool)e.NewValue);
-
-	[Callback]
-	private static void AllowMWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<IrregularWingStepSearcher>(d, s => s.AllowMWing = (bool)e.NewValue);
-
-	[Callback]
-	private static void AllowSWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<IrregularWingStepSearcher>(d, s => s.AllowSWing = (bool)e.NewValue);
-
-	[Callback]
-	private static void AllowLWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<IrregularWingStepSearcher>(d, s => s.AllowLWing = (bool)e.NewValue);
-
-	[Callback]
-	private static void AllowHWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> A<IrregularWingStepSearcher>(d, s => s.AllowHWing = (bool)e.NewValue);
-#endif
 
 	[Callback]
 	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -10543,7 +10543,7 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes">
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple">
@@ -10765,11 +10765,11 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypes"/>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypesProperty">
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypesProperty">
             <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/>.
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadrupleProperty">
             <summary>
@@ -11259,21 +11259,21 @@
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypes"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckValueTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAlmostLockedCandidatesValueTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/> with the specified value.
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/> with the specified value.
             </summary>
             <param name="obj">The containing object of the property.</param>
             <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckValueTypes(Microsoft.UI.Xaml.DependencyObject)">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetCheckAlmostLockedCandidatesValueTypes(Microsoft.UI.Xaml.DependencyObject)">
             <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/> of its containing value.
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/> of its containing value.
             </summary>
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes"/>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedCandidatesValueTypes"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetCheckAlmostLockedQuadruple(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
