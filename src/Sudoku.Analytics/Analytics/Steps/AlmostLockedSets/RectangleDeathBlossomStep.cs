@@ -45,7 +45,7 @@ public sealed partial class RectangleDeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			SR.Get("Comma", GetCulture(null)),
-			from b in Branches select $"{Options.Converter.CandidateConverter(b.Key)} - {b.AlsPattern}"
+			from b in Branches select $"{Options.Converter.CandidateConverter(b.Key)} - {b.Value}"
 		);
 
 

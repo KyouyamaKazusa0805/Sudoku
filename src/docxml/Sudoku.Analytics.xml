@@ -5574,7 +5574,7 @@
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindForcingChains(Sudoku.Concepts.Node)">
             <summary>
             <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>.</para>
             </summary>
             <param name="startNode">The current instance.</param>
             <returns>
@@ -5582,8 +5582,8 @@
             that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
             encapsulating with type <see cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>.
             </returns>
-            <seealso cref="F:Sudoku.Caching.CachingData.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Caching.CachingData.WeakLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
             <seealso cref="T:Sudoku.Concepts.Node"/>
             <seealso cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>
@@ -6039,13 +6039,13 @@
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">
+        <member name="T:Sudoku.Analytics.Chaining.ChainOrLoopExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.ChainOrLoop"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.Grid@)">
             <summary>
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
             </summary>
@@ -6053,7 +6053,7 @@
             <param name="grid">The grid to calculate on conclusions for the pattern.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.ConclusionSet)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.ConclusionSet)">
             <summary>
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
             </summary>
@@ -19514,98 +19514,6 @@
             <param name="formatProvider">The culture.</param>
             <returns>The string value.</returns>
         </member>
-        <member name="T:Sudoku.Caching.CachingData">
-            <summary>
-            Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.StrongLinkTypesEntried">
-            <summary>
-            The backing field storing on strong links, grouped by link type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.WeakLinkTypesEntried">
-            <summary>
-            The backing field storing on weak links, grouped by link type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.EmptyCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
-            </summary>
-            <remarks>
-            This map <b>should</b> be used after <see cref="M:Sudoku.Caching.CachingData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Caching.CachingData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.BivalueCells">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Caching.CachingData.EmptyCells" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.CandidatesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Caching.CachingData.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.DigitsMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Caching.CachingData.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.ValuesMap">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
-            </summary>
-            <remarks>
-            <inheritdoc cref="F:Sudoku.Caching.CachingData.EmptyCells" path="/remarks"/>
-            </remarks>
-            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.Solution">
-            <summary>
-            Indicates the solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.StrongLinkDictionary">
-            <summary>
-            The backing field storing on strong links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.CachingData.WeakLinkDictionary">
-            <summary>
-            The backing field storing on weak links.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Caching.CachingData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            Initialize the maps that used later.
-            </summary>
-            <param name="g">The grid.</param>
-            <param name="s">The solution of <paramref name="g"/>.</param>
-        </member>
-        <member name="M:Sudoku.Caching.CachingData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType,Sudoku.Analytics.Configuration.StepSearcherOptions,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule}@)">
-            <summary>
-            Try to collect strong and weak links appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="linkTypes">The link types to be checked.</param>
-            <param name="options">The options used by step searchers.</param>
-            <param name="rules">The <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
-        </member>
         <member name="T:Sudoku.Caching.ChainingComparers">
             <summary>
             Represents a list of cached chaining comparers <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> and <see cref="T:System.Collections.Generic.IComparer`1"/>.
@@ -19671,6 +19579,98 @@
             </summary>
             <param name="linkType">The link type.</param>
             <returns>The created <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance created.</returns>
+        </member>
+        <member name="T:Sudoku.Caching.MemoryCachedData">
+            <summary>
+            Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkTypesEntried">
+            <summary>
+            The backing field storing on strong links, grouped by link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.WeakLinkTypesEntried">
+            <summary>
+            The backing field storing on weak links, grouped by link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.EmptyCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
+            </summary>
+            <remarks>
+            This map <b>should</b> be used after <see cref="M:Sudoku.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
+            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.BivalueCells">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.MemoryCachedData.EmptyCells" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.CandidatesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.MemoryCachedData.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.DigitsMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.MemoryCachedData.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.ValuesMap">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
+            </summary>
+            <remarks>
+            <inheritdoc cref="F:Sudoku.Caching.MemoryCachedData.EmptyCells" path="/remarks"/>
+            </remarks>
+            <exception cref="T:System.NullReferenceException">Throws when not initialized.</exception>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.Solution">
+            <summary>
+            Indicates the solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary">
+            <summary>
+            The backing field storing on strong links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary">
+            <summary>
+            The backing field storing on weak links.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Initialize the maps that used later.
+            </summary>
+            <param name="g">The grid.</param>
+            <param name="s">The solution of <paramref name="g"/>.</param>
+        </member>
+        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType,Sudoku.Analytics.Configuration.StepSearcherOptions,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule}@)">
+            <summary>
+            Try to collect strong and weak links appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="linkTypes">The link types to be checked.</param>
+            <param name="options">The options used by step searchers.</param>
+            <param name="rules">The <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
             <summary>
@@ -22189,6 +22189,9 @@
         <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(`0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.System#Linq#Providers#ISelectMethod{TSelf,System#Collections#Generic#KeyValuePair{TKey,Sudoku#Concepts#AlmostLockedSet}}#Select``1(System.Func{System.Collections.Generic.KeyValuePair{`1,Sudoku.Concepts.AlmostLockedSet},``0})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
@@ -23466,27 +23469,6 @@
             <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
             <returns>A list of digits appeared in cross-line cells as value representation.</returns>
         </member>
-        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
-            <summary>
-            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>
-        </member>
-        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.DeathBlossomBranchCollection{``0,``1},System.Func{System.ValueTuple{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
-            <summary>
-            Transforms the current collection into another representation, using the specified function to transform.
-            </summary>
-            <typeparam name="TSelf">
-            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
-            </typeparam>
-            <typeparam name="TKey">
-            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
-            </typeparam>
-            <typeparam name="TResult">The type of the results.</typeparam>
-            <param name="this">The current collection.</param>
-            <param name="selector">The selector to tranform elements.</param>
-            <returns>The results.</returns>
-        </member>
         <member name="T:Sudoku.Linq.AnalysisResultEnumerable">
             <summary>
             Provides with some LINQ methods for type <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
@@ -23543,6 +23525,27 @@
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
+            <summary>
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>
+        </member>
+        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.DeathBlossomBranchCollection{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="this">The current collection.</param>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
         </member>
         <member name="T:Sudoku.Linq.TechniqueSetEnumerable">
             <summary>

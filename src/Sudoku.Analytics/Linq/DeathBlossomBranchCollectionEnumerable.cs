@@ -19,17 +19,14 @@ public static class DeathBlossomBranchCollectionEnumerable
 	/// <param name="this">The current collection.</param>
 	/// <param name="selector">The selector to tranform elements.</param>
 	/// <returns>The results.</returns>
-	public static ReadOnlySpan<TResult> Select<TSelf, TKey, TResult>(
-		this DeathBlossomBranchCollection<TSelf, TKey> @this,
-		Func<(TKey Key, AlmostLockedSet AlsPattern), TResult> selector
-	)
+	public static ReadOnlySpan<TResult> Select<TSelf, TKey, TResult>(this DeathBlossomBranchCollection<TSelf, TKey> @this, Func<KeyValuePair<TKey, AlmostLockedSet>, TResult> selector)
 		where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
 		where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 	{
 		var (result, i) = (new TResult[@this.Count], 0);
 		foreach (var (key, value) in @this)
 		{
-			result[i++] = selector((key, value));
+			result[i++] = selector(new(key, value));
 		}
 		return result;
 	}

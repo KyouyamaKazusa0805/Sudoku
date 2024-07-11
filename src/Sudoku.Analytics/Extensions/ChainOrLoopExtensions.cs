@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Chaining;
 /// Provides with extension methods on <see cref="ChainOrLoop"/> instances.
 /// </summary>
 /// <seealso cref="ChainOrLoop"/>
-public static class ChainPatternExtensions
+public static class ChainOrLoopExtensions
 {
 	/// <summary>
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.

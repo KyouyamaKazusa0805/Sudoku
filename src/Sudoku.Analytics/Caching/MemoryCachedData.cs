@@ -3,7 +3,7 @@ namespace Sudoku.Caching;
 /// <summary>
 /// Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.
 /// </summary>
-internal static class CachingData
+internal static class MemoryCachedData
 {
 	/// <summary>
 	/// The backing field storing on strong links, grouped by link type.

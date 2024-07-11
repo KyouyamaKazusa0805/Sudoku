@@ -53,7 +53,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 			SR.Get("Comma", GetCulture(null)),
 			from branch in Branches
 			let p = Options.Converter.CandidateConverter(branch.Key)
-			let q = branch.AlsPattern.ToString(Options.Converter)
+			let q = branch.Value.ToString(Options.Converter)
 			select $"{p} - {q}"
 		);
 

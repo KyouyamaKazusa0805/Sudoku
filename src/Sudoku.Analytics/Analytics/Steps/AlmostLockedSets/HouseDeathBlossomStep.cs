@@ -41,7 +41,7 @@ public sealed partial class HouseDeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			SR.Get("Comma", GetCulture(null)),
-			from b in Branches select $"{Options.Converter.CellConverter(b.Key)} - {b.AlsPattern}"
+			from b in Branches select $"{Options.Converter.CellConverter(b.Key)} - {b.Value}"
 		);
 
 
