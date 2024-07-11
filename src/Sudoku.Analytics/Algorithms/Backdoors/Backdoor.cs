@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Algorithms.Backdoors;
 
 /// <summary>
 /// Defines a backdoor searcher.
