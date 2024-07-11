@@ -4,14 +4,14 @@ namespace Sudoku.Text;
 /// Represents a resource format. This type is used by <see cref="Step"/> instances to describe the technique format
 /// stored in resource dictionary.
 /// </summary>
-/// <param name="_name">Indicates the technique identifier name.</param>
+/// <param name="name">Indicates the technique identifier name.</param>
 /// <seealso cref="Step"/>
-public readonly struct StepFormat(string _name) : IFormattable, IFormatProvider
+public readonly struct StepFormat(string name) : IFormattable, IFormatProvider
 {
 	/// <summary>
 	/// Full name of the format.
 	/// </summary>
-	private string TechniqueResourceName => $"TechniqueFormat_{_name}";
+	private string TechniqueResourceName => $"TechniqueFormat_{name}";
 
 
 	/// <summary>
@@ -19,7 +19,7 @@ public readonly struct StepFormat(string _name) : IFormattable, IFormatProvider
 	/// </summary>
 	/// <param name="formatProvider">The culture information.</param>
 	public string? GetResourceFormat(IFormatProvider? formatProvider)
-		=> _name is not null
+		=> name is not null
 		&& SR.TryGet(TechniqueResourceName, out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
 			: null;

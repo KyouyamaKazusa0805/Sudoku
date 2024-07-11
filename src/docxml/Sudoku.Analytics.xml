@@ -31198,7 +31198,7 @@
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="_name">Indicates the technique identifier name.</param>
+            <param name="name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="M:Sudoku.Text.StepFormat.#ctor(System.String)">
@@ -31206,7 +31206,7 @@
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="_name">Indicates the technique identifier name.</param>
+            <param name="name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="P:Sudoku.Text.StepFormat.TechniqueResourceName">
