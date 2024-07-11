@@ -5416,7 +5416,7 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Empty"/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.ContainsAnyMissingCandidates">
+        <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
             <summary>
             Determines whether the current grid contains any missing candidates.
             </summary>

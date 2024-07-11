@@ -246,7 +246,7 @@ public partial struct Grid :
 	/// <summary>
 	/// Determines whether the current grid contains any missing candidates.
 	/// </summary>
-	public readonly bool ContainsAnyMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
+	public readonly bool IsMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
 
 	/// <summary>
 	/// Indicates the total number of given cells.
@@ -1400,8 +1400,8 @@ public partial struct Grid :
 			GridFormatInfo g => g.ParseGrid(s),
 			CultureInfo { Name: var n } => n.ToLower() switch
 			{
-				['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
-				['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
+			['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
+			['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
 				_ => Parse(s)
 			},
 			_ => Parse(s)
