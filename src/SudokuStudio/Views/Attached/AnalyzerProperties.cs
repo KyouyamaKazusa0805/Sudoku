@@ -27,124 +27,163 @@ public static partial class AnalyzerProperties
 	];
 
 
+	/// <inheritdoc cref="Analyzer.IsFullApplying"/>
 	[DependencyProperty]
 	public static partial bool AnalyzerIsFullApplying { get; set; }
 
+	/// <inheritdoc cref="Analyzer.IgnoreSlowAlgorithms"/>
 	[DependencyProperty]
 	public static partial bool AnalyzerIgnoresSlowAlgorithms { get; set; }
 
+	/// <inheritdoc cref="Analyzer.IgnoreHighAllocationAlgorithms"/>
 	[DependencyProperty]
 	public static partial bool AnalyzerIgnoresHighAllocationAlgorithms { get; set; }
 
 
+	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
 	[DependencyProperty]
 	public static partial List<Technique> IttoryuSupportedTechniques { get; set; }
 
 
+	/// <inheritdoc cref="SingleStepSearcher.EnableFullHouse"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool EnableFullHouse { get; set; }
 
+	/// <inheritdoc cref="SingleStepSearcher.EnableLastDigit"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool EnableLastDigit { get; set; }
 
+	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool HiddenSinglesInBlockFirst { get; set; }
 
+	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
 	[DependencyProperty]
 	public static partial bool AnalyzerUseIttoryuMode { get; set; }
 
+	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectPointing { get; set; }
 
+	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectClaiming"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectClaiming { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectLockedSubset { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectNakedSubset { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectLockedHiddenSubset { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectHiddenSubset { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
 	[DependencyProperty(DefaultValue = 2)]
 	public static partial int DirectNakedSubsetMaxSize { get; set; }
 
+	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
 	[DependencyProperty(DefaultValue = 2)]
 	public static partial int DirectHiddenSubsetMaxSize { get; set; }
 
+	/// <inheritdoc cref="ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
 	[DependencyProperty(DefaultValue = 4)]
 	public static partial int NakedSubsetMaxSizeInComplexSingle { get; set; }
 
+	/// <inheritdoc cref="ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
 	[DependencyProperty(DefaultValue = 4)]
 	public static partial int HiddenSubsetMaxSizeInComplexSingle { get; set; }
 
+	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool DisableFinnedOrSashimiXWing { get; set; }
 
+	/// <inheritdoc cref="NormalFishStepSearcher.AllowSiamese"/>
 	[DependencyProperty]
 	public static partial bool AllowSiameseNormalFish { get; set; }
 
+	/// <inheritdoc cref="ComplexFishStepSearcher.AllowSiamese"/>
 	[DependencyProperty]
 	public static partial bool AllowSiameseComplexFish { get; set; }
 
+	/// <inheritdoc cref="ComplexFishStepSearcher.MaxSize"/>
 	[DependencyProperty(DefaultValue = 5)]
 	public static partial int MaxSizeOfComplexFish { get; set; }
 
+	/// <inheritdoc cref="RegularWingStepSearcher.MaxSearchingPivotsCount"/>
 	[DependencyProperty(DefaultValue = 5)]
 	public static partial int MaxSizeOfRegularWing { get; set; }
 
+	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowIncompleteUniqueRectangles { get; set; }
 
+	/// <inheritdoc cref="UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool SearchForExtendedUniqueRectangles { get; set; }
 
+	/// <inheritdoc cref="BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool SearchExtendedBivalueUniversalGraveTypes { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
 	[DependencyProperty]
 	public static partial bool CheckValueTypes { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	[DependencyProperty]
 	public static partial bool CheckAlmostLockedQuadruple { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowCollision"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowCollisionOnAlmostLockedSetsXzRule { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowLoopedPatternsOnAlmostLockedSetsXzRule { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowCollisionOnAlmostLockedSetsXyWing { get; set; }
 
+	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowCollisionOnAlmostLockedSetsWWing { get; set; }
 
+	/// <inheritdoc cref="DeathBlossomStepSearcher.SearchExtendedTypes"/>
+	[DependencyProperty]
+	public static partial bool SearchExtendedDeathBlossomTypes { get; set; }
+
+	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool SearchForReverseBugPartiallyUsedTypes { get; set; }
 
+	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
 	[DependencyProperty(DefaultValue = 2)]
 	public static partial int ReverseBugMaxSearchingEmptyCellsCount { get; set; }
 
+	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
 	[DependencyProperty]
 	public static partial bool AllowSiameseXyzRing { get; set; }
 
+	/// <inheritdoc cref="AlignedExclusionStepSearcher.MaxSearchingSize"/>
 	[DependencyProperty(DefaultValue = 3)]
 	public static partial int AlignedExclusionMaxSearchingSize { get; set; }
 
+	/// <inheritdoc cref="TemplateStepSearcher.TemplateDeleteOnly"/>
 	[DependencyProperty]
 	public static partial bool TemplateDeleteOnly { get; set; }
 
+	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
 	[DependencyProperty(DefaultValue = 64)]
 	public static partial int BowmanBingoMaxLength { get; set; }
-
-	[DependencyProperty]
-	public static partial bool SearchExtendedDeathBlossomTypes { get; set; }
 
 
 	/// <summary>

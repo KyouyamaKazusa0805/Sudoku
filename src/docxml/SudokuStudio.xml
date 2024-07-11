@@ -10466,316 +10466,121 @@
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerIsFullApplying">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerIgnoresSlowAlgorithms">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerIgnoresHighAllocationAlgorithms">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniques">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouse">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableLastDigit">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirst">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuMode">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectClaiming">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectClaiming"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedSubset">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectNakedSubset">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectLockedHiddenSubset">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectHiddenSubset">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.DirectNakedSubsetMaxSize">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSize">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingle">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingle">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableFinnedOrSashimiXWing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseNormalFish">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseComplexFish">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfComplexFish">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.MaxSizeOfRegularWing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectangles">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForExtendedUniqueRectangles">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedBivalueUniversalGraveTypes">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckValueTypes">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.CheckAlmostLockedQuadruple">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXzRule">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetsXzRule">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsXyWing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRing">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
-        </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes">
-            <summary>
-            Sets the property with specified value.
-            </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``1(``0,System.Object,System.String,System.Boolean@)">
             <summary>
@@ -10996,6 +10801,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypesProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes"/>.
@@ -11031,12 +10842,6 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypesProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAnalyzerIsFullApplying(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
@@ -11550,6 +11355,22 @@
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowCollisionOnAlmostLockedSetsWWing"/>
         </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/> with the specified value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <param name="value">The value to be set.</param>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/> of its containing value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <returns>The value returned.</returns>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
+        </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchForReverseBugPartiallyUsedTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>
             Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes"/> with the specified value.
@@ -11646,22 +11467,6 @@
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetSearchExtendedDeathBlossomTypes(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.SearchExtendedDeathBlossomTypes"/>
-        </member>
         <member name="T:SudokuStudio.Views.Attached.CollectorProperties">
             <summary>
             Defines a bind behaviors on <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instances, for <see cref="T:Sudoku.Analytics.Collector"/> instance's interaction.
@@ -11671,19 +11476,14 @@
         </member>
         <member name="P:SudokuStudio.Views.Attached.CollectorProperties.CollectorMaxStepsCollected">
             <summary>
-            Sets the property with specified value.
+            Indicates the number of maximal steps to be collected.
             </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Attached.CollectorProperties.DifficultyLevelMode">
             <summary>
-            Sets the property with specified value.
+            Indicates the difficulty level mode. Casted from <see cref="T:Sudoku.Analytics.CollectorDifficultyLevelMode"/>.
             </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <seealso cref="T:Sudoku.Analytics.CollectorDifficultyLevelMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.CollectorProperties.CollectorMaxStepsCollectedProperty">
             <summary>
@@ -11737,19 +11537,13 @@
         </member>
         <member name="P:SudokuStudio.Views.Attached.SudokuPaneBindable.Analyzer">
             <summary>
-            Sets the property with specified value.
+            Indicates the backing analyzer.
             </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Attached.SudokuPaneBindable.StepCollector">
             <summary>
-            Sets the property with specified value.
+            Indicates the backing step collector.
             </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
         </member>
         <member name="F:SudokuStudio.Views.Attached.SudokuPaneBindable.AnalyzerProperty">
             <summary>
@@ -11803,11 +11597,9 @@
         </member>
         <member name="P:SudokuStudio.Views.Attached.TextBlockBindable.Inlines">
             <summary>
-            Sets the property with specified value.
+            Gets or sets the inline values of a <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> instance.
             </summary>
-            <remarks>
-            <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-            </remarks>
+            <seealso cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.TextBlockBindable.InlinesProperty">
             <summary>

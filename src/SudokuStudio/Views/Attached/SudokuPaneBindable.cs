@@ -13,9 +13,15 @@ public static partial class SudokuPaneBindable
 	private static readonly Collector StepCollectorDefaultValue = new();
 
 
+	/// <summary>
+	/// Indicates the backing analyzer.
+	/// </summary>
 	[DependencyProperty]
 	public static partial Analyzer Analyzer { get; set; }
 
+	/// <summary>
+	/// Indicates the backing step collector.
+	/// </summary>
 	[DependencyProperty]
 	public static partial Collector StepCollector { get; set; }
 }

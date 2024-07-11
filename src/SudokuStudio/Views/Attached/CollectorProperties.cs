@@ -7,9 +7,16 @@ namespace SudokuStudio.Views.Attached;
 /// <seealso cref="Collector"/>
 public static partial class CollectorProperties
 {
+	/// <summary>
+	/// Indicates the number of maximal steps to be collected.
+	/// </summary>
 	[DependencyProperty(DefaultValue = 1000)]
 	public static partial int CollectorMaxStepsCollected { get; set; }
 
+	/// <summary>
+	/// Indicates the difficulty level mode. Casted from <see cref="CollectorDifficultyLevelMode"/>.
+	/// </summary>
+	/// <seealso cref="CollectorDifficultyLevelMode"/>
 	[DependencyProperty(DefaultValue = 0)]
 	public static partial int DifficultyLevelMode { get; set; }
 

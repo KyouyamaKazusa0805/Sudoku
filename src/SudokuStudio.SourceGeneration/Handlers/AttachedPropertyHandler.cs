@@ -69,13 +69,7 @@ internal static class AttachedPropertyHandler
 
 				staticPropertyImpls.Add(
 					$$"""
-					/// <summary>
-							/// Sets the property with specified value.
-							/// </summary>
-							/// <remarks>
-							/// <b><i>This property shouldn't be used. This property only records an entry of a bound attached property.</i></b>
-							/// </remarks>
-							[global::System.ObsoleteAttribute("This property should not be used.", true)]
+					[global::System.ObsoleteAttribute("This property should not be used.", true)]
 							public static partial {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 							{
 								[global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]

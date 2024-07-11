@@ -6,6 +6,10 @@ namespace SudokuStudio.Views.Attached;
 /// <seealso cref="TextBlock"/>
 public static partial class TextBlockBindable
 {
+	/// <summary>
+	/// Gets or sets the inline values of a <see cref="TextBlock"/> instance.
+	/// </summary>
+	/// <seealso cref="TextBlock"/>
 	[DependencyProperty]
 	public static partial IEnumerable<Inline> Inlines { get; set; }
 
