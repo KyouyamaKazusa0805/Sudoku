@@ -331,6 +331,27 @@ public partial struct CandidateMap : CandidateMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		var targetString = ToString(provider);
+		if (destination.Length < targetString.Length)
+		{
+			goto ReturnFalse;
+		}
+
+		if ((from character in targetString select (byte)character).TryCopyTo(destination))
+		{
+			charsWritten = targetString.Length;
+			return true;
+		}
+
+	ReturnFalse:
+		charsWritten = 0;
+		return false;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(ref readonly CandidateMap other)
 	{
 		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));

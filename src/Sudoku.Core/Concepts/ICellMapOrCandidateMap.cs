@@ -19,12 +19,14 @@ public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
+	IFormattable,
 	IFirstLastMethod<TSelf, TElement>,
 	IGetSubsetMethod<TSelf, TElement>,
 	IGroupByMethod<TSelf, TElement>,
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
+	IParsable<TSelf>,
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISelectMethod<TSelf, TElement>,
@@ -32,6 +34,7 @@ public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
+	IUtf8SpanFormattable,
 	IWhereMethod<TSelf, TElement>
 	where TSelf : unmanaged, ICellMapOrCandidateMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>

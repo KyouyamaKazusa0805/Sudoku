@@ -1711,6 +1711,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CompareTo(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -2239,7 +2242,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.ISpanFormattable.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc cref="M:System.IUtf8SpanFormattable.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.CompareTo(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -2328,7 +2334,7 @@
             <inheritdoc cref="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -2526,6 +2532,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#ISpanFormattable#TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IUtf8SpanFormattable#TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IBinaryInteger{Sudoku#Concepts#CellMap}#TryWriteBigEndian(System.Span{System.Byte},System.Int32@)">

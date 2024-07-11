@@ -58,6 +58,10 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 		=> NumericValue.TryFormat(destination, out charsWritten, format, provider);
 
 	/// <inheritdoc/>
+	readonly bool IUtf8SpanFormattable.TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+		=> NumericValue.TryFormat(destination, out charsWritten, format, provider);
+
+	/// <inheritdoc/>
 	readonly bool IBinaryInteger<CellMap>.TryWriteBigEndian(Span<byte> destination, out int bytesWritten)
 		=> ((IBinaryInteger<Int128>)NumericValue).TryWriteBigEndian(destination, out bytesWritten);
 

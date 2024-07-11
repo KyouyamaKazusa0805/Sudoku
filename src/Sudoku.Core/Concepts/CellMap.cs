@@ -499,7 +499,7 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="ISpanFormattable.TryFormat(Span{char}, out int, ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
@@ -510,6 +510,27 @@ public partial struct CellMap : CellMapBase
 		}
 
 		if (targetString.TryCopyTo(destination))
+		{
+			charsWritten = targetString.Length;
+			return true;
+		}
+
+	ReturnFalse:
+		charsWritten = 0;
+		return false;
+	}
+
+	/// <inheritdoc cref="IUtf8SpanFormattable.TryFormat(Span{byte}, out int, ReadOnlySpan{char}, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		var targetString = ToString(provider);
+		if (destination.Length < targetString.Length)
+		{
+			goto ReturnFalse;
+		}
+
+		if ((from character in targetString select (byte)character).TryCopyTo(destination))
 		{
 			charsWritten = targetString.Length;
 			return true;
@@ -680,6 +701,7 @@ public partial struct CellMap : CellMapBase
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector) => this.Select(selector).ToArray();
 
+
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string, IFormatProvider?, out TSelf)"/>
 	public static bool TryParse(string str, out CellMap result)
 	{
@@ -720,7 +742,7 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool TryParse(ReadOnlySpan<char> s, out CellMap result) => TryParse(s, null, out result);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
 	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
 	{
 		try
