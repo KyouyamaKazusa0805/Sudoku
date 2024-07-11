@@ -1,11 +1,11 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a pair of intersection information.
+/// Represents a miniline (mini-row or mini-column).
 /// </summary>
 /// <param name="Base">Indicates the base that describes the block and line index.</param>
 /// <param name="Result">Indicates the result values.</param>
-public readonly record struct Intersection(ref readonly IntersectionBase Base, ref readonly IntersectionResult Result)
+public readonly record struct Miniline(ref readonly MinilineBase Base, ref readonly MinilineResult Result)
 {
 	/// <summary>
 	/// Indicates the mini-lines to be iterated, grouped by chute index.
@@ -27,7 +27,7 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 	/// In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly FrozenDictionary<IntersectionBase, IntersectionResult> Map;
+	public static readonly FrozenDictionary<MinilineBase, MinilineResult> Map;
 
 	/// <summary>
 	/// Indicates the internal intersection block combinations.
@@ -43,7 +43,7 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
-	static Intersection()
+	static Miniline()
 	{
 		MinilinesGroupedByChuteIndex = new CellMap[6][];
 		for (var i = 0; i < 6; i++)
@@ -64,7 +64,7 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 			}
 		}
 
-		var dic = new Dictionary<IntersectionBase, IntersectionResult>();
+		var dic = new Dictionary<MinilineBase, MinilineResult>();
 		for (var bs = (byte)9; bs < 27; bs++)
 		{
 			for (var j = (byte)0; j < 3; j++)
@@ -77,6 +77,6 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 			}
 		}
 
-		Map = dic.ToFrozenDictionary(EqualityComparer<IntersectionBase>.Create(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
+		Map = dic.ToFrozenDictionary(EqualityComparer<MinilineBase>.Create(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
 	}
 }

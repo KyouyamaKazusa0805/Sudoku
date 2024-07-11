@@ -2657,7 +2657,7 @@ public partial class UniqueRectangleStepSearcher
 		var otherDigitsMask = (Mask)(mergedMaskInOtherCells & ~comparer);
 		var line = (byte)otherCellsMap.SharedLine;
 		var block = (byte)TrailingZeroCount(otherCellsMap.SharedHouses & ~(1 << line));
-		var d = Intersection.Map[new(line, block)].OtherBlocks;
+		var d = Miniline.Map[new(line, block)].OtherBlocks;
 		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
 		{
@@ -2670,7 +2670,7 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var a = Intersection.Map[new(line, otherBlock)].LineMap;
+				var a = Miniline.Map[new(line, otherBlock)].LineMap;
 				var b = HousesMap[otherBlock] & ~HousesMap[line];
 				var c = a & b;
 

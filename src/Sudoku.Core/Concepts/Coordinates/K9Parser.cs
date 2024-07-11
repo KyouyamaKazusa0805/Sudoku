@@ -32,7 +32,7 @@ public sealed partial record K9Parser : CoordinateParser
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, Intersection[]> IntersectionParser => throw new NotSupportedException();
+	public override Func<string, Miniline[]> IntersectionParser => throw new NotSupportedException();
 
 
 

@@ -3822,11 +3822,11 @@
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.IntersectionParser">
             <summary>
-            The parser method that can creates a list of pairs of <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/>
+            The parser method that can creates a list of pairs of <see cref="T:Sudoku.Concepts.MinilineBase"/> and <see cref="T:Sudoku.Concepts.MinilineResult"/>
             via the specified text to be parsed.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.IntersectionBase"/>
-            <seealso cref="T:Sudoku.Concepts.IntersectionResult"/>
+            <seealso cref="T:Sudoku.Concepts.MinilineBase"/>
+            <seealso cref="T:Sudoku.Concepts.MinilineResult"/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.ChuteParser">
             <summary>
@@ -4555,7 +4555,7 @@
         <member name="T:Sudoku.Concepts.Formatting.IntersectionNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String" /> value
-            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase" /> and <see cref="T:Sudoku.Concepts.IntersectionResult" /> instance.
+            via the specified <see cref="T:Sudoku.Concepts.MinilineBase" /> and <see cref="T:Sudoku.Concepts.MinilineResult" /> instance.
             </summary>
             <param name="intersections">
             <para>A list of intersections.</para>
@@ -6778,32 +6778,32 @@
             Indicates the inference is weak inference.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Intersection">
+        <member name="T:Sudoku.Concepts.Miniline">
             <summary>
-            Represents a pair of intersection information.
+            Represents a miniline (mini-row or mini-column).
             </summary>
             <param name="Base">Indicates the base that describes the block and line index.</param>
             <param name="Result">Indicates the result values.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Intersection.#ctor(Sudoku.Concepts.IntersectionBase@,Sudoku.Concepts.IntersectionResult@)">
+        <member name="M:Sudoku.Concepts.Miniline.#ctor(Sudoku.Concepts.MinilineBase@,Sudoku.Concepts.MinilineResult@)">
             <summary>
-            Represents a pair of intersection information.
+            Represents a miniline (mini-row or mini-column).
             </summary>
             <param name="Base">Indicates the base that describes the block and line index.</param>
             <param name="Result">Indicates the result values.</param>
         </member>
-        <member name="P:Sudoku.Concepts.Intersection.Base">
+        <member name="P:Sudoku.Concepts.Miniline.Base">
             <summary>Indicates the base that describes the block and line index.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.Intersection.Result">
+        <member name="P:Sudoku.Concepts.Miniline.Result">
             <summary>Indicates the result values.</summary>
         </member>
-        <member name="F:Sudoku.Concepts.Intersection.MinilinesGroupedByChuteIndex">
+        <member name="F:Sudoku.Concepts.Miniline.MinilinesGroupedByChuteIndex">
             <summary>
             Indicates the mini-lines to be iterated, grouped by chute index.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Intersection.Map">
+        <member name="F:Sudoku.Concepts.Miniline.Map">
             <summary>
             <para>
             Indicates all maps that forms the each intersection. The pattern will be like:
@@ -6820,12 +6820,12 @@
             </para>
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Intersection.IntersectionBlockTable">
+        <member name="F:Sudoku.Concepts.Miniline.IntersectionBlockTable">
             <summary>
             Indicates the internal intersection block combinations.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Intersection.#cctor">
+        <member name="M:Sudoku.Concepts.Miniline.#cctor">
             <static-constructor>
 		<summary>
 			<para>
@@ -6838,30 +6838,30 @@
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.Concepts.IntersectionBase">
+        <member name="T:Sudoku.Concepts.MinilineBase">
             <summary>
             Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
             </summary>
             <param name="Line">The index of the line.</param>
             <param name="Block">The index of the block.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionBase.#ctor(System.Byte,System.Byte)">
+        <member name="M:Sudoku.Concepts.MinilineBase.#ctor(System.Byte,System.Byte)">
             <summary>
             Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
             </summary>
             <param name="Line">The index of the line.</param>
             <param name="Block">The index of the block.</param>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionBase.Line">
+        <member name="P:Sudoku.Concepts.MinilineBase.Line">
             <summary>The index of the line.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionBase.Block">
+        <member name="P:Sudoku.Concepts.MinilineBase.Block">
             <summary>The index of the block.</summary>
         </member>
-        <member name="T:Sudoku.Concepts.IntersectionResult">
+        <member name="T:Sudoku.Concepts.MinilineResult">
             <summary>
             Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Intersection.Map"/> property.
+            especially used by <see cref="F:Sudoku.Concepts.Miniline.Map"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -6869,12 +6869,12 @@
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.Map"/>
+            <seealso cref="F:Sudoku.Concepts.Miniline.Map"/>
         </member>
-        <member name="M:Sudoku.Concepts.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
+        <member name="M:Sudoku.Concepts.MinilineResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
             Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Intersection.Map"/> property.
+            especially used by <see cref="F:Sudoku.Concepts.Miniline.Map"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -6882,18 +6882,18 @@
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.Map"/>
+            <seealso cref="F:Sudoku.Concepts.Miniline.Map"/>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.LineMap">
+        <member name="P:Sudoku.Concepts.MinilineResult.LineMap">
             <summary>The map of the line.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.BlockMap">
+        <member name="P:Sudoku.Concepts.MinilineResult.BlockMap">
             <summary>The map of the block.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.IntersectionMap">
+        <member name="P:Sudoku.Concepts.MinilineResult.IntersectionMap">
             <summary>The map of the intersection.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.IntersectionResult.OtherBlocks">
+        <member name="P:Sudoku.Concepts.MinilineResult.OtherBlocks">
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>

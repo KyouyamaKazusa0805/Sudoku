@@ -28,7 +28,7 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Intersection[]> IntersectionParser => OnIntersectionParsing;
+	public override Func<string, Miniline[]> IntersectionParser => OnIntersectionParsing;
 
 
 	/// <inheritdoc/>
@@ -249,7 +249,7 @@ public sealed partial record RxCyParser : CoordinateParser
 	}
 
 
-	private static Intersection[] OnIntersectionParsing(string str)
+	private static Miniline[] OnIntersectionParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -261,7 +261,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		var result = new List<Intersection>();
+		var result = new List<Miniline>();
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;
@@ -273,11 +273,11 @@ public sealed partial record RxCyParser : CoordinateParser
 			{
 				foreach (var block in blocks)
 				{
-					var @base = new IntersectionBase(
+					var @base = new MinilineBase(
 						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
 						(byte)(block - '1')
 					);
-					result.Add(new(in @base, in Intersection.Map[@base]));
+					result.Add(new(in @base, in Miniline.Map[@base]));
 				}
 			}
 		}

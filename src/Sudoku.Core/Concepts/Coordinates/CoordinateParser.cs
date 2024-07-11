@@ -43,12 +43,12 @@ public abstract record CoordinateParser : IFormatProvider
 	public abstract Func<string, Mask> DigitParser { get; }
 
 	/// <summary>
-	/// The parser method that can creates a list of pairs of <see cref="IntersectionBase"/> and <see cref="IntersectionResult"/>
+	/// The parser method that can creates a list of pairs of <see cref="MinilineBase"/> and <see cref="MinilineResult"/>
 	/// via the specified text to be parsed.
 	/// </summary>
-	/// <seealso cref="IntersectionBase"/>
-	/// <seealso cref="IntersectionResult"/>
-	public abstract Func<string, Intersection[]> IntersectionParser { get; }
+	/// <seealso cref="MinilineBase"/>
+	/// <seealso cref="MinilineResult"/>
+	public abstract Func<string, Miniline[]> IntersectionParser { get; }
 
 	/// <summary>
 	/// The parser method that can creates a <see cref="Chute"/> list via the specified text to be parsed.

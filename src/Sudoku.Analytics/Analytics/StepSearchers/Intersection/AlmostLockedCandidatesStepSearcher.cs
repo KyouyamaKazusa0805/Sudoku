@@ -52,7 +52,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			for (var size = 2; size <= (CheckAlmostLockedQuadruple && checkValueCells ? 4 : 3); size++)
 			{
-				foreach (var ((baseSet, coverSet), (a, b, c, _)) in Intersection.Map)
+				foreach (var ((baseSet, coverSet), (a, b, c, _)) in Miniline.Map)
 				{
 					if (c && EmptyCells)
 					{
