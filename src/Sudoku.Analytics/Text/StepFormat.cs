@@ -4,14 +4,14 @@ namespace Sudoku.Text;
 /// Represents a resource format. This type is used by <see cref="Step"/> instances to describe the technique format
 /// stored in resource dictionary.
 /// </summary>
-/// <param name="name">Indicates the technique identifier name.</param>
+/// <param name="_name">Indicates the technique identifier name.</param>
 /// <seealso cref="Step"/>
-public readonly struct StepFormat(string name)
+public readonly struct StepFormat(string _name) : IFormattable, IFormatProvider
 {
 	/// <summary>
 	/// Full name of the format.
 	/// </summary>
-	private string TechniqueResourceName => $"TechniqueFormat_{name}";
+	private string TechniqueResourceName => $"TechniqueFormat_{_name}";
 
 
 	/// <summary>
@@ -19,14 +19,17 @@ public readonly struct StepFormat(string name)
 	/// </summary>
 	/// <param name="formatProvider">The culture information.</param>
 	public string? GetResourceFormat(IFormatProvider? formatProvider)
-		=> name is not null
+		=> _name is not null
 		&& SR.TryGet(TechniqueResourceName, out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
 			: null;
 
 	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString() => ToString(null);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => GetResourceFormat(null) ?? "<Unspecified>";
+	public string ToString(IFormatProvider? formatProvider) => GetResourceFormat(formatProvider) ?? "<Unspecified>";
 
 	/// <summary>
 	/// Get the format string for the current instance.
@@ -40,4 +43,10 @@ public readonly struct StepFormat(string name)
 		=> GetResourceFormat(culture) is { } p
 			? string.Format(culture, p, formatArguments)
 			: throw new ResourceNotFoundException(typeof(StepFormat).Assembly, TechniqueResourceName, culture);
+
+	/// <inheritdoc/>
+	object? IFormatProvider.GetFormat(Type? formatType) => formatType == typeof(StepFormat) ? this : null;
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

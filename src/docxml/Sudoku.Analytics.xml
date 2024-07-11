@@ -31198,7 +31198,7 @@
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="name">Indicates the technique identifier name.</param>
+            <param name="_name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="M:Sudoku.Text.StepFormat.#ctor(System.String)">
@@ -31206,7 +31206,7 @@
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
-            <param name="name">Indicates the technique identifier name.</param>
+            <param name="_name">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="P:Sudoku.Text.StepFormat.TechniqueResourceName">
@@ -31223,6 +31223,9 @@
         <member name="M:Sudoku.Text.StepFormat.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Text.StepFormat.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
         <member name="M:Sudoku.Text.StepFormat.Format(System.Globalization.CultureInfo,System.String[])">
             <summary>
             Get the format string for the current instance.
@@ -31231,6 +31234,12 @@
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+        </member>
+        <member name="M:Sudoku.Text.StepFormat.System#IFormatProvider#GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Text.StepFormat.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Traits.IBranchTrait">
             <summary>
