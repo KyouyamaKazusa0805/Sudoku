@@ -4,9 +4,12 @@ namespace SudokuStudio.Views.Attached;
 /// Defines a bind behaviors on <see cref="TextBlock"/> instances.
 /// </summary>
 /// <seealso cref="TextBlock"/>
-[AttachedProperty<IEnumerable<Inline>>(nameof(TextBlock.Inlines))]
 public static partial class TextBlockBindable
 {
+	[DependencyProperty]
+	public static partial IEnumerable<Inline> Inlines { get; set; }
+
+
 	[Callback]
 	private static void InlinesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{

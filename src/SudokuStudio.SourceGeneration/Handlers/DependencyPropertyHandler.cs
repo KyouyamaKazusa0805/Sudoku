@@ -1,6 +1,6 @@
 namespace Sudoku.SourceGeneration.Handlers;
 
-internal static class DependencyPropertyAutoImplementationHandler
+internal static class DependencyPropertyHandler
 {
 	/// <inheritdoc/>
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
@@ -32,7 +32,7 @@ internal static class DependencyPropertyAutoImplementationHandler
 							/// </summary>
 							/// <seealso cref="{propertyName}"/>
 							[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(DependencyPropertyAutoImplementationHandler).FullName}", "{Value}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(DependencyPropertyHandler).FullName}", "{Value}")]
 							{accessibilityModifier} static readonly global::Microsoft.UI.Xaml.DependencyProperty {propertyName}Property =
 								global::Microsoft.UI.Xaml.DependencyProperty.Register(nameof({propertyName}), typeof({propertyTypeStr}), typeof({containingTypeStr}), {defaultValueCreatorStr});
 					"""
@@ -41,7 +41,7 @@ internal static class DependencyPropertyAutoImplementationHandler
 				properties.Add(
 					$$"""
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(DependencyPropertyAutoImplementationHandler).FullName}}", "{{Value}}")]
+							[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(DependencyPropertyHandler).FullName}}", "{{Value}}")]
 							{{accessibilityModifier}} partial {{propertyTypeStr}}{{nullableToken}} {{propertyName}}
 							{
 								[global::System.Diagnostics.DebuggerStepThroughAttribute]
@@ -190,7 +190,7 @@ internal static class DependencyPropertyAutoImplementationHandler
 				defaultValueGeneratorKind,
 				defaultValue,
 				callbackMethodName,
-				propertyType.IsReferenceType && propertyType.NullableAnnotation == NullableAnnotation.Annotated,
+				propertyType is { IsReferenceType: true, NullableAnnotation: NullableAnnotation.Annotated },
 				declaredAccessibility switch
 				{
 					DeclaredAccessibility.NotApplicable or DeclaredAccessibility.Private => Accessibility.Private,
@@ -221,8 +221,8 @@ internal static class DependencyPropertyAutoImplementationHandler
 	);
 
 	/// <summary>
-	/// Indicates the data collected via <see cref="DependencyPropertyAutoImplementationHandler"/>.
+	/// Indicates the data collected via <see cref="DependencyPropertyHandler"/>.
 	/// </summary>
-	/// <seealso cref="DependencyPropertyAutoImplementationHandler"/>
+	/// <seealso cref="DependencyPropertyHandler"/>
 	internal sealed record CollectedResult(INamedTypeSymbol Type, Data PropertiesData);
 }

@@ -1,7 +1,5 @@
 namespace Sudoku.SourceGeneration;
 
-using static CommonMethods;
-
 /// <summary>
 /// Represents the source generator.
 /// </summary>
@@ -10,30 +8,7 @@ public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
-		=> SudokuStudioXamlBindings(context);
-
-	private void SudokuStudioXamlBindings(IncrementalGeneratorInitializationContext context)
 	{
-		context.RegisterSourceOutput(
-			context.CompilationProvider
-				.Combine(
-					context.SyntaxProvider
-						.ForAttributeWithMetadataName(
-							"SudokuStudio.ComponentModel.AttachedPropertyAttribute`1",
-							static (n, _) => n is ClassDeclarationSyntax
-							{
-								TypeParameterList: null,
-								Modifiers: var m and not []
-							} && m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-							AttachedPropertyHandler.Transform
-						)
-						.Where(NotNullPredicate)
-						.Select(NotNullSelector)
-						.Collect()
-				),
-			static (spc, c) => { if (c.Left.AssemblyName == "SudokuStudio") { AttachedPropertyHandler.Output(spc, c.Right); } }
-		);
-
 		context.RegisterSourceOutput(
 			context.CompilationProvider
 				.Combine(
@@ -41,8 +16,8 @@ public sealed class Generator : IIncrementalGenerator
 						.ForAttributeWithMetadataName(
 							"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
 							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
-								&& m.Any(SyntaxKind.PartialKeyword),
-							DependencyPropertyAutoImplementationHandler.Transform
+								&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+							AttachedPropertyHandler.Transform
 						)
 						.Where(NotNullPredicate)
 						.Select(NotNullSelector)
@@ -52,18 +27,36 @@ public sealed class Generator : IIncrementalGenerator
 			{
 				if (c.Left.AssemblyName == "SudokuStudio")
 				{
-					DependencyPropertyAutoImplementationHandler.Output(spc, c.Right);
+					AttachedPropertyHandler.Output(spc, c.Right);
+				}
+			}
+		);
+
+		context.RegisterSourceOutput(
+			context.CompilationProvider
+				.Combine(
+					context.SyntaxProvider
+						.ForAttributeWithMetadataName(
+							"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
+							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
+								&& !m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+							DependencyPropertyHandler.Transform
+						)
+						.Where(NotNullPredicate)
+						.Select(NotNullSelector)
+						.Collect()
+				),
+			static (spc, c) =>
+			{
+				if (c.Left.AssemblyName == "SudokuStudio")
+				{
+					DependencyPropertyHandler.Output(spc, c.Right);
 				}
 			}
 		);
 	}
-}
 
-/// <summary>
-/// Represents a set of methods that can be used by the types in this file.
-/// </summary>
-file static class CommonMethods
-{
+
 	/// <summary>
 	/// Determine whether the value is not <see langword="null"/>.
 	/// </summary>

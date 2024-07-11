@@ -9,45 +9,6 @@ namespace SudokuStudio.Views.Attached;
 /// </remarks>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Analyzer"/>
-[AttachedProperty<bool>(SettingItemNames.EnableFullHouse, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.EnableLastDigit, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.HiddenSinglesInBlockFirst, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AnalyzerUseIttoryuMode)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectPointing, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectClaiming, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectLockedSubset, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectNakedSubset, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectLockedHiddenSubset, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowDirectHiddenSubset, DefaultValue = true)]
-[AttachedProperty<int>(SettingItemNames.DirectNakedSubsetMaxSize, DefaultValue = 2)]
-[AttachedProperty<int>(SettingItemNames.DirectHiddenSubsetMaxSize, DefaultValue = 2)]
-[AttachedProperty<int>(SettingItemNames.NakedSubsetMaxSizeInComplexSingle, DefaultValue = 4)]
-[AttachedProperty<int>(SettingItemNames.HiddenSubsetMaxSizeInComplexSingle, DefaultValue = 4)]
-[AttachedProperty<bool>(SettingItemNames.AllowIncompleteUniqueRectangles, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.SearchForExtendedUniqueRectangles, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.SearchExtendedBivalueUniversalGraveTypes, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetsXzRule, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetsXzRule, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetsXyWing, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetsWWing, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.DisableFinnedOrSashimiXWing, DefaultValue = true)]
-[AttachedProperty<bool>(SettingItemNames.AllowSiameseNormalFish)]
-[AttachedProperty<bool>(SettingItemNames.AllowSiameseComplexFish)]
-[AttachedProperty<bool>(SettingItemNames.AllowSiameseXyzRing)]
-[AttachedProperty<int>(SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
-[AttachedProperty<int>(SettingItemNames.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
-[AttachedProperty<int>(SettingItemNames.MaxSizeOfRegularWing, DefaultValue = 5)]
-[AttachedProperty<int>(SettingItemNames.MaxSizeOfComplexFish, DefaultValue = 5)]
-[AttachedProperty<bool>(SettingItemNames.TemplateDeleteOnly)]
-[AttachedProperty<int>(SettingItemNames.BowmanBingoMaxLength, DefaultValue = 64)]
-[AttachedProperty<bool>(SettingItemNames.SearchExtendedDeathBlossomTypes)]
-[AttachedProperty<bool>(SettingItemNames.CheckValueTypes)]
-[AttachedProperty<bool>(SettingItemNames.CheckAlmostLockedQuadruple)]
-[AttachedProperty<bool>(SettingItemNames.AnalyzerIsFullApplying)]
-[AttachedProperty<bool>(SettingItemNames.AnalyzerIgnoresSlowAlgorithms)]
-[AttachedProperty<bool>(SettingItemNames.AnalyzerIgnoresHighAllocationAlgorithms)]
-[AttachedProperty<List<Technique>>(SettingItemNames.IttoryuSupportedTechniques)]
 public static partial class AnalyzerProperties
 {
 	/// <summary>
@@ -64,6 +25,126 @@ public static partial class AnalyzerProperties
 		Technique.HiddenSingleColumn,
 		Technique.NakedSingle
 	];
+
+
+	[DependencyProperty]
+	public static partial bool AnalyzerIsFullApplying { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AnalyzerIgnoresSlowAlgorithms { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AnalyzerIgnoresHighAllocationAlgorithms { get; set; }
+
+
+	[DependencyProperty]
+	public static partial List<Technique> IttoryuSupportedTechniques { get; set; }
+
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool EnableFullHouse { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool EnableLastDigit { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool HiddenSinglesInBlockFirst { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AnalyzerUseIttoryuMode { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectPointing { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectClaiming { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectLockedSubset { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectNakedSubset { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectLockedHiddenSubset { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowDirectHiddenSubset { get; set; }
+
+	[DependencyProperty(DefaultValue = 2)]
+	public static partial int DirectNakedSubsetMaxSize { get; set; }
+
+	[DependencyProperty(DefaultValue = 2)]
+	public static partial int DirectHiddenSubsetMaxSize { get; set; }
+
+	[DependencyProperty(DefaultValue = 4)]
+	public static partial int NakedSubsetMaxSizeInComplexSingle { get; set; }
+
+	[DependencyProperty(DefaultValue = 4)]
+	public static partial int HiddenSubsetMaxSizeInComplexSingle { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool DisableFinnedOrSashimiXWing { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AllowSiameseNormalFish { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AllowSiameseComplexFish { get; set; }
+
+	[DependencyProperty(DefaultValue = 5)]
+	public static partial int MaxSizeOfComplexFish { get; set; }
+
+	[DependencyProperty(DefaultValue = 5)]
+	public static partial int MaxSizeOfRegularWing { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowIncompleteUniqueRectangles { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool SearchForExtendedUniqueRectangles { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool SearchExtendedBivalueUniversalGraveTypes { get; set; }
+
+	[DependencyProperty]
+	public static partial bool CheckValueTypes { get; set; }
+
+	[DependencyProperty]
+	public static partial bool CheckAlmostLockedQuadruple { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowCollisionOnAlmostLockedSetsXzRule { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowLoopedPatternsOnAlmostLockedSetsXzRule { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowCollisionOnAlmostLockedSetsXyWing { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool AllowCollisionOnAlmostLockedSetsWWing { get; set; }
+
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool SearchForReverseBugPartiallyUsedTypes { get; set; }
+
+	[DependencyProperty(DefaultValue = 2)]
+	public static partial int ReverseBugMaxSearchingEmptyCellsCount { get; set; }
+
+	[DependencyProperty]
+	public static partial bool AllowSiameseXyzRing { get; set; }
+
+	[DependencyProperty(DefaultValue = 3)]
+	public static partial int AlignedExclusionMaxSearchingSize { get; set; }
+
+	[DependencyProperty]
+	public static partial bool TemplateDeleteOnly { get; set; }
+
+	[DependencyProperty(DefaultValue = 64)]
+	public static partial int BowmanBingoMaxLength { get; set; }
+
+	[DependencyProperty]
+	public static partial bool SearchExtendedDeathBlossomTypes { get; set; }
 
 
 	/// <summary>
@@ -123,7 +204,6 @@ public static partial class AnalyzerProperties
 		}
 		return @this;
 	}
-
 
 	[Callback]
 	private static void EnableFullHousePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -264,18 +344,18 @@ public static partial class AnalyzerProperties
 		=> A<DeathBlossomStepSearcher>(d, s => s.SearchExtendedTypes = (bool)e.NewValue);
 
 	[Callback]
-	private static void LogicalSolverIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AnalyzerIsFullApplyingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).IsFullApplying = (bool)e.NewValue;
 
 	[Callback]
-	private static void LogicalSolverIgnoresSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AnalyzerIgnoresSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits((bool)e.NewValue, analyzer.IgnoreHighAllocationAlgorithms);
 	}
 
 	[Callback]
-	private static void LogicalSolverIgnoresHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void AnalyzerIgnoresHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
 		analyzer.WithAlgorithmLimits(analyzer.IgnoreSlowAlgorithms, (bool)e.NewValue);

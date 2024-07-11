@@ -5,15 +5,20 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Collector"/>
-[AttachedProperty<int>(SettingItemNames.CollectorMaxStepsCollected, DefaultValue = 1000)]
-[AttachedProperty<int>(SettingItemNames.DifficultyLevelMode, DefaultValue = 0)]
-public static partial class GathererProperties
+public static partial class CollectorProperties
 {
+	[DependencyProperty(DefaultValue = 1000)]
+	public static partial int CollectorMaxStepsCollected { get; set; }
+
+	[DependencyProperty(DefaultValue = 0)]
+	public static partial int DifficultyLevelMode { get; set; }
+
+
 	[Callback]
-	private static void StepGathererOnlySearchSameLevelTechniquesInFindAllStepsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void DifficultyLevelModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithSameLevelConfigruation((CollectorDifficultyLevelMode)(int)e.NewValue);
 
 	[Callback]
-	private static void StepGathererMaxStepsGatheredPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	private static void CollectorMaxStepsCollectedPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithMaxSteps((int)e.NewValue);
 }

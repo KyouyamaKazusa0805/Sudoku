@@ -4,8 +4,6 @@ namespace SudokuStudio.Views.Attached;
 /// Defines a bind behaviors on <see cref="SudokuPane"/> instances.
 /// </summary>
 /// <seealso cref="SudokuPane"/>
-[AttachedProperty<Analyzer>("Analyzer")]
-[AttachedProperty<Collector>("StepCollector")]
 public static partial class SudokuPaneBindable
 {
 	[Default]
@@ -13,4 +11,11 @@ public static partial class SudokuPaneBindable
 
 	[Default]
 	private static readonly Collector StepCollectorDefaultValue = new();
+
+
+	[DependencyProperty]
+	public static partial Analyzer Analyzer { get; set; }
+
+	[DependencyProperty]
+	public static partial Collector StepCollector { get; set; }
 }
