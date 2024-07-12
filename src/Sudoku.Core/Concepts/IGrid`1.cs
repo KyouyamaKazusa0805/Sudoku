@@ -33,8 +33,171 @@ public interface IGrid<TSelf> :
 	public virtual bool IsUndefined => (TSelf)this == TSelf.Undefined;
 
 	/// <summary>
-	/// Indicates the reference to the first mask.
+	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
+	/// otherwise, <see langword="false"/>.
 	/// </summary>
+	public abstract bool IsSolved { get; }
+
+	/// <summary>
+	/// Determines whether the current grid contains any missing candidates.
+	/// </summary>
+	public abstract bool IsMissingCandidates { get; }
+
+	/// <summary>
+	/// Try to get the symmetry of the puzzle.
+	/// </summary>
+	public abstract SymmetricType Symmetry { get; }
+
+	/// <summary>
+	/// Indicates the total number of given cells.
+	/// </summary>
+	public abstract Cell GivensCount { get; }
+
+	/// <summary>
+	/// Indicates the total number of modifiable cells.
+	/// </summary>
+	public abstract Cell ModifiablesCount { get; }
+
+	/// <summary>
+	/// Indicates the total number of empty cells.
+	/// </summary>
+	public abstract Cell EmptiesCount { get; }
+
+	/// <summary>
+	/// Gets a cell list that only contains the given cells.
+	/// </summary>
+	public abstract CellMap GivenCells { get; }
+
+	/// <summary>
+	/// Gets a cell list that only contains the modifiable cells.
+	/// </summary>
+	public abstract CellMap ModifiableCells { get; }
+
+	/// <summary>
+	/// Indicates a cell list whose corresponding position in this grid is empty.
+	/// </summary>
+	public abstract CellMap EmptyCells { get; }
+
+	/// <summary>
+	/// Indicates the number of total candidates.
+	/// </summary>
+	public abstract Candidate CandidatesCount { get; }
+
+	/// <summary>
+	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
+	/// </summary>
+	public abstract CellMap BivalueCells { get; }
+
+	/// <summary>
+	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
+	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </summary>
+	public abstract ReadOnlySpan<CellMap> CandidatesMap { get; }
+
+	/// <summary>
+	/// <para>
+	/// Indicates the map of possible positions of the existence of each digit. The return value will
+	/// be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </para>
+	/// <para>
+	/// Different with <see cref="CandidatesMap"/>, this property contains all givens, modifiables and
+	/// empty cells only if it contains the digit in the mask.
+	/// </para>
+	/// </summary>
+	/// <seealso cref="CandidatesMap"/>
+	public abstract ReadOnlySpan<CellMap> DigitsMap { get; }
+
+	/// <summary>
+	/// <para>
+	/// Indicates the map of possible positions of the existence of that value of each digit.
+	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+	/// </para>
+	/// <para>
+	/// Different with <see cref="CandidatesMap"/>, the value only contains the given or modifiable
+	/// cells whose mask contain the set bit of that digit.
+	/// </para>
+	/// </summary>
+	/// <seealso cref="CandidatesMap"/>
+	public abstract ReadOnlySpan<CellMap> ValuesMap { get; }
+
+	/// <summary>
+	/// Indicates all possible candidates in the current grid.
+	/// </summary>
+	public abstract ReadOnlySpan<Candidate> Candidates { get; }
+
+	/// <summary>
+	/// Indicates all possible conjugate pairs appeared in this grid.
+	/// </summary>
+	public abstract ReadOnlySpan<Conjugate> ConjugatePairs { get; }
+
+	/// <summary>
+	/// <para>Indicates which houses are empty houses.</para>
+	/// <para>An <b>Empty House</b> is a house holding 9 empty cells, i.e. all cells in this house are empty.</para>
+	/// <para>
+	/// The property returns a <see cref="HouseMask"/> value as a mask that contains all possible house indices.
+	/// For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
+	/// the result <see cref="HouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
+	/// </para>
+	/// </summary>
+	public abstract HouseMask EmptyHouses { get; }
+
+	/// <summary>
+	/// <para>Indicates which houses are completed, regardless of ways of filling.</para>
+	/// <para><inheritdoc cref="EmptyHouses" path="//summary/para[3]"/></para>
+	/// </summary>
+	public abstract HouseMask CompletedHouses { get; }
+
+	/// <summary>
+	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+	/// </summary>
+	public abstract TSelf ResetGrid { get; }
+
+	/// <summary>
+	/// Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
+	/// </summary>
+	public abstract TSelf UnfixedGrid { get; }
+
+	/// <summary>
+	/// Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
+	/// </summary>
+	public abstract TSelf FixedGrid { get; }
+
+	/// <summary>
+	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
+	/// </summary>
+	/// <remarks>
+	/// The field uses the mask table of length 81 to indicate the state and all possible candidates
+	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
+	/// <code>
+	/// | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+	/// |-------------------|-----------|-----------------------------------|
+	/// |    unused bits    | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+	/// '-------------------|-----------|-----------------------------------'
+	///                      \_________/ \_________________________________/
+	///                          (2)                     (1)
+	/// </code>
+	/// Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
+	/// and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>State name</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>Empty cell (i.e. <see cref="CellState.Empty"/>)</term>
+	/// <description>The cell is currently empty, and wait for being filled.</description>
+	/// </item>
+	/// <item>
+	/// <term>Modifiable cell (i.e. <see cref="CellState.Modifiable"/>)</term>
+	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+	/// </item>
+	/// <item>
+	/// <term>Given cell (i.e. <see cref="CellState.Given"/>)</term>
+	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="CellState"/>
 	[UnscopedRef]
 	protected abstract ref readonly Mask FirstMaskRef { get; }
 
@@ -71,13 +234,22 @@ public interface IGrid<TSelf> :
 	public static abstract Mask MaxCandidatesMask { get; }
 
 	/// <summary>
-	/// Represents an empty instance, with valid data to build logic.
+	/// The empty grid that is valid during implementation or running the program
+	/// (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 	/// </summary>
+	/// <remarks>
+	/// This field is initialized by the static constructor of this structure.
+	/// </remarks>
+	/// <seealso cref="DefaultMask"/>
 	public static abstract ref readonly TSelf Empty { get; }
 
 	/// <summary>
-	/// Represents an empty instance, equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
+	/// Indicates the default grid that all values are initialized 0.
+	/// This value is equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
 	/// </summary>
+	/// <remarks>
+	/// This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
+	/// </remarks>
 	public static abstract ref readonly TSelf Undefined { get; }
 
 	/// <summary>
@@ -97,7 +269,6 @@ public interface IGrid<TSelf> :
 	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 
 
-
 	/// <summary>
 	/// Gets the mask at the specified position.
 	/// </summary>
@@ -105,6 +276,35 @@ public interface IGrid<TSelf> :
 	/// <returns>The reference to the mask.</returns>
 	[UnscopedRef]
 	public abstract ref Mask this[Cell cell] { get; }
+
+	/// <summary>
+	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
+	/// ranged in a specified list of cells in the current sudoku grid.
+	/// </summary>
+	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
+	public abstract Mask this[ref readonly CellMap cells] { get; }
+
+	/// <summary>
+	/// <inheritdoc cref="this[ref readonly CellMap]" path="/summary"/>
+	/// </summary>
+	/// <param name="cells"><inheritdoc cref="this[ref readonly CellMap]" path="/param[@name='cells']"/></param>
+	/// <param name="withValueCells">
+	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+	/// </param>
+	/// <param name="mergingMethod">
+	/// Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+	/// <list type="bullet">
+	/// <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
+	/// <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
+	/// <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
+	/// </list>
+	/// By default, the value is <c>'<![CDATA[|]]>'</c>.
+	/// </param>
+	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+	public abstract Mask this[ref readonly CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = '|'] { get; }
 
 
 	/// <summary>
@@ -289,6 +489,15 @@ public interface IGrid<TSelf> :
 	/// </para>
 	/// </returns>
 	public abstract Mask GetCandidates(Cell cell);
+
+	/// <summary>
+	/// Serializes this instance to an array, where all digit value will be stored.
+	/// </summary>
+	/// <returns>
+	/// This array. All elements are the raw masks that between 0 and <see cref="MaxCandidatesMask"/> (i.e. 511).
+	/// </returns>
+	/// <seealso cref="MaxCandidatesMask"/>
+	public abstract Mask[] ToCandidateMaskArray();
 
 	/// <summary>
 	/// Try to get the digit filled in the specified cell.

@@ -5295,24 +5295,16 @@
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.EmptyMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.ModifiableMask">
-            <summary>
-            Indicates the modifiable mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.ModifiableMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.GivenMask">
-            <summary>
-            Indicates the given mask.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.GivenMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.HeaderShift">
             <summary>
@@ -5330,59 +5322,13 @@
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
-            <summary>
-            The empty grid that is valid during implementation or running the program (all values are <see cref="F:Sudoku.Concepts.Grid.DefaultMask"/>, i.e. empty cells).
-            </summary>
-            <remarks>
-            This field is initialized by the static constructor of this structure.
-            </remarks>
-            <seealso cref="F:Sudoku.Concepts.Grid.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Undefined">
-            <summary>
-            Indicates the default grid that all values are initialized 0. This value is equivalent to <see langword="default"/>(<see cref="T:Sudoku.Concepts.Grid"/>).
-            </summary>
-            <remarks>
-            This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
-            </remarks>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid._values">
-            <summary>
-            Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
-            </summary>
-            <remarks>
-            The field uses the mask table of length 81 to indicate the state and all possible candidates
-            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
-            <code>
-            | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
-            |-------------------|-----------|-----------------------------------|
-            |    unused bits    | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
-            '-------------------|-----------|-----------------------------------'
-                                 \_________/ \_________________________________/
-                                     (2)                     (1)
-            </code>
-            Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
-            and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
-            <list type="table">
-            <listheader>
-            <term>State name</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>Empty cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
-            <description>The cell is currently empty, and wait for being filled.</description>
-            </item>
-            <item>
-            <term>Modifiable cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
-            <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
-            </item>
-            <item>
-            <term>Given cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
-            <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
-            </item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.CellState"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -5394,63 +5340,38 @@
             Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
             </exception>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.IsSolved">
-            <summary>
-            Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved; otherwise, <see langword="false"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.IsUndefined">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsEmpty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.IsSolved">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
-            <summary>
-            Determines whether the current grid contains any missing candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyHouses">
-            <summary>
-            <para>Indicates which houses are empty houses.</para>
-            <para>An <b>Empty House</b> is a house holding 9 empty cells, i.e. all cells in this house are empty.</para>
-            <para>
-            The property returns a <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
-            For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
-            the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
-            </para>
-            </summary>
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.FullHouses">
-            <summary>
-            <para>Indicates which houses are completed, regardless of ways of filling.</para>
-            <para><inheritdoc cref="P:Sudoku.Concepts.Grid.EmptyHouses" path="//summary/para[3]"/></para>
-            </summary>
+        <member name="P:Sudoku.Concepts.Grid.CompletedHouses">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Symmetry">
-            <summary>
-            Try to get the symmetry of the puzzle.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.PuzzleType">
             <summary>
@@ -5464,71 +5385,34 @@
             <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
-            <summary>
-            Gets a cell list that only contains the given cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ModifiableCells">
-            <summary>
-            Gets a cell list that only contains the modifiable cells.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyCells">
-            <summary>
-            Indicates a cell list whose corresponding position in this grid is empty.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.BivalueCells">
-            <summary>
-            Indicates a cell list whose corresponding position in this grid contain two candidates.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesMap">
-            <summary>
-            Indicates the map of possible positions of the existence of the candidate value for each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.DigitsMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of each digit. The return value will
-            be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, this property contains all givens, modifiables and
-            empty cells only if it contains the digit in the mask.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ValuesMap">
-            <summary>
-            <para>
-            Indicates the map of possible positions of the existence of that value of each digit.
-            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
-            </para>
-            <para>
-            Different with <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, the value only contains the given or modifiable
-            cells whose mask contain the set bit of that digit.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Candidates">
-            <summary>
-            Indicates all possible candidates in the current grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ConjugatePairs">
-            <summary>
-            Indicates all possible conjugate pairs appeared in this grid.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ResetGrid">
-            <summary>
-            Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.ResetCandidatesGrid">
             <summary>
@@ -5536,14 +5420,10 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.UnfixedGrid">
-            <summary>
-            Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.FixedGrid">
-            <summary>
-            Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc/>
@@ -5573,33 +5453,10 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
-            ranged in a specified list of cells in the current sudoku grid.
-            </summary>
-            <param name="cells">The list of cells to gather the usages on all digits.</param>
-            <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
-            </summary>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
-            <param name="withValueCells">
-            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
-            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
-            </param>
-            <param name="mergingMethod">
-            Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
-            <list type="bullet">
-            <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
-            <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
-            <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
-            </list>
-            By default, the value is <c>'<![CDATA[|]]>'</c>.
-            </param>
-            <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
             <inheritdoc/>
@@ -5660,13 +5517,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToCandidateMaskArray">
-            <summary>
-            Serializes this instance to an array, where all digit value will be stored.
-            </summary>
-            <returns>
-            This array. All elements are the raw masks that between 0 and <see cref="F:Sudoku.Concepts.Grid.MaxCandidatesMask"/> (i.e. 511).
-            </returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.MaxCandidatesMask"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
             <inheritdoc/>
@@ -6659,10 +6510,173 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>
         </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.IsSolved">
+            <summary>
+            Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
+            otherwise, <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.IsMissingCandidates">
+            <summary>
+            Determines whether the current grid contains any missing candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Symmetry">
+            <summary>
+            Try to get the symmetry of the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.GivensCount">
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.GivenCells">
+            <summary>
+            Gets a cell list that only contains the given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.ModifiableCells">
+            <summary>
+            Gets a cell list that only contains the modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.EmptyCells">
+            <summary>
+            Indicates a cell list whose corresponding position in this grid is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.BivalueCells">
+            <summary>
+            Indicates a cell list whose corresponding position in this grid contain two candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.CandidatesMap">
+            <summary>
+            Indicates the map of possible positions of the existence of the candidate value for each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.DigitsMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of each digit. The return value will
+            be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>, this property contains all givens, modifiables and
+            empty cells only if it contains the digit in the mask.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.ValuesMap">
+            <summary>
+            <para>
+            Indicates the map of possible positions of the existence of that value of each digit.
+            The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
+            </para>
+            <para>
+            Different with <see cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>, the value only contains the given or modifiable
+            cells whose mask contain the set bit of that digit.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Candidates">
+            <summary>
+            Indicates all possible candidates in the current grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.ConjugatePairs">
+            <summary>
+            Indicates all possible conjugate pairs appeared in this grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.EmptyHouses">
+            <summary>
+            <para>Indicates which houses are empty houses.</para>
+            <para>An <b>Empty House</b> is a house holding 9 empty cells, i.e. all cells in this house are empty.</para>
+            <para>
+            The property returns a <see cref="T:System.Int32"/> value as a mask that contains all possible house indices.
+            For example, if the row 5, column 5 and block 5 (1-9) are null houses, the property will return
+            the result <see cref="T:System.Int32"/> value, <c>000010000_000010000_000010000</c> as binary.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.CompletedHouses">
+            <summary>
+            <para>Indicates which houses are completed, regardless of ways of filling.</para>
+            <para><inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyHouses" path="//summary/para[3]"/></para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.ResetGrid">
+            <summary>
+            Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.UnfixedGrid">
+            <summary>
+            Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.FixedGrid">
+            <summary>
+            Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.FirstMaskRef">
             <summary>
-            Indicates the reference to the first mask.
+            Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
             </summary>
+            <remarks>
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
+            <code>
+            | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+            |-------------------|-----------|-----------------------------------|
+            |    unused bits    | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+            '-------------------|-----------|-----------------------------------'
+                                 \_________/ \_________________________________/
+                                     (2)                     (1)
+            </code>
+            Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
+            and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
+            <list type="table">
+            <listheader>
+            <term>State name</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Empty cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
+            <description>The cell is currently empty, and wait for being filled.</description>
+            </item>
+            <item>
+            <term>Modifiable cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
+            <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+            </item>
+            <item>
+            <term>Given cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
+            <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.CellState"/>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.EmptyString">
             <summary>
@@ -6697,13 +6711,22 @@
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Empty">
             <summary>
-            Represents an empty instance, with valid data to build logic.
+            The empty grid that is valid during implementation or running the program
+            (all values are <see cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>, i.e. empty cells).
             </summary>
+            <remarks>
+            This field is initialized by the static constructor of this structure.
+            </remarks>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Undefined">
             <summary>
-            Represents an empty instance, equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
+            Indicates the default grid that all values are initialized 0.
+            This value is equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
             </summary>
+            <remarks>
+            This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
+            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.System#Numerics#IMinMaxValue{TSelf}#MinValue">
             <summary>
@@ -6727,6 +6750,35 @@
             </summary>
             <param name="cell">The desired cell index.</param>
             <returns>The reference to the mask.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
+            ranged in a specified list of cells in the current sudoku grid.
+            </summary>
+            <param name="cells">The list of cells to gather the usages on all digits.</param>
+            <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
+            </summary>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
+            <param name="withValueCells">
+            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+            If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
+            </param>
+            <param name="mergingMethod">
+            Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+            <list type="bullet">
+            <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
+            <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
+            <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
+            </list>
+            By default, the value is <c>'<![CDATA[|]]>'</c>.
+            </param>
+            <returns><inheritdoc cref="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.Reset">
             <summary>
@@ -6910,6 +6962,15 @@
             the value will indicate the cell contains the digit 2, 4 and 9.
             </para>
             </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.ToCandidateMaskArray">
+            <summary>
+            Serializes this instance to an array, where all digit value will be stored.
+            </summary>
+            <returns>
+            This array. All elements are the raw masks that between 0 and <see cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/> (i.e. 511).
+            </returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.GetDigit(System.Int32)">
             <summary>
@@ -7178,7 +7239,7 @@
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.PencilmarkGrid._values">
-            <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
