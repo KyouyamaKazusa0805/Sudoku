@@ -8322,7 +8322,7 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.RawPatternData">
+        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.Patterns">
             <summary>
             Indicates all possible extended rectangle pattern combinations.
             </summary>
@@ -22656,6 +22656,42 @@
         </member>
         <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
             <summary>Indicates the locked block.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ExtendedRectangle">
+            <summary>
+            Represents an extended rectangle pattern.
+            </summary>
+            <param name="IsFat">Indicates whether the pattern is fat.</param>
+            <param name="PatternCells">Indicates the cells used.</param>
+            <param name="PairCells">Indicates a list of pairs of cells used.</param>
+            <param name="Size">Indicates the size of the pattern.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ExtendedRectangle.#ctor(System.Boolean,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32,System.Int32}[],System.Int32)">
+            <summary>
+            Represents an extended rectangle pattern.
+            </summary>
+            <param name="IsFat">Indicates whether the pattern is fat.</param>
+            <param name="PatternCells">Indicates the cells used.</param>
+            <param name="PairCells">Indicates a list of pairs of cells used.</param>
+            <param name="Size">Indicates the size of the pattern.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ExtendedRectangle.IsFat">
+            <summary>Indicates whether the pattern is fat.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ExtendedRectangle.PatternCells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ExtendedRectangle.PairCells">
+            <summary>Indicates a list of pairs of cells used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ExtendedRectangle.Size">
+            <summary>Indicates the size of the pattern.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ExtendedRectangle.Equals(Sudoku.Concepts.ExtendedRectangle@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ExtendedRectangle.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.Firework">
             <summary>

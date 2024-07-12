@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using RawPatternDataItem = (bool IsFat, CellMap PatternCells, (Cell Left, Cell Right)[] PairCells, int Size);
-
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -41,7 +39,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly RawPatternDataItem[] RawPatternData;
+	private static readonly ExtendedRectangle[] Patterns;
 
 	/// <summary>
 	/// Indicates all possible combinations of houses.
@@ -86,7 +84,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		var result = new List<RawPatternDataItem>();
+		var result = new List<ExtendedRectangle>();
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
@@ -99,7 +97,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
 				var c23 = c21 + 18;
-				result.Add((false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.AddRef(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 		for (var j = 0; j < 3; j++)
@@ -112,7 +110,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
 				var c23 = c21 + 2;
-				result.Add((false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.AddRef(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 
@@ -138,13 +136,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));
 					}
-
-					result.Add((true, map, [.. pairs], size));
+					result.AddRef(new(true, in map, [.. pairs], size));
 				}
 			}
 		}
 
-		RawPatternData = [.. result];
+		Patterns = [.. result];
 	}
 
 
@@ -154,7 +151,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		foreach (var (isFatType, patternCells, pairs, size) in RawPatternData)
+		foreach (var (isFatType, patternCells, pairs, size) in Patterns)
 		{
 			if ((EmptyCells & patternCells) != patternCells)
 			{
