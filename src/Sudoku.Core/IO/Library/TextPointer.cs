@@ -60,7 +60,6 @@ public sealed partial class TextPointer :
 			{
 				result++;
 			}
-
 			return result;
 		}
 	}
@@ -78,7 +77,6 @@ public sealed partial class TextPointer :
 			{
 				result++;
 			}
-
 			return result;
 		}
 	}
@@ -108,10 +106,8 @@ public sealed partial class TextPointer :
 					{
 						span[i] = (char)_stream.ReadByte();
 					}
-
 					return span.ToString();
 				}
-
 				return null;
 
 
@@ -498,7 +494,6 @@ public sealed partial class TextPointer :
 		{
 			goto Return;
 		}
-
 		value.SetEnd();
 
 	Return:
