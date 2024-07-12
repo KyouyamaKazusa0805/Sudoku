@@ -161,6 +161,13 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
 	public static virtual bool TryPase(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
+	/// <summary>
+	/// Creates a <typeparamref name="TSelf"/> instance via the specified list of <see cref="Mask"/> values.
+	/// </summary>
+	/// <param name="values">The values to be created.</param>
+	/// <returns>A <typeparamref name="TSelf"/> instance created.</returns>
+	public static abstract TSelf Create(ReadOnlySpan<Mask> values);
+
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string?, IFormatProvider?)"/>
 	public static virtual TSelf Parse(string? s) => TSelf.Parse(s, null);
 

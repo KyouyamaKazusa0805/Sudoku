@@ -1360,8 +1360,8 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			GridFormatInfo g => g.ParseGrid(s),
 			CultureInfo { Name: var n } => n.ToLower() switch
 			{
-			['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
-			['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
+				['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
+				['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
 				_ => Parse(s)
 			},
 			_ => Parse(s)
@@ -1374,6 +1374,9 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
+
+	/// <inheritdoc/>
+	static Grid IGrid<Grid>.Create(ReadOnlySpan<short> values) => Create(values);
 
 	/// <summary>
 	/// Event handler on value changed.
@@ -1430,7 +1433,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <summary>
 	/// Returns a <see cref="Grid"/> instance via the raw mask values.
 	/// </summary>
-	/// <param name="rawMaskValues">
+	/// <param name="values">
 	/// <para>The raw mask values.</para>
 	/// <para>
 	/// This value can contain 1 or 81 elements.
@@ -1442,9 +1445,9 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <remarks><b><i>
 	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
 	/// </i></b></remarks>
-	private static Grid Create(ReadOnlySpan<Mask> rawMaskValues)
+	private static Grid Create(ReadOnlySpan<Mask> values)
 	{
-		switch (rawMaskValues.Length)
+		switch (values.Length)
 		{
 			case 0:
 			{
@@ -1453,7 +1456,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			case 1:
 			{
 				var result = Undefined;
-				var uniformValue = rawMaskValues[0];
+				var uniformValue = values[0];
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
 					result[cell] = uniformValue;
@@ -1465,13 +1468,13 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 				var result = Undefined;
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
-					result[cell] = rawMaskValues[cell];
+					result[cell] = values[cell];
 				}
 				return result;
 			}
 			default:
 			{
-				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain {CellsCount} elements.");
+				throw new InvalidOperationException($"The argument '{nameof(values)}' must contain {CellsCount} elements.");
 			}
 		}
 	}

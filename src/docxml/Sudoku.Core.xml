@@ -5954,6 +5954,9 @@
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Create(System.ReadOnlySpan{System.Int16})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
             Event handler on value changed.
@@ -5977,7 +5980,7 @@
             <summary>
             Returns a <see cref="T:Sudoku.Concepts.Grid"/> instance via the raw mask values.
             </summary>
-            <param name="rawMaskValues">
+            <param name="values">
             <para>The raw mask values.</para>
             <para>
             This value can contain 1 or 81 elements.
@@ -6869,6 +6872,13 @@
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.TryPase(System.ReadOnlySpan{System.Char},`0@)">
             <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.Create(System.ReadOnlySpan{System.Int16})">
+            <summary>
+            Creates a <typeparamref name="TSelf"/> instance via the specified list of <see cref="T:System.Int16"/> values.
+            </summary>
+            <param name="values">The values to be created.</param>
+            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
