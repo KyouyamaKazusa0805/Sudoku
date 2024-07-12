@@ -5412,16 +5412,10 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsUndefined">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Undefined"/>, which means the grid holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsEmpty">
-            <summary>
-            Indicates whether the grid is <see cref="F:Sudoku.Concepts.Grid.Empty"/>, which means the grid holds totally same value with <see cref="F:Sudoku.Concepts.Grid.Empty"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Empty"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
             <summary>
@@ -5563,24 +5557,17 @@
             Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
-            <summary>
-            Indicates the minimum possible grid value that the current type can reach.
-            </summary>
-            <remarks>
-            This value is found out via backtracking algorithm.
-            </remarks>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#EmptyString">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MaxValue">
-            <summary>
-            Indicates the maximum possible grid value that the current type can reach.
-            </summary>
-            <remarks>
-            This value is found out via backtracking algorithm.
-            </remarks>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Empty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Undefined">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -5611,6 +5598,9 @@
             <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <target name="method">
 				<summary>
@@ -5636,11 +5626,7 @@
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.DuplicateWith(System.Int32,System.Int32)">
             <summary>
@@ -5861,15 +5847,6 @@
             doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IComparable{Sudoku#Concepts#Grid}#CompareTo(Sudoku.Concepts.Grid)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
@@ -5966,7 +5943,7 @@
             <param name="creatingOption">The grid creating option.</param>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String)">
-            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -6776,6 +6753,183 @@
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.IGrid`1">
+            <summary>
+            Represents a sudoku grid.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.IsEmpty">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Concepts.IGrid`1.Empty"/>, which means the grid holds totally same value with <see cref="P:Sudoku.Concepts.IGrid`1.Empty"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.Empty"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.IsUndefined">
+            <summary>
+            Indicates whether the grid is <see cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>, which means the grid holds totally same value with <see cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.FirstMaskRef">
+            <summary>
+            Indicates the reference to the first mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.EmptyString">
+            <summary>
+            Represents a string value that describes a <typeparamref name="TSelf"/> instance can be parsed into <see cref="P:Sudoku.Concepts.IGrid`1.Empty"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.Empty"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Empty">
+            <summary>
+            Represents an empty instance, with valid data to build logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Undefined">
+            <summary>
+            Represents an empty instance, equivalent to <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.System#Numerics#IMinMaxValue{TSelf}#MinValue">
+            <summary>
+            Indicates the minimum possible grid value that the current type can reach.
+            </summary>
+            <remarks>
+            This value is found out via backtracking algorithm.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
+            <summary>
+            Indicates the maximum possible grid value that the current type can reach.
+            </summary>
+            <remarks>
+            This value is found out via backtracking algorithm.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.Item(System.Int32)">
+            <summary>
+            Gets the mask at the specified position.
+            </summary>
+            <param name="cell">The desired cell index.</param>
+            <returns>The reference to the mask.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.Equals(`0@)">
+            <summary>
+            Determines whether the current instance has same mask values with the other object.
+            </summary>
+            <param name="other">The other instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.CompareTo(`0@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.ToString(System.String)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.ToArray">
+            <inheritdoc cref="M:System.Linq.Providers.IToArrayMethod`2.ToArray"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#IEquatable{TSelf}#Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#IComparable{TSelf}#CompareTo(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IGrid`1.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Linq#Providers#IToArrayMethod{TSelf,System#Int32}#ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.TryParse(System.String,System.IFormatProvider,`0@)">
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)">
+            <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.TryPase(System.String,`0@)">
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.TryPase(System.ReadOnlySpan{System.Char},`0@)">
+            <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.Parse(System.String)">
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:System.ISpanParsable`1.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_Equality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_Inequality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_GreaterThan(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_GreaterThanOrEqual(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_LessThan(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_LessThanOrEqual(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_GreaterThan(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThan(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_GreaterThanOrEqual(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThanOrEqual(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_Explicit(System.Int16[])~`0">
+            <summary>
+            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance,
+            without any value boundary checking.
+            </summary>
+            <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.op_CheckedExplicit(System.Int16[])~`0">
+            <summary>
+            Converts the specified array elements into the target <typeparamref name="TSelf"/> instance, with value boundary checking.
+            </summary>
+            <param name="maskArray">
+            <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.op_Explicit(System.Int16[])~`0" path="/param[@name='maskArray']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
+            </exception>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
@@ -6910,6 +7064,14 @@
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.PencilmarkGrid">
+            <summary>
+            Represents a sudoku grid that can be only used by users to append pencilmarks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.PencilmarkGrid._values">
+            <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>

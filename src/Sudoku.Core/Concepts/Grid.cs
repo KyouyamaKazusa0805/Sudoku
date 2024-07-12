@@ -14,19 +14,7 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public partial struct Grid :
-	IComparable<Grid>,
-	IComparisonOperators<Grid, Grid, bool>,
-	IEnumerable<Digit>,
-	IEquatable<Grid>,
-	IEqualityOperators<Grid, Grid, bool>,
-	IMinMaxValue<Grid>,
-	IReadOnlyCollection<Digit>,
-	ISelectMethod<Grid, Candidate>,
-	ISpanFormattable,
-	ISpanParsable<Grid>,
-	IToArrayMethod<Grid, Digit>,
-	IWhereMethod<Grid, Candidate>
+public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -223,20 +211,14 @@ public partial struct Grid :
 		}
 	}
 
-	/// <summary>
-	/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid holds totally same value with <see cref="Undefined"/>.
-	/// </summary>
-	/// <seealso cref="Undefined"/>
+	/// <inheritdoc/>
 	public readonly bool IsUndefined
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this == Undefined;
 	}
 
-	/// <summary>
-	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid holds totally same value with <see cref="Empty"/>.
-	/// </summary>
-	/// <seealso cref="Empty"/>
+	/// <inheritdoc/>
 	public readonly bool IsEmpty
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -329,24 +311,12 @@ public partial struct Grid :
 		{
 			var emptyCells = EmptyCells;
 			var result = 0;
-			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
+			for (var house = 0; house < 27; house++)
 			{
-				var isCompleted = true;
-				foreach (var cell in HousesCells[houseIndex])
+				if (!(HousesMap[house] & emptyCells))
 				{
-					if (emptyCells.Contains(cell))
-					{
-						// The current cells is empty, breaking the rule of full house.
-						isCompleted = false;
-						break;
-					}
+					result |= 1 << house;
 				}
-				if (!isCompleted)
-				{
-					continue;
-				}
-
-				result |= 1 << houseIndex;
 			}
 			return result;
 		}
@@ -514,24 +484,18 @@ public partial struct Grid :
 	}
 
 	/// <inheritdoc/>
-	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;
+	[UnscopedRef]
+	readonly ref readonly Mask IGrid<Grid>.FirstMaskRef => ref this[0];
 
 
-	/// <summary>
-	/// Indicates the minimum possible grid value that the current type can reach.
-	/// </summary>
-	/// <remarks>
-	/// This value is found out via backtracking algorithm.
-	/// </remarks>
-	static Grid IMinMaxValue<Grid>.MinValue => Parse("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
+	/// <inheritdoc/>
+	static ref readonly string IGrid<Grid>.EmptyString => ref EmptyString;
 
-	/// <summary>
-	/// Indicates the maximum possible grid value that the current type can reach.
-	/// </summary>
-	/// <remarks>
-	/// This value is found out via backtracking algorithm.
-	/// </remarks>
-	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
+	/// <inheritdoc/>
+	static ref readonly Grid IGrid<Grid>.Empty => ref Empty;
+
+	/// <inheritdoc/>
+	static ref readonly Grid IGrid<Grid>.Undefined => ref Undefined;
 
 
 	/// <summary>
@@ -607,6 +571,10 @@ public partial struct Grid :
 		}
 	}
 
+	/// <inheritdoc/>
+	[UnscopedRef]
+	ref Mask IGrid<Grid>.this[Cell cell] => ref this[cell];
+
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -634,11 +602,7 @@ public partial struct Grid :
 		valuesMap = ValuesMap;
 	}
 
-	/// <summary>
-	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(ref readonly Grid other) => this[..].SequenceEqual(other[..]);
 
@@ -1085,15 +1049,6 @@ public partial struct Grid :
 	}
 
 	/// <inheritdoc/>
-	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(in other);
-
-	/// <inheritdoc/>
-	readonly int IComparable<Grid>.CompareTo(Grid other) => CompareTo(in other);
-
-	/// <inheritdoc/>
-	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
-
-	/// <inheritdoc/>
 	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
 		=> this.Where(predicate).ToArray();
 
@@ -1281,9 +1236,14 @@ public partial struct Grid :
 	public static Grid Create(ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
 		=> new(in gridValues[0], creatingOption);
 
-	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider)"/>
-	public static Grid Parse(string str)
+	/// <inheritdoc/>
+	public static Grid Parse(string? s)
 	{
+		if (s is null)
+		{
+			throw new FormatException();
+		}
+
 		var parsers = (GridFormatInfo[])[
 			new MultipleLineGridFormatInfo(),
 			new MultipleLineGridFormatInfo { RemoveGridLines = true },
@@ -1298,12 +1258,12 @@ public partial struct Grid :
 
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
 		var grid = Undefined;
-		switch (str.Length, str.Contains("-+-"), str.Contains('\t'))
+		switch (s.Length, s.Contains("-+-"), s.Contains('\t'))
 		{
-			case (729, _, _) when parseAsSukaku(str, out var g): return g;
-			case (_, false, true) when parseAsExcel(str, out var g): return g;
-			case (_, true, _) when parseMultipleLines(str, out var g): grid = g; break;
-			case var _ when parseAll(str, out var g): grid = g; break;
+			case (729, _, _) when parseAsSukaku(s, out var g): return g;
+			case (_, false, true) when parseAsExcel(s, out var g): return g;
+			case (_, true, _) when parseMultipleLines(s, out var g): grid = g; break;
+			case var _ when parseAll(s, out var g): grid = g; break;
 		}
 		if (grid.IsUndefined)
 		{
