@@ -251,25 +251,25 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap GivenCells => GetMap(&Predicate.GivenCells);
+	public readonly unsafe CellMap GivenCells => GridBase.GetMap(in this, &Predicate.GivenCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap ModifiableCells => GetMap(&Predicate.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(in this, &Predicate.ModifiableCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap EmptyCells => GetMap(&Predicate.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(in this, &Predicate.EmptyCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap BivalueCells => GetMap(&Predicate.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(in this, &Predicate.BivalueCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&Predicate.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GridBase.GetMaps(in this, &Predicate.CandidatesMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GetMaps(&Predicate.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GridBase.GetMaps(in this, &Predicate.DigitsMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GetMaps(&Predicate.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(in this, &Predicate.ValuesMap);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<Candidate> Candidates
@@ -790,51 +790,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
 		=> this.Select(selector).ToArray();
-
-	/// <summary>
-	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
-	/// </summary>
-	/// <param name="predicate">The predicate.</param>
-	/// <returns>The map.</returns>
-	/// <seealso cref="EmptyCells"/>
-	/// <seealso cref="BivalueCells"/>
-	private readonly unsafe CellMap GetMap(delegate*<ref readonly Grid, Cell, bool> predicate)
-	{
-		var result = CellMap.Empty;
-		for (var cell = 0; cell < CellsCount; cell++)
-		{
-			if (predicate(in this, cell))
-			{
-				result.Add(cell);
-			}
-		}
-		return result;
-	}
-
-	/// <summary>
-	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
-	/// </summary>
-	/// <param name="predicate">The predicate.</param>
-	/// <returns>The map indexed by each digit.</returns>
-	/// <seealso cref="CandidatesMap"/>
-	/// <seealso cref="DigitsMap"/>
-	/// <seealso cref="ValuesMap"/>
-	private readonly unsafe CellMap[] GetMaps(delegate*<ref readonly Grid, Cell, Digit, bool> predicate)
-	{
-		var result = new CellMap[CellCandidatesCount];
-		for (var digit = 0; digit < CellCandidatesCount; digit++)
-		{
-			ref var map = ref result[digit];
-			for (var cell = 0; cell < CellsCount; cell++)
-			{
-				if (predicate(in this, cell, digit))
-				{
-					map.Add(cell);
-				}
-			}
-		}
-		return result;
-	}
 
 	/// <summary>
 	/// Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.

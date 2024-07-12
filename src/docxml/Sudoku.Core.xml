@@ -5584,25 +5584,6 @@
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMap()">
-            <summary>
-            Called by properties <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/> and <see cref="P:Sudoku.Concepts.Grid.BivalueCells"/>.
-            </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>The map.</returns>
-            <seealso cref="P:Sudoku.Concepts.Grid.EmptyCells"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.BivalueCells"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.GetMaps()">
-            <summary>
-            Called by properties <see cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.Grid.DigitsMap"/> and <see cref="P:Sudoku.Concepts.Grid.ValuesMap"/>.
-            </summary>
-            <param name="predicate">The predicate.</param>
-            <returns>The map indexed by each digit.</returns>
-            <seealso cref="P:Sudoku.Concepts.Grid.CandidatesMap"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.DigitsMap"/>
-            <seealso cref="P:Sudoku.Concepts.Grid.ValuesMap"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
             <summary>
             Gets a sudoku grid, removing all value digits not appearing in the specified <paramref name="pattern"/>.
@@ -5709,10 +5690,10 @@
             </i></b></remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int16,System.Int16,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.OnRefreshingCandidates(Sudoku.Concepts.Grid@)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.IGrid`1.OnRefreshingCandidates(`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
@@ -7025,7 +7006,7 @@
         <member name="M:Sudoku.Concepts.IGrid`1.Parse(System.ReadOnlySpan{System.Char})">
             <inheritdoc cref="M:System.ISpanParsable`1.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Concepts.IGrid`1.OnValueChanged(`0@,System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
             Event handler on value changed.
             </summary>
@@ -7038,11 +7019,32 @@
             In fact, if the value is -1, this method will do nothing.
             </param>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.IGrid`1.OnRefreshingCandidates(`0@)">
             <summary>
             Event handler on refreshing candidates.
             </summary>
             <param name="this">The grid itself.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.GetMap(`0@,)">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Concepts.IGrid`1.EmptyCells"/> and <see cref="P:Sudoku.Concepts.IGrid`1.BivalueCells"/>.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>The map.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.EmptyCells"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.BivalueCells"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IGrid`1.GetMaps(`0@,)">
+            <summary>
+            Called by properties <see cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>, <see cref="P:Sudoku.Concepts.IGrid`1.DigitsMap"/> and <see cref="P:Sudoku.Concepts.IGrid`1.ValuesMap"/>.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="predicate">The predicate.</param>
+            <returns>The map indexed by each digit.</returns>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.CandidatesMap"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.DigitsMap"/>
+            <seealso cref="P:Sudoku.Concepts.IGrid`1.ValuesMap"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.op_Equality(`0@,`0@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -7232,14 +7234,6 @@
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.PencilmarkGrid">
-            <summary>
-            Represents a sudoku grid that can be only used by users to append pencilmarks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.PencilmarkGrid._values">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
@@ -10658,6 +10652,14 @@
             <summary>
             Indicates all symmetry types should be satisfied.
             </summary>
+        </member>
+        <member name="T:Sudoku.SynderNotation.PencilmarkGrid">
+            <summary>
+            Represents a sudoku grid that can be only used by users to append pencilmarks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SynderNotation.PencilmarkGrid._values">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.UnitCellGroupPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the UnitCellGroupPattern method.</summary>

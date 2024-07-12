@@ -588,13 +588,60 @@ public interface IGrid<TSelf> :
 	/// Indicates the set value. If to clear the cell, the value will be -1.
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
-	protected static abstract void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue);
+	protected static abstract void OnValueChanged(ref TSelf @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue);
 
 	/// <summary>
 	/// Event handler on refreshing candidates.
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
-	protected static abstract void OnRefreshingCandidates(ref Grid @this);
+	protected static abstract void OnRefreshingCandidates(ref TSelf @this);
+
+	/// <summary>
+	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>The map.</returns>
+	/// <seealso cref="EmptyCells"/>
+	/// <seealso cref="BivalueCells"/>
+	protected static unsafe CellMap GetMap(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, bool> predicate)
+	{
+		var result = CellMap.Empty;
+		for (var cell = 0; cell < CellsCount; cell++)
+		{
+			if (predicate(in @this, cell))
+			{
+				result.Add(cell);
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Called by properties <see cref="CandidatesMap"/>, <see cref="DigitsMap"/> and <see cref="ValuesMap"/>.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>The map indexed by each digit.</returns>
+	/// <seealso cref="CandidatesMap"/>
+	/// <seealso cref="DigitsMap"/>
+	/// <seealso cref="ValuesMap"/>
+	protected static unsafe CellMap[] GetMaps(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, Digit, bool> predicate)
+	{
+		var result = new CellMap[CellCandidatesCount];
+		for (var digit = 0; digit < CellCandidatesCount; digit++)
+		{
+			ref var map = ref result[digit];
+			for (var cell = 0; cell < CellsCount; cell++)
+			{
+				if (predicate(in @this, cell, digit))
+				{
+					map.Add(cell);
+				}
+			}
+		}
+		return result;
+	}
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>

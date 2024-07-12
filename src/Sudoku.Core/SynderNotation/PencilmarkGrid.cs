@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.SynderNotation;
 
 using static IGrid;
 
