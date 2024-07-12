@@ -19,10 +19,8 @@ public static class Backdoor
 		var sstsChecker = Analyzer.SstsOnly;
 		return (grid, sstsChecker.Analyze(in grid)) switch
 		{
-			_ when !grid.GetIsValid()
-				=> throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
-			({ IsSolved: true }, _)
-				=> throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
+			_ when !grid.GetIsValid() => throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
+			({ IsSolved: true }, _) => throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
 			(_, { IsSolved: true }) when grid.GetSolutionGrid() is var solution
 				=>
 				from candidate in grid
