@@ -10,10 +10,9 @@ namespace System.Linq;
 /// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 /// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 /// </param>
-[StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
+[StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
 	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors

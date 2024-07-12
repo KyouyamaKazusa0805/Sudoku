@@ -9,11 +9,10 @@ namespace Sudoku.IO.Library;
 /// This type only supports for Windows now. For other OS platforms,
 /// I will allow them in the future because I'm not familiar with file systems on other OS platforms.
 /// </i></remarks>
+[DebuggerStepThrough]
 [StructLayout(LayoutKind.Auto)]
 [SupportedOSPlatform(PlatformNames.Windows)]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-[method: DebuggerStepThrough]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LibraryInfo(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "internal"), HashCodeMember, StringMember] string directory,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] string fileId
