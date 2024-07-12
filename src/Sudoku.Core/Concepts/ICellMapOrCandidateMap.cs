@@ -6,7 +6,6 @@ namespace Sudoku.Concepts;
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
-[TypeImpl(TypeImplFlag.EqualityOperators, EqualityOperatorsBehavior = EqualityOperatorsBehavior.MakeVirtual, IsLargeStructure = true)]
 public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
@@ -454,6 +453,12 @@ public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static abstract bool operator false(in TSelf map);
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	public static abstract bool operator ==(in TSelf left, in TSelf right);
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	public static abstract bool operator !=(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,

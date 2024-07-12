@@ -6624,6 +6624,12 @@
             <param name="map">The collection.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`3.op_Equality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`3.op_Inequality(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`3.op_Addition(`0@,`1)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
