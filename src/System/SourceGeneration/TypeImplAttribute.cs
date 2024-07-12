@@ -5,7 +5,7 @@ namespace System.SourceGeneration;
 /// with the specified generation mode.
 /// </summary>
 /// <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
 public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] TypeImplFlag flags) : Attribute
 {
 	/// <summary>
