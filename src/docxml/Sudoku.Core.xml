@@ -2370,7 +2370,7 @@
             <inheritdoc cref="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -2470,11 +2470,6 @@
             Represents an enumerator type that iterates on each cell offsets.
             </summary>
             <param name="offset">Indicates the offsets.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.CellMap.Enumerator._offset">
-            <summary>
-            The internal field for offsets.
-            </summary>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Enumerator._index">
             <summary>

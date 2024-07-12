@@ -9,25 +9,20 @@ public partial struct CellMap
 	public ref struct Enumerator(Cell[] offset) : IEnumerator<Cell>
 	{
 		/// <summary>
-		/// The internal field for offsets.
-		/// </summary>
-		private readonly Cell[] _offset = offset;
-
-		/// <summary>
 		/// Indicates the index.
 		/// </summary>
 		private int _index = -1;
 
 
 		/// <inheritdoc/>
-		public readonly Cell Current => _offset[_index];
+		public readonly Cell Current => offset[_index];
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;
 
 
 		/// <inheritdoc/>
-		public bool MoveNext() => ++_index < _offset.Length;
+		public bool MoveNext() => ++_index < offset.Length;
 
 		/// <inheritdoc/>
 		readonly void IDisposable.Dispose() { }
