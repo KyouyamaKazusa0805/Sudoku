@@ -2496,14 +2496,14 @@
         <member name="M:Sudoku.Concepts.CellMap.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.Size">
-            <summary>
-            Indicates the size.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.CellMap.MaxValueDouble">
             <summary>
             Indicates the possible maximal value in <see cref="T:System.Double"/> representation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.Size">
+            <summary>
+            Indicates the size.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.MaxValueUInt128">
@@ -2529,6 +2529,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.System#Numerics#ISignedNumber{Sudoku#Concepts#CellMap}#NegativeOne">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IBinaryNumber{Sudoku#Concepts#CellMap}#AllBitsSet">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#ISpanFormattable#TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">

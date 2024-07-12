@@ -1,16 +1,16 @@
 namespace Sudoku.Concepts;
 
-public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
+public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>, IBinaryNumber<CellMap>
 {
-	/// <summary>
-	/// Indicates the size.
-	/// </summary>
-	private const int Size = 16;
-
 	/// <summary>
 	/// Indicates the possible maximal value in <see cref="double"/> representation.
 	/// </summary>
 	private const double MaxValueDouble = 2417851639229258349412352D;
+
+	/// <summary>
+	/// Indicates the size.
+	/// </summary>
+	private const int Size = 16;
 
 
 	/// <summary>
@@ -51,6 +51,9 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>
 
 	/// <inheritdoc/>
 	static CellMap ISignedNumber<CellMap>.NegativeOne => Full;
+
+	/// <inheritdoc/>
+	static CellMap IBinaryNumber<CellMap>.AllBitsSet => Full;
 
 
 	/// <inheritdoc/>
