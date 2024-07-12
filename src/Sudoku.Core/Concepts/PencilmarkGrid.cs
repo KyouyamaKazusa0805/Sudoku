@@ -3,7 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a sudoku grid that can be only used by users to append pencilmarks.
 /// </summary>
-[InlineArray(Grid.CellsCount)]
+[InlineArray(IGrid.CellsCount)]
 public struct PencilmarkGrid// : IGrid<PencilmarkGrid>
 {
 	/// <inheritdoc cref="Grid._values"/>

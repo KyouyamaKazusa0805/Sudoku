@@ -1323,7 +1323,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 			// Set a cell with a digit.
 			case ({ AllFalse: true }, var cell, _, var digit)
-			when PreventConflictingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConflictingInput:
+			when PreventConflictingInput && !Puzzle.ConflictWith(cell, digit) || !PreventConflictingInput:
 			{
 				var args = new DigitInputEventArgs(cell, digit);
 				DigitInput?.Invoke(this, args);

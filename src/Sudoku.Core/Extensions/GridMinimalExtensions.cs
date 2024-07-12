@@ -38,7 +38,7 @@ public static class GridMinimalExtensions
 
 		switch (@this)
 		{
-			case { IsSolved: true, GivenCells.Count: Grid.CellsCount }:
+			case { IsSolved: true, GivenCells.Count: IGrid.CellsCount }:
 			{
 				// Very special case: all cells are givens.
 				// The puzzle is considered not a minimal puzzle, because any digit in the grid can be removed.
@@ -56,7 +56,7 @@ public static class GridMinimalExtensions
 
 					if (newGrid.GetIsValid())
 					{
-						firstCandidateMakePuzzleNotMinimal = cell * Grid.CellCandidatesCount + @this.GetDigit(cell);
+						firstCandidateMakePuzzleNotMinimal = cell * IGrid.CellCandidatesCount + @this.GetDigit(cell);
 						return false;
 					}
 				}
