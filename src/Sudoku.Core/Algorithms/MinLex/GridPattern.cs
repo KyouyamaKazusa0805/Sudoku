@@ -32,6 +32,7 @@ public unsafe struct GridPattern
 		223, 223, 255, 31, 95, 95, 223, 95, 223, 223, 255, 63, 127, 127, 255, 127, 255, 255, 511
 	];
 
+
 	/// <summary>
 	/// Indicates the rows.
 	/// </summary>
