@@ -25,20 +25,15 @@ public static class ChainOrLoopExtensions
 	public static Technique GetTechnique(this ChainOrLoop @this, ConclusionSet conclusions)
 		=> @this switch
 		{
-			Chain
-			{
-				SatisfyXRule: var isX,
-				IsGrouped: var isGrouped,
-				Links: var links,
-			} instance => instance switch
+			Chain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
 			{
 				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
 				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
 				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
-				//{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
-				//{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+				{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
+				{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
 				{ IsSplitWing: true } => isGrouped ? Technique.GroupedSWing : Technique.SWing,
 				{ IsLocalWing: true } => isGrouped ? Technique.GroupedLWing : Technique.LWing,
 				{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
