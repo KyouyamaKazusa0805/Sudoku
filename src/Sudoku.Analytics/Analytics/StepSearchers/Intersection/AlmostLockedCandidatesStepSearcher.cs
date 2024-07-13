@@ -35,7 +35,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the searcher checks for value types.
 	/// </summary>
-	[SettingItemName(SettingItemNames.CheckValueTypes)]
+	[SettingItemName(SettingItemNames.AlmostLockedCandidatesCheckValueTypes)]
 	public bool CheckValueTypes { get; set; }
 
 

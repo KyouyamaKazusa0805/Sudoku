@@ -5486,6 +5486,18 @@
             <summary>
             Provides a driver that can generate normal chains and forcing chains.
             </summary>
+            <remarks>
+            Please check separated files to get chaining algorithm.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Collect all blossom loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
@@ -5526,30 +5538,6 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all multiple forcing chains appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-            <example>
-            Test example:
-            <code><![CDATA[
-            070096000003520680006004702480000020000000000510000000000000070000030509168000003
-            ]]></code>
-            This example only contains one forcing chains pattern and direct singles.
-            </example>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            Collect all blossom loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
             <summary>
             <para>
@@ -5570,6 +5558,21 @@
             </param>
             <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
             <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+            <example>
+            Test example:
+            <code><![CDATA[
+            070096000003520680006004702480000020000000000510000000000000070000030509168000003
+            ]]></code>
+            This example only contains one forcing chains pattern and direct singles.
+            </example>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindForcingChains(Sudoku.Concepts.Node)">
             <summary>
@@ -6338,7 +6341,7 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.CheckAlmostLockedQuadruple">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.CheckValueTypes">
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AlmostLockedCandidatesCheckValueTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
         </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchExtendedDeathBlossomTypes">

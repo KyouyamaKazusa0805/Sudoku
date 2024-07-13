@@ -103,7 +103,7 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
 	[DependencyProperty]
-	public partial bool CheckValueTypes { get; set; }
+	public partial bool AlmostLockedCandidatesCheckValueTypes { get; set; }
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	[DependencyProperty]

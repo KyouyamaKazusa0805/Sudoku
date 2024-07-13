@@ -110,7 +110,7 @@ public static class SettingItemNames
 	public const string CheckAlmostLockedQuadruple = nameof(CheckAlmostLockedQuadruple);
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
-	public const string CheckValueTypes = nameof(CheckValueTypes);
+	public const string AlmostLockedCandidatesCheckValueTypes = nameof(AlmostLockedCandidatesCheckValueTypes);
 
 	/// <inheritdoc cref="DeathBlossomStepSearcher.SearchExtendedTypes"/>
 	public const string SearchExtendedDeathBlossomTypes = nameof(SearchExtendedDeathBlossomTypes);

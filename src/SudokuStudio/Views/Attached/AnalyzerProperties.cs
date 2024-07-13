@@ -135,7 +135,7 @@ public static partial class AnalyzerProperties
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
 	[DependencyProperty]
-	public static partial bool CheckAlmostLockedCandidatesValueTypes { get; set; }
+	public static partial bool AlmostLockedCandidatesCheckValueTypes { get; set; }
 
 	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
 	[DependencyProperty]
