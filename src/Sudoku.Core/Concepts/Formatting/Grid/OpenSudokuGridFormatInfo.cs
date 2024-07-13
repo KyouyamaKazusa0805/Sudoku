@@ -5,6 +5,10 @@ namespace Sudoku.Concepts;
 /// </summary>
 public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 {
+	[GeneratedRegex("""\d(\|\d){242}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridOpenSudokuPattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -70,7 +74,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	protected internal override Grid ParseGrid(string str)
 	{
-		if (GridOpenSudokuPattern().Match(str) is not { Success: true, Value: var match })
+		if (GridOpenSudokuPattern.Match(str) is not { Success: true, Value: var match })
 		{
 			return Grid.Undefined;
 		}
@@ -106,8 +110,4 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 		static bool whenClause(Cell i, string match, string pattern1, string pattern2)
 			=> i == 80 * 6 ? match[(i + 1)..(i + 5)] == pattern1 : match[(i + 1)..(i + 6)] == pattern2;
 	}
-
-
-	[GeneratedRegex("""\d(\|\d){242}""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridOpenSudokuPattern();
 }

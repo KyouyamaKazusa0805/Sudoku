@@ -60,7 +60,7 @@ public abstract record CoordinateParser : IFormatProvider
 	/// The parser method that can creates a <see cref="Conjugate"/> list via the specified text to be parsed.
 	/// </summary>
 	/// <seealso cref="Conjugate"/>
-	public abstract Func<string, Conjugate[]> ConjuagteParser { get; }
+	public abstract Func<string, Conjugate[]> ConjugateParser { get; }
 
 
 	/// <summary>

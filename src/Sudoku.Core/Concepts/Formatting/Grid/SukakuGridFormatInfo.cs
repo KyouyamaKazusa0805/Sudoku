@@ -5,6 +5,10 @@ namespace Sudoku.Concepts;
 /// </summary>
 public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 {
+	[GeneratedRegex("""\d*[\-\+]?\d+""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSukakuSegmentPattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -85,7 +89,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 	{
 		if (Multiline)
 		{
-			var matches = from m in GridSukakuSegmentPattern().Matches(str) select m.Value;
+			var matches = from m in GridSukakuSegmentPattern.Matches(str) select m.Value;
 			if (matches is { Length: not 81 })
 			{
 				return Grid.Undefined;
@@ -145,8 +149,4 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 			return result;
 		}
 	}
-
-
-	[GeneratedRegex("""\d*[\-\+]?\d+""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridSukakuSegmentPattern();
 }

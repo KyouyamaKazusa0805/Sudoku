@@ -25,10 +25,32 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, Chute[]> ChuteParser => OnChuteParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
+	public override Func<string, Conjugate[]> ConjugateParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
 	public override Func<string, Miniline[]> IntersectionParser => OnIntersectionParsing;
+
+
+	[GeneratedRegex("""r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitCellGroupPattern { get; }
+
+	[GeneratedRegex("""r[1-9]+c[1-9]+\([1-9]+\)|[1-9]+r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitCandidateGroupPattern { get; }
+
+	[GeneratedRegex("""r[1-9]+c[1-9]+(,\s*r[1-9]+c[1-9]+)*\s*(==?|!=|<>)\s*[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitConclusionGroupPattern { get; }
+
+	[GeneratedRegex("""[rcb][1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitHousePattern { get; }
+
+	[GeneratedRegex("""[rc][1-9]+b[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitIntersectionGroupPattern { get; }
+
+	[GeneratedRegex("""m[rc][1-3]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitMegaLineGroupPattern { get; }
+
+	[GeneratedRegex("""r[1-9]c[1-9]\s*={2}\s*r[1-9]c[1-9]\([1-9]\)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitConjugateGroupPattern { get; }
 
 
 	/// <inheritdoc/>
@@ -43,7 +65,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitCellGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitCellGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -74,7 +96,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitCandidateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitCandidateGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -131,7 +153,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return 0;
 		}
 
-		if (UnitHousePattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitHousePattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return 0;
 		}
@@ -157,7 +179,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitConclusionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitConclusionGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -194,7 +216,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitMegaLineGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitMegaLineGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -228,7 +250,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitConjugateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitConjugateGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -256,7 +278,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		if (UnitIntersectionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitIntersectionGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -281,28 +303,6 @@ public sealed partial record RxCyParser : CoordinateParser
 				}
 			}
 		}
-
 		return [.. result];
 	}
-
-	[GeneratedRegex("""r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitCellGroupPattern();
-
-	[GeneratedRegex("""r[1-9]+c[1-9]+\([1-9]+\)|[1-9]+r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitCandidateGroupPattern();
-
-	[GeneratedRegex("""r[1-9]+c[1-9]+(,\s*r[1-9]+c[1-9]+)*\s*(==?|!=|<>)\s*[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitConclusionGroupPattern();
-
-	[GeneratedRegex("""[rcb][1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitHousePattern();
-
-	[GeneratedRegex("""[rc][1-9]+b[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitIntersectionGroupPattern();
-
-	[GeneratedRegex("""m[rc][1-3]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitMegaLineGroupPattern();
-
-	[GeneratedRegex("""r[1-9]c[1-9]\s*={2}\s*r[1-9]c[1-9]\([1-9]\)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitConjugateGroupPattern();
 }

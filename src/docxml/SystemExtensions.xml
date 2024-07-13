@@ -308,7 +308,7 @@
 				</para>
 			</feature>
             <para>
-            This method passes with a reference to an object, which is unnecessary to be called by a referece-typed object,
+            This method passes with a reference to an object, which is unnecessary to be called by a reference-typed object,
             or a value-typed object whose memory size is less than a pointer. <b>Always measure the necessity of the usage.</b>
             </para>
             </remarks>
@@ -363,7 +363,7 @@
             <param name="this">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="other"/>.</param>
             <param name="other">A <see cref="T:System.Collections.Generic.List`1"/> to compare to <paramref name="this"/>.</param>
             <returns>
-            <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
+            <see langword="true"/> if the two source sequences are of equal length and their corresponding elements are equal according
             to <see cref="M:System.IEquatable`1.Equals(`0)"/> for their type; otherwise, <see langword="false"/>.
             </returns>
         </member>
@@ -412,7 +412,14 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetSize``1(System.Collections.Generic.List{``0})">
+        <member name="T:System.Collections.Generic.ListFieldEntry`1">
+            <summary>
+            Represents an entry to call internal fields on <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element in <see cref="T:System.Collections.Generic.List`1"/>.</typeparam>
+            <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetSize(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal field <c>_size</c> in type <see cref="T:System.Collections.Generic.List`1" />.
             </summary>
@@ -437,7 +444,7 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetVersion``1(System.Collections.Generic.List{``0})">
+        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetVersion(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal field <c>_version</c> in type <see cref="T:System.Collections.Generic.List`1" />.
             </summary>
@@ -462,11 +469,10 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ListExtensions.GetItems``1(System.Collections.Generic.List{``0})">
+        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetItems(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal reference to the first <typeparamref name="T" /> in a <see cref="T:System.Collections.Generic.List`1" />.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The list of <typeparamref name="T" /> instances.</param>
             <returns>The reference to the first <typeparamref name="T" />.</returns>
             <remarks>
@@ -1575,6 +1581,26 @@
             Indicates the time span that is used for matching.
             </summary>
         </member>
+        <member name="P:System.StringExtensions.NullLinesOrHeaderSpacesPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(^\\s*|(?&lt;=\\r\\n)\\s+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match if at the beginning of the string.<br/>
+                        ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Zero-width positive lookbehind.<br/>
+                            ○ Match the string "\r\n" right-to-left.<br/>
+                        ○ Match a whitespace character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
             <summary>
             Check whether the specified string instance is satisfied
@@ -1767,26 +1793,6 @@
             </summary>
             <param name="this">The value to check.</param>
             <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-        </member>
-        <member name="M:System.StringExtensions.NullLinesOrHeaderSpacesPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(^\\s*|(?&lt;=\\r\\n)\\s+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match if at the beginning of the string.<br/>
-                        ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Zero-width positive lookbehind.<br/>
-                            ○ Match the string "\r\n" right-to-left.<br/>
-                        ○ Match a whitespace character atomically at least once.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="T:System.Runtime.CompilerServices.TupleExtensions">
             <summary>

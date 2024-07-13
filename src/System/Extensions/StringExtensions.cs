@@ -12,6 +12,11 @@ public static partial class StringExtensions
 	private static readonly TimeSpan MatchingTimeSpan = TimeSpan.FromSeconds(5);
 
 
+
+	[GeneratedRegex("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
+	internal static partial Regex NullLinesOrHeaderSpacesPattern { get; }
+
+
 	/// <summary>
 	/// Check whether the specified string instance is satisfied
 	/// the specified regular expression pattern or not.
@@ -255,7 +260,4 @@ public static partial class StringExtensions
 			return false;
 		}
 	}
-
-	[GeneratedRegex("""(^\s*|(?<=\r\n)\s+)""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex NullLinesOrHeaderSpacesPattern();
 }

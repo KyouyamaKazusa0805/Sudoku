@@ -119,7 +119,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conjugate Parse(string s, IFormatProvider? provider)
-		=> CoordinateParser.GetParser(provider).ConjuagteParser(s) is [var result]
+		=> CoordinateParser.GetParser(provider).ConjugateParser(s) is [var result]
 			? result
 			: throw new FormatException(SR.ExceptionMessage("MultipleConjugatePairValuesFound"));
 }

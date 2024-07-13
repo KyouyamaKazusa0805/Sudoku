@@ -3841,7 +3841,7 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Chute"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.ConjuagteParser">
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.ConjugateParser">
             <summary>
             The parser method that can creates a <see cref="T:Sudoku.Concepts.Conjugate"/> list via the specified text to be parsed.
             </summary>
@@ -4052,16 +4052,13 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.ChuteParser">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.ConjuagteParser">
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.ConjugateParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.IntersectionParser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.UnitCellGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitCellGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>[a-k]+[1-9]+</code><br/>
@@ -4074,7 +4071,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.UnitCandidateGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitCandidateGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
@@ -4092,7 +4089,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.UnitConclusionGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitConclusionGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
@@ -4121,7 +4118,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.UnitConjugateGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitConjugateGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
@@ -4143,6 +4140,9 @@
                 ○ Match a character in the set [1-9].<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter">
             <summary>
@@ -4303,16 +4303,13 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.ChuteParser">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.ConjuagteParser">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.ConjugateParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.IntersectionParser">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitCellGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitCellGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>r[1-9]+c[1-9]+</code><br/>
@@ -4327,7 +4324,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitCandidateGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitCandidateGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
@@ -4353,7 +4350,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitConclusionGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitConclusionGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
@@ -4384,7 +4381,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitHousePattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitHousePattern">
             <remarks>
             Pattern:<br/>
             <code>[rcb][1-9]+</code><br/>
@@ -4397,7 +4394,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitIntersectionGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitIntersectionGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>[rc][1-9]+b[1-9]+</code><br/>
@@ -4412,7 +4409,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitMegaLineGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitMegaLineGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>m[rc][1-3]+</code><br/>
@@ -4426,7 +4423,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitConjugateGroupPattern">
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitConjugateGroupPattern">
             <remarks>
             Pattern:<br/>
             <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
@@ -4450,6 +4447,9 @@
             ○ Match ')'.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Formatting.BitmapCandidateMapFormatInfo">
             <summary>
@@ -4914,25 +4914,7 @@
             Indicates the empty string.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.ParseGrid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.GridSusserPattern">
+        <member name="P:Sudoku.Concepts.InlineSusserGridFormatInfo.GridSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>(\\+?[\\d\\.]|\\[[1-9]{1,9}\\])</code><br/>
@@ -4951,6 +4933,24 @@
                         ○ Match ']'.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.InlineSusserGridFormatInfo.ParseGrid(System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.MaskGridFormatInfo">
             <summary>
@@ -4990,25 +4990,7 @@
             Represents a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> type that supports multiple formatting.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.ParseGrid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GridSusserDigitPattern">
+        <member name="P:Sudoku.Concepts.MultipleLineGridFormatInfo.GridSusserDigitPattern">
             <remarks>
             Pattern:<br/>
             <code>(\\+?\\d|\\.)</code><br/>
@@ -5025,7 +5007,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GridSimpleMultilinePattern">
+        <member name="P:Sudoku.Concepts.MultipleLineGridFormatInfo.GridSimpleMultilinePattern">
             <remarks>
             Pattern:<br/>
             <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
@@ -5044,10 +5026,44 @@
             </code>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.MultipleLineGridFormatInfo.ParseGrid(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.OpenSudokuGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> type that supports OpenSudoku formatting.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.OpenSudokuGridFormatInfo.GridOpenSudokuPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d(\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match '|'.<br/>
+                    ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.OpenSudokuGridFormatInfo.GetFormat(System.Type)">
             <inheritdoc/>
@@ -5067,46 +5083,12 @@
         <member name="M:Sudoku.Concepts.OpenSudokuGridFormatInfo.ParseGrid(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.OpenSudokuGridFormatInfo.GridOpenSudokuPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d(\\|\\d){242}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit.<br/>
-            ○ Loop exactly 242 times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match '|'.<br/>
-                    ○ Match a Unicode digit.<br/>
-            </code>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Concepts.PencilmarkGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> type that supports pencilmark grid formatting.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.ParseGrid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.GridPencilmarkingPattern">
+        <member name="P:Sudoku.Concepts.PencilmarkGridFormatInfo.GridPencilmarkPattern">
             <remarks>
             Pattern:<br/>
             <code>(\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+)</code><br/>
@@ -5131,10 +5113,42 @@
             </code>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PencilmarkGridFormatInfo.ParseGrid(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.SukakuGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> type that supports Sukaku formatting.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SukakuGridFormatInfo.GridSukakuSegmentPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.SukakuGridFormatInfo.GetFormat(System.Type)">
             <inheritdoc/>
@@ -5153,20 +5167,6 @@
         </member>
         <member name="M:Sudoku.Concepts.SukakuGridFormatInfo.ParseGrid(System.String)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SukakuGridFormatInfo.GridSukakuSegmentPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\\d*[\\-\\+]?\\d+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a Unicode digit greedily any number of times.<br/>
-            ○ Match a character in the set [+-] atomically, optionally.<br/>
-            ○ Match a Unicode digit atomically at least once.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="T:Sudoku.Concepts.SusserGridFormatInfo">
             <summary>
@@ -5203,25 +5203,7 @@
             Indicates the pre-elimination prefix character.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.ParseGrid(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GridSusserPattern">
+        <member name="P:Sudoku.Concepts.SusserGridFormatInfo.GridSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
@@ -5241,7 +5223,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GridShortenedSusserPattern">
+        <member name="P:Sudoku.Concepts.SusserGridFormatInfo.GridShortenedSusserPattern">
             <remarks>
             Pattern:<br/>
             <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
@@ -5257,7 +5239,7 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.EliminationPattern">
+        <member name="P:Sudoku.Concepts.SusserGridFormatInfo.EliminationPattern">
             <remarks>
             Pattern:<br/>
             <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
@@ -5274,6 +5256,24 @@
             ○ Match a Unicode digit exactly 3 times.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.Equals(Sudoku.Concepts.GridFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.FormatGrid(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SusserGridFormatInfo.ParseGrid(System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
@@ -8603,6 +8603,91 @@
             Indicates the supported extension of config file. The extension will be used by API in runtime, recognizing config files.
             </summary>
         </member>
+        <member name="P:Sudoku.IO.Library.LibraryInfo.AuthorPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>author:\\s*([\\s\\S]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Uu].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match a character in the set [Hh].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match ':'.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.IO.Library.LibraryInfo.NamePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>name:\\s*([\\S\\s]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Mm].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match ':'.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.IO.Library.LibraryInfo.DescriptionPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>description:\\s*([\\S\\s]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Dd].<br/>
+            ○ Match a character in the set [Ee].<br/>
+            ○ Match a character in the set [Ss].<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Pp].<br/>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match a character in the set [Ii].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Match a character in the set [Nn].<br/>
+            ○ Match ':'.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.IO.Library.LibraryInfo.TagsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>tags:\\s*([\\S\\s]+)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Tt].<br/>
+            ○ Match a character in the set [Aa].<br/>
+            ○ Match a character in the set [Gg].<br/>
+            ○ Match a character in the set [Ss].<br/>
+            ○ Match ':'.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="P:Sudoku.IO.Library.LibraryInfo.Item(System.Int32)">
             <summary>
             Try to get the element at the specified index.
@@ -8797,91 +8882,6 @@
             <summary>
             Returns <c>grid.ToString("#")</c>.
             </summary>
-        </member>
-        <member name="M:Sudoku.IO.Library.LibraryInfo.AuthorPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>author:\\s*([\\s\\S]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Aa].<br/>
-            ○ Match a character in the set [Uu].<br/>
-            ○ Match a character in the set [Tt].<br/>
-            ○ Match a character in the set [Hh].<br/>
-            ○ Match a character in the set [Oo].<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match ':'.<br/>
-            ○ Match a whitespace character greedily any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match any character atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.IO.Library.LibraryInfo.NamePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>name:\\s*([\\S\\s]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Nn].<br/>
-            ○ Match a character in the set [Aa].<br/>
-            ○ Match a character in the set [Mm].<br/>
-            ○ Match a character in the set [Ee].<br/>
-            ○ Match ':'.<br/>
-            ○ Match a whitespace character greedily any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match any character atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.IO.Library.LibraryInfo.DescriptionPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>description:\\s*([\\S\\s]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Dd].<br/>
-            ○ Match a character in the set [Ee].<br/>
-            ○ Match a character in the set [Ss].<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [Ii].<br/>
-            ○ Match a character in the set [Pp].<br/>
-            ○ Match a character in the set [Tt].<br/>
-            ○ Match a character in the set [Ii].<br/>
-            ○ Match a character in the set [Oo].<br/>
-            ○ Match a character in the set [Nn].<br/>
-            ○ Match ':'.<br/>
-            ○ Match a whitespace character greedily any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match any character atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.IO.Library.LibraryInfo.TagsPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>tags:\\s*([\\S\\s]+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Tt].<br/>
-            ○ Match a character in the set [Aa].<br/>
-            ○ Match a character in the set [Gg].<br/>
-            ○ Match a character in the set [Ss].<br/>
-            ○ Match ':'.<br/>
-            ○ Match a whitespace character greedily any number of times.<br/>
-            ○ 1st capture group.<br/>
-                ○ Match any character atomically at least once.<br/>
-            </code>
-            </remarks>
         </member>
         <member name="F:Sudoku.IO.Library.LibraryInfo._directory">
             <summary>
@@ -11141,34 +11141,34 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GridPencilmarkingPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GridPencilmarkPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkingPattern_15.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_15.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
@@ -11441,20 +11441,20 @@
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfAnyDecimalDigitNumberDecimalDigitNumber(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [\d\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004012A2B2E2F09(System.ReadOnlySpan{System.Char})">
-            <summary>Finds the next index of any character that matches a character in the set [*.\d].</summary>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_3BCFC31BFB1AD1127D0564F4B3C20ECED086F1C7438F92ACB58165A04BF23DD9(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [*+-&lt;\d\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004012B2C2E2F09(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_5C1843170313CB42CA4CF4E0FCD6C277723EAACCD85464A69BFC7D367CF48212(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [+.\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004022B2C2D2E0909(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_65EF16F1D4CC2684453DF3C3240E17C0787C2CE3C7B9F2FA94357B7AEAC8AC3F(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [*.\d].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_85D9C34033677881D8993C4388EDB85FC6297ECDBC9E515FF9B602A26978DF84(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [+-\d\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0006012B2C2E2F5B5C09(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_CD2F1FA646F2680322897C0F819061CC86FEA149AFB0FCC253B807E2A597D6F4(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [+.[\d].</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0006022A2C2D2E3C3D0909(System.ReadOnlySpan{System.Char})">
-            <summary>Finds the next index of any character that matches a character in the set [*+-&lt;\d\d].</summary>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
             <summary>Pops 2 values from the backtracking stack.</summary>
@@ -11495,19 +11495,19 @@
         <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_FFFFFFFFFFD700FCFFFFFFFFFFFFFFFF">
             <summary>Supports searching for characters in or not in "\0\u0001\u0002\u0003\u0004\u0005\u0006\a\b\t\n\v\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&amp;'()*,./:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007f".</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_617574686F723A5F4F7264696E616C49676E6F726543617365">
-            <summary>Supports searching for the string "author:".</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_6465736372697074696F6E3A5F4F7264696E616C49676E6F726543617365">
-            <summary>Supports searching for the string "description:".</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_6E616D653A5F4F7264696E616C49676E6F726543617365">
-            <summary>Supports searching for the string "name:".</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_746167733A5F4F7264696E616C49676E6F726543617365">
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_2A5C7CB5C5EA60F740A02641A8398F270EECFAE3E391275B7CA8825E54AEF43F">
             <summary>Supports searching for the string "tags:".</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_nonAscii_4142434445464748494A4B6162636465666768696A6BE284AA">
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_B93F57C81E7BC3D17E6BACB73234905ED727D8DBC6420C920732A104F34ABE4E">
+            <summary>Supports searching for the string "author:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_CC0D98E295A1BFFD6A5A197296B027720BD9191B4F333F50A06E1E23E638A7BB">
+            <summary>Supports searching for the string "name:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_F5B4B618DDAAC8F27D5E849B92B2FD846490C682FCB36D3610B6BE0C05EA79E5">
+            <summary>Supports searching for the string "description:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_nonAscii_F399137324019CEE8DA2E2200E10D0083E7A4C31A2E981061D50385C16616C8A">
             <summary>Supports searching for characters in or not in "ABCDEFGHIJKabcdefghijkK".</summary>
         </member>
     </members>

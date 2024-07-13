@@ -1,4 +1,3 @@
-
 namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
@@ -28,12 +27,24 @@ public sealed partial record K9Parser : CoordinateParser
 	public override Func<string, Chute[]> ChuteParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
+	public override Func<string, Conjugate[]> ConjugateParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
 	public override Func<string, Miniline[]> IntersectionParser => throw new NotSupportedException();
 
+
+	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitCellGroupPattern { get; }
+
+	[GeneratedRegex("""([a-k]+)([1-9]+)\.([1-9]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitCandidateGroupPattern { get; }
+
+	[GeneratedRegex("""([a-k]+[1-9]+(,\s*[a-k]+[1-9]+)*)\s*(==?|!=|<>)\s*([1-9]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitConclusionGroupPattern { get; }
+
+	[GeneratedRegex("""([a-k][1-9])\s*={2}\s*([a-k][1-9])\.([1-9])""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex UnitConjugateGroupPattern { get; }
 
 
 	/// <inheritdoc/>
@@ -48,7 +59,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		if (UnitCellGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitCellGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -69,7 +80,6 @@ public sealed partial record K9Parser : CoordinateParser
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -80,7 +90,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		if (UnitCandidateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitCandidateGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -105,7 +115,6 @@ public sealed partial record K9Parser : CoordinateParser
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -116,7 +125,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		if (UnitConclusionGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitConclusionGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -139,7 +148,6 @@ public sealed partial record K9Parser : CoordinateParser
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -150,7 +158,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		if (UnitConjugateGroupPattern().Matches(str) is not { Count: not 0 } matches)
+		if (UnitConjugateGroupPattern.Matches(str) is not { Count: not 0 } matches)
 		{
 			return [];
 		}
@@ -165,20 +173,6 @@ public sealed partial record K9Parser : CoordinateParser
 
 			result.Add(new(CellParser(cell1)[0], CellParser(cell2)[0], digitChar - '1'));
 		}
-
 		return [.. result];
 	}
-
-
-	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitCellGroupPattern();
-
-	[GeneratedRegex("""([a-k]+)([1-9]+)\.([1-9]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitCandidateGroupPattern();
-
-	[GeneratedRegex("""([a-k]+[1-9]+(,\s*[a-k]+[1-9]+)*)\s*(==?|!=|<>)\s*([1-9]+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitConclusionGroupPattern();
-
-	[GeneratedRegex("""([a-k][1-9])\s*={2}\s*([a-k][1-9])\.([1-9])""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-	private static partial Regex UnitConjugateGroupPattern();
 }

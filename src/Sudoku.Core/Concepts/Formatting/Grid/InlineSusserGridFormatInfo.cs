@@ -16,6 +16,10 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	private const string EmptyString = "";
 
 
+	[GeneratedRegex("""(\+?[\d\.]|\[[1-9]{1,9}\])""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSusserPattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -67,7 +71,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	protected internal override Grid ParseGrid(string str)
 	{
-		var match = GridSusserPattern().Matches(str);
+		var match = GridSusserPattern.Matches(str);
 		if (match is not { Count: 81 } captures)
 		{
 			return Grid.Undefined;
@@ -123,8 +127,4 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 		}
 		return result;
 	}
-
-
-	[GeneratedRegex("""(\+?[\d\.]|\[[1-9]{1,9}\])""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridSusserPattern();
 }

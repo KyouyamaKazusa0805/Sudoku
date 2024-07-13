@@ -5,6 +5,13 @@ namespace Sudoku.Concepts;
 /// </summary>
 public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 {
+	[GeneratedRegex("""(\+?\d|\.)""", RegexOptions.Compiled, 5000)]
+	private static partial Regex GridSusserDigitPattern { get; }
+
+	[GeneratedRegex("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""", RegexOptions.Compiled, 5000)]
+	private static partial Regex GridSimpleMultilinePattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -74,13 +81,13 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 	{
 		if (RemoveGridLines)
 		{
-			return GridSimpleMultilinePattern().Match(str) is not { Success: true, Value: var match }
+			return GridSimpleMultilinePattern.Match(str) is not { Success: true, Value: var match }
 				? Grid.Undefined
 				: new SusserGridFormatInfo().ParseGrid(new(from @char in match where @char is not ('\r' or '\n') select @char));
 		}
 		else
 		{
-			var matches = from match in GridSusserDigitPattern().Matches(str) select match.Value;
+			var matches = from match in GridSusserDigitPattern.Matches(str) select match.Value;
 			if (matches.Length is not (var length and (81 or 85)))
 			{
 				// Subtle grid outline will bring 2 '.'s on first line of the grid.
@@ -125,11 +132,4 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 			return result;
 		}
 	}
-
-
-	[GeneratedRegex("""(\+?\d|\.)""", RegexOptions.Compiled, 5000)]
-	private static partial Regex GridSusserDigitPattern();
-
-	[GeneratedRegex("""([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}""", RegexOptions.Compiled, 5000)]
-	private static partial Regex GridSimpleMultilinePattern();
 }

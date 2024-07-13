@@ -84,7 +84,7 @@ public readonly partial struct LibraryInfo(
 	{
 		get
 		{
-			var pattern = AuthorPattern();
+			var pattern = AuthorPattern;
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
@@ -102,7 +102,7 @@ public readonly partial struct LibraryInfo(
 				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
-			ConfigFileReplaceOrAppend(AuthorPattern().IsMatch, value);
+			ConfigFileReplaceOrAppend(AuthorPattern.IsMatch, value);
 		}
 	}
 
@@ -115,7 +115,7 @@ public readonly partial struct LibraryInfo(
 	{
 		get
 		{
-			var pattern = NamePattern();
+			var pattern = NamePattern;
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
@@ -133,7 +133,7 @@ public readonly partial struct LibraryInfo(
 				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
-			ConfigFileReplaceOrAppend(NamePattern().IsMatch, value);
+			ConfigFileReplaceOrAppend(NamePattern.IsMatch, value);
 		}
 	}
 
@@ -146,7 +146,7 @@ public readonly partial struct LibraryInfo(
 	{
 		get
 		{
-			var pattern = DescriptionPattern();
+			var pattern = DescriptionPattern;
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
@@ -164,7 +164,7 @@ public readonly partial struct LibraryInfo(
 				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
-			ConfigFileReplaceOrAppend(DescriptionPattern().IsMatch, value);
+			ConfigFileReplaceOrAppend(DescriptionPattern.IsMatch, value);
 		}
 	}
 
@@ -177,7 +177,7 @@ public readonly partial struct LibraryInfo(
 	{
 		get
 		{
-			var pattern = TagsPattern();
+			var pattern = TagsPattern;
 			return IsInitialized
 				? (
 					from line in File.ReadLines(ConfigFilePath)
@@ -196,7 +196,7 @@ public readonly partial struct LibraryInfo(
 				throw new FileNotFoundException(SR.ExceptionMessage("NotExist"));
 			}
 
-			ConfigFileReplaceOrAppend(TagsPattern().IsMatch, value is not null ? string.Join(SeparatorChar, value) : null);
+			ConfigFileReplaceOrAppend(TagsPattern.IsMatch, value is not null ? string.Join(SeparatorChar, value) : null);
 		}
 	}
 
@@ -210,6 +210,18 @@ public readonly partial struct LibraryInfo(
 	/// Indicates the supported extension of config file. The extension will be used by API in runtime, recognizing config files.
 	/// </summary>
 	public static string ConfigFileExtension { get; set; } = ".txt";
+
+	[GeneratedRegex(@"author:\s*([\s\S]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex AuthorPattern { get; }
+
+	[GeneratedRegex(@"name:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex NamePattern { get; }
+
+	[GeneratedRegex(@"description:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex DescriptionPattern { get; }
+
+	[GeneratedRegex(@"tags:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
+	private static partial Regex TagsPattern { get; }
 
 
 	/// <summary>
@@ -700,16 +712,4 @@ public readonly partial struct LibraryInfo(
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string GetSingleLineGridString(ref readonly Grid grid) => grid.ToString("#");
-
-	[GeneratedRegex(@"author:\s*([\s\S]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
-	private static partial Regex AuthorPattern();
-
-	[GeneratedRegex(@"name:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
-	private static partial Regex NamePattern();
-
-	[GeneratedRegex(@"description:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
-	private static partial Regex DescriptionPattern();
-
-	[GeneratedRegex(@"tags:\s*([\S\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
-	private static partial Regex TagsPattern();
 }

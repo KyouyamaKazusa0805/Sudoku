@@ -36,6 +36,16 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	private const char PreeliminationPrefix = ':';
 
 
+	[GeneratedRegex("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridSusserPattern { get; }
+
+	[GeneratedRegex("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridShortenedSusserPattern { get; }
+
+	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
+	internal static partial Regex EliminationPattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -80,7 +90,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 		return b(in grid) is var r && IsCompatibleMode
 			? $":0000:x:{r}{new(':', WithCandidates ? 2 : 3)}"
 			: OnlyEliminations
-				? EliminationPattern().Match(r) is { Success: true, Value: var value } ? value : string.Empty
+				? EliminationPattern.Match(r) is { Success: true, Value: var value } ? value : string.Empty
 				: r;
 
 
@@ -269,7 +279,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			return Grid.Undefined;
 		}
 
-		var match = (ShortenSusser ? GridShortenedSusserPattern() : GridSusserPattern()).Match(str).Value;
+		var match = (ShortenSusser ? GridShortenedSusserPattern : GridSusserPattern).Match(str).Value;
 		if (ShortenSusser && (match is not { Length: <= 81 } || !expandCode(match, out match)))
 		{
 			return Grid.Undefined;
@@ -352,7 +362,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 
 		// Step 2: eliminates candidates if exist.
 		// If we have met the colon sign ':', this loop would not be executed.
-		if (EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
+		if (EliminationPattern.Match(match) is { Success: true, Value: var elimMatch })
 		{
 			var candidates = CandidateMap.Parse(elimMatch, new HodokuTripletCandidateMapFormatInfo());
 			if (!NegateEliminationsTripletRule)
@@ -462,14 +472,4 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			return true;
 		}
 	}
-
-
-	[GeneratedRegex("""[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridSusserPattern();
-
-	[GeneratedRegex("""[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridShortenedSusserPattern();
-
-	[GeneratedRegex("""(?<=\:)(\d{3}\s+)*\d{3}""", RegexOptions.Compiled, 5000)]
-	internal static partial Regex EliminationPattern();
 }

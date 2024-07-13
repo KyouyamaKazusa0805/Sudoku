@@ -5,6 +5,10 @@ namespace Sudoku.Concepts;
 /// </summary>
 public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 {
+	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled, 5000)]
+	public static partial Regex GridPencilmarkPattern { get; }
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
@@ -200,7 +204,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 	protected internal override Grid ParseGrid(string str)
 	{
 		// Older regular expression pattern:
-		if ((from m in GridPencilmarkingPattern().Matches(str) select m.Value) is not { Length: 81 } matches)
+		if ((from m in GridPencilmarkPattern.Matches(str) select m.Value) is not { Length: 81 } matches)
 		{
 			return Grid.Undefined;
 		}
@@ -303,8 +307,4 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 
 		return result;
 	}
-
-
-	[GeneratedRegex("""(\<\d\>|\*\d\*|\d*[\+\-]?\d+)""", RegexOptions.Compiled, 5000)]
-	public static partial Regex GridPencilmarkingPattern();
 }

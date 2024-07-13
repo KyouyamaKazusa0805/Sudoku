@@ -20,7 +20,7 @@ public static class ListExtensions
 	///     file="../../global-doc-comments.xml"
 	///     path="//g/dotnet/version[@value='9' and @preview-value='4']/feature[@name='unsafe-accessor']"/>
 	/// <para>
-	/// This method passes with a reference to an object, which is unnecessary to be called by a referece-typed object,
+	/// This method passes with a reference to an object, which is unnecessary to be called by a reference-typed object,
 	/// or a value-typed object whose memory size is less than a pointer. <b>Always measure the necessity of the usage.</b>
 	/// </para>
 	/// </remarks>
@@ -28,12 +28,12 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddRef<T>(this List<T> @this, scoped ref readonly T item)
 	{
-		@this.GetVersion()++;
-		var array = @this.GetItems().AsSpan();
-		var size = @this.GetSize();
+		ListFieldEntry<T>.GetVersion(@this)++;
+		var array = ListFieldEntry<T>.GetItems(@this).AsSpan();
+		var size = ListFieldEntry<T>.GetSize(@this);
 		if ((uint)size < (uint)array.Length)
 		{
-			@this.GetSize()++;
+			ListFieldEntry<T>.GetSize(@this)++;
 			array[size] = item;
 		}
 		else
@@ -92,7 +92,7 @@ public static class ListExtensions
 	/// <param name="this">A <see cref="List{T}"/> to compare to <paramref name="other"/>.</param>
 	/// <param name="other">A <see cref="List{T}"/> to compare to <paramref name="this"/>.</param>
 	/// <returns>
-	/// <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
+	/// <see langword="true"/> if the two source sequences are of equal length and their corresponding elements are equal according
 	/// to <see cref="IEquatable{T}.Equals(T)"/> for their type; otherwise, <see langword="false"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -126,11 +126,11 @@ public static class ListExtensions
 	/// </remarks>
 	private static void AddWithResize<T>(this List<T> @this, scoped ref readonly T item)
 	{
-		Debug.Assert(@this.GetSize() == @this.GetItems().Length);
-		var size = @this.GetSize();
+		Debug.Assert(ListFieldEntry<T>.GetSize(@this) == ListFieldEntry<T>.GetItems(@this).Length);
+		var size = ListFieldEntry<T>.GetSize(@this);
 		@this.Capacity = @this.GetNewCapacity(size + 1);
-		@this.GetSize() = size + 1;
-		@this.GetItems()[size] = item;
+		ListFieldEntry<T>.GetSize(@this) = size + 1;
+		ListFieldEntry<T>.GetItems(@this)[size] = item;
 	}
 
 	/// <summary>
@@ -148,10 +148,18 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static int GetNewCapacity<T>(this List<T> @this, int capacity)
 	{
-		Debug.Assert(@this.GetItems().Length < capacity);
-		return @this.GetItems().Length == 0 ? 4 : @this.GetItems().Length << 1;
+		Debug.Assert(ListFieldEntry<T>.GetItems(@this).Length < capacity);
+		return ListFieldEntry<T>.GetItems(@this).Length == 0 ? 4 : ListFieldEntry<T>.GetItems(@this).Length << 1;
 	}
+}
 
+/// <summary>
+/// Represents an entry to call internal fields on <see cref="List{T}"/>.
+/// </summary>
+/// <typeparam name="T">The type of each element in <see cref="List{T}"/>.</typeparam>
+/// <seealso cref="List{T}"/>
+file sealed class ListFieldEntry<T>
+{
 	/// <summary>
 	/// Try to fetch the internal field <c>_size</c> in type <see cref="List{T}"/>.
 	/// </summary>
@@ -166,7 +174,7 @@ public static class ListExtensions
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Size)]
-	private static extern ref int GetSize<T>(this List<T> @this);
+	public static extern ref int GetSize(List<T> @this);
 
 	/// <summary>
 	/// Try to fetch the internal field <c>_version</c> in type <see cref="List{T}"/>.
@@ -182,12 +190,11 @@ public static class ListExtensions
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Version)]
-	private static extern ref int GetVersion<T>(this List<T> @this);
+	public static extern ref int GetVersion(List<T> @this);
 
 	/// <summary>
 	/// Try to fetch the internal reference to the first <typeparamref name="T"/> in a <see cref="List{T}"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The list of <typeparamref name="T"/> instances.</param>
 	/// <returns>The reference to the first <typeparamref name="T"/>.</returns>
 	/// <remarks>
@@ -199,5 +206,5 @@ public static class ListExtensions
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Items)]
-	private static extern ref T[] GetItems<T>(this List<T> @this);
+	public static extern ref T[] GetItems(List<T> @this);
 }
