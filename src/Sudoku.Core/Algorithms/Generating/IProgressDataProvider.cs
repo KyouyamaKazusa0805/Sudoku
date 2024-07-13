@@ -4,7 +4,7 @@ namespace Sudoku.Generating;
 /// Indicates the data provider type,
 /// </summary>
 /// <typeparam name="TSelf">The type of the implementation data provider.</typeparam>
-public interface IProgressDataProvider<TSelf> where TSelf : struct, IEquatable<TSelf>, IProgressDataProvider<TSelf>
+public interface IProgressDataProvider<TSelf> where TSelf : struct, IEquatable<TSelf>, IProgressDataProvider<TSelf>, allows ref struct
 {
 	/// <summary>
 	/// Indicates the number of puzzles having been generated.

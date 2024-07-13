@@ -35,7 +35,6 @@ public static class EnumFlagsEnumerable
 		{
 			result[i] = selector(flags[i]);
 		}
-
 		return result;
 	}
 }

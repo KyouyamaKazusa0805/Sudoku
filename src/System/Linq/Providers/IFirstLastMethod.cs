@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IFirstLastMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
 	where TSelf : IFirstLastMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
 	public virtual TSource First() => TryGetFirst(out var result) ? result : throw new InvalidOperationException();
@@ -132,7 +133,8 @@ public interface IFirstLastMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource
 			return false;
 		}
 
-		var (hasAtLeastOneElement, tempResult) = (false, default(TSource));
+		var hasAtLeastOneElement = false;
+		var tempResult = default(TSource);
 		foreach (var element in this)
 		{
 			if (predicate(element))

@@ -37,7 +37,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <remarks>
 	/// <para>
 	/// Although the value is of type <see cref="double"/>, only 2 digits after decimal point is used,
-	/// i.e. the percision of this value is 0.01.
+	/// i.e. the precision of this value is 0.01.
 	/// </para>
 	/// <para>
 	/// In addition, the value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
@@ -102,7 +102,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <param name="targetCell">The target cell to avoid.</param>
 	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
 	/// <returns>
-	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+	/// A <see cref="GeneratingFailedReason"/> instance describing the reason why this method failed to operate.
 	/// </returns>
 	/// <seealso cref="GenerateJustOneCell"/>
 	/// <seealso cref="GeneratingFailedReason"/>
@@ -135,7 +135,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
 	/// <param name="excludedCells">Indicates the excluded cells.</param>
 	/// <returns>
-	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+	/// A <see cref="GeneratingFailedReason"/> instance describing the reason why this method failed to operate.
 	/// </returns>
 	/// <seealso cref="GenerateJustOneCell"/>
 	/// <seealso cref="GeneratingFailedReason"/>
@@ -213,7 +213,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <param name="currentGivensCount">The number of givens currently in puzzle.</param>
 	/// <param name="ratio">The ratio. Pass <see cref="InterferingPercentage"/> to this parameter.</param>
 	/// <param name="interferingDigitsCount">The final number of interfering digits.</param>
-	/// <returns>The result numnber of given cells.</returns>
+	/// <returns>The result number of given cells.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private protected static Cell GetGivensCount(Cell currentGivensCount, double ratio, out Cell interferingDigitsCount)
 	{

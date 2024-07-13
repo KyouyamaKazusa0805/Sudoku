@@ -17,7 +17,6 @@ public static class ListEnumerable
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -32,7 +31,6 @@ public static class ListEnumerable
 				result.AddRef(in element);
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 
@@ -45,7 +43,6 @@ public static class ListEnumerable
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 
@@ -64,7 +61,6 @@ public static class ListEnumerable
 				result.AddRef(resultSelector(element, collectionElement));
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 }

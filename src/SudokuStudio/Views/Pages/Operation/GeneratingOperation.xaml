@@ -28,7 +28,7 @@
 		<AppBarElementContainer>
 			<ComboBox
 				x:Name="PuzzleLibraryChoser" DisplayMemberPath="DisplayName"
-				SelectionChanged="PuzzleLibraryChoser_SelectionChanged" />
+				SelectionChanged="PuzzleLibraryChooser_SelectionChanged" />
 		</AppBarElementContainer>
 		<AppBarButton
 			x:Name="LibraryPuzzleFetchButton" Icon="NewWindow" Label="{m:R Key=AnalyzePage_FetchPuzzleFromLibrary}"

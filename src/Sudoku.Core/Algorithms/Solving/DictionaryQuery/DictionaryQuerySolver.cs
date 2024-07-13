@@ -145,12 +145,11 @@ public sealed class DictionaryQuerySolver : ISolver
 				return false;
 			}
 		}
-
 		return true;
 	}
 
 	/// <inheritdoc cref="AllNotNull{T}(ReadOnlySpan{T})"/>
-	private bool AllNotNull<T>(IEnumerable<T> sequence)
+	private bool AllNotNull<T>(IEnumerable<T> sequence) where T : allows ref struct
 	{
 		foreach (var e in sequence)
 		{
@@ -159,7 +158,6 @@ public sealed class DictionaryQuerySolver : ISolver
 				return false;
 			}
 		}
-
 		return true;
 	}
 

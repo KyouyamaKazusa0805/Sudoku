@@ -317,7 +317,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 	}
 
-	private void PuzzleLibraryChoser_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	private void PuzzleLibraryChooser_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		var source = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
 		((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;

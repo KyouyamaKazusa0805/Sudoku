@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IAppendPrependMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IAppendPrependMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Append{TSource}(IEnumerable{TSource}, TSource)"/>
 	public virtual IEnumerable<TSource> Append(TSource element) => [.. this, element];

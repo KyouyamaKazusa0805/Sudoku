@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IAnyAllMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IAnyAllMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Any{TSource}(IEnumerable{TSource})"/>
 	public virtual bool Any()

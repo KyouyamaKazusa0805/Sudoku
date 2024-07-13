@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : ICountByMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc/>
 	public virtual IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull

@@ -173,10 +173,13 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func)
+		where TAccumulate : allows ref struct
 		=> Aggregate(seed, func, @delegate.Self);
 
 	/// <inheritdoc/>
 	public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+		where TAccumulate : allows ref struct
+		where TResult : allows ref struct
 	{
 		var result = seed;
 		foreach (var element in this)

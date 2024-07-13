@@ -109,7 +109,7 @@ public static class @delegate
 	/// <param name="right">The second instance to be merged.</param>
 	/// <returns>A merged result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum
+	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum, allows ref struct
 		=> sizeof(T) switch
 		{
 			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
@@ -144,6 +144,8 @@ public static class @delegate
 	/// ]]></code>
 	/// </remarks>
 	public static Func<T, TResult> YCombinator<T, TResult>(Func<Func<T, TResult>, Func<T, TResult>> f)
+		where T : allows ref struct
+		where TResult : allows ref struct
 		// We cannot simplify the lambda to 'f(YCombinator(f))' here.
 		=> value => f(YCombinator(f))(value);
 }

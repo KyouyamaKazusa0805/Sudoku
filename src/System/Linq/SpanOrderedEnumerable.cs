@@ -16,12 +16,12 @@ namespace System.Linq;
 public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
 	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
-)
-#if false
+) :
 	IEnumerable<T>,
-	IGroupByMethod<SpanOrderedEnumerable<T>, T>,
 	IOrderedEnumerable<T>,
-	IReadOnlyCollection<T>,
+	IReadOnlyCollection<T>
+#if false
+	IGroupByMethod<SpanOrderedEnumerable<T>, T>,
 	ISelectMethod<SpanOrderedEnumerable<T>, T>,
 	ISliceMethod<SpanOrderedEnumerable<T>, T>,
 	IThenByMethod<SpanOrderedEnumerable<T>, T>,
@@ -34,10 +34,8 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// </summary>
 	public int Length => _values.Length;
 
-#if false
 	/// <inheritdoc/>
 	int IReadOnlyCollection<T>.Count => Length;
-#endif
 
 	/// <summary>
 	/// Creates an ordered <see cref="Span{T}"/> instance.
@@ -199,17 +197,29 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Span<T>.Enumerator GetEnumerator() => Span.GetEnumerator();
 
+	/// <summary>
+	/// Casts the current instance into equivalent-comparison <see cref="ArrayOrderedEnumerable{T}"/> instance.
+	/// </summary>
+	/// <returns>An <see cref="ArrayOrderedEnumerable{T}"/> instance.</returns>
+	/// <seealso cref="ArrayOrderedEnumerable{T}"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ArrayOrderedEnumerable<T> AsArrayOrderedEnumerable() => new(_values.ToArray(), _selectors.ToArray());
+
 	/// <inheritdoc cref="IToArrayMethod{TSelf, TSource}.ToArray"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public T[] ToArray() => Span.ToArray();
 
-#if false
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => Span.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)Span.ToArray()).GetEnumerator();
 
+	/// <inheritdoc/>
+	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
+		=> Create(_values, keySelector, comparer, descending).AsArrayOrderedEnumerable();
+
+#if false
 	/// <inheritdoc/>
 	IEnumerable<T> ISliceMethod<SpanOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count).ToArray();
 
@@ -233,10 +243,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// <inheritdoc/>
 	IEnumerable<IGrouping<TKey, TElement>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
 		=> GroupBy(keySelector, elementSelector).ToArray().Select(element => (IGrouping<TKey, TElement>)element);
-
-	/// <inheritdoc/>
-	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
-		=> Create(_values, keySelector, comparer, descending);
+#endif
 
 
 	/// <summary>
@@ -256,12 +263,11 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public static SpanOrderedEnumerable<T> Create<TKey>(ReadOnlySpan<T> values, Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
 	{
 		comparer ??= Comparer<TKey>.Default;
-		return new(values, descending ? descendingComparer : ascendingComparer);
+		return new(values, (Func<T, T, int>[])[descending ? descendingComparer : ascendingComparer]);
 
 
 		int ascendingComparer(T left, T right) => comparer.Compare(keySelector(left), keySelector(right));
 
 		int descendingComparer(T left, T right) => -comparer.Compare(keySelector(left), keySelector(right));
 	}
-#endif
 }

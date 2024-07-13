@@ -733,7 +733,7 @@
             <remarks>
             <para>
             Although the value is of type <see cref="T:System.Double"/>, only 2 digits after decimal point is used,
-            i.e. the percision of this value is 0.01.
+            i.e. the precision of this value is 0.01.
             </para>
             <para>
             In addition, the value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
@@ -795,7 +795,7 @@
             <param name="targetCell">The target cell to avoid.</param>
             <param name="interferingCells">The cells that are filled with interfering digits.</param>
             <returns>
-            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance describing the reason why this method failed to operate.
             </returns>
             <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
@@ -810,7 +810,7 @@
             <param name="interferingCells">The cells that are filled with interfering digits.</param>
             <param name="excludedCells">Indicates the excluded cells.</param>
             <returns>
-            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance describing the reason why this method failed to operate.
             </returns>
             <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
@@ -841,7 +841,7 @@
             <param name="currentGivensCount">The number of givens currently in puzzle.</param>
             <param name="ratio">The ratio. Pass <see cref="P:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.InterferingPercentage"/> to this parameter.</param>
             <param name="interferingDigitsCount">The final number of interfering digits.</param>
-            <returns>The result numnber of given cells.</returns>
+            <returns>The result number of given cells.</returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>

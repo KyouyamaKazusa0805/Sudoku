@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource>
 	where TSelf : IJoinMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
 	public virtual IEnumerable<TResult> Join<TInner, TKey, TResult>(

@@ -532,7 +532,7 @@ public static class ArrayEnumerable
 	}
 
 	/// <summary>
-	/// Compares elements from two arrays one by one respetively.
+	/// Compares elements from two arrays one by one respectively.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The array to be compared.</param>

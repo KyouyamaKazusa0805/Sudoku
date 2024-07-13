@@ -282,7 +282,7 @@ file static class Filters
 	}
 
 	/// <summary>
-	/// The filter for colorized paleete ID items.
+	/// The filter for colorized palette ID items.
 	/// </summary>
 	/// <param name="control">The control to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>

@@ -181,7 +181,7 @@ public readonly partial struct ChunkNode<T> : IEnumerable<T>
 
 
 	/// <summary>
-	/// Explict cast from <see cref="ChunkNode{T}"/> to <typeparamref name="T"/>[].
+	/// Explicit cast from <see cref="ChunkNode{T}"/> to <typeparamref name="T"/>[].
 	/// </summary>
 	/// <param name="value">The value.</param>
 	/// <exception cref="InvalidCastException">Throws when the value is not an array.</exception>
@@ -190,7 +190,7 @@ public readonly partial struct ChunkNode<T> : IEnumerable<T>
 		=> value.Type == ChunkNodeType.Array ? (T[])value.ValueRef! : throw new InvalidCastException();
 
 	/// <summary>
-	/// Explict cast from <see cref="ChunkNode{T}"/> to <typeparamref name="T"/>[].
+	/// Explicit cast from <see cref="ChunkNode{T}"/> to <typeparamref name="T"/>[].
 	/// </summary>
 	/// <param name="value">The value.</param>
 	/// <exception cref="InvalidCastException">Throws when the value is not a list.</exception>

@@ -1014,58 +1014,6 @@
             Indicates the data of library.
             </summary>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.XamlBindingAttribute`1">
-            <summary>
-            Defines a binding base attribute type.
-            </summary>
-            <typeparam name="T">The type of the property.</typeparam>
-            <param name="propertyName">
-            The property name. Use '<c>?</c>' syntax to describe the generated property can be <see langword="null"/>.
-            For example, if a property of type <see cref="T:System.Object"/> is named <c>Property</c>, write <c>Property?</c>
-            instead of <c>Property</c>.
-            </param>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.XamlBindingAttribute`1.#ctor(System.String)">
-            <summary>
-            Defines a binding base attribute type.
-            </summary>
-            <typeparam name="T">The type of the property.</typeparam>
-            <param name="propertyName">
-            The property name. Use '<c>?</c>' syntax to describe the generated property can be <see langword="null"/>.
-            For example, if a property of type <see cref="T:System.Object"/> is named <c>Property</c>, write <c>Property?</c>
-            instead of <c>Property</c>.
-            </param>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedMemberName">
-            <summary>
-            Indicates the referenced member name that will be used for displaying <c>inheritdoc</c> part.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocReferencedPath">
-            <summary>
-            Indicates the referenced path that will be used for displaying <c>inheritdoc</c> part.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocSummary">
-            <summary>
-            Indicates the <c>summary</c> content of the dependency property displayed in XML documentation comment.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DocRemarks">
-            <summary>
-            Indicates the <c>remarks</c> content of the dependency property displayed in XML documentation comment.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.DefaultValue">
-            <summary>
-            Indicates the default value.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.XamlBindingAttribute`1.PropertyName">
-            <summary>
-            The generated property declaration for parameter <c>propertyName</c>.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.Collector"/>.
@@ -3340,7 +3288,7 @@
         </member>
         <member name="M:SudokuStudio.Drawing.Filters.ColorizedPaletteId(Microsoft.UI.Xaml.FrameworkElement)">
             <summary>
-            The filter for colorized paleete ID items.
+            The filter for colorized palette ID items.
             </summary>
             <param name="control">The control to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>

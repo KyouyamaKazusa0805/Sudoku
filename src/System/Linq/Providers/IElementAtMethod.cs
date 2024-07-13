@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
 	where TSelf : IElementAtMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual TSource ElementAt(int index)

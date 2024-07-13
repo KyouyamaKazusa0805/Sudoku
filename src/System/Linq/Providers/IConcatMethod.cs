@@ -6,6 +6,7 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IConcatMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IConcatMethod<TSelf, TSource>, allows ref struct
+	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Concat{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Concat(IEnumerable<TSource> second) => [.. this, .. second];

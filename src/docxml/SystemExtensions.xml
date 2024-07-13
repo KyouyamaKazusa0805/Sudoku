@@ -105,14 +105,14 @@
         </member>
         <member name="M:System.ChunkNode`1.op_Explicit(System.ChunkNode{`0}@)~`0[]">
             <summary>
-            Explict cast from <see cref="T:System.ChunkNode`1"/> to <typeparamref name="T"/>[].
+            Explicit cast from <see cref="T:System.ChunkNode`1"/> to <typeparamref name="T"/>[].
             </summary>
             <param name="value">The value.</param>
             <exception cref="T:System.InvalidCastException">Throws when the value is not an array.</exception>
         </member>
         <member name="M:System.ChunkNode`1.op_Explicit(System.ChunkNode{`0}@)~System.Collections.Generic.List{`0}">
             <summary>
-            Explict cast from <see cref="T:System.ChunkNode`1"/> to <typeparamref name="T"/>[].
+            Explicit cast from <see cref="T:System.ChunkNode`1"/> to <typeparamref name="T"/>[].
             </summary>
             <param name="value">The value.</param>
             <exception cref="T:System.InvalidCastException">Throws when the value is not a list.</exception>
@@ -2746,7 +2746,7 @@
         </member>
         <member name="M:System.Linq.ArrayEnumerable.SequenceEquals``1(``0[],``0[],System.Func{``0,``0,System.Boolean})">
             <summary>
-            Compares elements from two arrays one by one respetively.
+            Compares elements from two arrays one by one respectively.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The array to be compared.</param>
@@ -4497,6 +4497,9 @@
             Indicates the number of elements stored in the collection.
             </summary>
         </member>
+        <member name="P:System.Linq.SpanOrderedEnumerable`1.System#Collections#Generic#IReadOnlyCollection{T}#Count">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Linq.SpanOrderedEnumerable`1.Span">
             <summary>
             Creates an ordered <see cref="T:System.Span`1"/> instance.
@@ -4539,8 +4542,39 @@
         <member name="M:System.Linq.SpanOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
         </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.AsArrayOrderedEnumerable">
+            <summary>
+            Casts the current instance into equivalent-comparison <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance.
+            </summary>
+            <returns>An <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance.</returns>
+            <seealso cref="T:System.Linq.ArrayOrderedEnumerable`1"/>
+        </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.ToArray">
             <inheritdoc cref="M:System.Linq.Providers.IToArrayMethod`2.ToArray"/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.System#Linq#IOrderedEnumerable{T}#CreateOrderedEnumerable``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.Create``1(System.ReadOnlySpan{`0},System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
+            <summary>
+            Creates an <see cref="T:System.Linq.SpanOrderedEnumerable`1"/> instance via the specified values.
+            </summary>
+            <typeparam name="TKey">The type of the key to be compared.</typeparam>
+            <param name="values">The values to be used.</param>
+            <param name="keySelector">
+            The selector method that calculates a <typeparamref name="TKey"/> from each <typeparamref name="T"/> instance.
+            </param>
+            <param name="comparer">
+            A comparable instance that temporarily checks the comparing result of two <typeparamref name="TKey"/> values.
+            </param>
+            <param name="descending">A <see cref="T:System.Boolean"/> value indicating whether the creation is for descending comparison rule.</param>
+            <returns>An <see cref="T:System.Linq.SpanOrderedEnumerable`1"/> instance.</returns>
         </member>
         <member name="F:System.Linq.SpanOrderedEnumerable`1._values">
             <summary>

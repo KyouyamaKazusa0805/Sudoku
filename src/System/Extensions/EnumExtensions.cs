@@ -13,7 +13,7 @@ public static class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum
+	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum, allows ref struct
 		=> sizeof(T) switch
 		{
 			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,

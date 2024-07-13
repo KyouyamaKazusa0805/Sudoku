@@ -12,7 +12,7 @@ public static class ICollectionExtensions
 	/// <typeparam name="T">The type of elements in the list.</typeparam>
 	/// <param name="this">The source collection.</param>
 	/// <param name="elements">The collection whose elements should be added to the end of the <see cref="ICollection{T}"/>.</param>
-	public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> elements)
+	public static void AddRange<T>(this ICollection<T> @this, IEnumerable<T> elements)// where T : allows ref struct
 	{
 		foreach (var element in elements)
 		{
