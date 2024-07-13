@@ -8,7 +8,7 @@ public static class TechniqueSetExtensions
 {
 	/// <summary>
 	/// Try to get common suitable <see cref="Type"/> referring to a <see cref="Step"/> type,
-	/// whose containied property <see cref="Step.Code"/> can create this technique.
+	/// whose containing property <see cref="Step.Code"/> can create this technique.
 	/// </summary>
 	/// <param name="this">The current instance.</param>
 	/// <returns>

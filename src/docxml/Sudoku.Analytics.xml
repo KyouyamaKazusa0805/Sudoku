@@ -5470,7 +5470,7 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSetExtensions.GetCommonSuitableStepType(Sudoku.Analytics.Categorization.TechniqueSet)">
             <summary>
             Try to get common suitable <see cref="T:System.Type"/> referring to a <see cref="T:Sudoku.Analytics.Step"/> type,
-            whose containied property <see cref="P:Sudoku.Analytics.Step.Code"/> can create this technique.
+            whose containing property <see cref="P:Sudoku.Analytics.Step.Code"/> can create this technique.
             </summary>
             <param name="this">The current instance.</param>
             <returns>
