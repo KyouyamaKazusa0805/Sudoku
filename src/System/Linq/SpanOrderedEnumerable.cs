@@ -18,16 +18,14 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
 ) :
 	IEnumerable<T>,
-	IOrderedEnumerable<T>,
-	IReadOnlyCollection<T>
-#if false
 	IGroupByMethod<SpanOrderedEnumerable<T>, T>,
+	IOrderedEnumerable<T>,
+	IReadOnlyCollection<T>,
 	ISelectMethod<SpanOrderedEnumerable<T>, T>,
 	ISliceMethod<SpanOrderedEnumerable<T>, T>,
 	IThenByMethod<SpanOrderedEnumerable<T>, T>,
 	IToArrayMethod<SpanOrderedEnumerable<T>, T>,
 	IWhereMethod<SpanOrderedEnumerable<T>, T>
-#endif
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
@@ -219,23 +217,6 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
 		=> Create(_values, keySelector, comparer, descending).AsArrayOrderedEnumerable();
 
-#if false
-	/// <inheritdoc/>
-	IEnumerable<T> ISliceMethod<SpanOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count).ToArray();
-
-	/// <inheritdoc/>
-	IEnumerable<T> IWhereMethod<SpanOrderedEnumerable<T>, T>.Where(Func<T, bool> predicate) => Where(predicate).ToArray();
-
-	/// <inheritdoc/>
-	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenBy<TKey>(Func<T, TKey> keySelector) => ThenBy(keySelector);
-
-	/// <inheritdoc/>
-	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenByDescending<TKey>(Func<T, TKey> keySelector)
-		=> ThenByDescending(keySelector);
-
-	/// <inheritdoc/>
-	IEnumerable<TResult> ISelectMethod<SpanOrderedEnumerable<T>, T>.Select<TResult>(Func<T, TResult> selector) => Select(selector).ToArray();
-
 	/// <inheritdoc/>
 	IEnumerable<IGrouping<TKey, T>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey>(Func<T, TKey> keySelector)
 		=> GroupBy(keySelector).ToArray().Select(element => (IGrouping<TKey, T>)element);
@@ -243,7 +224,90 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// <inheritdoc/>
 	IEnumerable<IGrouping<TKey, TElement>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
 		=> GroupBy(keySelector, elementSelector).ToArray().Select(element => (IGrouping<TKey, TElement>)element);
-#endif
+
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey}?)"/>
+	IEnumerable<IGrouping<TKey, T>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey>(Func<T, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+		=> ToArray().ToLookup(keySelector, comparer ?? EqualityComparer<TKey>.Default);
+
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, IEqualityComparer{TKey}?)"/>
+	IEnumerable<IGrouping<TKey, TElement>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector, IEqualityComparer<TKey>? comparer)
+		=> ToArray().ToLookup(keySelector, elementSelector);
+
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement, TResult}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, Func{TKey, IEnumerable{TElement}, TResult})"/>
+	IEnumerable<TResult> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement, TResult>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector)
+		=> ToArray().GroupBy(keySelector, elementSelector, resultSelector, null);
+
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement, TResult}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, Func{TKey, IEnumerable{TElement}, TResult}, IEqualityComparer{TKey}?)"/>
+	IEnumerable<TResult> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement, TResult>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey>? comparer)
+		=> ToArray().ToLookup(keySelector, elementSelector, comparer).Select(p => resultSelector(p.Key, p));
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<SpanOrderedEnumerable<T>, T>.Select<TResult>(Func<T, TResult> selector) => Select(selector).ToArray();
+
+	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, int, TResult})"/>
+	IEnumerable<TResult> ISelectMethod<SpanOrderedEnumerable<T>, T>.Select<TResult>(Func<T, int, TResult> selector)
+	{
+		var result = new List<TResult>();
+		var i = 0;
+		foreach (var element in this)
+		{
+			result.Add(selector(element, i++));
+		}
+		return result;
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<T> ISliceMethod<SpanOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<T> IWhereMethod<SpanOrderedEnumerable<T>, T>.Where(Func<T, bool> predicate) => Where(predicate).ToArray();
+
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, int, bool})"/>
+	IEnumerable<T> IWhereMethod<SpanOrderedEnumerable<T>, T>.Where(Func<T, int, bool> predicate)
+	{
+		var result = new List<T>();
+		var i = 0;
+		foreach (var element in this)
+		{
+			if (predicate(element, i++))
+			{
+				result.Add(element);
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenBy<TKey>(Func<T, TKey> keySelector)
+		=> ThenBy(keySelector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenByDescending<TKey>(Func<T, TKey> keySelector)
+		=> ThenByDescending(keySelector).ToArray();
+
+	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenBy<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer)
+	{
+		comparer ??= Comparer<TKey>.Default;
+		var result = new SortedList<TKey, T>(comparer);
+		foreach (var element in this)
+		{
+			result.Add(keySelector(element), element);
+		}
+		return result.Values;
+	}
+
+	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenByDescending<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer)
+	{
+		comparer ??= Comparer<TKey>.Default;
+		var result = new SortedList<TKey, T>(Comparer<TKey>.Create((l, r) => -comparer.Compare(l, r)));
+		foreach (var element in this)
+		{
+			result.Add(keySelector(element), element);
+		}
+		return result.Values;
+	}
 
 
 	/// <summary>
