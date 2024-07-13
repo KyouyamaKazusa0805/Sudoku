@@ -318,7 +318,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 						}
 
 						// Special case: consider the step is a full house, hidden single or naked single,
-						// igonring steps not belonging to the technique set.
+						// ignoring steps not belonging to the technique set.
 						var chosenSteps = new List<SingleStep>();
 						foreach (var step in accumulator)
 						{
