@@ -559,10 +559,10 @@ public interface IGrid<TSelf> :
 	}
 
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
-	public static virtual bool TryPase(string? s, out TSelf result) => TSelf.TryParse(s, null, out result);
+	public static virtual bool TryParse(string? s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
 	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static virtual bool TryPase(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
+	public static virtual bool TryParse(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
 	/// <summary>
 	/// Creates a <typeparamref name="TSelf"/> instance via the specified list of <see cref="Mask"/> values.

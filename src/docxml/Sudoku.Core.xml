@@ -6987,10 +6987,10 @@
         <member name="M:Sudoku.Concepts.IGrid`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)">
             <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.TryPase(System.String,`0@)">
+        <member name="M:Sudoku.Concepts.IGrid`1.TryParse(System.String,`0@)">
             <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.IGrid`1.TryPase(System.ReadOnlySpan{System.Char},`0@)">
+        <member name="M:Sudoku.Concepts.IGrid`1.TryParse(System.ReadOnlySpan{System.Char},`0@)">
             <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.Create(System.ReadOnlySpan{System.Int16})">

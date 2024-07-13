@@ -843,11 +843,11 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 	/// <inheritdoc/>
-	public static bool TryParse(string str, out Grid result)
+	public static bool TryParse(string? s, out Grid result)
 	{
 		try
 		{
-			result = Parse(str);
+			result = Parse(s);
 			return !result.IsUndefined;
 		}
 		catch (FormatException)
