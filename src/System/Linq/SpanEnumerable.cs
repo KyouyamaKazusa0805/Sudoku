@@ -453,11 +453,8 @@ public static class SpanEnumerable
 		var result = new List<SpanGrouping<TSource, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
-			unsafe
-			{
-				var tempValues = tempDictionary[key];
-				result.AddRef(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
-			}
+			var tempValues = tempDictionary[key];
+			result.AddRef(new([.. tempValues], key));
 		}
 		return result.AsReadOnlySpan();
 	}
@@ -482,12 +479,9 @@ public static class SpanEnumerable
 		var result = new List<SpanGrouping<TElement, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
-			unsafe
-			{
-				var tempValues = tempDictionary[key];
-				var valuesConverted = from value in tempValues select elementSelector(value);
-				result.AddRef(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
-			}
+			var tempValues = tempDictionary[key];
+			var valuesConverted = from value in tempValues select elementSelector(value);
+			result.AddRef(new(valuesConverted.ToArray(), key));
 		}
 		return result.AsReadOnlySpan();
 	}

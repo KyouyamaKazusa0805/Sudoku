@@ -7,14 +7,12 @@ namespace System.Linq;
 /// <typeparam name="TSource">The type of each element.</typeparam>
 /// <typeparam name="TKey">The type of the key.</typeparam>
 /// <param name="elements">Indicates the elements.</param>
-/// <param name="length">Indicates the length of elements stored in this collection.</param>
 /// <param name="key">Indicates the key that can compare each element.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource[] elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
 ) :
 	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>,
@@ -22,11 +20,16 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	IWhereMethod<SpanGrouping<TSource, TKey>, TSource>
 	where TKey : notnull
 {
+	/// <summary>
+	/// Indicates the length of the value.
+	/// </summary>
+	public int Length => _elements.Length;
+
 	[HashCodeMember]
-	private nint ElementsRawPointerValue => (nint)_elements;
+	private nint ElementsRawPointerValue => (nint)Unsafe.AsPointer(ref _elements[0]);
 
 	[StringMember]
-	private string FirstElementString => _elements[0].ToString()!;
+	private string FirstElementString => _elements[0]!.ToString()!;
 
 	/// <summary>
 	/// Creates a <see cref="ReadOnlySpan{T}"/> instance that is aligned as <see cref="_elements"/>.
@@ -35,7 +38,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	private ReadOnlySpan<TSource> SourceSpan
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => new(_elements, Length);
+		get => new(_elements);
 	}
 
 	/// <inheritdoc/>
@@ -57,7 +60,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(SpanGrouping<TSource, TKey> other)
-		=> _elements == other._elements && Length == other.Length && Key.Equals(other.Key);
+		=> ReferenceEquals(_elements, other._elements) && Key.Equals(other.Key);
 
 	/// <summary>
 	/// Projects elements into a new form.

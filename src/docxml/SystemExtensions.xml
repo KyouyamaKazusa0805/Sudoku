@@ -4343,10 +4343,9 @@
             <typeparam name="TSource">The type of each element.</typeparam>
             <typeparam name="TKey">The type of the key.</typeparam>
             <param name="elements">Indicates the elements.</param>
-            <param name="length">Indicates the length of elements stored in this collection.</param>
             <param name="key">Indicates the key that can compare each element.</param>
         </member>
-        <member name="M:System.Linq.SpanGrouping`2.#ctor(`0*,System.Int32,`1)">
+        <member name="M:System.Linq.SpanGrouping`2.#ctor(`0[],`1)">
             <summary>
             Represents a type that enumerates elements of type <typeparamref name="TSource"/> in a <see cref="T:System.ReadOnlySpan`1"/>,
             grouped by the specified key of type <typeparamref name="TKey"/>.
@@ -4354,8 +4353,12 @@
             <typeparam name="TSource">The type of each element.</typeparam>
             <typeparam name="TKey">The type of the key.</typeparam>
             <param name="elements">Indicates the elements.</param>
-            <param name="length">Indicates the length of elements stored in this collection.</param>
             <param name="key">Indicates the key that can compare each element.</param>
+        </member>
+        <member name="P:System.Linq.SpanGrouping`2.Length">
+            <summary>
+            Indicates the length of the value.
+            </summary>
         </member>
         <member name="P:System.Linq.SpanGrouping`2.SourceSpan">
             <summary>
@@ -4409,11 +4412,6 @@
         <member name="F:System.Linq.SpanGrouping`2._elements">
             <summary>
             The generated field declaration for parameter <c>elements</c>.
-            </summary>
-        </member>
-        <member name="P:System.Linq.SpanGrouping`2.Length">
-            <summary>
-            The generated property declaration for parameter <c>length</c>.
             </summary>
         </member>
         <member name="P:System.Linq.SpanGrouping`2.Key">
