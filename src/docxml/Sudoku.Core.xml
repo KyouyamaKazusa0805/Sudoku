@@ -6895,7 +6895,7 @@
             which is the main difference between this method and that indexer.
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Concepts.IGrid`1.GetExistence(System.Int32,System.Int32)"/>s
+            <seealso cref="M:Sudoku.Concepts.IGrid`1.GetExistence(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>

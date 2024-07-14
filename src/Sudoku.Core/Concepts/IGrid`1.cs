@@ -440,7 +440,7 @@ public interface IGrid<TSelf> :
 	/// which is the main difference between this method and that indexer.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="GetExistence(Cell, Digit)"/>s
+	/// <seealso cref="GetExistence(Cell, Digit)"/>
 	public abstract bool? Exists(Cell cell, Digit digit);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
