@@ -14,9 +14,7 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private")] TSource[] elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
 ) :
-	IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>,
-	ISelectMethod<ArrayGrouping<TSource, TKey>, TSource>,
-	IWhereMethod<ArrayGrouping<TSource, TKey>, TSource>
+	IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull
 {
 	/// <inheritdoc/>

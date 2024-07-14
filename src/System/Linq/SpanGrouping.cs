@@ -15,9 +15,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource[] elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
 ) :
-	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>,
-	ISelectMethod<SpanGrouping<TSource, TKey>, TSource>,
-	IWhereMethod<SpanGrouping<TSource, TKey>, TSource>
+	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull
 {
 	/// <summary>

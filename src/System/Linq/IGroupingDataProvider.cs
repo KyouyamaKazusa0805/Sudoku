@@ -11,7 +11,9 @@ public interface IGroupingDataProvider<TSelf, out TKey, TElement> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
 	IGrouping<TKey, TElement>,
-	IReadOnlyCollection<TElement>
+	IReadOnlyCollection<TElement>,
+	ISelectMethod<TSelf, TElement>,
+	IWhereMethod<TSelf, TElement>
 	where TSelf : IGroupingDataProvider<TSelf, TKey, TElement>
 	where TKey : notnull
 {
