@@ -21545,7 +21545,7 @@
             <summary>
             Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
             </summary>
-            <param name="conclusion">Indicates the final conclusion.</param>
+            <param name="conclusions">Indicates the conclusions.</param>
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
@@ -21572,11 +21572,11 @@
             <seealso cref="T:Sudoku.Concepts.WeakForcingChain"/>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion)">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.#ctor(Sudoku.Concepts.Conclusion[])">
             <summary>
             Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
             </summary>
-            <param name="conclusion">Indicates the final conclusion.</param>
+            <param name="conclusions">Indicates the conclusions.</param>
             <remarks>
             <para>
             By the way, this type is directly derived from <see cref="T:System.Collections.Generic.SortedDictionary`2"/>
@@ -21711,12 +21711,12 @@
             <returns>The pattern converted.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
             <summary>
             Collect views for the current chain.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="conclusion">The conclusion.</param>
+            <param name="newConclusions">The conclusions.</param>
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
@@ -21729,9 +21729,9 @@
         <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Concepts#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Concepts.ChainOrLoop},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MultipleForcingChains.Conclusion">
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.Conclusions">
             <summary>
-            The generated property declaration for parameter <c>conclusion</c>.
+            The generated property declaration for parameter <c>conclusions</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.Equals(System.Object)">

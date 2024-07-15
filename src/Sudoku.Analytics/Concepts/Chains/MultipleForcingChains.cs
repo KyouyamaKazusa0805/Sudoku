@@ -3,7 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
 /// </summary>
-/// <param name="conclusion">Indicates the final conclusion.</param>
+/// <param name="conclusions">Indicates the conclusions.</param>
 /// <remarks>
 /// <para>
 /// By the way, this type is directly derived from <see cref="SortedDictionary{TKey, TValue}"/>
@@ -30,7 +30,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
-public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] Conclusion conclusion) :
+public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, ChainOrLoop>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>,
 	IComparable<MultipleForcingChains>,
@@ -205,8 +205,8 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// </returns>
 	public bool TryCastToFinnedChain([NotNullWhen(true)] out ChainOrLoop? result, [NotNullWhen(true)] out CandidateMap? fins)
 	{
-		// Determine whether the pattern is an elimination.
-		if (Conclusion.ConclusionType == Assignment)
+		// Determine whether the chain only contains one elimination.
+		if (Conclusions is not [(Assignment, var elimination) conclusion])
 		{
 			goto ReturnFalse;
 		}
@@ -216,7 +216,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 		var krakenBranches = new List<ChainOrLoop>(2);
 		foreach (var branch in Values)
 		{
-			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(Conclusion.Candidate))
+			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(elimination))
 			{
 				finsFound |= lastMap;
 				continue;
@@ -238,7 +238,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 
 		// If so, a finned chain is found. Now we should merge two branches into one, by rotating one of two branches,
 		// and concat two branches.
-		(result, fins) = (c([.. firstKraken.Reverse(), .. secondKraken], Conclusion), finsFound);
+		(result, fins) = (c([.. firstKraken.Reverse(), .. secondKraken], conclusion), finsFound);
 		return true;
 
 	ReturnFalse:
@@ -267,7 +267,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 			(var lastNode, i, isOn) = (currentNode, (i + 1) % nodes.Length, !isOn);
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
-				currentNode.Parent = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
+				currentNode.Parent = new(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
 				currentNode = currentNode.Parent;
 				isOn = !isOn;
 			}
@@ -335,19 +335,20 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 	/// Collect views for the current chain.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="conclusion">The conclusion.</param>
+	/// <param name="newConclusions">The conclusions.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, Conclusion conclusion, ChainingRules supportedRules)
+	public View[] GetViews(ref readonly Grid grid, Conclusion[] newConclusions, ChainingRules supportedRules)
 	{
 		var viewNodes = v(in grid, supportedRules);
 		var result = new View[viewNodes.Length];
 		for (var i = 0; i < viewNodes.Length; i++)
 		{
+			var elimMap = (CandidateMap)([.. from conclusion in newConclusions select conclusion.Candidate]);
 			result[i] = [
 				..
 				from node in viewNodes[i]
-				where node is not CandidateViewNode { Candidate: var c } || c != conclusion.Candidate
+				where node is not CandidateViewNode { Candidate: var c } || !elimMap.Contains(c)
 				select node
 			];
 		}

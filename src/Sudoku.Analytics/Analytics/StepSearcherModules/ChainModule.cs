@@ -91,13 +91,7 @@ internal static class ChainModule
 					}
 				}
 
-				var finnedChainStep = new FinnedChainStep(
-					[chain.Conclusion],
-					views,
-					context.Options,
-					finnedChain,
-					in fins
-				);
+				var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
 				if (context.OnlyFindOne)
 				{
 					return finnedChainStep;
@@ -109,8 +103,8 @@ internal static class ChainModule
 			if (!onlyFindFinnedChain)
 			{
 				var mfcStep = new MultipleForcingChainsStep(
-					[chain.Conclusion],
-					chain.GetViews(in grid, chain.Conclusion, supportedRules),
+					chain.Conclusions,
+					chain.GetViews(in grid, chain.Conclusions, supportedRules),
 					context.Options,
 					chain
 				);
