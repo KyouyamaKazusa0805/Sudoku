@@ -125,6 +125,26 @@ internal partial class ChainingDriver
 		return result.ToArray();
 
 
+		static Conclusion[] getThoroughConclusions(ref readonly Grid grid, MultipleForcingChains mfc)
+		{
+			// Modify conclusions in order to check more thoroughly.
+			var map = CandidateMap.Empty;
+			foreach (var branch in mfc.Values)
+			{
+				map |= branch[1].Map; // branch[0] is for conclusion and branch[^1] is for branch start house/cell.
+			}
+
+			var newConclusions = new List<Conclusion>();
+			foreach (var candidate in map.PeerIntersection)
+			{
+				if (grid.Exists(candidate) is true)
+				{
+					newConclusions.Add(new(Elimination, candidate));
+				}
+			}
+			return [.. newConclusions];
+		}
+
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
 			ref readonly Grid grid,
 			Cell cell,
@@ -141,7 +161,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				var conclusion = new Conclusion(Assignment, node.Map[0]);
 				if (grid.Exists(conclusion.Candidate) is not true)
 				{
 					continue;
@@ -178,18 +198,19 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				var conclusion = new Conclusion(Elimination, node.Map[0]);
 				if (grid.Exists(conclusion.Candidate) is not true)
 				{
 					continue;
 				}
 
-				var cfc = new MultipleForcingChains(conclusion);
+				var cfc = new MultipleForcingChains();
 				foreach (var d in digitsMask)
 				{
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
+				cfc.Conclusions = getThoroughConclusions(in grid, cfc);
 				if (onlyFindOne)
 				{
 					return (MultipleForcingChains[])[cfc];
@@ -215,7 +236,7 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				var conclusion = new Conclusion(Assignment, node.Map[0]);
 				if (grid.Exists(conclusion.Candidate) is not true)
 				{
 					continue;
@@ -255,13 +276,13 @@ internal partial class ChainingDriver
 					continue;
 				}
 
-				var conclusion = new Conclusion(node.IsOn ? Assignment : Elimination, node.Map[0]);
+				var conclusion = new Conclusion(Elimination, node.Map[0]);
 				if (grid.Exists(conclusion.Candidate) is not true)
 				{
 					continue;
 				}
 
-				var rfc = new MultipleForcingChains(conclusion);
+				var rfc = new MultipleForcingChains();
 				foreach (var c in cellsInHouse)
 				{
 					var branchNode = offNodes[c * 9 + digit].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
@@ -270,6 +291,8 @@ internal partial class ChainingDriver
 						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 					);
 				}
+				rfc.Conclusions = getThoroughConclusions(in grid, rfc);
+
 				if (onlyFindOne)
 				{
 					return (MultipleForcingChains[])[rfc];

@@ -30,7 +30,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
-public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] params Conclusion[] conclusions) :
+public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(SetterExpression = "internal set")] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, ChainOrLoop>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>,
 	IComparable<MultipleForcingChains>,
@@ -395,6 +395,12 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter] 
 				j = 0;
 				foreach (var link in chain.Links)
 				{
+					// Skip the link if there are >= 2 conclusions.
+					if (newConclusions.Length >= 2 && j++ == 0)
+					{
+						continue;
+					}
+
 					var id = (++j & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
 					var currentViewNode = new ChainLinkViewNode(id, link.FirstNode.Map, link.SecondNode.Map, link.IsStrong);
 					globalView.Add(currentViewNode);
