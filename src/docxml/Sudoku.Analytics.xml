@@ -930,6 +930,9 @@
             Indicates the accumulator to store each step while searching.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.Sudoku#Analytics#IContext#Grid">
+            <inheritdoc/>
+        </member>
         <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
@@ -5666,7 +5669,7 @@
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Analytics#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetLinkOption(Sudoku.Concepts.LinkType)">
@@ -5728,7 +5731,7 @@
             Indicates the found conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Sudoku#Analytics#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Grid">
@@ -5776,7 +5779,7 @@
             Indicates the view nodes produced.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Sudoku#Analytics#Chaining#IChainingRuleContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Sudoku#Analytics#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Grid">
@@ -5934,17 +5937,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.IChainingRuleContext">
-            <summary>
-            Represents a context type consumed by <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.IChainingRuleContext.Grid">
-            <summary>
-            Indicates the grid to be used.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule">
             <summary>
@@ -6572,6 +6564,16 @@
             <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.IContext">
+            <summary>
+            Represents a type that is a context.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IContext.Grid">
+            <summary>
+            Indicates the grid to be used.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Languages">
             <summary>

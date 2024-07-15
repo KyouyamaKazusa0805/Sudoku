@@ -12,7 +12,7 @@ public ref partial struct ChainingRuleViewNodeContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ChainOrLoop pattern,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] View view
-) : IChainingRuleContext
+) : IContext
 {
 	/// <summary>
 	/// Indicates the currently used almost locked set index.
@@ -25,5 +25,5 @@ public ref partial struct ChainingRuleViewNodeContext(
 	public ReadOnlySpan<ViewNode> ProducedViewNodes { get; set; }
 
 	/// <inheritdoc/>
-	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
+	readonly ref readonly Grid IContext.Grid => ref Grid;
 }

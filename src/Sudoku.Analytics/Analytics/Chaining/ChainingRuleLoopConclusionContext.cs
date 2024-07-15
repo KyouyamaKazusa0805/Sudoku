@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Chaining;
 public ref partial struct ChainingRuleLoopConclusionContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ReadOnlySpan<Link> links
-) : IChainingRuleContext
+) : IContext
 {
 	/// <summary>
 	/// Indicates the found conclusions.
@@ -18,5 +18,5 @@ public ref partial struct ChainingRuleLoopConclusionContext(
 	public ConclusionSet Conclusions { get; set; } = ConclusionSet.Empty;
 
 	/// <inheritdoc/>
-	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
+	readonly ref readonly Grid IContext.Grid => ref Grid;
 }

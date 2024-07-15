@@ -15,7 +15,7 @@ public ref partial struct AnalysisContext(
 
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
 	ref readonly Grid initialGrid
-)
+) : IContext
 {
 	/// <summary>
 	/// Initializes an <see cref="AnalysisContext"/> instance via the specified grid.
@@ -93,4 +93,7 @@ public ref partial struct AnalysisContext(
 	/// Indicates the accumulator to store each step while searching.
 	/// </summary>
 	public List<Step>? Accumulator { get; internal set; }
+
+	/// <inheritdoc/>
+	readonly ref readonly Grid IContext.Grid => ref Grid;
 }

@@ -14,10 +14,10 @@ public ref partial struct ChainingRuleLinkContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary strongLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary weakLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] StepSearcherOptions options
-) : IChainingRuleContext
+) : IContext
 {
 	/// <inheritdoc/>
-	readonly ref readonly Grid IChainingRuleContext.Grid => ref Grid;
+	readonly ref readonly Grid IContext.Grid => ref Grid;
 
 
 	/// <summary>
