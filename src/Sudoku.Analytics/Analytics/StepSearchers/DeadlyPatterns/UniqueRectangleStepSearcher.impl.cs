@@ -4419,6 +4419,18 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
+		#region Why 'scoped ReadOnlySpan<...> alses' instead of 'ReadOnlySpan<...> alses'
+		// Here expects a 'scoped' keyword on parameter 'alses' because 'alses' may assign to 'context'
+		// because 'context' can expect a 'ReadOnlySpan<>' instance.
+		// This is a very "implicit" compiler error that we cannot aware of this immediately.
+		//
+		// Please check this page to learn more information on CS8350:
+		//   https://blog.walterlv.com/post/cs8350-ref-arguments-combination-is-disallowed
+		//
+		// By appending modifier 'scoped', to tell compiler that the parameter can only be used inside this method or other places
+		// allowing such "scoped" usages.
+		#endregion
+
 		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{

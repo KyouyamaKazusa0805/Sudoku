@@ -26,7 +26,7 @@ public static class ListExtensions
 	/// </remarks>
 	/// <seealso cref="UnsafeAccessorAttribute"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AddRef<T>(this List<T> @this, scoped ref readonly T item)
+	public static void AddRef<T>(this List<T> @this, ref readonly T item)
 	{
 		ListFieldEntry<T>.GetVersion(@this)++;
 		var array = ListFieldEntry<T>.GetItems(@this).AsSpan();
@@ -124,7 +124,7 @@ public static class ListExtensions
 	///     file="../../global-doc-comments.xml"
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='others']"/>
 	/// </remarks>
-	private static void AddWithResize<T>(this List<T> @this, scoped ref readonly T item)
+	private static void AddWithResize<T>(this List<T> @this, ref readonly T item)
 	{
 		Debug.Assert(ListFieldEntry<T>.GetSize(@this) == ListFieldEntry<T>.GetItems(@this).Length);
 		var size = ListFieldEntry<T>.GetSize(@this);

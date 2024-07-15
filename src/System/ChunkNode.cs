@@ -157,6 +157,7 @@ public readonly partial struct ChunkNode<T> : IEnumerable<T>
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[UnscopedRef]
 	public Enumerator GetEnumerator() => new(in this);
 
 	/// <inheritdoc/>

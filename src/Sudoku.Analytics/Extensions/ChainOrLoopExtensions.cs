@@ -13,7 +13,7 @@ public static class ChainOrLoopExtensions
 	/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetTechnique(this ChainOrLoop @this, scoped ref readonly Grid grid)
+	public static Technique GetTechnique(this ChainOrLoop @this, ref readonly Grid grid)
 		=> @this.GetTechnique(@this.GetConclusions(in grid));
 
 	/// <summary>

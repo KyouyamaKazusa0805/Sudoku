@@ -6,7 +6,7 @@ public partial struct ChunkNode<T>
 	/// Indicates the enumerator of current type.
 	/// </summary>
 	/// <param name="value">The value.</param>
-	public ref struct Enumerator(scoped ref readonly ChunkNode<T> value) : IEnumerator<T>
+	public ref struct Enumerator(ref readonly ChunkNode<T> value) : IEnumerator<T>
 	{
 		/// <summary>
 		/// Indicates the values.
