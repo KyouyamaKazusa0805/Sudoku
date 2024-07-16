@@ -848,7 +848,7 @@ public partial struct CandidateMap : CandidateMapBase
 		}
 
 
-		void e<T>(T result, int size, int last, int index, Candidate[] offsets, CandidateMapBase.CollectionAddingHandler<T> addingAction)
+		void e<T>(T result, int size, int last, int index, Candidate[] offsets, Action<T, ReadOnlySpan<Candidate>> addingAction)
 			where T : allows ref struct
 		{
 			for (var i = last; i >= index; i--)

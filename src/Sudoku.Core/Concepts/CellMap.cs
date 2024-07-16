@@ -954,7 +954,7 @@ public partial struct CellMap : CellMapBase
 		}
 
 
-		void e<T>(T result, int size, int last, int index, Cell[] offsets, CellMapBase.CollectionAddingHandler<T> addingAction)
+		void e<T>(T result, int size, int last, int index, Cell[] offsets, Action<T, ReadOnlySpan<Cell>> addingAction)
 			where T : allows ref struct
 		{
 			for (var i = last; i >= index; i--)

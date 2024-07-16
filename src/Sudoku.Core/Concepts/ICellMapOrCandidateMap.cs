@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
-public partial interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
+public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IAnyAllMethod<TSelf, TElement>,

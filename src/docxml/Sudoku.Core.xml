@@ -5964,14 +5964,6 @@
             <typeparam name="TElement">The type of each element.</typeparam>
             <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
         </member>
-        <member name="T:Sudoku.Concepts.ICellMapOrCandidateMap`3.CollectionAddingHandler`1">
-            <summary>
-            Represents a local handler on <typeparamref name="TCollection"/> adding operation, with a new element.
-            </summary>
-            <typeparam name="TCollection">The type of collection.</typeparam>
-            <param name="result">The result instance.</param>
-            <param name="cells">The values to be added.</param>
-        </member>
         <member name="F:Sudoku.Concepts.ICellMapOrCandidateMap`3.MaxLimit">
             <summary>
             Indicates the size of combinatorial calculation.
