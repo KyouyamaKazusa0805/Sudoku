@@ -33,10 +33,17 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		// Normal types are cleared in type 'Analyzer'.
 
+		ref readonly var grid = ref context.Grid;
+		if (grid.PuzzleType == SudokuType.Sukaku)
+		{
+			// Skip if the puzzle is a Sukaku.
+			return null;
+		}
+
 		// Anti types.
 		foreach (var checker in AntiTypeCheckers)
 		{
-			if (checker(in context.Grid, ref context) is not { } antiTypeStep)
+			if (checker(in grid, ref context) is not { } antiTypeStep)
 			{
 				continue;
 			}
