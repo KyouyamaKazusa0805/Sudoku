@@ -146,8 +146,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		// which cannot guarantee whether the deadly pattern at current state will be formed or not.
 		// By using the same rule, we can also check for other possible deadly patterns such as unique loops
 		// and Borescoper's deadly patterns.
-		var tempList = context.IsSukaku ? new List<UniqueRectangleStep>(sortedList.Count) : sortedList;
-		if (context.IsSukaku)
+		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
+		var tempList = isSukaku ? new List<UniqueRectangleStep>(sortedList.Count) : sortedList;
+		if (isSukaku)
 		{
 			ref readonly var initialGrid = ref context.InitialGrid;
 			foreach (var element in sortedList)

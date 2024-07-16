@@ -60,14 +60,14 @@ public sealed partial class Collector : AnalyzerOrCollector
 			throw new InvalidOperationException(SR.ExceptionMessage("ModeIsUndefined"));
 		}
 
-		if ((puzzle.PuzzleType == SudokuType.Sukaku) is var isSukaku && puzzle.IsSolved)
+		if (puzzle.IsSolved)
 		{
 			return [];
 		}
 
 		try
 		{
-			return s(isSukaku, progress, in puzzle, cancellationToken);
+			return s(progress, in puzzle, cancellationToken);
 		}
 		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
 		{
@@ -79,7 +79,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		}
 
 
-		ReadOnlySpan<Step> s(bool isSukaku, IProgress<AnalysisProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
+		ReadOnlySpan<Step> s(IProgress<AnalysisProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 
@@ -90,20 +90,14 @@ public sealed partial class Collector : AnalyzerOrCollector
 			Initialize(in playground, playground.GetSolutionGrid());
 
 			var accumulator = new List<Step>();
-			var context = new AnalysisContext(in playground, in puzzle)
-			{
-				Accumulator = accumulator,
-				OnlyFindOne = false,
-				IsSukaku = isSukaku,
-				Options = Options
-			};
+			var context = new AnalysisContext(in playground, in puzzle) { Accumulator = accumulator, OnlyFindOne = false, Options = Options };
 			var (l, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{
 				switch (searcher)
 				{
 					case { RunningArea: var runningArea } when !runningArea.HasFlag(StepSearcherRunningArea.Collecting):
-					case { Metadata.SupportsSukaku: false } when isSukaku:
+					case { Metadata.SupportsSukaku: false } when puzzle.PuzzleType == SudokuType.Sukaku:
 					{
 						goto ReportProgress;
 					}

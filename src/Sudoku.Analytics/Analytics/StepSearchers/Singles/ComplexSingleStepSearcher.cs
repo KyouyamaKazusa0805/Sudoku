@@ -128,13 +128,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		{
 			// Collect all steps by using indirect techniques.
 			var indirectFoundSteps = new List<Step>();
-			var tempContext = new AnalysisContext(in grid)
-			{
-				Accumulator = indirectFoundSteps,
-				OnlyFindOne = false,
-				IsSukaku = context.IsSukaku,
-				Options = context.Options
-			};
+			var tempContext = new AnalysisContext(in grid) { Accumulator = indirectFoundSteps, OnlyFindOne = false, Options = context.Options };
 			_searcher_LockedSubset.Collect(ref tempContext);
 			_searcher_LockedCandidates.Collect(ref tempContext);
 			_searcher_Subset.Collect(ref tempContext);
@@ -205,13 +199,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 					// Check whether the puzzle can be solved via a direct single.
 					var directStepsFound = new List<Step>();
-					var nestedContext = new AnalysisContext(in playground)
-					{
-						Accumulator = directStepsFound,
-						OnlyFindOne = false,
-						IsSukaku = context.IsSukaku,
-						Options = context.Options
-					};
+					var nestedContext = new AnalysisContext(in playground) { Accumulator = directStepsFound, OnlyFindOne = false, Options = context.Options };
 					_searcher_DirectLockedCandidates.Collect(ref nestedContext);
 					_searcher_DirectSubset.Collect(ref nestedContext);
 

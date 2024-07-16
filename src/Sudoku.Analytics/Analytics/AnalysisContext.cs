@@ -28,11 +28,6 @@ public ref partial struct AnalysisContext(
 
 
 	/// <summary>
-	/// Indicates whether the puzzle type is Sukaku.
-	/// </summary>
-	public required bool IsSukaku { get; init; }
-
-	/// <summary>
 	/// Indicates whether the solver only find one possible step and exit the searcher.
 	/// </summary>
 	/// <remarks>

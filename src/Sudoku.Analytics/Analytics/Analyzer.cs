@@ -247,7 +247,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			var context = new AnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
-				IsSukaku = puzzle.PuzzleType == SudokuType.Sukaku,
 				Options = Options,
 				OnlyFindOne = !IsFullApplying
 					&& !RandomizedChoosing

@@ -865,11 +865,6 @@
             </summary>
             <param name="grid">The grid.</param>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.IsSukaku">
-            <summary>
-            Indicates whether the puzzle type is Sukaku.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
             <summary>
             Indicates whether the solver only find one possible step and exit the searcher.

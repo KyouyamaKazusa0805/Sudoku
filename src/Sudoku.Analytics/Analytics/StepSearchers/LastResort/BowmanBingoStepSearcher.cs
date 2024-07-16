@@ -106,12 +106,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		int length
 	)
 	{
-		var context2 = new AnalysisContext(in grid)
-		{
-			OnlyFindOne = true,
-			IsSukaku = context.IsSukaku,
-			Options = context.Options
-		};
+		var context2 = new AnalysisContext(in grid) { OnlyFindOne = true, Options = context.Options };
 		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions: [{ Cell: var c, Digit: var d } conclusion, ..] })
 		{
 			// Two cases we don't need to go on.
