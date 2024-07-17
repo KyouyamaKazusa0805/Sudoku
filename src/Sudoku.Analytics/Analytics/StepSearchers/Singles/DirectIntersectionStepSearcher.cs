@@ -162,7 +162,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
@@ -233,9 +233,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[new(Assignment, lastCell, digit)],
 				[
 					[
-						.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+						.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
 						..
 						from cell in HousesMap[house] & elimMap
 						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
@@ -309,8 +309,8 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-						.. SingleModule.GetNakedSingleExcluders(in grid, lastCell, lastDigit, out _),
-						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
+						.. Excluder.GetNakedSingleExcluders(in grid, lastCell, lastDigit, out _),
+						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
 						new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),

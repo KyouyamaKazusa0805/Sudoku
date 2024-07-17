@@ -85,7 +85,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 							.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 							new HouseViewNode(ColorIdentifier.Normal, realBaseSet),
 							new HouseViewNode(ColorIdentifier.Auxiliary1, realCoverSet),
-							.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
+							.. Excluder.GetLockedCandidatesExcluders(in grid, digit, realBaseSet, in intersection)
 						]
 					],
 					context.Options,

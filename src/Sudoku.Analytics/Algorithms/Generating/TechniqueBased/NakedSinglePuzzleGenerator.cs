@@ -102,7 +102,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 							continue;
 						}
 
-						var excluderCells = SingleModule.GetNakedSingleExcluderCells(in currentGrid, cell, digit, out _);
+						var excluderCells = Excluder.GetNakedSingleExcluderCells(in currentGrid, cell, digit, out _);
 						var extractedGrid = currentGrid;
 						extractedGrid.Unfix();
 

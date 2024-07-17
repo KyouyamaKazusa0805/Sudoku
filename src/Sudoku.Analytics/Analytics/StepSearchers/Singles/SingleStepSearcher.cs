@@ -176,7 +176,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new NakedSingleStep(
 					[new(Assignment, cell, digit)],
-					[[.. SingleModule.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
+					[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
 					context.Options,
 					cell,
 					digit,
@@ -364,7 +364,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = TrailingZeroCount(mask);
 			var step = new NakedSingleStep(
 				[new(Assignment, cell, digit)],
-				[[.. SingleModule.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
+				[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
 				context.Options,
 				cell,
 				digit,
@@ -458,7 +458,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				house,
 				SingleModule.GetLastingAllHouses(in grid, resultCell, out _)
 			),
-			_ => SingleModule.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) switch
+			_ => Excluder.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) switch
 			{
 				var cellOffsets2 => SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
 				{

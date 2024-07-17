@@ -52,6 +52,7 @@ global using Sudoku.Measuring.Functions;
 global using Sudoku.Randomization;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.MaskServices;
+global using Sudoku.Snyder;
 global using Sudoku.Strategying.Constraints;
 global using Sudoku.Text;
 global using Sudoku.Traits;

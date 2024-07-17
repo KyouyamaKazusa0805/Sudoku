@@ -10415,6 +10415,14 @@
             <param name="this">The mask instance to be split.</param>
             <returns>A triplet of values.</returns>
         </member>
+        <member name="T:Sudoku.Snyder.PencilmarkGrid">
+            <summary>
+            Represents a sudoku grid that can be only used by users to append pencilmarks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Snyder.PencilmarkGrid._values">
+            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
+        </member>
         <member name="T:Sudoku.SolutionFields">
             <summary>
             Provides with solution-wide read-only fields used.
@@ -10644,14 +10652,6 @@
             <summary>
             Indicates all symmetry types should be satisfied.
             </summary>
-        </member>
-        <member name="T:Sudoku.SynderNotation.PencilmarkGrid">
-            <summary>
-            Represents a sudoku grid that can be only used by users to append pencilmarks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SynderNotation.PencilmarkGrid._values">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.UnitCellGroupPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the UnitCellGroupPattern method.</summary>

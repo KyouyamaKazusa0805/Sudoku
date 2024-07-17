@@ -201,7 +201,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
 
-					cellOffsets.AddRange(SubsetModule.GetCrosshatchBaseCells(in grid, digit, house, in cells));
+					cellOffsets.AddRange(Excluder.GetSubsetExcluders(in grid, digit, house, in cells));
 				}
 
 				var isLocked = cells.IsInIntersection;
@@ -522,7 +522,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						[
 							.. candidateOffsets,
 							.. cellOffsets,
-							.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
@@ -609,7 +609,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						.. candidateOffsets,
 						.. cellOffsets,
-						.. SingleModule.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
+						.. Excluder.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
 					]
@@ -799,7 +799,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
-							.. SingleModule.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
@@ -886,7 +886,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				[
 					[
 						.. candidateOffsets,
-						.. SingleModule.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
+						.. Excluder.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 						new DiamondViewNode(ColorIdentifier.Auxiliary3, cell),
 						new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit)

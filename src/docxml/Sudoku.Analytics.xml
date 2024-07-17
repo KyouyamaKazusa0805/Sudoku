@@ -7741,16 +7741,6 @@
             Represents an intersection module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
             Indicates whether the pattern is a locked candidates.
@@ -7786,17 +7776,6 @@
             <param name="house">The house.</param>
             <returns>The lasting value.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cell">The cell.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Get subtype of the hidden single.
@@ -7815,26 +7794,6 @@
             <param name="cell">The cell.</param>
             <returns>The subtype of the naked single.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
-            <summary>
-            Get all <see cref="T:System.Int32"/>s that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
-            <summary>
-            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
             Represents a subset module.
@@ -7847,16 +7806,6 @@
             <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
             <param name="context">The context.</param>
             <returns>The collected steps.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
             <summary>
@@ -22290,42 +22239,6 @@
         <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.RectangleBlossomBranchCollection,Sudoku.Concepts.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Crosshatching">
-            <summary>
-            Defines the target crosshatching information.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Crosshatching.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Defines the target crosshatching information.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Crosshatching.BaseCells">
-            <summary>The base cells to be used.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Crosshatching.EmptyCells">
-            <summary>The empty cells in the final.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Crosshatching.ExcludedCells">
-            <summary>The excluded cells to be used.</summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Crosshatching.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
-            with the specified digit in the specified grid.
-            </summary>
-            <param name="grid">The puzzle relying on.</param>
-            <param name="digit">The digit to be checked.</param>
-            <param name="house">The house to be checked.</param>
-            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
-            <returns>The result pair.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.DominoLoop">
             <summary>
             Represents a domino loop pattern.
@@ -30256,6 +30169,98 @@
             <summary>
               Looks up a localized string similar to Y-Chain.
             </summary>
+        </member>
+        <member name="T:Sudoku.Snyder.Crosshatching">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="M:Sudoku.Snyder.Crosshatching.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines the target crosshatching information.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="P:Sudoku.Snyder.Crosshatching.BaseCells">
+            <summary>The base cells to be used.</summary>
+        </member>
+        <member name="P:Sudoku.Snyder.Crosshatching.EmptyCells">
+            <summary>The empty cells in the final.</summary>
+        </member>
+        <member name="P:Sudoku.Snyder.Crosshatching.ExcludedCells">
+            <summary>The excluded cells to be used.</summary>
+        </member>
+        <member name="M:Sudoku.Snyder.Crosshatching.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
+            with the specified digit in the specified grid.
+            </summary>
+            <param name="grid">The puzzle relying on.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house to be checked.</param>
+            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
+            <returns>The result pair.</returns>
+        </member>
+        <member name="T:Sudoku.Snyder.Excluder">
+            <summary>
+            Represents a type that supports excluders marking inside a direct technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
+            <summary>
+            Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
+            <summary>
+            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Snyder.Excluder.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Snyder.Excluder.GetLockedCandidatesExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Snyder.Excluder.GetSubsetExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Strategying.BetweenRule">
             <summary>
