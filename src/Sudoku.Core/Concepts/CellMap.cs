@@ -436,7 +436,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe void CopyTo(ref Cell sequence, int length)
+	public readonly unsafe void CopyTo(ref Cell sequence, Cell length)
 	{
 		@ref.ThrowIfNullRef(in sequence);
 
@@ -447,10 +447,7 @@ public partial struct CellMap : CellMapBase
 
 		ArgumentOutOfRangeException.ThrowIfGreaterThan(Count, length);
 
-		fixed (Cell* pSequence = &sequence)
-		{
-			Offsets[..length].AsReadOnlySpan().CopyTo(new(pSequence, length));
-		}
+		Offsets.AsReadOnlySpan().CopyTo(new(Unsafe.AsPointer(ref sequence), length));
 	}
 
 	/// <inheritdoc/>
