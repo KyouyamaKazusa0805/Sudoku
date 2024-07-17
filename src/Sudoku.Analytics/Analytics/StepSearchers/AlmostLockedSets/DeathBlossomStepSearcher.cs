@@ -1,5 +1,3 @@
-#define TYPE_UNIQUE_RECTANGLE_BLOOMING
-
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -14,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_DeathBlossomStepSearcher",
-	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.RectangleDeathBlossom, Technique.NTimesAlmostLockedSetsDeathBlossom,
+	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.NTimesAlmostLockedSetsDeathBlossom,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class DeathBlossomStepSearcher : StepSearcher
 {
@@ -45,12 +43,10 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// Test example:
 	/// <code><![CDATA[
 	/// # Normal Blossom
-	/// 8+7+14..6..5+42...7..+93+6+8+57+42+1.28.7.+3.....3.6+2....+3+21.54..1.7..+93.+3.9...8+72.+87..3+1.4:
-	///   915 919 924 929 641 946 948 958 959 669 475 675 476 584 694
+	/// 8+7+14..6..5+42...7..+93+6+8+57+42+1.28.7.+3.....3.6+2....+3+21.54..1.7..+93.+3.9...8+72.+87..3+1.4:915 919 924 929 641 946 948 958 959 669 475 675 476 584 694
 	/// 
 	/// # A^nLS Blossom
-	/// 65.9....4..2.......18..63...957.........6......+6..125..+643..59.+5.+1+6..7..3+7+9..2.86:
-	///   129 239 845 847 751 352 856 465 865 869 288
+	/// 65.9....4..2.......18..63...957.........6......+6..125..+643..59.+5.+1+6..7..3+7+9..2.86:129 239 845 847 751 352 856 465 865 869 288
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
@@ -147,75 +143,6 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 									return houseTypeStep;
 								}
 							}
-
-#if TYPE_UNIQUE_RECTANGLE_BLOOMING
-							// Check for UR type.
-
-							// Today I don't have any possible examples to test for this type,
-							// so I don't know whether the module is correctly-impl'ed.
-							foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
-							{
-								var existsGivenCellsOrMoreThan2ModifiableCells = false;
-								var (modifiableCellsCount, fixedDigitsMask, mergedDigitsMask) = (0, (Mask)0, (Mask)0);
-								foreach (var cell in urCells)
-								{
-									switch (grid.GetState(cell))
-									{
-										case CellState.Given:
-										case CellState.Modifiable when ++modifiableCellsCount >= 3:
-										{
-											existsGivenCellsOrMoreThan2ModifiableCells = true;
-											break;
-										}
-										case CellState.Modifiable when (Mask)(1 << grid.GetDigit(cell)) is var digitMask:
-										{
-											mergedDigitsMask |= digitMask;
-											fixedDigitsMask |= digitMask;
-											break;
-										}
-										case CellState.Empty:
-										{
-											mergedDigitsMask |= grid.GetCandidates(cell);
-											break;
-										}
-									}
-								}
-								if (existsGivenCellsOrMoreThan2ModifiableCells)
-								{
-									// The current pattern cells contains at least one given cell, invalid for checking for URs;
-									// or the number of modifiable cells is greater than 2, meaning the pattern must contain
-									// either three different digits, or a naked single.
-									continue;
-								}
-
-								// Iterate on each pair of UR digits, and check whether other digits are eliminated in all four cells.
-								foreach (var urDigits in ((Mask)(mergedDigitsMask & (Mask)~fixedDigitsMask)).GetAllSets().GetSubsets(2))
-								{
-									var urDigitsMask = MaskOperations.Create(urDigits);
-									var allCellsOnlyContainUrDigits = true;
-									foreach (var cell in urCells)
-									{
-										if ((urDigitsMask & playgroundCached[cell]) != playgroundCached[cell])
-										{
-											allCellsOnlyContainUrDigits = false;
-											break;
-										}
-									}
-									if (!allCellsOnlyContainUrDigits)
-									{
-										continue;
-									}
-
-									if (CreateStep_RectangleType(
-										ref context, in grid, urDigitsMask, mergedDigitsMask, in urCells, alsReferenceTable, alses,
-										playgroundCached, accumulatorRectangle
-									) is { } rectangleTypeStep)
-									{
-										return rectangleTypeStep;
-									}
-								}
-							}
-#endif
 						}
 					}
 				}
@@ -644,138 +571,6 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		return null;
 	}
 
-#if TYPE_UNIQUE_RECTANGLE_BLOOMING
-	/// <summary>
-	/// Search for A^nLS blooming type, and create a <see cref="RectangleDeathBlossomStep"/> instance
-	/// and add it into the accumulator if worth.
-	/// </summary>
-	private RectangleDeathBlossomStep? CreateStep_RectangleType(
-		ref AnalysisContext context,
-		ref readonly Grid grid,
-		Mask urDigitsMask,
-		Mask mergedDigitsMask,
-		ref readonly CellMap urCells,
-		scoped Span<int> alsReferenceTable,
-		ReadOnlySpan<AlmostLockedSet> alses,
-		Mask[] playgroundCached,
-		List<RectangleDeathBlossomStep> accumulator
-	)
-	{
-		// An invalid UR pattern is found. Now check for eliminations.
-		var branches = new RectangleBlossomBranchCollection();
-		var isFirstEncountered = true;
-		var zDigitsMask = (Mask)0;
-		var disappearedCandidates = CandidateMap.Empty;
-		foreach (var urCell in urCells)
-		{
-			foreach (var digit in (Mask)(grid.GetCandidates(urCell) & (Mask)~urDigitsMask))
-			{
-				var branch = alses[alsReferenceTable[urCell * 9 + digit]];
-				branches.Add(urCell * 9 + digit, branch);
-
-				disappearedCandidates.Add(urCell * 9 + digit);
-
-				if (isFirstEncountered)
-				{
-					zDigitsMask = branch.DigitsMask;
-					isFirstEncountered = false;
-				}
-				else
-				{
-					zDigitsMask &= branch.DigitsMask;
-				}
-			}
-		}
-
-		// Delete invalid digits.
-		zDigitsMask &= (Mask)~(Mask)(mergedDigitsMask & ~urDigitsMask);
-
-		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
-		var branchCellsContainingZ = CellMap.Empty;
-		foreach (var digit in zDigitsMask)
-		{
-			foreach (var (_, branchCells) in branches.Values)
-			{
-				branchCellsContainingZ |= branchCells & CandidatesMap[digit];
-			}
-		}
-
-		// Check for eliminations.
-		var (validZ, conclusions) = ((Mask)0, new List<Conclusion>());
-		foreach (var zDigit in zDigitsMask)
-		{
-			if (branchCellsContainingZ % CandidatesMap[zDigit] is not (var elimMap and not []))
-			{
-				continue;
-			}
-
-			validZ |= (Mask)(1 << zDigit);
-			foreach (var c in elimMap)
-			{
-				conclusions.Add(new(Elimination, c, zDigit));
-
-				if (SearchExtendedTypes)
-				{
-					playgroundCached[c] &= (Mask)~zDigit;
-				}
-			}
-		}
-
-		// Collect for view nodes.
-		var cellOffsets = new List<CellViewNode>();
-		var candidateOffsets = (List<CandidateViewNode>)[.. from c in disappearedCandidates select new CandidateViewNode(ColorIdentifier.Auxiliary2, c)];
-		var detailViews = new View[branches.Count];
-		var i = 0;
-		foreach (ref var view in detailViews.AsSpan())
-		{
-			view = [new CandidateViewNode(ColorIdentifier.Auxiliary2, disappearedCandidates[i++])];
-		}
-
-		var indexOfAls = 0;
-		foreach (var (_, (_, alsCells)) in branches)
-		{
-			foreach (var alsCell in alsCells)
-			{
-				var alsColor = AlmostLockedSetsModule.GetColor(indexOfAls);
-				foreach (var digit in grid.GetCandidates(alsCell))
-				{
-					var node = new CandidateViewNode(
-						disappearedCandidates.Contains(alsCell * 9 + digit)
-							? ColorIdentifier.Auxiliary2
-							: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : alsColor,
-						alsCell * 9 + digit
-					);
-					candidateOffsets.Add(node);
-					detailViews[indexOfAls].Add(node);
-				}
-
-				var cellNode = new CellViewNode(alsColor, alsCell);
-				cellOffsets.Add(cellNode);
-				detailViews[indexOfAls].Add(cellNode);
-			}
-
-			indexOfAls++;
-		}
-
-		var step = new RectangleDeathBlossomStep(
-			[.. conclusions],
-			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-			context.Options,
-			in urCells,
-			!!(urCells & ~EmptyCells),
-			branches,
-			validZ
-		);
-		if (context.OnlyFindOne)
-		{
-			return step;
-		}
-
-		accumulator.Add(step);
-		return null;
-	}
-#endif
-
 	/// <summary>
 	/// Search for A^nLS blooming type, and create a <see cref="NTimesAlmostLockedSetsDeathBlossomStep"/> instance
 	/// and add it into the accumulator if worth.
@@ -897,9 +692,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				{
 					var colorIdentifier = (rcc >> digit & 1) != 0
 						? ColorIdentifier.Auxiliary2
-						: (zDigitsMask >> digit & 1) != 0
-							? ColorIdentifier.Auxiliary1
-							: AlmostLockedSetsModule.GetColor(alsIndex);
+						: (zDigitsMask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : AlmostLockedSetsModule.GetColor(alsIndex);
 					var candidateNode = new CandidateViewNode(colorIdentifier, cell * 9 + digit);
 					view.Add(candidateNode);
 					candidateOffsets.Add(candidateNode);
