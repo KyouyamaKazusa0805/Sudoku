@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class StarViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override StarViewNode Clone() => new(Identifier, Cell);
 }

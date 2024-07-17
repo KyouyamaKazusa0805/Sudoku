@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Drawing.Nodes;
+namespace Sudoku.Drawing.Nodes;
 
 /// <summary>
 /// Defines a cross view node.
@@ -8,6 +8,5 @@
 public sealed class CrossViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CrossViewNode Clone() => new(Identifier, Cell);
 }

@@ -19,15 +19,12 @@ public sealed class ColorColorIdentifier(byte alpha, byte red, byte green, byte 
 	public void Deconstruct(out byte a, out byte r, out byte g, out byte b) => (a, (r, g, b)) = (alpha, this);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is ColorColorIdentifier comparer && GetHashCode() == comparer.GetHashCode();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override int GetHashCode() => alpha << 24 | red << 16 | green << 8 | blue;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"A = {alpha}, @ref = {red}, G = {green}, B = {blue}";
+	public override string ToString() => $"A = {alpha}, R = {red}, G = {green}, B = {blue}";
 }

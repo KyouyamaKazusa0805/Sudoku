@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class CircleViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CircleViewNode Clone() => new(Identifier, Cell);
 }

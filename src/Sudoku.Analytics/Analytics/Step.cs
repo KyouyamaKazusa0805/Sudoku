@@ -183,7 +183,6 @@ public abstract partial class Step(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual bool Equals([NotNullWhen(true)] Step? other)
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
 
@@ -211,7 +210,6 @@ public abstract partial class Step(
 	/// </para>
 	/// <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual int CompareTo(Step? other) => other is null ? -1 : Math.Sign(Code - other.Code);
 
 	/// <summary>
@@ -219,7 +217,6 @@ public abstract partial class Step(
 	/// </summary>
 	/// <param name="formatProvider">The culture information provider instance.</param>
 	/// <returns>The string representation.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public virtual string GetName(IFormatProvider? formatProvider) => Code.GetName(GetCulture(formatProvider));
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>

@@ -35,10 +35,8 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, [PrimaryCo
 	public void Deconstruct(out ColorIdentifier identifier, out int chute) => (identifier, chute) = (Identifier, ChuteIndex);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override ChuteViewNode Clone() => new(Identifier, ChuteIndex);
 }

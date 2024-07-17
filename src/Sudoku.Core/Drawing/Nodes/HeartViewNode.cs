@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class HeartViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override HeartViewNode Clone() => new(Identifier, Cell);
 }

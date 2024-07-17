@@ -13,7 +13,6 @@ public sealed partial class PaletteIdColorIdentifier([PrimaryConstructorParamete
 	public void Deconstruct(out int value) => value = Value;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is PaletteIdColorIdentifier comparer && Value == comparer.Value;
 }

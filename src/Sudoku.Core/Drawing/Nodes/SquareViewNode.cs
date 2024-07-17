@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class SquareViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override SquareViewNode Clone() => new(Identifier, Cell);
 }

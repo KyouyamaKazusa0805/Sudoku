@@ -164,7 +164,6 @@ public readonly ref partial struct Distance(int p, int q)
 	/// The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
 	/// For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => (_p, _q) switch { (_, 1) => _p.ToString(), (1, _) => $"s{_q}", _ => $"{_p}s{_q}" };
 
 

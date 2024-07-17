@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class DiamondViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override DiamondViewNode Clone() => new(Identifier, Cell);
 }

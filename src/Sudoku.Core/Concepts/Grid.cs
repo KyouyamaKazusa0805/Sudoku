@@ -517,7 +517,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public readonly bool? Exists(Cell cell, Digit digit) => GetState(cell) == CellState.Empty ? GetExistence(cell, digit) : null;
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode()
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
@@ -530,7 +529,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 			: throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"));
 
 	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default(string));
 
 	/// <inheritdoc/>
@@ -1209,12 +1207,10 @@ file sealed class Converter : JsonConverter<Grid>
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 		=> writer.WriteStringValue(value.ToString("#"));
 }

@@ -1073,7 +1073,6 @@ file sealed class Converter : JsonConverter<CellMap>
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 

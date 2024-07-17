@@ -14,7 +14,6 @@ public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParamete
 	public void Deconstruct(out WellKnownColorIdentifierKind kind) => kind = Kind;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ColorIdentifier? other)
 		=> other is WellKnownColorIdentifier comparer && Kind == comparer.Kind;
 }

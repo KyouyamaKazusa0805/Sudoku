@@ -22,11 +22,9 @@ public sealed partial class ChainLinkViewNode(
 		=> (identifier, start, end, isStrongLink) = (Identifier, Start, End, IsStrongLink);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> other is ChainLinkViewNode comparer && Start == comparer.Start && End == comparer.End;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override ChainLinkViewNode Clone() => new(Identifier, Start, End, IsStrongLink);
 }

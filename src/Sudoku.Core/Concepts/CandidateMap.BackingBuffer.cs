@@ -17,7 +17,6 @@ public partial struct CandidateMap
 
 
 		/// <inheritdoc cref="object.ToString"/>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is BackingBuffer comparer && Equals(in comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>

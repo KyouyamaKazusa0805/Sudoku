@@ -15,10 +15,8 @@ public sealed partial class HouseViewNode(ColorIdentifier identifier, [PrimaryCo
 	public void Deconstruct(out ColorIdentifier identifier, out House house) => (identifier, house) = (Identifier, House);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is HouseViewNode comparer && House == comparer.House;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override HouseViewNode Clone() => new(Identifier, House);
 }

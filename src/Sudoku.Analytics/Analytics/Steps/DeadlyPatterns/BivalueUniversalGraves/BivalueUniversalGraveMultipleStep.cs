@@ -40,7 +40,6 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 
 
 	/// <inheritdoce/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string GetName(IFormatProvider? formatProvider)
 		=> $"{base.GetName(GetCulture(formatProvider))[..^4]} + {TrueCandidates.Count}";
 }

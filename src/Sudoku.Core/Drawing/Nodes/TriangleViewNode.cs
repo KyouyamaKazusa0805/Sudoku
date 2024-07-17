@@ -8,6 +8,5 @@ namespace Sudoku.Drawing.Nodes;
 public sealed class TriangleViewNode(ColorIdentifier identifier, Cell cell) : IconViewNode(identifier, cell)
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override TriangleViewNode Clone() => new(Identifier, Cell);
 }

@@ -291,7 +291,6 @@ public sealed partial class TechniqueSet :
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>

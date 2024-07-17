@@ -384,7 +384,6 @@ public partial struct CandidateMap : CandidateMapBase
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode() => _bits.GetHashCode();
 
 	/// <inheritdoc/>
@@ -944,7 +943,6 @@ file sealed class Converter : JsonConverter<CandidateMap>
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 

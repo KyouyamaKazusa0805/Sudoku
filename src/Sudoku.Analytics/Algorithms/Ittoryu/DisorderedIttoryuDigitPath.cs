@@ -46,7 +46,6 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString("->");
 
 	/// <inheritdoc cref="ToString()"/>
