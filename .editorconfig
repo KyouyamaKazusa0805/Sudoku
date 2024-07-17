@@ -64,7 +64,7 @@ dotnet_style_require_accessibility_modifiers = always:suggestion
 
 # Expression-level preferences
 dotnet_style_coalesce_expression = true:suggestion
-dotnet_style_namespace_match_folder = true:suggestion
+dotnet_style_namespace_match_folder = true:silent
 dotnet_style_collection_initializer = true:suggestion
 dotnet_style_explicit_tuple_names = true:suggestion
 dotnet_style_null_propagation = true:suggestion
