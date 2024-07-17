@@ -32,8 +32,10 @@ public static class ChainOrLoopExtensions
 				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
 				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
+#if false
 				{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
 				{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+#endif
 				{ IsSplitWing: true } => isGrouped ? Technique.GroupedSWing : Technique.SWing,
 				{ IsLocalWing: true } => isGrouped ? Technique.GroupedLWing : Technique.LWing,
 				{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
