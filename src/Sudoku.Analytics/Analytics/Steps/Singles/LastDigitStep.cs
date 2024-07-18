@@ -18,4 +18,4 @@ public sealed partial class LastDigitStep(
 	Digit digit,
 	House house,
 	int lasting
-) : HiddenSingleStep(conclusions, views, options, cell, digit, house, true, lasting, SingleSubtype.LastDigit);
+) : HiddenSingleStep(conclusions, views, options, cell, digit, house, true, lasting, SingleSubtype.LastDigit, null);

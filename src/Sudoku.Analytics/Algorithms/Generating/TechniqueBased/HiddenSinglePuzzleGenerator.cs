@@ -133,7 +133,8 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 						house,
 						false,
 						SingleModule.GetLasting(in puzzle, targetCell, house),
-						subtype
+						subtype,
+						null
 					),
 					in interferingCells,
 					InterferingPercentage
@@ -330,7 +331,8 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 						house,
 						false,
 						SingleModule.GetLasting(in puzzle, targetCell, house),
-						subtype
+						subtype,
+						null
 					),
 					in interferingCells,
 					InterferingPercentage
@@ -465,7 +467,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 							continue;
 						}
 
-						if (Crosshatching.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
+						if (ExcluderInfo.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
 						{
 							continue;
 						}

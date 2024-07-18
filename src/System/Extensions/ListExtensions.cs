@@ -99,6 +99,17 @@ public static class ListExtensions
 	public static bool SequenceEqual<T>(this List<T> @this, List<T> other) where T : IEquatable<T>
 		=> @this.AsReadOnlySpan().SequenceEqual(other.AsReadOnlySpan());
 
+	/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>
+	public static T Sum<T>(this List<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	{
+		var result = T.AdditiveIdentity;
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			result += element;
+		}
+		return result;
+	}
+
 	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
 	/// <param name="this">The instance to be transformed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

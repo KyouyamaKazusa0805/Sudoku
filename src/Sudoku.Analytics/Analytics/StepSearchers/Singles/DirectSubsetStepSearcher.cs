@@ -522,7 +522,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						[
 							.. candidateOffsets,
 							.. cellOffsets,
-							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
@@ -799,7 +799,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
-							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+							.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),

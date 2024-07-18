@@ -458,7 +458,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				house,
 				SingleModule.GetLastingAllHouses(in grid, resultCell, out _)
 			),
-			_ => Excluder.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) switch
+			_ => Excluder.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells, out var excluderInfo) switch
 			{
 				var cellOffsets2 => SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
 				{
@@ -472,7 +472,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 						house,
 						enableAndIsLastDigit,
 						SingleModule.GetLasting(in grid, resultCell, house),
-						subtype
+						subtype,
+						excluderInfo
 					)
 				}
 			}

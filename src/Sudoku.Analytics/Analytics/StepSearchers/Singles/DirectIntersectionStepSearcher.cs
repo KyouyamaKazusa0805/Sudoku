@@ -233,7 +233,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[new(Assignment, lastCell, digit)],
 				[
 					[
-						.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells),
+						.. Excluder.GetHiddenSingleExcluders(in grid, digit, house, lastCell, out var chosenCells, out _),
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 						.. Excluder.GetLockedCandidatesExcluders(in grid, digit, baseSet, in intersection),
 						..
