@@ -1528,6 +1528,9 @@
             <param name="this">The current collection.</param>
             <param name="action">The <see cref="T:System.ActionRef`1"/> delegate to perform on each element of the <see cref="T:System.Span`1"/>.</param>
         </member>
+        <member name="M:System.ReadOnlySpanExtensions.FindIndex``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})"/>
+        </member>
         <member name="M:System.ReadOnlySpanExtensions.ForEach``1(System.ReadOnlySpan{``0},System.ActionRefReadOnly{``0})">
             <summary>
             Performs the specified action on each element of the <see cref="T:System.ReadOnlySpan`1"/>.

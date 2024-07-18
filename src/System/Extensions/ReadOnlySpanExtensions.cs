@@ -21,6 +21,20 @@ public static class ReadOnlySpanExtensions
 		}
 	}
 
+	/// <inheritdoc cref="List{T}.FindIndex(Predicate{T})"/>
+	public static int FindIndex<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> condition)
+	{
+		for (var i = 0; i < @this.Length; i++)
+		{
+			ref readonly var e = ref @this[i];
+			if (condition(in e))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	/// <summary>
 	/// Performs the specified action on each element of the <see cref="ReadOnlySpan{T}"/>.
 	/// </summary>
