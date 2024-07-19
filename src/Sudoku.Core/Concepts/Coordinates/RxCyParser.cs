@@ -22,13 +22,13 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, Mask> DigitParser => OnDigitParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Chute[]> ChuteParser => OnChuteParsing;
+	public override Func<string, ReadOnlySpan<Chute>> ChuteParser => OnChuteParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Conjugate[]> ConjugateParser => OnConjugateParsing;
+	public override Func<string, ReadOnlySpan<Conjugate>> ConjugateParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
-	public override Func<string, Miniline[]> IntersectionParser => OnIntersectionParsing;
+	public override Func<string, ReadOnlySpan<Miniline>> IntersectionParser => OnIntersectionParsing;
 
 
 	[GeneratedRegex("""r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
@@ -209,7 +209,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			? MaskOperations.Create(from digitString in matches select digitString[0] - '1')
 			: throw new InvalidOperationException(SR.ExceptionMessage("ErrorInfo_DuplicatedValuesMayExistOrInvalid"));
 
-	private static Chute[] OnChuteParsing(string str)
+	private static ReadOnlySpan<Chute> OnChuteParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -238,12 +238,10 @@ public sealed partial record RxCyParser : CoordinateParser
 				}
 			}
 		}
-
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 
-
-	private Conjugate[] OnConjugateParsing(string str)
+	private ReadOnlySpan<Conjugate> OnConjugateParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -266,12 +264,10 @@ public sealed partial record RxCyParser : CoordinateParser
 			var digit = rightCellAndDigit % 9;
 			result.Add(new(leftCell, rightCell, digit));
 		}
-
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 
-
-	private static Miniline[] OnIntersectionParsing(string str)
+	private static ReadOnlySpan<Miniline> OnIntersectionParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -303,6 +299,6 @@ public sealed partial record RxCyParser : CoordinateParser
 				}
 			}
 		}
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 }

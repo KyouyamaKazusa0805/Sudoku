@@ -48,19 +48,19 @@ public abstract record CoordinateParser : IFormatProvider
 	/// </summary>
 	/// <seealso cref="MinilineBase"/>
 	/// <seealso cref="MinilineResult"/>
-	public abstract Func<string, Miniline[]> IntersectionParser { get; }
+	public abstract Func<string, ReadOnlySpan<Miniline>> IntersectionParser { get; }
 
 	/// <summary>
 	/// The parser method that can creates a <see cref="Chute"/> list via the specified text to be parsed.
 	/// </summary>
 	/// <seealso cref="Chute"/>
-	public abstract Func<string, Chute[]> ChuteParser { get; }
+	public abstract Func<string, ReadOnlySpan<Chute>> ChuteParser { get; }
 
 	/// <summary>
 	/// The parser method that can creates a <see cref="Conjugate"/> list via the specified text to be parsed.
 	/// </summary>
 	/// <seealso cref="Conjugate"/>
-	public abstract Func<string, Conjugate[]> ConjugateParser { get; }
+	public abstract Func<string, ReadOnlySpan<Conjugate>> ConjugateParser { get; }
 
 
 	/// <summary>

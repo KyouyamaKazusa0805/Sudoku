@@ -24,14 +24,14 @@ public sealed partial record K9Parser : CoordinateParser
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, Chute[]> ChuteParser => throw new NotSupportedException();
+	public override Func<string, ReadOnlySpan<Chute>> ChuteParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
-	public override Func<string, Conjugate[]> ConjugateParser => OnConjugateParsing;
+	public override Func<string, ReadOnlySpan<Conjugate>> ConjugateParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, Miniline[]> IntersectionParser => throw new NotSupportedException();
+	public override Func<string, ReadOnlySpan<Miniline>> IntersectionParser => throw new NotSupportedException();
 
 
 	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
@@ -151,7 +151,7 @@ public sealed partial record K9Parser : CoordinateParser
 		return result;
 	}
 
-	private Conjugate[] OnConjugateParsing(string str)
+	private ReadOnlySpan<Conjugate> OnConjugateParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
 		{
@@ -166,13 +166,11 @@ public sealed partial record K9Parser : CoordinateParser
 		var result = new List<Conjugate>();
 		foreach (var match in matches.Cast<Match>())
 		{
-			if (match.Captures is not [{ Value: var cell1 }, { Value: var cell2 }, { Value: [var digitChar] }])
+			if (match.Captures is [{ Value: var cell1 }, { Value: var cell2 }, { Value: [var digitChar] }])
 			{
-				continue;
+				result.Add(new(CellParser(cell1)[0], CellParser(cell2)[0], digitChar - '1'));
 			}
-
-			result.Add(new(CellParser(cell1)[0], CellParser(cell2)[0], digitChar - '1'));
 		}
-		return [.. result];
+		return result.AsReadOnlySpan();
 	}
 }
