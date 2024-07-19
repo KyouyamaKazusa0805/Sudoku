@@ -2,8 +2,7 @@
 
 namespace Sudoku.Concepts;
 
-using static IGrid;
-using GridBase = IGrid<Grid>;
+using static IGridConstants<Grid>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -17,27 +16,25 @@ using GridBase = IGrid<Grid>;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
+public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
-	/// <inheritdoc cref="IGrid{TSelf}.DefaultMask"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
-	/// <inheritdoc cref="IGrid{TSelf}.MaxCandidatesMask"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.MaxCandidatesMask"/>
 	public const Mask MaxCandidatesMask = (1 << CellCandidatesCount) - 1;
 
-	/// <inheritdoc cref="IGrid{TSelf}.EmptyMask"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyMask"/>
 	public const Mask EmptyMask = (Mask)CellState.Empty << CellCandidatesCount;
 
-	/// <inheritdoc cref="IGrid{TSelf}.ModifiableMask"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.ModifiableMask"/>
 	public const Mask ModifiableMask = (Mask)CellState.Modifiable << CellCandidatesCount;
 
-	/// <inheritdoc cref="IGrid{TSelf}.GivenMask"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.GivenMask"/>
 	public const Mask GivenMask = (Mask)CellState.Given << CellCandidatesCount;
 
 #if EMPTY_GRID_STRING_CONSTANT
-	/// <summary>
-	/// Indicates the empty grid string.
-	/// </summary>
+	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
 
@@ -53,16 +50,14 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
-	/// <summary>
-	/// Indicates the empty grid string.
-	/// </summary>
+	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
 	public static readonly string EmptyString = new('0', CellsCount);
 #endif
 
-	/// <inheritdoc cref="IGrid{TSelf}.Empty"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.Empty"/>
 	public static readonly Grid Empty = [DefaultMask];
 
-	/// <inheritdoc cref="IGrid{TSelf}.Undefined"/>
+	/// <inheritdoc cref="IGridConstants{TSelf}.Undefined"/>
 	public static readonly Grid Undefined;
 
 
@@ -251,25 +246,25 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap GivenCells => GridBase.GetMap(in this, &Predicate.GivenCells);
+	public readonly unsafe CellMap GivenCells => IGrid<Grid>.GetMap(in this, &Predicate.GivenCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(in this, &Predicate.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => IGrid<Grid>.GetMap(in this, &Predicate.ModifiableCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(in this, &Predicate.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => IGrid<Grid>.GetMap(in this, &Predicate.EmptyCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(in this, &Predicate.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => IGrid<Grid>.GetMap(in this, &Predicate.BivalueCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GridBase.GetMaps(in this, &Predicate.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => IGrid<Grid>.GetMaps(in this, &Predicate.CandidatesMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GridBase.GetMaps(in this, &Predicate.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => IGrid<Grid>.GetMaps(in this, &Predicate.DigitsMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(in this, &Predicate.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => IGrid<Grid>.GetMaps(in this, &Predicate.ValuesMap);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<Candidate> Candidates
@@ -356,32 +351,32 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
+	readonly ref readonly Mask IGrid<Grid>.FirstMaskRef => ref this[0];
 
 
 	/// <inheritdoc/>
-	static Mask GridBase.DefaultMask => DefaultMask;
+	static Mask IGridConstants<Grid>.DefaultMask => DefaultMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.MaxCandidatesMask => MaxCandidatesMask;
+	static Mask IGridConstants<Grid>.MaxCandidatesMask => MaxCandidatesMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.EmptyMask => EmptyMask;
+	static Mask IGridConstants<Grid>.EmptyMask => EmptyMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.ModifiableMask => ModifiableMask;
+	static Mask IGridConstants<Grid>.ModifiableMask => ModifiableMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.GivenMask => GivenMask;
+	static Mask IGridConstants<Grid>.GivenMask => GivenMask;
 
 	/// <inheritdoc/>
-	static ref readonly string GridBase.EmptyString => ref EmptyString;
+	static ref readonly string IGridConstants<Grid>.EmptyString => ref EmptyString;
 
 	/// <inheritdoc/>
-	static ref readonly Grid GridBase.Empty => ref Empty;
+	static ref readonly Grid IGridConstants<Grid>.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static ref readonly Grid GridBase.Undefined => ref Undefined;
+	static ref readonly Grid IGridConstants<Grid>.Undefined => ref Undefined;
 
 
 	/// <inheritdoc/>
@@ -436,7 +431,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask GridBase.this[Cell cell] => ref this[cell];
+	ref Mask IGridOperations<Grid>.this[Cell cell] => ref this[cell];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -1061,14 +1056,14 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 	/// <inheritdoc/>
-	static void GridBase.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+	static void IGridProperties<Grid>.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 		=> OnValueChanged(ref @this, cell, oldMask, newMask, setValue);
 
 	/// <inheritdoc/>
-	static void GridBase.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
+	static void IGridProperties<Grid>.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
 
 	/// <inheritdoc/>
-	static Grid GridBase.Create(ReadOnlySpan<Mask> values) => Create(values);
+	static Grid IGrid<Grid>.Create(ReadOnlySpan<Mask> values) => Create(values);
 
 	/// <summary>
 	/// Returns a <see cref="Grid"/> instance via the raw mask values.
@@ -1119,7 +1114,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		}
 	}
 
-	/// <inheritdoc cref="GridBase.OnValueChanged(ref Grid, Cell, Mask, Mask, Digit)"/>
+	/// <inheritdoc cref="IGridProperties{TSelf}.OnValueChanged(ref TSelf, Cell, Mask, Mask, Digit)"/>
 	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue == -1)
@@ -1137,7 +1132,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		}
 	}
 
-	/// <inheritdoc cref="GridBase.OnRefreshingCandidates(ref Grid)"/>
+	/// <inheritdoc cref="IGridProperties{TSelf}.OnRefreshingCandidates(ref TSelf)"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var cell = 0; cell < CellsCount; cell++)
