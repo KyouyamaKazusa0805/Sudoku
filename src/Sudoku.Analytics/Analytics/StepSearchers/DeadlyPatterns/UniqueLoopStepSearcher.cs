@@ -606,7 +606,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					var mask = grid.GetCandidates(next);
 					if ((mask >> d1 & 1) != 0 && (mask >> d2 & 1) != 0)
 					{
-						extraDigits = (Mask)((Mask)(extraDigits | mask) & (Mask)~(1 << d1 | 1 << d2));
+						extraDigits = (Mask)((extraDigits | mask) & ~(1 << d1 | 1 << d2));
 
 						var count = PopCount((uint)mask);
 

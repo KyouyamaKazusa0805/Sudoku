@@ -69,7 +69,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			var unrelatedDigitsMask = (Mask)0;
 			foreach (var cell in cells)
 			{
-				unrelatedDigitsMask |= (Mask)((Mask)(grid.GetCandidates(cell) & (Mask)~urDigitsMask) & (Mask)~(1 << otherDigit));
+				unrelatedDigitsMask |= (Mask)(grid.GetCandidates(cell) & ~urDigitsMask & ~(1 << otherDigit));
 			}
 			if (unrelatedDigitsMask != 0)
 			{
@@ -102,7 +102,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 					continue;
 				}
 
-				var lastUrDigit = Log2((uint)(urDigitsMask & (Mask)~lockedUrDigitsMask));
+				var lastUrDigit = Log2((uint)(urDigitsMask & ~lockedUrDigitsMask));
 				var otherCellsContainingLastUrDigit = HousesMap[lockedHouse] & CandidatesMap[lastUrDigit] & ~urCells;
 				if (linkOption == LinkOption.Intersection && !otherCellsContainingLastUrDigit.IsInIntersection)
 				{

@@ -2142,7 +2142,7 @@ public partial class UniqueRectangleStepSearcher
 			{
 				foreach (var (thisCorner, elimCorner) in ((corner1, corner2), (corner2, corner1)))
 				{
-					var otherDigits = (Mask)(grid.GetCandidates(thisCorner) & (Mask)~comparer);
+					var otherDigits = (Mask)(grid.GetCandidates(thisCorner) & ~comparer);
 					if (otherDigits == 0)
 					{
 						// There is not necessary to determine the pattern because 3 of 4 cells are only two digits.
@@ -2287,7 +2287,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
-		var otherDigitsMask = (Mask)((Mask)(otherCell1Mask | otherCell2Mask) & (Mask)~comparer);
+		var otherDigitsMask = (Mask)((otherCell1Mask | otherCell2Mask) & ~comparer);
 
 		// Merge incomplete and complete wing logic into one loop.
 		// Here we don't know what digit will be selected as a pivot, so we should iterate all digits.
@@ -2505,12 +2505,12 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var otherDigits1 = (Mask)(otherCell1Mask & (Mask)~comparer);
+		var otherDigits1 = (Mask)(otherCell1Mask & ~comparer);
 		if (!IsPow2(otherDigits1))
 		{
 			return;
 		}
-		var otherDigits2 = (Mask)(otherCell2Mask & (Mask)~comparer);
+		var otherDigits2 = (Mask)(otherCell2Mask & ~comparer);
 		if (!IsPow2(otherDigits2))
 		{
 			return;
@@ -2786,7 +2786,7 @@ public partial class UniqueRectangleStepSearcher
 		)
 		{
 			var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
-			var maskIsolated = (Mask)(cannibalMode ? (lineMask & blockMask & selectedInterMask) : maskOnlyInInter);
+			var maskIsolated = (Mask)(cannibalMode ? lineMask & blockMask & selectedInterMask : maskOnlyInInter);
 			if (!cannibalMode && ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 				|| cannibalMode && !IsPow2(maskIsolated))
 			{
@@ -2993,7 +2993,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				var anotherCell = (cells - urCellInSameBlock & HousesMap[coveredLine])[0];
-				foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~comparer))
+				foreach (var extraDigit in (Mask)(grid.GetCandidates(targetCell) & ~comparer))
 				{
 					var abcMask = (Mask)(comparer | (Mask)(1 << extraDigit));
 					if (grid.GetCandidates(anotherCell) != abcMask)
@@ -4017,7 +4017,7 @@ public partial class UniqueRectangleStepSearcher
 							}
 
 							// A valid pattern is found. Now check eliminations.
-							var wDigit = TrailingZeroCount((Mask)(startCellDigitsMask & ~(1 << xDigit)));
+							var wDigit = TrailingZeroCount(startCellDigitsMask & ~(1 << xDigit));
 							var elimMap = (startCell.AsCellMap() + endCell).PeerIntersection & CandidatesMap[wDigit];
 							if (!elimMap)
 							{
@@ -4309,8 +4309,8 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var cell1UrDigit = TrailingZeroCount((Mask)(mask1 & ~intersectionMask));
-				var cell2UrDigit = TrailingZeroCount((Mask)(mask2 & ~intersectionMask));
+				var cell1UrDigit = TrailingZeroCount(mask1 & ~intersectionMask);
+				var cell2UrDigit = TrailingZeroCount(mask2 & ~intersectionMask);
 				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[cell1UrDigit];
 				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[cell2UrDigit];
 				if ((PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1

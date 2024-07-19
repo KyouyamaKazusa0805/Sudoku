@@ -504,7 +504,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							//
 							// We should check whether the size of the pattern. The extra digits appeared in the pattern
 							// must cover (n - 1) cells, where 'n' is the length of the cells covered in this shared house.
-							var digitsToCheck = (Mask)(mask & (Mask)~normalDigits);
+							var digitsToCheck = (Mask)(mask & ~normalDigits);
 							var finalCellsContainingExtraDigits = patternCellsCoveredInThisHouse;
 							foreach (var cell in patternCellsCoveredInThisHouse)
 							{

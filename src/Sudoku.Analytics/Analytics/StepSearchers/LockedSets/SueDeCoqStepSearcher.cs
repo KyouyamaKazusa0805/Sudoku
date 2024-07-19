@@ -103,9 +103,9 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									var maskIsolated = (Mask)(
 										cannibalMode
 											? lineMask & blockMask & selectedInterMask
-											: selectedInterMask & (Mask)~(blockMask | lineMask)
+											: selectedInterMask & ~(blockMask | lineMask)
 									);
-									var maskOnlyInInter = (Mask)(selectedInterMask & (Mask)~(blockMask | lineMask));
+									var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
 									if (!cannibalMode
 										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
 										|| cannibalMode && !IsPow2(maskIsolated))

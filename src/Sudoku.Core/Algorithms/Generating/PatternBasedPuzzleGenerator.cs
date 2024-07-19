@@ -71,7 +71,7 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 
 		var cell = patternCellsSorted[i];
 		var digitsMask = playground.GetCandidates(cell);
-		var digits = ((Mask)(missingDigit != -1 ? digitsMask & (Mask)~(1 << missingDigit) : digitsMask)).GetAllSets();
+		var digits = ((Mask)(missingDigit != -1 ? digitsMask & ~(1 << missingDigit) : digitsMask)).GetAllSets();
 		var indexArray = Digits[..digits.Length];
 		Random.Shared.Shuffle(indexArray);
 		foreach (var randomizedIndex in indexArray)

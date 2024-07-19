@@ -49,7 +49,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 			foreach (var digitPair in validDigitsMask.GetAllSets().GetSubsets(2))
 			{
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
-				var otherDigitsMask = (Mask)(allDigitsMask & (Mask)~urDigitsMask);
+				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
 				var ur = new UniqueRectangle(in urCells, urDigitsMask, otherDigitsMask);
 				switch (PopCount((uint)otherDigitsMask))
 				{

@@ -104,7 +104,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 			var digitsMaskPivot = grid.GetCandidates(pivot);
 			var digitsMask1 = grid.GetCandidates(leafCell1);
 			var digitsMask2 = grid.GetCandidates(leafCell2);
-			var theOtherTwoDigitsMask = (Mask)(unionedDigitsMask & (Mask)~(1 << zDigit));
+			var theOtherTwoDigitsMask = (Mask)(unionedDigitsMask & ~(1 << zDigit));
 			var theOtherDigit1 = TrailingZeroCount(theOtherTwoDigitsMask);
 			var theOtherDigit2 = theOtherTwoDigitsMask.GetNextSet(theOtherDigit1);
 			var coveringHouseForDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? house1 : house2;
@@ -225,51 +225,6 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						cellsShouldBeCovered.Count > 2
 					)
 				);
-			}
-		}
-
-		// Iterate on each pivot cell to get all possible results.
-		foreach (var pivot in trivalueCells)
-		{
-			var digitsMaskPivot = grid.GetCandidates(pivot);
-
-			// Fetch for two cells from two different houses.
-			foreach (var housePair in HouseTypes.AsReadOnlySpan().GetSubsets(2))
-			{
-				var house1 = pivot.ToHouseIndex(housePair[0]);
-				var house2 = pivot.ToHouseIndex(housePair[1]);
-				var bivalueCellsFromHouse1 = BivalueCells & HousesMap[house1];
-				var bivalueCellsFromHouse2 = BivalueCells & HousesMap[house2];
-				if (!bivalueCellsFromHouse1 || !bivalueCellsFromHouse2)
-				{
-					continue;
-				}
-
-				foreach (var leafCell1 in bivalueCellsFromHouse1)
-				{
-					var digitsMask1 = grid.GetCandidates(leafCell1);
-					foreach (var leafCell2 in bivalueCellsFromHouse2)
-					{
-						if ((pivot.AsCellMap() + leafCell1 + leafCell2).InOneHouse(out _))
-						{
-							continue;
-						}
-
-						var digitsMask2 = grid.GetCandidates(leafCell2);
-
-						// Check whether 3 cells intersected by one common digit, and contains 3 different digits.
-						var unionedDigitsMask = (Mask)((Mask)(digitsMaskPivot | digitsMask1) | digitsMask2);
-						if (PopCount((uint)unionedDigitsMask) != 3
-							|| unionedDigitsMask != digitsMaskPivot
-							|| !IsPow2((Mask)(digitsMaskPivot & digitsMask1 & digitsMask2)))
-						{
-							continue;
-						}
-
-						var intersectedDigit = Log2((uint)(Mask)(digitsMaskPivot & digitsMask1 & digitsMask2));
-
-					}
-				}
 			}
 		}
 	}

@@ -45,7 +45,8 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				if ((Mask)(mask1 & mask2) is var mask and not 0)
+				var mask = (Mask)(mask1 & mask2);
+				if (mask != 0)
 				{
 					var rccMask = (Mask)0;
 					foreach (var digit in mask)
@@ -115,7 +116,8 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						}
 
 						var (finalX, finalY) = ((Mask)(1 << digit1), (Mask)(1 << digit2));
-						if ((Mask)(aMask & bMask & ~(finalX | finalY)) is not (var digitsMask and not 0))
+						var digitsMask = (Mask)(aMask & bMask & ~(finalX | finalY));
+						if (digitsMask != 0)
 						{
 							continue;
 						}

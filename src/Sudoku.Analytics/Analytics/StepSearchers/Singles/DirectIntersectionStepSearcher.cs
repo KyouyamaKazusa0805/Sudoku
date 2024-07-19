@@ -149,7 +149,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				continue;
 			}
 
-			var lastDigitMask = (Mask)(grid[in emptyCellsInHouse] & (Mask)~(1 << digit));
+			var lastDigitMask = (Mask)(grid[in emptyCellsInHouse] & ~(1 << digit));
 			if (!IsPow2(lastDigitMask))
 			{
 				continue;
@@ -303,7 +303,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				continue;
 			}
 
-			var lastDigit = TrailingZeroCount((Mask)(digitsMask & (Mask)~(1 << digit)));
+			var lastDigit = TrailingZeroCount(digitsMask & ~(1 << digit));
 			var step = new DirectIntersectionStep(
 				[new(Assignment, lastCell, lastDigit)],
 				[

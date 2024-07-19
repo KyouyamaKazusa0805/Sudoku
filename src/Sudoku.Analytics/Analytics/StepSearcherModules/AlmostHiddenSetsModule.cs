@@ -54,7 +54,7 @@ internal static class AlmostHiddenSetsModule
 					var candidatesCanFormWeakLink = CandidateMap.Empty;
 					foreach (var cell in cells)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~subsetDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~subsetDigitsMask))
 						{
 							candidatesCanFormWeakLink.Add(cell * 9 + digit);
 						}

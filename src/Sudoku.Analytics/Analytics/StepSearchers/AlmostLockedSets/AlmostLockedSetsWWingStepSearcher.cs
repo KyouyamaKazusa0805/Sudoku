@@ -102,7 +102,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 
 							// Iterate on each digit as the digit 'w'.
-							foreach (var w in (Mask)(mask & (Mask)~(1 << x)))
+							foreach (var w in (Mask)(mask & ~(1 << x)))
 							{
 								if ((map1 | map2) % CandidatesMap[w] is not (var tempMap and not []))
 								{

@@ -347,7 +347,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 					var digitsMask2 = grid[HousesMap[h2] & EmptyCells];
 					foreach (var d1 in digitsMask1)
 					{
-						foreach (var d2 in (Mask)(digitsMask2 & (Mask)~(1 << d1)))
+						foreach (var d2 in (Mask)(digitsMask2 & ~(1 << d1)))
 						{
 							// Check for validity of (grouped) strong links.
 							var (cells1, cells2) = (HousesMap[h1] & CandidatesMap[d1], HousesMap[h2] & CandidatesMap[d2]);

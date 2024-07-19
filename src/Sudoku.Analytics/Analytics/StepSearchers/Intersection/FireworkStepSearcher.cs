@@ -187,15 +187,15 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 			// Now check eliminations.
 			var conclusions = new List<Conclusion>(18);
-			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & (Mask)~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(pivot) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, pivot, digit));
 			}
-			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & (Mask)~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell1) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell1, digit));
 			}
-			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & (Mask)~currentDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell2) & ~currentDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell2, digit));
 			}
@@ -320,17 +320,17 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					// Firework quadruple found.
 					var fourDigitsMask = (Mask)(pair1DigitsMask | pair2DigitsMask);
 					var conclusions = new List<Conclusion>(20);
-					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & (Mask)~pair1DigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & ~pair1DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot1, digit));
 					}
-					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & (Mask)~pair2DigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & ~pair2DigitsMask))
 					{
 						conclusions.Add(new(Elimination, pivot2, digit));
 					}
 					foreach (var cell in map - pivot1 - pivot2)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~fourDigitsMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~fourDigitsMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}

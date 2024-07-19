@@ -406,8 +406,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check for candidates for the cell.
 				var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
-				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMask);
+				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
+				var lastDigitsMask = (Mask)(valueDigitsMask & ~eliminatedDigitsMask);
 				if (!IsPow2(lastDigitsMask))
 				{
 					continue;
@@ -584,7 +584,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		foreach (var cell in conclusions.Cells)
 		{
 			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
+			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & ~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
 			{
 				return null;
@@ -681,8 +681,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check for candidates for the cell.
 				var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
-				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMask);
+				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
+				var lastDigitsMask = (Mask)(valueDigitsMask & ~eliminatedDigitsMask);
 				if (!IsPow2(lastDigitsMask))
 				{
 					continue;
@@ -860,7 +860,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
 		{
 			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
+			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & ~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
 			{
 				continue;

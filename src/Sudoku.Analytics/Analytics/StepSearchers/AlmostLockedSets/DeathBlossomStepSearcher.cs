@@ -98,7 +98,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					}
 
 					// If the found ALS is valid, iterate on each digits from the ALS, as selected one.
-					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & (Mask)~(1 << wrongDigit)))
+					foreach (var currentSelectedDigit in (Mask)(alsDigitsMask & ~(1 << wrongDigit)))
 					{
 						// Iterate on each pivot cells that contains the selected digit.
 						foreach (var pivot in alsElimMap[currentSelectedDigit])

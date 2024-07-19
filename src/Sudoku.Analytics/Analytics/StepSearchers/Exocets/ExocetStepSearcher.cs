@@ -536,7 +536,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Check for maximum times can be appeared in cross-line cells.
 				// Due to consideration on locked members, we may not handle for them.
 				var allDigitsCanBeFilledExactlySizeMinusOneTimes = true;
-				foreach (var digit in (Mask)(baseCellsDigitsMask & (Mask)~endoTargetValueDigitsMask))
+				foreach (var digit in (Mask)(baseCellsDigitsMask & ~endoTargetValueDigitsMask))
 				{
 					if (!grid.IsExactAppearingTimesOf(digit, crosslineIncludingTarget - targetCell, size - 1))
 					{
@@ -862,7 +862,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					// This will help us searching for possible AHSes or conjugate pairs.
 					// Iterate on each digit to check on any AHSes or conjugate pairs.
 					var collectedDigitsMask = (Mask)0; // This field is used for remove searching for duplicate digits.
-					foreach (var selectedDigit in (Mask)(grid.GetCandidates(endoTargetCell) & (Mask)~baseCellsDigitsMask))
+					foreach (var selectedDigit in (Mask)(grid.GetCandidates(endoTargetCell) & ~baseCellsDigitsMask))
 					{
 						// Check for all possible direction for the endo-target cell, to get intersected cells with cross-line cells.
 						foreach (var houseType in HouseTypes)
@@ -1524,7 +1524,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						// This digit is a conjugate pair.
 						foreach (var cell in targetCells)
 						{
-							foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask & (Mask)~(1 << conjugatePairDigit)))
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask & ~(1 << conjugatePairDigit)))
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -1540,7 +1540,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			{
 				foreach (var cell in targetCells + endoTargetCell)
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -1551,7 +1551,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			{
 				foreach (var cell in targetCells)
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -1568,7 +1568,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						{
 							foreach (var cell in cellsInThisBlock)
 							{
-								foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+								foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 								{
 									conclusions.Add(new(Elimination, cell, digit));
 								}
@@ -1595,7 +1595,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// This digit is a conjugate pair.
 									foreach (var cell in cellsInThisBlock)
 									{
-										foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask & (Mask)~(1 << conjugatePairDigit)))
+										foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask & ~(1 << conjugatePairDigit)))
 										{
 											conclusions.Add(new(Elimination, cell, digit));
 										}
@@ -1833,7 +1833,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						// Now check for eliminations.
 						foreach (var elimCell in theOtherEmptyCells)
 						{
-							foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & (Mask)~baseCellsDigitsMask & (Mask)~(1 << digit)))
+							foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & ~baseCellsDigitsMask & ~(1 << digit)))
 							{
 								conclusions.Add(new(Elimination, elimCell, elimDigit));
 							}
@@ -2239,7 +2239,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in baseCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredTargetPairMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetPairMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
@@ -2253,7 +2253,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				{
 					foreach (var cell in values)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredTargetPairMask))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetPairMask))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -2264,7 +2264,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				{
 					foreach (var cell in values)
 					{
-						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredTargetPairMask & (Mask)~(1 << conjDigit)))
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredTargetPairMask & ~(1 << conjDigit)))
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -2480,7 +2480,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					foreach (ref readonly var extraCells in otherCells & size - 1)
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
-						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & (Mask)~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
+						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
 						{
 							var extraDigitsMask = MaskOperations.Create(digitsMaskGroup);
 							var lastHoldingMap = CellMap.Empty;
@@ -2652,7 +2652,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
 #pragma warning restore format
-				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
+				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 				{
 					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 				}
@@ -2675,7 +2675,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Sync candidates in base cells from target cells.
 			foreach (var cell in baseCells)
 			{
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredLastTargetDigitsMask))
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredLastTargetDigitsMask))
 				{
 					conclusions.Add(new(Elimination, cell, digit));
 				}
@@ -2845,7 +2845,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 
 					// Sync for mirror cells.
-					foreach (var digit in (Mask)(grid.GetCandidates(mirrorEmptyCellFromTheOtherTargetCell) & (Mask)~lastDigitsMaskForTarget))
+					foreach (var digit in (Mask)(grid.GetCandidates(mirrorEmptyCellFromTheOtherTargetCell) & ~lastDigitsMaskForTarget))
 					{
 						conclusions.Add(new(Elimination, mirrorEmptyCellFromTheOtherTargetCell, digit));
 					}
@@ -2895,7 +2895,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 
 		// First, check for elimination on target cell.
-		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~(baseCellsDigitsMask & (Mask)~(1 << trueBaseDigit))))
+		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~(baseCellsDigitsMask & ~(1 << trueBaseDigit))))
 		{
 			conclusions.Add(new(Elimination, targetCell, digit));
 		}
@@ -2992,11 +2992,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock) && HousesMap[lockedBlock].Contains(targetCell))
 			{
-				foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & (Mask)~(baseCellsDigitsMask & (Mask)~(1 << lockedDigit))))
+				foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
 				{
 					conclusions.Add(new(Elimination, endoTargetCell, digit));
 				}
-				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~baseCellsDigitsMask))
+				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
 				{
 					conclusions.Add(new(Elimination, targetCell, digit));
 				}
@@ -3097,7 +3097,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				if (valueDigitCell != -1 || !PeersMap[cell].Contains(missingValueCell))
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -3184,7 +3184,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
 #pragma warning restore format
-			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 			{
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 			}
@@ -3370,7 +3370,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in HousesMap[TrailingZeroCount(finalIntersectedFourCells.BlockMask)] & ~crossline & ~finalIntersectedFourCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
@@ -3666,7 +3666,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
 #pragma warning restore format
-			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & ~finalDigitsMask))
 			{
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 			}
@@ -3687,7 +3687,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Sync candidates in base cells from target cells.
 			foreach (var cell in baseCells)
 			{
-				foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredLastTargetDigitsMask))
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredLastTargetDigitsMask))
 				{
 					conclusions.Add(new(Elimination, cell, digit));
 				}
@@ -3977,11 +3977,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			{
 				foreach (var endoTargetCell in endoTargetCells)
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & (Mask)~almostHiddenSetDigitsMask & (Mask)~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+					foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~almostHiddenSetDigitsMask & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
 					{
 						conclusions.Add(new(Elimination, endoTargetCell, digit));
 					}
-					foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~baseCellsDigitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
 					{
 						conclusions.Add(new(Elimination, targetCell, digit));
 					}
@@ -4100,7 +4100,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in targetCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
@@ -4186,7 +4186,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in targetCell.AsCellMap() + endoTargetCell)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
@@ -4258,12 +4258,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var conclusions = new List<Conclusion>();
 		foreach (var cell in endoTargetCellsGroup)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~inferredBaseDigitsMask & (Mask)~almostHiddenSetMask))
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~inferredBaseDigitsMask & ~almostHiddenSetMask))
 			{
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & (Mask)~inferredBaseDigitsMask))
+		foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~inferredBaseDigitsMask))
 		{
 			conclusions.Add(new(Elimination, targetCell, digit));
 		}
@@ -4507,7 +4507,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						// Now check for eliminations.
 						foreach (var elimCell in theOtherEmptyCells)
 						{
-							foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & (Mask)~baseCellsDigitsMask & (Mask)~(1 << digit)))
+							foreach (var elimDigit in (Mask)(grid.GetCandidates(elimCell) & ~baseCellsDigitsMask & ~(1 << digit)))
 							{
 								conclusions.Add(new(Elimination, elimCell, elimDigit));
 							}
@@ -4622,7 +4622,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Check whether at least one digit appeared in base cells isn't locked and doesn't satisfy the (size) rule.
 		var atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule = false;
-		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & (Mask)~lockedMemberDigitsMask))
+		foreach (var filteredDigit in (Mask)(baseCellsDigitsMask & ~lockedMemberDigitsMask))
 		{
 			if ((digitsMaskExactlySizeMinusOneTimes >> filteredDigit & 1) == 0)
 			{

@@ -16,7 +16,7 @@ public static class Excluder
 	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var (result, i), excluderHouses) = ((CellMap.Empty, 0), new House[8]);
-		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
+		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
 		{
 			foreach (var otherCell in PeersMap[cell])
 			{
@@ -79,7 +79,7 @@ public static class Excluder
 	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var (result, i), excluderHouses) = ((new IconViewNode[8], 0), new House[8]);
-		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
+		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
 		{
 			foreach (var otherCell in PeersMap[cell])
 			{

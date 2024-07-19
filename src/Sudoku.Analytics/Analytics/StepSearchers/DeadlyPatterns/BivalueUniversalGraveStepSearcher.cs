@@ -473,7 +473,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					}
 
 					// Bitwise not.
-					foreach (var d in digitMask = (Mask)(~digitMask & Grid.MaxCandidatesMask))
+					foreach (var d in digitMask = (Mask)(Grid.MaxCandidatesMask & ~digitMask))
 					{
 						if (conjugatePairDigit == d || !CandidatesMap[d].Contains(cell))
 						{

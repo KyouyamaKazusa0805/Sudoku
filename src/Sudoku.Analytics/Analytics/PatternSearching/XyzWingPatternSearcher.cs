@@ -53,12 +53,12 @@ internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWing>
 						var unionedDigitsMask = (Mask)((Mask)(digitsMaskPivot | digitsMask1) | digitsMask2);
 						if (PopCount((uint)unionedDigitsMask) != 3
 							|| unionedDigitsMask != digitsMaskPivot
-							|| !IsPow2((Mask)(digitsMaskPivot & digitsMask1 & digitsMask2)))
+							|| !IsPow2(digitsMaskPivot & digitsMask1 & digitsMask2))
 						{
 							continue;
 						}
 
-						var intersectedDigit = Log2((uint)(Mask)(digitsMaskPivot & digitsMask1 & digitsMask2));
+						var intersectedDigit = Log2((uint)(digitsMaskPivot & digitsMask1 & digitsMask2));
 						result.Add(new(pivot, leafCell1, leafCell2, house1, house2, unionedDigitsMask, intersectedDigit));
 					}
 				}

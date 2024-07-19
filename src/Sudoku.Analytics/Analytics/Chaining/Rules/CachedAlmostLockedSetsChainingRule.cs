@@ -162,7 +162,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 					GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells)
 				})
 			{
-				var elimDigitsMask = (Mask)(digitsMask & (Mask)~(Mask)(digitsMask1 | digitsMask2));
+				var elimDigitsMask = (Mask)(digitsMask & ~(digitsMask1 | digitsMask2));
 				foreach (var digit in elimDigitsMask)
 				{
 					foreach (var cell in alsCells % CandidatesMap[digit])

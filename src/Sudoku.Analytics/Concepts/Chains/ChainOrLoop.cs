@@ -499,7 +499,7 @@ public abstract partial class ChainOrLoop :
 				{
 					// Same cell.
 					return
-						from digit in (Mask)(grid.GetCandidates(cell1) & (Mask)~(1 << digit1 | 1 << digit2))
+						from digit in (Mask)(grid.GetCandidates(cell1) & ~(1 << digit1 | 1 << digit2))
 						select new Conclusion(Elimination, cell1, digit);
 				}
 				else if (digit1 == digit2)

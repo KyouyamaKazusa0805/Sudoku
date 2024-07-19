@@ -56,7 +56,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 					case [var targetCell]:
 					{
 						// The cell can be filled with the digit from the other side.
-						var disapperedDigit = TrailingZeroCount((Mask)(mergedDigitsMask & digitsMaskTheOtherSide));
+						var disapperedDigit = TrailingZeroCount(mergedDigitsMask & digitsMaskTheOtherSide);
 						conclusions.Add(new(Assignment, targetCell, disapperedDigit));
 
 						break;
@@ -66,7 +66,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 						var disappearedDigitsMask = (Mask)(mergedDigitsMask & digitsMaskTheOtherSide);
 						foreach (var cell in houseCells)
 						{
-							foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~disappearedDigitsMask))
+							foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~disappearedDigitsMask))
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}

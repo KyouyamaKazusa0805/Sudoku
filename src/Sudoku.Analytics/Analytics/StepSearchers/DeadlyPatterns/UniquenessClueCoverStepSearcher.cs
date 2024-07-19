@@ -62,7 +62,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 			foreach (var elimCell in chute & ~excludedLines & (HousesMap[c1.ToHouseIndex(elimHouseType)] | HousesMap[c2.ToHouseIndex(elimHouseType)]))
 			{
 				var correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
-				var elimDigit = TrailingZeroCount((Mask)(digitsMask & ~(1 << grid.GetDigit(correspondingValueCell))));
+				var elimDigit = TrailingZeroCount(digitsMask & ~(1 << grid.GetDigit(correspondingValueCell)));
 				if (CandidatesMap[elimDigit].Contains(elimCell))
 				{
 					conclusions.Add(new(Assignment, elimCell, elimDigit));

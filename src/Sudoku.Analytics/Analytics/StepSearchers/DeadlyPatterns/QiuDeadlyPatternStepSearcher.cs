@@ -726,7 +726,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
 				{
 					var conclusions = new List<Conclusion>();
-					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCorner & (Mask)~(1 << digit)))
+					foreach (var elimDigit in (Mask)(digitsMaskAppearedInCorner & ~(1 << digit)))
 					{
 						foreach (var cell in CandidatesMap[elimDigit] & corner)
 						{
@@ -1043,7 +1043,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:825 826 833 837 839 844 254 854 255 256 864 477 877 779 789 495 496 499 799
 		var allOtherDigitsAreLockedInCrosslineCells = true;
 		var crosslineBlock = HousesMap[Log2((uint)crossline.BlockMask)] & EmptyCells;
-		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & (Mask)~(1 << elimDigit)))
+		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & ~(1 << elimDigit)))
 		{
 			if (crosslineBlock & CandidatesMap[digit] & ~crossline)
 			{

@@ -186,7 +186,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 					}
 				}
 			}
-			foreach (var digit in (Mask)(Grid.MaxCandidatesMask & (Mask)~mask))
+			foreach (var digit in (Mask)(Grid.MaxCandidatesMask & ~mask))
 			{
 				foreach (var ahsCell in ahsCells & CandidatesMap[digit])
 				{

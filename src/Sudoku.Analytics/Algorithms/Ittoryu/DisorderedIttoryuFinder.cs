@@ -107,7 +107,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 
 				// If not, we should search for available path nodes agagin, and iterate on them.
 				var tempNodes = new List<PathNode>(16);
-				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~finishedDigits))
+				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
 					fullHouses(in grid, tempNodes, anotherDigit);
 					hiddenSingles(in grid, tempNodes, anotherDigit);

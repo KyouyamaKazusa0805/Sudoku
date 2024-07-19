@@ -109,7 +109,7 @@ public static class DeadlyPattern
 				var digits = grid.GetCandidates(currentCell);
 				foreach (var digit in digits)
 				{
-					grid[currentCell] = (Mask)(Grid.ModifiableMask | (Mask)(1 << digit));
+					grid[currentCell] = (Mask)(Grid.ModifiableMask | 1 << digit);
 					if (isValid(in grid, r, c))
 					{
 						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
