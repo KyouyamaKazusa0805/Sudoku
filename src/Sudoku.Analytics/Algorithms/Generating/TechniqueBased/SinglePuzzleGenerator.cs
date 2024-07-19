@@ -74,7 +74,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <returns>The block position.</returns>
 	private protected static Digit BlockPositionOf(Cell cell)
 	{
-		var block = cell.ToHouseIndex(HouseType.Block);
+		var block = cell.ToHouse(HouseType.Block);
 		var i = 0;
 		foreach (var c in HousesCells[block])
 		{

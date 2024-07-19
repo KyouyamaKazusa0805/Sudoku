@@ -594,7 +594,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var next in HousesMap[cell.ToHouseIndex(houseType)] & EmptyCells)
+			foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells)
 			{
 				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
 				{
@@ -657,7 +657,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouseIndex(houseType);
+				var house = cell.ToHouse(houseType);
 				if (isOdd)
 				{
 					if ((visitedOdd >> house & 1) != 0)

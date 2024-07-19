@@ -33,7 +33,7 @@ internal partial class ChainingDriver
 				// Iterate on three house types, to collect with region forcing chains.
 				foreach (var houseType in HouseTypes)
 				{
-					var house = cell.ToHouseIndex(houseType);
+					var house = cell.ToHouse(houseType);
 					var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
 					if (cellsInHouse.Count <= 2)
 					{

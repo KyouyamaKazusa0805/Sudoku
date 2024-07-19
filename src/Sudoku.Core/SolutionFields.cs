@@ -217,7 +217,7 @@ public static class SolutionFields
 					{
 						foreach (var houseType in HouseTypes)
 						{
-							if (HousesMap[cell.ToHouseIndex(houseType)].Contains(peerCell))
+							if (HousesMap[cell.ToHouse(houseType)].Contains(peerCell))
 							{
 								map.Add(peerCell);
 								break;

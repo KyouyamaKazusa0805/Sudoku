@@ -162,9 +162,9 @@ internal partial class ChainingDriver
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
 			{
-				if (startCell.ToHouseIndex(HouseType.Block) == startCurrentHouse
-					|| startCell.ToHouseIndex(HouseType.Row) == startCurrentHouse
-					|| startCell.ToHouseIndex(HouseType.Column) == startCurrentHouse)
+				if (startCell.ToHouse(HouseType.Block) == startCurrentHouse
+					|| startCell.ToHouse(HouseType.Row) == startCurrentHouse
+					|| startCell.ToHouse(HouseType.Column) == startCurrentHouse)
 				{
 					continue;
 				}
@@ -210,9 +210,9 @@ internal partial class ChainingDriver
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
 			{
-				if (currentStartCell.ToHouseIndex(HouseType.Block) == startHouse
-					|| currentStartCell.ToHouseIndex(HouseType.Row) == startHouse
-					|| currentStartCell.ToHouseIndex(HouseType.Column) == startHouse)
+				if (currentStartCell.ToHouse(HouseType.Block) == startHouse
+					|| currentStartCell.ToHouse(HouseType.Row) == startHouse
+					|| currentStartCell.ToHouse(HouseType.Column) == startHouse)
 				{
 					continue;
 				}
@@ -318,7 +318,7 @@ internal partial class ChainingDriver
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell.ToHouseIndex(houseType);
+							var house = endCell.ToHouse(houseType);
 							var entry = (house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{
@@ -350,7 +350,7 @@ internal partial class ChainingDriver
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell.ToHouseIndex(houseType);
+							var house = endCell.ToHouse(houseType);
 							var entry = (house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{

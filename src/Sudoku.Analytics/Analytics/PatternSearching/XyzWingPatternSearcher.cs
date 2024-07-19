@@ -27,8 +27,8 @@ internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWing>
 			// Fetch for two cells from two different houses.
 			foreach (var housePair in HouseTypes.AsReadOnlySpan().GetSubsets(2))
 			{
-				var house1 = pivot.ToHouseIndex(housePair[0]);
-				var house2 = pivot.ToHouseIndex(housePair[1]);
+				var house1 = pivot.ToHouse(housePair[0]);
+				var house2 = pivot.ToHouse(housePair[1]);
 				var bivalueCellsFromHouse1 = BivalueCells & HousesMap[house1];
 				var bivalueCellsFromHouse2 = BivalueCells & HousesMap[house2];
 				if (!bivalueCellsFromHouse1 || !bivalueCellsFromHouse2)

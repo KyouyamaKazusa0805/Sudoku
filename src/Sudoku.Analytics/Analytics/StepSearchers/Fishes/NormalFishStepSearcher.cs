@@ -316,7 +316,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						var flag = false;
 						foreach (var c in ValuesMap[digit])
 						{
-							if (HousesMap[c.ToHouseIndex(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
+							if (HousesMap[c.ToHouse(searchRow ? HouseType.Column : HouseType.Row)].Contains(cell))
 							{
 								flag = true;
 								break;

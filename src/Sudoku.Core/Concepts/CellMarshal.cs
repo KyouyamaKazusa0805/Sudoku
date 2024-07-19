@@ -40,7 +40,7 @@ public static class CellMarshal
 	/// Throws when the argument <paramref name="houseType"/> is not defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static House ToHouseIndex(this byte @this, HouseType houseType)
+	public static House ToHouse(this byte @this, HouseType houseType)
 		=> houseType switch
 		{
 			HouseType.Block => BlockTable[@this],
@@ -49,9 +49,9 @@ public static class CellMarshal
 			_ => throw new ArgumentOutOfRangeException(nameof(houseType))
 		};
 
-	/// <inheritdoc cref="ToHouseIndex(byte, HouseType)"/>
+	/// <inheritdoc cref="ToHouse(byte, HouseType)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static House ToHouseIndex(this Cell cell, HouseType houseType)
+	public static House ToHouse(this Cell cell, HouseType houseType)
 		=> houseType switch
 		{
 			HouseType.Block => BlockTable[cell],
@@ -69,9 +69,9 @@ public static class CellMarshal
 	public static HouseMask ToHouseIndices(this Cell @this)
 	{
 		var result = 0;
-		result |= 1 << @this.ToHouseIndex(HouseType.Block);
-		result |= 1 << @this.ToHouseIndex(HouseType.Row);
-		result |= 1 << @this.ToHouseIndex(HouseType.Column);
+		result |= 1 << @this.ToHouse(HouseType.Block);
+		result |= 1 << @this.ToHouse(HouseType.Row);
+		result |= 1 << @this.ToHouse(HouseType.Column);
 		return result;
 	}
 
@@ -80,7 +80,7 @@ public static class CellMarshal
 	/// </summary>
 	/// <param name="this">The cell.</param>
 	/// <returns>The chute index.</returns>
-	public static int ToBandIndex(this Cell @this)
+	public static int ToBand(this Cell @this)
 	{
 		for (var i = 0; i < 3; i++)
 		{
@@ -97,7 +97,7 @@ public static class CellMarshal
 	/// </summary>
 	/// <param name="this">The cell.</param>
 	/// <returns>The chute index.</returns>
-	public static int ToTowerIndex(this Cell @this)
+	public static int ToTower(this Cell @this)
 	{
 		for (var i = 3; i < 6; i++)
 		{

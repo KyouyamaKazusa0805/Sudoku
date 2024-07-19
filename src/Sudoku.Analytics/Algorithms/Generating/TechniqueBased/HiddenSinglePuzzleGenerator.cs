@@ -176,7 +176,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 			static void adjustToCenterCell(ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
-				if (targetCell.ToHouseIndex(HouseType.Block) == 4 && pos == 4)
+				if (targetCell.ToHouse(HouseType.Block) == 4 && pos == 4)
 				{
 					return;
 				}
@@ -298,14 +298,14 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				// We should adjust the givens and target cells to the specified position.
 				switch (Alignment)
 				{
-					case ConlusionCellAlignment.CenterHouse or ConlusionCellAlignment.CenterBlock when targetCell.ToHouseIndex(HouseType.Block) is var b && b != 4:
+					case ConlusionCellAlignment.CenterHouse or ConlusionCellAlignment.CenterBlock when targetCell.ToHouse(HouseType.Block) is var b && b != 4:
 					{
 						adjustToBlock5(b, ref house, ref targetCell, ref puzzle);
 						break;
 					}
 					case ConlusionCellAlignment.CenterCell when targetCell != 40:
 					{
-						adjustToBlock5(targetCell.ToHouseIndex(HouseType.Block), ref house, ref targetCell, ref puzzle);
+						adjustToBlock5(targetCell.ToHouse(HouseType.Block), ref house, ref targetCell, ref puzzle);
 						adjustToCenterCell(ref house, ref targetCell, ref puzzle);
 						break;
 					}
@@ -387,7 +387,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 			static void adjustToCenterCell(ref House house, ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
-				if (targetCell.ToHouseIndex(HouseType.Block) == 4 && pos == 4)
+				if (targetCell.ToHouse(HouseType.Block) == 4 && pos == 4)
 				{
 					return;
 				}

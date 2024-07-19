@@ -149,7 +149,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			var h = (stackalloc House[3]);
 			foreach (var houseType in HouseTypes)
 			{
-				var nextHouse = previousCell.ToHouseIndex(houseType);
+				var nextHouse = previousCell.ToHouse(houseType);
 				if (nextHouse == previousHouse)
 				{
 					continue;

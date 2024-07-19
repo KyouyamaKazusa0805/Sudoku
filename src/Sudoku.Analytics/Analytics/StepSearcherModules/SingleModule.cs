@@ -37,7 +37,7 @@ internal static class SingleModule
 		var (resultCount, resultHouse) = (9, 0);
 		foreach (var houseType in HouseTypes)
 		{
-			var (h, tempCount) = (cell.ToHouseIndex(houseType), 0);
+			var (h, tempCount) = (cell.ToHouse(houseType), 0);
 			foreach (var c in HousesMap[h])
 			{
 				if (grid.GetState(c) == CellState.Empty)
@@ -77,7 +77,7 @@ internal static class SingleModule
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				if (HousesMap[chosenCell.ToHouseIndex(houseType)] & houseCells)
+				if (HousesMap[chosenCell.ToHouse(houseType)] & houseCells)
 				{
 					(houseType == HouseType.Block ? ref b : ref houseType == HouseType.Row ? ref r : ref c)++;
 					break;
@@ -106,7 +106,7 @@ internal static class SingleModule
 		var (valuesCountInBlock, valuesCountInRow, valuesCountInColumn) = (0, 0, 0);
 		foreach (var houseType in HouseTypes)
 		{
-			foreach (var c in HousesMap[cell.ToHouseIndex(houseType)])
+			foreach (var c in HousesMap[cell.ToHouse(houseType)])
 			{
 				if (grid.GetState(c) != CellState.Empty)
 				{

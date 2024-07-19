@@ -57,11 +57,11 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 			var digitsMask = (Mask)(1 << c1Digit | 1 << c2Digit);
 			var elimHouseType = isRow ? HouseType.Column : HouseType.Row;
 			var excludedHouseType = isRow ? HouseType.Row : HouseType.Column;
-			var excludedLines = HousesMap[c1.ToHouseIndex(excludedHouseType)] | HousesMap[c2.ToHouseIndex(excludedHouseType)];
+			var excludedLines = HousesMap[c1.ToHouse(excludedHouseType)] | HousesMap[c2.ToHouse(excludedHouseType)];
 			var conclusions = new List<Conclusion>(2);
-			foreach (var elimCell in chute & ~excludedLines & (HousesMap[c1.ToHouseIndex(elimHouseType)] | HousesMap[c2.ToHouseIndex(elimHouseType)]))
+			foreach (var elimCell in chute & ~excludedLines & (HousesMap[c1.ToHouse(elimHouseType)] | HousesMap[c2.ToHouse(elimHouseType)]))
 			{
-				var correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
+				var correspondingValueCell = (HousesMap[elimCell.ToHouse(elimHouseType)] & chute & valueCells)[0];
 				var elimDigit = TrailingZeroCount(digitsMask & ~(1 << grid.GetDigit(correspondingValueCell)));
 				if (CandidatesMap[elimDigit].Contains(elimCell))
 				{

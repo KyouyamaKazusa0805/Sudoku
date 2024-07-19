@@ -18,9 +18,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 		var cbList = new List<CellMap>(3);
 		foreach (var pivot in EmptyCells)
 		{
-			var r = pivot.ToHouseIndex(HouseType.Row);
-			var c = pivot.ToHouseIndex(HouseType.Column);
-			var b = pivot.ToHouseIndex(HouseType.Block);
+			var r = pivot.ToHouse(HouseType.Row);
+			var c = pivot.ToHouse(HouseType.Column);
+			var b = pivot.ToHouse(HouseType.Block);
 			var rbMap = HousesMap[r] & HousesMap[b];
 			var cbMap = HousesMap[c] & HousesMap[b];
 			var rbEmptyMap = rbMap & EmptyCells;

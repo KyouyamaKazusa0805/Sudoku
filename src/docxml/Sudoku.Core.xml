@@ -2892,7 +2892,7 @@
             Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)">
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)">
             <summary>
             Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
             for the specified cell and the house type.
@@ -2904,8 +2904,8 @@
             Throws when the argument <paramref name="houseType"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouseIndex(System.Byte,Sudoku.Concepts.HouseType)"/>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Int32)">
             <summary>
@@ -2914,14 +2914,14 @@
             <param name="this">The cell.</param>
             <returns>A <see cref="T:System.Int32"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToBandIndex(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMarshal.ToBand(System.Int32)">
             <summary>
             Try to get the band index (mega-row) of the specified cell.
             </summary>
             <param name="this">The cell.</param>
             <returns>The chute index.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToTowerIndex(System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMarshal.ToTower(System.Int32)">
             <summary>
             Try to get the tower index (mega-column) of the specified cell.
             </summary>

@@ -274,7 +274,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 							// that is the elimination lies in.
 							foreach (var houseType in HouseTypes)
 							{
-								var houseIndex = cell.ToHouseIndex(houseType);
+								var houseIndex = cell.ToHouse(houseType);
 
 								// Check whether the house is both used in base sets and cover sets.
 								if ((usedInBaseSets >> houseIndex & 1) != 0 || (usedInCoverSets >> houseIndex & 1) != 0)

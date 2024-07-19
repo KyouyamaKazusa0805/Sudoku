@@ -180,14 +180,14 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				}
 
 				// Check elimination map.
-				linkHouse[0] = cells[0].ToHouseIndex(HouseType.Row);
-				linkHouse[1] = cells[2].ToHouseIndex(HouseType.Block);
-				linkHouse[2] = cells[4].ToHouseIndex(HouseType.Column);
-				linkHouse[3] = cells[6].ToHouseIndex(HouseType.Block);
-				linkHouse[4] = cells[8].ToHouseIndex(HouseType.Row);
-				linkHouse[5] = cells[10].ToHouseIndex(HouseType.Block);
-				linkHouse[6] = cells[12].ToHouseIndex(HouseType.Column);
-				linkHouse[7] = cells[14].ToHouseIndex(HouseType.Block);
+				linkHouse[0] = cells[0].ToHouse(HouseType.Row);
+				linkHouse[1] = cells[2].ToHouse(HouseType.Block);
+				linkHouse[2] = cells[4].ToHouse(HouseType.Column);
+				linkHouse[3] = cells[6].ToHouse(HouseType.Block);
+				linkHouse[4] = cells[8].ToHouse(HouseType.Row);
+				linkHouse[5] = cells[10].ToHouse(HouseType.Block);
+				linkHouse[6] = cells[12].ToHouse(HouseType.Column);
+				linkHouse[7] = cells[14].ToHouse(HouseType.Block);
 				var conclusions = new List<Conclusion>();
 				var map = [.. cells] & EmptyCells;
 				for (k = 0; k < 8; k++)

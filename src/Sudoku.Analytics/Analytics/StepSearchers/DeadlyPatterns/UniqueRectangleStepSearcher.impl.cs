@@ -555,10 +555,10 @@ public partial class UniqueRectangleStepSearcher
 
 		var o1 = otherCellsMap[0];
 		var o2 = otherCellsMap[1];
-		var r1 = corner1.ToHouseIndex(HouseType.Row);
-		var c1 = corner1.ToHouseIndex(HouseType.Column);
-		var r2 = corner2.ToHouseIndex(HouseType.Row);
-		var c2 = corner2.ToHouseIndex(HouseType.Column);
+		var r1 = corner1.ToHouse(HouseType.Row);
+		var c1 = corner1.ToHouse(HouseType.Column);
+		var r2 = corner2.ToHouse(HouseType.Row);
+		var c2 = corner2.ToHouse(HouseType.Column);
 		foreach (var digit in (d1, d2))
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))
@@ -678,8 +678,8 @@ public partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var r = abzCell.ToHouseIndex(HouseType.Row);
-		var c = abzCell.ToHouseIndex(HouseType.Column);
+		var r = abzCell.ToHouse(HouseType.Row);
+		var c = abzCell.ToHouse(HouseType.Column);
 		foreach (var digit in (d1, d2))
 		{
 			var map1 = abzCell.AsCellMap() + abxCell;
@@ -2961,7 +2961,7 @@ public partial class UniqueRectangleStepSearcher
 		// Iterate on each cell.
 		foreach (var targetCell in cells)
 		{
-			var block = targetCell.ToHouseIndex(HouseType.Block);
+			var block = targetCell.ToHouse(HouseType.Block);
 			var bivalueCellsToCheck = PeersMap[targetCell] & HousesMap[block] & BivalueCells & ~cells;
 			if (!bivalueCellsToCheck)
 			{
@@ -4632,7 +4632,7 @@ public partial class UniqueRectangleStepSearcher
 			// Iterate on each house type.
 			foreach (var houseType in HouseTypes)
 			{
-				var houseIndex = baseCell.ToHouseIndex(houseType);
+				var houseIndex = baseCell.ToHouse(houseType);
 
 				// If the house doesn't overlap with the specified house, just skip it.
 				if (!(cellsThatTwoOtherCellsBothCanSee & HousesMap[houseIndex]))

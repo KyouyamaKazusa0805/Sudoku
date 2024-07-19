@@ -117,16 +117,16 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 						continue;
 					}
 
-					if (i.ToHouseIndex(HouseType.Block) == j.ToHouseIndex(HouseType.Block)
-						|| i.ToHouseIndex(HouseType.Row) == j.ToHouseIndex(HouseType.Row)
-						|| i.ToHouseIndex(HouseType.Column) == j.ToHouseIndex(HouseType.Column))
+					if (i.ToHouse(HouseType.Block) == j.ToHouse(HouseType.Block)
+						|| i.ToHouse(HouseType.Row) == j.ToHouse(HouseType.Row)
+						|| i.ToHouse(HouseType.Column) == j.ToHouse(HouseType.Column))
 					{
 						rating += isOrdered.Contains(j) ? 10000 : 100;
 					}
 
 					if (!isOrdered.Contains(j)
-						&& (i.ToBandIndex() == j.ToBandIndex() || i.ToTowerIndex() == j.ToTowerIndex())
-						&& i.ToHouseIndex(HouseType.Block) == j.ToHouseIndex(HouseType.Block))
+						&& (i.ToBand() == j.ToBand() || i.ToTower() == j.ToTower())
+						&& i.ToHouse(HouseType.Block) == j.ToHouse(HouseType.Block))
 					{
 						rating++;
 					}

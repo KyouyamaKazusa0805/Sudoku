@@ -9,7 +9,7 @@ internal static class SelectedCellConversion
 		=> selectedCell switch
 		{
 			-1 => 2,
-			_ => selectedCell.ToHouseIndex(HouseType.Block) switch
+			_ => selectedCell.ToHouse(HouseType.Block) switch
 			{
 				0 or 1 or 2 => 2,
 				3 or 4 or 5 => 5,
@@ -21,7 +21,7 @@ internal static class SelectedCellConversion
 		=> selectedCell switch
 		{
 			-1 => 2,
-			_ => selectedCell.ToHouseIndex(HouseType.Block) switch
+			_ => selectedCell.ToHouse(HouseType.Block) switch
 			{
 				0 or 3 or 6 => 2,
 				1 or 4 or 7 => 5,
@@ -30,10 +30,10 @@ internal static class SelectedCellConversion
 		};
 
 	public static int SelectedCellToGridRow_Row(Cell selectedCell)
-		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Row) - 9 + 2;
+		=> selectedCell == -1 ? 2 : selectedCell.ToHouse(HouseType.Row) - 9 + 2;
 
 	public static int SelectedCellToGridColumn_Column(Cell selectedCell)
-		=> selectedCell == -1 ? 2 : selectedCell.ToHouseIndex(HouseType.Column) - 18 + 2;
+		=> selectedCell == -1 ? 2 : selectedCell.ToHouse(HouseType.Column) - 18 + 2;
 
 	public static Visibility SelectedCellToVisibility(Cell selectedCell, bool displayCursors)
 		=> (displayCursors, selectedCell) switch

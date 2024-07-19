@@ -136,7 +136,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = lastCell.ToHouseIndex(houseType);
+				var house = lastCell.ToHouse(houseType);
 				if ((lastHouse >> house & 1) != 0)
 				{
 					continue;
@@ -158,9 +158,9 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 					var housesUsed = 0;
 					foreach (var tempHouseType in HouseTypes)
 					{
-						if (tempCell.ToHouseIndex(tempHouseType) == lastCell.ToHouseIndex(tempHouseType))
+						if (tempCell.ToHouse(tempHouseType) == lastCell.ToHouse(tempHouseType))
 						{
-							housesUsed |= 1 << lastCell.ToHouseIndex(tempHouseType);
+							housesUsed |= 1 << lastCell.ToHouse(tempHouseType);
 						}
 					}
 

@@ -54,6 +54,6 @@ public sealed partial class GridClickedEventArgs([PrimaryConstructorParameter] M
 	public static (int Megarow, int Megacolumn) GetChute(Candidate candidate)
 	{
 		var cell = candidate / 9;
-		return ((cell.ToHouseIndex(HouseType.Row) - 9) / 3, (cell.ToHouseIndex(HouseType.Column) - 18) / 3);
+		return ((cell.ToHouse(HouseType.Row) - 9) / 3, (cell.ToHouse(HouseType.Column) - 18) / 3);
 	}
 }
