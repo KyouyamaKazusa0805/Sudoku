@@ -4723,6 +4723,23 @@
             <seealso cref="T:System.Collections.BitArray"/>
             <completionlist cref="T:Sudoku.Analytics.Categorization.TechniqueSets"/>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor">
+            <summary>
+            Represents a set of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields.
+            </summary>
+            <remarks>
+            This type uses a <see cref="T:System.Collections.BitArray"/> to construct the data structure. Because <see cref="T:System.Collections.BitArray"/> is a reference type,
+            we cannot directly copy a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> value. If you want to clone a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>,
+            please use <c>[..]</c> syntax:
+            <code><![CDATA[
+            var techniques = TechniqueSets.All;
+            var another = techniques[..]; // Copy all elements.
+            ]]></code>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:System.Collections.BitArray"/>
+            <completionlist cref="T:Sudoku.Analytics.Categorization.TechniqueSets"/>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueRelationGroups">
             <summary>
             Indicates the information for the techniques, can lookup the relation via its belonging technique group.
@@ -4747,11 +4764,6 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet._techniqueBits">
             <summary>
             The internal bits to store techniques.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">

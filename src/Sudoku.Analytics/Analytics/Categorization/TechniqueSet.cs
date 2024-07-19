@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
-public sealed partial class TechniqueSet :
+public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
@@ -62,14 +62,8 @@ public sealed partial class TechniqueSet :
 	/// <summary>
 	/// The internal bits to store techniques.
 	/// </summary>
-	private readonly BitArray _techniqueBits;
+	private readonly BitArray _techniqueBits = new(TechniquesCount);
 
-
-	/// <summary>
-	/// Initializes a <see cref="TechniqueSet"/> instance.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TechniqueSet() => _techniqueBits = new(TechniquesCount);
 
 	/// <summary>
 	/// Copies a <see cref="TechniqueSet"/> instance, and adds it to the current collection.
