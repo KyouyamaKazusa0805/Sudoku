@@ -9677,7 +9677,7 @@
             </returns>
         </member>
         <member name="M:Sudoku.Linq.ViewEnumerable.SelectMany(Sudoku.Drawing.View[],System.Func{Sudoku.Drawing.View,Sudoku.Drawing.View},System.Func{Sudoku.Drawing.View,Sudoku.Drawing.ViewNode,Sudoku.Drawing.ViewNode})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})"/>
         </member>
         <member name="T:Sudoku.Measuring.Distance">
             <summary>

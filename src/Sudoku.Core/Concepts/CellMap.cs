@@ -610,7 +610,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public int AddRange(scoped ReadOnlySpan<Cell> offsets)
+	public int AddRange(ReadOnlySpan<Cell> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)
@@ -643,7 +643,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public int RemoveRange(scoped ReadOnlySpan<Cell> offsets)
+	public int RemoveRange(ReadOnlySpan<Cell> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)

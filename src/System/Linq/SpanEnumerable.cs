@@ -359,10 +359,10 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
+	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, ReadOnlySpan{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
 		this scoped ReadOnlySpan<TSource> source,
-		Func<TSource, TCollection[]> collectionSelector,
+		Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 		Func<TSource, TCollection, TResult> resultSelector
 	)
 	{
@@ -371,12 +371,11 @@ public static class SpanEnumerable
 		for (var i = 0; i < length; i++)
 		{
 			var element = source[i];
-			foreach (ref readonly var subElement in collectionSelector(element).AsReadOnlySpan())
+			foreach (ref readonly var subElement in collectionSelector(element))
 			{
 				result.AddRef(resultSelector(element, subElement));
 			}
 		}
-
 		return (TResult[])[.. result];
 	}
 
@@ -490,7 +489,7 @@ public static class SpanEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
 		this scoped ReadOnlySpan<TOuter> outer,
-		scoped ReadOnlySpan<TInner> inner,
+		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
 		Func<TOuter, TInner, TResult> resultSelector
@@ -499,7 +498,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult}, IEqualityComparer{TKey}?)"/>
 	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
 		this scoped ReadOnlySpan<TOuter> outer,
-		scoped ReadOnlySpan<TInner> inner,
+		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
 		Func<TOuter, TInner, TResult> resultSelector,
@@ -539,19 +538,19 @@ public static class SpanEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
 		this scoped ReadOnlySpan<TOuter> outer,
-		scoped ReadOnlySpan<TInner> inner,
+		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
-		Func<TOuter, TInner[], TResult> resultSelector
+		Func<TOuter, ReadOnlySpan<TInner>, TResult> resultSelector
 	) where TKey : notnull => GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
 	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
 		this scoped ReadOnlySpan<TOuter> outer,
-		scoped ReadOnlySpan<TInner> inner,
+		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
-		Func<TOuter, TInner[], TResult> resultSelector,
+		Func<TOuter, ReadOnlySpan<TInner>, TResult> resultSelector,
 		IEqualityComparer<TKey>? comparer
 	) where TKey : notnull
 	{
@@ -581,8 +580,7 @@ public static class SpanEnumerable
 
 				satisfiedInnerKvps.AddRef(in innerItem);
 			}
-
-			result.AddRef(resultSelector(outerItem, [.. satisfiedInnerKvps]));
+			result.AddRef(resultSelector(outerItem, satisfiedInnerKvps.AsReadOnlySpan()));
 		}
 		return result.AsReadOnlySpan();
 	}
@@ -678,6 +676,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
 	public static TAccumulate Aggregate<TSource, TAccumulate>(this scoped ReadOnlySpan<TSource> @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+		where TAccumulate : allows ref struct
 	{
 		var result = seed;
 		foreach (var element in @this)

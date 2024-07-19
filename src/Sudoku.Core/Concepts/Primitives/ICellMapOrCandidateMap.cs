@@ -114,7 +114,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be added.</returns>
-	public abstract int AddRange(scoped ReadOnlySpan<TElement> offsets);
+	public abstract int AddRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Removes a list of offsets from the current collection.
@@ -124,7 +124,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
-	public abstract int RemoveRange(scoped ReadOnlySpan<TElement> offsets);
+	public abstract int RemoveRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Copies the current instance to the target sequence specified as a reference

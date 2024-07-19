@@ -23,7 +23,7 @@ public sealed partial class View :
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
-	public void AddRange<T>(scoped ReadOnlySpan<T> nodes) where T : ViewNode
+	public void AddRange<T>(ReadOnlySpan<T> nodes) where T : ViewNode
 	{
 		foreach (var node in nodes)
 		{

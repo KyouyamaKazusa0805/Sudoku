@@ -259,7 +259,7 @@ public partial struct EliminationRange :
 	/// Throws when the number of argument <paramref name="values"/> is not an even number, or greater than 18.
 	/// </exception>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static EliminationRange Create(scoped ReadOnlySpan<int> values)
+	public static EliminationRange Create(ReadOnlySpan<int> values)
 	{
 		if ((values.Length & 1) != 0)
 		{

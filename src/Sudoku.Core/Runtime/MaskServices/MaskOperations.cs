@@ -29,7 +29,7 @@ public static class MaskOperations
 
 	/// <typeparam name="T">The type of the enumerable sequence.</typeparam>
 	/// <inheritdoc cref="Create(ReadOnlySpan{Digit})"/>
-	public static Mask Create<T>(scoped T digits) where T : IEnumerable<Digit>, allows ref struct
+	public static Mask Create<T>(T digits) where T : IEnumerable<Digit>, allows ref struct
 	{
 		var result = (Mask)0;
 		foreach (var digit in digits)

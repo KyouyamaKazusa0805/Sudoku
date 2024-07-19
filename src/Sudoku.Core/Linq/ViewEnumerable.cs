@@ -92,7 +92,7 @@ public static class ViewEnumerable
 		return null;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
+	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, ReadOnlySpan{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<ViewNode> SelectMany(this View[] source, Func<View, View> collectionSelector, Func<View, ViewNode, ViewNode> resultSelector)
 	{
 		var length = source.Length;

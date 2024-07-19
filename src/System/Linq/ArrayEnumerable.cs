@@ -119,7 +119,7 @@ public static class ArrayEnumerable
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static TResult[] SelectMany<TSource, TCollection, TResult>(
 		this TSource[] source,
-		Func<TSource, TCollection[]> collectionSelector,
+		Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 		Func<TSource, TCollection, TResult> resultSelector
 	)
 	{
@@ -128,7 +128,7 @@ public static class ArrayEnumerable
 		for (var i = 0; i < length; i++)
 		{
 			var element = source[i];
-			foreach (ref readonly var subElement in collectionSelector(element).AsReadOnlySpan())
+			foreach (ref readonly var subElement in collectionSelector(element))
 			{
 				result.AddRef(resultSelector(element, subElement));
 			}
@@ -136,7 +136,7 @@ public static class ArrayEnumerable
 		return [.. result];
 	}
 
-	/// <inheritdoc cref="SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
+	/// <inheritdoc cref="SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, ReadOnlySpan{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static TResult[] SelectMany<TSource, TCollection, TResult>(
 		this TSource[] source,
 		Func<TSource, IEnumerable<TCollection>> collectionSelector,

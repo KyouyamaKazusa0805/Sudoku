@@ -46,7 +46,7 @@ public static class @delegate
 
 	/// <inheritdoc cref="True{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(scoped ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
+	public static bool True<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
 
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
@@ -62,7 +62,7 @@ public static class @delegate
 
 	/// <inheritdoc cref="False{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(scoped ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
+	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
 
 	/// <summary>
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
@@ -76,7 +76,7 @@ public static class @delegate
 	/// as the <c>ToString</c> method result.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull => @this.ToString()!;
+	public static string ToStringConverter<T>(ref readonly T @this) where T : notnull => @this.ToString()!;
 
 	/// <summary>
 	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.

@@ -95,6 +95,5 @@ public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(M
 	/// <returns>A <see cref="SingleSubtypeGroup"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SingleSubtypeGroup Create(scoped ReadOnlySpan<SingleSubtype> values)
-		=> values.IsEmpty ? Empty : new(values.ToArray());
+	public static SingleSubtypeGroup Create(ReadOnlySpan<SingleSubtype> values) => values.IsEmpty ? Empty : new(values.ToArray());
 }

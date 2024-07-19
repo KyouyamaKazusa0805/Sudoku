@@ -38,7 +38,7 @@ public sealed class EnumerableQuerySolver : ISolver
 					let index = solution.IndexOf('.')
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
-					from digit in DigitCharacters.ToCharArray()
+					from digit in DigitCharacters.ToCharArray().AsReadOnlySpan()
 					let duplicateCases =
 						from pos in Digits/*.AsReadOnlySpan()*/
 						let rowContainsDuplicateDigits = solution[index - column + pos] == digit

@@ -32,7 +32,7 @@ public static class HouseMaskOperations
 	/// </summary>
 	/// <param name="houses">The houses.</param>
 	/// <returns>A <see cref="HouseMask"/> instance.</returns>
-	public static HouseMask Create(scoped ReadOnlySpan<House> houses)
+	public static HouseMask Create(ReadOnlySpan<House> houses)
 	{
 		var result = 0;
 		foreach (var house in houses)

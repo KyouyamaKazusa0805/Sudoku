@@ -16,7 +16,7 @@ public static class GridExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool CheckCrossLineIntersectionLeaveEmpty(
 		this scoped in Grid @this,
-		scoped ref readonly CellMap crossline,
+		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask
 	)
 	{
@@ -40,7 +40,7 @@ public static class GridExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CheckTargetCellsDigitsValidity(
 		this scoped in Grid @this,
-		scoped ref readonly CellMap targetCellsToBeChecked,
+		ref readonly CellMap targetCellsToBeChecked,
 		Mask baseCellsDigitsMask
 	) => targetCellsToBeChecked switch
 	{
@@ -67,7 +67,7 @@ public static class GridExtensions
 	/// <returns>A list of digits appeared in cross-line cells as value representation.</returns>
 	public static Mask GetValueDigitsAppearedInCrossline(
 		this scoped in Grid @this,
-		scoped ref readonly CellMap crossline,
+		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask
 	)
 	{
