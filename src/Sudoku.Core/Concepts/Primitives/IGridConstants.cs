@@ -34,7 +34,7 @@ public interface IGridConstants<TSelf> : IEqualityOperators<TSelf, TSelf, bool> 
 	/// Represents a string value that describes a <typeparamref name="TSelf"/> instance can be parsed into <see cref="Empty"/>.
 	/// </summary>
 	/// <seealso cref="Empty"/>
-	public static abstract ref readonly string EmptyString { get; }
+	public static abstract string EmptyString { get; }
 
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).

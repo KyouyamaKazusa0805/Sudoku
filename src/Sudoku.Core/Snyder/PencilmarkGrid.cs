@@ -219,7 +219,7 @@ public partial struct PencilmarkGrid : IGrid<PencilmarkGrid>
 
 
 	/// <inheritdoc/>
-	static ref readonly string IGridConstants<PencilmarkGrid>.EmptyString => ref Grid.EmptyString;
+	static string IGridConstants<PencilmarkGrid>.EmptyString => Grid.EmptyString;
 
 	/// <inheritdoc/>
 	static Mask IGridConstants<PencilmarkGrid>.EmptyMask => Grid.EmptyMask;

@@ -370,7 +370,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	static Mask IGridConstants<Grid>.GivenMask => GivenMask;
 
 	/// <inheritdoc/>
-	static ref readonly string IGridConstants<Grid>.EmptyString => ref EmptyString;
+	static string IGridConstants<Grid>.EmptyString => EmptyString;
 
 	/// <inheritdoc/>
 	static ref readonly Grid IGridConstants<Grid>.Empty => ref Empty;
