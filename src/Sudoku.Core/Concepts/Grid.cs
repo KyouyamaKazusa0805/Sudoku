@@ -10,11 +10,11 @@ using static IGridConstants<Grid>;
 /// <remarks>
 /// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
 /// </remarks>
-[JsonConverter(typeof(Converter))]
-[DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[InlineArray(CellsCount)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
+[DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
+[InlineArray(CellsCount)]
+[JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
 public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
@@ -246,25 +246,25 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap GivenCells => IGrid<Grid>.GetMap(in this, &Predicate.GivenCells);
+	public readonly unsafe CellMap GivenCells => IGrid<Grid>.GetMap(in this, &GridPredicates.GivenCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap ModifiableCells => IGrid<Grid>.GetMap(in this, &Predicate.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => IGrid<Grid>.GetMap(in this, &GridPredicates.ModifiableCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap EmptyCells => IGrid<Grid>.GetMap(in this, &Predicate.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => IGrid<Grid>.GetMap(in this, &GridPredicates.EmptyCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap BivalueCells => IGrid<Grid>.GetMap(in this, &Predicate.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => IGrid<Grid>.GetMap(in this, &GridPredicates.BivalueCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => IGrid<Grid>.GetMaps(in this, &Predicate.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.CandidatesMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => IGrid<Grid>.GetMaps(in this, &Predicate.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.DigitsMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => IGrid<Grid>.GetMaps(in this, &Predicate.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.ValuesMap);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<Candidate> Candidates
@@ -502,7 +502,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool GetExistence(Cell cell, Digit digit) => (this[cell] >> digit & 1) != 0;
 
-	/// <inheritdoc cref="Exists(Cell, Digit)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(Candidate candidate)
 		=> Exists(candidate / CellCandidatesCount, candidate % CellCandidatesCount);
@@ -1208,59 +1208,4 @@ file sealed class Converter : JsonConverter<Grid>
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
 		=> writer.WriteStringValue(value.ToString("#"));
-}
-
-/// <summary>
-/// Represents a list of methods to filter the cells.
-/// </summary>
-[DebuggerStepThrough]
-file static class Predicate
-{
-	/// <summary>
-	/// Determines whether the specified cell in the specified grid is a given cell.
-	/// </summary>
-	/// <param name="g">The grid.</param>
-	/// <param name="cell">The cell to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool GivenCells(ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Given;
-
-	/// <summary>
-	/// Determines whether the specified cell in the specified grid is a modifiable cell.
-	/// </summary>
-	/// <inheritdoc cref="GivenCells(ref readonly Grid, Cell)"/>
-	public static bool ModifiableCells(ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Modifiable;
-
-	/// <summary>
-	/// Determines whether the specified cell in the specified grid is an empty cell.
-	/// </summary>
-	/// <inheritdoc cref="GivenCells(ref readonly Grid, Cell)"/>
-	public static bool EmptyCells(ref readonly Grid g, Cell cell) => g.GetState(cell) == CellState.Empty;
-
-	/// <summary>
-	/// Determines whether the specified cell in the specified grid is a bi-value cell, which means the cell is an empty cell,
-	/// and contains and only contains 2 candidates.
-	/// </summary>
-	/// <inheritdoc cref="GivenCells(ref readonly Grid, Cell)"/>
-	public static bool BivalueCells(ref readonly Grid g, Cell cell) => PopCount((uint)g.GetCandidates(cell)) == 2;
-
-	/// <summary>
-	/// Checks the existence of the specified digit in the specified cell.
-	/// </summary>
-	/// <param name="g">The grid.</param>
-	/// <param name="cell">The cell to be checked.</param>
-	/// <param name="digit">The digit to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool CandidatesMap(ref readonly Grid g, Cell cell, Digit digit) => g.Exists(cell, digit) is true;
-
-	/// <summary>
-	/// Checks the existence of the specified digit in the specified cell, or whether the cell is a value cell, being filled by the digit.
-	/// </summary>
-	/// <inheritdoc cref="CandidatesMap(ref readonly Grid, Cell, Digit)"/>
-	public static bool DigitsMap(ref readonly Grid g, Cell cell, Digit digit) => (g.GetCandidates(cell) >> digit & 1) != 0;
-
-	/// <summary>
-	/// Checks whether the cell is a value cell, being filled by the digit.
-	/// </summary>
-	/// <inheritdoc cref="CandidatesMap(ref readonly Grid, Cell, Digit)"/>
-	public static bool ValuesMap(ref readonly Grid g, Cell cell, Digit digit) => g.GetDigit(cell) == digit;
 }

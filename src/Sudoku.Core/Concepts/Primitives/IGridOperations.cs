@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Primitives;
 /// Represents a type that supports operations used by a sudoku grid.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface IGridOperations<TSelf> where TSelf : IGridOperations<TSelf>
+public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : IGridOperations<TSelf>
 {
 	/// <summary>
 	/// Gets the mask at the specified position.
@@ -113,6 +113,10 @@ public interface IGridOperations<TSelf> where TSelf : IGridOperations<TSelf>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <inheritdoc cref="SetExistence(Cell, Digit, bool)"/>
 	public abstract bool GetExistence(Cell cell, Digit digit);
+
+	/// <inheritdoc cref="Exists(Cell, Digit)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public virtual bool? Exists(Candidate candidate) => Exists(candidate / CellCandidatesCount, candidate % CellCandidatesCount);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.

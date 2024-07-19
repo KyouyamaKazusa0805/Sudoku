@@ -153,7 +153,7 @@ public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : IG
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	protected internal static unsafe CellMap GetMap(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, bool> predicate)
+	protected static unsafe CellMap GetMap(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < CellsCount; cell++)
@@ -175,7 +175,7 @@ public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : IG
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	protected internal static unsafe CellMap[] GetMaps(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, Digit, bool> predicate)
+	protected static unsafe CellMap[] GetMaps(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[CellCandidatesCount];
 		for (var digit = 0; digit < CellCandidatesCount; digit++)
