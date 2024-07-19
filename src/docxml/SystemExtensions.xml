@@ -5514,29 +5514,6 @@
             Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.EqualityOperatorsBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c> and <see langword="operator"/> <c>!=</c>
-            overloading operators.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.Intelligent">
-            <summary>
-            Indicates the source generator will choose a suitable way to implement equality operators.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.MakeVirtual">
-            <summary>
-            Indicates the operators will be made to be <see langword="virtual"/>.
-            This option can only be used for interfaces implementing operators.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.EqualityOperatorsBehavior.MakeAbstract">
-            <summary>
-            Indicates the operators will be made to be <see langword="abstract"/>.
-            This option can only be used for interfaces implementing operators.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -5650,26 +5627,6 @@
             <summary>
             Indicates the source generator will prefer including <see langword="null"/>.
             </summary>
-        </member>
-        <member name="T:System.SourceGeneration.PatternOverriddenAttribute">
-            <summary>
-            Represents a base type that provides base properties used by derived attribute types.s
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.PatternOverriddenAttribute.OtherModifiers">
-            <summary>
-            <para>
-            Indicates the other modifiers should be modified. For example, if the method should be <see langword="sealed"/>
-            in a <see langword="class"/> type, assign <c>"Sealed"</c> or <c>"sealed"</c> to this property. Casing are ignored.
-            Multiple modifiers should be separated by whitespaces.
-            </para>
-            <para>By default, this property is <see langword="null"/>.</para>
-            </summary>
-            <remarks>
-            Please note, sometimes some extra keywords will be automatically added into signature without manually assigning them to this property.
-            For example, in a non-<see langword="readonly struct"/>, due to the implementation not caring
-            about its <see langword="readonly"/>-ability, a <see langword="readonly"/> modifier will be implicitly added.
-            </remarks>
         </member>
         <member name="T:System.SourceGeneration.PrimaryConstructorParameterAttribute">
             <summary>
@@ -6024,12 +5981,6 @@
             <remarks>
             The value is <see cref="F:System.SourceGeneration.ToStringBehavior.Intelligent"/> by default.
             </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.EqualityOperatorsBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c>
-            and <see langword="operator"/> <c>!=</c> overloading operators.
-            </summary>
         </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.OperandNullabilityPrefer">
             <summary>

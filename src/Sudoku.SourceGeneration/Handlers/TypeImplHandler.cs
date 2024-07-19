@@ -14,8 +14,6 @@ internal static class TypeImplHandler
 
 	private const string GetHashCodeBehaviorPropertyName = "GetHashCodeBehavior";
 
-	private const string EqualityOperatorsBehaviorPropertyName = "EqualityOperatorsBehavior";
-
 	private const string OperandNullabilityPreferPropertyName = "OperandNullabilityPrefer";
 
 
@@ -610,21 +608,14 @@ internal static class TypeImplHandler
 		}
 
 		var isLargeStructure = attribute.GetNamedArgument<bool>(IsLargeStructurePropertyName);
-		var behavior = attribute.GetNamedArgument<int>(EqualityOperatorsBehaviorPropertyName) switch
+		var behavior = (isRecord, kind, isLargeStructure) switch
 		{
-			0 => (isRecord, kind, isLargeStructure) switch
-			{
-				(true, TypeKind.Class, _) => EqualityOperatorsBehavior.DoNothing,
-				(_, TypeKind.Class, _) => EqualityOperatorsBehavior.Default,
-				(true, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedInButDeprecated,
-				(true, TypeKind.Struct, _) => EqualityOperatorsBehavior.DefaultButDeprecated,
-				(_, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedIn,
-				(_, TypeKind.Struct, _) => EqualityOperatorsBehavior.Default,
-				(_, TypeKind.Interface, _) => EqualityOperatorsBehavior.StaticAbstract,
-				_ => throw new InvalidOperationException("Invalid state.")
-			},
-			1 => EqualityOperatorsBehavior.StaticVirtual,
-			2 => EqualityOperatorsBehavior.StaticAbstract,
+			(true, TypeKind.Class, _) => EqualityOperatorsBehavior.DoNothing,
+			(_, TypeKind.Class, _) => EqualityOperatorsBehavior.Default,
+			(true, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedInButDeprecated,
+			(true, TypeKind.Struct, _) => EqualityOperatorsBehavior.DefaultButDeprecated,
+			(_, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedIn,
+			(_, TypeKind.Struct, _) => EqualityOperatorsBehavior.Default,
 			_ => throw new InvalidOperationException("Invalid state.")
 		};
 		if (behavior == EqualityOperatorsBehavior.DoNothing)
@@ -665,7 +656,6 @@ internal static class TypeImplHandler
 		};
 		var attributesMarked = behavior switch
 		{
-			EqualityOperatorsBehavior.StaticAbstract => "\r\n\t\t",
 			EqualityOperatorsBehavior.WithScopedInButDeprecated or EqualityOperatorsBehavior.DefaultButDeprecated
 				=> """
 				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
@@ -743,36 +733,6 @@ internal static class TypeImplHandler
 							=> {{i2}};
 
 						{{explicitImplementation}}
-				""",
-			EqualityOperatorsBehavior.StaticVirtual when typeParameters is [{ Name: var selfTypeParameterName }]
-				=> $$"""
-				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
-						static virtual bool operator ==({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
-							=> {{i1}};
-
-						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
-						static virtual bool operator !=({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
-							=> {{i2}};
-				""",
-			EqualityOperatorsBehavior.StaticAbstract when typeParameters is [{ Name: var selfTypeParameterName }]
-				=> $$"""
-				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
-						static abstract bool operator ==({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right);
-
-						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-						{{attributesMarked}}
-						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
-						static virtual bool operator !=({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right) => {{i2}};
 				""",
 			_ => null
 		};
@@ -1053,9 +1013,7 @@ file enum EqualityOperatorsBehavior
 	Default,
 	DefaultButDeprecated,
 	WithScopedIn,
-	WithScopedInButDeprecated,
-	StaticVirtual,
-	StaticAbstract
+	WithScopedInButDeprecated
 }
 
 /// <summary>
