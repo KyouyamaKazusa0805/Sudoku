@@ -18,8 +18,6 @@ public partial struct PencilmarkGrid : IGrid<PencilmarkGrid>
 
 
 	/// <inheritdoc cref="IGrid{TSelf}.FirstMaskRef"/>
-	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private Mask _values;
 
 
