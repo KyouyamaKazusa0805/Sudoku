@@ -24,11 +24,7 @@ namespace Sudoku.Concepts.Coordinates;
 /// <seealso cref="K9Converter"/>
 /// <seealso cref="LiteralCoordinateConverter"/>
 /// <seealso cref="ExcelCoordinateConverter"/>
-public abstract record CoordinateConverter(
-	string DefaultSeparator = ", ",
-	string? DigitsSeparator = null,
-	CultureInfo? CurrentCulture = null
-) : IFormatProvider
+public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null, CultureInfo? CurrentCulture = null) : IFormatProvider
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
@@ -43,32 +39,32 @@ public abstract record CoordinateConverter(
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of houses.
 	/// </summary>
-	public abstract HouseNotationConverter HouseConverter { get; }
+	public abstract Func<HouseMask, string> HouseConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of conclusions.
 	/// </summary>
-	public abstract ConclusionNotationConverter ConclusionConverter { get; }
+	public abstract Func<ReadOnlySpan<Conclusion>, string> ConclusionConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of digits.
 	/// </summary>
-	public abstract DigitNotationConverter DigitConverter { get; }
+	public abstract Func<Mask, string> DigitConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified information for an intersection.
 	/// </summary>
-	public abstract IntersectionNotationConverter IntersectionConverter { get; }
+	public abstract Func<ReadOnlySpan<Miniline>, string> IntersectionConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of chute.
 	/// </summary>
-	public abstract ChuteNotationConverter ChuteConverter { get; }
+	public abstract Func<ReadOnlySpan<Chute>, string> ChuteConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified conjugate.
 	/// </summary>
-	public abstract ConjugateNotationConverter ConjugateConverter { get; }
+	public abstract Func<ReadOnlySpan<Conjugate>, string> ConjugateConverter { get; }
 
 	/// <summary>
 	/// Indicates the target culture.

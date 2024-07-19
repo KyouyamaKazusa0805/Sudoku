@@ -13,8 +13,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	public override CellNotationConverter CellConverter
 		=> cells => cells switch
 		{
-			[] => string.Empty,
-			[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
+		[] => string.Empty,
+		[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
 			_ => string.Format(
 				SR.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(
@@ -40,7 +40,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseConverter
+	public override Func<HouseMask, string> HouseConverter
 		=> housesMask =>
 		{
 			if (housesMask == 0)
@@ -91,7 +91,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionConverter
+	public override Func<ReadOnlySpan<Conclusion>, string> ConclusionConverter
 		=> conclusions =>
 		{
 			return conclusions switch
@@ -142,7 +142,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitConverter
+	public override Func<Mask, string> DigitConverter
 		=> mask => DigitsSeparator switch
 		{
 			null or [] => string.Concat(from digit in mask select (digit + 1).ToString()),
@@ -150,7 +150,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionConverter
+	public override Func<ReadOnlySpan<Miniline>, string> IntersectionConverter
 		=> intersections =>
 		{
 			return string.Join(
@@ -177,7 +177,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteConverter
+	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter
 		=> chutes =>
 		{
 			var snippets = new List<string>(6);
@@ -189,7 +189,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateConverter
+	public override Func<ReadOnlySpan<Conjugate>, string> ConjugateConverter
 		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)

@@ -28,5 +28,5 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(ChineseLanguage, [DigitsStr, CellsStr, ConjStr])];
 
-	private string ConjStr => Options.Converter.ConjugateConverter(ConjugatePair);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

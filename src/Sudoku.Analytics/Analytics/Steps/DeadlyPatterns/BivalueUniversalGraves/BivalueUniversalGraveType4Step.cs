@@ -35,5 +35,5 @@ public sealed partial class BivalueUniversalGraveType4Step(
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 
-	private string ConjStr => Options.Converter.ConjugateConverter(ConjugatePair);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

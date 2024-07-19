@@ -103,17 +103,17 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseConverter
+	public override Func<HouseMask, string> HouseConverter
 		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).HouseConverter;
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionConverter
+	public override Func<ReadOnlySpan<Conclusion>, string> ConclusionConverter
 		=> conclusions =>
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -160,19 +160,19 @@ public sealed record ExcelCoordinateConverter(
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitConverter
+	public override Func<Mask, string> DigitConverter
 		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitConverter;
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionConverter
+	public override Func<ReadOnlySpan<Miniline>, string> IntersectionConverter
 		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).IntersectionConverter;
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteConverter
+	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter
 		=> new K9Converter(MakeLettersUpperCase, DefaultSeparator: DefaultSeparator, DigitsSeparator: DigitsSeparator).ChuteConverter;
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateConverter
+	public override Func<ReadOnlySpan<Conjugate>, string> ConjugateConverter
 		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)

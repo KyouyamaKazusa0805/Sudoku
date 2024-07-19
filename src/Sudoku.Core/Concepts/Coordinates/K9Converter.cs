@@ -122,7 +122,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override HouseNotationConverter HouseConverter
+	public override Func<HouseMask, string> HouseConverter
 		=> housesMask =>
 		{
 			if (housesMask == 0)
@@ -182,7 +182,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ConclusionNotationConverter ConclusionConverter
+	public override Func<ReadOnlySpan<Conclusion>, string> ConclusionConverter
 		=> conclusions =>
 		{
 			return conclusions switch
@@ -235,11 +235,11 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override DigitNotationConverter DigitConverter
+	public override Func<Mask, string> DigitConverter
 		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitConverter;
 
 	/// <inheritdoc/>
-	public override IntersectionNotationConverter IntersectionConverter
+	public override Func<ReadOnlySpan<Miniline>, string> IntersectionConverter
 		=> intersections => DefaultSeparator switch
 		{
 			null or [] => string.Concat(
@@ -290,7 +290,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ChuteNotationConverter ChuteConverter
+	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter
 		=> chutes =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
@@ -326,7 +326,7 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override ConjugateNotationConverter ConjugateConverter
+	public override Func<ReadOnlySpan<Conjugate>, string> ConjugateConverter
 		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)

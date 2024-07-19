@@ -32,5 +32,5 @@ public sealed partial class QiuDeadlyPatternType4Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, ConjStr]), new(ChineseLanguage, [ConjStr, PatternStr])];
 
-	private string ConjStr => Options.Converter.ConjugateConverter(ConjugatePair);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

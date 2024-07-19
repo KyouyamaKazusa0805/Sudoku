@@ -36,7 +36,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 
 	private string Als2Str => SecondAls.ToString(Options.Converter);
 
-	private string ConjStr => Options.Converter.ConjugateConverter(ConjugatePair);
+	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 
 	private string WStr => Options.Converter.DigitConverter(WDigitsMask);
 
