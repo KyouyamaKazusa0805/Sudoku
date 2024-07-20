@@ -70,7 +70,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// </summary>
 	/// <param name="firstElement">The reference of the first element.</param>
 	/// <param name="creatingOption">The creating option.</param>
-	/// <exception cref="ArgumentNullRefException">
+	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
 	private Grid(ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)

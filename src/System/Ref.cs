@@ -24,7 +24,7 @@ public static class @ref
 	}
 
 	/// <summary>
-	/// Throws an <see cref="ArgumentNullRefException"/> if the argument points to <see langword="null"/>.
+	/// Throws an <see cref="ArgumentNullException"/> if the argument points to <see langword="null"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the referenced element.</typeparam>
 	/// <param name="reference">
@@ -41,7 +41,7 @@ public static class @ref
 	/// <para>The parameter name.</para>
 	/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
 	/// </param>
-	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
+	/// <exception cref="ArgumentNullException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfNullRef<T>(
 		scoped ref readonly T reference,
@@ -50,7 +50,7 @@ public static class @ref
 	{
 		if (IsNullRef(in reference))
 		{
-			throw new ArgumentNullRefException(nameof(reference));
+			throw new ArgumentNullException(nameof(reference));
 		}
 	}
 
@@ -148,7 +148,7 @@ public static class @ref
 	/// <param name="start">The start index that you want to pick from.</param>
 	/// <param name="count">The length of the array that the reference points to.</param>
 	/// <returns>The array of elements.</returns>
-	/// <exception cref="ArgumentNullRefException">
+	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
 	/// </exception>
 	public static ReadOnlySpan<T> Slice<T>(scoped ref readonly T memorySpan, int start, int count)

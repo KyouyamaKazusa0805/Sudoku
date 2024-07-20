@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Numerics;
 
 /// <summary>
 /// Defines an enumerator type that iterates on bits of a number of generic type.

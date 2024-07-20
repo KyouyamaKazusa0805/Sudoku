@@ -16,7 +16,7 @@ public static class CellMarshal
 	/// The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="Span{T}"/>,
 	/// only if the sequence can store at least 3 values.
 	/// </param>
-	/// <exception cref="ArgumentNullRefException">
+	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

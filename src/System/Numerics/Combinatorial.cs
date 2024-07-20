@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Numerics;
 
 /// <summary>
 /// Extracts the type that includes the methods that operates with combinatorial values.

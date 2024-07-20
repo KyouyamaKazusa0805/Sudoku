@@ -33,8 +33,8 @@ public static class StringBuilderExtensions
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The <see cref="StringBuilder"/> instance.</param>
 	/// <param name="stringConverter">The converter method.</param>
-	/// <param name="builderAppender">
-	/// The appender method for the builder instance, telling the handler which appending operation will be handled.
+	/// <param name="appender">
+	/// The append method for the builder instance, telling the handler which appending operation will be handled.
 	/// By default, the method is equivalent to lambda:
 	/// <code>
 	/// <see langword="static"/> (<see cref="StringBuilder"/> sb, <typeparamref name="T"/> v) => sb.Append(v)
@@ -48,14 +48,14 @@ public static class StringBuilderExtensions
 	public static StringBuilder AppendRange<T>(
 		this StringBuilder @this,
 		Func<T, string> stringConverter,
-		Func<StringBuilder, string, StringBuilder>? builderAppender = null,
+		Func<StringBuilder, string, StringBuilder>? appender = null,
 		params ReadOnlySpan<T> elements
 	) where T : notnull
 	{
-		builderAppender ??= static (sb, v) => sb.Append(v);
+		appender ??= static (sb, v) => sb.Append(v);
 		foreach (ref readonly var element in elements)
 		{
-			builderAppender(@this, stringConverter(element));
+			appender(@this, stringConverter(element));
 		}
 		return @this;
 	}

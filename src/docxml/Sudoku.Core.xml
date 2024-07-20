@@ -2888,7 +2888,7 @@
             The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
             only if the sequence can store at least 3 values.
             </param>
-            <exception cref="T:System.ArgumentNullRefException">
+            <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
             </exception>
         </member>
@@ -5243,7 +5243,7 @@
             </summary>
             <param name="firstElement">The reference of the first element.</param>
             <param name="creatingOption">The creating option.</param>
-            <exception cref="T:System.ArgumentNullRefException">
+            <exception cref="T:System.ArgumentNullException">
             Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
             </exception>
         </member>
