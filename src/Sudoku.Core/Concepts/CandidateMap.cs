@@ -248,7 +248,7 @@ public partial struct CandidateMap : CandidateMapBase
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	public readonly Candidate this[int index]
+	public readonly Candidate this[Candidate index]
 	{
 		get
 		{
