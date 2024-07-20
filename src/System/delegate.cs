@@ -37,7 +37,7 @@ public static class @delegate
 	/// struct Int32
 	/// {
 	///     public static bool operator true(int value) => value != 0;
-	///     public sttaic bool operator false(int value) => value == 0;
+	///     public static bool operator false(int value) => value == 0;
 	/// }
 	/// ]]></code>
 	/// </remarks>
