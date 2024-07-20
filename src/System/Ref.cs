@@ -141,6 +141,28 @@ public static class @ref
 		=> ref Unsafe.NullRef<T>();
 
 	/// <summary>
+	/// Casts the reference to a valid <see cref="Span{T}"/> object.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="firstElementReference">The reference to the first element in a sequence.</param>
+	/// <param name="length">The length.</param>
+	/// <returns>A <see cref="Span{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe Span<T> AsSpan<T>(scoped ref T firstElementReference, int length)
+		=> new(Unsafe.AsPointer(ref firstElementReference), length);
+
+	/// <summary>
+	/// Casts the reference to a valid <see cref="ReadOnlySpan{T}"/> object.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="firstElementReference">The reference to the first element in a sequence.</param>
+	/// <param name="length">The length.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe ReadOnlySpan<T> AsReadOnlySpan<T>(scoped ref readonly T firstElementReference, int length)
+		=> new(Unsafe.AsPointer(ref Unsafe.AsRef(in firstElementReference)), length);
+
+	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
 	/// </summary>
 	/// <typeparam name="T">The type of the pointed element.</typeparam>

@@ -4583,6 +4583,24 @@
             </typeparam>
             <returns>A read-only reference that points to <see langword="null"/>.</returns>
         </member>
+        <member name="M:System.ref.AsSpan``1(``0@,System.Int32)">
+            <summary>
+            Casts the reference to a valid <see cref="T:System.Span`1"/> object.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="firstElementReference">The reference to the first element in a sequence.</param>
+            <param name="length">The length.</param>
+            <returns>A <see cref="T:System.Span`1"/> instance.</returns>
+        </member>
+        <member name="M:System.ref.AsReadOnlySpan``1(``0@,System.Int32)">
+            <summary>
+            Casts the reference to a valid <see cref="T:System.ReadOnlySpan`1"/> object.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="firstElementReference">The reference to the first element in a sequence.</param>
+            <param name="length">The length.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
         <member name="M:System.ref.Slice``1(``0@,System.Int32,System.Int32)">
             <summary>
             Get the new array from the reference to the block memory start position, with the specified start index.

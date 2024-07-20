@@ -282,19 +282,9 @@ public partial struct CandidateMap : CandidateMapBase
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(ref Candidate sequence, int length)
-	{
-		@ref.ThrowIfNullRef(in sequence);
-
-		if (length >= 729)
-		{
-			Unsafe.CopyBlock(
-				ref @ref.ByteRef(ref sequence),
-				in @ref.ReadOnlyByteRef(in Offsets[0]),
-				(uint)(sizeof(Candidate) * length)
-			);
-		}
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void CopyTo(ref Candidate sequence, Candidate length)
+		=> Offsets.AsReadOnlySpan().TryCopyTo(@ref.AsSpan(ref sequence, length));
 
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
