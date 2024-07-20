@@ -13,7 +13,7 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 	IEnumerable<Digit>
 {
 	/// <summary>
-	/// Indicates whethe the pattern is complete.
+	/// Indicates whether the pattern is complete.
 	/// </summary>
 	public bool IsComplete => Digits.Length == 9;
 

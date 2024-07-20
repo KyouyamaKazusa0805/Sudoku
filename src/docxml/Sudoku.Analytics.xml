@@ -49,7 +49,7 @@
         </member>
         <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.IsComplete">
             <summary>
-            Indicates whethe the pattern is complete.
+            Indicates whether the pattern is complete.
             </summary>
         </member>
         <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
