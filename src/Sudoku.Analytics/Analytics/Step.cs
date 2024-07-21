@@ -181,6 +181,12 @@ public abstract partial class Step(
 	/// </summary>
 	public virtual FactorCollection Factors => [];
 
+	/// <inheritdoc/>
+	ReadOnlyMemory<Conclusion> IDrawable.Conclusions => Conclusions;
+
+	/// <inheritdoc/>
+	ReadOnlyMemory<View> IDrawable.Views => Views;
+
 
 	/// <inheritdoc/>
 	public virtual bool Equals([NotNullWhen(true)] Step? other)

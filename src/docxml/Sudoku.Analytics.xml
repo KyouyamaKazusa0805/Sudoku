@@ -7371,6 +7371,12 @@
             Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Views">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>

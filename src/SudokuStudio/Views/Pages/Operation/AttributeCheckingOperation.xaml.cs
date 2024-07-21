@@ -119,10 +119,10 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 file sealed class BackdoorVisualUnit(View view) : IDrawable
 {
 	/// <inheritdoc/>
-	public View[]? Views { get; } = [view];
+	public ReadOnlyMemory<View> Views { get; } = (View[])[view];
 
 	/// <inheritdoc/>
-	Conclusion[] IDrawable.Conclusions { get; } = [];
+	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];
 }
 
 /// <summary>
@@ -132,8 +132,8 @@ file sealed class BackdoorVisualUnit(View view) : IDrawable
 file sealed class TrueCandidateVisualUnit(View view) : IDrawable
 {
 	/// <inheritdoc/>
-	public View[]? Views { get; } = [view];
+	public ReadOnlyMemory<View> Views { get; } = (View[])[view];
 
 	/// <inheritdoc/>
-	Conclusion[] IDrawable.Conclusions { get; } = [];
+	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];
 }

@@ -372,7 +372,7 @@ public sealed partial class AnalyzePage : Page
 								BaseGrid = grid,
 								RenderableData = viewUnit switch
 								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
+									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = (View[])[view] },
 									_ => null
 								},
 								ShowCandidates = displayCandidates
@@ -386,7 +386,7 @@ public sealed partial class AnalyzePage : Page
 							GridString = grid.ToString(formatter),
 							RenderableData = viewUnit switch
 							{
-								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
+								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = (View[])[view] },
 								_ => null
 							},
 							ShowCandidates = displayCandidates
@@ -981,8 +981,8 @@ public sealed partial class AnalyzePage : Page
 
 		page.SudokuPane.ViewUnit = visualUnit switch
 		{
-			{ Conclusions: var conclusions, Views: null or [] } => new() { Conclusions = conclusions, View = [] },
-			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions, View = views[value] },
+			{ Conclusions: var conclusions, Views.Length: 0 } => new() { Conclusions = conclusions.ToArray(), View = [] },
+			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions.ToArray(), View = views.Span[value] },
 			_ => null
 		};
 	}
@@ -1270,7 +1270,7 @@ public sealed partial class AnalyzePage : Page
 		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = puzzle;
 		((App)Application.Current).Preference.UIPreferences.LastRenderable = viewUnit switch
 		{
-			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = [view] },
+			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = (View[])[view] },
 			_ => null
 		};
 	}

@@ -8,10 +8,10 @@ public interface IDrawable
 	/// <summary>
 	/// Indicates the conclusions that the step can be eliminated or assigned to.
 	/// </summary>
-	public abstract Conclusion[] Conclusions { get; }
+	public abstract ReadOnlyMemory<Conclusion> Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the views of the step that may be displayed onto the screen using pictures.
 	/// </summary>
-	public abstract View[]? Views { get; }
+	public abstract ReadOnlyMemory<View> Views { get; }
 }

@@ -3636,6 +3636,21 @@
         <member name="M:System.Text.Json.RangeConverter.Write(System.Text.Json.Utf8JsonWriter,System.Range,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.Json.ReadOnlyMemoryConverter`1">
+            <summary>
+            Represents a JSON converter that can convert <see cref="T:System.ReadOnlyMemory`1"/> instances into JSON strings.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+        </member>
+        <member name="P:System.Text.Json.ReadOnlyMemoryConverter`1.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.ReadOnlyMemoryConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.ReadOnlyMemoryConverter`1.Write(System.Text.Json.Utf8JsonWriter,System.ReadOnlyMemory{`0},System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Text.Json.Utf8JsonReaderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.Json.Utf8JsonReader"/>.

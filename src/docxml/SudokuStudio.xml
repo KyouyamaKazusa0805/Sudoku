@@ -2889,7 +2889,7 @@
             <param name="Views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
             <seealso cref="T:Sudoku.Drawing.IDrawable"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.UserDefinedDrawable.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[])">
+        <member name="M:SudokuStudio.Configuration.UserDefinedDrawable.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},System.ReadOnlyMemory{Sudoku.Drawing.View})">
             <summary>
             Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Drawing.IDrawable"/> members.
             </summary>
