@@ -26,8 +26,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateConverter
-		=> candidates =>
+	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
+		=> (ref readonly CandidateMap candidates) =>
 		{
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)

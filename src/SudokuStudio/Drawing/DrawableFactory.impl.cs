@@ -381,7 +381,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.CircleHollow, _) or (true, false, _, _, AssignmentDisplay.CircleHollow) => new Ellipse
@@ -392,7 +392,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash, _) => new Cross
@@ -403,7 +403,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode switch
 				{
@@ -423,7 +423,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.CircleHollow, _, _) => new Ellipse
@@ -434,7 +434,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareHollow, _, _) => new Rectangle
@@ -445,7 +445,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareSolid, _, _) => new Rectangle
@@ -455,7 +455,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _, _) => new Rectangle
@@ -465,7 +465,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -477,7 +477,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3

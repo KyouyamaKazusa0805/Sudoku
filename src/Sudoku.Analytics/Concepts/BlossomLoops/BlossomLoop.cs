@@ -183,7 +183,7 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 			from kvp in this
 			let candidate = kvp.Key
 			let chain = kvp.Value
-			select $"{converter.CandidateConverter(candidate)}: {chain.ToString(format, converter)}"
+			select $"{converter.CandidateConverter([candidate])}: {chain.ToString(format, converter)}"
 		);
 	}
 }

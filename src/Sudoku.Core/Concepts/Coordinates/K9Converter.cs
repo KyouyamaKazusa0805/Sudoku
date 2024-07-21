@@ -103,8 +103,8 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateConverter
-		=> candidates =>
+	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
+		=> (ref readonly CandidateMap candidates) =>
 		{
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in

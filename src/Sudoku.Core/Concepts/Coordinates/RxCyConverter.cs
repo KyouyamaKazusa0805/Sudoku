@@ -89,8 +89,8 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
-	public override CandidateNotationConverter CandidateConverter
-		=> candidates =>
+	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
+		=> (ref readonly CandidateMap candidates) =>
 		{
 			if (!candidates)
 			{

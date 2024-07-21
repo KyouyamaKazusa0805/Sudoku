@@ -129,7 +129,7 @@
         </member>
         <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
             <summary>
-            Initialzes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            Initializes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
             </summary>
             <param name="techniques">A list of techniques.</param>
         </member>

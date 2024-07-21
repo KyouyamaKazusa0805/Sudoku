@@ -308,7 +308,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 			from kvp in this
 			let candidate = kvp.Key
 			let pattern = kvp.Value
-			select $"{converter.CandidateConverter(candidate)}: {pattern.ToString(format, converter)}"
+			select $"{converter.CandidateConverter([candidate])}: {pattern.ToString(format, converter)}"
 		);
 	}
 

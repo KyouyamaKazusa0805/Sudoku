@@ -86,7 +86,7 @@ public partial struct CandidateMap : CandidateMapBase
 			return this switch
 			{
 				{ Count: 0 } => [],
-				[var a] => [CoordinateConverter.InvariantCultureConverter.CandidateConverter(a)],
+				[var a] => [CoordinateConverter.InvariantCultureConverter.CandidateConverter([a])],
 				_ => f(Offsets)
 			};
 
@@ -404,7 +404,7 @@ public partial struct CandidateMap : CandidateMapBase
 		=> formatProvider switch
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
-			_ => CoordinateConverter.GetConverter(formatProvider).CandidateConverter(this)
+			_ => CoordinateConverter.GetConverter(formatProvider).CandidateConverter(in this)
 		};
 
 	/// <inheritdoc/>

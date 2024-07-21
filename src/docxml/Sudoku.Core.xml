@@ -4474,13 +4474,6 @@
         <member name="M:Sudoku.Concepts.Formatting.BitmapCandidateMapFormatInfo.ParseMap(System.String)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Formatting.CandidateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <param name="candidates">A list of candidates.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Formatting.CellNotationConverter">
             <summary>
             Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.

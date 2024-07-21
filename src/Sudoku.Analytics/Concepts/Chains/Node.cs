@@ -183,7 +183,7 @@ public sealed partial class Node(
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetConverter(formatProvider);
-		return $"{converter.CandidateConverter(_map)}: {IsOn}";
+		return $"{converter.CandidateConverter(in _map)}: {IsOn}";
 	}
 
 	/// <inheritdoc/>

@@ -17,7 +17,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 	}
 
 	/// <summary>
-	/// Initialzes a <see cref="DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance via the specified list of techniques.
 	/// </summary>
 	/// <param name="techniques">A list of techniques.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -105,7 +105,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 					throw new AlreadyFinishedException();
 				}
 
-				// If not, we should search for available path nodes agagin, and iterate on them.
+				// If not, we should search for available path nodes again, and iterate on them.
 				var tempNodes = new List<PathNode>(16);
 				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
@@ -224,8 +224,8 @@ file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candi
 	{
 		var converter = CoordinateConverter.GetConverter(formatProvider);
 		return House != -1
-			? $"Full House / Hidden Single: {converter.CandidateConverter(Candidate)} in house {converter.HouseConverter(1 << House)}"
-			: $"Naked Single: {converter.CandidateConverter(Candidate)}";
+			? $"Full House / Hidden Single: {converter.CandidateConverter([Candidate])} in house {converter.HouseConverter(1 << House)}"
+			: $"Naked Single: {converter.CandidateConverter([Candidate])}";
 	}
 
 	/// <inheritdoc/>

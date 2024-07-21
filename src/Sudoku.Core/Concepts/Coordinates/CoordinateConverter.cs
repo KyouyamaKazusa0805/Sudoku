@@ -34,7 +34,7 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of candidates.
 	/// </summary>
-	public abstract CandidateNotationConverter CandidateConverter { get; }
+	public abstract FuncRefReadOnly<CandidateMap, string> CandidateConverter { get; }
 
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of houses.
