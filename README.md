@@ -140,7 +140,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * JE (Junior Exocet)
     * SE (Senior Exocet)
     * Double JE (Double Junior Exocet)
-    * WE (Weak Excocet)
+    * WE (Weak Exocet)
     * Complex Exocet
   * Symmetrical Placements
     * GSP (Gurth's Symmetrical Placements, Normal & Anti Type)
