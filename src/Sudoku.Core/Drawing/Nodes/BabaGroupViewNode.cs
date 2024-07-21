@@ -31,7 +31,7 @@ public sealed partial class BabaGroupViewNode(
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => CoordinateConverter.InvariantCultureConverter.CellConverter(Cell);
+	private string CellString => CoordinateConverter.InvariantCultureConverter.CellConverter(in Cell.AsCellMap());
 
 	/// <summary>
 	/// Indicates the digits mask string.

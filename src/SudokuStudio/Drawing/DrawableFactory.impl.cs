@@ -204,7 +204,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(cell)}{id.GetIdentifierSuffix()}",
+			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}{id.GetIdentifierSuffix()}",
 			Opacity = 0,
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			CornerRadius = sudokuPane.CellsInnerCornerRadius,
@@ -274,7 +274,7 @@ internal partial class DrawableFactory
 		{
 			var result = instanceCreator();
 			result.BorderThickness = new(0);
-			result.Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(cell)}{id.GetIdentifierSuffix()}";
+			result.Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}{id.GetIdentifierSuffix()}";
 			result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 			result.Opacity = 0;
 			result.Margin = result switch { Star or Triangle or Diamond => new(3, 0, 0, 0), _ => new(6) };
@@ -656,7 +656,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter(cell)}, {@char}{id.GetIdentifierSuffix()}",
+			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}, {@char}{id.GetIdentifierSuffix()}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{

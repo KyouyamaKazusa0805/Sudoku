@@ -10,7 +10,7 @@ namespace Sudoku.Concepts.Coordinates;
 /// <param name="FinalRowLetter">
 /// <para>
 /// Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-/// but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+/// but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
 /// This option will change the last row letter if you want to change it.
 /// </para>
 /// <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
@@ -27,8 +27,8 @@ public sealed record K9Converter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellConverter
-		=> cells =>
+	public override FuncRefReadOnly<CellMap, string> CellConverter
+		=> (ref readonly CellMap cells) =>
 		{
 			switch (cells)
 			{
@@ -188,7 +188,7 @@ public sealed record K9Converter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -337,8 +337,8 @@ public sealed record K9Converter(
 			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter(conjugatePair.From);
-				var toCellString = CellConverter(conjugatePair.To);
+				var fromCellString = CellConverter(in conjugatePair.From.AsCellMap());
+				var toCellString = CellConverter(in conjugatePair.To.AsCellMap());
 				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}

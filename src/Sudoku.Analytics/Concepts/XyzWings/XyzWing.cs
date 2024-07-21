@@ -52,7 +52,7 @@ public sealed partial class XyzWing(
 	{
 		var converter = CoordinateConverter.GetConverter(formatProvider);
 		var zDigitStr = converter.DigitConverter((Mask)(1 << ZDigit));
-		return $@"{converter.CellConverter(Pivot, LeafCell1, LeafCell2)}({DigitsMask}, {zDigitStr})";
+		return $@"{converter.CellConverter(Pivot.AsCellMap() + LeafCell1 + LeafCell2)}({DigitsMask}, {zDigitStr})";
 	}
 
 	/// <inheritdoc/>

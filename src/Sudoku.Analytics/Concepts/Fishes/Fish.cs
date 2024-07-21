@@ -77,12 +77,12 @@ public readonly partial struct Fish(
 				var cs = c.HouseConverter(CoverSets);
 				var exofins = this switch
 				{
-					{ Exofins: var f and not [] } => $" f{c.CellConverter(f)} ",
+					{ Exofins: var f and not [] } => $" f{c.CellConverter(in f)} ",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					{ Endofins: var e and not [] } => $"ef{c.CellConverter(e)}",
+					{ Endofins: var e and not [] } => $"ef{c.CellConverter(in e)}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))} {bs}\{cs}{exofins}{endofins}";
@@ -96,12 +96,12 @@ public readonly partial struct Fish(
 				var cs = c.HouseConverter(CoverSets);
 				var exofins = this switch
 				{
-					{ Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
+					{ Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					{ Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(e))}",
+					{ Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in e))}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{bs}\{cs}{exofins}{endofins}";

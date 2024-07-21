@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitX">Indicates the digit X.</param>
 /// <param name="digitY">Indicates the digit Y.</param>
 /// <param name="digitZ">Indicates the digit Z.</param>
-/// <param name="strongLink">Indicates the storng link used.</param>
+/// <param name="strongLink">Indicates the strong link used.</param>
 public sealed partial class HWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -42,5 +42,5 @@ public sealed partial class HWingStep(
 
 	private string StrongLinkStr => $"{Options.Converter.CellConverter(StrongLink)}({DigitX + 1})";
 
-	private string CellsStr => Options.Converter.CellConverter(Cell1, Cell2);
+	private string CellsStr => Options.Converter.CellConverter(Cell1.AsCellMap() + Cell2);
 }

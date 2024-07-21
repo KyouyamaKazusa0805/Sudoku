@@ -10,11 +10,11 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellConverter
-		=> cells => cells switch
+	public override FuncRefReadOnly<CellMap, string> CellConverter
+		=> (ref readonly CellMap cells) => cells switch
 		{
-		[] => string.Empty,
-		[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
+			[] => string.Empty,
+			[var p] => string.Format(SR.Get("CellLabel", TargetCurrentCulture), [(p / 9 + 1).ToString(), (p % 9 + 1).ToString()]),
 			_ => string.Format(
 				SR.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(
@@ -32,7 +32,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)
 			{
-				var cellString = CellConverter(candidate / 9);
+				var cellString = CellConverter(in (candidate / 9).AsCellMap());
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
 				snippets.Add(string.Format(SR.Get("CandidateLabel", TargetCurrentCulture), [cellString, digitString]));
 			}
@@ -97,7 +97,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -200,8 +200,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>();
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter(conjugatePair.From);
-				var toCellString = CellConverter(conjugatePair.To);
+				var fromCellString = CellConverter(in conjugatePair.From.AsCellMap());
+				var toCellString = CellConverter(in conjugatePair.To.AsCellMap());
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
 				snippets.Add(string.Format(SR.Get("ConjugatePairWith", TargetCurrentCulture), [fromCellString, toCellString, digitString]));
 			}

@@ -28,8 +28,8 @@ public sealed record RxCyConverter(
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
 {
 	/// <inheritdoc/>
-	public override CellNotationConverter CellConverter
-		=> cells =>
+	public override FuncRefReadOnly<CellMap, string> CellConverter
+		=> (ref readonly CellMap cells) =>
 		{
 			return cells switch
 			{
@@ -108,11 +108,11 @@ public sealed record RxCyConverter(
 				if (MakeDigitBeforeCell)
 				{
 					sb.Append(digitGroup.Key + 1);
-					sb.Append(CellConverter(cells));
+					sb.Append(CellConverter(in cells));
 				}
 				else
 				{
-					sb.Append(CellConverter(cells));
+					sb.Append(CellConverter(in cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -191,7 +191,7 @@ public sealed record RxCyConverter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -308,8 +308,8 @@ public sealed record RxCyConverter(
 			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter(conjugatePair.From);
-				var toCellString = CellConverter(conjugatePair.To);
+				var fromCellString = CellConverter(in conjugatePair.From.AsCellMap());
+				var toCellString = CellConverter(in conjugatePair.To.AsCellMap());
 				sb.Append(
 					MakeDigitBeforeCell
 						? $"{DigitConverter((Mask)(1 << conjugatePair.Digit))}{fromCellString} == {toCellString}"

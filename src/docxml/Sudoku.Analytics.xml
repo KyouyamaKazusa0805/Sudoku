@@ -18828,7 +18828,7 @@
             <param name="digitX">Indicates the digit X.</param>
             <param name="digitY">Indicates the digit Y.</param>
             <param name="digitZ">Indicates the digit Z.</param>
-            <param name="strongLink">Indicates the storng link used.</param>
+            <param name="strongLink">Indicates the strong link used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -18842,7 +18842,7 @@
             <param name="digitX">Indicates the digit X.</param>
             <param name="digitY">Indicates the digit Y.</param>
             <param name="digitZ">Indicates the digit Z.</param>
-            <param name="strongLink">Indicates the storng link used.</param>
+            <param name="strongLink">Indicates the strong link used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HWingStep.IsSymmetricPattern">
             <inheritdoc/>

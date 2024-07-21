@@ -3956,7 +3956,7 @@
             <param name="FinalRowLetter">
             <para>
             Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
             This option will change the last row letter if you want to change it.
             </para>
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
@@ -3976,7 +3976,7 @@
             <param name="FinalRowLetter">
             <para>
             Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
             This option will change the last row letter if you want to change it.
             </para>
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
@@ -3995,7 +3995,7 @@
             <summary>
             <para>
             Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distincting with digit 1 and i (They are nearly same by its shape).
+            but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
             This option will change the last row letter if you want to change it.
             </para>
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
@@ -4473,13 +4473,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Formatting.BitmapCandidateMapFormatInfo.ParseMap(System.String)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Formatting.CellNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">A list of cells.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMapFormatInfo">
             <summary>

@@ -84,7 +84,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			orderby cell
 			group step by cell into stepsGroupedByCell
 			let cell = stepsGroupedByCell.Key
-			select rootOrIntermediateItems(converter.CellConverter(cell), g(stepsGroupedByCell, displayItems))
+			select rootOrIntermediateItems(converter.CellConverter(in cell.AsCellMap()), g(stepsGroupedByCell, displayItems))
 		];
 
 

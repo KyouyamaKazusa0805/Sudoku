@@ -44,5 +44,5 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 
 	private string YDigitStr => Options.Converter.DigitConverter((Mask)(1 << YDigit));
 
-	private string XYCellsStr => Options.Converter.CellConverter(XyCell);
+	private string XYCellsStr => Options.Converter.CellConverter(in XyCell.AsCellMap());
 }

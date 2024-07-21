@@ -31,7 +31,7 @@ public sealed partial class DeathBlossomStep(
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;
 
-	private string PivotStr => Options.Converter.CellConverter(Pivot);
+	private string PivotStr => Options.Converter.CellConverter(in Pivot.AsCellMap());
 
 	private string BranchesStr
 		=> string.Join(

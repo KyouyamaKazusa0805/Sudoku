@@ -109,7 +109,7 @@ public partial struct CandidateMap : CandidateMapBase
 
 					list.Add(
 						sb
-							.Append(CoordinateConverter.InvariantCultureConverter.CellConverter(cells))
+							.Append(CoordinateConverter.InvariantCultureConverter.CellConverter(in cells))
 							.Append($"({digitGroup.Key + 1})")
 							.ToString()
 					);

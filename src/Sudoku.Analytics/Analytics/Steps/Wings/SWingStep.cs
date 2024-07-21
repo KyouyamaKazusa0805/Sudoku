@@ -60,5 +60,5 @@ public sealed partial class SWingStep(
 		}
 	}
 
-	private string MidCellStr => Options.Converter.CellConverter(MidCell);
+	private string MidCellStr => Options.Converter.CellConverter(in MidCell.AsCellMap());
 }
