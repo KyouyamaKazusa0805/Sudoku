@@ -14,7 +14,6 @@ global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Versioning;
-global using System.SourceGeneration;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using static System.Numerics.BitOperations;

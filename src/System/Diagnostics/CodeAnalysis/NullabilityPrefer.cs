@@ -1,4 +1,4 @@
-namespace System.SourceGeneration;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Represents an enumeration type that tells source generators which case of nullability should be preferred.

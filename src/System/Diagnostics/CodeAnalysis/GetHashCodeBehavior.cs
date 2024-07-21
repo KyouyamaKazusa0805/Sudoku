@@ -1,4 +1,4 @@
-namespace System.SourceGeneration;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Defines a behavior by source generator on generating <see cref="object.GetHashCode"/> overridden methods.

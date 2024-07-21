@@ -1,4 +1,4 @@
-namespace System.SourceGeneration;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Represents an attribute type that describes source generators can generate extra source code into the target type,

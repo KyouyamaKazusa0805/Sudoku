@@ -1,4 +1,4 @@
-namespace System.SourceGeneration;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Indicates the source generator should generate its backing field without compiler controlling.

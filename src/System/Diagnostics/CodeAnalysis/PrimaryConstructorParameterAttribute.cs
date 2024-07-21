@@ -1,4 +1,4 @@
-namespace System.SourceGeneration;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,

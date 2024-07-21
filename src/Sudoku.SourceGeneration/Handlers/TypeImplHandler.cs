@@ -210,14 +210,14 @@ internal static class TypeImplHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
 
-		const string dataMemberAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
+		const string dataMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute";
 		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
 		if (dataMemberAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
 
-		const string hashCodeMemberAttributeTypeName = "System.SourceGeneration.HashCodeMemberAttribute";
+		const string hashCodeMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute";
 		var hashCodeMemberAttributeSymbol = compilation.GetTypeByMetadataName(hashCodeMemberAttributeTypeName);
 		if (hashCodeMemberAttributeSymbol is null)
 		{
@@ -397,14 +397,14 @@ internal static class TypeImplHandler
 			return null;
 		}
 
-		const string dataMemberAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
+		const string dataMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute";
 		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
 		if (dataMemberAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
 
-		const string stringMemberAttributeName = "System.SourceGeneration.StringMemberAttribute";
+		const string stringMemberAttributeName = "System.Diagnostics.CodeAnalysis.StringMemberAttribute";
 		var stringMemberAttributeSymbol = compilation.GetTypeByMetadataName(stringMemberAttributeName);
 		if (stringMemberAttributeSymbol is null)
 		{

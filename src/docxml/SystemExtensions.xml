@@ -577,6 +577,543 @@
             <param name="this">The instance.</param>
             <returns>An array of delegates representing the invocation list of the current delegate.</returns>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.EqualsBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.EqualsBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will automatically adopt a case for an overridden unit.
+            <list type="bullet">
+            <item>For <see langword="ref struct"/>s, return <see langword="false"/> because there is implicitly box and unbox operation</item>
+            <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloaded <c>Equals</c> method</item>
+            <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloaded <c>Equals</c> method</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.EqualsBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.EqualsBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will adopt an intelligent way to generate hashing expression.
+            If none of all data members in a type marked <see cref="T:System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute"/>, a <see cref="T:System.NotSupportedException"/>
+            will be thrown; if one member is marked and its type can be directly converted into an <see cref="T:System.Int32"/>, then use itself;
+            otherwise, call <see cref="M:System.HashCode.Combine``1(``0)"/> method set or use <see cref="M:System.HashCode.Add``1(``0)"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute">
+            <summary>
+            Indicates the marked member will participate hashing operation.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute">
+            <summary>
+            Indicates the source generator should generate its backing field without compiler controlling.
+            </summary>
+            <remarks>
+            You can use this attribute to create a field:
+            <code><![CDATA[
+            [ImplicitField]
+            public int Property
+            {
+                get => _property;
+                set => _property ??= value;
+            }
+            ]]></code>
+            You may not write code to create field <c>_property</c>. This attribute will make source generators generate it.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute.RequiredReadOnlyModifier">
+            <summary>
+            Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
+            The value is <see langword="true"/> by default.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MemberKinds">
+            <summary>
+            Indicates a data member kind.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.MemberKinds.Field">
+            <summary>
+            Indicates the member kind is field.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.MemberKinds.Property">
+            <summary>
+            Indicates the member kind is property.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NullabilityPrefer">
+            <summary>
+            Represents an enumeration type that tells source generators which case of nullability should be preferred.
+            By default, <see langword="not null"/> for value types and including <see langword="null"/> for reference types.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.NullabilityPrefer.Default">
+            <summary>
+            Indicates the preferring is default.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.NullabilityPrefer.NotNull">
+            <summary>
+            Indicates the source generator will prefer <see langword="not null"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.NullabilityPrefer.IncludeNull">
+            <summary>
+            Indicates the source generator will prefer including <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute">
+            <summary>
+            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
+            telling the source generator that it should generate a property that references this parameter.
+            </summary>
+            <param name="memberKind">
+            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.Diagnostics.CodeAnalysis.MemberKinds"/>.
+            </param>
+            <remarks>
+            <para>
+            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
+            However, the parameter defined will be expanded as a real parameter in its containing constructor.
+            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
+            </para>
+            <para>
+            The original way to declare a type with primary constructor is like:
+            <code><![CDATA[
+            public readonly struct Color(byte a, byte r, byte g, byte b)
+            {
+                public byte A { get; } = a;
+                public byte R { get; } = r;
+                public byte G { get; } = g;
+                public byte B { get; } = b;
+            }
+            ]]></code>
+            </para>
+            <para>
+            Via this attribute type, we can simplify the code:
+            <code><![CDATA[
+            public readonly partial struct Color(
+                [PrimaryConstructorParameter] byte a,
+                [PrimaryConstructorParameter] byte r,
+                [PrimaryConstructorParameter] byte g,
+                [PrimaryConstructorParameter] byte b
+            );
+            ]]></code>
+            Such code is equivalent to the original one.
+            </para>
+            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.#ctor(System.String)">
+            <summary>
+            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
+            telling the source generator that it should generate a property that references this parameter.
+            </summary>
+            <param name="memberKind">
+            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.Diagnostics.CodeAnalysis.MemberKinds"/>.
+            </param>
+            <remarks>
+            <para>
+            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
+            However, the parameter defined will be expanded as a real parameter in its containing constructor.
+            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
+            </para>
+            <para>
+            The original way to declare a type with primary constructor is like:
+            <code><![CDATA[
+            public readonly struct Color(byte a, byte r, byte g, byte b)
+            {
+                public byte A { get; } = a;
+                public byte R { get; } = r;
+                public byte G { get; } = g;
+                public byte B { get; } = b;
+            }
+            ]]></code>
+            </para>
+            <para>
+            Via this attribute type, we can simplify the code:
+            <code><![CDATA[
+            public readonly partial struct Color(
+                [PrimaryConstructorParameter] byte a,
+                [PrimaryConstructorParameter] byte r,
+                [PrimaryConstructorParameter] byte g,
+                [PrimaryConstructorParameter] byte b
+            );
+            ]]></code>
+            Such code is equivalent to the original one.
+            </para>
+            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.IsImplicitlyReadOnly">
+            <summary>
+            Indicates whether the generated field or property is implicitly read-only.
+            If the property is <see langword="true"/>, the generated data member (auto-impl'ed propertys or fields) will be modified
+            by keyword <see langword="readonly"/> if all following conditions are true:
+            <list type="number">
+            <item>
+            The type is a <see langword="struct"/>, <see langword="record struct"/>,
+            <see langword="implicit extension"/> (will be included in future C# version)
+            or <see langword="explicit extension"/> (will be included in future C# version)
+            </item>
+            <item>The type is not marked with keyword <see langword="readonly"/></item>
+            </list>
+            However, sometimes we should use non-<see langword="readonly"/> <see langword="struct"/> member as fields or auto-impl'ed properties,
+            but we cannot modify it. By setting the property with <see langword="false"/> value,
+            to avoid the source generator marking the generated member as <see langword="readonly"/>.
+            </summary>
+            <remarks>This property is <see langword="true"/> by default.</remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.SetterExpression">
+            <summary>
+            <para>Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.</para>
+            <para>
+            For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
+            the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
+            which means the target property does not contain a setter.
+            </para>
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.NamingRule">
+            <summary>
+            Indicates the naming rule of the generated member name.
+            </summary>
+            <remarks>
+            <para>
+            The syntax of this property can be described as two parts:
+            <list type="number">
+            <item>
+            A verbatim symbol <c>@</c> ("At" symbol, may contain an extra character <c><![CDATA[<]]></c> or <c><![CDATA[>]]></c>:
+            <c><![CDATA[<@]]></c> or <c><![CDATA[>@]]></c>)
+            </item>
+            <item>Characters used in a valid identifier</item>
+            </list>
+            </para>
+            <para>
+            For example, if you want to set a generated property is named like <c>xxxTargetProperty</c>
+            where the <c>xxx</c> is the name of the generated property, you can set this property as value <c>"@TargetProperty"</c>.
+            Then the generated property will be like:
+            <code><![CDATA[
+            public int ParameterTargetProperty { get; } = parameter;
+            ]]></code>
+            </para>
+            <para>
+            Also, you can set the first character as lower or upper case via symbols <c><![CDATA[<]]></c> and <c><![CDATA[>]]></c>.
+            If this property is <c><![CDATA["_<@"]]></c>, the generated member will be like:
+            <code><![CDATA[
+            private int _parameter = parameter;
+            ]]></code>
+            where <c><![CDATA["<@"]]></c> means the generated member name will use lower case for its first character.
+            </para>
+            <para>
+            By default, the naming rule is <c><![CDATA["_<@"]]></c> for fields, and <c><![CDATA[">@"]]></c> for properties.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.MembersNotNull">
+            <summary>
+            Indicates the member names becoming not <see langword="null"/>
+            when this generated member is <see langword="true"/> or <see langword="false"/>.
+            </summary>
+            <remarks>
+            The syntax of this property can be described as two parts:
+            <list type="number">
+            <item>Boolean value literal</item>
+            <item>Member or parameter names</item>
+            </list>
+            The complete expression is <c>"(1): (2)"</c>. For example: <c>"<see langword="false"/>: property1, property2"</c>.
+            The generated member will be:
+            <code><![CDATA[
+            [MemberNotNullWhen(false, nameof(Property1), nameof(Property2))]
+            public bool Parameter { get; } = parameter;
+            ]]></code>
+            where <c>property1</c> and <c>property2</c> are supposed to be two parameters marked this attribute.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.GeneratedMemberName">
+            <summary>
+            Indicates the name of the generated member.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the generated member.
+            </summary>
+            <remarks>
+            <para>
+            This property controls the case when you want to customize the accessibility of generated member.
+            For example, the value is <c>"private"</c>, the generated member will automatically insert the accessibility modifier
+            into property declaration:
+            <code><![CDATA[
+            private int Parameter { get; } = parameter;
+            ]]></code>
+            </para>
+            <para>
+            Also, you can append not only 1 word. For example, the combination <c>"protected internal readonly unsafe"</c> is also acceptable.
+            </para>
+            <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.RefKind">
+            <summary>
+            Indicates the <see langword="ref"/> kind of the generated member.
+            </summary>
+            <remarks>
+            <para>
+            This property controls the case when you want to customize the reference kind of return value of the field or property.
+            For example, the value is <c>"ref readonly"</c>, the generated member will automatically insert the <see langword="ref"/> modifiers
+            into declaration:
+            <code><![CDATA[
+            private ref readonly int _parameter = ref parameter;
+            ]]></code>
+            </para>
+            <para>
+            By default, the <see langword="ref"/> kind should be suitable with parameter's declaration.
+            If the parameter is defined without any <see langword="ref"/> modifiers:
+            <list type="bullet">
+            <item><see langword="ref"/></item>
+            <item><see langword="ref readonly"/> (Supported in C# 12)</item>
+            <item><see langword="in"/></item>
+            <item><see langword="scoped ref"/></item>
+            <item><see langword="scoped ref readonly"/> (Supported in C# 12)</item>
+            <item><see langword="scoped in"/></item>
+            <item><see langword="ref scoped"/> (Not supported in C# 12)</item>
+            <item><see langword="ref readonly scoped"/> (Not supported in C# 12)</item>
+            <item><see langword="in scoped"/> (Not supported in C# 12)</item>
+            </list>
+            the generated member will automatically include a <see langword="ref"/> modifier if the modifiers don't include <see langword="scoped"/>;
+            otherwise, no <see langword="ref"/> modifiers.
+            If you want to set <see langword="ref readonly"/>, you should manually set this property with value <c>"ref readonly"</c> value.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.MemberKind">
+            <summary>
+            The generated property declaration for parameter <c>memberKind</c>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.StringMemberAttribute">
+            <summary>
+            Indicates the marked member will participate to-string operation.
+            </summary>
+            <param name="displayName">
+            Indicates the display name of the field or property to be changed.
+            By default the value is <see langword="null"/>, which means no conversion will be existing here.
+            </param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.StringMemberAttribute.#ctor(System.String)">
+            <summary>
+            Indicates the marked member will participate to-string operation.
+            </summary>
+            <param name="displayName">
+            Indicates the display name of the field or property to be changed.
+            By default the value is <see langword="null"/>, which means no conversion will be existing here.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.StringMemberAttribute.DisplayName">
+            <summary>
+            The generated property declaration for parameter <c>displayName</c>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.ToStringBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
+            </summary>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.Intelligent">
+            <summary>
+            Indicates the source generator will automatically determine which expression to be output.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.CallOverload">
+            <summary>
+            Indicates the source generator will generate an expression
+            to call overload <see cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/> method.
+            </summary>
+            <seealso cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.Specified">
+            <summary>
+            Indicates the source generator will generate an expression
+            to output a string whose value is directly from a property or field result.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.RecordLike">
+            <summary>
+            Indicates the source generator will generate an expression
+            like a <see langword="record"/> or <see langword="record struct"/> default output.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.ThrowNotSupportedException">
+            <summary>
+            Indicates throws <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.MakeAbstract">
+            <summary>
+            Indicates the method will be made <see langword="abstract"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.TypeImplAttribute">
+            <summary>
+            Represents an attribute type that describes source generators can generate extra source code into the target type,
+            with the specified generation mode.
+            </summary>
+            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.TypeImplAttribute.#ctor(System.Diagnostics.CodeAnalysis.TypeImplFlag)">
+            <summary>
+            Represents an attribute type that describes source generators can generate extra source code into the target type,
+            with the specified generation mode.
+            </summary>
+            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.IsLargeStructure">
+            <summary>
+            Indicates whether source generators will generate source code with modifiers <see langword="ref readonly"/>
+            or <see langword="in"/> onto parameters if the parameter type is the current type.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnEquals">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnGetHashCode">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.GetHashCode"/> method.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnToString">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.ToString"/> method.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EqualsBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.Diagnostics.CodeAnalysis.EqualsBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.GetHashCodeBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.ToStringBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.Diagnostics.CodeAnalysis.ToStringBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OperandNullabilityPrefer">
+            <summary>
+            Indicates an extra option to tell source generators which case of nullability should be preferred.
+            By default, not null for value types and including null for reference types.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.Flags">
+            <summary>
+            The generated property declaration for parameter <c>flags</c>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.TypeImplFlag">
+            <summary>
+            Represents a flag that supports for auto implementation.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.None">
+            <summary>
+            Indicates no elements will be generated.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_Equals">
+            <summary>
+            Indicates the method <see cref="M:System.Object.Equals(System.Object)"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_GetHashCode">
+            <summary>
+            Indicates the method <see cref="M:System.Object.GetHashCode"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_ToString">
+            <summary>
+            Indicates the method <see cref="M:System.Object.ToString"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.EqualityOperators">
+            <summary>
+            Indicates the equality operators defined in <see cref="T:System.Numerics.IEqualityOperators`3"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.ComparisonOperators">
+            <summary>
+            Indicates the comparison operators defined in <see cref="T:System.Numerics.IComparisonOperators`3"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
+            <summary>
+            Indicates all the methods
+            <see cref="M:System.Object.Equals(System.Object)"/>, <see cref="M:System.Object.GetHashCode"/> and <see cref="M:System.Object.ToString"/>
+            will be generated.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllOperators">
+            <summary>
+            Indicates all the operators
+            <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>
+            will be generated.
+            </summary>
+        </member>
         <member name="T:System.DoubleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Double"/>.
@@ -4834,588 +5371,6 @@
             <param name="other">The other value to compare.</param>
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.SourceGeneration.Accessibility">
-            <summary>
-            Defines a kind of accessibility being defined in C#.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.None">
-            <summary>
-            Indicates the accessibility is invalid and not defined in this type.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.File">
-            <summary>
-            Indicates the accessibility is <see langword="file"/>-local, which means it can be accessed only in a whole file.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.Private">
-            <summary>
-            Indicates the accessibility is <see langword="private"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.Protected">
-            <summary>
-            Indicates the accessibility is <see langword="protected"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.PrivateProtected">
-            <summary>
-            Indicates the accessibility is <see langword="private protected"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.Internal">
-            <summary>
-            Indicates the accessibility is <see langword="internal"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.ProtectedInternal">
-            <summary>
-            Indicates the accessibility is <see langword="protected internal"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.Accessibility.Public">
-            <summary>
-            Indicates the accessibility is <see langword="public"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.EqualsBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
-            </summary>
-            <seealso cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="F:System.SourceGeneration.EqualsBehavior.Intelligent">
-            <summary>
-            Indicates the source generator will automatically adopt a case for an overridden unit.
-            <list type="bullet">
-            <item>For <see langword="ref struct"/>s, return <see langword="false"/> because there is implicitly box and unbox operation</item>
-            <item>For <see langword="class"/>es, use <see langword="as"/> casting and call overloaded <c>Equals</c> method</item>
-            <item>For <see langword="struct"/>s, use <see langword="is"/> casting and call overloaded <c>Equals</c> method</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.EqualsBehavior.ThrowNotSupportedException">
-            <summary>
-            Indicates the method always throws <see cref="T:System.NotSupportedException"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.EqualsBehavior.MakeAbstract">
-            <summary>
-            Indicates the method will be made <see langword="abstract"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.GetHashCodeBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
-            </summary>
-            <seealso cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent">
-            <summary>
-            Indicates the source generator will adopt an intelligent way to generate hashing expression.
-            If none of all data members in a type marked <see cref="T:System.SourceGeneration.HashCodeMemberAttribute"/>, a <see cref="T:System.NotSupportedException"/>
-            will be thrown; if one member is marked and its type can be directly converted into an <see cref="T:System.Int32"/>, then use itself;
-            otherwise, call <see cref="M:System.HashCode.Combine``1(``0)"/> method set or use <see cref="M:System.HashCode.Add``1(``0)"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GetHashCodeBehavior.ThrowNotSupportedException">
-            <summary>
-            Indicates throws <see cref="T:System.NotSupportedException"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.GetHashCodeBehavior.MakeAbstract">
-            <summary>
-            Indicates the method will be made <see langword="abstract"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.HashCodeMemberAttribute">
-            <summary>
-            Indicates the marked member will participate hashing operation.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.ImplicitFieldAttribute">
-            <summary>
-            Indicates the source generator should generate its backing field without compiler controlling.
-            </summary>
-            <remarks>
-            You can use this attribute to create a field:
-            <code><![CDATA[
-            [ImplicitField]
-            public int Property
-            {
-                get => _property;
-                set => _property ??= value;
-            }
-            ]]></code>
-            You may not write code to create field <c>_property</c>. This attribute will make source generators generate it.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.ImplicitFieldAttribute.RequiredReadOnlyModifier">
-            <summary>
-            Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
-            The value is <see langword="true"/> by default.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.MemberKinds">
-            <summary>
-            Indicates a data member kind.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.MemberKinds.Field">
-            <summary>
-            Indicates the member kind is field.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.MemberKinds.Property">
-            <summary>
-            Indicates the member kind is property.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.NullabilityPrefer">
-            <summary>
-            Represents an enumeration type that tells source generators which case of nullability should be preferred.
-            By default, <see langword="not null"/> for value types and including <see langword="null"/> for reference types.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.NullabilityPrefer.Default">
-            <summary>
-            Indicates the preferring is default.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.NullabilityPrefer.NotNull">
-            <summary>
-            Indicates the source generator will prefer <see langword="not null"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.NullabilityPrefer.IncludeNull">
-            <summary>
-            Indicates the source generator will prefer including <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.PrimaryConstructorParameterAttribute">
-            <summary>
-            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
-            telling the source generator that it should generate a property that references this parameter.
-            </summary>
-            <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.MemberKinds"/>.
-            </param>
-            <remarks>
-            <para>
-            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
-            However, the parameter defined will be expanded as a real parameter in its containing constructor.
-            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
-            </para>
-            <para>
-            The original way to declare a type with primary constructor is like:
-            <code><![CDATA[
-            public readonly struct Color(byte a, byte r, byte g, byte b)
-            {
-                public byte A { get; } = a;
-                public byte R { get; } = r;
-                public byte G { get; } = g;
-                public byte B { get; } = b;
-            }
-            ]]></code>
-            </para>
-            <para>
-            Via this attribute type, we can simplify the code:
-            <code><![CDATA[
-            public readonly partial struct Color(
-                [PrimaryConstructorParameter] byte a,
-                [PrimaryConstructorParameter] byte r,
-                [PrimaryConstructorParameter] byte g,
-                [PrimaryConstructorParameter] byte b
-            );
-            ]]></code>
-            Such code is equivalent to the original one.
-            </para>
-            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
-            </remarks>
-        </member>
-        <member name="M:System.SourceGeneration.PrimaryConstructorParameterAttribute.#ctor(System.String)">
-            <summary>
-            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
-            telling the source generator that it should generate a property that references this parameter.
-            </summary>
-            <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.SourceGeneration.MemberKinds"/>.
-            </param>
-            <remarks>
-            <para>
-            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
-            However, the parameter defined will be expanded as a real parameter in its containing constructor.
-            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
-            </para>
-            <para>
-            The original way to declare a type with primary constructor is like:
-            <code><![CDATA[
-            public readonly struct Color(byte a, byte r, byte g, byte b)
-            {
-                public byte A { get; } = a;
-                public byte R { get; } = r;
-                public byte G { get; } = g;
-                public byte B { get; } = b;
-            }
-            ]]></code>
-            </para>
-            <para>
-            Via this attribute type, we can simplify the code:
-            <code><![CDATA[
-            public readonly partial struct Color(
-                [PrimaryConstructorParameter] byte a,
-                [PrimaryConstructorParameter] byte r,
-                [PrimaryConstructorParameter] byte g,
-                [PrimaryConstructorParameter] byte b
-            );
-            ]]></code>
-            Such code is equivalent to the original one.
-            </para>
-            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.IsImplicitlyReadOnly">
-            <summary>
-            Indicates whether the generated field or property is implicitly read-only.
-            If the property is <see langword="true"/>, the generated data member (auto-impl'ed propertys or fields) will be modified
-            by keyword <see langword="readonly"/> if all following conditions are true:
-            <list type="number">
-            <item>
-            The type is a <see langword="struct"/>, <see langword="record struct"/>,
-            <see langword="implicit extension"/> (will be included in future C# version)
-            or <see langword="explicit extension"/> (will be included in future C# version)
-            </item>
-            <item>The type is not marked with keyword <see langword="readonly"/></item>
-            </list>
-            However, sometimes we should use non-<see langword="readonly"/> <see langword="struct"/> member as fields or auto-impl'ed properties,
-            but we cannot modify it. By setting the property with <see langword="false"/> value,
-            to avoid the source generator marking the generated member as <see langword="readonly"/>.
-            </summary>
-            <remarks>This property is <see langword="true"/> by default.</remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.SetterExpression">
-            <summary>
-            <para>Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.</para>
-            <para>
-            For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
-            the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
-            which means the target property does not contain a setter.
-            </para>
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.NamingRule">
-            <summary>
-            Indicates the naming rule of the generated member name.
-            </summary>
-            <remarks>
-            <para>
-            The syntax of this property can be described as two parts:
-            <list type="number">
-            <item>
-            A verbatim symbol <c>@</c> ("At" symbol, may contain an extra character <c><![CDATA[<]]></c> or <c><![CDATA[>]]></c>:
-            <c><![CDATA[<@]]></c> or <c><![CDATA[>@]]></c>)
-            </item>
-            <item>Characters used in a valid identifier</item>
-            </list>
-            </para>
-            <para>
-            For example, if you want to set a generated property is named like <c>xxxTargetProperty</c>
-            where the <c>xxx</c> is the name of the generated property, you can set this property as value <c>"@TargetProperty"</c>.
-            Then the generated property will be like:
-            <code><![CDATA[
-            public int ParameterTargetProperty { get; } = parameter;
-            ]]></code>
-            </para>
-            <para>
-            Also, you can set the first character as lower or upper case via symbols <c><![CDATA[<]]></c> and <c><![CDATA[>]]></c>.
-            If this property is <c><![CDATA["_<@"]]></c>, the generated member will be like:
-            <code><![CDATA[
-            private int _parameter = parameter;
-            ]]></code>
-            where <c><![CDATA["<@"]]></c> means the generated member name will use lower case for its first character.
-            </para>
-            <para>
-            By default, the naming rule is <c><![CDATA["_<@"]]></c> for fields, and <c><![CDATA[">@"]]></c> for properties.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.MembersNotNull">
-            <summary>
-            Indicates the member names becoming not <see langword="null"/>
-            when this generated member is <see langword="true"/> or <see langword="false"/>.
-            </summary>
-            <remarks>
-            The syntax of this property can be described as two parts:
-            <list type="number">
-            <item>Boolean value literal</item>
-            <item>Member or parameter names</item>
-            </list>
-            The complete expression is <c>"(1): (2)"</c>. For example: <c>"<see langword="false"/>: property1, property2"</c>.
-            The generated member will be:
-            <code><![CDATA[
-            [MemberNotNullWhen(false, nameof(Property1), nameof(Property2))]
-            public bool Parameter { get; } = parameter;
-            ]]></code>
-            where <c>property1</c> and <c>property2</c> are supposed to be two parameters marked this attribute.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.GeneratedMemberName">
-            <summary>
-            Indicates the name of the generated member.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.Accessibility">
-            <summary>
-            Indicates the accessibility of the generated member.
-            </summary>
-            <remarks>
-            <para>
-            This property controls the case when you want to customize the accessibility of generated member.
-            For example, the value is <c>"private"</c>, the generated member will automatically insert the accessibility modifier
-            into property declaration:
-            <code><![CDATA[
-            private int Parameter { get; } = parameter;
-            ]]></code>
-            </para>
-            <para>
-            Also, you can append not only 1 word. For example, the combination <c>"protected internal readonly unsafe"</c> is also acceptable.
-            </para>
-            <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.RefKind">
-            <summary>
-            Indicates the <see langword="ref"/> kind of the generated member.
-            </summary>
-            <remarks>
-            <para>
-            This property controls the case when you want to customize the reference kind of return value of the field or property.
-            For example, the value is <c>"ref readonly"</c>, the generated member will automatically insert the <see langword="ref"/> modifiers
-            into declaration:
-            <code><![CDATA[
-            private ref readonly int _parameter = ref parameter;
-            ]]></code>
-            </para>
-            <para>
-            By default, the <see langword="ref"/> kind should be suitable with parameter's declaration.
-            If the parameter is defined without any <see langword="ref"/> modifiers:
-            <list type="bullet">
-            <item><see langword="ref"/></item>
-            <item><see langword="ref readonly"/> (Supported in C# 12)</item>
-            <item><see langword="in"/></item>
-            <item><see langword="scoped ref"/></item>
-            <item><see langword="scoped ref readonly"/> (Supported in C# 12)</item>
-            <item><see langword="scoped in"/></item>
-            <item><see langword="ref scoped"/> (Not supported in C# 12)</item>
-            <item><see langword="ref readonly scoped"/> (Not supported in C# 12)</item>
-            <item><see langword="in scoped"/> (Not supported in C# 12)</item>
-            </list>
-            the generated member will automatically include a <see langword="ref"/> modifier if the modifiers don't include <see langword="scoped"/>;
-            otherwise, no <see langword="ref"/> modifiers.
-            If you want to set <see langword="ref readonly"/>, you should manually set this property with value <c>"ref readonly"</c> value.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.PrimaryConstructorParameterAttribute.MemberKind">
-            <summary>
-            The generated property declaration for parameter <c>memberKind</c>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.StringMemberAttribute">
-            <summary>
-            Indicates the marked member will participate to-string operation.
-            </summary>
-            <param name="displayName">
-            Indicates the display name of the field or property to be changed.
-            By default the value is <see langword="null"/>, which means no conversion will be existing here.
-            </param>
-        </member>
-        <member name="M:System.SourceGeneration.StringMemberAttribute.#ctor(System.String)">
-            <summary>
-            Indicates the marked member will participate to-string operation.
-            </summary>
-            <param name="displayName">
-            Indicates the display name of the field or property to be changed.
-            By default the value is <see langword="null"/>, which means no conversion will be existing here.
-            </param>
-        </member>
-        <member name="P:System.SourceGeneration.StringMemberAttribute.DisplayName">
-            <summary>
-            The generated property declaration for parameter <c>displayName</c>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.ToStringBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
-            </summary>
-            <seealso cref="M:System.Object.ToString"/>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.Intelligent">
-            <summary>
-            Indicates the source generator will automatically determine which expression to be output.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.CallOverload">
-            <summary>
-            Indicates the source generator will generate an expression
-            to call overload <see cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/> method.
-            </summary>
-            <seealso cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.Specified">
-            <summary>
-            Indicates the source generator will generate an expression
-            to output a string whose value is directly from a property or field result.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.RecordLike">
-            <summary>
-            Indicates the source generator will generate an expression
-            like a <see langword="record"/> or <see langword="record struct"/> default output.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.ThrowNotSupportedException">
-            <summary>
-            Indicates throws <see cref="T:System.NotSupportedException"/>.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.ToStringBehavior.MakeAbstract">
-            <summary>
-            Indicates the method will be made <see langword="abstract"/>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.TypeImplAttribute">
-            <summary>
-            Represents an attribute type that describes source generators can generate extra source code into the target type,
-            with the specified generation mode.
-            </summary>
-            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
-        </member>
-        <member name="M:System.SourceGeneration.TypeImplAttribute.#ctor(System.SourceGeneration.TypeImplFlag)">
-            <summary>
-            Represents an attribute type that describes source generators can generate extra source code into the target type,
-            with the specified generation mode.
-            </summary>
-            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.IsLargeStructure">
-            <summary>
-            Indicates whether source generators will generate source code with modifiers <see langword="ref readonly"/>
-            or <see langword="in"/> onto parameters if the parameter type is the current type.
-            </summary>
-            <remarks>
-            The value is <see langword="false"/> by default.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnEquals">
-            <summary>
-            Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnGetHashCode">
-            <summary>
-            Indicates the extra modifiers can be applied to <see cref="M:System.Object.GetHashCode"/> method.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnToString">
-            <summary>
-            Indicates the extra modifiers can be applied to <see cref="M:System.Object.ToString"/> method.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.EqualsBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
-            </summary>
-            <remarks>
-            The value is <see cref="F:System.SourceGeneration.EqualsBehavior.Intelligent"/> by default.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.GetHashCodeBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
-            </summary>
-            <remarks>
-            The value is <see cref="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent"/> by default.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.ToStringBehavior">
-            <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
-            </summary>
-            <remarks>
-            The value is <see cref="F:System.SourceGeneration.ToStringBehavior.Intelligent"/> by default.
-            </remarks>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.OperandNullabilityPrefer">
-            <summary>
-            Indicates an extra option to tell source generators which case of nullability should be preferred.
-            By default, not null for value types and including null for reference types.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.Flags">
-            <summary>
-            The generated property declaration for parameter <c>flags</c>.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.TypeImplFlag">
-            <summary>
-            Represents a flag that supports for auto implementation.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.None">
-            <summary>
-            Indicates no elements will be generated.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.Object_Equals">
-            <summary>
-            Indicates the method <see cref="M:System.Object.Equals(System.Object)"/> will be generated.
-            </summary>
-            <seealso cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.Object_GetHashCode">
-            <summary>
-            Indicates the method <see cref="M:System.Object.GetHashCode"/> will be generated.
-            </summary>
-            <seealso cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.Object_ToString">
-            <summary>
-            Indicates the method <see cref="M:System.Object.ToString"/> will be generated.
-            </summary>
-            <seealso cref="M:System.Object.ToString"/>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.EqualityOperators">
-            <summary>
-            Indicates the equality operators defined in <see cref="T:System.Numerics.IEqualityOperators`3"/> will be generated.
-            </summary>
-            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.ComparisonOperators">
-            <summary>
-            Indicates the comparison operators defined in <see cref="T:System.Numerics.IComparisonOperators`3"/> will be generated.
-            </summary>
-            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.AllObjectMethods">
-            <summary>
-            Indicates all the methods
-            <see cref="M:System.Object.Equals(System.Object)"/>, <see cref="M:System.Object.GetHashCode"/> and <see cref="M:System.Object.ToString"/>
-            will be generated.
-            </summary>
-        </member>
-        <member name="F:System.SourceGeneration.TypeImplFlag.AllOperators">
-            <summary>
-            Indicates all the operators
-            <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>
-            will be generated.
-            </summary>
         </member>
         <member name="T:System.StringExtensions">
             <summary>

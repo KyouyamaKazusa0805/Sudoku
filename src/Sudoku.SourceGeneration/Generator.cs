@@ -20,7 +20,7 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.PrimaryConstructorParameterAttribute",
+					"System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute",
 					SyntaxNodeTypePredicate<ParameterSyntax>,
 					PrimaryConstructorMemberHandler.Transform
 				)
@@ -34,7 +34,7 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.ImplicitFieldAttribute",
+					"System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute",
 					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
 					ImplicitFieldHandler.Transform
 				)
@@ -48,7 +48,7 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.SourceGeneration.TypeImplAttribute",
+					"System.Diagnostics.CodeAnalysis.TypeImplAttribute",
 					IsPartialTypePredicate,
 					TypeImplHandler.Transform
 				)
