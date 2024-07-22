@@ -7,7 +7,7 @@ namespace System.Numerics;
 /// <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public readonly ref partial struct MaskCombinationsGenerator(
+public readonly ref partial struct MaskCombinationGenerator(
 	[PrimaryConstructorParameter(MemberKinds.Field)] int bitCount,
 	[PrimaryConstructorParameter(MemberKinds.Field)] int oneCount
 )

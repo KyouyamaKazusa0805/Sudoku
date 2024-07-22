@@ -4019,13 +4019,13 @@
         </member>
         <member name="M:System.Numerics.Bits.EnumerateOf(System.Int32,System.Int32)">
             <summary>
-            Creates a <see cref="T:System.Numerics.MaskCombinationsGenerator"/> instance that can generate a list of <see cref="T:System.Int64"/>
+            Creates a <see cref="T:System.Numerics.MaskCombinationGenerator"/> instance that can generate a list of <see cref="T:System.Int64"/>
             values that are all possibilities of combinations of integer values containing specified number of bits,
             and the specified number of bits set 1.
             </summary>
             <param name="bitCount">Indicates how many bits should be enumerated.</param>
             <param name="oneCount">Indicates how many bits set one contained in the value.</param>
-            <returns>A <see cref="T:System.Numerics.MaskCombinationsGenerator"/> instance.</returns>
+            <returns>A <see cref="T:System.Numerics.MaskCombinationGenerator"/> instance.</returns>
         </member>
         <member name="T:System.Numerics.Combinatorial">
             <summary>
@@ -4299,43 +4299,43 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:System.Numerics.MaskCombinationsGenerator">
+        <member name="T:System.Numerics.MaskCombinationGenerator">
             <summary>
             Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
             </summary>
             <param name="bitCount">Indicates the number of bits.</param>
             <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
         </member>
-        <member name="M:System.Numerics.MaskCombinationsGenerator.#ctor(System.Int32,System.Int32)">
+        <member name="M:System.Numerics.MaskCombinationGenerator.#ctor(System.Int32,System.Int32)">
             <summary>
             Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
             </summary>
             <param name="bitCount">Indicates the number of bits.</param>
             <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
         </member>
-        <member name="M:System.Numerics.MaskCombinationsGenerator.GetEnumerator">
+        <member name="M:System.Numerics.MaskCombinationGenerator.GetEnumerator">
             <summary>
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="F:System.Numerics.MaskCombinationsGenerator._bitCount">
+        <member name="F:System.Numerics.MaskCombinationGenerator._bitCount">
             <summary>
             The generated field declaration for parameter <c>bitCount</c>.
             </summary>
         </member>
-        <member name="F:System.Numerics.MaskCombinationsGenerator._oneCount">
+        <member name="F:System.Numerics.MaskCombinationGenerator._oneCount">
             <summary>
             The generated field declaration for parameter <c>oneCount</c>.
             </summary>
         </member>
-        <member name="M:System.Numerics.MaskCombinationsGenerator.Equals(System.Object)">
+        <member name="M:System.Numerics.MaskCombinationGenerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Numerics.MaskCombinationsGenerator.GetHashCode">
+        <member name="M:System.Numerics.MaskCombinationGenerator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.Numerics.MaskCombinationsGenerator.ToString">
+        <member name="M:System.Numerics.MaskCombinationGenerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Numerics.NativeIntegerEnumerator">
