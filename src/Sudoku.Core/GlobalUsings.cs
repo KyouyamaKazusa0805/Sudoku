@@ -28,7 +28,6 @@ global using Sudoku.Algorithms.Solving;
 global using Sudoku.Algorithms.Solving.Bitwise;
 global using Sudoku.Algorithms.Solving.EnumerableQuery;
 global using Sudoku.Algorithms.Transformation;
-global using Sudoku.Analytics;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Formatting;

@@ -7145,6 +7145,35 @@
             otherwise, <see langword="false"/>.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.ConclusionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
+            </summary>
+            <param name="this">The conclusion array.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type kind.</param>
+            <returns>The string representation of the conclusion kind.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
+            </exception>
+        </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>.
@@ -8377,35 +8406,6 @@
             <summary>
             Indicates the fifth ALS recorded.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.ConclusionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
-            </summary>
-            <param name="this">The conclusion array.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.ConclusionTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type kind.</param>
-            <returns>The string representation of the conclusion kind.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
-            </exception>
         </member>
         <member name="T:Sudoku.IO.Library.LibraryInfo">
             <summary>
