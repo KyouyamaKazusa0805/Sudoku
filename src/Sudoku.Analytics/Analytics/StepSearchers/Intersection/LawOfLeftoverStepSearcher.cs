@@ -58,7 +58,6 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 						// The cell can be filled with the digit from the other side.
 						var disapperedDigit = TrailingZeroCount(mergedDigitsMask & digitsMaskTheOtherSide);
 						conclusions.Add(new(Assignment, targetCell, disapperedDigit));
-
 						break;
 					}
 					default:
@@ -71,7 +70,6 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 								conclusions.Add(new(Elimination, cell, digit));
 							}
 						}
-
 						break;
 					}
 				}
