@@ -203,7 +203,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether the current instance can convert into a valid finned chain pattern.
 	/// </returns>
-	public bool TryCastToFinnedChain([NotNullWhen(true)] out ChainOrLoop? result, [NotNullWhen(true)] out CandidateMap? fins)
+	public bool TryCastToFinnedChain([NotNullWhen(true)] out NamedChain? result, [NotNullWhen(true)] out CandidateMap? fins)
 	{
 		// Determine whether the chain only contains one elimination.
 		if (Conclusions is not [(Assignment, var elimination) conclusion])

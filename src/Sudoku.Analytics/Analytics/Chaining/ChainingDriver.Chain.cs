@@ -35,9 +35,9 @@ internal partial class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<ChainOrLoop> CollectChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<NamedChain> CollectChains(ref readonly Grid grid, bool onlyFindOne)
 	{
-		var result = new SortedSet<ChainOrLoop>(ChainingComparers.ChainComparer);
+		var result = new SortedSet<NamedChain>(ChainingComparers.ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << Solution.GetDigit(cell))))
@@ -45,11 +45,11 @@ internal partial class ChainingDriver
 				var node = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
 				if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
-					return (ChainOrLoop[])[chain1];
+					return (NamedChain[])[chain1];
 				}
 				if (FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
 				{
-					return (ChainOrLoop[])[chain2];
+					return (NamedChain[])[chain2];
 				}
 			}
 		}
@@ -58,7 +58,7 @@ internal partial class ChainingDriver
 
 	/// <summary>
 	/// <para>
-	/// Find all possible <see cref="ChainOrLoop"/> patterns starting with the current node,
+	/// Find all possible <see cref="NamedChain"/> patterns starting with the current node,
 	/// and to make an confliction with itself.
 	/// </para>
 	/// <para>
@@ -68,14 +68,14 @@ internal partial class ChainingDriver
 	/// </summary>
 	/// <param name="startNode">The current instance.</param>
 	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="ChainOrLoop"/> and return.</param>
+	/// <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="NamedChain"/> and return.</param>
 	/// <param name="result">
-	/// A collection that stores all possible found <see cref="ChainOrLoop"/> patterns
+	/// A collection that stores all possible found <see cref="NamedChain"/> patterns
 	/// if <paramref name="onlyFindOne"/> is <see langword="false"/>.
 	/// </param>
-	/// <returns>The first found <see cref="ChainOrLoop"/> pattern.</returns>
-	/// <seealso cref="ChainOrLoop"/>
-	private static ChainOrLoop? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<ChainOrLoop> result)
+	/// <returns>The first found <see cref="NamedChain"/> pattern.</returns>
+	/// <seealso cref="NamedChain"/>
+	private static NamedChain? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();

@@ -36,7 +36,7 @@ internal static class ChainModule
 		return null;
 
 
-		static Conclusion[] c(ChainOrLoop pattern, ref readonly Grid grid, ChainingRules rules)
+		static Conclusion[] c(NamedChain pattern, ref readonly Grid grid, ChainingRules rules)
 		{
 			var conclusions = pattern.GetConclusions(in grid);
 			if (pattern is Loop { Links: var links })

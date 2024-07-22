@@ -5548,10 +5548,10 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.ChainOrLoop})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.NamedChain})">
             <summary>
             <para>
-            Find all possible <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns starting with the current node,
+            Find all possible <see cref="T:Sudoku.Concepts.NamedChain"/> patterns starting with the current node,
             and to make an confliction with itself.
             </para>
             <para>
@@ -5561,13 +5561,13 @@
             </summary>
             <param name="startNode">The current instance.</param>
             <param name="grid">The grid to be checked.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.ChainOrLoop"/> and return.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.NamedChain"/> and return.</param>
             <param name="result">
-            A collection that stores all possible found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> patterns
+            A collection that stores all possible found <see cref="T:Sudoku.Concepts.NamedChain"/> patterns
             if <paramref name="onlyFindOne"/> is <see langword="false"/>.
             </param>
-            <returns>The first found <see cref="T:Sudoku.Concepts.ChainOrLoop"/> pattern.</returns>
-            <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
+            <returns>The first found <see cref="T:Sudoku.Concepts.NamedChain"/> pattern.</returns>
+            <seealso cref="T:Sudoku.Concepts.NamedChain"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
@@ -6047,7 +6047,7 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.ChainOrLoop"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.NamedChain,Sudoku.Concepts.Grid@)">
             <summary>
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
             </summary>
@@ -6055,7 +6055,7 @@
             <param name="grid">The grid to calculate on conclusions for the pattern.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.ConclusionSet)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainOrLoopExtensions.GetTechnique(Sudoku.Concepts.NamedChain,Sudoku.Concepts.ConclusionSet)">
             <summary>
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
             </summary>
@@ -12273,7 +12273,7 @@
             <param name="pattern"><inheritdoc/></param>
             <param name="fins">Indicates the extra fins.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.FinnedChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.NamedChain,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Finned (Grouped) Chain</b> or <b>Finned (Grouped) Loop</b> technique.
             </summary>
@@ -12366,7 +12366,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="pattern">Indicates the chain or loop pattern.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainOrLoop)">
+        <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.NamedChain)">
             <summary>
             Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
             </summary>
@@ -12440,7 +12440,7 @@
             Indicates the sort key dictionary.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.Extensions.GetSortKey(Sudoku.Concepts.ChainOrLoop,Sudoku.Concepts.ConclusionSet)">
+        <member name="M:Sudoku.Analytics.Steps.Extensions.GetSortKey(Sudoku.Concepts.NamedChain,Sudoku.Concepts.ConclusionSet)">
             <summary>
             Try to get sort key of the pattern.
             </summary>
@@ -21075,13 +21075,6 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Int32@)">
             <summary>
             Collect views for the current chain.
@@ -21640,7 +21633,7 @@
             <param name="patternComparison">The chain comparison rule.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.TryCastToFinnedChain(Sudoku.Concepts.ChainOrLoop@,System.Nullable{Sudoku.Concepts.CandidateMap}@)">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.TryCastToFinnedChain(Sudoku.Concepts.NamedChain@,System.Nullable{Sudoku.Concepts.CandidateMap}@)">
             <summary>
             Try to cast the current instance into a finned chain pattern.
             </summary>
@@ -21722,6 +21715,33 @@
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.op_LessThanOrEqual(Sudoku.Concepts.MultipleForcingChains,Sudoku.Concepts.MultipleForcingChains)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.NamedChain">
+            <summary>
+            Represents a normal chain or loop.
+            </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="autoReversingOnComparison">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='autoReversingOnComparison']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.NamedChain.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Represents a normal chain or loop.
+            </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="autoReversingOnComparison">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='autoReversingOnComparison']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.NamedChain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Node">
             <summary>

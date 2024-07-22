@@ -13,7 +13,7 @@ public static class ChainOrLoopExtensions
 	/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetTechnique(this ChainOrLoop @this, ref readonly Grid grid)
+	public static Technique GetTechnique(this NamedChain @this, ref readonly Grid grid)
 		=> @this.GetTechnique(@this.GetConclusions(in grid));
 
 	/// <summary>
@@ -22,7 +22,7 @@ public static class ChainOrLoopExtensions
 	/// <param name="this">The pattern to be checked.</param>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
-	public static Technique GetTechnique(this ChainOrLoop @this, ConclusionSet conclusions)
+	public static Technique GetTechnique(this NamedChain @this, ConclusionSet conclusions)
 		=> @this switch
 		{
 			Chain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch

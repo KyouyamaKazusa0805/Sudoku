@@ -12,7 +12,7 @@ public sealed partial class FinnedChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	ChainOrLoop pattern,
+	NamedChain pattern,
 	[PrimaryConstructorParameter] ref readonly CandidateMap fins
 ) : NormalChainStep(conclusions, views, options, pattern)
 {

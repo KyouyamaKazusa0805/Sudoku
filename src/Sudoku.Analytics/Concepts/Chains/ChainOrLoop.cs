@@ -400,13 +400,6 @@ public abstract partial class ChainOrLoop :
 	public Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
-	/// Try to get a <see cref="ConclusionSet"/> instance that contains all conclusions created by using the current chain.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>A <see cref="ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
-	public virtual ConclusionSet GetConclusions(ref readonly Grid grid) => ConclusionSet.Empty;
-
-	/// <summary>
 	/// Collect views for the current chain.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
