@@ -21,7 +21,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	/// If the value is -1, all possible number of empty cells in a puzzle can be tried; otherwise set a value between 1 and 21.
 	/// </para>
 	/// </summary>
-	public int EmptyCellsCount { get; set; } = -1;
+	public Cell EmptyCellsCount { get; set; } = -1;
 
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => base.SupportedTypes | SudokuType.Standard;

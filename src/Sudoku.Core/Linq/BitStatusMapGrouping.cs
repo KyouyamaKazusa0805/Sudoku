@@ -34,8 +34,8 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	public int Count => Values.Count;
 
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.this[int]"/>
-	public TElement this[int index] => Values[index];
+	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.this[TElement]"/>
+	public TElement this[TElement index] => Values[index];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

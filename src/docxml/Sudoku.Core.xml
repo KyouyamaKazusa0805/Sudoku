@@ -6054,8 +6054,11 @@
         <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Item(`1)">
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#Generic#IReadOnlyList{TElement}#Item(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.AddRange(System.ReadOnlySpan{`1})">
             <summary>
@@ -9114,8 +9117,8 @@
             </summary>
             <seealso cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>
         </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Item(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Item(System.Int32)"/>
+        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Item(`1)">
+            <inheritdoc cref="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Item(`1)"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.Deconstruct(`3@,`0@)">
             <target name="method">

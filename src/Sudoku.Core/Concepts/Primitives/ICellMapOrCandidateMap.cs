@@ -103,7 +103,10 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
-	public new abstract TElement this[int index] { get; }
+	public abstract TElement this[TElement index] { get; }
+
+	/// <inheritdoc/>
+	TElement IReadOnlyList<TElement>.this[int index] => this[index];
 
 
 	/// <summary>
