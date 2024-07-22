@@ -13,7 +13,7 @@ public static class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum, allows ref struct
+	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
 			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,
@@ -29,17 +29,14 @@ public static class EnumExtensions
 	/// <returns>
 	/// All flags. If the enumeration field doesn't contain any flags, the return value will be <see langword="null"/>.
 	/// </returns>
-	public static T[] GetAllFlags<T>(this T @this) where T : unmanaged, Enum
+	public static ReadOnlySpan<T> GetAllFlags<T>(this T @this) where T : unmanaged, Enum
 	{
-		// Create a buffer to gather all possible flags.
-		var buffer = (stackalloc T[Enum.GetValues<T>().Length]);
-		var i = 0;
+		var set = new HashSet<T>(Enum.GetValues<T>().Length);
 		foreach (var flag in @this)
 		{
-			buffer[i++] = flag;
+			set.Add(flag);
 		}
-
-		return i == 0 ? [] : buffer[..i].ToArray().Distinct();
+		return set.ToArray();
 	}
 
 	/// <summary>

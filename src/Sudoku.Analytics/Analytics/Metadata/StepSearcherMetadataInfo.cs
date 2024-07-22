@@ -58,7 +58,7 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
-	public ReadOnlyMemory<DifficultyLevel> DifficultyLevelRange => _backAttribute.DifficultyLevels.GetAllFlags();
+	public ReadOnlySpan<DifficultyLevel> DifficultyLevelRange => _backAttribute.DifficultyLevels.GetAllFlags();
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
 	public TechniqueSet SupportedTechniques => _backAttribute.SupportedTechniques;

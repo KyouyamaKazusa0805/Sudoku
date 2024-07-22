@@ -199,7 +199,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				select (betweenRule, targetPair);
 			var chosenDifficultyLevels =
 				from c in constraints.OfType<DifficultyLevelConstraint>()
-				select c.ValidDifficultyLevels.GetAllFlags();
+				select c.ValidDifficultyLevels.GetAllFlags().ToArray();
 			var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
 			var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
 			{

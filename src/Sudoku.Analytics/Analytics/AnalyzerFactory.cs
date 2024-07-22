@@ -93,7 +93,7 @@ public static class AnalyzerFactory
 			0 => stepSearchers,
 			_ =>
 			from stepSearcher in stepSearchers
-			where stepSearcher.Metadata.DifficultyLevelRange.Span.Any((ref readonly DifficultyLevel l) => l <= level)
+			where stepSearcher.Metadata.DifficultyLevelRange.Any((ref readonly DifficultyLevel l) => l <= level)
 			select stepSearcher
 		};
 		return @this;
