@@ -150,7 +150,6 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 					}
 				}
 			}
-
 			return true;
 		}
 	}
