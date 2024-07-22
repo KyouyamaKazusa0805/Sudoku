@@ -7,6 +7,9 @@ namespace Sudoku.Concepts;
 public sealed partial class WeakForcingChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
 {
 	/// <inheritdoc/>
+	public override bool IsNamed => false;
+
+	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 1;
 
 	/// <inheritdoc/>

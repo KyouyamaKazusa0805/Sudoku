@@ -77,6 +77,11 @@ public abstract partial class ChainOrLoop :
 
 
 	/// <summary>
+	/// Indicates whether the chain can be categorized by a technique name.
+	/// </summary>
+	public virtual bool IsNamed => GetType().IsAssignableTo(typeof(NamedChain));
+
+	/// <summary>
 	/// Indicates whether the chain pattern uses grouped logic.
 	/// </summary>
 	public bool IsGrouped => ValidNodes.Any(static (ref readonly Node node) => node.IsAdvanced || node.IsGroupedNode);

@@ -11,6 +11,10 @@ namespace Sudoku.Concepts;
 public abstract class NamedChain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true) :
 	ChainOrLoop(lastNode, isLoop, autoReversingOnComparison)
 {
+	/// <inheritdoc/>
+	public sealed override bool IsNamed => true;
+
+
 	/// <summary>
 	/// Try to get a <see cref="ConclusionSet"/> instance that contains all conclusions created by using the current chain.
 	/// </summary>

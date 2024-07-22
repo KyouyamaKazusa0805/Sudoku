@@ -20896,6 +20896,11 @@
             </para>
             </param>
         </member>
+        <member name="P:Sudoku.Concepts.ChainOrLoop.IsNamed">
+            <summary>
+            Indicates whether the chain can be categorized by a technique name.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ChainOrLoop.IsGrouped">
             <summary>
             Indicates whether the chain pattern uses grouped logic.
@@ -21736,6 +21741,9 @@
             <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='autoReversingOnComparison']"/>
             </param>
         </member>
+        <member name="P:Sudoku.Concepts.NamedChain.IsNamed">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.NamedChain.GetConclusions(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
@@ -21995,6 +22003,9 @@
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.StrongForcingChain.IsNamed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.StrongForcingChain.WeakStartIdentity">
             <inheritdoc/>
         </member>
@@ -22071,6 +22082,9 @@
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.WeakForcingChain.IsNamed">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.WeakForcingChain.WeakStartIdentity">
             <inheritdoc/>
