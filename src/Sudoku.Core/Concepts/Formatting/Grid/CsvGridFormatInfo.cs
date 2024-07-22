@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Comma-separated-values formatting.

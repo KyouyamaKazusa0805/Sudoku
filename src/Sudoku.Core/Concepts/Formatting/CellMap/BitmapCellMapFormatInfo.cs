@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Formatting;
 
 /// <summary>
 /// Represents a <see cref="CellMapFormatInfo"/> type that supports bitmap formatting.
