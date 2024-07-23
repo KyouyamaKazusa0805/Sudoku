@@ -1,4 +1,4 @@
-namespace Sudoku.Operations;
+namespace Sudoku.ComponentModel;
 
 /// <summary>
 /// Represents an undoable object.

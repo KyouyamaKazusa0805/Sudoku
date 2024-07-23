@@ -1,4 +1,4 @@
-namespace Sudoku.Operations;
+namespace Sudoku.ComponentModel.Operations;
 
 /// <summary>
 /// Represents an operation that plays with drawing elements.

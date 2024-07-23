@@ -1,4 +1,4 @@
-namespace Sudoku.Operations;
+namespace Sudoku.ComponentModel;
 
 /// <summary>
 /// Represents a stack that stores a list of <see cref="Operation"/> instances that can be undone and redone.
