@@ -9887,6 +9887,155 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Operations.DrawingOperation">
+            <summary>
+            Represents an operation that plays with drawing elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.DrawingOperation.CanRedo">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Operations.DrawingOperation.CanUndo">
+            <inheritdocs/>
+        </member>
+        <member name="P:Sudoku.Operations.DrawingOperation.UpdatedViewNodes">
+            <summary>
+            Indicates the updated view nodes in the operation.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Operations.GridOperation">
+            <summary>
+            Represents an operation that plays with grids.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.GridOperation.CanRedo">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Operations.GridOperation.CanUndo">
+            <inheritdocs/>
+        </member>
+        <member name="P:Sudoku.Operations.GridOperation.UpdatedCandidates">
+            <summary>
+            Indicates the updated candidates in the operation.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Operations.IUndoable">
+            <summary>
+            Represents an undoable object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.IUndoable.Undo">
+            <summary>
+            Undo the current object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.IUndoable.Redo">
+            <summary>
+            Redo the current object.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Operations.Operation">
+            <summary>
+            Represents an operation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.Operation.CanUndo">
+            <summary>
+            Indicates whether the operation can undo.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.Operation.CanRedo">
+            <summary>
+            Indicates whether the operation can redo.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.Operation.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Operations.Operation.Redo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Operations.Operation.Clone">
+            <summary>
+            Creates a new <see cref="T:Sudoku.Operations.Operation"/> instance whose internal value is same as the current one, cloned.
+            </summary>
+            <returns>A new <see cref="T:Sudoku.Operations.Operation"/> instance cloned.</returns>
+        </member>
+        <member name="M:Sudoku.Operations.Operation.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Operations.OperationStack">
+            <summary>
+            Represents a stack that stores a list of <see cref="T:Sudoku.Operations.Operation"/> instances that can be undone and redone.
+            </summary>
+            <param name="capacity">
+            Indicates the desired capacity of the stacks.
+            If the internal stacks are full, the stacks will be expanded with double size.
+            </param>
+            <seealso cref="T:Sudoku.Operations.Operation"/>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.#ctor(System.Int32)">
+            <summary>
+            Represents a stack that stores a list of <see cref="T:Sudoku.Operations.Operation"/> instances that can be undone and redone.
+            </summary>
+            <param name="capacity">
+            Indicates the desired capacity of the stacks.
+            If the internal stacks are full, the stacks will be expanded with double size.
+            </param>
+            <seealso cref="T:Sudoku.Operations.Operation"/>
+        </member>
+        <member name="F:Sudoku.Operations.OperationStack._undoStack">
+            <summary>
+            Indicates the stacks to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Operations.OperationStack._redoStack">
+            <summary>
+            Indicates the stacks to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.#ctor">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Operations.OperationStack"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.OperationStack.IsUndoOperationsEmpty">
+            <summary>
+            Indicates whether the undo stack is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.OperationStack.IsRedoOperationsEmpty">
+            <summary>
+            Indicates whether the redo stack is empty.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.OperationStack.UndoOperationsCount">
+            <summary>
+            Indicates the number of operations can be undone.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Operations.OperationStack.RedoOperationsCount">
+            <summary>
+            Indicates the number of operations can be redone.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.Clear">
+            <summary>
+            Clears both stacks.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.Add(Sudoku.Operations.Operation)">
+            <summary>
+            Add a new <see cref="T:Sudoku.Operations.Operation"/> into the collection.
+            </summary>
+            <param name="operation">The operation to be added.</param>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.Undo">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Operations.OperationStack.Redo">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Randomization.Randomizer">
             <summary>
             Provides with extension methods for <see cref="T:System.Random"/>.
