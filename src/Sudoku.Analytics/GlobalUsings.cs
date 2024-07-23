@@ -41,7 +41,6 @@ global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
-global using Sudoku.Concepts.ObjectModel;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Inferring;

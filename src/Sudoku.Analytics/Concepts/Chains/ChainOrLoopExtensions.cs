@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ChainOrLoop"/> instances.

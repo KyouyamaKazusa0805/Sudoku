@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridExtensions
+public static class GridExocetExtensions
 {
 	/// <summary>
 	/// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,

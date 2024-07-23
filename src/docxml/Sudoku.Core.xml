@@ -3218,6 +3218,19 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.ConclusionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
+            </summary>
+            <param name="this">The conclusion array.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.ConclusionSet">
             <summary>
             Represents a list of conclusions.
@@ -3539,6 +3552,22 @@
             <summary>
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
+            <summary>
+            Gets the notation of the conclusion type.
+            </summary>
+            <param name="this">The conclusion type kind.</param>
+            <returns>The string representation of the conclusion kind.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
@@ -4450,6 +4479,37 @@
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.Coordinates.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.Coordinates.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.Coordinates.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
+            </summary>
+            <param name="this">The type of the coordinate type.</param>
+            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Formatting.BitmapCandidateMapFormatInfo">
             <summary>
@@ -5688,6 +5748,75 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.GridMinimalExtensions">
+            <summary>
+            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMinimalExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMinimalExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.GridMinLexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMinLexExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
+            by using the specified comparison type.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="other">The instance to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMinLexExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
+            <param name="this">Indicates the current instance.</param>
+            <param name="comparisonType">
+            Indicates the comparison type that specifies the target grid to be calculated its hash code.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparisonType"/> isn't defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.GridMinLexExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="other">The other object to be compared.</param>
+            <param name="comparisonType">The comparison type to be used.</param>
+            <returns>A value that indicates the relative order of the objects being compared.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+        </member>
         <member name="T:Sudoku.Concepts.GridPredicates">
             <summary>
             Represents a list of methods to filter the cells.
@@ -5742,6 +5871,42 @@
             Checks whether the cell is a value cell, being filled by the digit.
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.CandidatesMap``1(``0@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.GridSolvingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
+            <summary>
+            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
+            keeping the type being thread-safe.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
+            <summary>
+            Indicates the backing solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks the uniqueness of the current sudoku puzzle.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="T:Sudoku.Concepts.GridToken">
             <summary>
@@ -5798,6 +5963,21 @@
             <param name="s">The string.</param>
             <returns>The result digit.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.GridTransformingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Algorithms.Transformation.TransformType)">
+            <summary>
+            Transforms the grid by the specified type.
+            </summary>
+            <param name="grid">The grid to be transformed.</param>
+            <param name="transformTypes">
+            The transform types can be applied. You can use <c><see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
+            </param>
+        </member>
         <member name="T:Sudoku.Concepts.HouseMarshal">
             <summary>
             Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.
@@ -5851,6 +6031,27 @@
             Indicates the house type is a column.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
+            <summary>
+            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.HouseType"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetLabel(Sudoku.Concepts.HouseType)">
+            <summary>
+            Try to get the label of the specified house type.
+            </summary>
+            <param name="this">The house type.</param>
+            <returns>A character that represents a house type.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetProgramOrder(Sudoku.Concepts.HouseType)">
+            <summary>
+            Gets the ordering of the house type. The result value will be 0, 1 and 2.
+            </summary>
+            <param name="this">The house type.</param>
+            <returns>The program order.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
@@ -5865,6 +6066,22 @@
             <summary>
             Indicates the inference is weak inference.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.InferenceExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Inference"/>
+        </member>
+        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
+            <summary>
+            Gets connecting notation of the inference, with two spaces sandwiching the characters.
+            </summary>
+            <param name="this">The inference instance.</param>
+            <returns>The connecting notation of the inference.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Miniline">
             <summary>
@@ -7147,223 +7364,6 @@
             Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
             otherwise, <see langword="false"/>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
-            </summary>
-            <param name="this">The conclusion array.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.ConclusionTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type kind.</param>
-            <returns>The string representation of the conclusion kind.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.Coordinates.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.Coordinates.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.Coordinates.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
-            </summary>
-            <param name="this">The type of the coordinate type.</param>
-            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.GridMinimalExtensions">
-            <summary>
-            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinimalExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinimalExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="firstCandidateMakePuzzleNotMinimal">
-            <para>
-            Indicates the first found candidate that can make the puzzle not minimal, which means
-            if we remove the digit in the cell, the puzzle will still keep unique.
-            </para>
-            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.GridMinLexExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinLexExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
-            by using the specified comparison type.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="other">The instance to compare.</param>
-            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinLexExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
-            <param name="this">Indicates the current instance.</param>
-            <param name="comparisonType">
-            Indicates the comparison type that specifies the target grid to be calculated its hash code.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="comparisonType"/> isn't defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinLexExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <summary>
-            Compares the current instance with another object of the same type and returns an integer
-            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="other">The other object to be compared.</param>
-            <param name="comparisonType">The comparison type to be used.</param>
-            <returns>A value that indicates the relative order of the objects being compared.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.GridSolvingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
-            <summary>
-            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
-            keeping the type being thread-safe.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
-            <summary>
-            Indicates the backing solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks the uniqueness of the current sudoku puzzle.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
-            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="T:Sudoku.Concepts.GridTransformingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Algorithms.Transformation.TransformType)">
-            <summary>
-            Transforms the grid by the specified type.
-            </summary>
-            <param name="grid">The grid to be transformed.</param>
-            <param name="transformTypes">
-            The transform types can be applied. You can use <c><see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
-            </param>
-        </member>
-        <member name="T:Sudoku.Concepts.HouseTypeExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:Sudoku.Concepts.HouseType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.HouseType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetLabel(Sudoku.Concepts.HouseType)">
-            <summary>
-            Try to get the label of the specified house type.
-            </summary>
-            <param name="this">The house type.</param>
-            <returns>A character that represents a house type.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseTypeExtensions.GetProgramOrder(Sudoku.Concepts.HouseType)">
-            <summary>
-            Gets the ordering of the house type. The result value will be 0, 1 and 2.
-            </summary>
-            <param name="this">The house type.</param>
-            <returns>The program order.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.InferenceExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Inference"/>
-        </member>
-        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
-            <summary>
-            Gets connecting notation of the inference, with two spaces sandwiching the characters.
-            </summary>
-            <param name="this">The inference instance.</param>
-            <returns>The connecting notation of the inference.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
-            </exception>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
