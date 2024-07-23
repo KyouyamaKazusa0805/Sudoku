@@ -1,4 +1,3 @@
-#if UNIQUE_RECTANGLE_W_WING
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -57,4 +56,3 @@ public sealed partial class UniqueRectangleWithWWingStep(
 
 	private string WDigitsString => Options.Converter.DigitConverter((Mask)(1 << WDigit));
 }
-#endif

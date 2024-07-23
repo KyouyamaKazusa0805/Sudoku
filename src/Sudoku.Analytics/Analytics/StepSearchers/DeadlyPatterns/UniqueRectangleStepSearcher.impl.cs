@@ -154,7 +154,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 		}
 
-		if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+		if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 		{
 			return;
 		}
@@ -502,7 +502,8 @@ public partial class UniqueRectangleStepSearcher
 				extraCells.Add(cell);
 			}
 		}
-		if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+
+		if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 		{
 			return;
 		}
@@ -860,7 +861,7 @@ public partial class UniqueRectangleStepSearcher
 				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, possibleXyCell * 9 + digit));
 			}
 
-			if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+			if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 			{
 				return;
 			}
@@ -1318,7 +1319,8 @@ public partial class UniqueRectangleStepSearcher
 			{
 				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, possibleXyCell * 9 + digit));
 			}
-			if (IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+
+			if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 			{
 				return;
 			}
@@ -2409,10 +2411,9 @@ public partial class UniqueRectangleStepSearcher
 					}
 				}
 
-				var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-				if (!AllowIncompleteUniqueRectangles && isIncomplete)
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 				{
-					continue;
+					return;
 				}
 
 				accumulator.Add(
@@ -2447,7 +2448,6 @@ public partial class UniqueRectangleStepSearcher
 		}
 	}
 
-#if UNIQUE_RECTANGLE_W_WING
 	/// <summary>
 	/// Check UR-W-Wing and AR-W-Wing.
 	/// </summary>
@@ -2488,6 +2488,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
 	/// </para>
 	/// </remarks>
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private partial void CheckWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
@@ -2573,9 +2574,9 @@ public partial class UniqueRectangleStepSearcher
 					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, endCell2 * 9 + digit));
 				}
 
-				if (!AllowIncompleteUniqueRectangles && IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets))
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
 				{
-					continue;
+					return;
 				}
 
 				var isAvoidable = arMode && (EmptyCells & cells).Count != 4;
@@ -2583,7 +2584,7 @@ public partial class UniqueRectangleStepSearcher
 					new UniqueRectangleWithWWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
 						[[.. candidateOffsets]],
-						context.PredefinedOptions,
+						context.Options,
 						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
 						d1,
 						d2,
@@ -2598,7 +2599,6 @@ public partial class UniqueRectangleStepSearcher
 			}
 		}
 	}
-#endif
 
 	/// <summary>
 	/// Check UR + SdC.
@@ -3324,10 +3324,9 @@ public partial class UniqueRectangleStepSearcher
 					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + guardianDigit));
 				}
 
-				var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-				if (!AllowIncompleteUniqueRectangles && isIncomplete)
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 				{
-					continue;
+					return;
 				}
 
 				accumulator.Add(
@@ -3491,10 +3490,9 @@ public partial class UniqueRectangleStepSearcher
 								}
 							}
 
-							var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-							if (!AllowIncompleteUniqueRectangles && isIncomplete)
+							if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 							{
-								continue;
+								return;
 							}
 
 							accumulator.Add(
@@ -3658,10 +3656,9 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + conjugatePairDigit));
 						}
 
-						var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-						if (!AllowIncompleteUniqueRectangles && isIncomplete)
+						if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 						{
-							continue;
+							return;
 						}
 
 						accumulator.Add(
@@ -3833,10 +3830,9 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, otherCellInWeakLinkHouse * 9 + guardianDigit));
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, finalCell * 9 + guardianDigit));
 
-							var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-							if (!AllowIncompleteUniqueRectangles && isIncomplete)
+							if (!IsIncompleteValid(false, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 							{
-								continue;
+								return;
 							}
 
 							accumulator.Add(
@@ -4042,10 +4038,9 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, endCell * 9 + xDigit));
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, endCell * 9 + wDigit));
 
-							var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-							if (!AllowIncompleteUniqueRectangles && isIncomplete)
+							if (!IsIncompleteValid(false, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 							{
-								continue;
+								return;
 							}
 
 							accumulator.Add(
@@ -4251,10 +4246,9 @@ public partial class UniqueRectangleStepSearcher
 						}
 					}
 
-					var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-					if (!AllowIncompleteUniqueRectangles && isIncomplete)
+					if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 					{
-						continue;
+						return;
 					}
 
 					accumulator.Add(
@@ -4372,10 +4366,9 @@ public partial class UniqueRectangleStepSearcher
 					}
 				}
 
-				var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-				if (!AllowIncompleteUniqueRectangles && isIncomplete)
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 				{
-					continue;
+					return;
 				}
 
 				accumulator.Add(
@@ -4555,10 +4548,9 @@ public partial class UniqueRectangleStepSearcher
 						}
 					}
 
-					var isIncomplete = IsIncomplete(AllowIncompleteUniqueRectangles, candidateOffsets);
-					if (!AllowIncompleteUniqueRectangles && isIncomplete)
+					if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
 					{
-						continue;
+						return;
 					}
 
 					accumulator.Add(
@@ -4793,8 +4785,10 @@ public partial class UniqueRectangleStepSearcher
 	/// <summary>
 	/// Check whether the highlight UR candidates is incomplete.
 	/// </summary>
+	/// <param name="arMode">Indicates whether the current searching mode is for ARs.</param>
 	/// <param name="allowIncomplete"><inheritdoc cref="AllowIncompleteUniqueRectangles" path="/summary"/></param>
 	/// <param name="list">The list to check.</param>
+	/// <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <remarks>
 	/// This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
@@ -4802,8 +4796,15 @@ public partial class UniqueRectangleStepSearcher
 	/// colored with normal one, the pattern will be complete.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsIncomplete(bool allowIncomplete, List<CandidateViewNode> list)
-		=> allowIncomplete && list.Count(static d => d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal }) != 8;
+	private static bool IsIncompleteValid(bool arMode, bool allowIncomplete, List<CandidateViewNode> list, out bool isIncomplete)
+	{
+		isIncomplete = !allowIncomplete && list.Count(nodeChecker) != 8 || allowIncomplete;
+		return !arMode && isIncomplete || arMode;
+
+
+		static bool nodeChecker(CandidateViewNode d)
+			=> d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal };
+	}
 
 	/// <summary>
 	/// Get a cell that can't see each other.
