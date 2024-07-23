@@ -182,7 +182,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		{
 			// We should check whether the puzzle is a GSP firstly.
 			// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
-			puzzle.InferSymmetricalPlacement(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
+			SymmetryInferrer.TryInfer(in puzzle, out var triplet);
+			var (symmetricType, mappingDigits, selfPairedDigitsMask) = triplet;
 
 			try
 			{
@@ -261,7 +262,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				context.GspPatternInferred = symmetricType;
 				context.MappingRelations = mappingDigits;
 
-				if (SymmetricalPlacing.GetStep(in playground, Options) is { } step)
+				if (SymmetryInferrer.GetStep(in playground, Options) is { } step)
 				{
 					if (verifyConclusionValidity(in solution, step))
 					{

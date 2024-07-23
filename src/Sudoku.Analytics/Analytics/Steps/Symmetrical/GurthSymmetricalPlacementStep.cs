@@ -21,7 +21,7 @@ public partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter, ConstantExpected(Min = SymmetricType.Central, Max = SymmetricType.AntiDiagonal)] SymmetricType symmetricType,
+	[PrimaryConstructorParameter] SymmetricType symmetricType,
 	[PrimaryConstructorParameter] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views, options)
 {

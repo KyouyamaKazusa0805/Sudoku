@@ -1,16 +1,23 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Inferring;
 
 using unsafe SymmetricalPlacementCheckerFuncPtr = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
 
 /// <summary>
-/// Represents a type that checks and infers for technique usages on Gurth's symmetrical placement.
+/// Represents an inferrer that can checks for symmetrical placements.
 /// </summary>
-public static unsafe class SymmetricalPlacing
+public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult>
 {
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
 	private static readonly SymmetricalPlacementCheckerFuncPtr[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
+
+
+	/// <summary>
+	/// Hides the constructor of this type.
+	/// </summary>
+	[Obsolete("Don't instantiate this type.", true)]
+	private SymmetryInferrer() => throw new NotSupportedException();
 
 
 	/// <summary>
@@ -27,7 +34,7 @@ public static unsafe class SymmetricalPlacing
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSymmetricalPlacement(
-		this in Grid grid,
+		ref readonly Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -42,24 +49,8 @@ public static unsafe class SymmetricalPlacing
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
 	}
 
-	/// <summary>
-	/// Try to get the symmetric type and its mapping rule for the specified grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="symmetricType">The symmetric type returned.</param>
-	/// <param name="mappingDigits">The mapping digits returned.</param>
-	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
-	/// <remarks><i>
-	/// Today this method doesn't check for Sukakus because such puzzles may not contain any givens,
-	/// escaping the checking for symmetric placing rule.
-	/// </i></remarks>
-	public static bool InferSymmetricalPlacement(
-		this in Grid grid,
-		out SymmetricType symmetricType,
-		out ReadOnlySpan<Digit?> mappingDigits,
-		out Mask selfPairedDigitsMask
-	)
+	/// <inheritdoc/>
+	public static bool TryInfer(ref readonly Grid grid, [NotNullWhen(true)] out SymmetryInferredResult result)
 	{
 		if (grid.PuzzleType != SudokuType.Standard || grid.GetUniqueness() != Uniqueness.Unique)
 		{
@@ -68,16 +59,15 @@ public static unsafe class SymmetricalPlacing
 
 		foreach (var functionPointer in Checkers)
 		{
-			if (functionPointer(in grid, out symmetricType, out mappingDigits, out selfPairedDigitsMask))
+			if (functionPointer(in grid, out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask))
 			{
+				result = new(symmetricType, mappingDigits, selfPairedDigitsMask);
 				return true;
 			}
 		}
 
 	FastFail:
-		symmetricType = SymmetricType.None;
-		mappingDigits = null;
-		selfPairedDigitsMask = 0;
+		result = new(SymmetricType.None, null, 0);
 		return false;
 	}
 
@@ -508,7 +498,7 @@ public static unsafe class SymmetricalPlacing
 			return null;
 		}
 
-		if (!grid.IsSymmetricalPlacement(SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(in grid, SymmetricType.Diagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -588,7 +578,7 @@ public static unsafe class SymmetricalPlacing
 			return null;
 		}
 
-		if (!grid.IsSymmetricalPlacement(SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(in grid, SymmetricType.AntiDiagonal, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
@@ -636,13 +626,7 @@ public static unsafe class SymmetricalPlacing
 
 		return conclusions.Count == 0
 			? null
-			: new(
-				[.. conclusions],
-				[[.. cellOffsets, .. candidateOffsets]],
-				options,
-				SymmetricType.AntiDiagonal,
-				[.. mapping]
-			);
+			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], options, SymmetricType.AntiDiagonal, [.. mapping]);
 	}
 
 	/// <summary>
@@ -653,7 +637,7 @@ public static unsafe class SymmetricalPlacing
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
 	private static GurthSymmetricalPlacementStep? CheckCentral(ref readonly Grid grid, StepSearcherOptions options)
 	{
-		if (!grid.IsSymmetricalPlacement(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
+		if (!IsSymmetricalPlacement(in grid, SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{
 			return null;
 		}
