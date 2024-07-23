@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string _Token_CenterDot {
+            get {
+                return ResourceManager.GetString("_Token_CenterDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to : .
         /// </summary>
         public static string _Token_Colon {
@@ -390,6 +399,15 @@ namespace Sudoku.Resources {
         public static string AntiGurthSymmetricalPlacement {
             get {
                 return ResourceManager.GetString("AntiGurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Appear {
+            get {
+                return ResourceManager.GetString("Appear", resourceCulture);
             }
         }
         
@@ -1749,6 +1767,15 @@ namespace Sudoku.Resources {
         public static string ExtraDifficultyFactorNames_Avoidable {
             get {
                 return ResourceManager.GetString("ExtraDifficultyFactorNames_Avoidable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ExtraDifficultyFactorNames_BiBiPattern {
+            get {
+                return ResourceManager.GetString("ExtraDifficultyFactorNames_BiBiPattern", resourceCulture);
             }
         }
         
@@ -4084,6 +4111,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merged Cell Forcing Chains.
+        /// </summary>
+        public static string MergedCellForcingChains {
+            get {
+                return ResourceManager.GetString("MergedCellForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merged Region Forcing Chains.
+        /// </summary>
+        public static string MergedRegionForcingChains {
+            get {
+                return ResourceManager.GetString("MergedRegionForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
         /// </summary>
         public static string Message_MissingDifficultyLevelException {
@@ -4749,6 +4794,15 @@ namespace Sudoku.Resources {
         public static string NTimesAlmostLockedSetsDeathBlossom {
             get {
                 return ResourceManager.GetString("NTimesAlmostLockedSetsDeathBlossom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Only {
+            get {
+                return ResourceManager.GetString("Only", resourceCulture);
             }
         }
         
@@ -7147,6 +7201,69 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_AlmostLockedPair {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_AlmostLockedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_AlmostLockedQuadruple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_AlmostLockedQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_AlmostLockedTriple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_AlmostLockedTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_BivalueUniversalGraveType1 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_BivalueUniversalGraveType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_BivalueUniversalGraveType2 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_BivalueUniversalGraveType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_BivalueUniversalGraveType3 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_BivalueUniversalGraveType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_BivalueUniversalGraveType4 {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_BivalueUniversalGraveType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked Candidates Type 2.
         /// </summary>
         public static string TechniqueAlias_Claiming {
@@ -7201,6 +7318,69 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_FullHouse {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_FullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenPair {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenQuadruple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenQuadruple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenSingleRow {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_HiddenTriple {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_HiddenTriple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hidden Rectangle.
         /// </summary>
         public static string TechniqueAlias_HiddenUniqueRectangle {
@@ -7219,11 +7399,38 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_LastDigit {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_LastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 7-Fish.
         /// </summary>
         public static string TechniqueAlias_Leviathan {
             get {
                 return ResourceManager.GetString("TechniqueAlias_Leviathan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_NakedPair {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_NakedPairPlus {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedPairPlus", resourceCulture);
             }
         }
         
@@ -7242,6 +7449,15 @@ namespace Sudoku.Resources {
         public static string TechniqueAlias_NakedQuadruplePlus {
             get {
                 return ResourceManager.GetString("TechniqueAlias_NakedQuadruplePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_NakedSingle {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_NakedSingle", resourceCulture);
             }
         }
         
@@ -7273,6 +7489,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_Skyscraper {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_Skyscraper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 5-Fish;Starfish.
         /// </summary>
         public static string TechniqueAlias_Squirmbag {
@@ -7300,11 +7525,56 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_TurbotFish {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_TurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_TwoStringKite {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_TwoStringKite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 6-Fish.
         /// </summary>
         public static string TechniqueAlias_Whale {
             get {
                 return ResourceManager.GetString("TechniqueAlias_Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_XChain {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_XChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_XWing {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_XWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueAlias_XyChain {
+            get {
+                return ResourceManager.GetString("TechniqueAlias_XyChain", resourceCulture);
             }
         }
         
@@ -7359,6 +7629,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_AlmostLockedSetsXyWingStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXyWingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueFormat_AlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXzRule", resourceCulture);
             }
         }
         
@@ -7926,6 +8205,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_NormalFishStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NormalFishStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep", resourceCulture);
             }
         }
         

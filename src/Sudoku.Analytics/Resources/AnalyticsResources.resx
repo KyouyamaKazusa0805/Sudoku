@@ -3270,4 +3270,100 @@ Error grid: '{0:#}'</value>
   <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
     <value>Grouped nodes in blossom loop</value>
   </data>
+  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Appear" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_XChain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_XWing" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TechniqueAlias_XyChain" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Token_CenterDot" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MergedRegionForcingChains" xml:space="preserve">
+    <value>Merged Region Forcing Chains</value>
+  </data>
+  <data name="MergedCellForcingChains" xml:space="preserve">
+    <value>Merged Cell Forcing Chains</value>
+  </data>
 </root>

@@ -5103,6 +5103,28 @@ public enum Technique
 	CellForcingChains,
 
 	/// <summary>
+	/// Indicates merged region forcing chains (i.e. merged house forcing chains).
+	/// </summary>
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
+	[TechniqueMetadata(
+		Rating = 80,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.ForcingChains)]
+	MergedRegionForcingChains,
+
+	/// <summary>
+	/// Indicates merged cell forcing chains.
+	/// </summary>
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
+	[TechniqueMetadata(
+		Rating = 80,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.ForcingChains)]
+	MergedCellForcingChains,
+
+	/// <summary>
 	/// Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]

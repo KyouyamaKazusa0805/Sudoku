@@ -6,6 +6,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <list type="bullet">
 /// <item>Cell Forcing Chains</item>
 /// <item>Region Forcing Chains (i.e. House Forcing Chains)</item>
+/// <item>Merged Cell Forcing Chains</item>
+/// <item>Merged Region Forcing Chains (i.e. Merged House Forcing Chains)</item>
 /// </list>
 /// </summary>
 [StepSearcher(

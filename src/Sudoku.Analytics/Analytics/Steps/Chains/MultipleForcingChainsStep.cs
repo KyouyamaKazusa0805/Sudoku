@@ -32,7 +32,10 @@ public sealed partial class MultipleForcingChainsStep(
 	public override int Complexity => Pattern.Complexity;
 
 	/// <inheritdoc/>
-	public override Technique Code => Pattern.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
+	public override Technique Code
+		=> Conclusions.Length >= 2
+			? Pattern.IsCellMultiple ? Technique.MergedCellForcingChains : Technique.MergedRegionForcingChains
+			: Pattern.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -55,5 +58,9 @@ public sealed partial class MultipleForcingChainsStep(
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
-		=> other is MultipleForcingChainsStep comparer ? Pattern.CompareTo(comparer.Pattern) : -1;
+		=> other is MultipleForcingChainsStep comparer
+			? Conclusions.Length.CompareTo(comparer.Conclusions.Length) is var r and not 0
+				? r
+				: Pattern.CompareTo(comparer.Pattern)
+			: -1;
 }

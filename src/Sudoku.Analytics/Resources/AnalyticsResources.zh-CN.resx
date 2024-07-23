@@ -3452,4 +3452,12 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
+  <data name="MergedRegionForcingChains" xml:space="preserve">
+    <value>归并区域强制链</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="MergedCellForcingChains" xml:space="preserve">
+    <value>归并单元格强制链</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>
