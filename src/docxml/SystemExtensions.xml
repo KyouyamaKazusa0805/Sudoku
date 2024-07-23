@@ -1247,16 +1247,6 @@
             </summary>
             <typeparam name="TSelf">The implementation.</typeparam>
         </member>
-        <member name="M:System.ILogicalOperators`1.LogicalAnd(`0,`0)">
-            <summary>
-            Make logical and for two <typeparamref name="TSelf"/> instances.
-            </summary>
-        </member>
-        <member name="M:System.ILogicalOperators`1.LogicalOr(`0,`0)">
-            <summary>
-            Make logical or for two <typeparamref name="TSelf"/> instances.
-            </summary>
-        </member>
         <member name="M:System.ILogicalOperators`1.op_True(`0)">
             <summary>
             Determine whether the specified object is determined <see langword="true"/>.
