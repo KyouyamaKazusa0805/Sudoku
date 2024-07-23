@@ -36,7 +36,8 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return Backdoor.GetBackdoors(in puzzle).ToArray();
+				BackdoorInferrer.TryInfer(in puzzle, out var result);
+				return result.Candidates.ToArray();
 			}
 		});
 

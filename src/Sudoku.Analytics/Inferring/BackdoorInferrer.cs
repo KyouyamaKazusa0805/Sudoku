@@ -1,34 +1,30 @@
-namespace Sudoku.Algorithms.Backdoors;
+namespace Sudoku.Inferring;
 
 /// <summary>
 /// Defines a backdoor searcher.
 /// </summary>
-public static class Backdoor
+public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 {
-	/// <summary>
-	/// Try to get all possible backdoors.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>A list of backdoors.</returns>
-	/// <exception cref="ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<Conclusion> GetBackdoors(ref readonly Grid grid)
+	public static bool TryInfer(ref readonly Grid grid, out BackdoorInferredResult result)
 	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
+		if (grid.PuzzleType != SudokuType.Standard || grid.IsSolved || !grid.GetIsValid())
+		{
+			result = default;
+			return false;
+		}
 
 		var sstsChecker = Analyzer.SstsOnly;
-		return (grid, sstsChecker.Analyze(in grid)) switch
-		{
-			_ when !grid.GetIsValid() => throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
-			({ IsSolved: true }, _) => throw new ArgumentException(SR.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
-			(_, { IsSolved: true }) when grid.GetSolutionGrid() is var solution
-				=>
+		result = sstsChecker.Analyze(in grid).IsSolved && grid.GetSolutionGrid() is var solution
+			? new(
 				from candidate in grid
 				let digit = solution.GetDigit(candidate / 9)
 				where digit != -1
-				select new Conclusion(digit == candidate % 9 ? Assignment : Elimination, candidate),
-			_ => g(in grid)
-		};
+				select new Conclusion(digit == candidate % 9 ? Assignment : Elimination, candidate)
+			)
+			: new(g(in grid));
+		return true;
 
 
 		ReadOnlySpan<Conclusion> g(ref readonly Grid grid)

@@ -20,6 +20,28 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	private SymmetryInferrer() => throw new NotSupportedException();
 
 
+	/// <inheritdoc/>
+	public static bool TryInfer(ref readonly Grid grid, out SymmetryInferredResult result)
+	{
+		if (grid.PuzzleType != SudokuType.Standard || grid.GetUniqueness() != Uniqueness.Unique)
+		{
+			goto FastFail;
+		}
+
+		foreach (var functionPointer in Checkers)
+		{
+			if (functionPointer(in grid, out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask))
+			{
+				result = new(symmetricType, mappingDigits, selfPairedDigitsMask);
+				return true;
+			}
+		}
+
+	FastFail:
+		result = default;
+		return false;
+	}
+
 	/// <summary>
 	/// Try to get the its mapping rule for the specified grid via the specified symmetric type.
 	/// </summary>
@@ -47,28 +69,6 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
-	}
-
-	/// <inheritdoc/>
-	public static bool TryInfer(ref readonly Grid grid, [NotNullWhen(true)] out SymmetryInferredResult result)
-	{
-		if (grid.PuzzleType != SudokuType.Standard || grid.GetUniqueness() != Uniqueness.Unique)
-		{
-			goto FastFail;
-		}
-
-		foreach (var functionPointer in Checkers)
-		{
-			if (functionPointer(in grid, out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask))
-			{
-				result = new(symmetricType, mappingDigits, selfPairedDigitsMask);
-				return true;
-			}
-		}
-
-	FastFail:
-		result = new(SymmetricType.None, null, 0);
-		return false;
 	}
 
 	/// <summary>

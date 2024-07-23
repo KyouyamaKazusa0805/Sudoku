@@ -1,23 +1,27 @@
-namespace Sudoku.Algorithms.DeadlyPatterns;
+namespace Sudoku.Inferring;
 
 /// <summary>
 /// Represents a type that checks and infers for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),
 /// determining whether the pattern is a deadly pattern.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class DeadlyPattern
+public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredResult>
 {
 	/// <summary>
-	/// Determines whether a pattern is a deadly pattern.
+	/// Hides the constructor of this type.
 	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
-	public static bool IsDeadlyPattern(ref readonly Grid grid)
+	[Obsolete("Don't instantiate this type.", true)]
+	private DeadlyPatternInferrer() => throw new NotSupportedException();
+
+
+	/// <inheritdoc/>
+	public static bool TryInfer(ref readonly Grid grid, out DeadlyPatternInferredResult result)
 	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.GetIsValid(), false);
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.EmptiesCount, 81);
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
+		if (grid.GetIsValid() || grid.EmptiesCount != 81 || grid.PuzzleType != SudokuType.Standard)
+		{
+			// Invalid values to be checked.
+			goto FastFail;
+		}
 
 		// Collect all used cells. This value may not be necessary but will make program be a little bit faster if cached.
 		var cellsUsed = CellMap.Empty;
@@ -35,7 +39,8 @@ public static class DeadlyPattern
 		{
 			if ((HousesMap[house] & cellsUsed).Count == 1)
 			{
-				return false;
+				result = new(in grid, false);
+				return true;
 			}
 		}
 
@@ -45,7 +50,7 @@ public static class DeadlyPattern
 		dfs(ref playground, in cellsUsed, solutions, 0);
 		if (solutions.Count == 0)
 		{
-			return false;
+			goto FastFail;
 		}
 
 		foreach (ref readonly var solution in solutions.AsReadOnlySpan())
@@ -82,12 +87,18 @@ public static class DeadlyPattern
 			// Step 3: Check for the validity on this case.
 			if (tempSolutions.Count == 0)
 			{
-				return false;
+				result = new(in grid, false);
+				return true;
 			}
 		}
 
 		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern.
+		result = new(in grid, true);
 		return true;
+
+	FastFail:
+		result = default;
+		return false;
 
 
 		static void dfs(ref Grid grid, in CellMap cellsRange, List<Grid> solutions, Cell currentCell)
