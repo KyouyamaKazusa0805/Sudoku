@@ -117,10 +117,10 @@ public static class CellMapEnumerable
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
 	/// </param>
 	/// <returns>
-	/// A list of <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/> instances where each value object contains a sequence of objects and a key.
+	/// A list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> instances where each value object contains a sequence of objects and a key.
 	/// </returns>
-	/// <seealso cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
-	public static ReadOnlySpan<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> GroupBy<TKey>(
+	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
+	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> GroupBy<TKey>(
 		this scoped in CellMap @this,
 		Func<Cell, TKey> keySelector
 	) where TKey : notnull
@@ -137,7 +137,7 @@ public static class CellMapEnumerable
 			}
 		}
 
-		var result = new BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>[dictionary.Count];
+		var result = new CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>[dictionary.Count];
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{

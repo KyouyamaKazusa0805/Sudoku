@@ -13,15 +13,15 @@ public static class CellMapExtensions
 	/// <param name="houses">The mask value holding a list of houses to be matched.</param>
 	/// <returns>
 	/// A list of <see cref="CellMap"/> grouped,
-	/// representing as a <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>.
+	/// representing as a <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>.
 	/// </returns>
-	/// <seealso cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
-	public static ReadOnlySpan<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, House>> GroupTargets(
+	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
+	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>> GroupTargets(
 		this scoped in CellMap @this,
 		HouseMask houses
 	)
 	{
-		var (result, i) = (new BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, House>[PopCount((uint)houses)], 0);
+		var (result, i) = (new CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>[PopCount((uint)houses)], 0);
 		foreach (var house in houses)
 		{
 			if ((@this & HousesMap[house]) is var map and not [])

@@ -1,19 +1,19 @@
 namespace Sudoku.Linq;
 
 /// <summary>
-/// Represents a list of LINQ methods used by <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/> instances.
+/// Represents a list of LINQ methods used by <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> instances.
 /// </summary>
-/// <seealso cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
-public static class BitStatusMapGroupingEnumerable
+/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
+public static class CellMapOrCandidateMapGroupingEnumerable
 {
 	/// <summary>
 	/// Filters a sequence of values based on a predicate.
 	/// </summary>
 	/// <typeparam name="TMap">
-	/// The type of the map that stores the <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}.Values"/>.
+	/// The type of the map that stores the <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}.Values"/>.
 	/// </typeparam>
 	/// <typeparam name="TElement">
-	/// The type of elements stored in <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}.Values"/>.
+	/// The type of elements stored in <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}.Values"/>.
 	/// </typeparam>
 	/// <typeparam name="TEnumerator">The type of enumerator.</typeparam>
 	/// <typeparam name="TKey">The type of the key in the group.</typeparam>
@@ -21,7 +21,7 @@ public static class BitStatusMapGroupingEnumerable
 	/// <param name="predicate">A function to test each element for a condition.</param>
 	/// <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
 	public static ReadOnlySpan<TElement> Where<TMap, TElement, TEnumerator, TKey>(
-		this BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
+		this CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
 		Func<TElement, bool> predicate
 	)
 		where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement, TEnumerator>
@@ -45,13 +45,13 @@ public static class BitStatusMapGroupingEnumerable
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/summary"/>
 	/// </summary>
 	/// <typeparam name="TMap">
-	/// <inheritdoc cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TMap']"/>
+	/// <inheritdoc cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TMap']"/>
 	/// </typeparam>
 	/// <typeparam name="TElement">
-	/// <inheritdoc cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TElement']"/>
+	/// <inheritdoc cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TElement']"/>
 	/// </typeparam>
 	/// <typeparam name="TKey">
-	/// <inheritdoc cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TKey']"/>
+	/// <inheritdoc cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}" path="/typeparam[@name='TKey']"/>
 	/// </typeparam>
 	/// <typeparam name="TEnumerator">
 	/// The type of enumerator.
@@ -68,7 +68,7 @@ public static class BitStatusMapGroupingEnumerable
 	/// on each element of the current instance.
 	/// </returns>
 	public static ReadOnlySpan<TResult> Select<TMap, TElement, TEnumerator, TKey, TResult>(
-		this BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
+		this CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
 		Func<TElement, TResult> selector
 	)
 		where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement, TEnumerator>
@@ -86,7 +86,7 @@ public static class BitStatusMapGroupingEnumerable
 	}
 
 	/// <summary>
-	/// Projects a list of <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CellMap"/>,
+	/// Projects a list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CellMap"/>,
 	/// <see cref="Cell"/> and <typeparamref name="TKey"/>, into a <see cref="Cell"/> value; collect converted results and merge
 	/// into a <see cref="CellMap"/> instance.
 	/// </summary>
@@ -95,8 +95,8 @@ public static class BitStatusMapGroupingEnumerable
 	/// <param name="selector">The transform method to apply to each element.</param>
 	/// <returns>The result.</returns>
 	public static CellMap Select<TKey>(
-		this ReadOnlySpan<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> @this,
-		Func<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>, Cell> selector
+		this ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> @this,
+		Func<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>, Cell> selector
 	) where TKey : notnull
 	{
 		var result = CellMap.Empty;
@@ -108,7 +108,7 @@ public static class BitStatusMapGroupingEnumerable
 	}
 
 	/// <summary>
-	/// Projects a list of <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CandidateMap"/>,
+	/// Projects a list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CandidateMap"/>,
 	/// <see cref="Candidate"/> and <typeparamref name="TKey"/>, into a <see cref="Candidate"/> value; collect converted results
 	/// and merge into a <see cref="CandidateMap"/> instance.
 	/// </summary>
@@ -117,8 +117,8 @@ public static class BitStatusMapGroupingEnumerable
 	/// <param name="selector">The transform method to apply to each element.</param>
 	/// <returns>The result.</returns>
 	public static CandidateMap Select<TKey>(
-		this ReadOnlySpan<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> @this,
-		Func<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>, Candidate> selector
+		this ReadOnlySpan<CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> @this,
+		Func<CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>, Candidate> selector
 	) where TKey : notnull
 	{
 		var result = CandidateMap.Empty;

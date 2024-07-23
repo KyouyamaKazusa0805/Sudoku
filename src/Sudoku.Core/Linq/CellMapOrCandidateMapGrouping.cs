@@ -12,13 +12,13 @@ namespace Sudoku.Linq;
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
-public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>(
+public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[PrimaryConstructorParameter] TKey key,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly TMap values
 ) :
 	IEnumerable<TElement>,
-	IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>,
-	IEqualityOperators<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, bool>,
+	IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>,
+	IEqualityOperators<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>, CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>, bool>,
 	IGrouping<TKey, TElement>,
 	ISelectMethod<TMap, TElement>,
 	IWhereMethod<TMap, TElement>
@@ -44,7 +44,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
+	public bool Equals(ref readonly CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
@@ -55,11 +55,11 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 
 	/// <summary>
 	/// Makes a <see cref="CellMap"/> instance that is concatenated by a list of groups
-	/// of type <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>, adding their keys.
+	/// of type <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>, adding their keys.
 	/// </summary>
 	/// <param name="groups">The groups.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap CreateMapByKeys(ReadOnlySpan<BitStatusMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
+	public static CellMap CreateMapByKeys(ReadOnlySpan<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
 	{
 		var result = CellMap.Empty;
 		foreach (ref readonly var group in groups)
@@ -70,7 +70,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	}
 
 	/// <inheritdoc/>
-	bool IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>.Equals(BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Equals(in other);
+	bool IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>.Equals(CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Equals(in other);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
