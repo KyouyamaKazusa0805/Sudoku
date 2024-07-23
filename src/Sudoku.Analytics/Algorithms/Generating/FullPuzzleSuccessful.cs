@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Algorithms.Generating;
 
 /// <summary>
 /// Provides successful for generating full puzzle.

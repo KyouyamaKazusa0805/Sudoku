@@ -1,4 +1,4 @@
-namespace Sudoku.Generating.TechniqueBased;
+namespace Sudoku.Algorithms.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a type that generates puzzles that only contains full house usages.

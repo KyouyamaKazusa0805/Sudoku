@@ -11,7 +11,7 @@
 // This code is actually a Java port of code posted by Glenn Fowler in the Sudoku Player's Forum (http://www.setbb.com/sudoku).
 // Many thanks for letting me use it!
 
-namespace Sudoku.Generating;
+namespace Sudoku.Algorithms.Generating;
 
 /// <summary>
 /// Represents a puzzle generator, implemented by HoDoKu.

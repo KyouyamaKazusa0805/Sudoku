@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Algorithms.Generating;
 
 /// <summary>
 /// Represents a result that describes why the generation failed.

@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Algorithms.Generating;
 
 /// <summary>
 /// Defines a puzzle generator that makes the given pattern as a hard one.

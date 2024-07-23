@@ -1,4 +1,4 @@
-namespace Sudoku.Generating.TechniqueBased;
+namespace Sudoku.Algorithms.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a puzzle generator that can create puzzles using naked singles.
