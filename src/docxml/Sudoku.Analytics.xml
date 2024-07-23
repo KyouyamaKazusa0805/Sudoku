@@ -21798,19 +21798,13 @@
             </summary>
             <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
             <param name="isLoop"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
-            <param name="autoReversingOnComparison">
-            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='autoReversingOnComparison']"/>
-            </param>
         </member>
-        <member name="M:Sudoku.Concepts.NamedChain.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Concepts.NamedChain.#ctor(Sudoku.Concepts.Node,System.Boolean)">
             <summary>
             Represents a normal chain or loop.
             </summary>
             <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
             <param name="isLoop"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
-            <param name="autoReversingOnComparison">
-            <inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='autoReversingOnComparison']"/>
-            </param>
         </member>
         <member name="P:Sudoku.Concepts.NamedChain.IsNamed">
             <inheritdoc/>
@@ -22074,16 +22068,7 @@
             Represents a chain segment (forcing chain) starting with strong link.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.StrongForcingChain.IsNamed">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.StrongForcingChain.WeakStartIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongForcingChain.LoopIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongForcingChain.ValidNodes">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.StrongForcingChain.CompareTo(Sudoku.Concepts.StrongForcingChain)">
@@ -22144,6 +22129,27 @@
         <member name="M:Sudoku.Concepts.StrongForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Concepts.UnnamedChain">
+            <summary>
+            Represents a forcing chain branch.
+            </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+        </member>
+        <member name="M:Sudoku.Concepts.UnnamedChain.#ctor(Sudoku.Concepts.Node)">
+            <summary>
+            Represents a forcing chain branch.
+            </summary>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Concepts.ChainOrLoop.#ctor(Sudoku.Concepts.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+        </member>
+        <member name="P:Sudoku.Concepts.UnnamedChain.IsNamed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.UnnamedChain.LoopIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.UnnamedChain.ValidNodes">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.WeakForcingChain">
             <summary>
             Represents a chain segment (forcing chain) starting with weak link.
@@ -22154,16 +22160,7 @@
             Represents a chain segment (forcing chain) starting with weak link.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.WeakForcingChain.IsNamed">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.WeakForcingChain.WeakStartIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.WeakForcingChain.LoopIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.WeakForcingChain.ValidNodes">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.WeakForcingChain.CompareTo(Sudoku.Concepts.WeakForcingChain)">

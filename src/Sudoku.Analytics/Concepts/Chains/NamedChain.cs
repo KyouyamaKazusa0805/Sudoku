@@ -5,11 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="lastNode"><inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='lastNode']"/></param>
 /// <param name="isLoop"><inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='isLoop']"/></param>
-/// <param name="autoReversingOnComparison">
-/// <inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='autoReversingOnComparison']"/>
-/// </param>
-public abstract class NamedChain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true) :
-	ChainOrLoop(lastNode, isLoop, autoReversingOnComparison)
+public abstract class NamedChain(Node lastNode, bool isLoop) : ChainOrLoop(lastNode, isLoop, true)
 {
 	/// <inheritdoc/>
 	public sealed override bool IsNamed => true;

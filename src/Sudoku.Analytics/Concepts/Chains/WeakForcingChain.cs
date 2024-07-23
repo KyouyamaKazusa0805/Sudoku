@@ -4,19 +4,10 @@ namespace Sudoku.Concepts;
 /// Represents a chain segment (forcing chain) starting with weak link.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class WeakForcingChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
+public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastNode)
 {
 	/// <inheritdoc/>
-	public override bool IsNamed => false;
-
-	/// <inheritdoc/>
 	protected override int WeakStartIdentity => 1;
-
-	/// <inheritdoc/>
-	protected override int LoopIdentity => 1;
-
-	/// <inheritdoc/>
-	protected override ReadOnlySpan<Node> ValidNodes => _nodes;
 
 
 	/// <summary>
