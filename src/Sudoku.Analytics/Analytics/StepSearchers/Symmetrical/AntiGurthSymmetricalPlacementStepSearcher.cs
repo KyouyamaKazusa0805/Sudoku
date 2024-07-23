@@ -323,8 +323,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			if ((Mask)(grid.GetCandidates(cell) & singleDigitsMask) == 0)
 			{
 				// We can conclude that the solution should be an asymmetrical placement if one of two following conditions is true:
-				// 1) If the cell is empty, and no possible candidates in the single-digit set can be filled into the cell.
-				// 2) If the cell is not empty, and it is filled with other digits not appearing in the single-digit set.
+				//   1) If the cell is empty, and no possible candidates in the single-digit set can be filled into the cell.
+				//   2) If the cell is not empty, and it is filled with other digits not appearing in the single-digit set.
 				// Two conditions can be expressed with one boolean expression.
 				isSolutionAsymmetry = true;
 				break;
@@ -438,7 +438,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			return null;
 		}
 
-		var elimCell = cellsNotSymmetrical.First(in grid, static (Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty);
+		static bool elimCellMatcher(Cell cell, ref readonly Grid grid) => grid.GetState(cell) == CellState.Empty;
+		var elimCell = cellsNotSymmetrical.First(in grid, elimCellMatcher);
 		var elimDigit = mapping[grid.GetDigit((cellsNotSymmetrical - elimCell)[0])]!.Value;
 		if ((grid.GetCandidates(elimCell) >> elimDigit & 1) == 0)
 		{
