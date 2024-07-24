@@ -3366,4 +3366,10 @@ Error grid: '{0:#}'</value>
   <data name="MergedCellForcingChains" xml:space="preserve">
     <value>Merged Cell Forcing Chains</value>
   </data>
+  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
+    <value>Disable for Grouped Turbot Fish</value>
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
+    <value>Grouped Turbot Fish are equivalent to Empty Rectangle.</value>
+  </data>
 </root>

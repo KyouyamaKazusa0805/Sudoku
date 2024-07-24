@@ -77,6 +77,10 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisableFinnedOrSashimiXWing { get; set; }
 
+	/// <inheritdoc cref="GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+	[DependencyProperty(DefaultValue = true)]
+	public partial bool DisableGroupedTurbotFish { get; set; }
+
 	/// <inheritdoc cref="NormalFishStepSearcher.AllowSiamese"/>
 	[DependencyProperty]
 	public partial bool AllowSiameseNormalFish { get; set; }

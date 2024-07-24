@@ -15,6 +15,13 @@ namespace Sudoku.Analytics.StepSearchers;
 	IsCachingUnsafe = true)]
 public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether Grouped Turbot Fish should be disabled.
+	/// </summary>
+	[SettingItemName(SettingItemNames.DisableGroupedTurbotFish)]
+	public bool DisableGroupedTurbotFish { get; set; }
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
@@ -119,6 +126,14 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 							h2,
 							true
 						);
+
+						// Check whether the technique is a grouped turbot fish.
+						// If so, we should ignore if 'DisableGroupedTurbotFish' is configured.
+						if (DisableGroupedTurbotFish && step.Code == Technique.GroupedTurbotFish)
+						{
+							continue;
+						}
+
 						if (context.OnlyFindOne)
 						{
 							return step;

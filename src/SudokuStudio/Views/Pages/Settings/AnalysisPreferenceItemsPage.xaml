@@ -166,6 +166,17 @@
 			</w:SettingsCard>
 
 			<!--
+			SettingsPage_SingleDigitPatternGroup
+			-->
+			<TextBlock Text="{m:R Key=SettingsPage_SingleDigitPatternGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DisableGroupedTurbotFish}"
+				Description="{m:R Key=SettingsPage_DisableGroupedTurbotFishDescription}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisableGroupedTurbotFish,Mode=TwoWay}" />
+			</w:SettingsCard>
+
+			<!--
 			SettingsPage_DeadlyPatternsGroup
 			-->
 			<TextBlock Text="{m:R Key=SettingsPage_DeadlyPatternsGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />

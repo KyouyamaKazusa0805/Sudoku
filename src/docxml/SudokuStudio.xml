@@ -1066,6 +1066,9 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableGroupedTurbotFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseNormalFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
         </member>
@@ -1248,6 +1251,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableFinnedOrSashimiXWing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableGroupedTurbotFishProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableGroupedTurbotFish"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisableGroupedTurbotFish"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseNormalFishProperty">
             <summary>
@@ -6416,6 +6425,11 @@
               Looks up a localized string similar to Drawing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_DrawingButton">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_EmptyGrid">
             <summary>
               Looks up a localized string similar to &lt;Empty&gt;.
@@ -8356,19 +8370,34 @@
               Looks up a localized string similar to Allow Almost Locked Quadruples (ALQs).
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetWWing">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsWWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-W-Wing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXzRule">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XZ.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetWWing">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXzRule">
+            <summary>
+              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectClaiming">
@@ -8426,9 +8455,14 @@
               Looks up a localized string similar to The name of the subtypes are &quot;terrible&quot;, so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule">
             <summary>
               Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule">
+            <summary>
+              Looks up a localized string similar to .
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowSiameseComplexFish">
@@ -8749,6 +8783,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DisableFinnedOrSashimiXWingDescription">
             <summary>
               Looks up a localized string similar to Grouped &amp; non-grouped Skyscrapers are equivalent to X-Wings, but some users may be used to spotting for skyscrapers and grouped skyscrapers instead of finned or sashimi X-Wings. This option can disable for Finned X-Wings &amp; Sashimi X-Wings..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DisableGroupedTurbotFish">
+            <summary>
+              Looks up a localized string similar to Disable for Grouped Turbot Fish.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DisableGroupedTurbotFishDescription">
+            <summary>
+              Looks up a localized string similar to Grouped Turbot Fish are equivalent to Empty Rectangle..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_DisableSudokuPaneLayoutDisplaying">
@@ -9371,6 +9415,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SeparatorIsEmpty">
             <summary>
               Looks up a localized string similar to Empty (No separator).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SingleDigitPatternGroup">
+            <summary>
+              Looks up a localized string similar to Single-Digit Patterns.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Slash">
@@ -10470,6 +10519,9 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+        </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseNormalFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
         </member>
@@ -10670,6 +10722,12 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableFinnedOrSashimiXWing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFishProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseNormalFishProperty">
             <summary>
@@ -11094,6 +11152,22 @@
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetDisableGroupedTurbotFish(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/> with the specified value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <param name="value">The value to be set.</param>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetDisableGroupedTurbotFish(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/> of its containing value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <returns>The value returned.</returns>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.DisableGroupedTurbotFish"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowSiameseNormalFish(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

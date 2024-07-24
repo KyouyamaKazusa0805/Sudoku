@@ -1173,12 +1173,6 @@
   <data name="SettingsPage_AllowAlmostLockedQuadruples" xml:space="preserve">
     <value>允许搜索欠一四数组技巧</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
-    <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
-  </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
-    <value>允许 ALS-XZ 技巧里的 ALS 结构重叠</value>
-  </data>
   <data name="SettingsPage_AllowDirectClaiming" xml:space="preserve">
     <value>直观行列区块</value>
   </data>
@@ -1211,9 +1205,6 @@
   </data>
   <data name="SettingsPage_AllowIrregularWingSubtypesDescription" xml:space="preserve">
     <value>这些子类型的命名简直就是火葬场，所以我给你加了一个公式的呈现。公式里的小括号表示的是单元格内产生的强弱关系</value>
-  </data>
-  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
-    <value>允许 ALS-XZ 成环</value>
   </data>
   <data name="SettingsPage_AllowSiameseComplexFish" xml:space="preserve">
     <value>搜索复杂孪生鱼（宫内/交叉鱼）</value>
@@ -2549,9 +2540,6 @@
   <data name="TechniqueView_UnselectAll" xml:space="preserve">
     <value>取消选择所有</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="OnlinePuzzleLibraryPage_Intro" xml:space="preserve">
     <value>这个页面列举的是我自己的 GitHub 仓库里的数独题库。</value>
   </data>
@@ -2567,13 +2555,34 @@
   <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
     <value>超出访问次数上限。这个规则是 GitHub 定义的，所以我改变不了。下一次允许使用此功能的时间为 {0}。</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
-    <value>允许 ALS-W-Wing 技巧里的 ALS 结构重叠</value>
-  </data>
   <data name="SettingsPage_GroupedNodeBackgroundColor" xml:space="preserve">
     <value>区块节点背景配色</value>
   </data>
   <data name="SettingsPage_GroupedNodeStrokeColor" xml:space="preserve">
     <value>区块节点框线配色</value>
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
+    <value>允许 ALS-XY-Wing 技巧里的 ALS 结构重叠</value>
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value>允许 ALS-XZ 技巧里的 ALS 结构重叠</value>
+  </data>
+  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value>允许 ALS-XZ 成环</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
+    <value>允许 ALS-W-Wing 技巧里的 ALS 结构重叠</value>
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
+    <value>禁用区块多宝鱼</value>
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
+    <value>区块多宝鱼等效于空矩形。</value>
+  </data>
+  <data name="SettingsPage_SingleDigitPatternGroup" xml:space="preserve">
+    <value>同数技巧</value>
   </data>
 </root>

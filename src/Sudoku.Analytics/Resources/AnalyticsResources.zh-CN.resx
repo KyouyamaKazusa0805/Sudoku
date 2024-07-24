@@ -3460,4 +3460,10 @@
     <value>归并单元格强制链</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
+    <value>禁用区块多宝鱼</value>
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
+    <value>区块多宝鱼等效于空矩形。</value>
+  </data>
 </root>

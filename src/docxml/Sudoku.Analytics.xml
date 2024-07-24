@@ -6246,6 +6246,9 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableGroupedTurbotFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSiameseNormalFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
         </member>
@@ -10954,6 +10957,11 @@
             <item>Grouped Two-string Kite</item>
             <item>Grouped Turbot Fish</item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish">
+            <summary>
+            Indicates whether Grouped Turbot Fish should be disabled.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

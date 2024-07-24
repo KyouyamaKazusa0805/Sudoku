@@ -55,6 +55,9 @@ public static class SettingItemNames
 	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
 	public const string DisableFinnedOrSashimiXWing = nameof(DisableFinnedOrSashimiXWing);
 
+	/// <inheritdoc cref="GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+	public const string DisableGroupedTurbotFish = nameof(DisableGroupedTurbotFish);
+
 	/// <inheritdoc cref="NormalFishStepSearcher.AllowSiamese"/>
 	public const string AllowSiameseNormalFish = nameof(AllowSiameseNormalFish);
 

@@ -2585,4 +2585,28 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_GroupedNodeStrokeColor" xml:space="preserve">
     <value>Grouped node stroke color</value>
   </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
+    <value>Disable for Grouped Turbot Fish</value>
+  </data>
+  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
+    <value>Grouped Turbot Fish are equivalent to Empty Rectangle.</value>
+  </data>
+  <data name="SettingsPage_SingleDigitPatternGroup" xml:space="preserve">
+    <value>Single-Digit Patterns</value>
+  </data>
 </root>

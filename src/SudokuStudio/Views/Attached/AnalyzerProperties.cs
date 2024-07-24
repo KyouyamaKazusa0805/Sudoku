@@ -105,6 +105,10 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool DisableFinnedOrSashimiXWing { get; set; }
 
+	/// <inheritdoc cref="GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool DisableGroupedTurbotFish { get; set; }
+
 	/// <inheritdoc cref="NormalFishStepSearcher.AllowSiamese"/>
 	[DependencyProperty]
 	public static partial bool AllowSiameseNormalFish { get; set; }
@@ -355,6 +359,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void DisableFinnedOrSashimiXWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<NormalFishStepSearcher>(d, s => s.DisableFinnedOrSashimiXWing = (bool)e.NewValue);
+
+	[Callback]
+	private static void DisableGroupedTurbotFishPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<GroupedTwoStrongLinksStepSearcher>(d, s => s.DisableGroupedTurbotFish = (bool)e.NewValue);
 
 	[Callback]
 	private static void AllowSiameseNormalFishPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

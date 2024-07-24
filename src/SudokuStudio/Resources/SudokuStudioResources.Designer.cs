@@ -1006,6 +1006,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AnalyzePage_DrawingButton {
+            get {
+                return ResourceManager.GetString("AnalyzePage_DrawingButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;Empty&gt;.
         /// </summary>
         internal static string AnalyzePage_EmptyGrid {
@@ -4500,6 +4509,33 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-W-Wing.
         /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsWWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
+        /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow collision on ALS-XZ.
+        /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetWWing {
             get {
                 return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetWWing", resourceCulture);
@@ -4507,7 +4543,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
             get {
@@ -4516,7 +4552,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allow collision on ALS-XZ.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXzRule {
             get {
@@ -4625,6 +4661,15 @@ namespace SudokuStudio.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
+        /// </summary>
+        internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule {
             get {
@@ -5205,6 +5250,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_DisableFinnedOrSashimiXWingDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_DisableFinnedOrSashimiXWingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable for Grouped Turbot Fish.
+        /// </summary>
+        internal static string SettingsPage_DisableGroupedTurbotFish {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisableGroupedTurbotFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped Turbot Fish are equivalent to Empty Rectangle..
+        /// </summary>
+        internal static string SettingsPage_DisableGroupedTurbotFishDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_DisableGroupedTurbotFishDescription", resourceCulture);
             }
         }
         
@@ -6323,6 +6386,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_SeparatorIsEmpty {
             get {
                 return ResourceManager.GetString("SettingsPage_SeparatorIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single-Digit Patterns.
+        /// </summary>
+        internal static string SettingsPage_SingleDigitPatternGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_SingleDigitPatternGroup", resourceCulture);
             }
         }
         
