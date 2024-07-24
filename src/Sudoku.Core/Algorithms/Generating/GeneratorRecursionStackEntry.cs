@@ -16,7 +16,7 @@ namespace Sudoku.Algorithms.Generating;
 /// <summary>
 /// One entry in recursion stack.
 /// </summary>
-internal sealed class GeneratorRecursionStackEntry
+internal struct GeneratorRecursionStackEntry()
 {
 	/// <summary>
 	/// The candidates for cells <see cref="Cell"/>.

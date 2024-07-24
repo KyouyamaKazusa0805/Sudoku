@@ -42,6 +42,11 @@
             Represents a puzzle generator, implemented by HoDoKu.
             </summary>
         </member>
+        <member name="M:Sudoku.Algorithms.Generating.Generator.#ctor">
+            <summary>
+            Represents a puzzle generator, implemented by HoDoKu.
+            </summary>
+        </member>
         <member name="F:Sudoku.Algorithms.Generating.Generator.AutoClues">
             <summary>
             Indicates the auto clues count.
@@ -76,20 +81,6 @@
             <summary>
             The final grid to be used.
             </summary>
-        </member>
-        <member name="M:Sudoku.Algorithms.Generating.Generator.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:Sudoku.Algorithms.Generating.Generator" />.
-            </summary>
-            <remarks>
-            <target name="constructor">
-				<i>
-					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
-					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
-					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
-				</i>
-			</target>
-            </remarks>
         </member>
         <member name="M:Sudoku.Algorithms.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
@@ -157,6 +148,11 @@
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Algorithms.Generating.GeneratorRecursionStackEntry">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Generating.GeneratorRecursionStackEntry.#ctor">
             <summary>
             One entry in recursion stack.
             </summary>

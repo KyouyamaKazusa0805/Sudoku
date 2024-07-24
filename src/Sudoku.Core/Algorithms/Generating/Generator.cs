@@ -17,7 +17,7 @@ namespace Sudoku.Algorithms.Generating;
 /// Represents a puzzle generator, implemented by HoDoKu.
 /// </summary>
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct Generator
+public ref partial struct Generator()
 {
 	/// <summary>
 	/// Indicates the auto clues count.
@@ -28,7 +28,7 @@ public ref partial struct Generator
 	/// <summary>
 	/// The order in which cells are set when generating a full grid.
 	/// </summary>
-	private readonly int[] _generateIndices;
+	private readonly int[] _generateIndices = new int[81];
 
 	/// <summary>
 	/// A random generator for creating new puzzles.
@@ -43,29 +43,12 @@ public ref partial struct Generator
 	/// <summary>
 	/// The recursion stack.
 	/// </summary>
-	private readonly GeneratorRecursionStackEntry[] _stack;
+	private readonly Span<GeneratorRecursionStackEntry> _stack = new GeneratorRecursionStackEntry[82];
 
 	/// <summary>
 	/// The final grid to be used.
 	/// </summary>
 	private Grid _newFullSudoku, _newValidSudoku;
-
-
-	/// <summary>
-	/// Creates a new instance of <see cref="Generator"/>.
-	/// </summary>
-	/// <remarks>
-	/// <include
-	///     file='../../global-doc-comments.xml'
-	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Generator()
-	{
-		_generateIndices = new int[81];
-		_stack = new GeneratorRecursionStackEntry[82];
-		_stack.InitializeArray(static ([NotNull] ref GeneratorRecursionStackEntry? element) => element = new());
-	}
 
 
 	/// <summary>
@@ -89,15 +72,15 @@ public ref partial struct Generator
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	public Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 	{
+		_stack.Fill(new());
+
 		ArgumentOutOfRangeException.ThrowIfNotEqual(symmetricType.IsFlag(), true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cluesCount is >= 17 and <= 80 or AutoClues, true);
 
 		try
 		{
 			while (!GenerateForFullGrid()) ;
-
 			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
-
 			return _newValidSudoku.FixedGrid;
 		}
 		catch (OperationCanceledException)
@@ -207,7 +190,7 @@ public ref partial struct Generator
 				index2 = _rng.NextCell();
 			}
 
-			(_generateIndices[index1], _generateIndices[index2]) = (_generateIndices[index2], _generateIndices[index1]);
+			@ref.Swap(ref _generateIndices[index1], ref _generateIndices[index2]);
 		}
 
 		// First set a new empty Sudoku.
@@ -304,7 +287,6 @@ public ref partial struct Generator
 					return false;
 				}
 			}
-
 			return true;
 		}
 
