@@ -185,16 +185,6 @@
             A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator.BlockFactor">
-            <summary>
-            Indicates the block factor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator.SwappingFactor">
-            <summary>
-            Indicates the swapping factor.
-            </summary>
-        </member>
         <member name="F:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator._randomShared">
             <summary>
             Indicates the shared <see cref="T:System.Random"/> instance.
@@ -204,6 +194,16 @@
             <summary>
             Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
             of a puzzle being generated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator.BlockFactor">
+            <summary>
+            Indicates the block factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+            <summary>
+            Indicates the swapping factor.
             </summary>
         </member>
         <member name="P:Sudoku.Algorithms.Generating.HardPatternPuzzleGenerator.Rng">
@@ -7175,9 +7175,7 @@
             </summary>
             <param name="cell">The cell used.</param>
             <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified cell keeps a wrong cell state value. For example, <see cref="!:CellState.Undefined"/>.
-            </exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the specified cell keeps a wrong cell state value.</exception>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.IGridProperties`1">
             <summary>

@@ -202,8 +202,6 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : IG
 	/// </summary>
 	/// <param name="cell">The cell used.</param>
 	/// <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the specified cell keeps a wrong cell state value. For example, <see cref="CellState.Undefined"/>.
-	/// </exception>
+	/// <exception cref="InvalidOperationException">Throws when the specified cell keeps a wrong cell state value.</exception>
 	public abstract Digit GetDigit(Cell cell);
 }

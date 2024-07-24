@@ -7,17 +7,6 @@ namespace Sudoku.Algorithms.Generating;
 public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 {
 	/// <summary>
-	/// Indicates the block factor.
-	/// </summary>
-	private static readonly int[] BlockFactor = [0, 6, 54, 60, 3, 27, 33, 57, 30];
-
-	/// <summary>
-	/// Indicates the swapping factor.
-	/// </summary>
-	private static readonly int[][] SwappingFactor = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
-
-
-	/// <summary>
 	/// Indicates the shared <see cref="Random"/> instance.
 	/// </summary>
 	private static Random? _randomShared;
@@ -29,6 +18,16 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// </summary>
 	private readonly BitwiseSolver _solver = new();
 
+
+	/// <summary>
+	/// Indicates the block factor.
+	/// </summary>
+	private static ReadOnlySpan<byte> BlockFactor => [0, 6, 54, 60, 3, 27, 33, 57, 30];
+
+	/// <summary>
+	/// Indicates the swapping factor.
+	/// </summary>
+	private static ReadOnlySpan<byte[]> SwappingFactor => (byte[][])[[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 	/// <summary>
 	/// Indicates the backing random.
@@ -141,7 +140,6 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 				}
 			}
 		}
-
 		RecreatePattern(pattern);
 	}
 
@@ -179,7 +177,6 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 				return true;
 			}
 		}
-
 		return false;
 	}
 }
