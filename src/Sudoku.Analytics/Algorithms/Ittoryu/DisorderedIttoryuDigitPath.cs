@@ -20,7 +20,6 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 	/// <summary>
 	/// Indicates hte digits string.
 	/// </summary>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private string[] DigitsString => from digit in Digits select (digit + 1).ToString();
 
 
