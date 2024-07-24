@@ -95,7 +95,7 @@ public partial class GridCanvas
 			var mask = grid[cell];
 			switch (MaskOperations.MaskToCellState(mask))
 			{
-				case CellState.Undefined when showCandidates: // Draw candidates.
+				case 0 when showCandidates: // Draw candidates.
 				{
 					// This block is use when user draw candidates from undefined grid.
 					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
