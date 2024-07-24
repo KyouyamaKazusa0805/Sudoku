@@ -46,7 +46,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <summary>
 	/// Indicates ths header bits describing the sudoku type is a Sukaku.
 	/// </summary>
-	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
+	private const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
