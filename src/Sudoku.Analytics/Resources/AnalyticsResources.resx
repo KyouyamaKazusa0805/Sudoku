@@ -1068,9 +1068,6 @@
   <data name="BivalueUniversalGraveXzRule" xml:space="preserve">
     <value>Bi-value Universal Grave XZ Rule</value>
   </data>
-  <data name="BivalueUniversalGraveXyWing" xml:space="preserve">
-    <value>Bi-value Universal Grave XY-Wing</value>
-  </data>
   <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
     <value>Borescoper's Deadly Pattern Type 1</value>
   </data>
@@ -1799,9 +1796,6 @@
   </data>
   <data name="TechniqueAbbr_BivalueUniversalGraveType4" xml:space="preserve">
     <value>BUG4</value>
-  </data>
-  <data name="TechniqueAbbr_BivalueUniversalGraveXyWing" xml:space="preserve">
-    <value>BUG</value>
   </data>
   <data name="TechniqueAbbr_BivalueUniversalGraveXzRule" xml:space="preserve">
     <value>BUG</value>
@@ -3365,11 +3359,5 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="MergedCellForcingChains" xml:space="preserve">
     <value>Merged Cell Forcing Chains</value>
-  </data>
-  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
-    <value>Disable for Grouped Turbot Fish</value>
-  </data>
-  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
-    <value>Grouped Turbot Fish are equivalent to Empty Rectangle.</value>
   </data>
 </root>

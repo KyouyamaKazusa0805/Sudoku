@@ -33,8 +33,7 @@ using TargetCandidatesGroup = CellMapOrCandidateMapGrouping<CandidateMap, Candid
 	Technique.BivalueUniversalGraveType4,
 
 	// Extra types
-	Technique.BivalueUniversalGraveXzRule, Technique.BivalueUniversalGraveXyWing,
-	Technique.BivalueUniversalGravePlusN, Technique.BivalueUniversalGravePlusNForcingChains,
+	Technique.BivalueUniversalGraveXzRule, Technique.BivalueUniversalGravePlusN,
 	Technique.BivalueUniversalGraveFalseCandidateType,
 
 	SupportedSudokuTypes = SudokuType.Standard,

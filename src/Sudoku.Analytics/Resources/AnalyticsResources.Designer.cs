@@ -691,15 +691,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
-        /// </summary>
-        public static string BivalueUniversalGraveXyWing {
-            get {
-                return ResourceManager.GetString("BivalueUniversalGraveXyWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
         /// </summary>
         public static string BivalueUniversalGraveXzRule {
@@ -6639,15 +6630,6 @@ namespace Sudoku.Resources {
         public static string TechniqueAbbr_BivalueUniversalGraveType4 {
             get {
                 return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveType4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BUG.
-        /// </summary>
-        public static string TechniqueAbbr_BivalueUniversalGraveXyWing {
-            get {
-                return ResourceManager.GetString("TechniqueAbbr_BivalueUniversalGraveXyWing", resourceCulture);
             }
         }
         

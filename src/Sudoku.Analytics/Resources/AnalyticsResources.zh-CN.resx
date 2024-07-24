@@ -1259,10 +1259,6 @@
     <value>全双值格致死解法・双强链</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="BivalueUniversalGraveXyWing" xml:space="preserve">
-    <value>全双值格致死解法・XY-Wing</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="BorescoperDeadlyPatternType1" xml:space="preserve">
     <value>探长致命结构类型 1</value>
     <comment>Technique Name</comment>
@@ -3459,11 +3455,5 @@
   <data name="MergedCellForcingChains" xml:space="preserve">
     <value>归并单元格强制链</value>
     <comment>Technique Name</comment>
-  </data>
-  <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
-    <value>禁用区块多宝鱼</value>
-  </data>
-  <data name="SettingsPage_DisableGroupedTurbotFishDescription" xml:space="preserve">
-    <value>区块多宝鱼等效于空矩形。</value>
   </data>
 </root>

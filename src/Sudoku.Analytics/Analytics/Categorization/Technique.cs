@@ -3451,13 +3451,8 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-#if UNIQUE_RECTANGLE_W_WING
-		PrimarySupportedType = typeof(UniqueRectangleWWingStep),
+		StepType = typeof(UniqueRectangleWithWWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
-#endif
-#if !UNIQUE_RECTANGLE_W_WING
-		Features = TechniqueFeatures.NotImplemented,
-#endif
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -3762,13 +3757,8 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-#if UNIQUE_RECTANGLE_W_WING
-		PrimarySupportedType = typeof(UniqueRectangleWWingStep),
+		StepType = typeof(UniqueRectangleWithWWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
-#endif
-#if !UNIQUE_RECTANGLE_W_WING
-		Features = TechniqueFeatures.NotImplemented,
-#endif
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWWing,
 
@@ -4151,17 +4141,6 @@ public enum Technique
 		Abbreviation = "BUG-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveXzRule,
-
-	/// <summary>
-	/// Indicates bi-value universal grave XY-Wing.
-	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Hard,
-		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
-		Abbreviation = "BUG-XY-Wing",
-		Features = TechniqueFeatures.NotImplemented,
-		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
-	BivalueUniversalGraveXyWing,
 	#endregion
 
 	//

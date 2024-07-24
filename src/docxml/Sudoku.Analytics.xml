@@ -3743,11 +3743,6 @@
             Indicates bi-value universal grave XZ rule.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.BivalueUniversalGraveXyWing">
-            <summary>
-            Indicates bi-value universal grave XY-Wing.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ReverseBivalueUniversalGraveType1">
             <summary>
             Indicates reverse bi-value universal grave type 1.
@@ -25569,11 +25564,6 @@
               Looks up a localized string similar to Bi-value Universal Grave Type 4.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.BivalueUniversalGraveXyWing">
-            <summary>
-              Looks up a localized string similar to Bi-value Universal Grave XY-Wing.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BivalueUniversalGraveXzRule">
             <summary>
               Looks up a localized string similar to Bi-value Universal Grave XZ Rule.
@@ -28875,11 +28865,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_BivalueUniversalGraveType4">
             <summary>
               Looks up a localized string similar to BUG4.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_BivalueUniversalGraveXyWing">
-            <summary>
-              Looks up a localized string similar to BUG.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_BivalueUniversalGraveXzRule">
