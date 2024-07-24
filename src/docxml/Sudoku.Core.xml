@@ -2957,11 +2957,6 @@
 		</para>
 	</flags-attribute></remarks>
         </member>
-        <member name="F:Sudoku.Concepts.CellState.Undefined">
-            <summary>
-            Indicates the cell state is invalid - it holds an empty cell without any candidates here.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.CellState.Empty">
             <summary>
             Indicates that the cell is empty.
@@ -7181,7 +7176,7 @@
             <param name="cell">The cell used.</param>
             <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the specified cell keeps a wrong cell state value. For example, <see cref="F:Sudoku.Concepts.CellState.Undefined"/>.
+            Throws when the specified cell keeps a wrong cell state value. For example, <see cref="!:CellState.Undefined"/>.
             </exception>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.IGridProperties`1">

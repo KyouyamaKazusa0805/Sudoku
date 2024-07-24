@@ -8,11 +8,6 @@ namespace Sudoku.Concepts;
 public enum CellState : byte
 {
 	/// <summary>
-	/// Indicates the cell state is invalid - it holds an empty cell without any candidates here.
-	/// </summary>
-	Undefined = 0,
-
-	/// <summary>
 	/// Indicates that the cell is empty.
 	/// </summary>
 	Empty = 1 << 0,

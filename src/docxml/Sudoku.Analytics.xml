@@ -21468,6 +21468,14 @@
             <summary>
             Represents a link type.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Concepts.LinkType.Unknown">
             <summary>
