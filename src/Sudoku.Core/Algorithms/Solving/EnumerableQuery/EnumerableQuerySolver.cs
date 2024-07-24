@@ -38,9 +38,9 @@ public sealed class EnumerableQuerySolver : ISolver
 					let index = solution.IndexOf('.')
 					let column = index % 9
 					let block = index - index % 27 + column - index % 3
-					from digit in DigitCharacters.ToCharArray().AsReadOnlySpan()
+					from digit in DigitCharacters.AsSpan()
 					let duplicateCases =
-						from pos in Digits/*.AsReadOnlySpan()*/
+						from pos in Digits
 						let rowContainsDuplicateDigits = solution[index - column + pos] == digit
 						let columnContainsDuplicateDigits = solution[column + pos * 9] == digit
 						let blockContainsDuplicateDigits = solution[block + pos % 3 + pos / 3 * 9] == digit
@@ -49,12 +49,6 @@ public sealed class EnumerableQuerySolver : ISolver
 					where duplicateCases.Length == 0
 					select $"{solution[..index]}{digit}{solution[(index + 1)..]}";
 			}
-
-			// Return the result value.
-			// Because we generate the target value inside the query expression,
-			// we may not consider the value having been deleted by GC.
-			// In C# 11, we can use keyword 'scoped' to describe whether a value or reference can be used local-scoped.
-			// If a local does not contain a 'scoped' keyword, the value can be escaped the whole method lifecycle.
 			return result;
 		}
 	}
