@@ -1,16 +1,12 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
-/// Represents a generator type that can generate puzzles with direct techniques.
+/// Represents a generator type that can generate puzzles with complex single techniques.
 /// </summary>
-public abstract class DirectTechniqueGenerator : TechniqueGenerator, ITechniqueGenerator, IJustOneCellGenerator
+public abstract class ComplexSingleGenerator : TechniqueGenerator, ITechniqueGenerator, IJustOneCellGenerator
 {
 	/// <inheritdoc/>
 	public abstract TechniqueSet SupportedTechniques { get; }
-
-
-	/// <inheritdoc/>
-	static ref readonly Random IJustOneCellGenerator.Rng => ref Rng;
 
 
 	/// <inheritdoc/>

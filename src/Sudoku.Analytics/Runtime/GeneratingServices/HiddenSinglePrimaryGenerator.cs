@@ -18,7 +18,7 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 		=> [Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn];
 
 
-	/// <inheritdoc cref="IUniqueGenerator.GenerateUnique(CancellationToken)"/>
+	/// <inheritdoc/>
 	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();

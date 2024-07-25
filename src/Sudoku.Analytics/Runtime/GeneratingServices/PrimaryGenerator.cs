@@ -3,7 +3,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Direct Single techniques.
 /// </summary>
-public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCellGenerator, IPrimaryGenerator, IUniqueGenerator
+public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCellGenerator, IPrimaryGenerator
 {
 	/// <summary>
 	/// Indicates center houses.
@@ -43,13 +43,6 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 
 	/// <inheritdoc/>
 	public abstract TechniqueSet SupportedTechniques { get; }
-
-
-	/// <inheritdoc/>
-	static ref readonly Random IJustOneCellGenerator.Rng => ref Rng;
-
-	/// <inheritdoc/>
-	static ref readonly Analyzer IUniqueGenerator.Analyzer => ref SingleAnalyzer;
 
 
 	/// <summary>
@@ -116,9 +109,6 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
 		};
 
-
-	/// <inheritdoc/>
-	public abstract Grid GenerateUnique(CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
 	public abstract Grid GeneratePrimary(CancellationToken cancellationToken = default);

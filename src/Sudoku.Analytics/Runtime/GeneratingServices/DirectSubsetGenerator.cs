@@ -53,7 +53,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.LockedHiddenTripleCrosshatchingRow"/>
 /// <seealso cref="Technique.LockedHiddenTripleCrosshatchingColumn"/>
 /// <seealso cref="Technique.LockedHiddenTripleNakedSingle"/>
-public sealed class DirectSubsetGenerator : DirectTechniqueGenerator
+public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques
@@ -110,6 +110,12 @@ public sealed class DirectSubsetGenerator : DirectTechniqueGenerator
 			Technique.LockedHiddenTripleNakedSingle
 		];
 
+
+	/// <inheritdoc/>
+	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	{
+		throw new NotImplementedException();
+	}
 
 	/// <inheritdoc/>
 	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)

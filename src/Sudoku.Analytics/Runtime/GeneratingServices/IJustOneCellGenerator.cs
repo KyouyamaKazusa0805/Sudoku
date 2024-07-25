@@ -6,12 +6,6 @@ namespace Sudoku.Runtime.GeneratingServices;
 public interface IJustOneCellGenerator
 {
 	/// <summary>
-	/// Indicates the random number generator.
-	/// </summary>
-	public static abstract ref readonly Random Rng { get; }
-
-
-	/// <summary>
 	/// Generates a puzzle and return a <see cref="Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
 	/// using <paramref name="cancellationToken"/> to cancel the operation.
 	/// </summary>
