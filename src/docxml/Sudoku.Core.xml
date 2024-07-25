@@ -7501,73 +7501,6 @@
 				</remarks>
 			</target>
         </member>
-        <member name="T:Sudoku.Randomization.Randomizer">
-            <summary>
-            Provides with extension methods for <see cref="T:System.Random"/>.
-            </summary>
-            <seealso cref="T:System.Random"/>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.NextDigit(System.Random)">
-            <summary>
-            Returns a random integer that is within valid digit range (0..9).
-            </summary>
-            <param name="random">The random instance.</param>
-            <returns>
-            An integer that represents a valid <see cref="T:System.Int32"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.NextCell(System.Random)">
-            <summary>
-            Returns a random integer that is within valid cell range (0..81).
-            </summary>
-            <param name="random">The random instance.</param>
-            <returns>
-            An integer that represents a valid <see cref="T:System.Int32"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.NextHouse(System.Random)">
-            <summary>
-            Returns a random integer that is within valid house range (0..27).
-            </summary>
-            <param name="random">The random instance.</param>
-            <returns>
-            An integer that represents a valid <see cref="T:System.Int32"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Randomly select the specified number of elements from the current collection.
-            </summary>
-            <param name="random">The random instance.</param>
-            <param name="cells">The cells to be chosen.</param>
-            <param name="count">The desired number of elements.</param>
-            <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
-            <summary>
-            Randomly select the specified number of elements from the current collection.
-            </summary>
-            <param name="random">The random instance.</param>
-            <param name="cells">The cells to be chosen.</param>
-            <param name="count">The desired number of elements.</param>
-            <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.CreateCellMap(System.Random,System.Int32)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
-            </summary>
-            <param name="random">The random instance.</param>
-            <param name="count">The desired number of elements.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Randomization.Randomizer.CreateCandidateMap(System.Random,System.Int32)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
-            </summary>
-            <param name="random">The random instance.</param>
-            <param name="count">The desired number of elements.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Resources.CoreResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -10261,6 +10194,73 @@
             <param name="transformTypes">
             The transform types can be applied. You can use <c><see cref="T:Sudoku.Runtime.TransformingServices.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
             </param>
+        </member>
+        <member name="T:Sudoku.Runtime.TransformingServices.RandomizationExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:System.Random"/>.
+            </summary>
+            <seealso cref="T:System.Random"/>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextDigit(System.Random)">
+            <summary>
+            Returns a random integer that is within valid digit range (0..9).
+            </summary>
+            <param name="random">The random instance.</param>
+            <returns>
+            An integer that represents a valid <see cref="T:System.Int32"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextCell(System.Random)">
+            <summary>
+            Returns a random integer that is within valid cell range (0..81).
+            </summary>
+            <param name="random">The random instance.</param>
+            <returns>
+            An integer that represents a valid <see cref="T:System.Int32"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextHouse(System.Random)">
+            <summary>
+            Returns a random integer that is within valid house range (0..27).
+            </summary>
+            <param name="random">The random instance.</param>
+            <returns>
+            An integer that represents a valid <see cref="T:System.Int32"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Randomly select the specified number of elements from the current collection.
+            </summary>
+            <param name="random">The random instance.</param>
+            <param name="cells">The cells to be chosen.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <summary>
+            Randomly select the specified number of elements from the current collection.
+            </summary>
+            <param name="random">The random instance.</param>
+            <param name="cells">The cells to be chosen.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.CreateCellMap(System.Random,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
+            </summary>
+            <param name="random">The random instance.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.CreateCandidateMap(System.Random,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
+            </summary>
+            <param name="random">The random instance.</param>
+            <param name="count">The desired number of elements.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Runtime.TransformingServices.TransformType">
             <summary>

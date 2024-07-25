@@ -1,10 +1,10 @@
-namespace Sudoku.Randomization;
+namespace Sudoku.Runtime.TransformingServices;
 
 /// <summary>
 /// Provides with extension methods for <see cref="Random"/>.
 /// </summary>
 /// <seealso cref="Random"/>
-public static class Randomizer
+public static class RandomizationExtensions
 {
 	/// <summary>
 	/// Returns a random integer that is within valid digit range (0..9).
