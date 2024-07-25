@@ -184,11 +184,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 				page._stopwatch.Stop();
 				page._currentPuzzleIndex = -1;
 
-				var correctCount = page._answeredData.CountWithSameIndex(
-					page._targetResultData,
-					static (a, b) => a.Candidate == b,
-					testedCount
-				);
+				var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, static (a, b) => a.Candidate == b, testedCount);
 				var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
 				page.ResultDataDisplayer.Text = string.Format(
 					SR.Get("SingleCountingPracticingPage_ResultDisplayLabel", App.CurrentCulture),
@@ -234,6 +230,10 @@ public sealed partial class SingleCountingPracticingPage : Page
 			else
 			{
 				GeneratePuzzle();
+
+				// By setting 'e.Cancel' to true, to tell the event handler don't re-trigger this event,
+				// preventing the old input value filling into the grid that has already updated currently.
+				e.Cancel = true;
 			}
 		}
 	}
@@ -241,7 +241,6 @@ public sealed partial class SingleCountingPracticingPage : Page
 	private void StartButton_Click(object sender, RoutedEventArgs e)
 	{
 		IsRunning = true;
-
 		GeneratePuzzle();
 	}
 
