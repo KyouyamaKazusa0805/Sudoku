@@ -19,6 +19,9 @@ public sealed class FullHousePrimaryGenerator :
 
 
 	/// <inheritdoc/>
+	public ConclusionCellAlignment Alignment { get; set; }
+
+	/// <inheritdoc/>
 	public TechniqueSet SupportedTechniques => [Technique.FullHouse];
 
 
@@ -67,10 +70,10 @@ public sealed class FullHousePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(ConclusionCellAlignment alignment, out Step? step, CancellationToken cancellationToken = default)
+	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Choose the target house.
-		var selectedHouse = RandomlySelectHouse(alignment);
+		var selectedHouse = RandomlySelectHouse(Alignment);
 
 		// Shuffle the digits.
 		ShuffleSequence(DigitSeed);
@@ -84,7 +87,7 @@ public sealed class FullHousePrimaryGenerator :
 		}
 
 		// Clear the target cell with the value set -1.
-		var (targetCell, targetDigit) = (alignment, selectedHouse) switch
+		var (targetCell, targetDigit) = (Alignment, selectedHouse) switch
 		{
 			(ConclusionCellAlignment.NotLimited or ConclusionCellAlignment.CenterHouse, _) when Rng.NextDigit() is var missingPos
 				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
@@ -119,9 +122,10 @@ public sealed class FullHousePrimaryGenerator :
 	/// <inheritdoc/>
 	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
 	{
+		var generator = new Generator();
 		while (true)
 		{
-			var puzzle = new Generator().Generate(cancellationToken: cancellationToken);
+			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			var analysisResult = SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
 			if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 			{

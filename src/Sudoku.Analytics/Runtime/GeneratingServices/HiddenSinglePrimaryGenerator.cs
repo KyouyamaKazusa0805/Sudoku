@@ -20,12 +20,20 @@ public sealed class HiddenSinglePrimaryGenerator :
 	private static readonly Analyzer Analyzer = Analyzer.Default.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true });
 
 
+	/// <summary>
+	/// Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.
+	/// </summary>
+	public bool AllowsBlockExcluders { get; set; }
+
+	/// <inheritdoc/>
+	public ConclusionCellAlignment Alignment { get; set; }
+
 	/// <inheritdoc/>
 	public TechniqueSet SupportedTechniques => [Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn];
 
 
 	/// <inheritdoc cref="ITechniqueBasedGenerator.GenerateUnique(CancellationToken)"/>
-	public Grid GenerateUnique(bool allowsBlockExcluders, CancellationToken cancellationToken = default)
+	public Grid GenerateUnique(CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -42,7 +50,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 				continue;
 			}
 
-			if (!allowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
+			if (!AllowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 				continue;
@@ -53,10 +61,10 @@ public sealed class HiddenSinglePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(ConclusionCellAlignment alignment, bool allowsBlockExcluders, out Step? step, CancellationToken cancellationToken = default)
+	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
-		var house = RandomlySelectHouse(alignment);
-		var subtype = RandomlySelectSubtype(house, s => allowsBlockExcluders || s.GetExcludersCount(HouseType.Block) == 0);
+		var house = RandomlySelectHouse(Alignment);
+		var subtype = RandomlySelectSubtype(house, s => AllowsBlockExcluders || s.GetExcludersCount(HouseType.Block) == 0);
 		var a = forBlock;
 		var b = forLine;
 		return (house < 9 ? a : b)(house, out step);
@@ -131,7 +139,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 				}
 
 				// We should adjust the givens and target cells to the specified position.
-				switch (alignment)
+				switch (Alignment)
 				{
 					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock when house != 4:
 					{
@@ -296,7 +304,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 					puzzle.SetState(placeholderCell, CellState.Given);
 					tempIndex++;
 				}
-				if (!allowsBlockExcluders)
+				if (!AllowsBlockExcluders)
 				{
 					var emptyCellsRelatedBlocksContainAnyExcluder = false;
 					foreach (var block in (HousesMap[house] & ~puzzle.GivenCells).BlockMask)
@@ -320,7 +328,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 				}
 
 				// We should adjust the givens and target cells to the specified position.
-				switch (alignment)
+				switch (Alignment)
 				{
 					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock when targetCell.ToHouse(HouseType.Block) is var b && b != 4:
 					{
@@ -487,12 +495,5 @@ public sealed class HiddenSinglePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	Grid IAlignedJustOneCellGenerator.GenerateJustOneCell(ConclusionCellAlignment alignment, out Step? step, CancellationToken cancellationToken)
-		=> GenerateJustOneCell(alignment, true, out step, cancellationToken);
-
-	/// <inheritdoc/>
-	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(true, cancellationToken);
-
-	/// <inheritdoc/>
-	Grid ITechniqueBasedGenerator.GenerateUnique(CancellationToken cancellationToken) => GenerateUnique(true, cancellationToken);
+	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
 }

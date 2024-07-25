@@ -29932,13 +29932,16 @@
             Represents an analyzer.
             </summary>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Alignment">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GenerateUnique(System.Int32,System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GenerateJustOneCell(Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
@@ -29963,25 +29966,27 @@
             Indicates the backing analyzer.
             </summary>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.AllowsBlockExcluders">
+            <summary>
+            Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Alignment">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateUnique(System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment,System.Boolean,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#IAlignedJustOneCellGenerator#GenerateJustOneCell(Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#IPrimaryGenerator#GeneratePrimary(System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueBasedGenerator#GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator">
@@ -30024,12 +30029,16 @@
             Represents an analyzer that will be used in generating phased puzzles.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator.GenerateJustOneCell(Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="P:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator.Alignment">
+            <summary>
+            Indicates the alignment value that the target generated puzzle will align its conclusion cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
             using <paramref name="cancellationToken"/> to cancel the operation.
             </summary>
-            <param name="alignment">The target alignment to be checked.</param>
             <param name="step">Indicates the step that records the current technique usage.</param>
             <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
             <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
@@ -30127,10 +30136,13 @@
             </summary>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.Alignment">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">

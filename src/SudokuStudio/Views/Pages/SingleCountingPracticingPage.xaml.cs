@@ -148,9 +148,8 @@ public sealed partial class SingleCountingPracticingPage : Page
 			static bool g<T>(ConclusionCellAlignment alignment, out Grid result, out Candidate targetCandidate)
 				where T : IAlignedJustOneCellGenerator, new(), allows ref struct
 			{
-				if (new T() is var generator
-					&& generator.GenerateJustOneCell(alignment, out var step) is var p
-					&& step is SingleStep { Cell: var c, Digit: var d })
+				var generator = new T { Alignment = alignment };
+				if (generator.GenerateJustOneCell(out var step) is var p && step is SingleStep { Cell: var c, Digit: var d })
 				{
 					(targetCandidate, result) = (c * 9 + d, p);
 					return true;

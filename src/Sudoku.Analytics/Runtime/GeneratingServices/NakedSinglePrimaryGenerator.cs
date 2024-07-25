@@ -13,14 +13,17 @@ public sealed class NakedSinglePrimaryGenerator :
 	ITechniqueBasedGenerator
 {
 	/// <inheritdoc/>
+	public ConclusionCellAlignment Alignment { get; set; }
+
+	/// <inheritdoc/>
 	public TechniqueSet SupportedTechniques => [Technique.NakedSingle];
 
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(ConclusionCellAlignment alignment, out Step? step, CancellationToken cancellationToken = default)
+	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Randomly select a cell as target cell.
-		var targetCell = alignment switch
+		var targetCell = Alignment switch
 		{
 			ConclusionCellAlignment.NotLimited => Rng.NextCell(),
 			ConclusionCellAlignment.CenterHouse => (PeersMap[40] + 40)[Rng.Next(PeersCount + 1)],
