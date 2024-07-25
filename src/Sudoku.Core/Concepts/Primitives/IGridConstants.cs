@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Primitives;
 /// Represents constant values for type.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface IGridConstants<TSelf> : IEqualityOperators<TSelf, TSelf, bool> where TSelf : IGridConstants<TSelf>
+public interface IGridConstants<TSelf> : IEqualityOperators<TSelf, TSelf, bool> where TSelf : unmanaged, IGridConstants<TSelf>
 {
 	/// <summary>
 	/// Indicates the number of cells of a sudoku grid.

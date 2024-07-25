@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Primitives;
 /// Represents a type that contains properties inside a grid.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : IGridProperties<TSelf>
+public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : unmanaged, IGridProperties<TSelf>
 {
 	/// <summary>
 	/// Try to get the symmetry of the puzzle.

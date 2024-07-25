@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Primitives;
 /// Represents a type that supports operations used by a sudoku grid.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : IGridOperations<TSelf>
+public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : unmanaged, IGridOperations<TSelf>
 {
 	/// <summary>
 	/// Gets the mask at the specified position.

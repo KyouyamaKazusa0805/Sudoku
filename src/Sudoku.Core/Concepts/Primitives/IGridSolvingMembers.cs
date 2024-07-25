@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Primitives;
 /// Represents a grid that contains solving members.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface IGridSolvingMembers<TSelf> : IGridConstants<TSelf> where TSelf : IGridSolvingMembers<TSelf>
+public interface IGridSolvingMembers<TSelf> : IGridConstants<TSelf> where TSelf : unmanaged, IGridSolvingMembers<TSelf>
 {
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
