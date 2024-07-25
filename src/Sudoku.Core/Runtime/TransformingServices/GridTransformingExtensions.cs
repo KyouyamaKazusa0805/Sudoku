@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Runtime.TransformingServices;
 
 using unsafe GridRandomizedSufflerFuncPtr = delegate*<Random, ref Grid, void>;
 

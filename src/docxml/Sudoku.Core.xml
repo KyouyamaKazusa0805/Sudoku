@@ -3480,36 +3480,6 @@
             Indicates each value should minus one before creation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.GridMinimalExtensions">
-            <summary>
-            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinimalExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridMinimalExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="firstCandidateMakePuzzleNotMinimal">
-            <para>
-            Indicates the first found candidate that can make the puzzle not minimal, which means
-            if we remove the digit in the cell, the puzzle will still keep unique.
-            </para>
-            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-        </member>
         <member name="T:Sudoku.Concepts.GridPredicates">
             <summary>
             Represents a list of methods to filter the cells.
@@ -3565,42 +3535,6 @@
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.CandidatesMap``1(``0@,System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.GridSolvingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
-            <summary>
-            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
-            keeping the type being thread-safe.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
-            <summary>
-            Indicates the backing solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks the uniqueness of the current sudoku puzzle.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
-            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
         <member name="T:Sudoku.Concepts.GridToken">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -3655,21 +3589,6 @@
             </summary>
             <param name="s">The string.</param>
             <returns>The result digit.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.GridTransformingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Runtime.TransformingServices.TransformType)">
-            <summary>
-            Transforms the grid by the specified type.
-            </summary>
-            <param name="grid">The grid to be transformed.</param>
-            <param name="transformTypes">
-            The transform types can be applied. You can use <c><see cref="T:Sudoku.Runtime.TransformingServices.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
-            </param>
         </member>
         <member name="T:Sudoku.Concepts.HouseMarshal">
             <summary>
@@ -9147,6 +9066,36 @@
             <param name="this">The mask instance to be split.</param>
             <returns>A triplet of values.</returns>
         </member>
+        <member name="T:Sudoku.Runtime.MinimalServices.GridMinimalExtensions">
+            <summary>
+            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MinimalServices.GridMinimalExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MinimalServices.GridMinimalExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
         <member name="T:Sudoku.Runtime.MinLexServices.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.
@@ -10030,6 +9979,42 @@
         <member name="M:Sudoku.Runtime.SolvingServices.EnumerableQuery.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Runtime.SolvingServices.GridSolvingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.PuzzleSolvingSynchronizer">
+            <summary>
+            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.Solver"/>,
+            keeping the type being thread-safe.
+            </summary>
+            <seealso cref="F:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.Solver"/>
+        </member>
+        <member name="F:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.Solver">
+            <summary>
+            Indicates the backing solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks the uniqueness of the current sudoku puzzle.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.SolvingServices.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
         <member name="T:Sudoku.Runtime.SolvingServices.ISolver">
             <summary>
             Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
@@ -10261,6 +10246,21 @@
             <param name="chuteIndex2">The second chute to be swapped.</param>
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+        </member>
+        <member name="T:Sudoku.Runtime.TransformingServices.GridTransformingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Runtime.TransformingServices.TransformType)">
+            <summary>
+            Transforms the grid by the specified type.
+            </summary>
+            <param name="grid">The grid to be transformed.</param>
+            <param name="transformTypes">
+            The transform types can be applied. You can use <c><see cref="T:Sudoku.Runtime.TransformingServices.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
+            </param>
         </member>
         <member name="T:Sudoku.Runtime.TransformingServices.TransformType">
             <summary>

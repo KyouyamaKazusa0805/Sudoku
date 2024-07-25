@@ -69,6 +69,7 @@ global using Sudoku.Runtime.CoordinateServices;
 global using Sudoku.Runtime.GeneratingServices;
 global using Sudoku.Runtime.GeneratingServices.JustOneCell;
 global using Sudoku.Runtime.GeneratingServices.TechniqueBased;
+global using Sudoku.Runtime.MinimalServices;
 global using Sudoku.Runtime.MinLexServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.SolvingServices.Bitwise;

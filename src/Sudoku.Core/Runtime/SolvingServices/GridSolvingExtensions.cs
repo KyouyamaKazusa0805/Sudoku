@@ -23,7 +23,7 @@
 #line default
 #endif
 
-namespace Sudoku.Concepts;
+namespace Sudoku.Runtime.SolvingServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/> for solving.
