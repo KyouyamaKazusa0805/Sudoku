@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating;
+namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
 /// Represents a progress data type that is nearly same as <see cref="GeneratorProgress"/>, but with filtered data.
@@ -19,5 +19,6 @@ public readonly record struct FilteredGeneratorProgress(int Count, int Succeeded
 
 
 	/// <inheritdoc/>
-	static FilteredGeneratorProgress IProgressDataProvider<FilteredGeneratorProgress>.Create(int count, int succeeded) => new(count, succeeded);
+	static FilteredGeneratorProgress IProgressDataProvider<FilteredGeneratorProgress>.Create(int count, int succeeded)
+		=> new(count, succeeded);
 }

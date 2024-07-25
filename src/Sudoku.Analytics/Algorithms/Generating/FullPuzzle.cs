@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating;
+namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
 /// Represents a full puzzle.

@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating.TechniqueBased;
+namespace Sudoku.Runtime.GeneratingServices.TechniqueBased;
 
 /// <summary>
 /// Represents a puzzle generator that uses hidden single.

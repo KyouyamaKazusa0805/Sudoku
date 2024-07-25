@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating.JustOneCell;
+namespace Sudoku.Runtime.GeneratingServices.JustOneCell;
 
 /// <summary>
 /// Provides failed for generating just-one-cell puzzles.

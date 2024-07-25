@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating.JustOneCell;
+namespace Sudoku.Runtime.GeneratingServices.JustOneCell;
 
 /// <summary>
 /// Provides successful message for <see cref="PhasedJustOneCellPuzzle"/>.

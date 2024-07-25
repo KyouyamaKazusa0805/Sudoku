@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating.TechniqueBased;
+namespace Sudoku.Runtime.GeneratingServices.TechniqueBased;
 
 /// <summary>
 /// Represents a generator type that generates puzzles, relating to a kind of technique.

@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Generating.JustOneCell;
+namespace Sudoku.Runtime.GeneratingServices.JustOneCell;
 
 /// <summary>
 /// Represents the answer to a just-one-cell sudoku puzzle.
