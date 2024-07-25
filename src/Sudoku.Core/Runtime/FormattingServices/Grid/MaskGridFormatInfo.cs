@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports mask formatting.
@@ -18,12 +18,6 @@ public sealed class MaskGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other) => other is MaskGridFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(MaskGridFormatInfo));
 
 	/// <inheritdoc/>
 	public override MaskGridFormatInfo Clone() => new();

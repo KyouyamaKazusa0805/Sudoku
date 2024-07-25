@@ -5178,10 +5178,10 @@
         </member>
         <member name="M:SudokuStudio.Interaction.SudokuFormatFlagsExtensions.GetConverter(SudokuStudio.Interaction.SudokuFormatFlags)">
             <summary>
-            Try to get target <see cref="T:Sudoku.Concepts.Formatting.GridFormatInfo"/> instance of type <see cref="T:Sudoku.Concepts.Grid"/>.
+            Try to get target <see cref="T:Sudoku.Runtime.FormattingServices.GridFormatInfo"/> instance of type <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <param name="this">The flag instance.</param>
-            <returns>The final <see cref="T:Sudoku.Concepts.Formatting.GridFormatInfo"/> instance.</returns>
+            <returns>The final <see cref="T:Sudoku.Runtime.FormattingServices.GridFormatInfo"/> instance.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
         <member name="T:SudokuStudio.Interaction.SudokuPaneMouseWheelChangedEventArgs">
@@ -13877,7 +13877,7 @@
             </summary>
             <returns>A task that handles the operation.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(Sudoku.Concepts.Formatting.GridFormatInfo[])">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(Sudoku.Runtime.FormattingServices.GridFormatInfo[])">
             <summary>
             Save a file via grid formatters.
             </summary>

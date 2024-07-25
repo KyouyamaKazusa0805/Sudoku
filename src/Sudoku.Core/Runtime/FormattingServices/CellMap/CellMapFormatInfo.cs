@@ -1,24 +1,14 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents extra options that formats a <see cref="CellMap"/> instance, or parses into a <see cref="CellMap"/> instance.
 /// </summary>
 /// <seealso cref="CellMap"/>
-[TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
-	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
-public abstract partial class CellMapFormatInfo :
-	IEquatable<CellMapFormatInfo>,
-	IEqualityOperators<CellMapFormatInfo, CellMapFormatInfo, bool>,
-	IFormatProvider
+public abstract class CellMapFormatInfo : IFormatProvider
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public abstract object? GetFormat(Type? formatType);
-
-	/// <inheritdoc/>
-	public abstract bool Equals([NotNullWhen(true)] CellMapFormatInfo? other);
 
 	/// <summary>
 	/// Creates a copy of the current instance.

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports inline Susser grid formatting.
@@ -23,14 +23,6 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)
-		=> other is InlineSusserGridFormatInfo comparer
-		&& NegateEliminationsTripletRule == comparer.NegateEliminationsTripletRule;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(InlineSusserGridFormatInfo), NegateEliminationsTripletRule);
 
 	/// <inheritdoc/>
 	public override InlineSusserGridFormatInfo Clone() => new() { NegateEliminationsTripletRule = NegateEliminationsTripletRule };

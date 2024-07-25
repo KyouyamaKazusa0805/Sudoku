@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Susser formatting.
@@ -49,27 +49,6 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)
-		=> other is SusserGridFormatInfo comparer
-		&& (WithCandidates, WithModifiables, ShortenSusser, NegateEliminationsTripletRule, Placeholder, TreatValueAsGiven, OnlyEliminations, IsCompatibleMode) == (comparer.WithCandidates, comparer.WithModifiables, comparer.ShortenSusser, comparer.NegateEliminationsTripletRule, comparer.Placeholder, comparer.TreatValueAsGiven, comparer.OnlyEliminations, comparer.IsCompatibleMode);
-
-	/// <inheritdoc/>
-	public override int GetHashCode()
-	{
-		var hc = new HashCode();
-		hc.Add(typeof(SusserGridFormatInfo));
-		hc.Add(WithCandidates);
-		hc.Add(WithModifiables);
-		hc.Add(ShortenSusser);
-		hc.Add(NegateEliminationsTripletRule);
-		hc.Add(Placeholder);
-		hc.Add(TreatValueAsGiven);
-		hc.Add(OnlyEliminations);
-		hc.Add(IsCompatibleMode);
-		return hc.ToHashCode();
-	}
 
 	/// <inheritdoc/>
 	public override SusserGridFormatInfo Clone()

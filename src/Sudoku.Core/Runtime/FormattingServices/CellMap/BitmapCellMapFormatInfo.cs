@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="CellMapFormatInfo"/> type that supports bitmap formatting.
@@ -8,12 +8,6 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(CellMapFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] CellMapFormatInfo? other) => other is BitmapCellMapFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(BitmapCellMapFormatInfo));
 
 	/// <inheritdoc/>
 	public override BitmapCellMapFormatInfo Clone() => new();

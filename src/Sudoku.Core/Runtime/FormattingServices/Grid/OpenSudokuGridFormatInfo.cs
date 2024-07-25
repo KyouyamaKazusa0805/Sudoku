@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports OpenSudoku formatting.
@@ -12,12 +12,6 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other) => other is OpenSudokuGridFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(OpenSudokuGridFormatInfo));
 
 	/// <inheritdoc/>
 	public override OpenSudokuGridFormatInfo Clone() => new();

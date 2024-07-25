@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="CandidateMapFormatInfo"/> type that supports bitmap formatting.
@@ -8,12 +8,6 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(CandidateMapFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] CandidateMapFormatInfo? other) => other is BitmapCandidateMapFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(BitmapCandidateMapFormatInfo));
 
 	/// <inheritdoc/>
 	public override BitmapCandidateMapFormatInfo Clone() => new();

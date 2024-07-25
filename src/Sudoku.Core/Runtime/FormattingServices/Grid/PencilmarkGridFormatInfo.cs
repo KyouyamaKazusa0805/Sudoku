@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports pencilmark grid formatting.
@@ -12,14 +12,6 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)
-		=> other is PencilmarkGridFormatInfo comparer
-		&& (SubtleGridLines, TreatValueAsGiven, IsCompatibleMode) == (comparer.SubtleGridLines, comparer.TreatValueAsGiven, comparer.IsCompatibleMode);
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(PencilmarkGridFormatInfo), SubtleGridLines, TreatValueAsGiven, IsCompatibleMode);
 
 	/// <inheritdoc/>
 	public override PencilmarkGridFormatInfo Clone()

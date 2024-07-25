@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Sukaku formatting.
@@ -12,13 +12,6 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)
-		=> other is SukakuGridFormatInfo comparer && (Placeholder, Multiline) == (comparer.Placeholder, comparer.Multiline);
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(SukakuGridFormatInfo), Placeholder, Multiline);
 
 	/// <inheritdoc/>
 	public override SukakuGridFormatInfo Clone() => new() { Placeholder = Placeholder, Multiline = Multiline };

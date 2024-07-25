@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports multiple formatting.
@@ -15,14 +15,6 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)
-		=> other is MultipleLineGridFormatInfo comparer
-		&& (SubtleGridLines, TreatValueAsGiven) == (comparer.SubtleGridLines, comparer.TreatValueAsGiven);
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(MultipleLineGridFormatInfo), SubtleGridLines, TreatValueAsGiven);
 
 	/// <inheritdoc/>
 	public override MultipleLineGridFormatInfo Clone()

@@ -1,18 +1,11 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents extra options that formats a <see cref="Grid"/> instance, or parses into a <see cref="Grid"/> instance.
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="NumberFormatInfo"/>
-[TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
-	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
-public abstract partial class GridFormatInfo :
-	IEquatable<GridFormatInfo>,
-	IEqualityOperators<GridFormatInfo, GridFormatInfo, bool>,
-	IFormatProvider
+public abstract class GridFormatInfo : IFormatProvider
 {
 	/// <summary>
 	/// Indicates the table of format and creator.
@@ -158,9 +151,6 @@ public abstract partial class GridFormatInfo :
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public abstract object? GetFormat(Type? formatType);
-
-	/// <inheritdoc/>
-	public abstract bool Equals([NotNullWhen(true)] GridFormatInfo? other);
 
 	/// <summary>
 	/// Creates a copy of the current instance.

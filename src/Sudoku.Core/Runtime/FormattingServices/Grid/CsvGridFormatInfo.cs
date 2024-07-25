@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Comma-separated-values formatting.
@@ -8,12 +8,6 @@ public sealed class CsvGridFormatInfo : GridFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other) => other is CsvGridFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(CsvGridFormatInfo));
 
 	/// <inheritdoc/>
 	public override CsvGridFormatInfo Clone() => new();

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Formatting;
+namespace Sudoku.Runtime.FormattingServices;
 
 /// <summary>
 /// Represents a <see cref="CandidateMapFormatInfo"/> type that supports Hodoku elimination candidates formatting.
@@ -8,12 +8,6 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(CandidateMapFormatInfo) ? this : null;
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] CandidateMapFormatInfo? other) => other is HodokuTripletCandidateMapFormatInfo;
-
-	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(typeof(HodokuTripletCandidateMapFormatInfo));
 
 	/// <inheritdoc/>
 	public override HodokuTripletCandidateMapFormatInfo Clone() => new();
