@@ -725,231 +725,6 @@
             Indicates the puzzle has multiple solutions.
             </summary>
         </member>
-        <member name="T:Sudoku.Algorithms.Transformation.GridTransformations">
-            <summary>
-            Provides methods for <see cref="T:Sudoku.Concepts.Grid"/> instances on transformations.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.GridTransformations.ClockwiseTable">
-            <summary>
-            The table of clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.GridTransformations.CounterclockwiseTable">
-            <summary>
-            The table of counter-clockwise rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.GridTransformations.PiRotateTable">
-            <summary>
-            The table of pi-rotation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.GridTransformations.SwappableHouses">
-            <summary>
-            Indicates the swappable pairs, which means the swappable houses.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Grid@)">
-            <summary>
-            Mirror left-right the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Grid@)">
-            <summary>
-            Mirror top-bottom the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Mirror diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.Transpose(Sudoku.Concepts.Grid@)">
-            <summary>
-            Transpose the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Mirror anti-diagonal the grid.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.RotateClockwise(Sudoku.Concepts.Grid@)">
-            <summary>
-            Rotate the grid clockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Grid@)">
-            <summary>
-            Rotate the grid counterclockwise.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.RotatePi(Sudoku.Concepts.Grid@)">
-            <summary>
-            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
-            </summary>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
-            <remarks>
-            This method will return the reference that is same as the argument,
-            in order to inline multiple transformation operations.
-            </remarks>
-            <seealso cref="F:System.Math.PI"/>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Swap two digits.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="digit1">The digit 1 to be swapped.</param>
-            <param name="digit2">The digit 2 to be swapped.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Swap to houses.
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="houseIndex1">The house 1 to be swapped.</param>
-            <param name="houseIndex2">The house 2 to be swapped.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when two specified house argument is not in valid range (0..27),
-            two houses are not in same house type, or are not swappable.
-            </exception>
-            <remarks>
-            This method will return the reference that is same as the argument <paramref name="this"/>,
-            in order to inline multiple transformation operations.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithms.Transformation.GridTransformations.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Swap chutes (i.e. mega-rows or mega-columns).
-            </summary>
-            <param name="this">The grid.</param>
-            <param name="chuteIndex1">The first chute to be swapped.</param>
-            <param name="chuteIndex2">The second chute to be swapped.</param>
-            <returns>The result.</returns>
-            <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
-        </member>
-        <member name="T:Sudoku.Algorithms.Transformation.TransformType">
-            <summary>
-            Represents a type of transformation.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.DigitSwap">
-            <summary>
-            Indicates the transform type is to swap digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.RowSwap">
-            <summary>
-            Indicates the transform type is to swap rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.ColumnSwap">
-            <summary>
-            Indicates the transform type is to swap columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.BandSwap">
-            <summary>
-            Indicates the transform type is to swap bands.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.TowerSwap">
-            <summary>
-            Indicates the transform type is to swap towers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.MirrorLeftRight">
-            <summary>
-            Indicates the transform type is to mirror left and right.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.MirrorTopBottom">
-            <summary>
-            Indicates the transform type is to mirror top and bottom.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.MirrorDiagonal">
-            <summary>
-            Indicates the transform type is to mirror diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.MirrorAntidiagonal">
-            <summary>
-            Indicates the transform type is to mirror anti-diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.RotateClockwise">
-            <summary>
-            Indicates the transform type is to rotate clockwise.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithms.Transformation.TransformType.RotateCounterclockwise">
-            <summary>
-            Indicates the transform type is to ratate counter-clockwise.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
@@ -5404,13 +5179,13 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Algorithms.Transformation.TransformType)">
+        <member name="M:Sudoku.Concepts.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Runtime.TransformingServices.TransformType)">
             <summary>
             Transforms the grid by the specified type.
             </summary>
             <param name="grid">The grid to be transformed.</param>
             <param name="transformTypes">
-            The transform types can be applied. You can use <c><see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
+            The transform types can be applied. You can use <c><see cref="T:Sudoku.Runtime.TransformingServices.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
             </param>
         </member>
         <member name="T:Sudoku.Concepts.HouseMarshal">
@@ -10334,6 +10109,231 @@
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.TransformingServices.GridTransformations">
+            <summary>
+            Provides methods for <see cref="T:Sudoku.Concepts.Grid"/> instances on transformations.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.ClockwiseTable">
+            <summary>
+            The table of clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.CounterclockwiseTable">
+            <summary>
+            The table of counter-clockwise rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.PiRotateTable">
+            <summary>
+            The table of pi-rotation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.SwappableHouses">
+            <summary>
+            Indicates the swappable pairs, which means the swappable houses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Grid@)">
+            <summary>
+            Mirror left-right the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Grid@)">
+            <summary>
+            Mirror top-bottom the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Mirror diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.Transpose(Sudoku.Concepts.Grid@)">
+            <summary>
+            Transpose the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Mirror anti-diagonal the grid.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result grid.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotateClockwise(Sudoku.Concepts.Grid@)">
+            <summary>
+            Rotate the grid clockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Grid@)">
+            <summary>
+            Rotate the grid counterclockwise.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotatePi(Sudoku.Concepts.Grid@)">
+            <summary>
+            Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
+            </summary>
+            <param name="this">The grid.</param>
+            <returns>The result.</returns>
+            <remarks>
+            This method will return the reference that is same as the argument,
+            in order to inline multiple transformation operations.
+            </remarks>
+            <seealso cref="F:System.Math.PI"/>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap two digits.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="digit1">The digit 1 to be swapped.</param>
+            <param name="digit2">The digit 2 to be swapped.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap to houses.
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="houseIndex1">The house 1 to be swapped.</param>
+            <param name="houseIndex2">The house 2 to be swapped.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when two specified house argument is not in valid range (0..27),
+            two houses are not in same house type, or are not swappable.
+            </exception>
+            <remarks>
+            This method will return the reference that is same as the argument <paramref name="this"/>,
+            in order to inline multiple transformation operations.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Swap chutes (i.e. mega-rows or mega-columns).
+            </summary>
+            <param name="this">The grid.</param>
+            <param name="chuteIndex1">The first chute to be swapped.</param>
+            <param name="chuteIndex2">The second chute to be swapped.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+        </member>
+        <member name="T:Sudoku.Runtime.TransformingServices.TransformType">
+            <summary>
+            Represents a type of transformation.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.DigitSwap">
+            <summary>
+            Indicates the transform type is to swap digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RowSwap">
+            <summary>
+            Indicates the transform type is to swap rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.ColumnSwap">
+            <summary>
+            Indicates the transform type is to swap columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.BandSwap">
+            <summary>
+            Indicates the transform type is to swap bands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.TowerSwap">
+            <summary>
+            Indicates the transform type is to swap towers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorLeftRight">
+            <summary>
+            Indicates the transform type is to mirror left and right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorTopBottom">
+            <summary>
+            Indicates the transform type is to mirror top and bottom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorDiagonal">
+            <summary>
+            Indicates the transform type is to mirror diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorAntidiagonal">
+            <summary>
+            Indicates the transform type is to mirror anti-diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RotateClockwise">
+            <summary>
+            Indicates the transform type is to rotate clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RotateCounterclockwise">
+            <summary>
+            Indicates the transform type is to ratate counter-clockwise.
+            </summary>
         </member>
         <member name="T:Sudoku.SolutionFields">
             <summary>

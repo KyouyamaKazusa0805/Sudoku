@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Transformation;
+namespace Sudoku.Runtime.TransformingServices;
 
 /// <summary>
 /// Represents a type of transformation.

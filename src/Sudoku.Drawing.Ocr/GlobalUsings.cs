@@ -13,6 +13,6 @@ global using Emgu.CV.CvEnum;
 global using Emgu.CV.OCR;
 global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
-global using Sudoku.Algorithms.Transformation;
 global using Sudoku.Concepts;
 global using Sudoku.Resources;
+global using Sudoku.Runtime.TransformingServices;
