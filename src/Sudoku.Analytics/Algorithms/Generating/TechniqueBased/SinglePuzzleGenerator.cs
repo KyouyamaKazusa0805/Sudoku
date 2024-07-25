@@ -92,12 +92,12 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// </summary>
 	/// <param name="alignment">Indicates the grid alignment value to be used.</param>
 	/// <returns>The house index.</returns>
-	private protected static House RandomlySelectHouse(ConlusionCellAlignment alignment)
+	private protected static House RandomlySelectHouse(ConclusionCellAlignment alignment)
 		=> alignment switch
 		{
-			ConlusionCellAlignment.NotLimited => Rng.NextHouse(),
-			ConlusionCellAlignment.CenterHouse => 9 * Rng.Next(0, 3) + 4,
-			ConlusionCellAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
+			ConclusionCellAlignment.NotLimited => Rng.NextHouse(),
+			ConclusionCellAlignment.CenterHouse => 9 * Rng.Next(0, 3) + 4,
+			ConclusionCellAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
 			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
 		};
 

@@ -50,13 +50,13 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		// Clear the target cell with the value set -1.
 		var (targetCell, targetDigit) = (Alignment, selectedHouse) switch
 		{
-			(ConlusionCellAlignment.NotLimited or ConlusionCellAlignment.CenterHouse, _) when Rng.NextDigit() is var missingPos
+			(ConclusionCellAlignment.NotLimited or ConclusionCellAlignment.CenterHouse, _) when Rng.NextDigit() is var missingPos
 				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
-			(ConlusionCellAlignment.CenterBlock, 4) when Rng.NextDigit() is var missingPos
+			(ConclusionCellAlignment.CenterBlock, 4) when Rng.NextDigit() is var missingPos
 				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
-			(ConlusionCellAlignment.CenterBlock, _) when (HousesMap[selectedHouse] & HousesMap[4]) is var a && a[Rng.Next(0, a.Count)] is var t
+			(ConclusionCellAlignment.CenterBlock, _) when (HousesMap[selectedHouse] & HousesMap[4]) is var a && a[Rng.Next(0, a.Count)] is var t
 				=> (t, puzzle.GetDigit(t)),
-			(ConlusionCellAlignment.CenterCell, _) => (40, puzzle.GetDigit(40)),
+			(ConclusionCellAlignment.CenterCell, _) => (40, puzzle.GetDigit(40)),
 			_ => (-1, -1)
 		};
 		if ((targetCell, targetDigit) == (-1, -1))

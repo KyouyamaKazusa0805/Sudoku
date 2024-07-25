@@ -1,31 +1,17 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
+using static IAlignedJustOneCellGenerator;
+
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
 /// </summary>
 /// <seealso cref="Technique.FullHouse"/>
-public sealed class FullHousePrimaryGenerator : IPrimaryGenerator, ITechniqueBasedGenerator
+public sealed class FullHousePrimaryGenerator :
+	IAlignedJustOneCellGenerator,
+	IJustOneCellGenerator,
+	IPrimaryGenerator,
+	ITechniqueBasedGenerator
 {
-	/// <summary>
-	/// Represents a seed array for cells that can be used in core methods.
-	/// </summary>
-	private static readonly Cell[] CellSeed = Enumerable.Range(0, 81).ToArray();
-
-	/// <summary>
-	/// Represents a seed array for houses that can be used in core methods.
-	/// </summary>
-	private static readonly House[] HouseSeed = Enumerable.Range(0, 27).ToArray();
-
-	/// <summary>
-	/// Represents a seed array for digits that can be used in core methods.
-	/// </summary>
-	private static readonly Digit[] DigitSeed = Enumerable.Range(0, 9).ToArray();
-
-	/// <summary>
-	/// Indicates the random number generator.
-	/// </summary>
-	private static readonly Random Rng = Random.Shared;
-
 	/// <summary>
 	/// Represents an analyzer.
 	/// </summary>
@@ -58,7 +44,7 @@ public sealed class FullHousePrimaryGenerator : IPrimaryGenerator, ITechniqueBas
 			grid = grid.GetSolutionGrid().UnfixedGrid;
 
 			// Then randomly removed some digits in some cells, and keeps the grid valid.
-			shuffleSequence(CellSeed);
+			ShuffleSequence(CellSeed);
 
 			// Removes the selected cells.
 			var pattern = CellSeed[..(emptyCellsCount == -1 ? Rng.Next(1, 22) : emptyCellsCount)].AsCellMap();
@@ -78,13 +64,91 @@ public sealed class FullHousePrimaryGenerator : IPrimaryGenerator, ITechniqueBas
 
 			cancellationToken.ThrowIfCancellationRequested();
 		}
+	}
 
+	/// <inheritdoc/>
+	public Grid GenerateJustOneCell(ConclusionCellAlignment alignment, out Step? step, CancellationToken cancellationToken = default)
+	{
+		// Choose the target house.
+		var selectedHouse = RandomlySelectHouse(alignment);
 
-		static void shuffleSequence<T>(T[] values)
+		// Shuffle the digits.
+		ShuffleSequence(DigitSeed);
+
+		// Set the given values.
+		var (puzzle, i) = (Grid.Empty, 0);
+		foreach (var cell in HousesCells[selectedHouse])
 		{
-			Rng.Shuffle(values);
-			Rng.Shuffle(values);
-			Rng.Shuffle(values);
+			puzzle.SetDigit(cell, DigitSeed[i++]);
+			puzzle.SetState(cell, CellState.Modifiable);
+		}
+
+		// Clear the target cell with the value set -1.
+		var (targetCell, targetDigit) = (alignment, selectedHouse) switch
+		{
+			(ConclusionCellAlignment.NotLimited or ConclusionCellAlignment.CenterHouse, _) when Rng.NextDigit() is var missingPos
+				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
+			(ConclusionCellAlignment.CenterBlock, 4) when Rng.NextDigit() is var missingPos
+				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
+			(ConclusionCellAlignment.CenterBlock, _)
+				when (HousesMap[selectedHouse] & HousesMap[4]) is var a && a[Rng.Next(0, a.Count)] is var t
+				=> (t, puzzle.GetDigit(t)),
+			(ConclusionCellAlignment.CenterCell, _) => (40, puzzle.GetDigit(40)),
+			_ => (-1, -1)
+		};
+		if ((targetCell, targetDigit) == (-1, -1))
+		{
+			throw new InvalidOperationException();
+		}
+
+		// Leave the target cell to be empty.
+		puzzle.SetDigit(targetCell, -1);
+
+		step = new FullHouseStep(
+			null!,
+			null,
+			null!,
+			selectedHouse,
+			targetCell,
+			targetDigit,
+			SingleModule.GetLasting(in puzzle, targetCell, selectedHouse)
+		);
+		return puzzle.FixedGrid;
+	}
+
+	/// <inheritdoc/>
+	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	{
+		while (true)
+		{
+			var puzzle = new Generator().Generate(cancellationToken: cancellationToken);
+			var analysisResult = SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
+			if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+			{
+				cancellationToken.ThrowIfCancellationRequested();
+				continue;
+			}
+
+			foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
+			{
+				if (s is not FullHouseStep { House: var house })
+				{
+					continue;
+				}
+
+				var extractedGrid = currentGrid;
+				extractedGrid.Unfix();
+				for (var c = 0; c < 81; c++)
+				{
+					if (!HousesMap[house].Contains(c))
+					{
+						extractedGrid.SetDigit(c, -1);
+					}
+				}
+
+				(phasedGrid, step) = (currentGrid, s);
+				return extractedGrid.FixedGrid;
+			}
 		}
 	}
 

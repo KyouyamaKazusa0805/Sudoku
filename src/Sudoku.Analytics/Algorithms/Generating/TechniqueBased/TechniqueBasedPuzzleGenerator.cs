@@ -55,7 +55,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <summary>
 	/// Indicates the aligning rule controlling the case what position just-one-cell puzzles produce conclusion cells can be at.
 	/// </summary>
-	public ConlusionCellAlignment Alignment { get; set; }
+	public ConclusionCellAlignment Alignment { get; set; }
 
 	/// <summary>
 	/// Indicates the supported sudoku puzzle types.

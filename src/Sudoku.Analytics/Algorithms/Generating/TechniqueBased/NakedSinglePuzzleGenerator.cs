@@ -15,9 +15,9 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		// Randomly select a cell as target cell.
 		var targetCell = Alignment switch
 		{
-			ConlusionCellAlignment.NotLimited => Rng.NextCell(),
-			ConlusionCellAlignment.CenterHouse => (PeersMap[40] + 40)[Rng.Next(PeersCount + 1)],
-			ConlusionCellAlignment.CenterBlock => HousesMap[4][Rng.NextDigit()],
+			ConclusionCellAlignment.NotLimited => Rng.NextCell(),
+			ConclusionCellAlignment.CenterHouse => (PeersMap[40] + 40)[Rng.Next(PeersCount + 1)],
+			ConclusionCellAlignment.CenterBlock => HousesMap[4][Rng.NextDigit()],
 			_ => 40
 		};
 		var peerCells = PeersMap[targetCell].ToArray()[..];

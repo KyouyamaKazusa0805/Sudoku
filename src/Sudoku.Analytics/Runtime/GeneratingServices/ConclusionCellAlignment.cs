@@ -1,9 +1,9 @@
-namespace Sudoku.Runtime.GeneratingServices.JustOneCell;
+namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
 /// Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
 /// </summary>
-public enum ConlusionCellAlignment
+public enum ConclusionCellAlignment
 {
 	/// <summary>
 	/// Indicates conclusion cell can be everywhere.

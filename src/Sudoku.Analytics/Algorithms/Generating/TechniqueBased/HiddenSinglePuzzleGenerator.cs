@@ -100,12 +100,12 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				// We should adjust the givens and target cells to the specified position.
 				switch (Alignment)
 				{
-					case ConlusionCellAlignment.CenterHouse or ConlusionCellAlignment.CenterBlock when house != 4:
+					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock when house != 4:
 					{
 						adjustToBlock5(ref house, ref targetCell, ref puzzle);
 						break;
 					}
-					case ConlusionCellAlignment.CenterCell when targetCell != 40:
+					case ConclusionCellAlignment.CenterCell when targetCell != 40:
 					{
 						adjustToBlock5(ref house, ref targetCell, ref puzzle);
 						adjustToCenterCell(ref targetCell, ref puzzle);
@@ -298,12 +298,12 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				// We should adjust the givens and target cells to the specified position.
 				switch (Alignment)
 				{
-					case ConlusionCellAlignment.CenterHouse or ConlusionCellAlignment.CenterBlock when targetCell.ToHouse(HouseType.Block) is var b && b != 4:
+					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock when targetCell.ToHouse(HouseType.Block) is var b && b != 4:
 					{
 						adjustToBlock5(b, ref house, ref targetCell, ref puzzle);
 						break;
 					}
-					case ConlusionCellAlignment.CenterCell when targetCell != 40:
+					case ConclusionCellAlignment.CenterCell when targetCell != 40:
 					{
 						adjustToBlock5(targetCell.ToHouse(HouseType.Block), ref house, ref targetCell, ref puzzle);
 						adjustToCenterCell(ref house, ref targetCell, ref puzzle);
