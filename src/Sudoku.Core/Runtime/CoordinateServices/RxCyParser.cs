@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates;
+namespace Sudoku.Runtime.CoordinateServices;
 
 /// <summary>
 /// Represents a parser type that uses <b>RxCy</b> notation rule to parse text,

@@ -1,26 +1,27 @@
-namespace Sudoku.Concepts.Coordinates;
+namespace Sudoku.Runtime.CoordinateServices;
 
 /// <summary>
-/// Represents a coordinate converter using K9 notation.
+/// Represents a coordinate converter using RxCy notation.
 /// </summary>
 /// <param name="MakeLettersUpperCase">
-/// <para>Indicates whether we make the letters be upper-casing.</para>
+/// <para>Indicates whether we make the letters <c>'r'</c>, <c>'c'</c> and <c>'b'</c> to be upper-casing.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
-/// <param name="FinalRowLetter">
-/// <para>
-/// Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-/// but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
-/// This option will change the last row letter if you want to change it.
-/// </para>
-/// <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+/// <param name="MakeDigitBeforeCell">
+/// <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="HouseNotationOnlyDisplayCapitals">
+/// <para>Indicates whether the houses will be displayed its capitals only.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
-public sealed record K9Converter(
+public sealed record RxCyConverter(
 	bool MakeLettersUpperCase = false,
-	char FinalRowLetter = 'I',
+	bool MakeDigitBeforeCell = false,
+	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
 	CultureInfo? CurrentCulture = null
@@ -30,25 +31,17 @@ public sealed record K9Converter(
 	public override FuncRefReadOnly<CellMap, string> CellConverter
 		=> (ref readonly CellMap cells) =>
 		{
-			switch (cells)
+			return cells switch
 			{
-				case []: { return string.Empty; }
-				case [var p]:
-				{
-					var row = p / 9;
-					var column = p % 9;
-					var rowCharacter = row == 8
-						? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
-						: (char)((MakeLettersUpperCase ? 'A' : 'a') + row);
-					return $"{rowCharacter}{DigitConverter((Mask)(1 << column))}";
-				}
-				default: { return r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b; }
-			}
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
+			};
 
 
 			string r(ref readonly CellMap cells)
 			{
-				var sbRow = new StringBuilder(18);
+				var sbRow = new StringBuilder(50);
 				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
 				foreach (var cell in cells)
 				{
@@ -61,11 +54,9 @@ public sealed record K9Converter(
 				}
 				foreach (var row in dic.Keys)
 				{
-					sbRow.Append(
-						row == 8
-							? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
-							: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
-					);
+					sbRow.Append(MakeLettersUpperCase ? 'R' : 'r');
+					sbRow.Append(row + 1);
+					sbRow.Append(MakeLettersUpperCase ? 'C' : 'c');
 					sbRow.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[row].AsReadOnlySpan());
 					sbRow.Append(DefaultSeparator);
 				}
@@ -75,7 +66,7 @@ public sealed record K9Converter(
 			string c(ref readonly CellMap cells)
 			{
 				var dic = new Dictionary<Digit, List<RowIndex>>(9);
-				var sbColumn = new StringBuilder(18);
+				var sbColumn = new StringBuilder(50);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell % 9))
@@ -87,16 +78,11 @@ public sealed record K9Converter(
 				}
 				foreach (var column in dic.Keys)
 				{
-					foreach (var row in dic[column])
-					{
-						sbColumn.Append(
-							row == 8
-								? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
-								: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
-						);
-					}
-
-					sbColumn.Append(column + 1).Append(DefaultSeparator);
+					sbColumn.Append(MakeLettersUpperCase ? 'R' : 'r');
+					sbColumn.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[column].AsReadOnlySpan());
+					sbColumn.Append(MakeLettersUpperCase ? 'C' : 'c');
+					sbColumn.Append(column + 1);
+					sbColumn.Append(DefaultSeparator);
 				}
 				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
@@ -106,6 +92,11 @@ public sealed record K9Converter(
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
 		=> (ref readonly CandidateMap candidates) =>
 		{
+			if (!candidates)
+			{
+				return string.Empty;
+			}
+
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
 				from candidate in candidates
@@ -113,9 +104,20 @@ public sealed record K9Converter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				sb.Append(CellConverter([.. from candidate in digitGroup select candidate / 9]));
-				sb.Append('.');
-				sb.Append(digitGroup.Key + 1);
+				var cells = (CellMap)([.. from candidate in digitGroup select candidate / 9]);
+				if (MakeDigitBeforeCell)
+				{
+					sb.Append(digitGroup.Key + 1);
+					sb.Append(CellConverter(in cells));
+				}
+				else
+				{
+					sb.Append(CellConverter(in cells));
+					sb.Append('(');
+					sb.Append(digitGroup.Key + 1);
+					sb.Append(')');
+				}
+
 				sb.Append(DefaultSeparator);
 			}
 			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
@@ -130,55 +132,56 @@ public sealed record K9Converter(
 				return string.Empty;
 			}
 
+			if (HouseNotationOnlyDisplayCapitals)
+			{
+				var sb = new StringBuilder(27);
+				for (var (houseIndex, i) = (9, 0); i < 27; i++, houseIndex = (houseIndex + 1) % 27)
+				{
+					if ((housesMask >> houseIndex & 1) != 0)
+					{
+						sb.Append(getChar(houseIndex / 9));
+					}
+				}
+				return sb.ToString();
+			}
+
 			if (IsPow2((uint)housesMask))
 			{
 				var house = Log2((uint)housesMask);
-				var houseType = house.ToHouseType();
-				return string.Format(
-					SR.Get(
-						houseType switch
-						{
-							HouseType.Row => "RowLabel",
-							HouseType.Column => "ColumnLabel",
-							HouseType.Block => "BlockLabel",
-							_ => throw new InvalidOperationException($"The specified house value '{nameof(house)}' is invalid.")
-						},
-						TargetCurrentCulture
-					),
-					house % 9 + 1
-				);
+				return $"{getChar(house)}{house % 9 + 1}";
 			}
 
-			var dic = new Dictionary<HouseType, List<House>>(3);
-			foreach (var house in housesMask)
 			{
-				var houseType = house.ToHouseType();
-				if (!dic.TryAdd(houseType, [house]))
+				var dic = new Dictionary<HouseType, List<House>>(3);
+				foreach (var house in housesMask)
 				{
-					dic[houseType].Add(house);
+					var houseType = house.ToHouseType();
+					if (!dic.TryAdd(houseType, [house]))
+					{
+						dic[houseType].Add(house);
+					}
 				}
+
+				var sb = new StringBuilder(30);
+				foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
+				{
+					sb.Append(houseType.GetLabel());
+					sb.AppendRange(static integer => integer.ToString(), elements: from house in h select house % 9 + 1);
+				}
+
+				return sb.ToString();
 			}
 
-			var sb = new StringBuilder(30);
-			foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
-			{
-				sb.Append(
-					string.Format(
-						SR.Get(
-							houseType switch
-							{
-								HouseType.Row => "RowLabel",
-								HouseType.Column => "ColumnLabel",
-								HouseType.Block => "BlockLabel",
-								_ => throw new InvalidOperationException($"The specified house value '{nameof(houseType)}' is invalid.")
-							},
-							TargetCurrentCulture
-						),
-						string.Concat(from house in h select (house % 9 + 1).ToString())
-					)
-				);
-			}
-			return sb.ToString();
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static char getChar(House house)
+				=> house switch
+				{
+					>= 0 and < 9 => 'b',
+					>= 9 and < 18 => 'r',
+					>= 18 and < 27 => 'c',
+					_ => throw new ArgumentOutOfRangeException(nameof(house))
+				};
 		};
 
 	/// <inheritdoc/>
@@ -204,7 +207,7 @@ public sealed record K9Converter(
 
 				var sb = new StringBuilder(50);
 
-				Array.Sort(conclusions, static (left, right) => left.CompareTo(right));
+				Array.Sort(conclusions);
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.Length == 1;
 				foreach (var typeGroup in selection)
@@ -236,7 +239,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override Func<Mask, string> DigitConverter
-		=> new LiteralCoordinateConverter(DigitsSeparator: DigitsSeparator).DigitConverter;
+		=> new LiteralCoordinateConverter(DefaultSeparator: DefaultSeparator).DigitConverter;
 
 	/// <inheritdoc/>
 	public override Func<ReadOnlySpan<Miniline>, string> IntersectionConverter
@@ -246,46 +249,14 @@ public sealed record K9Converter(
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
-				select string.Format(
-					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
-					[
-						((House)baseSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
-						},
-						((House)coverSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
-						}
-					]
-				)
+				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
 			),
 			_ => string.Join(
 				DefaultSeparator,
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
-				select string.Format(
-					SR.Get("LockedCandidatesLabel", TargetCurrentCulture),
-					[
-						((House)baseSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
-						},
-						((House)coverSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(SR.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(SR.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(SR.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
-						}
-					]
-				)
+				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
 			)
 		};
 
@@ -305,7 +276,7 @@ public sealed record K9Converter(
 			var sb = new StringBuilder(12);
 			if (megalines.TryGetValue(true, out var megaRows))
 			{
-				sb.Append(MakeLettersUpperCase ? "Mega Row" : "mega row");
+				sb.Append(MakeLettersUpperCase ? "MR" : "mr");
 				foreach (var megaRow in megaRows)
 				{
 					sb.Append(megaRow + 1);
@@ -315,7 +286,7 @@ public sealed record K9Converter(
 			}
 			if (megalines.TryGetValue(false, out var megaColumns))
 			{
-				sb.Append(MakeLettersUpperCase ? "Mega Column" : "mega column");
+				sb.Append(MakeLettersUpperCase ? "MC" : "mc");
 				foreach (var megaColumn in megaColumns)
 				{
 					sb.Append(megaColumn + 1);
@@ -339,7 +310,11 @@ public sealed record K9Converter(
 			{
 				var fromCellString = CellConverter(in conjugatePair.From.AsCellMap());
 				var toCellString = CellConverter(in conjugatePair.To.AsCellMap());
-				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
+				sb.Append(
+					MakeDigitBeforeCell
+						? $"{DigitConverter((Mask)(1 << conjugatePair.Digit))}{fromCellString} == {toCellString}"
+						: $"{fromCellString} == {toCellString}({DigitConverter((Mask)(1 << conjugatePair.Digit))})"
+				);
 				sb.Append(DefaultSeparator);
 			}
 			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
@@ -349,4 +324,21 @@ public sealed record K9Converter(
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
+
+	/// <summary>
+	/// Get the label of each house.
+	/// </summary>
+	/// <param name="houseIndex">The house index.</param>
+	/// <returns>The label.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private char GetLabel(byte houseIndex)
+		=> (houseIndex, MakeLettersUpperCase) switch
+		{
+			(0, true) => 'B',
+			(0, _) => 'b',
+			(1, true) => 'R',
+			(1, _) => 'r',
+			(2, true) => 'C',
+			_ => 'c'
+		};
 }

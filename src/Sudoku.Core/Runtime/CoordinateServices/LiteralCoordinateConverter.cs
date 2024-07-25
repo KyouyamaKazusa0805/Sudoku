@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates;
+namespace Sudoku.Runtime.CoordinateServices;
 
 /// <summary>
 /// Represents a converter that outputs coordinates as literally-speaking representation.
