@@ -6,13 +6,19 @@ namespace Sudoku.Runtime.GeneratingServices;
 public interface IJustOneCellGenerator
 {
 	/// <summary>
+	/// Indicates the random number generator.
+	/// </summary>
+	public static abstract ref readonly Random Rng { get; }
+
+
+	/// <summary>
 	/// Generates a puzzle and return a <see cref="Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
 	/// using <paramref name="cancellationToken"/> to cancel the operation.
 	/// </summary>
+	/// <param name="step">Indicates the step that records the current technique usage.</param>
 	/// <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
 	/// <returns>The result <see cref="Grid"/> instance generated.</returns>
-	public virtual Grid GenerateJustOneCell(CancellationToken cancellationToken = default)
-		=> GenerateJustOneCell(out _, out _, cancellationToken);
+	public abstract Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// Generates a puzzle and return a <see cref="Grid"/> instance that satisfies rules of Just-One-Cell puzzles,

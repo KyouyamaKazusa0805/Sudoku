@@ -13,10 +13,10 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.ClaimingCrosshatchingRow"/>
 /// <seealso cref="Technique.ClaimingCrosshatchingColumn"/>
 /// <seealso cref="Technique.ClaimingNakedSingle"/>
-public sealed class DirectIntersectionGenerator : IJustOneCellGenerator
+public sealed class DirectIntersectionGenerator : DirectTechniqueGenerator
 {
 	/// <inheritdoc/>
-	public TechniqueSet SupportedTechniques
+	public override TechniqueSet SupportedTechniques
 		=> [
 			Technique.PointingFullHouse,
 			Technique.PointingCrosshatchingBlock,
@@ -32,7 +32,13 @@ public sealed class DirectIntersectionGenerator : IJustOneCellGenerator
 
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	{
+		throw new NotImplementedException();
+	}
+
+	/// <inheritdoc/>
+	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
 	{
 		throw new NotImplementedException();
 	}

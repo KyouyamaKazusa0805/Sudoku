@@ -1,26 +1,41 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
-using static IAlignedJustOneCellGenerator;
-
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
 /// </summary>
 /// <seealso cref="Technique.NakedSingle"/>
-public sealed class NakedSinglePrimaryGenerator :
-	IAlignedJustOneCellGenerator,
-	IJustOneCellGenerator,
-	IPrimaryGenerator,
-	ITechniqueBasedGenerator
+public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 {
 	/// <inheritdoc/>
-	public ConclusionCellAlignment Alignment { get; set; }
-
-	/// <inheritdoc/>
-	public TechniqueSet SupportedTechniques => [Technique.NakedSingle];
+	public override TechniqueSet SupportedTechniques => [Technique.NakedSingle];
 
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	{
+		var generator = new Generator();
+		while (true)
+		{
+			var puzzle = generator.Generate(cancellationToken: cancellationToken);
+			if (puzzle.IsUndefined)
+			{
+				return Grid.Undefined;
+			}
+
+			if (!puzzle.CanPrimaryNakedSingle())
+			{
+				cancellationToken.ThrowIfCancellationRequested();
+				continue;
+			}
+			return puzzle;
+		}
+	}
+
+	/// <inheritdoc/>
+	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+
+	/// <inheritdoc/>
+	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Randomly select a cell as target cell.
 		var targetCell = Alignment switch
@@ -61,7 +76,7 @@ public sealed class NakedSinglePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -98,28 +113,4 @@ public sealed class NakedSinglePrimaryGenerator :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	public Grid GenerateUnique(CancellationToken cancellationToken = default)
-	{
-		var generator = new Generator();
-		while (true)
-		{
-			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			if (puzzle.IsUndefined)
-			{
-				return Grid.Undefined;
-			}
-
-			if (!puzzle.CanPrimaryNakedSingle())
-			{
-				cancellationToken.ThrowIfCancellationRequested();
-				continue;
-			}
-			return puzzle;
-		}
-	}
-
-	/// <inheritdoc/>
-	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
 }

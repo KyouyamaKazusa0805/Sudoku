@@ -3,12 +3,12 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <summary>
 /// Represents a generator that can generate a valid puzzle.
 /// </summary>
-public interface ITechniqueBasedGenerator : IGenerator<Grid>
+public interface IUniqueGenerator : ITechniqueGenerator, IGenerator<Grid>
 {
 	/// <summary>
-	/// Indicates the supported techniques that the current generator is supported.
+	/// Indicates the analyzer used.
 	/// </summary>
-	public abstract TechniqueSet SupportedTechniques { get; }
+	public static abstract ref readonly Analyzer Analyzer { get; }
 
 
 	/// <summary>

@@ -1,33 +1,24 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
-using static IAlignedJustOneCellGenerator;
-
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
 /// </summary>
 /// <seealso cref="Technique.FullHouse"/>
-public sealed class FullHousePrimaryGenerator :
-	IAlignedJustOneCellGenerator,
-	IJustOneCellGenerator,
-	IPrimaryGenerator,
-	ITechniqueBasedGenerator
+public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 {
 	/// <summary>
-	/// Represents an analyzer.
+	/// Indicates the number of empty cells the current generator will generate on puzzles.
 	/// </summary>
-	private static readonly Analyzer Analyzer = Analyzer.Default.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true });
+	public Cell EmptyCellsCount { get; set; }
+
+	/// <inheritdoc/>
+	public override TechniqueSet SupportedTechniques => [Technique.FullHouse];
 
 
 	/// <inheritdoc/>
-	public ConclusionCellAlignment Alignment { get; set; }
-
-	/// <inheritdoc/>
-	public TechniqueSet SupportedTechniques => [Technique.FullHouse];
-
-
-	/// <inheritdoc cref="ITechniqueBasedGenerator.GenerateUnique"/>
-	public Grid GenerateUnique(Cell emptyCellsCount, CancellationToken cancellationToken = default)
+	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
 	{
+		var emptyCellsCount = EmptyCellsCount;
 		if (emptyCellsCount is not (-1 or >= 1 and <= PeersCount + 1))
 		{
 			emptyCellsCount = Math.Clamp(emptyCellsCount, 1, PeersCount + 1);
@@ -59,7 +50,7 @@ public sealed class FullHousePrimaryGenerator :
 			// Fix the grid and check validity.
 			grid.Fix();
 			if (grid.GetIsValid()
-				&& Analyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, InterimSteps: var steps }
+				&& SingleAnalyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, InterimSteps: var steps }
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{
 				return grid.FixedGrid;
@@ -70,7 +61,10 @@ public sealed class FullHousePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+
+	/// <inheritdoc/>
+	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Choose the target house.
 		var selectedHouse = RandomlySelectHouse(Alignment);
@@ -120,7 +114,7 @@ public sealed class FullHousePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -155,10 +149,4 @@ public sealed class FullHousePrimaryGenerator :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	Grid ITechniqueBasedGenerator.GenerateUnique(CancellationToken cancellationToken) => GenerateUnique(21, cancellationToken);
-
-	/// <inheritdoc/>
-	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(21, cancellationToken);
 }

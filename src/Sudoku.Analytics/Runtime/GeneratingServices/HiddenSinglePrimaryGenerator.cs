@@ -1,39 +1,25 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
-using static IAlignedJustOneCellGenerator;
-
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Hidden Singles and Full Houses.
 /// </summary>
 /// <seealso cref="Technique.CrosshatchingBlock"/>
 /// <seealso cref="Technique.CrosshatchingRow"/>
 /// <seealso cref="Technique.CrosshatchingColumn"/>
-public sealed class HiddenSinglePrimaryGenerator :
-	IAlignedJustOneCellGenerator,
-	IJustOneCellGenerator,
-	IPrimaryGenerator,
-	ITechniqueBasedGenerator
+public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 {
-	/// <summary>
-	/// Indicates the backing analyzer.
-	/// </summary>
-	private static readonly Analyzer Analyzer = Analyzer.Default.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true });
-
-
 	/// <summary>
 	/// Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.
 	/// </summary>
 	public bool AllowsBlockExcluders { get; set; }
 
 	/// <inheritdoc/>
-	public ConclusionCellAlignment Alignment { get; set; }
-
-	/// <inheritdoc/>
-	public TechniqueSet SupportedTechniques => [Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn];
+	public override TechniqueSet SupportedTechniques
+		=> [Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn];
 
 
-	/// <inheritdoc cref="ITechniqueBasedGenerator.GenerateUnique(CancellationToken)"/>
-	public Grid GenerateUnique(CancellationToken cancellationToken = default)
+	/// <inheritdoc cref="IUniqueGenerator.GenerateUnique(CancellationToken)"/>
+	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -50,7 +36,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 				continue;
 			}
 
-			if (!AllowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
+			if (!AllowsBlockExcluders && SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 				continue;
@@ -61,7 +47,10 @@ public sealed class HiddenSinglePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+
+	/// <inheritdoc/>
+	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 	{
 		var house = RandomlySelectHouse(Alignment);
 		var subtype = RandomlySelectSubtype(house, s => AllowsBlockExcluders || s.GetExcludersCount(HouseType.Block) == 0);
@@ -452,7 +441,7 @@ public sealed class HiddenSinglePrimaryGenerator :
 	}
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -493,7 +482,4 @@ public sealed class HiddenSinglePrimaryGenerator :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
 }
