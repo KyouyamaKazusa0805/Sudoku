@@ -316,7 +316,7 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion[] ToArray() => [.. _conclusionsEntry];
+	public Conclusion[] ToDigitsArray() => [.. _conclusionsEntry];
 
 	/// <summary>
 	/// Try to get an enumerator type that iterates on each conclusion.

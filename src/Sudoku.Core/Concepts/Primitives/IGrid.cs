@@ -129,8 +129,12 @@ public interface IGrid<TSelf> :
 	/// <seealso cref="IGridConstants{TSelf}.MaxCandidatesMask"/>
 	public abstract Mask[] ToCandidateMaskArray();
 
-	/// <inheritdoc cref="IToArrayMethod{TSelf, TSource}.ToArray"/>
-	public new abstract Digit[] ToArray();
+	/// <summary>
+	/// Try to create a new array of <see cref="Digit"/> instances indicating filling digits inside cells.
+	/// </summary>
+	/// <returns>An array of <see cref="Digit"/> instances.</returns>
+	/// <seealso cref="Digit"/>
+	public abstract Digit[] ToDigitsArray();
 
 	/// <inheritdoc/>
 	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(in other);
@@ -142,7 +146,7 @@ public interface IGrid<TSelf> :
 	int IReadOnlyCollection<Digit>.Count => 81;
 
 	/// <inheritdoc/>
-	Digit[] IToArrayMethod<TSelf, Digit>.ToArray() => ToArray();
+	Digit[] IToArrayMethod<TSelf, Digit>.ToArray() => ToDigitsArray();
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

@@ -68,7 +68,7 @@ public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(M
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SingleSubtype[] ToArray() => _values.ToArray();
+	public SingleSubtype[] ToDigitsArray() => _values.ToArray();
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

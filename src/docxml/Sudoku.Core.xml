@@ -993,6 +993,39 @@
         <member name="M:Sudoku.Algorithms.Solving.Dlx.ColumnNode.ToString">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Algorithms.Solving.Dlx.DancingLink">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.#ctor(Sudoku.Algorithms.Solving.Dlx.ColumnNode)">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="P:Sudoku.Algorithms.Solving.Dlx.DancingLink.Entry">
+            <summary>
+            Indicates the entry instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.CreateLinkedList(System.Int32[])">
+            <summary>
+            Creates the links.
+            </summary>
+            <param name="gridArray">The grid array.</param>
+            <returns>The column node for the root node.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.FormLinks(Sudoku.Algorithms.Solving.Dlx.ColumnNode[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            To form the links via the specified columns, the cell index and the digit used.
+            </summary>
+            <param name="columns">The columns having been stored.</param>
+            <param name="x">The current row index.</param>
+            <param name="y">The current column index.</param>
+            <param name="d">The current digit.</param>
+        </member>
         <member name="T:Sudoku.Algorithms.Solving.Dlx.DancingLinkNode">
             <summary>
             Represents a dancing link node.
@@ -1108,39 +1141,6 @@
             Try to choose the next column node.
             </summary>
             <returns>The chosen next column node.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithms.Solving.Dlx.DancingLink">
-            <summary>
-            Represents as a dancing link.
-            </summary>
-            <param name="root">The root node.</param>
-        </member>
-        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.#ctor(Sudoku.Algorithms.Solving.Dlx.ColumnNode)">
-            <summary>
-            Represents as a dancing link.
-            </summary>
-            <param name="root">The root node.</param>
-        </member>
-        <member name="P:Sudoku.Algorithms.Solving.Dlx.DancingLink.Entry">
-            <summary>
-            Indicates the entry instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.CreateLinkedList(System.Int32[])">
-            <summary>
-            Creates the links.
-            </summary>
-            <param name="gridArray">The grid array.</param>
-            <returns>The column node for the root node.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithms.Solving.Dlx.DancingLink.FormLinks(Sudoku.Algorithms.Solving.Dlx.ColumnNode[],System.Int32,System.Int32,System.Int32)">
-            <summary>
-            To form the links via the specified columns, the cell index and the digit used.
-            </summary>
-            <param name="columns">The columns having been stored.</param>
-            <param name="x">The current row index.</param>
-            <param name="y">The current column index.</param>
-            <param name="d">The current digit.</param>
         </member>
         <member name="T:Sudoku.Algorithms.Solving.Dlx.MatrixRow">
             <summary>
@@ -3360,7 +3360,7 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">
@@ -5457,11 +5457,17 @@
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ToArray">
+        <member name="M:Sudoku.Concepts.Grid.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToCandidateMaskArray">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ToMaskArray">
+            <summary>
+            Creates an array of <see cref="T:System.Int16"/> values that is a copy for the current inline array data structure.
+            </summary>
+            <returns>An array of <see cref="T:System.Int16"/> values.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
             <inheritdoc/>
@@ -6800,8 +6806,12 @@
             </returns>
             <seealso cref="P:Sudoku.Concepts.Primitives.IGridConstants`1.MaxCandidatesMask"/>
         </member>
-        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.ToArray">
-            <inheritdoc cref="M:System.Linq.Providers.IToArrayMethod`2.ToArray"/>
+        <member name="M:Sudoku.Concepts.Primitives.IGrid`1.ToDigitsArray">
+            <summary>
+            Try to create a new array of <see cref="T:System.Int32"/> instances indicating filling digits inside cells.
+            </summary>
+            <returns>An array of <see cref="T:System.Int32"/> instances.</returns>
+            <seealso cref="T:System.Int32"/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.System#IEquatable{TSelf}#Equals(`0)">
             <inheritdoc/>

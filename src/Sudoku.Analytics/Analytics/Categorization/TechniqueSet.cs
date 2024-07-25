@@ -303,7 +303,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Technique[] ToArray() => [.. this];
+	public Technique[] ToDigitsArray() => [.. this];
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public TechniqueSet Slice(int start, int count)
@@ -326,7 +326,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
-		=> Array.Copy(this[arrayIndex..].ToArray(), array, Count - arrayIndex);
+		=> Array.Copy(this[arrayIndex..].ToDigitsArray(), array, Count - arrayIndex);
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.Add(Technique item) => Add(item);

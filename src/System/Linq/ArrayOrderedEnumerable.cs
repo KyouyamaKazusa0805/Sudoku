@@ -195,7 +195,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public T[] ToArray() => ArrayOrdered;
+	public T[] ToDigitsArray() => ArrayOrdered;
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

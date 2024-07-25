@@ -206,7 +206,7 @@ public ref partial struct Generator()
 			}
 
 			var index = -1;
-			var actValues = _stack[level].SudokuGrid.ToArray();
+			var actValues = _stack[level].SudokuGrid.ToDigitsArray();
 			for (var i = 0; i < 81; i++)
 			{
 				var actTry = _generateIndices[i];

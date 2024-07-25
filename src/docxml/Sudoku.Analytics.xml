@@ -2196,7 +2196,7 @@
             <param name="index">The desired index.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instance as result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToArray">
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Slice(System.Int32,System.Int32)">
@@ -5239,7 +5239,7 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Slice(System.Int32,System.Int32)">
@@ -22498,7 +22498,7 @@
         <member name="M:Sudoku.Concepts.EliminationRange.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.ToArray">
+        <member name="M:Sudoku.Concepts.EliminationRange.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.Add(System.Int32,System.Int32)">

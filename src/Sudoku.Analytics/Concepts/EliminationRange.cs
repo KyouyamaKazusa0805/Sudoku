@@ -191,7 +191,7 @@ public partial struct EliminationRange :
 	public readonly Enumerator GetEnumerator() => new(in this);
 
 	/// <inheritdoc/>
-	public readonly KeyValuePair<Digit, HouseMask>[] ToArray()
+	public readonly KeyValuePair<Digit, HouseMask>[] ToDigitsArray()
 	{
 		var result = new List<KeyValuePair<Digit, HouseMask>>(9);
 		for (var digit = 0; digit < 9; digit++)

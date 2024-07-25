@@ -526,7 +526,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default(string));
 
 	/// <inheritdoc/>
-	public readonly Digit[] ToArray()
+	public readonly Digit[] ToDigitsArray()
 	{
 		var result = new Digit[CellsCount];
 		for (var i = 0; i < CellsCount; i++)
@@ -547,6 +547,13 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		}
 		return result;
 	}
+
+	/// <summary>
+	/// Creates an array of <see cref="Mask"/> values that is a copy for the current inline array data structure.
+	/// </summary>
+	/// <returns>An array of <see cref="Mask"/> values.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly Mask[] ToMaskArray() => this[..].ToArray();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -777,7 +784,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		=> this.Where(predicate).ToArray();
 
 	/// <inheritdoc/>
-	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
+	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToDigitsArray()).GetEnumerator();
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)

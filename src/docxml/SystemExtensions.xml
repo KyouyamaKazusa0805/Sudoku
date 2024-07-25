@@ -1749,7 +1749,7 @@
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
         </member>
-        <member name="M:System.Linq.ArrayOrderedEnumerable`1.ToArray">
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.ToDigitsArray">
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.GetEnumerator">

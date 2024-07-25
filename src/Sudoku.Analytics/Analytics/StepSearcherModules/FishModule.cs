@@ -106,7 +106,7 @@ internal static class FishModule
 			var mergedFins = fish1.Fins | fish2.Fins;
 			var coveredSetsMask = fish1.CoverSetsMask | fish2.CoverSetsMask;
 			var siameseCoverSetsMask = fish1.CoverSetsMask ^ fish2.CoverSetsMask;
-			var conclusions = (fish1.Conclusions.AsSet() | fish2.Conclusions.AsSet()).ToArray();
+			var conclusions = (fish1.Conclusions.AsSet() | fish2.Conclusions.AsSet()).ToDigitsArray();
 			var isSashimi = (fish1.IsSashimi, fish2.IsSashimi) switch
 			{
 				(true, not null) or (not null, true) => true,

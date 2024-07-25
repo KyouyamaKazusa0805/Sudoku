@@ -59,7 +59,7 @@ public sealed class BacktrackingSolver : ISolver
 		try
 		{
 			var solutionsCount = 0;
-			var gridArray = grid.ToArray();
+			var gridArray = grid.ToDigitsArray();
 			solve(ref solutionsCount, ref resultArray, gridArray, 0);
 
 			if (resultArray is null)
