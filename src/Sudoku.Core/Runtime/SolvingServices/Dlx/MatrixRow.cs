@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Solving.Dlx;
+namespace Sudoku.Runtime.SolvingServices.Dlx;
 
 /// <summary>
 /// Represents a type describing for a matrix row.

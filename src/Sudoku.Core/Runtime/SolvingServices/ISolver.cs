@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Solving;
+namespace Sudoku.Runtime.SolvingServices;
 
 /// <summary>
 /// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="Grid"/> instance,

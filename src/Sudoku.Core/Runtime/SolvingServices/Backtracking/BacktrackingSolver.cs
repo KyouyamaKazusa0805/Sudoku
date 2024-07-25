@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Solving.Backtracking;
+namespace Sudoku.Runtime.SolvingServices.Backtracking;
 
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.

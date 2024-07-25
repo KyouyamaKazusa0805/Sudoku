@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Solving.Bitwise;
+namespace Sudoku.Runtime.SolvingServices.Bitwise;
 
 /// <summary>
 /// Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
