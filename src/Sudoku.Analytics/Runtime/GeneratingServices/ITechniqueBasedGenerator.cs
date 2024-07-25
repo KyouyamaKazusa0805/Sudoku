@@ -1,16 +1,10 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
-/// Represents a generator that generates a puzzle.
+/// Represents a generator that can generate a valid puzzle.
 /// </summary>
-public interface ITechniqueBasedGenerator
+public interface ITechniqueBasedGenerator : IGenerator<Grid>
 {
-	/// <summary>
-	/// Represents the solver.
-	/// </summary>
-	protected static readonly BitwiseSolver Solver = new();
-
-
 	/// <summary>
 	/// Indicates the supported techniques that the current generator is supported.
 	/// </summary>
@@ -24,4 +18,8 @@ public interface ITechniqueBasedGenerator
 	/// <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
 	/// <returns>The result <see cref="Grid"/> instance generated.</returns>
 	public abstract Grid GenerateUnique(CancellationToken cancellationToken = default);
+
+	/// <inheritdoc/>
+	Grid IGenerator<Grid>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+		=> GenerateUnique(cancellationToken);
 }

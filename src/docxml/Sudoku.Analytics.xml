@@ -578,6 +578,26 @@
             </summary>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
         </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.CellSeed">
+            <summary>
+            Represents a seed array for cells that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.HouseSeed">
+            <summary>
+            Represents a seed array for houses that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.DigitSeed">
+            <summary>
+            Represents a seed array for digits that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Rng">
+            <summary>
+            Indicates the random number generator.
+            </summary>
+        </member>
         <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Analyzer">
             <summary>
             Represents an analyzer.
@@ -590,6 +610,9 @@
             <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueBasedGenerator#GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Sudoku#Runtime#GeneratingServices#IPrimaryGenerator#GeneratePrimary(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator">
@@ -614,46 +637,38 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueBasedGenerator#GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#IPrimaryGenerator#GeneratePrimary(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator">
+            <summary>
+            Represents a type that can generate puzzles that can only be solved for one cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
+            using <paramref name="cancellationToken"/> to cancel the operation.
+            </summary>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
+        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator">
             <summary>
             Represents a generator type that creates a puzzle that can only uses the current technique to solve.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.CellSeed">
+        <member name="M:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.GeneratePrimary(System.Threading.CancellationToken)">
             <summary>
-            Represents a seed array for cells that can be used in core methods.
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that can be solved by only using the specified technique;
+            using <paramref name="cancellationToken"/> to cancel the operation.
             </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.HouseSeed">
-            <summary>
-            Represents a seed array for houses that can be used in core methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.DigitSeed">
-            <summary>
-            Represents a seed array for digits that can be used in core methods.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.Rng">
-            <summary>
-            Indicates the random number generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.ShuffleSequence``1(``0[])">
-            <summary>
-            Try to shuffle the sequence for 3 times.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="values">The values to be shuffled.</param>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator">
             <summary>
-            Represents a generator that generates a puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.Solver">
-            <summary>
-            Represents the solver.
+            Represents a generator that can generate a valid puzzle.
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.SupportedTechniques">
@@ -669,6 +684,9 @@
             <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
             <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
         </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.Sudoku#Runtime#GeneratingServices#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator">
             <summary>
             Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
@@ -679,6 +697,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#IPrimaryGenerator#GeneratePrimary(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">

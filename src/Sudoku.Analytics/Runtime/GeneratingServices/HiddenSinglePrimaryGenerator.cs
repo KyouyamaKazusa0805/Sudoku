@@ -6,7 +6,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.CrosshatchingBlock"/>
 /// <seealso cref="Technique.CrosshatchingRow"/>
 /// <seealso cref="Technique.CrosshatchingColumn"/>
-public sealed class HiddenSinglePrimaryGenerator : IPrimaryGenerator
+public sealed class HiddenSinglePrimaryGenerator : IPrimaryGenerator, ITechniqueBasedGenerator
 {
 	/// <summary>
 	/// Indicates the backing analyzer.
@@ -48,4 +48,7 @@ public sealed class HiddenSinglePrimaryGenerator : IPrimaryGenerator
 
 	/// <inheritdoc/>
 	Grid ITechniqueBasedGenerator.GenerateUnique(CancellationToken cancellationToken) => GenerateUnique(true, cancellationToken);
+
+	/// <inheritdoc/>
+	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(true, cancellationToken);
 }

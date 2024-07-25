@@ -4,7 +4,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
 /// </summary>
 /// <seealso cref="Technique.NakedSingle"/>
-public sealed class NakedSinglePrimaryGenerator : IPrimaryGenerator
+public sealed class NakedSinglePrimaryGenerator : IPrimaryGenerator, ITechniqueBasedGenerator
 {
 	/// <inheritdoc/>
 	public TechniqueSet SupportedTechniques => [Technique.NakedSingle];
@@ -16,7 +16,7 @@ public sealed class NakedSinglePrimaryGenerator : IPrimaryGenerator
 		var generator = new Generator();
 		while (true)
 		{
-			var puzzle = new Generator().Generate(cancellationToken: cancellationToken);
+			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			if (puzzle.IsUndefined)
 			{
 				return Grid.Undefined;
@@ -30,4 +30,7 @@ public sealed class NakedSinglePrimaryGenerator : IPrimaryGenerator
 			return puzzle;
 		}
 	}
+
+	/// <inheritdoc/>
+	Grid IPrimaryGenerator.GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
 }
