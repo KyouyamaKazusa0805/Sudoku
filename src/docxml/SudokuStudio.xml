@@ -1160,7 +1160,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableFullHouseProperty">
             <summary>
@@ -5506,11 +5506,11 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> supported by <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instances
+            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> supported by <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/> instances
             into a <see cref="T:System.Boolean"/> control determining whether the corresponding control is set as "on" value.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>
@@ -10472,7 +10472,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableFullHouse">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>

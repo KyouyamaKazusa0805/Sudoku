@@ -572,81 +572,81 @@
             <param name="interferingDigitsCount">The final number of interfering digits.</param>
             <returns>The result number of given cells.</returns>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath">
+        <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">
             <summary>
             Indicates the target digit path.
             </summary>
             <param name="Digits">The digits path.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
             <summary>
             Indicates the target digit path.
             </summary>
             <param name="Digits">The digits path.</param>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Digits">
+        <member name="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.Digits">
             <summary>The digits path.</summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.IsComplete">
+        <member name="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.IsComplete">
             <summary>
             Indicates whether the pattern is complete.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
+        <member name="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.DigitsString">
             <summary>
             Indicates hte digits string.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Equals(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.Equals(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.GetHashCode">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString"/>
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.ToString"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.GetEnumerator">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
-            Creates a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/> instance via collection expression.
+            Creates a <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath"/> instance via collection expression.
             </summary>
             <param name="digits">A list of digits to be initialized.</param>
-            <returns>A <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/> instance.</returns>
+            <returns>A <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">
             <summary>
-            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/>.
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath"/>.
             </summary>
             <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath,Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath,Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath,Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath,Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder">
+        <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder">
             <summary>
             Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
             This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
@@ -654,7 +654,7 @@
             </summary>
             <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
             <summary>
             Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
             This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
@@ -662,18 +662,18 @@
             </summary>
             <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance.
+            Initializes a <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
             <summary>
-            Initializes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            Initializes a <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
             </summary>
             <param name="techniques">A list of techniques.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
             <summary>
             Find a suitable ittoryu path.
             </summary>
@@ -682,17 +682,17 @@
             The target digit path. If none found, a longest path will be returned.
             </returns>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
+        <member name="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques">
             <summary>
             The generated property declaration for parameter <c>supportedTechniques</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.AlreadyFinishedException">
+        <member name="T:Sudoku.Runtime.IttoryuServices.AlreadyFinishedException">
             <summary>
             The internal exception type that reports "Already finished" information, breaking the recursion.
             </summary>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.PathNode">
+        <member name="T:Sudoku.Runtime.IttoryuServices.PathNode">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
             </summary>
@@ -700,7 +700,7 @@
             <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
             <param name="Candidate">Indicates the target candidate.</param>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Represents for a path node in a whole solving path via ittoryu solving logic.
             </summary>
@@ -708,26 +708,26 @@
             <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
             <param name="Candidate">Indicates the target candidate.</param>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Grid">
+        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Grid">
             <summary>Indicates the currently-used grid.</summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.House">
+        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.House">
             <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Candidate">
+        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Candidate">
             <summary>Indicates the target candidate.</summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Digit">
+        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Digit">
             <summary>
             Indicates the target digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Cell">
+        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Cell">
             <summary>
             Indicates the target cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -735,30 +735,30 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.Ittoryu">
+        <member name="T:Sudoku.Runtime.IttoryuServices.GridIttoryuExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.GridIttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath)">
             <summary>
-            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>.
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>.
             </summary>
             <param name="this">The grid to be adjusted.</param>
             <param name="ittoryuPath">
             The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
             </param>
             <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath}@)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath}@)">
             <summary>
             Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
             </summary>
@@ -766,7 +766,7 @@
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath}@)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath}@)">
             <summary>
             Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
             with checking using the specified techniques.
@@ -789,29 +789,29 @@
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets">
+        <member name="T:Sudoku.Runtime.IttoryuServices.TechniqueIttoryuSets">
             <summary>
             Represents ittoryu-related technique sets instances.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuTechniques">
+        <member name="P:Sudoku.Runtime.IttoryuServices.TechniqueIttoryuSets.IttoryuTechniques">
             <summary>
             Indicates the techniques that ittoryu path finder will use.
             </summary>
-            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuNakedSingleNotIncluded">
+        <member name="P:Sudoku.Runtime.IttoryuServices.TechniqueIttoryuSets.IttoryuNakedSingleNotIncluded">
             <summary>
             Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
             </summary>
-            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuBlockHiddenSingle">
+        <member name="P:Sudoku.Runtime.IttoryuServices.TechniqueIttoryuSets.IttoryuBlockHiddenSingle">
             <summary>
             Indicates the techniques that ittroyu path finder will use,
             only containing <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>.
             </summary>
-            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>

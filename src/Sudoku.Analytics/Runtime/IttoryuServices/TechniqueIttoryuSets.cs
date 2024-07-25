@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Ittoryu;
+namespace Sudoku.Runtime.IttoryuServices;
 
 /// <summary>
 /// Represents ittoryu-related technique sets instances.

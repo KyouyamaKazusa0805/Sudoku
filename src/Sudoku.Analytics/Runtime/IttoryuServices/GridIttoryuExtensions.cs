@@ -1,10 +1,10 @@
-namespace Sudoku.Algorithms.Ittoryu;
+namespace Sudoku.Runtime.IttoryuServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class Ittoryu
+public static class GridIttoryuExtensions
 {
 	/// <summary>
 	/// Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="DisorderedIttoryuFinder"/>.
