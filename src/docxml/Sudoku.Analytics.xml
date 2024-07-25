@@ -29839,6 +29839,88 @@
             Indicates the conclusion cell must be <c>r5c5</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Direct Intersections.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingNakedSingle"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Direct Subsets.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedPairFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedPairCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedPairCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedPairCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedPairNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedTripleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedTripleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedTripleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedTripleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedTripleNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedQuadrupleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedQuadrupleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedQuadrupleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedQuadrupleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedQuadrupleNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenTripleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenTripleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenTripleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenTripleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenTripleNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadrupleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadrupleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadrupleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadrupleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenQuadrupleNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedPairFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedPairCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedPairCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedPairCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedPairNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedTripleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedTripleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedTripleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedTripleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedTripleNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPairFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPairCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPairCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPairCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenPairNakedSingle"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTripleFullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTripleCrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTripleCrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTripleCrosshatchingColumn"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.LockedHiddenTripleNakedSingle"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator">
             <summary>
             Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
