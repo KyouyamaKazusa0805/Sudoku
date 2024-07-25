@@ -126,24 +126,17 @@ public sealed partial class SingleCountingPracticingPage : Page
 
 			switch (mode)
 			{
-				case GeneratingMode.House5 or GeneratingMode.FullHouse:
+				case GeneratingMode.House5 or GeneratingMode.FullHouse when mode switch
 				{
-					var targetAlignment = mode == GeneratingMode.House5 ? ConclusionCellAlignment.CenterHouse : ConclusionCellAlignment.NotLimited;
-					if (h(new FullHousePuzzleGenerator { Alignment = targetAlignment }, out var p, out targetCandidate))
-					{
-						return p;
-					}
-
-					goto default;
+					GeneratingMode.House5 => ConclusionCellAlignment.CenterHouse,
+					_ => ConclusionCellAlignment.NotLimited
+				} is var targetAlignment && g<FullHousePrimaryGenerator>(targetAlignment, out var puzzle, out targetCandidate):
+				{
+					return puzzle;
 				}
-				case GeneratingMode.NakedSingle:
+				case GeneratingMode.NakedSingle when g<NakedSinglePrimaryGenerator>(default, out var puzzle, out targetCandidate):
 				{
-					if (h(new NakedSinglePuzzleGenerator(), out var puzzle, out targetCandidate))
-					{
-						return puzzle;
-					}
-
-					goto default;
+					return puzzle;
 				}
 				default:
 				{
@@ -152,18 +145,18 @@ public sealed partial class SingleCountingPracticingPage : Page
 			}
 
 
-			static bool h<TStep>(SinglePuzzleGenerator<TStep> generator, out Grid result, out Candidate targetCandidate)
-				where TStep : SingleStep
+			static bool g<T>(ConclusionCellAlignment alignment, out Grid result, out Candidate targetCandidate)
+				where T : IAlignedJustOneCellGenerator, new(), allows ref struct
 			{
-				if (generator.GenerateJustOneCell() is { Success: true, Puzzle: var p, Step: TStep { Cell: var c, Digit: var d } })
+				if (new T() is var generator
+					&& generator.GenerateJustOneCell(alignment, out var step) is var p
+					&& step is SingleStep { Cell: var c, Digit: var d })
 				{
-					targetCandidate = c * 9 + d;
-					result = p;
+					(targetCandidate, result) = (c * 9 + d, p);
 					return true;
 				}
 
-				targetCandidate = -1;
-				result = Grid.Undefined;
+				(targetCandidate, result) = (-1, Grid.Undefined);
 				return false;
 			}
 		}
@@ -289,7 +282,6 @@ file static class Extensions
 				result++;
 			}
 		}
-
 		return result;
 	}
 

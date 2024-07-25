@@ -66,8 +66,6 @@ global using Sudoku.Measuring;
 global using Sudoku.Runtime.CoordinateServices;
 global using Sudoku.Runtime.FormattingServices;
 global using Sudoku.Runtime.GeneratingServices;
-global using Sudoku.Runtime.GeneratingServices.JustOneCell;
-global using Sudoku.Runtime.GeneratingServices.TechniqueBased;
 global using Sudoku.Runtime.IttoryuServices;
 global using Sudoku.Runtime.MinimalServices;
 global using Sudoku.Runtime.MinLexServices;

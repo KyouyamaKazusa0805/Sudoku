@@ -11,25 +11,23 @@ public static class TechniqueGeneratorExtensions
 	/// </summary>
 	private static readonly FrozenDictionary<Technique, Type> GeneratorTypes = new Dictionary<Technique, Type>
 	{
-		{ Technique.FullHouse, typeof(FullHousePuzzleGenerator) },
-		{ Technique.CrosshatchingBlock, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.HiddenSingleBlock, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.CrosshatchingRow, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.HiddenSingleRow, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.CrosshatchingColumn, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.HiddenSingleColumn, typeof(HiddenSinglePuzzleGenerator) },
-		{ Technique.NakedSingle, typeof(NakedSinglePuzzleGenerator) }
+		{ Technique.FullHouse, typeof(FullHousePrimaryGenerator) },
+		{ Technique.CrosshatchingBlock, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.HiddenSingleBlock, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.CrosshatchingRow, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.HiddenSingleRow, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.CrosshatchingColumn, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.HiddenSingleColumn, typeof(HiddenSinglePrimaryGenerator) },
+		{ Technique.NakedSingle, typeof(NakedSinglePrimaryGenerator) }
 	}.ToFrozenDictionary();
 
 
 	/// <summary>
-	/// Creates a <see cref="TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
+	/// Creates an <see cref="IPrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>A <see cref="TechniqueBasedPuzzleGenerator"/> instance.</returns>
+	/// <returns>An <see cref="IPrimaryGenerator"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueBasedPuzzleGenerator? GetSpecificPuzzleGenerator(this Technique @this)
-		=> GeneratorTypes.TryGetValue(@this, out var result)
-			? (TechniqueBasedPuzzleGenerator?)Activator.CreateInstance(result)
-			: null;
+	public static IPrimaryGenerator? GetSpecificPuzzleGenerator(this Technique @this)
+		=> GeneratorTypes.TryGetValue(@this, out var result) ? (IPrimaryGenerator?)Activator.CreateInstance(result) : null;
 }
