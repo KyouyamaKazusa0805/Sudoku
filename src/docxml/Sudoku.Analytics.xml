@@ -572,6 +572,115 @@
             <param name="interferingDigitsCount">The final number of interfering digits.</param>
             <returns>The result number of given cells.</returns>
         </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Analyzer">
+            <summary>
+            Represents an analyzer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GenerateUnique(System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueBasedGenerator#GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Hidden Singles and Full Houses.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Analyzer">
+            <summary>
+            Indicates the backing analyzer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GenerateUnique(System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueBasedGenerator#GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator">
+            <summary>
+            Represents a generator type that creates a puzzle that can only uses the current technique to solve.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.CellSeed">
+            <summary>
+            Represents a seed array for cells that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.HouseSeed">
+            <summary>
+            Represents a seed array for houses that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.DigitSeed">
+            <summary>
+            Represents a seed array for digits that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.Rng">
+            <summary>
+            Indicates the random number generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.ShuffleSequence``1(``0[])">
+            <summary>
+            Try to shuffle the sequence for 3 times.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="values">The values to be shuffled.</param>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator">
+            <summary>
+            Represents a generator that generates a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.Solver">
+            <summary>
+            Represents the solver.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.SupportedTechniques">
+            <summary>
+            Indicates the supported techniques that the current generator is supported.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ITechniqueBasedGenerator.GenerateUnique(System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance;
+            using <paramref name="cancellationToken"/> to cancel the operation.
+            </summary>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">
             <summary>
             Indicates the target digit path.
@@ -30625,6 +30734,36 @@
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
+        <member name="T:Sudoku.Snyder.AnalysisResultExcluderExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/> to check for excluders.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
+        </member>
+        <member name="P:Sudoku.Snyder.AnalysisResultExcluderExtensions.SubtypeTextPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match the string "Row".<br/>
+                    ○ Match the string "Column".<br/>
+            ○ Match the string "HiddenSingle".<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Snyder.AnalysisResultExcluderExtensions.HasBlockExcluders(Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Determine whether the solving steps contains at least one <see cref="T:Sudoku.Analytics.Step"/> using hidden singles in line, with block excluders.
+            </summary>
+            <param name="this">The instance to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Snyder.Excluder">
             <summary>
             Represents a type that supports excluders marking inside a direct technique.
@@ -31921,6 +32060,47 @@
             <summary>
             Indicates the true candidates used.
             </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SubtypeTextPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
         </member>
     </members>
 </doc>

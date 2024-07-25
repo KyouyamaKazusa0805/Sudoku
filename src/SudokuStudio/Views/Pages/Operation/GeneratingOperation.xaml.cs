@@ -147,7 +147,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			return coreHandler(
 				constraints,
 				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }] // hasFullHouseConstraint
-					&& constraints.Has<SymmetryConstraint>() // hasSymmetryConstraint
+					&& !constraints.Has<SymmetryConstraint>() // hasSymmetryConstraint
 					|| constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }] // hasFullHouseConstraintInTechniqueSet
 					? &handlerFullHouse
 					: &handlerDefault,
@@ -159,10 +159,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 
 			static Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
-			{
-				var generator = new FullHousePuzzleGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens };
-				return generator.GenerateUnique(ct).Puzzle;
-			}
+				=> new FullHousePrimaryGenerator().GenerateUnique(givens == -1 ? -1 : 81 - givens, ct);
 
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
 				=> new Generator().Generate(givens, symmetry, ct);
