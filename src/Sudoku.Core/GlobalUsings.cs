@@ -23,7 +23,6 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using Sudoku.Algorithms.MinLex;
 global using Sudoku.Algorithms.Solving;
 global using Sudoku.Algorithms.Solving.Bitwise;
 global using Sudoku.Algorithms.Solving.EnumerableQuery;
