@@ -29847,6 +29847,9 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -29974,6 +29977,14 @@
             <summary>
             Represents a type that can generate puzzles that can only be solved for one cell.
             </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
+            using <paramref name="cancellationToken"/> to cancel the operation.
+            </summary>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</returns>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <summary>
@@ -30110,6 +30121,9 @@
             <returns>The house index.</returns>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.GeneratePrimary(System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">

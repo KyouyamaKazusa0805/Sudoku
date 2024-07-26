@@ -70,6 +70,11 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 		}
 	}
 
+
+	/// <inheritdoc/>
+	public Grid GenerateJustOneCell(CancellationToken cancellationToken = default)
+		=> GenerateJustOneCell(out _, out _, cancellationToken);
+
 	/// <inheritdoc/>
 	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
 		=> GenerateJustOneCell(out _, out step, cancellationToken);

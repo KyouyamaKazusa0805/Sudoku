@@ -113,6 +113,9 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 	public abstract Grid GeneratePrimary(CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
+	public Grid GenerateJustOneCell(CancellationToken cancellationToken = default) => GenerateJustOneCell(out _, cancellationToken);
+
+	/// <inheritdoc/>
 	public abstract Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
