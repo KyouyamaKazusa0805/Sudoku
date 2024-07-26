@@ -52,7 +52,7 @@ internal static class XyzRingModule
 				goto ReturnFalse;
 			}
 
-			var mergedConclusions = (xyz1.Conclusions.AsSet() | xyz2.Conclusions.AsSet()).ToDigitsArray();
+			var mergedConclusions = (xyz1.Conclusions.AsSet() | xyz2.Conclusions.AsSet()).ToArray();
 			var xyz1ViewNodes = xyz1.Views![0];
 			var xyz2ViewNodes = xyz2.Views![0];
 			siameseStep = new(

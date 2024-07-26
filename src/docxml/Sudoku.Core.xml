@@ -1891,7 +1891,7 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.ToDigitsArray">
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">

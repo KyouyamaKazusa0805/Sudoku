@@ -253,6 +253,24 @@ public sealed partial class TechniqueSet() :
 	}
 
 	/// <summary>
+	/// Try to add a list of <see cref="Technique"/> instances into the collection.
+	/// </summary>
+	/// <param name="techniques">A list of <see cref="Technique"/> instances to be added.</param>
+	/// <returns>An <see cref="int"/> value indicating the number of <see cref="Technique"/> instances to be added.</returns>
+	public int AddRange(params ReadOnlySpan<Technique> techniques)
+	{
+		var result = 0;
+		foreach (var technique in techniques)
+		{
+			if (Add(technique))
+			{
+				result++;
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
 	/// Try to remove a technique from the collection.
 	/// </summary>
 	/// <param name="item">A technique to be removed.</param>
@@ -303,7 +321,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Technique[] ToDigitsArray() => [.. this];
+	public Technique[] ToArray() => [.. this];
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public TechniqueSet Slice(int start, int count)
@@ -326,7 +344,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
-		=> Array.Copy(this[arrayIndex..].ToDigitsArray(), array, Count - arrayIndex);
+		=> Array.Copy(this[arrayIndex..].ToArray(), array, Count - arrayIndex);
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.Add(Technique item) => Add(item);

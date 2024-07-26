@@ -1385,7 +1385,7 @@
             <param name="index">The desired index.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instance as result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToDigitsArray">
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Slice(System.Int32,System.Int32)">
@@ -4412,6 +4412,13 @@
             <param name="item">A technique to be added.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the current technique is successfully added.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.AddRange(System.ReadOnlySpan{Sudoku.Analytics.Categorization.Technique})">
+            <summary>
+            Try to add a list of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances into the collection.
+            </summary>
+            <param name="techniques">A list of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances to be added.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the number of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances to be added.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Remove(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to remove a technique from the collection.
@@ -4428,7 +4435,7 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToDigitsArray">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Slice(System.Int32,System.Int32)">
@@ -21687,7 +21694,7 @@
         <member name="M:Sudoku.Concepts.EliminationRange.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.ToDigitsArray">
+        <member name="M:Sudoku.Concepts.EliminationRange.ToArray">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.Add(System.Int32,System.Int32)">
