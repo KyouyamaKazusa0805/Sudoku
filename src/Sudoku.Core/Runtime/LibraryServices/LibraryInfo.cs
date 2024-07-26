@@ -1,4 +1,4 @@
-namespace Sudoku.IO.Library;
+namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
 /// Represents an entry that plays with a puzzle library file.

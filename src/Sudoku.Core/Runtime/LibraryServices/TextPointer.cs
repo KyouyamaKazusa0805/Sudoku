@@ -1,4 +1,4 @@
-namespace Sudoku.IO.Library;
+namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
 /// Represents a text pointer object that reads the detail of a <see cref="LibraryInfo"/>.

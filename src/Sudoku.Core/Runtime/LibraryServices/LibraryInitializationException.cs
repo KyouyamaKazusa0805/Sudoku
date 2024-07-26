@@ -1,4 +1,4 @@
-namespace Sudoku.IO.Library;
+namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
 /// Represents an exception type that will be thrown if a library instance has already been initialized, but a user still calls

@@ -331,7 +331,7 @@
             </summary>
             <param name="lib">Indicates the library.</param>
         </member>
-        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.IO.Library.LibraryInfo)">
+        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.Runtime.LibraryServices.LibraryInfo)">
             <summary>
             Represents the bindable source for libraries.
             </summary>
@@ -344,9 +344,9 @@
         </member>
         <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.GetLibraries">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.IO.Library.LibraryInfo"/> instances stored in the local path.
+            Try to fetch all <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> instances stored in the local path.
             </summary>
-            <returns>All possible <see cref="T:Sudoku.IO.Library.LibraryInfo"/> instances.</returns>
+            <returns>All possible <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> instances.</returns>
         </member>
         <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
             <summary>
@@ -15144,7 +15144,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.IO.Library.LibraryInfo,Sudoku.Runtime.TransformingServices.TransformType,System.Threading.CancellationToken)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.Runtime.LibraryServices.LibraryInfo,Sudoku.Runtime.TransformingServices.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
