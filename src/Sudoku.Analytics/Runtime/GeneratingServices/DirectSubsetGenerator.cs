@@ -112,6 +112,43 @@ public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
 						}
 					}
 				}
+
+				// If a naked subset has an internal locked candidates,
+				// we should append extra excluders in order to make locked candidates correct.
+				if (step.Code is Technique.NakedPairPlus or Technique.NakedTriplePlus or Technique.NakedQuadruplePlus)
+				{
+					// Check which digits are locked candidates.
+					var map = g.CandidatesMap;
+					var emptyCells = g.EmptyCells;
+					var cellsToCover = new Dictionary<Digit, CellMap>();
+					foreach (var digit in step.SubsetDigitsMask)
+					{
+						var cellsContainDigit = map[digit] & step.SubsetCells;
+						if (cellsContainDigit is { IsInIntersection: true, Count: 2 or 3 })
+						{
+							cellsToCover.Add(digit, HousesMap[step.SubsetHouse] & ~emptyCells & ~step.SubsetCells);
+						}
+					}
+
+					// Cover those cells.
+					foreach (var (digit, cellsToCoverOfDigit) in cellsToCover)
+					{
+						foreach (var cellToCoverOfDigit in cellsToCoverOfDigit)
+						{
+							foreach (var peerCell in PeersMap[cellToCoverOfDigit])
+							{
+								if (g.GetDigit(peerCell) == digit)
+								{
+									result.Add(peerCell);
+									goto NextDigit;
+								}
+							}
+						}
+
+					NextDigit:;
+					}
+				}
+
 				break;
 			}
 #if false
