@@ -52,7 +52,7 @@ public ref partial struct Generator()
 
 
 	/// <summary>
-	/// Try to generate a puzzle.
+	/// Try to generate a puzzle randomly, or return <see cref="Grid.Undefined"/> if a user cancelled the operation.
 	/// </summary>
 	/// <param name="cluesCount">
 	/// <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
@@ -64,7 +64,7 @@ public ref partial struct Generator()
 	/// </param>
 	/// <param name="symmetricType">The symmetric type to be specified. The value is <see cref="SymmetricType.Central"/> by default.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	/// <returns>The result grid.</returns>
+	/// <returns>The result grid, or <see cref="Grid.Undefined"/> if a user cancelled the operation.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
 	/// or the argument <paramref name="cluesCount"/> is invalid.

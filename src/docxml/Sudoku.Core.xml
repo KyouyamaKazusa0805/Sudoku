@@ -8547,7 +8547,7 @@
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
-            Try to generate a puzzle.
+            Try to generate a puzzle randomly, or return <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.
             </summary>
             <param name="cluesCount">
             <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
@@ -8559,7 +8559,7 @@
             </param>
             <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The result grid.</returns>
+            <returns>The result grid, or <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
             or the argument <paramref name="cluesCount"/> is invalid.

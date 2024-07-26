@@ -83,33 +83,44 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			var analysisResult = SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
-			if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+			switch (analysisResult)
 			{
-				cancellationToken.ThrowIfCancellationRequested();
-				continue;
-			}
-
-			foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
-			{
-				if (s is not NakedSingleStep { Cell: var cell, Digit: var digit })
+				case { IsSolved: false, FailedReason: FailedReason.UserCancelled }:
 				{
-					continue;
+					(phasedGrid, step) = (Grid.Undefined, null);
+					return Grid.Undefined;
 				}
-
-				var excluderCells = Excluder.GetNakedSingleExcluderCells(in currentGrid, cell, digit, out _);
-				var extractedGrid = currentGrid;
-				extractedGrid.Unfix();
-
-				for (var c = 0; c < 81; c++)
+				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
 				{
-					if (cell != c && !excluderCells.Contains(c))
+					foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
 					{
-						extractedGrid.SetDigit(c, -1);
-					}
-				}
+						if (s is not NakedSingleStep { Cell: var cell, Digit: var digit })
+						{
+							continue;
+						}
 
-				(phasedGrid, step) = (currentGrid, s);
-				return extractedGrid.FixedGrid;
+						var excluderCells = Excluder.GetNakedSingleExcluderCells(in currentGrid, cell, digit, out _);
+						var extractedGrid = currentGrid;
+						extractedGrid.Unfix();
+
+						for (var c = 0; c < 81; c++)
+						{
+							if (cell != c && !excluderCells.Contains(c))
+							{
+								extractedGrid.SetDigit(c, -1);
+							}
+						}
+
+						(phasedGrid, step) = (currentGrid, s);
+						return extractedGrid.FixedGrid;
+					}
+					break;
+				}
+				default:
+				{
+					cancellationToken.ThrowIfCancellationRequested();
+					break;
+				}
 			}
 		}
 	}

@@ -448,37 +448,48 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			var analysisResult = SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
-			if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+			switch (analysisResult)
 			{
-				cancellationToken.ThrowIfCancellationRequested();
-				continue;
-			}
-
-			foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
-			{
-				if (s is not HiddenSingleStep { Cell: var cell, Digit: var digit, House: var house })
+				case { IsSolved: false, FailedReason: FailedReason.UserCancelled }:
 				{
-					continue;
+					(phasedGrid, step) = (Grid.Undefined, null);
+					return Grid.Undefined;
 				}
-
-				if (ExcluderInfo.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
+				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
 				{
-					continue;
-				}
-
-				var extractedGrid = currentGrid;
-				extractedGrid.Unfix();
-
-				for (var c = 0; c < 81; c++)
-				{
-					if (!HousesMap[house].Contains(c) && !baseCells.Contains(c))
+					foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
 					{
-						extractedGrid.SetDigit(c, -1);
-					}
-				}
+						if (s is not HiddenSingleStep { Cell: var cell, Digit: var digit, House: var house })
+						{
+							continue;
+						}
 
-				(phasedGrid, step) = (currentGrid, s);
-				return extractedGrid.FixedGrid;
+						if (ExcluderInfo.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
+						{
+							continue;
+						}
+
+						var extractedGrid = currentGrid;
+						extractedGrid.Unfix();
+
+						for (var c = 0; c < 81; c++)
+						{
+							if (!HousesMap[house].Contains(c) && !baseCells.Contains(c))
+							{
+								extractedGrid.SetDigit(c, -1);
+							}
+						}
+
+						(phasedGrid, step) = (currentGrid, s);
+						return extractedGrid.FixedGrid;
+					}
+					break;
+				}
+				default:
+				{
+					cancellationToken.ThrowIfCancellationRequested();
+					break;
+				}
 			}
 		}
 	}

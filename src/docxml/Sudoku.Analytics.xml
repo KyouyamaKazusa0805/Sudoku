@@ -29814,18 +29814,31 @@
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.ComplexSingleGenerator">
+        <member name="T:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator">
             <summary>
             Represents a generator type that can generate puzzles with complex single techniques.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleGenerator.SupportedTechniques">
+        <member name="F:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.Analyzer">
+            <summary>
+            Indicates the backing analyzer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.LocalStepFilter">
+            <summary>
+            Indicates the local step filter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment">
@@ -29871,7 +29884,7 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.GenerateUnique(System.Threading.CancellationToken)">
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.LocalStepFilter">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
@@ -29938,7 +29951,7 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.GenerateUnique(System.Threading.CancellationToken)">
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.LocalStepFilter">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">

@@ -13,7 +13,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.ClaimingCrosshatchingRow"/>
 /// <seealso cref="Technique.ClaimingCrosshatchingColumn"/>
 /// <seealso cref="Technique.ClaimingNakedSingle"/>
-public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
+public sealed class DirectIntersectionGenerator : ComplexSingleBaseGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques
@@ -30,12 +30,10 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 			Technique.ClaimingNakedSingle
 		];
 
-
 	/// <inheritdoc/>
-	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
-	{
-		throw new NotImplementedException();
-	}
+	protected override FuncRefReadOnly<Step, bool> LocalStepFilter
+		=> static (ref readonly Step step) => step is DirectIntersectionStep;
+
 
 	/// <inheritdoc/>
 	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
