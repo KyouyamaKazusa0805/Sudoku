@@ -31,9 +31,14 @@ public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
 		];
 
 	/// <inheritdoc/>
-	protected override FuncRefReadOnly<Grid, Step, CellMap> InterimCellsCreator
-		=> static (ref readonly Grid _, ref readonly Step _) => CellMap.Empty;
+	protected override FuncRefReadOnly<Grid, Step, CellMap> InterimCellsCreator => LocalInterimCellCreator;
 
 	/// <inheritdoc/>
 	protected override FuncRefReadOnly<Step, bool> LocalStepFilter => static (ref readonly Step step) => step is DirectSubsetStep;
+
+
+	private static CellMap LocalInterimCellCreator(ref readonly Grid g, ref readonly Step s)
+	{
+		return CellMap.Empty;
+	}
 }
