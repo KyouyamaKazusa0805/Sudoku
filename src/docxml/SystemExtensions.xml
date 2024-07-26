@@ -4491,6 +4491,7 @@
             <summary>
             Get the new array from the pointer, with the specified start index.
             </summary>
+            <typeparam name="T">The type of each element in the sequence of <paramref name="ptr"/>.</typeparam>
             <param name="ptr">The pointer.</param>
             <param name="index">The start index that you want to pick from.</param>
             <param name="length">The length of the array that pointer points to.</param>

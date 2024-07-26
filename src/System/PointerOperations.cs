@@ -37,6 +37,7 @@ public static class PointerOperations
 	/// <summary>
 	/// Get the new array from the pointer, with the specified start index.
 	/// </summary>
+	/// <typeparam name="T">The type of each element in the sequence of <paramref name="ptr"/>.</typeparam>
 	/// <param name="ptr">The pointer.</param>
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <param name="length">The length of the array that pointer points to.</param>
@@ -56,7 +57,7 @@ public static class PointerOperations
 	/// </remarks>
 	/// <seealso cref="Slice{T}(T*, int, int)"/>
 	public static unsafe ReadOnlySpan<T> Slice<T>(T* ptr, int index, int length, bool removeTrailingZeros)
-		where T : IBinaryInteger<T>
+		where T : IEqualityOperators<T, T, bool>
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
@@ -66,7 +67,7 @@ public static class PointerOperations
 			var p = ptr + length - 1;
 			for (var i = length - 1; i >= 0; i--, p--, count++)
 			{
-				if (*p != T.Zero)
+				if (*p != default)
 				{
 					break;
 				}
