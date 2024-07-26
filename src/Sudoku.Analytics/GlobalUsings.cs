@@ -46,7 +46,7 @@ global using Sudoku.Runtime.CoordinateServices;
 global using Sudoku.Runtime.GeneratingServices;
 global using Sudoku.Runtime.IttoryuServices;
 global using Sudoku.Runtime.MaskServices;
-global using Sudoku.Runtime.MinimalServices;
+global using Sudoku.Runtime.MinimalPuzzleServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.TransformingServices;
 global using Sudoku.Snyder;

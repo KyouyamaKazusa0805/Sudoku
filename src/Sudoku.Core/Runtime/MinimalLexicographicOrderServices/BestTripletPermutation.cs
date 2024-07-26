@@ -1,6 +1,4 @@
-#pragma warning disable format
-
-namespace Sudoku.Runtime.MinLexServices;
+namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
 
 /// <summary>
 /// Represents the permutation information for best triplet.
@@ -24,6 +22,7 @@ public partial struct BestTripletPermutation(
 	/// </summary>
 	public static readonly int[][] Perm = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
+#pragma warning disable format
 	/// <summary>
 	/// Indicates all best triplet permutations.
 	/// </summary>
@@ -557,4 +556,5 @@ public partial struct BestTripletPermutation(
 			new(7, 63, 6),		// [7][63] = [111][111111] -> { 111,111111,6 }
 		],
 	];
+#pragma warning restore format
 }

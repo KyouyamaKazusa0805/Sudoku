@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinLexServices;
+namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, by checking min-lex-related properties.

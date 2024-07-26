@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinLexServices;
+namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
 
 using static BestTripletPermutation;
 

@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinimalServices;
+namespace Sudoku.Runtime.MinimalPuzzleServices;
 
 /// <summary>
 /// Represents extension methods on <see cref="Grid"/> for minimal.
