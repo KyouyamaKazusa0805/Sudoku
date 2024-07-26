@@ -29834,6 +29834,11 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.InterimCellsCreator">
+            <summary>
+            Indicates the creator instance that creates a list of cells indicating pattern interim cells.
+            </summary>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.LocalStepFilter">
             <summary>
             Indicates the local step filter.
@@ -29881,13 +29886,10 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.InterimCellsCreator">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.LocalStepFilter">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator">
@@ -29898,13 +29900,10 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.InterimCellsCreator">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.LocalStepFilter">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.GenerateJustOneCell(Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator">
