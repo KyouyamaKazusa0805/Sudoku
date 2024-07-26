@@ -29870,16 +29870,6 @@
             <summary>
             Represents a generator that supports generating for puzzles that can be solved by only using Direct Intersections.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingFullHouse"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingBlock"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingRow"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingCrosshatchingColumn"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.PointingNakedSingle"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingFullHouse"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingBlock"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingRow"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingCrosshatchingColumn"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.ClaimingNakedSingle"/>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.SupportedTechniques">
             <inheritdoc/>
@@ -30095,7 +30085,7 @@
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator">
             <summary>
-            Represents a generator that supports generating for puzzles that can be solved by only using Direct Single techniques.
+            Represents a generator that supports generating for puzzles that can be solved by <b>only</b> using Direct Single techniques.
             </summary>
         </member>
         <member name="F:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.CenterHouses">
@@ -30123,7 +30113,7 @@
             Represents a seed array for digits that can be used in core methods.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.SingleAnalyzer">
+        <member name="F:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.Analyzer">
             <summary>
             Represents an analyzer that will be used in generating phased puzzles.
             </summary>

@@ -36,7 +36,7 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 				continue;
 			}
 
-			if (!AllowsBlockExcluders && SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
+			if (!AllowsBlockExcluders && Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken).HasBlockExcluders())
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 				continue;
@@ -447,10 +447,9 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			var analysisResult = SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
-			switch (analysisResult)
+			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
 			{
-				case { IsSolved: false, FailedReason: FailedReason.UserCancelled }:
+				case { FailedReason: FailedReason.UserCancelled }:
 				{
 					(phasedGrid, step) = (Grid.Undefined, null);
 					return Grid.Undefined;

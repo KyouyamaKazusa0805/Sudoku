@@ -46,10 +46,9 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 				return Grid.Undefined;
 			}
 
-			var analysisResult = Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken);
-			switch (analysisResult)
+			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
 			{
-				case { IsSolved: false, FailedReason: FailedReason.UserCancelled }:
+				case { FailedReason: FailedReason.UserCancelled }:
 				{
 					return Grid.Undefined;
 				}

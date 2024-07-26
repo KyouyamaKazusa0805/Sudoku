@@ -1,7 +1,7 @@
 namespace Sudoku.Runtime.GeneratingServices;
 
 /// <summary>
-/// Represents a generator that supports generating for puzzles that can be solved by only using Direct Single techniques.
+/// Represents a generator that supports generating for puzzles that can be solved by <b>only</b> using Direct Single techniques.
 /// </summary>
 public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCellGenerator, IPrimaryGenerator
 {
@@ -33,7 +33,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 	/// <summary>
 	/// Represents an analyzer that will be used in generating phased puzzles.
 	/// </summary>
-	protected static readonly Analyzer SingleAnalyzer = Analyzer.Default
+	protected static readonly Analyzer Analyzer = Analyzer.Default
 		.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true })
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
@@ -82,8 +82,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 	/// <returns>The block position.</returns>
 	protected static Digit BlockPositionOf(Cell cell)
 	{
-		var block = cell.ToHouse(HouseType.Block);
-		var i = 0;
+		var (block, i) = (cell.ToHouse(HouseType.Block), 0);
 		foreach (var c in HousesCells[block])
 		{
 			if (c == cell)
