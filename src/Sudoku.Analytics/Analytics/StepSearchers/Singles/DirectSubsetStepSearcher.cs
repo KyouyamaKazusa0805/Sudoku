@@ -587,7 +587,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & ~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
 			{
-				return null;
+				continue;
 			}
 
 			var subsetTechnique = GetSubsetTechnique_Hidden(in subsetCells);
@@ -598,7 +598,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				case Technique.HiddenPair or Technique.HiddenTriple or Technique.HiddenQuadruple
 				when !@this.AllowDirectHiddenSubset:
 				{
-					return null;
+					continue;
 				}
 			}
 
