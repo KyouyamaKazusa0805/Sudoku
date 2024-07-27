@@ -45,116 +45,48 @@ public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
 		{
 			case Technique.LockedPair or Technique.LockedTriple:
 			case Technique.NakedPair or Technique.NakedTriple or Technique.NakedQuadruple:
+			case Technique.NakedPairPlus or Technique.NakedTriplePlus or Technique.NakedQuadruplePlus:
 			{
-				foreach (var cell in HousesMap[step.SubsetHouse])
+				// Find all excluders from all peer cells of each subset cell.
+				foreach (var cell in step.SubsetCells)
 				{
-					if (g.GetState(cell) != CellState.Empty)
+					var digitsToCover = (Mask)(Grid.MaxCandidatesMask & ~g.GetCandidates(cell));
+					foreach (var peerCell in PeersMap[cell])
 					{
-						result.Add(cell);
-					}
-				}
-
-				var otherDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~step.SubsetDigitsMask);
-				var excludersDigitsMaskFromSubsetHouse = (Mask)0;
-
-				// Find excluders from subset house.
-				foreach (var otherDigit in otherDigitsMask)
-				{
-					foreach (var sharedHouse in step.SubsetCells.SharedHouses)
-					{
-						foreach (var cell in HousesMap[sharedHouse])
+						if ((digitsToCover >> g.GetDigit(peerCell) & 1) != 0)
 						{
-							if (g.GetDigit(cell) == otherDigit && (otherDigitsMask >> otherDigit & 1) != 0)
-							{
-								excludersDigitsMaskFromSubsetHouse |= (Mask)(1 << otherDigit);
-								goto Next;
-							}
+							result.Add(peerCell);
 						}
 					}
-
-				Next:;
 				}
 
-				// Find excluders from cells belong to each house seeing each subset cell.
-				foreach (var otherDigit in otherDigitsMask)
+				// Remove excluders that are not necessary.
+				// An unnecessary excluder can be found if a digit has already excluded from subset house.
+				foreach (var digit in (Mask)(Grid.MaxCandidatesMask & ~step.SubsetDigitsMask))
 				{
-					if ((excludersDigitsMaskFromSubsetHouse >> otherDigit & 1) != 0)
+					foreach (var cell in HousesMap[step.SubsetHouse])
 					{
-						foreach (var sharedHouse in step.SubsetCells.SharedHouses)
+						if (g.GetDigit(cell) == digit)
 						{
-							foreach (var cell in HousesMap[sharedHouse])
+							// Remove unnecessary excluders.
+							foreach (var c in result.ToArray())
 							{
-								if (g.GetDigit(cell) == otherDigit)
+								if (g.GetDigit(c) == digit)
 								{
-									result.Add(cell);
-									goto Next;
+									result.Remove(c);
 								}
 							}
-						}
-
-					Next:;
-					}
-					else
-					{
-						foreach (var otherCell in step.SubsetCells)
-						{
-							if (g.GetState(otherCell) == CellState.Empty)
-							{
-								foreach (var peerCell in PeersMap[otherCell])
-								{
-									if (g.GetDigit(peerCell) == otherDigit)
-									{
-										result.Add(peerCell);
-										break;
-									}
-								}
-							}
+							break;
 						}
 					}
 				}
-
-				// If a naked subset has an internal locked candidates,
-				// we should append extra excluders in order to make locked candidates correct.
-				if (step.Code is Technique.NakedPairPlus or Technique.NakedTriplePlus or Technique.NakedQuadruplePlus)
-				{
-					// Check which digits are locked candidates.
-					var map = g.CandidatesMap;
-					var emptyCells = g.EmptyCells;
-					var cellsToCover = new Dictionary<Digit, CellMap>();
-					foreach (var digit in step.SubsetDigitsMask)
-					{
-						var cellsContainDigit = map[digit] & step.SubsetCells;
-						if (cellsContainDigit is { IsInIntersection: true, Count: 2 or 3 })
-						{
-							cellsToCover.Add(digit, HousesMap[step.SubsetHouse] & ~emptyCells & ~step.SubsetCells);
-						}
-					}
-
-					// Cover those cells.
-					foreach (var (digit, cellsToCoverOfDigit) in cellsToCover)
-					{
-						foreach (var cellToCoverOfDigit in cellsToCoverOfDigit)
-						{
-							foreach (var peerCell in PeersMap[cellToCoverOfDigit])
-							{
-								if (g.GetDigit(peerCell) == digit)
-								{
-									result.Add(peerCell);
-									goto NextDigit;
-								}
-							}
-						}
-
-					NextDigit:;
-					}
-				}
-
 				break;
 			}
 #if false
 			case Technique.LockedHiddenPair or Technique.LockedHiddenTriple:
 			case Technique.HiddenPair or Technique.HiddenTriple or Technique.HiddenQuadruple:
 			{
+				// There's no necessary to check exclders because they can be found in view nodes.
 				break;
 			}
 #endif
@@ -173,7 +105,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
 						continue;
 					}
 
-					// Check whether the digit has already marked accroding to the former steps.
+					// Check whether the digit has already marked according to the former steps.
 					var cellsToCheck = PeersMap[targetCell] & result;
 					var digitHasAlreadyMarked = false;
 					foreach (var cell in cellsToCheck)
