@@ -86,7 +86,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
 			case Technique.LockedHiddenPair or Technique.LockedHiddenTriple:
 			case Technique.HiddenPair or Technique.HiddenTriple or Technique.HiddenQuadruple:
 			{
-				// There's no necessary to check exclders because they can be found in view nodes.
+				// There's no necessary to check excluders because they can be found in view nodes.
 				break;
 			}
 #endif
