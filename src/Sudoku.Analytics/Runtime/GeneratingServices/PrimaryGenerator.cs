@@ -41,9 +41,6 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 	/// <inheritdoc/>
 	public ConclusionCellAlignment Alignment { get; set; }
 
-	/// <inheritdoc/>
-	public abstract TechniqueSet SupportedTechniques { get; }
-
 
 	/// <summary>
 	/// Try to shuffle the sequence.
@@ -110,14 +107,15 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 
 
 	/// <inheritdoc/>
-	public abstract Grid GeneratePrimary(CancellationToken cancellationToken = default);
+	public abstract bool GeneratePrimary(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(CancellationToken cancellationToken = default) => GenerateJustOneCell(out _, cancellationToken);
+	public bool TryGenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
+		=> TryGenerateJustOneCell(out result, out _, cancellationToken);
 
 	/// <inheritdoc/>
-	public abstract Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default);
+	public abstract bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
-	public abstract Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default);
+	public abstract bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
 }

@@ -25,9 +25,6 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 
-	/// <inheritdoc/>
-	public abstract TechniqueSet SupportedTechniques { get; }
-
 	/// <summary>
 	/// Indicates the creator instance that creates a list of cells indicating pattern interim cells.
 	/// </summary>
@@ -40,7 +37,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 
 
 	/// <inheritdoc/>
-	public sealed override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	public sealed override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -48,18 +45,21 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			if (puzzle.IsUndefined)
 			{
-				return Grid.Undefined;
+				result = Grid.Undefined;
+				return false;
 			}
 
 			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
-					return Grid.Undefined;
+					result = Grid.Undefined;
+					return false;
 				}
 				case { IsSolved: true, StepsSpan: var steps } when steps.Any(LocalStepFilter):
 				{
-					return puzzle;
+					result = puzzle;
+					return true;
 				}
 				default:
 				{
@@ -72,15 +72,15 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(CancellationToken cancellationToken = default)
-		=> GenerateJustOneCell(out _, out _, cancellationToken);
+	public bool TryGenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
+		=> TryGenerateJustOneCell(out result, out _, out _, cancellationToken);
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
-		=> GenerateJustOneCell(out _, out step, cancellationToken);
+	public bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
+		=> TryGenerateJustOneCell(out result, out _, out step, cancellationToken);
 
 	/// <inheritdoc/>
-	public Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -90,8 +90,8 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
-					(phasedGrid, step) = (Grid.Undefined, null);
-					return Grid.Undefined;
+					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+					return false;
 				}
 				case { IsSolved: true, StepsSpan: var steps, GridsSpan: var grids }:
 				{
@@ -102,15 +102,15 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, ITechniqu
 						{
 							// Reserves the given cells that are used in the pattern.
 							var reservedCells = InterimCellsCreator(in g, in s);
-							var result = Grid.Empty;
+							var r = Grid.Empty;
 							foreach (var cell in reservedCells)
 							{
-								result.SetDigit(cell, g.GetDigit(cell));
-								result.SetState(cell, CellState.Given);
+								r.SetDigit(cell, g.GetDigit(cell));
+								r.SetState(cell, CellState.Given);
 							}
 
-							(phasedGrid, step) = (g, s);
-							return result;
+							(result, phasedGrid, step) = (r, g, s);
+							return true;
 						}
 					}
 					goto default;

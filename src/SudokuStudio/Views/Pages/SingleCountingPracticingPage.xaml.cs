@@ -1,7 +1,7 @@
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
-/// Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
+/// Represents a page that provides with practice tool to allow you practicing counting logic for technique Naked Single and Full House.
 /// </summary>
 public sealed partial class SingleCountingPracticingPage : Page
 {
@@ -149,7 +149,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 				where T : IAlignedJustOneCellGenerator, new(), allows ref struct
 			{
 				var generator = new T { Alignment = alignment };
-				if (generator.GenerateJustOneCell(out var step) is var p && step is SingleStep { Cell: var c, Digit: var d })
+				if (generator.TryGenerateJustOneCell(out var p, out var step) && step is SingleStep { Cell: var c, Digit: var d })
 				{
 					(targetCandidate, result) = (c * 9 + d, p);
 					return true;

@@ -16,7 +16,7 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 
 
 	/// <inheritdoc/>
-	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		var emptyCellsCount = EmptyCellsCount;
 		if (emptyCellsCount is not (-1 or >= 1 and <= PeersCount + 1))
@@ -31,7 +31,8 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 			var grid = generator.Generate(cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
-				return Grid.Undefined;
+				result = Grid.Undefined;
+				return false;
 			}
 
 			// Replace with solution grid.
@@ -53,7 +54,8 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 				&& Analyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, InterimSteps: var steps }
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{
-				return grid.FixedGrid;
+				result = grid.FixedGrid;
+				return true;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
@@ -61,10 +63,11 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 	}
 
 	/// <inheritdoc/>
-	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+	public override bool GeneratePrimary(out Grid result, CancellationToken cancellationToken)
+		=> TryGenerateUnique(out result, cancellationToken);
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Choose the target house.
 		var selectedHouse = RandomlySelectHouse(Alignment);
@@ -110,11 +113,12 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 			targetDigit,
 			SingleModule.GetLasting(in puzzle, targetCell, selectedHouse)
 		);
-		return puzzle.FixedGrid;
+		result = puzzle.FixedGrid;
+		return true;
 	}
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -124,8 +128,8 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
-					(phasedGrid, step) = (Grid.Undefined, null);
-					return Grid.Undefined;
+					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+					return false;
 				}
 				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
 				{
@@ -146,8 +150,8 @@ public sealed class FullHousePrimaryGenerator : PrimaryGenerator
 							}
 						}
 
-						(phasedGrid, step) = (currentGrid, s);
-						return extractedGrid.FixedGrid;
+						(result, phasedGrid, step) = (extractedGrid.FixedGrid, currentGrid, s);
+						return true;
 					}
 					break;
 				}

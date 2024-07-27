@@ -19,7 +19,7 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 
 
 	/// <inheritdoc/>
-	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -27,7 +27,8 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			if (puzzle.IsUndefined)
 			{
-				return Grid.Undefined;
+				result = Grid.Undefined;
+				return false;
 			}
 
 			if (!puzzle.CanPrimaryHiddenSingle(true))
@@ -42,21 +43,24 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 				continue;
 			}
 
-			return puzzle;
+			result = puzzle;
+			return true;
 		}
 	}
 
 	/// <inheritdoc/>
-	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+	public override bool GeneratePrimary(out Grid result, CancellationToken cancellationToken)
+		=> TryGenerateUnique(out result, cancellationToken);
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		var house = RandomlySelectHouse(Alignment);
 		var subtype = RandomlySelectSubtype(house, s => AllowsBlockExcluders || s.GetExcludersCount(HouseType.Block) == 0);
 		var a = forBlock;
 		var b = forLine;
-		return (house < 9 ? a : b)(house, out step);
+		result = (house < 9 ? a : b)(house, out step);
+		return !result.IsUndefined;
 
 
 		Grid forBlock(House house, out Step? step)
@@ -441,7 +445,7 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 	}
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -451,8 +455,8 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
-					(phasedGrid, step) = (Grid.Undefined, null);
-					return Grid.Undefined;
+					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+					return false;
 				}
 				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
 				{
@@ -479,8 +483,8 @@ public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
 							}
 						}
 
-						(phasedGrid, step) = (currentGrid, s);
-						return extractedGrid.FixedGrid;
+						(result, phasedGrid, step) = (extractedGrid.FixedGrid, currentGrid, s);
+						return true;
 					}
 					break;
 				}

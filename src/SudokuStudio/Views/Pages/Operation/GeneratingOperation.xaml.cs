@@ -159,7 +159,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 
 			static Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
-				=> new FullHousePrimaryGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens }.GenerateUnique(ct);
+			{
+				new FullHousePrimaryGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens }.TryGenerateUnique(out var p, ct);
+				return p;
+			}
 
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
 				=> new Generator().Generate(givens, symmetry, ct);

@@ -11,7 +11,7 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 
 
 	/// <inheritdoc/>
-	public override Grid GenerateUnique(CancellationToken cancellationToken = default)
+	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -19,7 +19,8 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
 			if (puzzle.IsUndefined)
 			{
-				return Grid.Undefined;
+				result = Grid.Undefined;
+				return false;
 			}
 
 			if (!puzzle.CanPrimaryNakedSingle())
@@ -27,15 +28,18 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 				cancellationToken.ThrowIfCancellationRequested();
 				continue;
 			}
-			return puzzle;
+
+			result = puzzle;
+			return true;
 		}
 	}
 
 	/// <inheritdoc/>
-	public override Grid GeneratePrimary(CancellationToken cancellationToken) => GenerateUnique(cancellationToken);
+	public override bool GeneratePrimary(out Grid result, CancellationToken cancellationToken)
+		=> TryGenerateUnique(out result, cancellationToken);
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		// Randomly select a cell as target cell.
 		var targetCell = Alignment switch
@@ -72,11 +76,12 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 			SingleModule.GetNakedSingleSubtype(in puzzle, targetCell),
 			SingleModule.GetLastingAllHouses(in puzzle, targetCell, out _)
 		);
-		return puzzle.FixedGrid;
+		result = puzzle.FixedGrid;
+		return true;
 	}
 
 	/// <inheritdoc/>
-	public override Grid GenerateJustOneCell(out Grid phasedGrid, out Step? step, CancellationToken cancellationToken = default)
+	public override bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default)
 	{
 		var generator = new Generator();
 		while (true)
@@ -86,8 +91,8 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
-					(phasedGrid, step) = (Grid.Undefined, null);
-					return Grid.Undefined;
+					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+					return false;
 				}
 				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
 				{
@@ -110,8 +115,8 @@ public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
 							}
 						}
 
-						(phasedGrid, step) = (currentGrid, s);
-						return extractedGrid.FixedGrid;
+						(result, phasedGrid, step) = (extractedGrid.FixedGrid, currentGrid, s);
+						return true;
 					}
 					break;
 				}

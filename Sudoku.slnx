@@ -49,7 +49,7 @@
   </Project>
 </Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
+    <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
   <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />

@@ -15665,7 +15665,7 @@
         </member>
         <member name="T:SudokuStudio.Views.Pages.SingleCountingPracticingPage">
             <summary>
-            Represents a page that provides with practise tool to allow you practicing counting logic for technique Naked Single and Full House.
+            Represents a page that provides with practice tool to allow you practicing counting logic for technique Naked Single and Full House.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.MaxPuzzlesCountSupported">
