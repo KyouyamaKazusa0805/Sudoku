@@ -47,6 +47,11 @@
   <Project Path="src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
+    <Project Path="P:\Code\Sudoku\src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj" />
+    <Project Path="P:\Code\Sudoku\src\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj" />
+    <Project Path="P:\Code\Sudoku\src\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" />
+    <Project Path="P:\Code\Sudoku\src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj" />
+    <Project Path="P:\Code\Sudoku\src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj" />
 </Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
@@ -83,4 +88,20 @@
     <Property Name="OpenWith" Value="17" />
   </Properties>
   <Folder Name="/Global Items/Source Generators/" />
+  <Project Path="P:\Code\Sudoku\src\ConsoleTest\MyPrivateWorks.csproj" />
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Bot\Sudoku.Bot.csproj" Type="C#">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Core\Sudoku.Core.csproj" />
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Drawing.Drawing2D\Sudoku.Drawing.Drawing2D.csproj" />
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj" />
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Logging\Sudoku.Logging.csproj" />
+  <Project Path="P:\Code\Sudoku\src\SudokuStudio\SudokuStudio.csproj">
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+  <Project Path="P:\Code\Sudoku\src\System\SystemExtensions.csproj" />
+  <Project Path="src\Sudoku.Bot\Sudoku.Bot.csproj" Type="C#">
+    <BuildType Solution="Build|*" Project="Debug" />
+  </Project>
 </Solution>
