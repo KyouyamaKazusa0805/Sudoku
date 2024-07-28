@@ -27,10 +27,8 @@ Console.WriteLine("退出机器人。");
 
 void bot_OnConnected()
 {
-	var commandNames = string.Join("、", from command in registeredCommands select $"・{command.CommandName}");
-
+	var commandNames = string.Join("、", from command in registeredCommands select command.CommandName);
 	Console.WriteLine("连接机器人成功！");
-
 	Console.ForegroundColor = ConsoleColor.Green;
 	Console.WriteLine($"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
 	Console.ResetColor();
