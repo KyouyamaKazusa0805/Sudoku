@@ -3,7 +3,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by <b>only</b> using Direct Single techniques.
 /// </summary>
-public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCellGenerator, IPrimaryGenerator
+public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerator
 {
 	/// <summary>
 	/// Indicates center houses.
@@ -38,7 +38,9 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the alignment value that the target generated puzzle will align its conclusion cell.
+	/// </summary>
 	public ConclusionCellAlignment Alignment { get; set; }
 
 
@@ -106,7 +108,16 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IAlignedJustOneCell
 		};
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Generates a puzzle and return a <see cref="Grid"/> instance that can be solved by only using the specified technique;
+	/// using <paramref name="cancellationToken"/> to cancel the operation.
+	/// </summary>
+	/// <param name="result">The result <see cref="Grid"/> instance generated.</param>
+	/// <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+	/// <returns>
+	/// A <see cref="bool"/> value indicating whether the result has already been generated without any error.
+	/// For example, a user has cancelled the task, the return value should be <see langword="false"/>.
+	/// </returns>
 	public abstract bool GeneratePrimary(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>

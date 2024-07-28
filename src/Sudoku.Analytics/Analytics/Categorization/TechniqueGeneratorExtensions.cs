@@ -23,11 +23,11 @@ public static class TechniqueGeneratorExtensions
 
 
 	/// <summary>
-	/// Creates an <see cref="IPrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
+	/// Creates an <see cref="PrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>An <see cref="IPrimaryGenerator"/> instance.</returns>
+	/// <returns>An <see cref="PrimaryGenerator"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IPrimaryGenerator? GetSpecificPuzzleGenerator(this Technique @this)
-		=> GeneratorTypes.TryGetValue(@this, out var result) ? (IPrimaryGenerator?)Activator.CreateInstance(result) : null;
+	public static PrimaryGenerator? GetSpecificPuzzleGenerator(this Technique @this)
+		=> GeneratorTypes.TryGetValue(@this, out var result) ? (PrimaryGenerator?)Activator.CreateInstance(result) : null;
 }

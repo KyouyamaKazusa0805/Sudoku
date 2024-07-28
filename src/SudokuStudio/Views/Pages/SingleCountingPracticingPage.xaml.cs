@@ -146,7 +146,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 
 
 			static bool g<T>(ConclusionCellAlignment alignment, out Grid result, out Candidate targetCandidate)
-				where T : IAlignedJustOneCellGenerator, new(), allows ref struct
+				where T : PrimaryGenerator, new()
 			{
 				var generator = new T { Alignment = alignment };
 				if (generator.TryGenerateJustOneCell(out var p, out var step) && step is SingleStep { Cell: var c, Digit: var d })

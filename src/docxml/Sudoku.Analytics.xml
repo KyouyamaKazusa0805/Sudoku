@@ -3932,10 +3932,10 @@
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GetSpecificPuzzleGenerator(Sudoku.Analytics.Categorization.Technique)">
             <summary>
-            Creates an <see cref="T:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
+            Creates an <see cref="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>An <see cref="T:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator"/> instance.</returns>
+            <returns>An <see cref="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>
@@ -29960,16 +29960,6 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator">
-            <summary>
-            Represents a type that can generate puzzles that can only be solved for one cell, with phased grid and its solving step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.IAlignedJustOneCellGenerator.Alignment">
-            <summary>
-            Indicates the alignment value that the target generated puzzle will align its conclusion cell.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator">
             <summary>
             Represents a type that can generate puzzles that can only be solved for one cell.
@@ -30014,33 +30004,6 @@
             A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
             For example, a user has cancelled the task, the return value should be <see langword="false"/>.
             </returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator">
-            <summary>
-            Represents a generator type that creates a puzzle that can only uses the current technique to solve.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IPrimaryGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that can be solved by only using the specified technique;
-            using <paramref name="cancellationToken"/> to cancel the operation.
-            </summary>
-            <param name="result">The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</param>
-            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
-            For example, a user has cancelled the task, the return value should be <see langword="false"/>.
-            </returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator">
-            <summary>
-            Represents a generator type that supports filtering on techniques.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator.SupportedTechniques">
-            <summary>
-            Indicates the techniques supported in the current generator.
-            </summary>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator">
             <summary>
@@ -30099,7 +30062,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.Alignment">
-            <inheritdoc/>
+            <summary>
+            Indicates the alignment value that the target generated puzzle will align its conclusion cell.
+            </summary>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.ShuffleSequence``1(``0[])">
             <summary>
@@ -30131,7 +30096,16 @@
             <returns>The house index.</returns>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <summary>
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance that can be solved by only using the specified technique;
+            using <paramref name="cancellationToken"/> to cancel the operation.
+            </summary>
+            <param name="result">The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</param>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
+            For example, a user has cancelled the task, the return value should be <see langword="false"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -30153,7 +30127,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.SupportedTechniques">
-            <inheritdoc/>
+            <summary>
+            Indicates the techniques supported in the current generator.
+            </summary>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
