@@ -9,4 +9,8 @@
 		<PackageReference Include="MyBot" Version="1.8.0.14" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
 </Project>

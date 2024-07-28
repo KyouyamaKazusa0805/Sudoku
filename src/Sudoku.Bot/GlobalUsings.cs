@@ -1,1 +1,14 @@
+global using System;
+global using System.IO;
+global using System.Linq;
 global using System.Runtime.Versioning;
+global using System.Text.Json;
+global using System.Threading.Tasks;
+global using MyBot.Api;
+global using MyBot.Datas;
+global using MyBot.Expansions.Bot;
+global using MyBot.Models.MessageModels;
+global using Sudoku.Bot.Commands;
+global using Sudoku.Bot.Localization;
+global using Sudoku.Bot.Scoring;
+global using static System.Math;
