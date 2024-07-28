@@ -90,7 +90,7 @@
   <Folder Name="/Global Items/Source Generators/" />
   <Project Path="P:\Code\Sudoku\src\ConsoleTest\MyPrivateWorks.csproj" />
   <Project Path="P:\Code\Sudoku\src\Sudoku.Analytics\Sudoku.Analytics.csproj" />
-  <Project Path="P:\Code\Sudoku\src\Sudoku.Bot\Sudoku.Bot.csproj" Type="C#">
+  <Project Path="P:\Code\Sudoku\src\Sudoku.Bot\Sudoku.Bot.csproj">
     <BuildType Solution="Build|*" Project="Debug" />
   </Project>
   <Project Path="P:\Code\Sudoku\src\Sudoku.Core\Sudoku.Core.csproj" />
