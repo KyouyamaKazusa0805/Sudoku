@@ -10,6 +10,16 @@ public abstract class Command
 	/// </summary>
 	public abstract string CommandName { get; }
 
+	/// <summary>
+	/// 表示指令的样例用法。默认情况下，只有带斜杠和指令名称，如“/签到”。
+	/// </summary>
+	public virtual string HelpCommandString => $"/{CommandName}";
+
+	/// <summary>
+	/// 表示默认情况下（参数错误等）反馈的字符串。可以用于在参数校验后返回。
+	/// </summary>
+	protected string DefaultInfoString => $"写法内容：“{HelpCommandString}”。";
+
 
 	/// <summary>
 	/// 这个方法会在群里艾特并且指令触发时执行。

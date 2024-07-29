@@ -10,7 +10,8 @@ apiProvider.UseBotIdentity();
 var registeredCommands = (Command[])[
 	new DisplayInfoCommand(),
 	new ChangeInfoCommand(),
-	new CheckInCommand()
+	new CheckInCommand(),
+	new AnalysisCommand()
 ];
 
 var bot = new ChannelBot(apiProvider);
