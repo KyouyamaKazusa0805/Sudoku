@@ -9,7 +9,7 @@ public sealed class AnalysisCommand : Command
 	public override string CommandName => "解析";
 
 	/// <inheritdoc/>
-	public override string HelpCommandString => "/解析 题目代码串";
+	public override string HelpCommandString => $"{CommandFullName} 题目代码串";
 
 
 	/// <inheritdoc/>

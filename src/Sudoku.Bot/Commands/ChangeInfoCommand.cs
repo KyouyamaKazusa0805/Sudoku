@@ -9,7 +9,7 @@ public sealed class ChangeInfoCommand : Command
 	public override string CommandName => "更新";
 
 	/// <inheritdoc/>
-	public override string HelpCommandString => "/更新 昵称 Sunnie";
+	public override string HelpCommandString => $"{CommandFullName} 昵称 Sunnie";
 
 
 	/// <inheritdoc/>

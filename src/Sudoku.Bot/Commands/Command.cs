@@ -11,9 +11,14 @@ public abstract class Command
 	public abstract string CommandName { get; }
 
 	/// <summary>
+	/// 表示指令的完整名称，包含斜杠。
+	/// </summary>
+	public string CommandFullName => $"/{CommandName}";
+
+	/// <summary>
 	/// 表示指令的样例用法。默认情况下，只有带斜杠和指令名称，如“/签到”。
 	/// </summary>
-	public virtual string HelpCommandString => $"/{CommandName}";
+	public virtual string HelpCommandString => CommandFullName;
 
 	/// <summary>
 	/// 表示默认情况下（参数错误等）反馈的字符串。可以用于在参数校验后返回。

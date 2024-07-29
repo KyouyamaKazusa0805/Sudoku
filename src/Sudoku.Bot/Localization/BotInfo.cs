@@ -24,4 +24,12 @@ public sealed class BotInfo
 	/// 表示 secret。
 	/// </summary>
 	public string Secret { get; set; } = "";
+
+
+	/// <summary>
+	/// 允许 <see cref="BotInfo"/> 到 <see cref="OpenApiAccessInfo"/> 的显式转换。
+	/// </summary>
+	/// <param name="info"><see cref="BotInfo"/> 对象。</param>
+	public static explicit operator OpenApiAccessInfo?(BotInfo? info)
+		=> info is null ? null : new() { BotQQ = info.Id, BotAppId = info.AppId, BotToken = info.Token, BotSecret = info.Secret };
 }

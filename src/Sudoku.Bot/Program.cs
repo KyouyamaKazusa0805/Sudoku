@@ -2,9 +2,8 @@
 
 var filePath = @"A:\QQ机器人\bot.json";
 var json = File.ReadAllText(filePath);
-var botInfo = JsonSerializer.Deserialize<BotInfo>(json, JsonOptions)!;
-var accessInfo = new OpenApiAccessInfo { BotQQ = botInfo.Id, BotAppId = botInfo.AppId, BotToken = botInfo.Token, BotSecret = botInfo.Secret };
-var apiProvider = new QQChannelApi(accessInfo);
+var botAccessInfo = (OpenApiAccessInfo?)JsonSerializer.Deserialize<BotInfo>(json, JsonOptions)!;
+var apiProvider = new QQChannelApi(botAccessInfo);
 apiProvider.UseBotIdentity();
 
 var registeredCommands = (Command[])[
@@ -13,45 +12,15 @@ var registeredCommands = (Command[])[
 	new CheckInCommand(),
 	new AnalysisCommand()
 ];
-
-var bot = new ChannelBot(apiProvider);
+var bot = new QQGroupBot(apiProvider);
 bot.RegisterChatEvent();
-bot.ReceivedChatGroupMessage += bot_ReceivedAtMessage;
-bot.OnConnected += bot_OnConnected;
-bot.AuthenticationSuccess += bot_AuthenticationSuccess;
-bot.OnError += bot_OnError;
-await bot.OnlineAsync();
-
-Console.WriteLine("请按 Q 键退出机器人。");
-while (Console.ReadLine() is not ("Q" or "q")) ;
-Console.WriteLine("退出机器人。");
-
-void bot_OnConnected()
+bot.ReceivedChatGroupMessage += message =>
 {
-	var commandNames = string.Join("、", from command in registeredCommands select command.CommandName);
-	Console.WriteLine("连接机器人成功！");
-	Console.ForegroundColor = ConsoleColor.Green;
-	Console.WriteLine($"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
-	Console.ResetColor();
-}
-
-static void bot_AuthenticationSuccess() => Console.WriteLine("机器人鉴权成功！现在可以用机器人了。");
-
-static void bot_OnError(Exception ex)
-{
-	Console.ForegroundColor = ConsoleColor.Red;
-	Console.WriteLine($"机器人执行指令时出现错误：{ex.Message}");
-	Console.ResetColor();
-}
-
-void bot_ReceivedAtMessage(ChatMessage message)
-{
-	var content = message.Content.Trim();
-	content = content[content.IndexOf(' ') is var i and not -1 ? ..i : ..];
+	var content = message.GetCommandFullName();
 	var found = false;
 	foreach (var command in registeredCommands)
 	{
-		if ($"/{command.CommandName}" == content)
+		if (command.CommandFullName == content)
 		{
 			command.GroupCallback(apiProvider.GetChatMessageApi(), message);
 			found = true;
@@ -59,18 +28,24 @@ void bot_ReceivedAtMessage(ChatMessage message)
 		}
 	}
 
-	if (found)
-	{
-		Console.ForegroundColor = ConsoleColor.Green;
-		Console.WriteLine($"接收消息：“{message.Content}”。");
-	}
-	else
-	{
-		Console.ForegroundColor = ConsoleColor.DarkYellow;
-		Console.WriteLine($"接收消息：“{message.Content}”，但指令匹配失败。");
-	}
-	Console.ResetColor();
-}
+	var (severity, m) = found
+		? (LogSeverity.Info, $"接收消息：“{message.Content}”。")
+		: (LogSeverity.Warning, $"接收消息：“{message.Content}”，但指令匹配失败。");
+	WriteLog(severity, m);
+};
+bot.OnConnected += () =>
+{
+	var commandNames = string.Join("、", from command in registeredCommands select command.CommandName);
+	WriteLog("连接机器人成功！");
+	WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
+};
+bot.AuthenticationSuccess += static () => WriteLog("机器人鉴权成功！现在可以用机器人了。");
+bot.OnError += static ex => WriteLog(LogSeverity.Error, $"机器人执行指令时出现错误：{ex.Message}");
+await bot.OnlineAsync();
+
+WriteLog("请按 Q 键退出机器人。");
+BlockConsole('q');
+WriteLog("退出机器人。");
 
 
 /// <summary>
