@@ -11,10 +11,10 @@ public static class EmptyArea
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>An <see cref="int"/> value indicating the result.</returns>
 	/// <remarks>
-	/// <inheritdoc cref="GetMaxEmptyArea(in CellMap)" path="/remarks"/>
+	/// <inheritdoc cref="GetMaxEmptyArea(ref readonly CellMap)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetMaxEmptyArea(this scoped in Grid @this) => @this.EmptyCells.GetMaxEmptyArea();
+	public static int GetMaxEmptyArea(this scoped ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptyArea();
 
 	/// <summary>
 	/// Try to get the maximum empty square area exists in the specified grid.
@@ -22,10 +22,10 @@ public static class EmptyArea
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>An <see cref="int"/> value indicating the result.</returns>
 	/// <remarks>
-	/// <inheritdoc cref="GetMaxEmptySquareArea(in CellMap)" path="/remarks"/>
+	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetMaxEmptySquareArea(this scoped in Grid @this) => @this.EmptyCells.GetMaxEmptySquareArea();
+	public static int GetMaxEmptySquareArea(this scoped ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptySquareArea();
 
 	/// <summary>
 	/// Try to get the maximum empty area exists in the specified cells.
@@ -36,7 +36,7 @@ public static class EmptyArea
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
 	/// </remarks>
-	public static int GetMaxEmptyArea(this scoped in CellMap @this)
+	public static int GetMaxEmptyArea(this scoped ref readonly CellMap @this)
 	{
 		var dp = (stackalloc int[9]);
 		dp.Clear();
@@ -81,7 +81,7 @@ public static class EmptyArea
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
 	/// </remarks>
-	public static int GetMaxEmptySquareArea(this scoped in CellMap @this)
+	public static int GetMaxEmptySquareArea(this scoped ref readonly CellMap @this)
 	{
 		var maxSide = 0;
 		var dp = (stackalloc int[81]);

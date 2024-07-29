@@ -17,7 +17,7 @@ public static class CellMapExtensions
 	/// </returns>
 	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
 	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>> GroupTargets(
-		this scoped in CellMap @this,
+		this scoped ref readonly CellMap @this,
 		HouseMask houses
 	)
 	{

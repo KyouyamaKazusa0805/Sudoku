@@ -12,7 +12,7 @@ public static class GridMinLexExtensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsMinLexGrid(this scoped in Grid @this)
+	public static bool IsMinLexGrid(this scoped ref readonly Grid @this)
 		=> @this.PuzzleType != SudokuType.Sukaku && @this.GetUniqueness() == Uniqueness.Unique && @this.ToString("0") is var s
 			? new MinLexFinder().Find(s) == s
 			: throw new InvalidOperationException(SR.ExceptionMessage("MinLexShouldBeUniqueAndNotSukaku"));
@@ -22,7 +22,7 @@ public static class GridMinLexExtensions
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid GetMinLexGrid(this scoped in Grid @this) => new MinLexFinder().Find(in @this);
+	public static Grid GetMinLexGrid(this scoped ref readonly Grid @this) => new MinLexFinder().Find(in @this);
 
 	/// <summary>
 	/// Adjust the grid to minimal lexicographical form.

@@ -16,7 +16,7 @@ public static class GridMinLexComparisonExtensions
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool Equals(this scoped in Grid @this, ref readonly Grid other, GridComparison comparisonType)
+	public static bool Equals(this scoped ref readonly Grid @this, ref readonly Grid other, GridComparison comparisonType)
 		=> comparisonType switch
 		{
 			GridComparison.Default => @this.Equals(in other),
@@ -33,7 +33,7 @@ public static class GridMinLexComparisonExtensions
 	/// Throws when the argument <paramref name="comparisonType"/> isn't defined.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetHashCode(this scoped in Grid @this, GridComparison comparisonType)
+	public static int GetHashCode(this scoped ref readonly Grid @this, GridComparison comparisonType)
 	{
 		var grid = comparisonType switch
 		{
@@ -55,7 +55,7 @@ public static class GridMinLexComparisonExtensions
 	/// <exception cref="InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int CompareTo(this scoped in Grid @this, ref readonly Grid other, GridComparison comparisonType)
+	public static int CompareTo(this scoped ref readonly Grid @this, ref readonly Grid other, GridComparison comparisonType)
 		=> (@this.PuzzleType, other.PuzzleType) switch
 		{
 			(not SudokuType.Sukaku, not SudokuType.Sukaku) => comparisonType switch

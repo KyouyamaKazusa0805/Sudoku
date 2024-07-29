@@ -15,7 +15,7 @@ public static class GridExocetExtensions
 	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool CheckCrossLineIntersectionLeaveEmpty(
-		this scoped in Grid @this,
+		this scoped ref readonly Grid @this,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask
 	)
@@ -39,7 +39,7 @@ public static class GridExocetExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CheckTargetCellsDigitsValidity(
-		this scoped in Grid @this,
+		this scoped ref readonly Grid @this,
 		ref readonly CellMap targetCellsToBeChecked,
 		Mask baseCellsDigitsMask
 	) => targetCellsToBeChecked switch
@@ -66,7 +66,7 @@ public static class GridExocetExtensions
 	/// <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
 	/// <returns>A list of digits appeared in cross-line cells as value representation.</returns>
 	public static Mask GetValueDigitsAppearedInCrossline(
-		this scoped in Grid @this,
+		this scoped ref readonly Grid @this,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask
 	)
