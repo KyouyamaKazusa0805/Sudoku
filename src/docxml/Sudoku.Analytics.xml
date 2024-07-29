@@ -29853,31 +29853,6 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment">
-            <summary>
-            Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.NotLimited">
-            <summary>
-            Indicates conclusion cell can be everywhere.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterHouse">
-            <summary>
-            Indicates conclusion cell can only be inside row 5, column 5 and block 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterBlock">
-            <summary>
-            Indicates conclusion cell can only be inside block 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterCell">
-            <summary>
-            Indicates the conclusion cell must be <c>r5c5</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator">
             <summary>
             Represents a generator that supports generating for puzzles that can be solved by only using Direct Intersections.
@@ -29906,59 +29881,30 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.StepFilter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator">
+        <member name="T:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment">
             <summary>
-            Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.EmptyCellsCount">
-            <summary>
-            Indicates the number of empty cells the current generator will generate on puzzles.
+            Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.SupportedTechniques">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator">
+        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.NotLimited">
             <summary>
-            Represents a generator that supports generating for puzzles that can be solved by only using Hidden Singles and Full Houses.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.AllowsBlockExcluders">
-            <summary>
-            Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.
+            Indicates conclusion cell can be everywhere.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.SupportedTechniques">
-            <inheritdoc/>
+        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterHouse">
+            <summary>
+            Indicates conclusion cell can only be inside row 5, column 5 and block 5.
+            </summary>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterBlock">
+            <summary>
+            Indicates conclusion cell can only be inside block 5.
+            </summary>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSinglePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="F:Sudoku.Runtime.GeneratingServices.ConclusionCellAlignment.CenterCell">
+            <summary>
+            Indicates the conclusion cell must be <c>r5c5</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.IJustOneCellGenerator">
             <summary>
@@ -30013,26 +29959,32 @@
             <param name="step">The step.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> indicating the result.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator">
+        <member name="T:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator">
             <summary>
-            Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
+            Represents a generator that can generate a puzzle with a unique solution, and using the specified technique.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.SupportedTechniques">
-            <inheritdoc/>
+        <member name="P:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator.SupportedTechniques">
+            <summary>
+            Indicates the techniques supported in the current generator.
+            </summary>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator.RandomNumberGenerator">
+            <summary>
+            Indicates the internal random number generator to be used.
+            </summary>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Runtime.GeneratingServices.ITechniqueGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance;
+            using <paramref name="cancellationToken"/> to cancel the operation.
+            </summary>
+            <param name="result">The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</param>
+            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
+            For example, a user has cancelled the task, the return value should be <see langword="false"/>.
+            </returns>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator">
             <summary>
@@ -30124,6 +30076,86 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.FullHouseGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.EmptyCellsCount">
+            <summary>
+            Indicates the number of empty cells the current generator will generate on puzzles.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.FullHouseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Hidden Singles and Full Houses.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.AllowsBlockExcluders">
+            <summary>
+            Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.SupportedTechniques">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.GeneratePrimary(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.SingleGenerator">
+            <summary>
+            Represents a generator that supports generating for puzzles that can be solved by <b>only</b> using Direct Single techniques.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.StepFilter">
             <summary>
             Defines a type that checks whether a <see cref="T:Sudoku.Analytics.Step"/> satisfies the specified condition.
@@ -30142,21 +30174,13 @@
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.SupportedTechniques">
-            <summary>
-            Indicates the techniques supported in the current generator.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.Sudoku#Runtime#GeneratingServices#ITechniqueGenerator#RandomNumberGenerator">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Generates a puzzle and return a <see cref="T:Sudoku.Concepts.Grid"/> instance;
-            using <paramref name="cancellationToken"/> to cancel the operation.
-            </summary>
-            <param name="result">The result <see cref="T:Sudoku.Concepts.Grid"/> instance generated.</param>
-            <param name="cancellationToken">The cancellation token instance that can cancel the current operation.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
-            For example, a user has cancelled the task, the return value should be <see langword="false"/>.
-            </returns>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">
             <summary>

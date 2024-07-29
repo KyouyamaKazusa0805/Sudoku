@@ -11,14 +11,14 @@ public static class TechniqueGeneratorExtensions
 	/// </summary>
 	private static readonly FrozenDictionary<Technique, Type> GeneratorTypes = new Dictionary<Technique, Type>
 	{
-		{ Technique.FullHouse, typeof(FullHousePrimaryGenerator) },
-		{ Technique.CrosshatchingBlock, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.HiddenSingleBlock, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.CrosshatchingRow, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.HiddenSingleRow, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.CrosshatchingColumn, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.HiddenSingleColumn, typeof(HiddenSinglePrimaryGenerator) },
-		{ Technique.NakedSingle, typeof(NakedSinglePrimaryGenerator) }
+		{ Technique.FullHouse, typeof(FullHouseGenerator) },
+		{ Technique.CrosshatchingBlock, typeof(HiddenSingleGenerator) },
+		{ Technique.HiddenSingleBlock, typeof(HiddenSingleGenerator) },
+		{ Technique.CrosshatchingRow, typeof(HiddenSingleGenerator) },
+		{ Technique.HiddenSingleRow, typeof(HiddenSingleGenerator) },
+		{ Technique.CrosshatchingColumn, typeof(HiddenSingleGenerator) },
+		{ Technique.HiddenSingleColumn, typeof(HiddenSingleGenerator) },
+		{ Technique.NakedSingle, typeof(NakedSingleGenerator) }
 	}.ToFrozenDictionary();
 
 

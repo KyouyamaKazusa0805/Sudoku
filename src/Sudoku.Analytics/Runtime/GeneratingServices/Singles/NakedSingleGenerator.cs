@@ -4,7 +4,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
 /// </summary>
 /// <seealso cref="Technique.NakedSingle"/>
-public sealed class NakedSinglePrimaryGenerator : PrimaryGenerator
+public sealed class NakedSingleGenerator : SingleGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques => [Technique.NakedSingle];

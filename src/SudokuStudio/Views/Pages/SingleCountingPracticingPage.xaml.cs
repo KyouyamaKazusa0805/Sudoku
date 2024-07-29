@@ -130,11 +130,11 @@ public sealed partial class SingleCountingPracticingPage : Page
 				{
 					GeneratingMode.House5 => ConclusionCellAlignment.CenterHouse,
 					_ => ConclusionCellAlignment.NotLimited
-				} is var targetAlignment && g<FullHousePrimaryGenerator>(targetAlignment, out var puzzle, out targetCandidate):
+				} is var targetAlignment && g<FullHouseGenerator>(targetAlignment, out var puzzle, out targetCandidate):
 				{
 					return puzzle;
 				}
-				case GeneratingMode.NakedSingle when g<NakedSinglePrimaryGenerator>(default, out var puzzle, out targetCandidate):
+				case GeneratingMode.NakedSingle when g<NakedSingleGenerator>(default, out var puzzle, out targetCandidate):
 				{
 					return puzzle;
 				}

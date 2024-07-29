@@ -6,7 +6,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.CrosshatchingBlock"/>
 /// <seealso cref="Technique.CrosshatchingRow"/>
 /// <seealso cref="Technique.CrosshatchingColumn"/>
-public sealed class HiddenSinglePrimaryGenerator : PrimaryGenerator
+public sealed class HiddenSingleGenerator : SingleGenerator
 {
 	/// <summary>
 	/// Indicates whether the generator allows using block excluders in a Hidden Single in Row/Column.

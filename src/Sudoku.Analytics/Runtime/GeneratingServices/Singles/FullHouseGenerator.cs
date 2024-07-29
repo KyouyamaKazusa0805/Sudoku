@@ -4,7 +4,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// Represents a generator that supports generating for puzzles that can be solved by only using Full Houses.
 /// </summary>
 /// <seealso cref="Technique.FullHouse"/>
-public sealed class FullHousePrimaryGenerator : PrimaryGenerator
+public sealed class FullHouseGenerator : SingleGenerator
 {
 	/// <summary>
 	/// Indicates the number of empty cells the current generator will generate on puzzles.
