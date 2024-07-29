@@ -3919,24 +3919,6 @@
             Indicates the current technique only appears in direct views, i.e. candidates are not displayed.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/> on generator module.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GeneratorTypes">
-            <summary>
-            Indicates the generator types.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GetSpecificPuzzleGenerator(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator"/> instance that creates puzzles that uses the specified technique.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>An <see cref="T:Sudoku.Runtime.GeneratingServices.PrimaryGenerator"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>
             Represents a technique group.
