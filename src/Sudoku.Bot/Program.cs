@@ -1,5 +1,3 @@
-#pragma warning disable IDE0011
-
 var filePath = @"A:\QQ机器人\bot.json";
 var json = File.ReadAllText(filePath);
 var botAccessInfo = (OpenApiAccessInfo?)JsonSerializer.Deserialize<BotInfo>(json, JsonOptions)!;
@@ -35,7 +33,7 @@ bot.ReceivedChatGroupMessage += message =>
 };
 bot.OnConnected += () =>
 {
-	var commandNames = string.Join("、", from command in registeredCommands select command.CommandName);
+	var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
 	WriteLog("连接机器人成功！");
 	WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
 };

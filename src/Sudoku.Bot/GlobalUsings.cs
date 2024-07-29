@@ -16,5 +16,6 @@ global using Sudoku.Bot.Logging;
 global using Sudoku.Bot.Scoring;
 global using Sudoku.Concepts;
 global using static System.Math;
+global using static Sudoku.Bot.Localization.CommonStrings;
 global using static Sudoku.Bot.Logging.Console2;
 global using QQGroupBot = MyBot.Expansions.Bot.ChannelBot;
