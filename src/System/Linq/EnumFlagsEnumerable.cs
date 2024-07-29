@@ -20,7 +20,7 @@ public static class EnumFlagsEnumerable
 	/// </exception>
 	public static ReadOnlySpan<TResult> Select<T, TResult>(this T @this, Func<T, TResult> selector) where T : unmanaged, Enum
 	{
-		if (!typeof(T).IsDefined(typeof(FlagsAttribute)))
+		if (!typeof(T).IsDefined<FlagsAttribute>())
 		{
 			throw new InvalidOperationException($"The enumeration type must be marked as '{nameof(FlagsAttribute)}'.");
 		}

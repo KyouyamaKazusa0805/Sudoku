@@ -40,16 +40,12 @@ public static class MemberInfoExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static MethodInfo? GetInitMethod(this PropertyInfo @this, bool nonPublic)
-	{
-		return @this.GetSetMethod(nonPublic) switch
+		=> @this.GetSetMethod(nonPublic) switch
 		{
-			{ ReturnParameter: var r } i when Array.Exists(r.GetRequiredCustomModifiers(), match) => i,
+			{ ReturnParameter: var r } i
+				when Array.Exists(r.GetRequiredCustomModifiers(), static modreq => modreq == typeof(IsExternalInit)) => i,
 			_ => null
 		};
-
-
-		static bool match(Type modreq) => modreq == typeof(IsExternalInit);
-	}
 
 	/// <inheritdoc cref="CustomAttributeExtensions.IsDefined(MemberInfo, Type)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
