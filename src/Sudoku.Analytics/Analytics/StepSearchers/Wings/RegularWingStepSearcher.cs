@@ -123,7 +123,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Gather highlight candidates.
+					// Collect for highlight candidates.
 					var candidateOffsets = new List<CandidateViewNode>(6);
 					foreach (var cell in cells)
 					{
