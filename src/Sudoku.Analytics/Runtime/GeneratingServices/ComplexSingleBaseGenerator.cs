@@ -28,12 +28,12 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 	/// <summary>
 	/// Indicates the creator instance that creates a list of cells indicating pattern interim cells.
 	/// </summary>
-	protected abstract FuncRefReadOnly<Grid, Step, CellMap> InterimCellsCreator { get; }
+	protected abstract InterimCellsCreator InterimCellsCreator { get; }
 
 	/// <summary>
 	/// Indicates the local step filter.
 	/// </summary>
-	protected abstract FuncRefReadOnly<Step, bool> LocalStepFilter { get; }
+	protected abstract StepFilter StepFilter { get; }
 
 
 	/// <inheritdoc/>
@@ -56,7 +56,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 					result = Grid.Undefined;
 					return false;
 				}
-				case { IsSolved: true, StepsSpan: var steps } when steps.Any(LocalStepFilter):
+				case { IsSolved: true, StepsSpan: var steps } when steps.Any(step => StepFilter(step)):
 				{
 					result = puzzle;
 					return true;
@@ -69,7 +69,6 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 			}
 		}
 	}
-
 
 	/// <inheritdoc/>
 	public bool TryGenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
@@ -98,10 +97,10 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 					var solvingSteps = StepMarshal.Combine(grids, steps);
 					foreach (var (g, s) in solvingSteps)
 					{
-						if (LocalStepFilter(in s))
+						if (StepFilter(s))
 						{
 							// Reserves the given cells that are used in the pattern.
-							var reservedCells = InterimCellsCreator(in g, in s);
+							var reservedCells = InterimCellsCreator(in g, s);
 							var r = Grid.Empty;
 							foreach (var cell in reservedCells)
 							{

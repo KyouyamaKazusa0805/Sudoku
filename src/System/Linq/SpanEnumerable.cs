@@ -196,6 +196,19 @@ public static class SpanEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Any{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
+	public static bool Any<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
+	{
+		foreach (var element in @this)
+		{
+			if (match(element))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/// <summary>
 	/// Checks whether at least one element are satisfied the specified condition.
 	/// </summary>

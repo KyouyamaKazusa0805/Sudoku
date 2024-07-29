@@ -2909,6 +2909,9 @@
             <param name="condition">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Checks whether at least one element are satisfied the specified condition.

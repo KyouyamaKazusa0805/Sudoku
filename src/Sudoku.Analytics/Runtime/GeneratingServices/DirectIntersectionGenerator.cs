@@ -15,82 +15,79 @@ public sealed class DirectIntersectionGenerator : ComplexSingleBaseGenerator
 		];
 
 	/// <inheritdoc/>
-	protected override FuncRefReadOnly<Grid, Step, CellMap> InterimCellsCreator => LocalInterimCellCreator;
-
-	/// <inheritdoc/>
-	protected override FuncRefReadOnly<Step, bool> LocalStepFilter
-		=> static (ref readonly Step step) => step is DirectIntersectionStep;
-
-
-	private static CellMap LocalInterimCellCreator(ref readonly Grid g, ref readonly Step s)
-	{
-		var step = (DirectIntersectionStep)s;
-		var result = CellMap.Empty;
-		switch (step.BasedOn)
+	protected override InterimCellsCreator InterimCellsCreator
+		=> static (ref readonly Grid g, Step s) =>
 		{
-			case Technique.FullHouse or Technique.NakedSingle:
+			var step = (DirectIntersectionStep)s;
+			var result = CellMap.Empty;
+			switch (step.BasedOn)
 			{
-				var targetCell = step.Cell;
-				var targetDigit = step.Digit;
-				var interimDigit = step.InterimDigit;
-				for (var digit = 0; digit < 9; digit++)
+				case Technique.FullHouse or Technique.NakedSingle:
 				{
-					if (digit != targetDigit && digit != interimDigit)
+					var targetCell = step.Cell;
+					var targetDigit = step.Digit;
+					var interimDigit = step.InterimDigit;
+					for (var digit = 0; digit < 9; digit++)
 					{
-						foreach (var cell in PeersMap[targetCell])
+						if (digit != targetDigit && digit != interimDigit)
 						{
-							if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
+							foreach (var cell in PeersMap[targetCell])
 							{
-								result.Add(cell);
-								break;
+								if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
+								{
+									result.Add(cell);
+									break;
+								}
 							}
 						}
 					}
+					goto default;
 				}
-				goto default;
+				case var basedOn and (Technique.CrosshatchingBlock or Technique.CrosshatchingRow or Technique.CrosshatchingColumn):
+				{
+					var targetHouse = step.Cell.ToHouse(
+						basedOn switch
+						{
+							Technique.CrosshatchingBlock => HouseType.Block,
+							Technique.CrosshatchingRow => HouseType.Row,
+							_ => HouseType.Column
+						}
+					);
+					foreach (var cell in HousesMap[targetHouse])
+					{
+						if (g.GetState(cell) != CellState.Empty)
+						{
+							result.Add(cell);
+						}
+					}
+					goto default;
+				}
+				default:
+				{
+					foreach (var cell in HousesMap[step.IntersectionHouse])
+					{
+						if (g.GetState(cell) != CellState.Empty)
+						{
+							result.Add(cell);
+						}
+					}
+					foreach (var node in s.Views![0])
+					{
+						if (node is CircleViewNode { Cell: var cell } && g.GetState(cell) != CellState.Empty)
+						{
+							result.Add(cell);
+						}
+					}
+					foreach (var cell in step.IntersectionCells)
+					{
+						result.Remove(cell);
+					}
+					break;
+				}
 			}
-			case var basedOn and (Technique.CrosshatchingBlock or Technique.CrosshatchingRow or Technique.CrosshatchingColumn):
-			{
-				var targetHouse = step.Cell.ToHouse(
-					basedOn switch
-					{
-						Technique.CrosshatchingBlock => HouseType.Block,
-						Technique.CrosshatchingRow => HouseType.Row,
-						_ => HouseType.Column
-					}
-				);
-				foreach (var cell in HousesMap[targetHouse])
-				{
-					if (g.GetState(cell) != CellState.Empty)
-					{
-						result.Add(cell);
-					}
-				}
-				goto default;
-			}
-			default:
-			{
-				foreach (var cell in HousesMap[step.IntersectionHouse])
-				{
-					if (g.GetState(cell) != CellState.Empty)
-					{
-						result.Add(cell);
-					}
-				}
-				foreach (var node in s.Views![0])
-				{
-					if (node is CircleViewNode { Cell: var cell } && g.GetState(cell) != CellState.Empty)
-					{
-						result.Add(cell);
-					}
-				}
-				foreach (var cell in step.IntersectionCells)
-				{
-					result.Remove(cell);
-				}
-				break;
-			}
-		}
-		return result;
-	}
+			return result;
+		};
+
+	/// <inheritdoc/>
+	protected override StepFilter StepFilter => static step => step is DirectIntersectionStep;
 }

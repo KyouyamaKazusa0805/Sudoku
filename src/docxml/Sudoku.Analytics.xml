@@ -29836,7 +29836,7 @@
             Indicates the creator instance that creates a list of cells indicating pattern interim cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.LocalStepFilter">
+        <member name="P:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator.StepFilter">
             <summary>
             Indicates the local step filter.
             </summary>
@@ -29889,7 +29889,7 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.InterimCellsCreator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.LocalStepFilter">
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectIntersectionGenerator.StepFilter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator">
@@ -29903,7 +29903,7 @@
         <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.InterimCellsCreator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.LocalStepFilter">
+        <member name="P:Sudoku.Runtime.GeneratingServices.DirectSubsetGenerator.StepFilter">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.FullHousePrimaryGenerator">
@@ -30004,6 +30004,14 @@
             A <see cref="T:System.Boolean"/> value indicating whether the result has already been generated without any error.
             For example, a user has cancelled the task, the return value should be <see langword="false"/>.
             </returns>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.InterimCellsCreator">
+            <summary>
+            Defines a type that creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance as interim cells used in generating operation.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <param name="step">The step.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> indicating the result.</returns>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.NakedSinglePrimaryGenerator">
             <summary>
@@ -30115,6 +30123,13 @@
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PrimaryGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.GeneratingServices.StepFilter">
+            <summary>
+            Defines a type that checks whether a <see cref="T:Sudoku.Analytics.Step"/> satisfies the specified condition.
+            </summary>
+            <param name="step">The step.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.TechniqueGenerator">
             <summary>
