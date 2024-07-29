@@ -65,20 +65,6 @@ public static class @delegate
 	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
 
 	/// <summary>
-	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
-	/// into a <see cref="string"/> value.
-	/// </summary>
-	/// <typeparam name="T">The type of the argument.</typeparam>
-	/// <param name="this">The instance.</param>
-	/// <returns>The <see cref="string"/> value.</returns>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the argument <paramref name="this"/> return <see langword="null"/>
-	/// as the <c>ToString</c> method result.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToStringConverter<T>(ref readonly T @this) where T : notnull => @this.ToString()!;
-
-	/// <summary>
 	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.
 	/// </summary>
 	/// <typeparam name="T">The type of the argument. In fact the argument won't be used in this method.</typeparam>

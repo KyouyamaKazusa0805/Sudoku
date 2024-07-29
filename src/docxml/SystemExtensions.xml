@@ -494,19 +494,6 @@
         <member name="M:System.delegate.False``1(``0@)">
             <inheritdoc cref="M:System.delegate.False``1(``0)"/>
         </member>
-        <member name="M:System.delegate.ToStringConverter``1(``0@)">
-            <summary>
-            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
-            into a <see cref="T:System.String"/> value.
-            </summary>
-            <typeparam name="T">The type of the argument.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The <see cref="T:System.String"/> value.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="this"/> return <see langword="null"/>
-            as the <c>ToString</c> method result.
-            </exception>
-        </member>
         <member name="M:System.delegate.ReturnEmptyString``1(``0)">
             <summary>
             Returns an empty string equivalent to <see cref="F:System.String.Empty"/> no matter what the argument is.
