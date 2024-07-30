@@ -5751,7 +5751,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`3"/> of a uniform type <typeparamref name="T"/>.
@@ -5760,7 +5760,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`4"/> of a uniform type <typeparamref name="T"/>.
@@ -5769,7 +5769,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`5"/> of a uniform type <typeparamref name="T"/>.
@@ -5778,7 +5778,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`6"/> of a uniform type <typeparamref name="T"/>.
@@ -5787,7 +5787,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`7"/> of a uniform type <typeparamref name="T"/>.
@@ -5796,7 +5796,7 @@
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.ValueTupleExtensions.GetEnumerator``2(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0,``1})">
+        <member name="M:System.ValueTupleExtensions.GetEnumerator``2(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0,``1}@)">
             <summary>
             Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`8"/> of a uniform type <typeparamref name="T"/>.

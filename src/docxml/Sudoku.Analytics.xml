@@ -2692,6 +2692,11 @@
             Indicates unique rectangle sue de coq.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleAlmostLockedSetsXz">
+            <summary>
+            Indicates unique rectangle almost locked sets XZ.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleBabaGrouping">
             <summary>
             Indicates unique rectangle baba grouping.
@@ -2795,6 +2800,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleSueDeCoq">
             <summary>
             Indicates avoidable rectangle sue de coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleAlmostLockedSetsXz">
+            <summary>
+            Indicates avoidable rectangle almost locked sets XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleBlock">
@@ -8161,6 +8171,7 @@
             <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
             <item>Avoidable Rectangle + Hidden Single</item>
             <item>Unique Rectangle + Baba Grouping</item>
+            <item>Unique Rectangle + ALS-XZ</item>
             <item>Unique Rectangle + Sue de Coq</item>
             <item>Unique Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
             <item>
@@ -8780,6 +8791,63 @@
             ]]></code>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckAlmostLockedSetsXz(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int32)">
+            <summary>
+            Check UR + ALS and AR + ALS.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the method searches for avoidable rectangles.</param>
+            <param name="comparer">The comparer.</param>
+            <param name="d1">The digit 1.</param>
+            <param name="d2">The digit 2.</param>
+            <param name="alses">
+            <para>The ALS patterns found.</para>
+            <para>
+            <para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+            </para>
+            <para>
+            This parameter expects a <see langword="scoped" /> keyword
+            because <paramref name="alses" /> may assign to <paramref name="context" />
+            because <paramref name="context" /> expects a <see cref="T:System.ReadOnlySpan`1" /> instance,
+            which is a very "implicit" compiler error that we cannot aware of this at once.
+            </para>
+            <para>
+            By appending modifier <see langword="scoped" />, compiler will know that this parameter should only be used
+            inside this method or other places allowing such <see langword="scoped" /> usages (recursive usages),
+            which won't extend its lifecycle.
+            </para>
+            <para>
+            Such usage is same as method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalAlmostLockedSetsXz(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.ReadOnlySpan{Sudoku.Concepts.AlmostLockedSet},System.Int16,System.Int32,System.Int32,System.Int32,System.Boolean)" />.
+            </para>
+            <para>
+            Please check this page to learn more information on
+            <see href="https://blog.walterlv.com/post/cs8350-ref-arguments-combination-is-disallowed">CS8350</see>.
+            </para>
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            The pattern:
+            <code><![CDATA[
+                  ↓ cell1, cells2
+             ab | abc    *
+             ab | abcd   *
+                |       cdef
+            ----+------------
+                |       def
+                |       def
+            ]]></code>
+            where a cell <c>cdef</c> and 2 cells <c>def</c> will be formed an ALS pattern. Therefore, a chain is formed:
+            <code><![CDATA[abcd(d) == {abc, abcd}(c) -- cdef(c) == {def, def}(d) => * != d]]></code>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
              <summary>
              Check UR + baba grouping.
@@ -8927,7 +8995,7 @@
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <param name="urCells">All UR cells.</param>
-            <param name="alses">The ALS structures.</param>
+            <param name="alses">The ALS patterns found.</param>
             <param name="comparer">The comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
@@ -14225,6 +14293,55 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.IsNaked">
             <summary>
             The generated property declaration for parameter <c>isNaked</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="almostLockedSet">The extra ALS.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,Sudoku.Concepts.AlmostLockedSet,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle with Almost Locked Sets XZ Rule</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="almostLockedSet">The extra ALS.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.IsIncomplete">
+            <summary>
+            The generated property declaration for parameter <c>isIncomplete</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithAlmostLockedSetsXzStep.AlmostLockedSet">
+            <summary>
+            The generated property declaration for parameter <c>almostLockedSet</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep">
@@ -23976,6 +24093,20 @@
         <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor">
+            <summary>
+            Represents a factor that describes whether the unique rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor">
             <summary>
             Represents a type that describes the size of subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>.
@@ -24603,6 +24734,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangle3X">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle + 3X.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleExternalAlmostLockedSetsXz">
@@ -25798,6 +25934,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniquenessClueCoverExtraCellsFactor">
             <summary>
               Looks up a localized string similar to The number of extra cells used in uniqueness clue cover.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor">
+            <summary>
+              Looks up a localized string similar to Rectangle is incomplete.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleBurredSubsetSizeFactor">
@@ -29113,6 +29254,11 @@
               Looks up a localized string similar to Digits {0} and {1} in {2}, with X = {3}, Y = {4} and a bi-value cell {5}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleAlmostLockedSetsXzStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2} with ALS {3}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleBurredSubsetStep">
             <summary>
               Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
@@ -29586,6 +29732,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangle4X3">
             <summary>
               Looks up a localized string similar to Unique Rectangle + 4X/3SL.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBabaGrouping">

@@ -17,6 +17,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
 /// <item>Avoidable Rectangle + Hidden Single</item>
 /// <item>Unique Rectangle + Baba Grouping</item>
+/// <item>Unique Rectangle + ALS-XZ</item>
 /// <item>Unique Rectangle + Sue de Coq</item>
 /// <item>Unique Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
 /// <item>
@@ -65,12 +66,13 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangleBurredSubset,
 
 	// Pattern-based types
-	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
+	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq, Technique.UniqueRectangleAlmostLockedSetsXz,
 	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
 	Technique.UniqueRectangleWWing,
 	Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
 	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing,
+	Technique.AvoidableRectangleAlmostLockedSetsXz,
 
 	// External types (UR/AR + Guardian)
 	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2, Technique.UniqueRectangleExternalType3,
@@ -248,6 +250,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					if (SearchForExtendedUniqueRectangles)
 					{
 						CheckBabaGroupingUnique(collected, in grid, ref context, urCells, comparer, d1, d2, index);
+						CheckAlmostLockedSetsXz(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, alses, index);
 						CheckExternalType1Or2(collected, in grid, ref context, urCells, d1, d2, index, arMode);
 						CheckExternalType3(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
 						CheckExternalType4(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
@@ -392,6 +395,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private partial void CheckRegularWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned);
 	private partial void CheckWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 	private partial void CheckSueDeCoq(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSet> alses, int index);
 	private partial void CheckBabaGroupingUnique(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
 	private partial void CheckHiddenSingleAvoidable(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 

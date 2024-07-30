@@ -430,6 +430,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Almost Locked Sets XZ Rule.
+        /// </summary>
+        public static string AvoidableRectangleAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleAlmostLockedSetsXz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
         public static string AvoidableRectangleExternalAlmostLockedSetsXz {
@@ -2577,6 +2586,15 @@ namespace Sudoku.Resources {
         public static string Factor_UniquenessClueCoverExtraCellsFactor {
             get {
                 return ResourceManager.GetString("Factor_UniquenessClueCoverExtraCellsFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor", resourceCulture);
             }
         }
         
@@ -8542,6 +8560,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with ALS {3}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleAlmostLockedSetsXzStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleAlmostLockedSetsXzStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleBurredSubsetStep {
@@ -9393,6 +9420,15 @@ namespace Sudoku.Resources {
         public static string UniqueRectangle4X3 {
             get {
                 return ResourceManager.GetString("UniqueRectangle4X3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Almost Locked Sets XZ Rule.
+        /// </summary>
+        public static string UniqueRectangleAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("UniqueRectangleAlmostLockedSetsXz", resourceCulture);
             }
         }
         

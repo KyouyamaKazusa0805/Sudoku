@@ -3477,6 +3477,22 @@ public enum Technique
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
+	/// Indicates unique rectangle almost locked sets XZ.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 51,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.UniqueRectangle,
+		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
+	UniqueRectangleAlmostLockedSetsXz,
+
+	/// <summary>
 	/// Indicates unique rectangle baba grouping.
 	/// </summary>
 	[TechniqueMetadata(
@@ -3773,6 +3789,18 @@ public enum Technique
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleSueDeCoq,
+
+	/// <summary>
+	/// Indicates avoidable rectangle almost locked sets XZ.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 52,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AvoidableRectangle,
+		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+	AvoidableRectangleAlmostLockedSetsXz,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.

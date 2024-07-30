@@ -2917,6 +2917,188 @@ public partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
+	/// Check UR + ALS and AR + ALS.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the method searches for avoidable rectangles.</param>
+	/// <param name="comparer">The comparer.</param>
+	/// <param name="d1">The digit 1.</param>
+	/// <param name="d2">The digit 2.</param>
+	/// <param name="alses">
+	/// <para>The ALS patterns found.</para>
+	/// <para>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='scoped-keyword']/para"/>
+	/// </para>
+	/// <para>
+	/// This parameter expects a <see langword="scoped"/> keyword
+	/// because <paramref name="alses"/> may assign to <paramref name="context"/>
+	/// because <paramref name="context"/> expects a <see cref="ReadOnlySpan{T}"/> instance,
+	/// which is a very "implicit" compiler error that we cannot aware of this at once.
+	/// </para>
+	/// <para>
+	/// By appending modifier <see langword="scoped"/>, compiler will know that this parameter should only be used
+	/// inside this method or other places allowing such <see langword="scoped"/> usages (recursive usages),
+	/// which won't extend its lifecycle.
+	/// </para>
+	/// <para>
+	/// Such usage is same as method <see cref="CheckExternalAlmostLockedSetsXz"/>.
+	/// </para>
+	/// <para>
+	/// Please check this page to learn more information on
+	/// <see href="https://blog.walterlv.com/post/cs8350-ref-arguments-combination-is-disallowed">CS8350</see>.
+	/// </para>
+	/// </param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The pattern:
+	/// <code><![CDATA[
+	///       ↓ cell1, cells2
+	///  ab | abc    *
+	///  ab | abcd   *
+	///     |       cdef
+	/// ----+------------
+	///     |       def
+	///     |       def
+	/// ]]></code>
+	/// where a cell <c>cdef</c> and 2 cells <c>def</c> will be formed an ALS pattern. Therefore, a chain is formed:
+	/// <code><![CDATA[abcd(d) == {abc, abcd}(c) -- cdef(c) == {def, def}(d) => * != d]]></code>
+	/// </remarks>
+	private partial void CheckAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSet> alses, int index)
+	{
+		var cells = urCells.AsCellMap();
+		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
+		{
+			return;
+		}
+
+		if (!arMode && (EmptyCells & cells) != cells)
+		{
+			return;
+		}
+
+		// Check whether there're only 2 extra digit.
+		var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
+		if (PopCount((uint)extraDigitsMask) != 2)
+		{
+			return;
+		}
+
+		// We know that cells holding two digits will form a strong link.
+		var extraDigit1 = TrailingZeroCount(extraDigitsMask);
+		var extraDigit2 = extraDigitsMask.GetNextSet(extraDigit1);
+		var extraCells1 = CandidatesMap[extraDigit1] & cells;
+		var extraCells2 = CandidatesMap[extraDigit2] & cells;
+		foreach (ref readonly var quadruple in (
+			(ExtraCells1: extraCells1, ExtraCells2: extraCells2, ExtraDigit1: extraDigit1, ExtraDigit2: extraDigit2),
+			(ExtraCells1: extraCells2, ExtraCells2: extraCells1, ExtraDigit1: extraDigit2, ExtraDigit2: extraDigit1)
+		))
+		{
+			ref readonly var cells1 = ref quadruple.ExtraCells1;
+			ref readonly var cells2 = ref quadruple.ExtraCells2;
+			var digit1 = quadruple.ExtraDigit1;
+			var digit2 = quadruple.ExtraDigit2;
+
+			// Check elimination on digit2 and find weak links on digit1.
+			foreach (var als in alses)
+			{
+				// Check whether the ALS digits mask holds all possible digits as extra digits in UR.
+				var alsDigitsMask = als.DigitsMask;
+				if ((alsDigitsMask & extraDigitsMask) != extraDigitsMask)
+				{
+					continue;
+				}
+
+				var alsCells = als.Cells;
+				var alsCells1 = alsCells & CandidatesMap[digit1];
+				var alsCells2 = alsCells & CandidatesMap[digit2];
+
+				// Check whether digit1 forms a weak link from both ALS and UR.
+				if ((cells1.PeerIntersection & alsCells1) != alsCells1)
+				{
+					continue;
+				}
+
+				// Check for elimination cells.
+				var elimMap = (cells2 | alsCells2).PeerIntersection & CandidatesMap[digit2];
+				if (!elimMap)
+				{
+					continue;
+				}
+
+				// Okay. Now elimination is found. Collect view nodes and record the step.
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in urCells)
+				{
+					if (grid.GetState(cell) != CellState.Empty)
+					{
+						continue;
+					}
+
+					foreach (var digit in comparer)
+					{
+						if ((grid.GetCandidates(cell) >> digit & 1) != 0)
+						{
+							candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+						}
+					}
+				}
+				foreach (var cell in extraCells1)
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + extraDigit1));
+				}
+				foreach (var cell in extraCells2)
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + extraDigit2));
+				}
+				foreach (var cell in alsCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								digit == extraDigit1
+									? ColorIdentifier.Auxiliary1
+									: digit == extraDigit2
+										? ColorIdentifier.Auxiliary2
+										: ColorIdentifier.AlmostLockedSet1,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out var isIncomplete))
+				{
+					continue;
+				}
+
+				accumulator.Add(
+					new UniqueRectangleWithAlmostLockedSetsXzStep(
+						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit2)],
+						[
+							[
+								.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),
+								.. from cell in alsCells select new CellViewNode(ColorIdentifier.AlmostLockedSet1, cell),
+								.. candidateOffsets
+							]
+						],
+						context.Options,
+						d1,
+						d2,
+						in cells,
+						isIncomplete,
+						arMode,
+						als,
+						index
+					)
+				);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Check UR + baba grouping.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
@@ -4404,7 +4586,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="urCells">All UR cells.</param>
-	/// <param name="alses">The ALS structures.</param>
+	/// <param name="alses">The ALS patterns found.</param>
 	/// <param name="comparer">The comparer.</param>
 	/// <param name="d1">The digit 1 used in UR.</param>
 	/// <param name="d2">The digit 2 used in UR.</param>
@@ -4412,18 +4594,6 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
-		#region Why 'scoped ReadOnlySpan<...> alses' instead of 'ReadOnlySpan<...> alses'
-		// Here expects a 'scoped' keyword on parameter 'alses' because 'alses' may assign to 'context'
-		// because 'context' can expect a 'ReadOnlySpan<>' instance.
-		// This is a very "implicit" compiler error that we cannot aware of this immediately.
-		//
-		// Please check this page to learn more information on CS8350:
-		//   https://blog.walterlv.com/post/cs8350-ref-arguments-combination-is-disallowed
-		//
-		// By appending modifier 'scoped', to tell compiler that the parameter can only be used inside this method or other places
-		// allowing such "scoped" usages.
-		#endregion
-
 		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
@@ -4746,7 +4916,6 @@ public partial class UniqueRectangleStepSearcher
 				return false;
 			}
 		}
-
 		return true;
 	}
 
