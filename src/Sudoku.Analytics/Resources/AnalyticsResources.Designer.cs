@@ -1753,276 +1753,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almost Hidden Set (AHS) logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_AlmostHiddenSet {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_AlmostHiddenSet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Avoidable logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Avoidable {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Avoidable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_BiBiPattern {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_BiBiPattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to B-Z rectangle.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_BzRectangle {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_BzRectangle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannibalism.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Cannibalism {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Cannibalism", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conjugate pair.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_ConjugatePair {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_ConjugatePair", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extra digit.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_ExtraDigit {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_ExtraDigit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Extra house.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_ExtraHouse {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_ExtraHouse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fish shape.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_FishShape {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_FishShape", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fish.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_GeneralizedFish {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_GeneralizedFish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Guardian logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Guardian {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Guardian", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hidden logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Hidden {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Hidden", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incompatible pair.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_IncompatiblePair {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_IncompatiblePair", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Incompleteness logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Incompleteness {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Incompleteness", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Grouped.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_IsGrouped {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_IsGrouped", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Isolated logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Isolated {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Isolated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Length.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Length {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Length", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Locked {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Locked", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked digit.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_LockedDigit {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_LockedDigit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Locked member logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_LockedMember {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_LockedMember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mirror eliminations.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Mirror {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Mirror", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Missing stability balancer.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_MissingStabilityBalancer {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_MissingStabilityBalancer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Petal.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Petals {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Petals", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sashimi logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Sashimi {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Sashimi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Size.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_Size {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_Size", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Slash pattern.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_SlashElimination {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_SlashElimination", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Target pair.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_TargetPair {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_TargetPair", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to True base.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_TrueBase {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_TrueBase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value logic.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_ValueCell {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_ValueCell", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wing branches.
-        /// </summary>
-        public static string ExtraDifficultyFactorNames_WingSize {
-            get {
-                return ResourceManager.GetString("ExtraDifficultyFactorNames_WingSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Size in almost locked candidates.
         /// </summary>
         public static string Factor_AlmostLockedCandidatesSizeFactor {
@@ -7633,15 +7363,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string TechniqueFormat_AlmostLockedSetsXzRule {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_AlmostLockedSetsXzRule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ALS #1: {0}, ALS #2: {1}, X = {2}{3}.
         /// </summary>
         public static string TechniqueFormat_AlmostLockedSetsXzStep {
@@ -7671,9 +7392,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {4} will only contain a cell {5} can be filled with that digit, but will raise the deadly pattern.
         /// </summary>
-        public static string TechniqueFormat_AvoidableRectangleWithHiddenSingleStep {
+        public static string TechniqueFormat_AvoidableRectangleHiddenSingleStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_AvoidableRectangleWithHiddenSingleStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_AvoidableRectangleHiddenSingleStep", resourceCulture);
             }
         }
         
@@ -8209,15 +7930,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
         /// </summary>
         public static string TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep {
@@ -8569,11 +8281,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with baba grouping: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleBabaGroupingStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleBabaGroupingStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleBurredSubsetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniqueRectangleBurredSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleConjugatePairStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleConjugatePairStep", resourceCulture);
             }
         }
         
@@ -8641,6 +8371,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleSueDeCoqStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleSueDeCoqStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleType1Step {
@@ -8668,47 +8407,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with baba grouping: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
-        /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithBabaGroupingStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithBabaGroupingStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
-        /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithConjugatePairStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithConjugatePairStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
-        /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithSueDeCoqStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithSueDeCoqStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a wing (pivots: {3}, with digits: {4} in cells {2}).
         /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithWingStep {
+        public static string TechniqueFormat_UniqueRectangleWingStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithWingStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWingStep", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
         /// </summary>
-        public static string TechniqueFormat_UniqueRectangleWithWWingStep {
+        public static string TechniqueFormat_UniqueRectangleWWingStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWithWWingStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleWWingStep", resourceCulture);
             }
         }
         

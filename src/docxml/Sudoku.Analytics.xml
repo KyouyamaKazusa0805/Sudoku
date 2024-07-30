@@ -25471,156 +25471,6 @@
               Looks up a localized string similar to Extended Subset Principle.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_AlmostHiddenSet">
-            <summary>
-              Looks up a localized string similar to Almost Hidden Set (AHS) logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Avoidable">
-            <summary>
-              Looks up a localized string similar to Avoidable logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_BiBiPattern">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_BzRectangle">
-            <summary>
-              Looks up a localized string similar to B-Z rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Cannibalism">
-            <summary>
-              Looks up a localized string similar to Cannibalism.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_ConjugatePair">
-            <summary>
-              Looks up a localized string similar to Conjugate pair.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_ExtraDigit">
-            <summary>
-              Looks up a localized string similar to Extra digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_ExtraHouse">
-            <summary>
-              Looks up a localized string similar to Extra house.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_FishShape">
-            <summary>
-              Looks up a localized string similar to Fish shape.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_GeneralizedFish">
-            <summary>
-              Looks up a localized string similar to Fish.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Guardian">
-            <summary>
-              Looks up a localized string similar to Guardian logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Hidden">
-            <summary>
-              Looks up a localized string similar to Hidden logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_IncompatiblePair">
-            <summary>
-              Looks up a localized string similar to Incompatible pair.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Incompleteness">
-            <summary>
-              Looks up a localized string similar to Incompleteness logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_IsGrouped">
-            <summary>
-              Looks up a localized string similar to Grouped.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Isolated">
-            <summary>
-              Looks up a localized string similar to Isolated logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Length">
-            <summary>
-              Looks up a localized string similar to Length.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Locked">
-            <summary>
-              Looks up a localized string similar to Locked logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_LockedDigit">
-            <summary>
-              Looks up a localized string similar to Locked digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_LockedMember">
-            <summary>
-              Looks up a localized string similar to Locked member logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Mirror">
-            <summary>
-              Looks up a localized string similar to Mirror eliminations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_MissingStabilityBalancer">
-            <summary>
-              Looks up a localized string similar to Missing stability balancer.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Petals">
-            <summary>
-              Looks up a localized string similar to Petal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Sashimi">
-            <summary>
-              Looks up a localized string similar to Sashimi logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_Size">
-            <summary>
-              Looks up a localized string similar to Size.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_SlashElimination">
-            <summary>
-              Looks up a localized string similar to Slash pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_TargetPair">
-            <summary>
-              Looks up a localized string similar to Target pair.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_TrueBase">
-            <summary>
-              Looks up a localized string similar to True base.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_ValueCell">
-            <summary>
-              Looks up a localized string similar to Value logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_WingSize">
-            <summary>
-              Looks up a localized string similar to Wing branches.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_AlmostLockedCandidatesSizeFactor">
             <summary>
               Looks up a localized string similar to Size in almost locked candidates.
@@ -28739,11 +28589,6 @@
               Looks up a localized string similar to {0} -&gt; {1} -&gt; {2}, X = {3}, Y = {4}, Z = {5}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AlmostLockedSetsXzRule">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AlmostLockedSetsXzStep">
             <summary>
               Looks up a localized string similar to ALS #1: {0}, ALS #2: {1}, X = {2}{3}.
@@ -28759,7 +28604,7 @@
               Looks up a localized string similar to Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AvoidableRectangleWithHiddenSingleStep">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AvoidableRectangleHiddenSingleStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2} with hidden single: if cell {3} is filled with the digit {0}, house {4} will only contain a cell {5} can be filled with that digit, but will raise the deadly pattern.
             </summary>
@@ -29059,11 +28904,6 @@
               Looks up a localized string similar to {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep">
             <summary>
               Looks up a localized string similar to Pivot: {0}-times ALS (cells: {1}, digits: {2}), branches: {3}.
@@ -29259,9 +29099,19 @@
               Looks up a localized string similar to Digits {0} and {1} in {2} with ALS {3}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleBabaGroupingStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2}, with baba grouping: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleBurredSubsetStep">
             <summary>
               Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleConjugatePairStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep">
@@ -29299,6 +29149,11 @@
               Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external XY-Wing, with cell pair {4}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleSueDeCoqStep">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleType1Step">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2}.
@@ -29314,27 +29169,12 @@
               Looks up a localized string similar to Digits {0} and {1} in {2}, with the digit {3} in {4}cells {5} in {6}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWithBabaGroupingStep">
-            <summary>
-              Looks up a localized string similar to Digits {0} and {1} in {2}, with baba grouping: Suppose {3} is filled with the unknown digit X (X is {4}), then 4 cells form a UR deadly pattern of digit X and {5}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWithConjugatePairStep">
-            <summary>
-              Looks up a localized string similar to Digits {0} and {1} in {2} with {3}conjugate pair{4} {5}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWithSueDeCoqStep">
-            <summary>
-              Looks up a localized string similar to Digits {0} and {1} in {2}, with a generalized Sue de Coq in cells {3} of digits {4}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWithWingStep">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWingStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a wing (pivots: {3}, with digits: {4} in cells {2}).
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWithWWingStep">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleWWingStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
             </summary>

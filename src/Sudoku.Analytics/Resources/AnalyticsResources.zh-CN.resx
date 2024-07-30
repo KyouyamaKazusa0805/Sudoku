@@ -282,10 +282,13 @@
   <data name="TechniqueFormat_AlmostLockedSetsXyWingStep" xml:space="preserve">
     <value>{0} -&gt; {1} -&gt; {2}；其中 X = {3}、Y = {4}、Z = {5}</value>
   </data>
+  <data name="TechniqueFormat_AlmostLockedSetsXzStep" xml:space="preserve">
+    <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
+  </data>
   <data name="TechniqueFormat_AlternatingInferenceChainStep" xml:space="preserve">
     <value>{Name}：链 {ChainStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_AvoidableRectangleWithHiddenSingleStep" xml:space="preserve">
+  <data name="TechniqueFormat_AvoidableRectangleHiddenSingleStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2} 构成区块，并带排除法：如果单元格 {3} 填上了数字 {0}，{4} 区域仅能让 {5} 填入该数字，便出现致命形式</value>
   </data>
   <data name="TechniqueFormat_BinaryChainingStep" xml:space="preserve">
@@ -450,19 +453,19 @@
   <data name="TechniqueFormat_UniqueRectangleType3Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带额外数字 {3} {4}在区域 {5} 的 {6} 这几格里{7}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleConjugatePairStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，并带共轭对 {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者 {3} 位于单元格 {4} 之中</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleSueDeCoqStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带一个简化版的融合待定数组存在于单元格 {3} 里，涉及数字 {4}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithBabaGroupingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleBabaGroupingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带代数结构：设单元格 {3} 填入 X（X 是 {4} 其一），则四个单元格将构成关于 X 和数字 {5} 的唯一矩形致命形式</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带有 Wing 结构，使用 UR 的单元格为拐点，分支分别为 {3}，涉及数字 {4}</value>
   </data>
   <data name="TechniqueFormat_UniqueMatrixType1Step" xml:space="preserve">
@@ -1949,72 +1952,6 @@
     <value>唯一矩形</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
-    <value>可规避逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
-    <value>同宫定理</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
-    <value>自噬逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_ConjugatePair" xml:space="preserve">
-    <value>共轭对逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_ExtraDigit" xml:space="preserve">
-    <value>额外数字</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_ExtraHouse" xml:space="preserve">
-    <value>额外区域</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_FishShape" xml:space="preserve">
-    <value>鱼的形状</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_GeneralizedFish" xml:space="preserve">
-    <value>鱼</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Guardian" xml:space="preserve">
-    <value>守护者逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Hidden" xml:space="preserve">
-    <value>隐性思维</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Incompleteness" xml:space="preserve">
-    <value>残缺逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Isolated" xml:space="preserve">
-    <value>孤立逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Length" xml:space="preserve">
-    <value>结构长度</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Locked" xml:space="preserve">
-    <value>死锁结构</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_LockedDigit" xml:space="preserve">
-    <value>锁死的数字</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Mirror" xml:space="preserve">
-    <value>Mirror 共轭对</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Petals" xml:space="preserve">
-    <value>花瓣数量</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Sashimi" xml:space="preserve">
-    <value>退化逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_Size" xml:space="preserve">
-    <value>结构规格</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_TargetPair" xml:space="preserve">
-    <value>Target 数对</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_ValueCell" xml:space="preserve">
-    <value>明数逻辑</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
-    <value>Wing 的分支数量</value>
-  </data>
   <data name="TechniqueAlias_FireworkPairType1" xml:space="preserve">
     <value>花火数对</value>
   </data>
@@ -2129,7 +2066,7 @@
     <value>可规避矩形・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleWithWWingStep" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueRectangleWWingStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带 W-Wing 结构，由 {3} 连接起来，最终单元格为 {4}，w 为 {5}</value>
   </data>
   <data name="UniqueRectangleWWing" xml:space="preserve">
@@ -2350,9 +2287,6 @@
     <value>初级飞鱼・T 格数对</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyFactorNames_AlmostHiddenSet" xml:space="preserve">
-    <value>隐性待定数组</value>
-  </data>
   <data name="JuniorExocetConjugatePair" xml:space="preserve">
     <value>初级飞鱼・T 格共轭对</value>
     <comment>Technique Name</comment>
@@ -2360,9 +2294,6 @@
   <data name="JuniorExocetMirrorAlmostHiddenSet" xml:space="preserve">
     <value>初级飞鱼・M 格隐性待定数组</value>
     <comment>Technique Name</comment>
-  </data>
-  <data name="ExtraDifficultyFactorNames_LockedMember" xml:space="preserve">
-    <value>死锁成员</value>
   </data>
   <data name="JuniorExocetLockedMember" xml:space="preserve">
     <value>初级飞鱼・死锁成员</value>
@@ -2384,14 +2315,6 @@
     <value>衰弱飞鱼・T 邻</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyFactorNames_BzRectangle" xml:space="preserve">
-    <value>BZ 矩形删数</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="ExtraDifficultyFactorNames_SlashElimination" xml:space="preserve">
-    <value>斜杠删数</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="WeakExocetBzRectangle" xml:space="preserve">
     <value>衰弱飞鱼・BZ 矩形模式</value>
     <comment>Technique Name</comment>
@@ -2399,9 +2322,6 @@
   <data name="WeakExocetSlash" xml:space="preserve">
     <value>衰弱飞鱼・斜杠模式</value>
     <comment>Technique Name</comment>
-  </data>
-  <data name="ExtraDifficultyFactorNames_MissingStabilityBalancer" xml:space="preserve">
-    <value>“强心针”单元格缺失</value>
   </data>
   <data name="LameWeakExocet" xml:space="preserve">
     <value>全衰飞鱼</value>
@@ -2479,10 +2399,6 @@
     <value>交叉初级飞鱼・M 格共轭对</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="ExtraDifficultyFactorNames_TrueBase" xml:space="preserve">
-    <value>内 T 格明数直出</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="SeniorExocetTrueBase" xml:space="preserve">
     <value>高级飞鱼・B 格区块</value>
     <comment>Technique Name</comment>
@@ -2544,6 +2460,9 @@
   <data name="NTimesAlmostLockedSetsDeathBlossom" xml:space="preserve">
     <value>死亡绽放・ALS 绽放</value>
   </data>
+  <data name="TechniqueFormat_NTimesAlmostLockedSetsDeathBlossomStep" xml:space="preserve">
+    <value>拐点为 {0} 次待定数组（单元格：{1}，数字 {2}）；分支为 {3}</value>
+  </data>
   <data name="HouseDeathBlossom" xml:space="preserve">
     <value>死亡绽放・区域绽放</value>
     <comment>Technique Name</comment>
@@ -2580,9 +2499,6 @@
   </data>
   <data name="TechniqueGroup_XyzRing" xml:space="preserve">
     <value>XYZ 环</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_IsGrouped" xml:space="preserve">
-    <value>区块结构</value>
   </data>
   <data name="TechniqueFormat_MWingStep" xml:space="preserve">
     <value>使用 {0} 和 {1} 以及 XY 单元格 {2} 和 {3}</value>
@@ -3358,20 +3274,11 @@
   <data name="Factor_BlossomLoopGroupedNodeFactor" xml:space="preserve">
     <value>绽放环里的区块节点</value>
   </data>
-  <data name="TechniqueFormat_NTimesAlmostLockedSetDeathBlossomStep" xml:space="preserve">
-    <value>拐点为 {0} 次待定数组（单元格：{1}，数字 {2}）；分支为 {3}</value>
-  </data>
-  <data name="TechniqueFormat_AlmostLockedSetsXzRule" xml:space="preserve">
-    <value>ALS #1：{0}、ALS #2：{1}、X = {2}{3}</value>
-  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
   <data name="Only" xml:space="preserve">
     <value>只</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
-    <value>X 致命逻辑</value>
   </data>
   <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
     <value>差一数对</value>
