@@ -3045,13 +3045,13 @@ public partial class UniqueRectangleStepSearcher
 						}
 					}
 				}
-				foreach (var cell in extraCells1)
+				foreach (var cell in cells2)
 				{
-					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + extraDigit1));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit2));
 				}
-				foreach (var cell in extraCells2)
+				foreach (var cell in cells1)
 				{
-					candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + extraDigit2));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + digit1));
 				}
 				foreach (var cell in alsCells)
 				{
@@ -3059,11 +3059,9 @@ public partial class UniqueRectangleStepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								digit == extraDigit1
-									? ColorIdentifier.Auxiliary1
-									: digit == extraDigit2
-										? ColorIdentifier.Auxiliary2
-										: ColorIdentifier.AlmostLockedSet1,
+								digit == digit1
+									? ColorIdentifier.Auxiliary2
+									: digit == digit2 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.AlmostLockedSet1,
 								cell * 9 + digit
 							)
 						);
