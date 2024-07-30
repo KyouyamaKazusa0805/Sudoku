@@ -5,4 +5,5 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// </summary>
 /// <param name="step">The step.</param>
 /// <returns>A <see cref="bool"/> result indicating that.</returns>
+/// <seealso cref="Step"/>
 public delegate bool StepFilter(Step step);

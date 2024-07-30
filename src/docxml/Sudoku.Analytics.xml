@@ -30144,6 +30144,7 @@
             </summary>
             <param name="step">The step.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.TechniqueGenerator">
             <summary>
