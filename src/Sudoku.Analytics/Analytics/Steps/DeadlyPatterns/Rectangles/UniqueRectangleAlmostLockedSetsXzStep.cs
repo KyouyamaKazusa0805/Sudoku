@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Almost Locked Sets XZ Rule</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle Almost Locked Sets XZ Rule</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="almostLockedSet">The extra ALS.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleWithAlmostLockedSetsXzStep(
+public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

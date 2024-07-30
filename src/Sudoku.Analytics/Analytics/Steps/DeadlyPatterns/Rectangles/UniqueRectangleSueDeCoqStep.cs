@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle Sue de Coq</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -23,7 +23,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="lineCells">Indicates the cells in the line (row or column) of the Sue de Coq pattern.</param>
 /// <param name="intersectionCells">Indicates the cells in the intersection from houses <see cref="Block"/> and <see cref="Line"/>.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleWithSueDeCoqStep(
+public sealed partial class UniqueRectangleSueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

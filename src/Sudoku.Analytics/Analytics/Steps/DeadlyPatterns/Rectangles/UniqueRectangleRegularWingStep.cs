@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle Regular Wing</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="petals">Indicates the petals used.</param>
 /// <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleWithWingStep(
+public sealed partial class UniqueRectangleRegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

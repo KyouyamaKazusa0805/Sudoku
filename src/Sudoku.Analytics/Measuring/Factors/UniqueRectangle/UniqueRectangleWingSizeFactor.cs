@@ -1,16 +1,16 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <summary>
-/// Represents a factor that describes the size of the wing appeared in <see cref="UniqueRectangleWithWingStep"/>.
+/// Represents a factor that describes the size of the wing appeared in <see cref="UniqueRectangleRegularWingStep"/>.
 /// </summary>
-/// <seealso cref="UniqueRectangleWithWingStep"/>
+/// <seealso cref="UniqueRectangleRegularWingStep"/>
 public sealed class UniqueRectangleWingSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(UniqueRectangleWithWingStep.Code)];
+	public override string[] ParameterNames => [nameof(UniqueRectangleRegularWingStep.Code)];
 
 	/// <inheritdoc/>
-	public override Type ReflectedStepType => typeof(UniqueRectangleWithWingStep);
+	public override Type ReflectedStepType => typeof(UniqueRectangleRegularWingStep);
 
 	/// <inheritdoc/>
 	public override ParameterizedFormula Formula

@@ -3075,7 +3075,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3112,7 +3112,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3164,7 +3164,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3180,7 +3180,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3239,7 +3239,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3255,7 +3255,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3271,7 +3271,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3287,7 +3287,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3355,7 +3355,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3371,7 +3371,7 @@ public enum Technique
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepType = typeof(UniqueRectangleConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3403,7 +3403,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3419,7 +3419,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3435,7 +3435,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3451,7 +3451,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithWWingStep),
+		StepType = typeof(UniqueRectangleWWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3467,7 +3467,7 @@ public enum Technique
 		Rating = 50,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepType = typeof(UniqueRectangleSueDeCoqStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3483,7 +3483,7 @@ public enum Technique
 		Rating = 51,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepType = typeof(UniqueRectangleSueDeCoqStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3737,7 +3737,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyWing,
@@ -3749,7 +3749,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyzWing,
@@ -3761,7 +3761,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithWingStep),
+		StepType = typeof(UniqueRectangleRegularWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWxyzWing,
@@ -3773,7 +3773,7 @@ public enum Technique
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithWWingStep),
+		StepType = typeof(UniqueRectangleWWingStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWWing,
@@ -3785,7 +3785,7 @@ public enum Technique
 		Rating = 50,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepType = typeof(UniqueRectangleSueDeCoqStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleSueDeCoq,
@@ -3797,7 +3797,7 @@ public enum Technique
 		Rating = 52,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepType = typeof(UniqueRectangleSueDeCoqStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleAlmostLockedSetsXz,
@@ -3809,7 +3809,7 @@ public enum Technique
 		Rating = 47,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepType = typeof(AvoidableRectangleHiddenSingleStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleBlock,
@@ -3821,7 +3821,7 @@ public enum Technique
 		Rating = 47,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepType = typeof(AvoidableRectangleHiddenSingleStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleRow,
@@ -3833,7 +3833,7 @@ public enum Technique
 		Rating = 47,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		StepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepType = typeof(AvoidableRectangleHiddenSingleStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleColumn,

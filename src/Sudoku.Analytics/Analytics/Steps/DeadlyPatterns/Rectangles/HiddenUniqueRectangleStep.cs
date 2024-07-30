@@ -22,7 +22,7 @@ public sealed class HiddenUniqueRectangleStep(
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
 	int absoluteOffset
-) : UniqueRectangleWithConjugatePairStep(
+) : UniqueRectangleConjugatePairStep(
 	conclusions,
 	views,
 	options,

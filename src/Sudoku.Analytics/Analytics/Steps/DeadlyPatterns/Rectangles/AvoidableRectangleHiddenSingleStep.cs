@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
+/// Provides with a step that is an <b>Avoidable Rectangle Hidden Single</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCell">Indicates the target cell used.</param>
 /// <param name="house">Indicates the house where the pattern lies.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class AvoidableRectangleWithHiddenSingleStep(
+public sealed partial class AvoidableRectangleHiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

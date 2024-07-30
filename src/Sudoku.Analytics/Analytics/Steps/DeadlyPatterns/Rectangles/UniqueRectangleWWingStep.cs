@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with W-Wing</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle W-Wing</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="connectors">Indicates the connectors.</param>
 /// <param name="endCells">Indicates the end cells.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleWithWWingStep(
+public sealed partial class UniqueRectangleWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

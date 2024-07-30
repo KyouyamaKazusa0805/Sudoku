@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle Conjugate Pair(s)</b> (a.k.a. <b>Unique Rectangle Strong Link</b>) technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public partial class UniqueRectangleWithConjugatePairStep(
+public partial class UniqueRectangleConjugatePairStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

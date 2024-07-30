@@ -9,7 +9,7 @@ public sealed class RectangleConjugatePairsCountFactor : Factor
 	public override string[] ParameterNames => [nameof(IConjugatePairTrait.ConjugatePairsCount)];
 
 	/// <inheritdoc/>
-	public override Type ReflectedStepType => typeof(UniqueRectangleWithConjugatePairStep);
+	public override Type ReflectedStepType => typeof(UniqueRectangleConjugatePairStep);
 
 	/// <inheritdoc/>
 	public override ParameterizedFormula Formula => static args => OeisSequences.A004526((int)args![0]!);

@@ -412,7 +412,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				accumulator.Add(
-					new UniqueRectangleWithConjugatePairStep(
+					new UniqueRectangleConjugatePairStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 						context.Options,
@@ -623,7 +623,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			accumulator.Add(
-				new UniqueRectangleWithConjugatePairStep(
+				new UniqueRectangleConjugatePairStep(
 					[.. conclusions],
 					[
 						[
@@ -1025,7 +1025,7 @@ public partial class UniqueRectangleStepSearcher
 						}
 
 						accumulator.Add(
-							new UniqueRectangleWithConjugatePairStep(
+							new UniqueRectangleConjugatePairStep(
 								[.. conclusions],
 								[
 									[
@@ -1191,7 +1191,7 @@ public partial class UniqueRectangleStepSearcher
 						}
 
 						accumulator.Add(
-							new UniqueRectangleWithConjugatePairStep(
+							new UniqueRectangleConjugatePairStep(
 								[.. conclusions],
 								[
 									[
@@ -1435,7 +1435,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			accumulator.Add(
-				new UniqueRectangleWithConjugatePairStep(
+				new UniqueRectangleConjugatePairStep(
 					[.. conclusions],
 					[
 						[
@@ -1554,7 +1554,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var conjugatePairs = (Conjugate[])[new(cornerCell, begin, a), new(begin, abzCell, b)];
 				accumulator.Add(
-					new UniqueRectangleWithConjugatePairStep(
+					new UniqueRectangleConjugatePairStep(
 						[new(Elimination, end, a)],
 						[
 							[
@@ -1668,7 +1668,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, b)];
 				accumulator.Add(
-					new UniqueRectangleWithConjugatePairStep(
+					new UniqueRectangleConjugatePairStep(
 						[new(Elimination, begin, a)],
 						[
 							[
@@ -1782,7 +1782,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, a)];
 				accumulator.Add(
-					new UniqueRectangleWithConjugatePairStep(
+					new UniqueRectangleConjugatePairStep(
 						[new(Elimination, abzCell, b)],
 						[
 							[
@@ -1908,7 +1908,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var conjugatePairs = (Conjugate[])[new(head, begin, a), new(begin, end, b), new(end, extra, a)];
 				accumulator.Add(
-					new UniqueRectangleWithConjugatePairStep(
+					new UniqueRectangleConjugatePairStep(
 						[.. conclusions],
 						[
 							[
@@ -2052,7 +2052,7 @@ public partial class UniqueRectangleStepSearcher
 
 					var conjugatePairs = (Conjugate[])[new(abx, aby, a), new(aby, abw, a), new(linkMap[0], linkMap[1], b)];
 					accumulator.Add(
-						new UniqueRectangleWithConjugatePairStep(
+						new UniqueRectangleConjugatePairStep(
 							[new(Elimination, aby, b)],
 							[
 								[
@@ -2417,7 +2417,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				accumulator.Add(
-					new UniqueRectangleWithWingStep(
+					new UniqueRectangleRegularWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)],
 						[[.. candidateOffsets, .. cellOffsets]],
 						context.Options,
@@ -2581,7 +2581,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var isAvoidable = arMode && (EmptyCells & cells).Count != 4;
 				accumulator.Add(
-					new UniqueRectangleWithWWingStep(
+					new UniqueRectangleWWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
 						[[.. candidateOffsets]],
 						context.Options,
@@ -2884,7 +2884,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				accumulator.Add(
-					new UniqueRectangleWithSueDeCoqStep(
+					new UniqueRectangleSueDeCoqStep(
 						[.. conclusions],
 						[
 							[
@@ -3075,7 +3075,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				accumulator.Add(
-					new UniqueRectangleWithAlmostLockedSetsXzStep(
+					new UniqueRectangleAlmostLockedSetsXzStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit2)],
 						[
 							[
@@ -4833,7 +4833,7 @@ public partial class UniqueRectangleStepSearcher
 					}
 
 					accumulator.Add(
-						new AvoidableRectangleWithHiddenSingleStep(
+						new AvoidableRectangleHiddenSingleStep(
 							[new(Elimination, baseCell, otherDigit)],
 							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, sameHouse)]],
 							context.Options,

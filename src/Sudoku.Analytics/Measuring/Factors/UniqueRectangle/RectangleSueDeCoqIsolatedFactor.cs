@@ -1,17 +1,17 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <summary>
-/// Represents a factor that describes the isolated rule of <see cref="UniqueRectangleWithSueDeCoqStep"/>.
+/// Represents a factor that describes the isolated rule of <see cref="UniqueRectangleSueDeCoqStep"/>.
 /// </summary>
-/// <seealso cref="UniqueRectangleWithSueDeCoqStep"/>
+/// <seealso cref="UniqueRectangleSueDeCoqStep"/>
 public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames
-		=> [nameof(UniqueRectangleWithSueDeCoqStep.IsCannibalistic), nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)];
+		=> [nameof(UniqueRectangleSueDeCoqStep.IsCannibalistic), nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)];
 
 	/// <inheritdoc/>
-	public override Type ReflectedStepType => typeof(UniqueRectangleWithSueDeCoqStep);
+	public override Type ReflectedStepType => typeof(UniqueRectangleSueDeCoqStep);
 
 	/// <inheritdoc/>
 	public override ParameterizedFormula Formula => static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0;
