@@ -3022,7 +3022,8 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// Check for elimination cells.
-				var elimMap = (cells2 | alsCells2).PeerIntersection & CandidatesMap[digit2];
+				var digit2UnionMap = cells2 | alsCells2;
+				var elimMap = digit2UnionMap.PeerIntersection & CandidatesMap[digit2];
 				if (!elimMap)
 				{
 					continue;
@@ -3072,22 +3073,96 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
+				var cellOffsets = (List<CellViewNode>)[
+					.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),
+					.. from cell in alsCells select new CellViewNode(ColorIdentifier.AlmostLockedSet1, cell)
+				];
+				if (!digit2UnionMap.InOneHouse(out _))
+				{
+					accumulator.Add(
+						new UniqueRectangleAlmostLockedSetsXzStep(
+							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit2)],
+							[[.. cellOffsets, .. candidateOffsets]],
+							context.Options,
+							d1,
+							d2,
+							in cells,
+							isIncomplete,
+							arMode,
+							false,
+							als,
+							index
+						)
+					);
+					continue;
+				}
+
+				// Skip the case on ARs.
+				if (arMode)
+				{
+					continue;
+				}
+
+				// A Doubly-linked ALS-XZ pattern is formed. We should check for extra eliminations.
+				// Extra eliminations can be found in two places:
+				//
+				//   1) ALS pattern -> subset
+				//   2) UR pattern
+				//
+				// For 2), it will be tough to be checked.
+				var doublyLinkedEliminations = new List<Conclusion>();
+
+				// 1) ALS eliminations
+				foreach (var cell in HousesMap[als.House] & ~alsCells)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & alsDigitsMask & ~extraDigitsMask))
+					{
+						doublyLinkedEliminations.Add(new(Elimination, cell, digit));
+					}
+				}
+
+				// 2) UR eliminations
+				doublyLinkedEliminations.AddRange(UniqueRectangleModule.GetConclusions(in cells, comparer, in grid));
+
+				// 3) Missing elimination from the other RCC
+				// TODO: Get eliminations on 3).
+
+				if (doublyLinkedEliminations.Count == 0)
+				{
+					continue;
+				}
+
+				// Change view nodes.
+				foreach (var cell in cells1)
+				{
+					candidateOffsets.Remove(new(ColorIdentifier.Auxiliary2, cell * 9 + digit1));
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit1));
+				}
+				foreach (var cell in alsCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						if (digit != digit1)
+						{
+							continue;
+						}
+
+						candidateOffsets.Remove(new(ColorIdentifier.Auxiliary2, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
 				accumulator.Add(
 					new UniqueRectangleAlmostLockedSetsXzStep(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, digit2)],
-						[
-							[
-								.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),
-								.. from cell in alsCells select new CellViewNode(ColorIdentifier.AlmostLockedSet1, cell),
-								.. candidateOffsets
-							]
-						],
+						[.. doublyLinkedEliminations],
+						[[.. cellOffsets, .. candidateOffsets]],
 						context.Options,
 						d1,
 						d2,
 						in cells,
 						isIncomplete,
 						arMode,
+						true,
 						als,
 						index
 					)

@@ -430,11 +430,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Almost Locked Sets XZ Rule.
+        ///   Looks up a localized string similar to Avoidable Rectangle Doubly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
-        public static string AvoidableRectangleAlmostLockedSetsXz {
+        public static string AvoidableRectangleDoublyLinkedAlmostLockedSetsXz {
             get {
-                return ResourceManager.GetString("AvoidableRectangleAlmostLockedSetsXz", resourceCulture);
+                return ResourceManager.GetString("AvoidableRectangleDoublyLinkedAlmostLockedSetsXz", resourceCulture);
             }
         }
         
@@ -525,6 +525,15 @@ namespace Sudoku.Resources {
         public static string AvoidableRectangleHiddenSingleRow {
             get {
                 return ResourceManager.GetString("AvoidableRectangleHiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avoidable Rectangle Singly-Linked Almost Locked Sets XZ Rule.
+        /// </summary>
+        public static string AvoidableRectangleSinglyLinkedAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("AvoidableRectangleSinglyLinkedAlmostLockedSetsXz", resourceCulture);
             }
         }
         
@@ -9136,15 +9145,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Almost Locked Sets XZ Rule.
-        /// </summary>
-        public static string UniqueRectangleAlmostLockedSetsXz {
-            get {
-                return ResourceManager.GetString("UniqueRectangleAlmostLockedSetsXz", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Baba Grouping.
         /// </summary>
         public static string UniqueRectangleBabaGrouping {
@@ -9159,6 +9159,15 @@ namespace Sudoku.Resources {
         public static string UniqueRectangleBurredSubset {
             get {
                 return ResourceManager.GetString("UniqueRectangleBurredSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Doubly-Linked Almost Locked Sets XZ Rule.
+        /// </summary>
+        public static string UniqueRectangleDoublyLinkedAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("UniqueRectangleDoublyLinkedAlmostLockedSetsXz", resourceCulture);
             }
         }
         
@@ -9231,6 +9240,15 @@ namespace Sudoku.Resources {
         public static string UniqueRectangleExternalXyWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleExternalXyWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Singly-Linked Almost Locked Sets XZ Rule.
+        /// </summary>
+        public static string UniqueRectangleSinglyLinkedAlmostLockedSetsXz {
+            get {
+                return ResourceManager.GetString("UniqueRectangleSinglyLinkedAlmostLockedSetsXz", resourceCulture);
             }
         }
         

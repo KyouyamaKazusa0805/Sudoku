@@ -2058,6 +2058,7 @@
   </data>
   <data name="AvoidableRectangleExternalWWing" xml:space="preserve">
     <value>可规避矩形・外部 W-Wing</value>
+    <comment>Technique Name</comment>
   </data>
   <data name="TechniqueFormat_ReverseBivalueUniversalGraveType3Step" xml:space="preserve">
     <value>额外区域 {0}，带有额外数字 {1}</value>
@@ -3363,11 +3364,11 @@
     <value>归并单元格强制链</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniqueRectangleAlmostLockedSetsXz" xml:space="preserve">
+  <data name="UniqueRectangleSinglyLinkedAlmostLockedSetsXz" xml:space="preserve">
     <value>唯一矩形・待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="AvoidableRectangleAlmostLockedSetsXz" xml:space="preserve">
+  <data name="AvoidableRectangleSinglyLinkedAlmostLockedSetsXz" xml:space="preserve">
     <value>可规避矩形・待定数组・双强链</value>
     <comment>Technique Name</comment>
   </data>
@@ -3376,5 +3377,13 @@
   </data>
   <data name="Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor" xml:space="preserve">
     <value>矩形是否残缺</value>
+  </data>
+  <data name="AvoidableRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>可规避矩形・待定数组・双强链・环</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="UniqueRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>唯一矩形・待定数组・双强链・环</value>
+    <comment>Technique Name</comment>
   </data>
 </root>

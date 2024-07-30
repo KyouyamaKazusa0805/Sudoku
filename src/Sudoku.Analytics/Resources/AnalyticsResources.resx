@@ -3264,16 +3264,22 @@ Error grid: '{0:#}'</value>
   <data name="MergedCellForcingChains" xml:space="preserve">
     <value>Merged Cell Forcing Chains</value>
   </data>
-  <data name="UniqueRectangleAlmostLockedSetsXz" xml:space="preserve">
-    <value>Unique Rectangle Almost Locked Sets XZ Rule</value>
+  <data name="UniqueRectangleSinglyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>Unique Rectangle Singly-Linked Almost Locked Sets XZ Rule</value>
   </data>
-  <data name="AvoidableRectangleAlmostLockedSetsXz" xml:space="preserve">
-    <value>Avoidable Rectangle Almost Locked Sets XZ Rule</value>
+  <data name="AvoidableRectangleSinglyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>Avoidable Rectangle Singly-Linked Almost Locked Sets XZ Rule</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleAlmostLockedSetsXzStep" xml:space="preserve">
     <value>Digits {0} and {1} in {2} with ALS {3}</value>
   </data>
   <data name="Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor" xml:space="preserve">
     <value>Rectangle is incomplete</value>
+  </data>
+  <data name="AvoidableRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>Avoidable Rectangle Doubly-Linked Almost Locked Sets XZ Rule</value>
+  </data>
+  <data name="UniqueRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
+    <value>Unique Rectangle Doubly-Linked Almost Locked Sets XZ Rule</value>
   </data>
 </root>

@@ -11,6 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
 /// <param name="isAvoidable"><inheritdoc/></param>
+/// <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
 /// <param name="almostLockedSet">The extra ALS.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
@@ -22,13 +23,20 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
+	[PrimaryConstructorParameter] bool isDoublyLinked,
 	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
 	options,
-	isAvoidable ? Technique.AvoidableRectangleAlmostLockedSetsXz : Technique.UniqueRectangleAlmostLockedSetsXz,
+	(isAvoidable, isDoublyLinked) switch
+	{
+		(true, true) => Technique.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz,
+		(true, _) => Technique.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz,
+		(_, true) => Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
+		_ => Technique.UniqueRectangleSinglyLinkedAlmostLockedSetsXz
+	},
 	digit1,
 	digit2,
 	in cells,
@@ -37,14 +45,11 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 )
 {
 	/// <inheritdoc/>
-	public override int BaseDifficulty => base.BaseDifficulty + 6;
+	public override int BaseDifficulty => base.BaseDifficulty + (IsDoublyLinked ? 7 : 6);
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
-		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])
-		];
+		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

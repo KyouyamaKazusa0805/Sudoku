@@ -18,8 +18,11 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Avoidable Rectangle + Hidden Single</item>
 /// <item>Unique Rectangle + Baba Grouping</item>
 /// <item>Unique Rectangle + ALS-XZ</item>
+/// <item>Avoidable Rectangle + ALS-XZ</item>
 /// <item>Unique Rectangle + Sue de Coq</item>
+/// <item>Avoidable Rectangle + Sue de Coq</item>
 /// <item>Unique Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
+/// <item>Avoidable Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
 /// <item>
 /// Unique/Avoidable Rectangle + Guardian (This program call it "External Types"):
 /// <list type="bullet">
@@ -66,13 +69,14 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangleBurredSubset,
 
 	// Pattern-based types
-	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq, Technique.UniqueRectangleAlmostLockedSetsXz,
+	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
+	Technique.UniqueRectangleSinglyLinkedAlmostLockedSetsXz, Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
 	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
 	Technique.UniqueRectangleWWing,
 	Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
 	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing,
-	Technique.AvoidableRectangleAlmostLockedSetsXz,
+	Technique.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz, Technique.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz,
 
 	// External types (UR/AR + Guardian)
 	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2, Technique.UniqueRectangleExternalType3,
@@ -190,7 +194,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			context.Accumulator.AddRange(tempList);
 			return null;
 		}
-
 		return tempList[0];
 	}
 

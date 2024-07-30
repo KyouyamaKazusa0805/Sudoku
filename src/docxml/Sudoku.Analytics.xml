@@ -2692,9 +2692,14 @@
             Indicates unique rectangle sue de coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleAlmostLockedSetsXz">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleSinglyLinkedAlmostLockedSetsXz">
             <summary>
-            Indicates unique rectangle almost locked sets XZ.
+            Indicates unique rectangle singly-linked almost locked sets XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz">
+            <summary>
+            Indicates unique rectangle doubly-linked almost locked sets XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleBabaGrouping">
@@ -2802,9 +2807,14 @@
             Indicates avoidable rectangle sue de coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleAlmostLockedSetsXz">
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz">
             <summary>
-            Indicates avoidable rectangle almost locked sets XZ.
+            Indicates avoidable rectangle singly-linked almost locked sets XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz">
+            <summary>
+            Indicates avoidable rectangle doubly-linked almost locked sets XZ.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleBlock">
@@ -7005,6 +7015,56 @@
             The table of all possible pattern cells.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+            </summary>
+            <param name="cells">Indicates the cells to be checked.</param>
+            <param name="comparer">Digits used in pattern.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
+            <remarks>
+            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+            <para>
+            Suppose the pattern:
+            <code><![CDATA[
+            ab  | abc
+            abd | ab
+            ]]></code>
+            The two cases are:
+            <code><![CDATA[
+            .--------------------------------.     .--------------------------------.
+            |          Missing  (c)          |     |          Missing  (d)          |
+            |-----------.----------.---------|     |-----------.----------.---------|
+            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
+            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            '-----------'----------'---------'     '-----------'----------'---------'
+            ]]></code>
+            Therefore, the elimination intersection will be:
+            <code><![CDATA[
+            .-----------.----------.---------.
+            | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |
+            | .   .  .  | .   .  . | .  .  . |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
+            Such cells can remove both digits <c>a</c> and <c>b</c>.
+            </para>
+            <para>
+            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
+            </para>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.XyzRingModule">
             <summary>
             Represents XYZ-Ring module.
@@ -8172,8 +8232,11 @@
             <item>Avoidable Rectangle + Hidden Single</item>
             <item>Unique Rectangle + Baba Grouping</item>
             <item>Unique Rectangle + ALS-XZ</item>
+            <item>Avoidable Rectangle + ALS-XZ</item>
             <item>Unique Rectangle + Sue de Coq</item>
+            <item>Avoidable Rectangle + Sue de Coq</item>
             <item>Unique Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
+            <item>Avoidable Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
             <item>
             Unique/Avoidable Rectangle + Guardian (This program call it "External Types"):
             <list type="bullet">
@@ -13557,10 +13620,11 @@
             <param name="cells"><inheritdoc/></param>
             <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
             <param name="isAvoidable"><inheritdoc/></param>
+            <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
             <param name="almostLockedSet">The extra ALS.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,Sudoku.Concepts.AlmostLockedSet,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Boolean,Sudoku.Concepts.AlmostLockedSet,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -13572,6 +13636,7 @@
             <param name="cells"><inheritdoc/></param>
             <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
             <param name="isAvoidable"><inheritdoc/></param>
+            <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
             <param name="almostLockedSet">The extra ALS.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
@@ -13587,6 +13652,11 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.IsIncomplete">
             <summary>
             The generated property declaration for parameter <c>isIncomplete</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.IsDoublyLinked">
+            <summary>
+            The generated property declaration for parameter <c>isDoublyLinked</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.AlmostLockedSet">
@@ -24736,9 +24806,9 @@
               Looks up a localized string similar to Avoidable Rectangle + 3X.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleAlmostLockedSetsXz">
+        <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz">
             <summary>
-              Looks up a localized string similar to Avoidable Rectangle Almost Locked Sets XZ Rule.
+              Looks up a localized string similar to Avoidable Rectangle Doubly-Linked Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleExternalAlmostLockedSetsXz">
@@ -24789,6 +24859,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleHiddenSingleRow">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle Hidden Single in Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Avoidable Rectangle Singly-Linked Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleSueDeCoq">
@@ -29574,11 +29649,6 @@
               Looks up a localized string similar to Unique Rectangle + 4X/3SL.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleAlmostLockedSetsXz">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle Almost Locked Sets XZ Rule.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBabaGrouping">
             <summary>
               Looks up a localized string similar to Unique Rectangle Baba Grouping.
@@ -29587,6 +29657,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBurredSubset">
             <summary>
               Looks up a localized string similar to Unique Rectangle Burred Subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleDoublyLinkedAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Doubly-Linked Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleExternalAlmostLockedSetsXz">
@@ -29627,6 +29702,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleExternalXyWing">
             <summary>
               Looks up a localized string similar to Unique Rectangle External XY-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleSinglyLinkedAlmostLockedSetsXz">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Singly-Linked Almost Locked Sets XZ Rule.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleSueDeCoq">

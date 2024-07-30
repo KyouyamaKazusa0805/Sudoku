@@ -436,7 +436,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe void CopyTo(ref Cell sequence, Cell length)
+	public readonly void CopyTo(ref Cell sequence, Cell length)
 		=> Offsets.AsReadOnlySpan().TryCopyTo(@ref.AsSpan(ref sequence, length));
 
 	/// <inheritdoc/>

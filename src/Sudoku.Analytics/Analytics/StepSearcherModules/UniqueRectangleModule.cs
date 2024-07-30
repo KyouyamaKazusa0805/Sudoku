@@ -64,4 +64,84 @@ internal static class UniqueRectangleModule
 		[16, 17, 61, 62], [16, 17, 70, 71], [16, 17, 79, 80], [25, 26, 34, 35], [25, 26, 43, 44], [25, 26, 52, 53], [25, 26, 61, 62], [25, 26, 70, 71], [25, 26, 79, 80],
 		[34, 35, 61, 62], [34, 35, 70, 71], [34, 35, 79, 80], [43, 44, 61, 62], [43, 44, 70, 71], [43, 44, 79, 80], [52, 53, 61, 62], [52, 53, 70, 71], [52, 53, 79, 80]
 	];
+
+
+	/// <summary>
+	/// Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+	/// </summary>
+	/// <param name="cells">Indicates the cells to be checked.</param>
+	/// <param name="comparer">Digits used in pattern.</param>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <returns>A list of <see cref="Conclusion"/> instances found.</returns>
+	/// <remarks>
+	/// <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+	/// <para>
+	/// Suppose the pattern:
+	/// <code><![CDATA[
+	/// ab  | abc
+	/// abd | ab
+	/// ]]></code>
+	/// The two cases are:
+	/// <code><![CDATA[
+	/// .--------------------------------.     .--------------------------------.
+	/// |          Missing  (c)          |     |          Missing  (d)          |
+	/// |-----------.----------.---------|     |-----------.----------.---------|
+	/// | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
+	/// | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
+	/// | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
+	/// |-----------+----------+---------|     |-----------+----------+---------|
+	/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+	/// | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
+	/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+	/// |-----------+----------+---------|     |-----------+----------+---------|
+	/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+	/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+	/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+	/// '-----------'----------'---------'     '-----------'----------'---------'
+	/// ]]></code>
+	/// Therefore, the elimination intersection will be:
+	/// <code><![CDATA[
+	/// .-----------.----------.---------.
+	/// | ab  /  /  | abc .  . | .  .  . |
+	/// | abd .  .  | ab  /  / | .  .  . |
+	/// | .   .  .  | .   .  . | .  .  . |
+	/// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	/// ]]></code>
+	/// Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
+	/// Such cells can remove both digits <c>a</c> and <c>b</c>.
+	/// </para>
+	/// <para>
+	/// All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
+	/// </para>
+	/// </remarks>
+	public static ReadOnlySpan<Conclusion> GetConclusions(ref readonly CellMap cells, Mask comparer, ref readonly Grid grid)
+	{
+		var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
+		if (PopCount((uint)extraDigitsMask) != 2)
+		{
+			return [];
+		}
+
+		var digit1 = TrailingZeroCount(extraDigitsMask);
+		var digit2 = extraDigitsMask.GetNextSet(digit1);
+		var cells1 = CandidatesMap[digit1] & cells;
+		var cells2 = CandidatesMap[digit2] & cells;
+		var case1Cells = cells & ~cells1;
+		var case2Cells = cells & ~cells2;
+		var elimCells = case1Cells.PeerIntersection & case2Cells.PeerIntersection & (CandidatesMap[digit1] | CandidatesMap[digit2]);
+		if (!elimCells)
+		{
+			return [];
+		}
+
+		var result = new List<Conclusion>();
+		foreach (var elimCell in elimCells)
+		{
+			foreach (var digit in grid.GetCandidates(elimCell) & extraDigitsMask)
+			{
+				result.Add(new(Elimination, elimCell, digit));
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
 }
