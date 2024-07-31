@@ -26,7 +26,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	bool isAvoidable,
 	[PrimaryConstructorParameter] bool isDoublyLinked,
 	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
-	int multivalueCellsCount,
+	Cell multivalueCellsCount,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
