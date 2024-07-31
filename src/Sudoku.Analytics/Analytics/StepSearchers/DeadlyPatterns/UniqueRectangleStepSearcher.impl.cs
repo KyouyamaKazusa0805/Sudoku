@@ -3011,7 +3011,14 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
+				// Check whether the ALS pattern intersects with the current UR pattern.
+				// If so, we should skip it because it'll disturb out work.
 				var alsCells = als.Cells;
+				if (alsCells & cells)
+				{
+					continue;
+				}
+
 				var alsCells1 = alsCells & CandidatesMap[digit1];
 				var alsCells2 = alsCells & CandidatesMap[digit2];
 

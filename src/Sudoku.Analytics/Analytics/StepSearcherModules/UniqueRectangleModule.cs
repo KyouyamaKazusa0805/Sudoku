@@ -126,9 +126,34 @@ internal static class UniqueRectangleModule
 		var digit2 = extraDigitsMask.GetNextSet(digit1);
 		var cells1 = CandidatesMap[digit1] & cells;
 		var cells2 = CandidatesMap[digit2] & cells;
-		var case1Cells = cells & ~cells1;
-		var case2Cells = cells & ~cells2;
-		var elimCells = case1Cells.PeerIntersection & case2Cells.PeerIntersection & (CandidatesMap[digit1] | CandidatesMap[digit2]);
+
+		// For two maps, we should determine which cells can be represented as naked pair eliminations.
+		// Checking this, we should enumerate all possible pair of cells appeared in cells in both two cases:
+		//
+		//   1) Case 1: cells & ~cells1
+		//   2) Case 2: cells & ~cells2
+		//
+		// Then we should find all peer intersection cells and make union.
+		var (nakedPairElims1, nakedPairElims2) = (CellMap.Empty, CellMap.Empty);
+		var urDigit1 = TrailingZeroCount(comparer);
+		var urDigit2 = comparer.GetNextSet(urDigit1);
+		var template = CandidatesMap[urDigit1] | CandidatesMap[urDigit2];
+		foreach (ref readonly var pair in cells & ~cells1 & 2)
+		{
+			if (pair.InOneHouse(out _))
+			{
+				nakedPairElims1 |= pair.PeerIntersection & template;
+			}
+		}
+		foreach (ref readonly var pair in cells & ~cells2 & 2)
+		{
+			if (pair.InOneHouse(out _))
+			{
+				nakedPairElims2 |= pair.PeerIntersection & template;
+			}
+		}
+
+		var elimCells = nakedPairElims1 & nakedPairElims2;
 		if (!elimCells)
 		{
 			return [];
@@ -137,7 +162,7 @@ internal static class UniqueRectangleModule
 		var result = new List<Conclusion>();
 		foreach (var elimCell in elimCells)
 		{
-			foreach (var digit in grid.GetCandidates(elimCell) & extraDigitsMask)
+			foreach (var digit in grid.GetCandidates(elimCell) & comparer)
 			{
 				result.Add(new(Elimination, elimCell, digit));
 			}

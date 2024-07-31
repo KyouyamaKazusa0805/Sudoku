@@ -352,11 +352,13 @@ internal partial class DrawableFactory
 		bool isOverlapped
 	)
 	{
+		const float epsilon = 1E-2F;
 		if (paneCellControl is not
 			{
 				ActualSize: var size,
 				BasePane:
 				{
+					Width: var fallbackSize, // WinUI issue makes 'paneCellControl.ActualSize' equal to 0 in help message window.
 					HighlightCandidateCircleScale: var highlightScale,
 					EnableAnimationFeedback: var enableAnimation,
 					CandidateViewNodeDisplayMode: var candidateDisplayMode,
@@ -369,7 +371,10 @@ internal partial class DrawableFactory
 		}
 
 		var converter = new RxCyConverter();
-		var (width, height) = size / 3F * (float)highlightScale;
+		var resultSize = size is var (x, y) && (x.NearlyEquals(0, epsilon) || y.NearlyEquals(0, epsilon)) && fallbackSize / 9 is var f
+			? new((float)f, (float)f)
+			: size;
+		var (width, height) = resultSize / 3F * (float)highlightScale;
 		var tagPrefix = ViewNodeTagPrefixes[typeof(CandidateViewNode)][0];
 		var conclusionTagStr = GetConclusionTagSuffix(isForConclusion, isForElimination, isOverlapped);
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode, assignmentDisplayMode) switch
