@@ -13,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
 /// <param name="almostLockedSet">The extra ALS.</param>
+/// <param name="multivalueCellsCount">Indicates the number of multi-value cells.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
@@ -25,16 +26,21 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	bool isAvoidable,
 	[PrimaryConstructorParameter] bool isDoublyLinked,
 	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
+	int multivalueCellsCount,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
 	views,
 	options,
-	(isAvoidable, isDoublyLinked) switch
+	(almostLockedSet.IsBivalueCell, multivalueCellsCount, isAvoidable, isDoublyLinked) switch
 	{
-		(true, true) => Technique.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz,
-		(true, _) => Technique.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz,
-		(_, true) => Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
+		(true, 2, true, _) => Technique.AvoidableRectangle2D,
+		(true, 3, true, _) => Technique.AvoidableRectangle3X,
+		(true, 2, _, _) => Technique.UniqueRectangle2D,
+		(true, 3, _, _) => Technique.UniqueRectangle3X,
+		(_, _, true, true) => Technique.AvoidableRectangleDoublyLinkedAlmostLockedSetsXz,
+		(_, _, true, _) => Technique.AvoidableRectangleSinglyLinkedAlmostLockedSetsXz,
+		(_, _, _, true) => Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
 		_ => Technique.UniqueRectangleSinglyLinkedAlmostLockedSetsXz
 	},
 	digit1,

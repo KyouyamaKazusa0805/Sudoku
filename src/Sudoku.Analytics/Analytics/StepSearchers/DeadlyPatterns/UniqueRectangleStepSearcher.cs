@@ -45,7 +45,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Miscellaneous:
 /// <list type="bullet">
 /// <item>Unique Rectangle 2D, 3X</item>
-/// <!--<item>Avoidable Rectangle 2D, 3X</item>-->
+/// <item>Avoidable Rectangle 2D, 3X</item>
 /// </list>
 /// </item>
 /// </list>
@@ -279,7 +279,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 							Check3X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 							Check3N2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 							Check3U2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
@@ -302,7 +301,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 							// Both diagonal and non-diagonal.
 							CheckType2(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-
 							if (SearchForExtendedUniqueRectangles)
 							{
 								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index, (c1, c2) is (0, 3) or (1, 2));
@@ -324,14 +322,11 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									else
 									{
 										CheckType6(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 											Check2D1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 										}
 									}
-
 									break;
 								}
 
@@ -339,11 +334,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								default:
 								{
 									CheckType3(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-
 									if (!arMode)
 									{
 										CheckType4(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
-
 										if (SearchForExtendedUniqueRectangles)
 										{
 											Check2B1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
@@ -357,7 +350,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										CheckSueDeCoq(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 									}
-
 									break;
 								}
 							}
@@ -367,6 +359,153 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Check preconditions.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+	/// <returns>Indicates whether the UR is passed to check.</returns>
+	private static bool CheckPreconditions(ref readonly Grid grid, Cell[] urCells, bool arMode)
+	{
+		var (emptyCountWhenArMode, modifiableCount) = ((byte)0, (byte)0);
+		foreach (var urCell in urCells)
+		{
+			switch (grid.GetState(urCell))
+			{
+				case CellState.Given:
+				case CellState.Modifiable when !arMode:
+				{
+					return false;
+				}
+				case CellState.Empty when arMode:
+				{
+					emptyCountWhenArMode++;
+					break;
+				}
+				case CellState.Modifiable:
+				{
+					modifiableCount++;
+					break;
+				}
+			}
+		}
+
+		return modifiableCount != 4 && emptyCountWhenArMode != 4;
+	}
+
+#pragma warning disable IDE0051
+	/// <summary>
+	/// Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="urCells">The UR cells.</param>
+	/// <param name="d1">The first digit used.</param>
+	/// <param name="d2">The second digit used.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool CheckPreconditionsOnIncomplete(ref readonly Grid grid, Cell[] urCells, Digit d1, Digit d2)
+	{
+		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
+		foreach (var (a, b) in ((0, 1), (2, 3), (0, 2), (1, 3)))
+		{
+			var collectedMask = (Mask)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
+			if ((collectedMask >> d1 & 1) == 0 || (collectedMask >> d2 & 1) == 0)
+			{
+				return false;
+			}
+		}
+
+		// All four cells must contain at least one digit appeared in the UR.
+		var comparer = (Mask)(1 << d1 | 1 << d2);
+		foreach (var cell in urCells)
+		{
+			if ((grid.GetCandidates(cell) & comparer) == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// To determine whether the specified house forms a conjugate pair
+	/// of the specified digit, and the cells where they contain the digit
+	/// is same as the given map contains.
+	/// </summary>
+	/// <param name="digit">The digit.</param>
+	/// <param name="map">The map.</param>
+	/// <param name="houseIndex">The house index.</param>
+	/// <returns>A <see cref="bool"/> value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool IsConjugatePair(Digit digit, ref readonly CellMap map, House houseIndex)
+		=> (HousesMap[houseIndex] & CandidatesMap[digit]) == map;
+
+	/// <summary>
+	/// Get whether two cells are in a same house.
+	/// </summary>
+	/// <param name="cell1">The cell 1 to check.</param>
+	/// <param name="cell2">The cell 2 to check.</param>
+	/// <param name="houses">
+	/// The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
+	/// </param>
+	/// <returns>
+	/// The <see cref="bool"/> value indicating whether the another cell is same house as the current one.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool IsSameHouseCell(Cell cell1, Cell cell2, out HouseMask houses)
+	{
+		var v = (cell1.AsCellMap() + cell2).SharedHouses;
+		(var r, houses) = v != 0 ? (true, v) : (false, 0);
+		return r;
+	}
+
+	/// <summary>
+	/// Check whether the highlight UR candidates is incomplete.
+	/// </summary>
+	/// <param name="arMode">Indicates whether the current searching mode is for ARs.</param>
+	/// <param name="allowIncomplete"><inheritdoc cref="AllowIncompleteUniqueRectangles" path="/summary"/></param>
+	/// <param name="list">The list to check.</param>
+	/// <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
+	/// candidates used in the current UR pattern. If and only if the full pattern uses 8 candidates
+	/// colored with normal one, the pattern will be complete.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static bool IsIncompleteValid(bool arMode, bool allowIncomplete, List<CandidateViewNode> list, out bool isIncomplete)
+	{
+		isIncomplete = !allowIncomplete && list.Count(nodeChecker) != 8 || allowIncomplete;
+		return !arMode && isIncomplete || arMode;
+
+
+		static bool nodeChecker(CandidateViewNode d)
+			=> d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal };
+	}
+
+	/// <summary>
+	/// Get a cell that can't see each other.
+	/// </summary>
+	/// <param name="urCells">The UR cells.</param>
+	/// <param name="cell">The current cell.</param>
+	/// <returns>The diagonal cell.</returns>
+	/// <exception cref="ArgumentException">Throws when the specified argument <paramref name="cell"/> is invalid.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Cell GetDiagonalCell(Cell[] urCells, Cell cell)
+		=> cell == urCells[0] ? urCells[3] : cell == urCells[1] ? urCells[2] : cell == urCells[2] ? urCells[1] : urCells[0];
+
+	/// <summary>
+	/// Get all highlight cells.
+	/// </summary>
+	/// <param name="urCells">The all UR cells used.</param>
+	/// <returns>The list of highlight cells.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static CellViewNode[] GetHighlightCells(Cell[] urCells)
+		=> from urCell in urCells select new CellViewNode(ColorIdentifier.Normal, urCell);
+#pragma warning restore IDE0051
+
 
 	//
 	// Basic Types
@@ -412,10 +551,4 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private partial void CheckExternalWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
 	private partial void CheckExternalXyWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
 	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-
-	//
-	// Miscellaneous
-	//
-	private partial void Check2D(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3X(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
 }

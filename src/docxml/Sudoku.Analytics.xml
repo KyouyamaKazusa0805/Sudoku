@@ -8259,7 +8259,7 @@
             Miscellaneous:
             <list type="bullet">
             <item>Unique Rectangle 2D, 3X</item>
-            <!--<item>Avoidable Rectangle 2D, 3X</item>-->
+            <item>Avoidable Rectangle 2D, 3X</item>
             </list>
             </item>
             </list>
@@ -8301,6 +8301,80 @@
             <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/>
             </param>
             <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
+            <summary>
+            Check preconditions.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
+            <returns>Indicates whether the UR is passed to check.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="urCells">The UR cells.</param>
+            <param name="d1">The first digit used.</param>
+            <param name="d2">The second digit used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            To determine whether the specified house forms a conjugate pair
+            of the specified digit, and the cells where they contain the digit
+            is same as the given map contains.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="map">The map.</param>
+            <param name="houseIndex">The house index.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Get whether two cells are in a same house.
+            </summary>
+            <param name="cell1">The cell 1 to check.</param>
+            <param name="cell2">The cell 2 to check.</param>
+            <param name="houses">
+            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
+            </param>
+            <returns>
+            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncompleteValid(System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},System.Boolean@)">
+            <summary>
+            Check whether the highlight UR candidates is incomplete.
+            </summary>
+            <param name="arMode">Indicates whether the current searching mode is for ARs.</param>
+            <param name="allowIncomplete"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
+            <param name="list">The list to check.</param>
+            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
+            candidates used in the current UR pattern. If and only if the full pattern uses 8 candidates
+            colored with normal one, the pattern will be complete.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
+            <summary>
+            Get a cell that can't see each other.
+            </summary>
+            <param name="urCells">The UR cells.</param>
+            <param name="cell">The current cell.</param>
+            <returns>The diagonal cell.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the specified argument <paramref name="cell"/> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
+            <summary>
+            Get all highlight cells.
+            </summary>
+            <param name="urCells">The all UR cells used.</param>
+            <returns>The list of highlight cells.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
@@ -8897,6 +8971,7 @@
             </param>
             <param name="index">The index.</param>
             <remarks>
+            <para>
             The pattern:
             <code><![CDATA[
                   ↓ cell1, cells2
@@ -8909,6 +8984,10 @@
             ]]></code>
             where a cell <c>cdef</c> and 2 cells <c>def</c> will be formed an ALS pattern. Therefore, a chain is formed:
             <code><![CDATA[abcd(d) == {abc, abcd}(c) -- cdef(c) == {def, def}(d) => * != d]]></code>
+            </para>
+            <para>
+            In addition, this pattern will cover all possible cases of UR + 2D and UR + 3X.
+            </para>
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
@@ -9064,131 +9143,6 @@
             <param name="d2">The digit 2 used in UR.</param>
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check UR + 2D.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The pattern:
-            <code><![CDATA[
-              ↓ corner1
-            (ab )  abx
-             aby  (ab )  xy  *
-                    ↑ corner2
-            ]]></code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check UR + 3X.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The pattern:
-            <code><![CDATA[
-             ↓ cornerCell
-            (ab )  abx
-             aby   abz   xy  *
-            ]]></code>
-            Note: <c>z</c> is <c>x</c> or <c>y</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
-            <summary>
-            Check preconditions.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-            <returns>Indicates whether the UR is passed to check.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditionsOnIncomplete(Sudoku.Concepts.Grid@,System.Int32[],System.Int32,System.Int32)">
-            <summary>
-            Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="urCells">The UR cells.</param>
-            <param name="d1">The first digit used.</param>
-            <param name="d2">The second digit used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsConjugatePair(System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            To determine whether the specified house forms a conjugate pair
-            of the specified digit, and the cells where they contain the digit
-            is same as the given map contains.
-            </summary>
-            <param name="digit">The digit.</param>
-            <param name="map">The map.</param>
-            <param name="houseIndex">The house index.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsSameHouseCell(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Get whether two cells are in a same house.
-            </summary>
-            <param name="cell1">The cell 1 to check.</param>
-            <param name="cell2">The cell 2 to check.</param>
-            <param name="houses">
-            The result houses that both two cells lie in. If the cell can't be found, this argument will be 0.
-            </param>
-            <returns>
-            The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncompleteValid(System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},System.Boolean@)">
-            <summary>
-            Check whether the highlight UR candidates is incomplete.
-            </summary>
-            <param name="arMode">Indicates whether the current searching mode is for ARs.</param>
-            <param name="allowIncomplete"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles" path="/summary"/></param>
-            <param name="list">The list to check.</param>
-            <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            This method uses a trick to check a UR pattern: to count up the number of "Normal colored"
-            candidates used in the current UR pattern. If and only if the full pattern uses 8 candidates
-            colored with normal one, the pattern will be complete.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetDiagonalCell(System.Int32[],System.Int32)">
-            <summary>
-            Get a cell that can't see each other.
-            </summary>
-            <param name="urCells">The UR cells.</param>
-            <param name="cell">The current cell.</param>
-            <returns>The diagonal cell.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the specified argument <paramref name="cell"/> is invalid.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.GetHighlightCells(System.Int32[])">
-            <summary>
-            Get all highlight cells.
-            </summary>
-            <param name="urCells">The all UR cells used.</param>
-            <returns>The list of highlight cells.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExocetStepSearcher">
             <summary>
@@ -13622,9 +13576,10 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
             <param name="almostLockedSet">The extra ALS.</param>
+            <param name="multivalueCellsCount">Indicates the number of multi-value cells.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Boolean,Sudoku.Concepts.AlmostLockedSet,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Boolean,Sudoku.Concepts.AlmostLockedSet,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -13638,6 +13593,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="isDoublyLinked">Indicates whether the ALS-XZ pattern is doubly-linked.</param>
             <param name="almostLockedSet">The extra ALS.</param>
+            <param name="multivalueCellsCount">Indicates the number of multi-value cells.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.BaseDifficulty">
