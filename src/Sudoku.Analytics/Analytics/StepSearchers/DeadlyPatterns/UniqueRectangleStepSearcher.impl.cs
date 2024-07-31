@@ -3013,6 +3013,18 @@ public partial class UniqueRectangleStepSearcher
 
 				// Check whether the ALS pattern intersects with the current UR pattern.
 				// If so, we should skip it because it'll disturb out work.
+				#region Extra description
+				// In fact, technique allows ALS pattern intersects with UR. There're two cases:
+				//
+				//   1) ALS node (strong link node) overlaps with cells that UR uses.
+				//      In this case, the doubly-linked ALS-XZ will be replaced
+				//      with another technique called 'Self Constraint' in this program. This will be handled in chaining searcher.
+				//   2) Though 1) doesn't cover, ALS pattern still overlaps with UR pattern cells.
+				//      In this case, the doubly-linked ALS-XZ still forms,
+				//      but extra eliminations produced by UR pattern will become unavailable.
+				//
+				// Considered its complexity of implementation, I will skip overlapped cases and may not handle such cases.
+				#endregion
 				var alsCells = als.Cells;
 				if (alsCells & cells)
 				{
