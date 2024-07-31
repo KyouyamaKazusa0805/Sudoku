@@ -13,6 +13,15 @@ public sealed partial class UniqueRectangle(
 	[PrimaryConstructorParameter] Mask otherDigitsMask
 ) : IEquatable<UniqueRectangle>, IEqualityOperators<UniqueRectangle, UniqueRectangle, bool>
 {
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out CellMap cells, out Mask digitsMask) => (cells, digitsMask) = (Cells, DigitsMask);
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out CellMap cells, out Mask digitsMask, out Mask otherDigitsMask)
+		=> ((cells, digitsMask), otherDigitsMask) = (this, OtherDigitsMask);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] UniqueRectangle? other)

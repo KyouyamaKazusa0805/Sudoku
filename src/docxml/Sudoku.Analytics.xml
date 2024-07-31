@@ -22665,6 +22665,22 @@
             <param name="digitsMask">The digits mask.</param>
             <param name="otherDigitsMask">The other digits mask.</param>
         </member>
+        <member name="M:Sudoku.Concepts.UniqueRectangle.Deconstruct(Sudoku.Concepts.CellMap@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.UniqueRectangle.Deconstruct(Sudoku.Concepts.CellMap@,System.Int16@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
         <member name="M:Sudoku.Concepts.UniqueRectangle.Equals(Sudoku.Concepts.UniqueRectangle)">
             <inheritdoc/>
         </member>
