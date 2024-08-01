@@ -73,7 +73,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		{
 			return falseCandidateTypeFirstFoundStep;
 		}
-
 		return null;
 	}
 
@@ -140,11 +139,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 						return type4Step;
 					}
 				}
-
 				break;
 			}
 		}
-
 		return null;
 
 
@@ -165,7 +162,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					return false;
 				}
 			}
-
 			return true;
 		}
 	}
@@ -242,7 +238,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					}
 				}
 			}
-
 			return true;
 		}
 	}
@@ -391,7 +386,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 			}
 		}
-
 		return null;
 	}
 
@@ -513,7 +507,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				accumulator.Add(step);
 			}
 		}
-
 		return null;
 	}
 
@@ -565,7 +558,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		accumulator.Add(step);
-
 		return null;
 	}
 
@@ -631,7 +623,6 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 			accumulator.Add(step);
 		}
-
 		return null;
 	}
 }
