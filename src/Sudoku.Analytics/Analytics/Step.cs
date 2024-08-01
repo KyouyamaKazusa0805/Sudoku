@@ -88,6 +88,11 @@ public abstract partial class Step(
 	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
+	/// Indicates the identifier of this type. The value is equivalent to <c>GetType().Name</c>.
+	/// </summary>
+	public string FormatTypeIdentifier => GetType().Name;
+
+	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
 	[HashCodeMember]
@@ -111,68 +116,10 @@ public abstract partial class Step(
 			: throw new InvalidOperationException(SR.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
 
 	/// <summary>
-	/// Gets the format of the current instance.
-	/// </summary>
-	/// <returns>
-	/// Returns a <see cref="string"/> result. If the resource dictionary doesn't contain
-	/// any valid formats here, the result value will be <see langword="null"/>.
-	/// </returns>
-	/// <remarks>
-	/// <para>
-	/// A <b>format</b> is a way to describe the details to a technique usage (i.e. <see cref="Step"/>).
-	/// A format text will be combined with two parts: literals and placeholders. Here is an example:
-	/// <code><![CDATA["Cells {0}, with digits {1}"]]></code>
-	/// </para>
-	/// <para>
-	/// The placeholders <c>{0}</c> and <c>{1}</c> will use normal characters '<c>{</c>', digit characters '<c>0</c>' or '<c>1</c>'
-	/// and '<c>}</c>'. The internal values will be offered by another property called <see cref="FormatInterpolationParts"/>.
-	/// In that property, the value (an array) will contain 2 elements
-	/// that can fill with the placeholders <c>{0}</c> and <c>{1}</c> respectively.
-	/// </para>
-	/// <para>
-	/// The recommended implementation pattern is to declare with properties in the target type derived from <see cref="Step"/> instance like:
-	/// <code><![CDATA[
-	/// private string CellsStr => Cells.ToString();
-	/// private string DigitsStr => Digits.ToString(", ");
-	/// ]]></code>
-	/// </para>
-	/// <para>
-	/// And then override the property <see cref="FormatInterpolationParts"/> like:
-	/// <code><![CDATA[
-	/// public override FormatInterpolation FormatInterpolationParts
-	///     => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
-	/// ]]></code>
-	/// The culture name "<c>en-US</c>" and "<c>zh-CN</c>" stands for the target country or region is English and China (Mainland) respectively.
-	/// If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
-	/// </para>
-	/// <para>
-	/// Please note the type of this property is <see cref="StepFormat"/>, which is not a plain string text.
-	/// However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
-	/// where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
-	/// The format text will be expanded to this expression in runtime:
-	/// <code><![CDATA[
-	/// var formatText = ResourceDictionary.Get($"TechniqueFormat_UniqueRectangle{Type}Step");
-	/// ]]></code>
-	/// You can use this value to get the final text:
-	/// <code><![CDATA[
-	/// var culture = ...; // The culture string.
-	/// var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
-	/// var description = Format.ToString(formatArguments);
-	/// ]]></code>
-	/// See the documentation documents defined in method <see cref="ToString(IFormatProvider?)"/> to learn more information.
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="FormatInterpolationParts"/>
-	/// <seealso cref="SR.Get(string, CultureInfo?, Assembly?)"/>
-	/// <seealso cref="StepFormat"/>
-	/// <seealso cref="ToString(IFormatProvider?)"/>
-	public StepFormat Format => new(GetType().Name);
-
-	/// <summary>
 	/// Indicates the interpolated parts that is used for the format.
-	/// The formats will be interpolated into the property <see cref="Format"/> result.
+	/// The formats will be interpolated into the property <see cref="FormatTypeIdentifier"/> result.
 	/// </summary>
-	/// <seealso cref="Format"/>
+	/// <seealso cref="FormatTypeIdentifier"/>
 	/// <seealso cref="FormatInterpolation"/>
 	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
 
@@ -186,6 +133,11 @@ public abstract partial class Step(
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<View> IDrawable.Views => Views;
+
+	/// <summary>
+	/// Indicates the resource key that can access description to the current instance.
+	/// </summary>
+	private string TechniqueResourceKey => $"TechniqueFormat_{FormatTypeIdentifier}";
 
 
 	/// <inheritdoc/>
@@ -229,17 +181,21 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
+		if (GetResourceFormat(null) is null)
+		{
+			return ToSimpleString(formatProvider);
+		}
+
 		var culture = GetCulture(formatProvider);
 		var colonToken = SR.Get("Colon", culture);
-		return (Format, FormatInterpolationParts?.FirstOrDefault(m).ResourcePlaceholderValues) switch
+		return (FormatInterpolationParts?.FirstOrDefault(m).ResourcePlaceholderValues) switch
 		{
-			({ } p, _) when p.GetResourceFormat(null) is null => ToSimpleString(formatProvider),
-			(_, null) => $"{GetName(formatProvider)}{colonToken}{Format} => {ConclusionText}",
-			var (_, formatArgs) => $"{GetName(formatProvider)}{colonToken}{Format.Format(culture, formatArgs)} => {ConclusionText}"
+			var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
+			_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}",
 		};
 
 
-		bool m(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.CurrentCultureIgnoreCase);
+		bool m(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
 	}
 
 	/// <summary>
@@ -265,4 +221,26 @@ public abstract partial class Step(
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+	/// <summary>
+	/// Returns the format of the specified culture.
+	/// The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
+	/// </summary>
+	/// <param name="culture">Indicates the current culture used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private string? GetResourceFormat(CultureInfo? culture)
+		=> SR.TryGet(TechniqueResourceKey, out var resource, culture) ? resource : null;
+
+	/// <summary>
+	/// Try to format description of the current instance.
+	/// </summary>
+	/// <param name="culture">The culture information.</param>
+	/// <param name="formatArguments">The format arguments.</param>
+	/// <returns>The final result.</returns>
+	/// <exception cref="ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private string FormatDescription(CultureInfo? culture, params string[] formatArguments)
+		=> GetResourceFormat(culture) is { } p
+			? string.Format(culture, p, formatArguments)
+			: throw new ResourceNotFoundException(typeof(Step).Assembly, TechniqueResourceKey, culture);
 }

@@ -6451,6 +6451,11 @@
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.FormatTypeIdentifier">
+            <summary>
+            Indicates the identifier of this type. The value is equivalent to <c>GetType().Name</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
             The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -6470,70 +6475,12 @@
             </exception>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
-        <member name="P:Sudoku.Analytics.Step.Format">
-            <summary>
-            Gets the format of the current instance.
-            </summary>
-            <returns>
-            Returns a <see cref="T:System.String"/> result. If the resource dictionary doesn't contain
-            any valid formats here, the result value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            <para>
-            A <b>format</b> is a way to describe the details to a technique usage (i.e. <see cref="T:Sudoku.Analytics.Step"/>).
-            A format text will be combined with two parts: literals and placeholders. Here is an example:
-            <code><![CDATA["Cells {0}, with digits {1}"]]></code>
-            </para>
-            <para>
-            The placeholders <c>{0}</c> and <c>{1}</c> will use normal characters '<c>{</c>', digit characters '<c>0</c>' or '<c>1</c>'
-            and '<c>}</c>'. The internal values will be offered by another property called <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.
-            In that property, the value (an array) will contain 2 elements
-            that can fill with the placeholders <c>{0}</c> and <c>{1}</c> respectively.
-            </para>
-            <para>
-            The recommended implementation pattern is to declare with properties in the target type derived from <see cref="T:Sudoku.Analytics.Step"/> instance like:
-            <code><![CDATA[
-            private string CellsStr => Cells.ToString();
-            private string DigitsStr => Digits.ToString(", ");
-            ]]></code>
-            </para>
-            <para>
-            And then override the property <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/> like:
-            <code><![CDATA[
-            public override FormatInterpolation FormatInterpolationParts
-                => [new("en-US", [CellsStr, DigitsStr]), new("zh-CN", [CellsStr, DigitsStr])];
-            ]]></code>
-            The culture name "<c>en-US</c>" and "<c>zh-CN</c>" stands for the target country or region is English and China (Mainland) respectively.
-            If you don't determine which region should be declared, just remove suffixes like "<c>US</c>" and "<c>CN</c>".
-            </para>
-            <para>
-            Please note the type of this property is <see cref="T:Sudoku.Text.StepFormat"/>, which is not a plain string text.
-            However, you can specify the target value using interpolated strings like <c><![CDATA[$"UniqueRectangle{Type}Step"]]></c>,
-            where the interpolation <c>Type</c> is an integer that describes the sub-type of the Unique Rectangle (e.g. 1-6 stands for UR type 1-6).
-            The format text will be expanded to this expression in runtime:
-            <code><![CDATA[
-            var formatText = ResourceDictionary.Get($"TechniqueFormat_UniqueRectangle{Type}Step");
-            ]]></code>
-            You can use this value to get the final text:
-            <code><![CDATA[
-            var culture = ...; // The culture string.
-            var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
-            var description = Format.ToString(formatArguments);
-            ]]></code>
-            See the documentation documents defined in method <see cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/> to learn more information.
-            </para>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>
-            <seealso cref="M:System.Resources.SR.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
-            <seealso cref="T:Sudoku.Text.StepFormat"/>
-            <seealso cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
-        </member>
         <member name="P:Sudoku.Analytics.Step.FormatInterpolationParts">
             <summary>
             Indicates the interpolated parts that is used for the format.
-            The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.Format"/> result.
+            The formats will be interpolated into the property <see cref="P:Sudoku.Analytics.Step.FormatTypeIdentifier"/> result.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.Step.Format"/>
+            <seealso cref="P:Sudoku.Analytics.Step.FormatTypeIdentifier"/>
             <seealso cref="T:Sudoku.Text.FormatInterpolation"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Factors">
@@ -6546,6 +6493,11 @@
         </member>
         <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Views">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.TechniqueResourceKey">
+            <summary>
+            Indicates the resource key that can access description to the current instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
@@ -6606,6 +6558,22 @@
         </member>
         <member name="M:Sudoku.Analytics.Step.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.GetResourceFormat(System.Globalization.CultureInfo)">
+            <summary>
+            Returns the format of the specified culture.
+            The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
+            </summary>
+            <param name="culture">Indicates the current culture used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.FormatDescription(System.Globalization.CultureInfo,System.String[])">
+            <summary>
+            Try to format description of the current instance.
+            </summary>
+            <param name="culture">The culture information.</param>
+            <param name="formatArguments">The format arguments.</param>
+            <returns>The final result.</returns>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
@@ -31550,54 +31518,6 @@
         </member>
         <member name="P:Sudoku.Text.FormatInterpolation.ResourcePlaceholderValues">
             <summary>The values of the interpolation.</summary>
-        </member>
-        <member name="T:Sudoku.Text.StepFormat">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <param name="name">Indicates the technique identifier name.</param>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.#ctor(System.String)">
-            <summary>
-            Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
-            stored in resource dictionary.
-            </summary>
-            <param name="name">Indicates the technique identifier name.</param>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="P:Sudoku.Text.StepFormat.TechniqueResourceName">
-            <summary>
-            Full name of the format.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.GetResourceFormat(System.IFormatProvider)">
-            <summary>
-            Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
-            </summary>
-            <param name="formatProvider">The culture information.</param>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.Format(System.Globalization.CultureInfo,System.String[])">
-            <summary>
-            Get the format string for the current instance.
-            </summary>
-            <param name="culture">The culture information.</param>
-            <param name="formatArguments">The format arguments.</param>
-            <returns>The final result.</returns>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.StepFormat.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Traits.IBranchTrait">
             <summary>
