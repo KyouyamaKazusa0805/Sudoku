@@ -47,13 +47,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] HouseCombinations = [
-		[9, 10], [9, 11], [10, 11],
-		[12, 13], [12, 14], [13, 14],
-		[15, 16], [15, 17], [16, 17],
-		[18, 19], [18, 20], [19, 20],
-		[21, 22], [21, 23], [22, 23],
-		[24, 25], [24, 26], [25, 26]
+	private static readonly House[][] HouseCombinations = [
+		[9, 10], [9, 11], [10, 11], [12, 13], [12, 14], [13, 14],
+		[15, 16], [15, 17], [16, 17], [18, 19], [18, 20], [19, 20],
+		[21, 22], [21, 23], [22, 23], [24, 25], [24, 26], [25, 26]
 	];
 
 	/// <summary>
@@ -62,9 +59,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] FitTableRow = [
-		[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
-		[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8], [3, 6], [3, 7], [3, 8], [4, 6], [4, 7], [4, 8], [5, 6], [5, 7], [5, 8]
+	private static readonly Cell[][] FitTableRow = [
+		[0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8],
+		[1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8],
+		[2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [2, 8],
+		[3, 6], [3, 7], [3, 8],
+		[4, 6], [4, 7], [4, 8],
+		[5, 6], [5, 7], [5, 8]
 	];
 
 	/// <summary>
@@ -73,10 +74,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] FitTableColumn = [
-		[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72], [9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
+	private static readonly Cell[][] FitTableColumn = [
+		[0, 27], [0, 36], [0, 45], [0, 54], [0, 63], [0, 72],
+		[9, 27], [9, 36], [9, 45], [9, 54], [9, 63], [9, 72],
 		[18, 27], [18, 36], [18, 45], [18, 54], [18, 63], [18, 72],
-		[27, 54], [27, 63], [27, 72], [36, 54], [36, 63], [36, 72],
+		[27, 54], [27, 63], [27, 72],
+		[36, 54], [36, 63], [36, 72],
 		[45, 54], [45, 63], [45, 72]
 	];
 
@@ -89,7 +92,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
 		{
-			for (var i = 0; i < FitTableRow.Length >> 1; i++)
+			for (var i = 0; i < FitTableRow.Length; i++)
 			{
 				var c11 = FitTableRow[i][0] + j * 27;
 				var c21 = FitTableRow[i][1] + j * 27;
@@ -102,7 +105,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 		for (var j = 0; j < 3; j++)
 		{
-			for (var i = 0; i < FitTableColumn.Length >> 1; i++)
+			for (var i = 0; i < FitTableColumn.Length; i++)
 			{
 				var c11 = FitTableColumn[i][0] + j * 3;
 				var c21 = FitTableColumn[i][1] + j * 3;
@@ -117,7 +120,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		// Initializes fat types.
 		for (var size = 3; size <= 7; size++)
 		{
-			for (var i = 0; i < HouseCombinations.Length >> 1; i++)
+			for (var i = 0; i < HouseCombinations.Length; i++)
 			{
 				var (house1, house2) = (HouseCombinations[i][0], HouseCombinations[i][1]);
 				foreach (Mask mask in Bits.EnumerateOf(9, size))
