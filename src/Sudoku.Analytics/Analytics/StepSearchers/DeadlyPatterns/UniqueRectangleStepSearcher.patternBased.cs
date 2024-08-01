@@ -1022,7 +1022,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var eliminations = from cell in elimMap select new Conclusion(Elimination, cell, digit2);
 				var cellOffsets = (List<CellViewNode>)[
-					.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),
+					.. arMode ? from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell) : [],
 					.. from cell in alsCells select new CellViewNode(ColorIdentifier.AlmostLockedSet1, cell)
 				];
 				var multivalueCellsCount = 0;
