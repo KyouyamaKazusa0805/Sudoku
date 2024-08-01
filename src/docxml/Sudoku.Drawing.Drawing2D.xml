@@ -15,14 +15,6 @@
         <member name="M:Sudoku.Drawing.Drawing2D.ColorPalette.System#Linq#Providers#ISliceMethod{Sudoku#Drawing#Drawing2D#ColorPalette,System#Drawing#Color}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Drawing.Drawing2D.GraphicsPathCreator">
-            <summary>
-            Represents a <see cref="T:System.Drawing.Drawing2D.GraphicsPath"/> creator method.
-            </summary>
-            <param name="x">Indicates the x.</param>
-            <param name="y">Indicaets the y.</param>
-            <returns>The <see cref="T:System.Drawing.Drawing2D.GraphicsPath"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Drawing.Drawing2D.GridCanvas">
             <summary>
             Represents a canvas that allows drawing sudoku-related items onto it.

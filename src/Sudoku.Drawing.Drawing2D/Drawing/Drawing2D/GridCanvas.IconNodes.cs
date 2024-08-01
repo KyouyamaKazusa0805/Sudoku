@@ -18,7 +18,7 @@ public partial class GridCanvas
 				{
 					using var brush = new SolidBrush(GetColor(identifier));
 					var (x, y) = _calculator.GetMousePointInCenter(cell);
-					GraphicsPathCreator pathCreator = figureNode switch
+					Func<float, float, GraphicsPath> pathCreator = figureNode switch
 					{
 						TriangleViewNode => triangle,
 						DiamondViewNode => diamond,
