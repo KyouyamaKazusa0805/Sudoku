@@ -34,7 +34,7 @@ public sealed partial class AlignedExclusionStep(
 	public override Technique Code
 		=> Size switch
 		{
-			>= 2 and <= 5 => Technique.AlignedPairExclusion + (short)(Size - 2),
+			>= 2 and <= 5 => Technique.AlignedPairExclusion + (Size - 2),
 			_ => throw new NotSupportedException(SR.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
