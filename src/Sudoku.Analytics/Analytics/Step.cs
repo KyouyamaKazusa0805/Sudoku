@@ -181,21 +181,18 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		if (GetResourceFormat(null) is null)
-		{
-			return ToSimpleString(formatProvider);
-		}
-
-		var culture = GetCulture(formatProvider);
-		var colonToken = SR.Get("Colon", culture);
-		return (FormatInterpolationParts?.FirstOrDefault(m).ResourcePlaceholderValues) switch
-		{
-			var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
-			_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}",
-		};
+		return GetResourceFormat(null) is null
+			? ToSimpleString(formatProvider)
+			: GetCulture(formatProvider) is var culture && SR.Get("Colon", culture) is var colonToken
+				? FormatInterpolationParts?.FirstOrDefault(matcher).ResourcePlaceholderValues switch
+				{
+					var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
+					_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
+				}
+				: throw new();
 
 
-		bool m(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
+		bool matcher(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
 	}
 
 	/// <summary>
