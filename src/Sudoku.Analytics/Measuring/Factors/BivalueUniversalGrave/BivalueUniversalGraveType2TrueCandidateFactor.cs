@@ -13,5 +13,5 @@ public sealed class BivalueUniversalGraveType2TrueCandidateFactor : Factor
 	public override Type ReflectedStepType => typeof(BivalueUniversalGraveType2Step);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => OeisSequences.A002024((int)args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => OeisSequences.A002024((int)args![0]!);
 }

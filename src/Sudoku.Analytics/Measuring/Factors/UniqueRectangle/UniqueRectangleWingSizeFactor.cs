@@ -13,7 +13,7 @@ public sealed class UniqueRectangleWingSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleRegularWingStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args => (Technique)args![0]! switch
 		{
 			Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => 2,

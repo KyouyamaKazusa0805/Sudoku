@@ -79,7 +79,7 @@ public sealed partial class FactorCollection(ReadOnlyMemory<Factor> factors) : I
 		var result = 0;
 		foreach (var element in this)
 		{
-			result += element.Formula(from propertyInfo in element.Parameters select propertyInfo.GetValue(step)!);
+			result += element.Formula(from pi in element.Parameters.AsReadOnlySpan() select pi.GetValue(step)!);
 		}
 		return result;
 	}

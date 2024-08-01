@@ -13,6 +13,6 @@ public sealed class NormalFishIsSashimiFactor : Factor
 	public override Type ReflectedStepType => typeof(NormalFishStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args => (bool?)args![0]! switch { true => (int)args![1]! switch { 2 or 3 => 3, 4 => 4 }, false => 2, _ => 0 };
 }

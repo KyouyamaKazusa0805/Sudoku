@@ -13,5 +13,5 @@ public sealed class ComplexSingleFactor : Factor
 	public override Type ReflectedStepType => typeof(ComplexSingleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => ComplexTechniqueUsages.GetComplexityDifficulty((Technique[][])args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => ComplexTechniqueUsages.GetComplexityDifficulty((Technique[][])args![0]!);
 }

@@ -13,5 +13,5 @@ public sealed class AlmostLockedCandidatesSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(AlmostLockedCandidatesStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (int)args![0]! switch { 2 => 0, 3 => 7, 4 => 12 };
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (int)args![0]! switch { 2 => 0, 3 => 7, 4 => 12 };
 }

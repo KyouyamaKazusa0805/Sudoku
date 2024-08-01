@@ -12,5 +12,5 @@ public sealed class BlossomLoopLengthFactor : Factor
 	public override Type ReflectedStepType => typeof(BlossomLoopStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
 }

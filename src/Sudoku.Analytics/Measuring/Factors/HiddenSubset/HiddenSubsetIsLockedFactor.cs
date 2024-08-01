@@ -12,5 +12,5 @@ public sealed class HiddenSubsetIsLockedFactor : Factor
 	public override Type ReflectedStepType => typeof(HiddenSubsetStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (bool)args![0]! ? (int)args![1]! switch { 2 => -12, 3 => -13 } : 0;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (bool)args![0]! ? (int)args![1]! switch { 2 => -12, 3 => -13 } : 0;
 }

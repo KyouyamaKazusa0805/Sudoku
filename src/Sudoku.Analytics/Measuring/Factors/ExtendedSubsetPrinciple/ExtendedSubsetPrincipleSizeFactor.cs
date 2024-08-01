@@ -13,6 +13,6 @@ public sealed class ExtendedSubsetPrincipleSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(ExtendedSubsetPrincipleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args => (int)args![0]! switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 };
 }

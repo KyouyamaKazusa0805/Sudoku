@@ -13,5 +13,5 @@ public sealed class UniquenessClueCoverExtraCellsFactor : Factor
 	public override Type ReflectedStepType => typeof(UniquenessClueCoverStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => OeisSequences.A004526((int)args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => OeisSequences.A004526((int)args![0]!);
 }

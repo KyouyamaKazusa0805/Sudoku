@@ -12,7 +12,7 @@ public sealed class ChainGroupedNodeFactor : Factor
 	public override Type ReflectedStepType => typeof(NormalChainStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args =>
 		{
 			var result = 0;

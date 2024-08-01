@@ -12,5 +12,5 @@ public sealed class ChainLengthFactor : Factor
 	public override Type ReflectedStepType => typeof(NormalChainStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
 }

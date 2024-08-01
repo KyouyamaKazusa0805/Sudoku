@@ -13,5 +13,5 @@ public sealed class MultiBranchWWingBranchesCountFactor : Factor
 	public override Type ReflectedStepType => typeof(MultiBranchWWingStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (int)args![0]! == 3 ? 3 : 0;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (int)args![0]! == 3 ? 3 : 0;
 }

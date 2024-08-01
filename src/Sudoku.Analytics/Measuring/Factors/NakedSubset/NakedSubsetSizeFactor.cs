@@ -12,5 +12,5 @@ public sealed class NakedSubsetSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(NakedSubsetStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 };
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 };
 }

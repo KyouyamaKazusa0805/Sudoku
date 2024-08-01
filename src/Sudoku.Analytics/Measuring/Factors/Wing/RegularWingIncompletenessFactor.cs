@@ -13,7 +13,7 @@ public sealed class RegularWingIncompletenessFactor : Factor
 	public override Type ReflectedStepType => typeof(RegularWingStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args => ((Technique)args![0]!, (bool)args![1]!) switch
 		{
 			(Technique.XyWing, _) => 0,

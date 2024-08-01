@@ -12,5 +12,5 @@ public sealed class MultipleForcingChainsGroupedFactor : Factor
 	public override Type ReflectedStepType => typeof(MultipleForcingChainsStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (bool)args![0]! ? 2 : 0;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (bool)args![0]! ? 2 : 0;
 }

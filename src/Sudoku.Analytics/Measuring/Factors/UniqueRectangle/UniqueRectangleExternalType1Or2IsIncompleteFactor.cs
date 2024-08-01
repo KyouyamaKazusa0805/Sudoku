@@ -12,5 +12,5 @@ public sealed class UniqueRectangleExternalType1Or2IsIncompleteFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleExternalType1Or2Step);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (bool)args![0]! ? 1 : 0;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (bool)args![0]! ? 1 : 0;
 }

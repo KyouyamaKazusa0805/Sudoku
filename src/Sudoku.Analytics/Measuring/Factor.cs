@@ -52,7 +52,7 @@ public abstract class Factor
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.
 	/// </summary>
-	public abstract ParameterizedFormula Formula { get; }
+	public abstract Func<ReadOnlySpan<object?>, int> Formula { get; }
 
 
 	/// <summary>

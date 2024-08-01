@@ -14,5 +14,5 @@ public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleSueDeCoqStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0;
 }

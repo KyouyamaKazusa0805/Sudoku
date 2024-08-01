@@ -13,6 +13,6 @@ public sealed class ComplexFishSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(ComplexFishStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
+	public override Func<ReadOnlySpan<object?>, int> Formula
 		=> static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20, 5 => 33, 6 => 45, 7 => 56, _ => 66 };
 }

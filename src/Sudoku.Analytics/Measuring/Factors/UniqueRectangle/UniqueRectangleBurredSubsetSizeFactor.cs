@@ -13,5 +13,5 @@ public sealed class UniqueRectangleBurredSubsetSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleBurredSubsetStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => (int)args![0]!;
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (int)args![0]!;
 }

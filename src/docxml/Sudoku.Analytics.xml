@@ -24487,14 +24487,6 @@
             <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
             <returns>The result value at the specified index.</returns>
         </member>
-        <member name="T:Sudoku.Measuring.ParameterizedFormula">
-            <summary>
-            Represents a delegate type that calculates the difficulty rating using the specified operation,
-            with specified arguments.
-            </summary>
-            <param name="arguments">The arguments to be passed.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating the result difficulty rating.</returns>
-        </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
 				<summary>
