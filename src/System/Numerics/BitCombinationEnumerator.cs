@@ -3,14 +3,15 @@ namespace System.Numerics;
 /// <summary>
 /// Indicates the enumerator of the current instance.
 /// </summary>
+/// <typeparam name="T">The type of the target value.</typeparam>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct MaskCombinationEnumerator(int bitCount, int oneCount) : IEnumerator<long>
+public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnumerator<T> where T : IBinaryInteger<T>
 {
 	/// <summary>
 	/// The mask.
 	/// </summary>
-	private readonly long _mask = (1 << bitCount - oneCount) - 1;
+	private readonly T _mask = (T.One << bitCount - oneCount) - T.One;
 
 	/// <summary>
 	/// Indicates whether that the value is the last one.
@@ -19,7 +20,7 @@ public ref struct MaskCombinationEnumerator(int bitCount, int oneCount) : IEnume
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public long Current { get; private set; } = (1 << oneCount) - 1;
+	public T Current { get; private set; } = (T.One << oneCount) - T.One;
 
 	/// <inheritdoc/>
 	readonly object IEnumerator.Current => Current;
@@ -56,7 +57,7 @@ public ref struct MaskCombinationEnumerator(int bitCount, int oneCount) : IEnume
 	private bool HasNext()
 	{
 		var result = !_isLast;
-		_isLast = (Current & -Current & _mask) == 0;
+		_isLast = (Current & -Current & _mask) == T.Zero;
 		return result;
 	}
 }

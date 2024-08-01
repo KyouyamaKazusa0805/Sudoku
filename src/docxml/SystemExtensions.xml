@@ -3787,6 +3787,94 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:System.Numerics.BitCombinationEnumerator`1">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="bitCount">The number of bits.</param>
+            <param name="oneCount">The number of <see langword="true"/> bits.</param>
+        </member>
+        <member name="F:System.Numerics.BitCombinationEnumerator`1._mask">
+            <summary>
+            The mask.
+            </summary>
+        </member>
+        <member name="F:System.Numerics.BitCombinationEnumerator`1._isLast">
+            <summary>
+            Indicates whether that the value is the last one.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.BitCombinationEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Numerics.BitCombinationEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.HasNext">
+            <summary>
+            Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Numerics.BitCombinationGenerator`1">
+            <summary>
+            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="bitCount">Indicates the number of bits.</param>
+            <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
+        </member>
+        <member name="M:System.Numerics.BitCombinationGenerator`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
+            </summary>
+            <typeparam name="T">The type of the target value.</typeparam>
+            <param name="bitCount">Indicates the number of bits.</param>
+            <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
+        </member>
+        <member name="M:System.Numerics.BitCombinationGenerator`1.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="F:System.Numerics.BitCombinationGenerator`1._bitCount">
+            <summary>
+            The generated field declaration for parameter <c>bitCount</c>.
+            </summary>
+        </member>
+        <member name="F:System.Numerics.BitCombinationGenerator`1._oneCount">
+            <summary>
+            The generated field declaration for parameter <c>oneCount</c>.
+            </summary>
+        </member>
+        <member name="M:System.Numerics.BitCombinationGenerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationGenerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationGenerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
@@ -4000,15 +4088,16 @@
             Represents a list of methods that operates with bits.
             </summary>
         </member>
-        <member name="M:System.Numerics.Bits.EnumerateOf(System.Int32,System.Int32)">
+        <member name="M:System.Numerics.Bits.EnumerateOf``1(System.Int32,System.Int32)">
             <summary>
-            Creates a <see cref="T:System.Numerics.MaskCombinationGenerator"/> instance that can generate a list of <see cref="T:System.Int64"/>
+            Creates a <see cref="T:System.Numerics.BitCombinationGenerator`1"/> instance that can generate a list of <see cref="T:System.Int64"/>
             values that are all possibilities of combinations of integer values containing specified number of bits,
             and the specified number of bits set 1.
             </summary>
+            <typeparam name="T">The type of target value.</typeparam>
             <param name="bitCount">Indicates how many bits should be enumerated.</param>
             <param name="oneCount">Indicates how many bits set one contained in the value.</param>
-            <returns>A <see cref="T:System.Numerics.MaskCombinationGenerator"/> instance.</returns>
+            <returns>A <see cref="T:System.Numerics.BitCombinationGenerator`1"/> instance.</returns>
         </member>
         <member name="T:System.Numerics.Combinatorial">
             <summary>
@@ -4236,90 +4325,6 @@
         </member>
         <member name="M:System.Numerics.Int64Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
-        </member>
-        <member name="T:System.Numerics.MaskCombinationEnumerator">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Indicates the enumerator of the current instance.
-            </summary>
-            <param name="bitCount">The number of bits.</param>
-            <param name="oneCount">The number of <see langword="true"/> bits.</param>
-        </member>
-        <member name="F:System.Numerics.MaskCombinationEnumerator._mask">
-            <summary>
-            The mask.
-            </summary>
-        </member>
-        <member name="F:System.Numerics.MaskCombinationEnumerator._isLast">
-            <summary>
-            Indicates whether that the value is the last one.
-            </summary>
-        </member>
-        <member name="P:System.Numerics.MaskCombinationEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.Numerics.MaskCombinationEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationEnumerator.HasNext">
-            <summary>
-            Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.Numerics.MaskCombinationGenerator">
-            <summary>
-            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
-            </summary>
-            <param name="bitCount">Indicates the number of bits.</param>
-            <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationGenerator.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a combination generator that iterations each combination of bits for the specified number of bits, and how many 1's in it.
-            </summary>
-            <param name="bitCount">Indicates the number of bits.</param>
-            <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationGenerator.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="F:System.Numerics.MaskCombinationGenerator._bitCount">
-            <summary>
-            The generated field declaration for parameter <c>bitCount</c>.
-            </summary>
-        </member>
-        <member name="F:System.Numerics.MaskCombinationGenerator._oneCount">
-            <summary>
-            The generated field declaration for parameter <c>oneCount</c>.
-            </summary>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.Numerics.MaskCombinationGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Numerics.NativeIntegerEnumerator">
             <summary>
