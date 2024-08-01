@@ -1203,7 +1203,6 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardianCoveredHouse = houseCombination[(HousesMap[houseCombination[0]] & guardianCells) == guardianCells ? 0 : 1];
 			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
 			{
 				// Guardian cells must contain both two digits; otherwise, skip the current case.
@@ -1307,7 +1306,14 @@ public partial class UniqueRectangleStepSearcher
 					accumulator.Add(
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
-							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(ColorIdentifier.Normal, guardianCoveredHouse)]],
+							[
+								[
+									.. candidateOffsets,
+									.. cellOffsets,
+									new HouseViewNode(ColorIdentifier.Normal, houseCombination[0]),
+									new HouseViewNode(ColorIdentifier.Normal, houseCombination[1])
+								]
+							],
 							context.Options,
 							d1,
 							d2,
