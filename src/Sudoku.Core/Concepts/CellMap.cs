@@ -140,7 +140,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public int Count { get; private set; }
+	public readonly int Count => PopCount((ulong)_low) + PopCount((ulong)_high);
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -590,12 +590,7 @@ public partial struct CellMap : CellMapBase
 		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(item);
 		v |= 1L << item % Shifting;
-		if (!older)
-		{
-			Count++;
-			return true;
-		}
-		return false;
+		return !older;
 	}
 
 	/// <inheritdoc/>
@@ -623,12 +618,7 @@ public partial struct CellMap : CellMapBase
 		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(item);
 		v &= ~(1L << item % Shifting);
-		if (older)
-		{
-			Count--;
-			return true;
-		}
-		return false;
+		return older;
 	}
 
 	/// <inheritdoc/>
@@ -774,7 +764,7 @@ public partial struct CellMap : CellMapBase
 	public static CellMap CreateByBits(long high, long low)
 	{
 		Unsafe.SkipInit<CellMap>(out var result);
-		(result._high, result._low, result.Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
+		(result._high, result._low) = (high, low);
 		return result;
 	}
 
