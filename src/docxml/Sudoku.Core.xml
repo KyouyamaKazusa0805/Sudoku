@@ -5859,10 +5859,10 @@
         </member>
         <member name="M:Sudoku.Linq.ViewEnumerable.OfType``1(Sudoku.Drawing.View)">
             <summary>
-            Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+            Filters the view nodes, only returns nodes of type <typeparamref name="TViewNode"/>.
             </summary>
-            <typeparam name="T">The type of the node.</typeparam>
-            <returns>The target collection of element type <typeparamref name="T"/>.</returns>
+            <typeparam name="TViewNode">The type of the node.</typeparam>
+            <returns>The target collection of element type <typeparamref name="TViewNode"/>.</returns>
         </member>
         <member name="M:Sudoku.Linq.ViewEnumerable.First(Sudoku.Drawing.View,System.Func{Sudoku.Drawing.ViewNode,System.Boolean})">
             <returns>
@@ -8855,7 +8855,7 @@
             <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create``1(``0)">
-            <typeparam name="T">The type of the enumerable sequence.</typeparam>
+            <typeparam name="TDigits">The type of the enumerable sequence.</typeparam>
             <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToDigits(System.Int16)">

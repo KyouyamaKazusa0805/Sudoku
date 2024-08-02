@@ -18,7 +18,7 @@ public static partial class BitOperationsExtensions
 	public static partial ReadOnlySpan<int> GetAllSets(this UInt128 @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this nint @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this nuint @this);
-	public static partial ReadOnlySpan<int> GetAllSets<T>(this T @this) where T : IBinaryInteger<T>;
+	public static partial ReadOnlySpan<int> GetAllSets<TInteger>(this TInteger @this) where TInteger : IBinaryInteger<TInteger>;
 
 	public static partial Int32Enumerator GetEnumerator(this sbyte @this);
 	public static partial Int32Enumerator GetEnumerator(this byte @this);
@@ -32,16 +32,19 @@ public static partial class BitOperationsExtensions
 	public static partial Int128Enumerator GetEnumerator(this UInt128 @this);
 	public static partial NativeIntegerEnumerator GetEnumerator(this nint @this);
 	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this);
-	public static partial GenericNumberEnumerator<TNumber> GetEnumerator<TNumber>(this TNumber @this)
+	public static partial GenericIntegerEnumerator<TInteger> GetEnumerator<TInteger>(this TInteger @this)
 #if NUMERIC_GENERIC_TYPE
-		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
+		where TInteger :
+			IBitwiseOperators<TInteger, TInteger, TInteger>,
+			INumber<TInteger>,
+			IShiftOperators<TNumber, int, TInteger>
 #else
-		where TNumber :
-			IAdditiveIdentity<TNumber, TNumber>,
-			IBitwiseOperators<TNumber, TNumber, TNumber>,
-			IEqualityOperators<TNumber, TNumber, bool>,
-			IMultiplicativeIdentity<TNumber, TNumber>,
-			IShiftOperators<TNumber, int, TNumber>
+		where TInteger :
+			IAdditiveIdentity<TInteger, TInteger>,
+			IBitwiseOperators<TInteger, TInteger, TInteger>,
+			IEqualityOperators<TInteger, TInteger, bool>,
+			IMultiplicativeIdentity<TInteger, TInteger>,
+			IShiftOperators<TInteger, int, TInteger>
 #endif
 		;
 

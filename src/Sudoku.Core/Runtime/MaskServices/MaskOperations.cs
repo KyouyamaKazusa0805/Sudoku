@@ -27,9 +27,9 @@ public static class MaskOperations
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Mask Create(Digit[] digits) => Create(digits.AsReadOnlySpan());
 
-	/// <typeparam name="T">The type of the enumerable sequence.</typeparam>
+	/// <typeparam name="TDigits">The type of the enumerable sequence.</typeparam>
 	/// <inheritdoc cref="Create(ReadOnlySpan{Digit})"/>
-	public static Mask Create<T>(T digits) where T : IEnumerable<Digit>, allows ref struct
+	public static Mask Create<TDigits>(TDigits digits) where TDigits : IEnumerable<Digit>, allows ref struct
 	{
 		var result = (Mask)0;
 		foreach (var digit in digits)

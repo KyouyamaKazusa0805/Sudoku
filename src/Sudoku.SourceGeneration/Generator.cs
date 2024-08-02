@@ -65,22 +65,23 @@ public sealed class Generator : IIncrementalGenerator
 file static class CommonMethods
 {
 	/// <summary>
-	/// Determine whether the specified <see cref="SyntaxNode"/> is of type <typeparamref name="T"/>.
+	/// Determine whether the specified <see cref="SyntaxNode"/> is of type <typeparamref name="TSyntaxNode"/>.
 	/// </summary>
-	/// <typeparam name="T">The possible type of the node.</typeparam>
+	/// <typeparam name="TSyntaxNode">The possible type of the node.</typeparam>
 	/// <param name="node">Indicates the target node.</param>
 	/// <param name="_"/>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool SyntaxNodeTypePredicate<T>(SyntaxNode node, CancellationToken _) where T : SyntaxNode => node is T;
+	public static bool SyntaxNodeTypePredicate<TSyntaxNode>(SyntaxNode node, CancellationToken _)
+		where TSyntaxNode : SyntaxNode => node is TSyntaxNode;
 
 	/// <summary>
 	/// Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.
 	/// </summary>
-	/// <typeparam name="T">The type of the declaration syntax node.</typeparam>
+	/// <typeparam name="TSyntaxNode">The type of the declaration syntax node.</typeparam>
 	/// <param name="node">The node to be determined.</param>
 	/// <param name="_"/>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool IsPartialTypePredicate<T>(T node, CancellationToken _) where T : SyntaxNode
+	public static bool IsPartialTypePredicate<TSyntaxNode>(TSyntaxNode node, CancellationToken _) where TSyntaxNode : SyntaxNode
 		=> node is BaseTypeDeclarationSyntax { Modifiers: var modifiers and not [] } && modifiers.Any(SyntaxKind.PartialKeyword);
 
 	/// <summary>

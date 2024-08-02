@@ -88,7 +88,7 @@ public static class ListExtensions
 	/// <summary>
 	/// Determines whether two sequences are equal by comparing the elements by using <see cref="IEquatable{T}.Equals(T)"/> for their type.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TEquatable">The type of each element.</typeparam>
 	/// <param name="this">A <see cref="List{T}"/> to compare to <paramref name="other"/>.</param>
 	/// <param name="other">A <see cref="List{T}"/> to compare to <paramref name="this"/>.</param>
 	/// <returns>
@@ -96,7 +96,8 @@ public static class ListExtensions
 	/// to <see cref="IEquatable{T}.Equals(T)"/> for their type; otherwise, <see langword="false"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SequenceEqual<T>(this List<T> @this, List<T> other) where T : IEquatable<T>
+	public static bool SequenceEqual<TEquatable>(this List<TEquatable> @this, List<TEquatable> other)
+		where TEquatable : IEquatable<TEquatable>
 		=> @this.AsReadOnlySpan().SequenceEqual(other.AsReadOnlySpan());
 
 	/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>

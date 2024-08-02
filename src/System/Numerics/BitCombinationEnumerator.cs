@@ -3,29 +3,29 @@ namespace System.Numerics;
 /// <summary>
 /// Indicates the enumerator of the current instance.
 /// </summary>
-/// <typeparam name="T">The type of the target value.</typeparam>
+/// <typeparam name="TInteger">The type of the target integer value.</typeparam>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnumerator<T>
+public ref struct BitCombinationEnumerator<TInteger>(int bitCount, int oneCount) : IEnumerator<TInteger>
 #if NUMERIC_GENERIC_TYPE
-	where T : IBinaryInteger<T>
+	where TInteger : IBinaryInteger<TInteger>
 #else
-	where T :
-		IAdditionOperators<T, T, T>,
-		IAdditiveIdentity<T, T>,
-		IBitwiseOperators<T, T, T>,
-		IDivisionOperators<T, T, T>,
-		IEqualityOperators<T, T, bool>,
-		IMultiplicativeIdentity<T, T>,
-		IUnaryNegationOperators<T, T>,
-		IShiftOperators<T, int, T>,
-		ISubtractionOperators<T, T, T>
+	where TInteger :
+		IAdditionOperators<TInteger, TInteger, TInteger>,
+		IAdditiveIdentity<TInteger, TInteger>,
+		IBitwiseOperators<TInteger, TInteger, TInteger>,
+		IDivisionOperators<TInteger, TInteger, TInteger>,
+		IEqualityOperators<TInteger, TInteger, bool>,
+		IMultiplicativeIdentity<TInteger, TInteger>,
+		IUnaryNegationOperators<TInteger, TInteger>,
+		IShiftOperators<TInteger, int, TInteger>,
+		ISubtractionOperators<TInteger, TInteger, TInteger>
 #endif
 {
 	/// <summary>
 	/// The mask.
 	/// </summary>
-	private readonly T _mask = (T.MultiplicativeIdentity << bitCount - oneCount) - T.MultiplicativeIdentity;
+	private readonly TInteger _mask = (TInteger.MultiplicativeIdentity << bitCount - oneCount) - TInteger.MultiplicativeIdentity;
 
 	/// <summary>
 	/// Indicates whether that the value is the last one.
@@ -34,7 +34,7 @@ public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnu
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public T Current { get; private set; } = (T.MultiplicativeIdentity << oneCount) - T.MultiplicativeIdentity;
+	public TInteger Current { get; private set; } = (TInteger.MultiplicativeIdentity << oneCount) - TInteger.MultiplicativeIdentity;
 
 	/// <inheritdoc/>
 	readonly object IEnumerator.Current => Current;
@@ -71,7 +71,7 @@ public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnu
 	private bool HasNext()
 	{
 		var result = !_isLast;
-		_isLast = (Current & -Current & _mask) == T.AdditiveIdentity;
+		_isLast = (Current & -Current & _mask) == TInteger.AdditiveIdentity;
 		return result;
 	}
 }

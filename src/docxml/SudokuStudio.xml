@@ -139,7 +139,7 @@
             <summary>
             Try to get main window the program uses. This operation can be used for locating pages.
             </summary>
-            <typeparam name="T">The type of the calling instance.</typeparam>
+            <typeparam name="TUIElement">The type of the calling instance.</typeparam>
             <param name="this">The instance of the control itself.</param>
             <returns>The <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> found.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the main window isn't found.</exception>
@@ -3306,7 +3306,7 @@
             <summary>
             The template method for view nodes.
             </summary>
-            <typeparam name="T">The type of the node.</typeparam>
+            <typeparam name="TViewNode">The type of the node.</typeparam>
             <param name="control">The control to be checked.</param>
             <param name="tagMatcher">
             The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
@@ -10587,7 +10587,7 @@
             Sets the specified property in a <see cref="T:Sudoku.Analytics.StepSearcher"/> with the target value via attached properties
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
-            <typeparam name="T">The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.AnalyzerOrCollector"/>.</typeparam>
+            <typeparam name="TAnalyzerOrCollector">The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.AnalyzerOrCollector"/>.</typeparam>
             <param name="this">The analyzer instance.</param>
             <param name="attachedPropertyValue">The attached property.</param>
             <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
@@ -14782,7 +14782,7 @@
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> object for comparison operator displaying.
             </summary>
-            <typeparam name="T">The type of the constraint.</typeparam>
+            <typeparam name="TConstraint">The type of the constraint.</typeparam>
             <param name="operator">The operator value.</param>
             <param name="constraint">The constraint.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.</returns>
@@ -14791,7 +14791,7 @@
             <summary>
             Creates an <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> object for limit count displaying.
             </summary>
-            <typeparam name="T">The type of the constraint.</typeparam>
+            <typeparam name="TConstraint">The type of the constraint.</typeparam>
             <param name="limitCount">The limit count.</param>
             <param name="constraint">The constraint.</param>
             <returns>An <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> instance.</returns>

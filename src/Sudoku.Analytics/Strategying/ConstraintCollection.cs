@@ -38,11 +38,11 @@ public sealed class ConstraintCollection :
 
 
 	/// <inheritdoc/>
-	public bool Has<T>() where T : Constraint
+	public bool Has<TConstraint>() where TConstraint : Constraint
 	{
 		foreach (var element in this)
 		{
-			if (element is T)
+			if (element is TConstraint)
 			{
 				return true;
 			}

@@ -211,18 +211,18 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
-	public static partial ReadOnlySpan<int> GetAllSets<T>(this T @this) where T : IBinaryInteger<T>
+	public static partial ReadOnlySpan<int> GetAllSets<TInteger>(this TInteger @this) where TInteger : IBinaryInteger<TInteger>
 	{
-		if (@this == T.Zero)
+		if (@this == TInteger.Zero)
 		{
 			return [];
 		}
 
-		var (result, p) = (new int[int.CreateChecked(T.PopCount(@this))], 0);
-		while (@this != T.Zero)
+		var (result, p) = (new int[int.CreateChecked(TInteger.PopCount(@this))], 0);
+		while (@this != TInteger.Zero)
 		{
-			result[p++] = int.CreateChecked(T.TrailingZeroCount(@this));
-			@this &= @this - T.One;
+			result[p++] = int.CreateChecked(TInteger.TrailingZeroCount(@this));
+			@this &= @this - TInteger.One;
 		}
 		return result;
 	}

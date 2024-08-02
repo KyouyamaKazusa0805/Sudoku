@@ -5782,7 +5782,7 @@
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
-            <typeparam name="T">The type of the step searcher.</typeparam>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
             <param name="level">
             Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
             The value can be 0, 1, 2, 3 and 4.
@@ -5793,7 +5793,7 @@
             Defines an attribute that can be applied to the solving assembly,
             to tell the source generator that the searcher option instance will be generated in the specified type.
             </summary>
-            <typeparam name="T">The type of the step searcher.</typeparam>
+            <typeparam name="TStepSearcher">The type of the step searcher.</typeparam>
             <param name="level">
             Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
             The value can be 0, 1, 2, 3 and 4.
@@ -23049,11 +23049,11 @@
         </member>
         <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Cast``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
-            Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> instances.
+            Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TStep"/> instances.
             </summary>
-            <typeparam name="T">The type of each element casted.</typeparam>
+            <typeparam name="TStep">The type of each element casted.</typeparam>
             <param name="this">The instance to be casted.</param>
-            <returns>A list of <typeparamref name="T"/> instances.</returns>
+            <returns>A list of <typeparamref name="TStep"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Where(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
@@ -23076,11 +23076,11 @@
         </member>
         <member name="M:Sudoku.Linq.AnalysisResultEnumerable.OfType``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
-            Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
+            Filters the current collection, preserving steps that are of type <typeparamref name="TStep"/>.
             </summary>
-            <typeparam name="T">The type of the step you want to get.</typeparam>
+            <typeparam name="TStep">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
-            <returns>An array of <typeparamref name="T"/> instances.</returns>
+            <returns>An array of <typeparamref name="TStep"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
             <summary>

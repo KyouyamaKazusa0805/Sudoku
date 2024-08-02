@@ -11,11 +11,10 @@ public static class RunExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Run"/> instance.</param>
 	/// <returns>A <see cref="Bold"/> instance.</returns>
-	public static T SingletonSpan<T>(this Run @this) where T : Span, new()
+	public static TSpan SingletonSpan<TSpan>(this Run @this) where TSpan : Span, new()
 	{
-		var result = new T();
+		var result = new TSpan();
 		result.Inlines.Add(@this);
-
 		return result;
 	}
 }

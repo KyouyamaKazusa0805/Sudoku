@@ -313,20 +313,21 @@ file static class Filters
 	/// <summary>
 	/// The template method for view nodes.
 	/// </summary>
-	/// <typeparam name="T">The type of the node.</typeparam>
+	/// <typeparam name="TViewNode">The type of the node.</typeparam>
 	/// <param name="control">The control to be checked.</param>
 	/// <param name="tagMatcher">
 	/// The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool TemplateMethod<T>(FrameworkElement control, Func<string, string, bool> tagMatcher) where T : ViewNode
+	private static bool TemplateMethod<TViewNode>(FrameworkElement control, Func<string, string, bool> tagMatcher)
+		where TViewNode : ViewNode
 	{
 		if (control.Tag is not string s)
 		{
 			return false;
 		}
 
-		foreach (var element in ViewNodeTagPrefixes[typeof(T)])
+		foreach (var element in ViewNodeTagPrefixes[typeof(TViewNode)])
 		{
 			if (tagMatcher(s, element))
 			{

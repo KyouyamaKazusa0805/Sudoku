@@ -67,21 +67,21 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial GenericNumberEnumerator<TNumber> GetEnumerator<TNumber>(this TNumber @this)
+	public static partial GenericIntegerEnumerator<TInteger> GetEnumerator<TInteger>(this TInteger @this)
 #if NUMERIC_GENERIC_TYPE
 		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
 #else
-		where TNumber :
-			IAdditiveIdentity<TNumber, TNumber>,
-			IBitwiseOperators<TNumber, TNumber, TNumber>,
-			IEqualityOperators<TNumber, TNumber, bool>,
-			IMultiplicativeIdentity<TNumber, TNumber>,
-			IShiftOperators<TNumber, int, TNumber>
+		where TInteger :
+			IAdditiveIdentity<TInteger, TInteger>,
+			IBitwiseOperators<TInteger, TInteger, TInteger>,
+			IEqualityOperators<TInteger, TInteger, bool>,
+			IMultiplicativeIdentity<TInteger, TInteger>,
+			IShiftOperators<TInteger, int, TInteger>
 #endif
 	{
 		unsafe
 		{
-			return new(@this, sizeof(TNumber) << 3);
+			return new(@this, sizeof(TInteger) << 3);
 		}
 	}
 }

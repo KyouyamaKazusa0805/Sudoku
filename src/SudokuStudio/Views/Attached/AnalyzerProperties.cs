@@ -194,7 +194,7 @@ public static partial class AnalyzerProperties
 	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the instance. The type must implement <see cref="AnalyzerOrCollector"/>.</typeparam>
+	/// <typeparam name="TAnalyzerOrCollector">The type of the instance. The type must implement <see cref="AnalyzerOrCollector"/>.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPropertyValue">The attached property.</param>
 	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
@@ -204,8 +204,8 @@ public static partial class AnalyzerProperties
 	/// </param>
 	/// <returns>The same reference as <paramref name="this"/>.</returns>
 	/// <seealso cref="AnalyzerProperties"/>
-	public static T WithRuntimeIdentifierSetter<T>(this T @this, object attachedPropertyValue, string methodName, out bool propertyMatched)
-		where T : AnalyzerOrCollector
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetter<TAnalyzerOrCollector>(this TAnalyzerOrCollector @this, object attachedPropertyValue, string methodName, out bool propertyMatched)
+		where TAnalyzerOrCollector : AnalyzerOrCollector
 	{
 		var targetStepSearcherCollection = @this.ResultStepSearchers;
 		foreach (var searcher in targetStepSearcherCollection)
@@ -236,7 +236,7 @@ public static partial class AnalyzerProperties
 	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
 	/// <seealso cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
-	public static T WithRuntimeIdentifierSetters<T>(this T @this, SudokuPane attachedPane) where T : AnalyzerOrCollector
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector>(this TAnalyzerOrCollector @this, SudokuPane attachedPane) where TAnalyzerOrCollector : AnalyzerOrCollector
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{
@@ -410,6 +410,6 @@ public static partial class AnalyzerProperties
 		analyzer.WithAlgorithmLimits(analyzer.IgnoreSlowAlgorithms, (bool)e.NewValue);
 	}
 
-	private static void A<T>(DependencyObject d, Action<T> action) where T : StepSearcher
+	private static void A<TStepSearcher>(DependencyObject d, Action<TStepSearcher> action) where TStepSearcher : StepSearcher
 		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithStepSearcherSetters(action);
 }

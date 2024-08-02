@@ -9,7 +9,7 @@ internal static class GraphicsExtensions
 	/// <summary>
 	/// Draw the string representation of an instance onto the current <see cref="Graphics"/> instance.
 	/// </summary>
-	/// <typeparam name="T">The type of the value to draw.</typeparam>
+	/// <typeparam name="TFormattable">The type of the value to draw.</typeparam>
 	/// <param name="this">The graphics instance.</param>
 	/// <param name="value">The value to drawing onto.</param>
 	/// <param name="font">The font.</param>
@@ -17,8 +17,8 @@ internal static class GraphicsExtensions
 	/// <param name="point">The point.</param>
 	/// <param name="stringFormat">The string format instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DrawValue<T>(this Graphics @this, T value, Font font, Brush brush, PointF point, StringFormat stringFormat)
-		where T : IFormattable, allows ref struct
+	public static void DrawValue<TFormattable>(this Graphics @this, TFormattable value, Font font, Brush brush, PointF point, StringFormat stringFormat)
+		where TFormattable : IFormattable, allows ref struct
 		=> @this.DrawString(value.ToString(null, null), font, brush, point, stringFormat);
 
 	/// <summary>

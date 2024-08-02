@@ -958,12 +958,12 @@ public partial class GeneratedPuzzleConstraintPage
 	/// <summary>
 	/// Creates a <see cref="ComboBox"/> object for comparison operator displaying.
 	/// </summary>
-	/// <typeparam name="T">The type of the constraint.</typeparam>
+	/// <typeparam name="TConstraint">The type of the constraint.</typeparam>
 	/// <param name="operator">The operator value.</param>
 	/// <param name="constraint">The constraint.</param>
 	/// <returns>A <see cref="ComboBox"/> instance.</returns>
-	private static ComboBox ComparisonOperatorControl<T>(ComparisonOperator @operator, T constraint)
-		where T : Constraint, IComparisonOperatorConstraint
+	private static ComboBox ComparisonOperatorControl<TConstraint>(ComparisonOperator @operator, TConstraint constraint)
+		where TConstraint : Constraint, IComparisonOperatorConstraint
 	{
 		var operatorControl = new ComboBox
 		{
@@ -1011,17 +1011,18 @@ public partial class GeneratedPuzzleConstraintPage
 	/// <summary>
 	/// Creates an <see cref="IntegerBox"/> object for limit count displaying.
 	/// </summary>
-	/// <typeparam name="T">The type of the constraint.</typeparam>
+	/// <typeparam name="TConstraint">The type of the constraint.</typeparam>
 	/// <param name="limitCount">The limit count.</param>
 	/// <param name="constraint">The constraint.</param>
 	/// <returns>An <see cref="IntegerBox"/> instance.</returns>
-	private static IntegerBox LimitCountControl<T>(int limitCount, T constraint) where T : Constraint, ILimitCountConstraint<int>
+	private static IntegerBox LimitCountControl<TConstraint>(int limitCount, TConstraint constraint)
+		where TConstraint : Constraint, ILimitCountConstraint<int>
 	{
 		var limitCountControl = new IntegerBox
 		{
 			Width = 150,
-			Minimum = T.Minimum,
-			Maximum = T.Maximum,
+			Minimum = TConstraint.Minimum,
+			Maximum = TConstraint.Maximum,
 			Value = limitCount,
 			VerticalAlignment = VerticalAlignment.Center
 		};
@@ -1082,8 +1083,8 @@ file static class Extensions
 	public static string GetTechniqueString(this TechniqueSet @this)
 		=> @this switch
 		{
-			[] => SR.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
-			[var technique] => technique.GetName(App.CurrentCulture),
+		[] => SR.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
+		[var technique] => technique.GetName(App.CurrentCulture),
 			_ => string.Join(
 				SR.Get("_Token_Comma", App.CurrentCulture),
 				from technique in @this select technique.GetName(App.CurrentCulture)

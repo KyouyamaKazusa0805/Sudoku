@@ -43,13 +43,14 @@ public static class AnalysisResultEnumerable
 	}
 
 	/// <summary>
-	/// Cast the object into a <see cref="ReadOnlySpan{T}"/> of <typeparamref name="T"/> instances.
+	/// Cast the object into a <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TStep"/> instances.
 	/// </summary>
-	/// <typeparam name="T">The type of each element casted.</typeparam>
+	/// <typeparam name="TStep">The type of each element casted.</typeparam>
 	/// <param name="this">The instance to be casted.</param>
-	/// <returns>A list of <typeparamref name="T"/> instances.</returns>
+	/// <returns>A list of <typeparamref name="TStep"/> instances.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<T> Cast<T>(this AnalysisResult @this) where T : Step => from element in @this select (T)element;
+	public static ReadOnlySpan<TStep> Cast<TStep>(this AnalysisResult @this) where TStep : Step
+		=> from element in @this select (TStep)element;
 
 	/// <summary>
 	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition.
@@ -103,22 +104,22 @@ public static class AnalysisResultEnumerable
 	}
 
 	/// <summary>
-	/// Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
+	/// Filters the current collection, preserving steps that are of type <typeparamref name="TStep"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the step you want to get.</typeparam>
+	/// <typeparam name="TStep">The type of the step you want to get.</typeparam>
 	/// <param name="this">The instance.</param>
-	/// <returns>An array of <typeparamref name="T"/> instances.</returns>
-	public static ReadOnlySpan<T> OfType<T>(this AnalysisResult @this) where T : Step
+	/// <returns>An array of <typeparamref name="TStep"/> instances.</returns>
+	public static ReadOnlySpan<TStep> OfType<TStep>(this AnalysisResult @this) where TStep : Step
 	{
 		if (@this.InterimSteps is not { Length: var stepsCount } steps)
 		{
 			return [];
 		}
 
-		var list = new List<T>(stepsCount);
+		var list = new List<TStep>(stepsCount);
 		foreach (var element in steps)
 		{
-			if (element is T current)
+			if (element is TStep current)
 			{
 				list.Add(current);
 			}

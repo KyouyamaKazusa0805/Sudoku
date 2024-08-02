@@ -145,10 +145,10 @@ public sealed partial class SingleCountingPracticingPage : Page
 			}
 
 
-			static bool g<T>(ConclusionCellAlignment alignment, out Grid result, out Candidate targetCandidate)
-				where T : PrimaryGenerator, new()
+			static bool g<TPrimaryGenerator>(ConclusionCellAlignment alignment, out Grid result, out Candidate targetCandidate)
+				where TPrimaryGenerator : PrimaryGenerator, new()
 			{
-				var generator = new T { Alignment = alignment };
+				var generator = new TPrimaryGenerator { Alignment = alignment };
 				if (generator.TryGenerateJustOneCell(out var p, out var step) && step is SingleStep { Cell: var c, Digit: var d })
 				{
 					(targetCandidate, result) = (c * 9 + d, p);

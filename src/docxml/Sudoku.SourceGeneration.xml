@@ -62,9 +62,9 @@
         </member>
         <member name="M:Sudoku.SourceGeneration.CommonMethods.SyntaxNodeTypePredicate``1(Microsoft.CodeAnalysis.SyntaxNode,System.Threading.CancellationToken)">
             <summary>
-            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="T"/>.
+            Determine whether the specified <see cref="T:Microsoft.CodeAnalysis.SyntaxNode"/> is of type <typeparamref name="TSyntaxNode"/>.
             </summary>
-            <typeparam name="T">The possible type of the node.</typeparam>
+            <typeparam name="TSyntaxNode">The possible type of the node.</typeparam>
             <param name="node">Indicates the target node.</param>
             <param name="_"/>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
@@ -73,7 +73,7 @@
             <summary>
             Determine whether the specified type declaration syntax node contains a <see langword="partial"/> modifier.
             </summary>
-            <typeparam name="T">The type of the declaration syntax node.</typeparam>
+            <typeparam name="TSyntaxNode">The type of the declaration syntax node.</typeparam>
             <param name="node">The node to be determined.</param>
             <param name="_"/>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>

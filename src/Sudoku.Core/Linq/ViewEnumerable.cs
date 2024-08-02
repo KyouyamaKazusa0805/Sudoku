@@ -43,16 +43,16 @@ public static class ViewEnumerable
 	}
 
 	/// <summary>
-	/// Filters the view nodes, only returns nodes of type <typeparamref name="T"/>.
+	/// Filters the view nodes, only returns nodes of type <typeparamref name="TViewNode"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the node.</typeparam>
-	/// <returns>The target collection of element type <typeparamref name="T"/>.</returns>
-	public static ReadOnlySpan<T> OfType<T>(this View @this) where T : ViewNode
+	/// <typeparam name="TViewNode">The type of the node.</typeparam>
+	/// <returns>The target collection of element type <typeparamref name="TViewNode"/>.</returns>
+	public static ReadOnlySpan<TViewNode> OfType<TViewNode>(this View @this) where TViewNode : ViewNode
 	{
-		var result = new List<T>();
+		var result = new List<TViewNode>();
 		foreach (var node in @this)
 		{
-			if (node is T casted)
+			if (node is TViewNode casted)
 			{
 				result.Add(casted);
 			}

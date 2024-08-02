@@ -641,8 +641,8 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>,
 		return result;
 
 
-		static bool tryReadBigEndian<T>(ReadOnlySpan<byte> source, bool isUnsigned, out T value) where T : IBinaryInteger<T>
-			=> T.TryReadBigEndian(source, isUnsigned, out value);
+		static bool tryReadBigEndian<TBinaryInteger>(ReadOnlySpan<byte> source, bool isUnsigned, out TBinaryInteger value)
+			where TBinaryInteger : IBinaryInteger<TBinaryInteger> => TBinaryInteger.TryReadBigEndian(source, isUnsigned, out value);
 	}
 
 	/// <inheritdoc/>
@@ -653,8 +653,8 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>,
 		return result;
 
 
-		static bool tryReadLittleEndian<T>(ReadOnlySpan<byte> source, bool isUnsigned, out T value) where T : IBinaryInteger<T>
-			=> T.TryReadLittleEndian(source, isUnsigned, out value);
+		static bool tryReadLittleEndian<TBinaryInteger>(ReadOnlySpan<byte> source, bool isUnsigned, out TBinaryInteger value)
+			where TBinaryInteger : IBinaryInteger<TBinaryInteger> => TBinaryInteger.TryReadLittleEndian(source, isUnsigned, out value);
 	}
 
 	/// <inheritdoc/>

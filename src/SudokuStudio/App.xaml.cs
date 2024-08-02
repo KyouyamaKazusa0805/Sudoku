@@ -315,11 +315,11 @@ public partial class App : Application
 	/// <summary>
 	/// Try to get main window the program uses. This operation can be used for locating pages.
 	/// </summary>
-	/// <typeparam name="T">The type of the calling instance.</typeparam>
+	/// <typeparam name="TUIElement">The type of the calling instance.</typeparam>
 	/// <param name="this">The instance of the control itself.</param>
 	/// <returns>The <see cref="MainWindow"/> found.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the main window isn't found.</exception>
-	internal static MainWindow GetMainWindow<T>(T @this) where T : UIElement
+	internal static MainWindow GetMainWindow<TUIElement>(TUIElement @this) where TUIElement : UIElement
 		=> ((App)Current).WindowManager.GetWindowForElement(@this) switch
 		{
 			MainWindow mainWindow => mainWindow,

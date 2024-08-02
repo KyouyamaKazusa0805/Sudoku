@@ -9,15 +9,16 @@ public static class SpanEnumerable
 	/// <summary>
 	/// Try to get the minimal value appeared in the collection.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TNumber">The type of each element.</typeparam>
 	/// <param name="this">
 	/// <para>The collection to be used and checked.</para>
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The minimal value.</returns>
-	public static T Min<T>(this scoped ReadOnlySpan<T> @this) where T : INumber<T>, IMinMaxValue<T>
+	public static TNumber Min<TNumber>(this scoped ReadOnlySpan<TNumber> @this)
+		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
-		var result = T.MaxValue;
+		var result = TNumber.MaxValue;
 		foreach (var element in @this)
 		{
 			if (element <= result)
@@ -72,15 +73,16 @@ public static class SpanEnumerable
 	/// <summary>
 	/// Try to get the minimal value appeared in the collection.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TNumber">The type of each element.</typeparam>
 	/// <param name="this">
 	/// <para>The collection to be used and checked.</para>
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The minimal value.</returns>
-	public static T Max<T>(this scoped ReadOnlySpan<T> @this) where T : INumber<T>, IMinMaxValue<T>
+	public static TNumber Max<TNumber>(this scoped ReadOnlySpan<TNumber> @this)
+		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
-		var result = T.MinValue;
+		var result = TNumber.MinValue;
 		foreach (var element in @this)
 		{
 			if (element >= result)

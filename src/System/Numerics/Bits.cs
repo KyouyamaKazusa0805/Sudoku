@@ -10,25 +10,25 @@ public static class Bits
 	/// values that are all possibilities of combinations of integer values containing specified number of bits,
 	/// and the specified number of bits set 1.
 	/// </summary>
-	/// <typeparam name="T">The type of target value.</typeparam>
+	/// <typeparam name="TInteger">The type of target integer value.</typeparam>
 	/// <param name="bitCount">Indicates how many bits should be enumerated.</param>
 	/// <param name="oneCount">Indicates how many bits set one contained in the value.</param>
 	/// <returns>A <see cref="BitCombinationGenerator{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static BitCombinationGenerator<T> EnumerateOf<T>(int bitCount, int oneCount)
+	public static BitCombinationGenerator<TInteger> EnumerateOf<TInteger>(int bitCount, int oneCount)
 #if NUMERIC_GENERIC_TYPE
-		where T : IBinaryInteger<T>
+		where TInteger : IBinaryInteger<TInteger>
 #else
-		where T :
-			IAdditionOperators<T, T, T>,
-			IAdditiveIdentity<T, T>,
-			IBitwiseOperators<T, T, T>,
-			IDivisionOperators<T, T, T>,
-			IEqualityOperators<T, T, bool>,
-			IMultiplicativeIdentity<T, T>,
-			IUnaryNegationOperators<T, T>,
-			IShiftOperators<T, int, T>,
-			ISubtractionOperators<T, T, T>
+		where TInteger :
+			IAdditionOperators<TInteger, TInteger, TInteger>,
+			IAdditiveIdentity<TInteger, TInteger>,
+			IBitwiseOperators<TInteger, TInteger, TInteger>,
+			IDivisionOperators<TInteger, TInteger, TInteger>,
+			IEqualityOperators<TInteger, TInteger, bool>,
+			IMultiplicativeIdentity<TInteger, TInteger>,
+			IUnaryNegationOperators<TInteger, TInteger>,
+			IShiftOperators<TInteger, int, TInteger>,
+			ISubtractionOperators<TInteger, TInteger, TInteger>
 #endif
 		=> new(bitCount, oneCount);
 }

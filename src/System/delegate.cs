@@ -78,14 +78,15 @@ public static class @delegate
 	/// Merges two integers by bits. This method will be used by LINQ method
 	/// <see cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
+	/// <typeparam name="TBinaryInteger">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
 	/// <param name="interim">The interim value.</param>
 	/// <param name="next">The next value to be merged by its bits.</param>
 	/// <returns>The final value merged.</returns>
 	/// <seealso cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T BitMerger<T>(T interim, T next) where T : IBinaryInteger<T>, IShiftOperators<T, T, T>
-		=> interim | T.MultiplicativeIdentity << next;
+	public static TBinaryInteger BitMerger<TBinaryInteger>(TBinaryInteger interim, TBinaryInteger next)
+		where TBinaryInteger : IBinaryInteger<TBinaryInteger>, IShiftOperators<TBinaryInteger, TBinaryInteger, TBinaryInteger>
+		=> interim | TBinaryInteger.MultiplicativeIdentity << next;
 
 	/// <summary>
 	/// Merges two flags of type <typeparamref name="T"/>.

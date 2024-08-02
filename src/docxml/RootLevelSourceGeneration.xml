@@ -182,7 +182,7 @@
             <summary>
             Determines whether the specified <see cref="T:Microsoft.CodeAnalysis.ISymbol"/> instance has marked the specified attribute type.
             </summary>
-            <typeparam name="T">The type of the symbol.</typeparam>
+            <typeparam name="TSymbol">The type of the symbol.</typeparam>
             <param name="this">The instance.</param>
             <param name="attributeType">The attribute type.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
