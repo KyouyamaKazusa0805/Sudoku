@@ -52,7 +52,6 @@ public abstract partial class StepSearcher(
 	public StepSearcherMetadataInfo Metadata => new(this, GetType().GetCustomAttribute<StepSearcherAttribute>()!);
 
 
-
 	/// <summary>
 	/// Determines whether two <see cref="StepSearcher"/> instances hold a same priority value.
 	/// </summary>

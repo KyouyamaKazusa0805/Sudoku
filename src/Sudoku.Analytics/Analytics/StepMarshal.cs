@@ -15,7 +15,6 @@ public static class StepMarshal
 	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step
 		=> accumulator.Sort(Comparer<TStep>.Create(static (l, r) => l.CompareTo(r)));
 
-#pragma warning disable format
 	/// <summary>
 	/// Compares <typeparamref name="TStep"/> instances from the list collection,
 	/// removing duplicate items by using <see cref="Step.Equals(Step?)"/> to as equality comparison rules.
@@ -33,7 +32,6 @@ public static class StepMarshal
 			[var a, var b] => a == b ? [a] : [a, b],
 			_ => new HashSet<TStep>(accumulator, EqualityComparer<Step>.Create(static (a, b) => a == b, static v => v.GetHashCode()))
 		};
-#pragma warning restore format
 
 	/// <summary>
 	/// Zips the collection, pairing each step and corresponding grid into a <see cref="ValueTuple{T1, T2}"/>,
