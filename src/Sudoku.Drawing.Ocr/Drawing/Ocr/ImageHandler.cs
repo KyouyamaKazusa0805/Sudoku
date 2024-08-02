@@ -109,7 +109,9 @@ public static class ImageHandler
 	/// </typeparam>
 	/// <seealso cref="Image{TColor, TDepth}"/>
 	/// <seealso cref="Bitmap"/>
-	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap) where TColor : struct, IColor where TDepth : new()
+	public static Image<TColor, TDepth> ToImage<TColor, TDepth>(this Bitmap bitmap)
+		where TColor : struct, IColor
+		where TDepth : new()
 	{
 		var size = bitmap.Size;
 		var image = new Image<TColor, TDepth>(size);
@@ -248,10 +250,12 @@ public static class ImageHandler
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool colorIs<T>() where T : struct, IColor, allows ref struct => typeof(TColor) == typeof(T);
+		static bool colorIs<TPossibleColor>() where TPossibleColor : struct, IColor, allows ref struct
+			=> typeof(TColor) == typeof(TPossibleColor);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool depthIs<T>() where T : new(), allows ref struct => typeof(TDepth) == typeof(T);
+		static bool depthIs<TPossibleDepth>() where TPossibleDepth : new(), allows ref struct
+			=> typeof(TDepth) == typeof(TPossibleDepth);
 	}
 
 	/// <summary>

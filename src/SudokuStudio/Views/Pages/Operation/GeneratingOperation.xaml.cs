@@ -65,7 +65,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <summary>
 	/// Handle generating operation.
 	/// </summary>
-	/// <typeparam name="T">The type of the progress data provider.</typeparam>
+	/// <typeparam name="TProgressDataProvider">The type of the progress data provider.</typeparam>
 	/// <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
 	/// <param name="gridStateChanger">
 	/// The method that can change the state of the target grid. This callback method will be used for specify the grid state
@@ -73,11 +73,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// </param>
 	/// <param name="gridTextConsumer">An action that consumes the generated <see cref="string"/> grid text code.</param>
 	/// <returns>The task that holds the asynchronous operation.</returns>
-	private async Task HandleGeneratingAsync<T>(
+	private async Task HandleGeneratingAsync<TProgressDataProvider>(
 		bool onlyGenerateOne,
 		GridStateChanger<Analyzer>? gridStateChanger = null,
 		Action<string>? gridTextConsumer = null
-	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
+	) where TProgressDataProvider : struct, IEquatable<TProgressDataProvider>, IProgressDataProvider<TProgressDataProvider>
 	{
 		BasePage.IsGeneratorLaunched = true;
 		BasePage.ClearAnalyzeTabsData();
@@ -167,7 +167,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
 				=> new Generator().Generate(givens, symmetry, ct);
 
-			void progressReporter(T progress)
+			void progressReporter(TProgressDataProvider progress)
 			{
 				DispatcherQueue.TryEnqueue(dispatchingHandler);
 
@@ -183,7 +183,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		unsafe Grid coreHandler(
 			ConstraintCollection constraints,
 			delegate*<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
-			Action<T> reporter,
+			Action<TProgressDataProvider> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
 			DisorderedIttoryuFinder finder
@@ -215,7 +215,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				? d[rs.Next(0, d.Length)]
 				: DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
 
-			var progress = new SelfReportingProgress<T>(reporter);
+			var progress = new SelfReportingProgress<TProgressDataProvider>(reporter);
 
 			while (true)
 			{
@@ -281,7 +281,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 
 			ReportState:
-				progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
+				progress.Report(TProgressDataProvider.Create(++_generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
 			}
 		}

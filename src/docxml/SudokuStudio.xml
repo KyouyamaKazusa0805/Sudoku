@@ -5014,14 +5014,14 @@
             Defines a self-reporting progress type.
             </summary>
             <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
-            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+            <typeparam name="TProgressDataProvider"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
         </member>
         <member name="M:SudokuStudio.Interaction.SelfReportingProgress`1.#ctor(System.Action{`0})">
             <summary>
             Defines a self-reporting progress type.
             </summary>
             <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
-            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+            <typeparam name="TProgressDataProvider"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
         </member>
         <member name="M:SudokuStudio.Interaction.SelfReportingProgress`1.Report(`0)">
             <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
@@ -15113,7 +15113,7 @@
             <summary>
             Handle generating operation.
             </summary>
-            <typeparam name="T">The type of the progress data provider.</typeparam>
+            <typeparam name="TProgressDataProvider">The type of the progress data provider.</typeparam>
             <param name="onlyGenerateOne">Indicates whether the generator engine only generates for one puzzle.</param>
             <param name="gridStateChanger">
             The method that can change the state of the target grid. This callback method will be used for specify the grid state

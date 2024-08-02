@@ -4845,7 +4845,7 @@
             <summary>
             Gets the type arguments of the specified attribute type applied to the specified property.
             </summary>
-            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
             <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>The types of the generic type arguments.</returns>
@@ -4854,7 +4854,7 @@
             <summary>
             <inheritdoc cref="M:System.Attribute.GetCustomAttribute(System.Reflection.MemberInfo,System.Type)" path="/summary"/>
             </summary>
-            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
             <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>
@@ -4865,7 +4865,7 @@
             <summary>
             <inheritdoc cref="M:System.Attribute.GetCustomAttributes(System.Reflection.MemberInfo,System.Type)" path="/summary"/>
             </summary>
-            <typeparam name="T">The type of custom attribute provider.</typeparam>
+            <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
             <param name="this">The instance.</param>
             <param name="genericAttributeType">The generic attribute type.</param>
             <returns>
@@ -4883,7 +4883,7 @@
             <summary>
             Get custom attributes.
             </summary>
-            <typeparam name="T">The type of the provider.</typeparam>
+            <typeparam name="TCustomAttributeProvider">The type of the provider.</typeparam>
             <param name="this">The custom attribute provider.</param>
             <returns>The attributes.</returns>
         </member>

@@ -359,10 +359,20 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			}
 		}
 
-		static T createProgress<T>(ref int total, int filtered) where T : struct, IEquatable<T>, IProgressDataProvider<T>, allows ref struct
-			=> T.Create(++total, filtered);
+		static TProgressDataProvider createProgress<TProgressDataProvider>(ref int total, int filtered)
+			where TProgressDataProvider :
+				struct,
+				IEquatable<TProgressDataProvider>,
+				IProgressDataProvider<TProgressDataProvider>,
+				allows ref struct
+			=> TProgressDataProvider.Create(++total, filtered);
 
-		void reportCallback<T>(T progress) where T : struct, IEquatable<T>, IProgressDataProvider<T>, allows ref struct
+		void reportCallback<TProgressDataProvider>(TProgressDataProvider progress)
+			where TProgressDataProvider :
+				struct,
+				IEquatable<TProgressDataProvider>,
+				IProgressDataProvider<TProgressDataProvider>,
+				allows ref struct
 		{
 			var str = progress.ToDisplayString();
 			DispatcherQueue.TryEnqueue(() => AnalyzeStepSearcherNameLabel.Text = str);

@@ -9,25 +9,27 @@ public static class CustomAttributeProviderExtensions
 	/// <summary>
 	/// Gets the type arguments of the specified attribute type applied to the specified property.
 	/// </summary>
-	/// <typeparam name="T">The type of custom attribute provider.</typeparam>
+	/// <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <param name="genericAttributeType">The generic attribute type.</param>
 	/// <returns>The types of the generic type arguments.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Type[] GetGenericAttributeTypeArguments<T>(this T @this, Type genericAttributeType) where T : class, ICustomAttributeProvider
+	public static Type[] GetGenericAttributeTypeArguments<TCustomAttributeProvider>(this TCustomAttributeProvider @this, Type genericAttributeType)
+		where TCustomAttributeProvider : class, ICustomAttributeProvider
 		=> @this.GetCustomGenericAttribute(genericAttributeType)?.GetType().GenericTypeArguments ?? Type.EmptyTypes;
 
 	/// <summary>
 	/// <inheritdoc cref="Attribute.GetCustomAttribute(MemberInfo, Type)" path="/summary"/>
 	/// </summary>
-	/// <typeparam name="T">The type of custom attribute provider.</typeparam>
+	/// <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <param name="genericAttributeType">The generic attribute type.</param>
 	/// <returns>
 	/// <inheritdoc cref="Attribute.GetCustomAttribute(MemberInfo, Type)" path="/returns"/>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Attribute? GetCustomGenericAttribute<T>(this T @this, Type genericAttributeType) where T : class, ICustomAttributeProvider
+	public static Attribute? GetCustomGenericAttribute<TCustomAttributeProvider>(this TCustomAttributeProvider @this, Type genericAttributeType)
+		where TCustomAttributeProvider : class, ICustomAttributeProvider
 		=> genericAttributeType switch
 		{
 			{ IsGenericType: true, FullName: { } genericTypeName }
@@ -42,14 +44,15 @@ public static class CustomAttributeProviderExtensions
 	/// <summary>
 	/// <inheritdoc cref="Attribute.GetCustomAttributes(MemberInfo, Type)" path="/summary"/>
 	/// </summary>
-	/// <typeparam name="T">The type of custom attribute provider.</typeparam>
+	/// <typeparam name="TCustomAttributeProvider">The type of custom attribute provider.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <param name="genericAttributeType">The generic attribute type.</param>
 	/// <returns>
 	/// <inheritdoc cref="Attribute.GetCustomAttributes(MemberInfo, Type)" path="/returns"/>
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Attribute[] GetCustomGenericAttributes<T>(this T @this, Type genericAttributeType) where T : class, ICustomAttributeProvider
+	public static Attribute[] GetCustomGenericAttributes<TCustomAttributeProvider>(this TCustomAttributeProvider @this, Type genericAttributeType)
+		where TCustomAttributeProvider : class, ICustomAttributeProvider
 		=> genericAttributeType switch
 		{
 			{ IsGenericType: true, FullName: { } genericTypeName }
@@ -71,11 +74,12 @@ public static class CustomAttributeProviderExtensions
 	/// <summary>
 	/// Get custom attributes.
 	/// </summary>
-	/// <typeparam name="T">The type of the provider.</typeparam>
+	/// <typeparam name="TCustomAttributeProvider">The type of the provider.</typeparam>
 	/// <param name="this">The custom attribute provider.</param>
 	/// <returns>The attributes.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Attribute[] GetAttributesCore<T>(this T @this) where T : class, ICustomAttributeProvider
+	private static Attribute[] GetAttributesCore<TCustomAttributeProvider>(this TCustomAttributeProvider @this)
+		where TCustomAttributeProvider : class, ICustomAttributeProvider
 		=> @this switch
 		{
 			MemberInfo m => (Attribute[])m.GetCustomAttributes(),
