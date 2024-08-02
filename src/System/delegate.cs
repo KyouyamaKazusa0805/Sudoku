@@ -95,7 +95,7 @@ public static class @delegate
 	/// <param name="right">The second instance to be merged.</param>
 	/// <returns>A merged result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum, allows ref struct
+	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum
 		=> sizeof(T) switch
 		{
 			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
