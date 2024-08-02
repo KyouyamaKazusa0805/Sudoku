@@ -31,23 +31,43 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <seealso cref="Step"/>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods,
-	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators,
 	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException,
 	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed")]
 public abstract partial class StepSearcher(
-	[PrimaryConstructorParameter] int priority,
+	[PrimaryConstructorParameter, HashCodeMember] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : IFormattable
+) :
+	IComparable<StepSearcher>,
+	IComparisonOperators<StepSearcher, StepSearcher, bool>,
+	IEquatable<StepSearcher>,
+	IEqualityOperators<StepSearcher, StepSearcher, bool>,
+	IFormattable
 {
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
 	/// </summary>
 	public StepSearcherMetadataInfo Metadata => new(this, GetType().GetCustomAttribute<StepSearcherAttribute>()!);
 
+
+
+	/// <summary>
+	/// Determines whether two <see cref="StepSearcher"/> instances hold a same priority value.
+	/// </summary>
+	/// <param name="other">The other object to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] StepSearcher? other) => other is not null && Priority == other.Priority;
+
+	/// <summary>
+	/// Compares priority value of two <see cref="StepSearcher"/> instances, and returns the less one.
+	/// </summary>
+	/// <param name="other">The other object to be compared.</param>
+	/// <returns>An <see cref="int"/> indicating which one is greater.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int CompareTo(StepSearcher? other) => other is null ? -1 : Priority.CompareTo(other.Priority);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

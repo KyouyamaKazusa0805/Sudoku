@@ -19,7 +19,7 @@ public static class StepSearcherPool
 	{
 		get
 		{
-			var result = new SortedList<int, StepSearcher>();
+			var result = new SortedSet<StepSearcher>();
 			foreach (var type in ThisAssembly.GetDerivedTypes<StepSearcher>())
 			{
 				if (!type.IsDefined<StepSearcherAttribute>())
@@ -33,9 +33,9 @@ public static class StepSearcherPool
 				}
 
 				var instance = GetStepSearcher(type);
-				result.Add(instance.Priority, instance);
+				result.Add(instance);
 			}
-			return result.Values.ToArray().AsMemory();
+			return result.ToArray();
 		}
 	}
 

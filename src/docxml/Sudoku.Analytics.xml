@@ -6718,6 +6718,20 @@
             Indicates the implementation details of the current step searcher instance.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.Equals(Sudoku.Analytics.StepSearcher)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Analytics.StepSearcher"/> instances hold a same priority value.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.CompareTo(Sudoku.Analytics.StepSearcher)">
+            <summary>
+            Compares priority value of two <see cref="T:Sudoku.Analytics.StepSearcher"/> instances, and returns the less one.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> indicating which one is greater.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
@@ -6785,6 +6799,24 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_Equality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_Inequality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThan(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_GreaterThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule">
             <summary>
