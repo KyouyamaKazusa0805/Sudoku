@@ -4731,7 +4731,6 @@ file static class Extensions
 				}
 			}
 		}
-
 		return 0;
 	}
 
@@ -4766,7 +4765,6 @@ file static class Extensions
 				}
 			}
 		}
-
 		return false;
 	}
 }
