@@ -57,7 +57,7 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 			return false;
 		}
 
-		var factLength = Finder.FindPath(context.Grid).Digits.Length;
+		var factLength = Finder.FindPath(in context.Grid).Digits.Length;
 		return Operator.GetOperator<int>()(factLength, Length);
 	}
 }

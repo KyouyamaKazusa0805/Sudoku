@@ -62,7 +62,6 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 				return true;
 			}
 		}
-
 		return false;
 	}
 }

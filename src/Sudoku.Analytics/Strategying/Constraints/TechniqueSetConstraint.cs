@@ -33,35 +33,28 @@ public sealed partial class TechniqueSetConstraint : Constraint
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		switch (Techniques)
+		ref readonly var grid = ref context.Grid;
+		return Techniques switch
 		{
-			case [Technique.FullHouse]:
+			[Technique.FullHouse] => grid.CanPrimaryFullHouse(),
+			[Technique.CrosshatchingBlock or Technique.HiddenSingleBlock] => grid.CanPrimaryHiddenSingle(false),
+			[Technique.CrosshatchingRow or Technique.CrosshatchingColumn or Technique.HiddenSingleRow or Technique.HiddenSingleColumn]
+				=> grid.CanPrimaryHiddenSingle(true),
+			[Technique.NakedSingle] => grid.CanPrimaryNakedSingle(),
+			_ => b(context)
+		};
+
+
+		bool b(ConstraintCheckingContext context)
+		{
+			foreach (var step in context.AnalyzerResult)
 			{
-				return context.Grid.CanPrimaryFullHouse();
-			}
-			case [Technique.CrosshatchingBlock or Technique.HiddenSingleBlock]:
-			{
-				return context.Grid.CanPrimaryHiddenSingle(false);
-			}
-			case [Technique.CrosshatchingRow or Technique.CrosshatchingColumn or Technique.HiddenSingleRow or Technique.HiddenSingleColumn]:
-			{
-				return context.Grid.CanPrimaryHiddenSingle(true);
-			}
-			case [Technique.NakedSingle]:
-			{
-				return context.Grid.CanPrimaryNakedSingle();
-			}
-			default:
-			{
-				foreach (var step in context.AnalyzerResult)
+				if (!Techniques.Contains(step.Code))
 				{
-					if (!Techniques.Contains(step.Code))
-					{
-						return false;
-					}
+					return false;
 				}
-				return true;
 			}
+			return true;
 		}
 	}
 }

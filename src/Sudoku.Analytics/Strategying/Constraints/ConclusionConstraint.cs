@@ -58,7 +58,6 @@ public sealed partial class ConclusionConstraint : Constraint
 				}
 			}
 		}
-
 		return !(ShouldAppear ^ appeared);
 	}
 }

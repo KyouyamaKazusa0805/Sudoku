@@ -60,14 +60,16 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> context.Grid is var grid
-		&& CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount } is var factCount
-		&& Range is { Start.Value: var min, End.Value: var max }
-		&& BetweenRule switch
-		{
-			BetweenRule.BothOpen => factCount > min && factCount < max,
-			BetweenRule.LeftOpen => factCount >= min && factCount <= max,
-			BetweenRule.RightOpen => factCount >= min && factCount < max,
-			BetweenRule.BothClosed => factCount >= min && factCount <= max
-		};
+	{
+		ref readonly var grid = ref context.Grid;
+		return CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount } is var factCount
+			&& Range is { Start.Value: var min, End.Value: var max }
+			&& BetweenRule switch
+			{
+				BetweenRule.BothOpen => factCount > min && factCount < max,
+				BetweenRule.LeftOpen => factCount >= min && factCount <= max,
+				BetweenRule.RightOpen => factCount >= min && factCount < max,
+				BetweenRule.BothClosed => factCount >= min && factCount <= max
+			};
+	}
 }

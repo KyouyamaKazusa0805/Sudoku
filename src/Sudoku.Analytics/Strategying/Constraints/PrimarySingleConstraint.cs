@@ -3,7 +3,7 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a primary single constraint.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
 public sealed partial class PrimarySingleConstraint : Constraint
 {
 	/// <summary>
@@ -46,10 +46,13 @@ public sealed partial class PrimarySingleConstraint : Constraint
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> Primary switch
+	{
+		ref readonly var grid = ref context.Grid;
+		return Primary switch
 		{
-			SingleTechniqueFlag.FullHouse => context.Grid.CanPrimaryFullHouse(),
-			SingleTechniqueFlag.HiddenSingle => context.Grid.CanPrimaryHiddenSingle(AllowsHiddenSingleInLines),
-			SingleTechniqueFlag.NakedSingle => context.Grid.CanPrimaryNakedSingle()
+			SingleTechniqueFlag.FullHouse => grid.CanPrimaryFullHouse(),
+			SingleTechniqueFlag.HiddenSingle => grid.CanPrimaryHiddenSingle(AllowsHiddenSingleInLines),
+			SingleTechniqueFlag.NakedSingle => grid.CanPrimaryNakedSingle()
 		};
+	}
 }

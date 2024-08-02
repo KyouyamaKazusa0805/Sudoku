@@ -79,7 +79,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			return false;
 		}
 
-		if (LocalAnalyzer.Analyze(context.Grid) is not
+		if (LocalAnalyzer.Analyze(in context.Grid) is not
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,

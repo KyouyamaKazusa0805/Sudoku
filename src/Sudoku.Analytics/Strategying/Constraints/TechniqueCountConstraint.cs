@@ -63,7 +63,6 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 				times++;
 			}
 		}
-
 		return Operator.GetOperator<int>()(times, LimitCount);
 	}
 }

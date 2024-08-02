@@ -30675,26 +30675,6 @@
             </summary>
             <returns>A new instance that contains same data with the current instance.</returns>
         </member>
-        <member name="M:Sudoku.Strategying.Constraint.CreateCheckingQueryExpression">
-            <summary>
-            Indicates the checking <see cref="T:System.Linq.Expressions.Expression`1"/> instance of the constraint.
-            </summary>
-            <remarks>
-            <para>
-            This property will be reserved, in order to combine multiple constraint checking rules by using custom boolean logic.
-            For example, a user may want either one of two constraints satisfy rather than checking for both two constraints.
-            By using this property, use <see cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/> to achieve the goal.
-            </para>
-            <para>
-            Due to implement this property and limitation of <see cref="T:System.Linq.Expressions.Expression`1"/>, we cannot apply the type
-            <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/> as a <see langword="ref struct"/> because <see cref="T:System.Linq.Expressions.Expression`1"/>
-            doesn't support for <see langword="ref struct"/> types.
-            </para>
-            </remarks>
-            <seealso cref="T:System.Linq.Expressions.Expression`1"/>
-            <seealso cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/>
-            <seealso cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraint.GetMetadata">
             <summary>
             Returns a <see cref="T:Sudoku.Strategying.ConstraintOptionsAttribute"/> instance that represents the metadata of the constraint configured.
@@ -30726,23 +30706,27 @@
             <summary>
             Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
             </summary>
-            <param name="Grid">Indicates the reference to the grid to be checked.</param>
-            <param name="AnalyzerResult">Indicates the analyzer result.</param>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
             <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
             <summary>
             Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
             </summary>
-            <param name="Grid">Indicates the reference to the grid to be checked.</param>
-            <param name="AnalyzerResult">Indicates the analyzer result.</param>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
             <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
         </member>
-        <member name="P:Sudoku.Strategying.ConstraintCheckingContext.Grid">
-            <summary>Indicates the reference to the grid to be checked.</summary>
+        <member name="F:Sudoku.Strategying.ConstraintCheckingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Strategying.ConstraintCheckingContext.AnalyzerResult">
-            <summary>Indicates the analyzer result.</summary>
+            <summary>
+            The generated property declaration for parameter <c>analyzerResult</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.ConstraintCollection">
             <summary>
