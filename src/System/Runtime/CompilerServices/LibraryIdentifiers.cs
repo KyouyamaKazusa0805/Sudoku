@@ -19,4 +19,9 @@ internal static class LibraryIdentifiers
 	/// Indicates the name is <c>"_items"</c>.
 	/// </summary>
 	public const string Items = "_items";
+
+	/// <summary>
+	/// Indicates the name is <c>"m_array"</c>.
+	/// </summary>
+	public const string BitArray_Array = "m_array";
 }
