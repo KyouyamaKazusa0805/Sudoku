@@ -32,7 +32,7 @@ public sealed partial class MWingStep(
 	public override int BaseDifficulty => 45;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str]),
 			new(ChineseLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str])

@@ -60,7 +60,7 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask])

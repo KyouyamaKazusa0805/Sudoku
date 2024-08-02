@@ -27,7 +27,7 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [DigitsStr, CellsStr, ConjHouseStr, ExtraCombStr]),
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCombStr, ConjHouseStr])

@@ -42,7 +42,7 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	public override int BaseDifficulty => base.BaseDifficulty - 1;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [CellsStr, DigitsStr, ExtraCellsStr, ExtraDigitsStr]),
 			new(ChineseLanguage, [CellsStr, DigitsStr, ExtraCellsStr, ExtraDigitsStr])

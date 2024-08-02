@@ -50,7 +50,6 @@ global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.TransformingServices;
 global using Sudoku.Snyder;
 global using Sudoku.Strategying.Constraints;
-global using Sudoku.Text;
 global using Sudoku.Traits;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Languages;

@@ -22,7 +22,7 @@ public sealed partial class UniqueMatrixType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, CellsStr, DigitsStr])];
 
 	private string CandidateStr => Options.Converter.CandidateConverter([Candidate]);

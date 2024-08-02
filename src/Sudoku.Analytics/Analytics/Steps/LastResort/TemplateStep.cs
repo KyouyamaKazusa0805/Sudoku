@@ -26,7 +26,7 @@ public sealed partial class TemplateStep(
 	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
+	public override Interpolation[] Interpolations => [new(EnglishLanguage, [DigitStr]), new(ChineseLanguage, [DigitStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 }

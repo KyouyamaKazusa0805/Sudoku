@@ -21,7 +21,7 @@ public sealed partial class DominoLoopStep(
 	public override Technique Code => Technique.DominoLoop;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [CellsCountStr, CellsStr]), new(ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	private string CellsCountStr => Cells.Count.ToString();

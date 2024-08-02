@@ -31,7 +31,7 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
 
 	private string CellsStr => Options.Converter.CellConverter(MirrorCells);

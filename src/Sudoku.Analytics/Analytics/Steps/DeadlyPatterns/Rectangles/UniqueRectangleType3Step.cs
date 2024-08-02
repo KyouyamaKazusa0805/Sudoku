@@ -48,7 +48,7 @@ public sealed partial class UniqueRectangleType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeyword, CellsStr, HouseStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])

@@ -21,7 +21,7 @@ public sealed partial class BowmanBingoStep(
 	public override Technique Code => Technique.BowmanBingo;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
 
 	/// <inheritdoc/>

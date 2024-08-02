@@ -116,12 +116,9 @@ public abstract partial class Step(
 			: throw new InvalidOperationException(SR.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
 
 	/// <summary>
-	/// Indicates the interpolated parts that is used for the format.
-	/// The formats will be interpolated into the property <see cref="FormatTypeIdentifier"/> result.
+	/// Indicates all interpolations used by description information to the current step, stored in resource dictionary.
 	/// </summary>
-	/// <seealso cref="FormatTypeIdentifier"/>
-	/// <seealso cref="FormatInterpolation"/>
-	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
+	public virtual Interpolation[]? Interpolations => null;
 
 	/// <summary>
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
@@ -184,7 +181,7 @@ public abstract partial class Step(
 		return GetResourceFormat(null) is null
 			? ToSimpleString(formatProvider)
 			: GetCulture(formatProvider) is var culture && SR.Get("Colon", culture) is var colonToken
-				? FormatInterpolationParts?.FirstOrDefault(matcher).ResourcePlaceholderValues switch
+				? Interpolations?.FirstOrDefault(matcher).ResourcePlaceholderValues switch
 				{
 					var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
 					_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
@@ -192,7 +189,7 @@ public abstract partial class Step(
 				: throw new();
 
 
-		bool matcher(FormatInterpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
+		bool matcher(Interpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
 	}
 
 	/// <summary>

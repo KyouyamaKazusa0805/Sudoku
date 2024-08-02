@@ -22,7 +22,7 @@ public sealed partial class DeathBlossomStep(
 	public override Technique Code => Technique.DeathBlossom;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [PivotStr, BranchesStr]), new(ChineseLanguage, [PivotStr, BranchesStr])];
 
 	/// <inheritdoc/>

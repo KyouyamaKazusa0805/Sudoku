@@ -29,7 +29,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 
 	private string Als1Str => FirstAls.ToString(Options.Converter);

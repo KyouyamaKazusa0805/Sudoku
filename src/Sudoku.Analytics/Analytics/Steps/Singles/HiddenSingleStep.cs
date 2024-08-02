@@ -45,7 +45,7 @@ public partial class HiddenSingleStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override FormatInterpolation[] FormatInterpolationParts
+	public sealed override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])

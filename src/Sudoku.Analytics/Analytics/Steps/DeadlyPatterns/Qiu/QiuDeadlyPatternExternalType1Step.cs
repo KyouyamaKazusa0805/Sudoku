@@ -28,7 +28,7 @@ public sealed partial class QiuDeadlyPatternExternalType1Step(
 	public override int Type => 6;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [PatternStr, DigitsStr, CellStr]), new(ChineseLanguage, [PatternStr, CellStr, DigitsStr])];
 
 	private string CellStr => Options.Converter.CellConverter(in TargetCell.AsCellMap());

@@ -25,7 +25,7 @@ public sealed partial class GuardianStep(
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr]),
 			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr])

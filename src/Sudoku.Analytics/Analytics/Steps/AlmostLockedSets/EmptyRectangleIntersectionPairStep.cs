@@ -29,7 +29,7 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr]),
 			new(ChineseLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr])

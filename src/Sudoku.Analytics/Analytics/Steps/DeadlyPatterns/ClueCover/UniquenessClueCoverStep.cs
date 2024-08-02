@@ -28,7 +28,7 @@ public sealed partial class UniquenessClueCoverStep(
 	public override Technique Code => Technique.UniquenessClueCover;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [ChuteString, ChuteCellsString]),
 			new(ChineseLanguage, [ChuteString, ChuteCellsString]),

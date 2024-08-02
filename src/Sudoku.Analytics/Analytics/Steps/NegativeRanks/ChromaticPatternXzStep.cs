@@ -31,7 +31,7 @@ public sealed partial class ChromaticPatternXzStep(
 	public override Technique Code => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr]),
 			new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])

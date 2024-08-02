@@ -24,6 +24,6 @@ public sealed class ReverseBivalueUniversalGraveType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [Cell1Str, Cell2Str, PatternStr]), new(ChineseLanguage, [PatternStr, Cell1Str, Cell2Str])];
 }

@@ -29,7 +29,7 @@ public sealed partial class QiuDeadlyPatternType4Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [PatternStr, ConjStr]), new(ChineseLanguage, [ConjStr, PatternStr])];
 
 	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);

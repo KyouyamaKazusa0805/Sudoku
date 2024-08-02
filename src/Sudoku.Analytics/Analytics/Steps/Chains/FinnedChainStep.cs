@@ -28,7 +28,7 @@ public sealed partial class FinnedChainStep(
 	public override Technique Code => IsGrouped ? Technique.FinnedGroupedChain : Technique.FinnedChain;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [ChainString, FinsStr]), new(ChineseLanguage, [ChainString, FinsStr])];
 
 	private string FinsStr => Fins.ToString(CoordinateConverter.GetConverter(Options.Converter));

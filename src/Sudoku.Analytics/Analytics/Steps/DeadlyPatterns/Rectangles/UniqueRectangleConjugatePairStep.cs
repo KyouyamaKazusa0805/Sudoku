@@ -36,7 +36,7 @@ public partial class UniqueRectangleConjugatePairStep(
 		=> Code switch { Technique.UniqueRectangleType4 => 4, Technique.UniqueRectangleType6 => 6, _ => base.Type };
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr])

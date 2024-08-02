@@ -32,7 +32,7 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 	public override Technique Code => Technique.AntiGurthSymmetricalPlacement;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [SymmetryTypeStr, MappingStr]), new(ChineseLanguage, [SymmetryTypeStr, MappingStr])];
 
 	private string SymmetryTypeStr => SR.Get($"{SymmetricType}Symmetry", GetCulture(null));

@@ -39,7 +39,7 @@ public sealed partial class AlignedExclusionStep(
 		};
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(ChineseLanguage, [CellsStr, ConclusionNegatedStr]), new(EnglishLanguage, [CellsStr, ConclusionNegatedStr])];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);

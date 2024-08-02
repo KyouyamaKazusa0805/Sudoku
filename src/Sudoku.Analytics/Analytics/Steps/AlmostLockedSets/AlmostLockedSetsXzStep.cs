@@ -37,7 +37,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 		=> IsDoublyLinked ? Technique.DoublyLinkedAlmostLockedSetsXzRule : Technique.SinglyLinkedAlmostLockedSetsXzRule;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr]),
 			new(ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr])

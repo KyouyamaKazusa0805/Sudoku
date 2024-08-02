@@ -25,7 +25,7 @@ public sealed partial class EmptyRectangleStep(
 	public override Technique Code => Technique.EmptyRectangle;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));

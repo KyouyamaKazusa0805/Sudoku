@@ -43,7 +43,7 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	public override int Type => Code is Technique.UniqueRectangleType2 or Technique.AvoidableRectangleType2 ? 2 : 5;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])

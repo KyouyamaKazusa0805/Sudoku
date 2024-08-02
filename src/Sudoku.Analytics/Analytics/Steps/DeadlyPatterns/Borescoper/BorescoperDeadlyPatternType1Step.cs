@@ -20,6 +20,6 @@ public sealed class BorescoperDeadlyPatternType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr]), new(ChineseLanguage, [DigitsStr, CellsStr])];
 }

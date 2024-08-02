@@ -54,7 +54,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 	public override int BaseDifficulty => base.BaseDifficulty + (IsDoublyLinked ? 7 : 6);
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])];
 
 	/// <inheritdoc/>
