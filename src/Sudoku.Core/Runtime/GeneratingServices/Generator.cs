@@ -235,7 +235,7 @@ public ref partial struct Generator()
 			{
 				// This loop runs as long as the next candidate tried produces an invalid sudoku or until all candidates have been tried.
 				// Fall back all levels, where nothing is to do anymore.
-				while (_stack[level].CandidateIndex >= PopCount((uint)_stack[level].Candidates))
+				while (_stack[level].CandidateIndex >= Mask.PopCount(_stack[level].Candidates))
 				{
 					level--;
 					if (level <= 0)
@@ -309,10 +309,10 @@ public ref partial struct Generator()
 						}
 					}
 
-					if (IsPow2(houseMask))
+					if (HouseMask.IsPow2(houseMask))
 					{
 						// Hidden single.
-						var cell = HousesCells[house][TrailingZeroCount(houseMask)];
+						var cell = HousesCells[house][HouseMask.TrailingZeroCount(houseMask)];
 						grid.SetDigit(cell, digit);
 						if (!checkValidityOnDuplicate(in grid, cell))
 						{
@@ -327,9 +327,9 @@ public ref partial struct Generator()
 			foreach (var cell in emptyCells)
 			{
 				var mask = grid.GetCandidates(cell);
-				if (IsPow2(mask))
+				if (Mask.IsPow2(mask))
 				{
-					grid.SetDigit(cell, TrailingZeroCount(mask));
+					grid.SetDigit(cell, Mask.TrailingZeroCount(mask));
 					if (!checkValidityOnDuplicate(in grid, cell))
 					{
 						// Invalid.

@@ -117,14 +117,14 @@ public partial class UniqueRectangleStepSearcher
 
 		// Gets the extra mask.
 		// If the mask is the power of 2, the type 2 will be formed.
-		var extraMask = (grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) ^ comparer;
+		var extraMask = (Mask)((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) ^ comparer);
 		if (extraMask == 0 || (extraMask & extraMask - 1) != 0)
 		{
 			return;
 		}
 
 		// Type 2 or 5 found. Now check elimination.
-		var extraDigit = TrailingZeroCount(extraMask);
+		var extraDigit = Mask.TrailingZeroCount(extraMask);
 		var elimMap = (corner1.AsCellMap() + corner2).PeerIntersection & CandidatesMap[extraDigit];
 		if (!elimMap)
 		{
@@ -246,12 +246,12 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var iterationMap = HousesMap[houseIndex] & EmptyCells & ~otherCellsMap;
-			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
+			for (var size = Mask.PopCount(otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
 				foreach (ref readonly var iteratedCells in iterationMap & size)
 				{
 					var tempMask = grid[in iteratedCells];
-					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
+					if ((tempMask & comparer) != 0 || Mask.PopCount(tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
 					}
@@ -370,7 +370,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Yes, Type 4 found.
 				// Now check elimination.
-				var elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
+				var elimDigit = Mask.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
 				if ((otherCellsMap & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 				{
 					continue;
@@ -469,7 +469,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Type 5 found. Now check elimination.
-		var extraDigit = TrailingZeroCount(extraMask);
+		var extraDigit = Mask.TrailingZeroCount(extraMask);
 		var cellsThatContainsExtraDigit = otherCellsMap & CandidatesMap[extraDigit];
 
 		// Degenerate to type 1.
@@ -685,8 +685,7 @@ public partial class UniqueRectangleStepSearcher
 		{
 			var map1 = abzCell.AsCellMap() + abxCell;
 			var map2 = abzCell.AsCellMap() + abyCell;
-			if (map1.SharedLine is not (var m1cl and not TrailingZeroCountFallback)
-				|| map2.SharedLine is not (var m2cl and not TrailingZeroCountFallback))
+			if (map1.SharedLine is not (var m1cl and not 32) || map2.SharedLine is not (var m2cl and not 32))
 			{
 				// There's no common covered line to display.
 				continue;
@@ -704,7 +703,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			// Hidden UR/AR found. Now check eliminations.
-			var elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
+			var elimDigit = Mask.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
 			if (!CandidatesMap[elimDigit].Contains(abzCell))
 			{
 				continue;

@@ -218,7 +218,11 @@ public partial struct CandidateMap : CandidateMapBase
 			var (pos, arr) = (0, new Candidate[Count]);
 			for (var i = 0; i < Length; i++)
 			{
-				for (var value = _bits[i]; value != 0; arr[pos++] = (i << 6) + TrailingZeroCount((ulong)value), value &= value - 1) ;
+				for (
+					var value = _bits[i];
+					value != 0;
+					arr[pos++] = (i << 6) + BitOperations.TrailingZeroCount((ulong)value), value &= value - 1
+				) ;
 			}
 			return arr;
 		}
@@ -263,18 +267,18 @@ public partial struct CandidateMap : CandidateMapBase
 			{
 				var bits = (ulong)_bits[i];
 				var z = bmi2IsSupported
-					? TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - popCountSum, bits))
+					? BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - popCountSum, bits))
 					: bits.SetAt(index - popCountSum);
 				switch (bmi2IsSupported)
 				{
-					case true when z != TrailingZeroCountFallbackLong:
+					case true when z != 64:
 					case false when z != -1:
 					{
 						return z + (i << 6); // * 64
 					}
 				}
 
-				popCountSum += PopCount(bits);
+				popCountSum += BitOperations.PopCount(bits);
 			}
 			return -1;
 		}
@@ -741,18 +745,18 @@ public partial struct CandidateMap : CandidateMapBase
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += PopCount((ulong)(result._bits[0] &= right._bits[0]));
-		finalCount += PopCount((ulong)(result._bits[1] &= right._bits[1]));
-		finalCount += PopCount((ulong)(result._bits[2] &= right._bits[2]));
-		finalCount += PopCount((ulong)(result._bits[3] &= right._bits[3]));
-		finalCount += PopCount((ulong)(result._bits[4] &= right._bits[4]));
-		finalCount += PopCount((ulong)(result._bits[5] &= right._bits[5]));
-		finalCount += PopCount((ulong)(result._bits[6] &= right._bits[6]));
-		finalCount += PopCount((ulong)(result._bits[7] &= right._bits[7]));
-		finalCount += PopCount((ulong)(result._bits[8] &= right._bits[8]));
-		finalCount += PopCount((ulong)(result._bits[9] &= right._bits[9]));
-		finalCount += PopCount((ulong)(result._bits[10] &= right._bits[10]));
-		finalCount += PopCount((ulong)(result._bits[11] &= right._bits[11]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[0] &= right._bits[0]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[1] &= right._bits[1]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[2] &= right._bits[2]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[3] &= right._bits[3]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[4] &= right._bits[4]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[5] &= right._bits[5]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[6] &= right._bits[6]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[7] &= right._bits[7]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[8] &= right._bits[8]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[9] &= right._bits[9]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[10] &= right._bits[10]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[11] &= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}
@@ -763,18 +767,18 @@ public partial struct CandidateMap : CandidateMapBase
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += PopCount((ulong)(result._bits[0] |= right._bits[0]));
-		finalCount += PopCount((ulong)(result._bits[1] |= right._bits[1]));
-		finalCount += PopCount((ulong)(result._bits[2] |= right._bits[2]));
-		finalCount += PopCount((ulong)(result._bits[3] |= right._bits[3]));
-		finalCount += PopCount((ulong)(result._bits[4] |= right._bits[4]));
-		finalCount += PopCount((ulong)(result._bits[5] |= right._bits[5]));
-		finalCount += PopCount((ulong)(result._bits[6] |= right._bits[6]));
-		finalCount += PopCount((ulong)(result._bits[7] |= right._bits[7]));
-		finalCount += PopCount((ulong)(result._bits[8] |= right._bits[8]));
-		finalCount += PopCount((ulong)(result._bits[9] |= right._bits[9]));
-		finalCount += PopCount((ulong)(result._bits[10] |= right._bits[10]));
-		finalCount += PopCount((ulong)(result._bits[11] |= right._bits[11]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[0] |= right._bits[0]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[1] |= right._bits[1]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[2] |= right._bits[2]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[3] |= right._bits[3]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[4] |= right._bits[4]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[5] |= right._bits[5]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[6] |= right._bits[6]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[7] |= right._bits[7]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[8] |= right._bits[8]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[9] |= right._bits[9]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[10] |= right._bits[10]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[11] |= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}
@@ -785,18 +789,18 @@ public partial struct CandidateMap : CandidateMapBase
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += PopCount((ulong)(result._bits[0] ^= right._bits[0]));
-		finalCount += PopCount((ulong)(result._bits[1] ^= right._bits[1]));
-		finalCount += PopCount((ulong)(result._bits[2] ^= right._bits[2]));
-		finalCount += PopCount((ulong)(result._bits[3] ^= right._bits[3]));
-		finalCount += PopCount((ulong)(result._bits[4] ^= right._bits[4]));
-		finalCount += PopCount((ulong)(result._bits[5] ^= right._bits[5]));
-		finalCount += PopCount((ulong)(result._bits[6] ^= right._bits[6]));
-		finalCount += PopCount((ulong)(result._bits[7] ^= right._bits[7]));
-		finalCount += PopCount((ulong)(result._bits[8] ^= right._bits[8]));
-		finalCount += PopCount((ulong)(result._bits[9] ^= right._bits[9]));
-		finalCount += PopCount((ulong)(result._bits[10] ^= right._bits[10]));
-		finalCount += PopCount((ulong)(result._bits[11] ^= right._bits[11]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[0] ^= right._bits[0]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[1] ^= right._bits[1]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[2] ^= right._bits[2]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[3] ^= right._bits[3]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[4] ^= right._bits[4]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[5] ^= right._bits[5]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[6] ^= right._bits[6]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[7] ^= right._bits[7]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[8] ^= right._bits[8]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[9] ^= right._bits[9]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[10] ^= right._bits[10]));
+		finalCount += BitOperations.PopCount((ulong)(result._bits[11] ^= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}

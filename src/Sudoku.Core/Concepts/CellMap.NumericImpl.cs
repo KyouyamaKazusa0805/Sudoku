@@ -707,7 +707,11 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>,
 	/// <param name="value">The values.</param>
 	/// <returns>The final value.</returns>
 	private static int LeadingZeroCountAsInt32(Int128 value)
-		=> value >> 64 == 0 ? 64 + LeadingZeroCount((ulong)(value & ulong.MaxValue)) : LeadingZeroCount((ulong)(value >> 64));
+		=> (int)(
+			value >> 64 == 0
+				? 64 + Int128.LeadingZeroCount((ulong)(value & ulong.MaxValue))
+				: Int128.LeadingZeroCount(value >> 64)
+		);
 
 
 	/// <inheritdoc/>

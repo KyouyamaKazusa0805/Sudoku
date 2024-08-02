@@ -43,7 +43,7 @@ internal static class AlmostHiddenSetsModule
 						pos |= tempPosMask[digit];
 					}
 
-					if (PopCount((uint)pos) - 1 != size)
+					if (Mask.PopCount(pos) - 1 != size)
 					{
 						continue;
 					}

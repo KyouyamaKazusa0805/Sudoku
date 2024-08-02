@@ -73,7 +73,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 			for (var j = i + 1; j < count; j++)
 			{
 				var (als21, als22, mask2) = rccList[j];
-				if (mask1 == mask2 && IsPow2(mask1) && IsPow2(mask2))
+				if (mask1 == mask2 && Mask.IsPow2(mask1) && Mask.IsPow2(mask2))
 				{
 					// Cannot form a XY-Wing.
 					continue;

@@ -36,7 +36,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 			// The LoL technique requires value digits from two different sets should be merged into a big set containing 6 digits.
 			// Check whether merged mask contain 6 on bits.
 			var mergedDigitsMask = (Mask)(lineSetDigitsMask | blockSetDigitsMask);
-			if (PopCount((uint)mergedDigitsMask) != 6 || mergedCells.Count != 6)
+			if (Mask.PopCount(mergedDigitsMask) != 6 || mergedCells.Count != 6)
 			{
 				continue;
 			}
@@ -56,7 +56,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 					case [var targetCell]:
 					{
 						// The cell can be filled with the digit from the other side.
-						var disapperedDigit = TrailingZeroCount(mergedDigitsMask & digitsMaskTheOtherSide);
+						var disapperedDigit = Mask.TrailingZeroCount((Mask)(mergedDigitsMask & digitsMaskTheOtherSide));
 						conclusions.Add(new(Assignment, targetCell, disapperedDigit));
 						break;
 					}

@@ -117,12 +117,12 @@ internal static class UniqueRectangleModule
 	public static ReadOnlySpan<Conclusion> GetConclusions(ref readonly CellMap cells, Mask comparer, ref readonly Grid grid)
 	{
 		var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
-		if (PopCount((uint)extraDigitsMask) != 2)
+		if (Mask.PopCount(extraDigitsMask) != 2)
 		{
 			return [];
 		}
 
-		var digit1 = TrailingZeroCount(extraDigitsMask);
+		var digit1 = Mask.TrailingZeroCount(extraDigitsMask);
 		var digit2 = extraDigitsMask.GetNextSet(digit1);
 		var cells1 = CandidatesMap[digit1] & cells;
 		var cells2 = CandidatesMap[digit2] & cells;
@@ -135,7 +135,7 @@ internal static class UniqueRectangleModule
 		//
 		// Then we should find all peer intersection cells and make union.
 		var (nakedPairElims1, nakedPairElims2) = (CellMap.Empty, CellMap.Empty);
-		var urDigit1 = TrailingZeroCount(comparer);
+		var urDigit1 = Mask.TrailingZeroCount(comparer);
 		var urDigit2 = comparer.GetNextSet(urDigit1);
 		var template = CandidatesMap[urDigit1] | CandidatesMap[urDigit2];
 		foreach (ref readonly var pair in cells & ~cells1 & 2)

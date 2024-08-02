@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Concepts;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a pattern that is a Qiu's deadly pattern technique pattern in theory. The sketch is like:
@@ -34,9 +34,9 @@ public readonly record struct QiuDeadlyPattern2(HouseMask Lines1, HouseMask Line
 	{
 		get
 		{
-			var l11 = TrailingZeroCount(Lines1);
+			var l11 = HouseMask.TrailingZeroCount(Lines1);
 			var l21 = Lines1.GetNextSet(l11);
-			var l12 = TrailingZeroCount(Lines2);
+			var l12 = HouseMask.TrailingZeroCount(Lines2);
 			var l22 = Lines2.GetNextSet(l12);
 			var result = CellMap.Empty;
 			foreach (var (a, b) in ((l11, l12), (l11, l22), (l21, l12), (l21, l22)))

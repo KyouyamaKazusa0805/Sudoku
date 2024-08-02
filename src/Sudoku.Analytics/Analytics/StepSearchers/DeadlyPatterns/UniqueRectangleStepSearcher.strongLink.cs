@@ -66,7 +66,7 @@ public partial class UniqueRectangleStepSearcher
 							continue;
 						}
 
-						var elimDigit = TrailingZeroCount(comparer ^ (1 << digit));
+						var elimDigit = Mask.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
 						var conclusions = new List<Conclusion>(4);
 						if (CandidatesMap[elimDigit].Contains(elimCell))
 						{

@@ -4,12 +4,12 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 {
 	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
-		var otherOnlyDigit = Log2((uint)otherDigitsMask);
+		var otherOnlyDigit = Mask.Log2(otherDigitsMask);
 		var cellsContainingThisDigit = CandidatesMap[otherOnlyDigit] & urCells;
 		var rowsSpanned = cellsContainingThisDigit.RowMask << 9;
-		if (PopCount((uint)rowsSpanned) == 2)
+		if (HouseMask.PopCount(rowsSpanned) == 2)
 		{
-			var row1 = TrailingZeroCount(rowsSpanned);
+			var row1 = HouseMask.TrailingZeroCount(rowsSpanned);
 			var row2 = rowsSpanned.GetNextSet(row1);
 			var cells1 = cellsContainingThisDigit & HousesMap[row1];
 			var cells2 = cellsContainingThisDigit & HousesMap[row2];
@@ -23,9 +23,9 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 
 		var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
-		if (PopCount((uint)columnsSpanned) == 2)
+		if (HouseMask.PopCount(columnsSpanned) == 2)
 		{
-			var column1 = TrailingZeroCount(columnsSpanned);
+			var column1 = HouseMask.TrailingZeroCount(columnsSpanned);
 			var column2 = columnsSpanned.GetNextSet(column1);
 			var cells3 = cellsContainingThisDigit & HousesMap[column1];
 			var cells4 = cellsContainingThisDigit & HousesMap[column2];
@@ -41,7 +41,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 
 	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
-		var theOtherDigit1 = TrailingZeroCount(otherDigitsMask);
+		var theOtherDigit1 = Mask.TrailingZeroCount(otherDigitsMask);
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 		var cells1 = CandidatesMap[theOtherDigit1] & urCells;
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
@@ -102,7 +102,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 					continue;
 				}
 
-				var lastUrDigit = Log2((uint)(urDigitsMask & ~lockedUrDigitsMask));
+				var lastUrDigit = Mask.Log2((Mask)(urDigitsMask & ~lockedUrDigitsMask));
 				var otherCellsContainingLastUrDigit = HousesMap[lockedHouse] & CandidatesMap[lastUrDigit] & ~urCells;
 				if (linkOption == LinkOption.Intersection && !otherCellsContainingLastUrDigit.IsInIntersection)
 				{
@@ -131,7 +131,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 
 		var urDigitsMask = ur.DigitsMask;
-		var digit1 = TrailingZeroCount(urDigitsMask);
+		var digit1 = Mask.TrailingZeroCount(urDigitsMask);
 		var digit2 = urDigitsMask.GetNextSet(digit1);
 		foreach (var lockedHouse in urCellsContainingOtherDigits.SharedHouses)
 		{

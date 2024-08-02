@@ -118,7 +118,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		Mask mask
 	)
 	{
-		if (PopCount((uint)mask) != 5)
+		if (Mask.PopCount(mask) != 5)
 		{
 			goto ReturnNull;
 		}
@@ -126,7 +126,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			var digitsMask = MaskOperations.Create(digits);
-			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
+			var extraDigit = Mask.TrailingZeroCount((Mask)(mask & ~digitsMask));
 			var extraDigitMap = CandidatesMap[extraDigit] & pattern;
 			if (extraDigitMap is not [var elimCell])
 			{
@@ -179,7 +179,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		Mask mask
 	)
 	{
-		if (PopCount((uint)mask) != 5)
+		if (Mask.PopCount(mask) != 5)
 		{
 			goto ReturnNull;
 		}
@@ -187,7 +187,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
 			var digitsMask = MaskOperations.Create(digits);
-			var extraDigit = TrailingZeroCount(mask & ~digitsMask);
+			var extraDigit = Mask.TrailingZeroCount((Mask)(mask & ~digitsMask));
 			if (pattern % CandidatesMap[extraDigit] is not (var elimMap and not []))
 			{
 				continue;
@@ -254,12 +254,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			foreach (var house in tempMap.SharedHouses)
 			{
 				var allCells = HousesMap[house] & EmptyCells & ~pattern;
-				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
+				for (var size = Mask.PopCount(extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
 					foreach (ref readonly var cells in allCells & size)
 					{
 						var tempMask = grid[in cells];
-						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+						if (Mask.PopCount(tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;
 						}

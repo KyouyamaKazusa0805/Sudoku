@@ -14,7 +14,7 @@ public static class DifficultyLevelExtensions
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this DifficultyLevel @this, IFormatProvider? formatProvider)
-		=> PopCount((uint)(int)@this) < 2
+		=> int.PopCount((int)@this) < 2
 			? SR.Get(@this.ToString(), formatProvider as CultureInfo)
 			: throw new InvalidOperationException(SR.ExceptionMessage("MultipleFlagsExist"));
 }

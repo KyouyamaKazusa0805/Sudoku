@@ -46,7 +46,7 @@ public static class MaskOperations
 	/// <returns>The digits returned.</returns>
 	public static ReadOnlySpan<Digit> MaskToDigits(Mask digitMask)
 	{
-		var result = new Digit[PopCount((uint)digitMask)];
+		var result = new Digit[Mask.PopCount(digitMask)];
 		for (var (i, p) = (0, 0); i < 9; i++)
 		{
 			if ((digitMask >> i & 1) != 0)

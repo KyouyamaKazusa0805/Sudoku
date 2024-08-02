@@ -82,7 +82,6 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	/// Split mask for 6 nodes.
 	/// </summary>
 	private (bool, Mask, Mask, Mask, Mask, Mask, Mask)? SplitMask
-#pragma warning disable format
 		=> this switch
 		{
 			[
@@ -92,12 +91,11 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 				{ Map.Digits: var m4 },
 				{ Map.Digits: var m5 },
 				{ Map.Digits: var m6 }
-			] => IsPow2(m1) && IsPow2(m2) && IsPow2(m3) && IsPow2(m4) && IsPow2(m5) && IsPow2(m6)
+			] => Mask.IsPow2(m1) && Mask.IsPow2(m2) && Mask.IsPow2(m3) && Mask.IsPow2(m4) && Mask.IsPow2(m5) && Mask.IsPow2(m6)
 				? (true, m1, m2, m3, m4, m5, m6)
 				: (false, m1, m2, m3, m4, m5, m6),
 			_ => null
 		};
-#pragma warning restore format
 
 
 	/// <inheritdoc/>

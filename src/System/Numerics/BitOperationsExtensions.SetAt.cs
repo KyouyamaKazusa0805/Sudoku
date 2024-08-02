@@ -93,14 +93,14 @@ public partial class BitOperationsExtensions
 	public static partial int SetAt(this ulong @this, int order)
 	{
 		var (mask, size, @base) = (0x0000FFFFu, 16u, 0u);
-		if (order++ >= PopCount(@this))
+		if (order++ >= BitOperations.PopCount(@this))
 		{
 			return -1;
 		}
 
 		while (size > 0)
 		{
-			if (order > PopCount(@this & mask))
+			if (order > BitOperations.PopCount(@this & mask))
 			{
 				@base += size;
 				size >>= 1;

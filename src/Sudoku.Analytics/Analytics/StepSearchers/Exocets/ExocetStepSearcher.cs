@@ -209,7 +209,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									}
 
 									// Check whether target cells don't share a same block.
-									if (!(targetCells.Count == 1 || targetCells.Count == 2 && !IsPow2(targetCells.BlockMask)))
+									if (!(targetCells.Count == 1 || targetCells.Count == 2 && !Mask.IsPow2(targetCells.BlockMask)))
 									{
 										continue;
 									}
@@ -376,7 +376,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return mirrorSyncTypeStep;
 		}
 
-		switch (PopCount((uint)lockedMemberDigitsMask))
+		switch (Mask.PopCount(lockedMemberDigitsMask))
 		{
 			case 1 or 2:
 			{
@@ -518,7 +518,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// If so, they will be endo-target cells.
 		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
 		var endoTargetValueDigitsMask = grid.GetValueDigitsAppearedInCrossline(crosslineIncludingTarget - targetCell, baseCellsDigitsMask);
-		switch (PopCount((uint)endoTargetValueDigitsMask))
+		switch (Mask.PopCount(endoTargetValueDigitsMask))
 		{
 			case 0:
 			{
@@ -555,7 +555,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				if (CheckSeniorTrueBase(
 					ref context, grid, in baseCells, targetCell, in crossline, in crosslineIncludingTarget, baseCellsDigitsMask,
-					TrailingZeroCount(endoTargetValueDigitsMask)
+					Mask.TrailingZeroCount(endoTargetValueDigitsMask)
 				) is { } lockedMemberTypeStep)
 				{
 					return lockedMemberTypeStep;
@@ -656,7 +656,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			// Check for basic cases here.
 			// Check for locked members and determine the next step.
-			switch (PopCount((uint)lockedMemberDigitsMask))
+			switch (Mask.PopCount(lockedMemberDigitsMask))
 			{
 				case 1:
 				{
@@ -773,7 +773,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
 			{
-				if (IsPow2((targetCell.AsCellMap() + endoTargetCell).BlockMask))
+				if (Mask.IsPow2((targetCell.AsCellMap() + endoTargetCell).BlockMask))
 				{
 					// The target selected endo-target cell cannot share a same block with target cell.
 					continue;
@@ -810,7 +810,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				{
 					// Check for basic cases here.
 					// Check for locked members and determine the next step.
-					switch (PopCount((uint)lockedMemberDigitsMask))
+					switch (Mask.PopCount(lockedMemberDigitsMask))
 					{
 						case 1:
 						{
@@ -936,7 +936,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								{
 									// This will include an AHS.
 									var unappearedDigitsMask = (Mask)(grid[in endoTargetCellsGroup] & ~baseCellsDigitsMask);
-									if (PopCount((uint)unappearedDigitsMask) < endoTargetCellsGroup.Count - 1)
+									if (Mask.PopCount(unappearedDigitsMask) < endoTargetCellsGroup.Count - 1)
 									{
 										// Endo-target cells are not enough to form an AHS.
 										continue;
@@ -1130,14 +1130,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check whether such 5 and 6 cells are in a 2 * 3 "rectangle".
-		if ((isRow, PopCount((uint)rowsCovered), PopCount((uint)columnsCovered)) is not ((false, 2, 3) or (true, 3, 2)))
+		if ((isRow, Mask.PopCount(rowsCovered), Mask.PopCount(columnsCovered)) is not ((false, 2, 3) or (true, 3, 2)))
 		{
 			return null;
 		}
 
 		// Check whether the rows or columns are spanned 3 different chute in the same direction of the cross-line cells.
 		var (spanningLinesChute3, spanningLinesChute2, spanningLinesChute1) = (isRow ? rowsCovered : columnsCovered).SplitMask();
-		if ((PopCount((uint)spanningLinesChute1), PopCount((uint)spanningLinesChute2), PopCount((uint)spanningLinesChute3)) is not (1, 1, 1))
+		if ((HouseMask.PopCount(spanningLinesChute1), HouseMask.PopCount(spanningLinesChute2), HouseMask.PopCount(spanningLinesChute3)) is not (1, 1, 1))
 		{
 			return null;
 		}
@@ -1284,7 +1284,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			var cda2 = (Mask)(grid[HousesMap[blocks[da2]] & lastSixteenCells & ~EmptyCells, true] & baseCellsDigitsMask);
 			if (ca1 != cda1 || ca2 != cda2
 				|| (Mask)(ca1 | ca2) != baseCellsDigitsMask
-				|| (PopCount((uint)ca1), PopCount((uint)cda1), PopCount((uint)ca2), PopCount((uint)cda2)) is not (2, 2, 2, 2))
+				|| (Mask.PopCount(ca1), Mask.PopCount(cda1), Mask.PopCount(ca2), Mask.PopCount(cda2)) is not (2, 2, 2, 2))
 			{
 				isDiagonallyDistributed = false;
 				break;
@@ -1719,7 +1719,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			switch (PopCount((uint)lockedMemberDigitsMask))
+			switch (Mask.PopCount(lockedMemberDigitsMask))
 			{
 				case 1:
 				{
@@ -2064,8 +2064,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// If not, the rule cannot be formed.
 		if (valueCellsInLastFourBlocksIntersectedWithCrossline.Count != 4
-			|| PopCount((uint)valueCellsInLastFourBlocksIntersectedWithCrossline.RowMask) != 2
-			|| PopCount((uint)valueCellsInLastFourBlocksIntersectedWithCrossline.ColumnMask) != 2)
+			|| Mask.PopCount(valueCellsInLastFourBlocksIntersectedWithCrossline.RowMask) != 2
+			|| Mask.PopCount(valueCellsInLastFourBlocksIntersectedWithCrossline.ColumnMask) != 2)
 		{
 			return null;
 		}
@@ -2170,7 +2170,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				baseCellsLastDigitsMask &= (Mask)~(1 << digitCanBeRemoved);
 			}
 		}
-		if (PopCount((uint)baseCellsLastDigitsMask) == 2)
+		if (Mask.PopCount(baseCellsLastDigitsMask) == 2)
 		{
 			// The JE has formed a distribution disjointed pair.
 			inferredTargetPairMask = baseCellsLastDigitsMask;
@@ -2354,7 +2354,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var inferredTargetPairMaskDigit1 = TrailingZeroCount(inferredTargetPairMask);
+		var inferredTargetPairMaskDigit1 = Mask.TrailingZeroCount(inferredTargetPairMask);
 		var inferredTargetPairMaskDigit2 = inferredTargetPairMask.GetNextSet(inferredTargetPairMaskDigit1);
 
 		var conclusions = new List<Conclusion>();
@@ -3368,7 +3368,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var finalIntersectedFourCells = elimLinesMap & intersectedLinesMap;
 
 		var conclusions = new List<Conclusion>();
-		foreach (var cell in HousesMap[TrailingZeroCount(finalIntersectedFourCells.BlockMask)] & ~crossline & ~finalIntersectedFourCells)
+		foreach (var cell in HousesMap[Mask.TrailingZeroCount(finalIntersectedFourCells.BlockMask)] & ~crossline & ~finalIntersectedFourCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 			{
@@ -3511,7 +3511,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var digit in baseCellsDigitsMask)
 		{
 			var digitDistribution = CandidatesMap[digit] & crossline;
-			if (PopCount((uint)(isRow ? digitDistribution.ColumnMask : digitDistribution.RowMask)) != size - 1)
+			if (Mask.PopCount(isRow ? digitDistribution.ColumnMask : digitDistribution.RowMask) != size - 1)
 			{
 				// Cannot form a generalized fish.
 				continue;

@@ -184,7 +184,7 @@ public sealed partial class AlmostLockedSet(
 				foreach (ref readonly var map in tempMap & size)
 				{
 					var blockMask = map.BlockMask;
-					if (IsPow2(blockMask) && house >= 9)
+					if (Mask.IsPow2(blockMask) && house >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.
@@ -193,7 +193,7 @@ public sealed partial class AlmostLockedSet(
 
 					// Get all candidates in these cells.
 					var digitsMask = grid[in map];
-					if (PopCount((uint)digitsMask) - 1 != size)
+					if (Mask.PopCount(digitsMask) - 1 != size)
 					{
 						continue;
 					}
@@ -209,7 +209,7 @@ public sealed partial class AlmostLockedSet(
 						new(
 							digitsMask,
 							in map,
-							house < 9 && coveredLine is >= 9 and not TrailingZeroCountFallback
+							house < 9 && coveredLine is >= 9 and not 32
 								? (HousesMap[house] | HousesMap[coveredLine]) & emptyMap & ~map
 								: tempMap & ~map,
 							eliminationMap

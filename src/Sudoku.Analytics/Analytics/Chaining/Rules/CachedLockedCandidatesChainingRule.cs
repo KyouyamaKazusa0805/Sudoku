@@ -21,7 +21,7 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 				}
 
 				var firstPair = pairHouse[0];
-				var h1 = TrailingZeroCount((uint)firstPair);
+				var h1 = HouseMask.TrailingZeroCount(firstPair);
 				var h2 = firstPair.GetNextSet(h1);
 				var cells1 = cells & HousesMap[h1];
 				var cells2 = cells & HousesMap[h2];

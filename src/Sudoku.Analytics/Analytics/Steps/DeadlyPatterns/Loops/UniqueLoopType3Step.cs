@@ -41,7 +41,7 @@ public sealed partial class UniqueLoopType3Step(
 	bool IPatternType3StepTrait<UniqueLoopType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<UniqueLoopType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<UniqueLoopType3Step>.SubsetSize => Mask.PopCount(SubsetDigitsMask);
 
 	private string SubsetCellsStr => Options.Converter.CellConverter(SubsetCells);
 

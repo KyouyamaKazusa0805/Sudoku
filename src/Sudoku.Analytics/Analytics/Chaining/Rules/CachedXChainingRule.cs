@@ -20,12 +20,12 @@ internal sealed class CachedXChainingRule : ChainingRule
 				}
 
 				var mask = cellsInThisHouse / house;
-				if (PopCount((uint)mask) != 2)
+				if (Mask.PopCount(mask) != 2)
 				{
 					continue;
 				}
 
-				var pos1 = TrailingZeroCount(mask);
+				var pos1 = Mask.TrailingZeroCount(mask);
 				var pos2 = mask.GetNextSet(pos1);
 				var node1 = new Node((HousesCells[house][pos1] * 9 + digit).AsCandidateMap(), false, false);
 				var node2 = new Node((HousesCells[house][pos2] * 9 + digit).AsCandidateMap(), true, false);

@@ -8,7 +8,7 @@ internal static class ValueTextConversion
 	public static string GetText(CellState cellState, Mask candidatesMask)
 		=> cellState == CellState.Empty || candidatesMask is not (>= 0 and < Grid.MaxCandidatesMask)
 			? string.Empty
-			: (TrailingZeroCount((uint)candidatesMask) + 1).ToString();
+			: (Mask.TrailingZeroCount(candidatesMask) + 1).ToString();
 
 	public static Brush GetValueFontColor(
 		Grid grid,
@@ -21,7 +21,7 @@ internal static class ValueTextConversion
 		bool useDifferentColorToDisplayDeltaDigits
 	)
 	{
-		var digit = TrailingZeroCount(candidatesMask) is var d and not TrailingZeroCountFallback ? d : -1;
+		var digit = (int)Mask.TrailingZeroCount(candidatesMask) is var d and not 16 ? d : -1;
 
 		// Implicit behavior: argument 'solution' can be 'Grid.Undefined'.
 		// Therefore, we must check validity first.

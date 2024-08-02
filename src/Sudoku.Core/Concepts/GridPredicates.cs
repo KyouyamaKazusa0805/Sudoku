@@ -36,7 +36,7 @@ internal static class GridPredicates
 	/// </summary>
 	/// <inheritdoc cref="GivenCells{TGrid}(ref readonly TGrid, Cell)"/>
 	public static bool BivalueCells<TGrid>(ref readonly TGrid g, Cell cell) where TGrid : unmanaged, IGridOperations<TGrid>
-		=> PopCount((uint)g.GetCandidates(cell)) == 2;
+		=> Mask.PopCount(g.GetCandidates(cell)) == 2;
 
 	/// <summary>
 	/// Checks the existence of the specified digit in the specified cell.

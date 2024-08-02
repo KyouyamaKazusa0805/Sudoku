@@ -49,8 +49,8 @@ public static class ChainOrLoopExtensions
 						_,
 						{ FirstNode.Map.Cells: var cells21, SecondNode.Map.Cells: var cells22 }
 					] => (
-						TrailingZeroCount((cells11 | cells12).SharedHouses).ToHouseType(),
-						TrailingZeroCount((cells21 | cells22).SharedHouses).ToHouseType()
+						HouseMask.TrailingZeroCount((cells11 | cells12).SharedHouses).ToHouseType(),
+						HouseMask.TrailingZeroCount((cells21 | cells22).SharedHouses).ToHouseType()
 					) switch
 					{
 						(HouseType.Block, _) or (_, HouseType.Block)

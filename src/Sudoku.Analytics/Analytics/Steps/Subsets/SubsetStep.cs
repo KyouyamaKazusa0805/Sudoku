@@ -22,5 +22,5 @@ public abstract partial class SubsetStep(
 	public override int BaseDifficulty => 30;
 
 	/// <inheritdoc/>
-	public int Size => PopCount((uint)DigitsMask);
+	public int Size => Mask.PopCount(DigitsMask);
 }

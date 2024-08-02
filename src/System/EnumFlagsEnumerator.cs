@@ -43,12 +43,12 @@ public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(Me
 			var field = _fields[index];
 			switch (SizeOfT)
 			{
-				case 1 or 2 or 4 when IsPow2(Unsafe.As<T, int>(ref field)) && _baseField.HasFlag(field):
+				case 1 or 2 or 4 when int.IsPow2(Unsafe.As<T, int>(ref field)) && _baseField.HasFlag(field):
 				{
 					Current = _fields[_index = index];
 					return true;
 				}
-				case 8 when IsPow2(Unsafe.As<T, long>(ref field)) && _baseField.HasFlag(field):
+				case 8 when long.IsPow2(Unsafe.As<T, long>(ref field)) && _baseField.HasFlag(field):
 				{
 					Current = _fields[_index = index];
 					return true;

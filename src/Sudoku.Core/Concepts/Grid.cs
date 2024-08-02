@@ -188,7 +188,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			{
 				if (GetState(i) == CellState.Empty)
 				{
-					count += PopCount((uint)GetCandidates(i));
+					count += Mask.PopCount(GetCandidates(i));
 				}
 			}
 			return count;
@@ -596,7 +596,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		=> GetState(cell) switch
 		{
 			CellState.Empty => -1,
-			CellState.Modifiable or CellState.Given => TrailingZeroCount(this[cell]),
+			CellState.Modifiable or CellState.Given => Mask.TrailingZeroCount(this[cell]),
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 

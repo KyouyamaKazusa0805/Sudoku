@@ -59,7 +59,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
 				{
 					var selectedInterMask = grid[in currentInterMap];
-					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
+					if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset, which is invalid in SdCs.
 						continue;
@@ -107,22 +107,22 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									);
 									var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
 									if (!cannibalMode
-										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
-										|| cannibalMode && !IsPow2(maskIsolated))
+										&& ((blockMask & lineMask) != 0 || maskIsolated != 0 && !Mask.IsPow2(maskIsolated))
+										|| cannibalMode && !Mask.IsPow2(maskIsolated))
 									{
 										continue;
 									}
 
 									var elimMapIsolated = CellMap.Empty;
-									var digitIsolated = TrailingZeroCount(maskIsolated);
-									if (digitIsolated != TrailingZeroCountFallback)
+									var digitIsolated = Mask.TrailingZeroCount(maskIsolated);
+									if (digitIsolated != 16)
 									{
 										elimMapIsolated = (cannibalMode ? (currentBlockMap | currentLineMap) : currentInterMap)
 											% CandidatesMap[digitIsolated]
 											& EmptyCells;
 									}
 
-									var p = PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter);
+									var p = Mask.PopCount(blockMask) + Mask.PopCount(lineMask) + Mask.PopCount(maskOnlyInInter);
 									if (currentInterMap.Count + i + j != p || !(elimMapBlock | elimMapLine | elimMapIsolated))
 									{
 										// Invalid or no elimination.

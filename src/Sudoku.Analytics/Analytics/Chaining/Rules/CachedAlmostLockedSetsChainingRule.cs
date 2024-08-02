@@ -37,7 +37,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 					mask |= maskTempList[cell];
 				}
 
-				if (PopCount((uint)mask) == subsetCells.Count)
+				if (Mask.PopCount(mask) == subsetCells.Count)
 				{
 					isAlsCanBeReduced = true;
 					break;
@@ -62,7 +62,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 					node2ExtraMap.AddRange(from digit in grid.GetCandidates(cell) select cell * 9 + digit);
 				}
 
-				var digit1 = TrailingZeroCount(digitsPair);
+				var digit1 = Mask.TrailingZeroCount(digitsPair);
 				var digit2 = digitsPair.GetNextSet(digit1);
 				var node1Cells = HousesMap[house] & cells & CandidatesMap[digit1];
 				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];

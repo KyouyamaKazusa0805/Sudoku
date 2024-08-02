@@ -21,7 +21,7 @@ public static class CellMapExtensions
 		HouseMask houses
 	)
 	{
-		var (result, i) = (new CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>[PopCount((uint)houses)], 0);
+		var (result, i) = (new CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>[HouseMask.PopCount(houses)], 0);
 		foreach (var house in houses)
 		{
 			if ((@this & HousesMap[house]) is var map and not [])

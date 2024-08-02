@@ -50,7 +50,6 @@ global using Sudoku.Runtime.TransformingServices;
 global using Sudoku.Snyder;
 global using Sudoku.Strategying.Constraints;
 global using Sudoku.Traits;
-global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Languages;
 global using static Sudoku.Caching.MemoryCachedData;
 global using static Sudoku.Concepts.ConclusionType;

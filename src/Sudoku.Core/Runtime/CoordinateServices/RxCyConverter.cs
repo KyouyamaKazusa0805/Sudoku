@@ -33,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+			[] => string.Empty,
+			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -145,32 +145,29 @@ public sealed record RxCyConverter(
 				return sb.ToString();
 			}
 
-			if (IsPow2((uint)housesMask))
+			if (HouseMask.IsPow2(housesMask))
 			{
-				var house = Log2((uint)housesMask);
+				var house = HouseMask.Log2(housesMask);
 				return $"{getChar(house)}{house % 9 + 1}";
 			}
 
+			var dic = new Dictionary<HouseType, List<House>>(3);
+			foreach (var house in housesMask)
 			{
-				var dic = new Dictionary<HouseType, List<House>>(3);
-				foreach (var house in housesMask)
+				var houseType = house.ToHouseType();
+				if (!dic.TryAdd(houseType, [house]))
 				{
-					var houseType = house.ToHouseType();
-					if (!dic.TryAdd(houseType, [house]))
-					{
-						dic[houseType].Add(house);
-					}
+					dic[houseType].Add(house);
 				}
-
-				var sb = new StringBuilder(30);
-				foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
-				{
-					sb.Append(houseType.GetLabel());
-					sb.AppendRange(static integer => integer.ToString(), elements: from house in h select house % 9 + 1);
-				}
-
-				return sb.ToString();
 			}
+
+			var resultBuilder = new StringBuilder(30);
+			foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
+			{
+				resultBuilder.Append(houseType.GetLabel());
+				resultBuilder.AppendRange(static integer => integer.ToString(), elements: from house in h select house % 9 + 1);
+			}
+			return resultBuilder.ToString();
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -190,8 +187,8 @@ public sealed record RxCyConverter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

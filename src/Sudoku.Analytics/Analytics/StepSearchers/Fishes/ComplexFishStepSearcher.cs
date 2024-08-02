@@ -236,7 +236,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						}
 
 						// If the count is lower than size, we can't find any possible fish.
-						var popCount = PopCount((uint)z);
+						var popCount = HouseMask.PopCount(z);
 						if (popCount < size)
 						{
 							continue;

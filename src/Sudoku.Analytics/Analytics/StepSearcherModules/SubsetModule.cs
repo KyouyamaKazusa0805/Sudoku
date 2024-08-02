@@ -25,7 +25,7 @@ internal static class SubsetModule
 		var nakedSingleCells = CellMap.Empty;
 		foreach (var cell in emptyCellsForGrid)
 		{
-			if (IsPow2((uint)grid.GetCandidates(cell)))
+			if (Mask.IsPow2(grid.GetCandidates(cell)))
 			{
 				nakedSingleCells.Add(cell);
 			}
@@ -111,7 +111,7 @@ internal static class SubsetModule
 					{
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
-						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
+						var eliminatingHouse = HouseMask.TrailingZeroCount(cells.SharedHouses & ~(1 << house));
 						foreach (var cell in HousesMap[eliminatingHouse] & emptyCellsForGrid & ~cells)
 						{
 							foreach (var digit in digitsMask)
@@ -176,7 +176,7 @@ internal static class SubsetModule
 			// Remove cells that only contain 1 candidate (Naked Singles).
 			foreach (var cell in HousesMap[house] & emptyCellsForGrid)
 			{
-				if (IsPow2(grid.GetCandidates(cell)))
+				if (Mask.IsPow2(grid.GetCandidates(cell)))
 				{
 					currentEmptyMap.Remove(cell);
 				}
@@ -186,7 +186,7 @@ internal static class SubsetModule
 			foreach (ref readonly var cells in currentEmptyMap & size)
 			{
 				var digitsMask = grid[in cells];
-				if (PopCount((uint)digitsMask) != size)
+				if (Mask.PopCount(digitsMask) != size)
 				{
 					continue;
 				}

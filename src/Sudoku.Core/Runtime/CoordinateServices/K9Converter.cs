@@ -130,9 +130,9 @@ public sealed record K9Converter(
 				return string.Empty;
 			}
 
-			if (IsPow2((uint)housesMask))
+			if (HouseMask.IsPow2(housesMask))
 			{
-				var house = Log2((uint)housesMask);
+				var house = HouseMask.Log2(housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
 					SR.Get(
@@ -187,8 +187,8 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

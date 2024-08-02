@@ -60,7 +60,7 @@ public sealed partial class SueDeCoqStep(
 	bool IIsolatedDigitTrait.ContainsIsolatedDigits => IsolatedDigitsMask != 0;
 
 	/// <inheritdoc/>
-	int IIsolatedDigitTrait.IsolatedDigitsCount => IsolatedDigitsMask == 0 ? 0 : PopCount((uint)IsolatedDigitsMask);
+	int IIsolatedDigitTrait.IsolatedDigitsCount => IsolatedDigitsMask == 0 ? 0 : Mask.PopCount(IsolatedDigitsMask);
 
 	private string IntersectionCellsStr => Options.Converter.CellConverter(IntersectionCells);
 

@@ -57,7 +57,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	/// the property <see cref="IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsCellMultiple"/>
-	public bool IsHouseMultiple => IsPow2(Candidates.Digits);
+	public bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.
@@ -372,7 +372,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 			var result = new ViewNode[Count + 1][];
 			ViewNode houseOrCellNode = IsCellMultiple
 				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
-				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(Candidates.Cells.SharedHouses));
+				: new HouseViewNode(ColorIdentifier.Normal, HouseMask.TrailingZeroCount(Candidates.Cells.SharedHouses));
 
 			var i = 0;
 			var globalView = new List<ViewNode>();

@@ -62,7 +62,7 @@ public sealed partial class RegularWingStep(
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public int Size => PopCount((uint)DigitsMask);
+	public int Size => Mask.PopCount(DigitsMask);
 
 	/// <inheritdoc/>
 	public override Technique Code => TechniqueMarshal.MakeRegularWingTechniqueCode(TechniqueMarshal.GetRegularWingEnglishName(Size, IsIncomplete));

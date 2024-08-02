@@ -16,4 +16,3 @@ global using System.Runtime.InteropServices;
 global using System.Runtime.Versioning;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
-global using static System.Numerics.BitOperations;

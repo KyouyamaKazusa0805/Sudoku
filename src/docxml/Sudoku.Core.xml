@@ -669,9 +669,8 @@
             </summary>
             <remarks>
             If no shared houses can be found (i.e. return value of property <see cref="P:Sudoku.Concepts.CellMap.SharedHouses"/> is 0),
-            this property will return <see cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>.
+            this property will return 32.
             </remarks>
-            <seealso cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>
             <seealso cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.SharedHouses">
@@ -10233,36 +10232,6 @@
             <summary>
             Indicates the number of each cell's peer cells. The value is a constant.
             </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.TrailingZeroCountFallback">
-            <summary>
-            Indicates the invalid fallback value
-            of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>,
-            which means that if the method returns an invalid value, that value must be equal to this.
-            In other words, you can use this field to check whether the method invocation executes correctly.
-            </summary>
-            <remarks>
-            For more details you want to learn about, please visit
-            <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L586">this link</see>
-            to get the inner code.
-            </remarks>
-            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int32)"/>
-            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt32)"/>
-        </member>
-        <member name="F:Sudoku.SolutionFields.TrailingZeroCountFallbackLong">
-            <summary>
-            Indicates the invalid fallback value
-            of methods <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/> and <see cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>,
-            which means that if the method returns an invalid value, that value must be equal to this.
-            In other words, you can use this field to check whether the method invocation executes correctly.
-            </summary>
-            <remarks>
-            For more details you want to learn about, please visit
-            <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L647">this link</see>
-            to get the inner code.
-            </remarks>
-            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.Int64)"/>
-            <seealso cref="M:System.Numerics.BitOperations.TrailingZeroCount(System.UInt64)"/>
         </member>
         <member name="F:Sudoku.SolutionFields.Digits">
             <summary>

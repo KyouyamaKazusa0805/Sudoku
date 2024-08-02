@@ -66,7 +66,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			digitsMask &= (Mask)~(1 << digit);
 		}
 
-		var targetDigit = Log2((uint)digitsMask);
+		var targetDigit = Mask.Log2(digitsMask);
 		step = new NakedSingleStep(
 			null!,
 			null,

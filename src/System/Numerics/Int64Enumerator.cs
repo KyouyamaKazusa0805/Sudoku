@@ -9,7 +9,7 @@ public ref struct Int64Enumerator(ulong value) : IEnumerator<int>
 	/// <summary>
 	/// Indicates the population count of the value.
 	/// </summary>
-	public readonly int PopulationCount => PopCount(value);
+	public readonly int PopulationCount => BitOperations.PopCount(value);
 
 	/// <summary>
 	/// Indicates the bits set.

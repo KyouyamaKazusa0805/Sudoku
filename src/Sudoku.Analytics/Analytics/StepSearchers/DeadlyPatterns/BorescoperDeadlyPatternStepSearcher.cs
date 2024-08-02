@@ -256,7 +256,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
-		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
+		if (Mask.PopCount(orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
 		}
@@ -265,7 +265,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
 			var tempMask = MaskOperations.Create(digits);
-			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
+			var otherDigit = Mask.TrailingZeroCount((Mask)(orMask & ~tempMask));
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
 			if (mapContainingThatDigit is not [var elimCell])
 			{
@@ -325,7 +325,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
-		if (PopCount((uint)orMask) != (pattern.IsHeptagon ? 4 : 5))
+		if (Mask.PopCount(orMask) != (pattern.IsHeptagon ? 4 : 5))
 		{
 			goto ReturnNull;
 		}
@@ -334,7 +334,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 		{
 			var tempMask = MaskOperations.Create(digits);
-			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
+			var otherDigit = Mask.TrailingZeroCount((Mask)(orMask & ~tempMask));
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
 			var elimMap = mapContainingThatDigit.PeerIntersection & ~map & CandidatesMap[otherDigit];
 			if (!elimMap)
@@ -403,12 +403,13 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				// Iterate on the cells by the specified size.
 				var iterationCellsMap = HousesMap[houseIndex] & ~currentMap & EmptyCells;
 				var otherDigitsMask = (Mask)(orMask & ~tempMask);
-				for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
+				for (var size = Mask.PopCount(otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 				{
 					foreach (ref readonly var combination in iterationCellsMap & size)
 					{
 						var comparer = grid[in combination];
-						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
+						if ((tempMask & comparer) != 0 || Mask.PopCount(tempMask) - 1 != size
+							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
 						}

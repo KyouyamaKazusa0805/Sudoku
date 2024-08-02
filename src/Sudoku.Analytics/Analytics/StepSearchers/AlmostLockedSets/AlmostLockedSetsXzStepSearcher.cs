@@ -73,7 +73,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 
 				// If the number of digits that both two ALSes contain is only one (or zero),
 				// the ALS-XZ won't be formed.
-				if (PopCount((uint)xzMask) < 2 || map.InOneHouse(out _))
+				if (Mask.PopCount(xzMask) < 2 || map.InOneHouse(out _))
 				{
 					continue;
 				}
@@ -120,7 +120,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					finalZ |= (Mask)(1 << elimDigit);
 				}
 
-				if (AllowLoopedPatterns && PopCount((uint)rccMask) == 2)
+				if (AllowLoopedPatterns && Mask.PopCount(rccMask) == 2)
 				{
 					// Doubly linked ALS-XZ.
 					isDoublyLinked = true;
@@ -153,7 +153,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 
 					// Possible eliminations.
 					var tempMap = map;
-					tempMap = CandidatesMap[TrailingZeroCount(mask1)];
+					tempMap = CandidatesMap[Mask.TrailingZeroCount(mask1)];
 					foreach (var digit in mask1.SkipSetBit(1))
 					{
 						tempMap |= CandidatesMap[digit];
@@ -166,7 +166,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 							conclusions.Add(new(Elimination, cell, digit));
 						}
 					}
-					tempMap = CandidatesMap[TrailingZeroCount(mask2)];
+					tempMap = CandidatesMap[Mask.TrailingZeroCount(mask2)];
 					foreach (var digit in mask2.SkipSetBit(1))
 					{
 						tempMap |= CandidatesMap[digit];

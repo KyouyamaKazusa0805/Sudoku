@@ -191,7 +191,7 @@ public partial class UniqueRectangleStepSearcher
 						foreach (ref readonly var otherCells in houseCells & size - 1)
 						{
 							var subsetDigitsMask = (Mask)(grid[in otherCells] | comparer);
-							if (PopCount((uint)subsetDigitsMask) != size)
+							if (Mask.PopCount(subsetDigitsMask) != size)
 							{
 								// The subset cannot formed.
 								continue;
@@ -630,17 +630,16 @@ public partial class UniqueRectangleStepSearcher
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
 			{
-				< 9 => (TrailingZeroCount(intersection.RowMask), TrailingZeroCount(intersection.ColumnMask)) switch
+				< 9 => (Mask.TrailingZeroCount(intersection.RowMask), Mask.TrailingZeroCount(intersection.ColumnMask)) switch
 				{
-					(var a and not TrailingZeroCountFallback, var b and not TrailingZeroCountFallback)
-						=> 1 << a + 9 | 1 << b + 18,
-					(var a and not TrailingZeroCountFallback, _) => 1 << a + 9,
-					(_, var b and not TrailingZeroCountFallback) => 1 << b + 18,
+					(var a and not 16, var b and not 16) => 1 << a + 9 | 1 << b + 18,
+					(var a and not 16, _) => 1 << a + 9,
+					(_, var b and not 16) => 1 << b + 18,
 					_ => 0
 				},
-				_ => TrailingZeroCount(intersection.BlockMask) switch
+				_ => Mask.TrailingZeroCount(intersection.BlockMask) switch
 				{
-					var result and not TrailingZeroCountFallback => 1 << result,
+					var result and not 16 => 1 << result,
 					_ => 0
 				}
 			};
@@ -776,7 +775,7 @@ public partial class UniqueRectangleStepSearcher
 							}
 
 							// A valid pattern is found. Now check eliminations.
-							var wDigit = TrailingZeroCount(startCellDigitsMask & ~(1 << xDigit));
+							var wDigit = Mask.TrailingZeroCount((Mask)(startCellDigitsMask & ~(1 << xDigit)));
 							var elimMap = (startCell.AsCellMap() + endCell).PeerIntersection & CandidatesMap[wDigit];
 							if (!elimMap)
 							{
@@ -842,17 +841,16 @@ public partial class UniqueRectangleStepSearcher
 			var intersection = guardianCells & HousesMap[house];
 			return house switch
 			{
-				< 9 => (TrailingZeroCount(intersection.RowMask), TrailingZeroCount(intersection.ColumnMask)) switch
+				< 9 => (Mask.TrailingZeroCount(intersection.RowMask), Mask.TrailingZeroCount(intersection.ColumnMask)) switch
 				{
-					(var a and not TrailingZeroCountFallback, var b and not TrailingZeroCountFallback)
-						=> 1 << a + 9 | 1 << b + 18,
-					(var a and not TrailingZeroCountFallback, _) => 1 << a + 9,
-					(_, var b and not TrailingZeroCountFallback) => 1 << b + 18,
+					(var a and not 16, var b and not 16) => 1 << a + 9 | 1 << b + 18,
+					(var a and not 16, _) => 1 << a + 9,
+					(_, var b and not 16) => 1 << b + 18,
 					_ => 0
 				},
-				_ => TrailingZeroCount(intersection.BlockMask) switch
+				_ => Mask.TrailingZeroCount(intersection.BlockMask) switch
 				{
-					var result and not TrailingZeroCountFallback => 1 << result,
+					var result and not 16 => 1 << result,
 					_ => 0
 				}
 			};
@@ -934,7 +932,7 @@ public partial class UniqueRectangleStepSearcher
 
 					var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 					var intersectionMask = (Mask)(mask1 & mask2);
-					if (!IsPow2(intersectionMask))
+					if (!Mask.IsPow2(intersectionMask))
 					{
 						// No eliminations can be found in this pattern.
 						continue;
@@ -953,7 +951,7 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					var elimDigit = TrailingZeroCount(intersectionMask);
+					var elimDigit = Mask.TrailingZeroCount(intersectionMask);
 					if ((mask1 >> elimDigit & 1) == 0)
 					{
 						// No eliminations found.
@@ -1047,7 +1045,7 @@ public partial class UniqueRectangleStepSearcher
 				var (cell1, cell2) = (cellPair[0], cellPair[1]);
 				var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 				var intersectionMask = (Mask)(mask1 & mask2);
-				if (!IsPow2(intersectionMask))
+				if (!Mask.IsPow2(intersectionMask))
 				{
 					// No eliminations can be found in this pattern.
 					continue;
@@ -1066,8 +1064,8 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var cell1UrDigit = TrailingZeroCount(mask1 & ~intersectionMask);
-				var cell2UrDigit = TrailingZeroCount(mask2 & ~intersectionMask);
+				var cell1UrDigit = Mask.TrailingZeroCount((Mask)(mask1 & ~intersectionMask));
+				var cell2UrDigit = Mask.TrailingZeroCount((Mask)(mask2 & ~intersectionMask));
 				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[cell1UrDigit];
 				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[cell2UrDigit];
 				if ((PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
@@ -1078,7 +1076,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// UR External XY-Wing found. Now check for eliminations.
-				var elimDigit = TrailingZeroCount(intersectionMask);
+				var elimDigit = Mask.TrailingZeroCount(intersectionMask);
 				var elimMap = cellPair.PeerIntersection & CandidatesMap[elimDigit];
 				if (!elimMap)
 				{

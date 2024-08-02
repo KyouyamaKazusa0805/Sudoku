@@ -33,7 +33,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		foreach (var cell in BivalueCells)
 		{
 			var mask = grid.GetCandidates(cell);
-			var d1 = TrailingZeroCount(mask);
+			var d1 = Mask.TrailingZeroCount(mask);
 			var d2 = mask.GetNextSet(d1);
 
 			var tempLoop = new List<Cell>(14);
@@ -196,12 +196,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	)
 	{
 		var mask = (Mask)(grid[in extraCellsMap] & ~comparer);
-		if (!IsPow2(mask))
+		if (!Mask.IsPow2(mask))
 		{
 			return null;
 		}
 
-		var extraDigit = TrailingZeroCount(mask);
+		var extraDigit = Mask.TrailingZeroCount(mask);
 		var elimMap = extraCellsMap % CandidatesMap[extraDigit];
 		if (!elimMap)
 		{
@@ -309,12 +309,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 
 				otherCells = HousesMap[houseIndex] & EmptyCells & ~loop;
-				for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+				for (var size = Mask.PopCount(otherDigitsMask) - 1; size < otherCells.Count; size++)
 				{
 					foreach (ref readonly var cells in otherCells & size)
 					{
 						var mask = grid[in cells];
-						if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+						if (Mask.PopCount(mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 						{
 							continue;
 						}
@@ -390,12 +390,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+		for (var size = Mask.PopCount(otherDigitsMask) - 1; size < otherCells.Count; size++)
 		{
 			foreach (ref readonly var cells in otherCells & size)
 			{
 				var mask = grid[in cells];
-				if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+				if (Mask.PopCount(mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 				{
 					continue;
 				}
@@ -608,13 +608,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					{
 						extraDigits = (Mask)((extraDigits | mask) & ~(1 << d1 | 1 << d2));
 
-						var count = PopCount((uint)mask);
+						var count = Mask.PopCount(mask);
 
 						// We can continue if:
 						//   1. The cell has exactly the 2 values of the loop.
 						//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
 						//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
-						if (count == 2 || IsPow2(extraDigits) || allowedEx != 0)
+						if (count == 2 || Mask.IsPow2(extraDigits) || allowedEx != 0)
 						{
 							var newAllowedEx = count > 2 ? allowedEx - 1 : allowedEx;
 							CollectUniqueLoops(in grid, next, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);

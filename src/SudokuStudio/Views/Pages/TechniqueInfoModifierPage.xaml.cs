@@ -177,7 +177,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 						Tag = DifficultyLevel.Nightmare
 					}
 				},
-				SelectedIndex = Log2((uint)(int)pref.GetDifficultyLevelOrDefault(technique)),
+				SelectedIndex = int.Log2((int)pref.GetDifficultyLevelOrDefault(technique)),
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center
 			};

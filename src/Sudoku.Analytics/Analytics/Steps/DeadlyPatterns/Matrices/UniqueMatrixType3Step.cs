@@ -37,7 +37,7 @@ public sealed partial class UniqueMatrixType3Step(
 	bool IPatternType3StepTrait<UniqueMatrixType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<UniqueMatrixType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<UniqueMatrixType3Step>.SubsetSize => Mask.PopCount(SubsetDigitsMask);
 
 	private string ExtraCellsStr => Options.Converter.CellConverter(SubsetCells);
 

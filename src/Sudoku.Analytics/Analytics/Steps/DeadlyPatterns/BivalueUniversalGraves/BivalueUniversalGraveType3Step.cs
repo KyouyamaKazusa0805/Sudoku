@@ -49,7 +49,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// <summary>
 	/// Indicates the size of the subset.
 	/// </summary>
-	private int Size => PopCount((uint)SubsetDigitsMask);
+	private int Size => Mask.PopCount(SubsetDigitsMask);
 
 	private string TrueCandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 

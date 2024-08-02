@@ -16,12 +16,12 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	/// <summary>
 	/// Indicates whether the loop entry is cell type.
 	/// </summary>
-	public bool EntryIsCellType => !IsPow2(Entries.Digits);
+	public bool EntryIsCellType => !Mask.IsPow2(Entries.Digits);
 
 	/// <summary>
 	/// Indicates whether the loop exit is cell type.
 	/// </summary>
-	public bool ExitIsCellType => !IsPow2(Exits.Digits);
+	public bool ExitIsCellType => !Mask.IsPow2(Exits.Digits);
 
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.

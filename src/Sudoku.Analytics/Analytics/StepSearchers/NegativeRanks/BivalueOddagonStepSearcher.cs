@@ -50,7 +50,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 		foreach (var (currentLoop, extraCells, comparer) in oddagonInfoList)
 		{
-			var d1 = TrailingZeroCount(comparer);
+			var d1 = Mask.TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
 			switch (extraCells.Count)
 			{
@@ -113,7 +113,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							-1,
 							in cellsContainingBothTwoDigits,
 							in cell.AsCellMap(),
-							PopCount((uint)grid.GetCandidates(cell)) > 2 ? [cell] : [],
+							Mask.PopCount(grid.GetCandidates(cell)) > 2 ? [cell] : [],
 							result,
 							ref foundLoopsCount,
 							comparer,
@@ -194,9 +194,10 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					else
 					{
 						var newExtraDigitsMask = (Mask)(extraDigitsMask | (Mask)(grid.GetCandidates(cell) & ~comparer));
-						var newExtraCells = PopCount((uint)grid.GetCandidates(cell)) > 2 ? extraCells + cell : extraCells;
+						var newExtraCells = Mask.PopCount(grid.GetCandidates(cell)) > 2 ? extraCells + cell : extraCells;
 						if (newExtraCells.InOneHouse(out _)
-							|| IsPow2(newExtraDigitsMask) && !!(newExtraCells.PeerIntersection & CandidatesMap[Log2((uint)newExtraDigitsMask)])
+							|| Mask.IsPow2(newExtraDigitsMask)
+							&& !!(newExtraCells.PeerIntersection & CandidatesMap[Mask.Log2(newExtraDigitsMask)])
 							|| newExtraCells.Count < 3)
 						{
 							dfs(
@@ -235,12 +236,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	)
 	{
 		var mask = (Mask)(grid[in extraCellsMap] & ~comparer);
-		if (!IsPow2(mask))
+		if (!Mask.IsPow2(mask))
 		{
 			goto ReturnNull;
 		}
 
-		var extraDigit = TrailingZeroCount(mask);
+		var extraDigit = Mask.TrailingZeroCount(mask);
 		if (extraCellsMap % CandidatesMap[extraDigit] is not (var elimMap and not []))
 		{
 			goto ReturnNull;
@@ -322,12 +323,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 
 			var otherCells = HousesMap[house] & EmptyCells & ~loop;
-			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+			for (var size = Mask.PopCount(otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (ref readonly var cells in otherCells & size)
 				{
 					var mask = grid[in cells];
-					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+					if (Mask.PopCount(mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
 					}

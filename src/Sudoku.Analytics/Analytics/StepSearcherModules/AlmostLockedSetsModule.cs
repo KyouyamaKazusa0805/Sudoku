@@ -37,7 +37,7 @@ internal static class AlmostLockedSetsModule
 				foreach (ref readonly var map in tempMap & size)
 				{
 					var blockMask = map.BlockMask;
-					if (IsPow2(blockMask) && houseIndex >= 9)
+					if (Mask.IsPow2(blockMask) && houseIndex >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column will be processed as a block ALS.
 						continue;
@@ -49,7 +49,7 @@ internal static class AlmostLockedSetsModule
 					{
 						digitsMask |= grid.GetCandidates(cell);
 					}
-					if (PopCount((uint)digitsMask) - 1 != size)
+					if (Mask.PopCount(digitsMask) - 1 != size)
 					{
 						continue;
 					}
@@ -65,7 +65,7 @@ internal static class AlmostLockedSetsModule
 						new(
 							digitsMask,
 							in map,
-							houseIndex < 9 && coveredLine is >= 9 and not TrailingZeroCountFallback
+							houseIndex < 9 && coveredLine is >= 9 and not 32
 								? (HousesMap[houseIndex] | HousesMap[coveredLine]) & EmptyCells & ~map
 								: tempMap & ~map,
 							eliminationMap

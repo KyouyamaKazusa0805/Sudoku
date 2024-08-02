@@ -49,7 +49,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 
 				// Iteration on each candidate.
 				// Counts the number of candidates.
-				candidatesCount += PopCount((uint)value);
+				candidatesCount += Mask.PopCount(value);
 
 				// Compares the values.
 				var comparer = Math.Max(
@@ -151,7 +151,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 				var state = MaskOperations.MaskToCellState(value);
 
 				value &= Grid.MaxCandidatesMask;
-				var d = value == 0 ? -1 : (state != CellState.Empty ? TrailingZeroCount(value) : -1) + 1;
+				var d = value == 0 ? -1 : (state != CellState.Empty ? Mask.TrailingZeroCount(value) : -1) + 1;
 				var s = (state, TreatValueAsGiven, IsCompatibleMode) switch
 				{
 					(CellState.Given or CellState.Modifiable, _, true) => d.ToString(),
@@ -279,7 +279,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 					// Compatibility:
 					// If the cell has only one candidate left, we should treat this as given also.
 					// This may ignore Sukaku checking, which causes a bug in logic.
-					result.SetDigit(cell, TrailingZeroCount(mask));
+					result.SetDigit(cell, Mask.TrailingZeroCount(mask));
 					result.SetState(cell, CellState.Given);
 				}
 				else

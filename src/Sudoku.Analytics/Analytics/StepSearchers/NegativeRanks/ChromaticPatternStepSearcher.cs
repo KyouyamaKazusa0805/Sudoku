@@ -127,7 +127,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			}
 		}
 
-		if (PopCount((uint)satisfiedBlocksMask) < 4)
+		if (Mask.PopCount(satisfiedBlocksMask) < 4)
 		{
 			// At least four blocks should contain at least 3 cells.
 			return null;
@@ -168,7 +168,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				foreach (var cell in pattern)
 				{
 					var candidatesMask = grid.GetCandidates(cell);
-					if (IsPow2(candidatesMask))
+					if (Mask.IsPow2(candidatesMask))
 					{
 						containsNakedSingle = true;
 						break;
@@ -217,7 +217,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		{
 			var otherCells = pattern - extraCell;
 			var digitsMask = grid[in otherCells];
-			if (PopCount((uint)digitsMask) != 3)
+			if (Mask.PopCount(digitsMask) != 3)
 			{
 				continue;
 			}
@@ -273,7 +273,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	{
 		ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid[in pattern];
-		if (PopCount((uint)allDigitsMask) != 5)
+		if (Mask.PopCount(allDigitsMask) != 5)
 		{
 			// The pattern cannot find any possible eliminations because the number of extra digits
 			// are not 2 will cause the extra digits not forming a valid strong link
@@ -285,7 +285,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		{
 			var patternDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
 			var otherDigitsMask = (Mask)(allDigitsMask & ~patternDigitsMask);
-			var d1 = TrailingZeroCount(otherDigitsMask);
+			var d1 = Mask.TrailingZeroCount(otherDigitsMask);
 			var d2 = otherDigitsMask.GetNextSet(d1);
 			var otherDigitsCells = pattern & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (otherDigitsCells is not [var c1, var c2])

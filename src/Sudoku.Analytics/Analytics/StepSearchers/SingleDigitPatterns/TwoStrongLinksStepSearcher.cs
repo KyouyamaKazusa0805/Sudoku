@@ -27,7 +27,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					// Get masks.
 					var mask1 = (HousesMap[h1] & CandidatesMap[digit]) / h1;
 					var mask2 = (HousesMap[h2] & CandidatesMap[digit]) / h2;
-					if (PopCount((uint)mask1) != 2 || PopCount((uint)mask2) != 2)
+					if (Mask.PopCount(mask1) != 2 || Mask.PopCount(mask2) != 2)
 					{
 						continue;
 					}

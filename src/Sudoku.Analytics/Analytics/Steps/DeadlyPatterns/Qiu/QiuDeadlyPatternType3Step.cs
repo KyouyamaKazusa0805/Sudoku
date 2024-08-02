@@ -45,7 +45,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	bool IPatternType3StepTrait<QiuDeadlyPatternType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<QiuDeadlyPatternType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<QiuDeadlyPatternType3Step>.SubsetSize => Mask.PopCount(SubsetDigitsMask);
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

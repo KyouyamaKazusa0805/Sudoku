@@ -22,7 +22,7 @@ public static class TrueCandidate
 		var multivalueCellsCount = 0;
 		foreach (var cell in grid.EmptyCells)
 		{
-			switch (PopCount((uint)grid.GetCandidates(cell)))
+			switch (Mask.PopCount(grid.GetCandidates(cell)))
 			{
 				case 1:
 				{
@@ -134,7 +134,7 @@ public static class TrueCandidate
 				}
 
 				chosen[currentIndex] = i;
-				var pos1 = TrailingZeroCount(mask);
+				var pos1 = Mask.TrailingZeroCount(mask);
 
 				stack[currentIndex, pos1].Add(currentCell);
 				stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);

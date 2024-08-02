@@ -35,12 +35,12 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 			foreach (var digit in allDigitsMask)
 			{
 				var cellsToFillDigit = CandidatesMap[digit] & urCells;
-				if (PopCount((uint)cellsToFillDigit.RowMask) == 2 && PopCount((uint)cellsToFillDigit.ColumnMask) == 2)
+				if (Mask.PopCount(cellsToFillDigit.RowMask) == 2 && Mask.PopCount(cellsToFillDigit.ColumnMask) == 2)
 				{
 					validDigitsMask |= (Mask)(1 << digit);
 				}
 			}
-			if (PopCount((uint)validDigitsMask) < 2)
+			if (Mask.PopCount(validDigitsMask) < 2)
 			{
 				// Not enough digits to form a UR.
 				continue;
@@ -51,7 +51,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
 				var ur = new UniqueRectangle(in urCells, urDigitsMask, otherDigitsMask);
-				switch (PopCount((uint)otherDigitsMask))
+				switch (Mask.PopCount(otherDigitsMask))
 				{
 					case 1:
 					{

@@ -78,19 +78,19 @@ public partial class UniqueRectangleStepSearcher
 					{
 						// Determine whether the 'size' cells contain 'size + 1' digits.
 						var subsetDigitsMask = grid[in subsetCells];
-						if (PopCount((uint)subsetDigitsMask) != size + 1)
+						if (Mask.PopCount(subsetDigitsMask) != size + 1)
 						{
 							continue;
 						}
 
 						// The burred subset must contain 1 digit that is UR digit.
-						var onlyDigit = (Mask)(subsetDigitsMask & comparer);
-						if (!IsPow2((uint)onlyDigit))
+						var onlyDigitMask = (Mask)(subsetDigitsMask & comparer);
+						if (!Mask.IsPow2(onlyDigitMask))
 						{
 							continue;
 						}
 
-						var elimDigit = Log2((uint)onlyDigit);
+						var elimDigit = Mask.Log2(onlyDigitMask);
 
 						// Check whether the extra cells holds all possible digits appeared in 'thisCorner',
 						// with UR digits having been removed.
@@ -225,7 +225,7 @@ public partial class UniqueRectangleStepSearcher
 			if (pivotDigit == -1)
 			{
 				// No pivot digit should be checked. Due to no way to check intersection, we should delay the checking.
-				(cellsGroups, var tempIndex) = (new Cell[PopCount((uint)otherDigitsMask)][], 0);
+				(cellsGroups, var tempIndex) = (new Cell[Mask.PopCount(otherDigitsMask)][], 0);
 				foreach (var lastDigit in otherDigitsMask)
 				{
 					cellsGroups[tempIndex++] = [.. cells % CandidatesMap[lastDigit] & BivalueCells];
@@ -235,12 +235,12 @@ public partial class UniqueRectangleStepSearcher
 			{
 				// Pivot digit is specified. We should check for cells that contain that digit.
 				var lastDigitsMask = (Mask)(otherDigitsMask & ~(1 << pivotDigit));
-				if (PopCount((uint)lastDigitsMask) is 0 or 1)
+				if (Mask.PopCount(lastDigitsMask) is 0 or 1)
 				{
 					continue;
 				}
 
-				(cellsGroups, var tempIndex, var atLeastOneGroupIsEmpty) = (new Cell[PopCount((uint)lastDigitsMask)][], 0, false);
+				(cellsGroups, var (tempIndex, atLeastOneGroupIsEmpty)) = (new Cell[Mask.PopCount(lastDigitsMask)][], (0, false));
 				foreach (var lastDigit in lastDigitsMask)
 				{
 					ref var currentCellGroup = ref cellsGroups[tempIndex++];
@@ -273,13 +273,13 @@ public partial class UniqueRectangleStepSearcher
 				if (pivotDigit == -1)
 				{
 					var mergedMask = grid[in combination, false, '&'];
-					if (!IsPow2(mergedMask))
+					if (!Mask.IsPow2(mergedMask))
 					{
 						// No pivot digit can be found, meaning no eliminations can be found.
 						continue;
 					}
 
-					finalPivotDigit = TrailingZeroCount(mergedMask);
+					finalPivotDigit = Mask.TrailingZeroCount(mergedMask);
 				}
 
 				var maskToCompare = pivotDigit == -1 ? grid[in combination] & ~(1 << finalPivotDigit) : grid[in combination];
@@ -430,18 +430,18 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		var otherDigits1 = (Mask)(otherCell1Mask & ~comparer);
-		if (!IsPow2(otherDigits1))
+		if (!Mask.IsPow2(otherDigits1))
 		{
 			return;
 		}
 		var otherDigits2 = (Mask)(otherCell2Mask & ~comparer);
-		if (!IsPow2(otherDigits2))
+		if (!Mask.IsPow2(otherDigits2))
 		{
 			return;
 		}
 
-		var otherDigit1 = TrailingZeroCount(otherDigits1);
-		var otherDigit2 = TrailingZeroCount(otherDigits2);
+		var otherDigit1 = Mask.TrailingZeroCount(otherDigits1);
+		var otherDigit2 = Mask.TrailingZeroCount(otherDigits2);
 
 		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
 		var cells = urCells.AsCellMap();
@@ -456,12 +456,12 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				var mergedMask = (Mask)(grid.GetCandidates(endCell1) & grid.GetCandidates(endCell2));
-				if (!IsPow2(mergedMask))
+				if (!Mask.IsPow2(mergedMask))
 				{
 					continue;
 				}
 
-				var wDigit = TrailingZeroCount(mergedMask);
+				var wDigit = Mask.TrailingZeroCount(mergedMask);
 				if (otherDigit1 == wDigit || otherDigit2 == wDigit)
 				{
 					continue;
@@ -572,14 +572,14 @@ public partial class UniqueRectangleStepSearcher
 
 		// Check whether the corners spanned two blocks. If so, UR + SdC can't be found.
 		var blockMaskInOtherCells = otherCellsMap.BlockMask;
-		if (!IsPow2(blockMaskInOtherCells))
+		if (!Mask.IsPow2(blockMaskInOtherCells))
 		{
 			return;
 		}
 
 		var otherDigitsMask = (Mask)(mergedMaskInOtherCells & ~comparer);
 		var line = (byte)otherCellsMap.SharedLine;
-		var block = (byte)TrailingZeroCount(otherCellsMap.SharedHouses & ~(1 << line));
+		var block = (byte)HouseMask.TrailingZeroCount(otherCellsMap.SharedHouses & ~(1 << line));
 		var d = Miniline.Map[new(line, block)].OtherBlocks;
 		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
@@ -619,7 +619,7 @@ public partial class UniqueRectangleStepSearcher
 				foreach (var currentInterMap in list)
 				{
 					var selectedInterMask = grid[in currentInterMap];
-					if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
+					if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
 						// which is invalid in SdCs.
@@ -710,22 +710,22 @@ public partial class UniqueRectangleStepSearcher
 		{
 			var maskOnlyInInter = (Mask)(selectedInterMask & ~(blockMask | lineMask));
 			var maskIsolated = (Mask)(cannibalMode ? lineMask & blockMask & selectedInterMask : maskOnlyInInter);
-			if (!cannibalMode && ((blockMask & lineMask) != 0 || maskIsolated != 0 && !IsPow2(maskIsolated))
-				|| cannibalMode && !IsPow2(maskIsolated))
+			if (!cannibalMode && ((blockMask & lineMask) != 0 || maskIsolated != 0 && !Mask.IsPow2(maskIsolated))
+				|| cannibalMode && !Mask.IsPow2(maskIsolated))
 			{
 				return;
 			}
 
 			var elimMapIsolated = CellMap.Empty;
-			var digitIsolated = TrailingZeroCount(maskIsolated);
-			if (digitIsolated != TrailingZeroCountFallback)
+			var digitIsolated = Mask.TrailingZeroCount(maskIsolated);
+			if (digitIsolated != 16)
 			{
 				elimMapIsolated = (cannibalMode ? currentBlockMap | currentLineMap : currentInterMap)
 					% CandidatesMap[digitIsolated]
 					& EmptyCells;
 			}
 
-			if (currentInterMap.Count + i + j + 1 == PopCount((uint)blockMask) + PopCount((uint)lineMask) + PopCount((uint)maskOnlyInInter)
+			if (currentInterMap.Count + i + j + 1 == Mask.PopCount(blockMask) + Mask.PopCount(lineMask) + Mask.PopCount(maskOnlyInInter)
 				&& !!(elimMapBlock | elimMapLine | elimMapIsolated))
 			{
 				// Check eliminations.
@@ -909,13 +909,13 @@ public partial class UniqueRectangleStepSearcher
 
 		// Check whether there're only 2 extra digit.
 		var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
-		if (PopCount((uint)extraDigitsMask) != 2)
+		if (Mask.PopCount(extraDigitsMask) != 2)
 		{
 			return;
 		}
 
 		// We know that cells holding two digits will form a strong link.
-		var extraDigit1 = TrailingZeroCount(extraDigitsMask);
+		var extraDigit1 = (int)Mask.TrailingZeroCount(extraDigitsMask);
 		var extraDigit2 = extraDigitsMask.GetNextSet(extraDigit1);
 		var extraCells1 = CandidatesMap[extraDigit1] & cells;
 		var extraCells2 = CandidatesMap[extraDigit2] & cells;
@@ -1181,7 +1181,7 @@ public partial class UniqueRectangleStepSearcher
 			// Check all bi-value cells.
 			foreach (var bivalueCellToCheck in bivalueCellsToCheck)
 			{
-				if ((bivalueCellToCheck.AsCellMap() + targetCell).SharedLine != TrailingZeroCountFallback)
+				if ((bivalueCellToCheck.AsCellMap() + targetCell).SharedLine != 32)
 				{
 					// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 					continue;
@@ -1195,7 +1195,7 @@ public partial class UniqueRectangleStepSearcher
 
 				var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
 				var coveredLine = (bivalueCellToCheck.AsCellMap() + urCellInSameBlock).SharedLine;
-				if (coveredLine == TrailingZeroCountFallback)
+				if (coveredLine == 32)
 				{
 					// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
 					// as 'urCellInSameBlock'.

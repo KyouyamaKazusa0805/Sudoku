@@ -35,7 +35,7 @@ public readonly record struct QiuDeadlyPattern1(ref readonly CellMap Corner, Hou
 	{
 		get
 		{
-			var l1 = TrailingZeroCount(Lines);
+			var l1 = HouseMask.TrailingZeroCount(Lines);
 			var l2 = Lines.GetNextSet(l1);
 			return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
 		}
@@ -49,7 +49,7 @@ public readonly record struct QiuDeadlyPattern1(ref readonly CellMap Corner, Hou
 		get
 		{
 			Crossline.InOneHouse(out var block);
-			var l1 = TrailingZeroCount(Lines);
+			var l1 = HouseMask.TrailingZeroCount(Lines);
 			var l2 = Lines.GetNextSet(l1);
 			return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);
 		}

@@ -65,7 +65,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	bool IPatternType3StepTrait<UniqueRectangleExternalType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<UniqueRectangleExternalType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<UniqueRectangleExternalType3Step>.SubsetSize => Mask.PopCount(SubsetDigitsMask);
 
 	private string SubsetDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

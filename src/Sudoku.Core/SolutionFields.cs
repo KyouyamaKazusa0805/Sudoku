@@ -10,36 +10,6 @@ public static class SolutionFields
 	/// </summary>
 	public const Cell PeersCount = 20;
 
-	/// <summary>
-	/// Indicates the invalid fallback value
-	/// of methods <see cref="TrailingZeroCount(int)"/> and <see cref="TrailingZeroCount(uint)"/>,
-	/// which means that if the method returns an invalid value, that value must be equal to this.
-	/// In other words, you can use this field to check whether the method invocation executes correctly.
-	/// </summary>
-	/// <remarks>
-	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L586">this link</see>
-	/// to get the inner code.
-	/// </remarks>
-	/// <seealso cref="TrailingZeroCount(int)"/>
-	/// <seealso cref="TrailingZeroCount(uint)"/>
-	public const int TrailingZeroCountFallback = 32;
-
-	/// <summary>
-	/// Indicates the invalid fallback value
-	/// of methods <see cref="TrailingZeroCount(long)"/> and <see cref="TrailingZeroCount(ulong)"/>,
-	/// which means that if the method returns an invalid value, that value must be equal to this.
-	/// In other words, you can use this field to check whether the method invocation executes correctly.
-	/// </summary>
-	/// <remarks>
-	/// For more details you want to learn about, please visit
-	/// <see href="https://github.com/dotnet/runtime/blob/d4a59b36c679712b74eccf98deb1a362cdbaa6b1/src/libraries/System.Private.CoreLib/src/System/Numerics/BitOperations.cs#L647">this link</see>
-	/// to get the inner code.
-	/// </remarks>
-	/// <seealso cref="TrailingZeroCount(long)"/>
-	/// <seealso cref="TrailingZeroCount(ulong)"/>
-	public const int TrailingZeroCountFallbackLong = 64;
-
 
 	/// <summary>
 	/// Indicates the digits used. The value can be also used for ordered houses by rows.

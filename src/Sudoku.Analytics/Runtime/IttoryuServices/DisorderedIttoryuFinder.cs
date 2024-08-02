@@ -141,7 +141,8 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			var emptyCells = grid.EmptyCells;
 			for (var house = 0; house < 27; house++)
 			{
-				if ((emptyCells & HousesMap[house]) is [var fullHouseCell] && TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
+				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
+					&& Mask.TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
 				{
 					foundNodes.Add(new(in grid, house, fullHouseCell * 9 + digit));
 				}
@@ -164,9 +165,9 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 					continue;
 				}
 
-				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && IsPow2((uint)mask))
+				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && Mask.IsPow2(mask))
 				{
-					foundNodes.Add(new(in grid, house, HousesCells[house][Log2((uint)mask)] * 9 + digit));
+					foundNodes.Add(new(in grid, house, HousesCells[house][Mask.Log2(mask)] * 9 + digit));
 				}
 			}
 		}

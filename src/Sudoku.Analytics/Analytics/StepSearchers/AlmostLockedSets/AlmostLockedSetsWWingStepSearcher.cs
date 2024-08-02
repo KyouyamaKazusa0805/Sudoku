@@ -54,7 +54,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 
 				// Then merge masks from two ALSes' into one using the operator &.
 				var mask = (Mask)(mask1 & mask2);
-				if (PopCount((uint)mask) < 2)
+				if (Mask.PopCount(mask) < 2)
 				{
 					// If we can't find any digit that both two ALSes holds, the ALS-W-Wing won't form.
 					// Just skip it.

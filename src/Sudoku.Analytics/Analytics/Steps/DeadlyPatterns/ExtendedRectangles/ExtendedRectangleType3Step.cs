@@ -45,7 +45,7 @@ public sealed partial class ExtendedRectangleType3Step(
 	bool IPatternType3StepTrait<ExtendedRectangleType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<ExtendedRectangleType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<ExtendedRectangleType3Step>.SubsetSize => Mask.PopCount(SubsetDigitsMask);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

@@ -56,7 +56,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var candidatesCount = 0;
 		foreach (var cell in EmptyCells)
 		{
-			candidatesCount += PopCount((uint)grid.GetCandidates(cell));
+			candidatesCount += Mask.PopCount(grid.GetCandidates(cell));
 		}
 
 		if (candidatesCount > (emptyCellsCount << 1) + PeersCount + 8)
@@ -329,7 +329,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				foreach (ref readonly var cells in otherCellsMap & size)
 				{
 					var mask = (Mask)(digitsMask | grid[in cells]);
-					if (PopCount((uint)mask) != size + 1)
+					if (Mask.PopCount(mask) != size + 1)
 					{
 						continue;
 					}
@@ -432,13 +432,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			{
 				// Check whether forms a conjugate pair.
 				var mask = (HousesMap[house] & CandidatesMap[conjugatePairDigit]) / house;
-				if (PopCount((uint)mask) != 2)
+				if (Mask.PopCount(mask) != 2)
 				{
 					continue;
 				}
 
 				// Check whether the conjugate pair lies in current two cells.
-				var first = TrailingZeroCount(mask);
+				var first = Mask.TrailingZeroCount(mask);
 				var second = mask.GetNextSet(first);
 				var c1 = HousesCells[house][first];
 				var c2 = HousesCells[house][second];

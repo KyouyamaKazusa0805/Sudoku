@@ -13,14 +13,14 @@ internal sealed class CachedYChainingRule : ChainingRule
 		foreach (var cell in EmptyCells)
 		{
 			var mask = grid.GetCandidates(cell);
-			if (PopCount((uint)mask) < 2)
+			if (Mask.PopCount(mask) < 2)
 			{
 				continue;
 			}
 
 			if (BivalueCells.Contains(cell))
 			{
-				var digit1 = TrailingZeroCount(mask);
+				var digit1 = Mask.TrailingZeroCount(mask);
 				var digit2 = mask.GetNextSet(digit1);
 				var node1 = new Node((cell * 9 + digit1).AsCandidateMap(), false, false);
 				var node2 = new Node((cell * 9 + digit2).AsCandidateMap(), true, false);

@@ -14,10 +14,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		var (result, p) = (new int[sbyte.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = sbyte.TrailingZeroCount(@this);
 			@this &= (sbyte)(@this - 1);
 		}
 		return result;
@@ -31,10 +31,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount(@this)], 0);
+		var (result, p) = (new int[byte.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = byte.TrailingZeroCount(@this);
 			@this &= (byte)(@this - 1);
 		}
 		return result;
@@ -48,10 +48,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		var (result, p) = (new int[short.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = short.TrailingZeroCount(@this);
 			@this &= (short)(@this - 1);
 		}
 		return result;
@@ -65,10 +65,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount(@this)], 0);
+		var (result, p) = (new int[ushort.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = ushort.TrailingZeroCount(@this);
 			@this &= (ushort)(@this - 1);
 		}
 		return result;
@@ -82,10 +82,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount((uint)@this)], 0);
+		var (result, p) = (new int[int.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = int.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;
@@ -99,10 +99,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount(@this)], 0);
+		var (result, p) = (new int[uint.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = BitOperations.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;
@@ -116,10 +116,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount((ulong)@this)], 0);
+		var (result, p) = (new int[long.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = BitOperations.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;
@@ -133,10 +133,10 @@ public partial class BitOperationsExtensions
 			return [];
 		}
 
-		var (result, p) = (new int[PopCount(@this)], 0);
+		var (result, p) = (new int[ulong.PopCount(@this)], 0);
 		while (@this != 0)
 		{
-			result[p++] = TrailingZeroCount(@this);
+			result[p++] = BitOperations.TrailingZeroCount(@this);
 			@this &= @this - 1;
 		}
 		return result;

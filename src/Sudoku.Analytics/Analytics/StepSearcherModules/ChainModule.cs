@@ -167,12 +167,12 @@ internal static class ChainModule
 			var entryHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
 					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(entryCandidates.Cells.SharedHouses))
+					: new HouseViewNode(ColorIdentifier.Normal, HouseMask.TrailingZeroCount(entryCandidates.Cells.SharedHouses))
 			);
 			var exitHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
 					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Auxiliary1, TrailingZeroCount(exitCandidates.Cells.SharedHouses))
+					: new HouseViewNode(ColorIdentifier.Auxiliary1, HouseMask.TrailingZeroCount(exitCandidates.Cells.SharedHouses))
 			);
 
 			globalView.Add(entryHouseOrCellViewNode);

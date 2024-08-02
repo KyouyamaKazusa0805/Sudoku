@@ -14,7 +14,7 @@ public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 		get
 		{
 			var (upper, lower) = ((ulong)(value >>> 64), (ulong)(value & ulong.MaxValue));
-			return PopCount(upper) + PopCount(lower);
+			return BitOperations.PopCount(upper) + BitOperations.PopCount(lower);
 		}
 	}
 

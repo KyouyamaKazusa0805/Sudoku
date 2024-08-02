@@ -110,7 +110,7 @@ public partial struct CellMap : CellMapBase
 	public readonly bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count == 1 || Count <= 3 && PopCount((uint)SharedHouses) == 2;
+		get => Count == 1 || Count <= 3 && HouseMask.PopCount(SharedHouses) == 2;
 	}
 
 	/// <summary>
@@ -140,7 +140,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public readonly int Count => PopCount((ulong)_low) + PopCount((ulong)_high);
+	public readonly int Count => BitOperations.PopCount((ulong)_low) + BitOperations.PopCount((ulong)_high);
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -226,14 +226,13 @@ public partial struct CellMap : CellMapBase
 	/// </summary>
 	/// <remarks>
 	/// If no shared houses can be found (i.e. return value of property <see cref="SharedHouses"/> is 0),
-	/// this property will return <see cref="TrailingZeroCountFallback"/>.
+	/// this property will return 32.
 	/// </remarks>
-	/// <seealso cref="TrailingZeroCountFallback"/>
 	/// <seealso cref="SharedHouses"/>
 	public readonly House SharedLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TrailingZeroCount(SharedHouses & ~Grid.MaxCandidatesMask);
+		get => HouseMask.TrailingZeroCount(SharedHouses & ~Grid.MaxCandidatesMask);
 	}
 
 	/// <summary>
@@ -370,8 +369,8 @@ public partial struct CellMap : CellMapBase
 			}
 
 			var (pos, arr) = (0, new Cell[Count]);
-			for (var value = _low; value != 0; arr[pos++] = TrailingZeroCount((ulong)value), value &= value - 1) ;
-			for (var value = _high; value != 0; arr[pos++] = Shifting + TrailingZeroCount((ulong)value), value &= value - 1) ;
+			for (var value = _low; value != 0; arr[pos++] = BitOperations.TrailingZeroCount((ulong)value), value &= value - 1) ;
+			for (var value = _high; value != 0; arr[pos++] = Shifting + BitOperations.TrailingZeroCount((ulong)value), value &= value - 1) ;
 			return arr;
 		}
 	}
@@ -414,22 +413,22 @@ public partial struct CellMap : CellMapBase
 			{
 				// https://stackoverflow.com/questions/7669057/find-nth-set-bit-in-an-int
 
-				return TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index, (ulong)_low)) switch
+				return BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index, (ulong)_low)) switch
 				{
-					var low and not TrailingZeroCountFallbackLong => low,
-					_ => TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - PopCount((ulong)_low), (ulong)_high)) switch
+					var low and not 64 => low,
+					_ => BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - BitOperations.PopCount((ulong)_low), (ulong)_high)) switch
 					{
-						var high and not TrailingZeroCountFallbackLong => high + Shifting,
+						var high and not 64 => high + Shifting,
 						_ => -1
 					}
 				};
 			}
 
-			return PopCount((ulong)_low) is var popCountLow && popCountLow == index
-				? 63 - LeadingZeroCount((ulong)_low)
+			return BitOperations.PopCount((ulong)_low) is var popCountLow && popCountLow == index
+				? 63 - BitOperations.LeadingZeroCount((ulong)_low)
 				: popCountLow > index
 					? _low.SetAt(index)
-					: _high.SetAt(index - popCountLow) is var z and not TrailingZeroCountFallbackLong ? z + Shifting : -1;
+					: _high.SetAt(index - popCountLow) is var z and not 64 ? z + Shifting : -1;
 		}
 	}
 

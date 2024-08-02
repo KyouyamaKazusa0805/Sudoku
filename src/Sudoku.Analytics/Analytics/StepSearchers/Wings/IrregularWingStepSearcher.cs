@@ -122,10 +122,10 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								|| (c1.AsCellMap() + b).InOneHouse(out _) && (c2.AsCellMap() + a).InOneHouse(out _)
 								=> true,
 #pragma warning restore format
-							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
+							{ Count: > 2 and <= 6, BlockMask: var blocks } => Mask.PopCount(blocks) switch
 							{
 								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
-								2 when TrailingZeroCount(blocks) is var block1 && blocks.GetNextSet(block1) is var block2
+								2 when Mask.TrailingZeroCount(blocks) is var block1 && blocks.GetNextSet(block1) is var block2
 									=> (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 									{
 										var (bridgeInBlock1, bridgeInBlock2) => (
@@ -150,7 +150,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						}
 
 						// Check for eliminations.
-						var anotherDigit = TrailingZeroCount(grid.GetCandidates(c1) & ~(1 << digit));
+						var anotherDigit = Mask.TrailingZeroCount((Mask)(grid.GetCandidates(c1) & ~(1 << digit)));
 						var elimMap = CandidatesMap[anotherDigit] & (c1.AsCellMap() + c2).PeerIntersection;
 						if (!elimMap)
 						{

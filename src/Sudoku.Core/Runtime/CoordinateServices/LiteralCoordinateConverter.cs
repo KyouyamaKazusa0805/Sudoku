@@ -48,9 +48,9 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				return string.Empty;
 			}
 
-			if (IsPow2((uint)housesMask))
+			if (HouseMask.IsPow2(housesMask))
 			{
-				var house = Log2((uint)housesMask);
+				var house = HouseMask.Log2(housesMask);
 				var houseType = house.ToHouseType();
 				return string.Format(
 					SR.Get(
@@ -67,7 +67,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				);
 			}
 
-			var snippets = new List<string>(PopCount((uint)housesMask));
+			var snippets = new List<string>(HouseMask.PopCount(housesMask));
 			foreach (var house in housesMask)
 			{
 				var houseType = house.ToHouseType();
