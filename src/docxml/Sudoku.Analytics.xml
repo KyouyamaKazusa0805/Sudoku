@@ -6563,7 +6563,7 @@
             </summary>
             <param name="culture">Indicates the current culture used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Step.FormatDescription(System.Globalization.CultureInfo,System.String[])">
+        <member name="M:Sudoku.Analytics.Step.FormatDescription(System.Globalization.CultureInfo,System.ReadOnlySpan{System.String})">
             <summary>
             Try to format description of the current instance.
             </summary>

@@ -233,8 +233,8 @@ public abstract partial class Step(
 	/// <returns>The final result.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private string FormatDescription(CultureInfo? culture, params string[] formatArguments)
+	private string FormatDescription(CultureInfo? culture, params ReadOnlySpan<string> formatArguments)
 		=> GetResourceFormat(culture) is { } p
-			? string.Format(culture, p, formatArguments)
+			? string.Format(culture, p, ReadOnlySpan<object?>.CastUp(formatArguments))
 			: throw new ResourceNotFoundException(typeof(Step).Assembly, TechniqueResourceKey, culture);
 }

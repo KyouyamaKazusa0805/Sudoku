@@ -9,4 +9,4 @@ namespace Sudoku.Resources;
 /// </param>
 /// <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
 /// <seealso cref="CultureInfo"/>
-public readonly record struct Interpolation(string LanguageName, string[]? ResourcePlaceholderValues);
+public readonly record struct Interpolation(string LanguageName, string[] ResourcePlaceholderValues);
