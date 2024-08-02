@@ -79,11 +79,10 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		}
 
 		accumulator.AddRange(
-			from info in tempAccumulator
+			from info in tempAccumulator.AsReadOnlySpan()
 			orderby info.ContradictionLinks.Length, info.ContradictionLinks[0]
-			select info
+			select (Step)info
 		);
-
 		return null;
 	}
 
@@ -191,7 +190,6 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		{
 			list.Add(c * 9 + digit);
 		}
-
 		return (list, grid[cell]);
 	}
 
@@ -208,7 +206,6 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		{
 			grid.SetExistence(candidate / 9, candidate % 9, true);
 		}
-
 		grid.SetMask(cell, mask);
 	}
 
@@ -234,7 +231,6 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			result = false;
 			break;
 		}
-
 		return result;
 	}
 }
