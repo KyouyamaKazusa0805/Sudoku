@@ -43,7 +43,7 @@ public partial class GridCanvas
 
 		Drawing:
 			_g.FillEllipse(
-				(cannibalism, nodes.Any((ref readonly CandidateViewNode node) => node.Cell == c)) switch
+				(cannibalism, nodes.Any(node => node.Cell == c)) switch
 				{
 					(true, true) => cannibalismBrushLighter,
 					(true, false) => cannibalBrush,

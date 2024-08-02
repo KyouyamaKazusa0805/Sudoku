@@ -84,7 +84,7 @@ public abstract partial class ChainOrLoop :
 	/// <summary>
 	/// Indicates whether the chain pattern uses grouped logic.
 	/// </summary>
-	public bool IsGrouped => ValidNodes.Any(static (ref readonly Node node) => node.IsAdvanced || node.IsGroupedNode);
+	public bool IsGrouped => ValidNodes.Any(static node => node.IsAdvanced || node.IsGroupedNode);
 
 	/// <summary>
 	/// Indicates whether the pattern only uses same digits.

@@ -325,6 +325,20 @@ public static class SpanEnumerable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<T> Skip<T>(this ReadOnlySpan<T> @this, int count) => new(in @this[count]);
 
+	/// <inheritdoc cref="FindAll{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
+	public static ReadOnlySpan<T> FindAll<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
+	{
+		var result = new List<T>(@this.Length);
+		foreach (var element in @this)
+		{
+			if (match(element))
+			{
+				result.AddRef(in element);
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <summary>
 	/// Retrieves all the elements that match the conditions defined by the specified predicate.
 	/// </summary>
@@ -348,7 +362,6 @@ public static class SpanEnumerable
 				result.AddRef(in element);
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 
@@ -404,7 +417,7 @@ public static class SpanEnumerable
 				result.AddRef(resultSelector(element, subElement));
 			}
 		}
-		return (TResult[])[.. result];
+		return result.ToArray();
 	}
 
 	/// <summary>
@@ -429,7 +442,6 @@ public static class SpanEnumerable
 				result[i++] = element;
 			}
 		}
-
 		return result.AsReadOnlySpan()[..i];
 	}
 
@@ -462,10 +474,8 @@ public static class SpanEnumerable
 		);
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(
-		this scoped ReadOnlySpan<TSource> values,
-		Func<TSource, TKey> keySelector
-	) where TKey : notnull
+	public static ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
+		where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
 		foreach (var element in values)
@@ -623,7 +633,6 @@ public static class SpanEnumerable
 				return element;
 			}
 		}
-
 		throw new InvalidOperationException(SR.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 

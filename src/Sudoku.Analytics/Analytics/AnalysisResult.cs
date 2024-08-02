@@ -192,7 +192,6 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					}
 				}
 			}
-
 			return maxLevel;
 		}
 	}
@@ -351,7 +350,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				return null;
 			}
 
-			if (StepsSpan.All(static (ref readonly Step step) => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
+			if (StepsSpan.All(static step => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
 			{
 				// No diamond step exist in all steps are hidden singles in block.
 				return null;
@@ -379,7 +378,6 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					}
 				}
 			}
-
 			return null;
 		}
 	}
