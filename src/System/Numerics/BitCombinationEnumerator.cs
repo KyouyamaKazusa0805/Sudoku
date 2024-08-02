@@ -6,12 +6,26 @@ namespace System.Numerics;
 /// <typeparam name="T">The type of the target value.</typeparam>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnumerator<T> where T : IBinaryInteger<T>
+public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnumerator<T>
+#if NUMERIC_GENERIC_TYPE
+	where T : IBinaryInteger<T>
+#else
+	where T :
+		IAdditionOperators<T, T, T>,
+		IAdditiveIdentity<T, T>,
+		IBitwiseOperators<T, T, T>,
+		IDivisionOperators<T, T, T>,
+		IEqualityOperators<T, T, bool>,
+		IMultiplicativeIdentity<T, T>,
+		IUnaryNegationOperators<T, T>,
+		IShiftOperators<T, int, T>,
+		ISubtractionOperators<T, T, T>
+#endif
 {
 	/// <summary>
 	/// The mask.
 	/// </summary>
-	private readonly T _mask = (T.One << bitCount - oneCount) - T.One;
+	private readonly T _mask = (T.MultiplicativeIdentity << bitCount - oneCount) - T.MultiplicativeIdentity;
 
 	/// <summary>
 	/// Indicates whether that the value is the last one.
@@ -20,7 +34,7 @@ public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnu
 
 
 	/// <inheritdoc cref="IEnumerator.Current"/>
-	public T Current { get; private set; } = (T.One << oneCount) - T.One;
+	public T Current { get; private set; } = (T.MultiplicativeIdentity << oneCount) - T.MultiplicativeIdentity;
 
 	/// <inheritdoc/>
 	readonly object IEnumerator.Current => Current;
@@ -57,7 +71,7 @@ public ref struct BitCombinationEnumerator<T>(int bitCount, int oneCount) : IEnu
 	private bool HasNext()
 	{
 		var result = !_isLast;
-		_isLast = (Current & -Current & _mask) == T.Zero;
+		_isLast = (Current & -Current & _mask) == T.AdditiveIdentity;
 		return result;
 	}
 }

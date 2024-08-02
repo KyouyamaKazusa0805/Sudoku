@@ -11,7 +11,21 @@ namespace System.Numerics;
 public readonly ref partial struct BitCombinationGenerator<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] int bitCount,
 	[PrimaryConstructorParameter(MemberKinds.Field)] int oneCount
-) where T : IBinaryInteger<T>
+)
+#if NUMERIC_GENERIC_TYPE
+	where T : IBinaryInteger<T>
+#else
+	where T :
+		IAdditionOperators<T, T, T>,
+		IAdditiveIdentity<T, T>,
+		IBitwiseOperators<T, T, T>,
+		IDivisionOperators<T, T, T>,
+		IEqualityOperators<T, T, bool>,
+		IMultiplicativeIdentity<T, T>,
+		IUnaryNegationOperators<T, T>,
+		IShiftOperators<T, int, T>,
+		ISubtractionOperators<T, T, T>
+#endif
 {
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.

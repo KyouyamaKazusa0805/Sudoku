@@ -3474,18 +3474,6 @@
         <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="T:System.Text.RegularExpressions.RegexExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.
-            </summary>
-            <seealso cref="T:System.Text.RegularExpressions.Regex"/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.RegexExtensions.ValueMatch(System.Text.RegularExpressions.Regex,System.String)">
-            <inheritdoc cref="M:System.Text.RegularExpressions.Regex.Match(System.String)"/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.RegexExtensions.ValueMatches(System.Text.RegularExpressions.Regex,System.String)">
-            <inheritdoc cref="M:System.Text.RegularExpressions.Regex.Matches(System.String)"/>
-        </member>
         <member name="T:System.Text.RegularExpressions.ValueMatchExtensions">
             <summary>
             Provides with extension methdos on <see cref="T:System.Text.RegularExpressions.ValueMatch"/>.
@@ -5635,37 +5623,6 @@
         </member>
         <member name="M:System.Threading.Tasks.TimeSpanAwaiter.OnCompleted(System.Action)">
             <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.OnCompleted(System.Action)"/>
-        </member>
-        <member name="T:System.ValueMatchEnumerator">
-            <summary>
-            Represents an enumerator that is used for iteration on matches.
-            </summary>
-            <param name="originalString">Indicates the original string value.</param>
-            <param name="backingEnumerator">Indicates the backing enumerator.</param>
-        </member>
-        <member name="M:System.ValueMatchEnumerator.#ctor(System.String,System.Text.RegularExpressions.Regex.ValueMatchEnumerator)">
-            <summary>
-            Represents an enumerator that is used for iteration on matches.
-            </summary>
-            <param name="originalString">Indicates the original string value.</param>
-            <param name="backingEnumerator">Indicates the backing enumerator.</param>
-        </member>
-        <member name="P:System.ValueMatchEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="M:System.ValueMatchEnumerator.Any">
-            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any"/>
-        </member>
-        <member name="M:System.ValueMatchEnumerator.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.ValueMatchEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:System.ValueMatchEnumerator._backingEnumerator">
-            <summary>
-            The generated field declaration for parameter <c>backingEnumerator</c>.
-            </summary>
         </member>
         <member name="T:System.ValueTupleEnumerator`1">
             <summary>
