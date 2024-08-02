@@ -78,6 +78,10 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 		return [.. result];
 	}
 
+	/// <inheritdoc cref="MemoryExtensions2.AsReadOnlySpan{T}(T[])"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<TSource> AsReadOnlySpan() => _elements;
+
 	/// <summary>
 	/// Creates an enumerator that can enumerate each element in the source collection.
 	/// </summary>

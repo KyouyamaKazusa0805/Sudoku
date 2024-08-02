@@ -640,7 +640,7 @@
             <summary>
             Draw the string representation of an instance onto the current <see cref="T:System.Drawing.Graphics"/> instance.
             </summary>
-            <typeparam name="T">The type of the value to draw.</typeparam>
+            <typeparam name="TFormattable">The type of the value to draw.</typeparam>
             <param name="this">The graphics instance.</param>
             <param name="value">The value to drawing onto.</param>
             <param name="font">The font.</param>

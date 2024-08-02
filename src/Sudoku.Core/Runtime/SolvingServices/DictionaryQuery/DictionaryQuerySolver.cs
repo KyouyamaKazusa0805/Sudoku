@@ -58,23 +58,22 @@ public sealed class DictionaryQuerySolver : ISolver
 			.. from r in Rows select (string[])[.. from p in r.ToString() from c in Columns select $"{p}{c}"],
 			..
 			from rs in (string[])["ABC", "DEF", "GHI"]
-			from cs in (string[])["123", "456", "789"]
+			from cs in (ReadOnlySpan<string>)(string[])["123", "456", "789"]
 			select (string[])[.. from r in rs from c in cs select $"{r}{c}"]
 		];
-
 		Houses = (
 			from s in Coordinates
-			from u in houseList
+			from u in houseList.AsReadOnlySpan()
 			where u.Contains(s)
 			group u by s
 		).ToDictionary(static g => g.Key);
 		Peers = (
 			from s in Coordinates
-			from u in Houses[s]
-			from s2 in u
+			from u in Houses[s].AsReadOnlySpan()
+			from s2 in u.AsReadOnlySpan()
 			where s2 != s
 			group s2 by s
-		).ToDictionary(static g => g.Key, static g => g.Distinct());
+		).ToDictionary(static g => g.Key, Enumerable.Distinct);
 	}
 
 
@@ -99,34 +98,29 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// </returns>
 	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
-		Unsafe.SkipInit(out result);
-
-		var rawResult = Search(ParseGrid($"{grid:0}"));
+		var rawResult = Search(ParseGrid(grid.ToString("0")));
 		if (rawResult is null)
 		{
+			result = Grid.Undefined;
 			return null;
 		}
 
-		Debug.Assert(rawResult.Count == 81);
 		var gridArray = new Digit[81];
 		foreach (var (rawCell, rawDigit) in rawResult)
 		{
-			if (rawDigit is not [var digitChar and >= '1' and <= '9']
-				|| rawCell is not [var rIndex and >= 'A' and <= 'I', var cIndex and >= '1' and <= '9'])
+			if (rawDigit is [var digitChar and >= '1' and <= '9']
+				&& rawCell is [var rIndex and >= 'A' and <= 'I', var cIndex and >= '1' and <= '9'])
 			{
-				throw new("Unexpected error.");
+				var cell = (rIndex - 'A') * 9 + (cIndex - '1');
+				var digit = digitChar - '1';
+				gridArray[cell] = digit;
 			}
-
-			var cell = (rIndex - 'A') * 9 + (cIndex - '1');
-			var digit = digitChar - '1';
-			gridArray[cell] = digit;
 		}
 
-		result = Grid.Create(gridArray);
-
-		// Please note the algorithm doesn't perform well on the operation of validation on multiple solutions
+		// This algorithm doesn't perform well on the operation of validation on multiple solutions
 		// due to the recursion algorithm (Depth-first searching). Therefore, the method
 		// isn't aware of the solution count.
+		result = Grid.Create(gridArray);
 		return false;
 	}
 
@@ -170,14 +164,12 @@ public sealed class DictionaryQuerySolver : ISolver
 	private string[][] Zip(string[] a, string[] b)
 	{
 		var n = Math.Min(a.Length, b.Length);
-		var sd = new string[n][];
-
+		var result = new string[n][];
 		for (var i = 0; i < n; i++)
 		{
-			sd[i] = [a[i].ToString(), b[i].ToString()];
+			result[i] = [a[i].ToString(), b[i].ToString()];
 		}
-
-		return sd;
+		return result;
 	}
 
 	/// <summary>
@@ -186,9 +178,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// </summary>
 	public Dictionary<string, string>? ParseGrid(string gridStr)
 	{
-		//var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
 		var values = Coordinates.ToDictionary(@delegate.Self, static _ => Digits);
-
 		foreach (var sd in Zip(Coordinates, [.. from s in gridStr select s.ToString()]))
 		{
 			var (s, d) = (sd[0], sd[1]);
@@ -197,7 +187,6 @@ public sealed class DictionaryQuerySolver : ISolver
 				return null;
 			}
 		}
-
 		return values;
 	}
 
@@ -266,7 +255,6 @@ public sealed class DictionaryQuerySolver : ISolver
 				{
 					return null;
 				}
-
 				break;
 			}
 		}
@@ -289,7 +277,6 @@ public sealed class DictionaryQuerySolver : ISolver
 				}
 			}
 		}
-
 		return values;
 	}
 }

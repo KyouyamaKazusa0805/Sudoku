@@ -23,7 +23,8 @@ public static class ArrayEnumerable
 	/// <param name="this">The array to be filtered.</param>
 	/// <returns>A list of <typeparamref name="TResult"/> elements.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TResult[] OfType<TResult>(this object[] @this) => from element in @this where element is TResult select (TResult)element;
+	public static TResult[] OfType<TResult>(this object[] @this)
+		=> from element in @this where element is TResult select (TResult)element;
 
 	/// <summary>
 	/// Totals up the number of elements that satisfy the specified condition.
@@ -129,26 +130,6 @@ public static class ArrayEnumerable
 		{
 			var element = source[i];
 			foreach (ref readonly var subElement in collectionSelector(element))
-			{
-				result.AddRef(resultSelector(element, subElement));
-			}
-		}
-		return [.. result];
-	}
-
-	/// <inheritdoc cref="SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, ReadOnlySpan{TCollection}}, Func{TSource, TCollection, TResult})"/>
-	public static TResult[] SelectMany<TSource, TCollection, TResult>(
-		this TSource[] source,
-		Func<TSource, IEnumerable<TCollection>> collectionSelector,
-		Func<TSource, TCollection, TResult> resultSelector
-	)
-	{
-		var length = source.Length;
-		var result = new List<TResult>(length << 1);
-		for (var i = 0; i < length; i++)
-		{
-			var element = source[i];
-			foreach (var subElement in collectionSelector(element))
 			{
 				result.AddRef(resultSelector(element, subElement));
 			}
