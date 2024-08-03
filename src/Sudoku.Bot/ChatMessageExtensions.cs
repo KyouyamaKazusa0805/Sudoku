@@ -11,7 +11,7 @@ public static class ChatMessageExtensions
 	public static string GetCommandFullName(this ChatMessage @this)
 	{
 		var content = @this.Content.Trim();
-		return content[content.IndexOf(' ') is var i and not -1 ? ..i : ..];
+		return content[content.IndexOf(' ') is var i and not -1 ? ..i : ..].Trim();
 	}
 
 	/// <summary>
@@ -20,7 +20,7 @@ public static class ChatMessageExtensions
 	public static string GetPlainArguments(this ChatMessage @this)
 	{
 		var content = @this.Content.Trim();
-		return content[(content.IndexOf(' ') + 1)..];
+		return content[(content.IndexOf(' ') + 1)..].Trim();
 	}
 
 	/// <summary>

@@ -12,7 +12,7 @@ public sealed class UploadPictureCommand : Command
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{
-		var pictureLink = await CosService.UploadFileAsync($@"{Program.DesktopPath}\test_file.jpg");
+		var (pictureLink, _) = await CloudObjectStorage.UploadFileAsync($@"{Program.DesktopPath}\test_file.jpg");
 		await api.SendGroupImageAsync(message, pictureLink);
 	}
 }

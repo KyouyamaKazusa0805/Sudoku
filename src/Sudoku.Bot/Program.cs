@@ -4,7 +4,7 @@
 internal static partial class Program
 {
 	/// <summary>
-	/// 腾讯云对象存储服务，其配置文件的本地路径。
+	/// 腾讯云 COS 服务（Cloud Object Storage，云端对象存储）所需配置项的本地路径。
 	/// </summary>
 	public const string CosConfigPath = @"A:\QQ机器人\tencent-cos-config.json";
 
@@ -17,7 +17,7 @@ internal static partial class Program
 	/// <summary>
 	/// 表示桌面路径。
 	/// </summary>
-	public static readonly string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+	public static readonly string DesktopPath = Environment.GetFolderPath(SpecialFolder.Desktop);
 
 	/// <summary>
 	/// 在反序列化 JSON 期间使用到的解析控制选项。
