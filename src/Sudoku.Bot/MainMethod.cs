@@ -8,7 +8,7 @@ var registeredCommands = (Command[])[
 	new ChangeInfoCommand(),
 	new CheckInCommand(),
 	new AnalysisCommand(),
-	new UploadPictureCommand()
+	//new UploadPictureCommand()
 ];
 var bot = new QQGroupBot(apiProvider);
 bot.RegisterChatEvent();
