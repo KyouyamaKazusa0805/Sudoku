@@ -21,7 +21,7 @@ public sealed class CheckInCommand : Command
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
 			{
 				// 禁用用户重复同一天签到多次。
-				await api.SendGroupMessageAsync(message, $@"你已经在今天的 {time:hh\:mm} 签过一次到。请不要重复签到。");
+				await api.SendGroupMessageAsync(message, $@"(ノω<。)ノ))☆.。 你在今天的 {time:hh\:mm} 签过了，不要重复签到嗷！");
 				return;
 			}
 			case { LastCheckIn: var dateTime } when (DateTime.Today - dateTime.Date).Days == 1:
@@ -37,7 +37,7 @@ public sealed class CheckInCommand : Command
 				await api.SendGroupMessageAsync(
 					message,
 					$"""
-					签到成功！已连续签到 {d.ComboCheckedInDays} 天~ 恭喜获得：
+					o(*￣▽￣*)ブ 签到成功！已连续签到 {d.ComboCheckedInDays} 天~ 恭喜获得：
 					・{finalExp} 经验值
 					・{finalCoin} 金币
 					"""
@@ -48,14 +48,14 @@ public sealed class CheckInCommand : Command
 			{
 				// 断签，或者第一天签到。
 				var extraRate = ScoreCalculator.TodayIsWeekend() ? 2 : 1;
-				d.ComboCheckedInDays = extraRate;
+				d.ComboCheckedInDays = 1;
 				d.ExperienceValue += exp * extraRate;
-				d.CoinValue += coin;
+				d.CoinValue += coin * extraRate;
 				d.LastCheckIn = DateTime.Now;
 				await api.SendGroupMessageAsync(
 					message,
 					$"""
-					签到成功！已连续签到 {d.ComboCheckedInDays} 天~ 恭喜获得：
+					φ(゜▽゜*)♪ 签到成功！已连续签到 {d.ComboCheckedInDays} 天~ 恭喜获得：
 					・{exp} 经验值
 					・{coin} 金币
 					"""
