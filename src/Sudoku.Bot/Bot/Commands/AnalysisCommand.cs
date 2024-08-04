@@ -13,7 +13,12 @@ public sealed class AnalysisCommand : Command
 		if (message.GetPlainArguments() is var str && Grid.TryParse(str, out var grid))
 		{
 			var analysisResult = AnalyzerPool.Analyzer.Analyze(in grid);
-			var resultString = analysisResult.ToString();
+			var resultString = analysisResult.ToString(
+				AnalysisResultFormattingOptions.ShowDifficulty
+					| AnalysisResultFormattingOptions.ShowGridAndSolutionCode
+					| AnalysisResultFormattingOptions.ShowElapsedTime,
+				null
+			);
 			await api.SendGroupMessageAsync(message, resultString);
 		}
 		else
