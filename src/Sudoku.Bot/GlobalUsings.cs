@@ -2,6 +2,7 @@ global using System;
 global using System.Diagnostics.CodeAnalysis;
 global using System.IO;
 global using System.Linq;
+global using System.Reflection;
 global using System.Runtime.Versioning;
 global using System.Text.Json;
 global using System.Threading.Tasks;

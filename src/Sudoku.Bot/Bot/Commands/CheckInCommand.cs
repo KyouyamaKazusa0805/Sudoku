@@ -3,12 +3,10 @@ namespace Sudoku.Bot.Commands;
 /// <summary>
 /// 表示签到指令。
 /// </summary>
+[Command("签到")]
+[CommandUsage("签到", IsSyntax = true)]
 public sealed class CheckInCommand : Command
 {
-	/// <inheritdoc/>
-	public override string CommandName => "签到";
-
-
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{
@@ -23,7 +21,7 @@ public sealed class CheckInCommand : Command
 			case { LastCheckIn: { Date: var date, TimeOfDay: var time } } when date == DateTime.Today:
 			{
 				// 禁用用户重复同一天签到多次。
-				await api.SendGroupMessageAsync(message, $@"你已经在今天的 {time:hh\:mm}签过一次到。请不要重复签到。");
+				await api.SendGroupMessageAsync(message, $@"你已经在今天的 {time:hh\:mm} 签过一次到。请不要重复签到。");
 				return;
 			}
 			case { LastCheckIn: var dateTime } when (DateTime.Today - dateTime.Date).Days == 1:
@@ -49,8 +47,9 @@ public sealed class CheckInCommand : Command
 			default:
 			{
 				// 断签，或者第一天签到。
-				d.ComboCheckedInDays = 1;
-				d.ExperienceValue += exp;
+				var extraRate = ScoreCalculator.TodayIsWeekend() ? 2 : 1;
+				d.ComboCheckedInDays = extraRate;
+				d.ExperienceValue += exp * extraRate;
 				d.CoinValue += coin;
 				d.LastCheckIn = DateTime.Now;
 				await api.SendGroupMessageAsync(

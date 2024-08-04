@@ -3,15 +3,10 @@ namespace Sudoku.Bot.Commands;
 /// <summary>
 /// 表示解析的指令。
 /// </summary>
+[Command("解析")]
+[CommandUsage("解析 <题目字符串>", IsSyntax = true)]
 public sealed class AnalysisCommand : Command
 {
-	/// <inheritdoc/>
-	public override string CommandName => "解析";
-
-	/// <inheritdoc/>
-	public override string HelpCommandString => $"{CommandFullName} 题目代码串";
-
-
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{

@@ -3,15 +3,11 @@ namespace Sudoku.Bot.Commands;
 /// <summary>
 /// 表示修改信息的指令。
 /// </summary>
+[Command("更新")]
+[CommandUsage("更新 昵称 <昵称>", IsSyntax = true)]
+[CommandUsage("更新 昵称 Sunnie")]
 public sealed class ChangeInfoCommand : Command
 {
-	/// <inheritdoc/>
-	public override string CommandName => "更新";
-
-	/// <inheritdoc/>
-	public override string HelpCommandString => $"{CommandFullName} 昵称 Sunnie";
-
-
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{

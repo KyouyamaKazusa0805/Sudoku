@@ -3,13 +3,7 @@ var botAccessInfo = (OpenApiAccessInfo?)JsonSerializer.Deserialize<BotInfo>(json
 var apiProvider = new QQChannelApi(botAccessInfo);
 apiProvider.UseBotIdentity();
 
-var registeredCommands = (Command[])[
-	new DisplayInfoCommand(),
-	new ChangeInfoCommand(),
-	new CheckInCommand(),
-	new AnalysisCommand(),
-	//new UploadPictureCommand()
-];
+var registeredCommands = Command.AssemblyCommands();
 var bot = new QQGroupBot(apiProvider);
 bot.RegisterChatEvent();
 bot.ReceivedChatGroupMessage += message =>

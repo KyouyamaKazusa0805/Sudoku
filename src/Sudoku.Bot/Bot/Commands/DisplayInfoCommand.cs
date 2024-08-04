@@ -3,12 +3,10 @@ namespace Sudoku.Bot.Commands;
 /// <summary>
 /// 表示展示信息的指令。
 /// </summary>
+[Command("信息")]
+[CommandUsage("信息", IsSyntax = true)]
 public sealed class DisplayInfoCommand : Command
 {
-	/// <inheritdoc/>
-	public override string CommandName => "信息";
-
-
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{
