@@ -59,7 +59,7 @@
             Indicates the backing bitmap to be used.
             </summary>
             <remarks>
-            <b><i>This field sholud be released in <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>.</i></b>
+            <b><i>This field should be released in <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>.</i></b>
             </remarks>
         </member>
         <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._g">
@@ -82,7 +82,7 @@
             Initializes a <see cref="T:Sudoku.Drawing.Drawing2D.GridCanvas"/> instance via some values.
             </summary>
             <param name="size">Indicates the picture size to be used.</param>
-            <param name="padding">Indicaets the padding of the inner grid.</param>
+            <param name="padding">Indicates the padding of the inner grid.</param>
             <param name="settings">Indicates settings that can be used by drawing items.</param>
             <param name="footerText">Indicates the footer text to be used.</param>
         </member>

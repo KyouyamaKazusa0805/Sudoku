@@ -46,7 +46,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// Indicates the backing bitmap to be used.
 	/// </summary>
 	/// <remarks>
-	/// <b><i>This field sholud be released in <see cref="Dispose"/>.</i></b>
+	/// <b><i>This field should be released in <see cref="Dispose"/>.</i></b>
 	/// </remarks>
 	private readonly Bitmap _backingBitmap;
 
@@ -70,7 +70,7 @@ public sealed partial class GridCanvas : IDisposable
 	/// Initializes a <see cref="GridCanvas"/> instance via some values.
 	/// </summary>
 	/// <param name="size">Indicates the picture size to be used.</param>
-	/// <param name="padding">Indicaets the padding of the inner grid.</param>
+	/// <param name="padding">Indicates the padding of the inner grid.</param>
 	/// <param name="settings">Indicates settings that can be used by drawing items.</param>
 	/// <param name="footerText">Indicates the footer text to be used.</param>
 	public GridCanvas(int size, int padding, GridCanvasSettings? settings = null, string? footerText = null)

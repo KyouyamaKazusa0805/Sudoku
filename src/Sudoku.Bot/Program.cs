@@ -13,6 +13,11 @@ internal static partial class Program
 	/// </summary>
 	public const string BotConfigPath = @"A:\QQ机器人\bot.json";
 
+	/// <summary>
+	/// 机器人的临时缓存文件路径。
+	/// </summary>
+	public const string BotCachePath = @"A:\QQ机器人\cache";
+
 
 	/// <summary>
 	/// 表示桌面路径。
