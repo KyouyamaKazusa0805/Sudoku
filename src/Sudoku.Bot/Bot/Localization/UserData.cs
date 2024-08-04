@@ -24,6 +24,11 @@ public sealed class UserData
 		IndentSize = 1
 	};
 
+	/// <summary>
+	/// 一个文件锁。文件锁会在用户尝试访问文件操作时触发。这里简单作一个限制，只要是访问文件，无论读写，无论是否读取/写入的是一个文件，都锁上。
+	/// </summary>
+	private static readonly Lock FileLock = new();
+
 
 	/// <summary>
 	/// 表示用户的虚拟 ID。
@@ -63,9 +68,12 @@ public sealed class UserData
 	/// <param name="dataChanger">对象的实际内容。</param>
 	public static void Update(string id, Action<UserData> dataChanger)
 	{
-		var data = Read(id);
-		dataChanger(data);
-		Write(data);
+		lock (FileLock)
+		{
+			var data = Read(id);
+			dataChanger(data);
+			Write(data);
+		}
 	}
 
 	/// <summary>
@@ -75,12 +83,14 @@ public sealed class UserData
 	/// <returns>用户信息。</returns>
 	public static UserData Read(string id)
 	{
-		var path = $@"A:\QQ机器人\user-data\{id}.json";
-		if (!File.Exists(path))
+		lock (FileLock)
 		{
-			File.WriteAllText(
-				path,
-				$$"""
+			var path = $@"A:\QQ机器人\user-data\{id}.json";
+			if (!File.Exists(path))
+			{
+				File.WriteAllText(
+					path,
+					$$"""
 				{
 					"{{nameof(Id)}}": "{{id}}",
 					"{{nameof(VirtualNickname)}}": "<匿名>",
@@ -90,13 +100,14 @@ public sealed class UserData
 					"{{nameof(CoinValue)}}": 0
 				}
 				"""
-			);
-			return new() { Id = id };
-		}
+				);
+				return new() { Id = id };
+			}
 
-		var json = File.ReadAllText(path);
-		var result = JsonSerializer.Deserialize<UserData>(json, Options);
-		return result!;
+			var json = File.ReadAllText(path);
+			var result = JsonSerializer.Deserialize<UserData>(json, Options);
+			return result!;
+		}
 	}
 
 	/// <summary>
@@ -105,8 +116,11 @@ public sealed class UserData
 	/// <param name="data">配置文件。</param>
 	public static void Write(UserData data)
 	{
-		var path = $@"A:\QQ机器人\user-data\{data.Id}.json";
-		var json = JsonSerializer.Serialize(data, Options);
-		File.WriteAllText(path, json);
+		lock (FileLock)
+		{
+			var path = $@"A:\QQ机器人\user-data\{data.Id}.json";
+			var json = JsonSerializer.Serialize(data, Options);
+			File.WriteAllText(path, json);
+		}
 	}
 }

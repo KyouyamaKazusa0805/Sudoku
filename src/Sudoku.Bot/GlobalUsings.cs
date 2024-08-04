@@ -5,6 +5,7 @@ global using System.Linq;
 global using System.Reflection;
 global using System.Runtime.Versioning;
 global using System.Text.Json;
+global using System.Threading;
 global using System.Threading.Tasks;
 global using COSXML;
 global using COSXML.Auth;
