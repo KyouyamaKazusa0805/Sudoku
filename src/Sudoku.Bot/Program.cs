@@ -23,4 +23,9 @@ internal static partial class Program
 	/// 在反序列化 JSON 期间使用到的解析控制选项。
 	/// </summary>
 	public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
+	/// <summary>
+	/// 表示这个机器人是否是第一次启动。
+	/// </summary>
+	private static bool _isFirstLaunch = true;
 }

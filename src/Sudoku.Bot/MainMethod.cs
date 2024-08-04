@@ -27,9 +27,17 @@ bot.ReceivedChatGroupMessage += message =>
 };
 bot.OnConnected += () =>
 {
-	var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
-	WriteLog("连接机器人成功！");
-	WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
+	if (_isFirstLaunch)
+	{
+		_isFirstLaunch = false;
+		var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
+		WriteLog("连接机器人成功！");
+		WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
+	}
+	else
+	{
+		WriteLog("机器人重连成功！");
+	}
 };
 bot.AuthenticationSuccess += static () => WriteLog("机器人鉴权成功！现在可以用机器人了。");
 bot.OnError += static ex => WriteLog(LogSeverity.Error, $"机器人执行指令时出现错误：{ex.Message}");
