@@ -3,7 +3,7 @@ namespace Sudoku.Bot.Localization;
 /// <summary>
 /// 提供一些常量字符串。
 /// </summary>
-internal static class CommonStrings
+internal static partial class CommonStrings
 {
 	/// <summary>
 	/// 顿号。

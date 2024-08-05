@@ -25,5 +25,6 @@ global using Sudoku.Drawing.Drawing2D;
 global using static System.Math;
 global using static Sudoku.Bot.Localization.CommonStrings;
 global using static Sudoku.Bot.Logging.Console2;
+global using Emoji = Sudoku.Bot.Localization.CommonStrings.Emoji;
 global using QQGroupBot = MyBot.Expansions.Bot.ChannelBot;
 global using SpecialFolder = System.Environment.SpecialFolder;
