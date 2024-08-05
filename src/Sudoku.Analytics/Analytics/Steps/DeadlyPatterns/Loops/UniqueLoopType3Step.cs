@@ -47,5 +47,5 @@ public sealed partial class UniqueLoopType3Step(
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
-	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count);
+	private string SubsetName => TechniqueMarshal.GetSubsetName(Mask.PopCount(SubsetDigitsMask));
 }

@@ -51,5 +51,5 @@ public sealed partial class QiuDeadlyPatternType3Step(
 
 	private string CellsStr => Options.Converter.CellConverter(SubsetCells);
 
-	private string SubsetName => TechniqueMarshal.GetSubsetName(SubsetCells.Count + 1);
+	private string SubsetName => TechniqueMarshal.GetSubsetName(Mask.PopCount(SubsetDigitsMask));
 }
