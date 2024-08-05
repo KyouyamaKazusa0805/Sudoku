@@ -615,6 +615,39 @@
             Indicates the method will be made <see langword="abstract"/>.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute">
+            <summary>
+            Provides with an attribute type that can be applied to properties,
+            telling source generator that will be used in factory methods:
+            <code><![CDATA[
+            public static T WithPropertyName(this T instance, PropertyType propertyName)
+            {
+                instance.PropertyName = propertyName;
+                return instance;
+            }
+            ]]></code>
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterModifiers">
+            <summary>
+            Indicates the parameter modifiers to be applied.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterName">
+            <summary>
+            Indicates the parameter name to be applied.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.MethodSuffixName">
+            <summary>
+            Indicates the method suffix name to be created.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterType">
+            <summary>
+            Indicates the parameter type to be created.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.

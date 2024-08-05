@@ -11,6 +11,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is 1000.
 	/// </remarks>
+	[FactoryProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
 	public int MaxStepsCollected { get; set; } = 1000;
 
 	/// <summary>
@@ -19,12 +20,15 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is <see cref="CollectorDifficultyLevelMode.OnlySame"/>.
 	/// </remarks>
+	[FactoryProperty(MethodSuffixName = "SameLevelConfigruation", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
+	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
 	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
+	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public override ReadOnlyMemory<StepSearcher> StepSearchers
 	{
@@ -40,6 +44,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		select searcher;
 
 	/// <inheritdoc/>
+	[FactoryProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
 	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 

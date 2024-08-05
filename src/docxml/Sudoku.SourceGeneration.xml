@@ -118,9 +118,6 @@
             The generator handler for implicit fields.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>

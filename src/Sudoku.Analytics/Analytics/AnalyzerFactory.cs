@@ -7,18 +7,6 @@ namespace Sudoku.Analytics;
 public static class AnalyzerFactory
 {
 	/// <summary>
-	/// Try to set randomized choosing.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="randomizedChoosing">Indicates whether the analyzer will adopt randomized algorithm to choose a step.</param>
-	/// <returns>The result.</returns>
-	public static Analyzer WithRandomizedChoosing(this Analyzer @this, bool randomizedChoosing)
-	{
-		@this.RandomizedChoosing = randomizedChoosing;
-		return @this;
-	}
-
-	/// <summary>
 	/// Try to set algorithm limits.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
@@ -33,51 +21,6 @@ public static class AnalyzerFactory
 	}
 
 	/// <summary>
-	/// Try to set the variant culture for the specified <see cref="Analyzer"/> instance.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="formatProvider">The culture to be set.</param>
-	/// <returns>The result.</returns>
-	public static Analyzer WithCulture(this Analyzer @this, IFormatProvider? formatProvider)
-	{
-		@this.CurrentCulture = formatProvider;
-		return @this;
-	}
-
-	/// <summary>
-	/// Try to set "Apply All" option to an <see cref="Analyzer"/> instance.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="applyAll">The value to be set. The value will be assigned to property <see cref="Analyzer.IsFullApplying"/>.</param>
-	/// <returns>The result.</returns>
-	/// <seealso cref="Analyzer.IsFullApplying"/>
-	public static Analyzer WithApplyAll(this Analyzer @this, bool applyAll)
-	{
-		@this.IsFullApplying = applyAll;
-		return @this;
-	}
-
-	/// <summary>
-	/// Try to set property <see cref="Analyzer.Options"/> with the specified value.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="options">
-	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
-	/// </param>
-	/// <returns>The result.</returns>
-	/// <seealso cref="Analyzer.Options"/>
-	public static Analyzer WithUserDefinedOptions(this Analyzer @this, StepSearcherOptions? options)
-	{
-		@this.Options = options ?? StepSearcherOptions.Default;
-		return @this;
-	}
-
-	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[], DifficultyLevel)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Analyzer WithStepSearchers(this Analyzer @this, params StepSearcher[] stepSearchers)
-		=> @this.WithStepSearchers(stepSearchers, default);
-
-	/// <summary>
 	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
@@ -86,16 +29,17 @@ public static class AnalyzerFactory
 	/// <returns>The result.</returns>
 	/// <seealso cref="Analyzer.StepSearchers"/>
 	/// <seealso cref="StepSearcher"/>
-	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers, DifficultyLevel level = default)
+	public static Analyzer WithStepSearchers(this Analyzer @this, StepSearcher[] stepSearchers, DifficultyLevel level = DifficultyLevel.Unknown)
 	{
-		@this.StepSearchers = level switch
+		if (level == DifficultyLevel.Unknown)
 		{
-			0 => stepSearchers,
-			_ =>
+			return @this.WithStepSearchers(stepSearchers);
+		}
+
+		@this.StepSearchers =
 			from stepSearcher in stepSearchers
 			where stepSearcher.Metadata.DifficultyLevelRange.Any(l => l <= level)
-			select stepSearcher
-		};
+			select stepSearcher;
 		return @this;
 	}
 
@@ -118,7 +62,6 @@ public static class AnalyzerFactory
 				propertySetter(target);
 			}
 		}
-
 		return @this;
 	}
 

@@ -24,9 +24,11 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 
 	/// <inheritdoc/>
+	[FactoryProperty]
 	public bool RandomizedChoosing { get; set; }
 
 	/// <inheritdoc/>
+	[FactoryProperty(MethodSuffixName = "ApplyAll", ParameterName = "applyAll")]
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -48,10 +50,12 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
+	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
 	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
+	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public override ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get => _stepSearchers;
@@ -66,6 +70,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		select searcher;
 
 	/// <inheritdoc/>
+	[FactoryProperty(MethodSuffixName = "UserDefinedOptions")]
 	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 	/// <summary>

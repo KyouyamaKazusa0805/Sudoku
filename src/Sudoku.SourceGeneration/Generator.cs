@@ -13,6 +13,7 @@ public sealed class Generator : IIncrementalGenerator
 	{
 		PrimaryConstructor(context);
 		TypeImpl(context);
+		FactoryProperty(context);
 		ImplicitField(context);
 	}
 
@@ -42,6 +43,20 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ImplicitFieldHandler.Output
+		);
+
+	private void FactoryProperty(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute",
+					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
+					FactoryPropertyHandler.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			FactoryPropertyHandler.Output
 		);
 
 	private void TypeImpl(IncrementalGeneratorInitializationContext context)

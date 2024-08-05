@@ -5,7 +5,6 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// </summary>
 internal static class ImplicitFieldHandler
 {
-	/// <inheritdoc/>
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
