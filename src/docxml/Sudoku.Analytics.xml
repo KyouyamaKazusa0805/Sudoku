@@ -19028,6 +19028,11 @@
             <summary>
             Indicates the solution.
             </summary>
+            <remarks><b>
+            Please note that a puzzle may contain multiple solutions, which will make this field to be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            You must check validity of this field before using this field.
+            </b></remarks>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary">
             <summary>

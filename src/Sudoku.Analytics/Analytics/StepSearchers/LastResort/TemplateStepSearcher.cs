@@ -25,6 +25,11 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		if (Solution.IsUndefined)
+		{
+			return null;
+		}
+
 		// Iterate on each digit.
 		var distributedMapsByDigit = Solution.ValuesMap;
 		for (var digit = 0; digit < 9; digit++)

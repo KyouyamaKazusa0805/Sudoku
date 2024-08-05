@@ -52,6 +52,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// </remarks>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		if (Solution.IsUndefined)
+		{
+			return null;
+		}
+
 		ref readonly var grid = ref context.Grid;
 		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 		var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.

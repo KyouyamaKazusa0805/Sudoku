@@ -40,7 +40,8 @@ internal partial class ChainingDriver
 		var result = new SortedSet<NamedChain>(ChainingComparers.ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << Solution.GetDigit(cell))))
+			var filterMask = (Mask)(Solution.IsUndefined ? 0 : ~(1 << Solution.GetDigit(cell)));
+			foreach (var digit in (Mask)(grid.GetCandidates(cell) & filterMask))
 			{
 				var node = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
 				if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
