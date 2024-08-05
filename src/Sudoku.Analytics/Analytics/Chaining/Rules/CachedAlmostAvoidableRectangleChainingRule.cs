@@ -10,6 +10,10 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		ref readonly var grid = ref context.Grid;
+		if (grid.GetUniqueness() != Uniqueness.Unique)
+		{
+			return;
+		}
 
 		// Weak.
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)

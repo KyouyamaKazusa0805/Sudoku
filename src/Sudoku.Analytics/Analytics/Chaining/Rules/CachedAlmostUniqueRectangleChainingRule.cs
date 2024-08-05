@@ -10,6 +10,11 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
 		ref readonly var grid = ref context.Grid;
+		if (grid.GetUniqueness() != Uniqueness.Unique)
+		{
+			return;
+		}
+		
 		var strongLinks = context.StrongLinks;
 		var linkOption = context.GetLinkOption(LinkType.AlmostUniqueRectangle);
 		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
