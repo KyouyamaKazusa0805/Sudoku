@@ -428,12 +428,16 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	public override int GetHashCode() => Puzzle.GetHashCode();
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(DefaultOptions, null);
+	public override string ToString() => ToString(DefaultOptions);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 		=> ToString(DefaultOptions, CoordinateConverter.GetConverter(formatProvider));
+
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(AnalysisResultFormattingOptions options) => ToString(options, null);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.

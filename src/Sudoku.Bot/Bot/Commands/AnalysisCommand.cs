@@ -16,8 +16,7 @@ public sealed class AnalysisCommand : Command
 			var resultString = analysisResult.ToString(
 				AnalysisResultFormattingOptions.ShowDifficulty
 					| AnalysisResultFormattingOptions.ShowGridAndSolutionCode
-					| AnalysisResultFormattingOptions.ShowElapsedTime,
-				null
+					| AnalysisResultFormattingOptions.ShowElapsedTime
 			);
 			await api.SendGroupMessageAsync(message, resultString);
 		}
