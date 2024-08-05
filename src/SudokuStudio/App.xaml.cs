@@ -177,18 +177,14 @@ public partial class App : Application
 	/// The limit difficulty level. Step searchers hard than it will be filtered and not be used in the analysis.
 	/// </param>
 	/// <returns>The final <see cref="Sudoku.Analytics.Analyzer"/> instance.</returns>
-	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = default)
-	{
-		var disallowHighTimeComplexity = Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms;
-		var disallowSpaceTimeComplexity = Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms;
-		return Analyzer
+	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown)
+		=> Analyzer
 			.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(sudokuPane)
 			.WithCulture(CurrentCulture)
-			.WithIgnoreHighTimeComplexityStepSearchers(disallowHighTimeComplexity)
-			.WithIgnoreHighSpaceComplexityStepSearchers(disallowSpaceTimeComplexity)
+			.WithIgnoreHighTimeComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms)
+			.WithIgnoreHighSpaceComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());
-	}
 
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
@@ -225,8 +221,7 @@ public partial class App : Application
 	/// </summary>
 	private void HandleOnProgramOpeningEntryCase()
 	{
-		var args = AppInstance.GetCurrent().GetActivatedEventArgs();
-		if (args is
+		if (AppInstance.GetCurrent().GetActivatedEventArgs() is
 			{
 				Kind: ExtendedActivationKind.File,
 				Data: IFileActivatedEventArgs
@@ -309,7 +304,6 @@ public partial class App : Application
 		{
 			throw new InvalidOperationException(SR.ExceptionMessage("EnsureFileIsUnsnapped"));
 		}
-
 		return unsnapped;
 	}
 
