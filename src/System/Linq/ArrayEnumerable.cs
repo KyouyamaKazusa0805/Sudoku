@@ -472,6 +472,7 @@ public static class ArrayEnumerable
 	/// <param name="func">The function that aggregates the values.</param>
 	/// <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
 	public static TAccumulate Aggregate<TSource, TAccumulate>(this TSource[] @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+		where TAccumulate : allows ref struct
 	{
 		var result = seed;
 		foreach (var element in @this)
