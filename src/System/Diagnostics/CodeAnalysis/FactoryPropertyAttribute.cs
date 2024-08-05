@@ -30,6 +30,11 @@ public sealed class FactoryPropertyAttribute : Attribute
 	public string? MethodSuffixName { get; init; }
 
 	/// <summary>
+	/// Indicates the accessibility of the factory method generated. By default the accessibility is same as property's.
+	/// </summary>
+	public string? Accessibility { get; init; }
+
+	/// <summary>
 	/// Indicates the parameter type to be created.
 	/// </summary>
 	public Type? ParameterType { get; init; }

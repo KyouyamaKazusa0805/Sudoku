@@ -30,6 +30,8 @@ internal static class FactoryPropertyHandler
 					///     .WithBaz(1, 2, 3);
 					/// ]]></code>
 					/// </summary>
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(FactoryPropertyHandler).FullName}}", "{{Value}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					public static class __{{typeSymbol.Name}}FactoryMethods
 					{
 				{{string.Join("\r\n\r\n\t\t", methodDeclarations)}}
@@ -57,11 +59,8 @@ internal static class FactoryPropertyHandler
 			{
 				TargetSymbol: IPropertySymbol
 				{
-					ContainingType:
-					{
-						TypeKind: var typeKind,
-						TypeParameters: var typeParameters
-					} type,
+					ContainingType: { TypeKind: var typeKind, TypeParameters: var typeParameters } type,
+					DeclaredAccessibility: var accessibility,
 					Name: var propertyName,
 					Type: var propertyType
 				},
@@ -84,6 +83,18 @@ internal static class FactoryPropertyHandler
 		var methodSuffixNameString = namedArguments.TryGetValueOrDefault<string>("MethodSuffixName", out var ms)
 			? ms
 			: propertyName.ToPascalCasing();
+		var accessibilityString = namedArguments.TryGetValueOrDefault<string>("Accessibility", out var a)
+			? a
+			: accessibility switch
+			{
+				DeclaredAccessibility.Private => "private ",
+				DeclaredAccessibility.ProtectedAndInternal => "private protected ",
+				DeclaredAccessibility.Protected => "protected ",
+				DeclaredAccessibility.Internal => "internal ",
+				DeclaredAccessibility.ProtectedOrInternal => "protected internal ",
+				DeclaredAccessibility.Public => "public ",
+				_ => string.Empty
+			};
 		return new(
 			type,
 			$$"""
@@ -95,7 +106,7 @@ internal static class FactoryPropertyHandler
 					/// <returns>The value same as <see cref="{{typeString}}"/>.</returns>
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(FactoryPropertyHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					public static {{typeModifier}}{{typeString}} With{{methodSuffixNameString}}{{typeParametersString}}(this {{typeModifier}}{{typeString}} instance, {{parameterModifiersString}}{{propertyTypeString}} {{parameterNameString}})
+					{{accessibilityString}}static {{typeModifier}}{{typeString}} With{{methodSuffixNameString}}{{typeParametersString}}(this {{typeModifier}}{{typeString}} instance, {{parameterModifiersString}}{{propertyTypeString}} {{parameterNameString}})
 					{
 						instance.{{propertyName}} = {{parameterNameString}};
 						return instance;

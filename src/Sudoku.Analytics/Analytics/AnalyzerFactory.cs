@@ -64,19 +64,4 @@ public static class AnalyzerFactory
 		}
 		return @this;
 	}
-
-	/// <summary>
-	/// Try to set property <see cref="Analyzer.ConditionalOptions"/> with the specified value.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="options">
-	/// The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
-	/// </param>
-	/// <returns>The result.</returns>
-	/// <seealso cref="Analyzer.ConditionalOptions"/>
-	internal static Analyzer WithConditionalOptions(this Analyzer @this, StepSearcherConditionalOptions? options)
-	{
-		@this.ConditionalOptions = options;
-		return @this;
-	}
 }

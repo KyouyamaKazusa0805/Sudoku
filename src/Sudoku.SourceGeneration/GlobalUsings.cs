@@ -10,4 +10,5 @@ global using Sudoku.SourceGeneration.Handlers;
 global using static Microsoft.CodeAnalysis.NullableAnnotation;
 global using static Microsoft.CodeAnalysis.SpecialType;
 global using static SolutionVersion;
+global using DeclaredAccessibility = Microsoft.CodeAnalysis.Accessibility;
 global using NamedArgs = System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, Microsoft.CodeAnalysis.TypedConstant>>;

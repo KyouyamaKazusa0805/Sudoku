@@ -76,6 +76,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <summary>
 	/// Indicates the conditional options to be set.
 	/// </summary>
+	[FactoryProperty]
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>

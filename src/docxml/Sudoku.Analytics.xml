@@ -767,17 +767,6 @@
             <param name="propertySetter">The method to set the target property with new value.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherConditionalOptions)">
-            <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/> with the specified value.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="options">
-            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/>
-        </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
             <summary>
             Extracts a new type that represents an analyzer or a collector type.
@@ -18838,6 +18827,14 @@
             </summary>
             <param name="instance">The instance to be set or updated.</param>
             <param name="options">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherConditionalOptions)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="conditionalOptions">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.__CollectorFactoryMethods">

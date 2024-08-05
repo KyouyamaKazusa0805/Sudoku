@@ -643,6 +643,11 @@
             Indicates the method suffix name to be created.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the factory method generated. By default the accessibility is same as property's.
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterType">
             <summary>
             Indicates the parameter type to be created.
