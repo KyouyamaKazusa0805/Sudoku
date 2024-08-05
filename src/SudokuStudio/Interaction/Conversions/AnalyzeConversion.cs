@@ -9,11 +9,11 @@ internal static class AnalyzeConversion
 
 	public static bool GetAnalyzerButtonIsEnabled(bool isGeneratorLaunched) => !isGeneratorLaunched;
 
-	public static bool GetProgressRingIsIntermediate(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
-		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch { (_, _, true) => true, _ => false };
+	public static bool GetProgressRingIsIntermediate(bool isAnalyzerLaunched, bool isCollectorLaunched, bool isGeneratorLaunched)
+		=> (isAnalyzerLaunched, isCollectorLaunched, isGeneratorLaunched) switch { (_, _, true) => true, _ => false };
 
-	public static bool GetProgressRingIsActive(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
-		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch { (_, _, true) => false, _ => true };
+	public static bool GetProgressRingIsActive(bool isAnalyzerLaunched, bool isCollectorLaunched, bool isGeneratorLaunched)
+		=> (isAnalyzerLaunched, isCollectorLaunched, isGeneratorLaunched) switch { (_, _, true) => false, _ => true };
 
 	public static int GetViewPipsPagerPageCount(IDrawable? drawable) => drawable?.Views.Length ?? 0;
 

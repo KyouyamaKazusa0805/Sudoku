@@ -71,9 +71,12 @@ public static class GridSolvingExtensions
 	{
 		if (@this.IsSolved)
 		{
-			throw new InvalidOperationException(SR.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
+			// Special case: If a puzzle has already been solved, return 'Uniqueness.Unique' directly
+			// because it had been checked by 'Grid.IsSolved' property.
+			return Uniqueness.Unique;
 		}
 
+		var r = @this.ResetGrid;
 		long count;
 #if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 		lock (PuzzleSolvingSynchronizer)
@@ -83,7 +86,7 @@ public static class GridSolvingExtensions
 #if SYNC_ROOT_VIA_THREAD_LOCAL
 				.Value!
 #endif
-				.SolveString(@this.ToString(), out _, 2);
+				.SolveString(r.ToString(), out _, 2);
 		}
 
 		return count switch { 0 => Uniqueness.Bad, 1 => Uniqueness.Unique, _ => Uniqueness.Multiple };
