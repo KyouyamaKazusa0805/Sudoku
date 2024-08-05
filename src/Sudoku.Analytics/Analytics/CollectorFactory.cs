@@ -76,7 +76,6 @@ public static class CollectorFactory
 				propertySetter(target);
 			}
 		}
-
 		return @this;
 	}
 
