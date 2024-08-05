@@ -694,7 +694,13 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// To update puzzle via solution grid.
 	/// </summary>
-	private void UpdatePuzzleViaSolutionGrid() => SudokuPane.UpdateGrid(SudokuPane.Puzzle.GetSolutionGrid());
+	private void UpdatePuzzleViaSolutionGrid()
+	{
+		if (SudokuPane.Puzzle.GetUniqueness() == Uniqueness.Unique)
+		{
+			SudokuPane.UpdateGrid(SudokuPane.Puzzle.GetSolutionGrid());
+		}
+	}
 
 	/// <summary>
 	/// Try to update view unit.
