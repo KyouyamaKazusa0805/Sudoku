@@ -7968,23 +7968,6 @@
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CollectUniqueLoops(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.Int32},Sudoku.Concepts.CellMap@,System.Collections.Generic.HashSet{Sudoku.Concepts.UniqueLoop},System.Int16,System.Int32,Sudoku.Concepts.HouseType)">
-            <summary>
-            To collect all possible unique loop patterns in the current grid.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="cell">The cell where the loop starts.</param>
-            <param name="d1">The first digit to be used.</param>
-            <param name="d2">The second digit to be used.</param>
-            <param name="loopPath">The path of the loop. This is a temporary variable.</param>
-            <param name="loopMap">
-            A <see cref="T:Sudoku.Concepts.CellMap"/> instance recording which cells are used for the current loop. This is a temporary variable.
-            </param>
-            <param name="result">The result.</param>
-            <param name="extraDigits">The extra digits to be checked.</param>
-            <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
-            <param name="lastHouseType">The last house type. This is a temporary variable.</param>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})">
             <summary>
             Determine whether the specified loop is a valid unique loop or unique rectangle pattern.

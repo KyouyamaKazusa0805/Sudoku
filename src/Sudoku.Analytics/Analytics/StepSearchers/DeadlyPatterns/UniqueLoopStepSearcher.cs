@@ -1,3 +1,5 @@
+#define IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -39,7 +41,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var tempLoop = new List<Cell>(14);
 			var loopMap = CellMap.Empty;
 			var patterns = new HashSet<UniqueLoop>();
-			CollectUniqueLoops(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
+			collectLoopCore(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
 
 			if (patterns.Count == 0)
 			{
@@ -101,6 +103,83 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		context.Accumulator.AddRange(resultList);
 		return null;
+
+
+		static void collectLoopCore(
+			ref readonly Grid grid,
+			Cell cell,
+			Digit d1,
+			Digit d2,
+			List<Cell> loopPath,
+			ref CellMap loopMap,
+			HashSet<UniqueLoop> result,
+			Mask extraDigitsMask = Grid.MaxCandidatesMask,
+#if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+			int allowExtraDigitsCellsCount = 2,
+#endif
+			HouseType lastHouseType = unchecked((HouseType)(-1))
+		)
+		{
+			loopPath.Add(cell);
+			loopMap.Add(cell);
+
+			var comparer = (Mask)(1 << d1 | 1 << d2);
+			foreach (var houseType in HouseTypes)
+			{
+				if (houseType == lastHouseType)
+				{
+					continue;
+				}
+
+				foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells)
+				{
+					if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
+					{
+						// Yeah. The loop is closed.
+						result.Add(new(in loopMap, [.. loopPath], comparer));
+					}
+					else if (!loopMap.Contains(next))
+					{
+						var digitsMask = grid.GetCandidates(next);
+						if ((digitsMask >> d1 & 1) != 0 && (digitsMask >> d2 & 1) != 0)
+						{
+							extraDigitsMask = (Mask)((extraDigitsMask | digitsMask) & ~comparer);
+
+							// We can continue if:
+							//   1. The cell has exactly the 2 values of the loop.
+							//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
+							//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
+							var digitsCount = Mask.PopCount(digitsMask);
+							if (digitsCount == 2 || Mask.IsPow2(extraDigitsMask)
+#if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+								|| allowExtraDigitsCellsCount != 0
+#endif
+							)
+							{
+								// Make recursion.
+								collectLoopCore(
+									in grid,
+									next,
+									d1,
+									d2,
+									loopPath,
+									ref loopMap,
+									result,
+									extraDigitsMask,
+#if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+									digitsCount <= 2 ? allowExtraDigitsCellsCount : allowExtraDigitsCellsCount - 1,
+#endif
+									houseType
+								);
+							}
+						}
+					}
+				}
+			}
+
+			loopPath.RemoveAt(^1);
+			loopMap.Remove(cell);
+		}
 	}
 
 	/// <summary>
@@ -553,79 +632,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		}
 
 		return null;
-	}
-
-
-	/// <summary>
-	/// To collect all possible unique loop patterns in the current grid.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="cell">The cell where the loop starts.</param>
-	/// <param name="d1">The first digit to be used.</param>
-	/// <param name="d2">The second digit to be used.</param>
-	/// <param name="loopPath">The path of the loop. This is a temporary variable.</param>
-	/// <param name="loopMap">
-	/// A <see cref="CellMap"/> instance recording which cells are used for the current loop. This is a temporary variable.
-	/// </param>
-	/// <param name="result">The result.</param>
-	/// <param name="extraDigits">The extra digits to be checked.</param>
-	/// <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
-	/// <param name="lastHouseType">The last house type. This is a temporary variable.</param>
-	private static void CollectUniqueLoops(
-		ref readonly Grid grid,
-		Cell cell,
-		Digit d1,
-		Digit d2,
-		List<Cell> loopPath,
-		ref CellMap loopMap,
-		HashSet<UniqueLoop> result,
-		Mask extraDigits = Grid.MaxCandidatesMask,
-		int allowedEx = 2,
-		HouseType lastHouseType = unchecked((HouseType)(-1))
-	)
-	{
-		loopPath.Add(cell);
-		loopMap.Add(cell);
-
-		foreach (var houseType in HouseTypes)
-		{
-			if (houseType == lastHouseType)
-			{
-				continue;
-			}
-
-			foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells)
-			{
-				if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
-				{
-					// Yeah. The loop is closed.
-					result.Add(new(in loopMap, [.. loopPath], (Mask)(1 << d1 | 1 << d2)));
-				}
-				else if (!loopMap.Contains(next))
-				{
-					var mask = grid.GetCandidates(next);
-					if ((mask >> d1 & 1) != 0 && (mask >> d2 & 1) != 0)
-					{
-						extraDigits = (Mask)((extraDigits | mask) & ~(1 << d1 | 1 << d2));
-
-						var count = Mask.PopCount(mask);
-
-						// We can continue if:
-						//   1. The cell has exactly the 2 values of the loop.
-						//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
-						//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
-						if (count == 2 || Mask.IsPow2(extraDigits) || allowedEx != 0)
-						{
-							var newAllowedEx = count > 2 ? allowedEx - 1 : allowedEx;
-							CollectUniqueLoops(in grid, next, d1, d2, loopPath, ref loopMap, result, extraDigits, newAllowedEx, houseType);
-						}
-					}
-				}
-			}
-		}
-
-		loopPath.RemoveAt(^1);
-		loopMap.Remove(cell);
 	}
 
 
