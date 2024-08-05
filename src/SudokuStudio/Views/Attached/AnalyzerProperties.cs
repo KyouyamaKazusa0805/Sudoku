@@ -398,17 +398,11 @@ public static partial class AnalyzerProperties
 
 	[Callback]
 	private static void AnalyzerIgnoresSlowAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	{
-		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
-		analyzer.WithAlgorithmLimits((bool)e.NewValue, analyzer.IgnoreHighAllocationAlgorithms);
-	}
+		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithIgnoreHighTimeComplexityStepSearchers((bool)e.NewValue);
 
 	[Callback]
 	private static void AnalyzerIgnoresHighAllocationAlgorithmsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	{
-		var analyzer = SudokuPaneBindable.GetAnalyzer((SudokuPane)d);
-		analyzer.WithAlgorithmLimits(analyzer.IgnoreSlowAlgorithms, (bool)e.NewValue);
-	}
+		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithIgnoreHighSpaceComplexityStepSearchers((bool)e.NewValue);
 
 	private static void A<TStepSearcher>(DependencyObject d, Action<TStepSearcher> action) where TStepSearcher : StepSearcher
 		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithStepSearcherSetters(action);

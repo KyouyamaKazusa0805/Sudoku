@@ -62,7 +62,9 @@ internal static class FactoryPropertyHandler
 					ContainingType: { TypeKind: var typeKind, TypeParameters: var typeParameters } type,
 					DeclaredAccessibility: var accessibility,
 					Name: var propertyName,
-					Type: var propertyType
+					Type: var propertyType,
+					IsIndexer: false,
+					IsReadOnly: false
 				},
 				Attributes: [{ NamedArguments: var namedArguments }]
 			})

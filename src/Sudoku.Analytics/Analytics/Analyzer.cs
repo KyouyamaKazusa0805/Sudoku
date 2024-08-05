@@ -38,6 +38,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.TimeComplexity"/>
+	[FactoryProperty(MethodSuffixName = "IgnoreHighTimeComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
@@ -47,6 +48,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.SpaceComplexity"/>
+	[FactoryProperty(MethodSuffixName = "IgnoreHighSpaceComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
@@ -98,7 +100,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// </summary>
 	public static Analyzer AllIn
 		=> Balanced
-			.WithAlgorithmLimits(false, false)
+			.WithIgnoreHighTimeComplexityStepSearchers(false)
+			.WithIgnoreHighSpaceComplexityStepSearchers(false)
 			.WithStepSearcherSetters<NormalFishStepSearcher>(static s => { s.DisableFinnedOrSashimiXWing = false; s.AllowSiamese = true; })
 			.WithStepSearcherSetters<RegularWingStepSearcher>(static s => s.MaxSearchingPivotsCount = 9)
 			.WithStepSearcherSetters<ReverseBivalueUniversalGraveStepSearcher>(static s => { s.MaxSearchingEmptyCellsCount = 4; s.AllowPartiallyUsedTypes = true; })
@@ -112,7 +115,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// </summary>
 	public static Analyzer Balanced
 		=> Default
-			.WithAlgorithmLimits(false, true)
+			.WithIgnoreHighTimeComplexityStepSearchers(false)
+			.WithIgnoreHighSpaceComplexityStepSearchers(true)
 			.WithStepSearcherSetters<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.UseIttoryuMode = false; })
 			.WithStepSearcherSetters<NormalFishStepSearcher>(static s => { s.DisableFinnedOrSashimiXWing = false; s.AllowSiamese = false; })
 			.WithStepSearcherSetters<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
@@ -156,6 +160,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// </summary>
 	public static Analyzer SudokuExplainer
 		=> Default
+			.WithIgnoreHighTimeComplexityStepSearchers(false)
+			.WithIgnoreHighSpaceComplexityStepSearchers(false)
 			.WithStepSearchers(
 				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = false },
 				new LockedSubsetStepSearcher(),
@@ -169,7 +175,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
 				new ChainStepSearcher()
 			)
-			.WithAlgorithmLimits(false, false)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 

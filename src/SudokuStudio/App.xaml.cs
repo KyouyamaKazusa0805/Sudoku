@@ -185,7 +185,8 @@ public partial class App : Application
 			.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(sudokuPane)
 			.WithCulture(CurrentCulture)
-			.WithAlgorithmLimits(disallowHighTimeComplexity, disallowSpaceTimeComplexity)
+			.WithIgnoreHighTimeComplexityStepSearchers(disallowHighTimeComplexity)
+			.WithIgnoreHighSpaceComplexityStepSearchers(disallowSpaceTimeComplexity)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());
 	}
 

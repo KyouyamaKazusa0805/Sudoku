@@ -7,20 +7,6 @@ namespace Sudoku.Analytics;
 public static class AnalyzerFactory
 {
 	/// <summary>
-	/// Try to set algorithm limits.
-	/// </summary>
-	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>
-	/// <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
-	/// <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
-	/// <returns>The result.</returns>
-	public static Analyzer WithAlgorithmLimits(this Analyzer @this, bool ignoreLargeTimeComplexity, bool ignoreLargeSpaceComplexity)
-	{
-		@this.IgnoreSlowAlgorithms = ignoreLargeTimeComplexity;
-		@this.IgnoreHighAllocationAlgorithms = ignoreLargeSpaceComplexity;
-		return @this;
-	}
-
-	/// <summary>
 	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
 	/// </summary>
 	/// <param name="this">The current <see cref="Analyzer"/> instance.</param>

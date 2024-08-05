@@ -736,15 +736,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithAlgorithmLimits(Sudoku.Analytics.Analyzer,System.Boolean,System.Boolean)">
-            <summary>
-            Try to set algorithm limits.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="ignoreLargeTimeComplexity">Indicates whether the analyzer ignores for large time-complexity step searchers.</param>
-            <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
@@ -18803,6 +18794,22 @@
             </summary>
             <param name="instance">The instance to be set or updated.</param>
             <param name="applyAll">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithIgnoreHighTimeComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="ignore">The value to be set or updated.</param>
+            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithIgnoreHighSpaceComplexityStepSearchers(Sudoku.Analytics.Analyzer,System.Boolean)">
+            <summary>
+            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/> with the target value.
+            </summary>
+            <param name="instance">The instance to be set or updated.</param>
+            <param name="ignore">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithCulture(Sudoku.Analytics.Analyzer,System.IFormatProvider)">
