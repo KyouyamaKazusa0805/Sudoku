@@ -82,7 +82,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> CoordinateConverter.GetConverter(formatProvider).ConjugateConverter([this]);
+		=> CoordinateConverter.GetInstance(formatProvider).ConjugateConverter([this]);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -119,7 +119,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conjugate Parse(string s, IFormatProvider? provider)
-		=> CoordinateParser.GetParser(provider).ConjugateParser(s) is [var result]
+		=> CoordinateParser.GetInstance(provider).ConjugateParser(s) is [var result]
 			? result
 			: throw new FormatException(SR.ExceptionMessage("MultipleConjugatePairValuesFound"));
 }

@@ -6502,21 +6502,14 @@
             Indicates the target culture.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.CoordinateServices.CoordinateConverter.InvariantCultureConverter">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance for the invariant culture,
-            meaning it ignores which culture your device will use.
-            </summary>
+        <member name="P:Sudoku.Runtime.CoordinateServices.CoordinateConverter.InvariantCultureInstance">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateConverter.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateConverter.GetConverter(System.IFormatProvider)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance from the specified format provider.
-            </summary>
-            <param name="formatProvider">The format provider instance.</param>
-            <returns>A <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance as the final result.</returns>
+        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateConverter.GetInstance(System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.CoordinateServices.CoordinateParser">
             <summary>
@@ -6579,21 +6572,14 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conjugate"/>
         </member>
-        <member name="P:Sudoku.Runtime.CoordinateServices.CoordinateParser.InvariantCultureParser">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance for the invariant culture,
-            meaning it ignores which culture your device will use.
-            </summary>
+        <member name="P:Sudoku.Runtime.CoordinateServices.CoordinateParser.InvariantCultureInstance">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateParser.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateParser.GetParser(System.IFormatProvider)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance from the specified culture.
-            </summary>
-            <param name="formatProvider">The format provider instance.</param>
-            <returns>The <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance from the specified culture.</returns>
+        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateParser.GetInstance(System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.CoordinateServices.CoordinateType">
             <summary>
@@ -6676,6 +6662,24 @@
         </member>
         <member name="M:Sudoku.Runtime.CoordinateServices.ExcelCoordinateConverter.GetFormat(System.Type)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.CoordinateServices.ICoordinateProvider`1">
+            <summary>
+            Represents a type that supports formatting or parsing rules around coordinates.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:Sudoku.Runtime.CoordinateServices.ICoordinateProvider`1.InvariantCultureInstance">
+            <summary>
+            Indicates the <typeparamref name="TSelf"/> instance for the invariant culture, meaning it ignores culture your device uses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.CoordinateServices.ICoordinateProvider`1.GetInstance(System.IFormatProvider)">
+            <summary>
+            Try to get a <typeparamref name="TSelf"/> instance from the specified culture.
+            </summary>
+            <param name="formatProvider">The format provider instance.</param>
+            <returns>A <typeparamref name="TSelf"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Runtime.CoordinateServices.K9Converter">
             <summary>

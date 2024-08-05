@@ -68,7 +68,7 @@ public readonly partial struct Fish(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		switch (CoordinateConverter.GetConverter(formatProvider))
+		switch (CoordinateConverter.GetInstance(formatProvider))
 		{
 			case RxCyConverter c:
 			{

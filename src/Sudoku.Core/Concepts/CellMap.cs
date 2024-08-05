@@ -556,7 +556,7 @@ public partial struct CellMap : CellMapBase
 		=> formatProvider switch
 		{
 			CellMapFormatInfo i => i.FormatMap(in this),
-			_ => CoordinateConverter.GetConverter(formatProvider).CellConverter(in this)
+			_ => CoordinateConverter.GetInstance(formatProvider).CellConverter(in this)
 		};
 
 	/// <inheritdoc/>
@@ -801,7 +801,7 @@ public partial struct CellMap : CellMapBase
 		=> provider switch
 		{
 			CellMapFormatInfo i => i.ParseMap(s),
-			_ => CoordinateParser.GetParser(provider).CellParser(s)
+			_ => CoordinateParser.GetInstance(provider).CellParser(s)
 		};
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>

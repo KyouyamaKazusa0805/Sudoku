@@ -177,7 +177,7 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		var converter = CoordinateConverter.GetConverter(formatProvider);
+		var converter = CoordinateConverter.GetInstance(formatProvider);
 		return string.Join(
 			", ",
 			from kvp in this

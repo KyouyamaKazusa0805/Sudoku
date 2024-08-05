@@ -14,7 +14,7 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> CoordinateConverter.GetConverter(formatProvider).ChuteConverter([this]);
+		=> CoordinateConverter.GetInstance(formatProvider).ChuteConverter([this]);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -51,7 +51,7 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Chute Parse(string s, IFormatProvider? provider)
-		=> CoordinateParser.GetParser(provider).ChuteParser(s) is [var result]
+		=> CoordinateParser.GetInstance(provider).ChuteParser(s) is [var result]
 			? result
 			: throw new FormatException(SR.ExceptionMessage("MultipleChuteValuesFound"));
 }

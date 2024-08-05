@@ -27,7 +27,7 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	public LinkOption DefaultLinkOption { get; init; } = LinkOption.House;
 
 	/// <inheritdoc cref="CoordinateConverter"/>
-	public CoordinateConverter Converter { get; init; } = CoordinateConverter.InvariantCultureConverter;
+	public CoordinateConverter Converter { get; init; } = CoordinateConverter.InvariantCultureInstance;
 
 	/// <summary>
 	/// Indicates the current culture used.

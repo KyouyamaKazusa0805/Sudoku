@@ -112,7 +112,7 @@ public sealed partial class AlmostLockedSet(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		var converter = CoordinateConverter.GetConverter(formatProvider);
+		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var digitsStr = converter.DigitConverter(DigitsMask);
 		var houseStr = converter.HouseConverter(1 << House);
 		var cellsStr = converter.CellConverter(Cells);
@@ -229,7 +229,7 @@ public sealed partial class AlmostLockedSet(
 	/// <inheritdoc/>
 	public static AlmostLockedSet Parse(string s, IFormatProvider? provider)
 	{
-		var parser = CoordinateParser.GetParser(provider);
+		var parser = CoordinateParser.GetInstance(provider);
 		return s.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
 			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])

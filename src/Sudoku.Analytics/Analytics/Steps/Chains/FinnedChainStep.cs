@@ -31,5 +31,5 @@ public sealed partial class FinnedChainStep(
 	public override Interpolation[] Interpolations
 		=> [new(EnglishLanguage, [ChainString, FinsStr]), new(ChineseLanguage, [ChainString, FinsStr])];
 
-	private string FinsStr => Fins.ToString(CoordinateConverter.GetConverter(Options.Converter));
+	private string FinsStr => Fins.ToString(CoordinateConverter.GetInstance(Options.Converter));
 }

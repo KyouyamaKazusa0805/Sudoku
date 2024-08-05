@@ -59,7 +59,7 @@ public partial class NormalChainStep(
 	public sealed override FactorCollection Factors
 		=> [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
 
-	private protected string ChainString => Pattern.ToString("m", CoordinateConverter.GetConverter(Options.Converter));
+	private protected string ChainString => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
 
 
 	/// <inheritdoc/>

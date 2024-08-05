@@ -86,7 +86,7 @@ public partial struct CandidateMap : CandidateMapBase
 			return this switch
 			{
 				{ Count: 0 } => [],
-				[var a] => [CoordinateConverter.InvariantCultureConverter.CandidateConverter([a])],
+				[var a] => [CoordinateConverter.InvariantCultureInstance.CandidateConverter([a])],
 				_ => f(Offsets)
 			};
 
@@ -109,7 +109,7 @@ public partial struct CandidateMap : CandidateMapBase
 
 					list.Add(
 						sb
-							.Append(CoordinateConverter.InvariantCultureConverter.CellConverter(in cells))
+							.Append(CoordinateConverter.InvariantCultureInstance.CellConverter(in cells))
 							.Append($"({digitGroup.Key + 1})")
 							.ToString()
 					);
@@ -408,7 +408,7 @@ public partial struct CandidateMap : CandidateMapBase
 		=> formatProvider switch
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
-			_ => CoordinateConverter.GetConverter(formatProvider).CandidateConverter(in this)
+			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(in this)
 		};
 
 	/// <inheritdoc/>
@@ -666,7 +666,7 @@ public partial struct CandidateMap : CandidateMapBase
 		=> provider switch
 		{
 			CandidateMapFormatInfo c => c.ParseMap(s),
-			_ => CoordinateParser.GetParser(provider).CandidateParser(s)
+			_ => CoordinateParser.GetInstance(provider).CandidateParser(s)
 		};
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>

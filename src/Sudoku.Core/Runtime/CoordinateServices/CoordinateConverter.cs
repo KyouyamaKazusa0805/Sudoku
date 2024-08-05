@@ -24,7 +24,11 @@ namespace Sudoku.Runtime.CoordinateServices;
 /// <seealso cref="K9Converter"/>
 /// <seealso cref="LiteralCoordinateConverter"/>
 /// <seealso cref="ExcelCoordinateConverter"/>
-public abstract record CoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null, CultureInfo? CurrentCulture = null) : IFormatProvider
+public abstract record CoordinateConverter(
+	string DefaultSeparator = ", ",
+	string? DigitsSeparator = null,
+	CultureInfo? CurrentCulture = null
+) : ICoordinateProvider<CoordinateConverter>
 {
 	/// <summary>
 	/// The converter method that creates a <see cref="string"/> via the specified list of cells.
@@ -72,11 +76,8 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	private protected CultureInfo TargetCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 
-	/// <summary>
-	/// Indicates the <see cref="CoordinateConverter"/> instance for the invariant culture,
-	/// meaning it ignores which culture your device will use.
-	/// </summary>
-	public static CoordinateConverter InvariantCultureConverter => new RxCyConverter();
+	/// <inheritdoc/>
+	public static CoordinateConverter InvariantCultureInstance => new RxCyConverter();
 
 
 	/// <inheritdoc/>
@@ -84,13 +85,9 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	public abstract object? GetFormat(Type? formatType);
 
 
-	/// <summary>
-	/// Try to get a <see cref="CoordinateConverter"/> instance from the specified format provider.
-	/// </summary>
-	/// <param name="formatProvider">The format provider instance.</param>
-	/// <returns>A <see cref="CoordinateConverter"/> instance as the final result.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateConverter GetConverter(IFormatProvider? formatProvider)
+	public static CoordinateConverter GetInstance(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
 			CultureInfo c => c switch
@@ -101,6 +98,6 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 					=> new RxCyConverter(true, true, CurrentCulture: c)
 			},
 			CoordinateConverter c => c,
-			_ => InvariantCultureConverter
+			_ => InvariantCultureInstance
 		};
 }

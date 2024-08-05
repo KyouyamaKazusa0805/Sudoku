@@ -433,7 +433,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(DefaultOptions, CoordinateConverter.GetConverter(formatProvider));
+		=> ToString(DefaultOptions, CoordinateConverter.GetInstance(formatProvider));
 
 	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -447,7 +447,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <returns>A string that represents the current object.</returns>
 	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider)
 	{
-		var converter = CoordinateConverter.GetConverter(formatProvider);
+		var converter = CoordinateConverter.GetInstance(formatProvider);
 		if (this is not
 			{
 				IsSolved: var isSolved,

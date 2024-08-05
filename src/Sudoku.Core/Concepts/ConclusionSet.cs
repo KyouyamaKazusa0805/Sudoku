@@ -312,7 +312,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> CoordinateConverter.GetConverter(formatProvider).ConclusionConverter([.. _conclusionsEntry]);
+		=> CoordinateConverter.GetInstance(formatProvider).ConclusionConverter([.. _conclusionsEntry]);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -500,7 +500,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet Parse(string s, IFormatProvider? provider)
-		=> CoordinateParser.GetParser(provider).ConclusionParser(s);
+		=> CoordinateParser.GetInstance(provider).ConclusionParser(s);
 
 
 	/// <inheritdoc/>

@@ -4,7 +4,7 @@ namespace Sudoku.Runtime.CoordinateServices;
 /// Represents for a parser instance that parses a <see cref="string"/> text,
 /// converting into a valid instance that can be represented as a sudoku concept.
 /// </summary>
-public abstract record CoordinateParser : IFormatProvider
+public abstract record CoordinateParser : ICoordinateProvider<CoordinateParser>
 {
 	/// <summary>
 	/// The not supported information for property implemented.
@@ -63,11 +63,8 @@ public abstract record CoordinateParser : IFormatProvider
 	public abstract Func<string, ReadOnlySpan<Conjugate>> ConjugateParser { get; }
 
 
-	/// <summary>
-	/// Indicates the <see cref="CoordinateParser"/> instance for the invariant culture,
-	/// meaning it ignores which culture your device will use.
-	/// </summary>
-	public static CoordinateParser InvariantCultureParser => new RxCyParser();
+	/// <inheritdoc/>
+	public static CoordinateParser InvariantCultureInstance => new RxCyParser();
 
 
 	/// <inheritdoc/>
@@ -75,17 +72,13 @@ public abstract record CoordinateParser : IFormatProvider
 	public abstract object? GetFormat(Type? formatType);
 
 
-	/// <summary>
-	/// Try to get a <see cref="CoordinateParser"/> instance from the specified culture.
-	/// </summary>
-	/// <param name="formatProvider">The format provider instance.</param>
-	/// <returns>The <see cref="CoordinateParser"/> instance from the specified culture.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateParser GetParser(IFormatProvider? formatProvider)
+	public static CoordinateParser GetInstance(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
 			CultureInfo { Name: var name } when name.StartsWith("zh", StringComparison.OrdinalIgnoreCase) => new K9Parser(),
 			CoordinateParser c => c,
-			_ => InvariantCultureParser
+			_ => InvariantCultureInstance
 		};
 }
