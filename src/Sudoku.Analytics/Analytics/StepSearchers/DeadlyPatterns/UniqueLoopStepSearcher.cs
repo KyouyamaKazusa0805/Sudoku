@@ -131,7 +131,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells)
+				foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells/* & ~loopMap*/)
 				{
 					if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
 					{
@@ -145,16 +145,14 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						{
 							extraDigitsMask = (Mask)((extraDigitsMask | digitsMask) & ~comparer);
 
+#if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
 							// We can continue if:
 							//   1. The cell has exactly the 2 values of the loop.
 							//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
 							//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
 							var digitsCount = Mask.PopCount(digitsMask);
-							if (digitsCount == 2 || Mask.IsPow2(extraDigitsMask)
-#if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
-								|| allowExtraDigitsCellsCount != 0
+							if (digitsCount == 2 || Mask.IsPow2(extraDigitsMask) || allowExtraDigitsCellsCount != 0)
 #endif
-							)
 							{
 								// Make recursion.
 								collectLoopCore(
