@@ -152,7 +152,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							//      The cell has one extra value, the same as all previous cells with an extra value.
 							//   3) The cell has extra values and the maximum number of cells with extra values 2 is not reached.
 							var digitsCount = Mask.PopCount(digitsMask);
-							if (digitsCount == 2 || Mask.IsPow2(extraDigitsMask) || allowExtraDigitsCellsCount != 0)
+							if (digitsCount == 2 || allowExtraDigitsCellsCount != 0)
 #endif
 							{
 								// Make recursion.
