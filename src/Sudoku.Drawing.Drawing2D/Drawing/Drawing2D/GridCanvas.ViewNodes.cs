@@ -144,17 +144,26 @@ public partial class GridCanvas
 	/// </summary>
 	/// <param name="nodes">The nodes to be drawn.</param>
 	/// <param name="conclusions">The conclusion to be checked.</param>
-	public partial void DrawLinkViewNodes(ReadOnlySpan<ChainLinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
+	public partial void DrawLinkViewNodes(ReadOnlySpan<ILinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
 	{
 		// Collect all points used.
 		var (cw, ch) = _calculator.CandidateSize;
+		var (gw, gh) = _calculator.GridSize;
 		var chainColor = _settings.ChainColor;
 		var points = new HashSet<PointF>();
 		var linkArray = nodes.ToArray();
 		foreach (var linkNode in linkArray)
 		{
-			points.Add(_calculator.GetMouseCenter(linkNode.Start));
-			points.Add(_calculator.GetMouseCenter(linkNode.End));
+			if (linkNode.ElementType == typeof(CandidateMap))
+			{
+				points.Add(_calculator.GetMouseCenter((CandidateMap)linkNode.Start));
+				points.Add(_calculator.GetMouseCenter((CandidateMap)linkNode.End));
+			}
+			else if (linkNode.ElementType == typeof(Cell))
+			{
+				points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.Start));
+				points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.End));
+			}
 		}
 		foreach (var conclusion in conclusions)
 		{
@@ -162,17 +171,28 @@ public partial class GridCanvas
 		}
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
-		using var arrowPen = new Pen(chainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
+		using var arrowPen = new Pen(chainColor, 2F);
 		foreach (var node in linkArray)
 		{
-			if (node is not { Start: var start, End: var end, IsStrongLink: var isStrong })
+			if (node.ElementType == typeof(CandidateMap))
 			{
-				continue;
+				arrowPen.CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F);
 			}
 
-			arrowPen.DashStyle = isStrong ? DashStyle.Solid : DashStyle.Dot;
+			var (_, start, end) = node;
+			arrowPen.DashStyle = node switch
+			{
+				ChainLinkViewNode { IsStrongLink: var i } => i ? DashStyle.Solid : DashStyle.Dot,
+				_ => DashStyle.Solid
+			};
 
-			_ = (_calculator.GetMouseCenter(in start), _calculator.GetMouseCenter(in end)) is (var pt1 and var (pt1x, pt1y), var pt2 and var (pt2x, pt2y));
+			var pt1 = node.ElementType == typeof(CandidateMap)
+				? _calculator.GetMouseCenter((CandidateMap)start)
+				: _calculator.GetMousePointInCenter((Cell)start);
+			var pt2 = node.ElementType == typeof(CandidateMap)
+				? _calculator.GetMouseCenter((CandidateMap)end)
+				: _calculator.GetMousePointInCenter((Cell)end);
+			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 
 			// If the distance of two points is lower than the one of two adjacent candidates,
 			// the link will be emitted to draw because of too narrow.
@@ -202,7 +222,8 @@ public partial class GridCanvas
 				var dy2 = point.Y - p1.Y;
 				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
+					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F))
+					&& node.ElementType == typeof(CandidateMap))
 				{
 					through = true;
 					break;
@@ -214,7 +235,7 @@ public partial class GridCanvas
 
 			if (through)
 			{
-				var bezierLength = 20F;
+				var bezierLength = (gw + gh) / 30;
 
 				// The end points are rotated 45 degrees
 				// (counterclockwise for the start point, clockwise for the end point).
@@ -236,6 +257,25 @@ public partial class GridCanvas
 				// Draw the link.
 				_g.DrawLine(arrowPen, pt1, pt2);
 			}
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, float alpha, float candidateSize)
+			{
+				(p1, p2) = (pt1, pt2);
+				if (node.ElementType == typeof(CandidateMap))
+				{
+					return;
+				}
+
+				var tempDelta = candidateSize / 2;
+				var px = (int)(tempDelta * Cos(alpha));
+				var py = (int)(tempDelta * Sin(alpha));
+				p1.X += px;
+				p1.Y += py;
+				p2.X -= px;
+				p2.Y -= py;
+			}
 		}
 
 
@@ -253,24 +293,8 @@ public partial class GridCanvas
 			var yAct = pt2.Y;
 			pt2.X = (float)(xAct * cosAngle - yAct * sinAngle);
 			pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
-
 			pt2.X += pt1.X;
 			pt2.Y += pt1.Y;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, float alpha, float candidateSize)
-		{
-			p1 = pt1;
-			p2 = pt2;
-			var tempDelta = candidateSize / 2;
-			var px = (int)(tempDelta * Cos(alpha));
-			var py = (int)(tempDelta * Sin(alpha));
-
-			p1.X += px;
-			p1.Y += py;
-			p2.X -= px;
-			p2.Y -= py;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

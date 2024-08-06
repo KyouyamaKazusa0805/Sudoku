@@ -5096,7 +5096,10 @@
         <member name="T:Sudoku.Drawing.Nodes.ILinkViewNode">
             <summary>
             Represents a view node kind that is represented as a link.
+            This type is the base type of <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/> and <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/>.
             </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/>
         </member>
         <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start">
             <summary>
