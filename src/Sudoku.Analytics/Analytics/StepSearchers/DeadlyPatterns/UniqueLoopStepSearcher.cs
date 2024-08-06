@@ -131,7 +131,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var next in HousesMap[cell.ToHouse(houseType)] & EmptyCells/* & ~loopMap*/)
+				foreach (var next in (HousesMap[cell.ToHouse(houseType)] & EmptyCells) - cell)
 				{
 					if (loopPath[0] == next && loopPath.Count >= 6 && IsValidLoop(loopPath))
 					{
