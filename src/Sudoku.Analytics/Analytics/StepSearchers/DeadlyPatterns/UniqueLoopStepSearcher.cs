@@ -1,4 +1,4 @@
-#define IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+#undef IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -147,9 +147,10 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 #if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
 							// We can continue if:
-							//   1. The cell has exactly the 2 values of the loop.
-							//   2. The cell has one extra value, the same as all previous cells with an extra value (for type 2 only).
-							//   3. The cell has extra values and the maximum number of cells with extra values 2 is not reached.
+							//   1) The cell has exactly the 2 values of the loop.
+							//   2) Only for type 2:
+							//      The cell has one extra value, the same as all previous cells with an extra value.
+							//   3) The cell has extra values and the maximum number of cells with extra values 2 is not reached.
 							var digitsCount = Mask.PopCount(digitsMask);
 							if (digitsCount == 2 || Mask.IsPow2(extraDigitsMask) || allowExtraDigitsCellsCount != 0)
 #endif
@@ -165,7 +166,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 									result,
 									extraDigitsMask,
 #if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
-									digitsCount <= 2 ? allowExtraDigitsCellsCount : allowExtraDigitsCellsCount - 1,
+									digitsCount == 2 || Mask.IsPow2((Mask)(digitsMask & ~comparer))
+										? allowExtraDigitsCellsCount
+										: allowExtraDigitsCellsCount - 1,
 #endif
 									houseType
 								);
