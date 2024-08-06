@@ -1,10 +1,8 @@
-namespace SudokuStudio.Collection;
+namespace Sudoku.Drawing;
 
 /// <summary>
-/// Defines a dash array of <see cref="double"/> values used by <see cref="DoubleCollection"/>-typed properties in controls,
-/// for example, <see cref="Shape.StrokeDashArray"/>.
+/// Defines a dash array of <see cref="double"/> values. The values can be used in UI as dash array of a double collection.
 /// </summary>
-/// <seealso cref="Shape.StrokeDashArray"/>
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
@@ -41,6 +39,13 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	/// <inheritdoc/>
 	public bool Equals(DashArray other) => _doubles.SequenceEqual(other._doubles);
 
+	/// <summary>
+	/// Converts the current collection into an array of <see cref="double"/> values.
+	/// </summary>
+	/// <returns>An array of <see cref="double"/> values.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public double[] ToArray() => [.. _doubles];
+
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode()
 	{
@@ -55,12 +60,6 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public Enumerator GetEnumerator() => new(_doubles);
-
-	/// <summary>
-	/// Converts the current collection into a <see cref="DoubleCollection"/> instance.
-	/// </summary>
-	/// <returns>A <see cref="DoubleCollection"/> result.</returns>
-	public DoubleCollection ToDoubleCollection() => [.. _doubles];
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _doubles.GetEnumerator();

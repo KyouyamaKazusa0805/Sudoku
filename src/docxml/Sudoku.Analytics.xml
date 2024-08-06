@@ -7996,7 +7996,7 @@
             Gets all possible links of the loop.
             </summary>
             <param name="path">The loop, specified as its path.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
             <summary>

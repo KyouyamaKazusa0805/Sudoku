@@ -69,7 +69,7 @@ internal partial class DrawableFactory
 			((App)Application.Current).Preference.UIPreferences.DisplayCandidates,
 			new AnimatedResultCollection(),
 			new List<Conclusion>(),
-			new List<ChainLinkViewNode>(),
+			new List<ILinkViewNode>(),
 			CandidateMap.Empty
 		);
 
@@ -114,7 +114,7 @@ internal partial class DrawableFactory
 					ForBabaGroupNode(pane, b, controlAddingActions);
 					break;
 				}
-				case ChainLinkViewNode l:
+				case ILinkViewNode l:
 				{
 					links.Add(l);
 					break;
@@ -708,7 +708,7 @@ internal partial class DrawableFactory
 	/// </remarks>
 	private static partial void ForLinkNodes(
 		SudokuPane sudokuPane,
-		ReadOnlySpan<ChainLinkViewNode> linkNodes,
+		ReadOnlySpan<ILinkViewNode> linkNodes,
 		Conclusion[] conclusions,
 		AnimatedResultCollection animatedResults
 	)
@@ -761,7 +761,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	/// </summary>
 	/// <param name="nodes">The link view nodes.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	public ReadOnlySpan<Shape> CreateLinks(ReadOnlySpan<ChainLinkViewNode> nodes)
+	public ReadOnlySpan<Shape> CreateLinks(ReadOnlySpan<ILinkViewNode> nodes)
 	{
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		var ((ow, oh), _) = Converter;
@@ -769,27 +769,44 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		var points = getPoints(nodes);
 		var drawnGroupedNodes = new List<CandidateMap>();
 		var result = new List<Shape>();
-		foreach (var (_, start, end, isStrong) in nodes)
+		foreach (var node in nodes)
 		{
-			var dashArray = (isStrong ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle).ToDoubleCollection();
+			var (_, start, end) = node;
+			var isStrong = node switch { ChainLinkViewNode { IsStrongLink: var i } => i, _ => default(bool?) };
+			var dashArray = node switch
+			{
+				ChainLinkViewNode { IsStrongLink: var i } => [.. i ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle],
+				_ => default(DoubleCollection)
+			};
 			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
-			var tagSuffix = isStrong ? DrawableItemIdentifiers.StrongInferenceSuffix : DrawableItemIdentifiers.WeakInferenceSuffix;
+			var tagSuffix = isStrong ?? true
+				? DrawableItemIdentifiers.StrongInferenceSuffix
+				: DrawableItemIdentifiers.WeakInferenceSuffix;
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 
 			// Find two candidates with a minimal distance.
 			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
-			foreach (var s in start)
+			if (node.ElementType == typeof(CandidateMap))
 			{
-				var tempPoint1 = Converter.GetPosition(s);
-				foreach (var e in end)
+				foreach (var s in (CandidateMap)start)
 				{
-					var tempPoint2 = Converter.GetPosition(e);
-					var d = tempPoint1.DistanceTo(tempPoint2);
-					if (d <= distance)
+					var tempPoint1 = Converter.GetPosition(s);
+					foreach (var e in (CandidateMap)end)
 					{
-						(distance, pt1, pt2) = (d, tempPoint1, tempPoint2);
+						var tempPoint2 = Converter.GetPosition(e);
+						var d = tempPoint1.DistanceTo(tempPoint2);
+						if (d <= distance)
+						{
+							(distance, pt1, pt2) = (d, tempPoint1, tempPoint2);
+						}
 					}
 				}
+			}
+			else if (node.ElementType == typeof(Cell))
+			{
+				pt1 = Converter.GetPosition((Cell)start * 9 + 4);
+				pt2 = Converter.GetPosition((Cell)end * 9 + 4);
+				distance = pt1.DistanceTo(pt2);
 			}
 
 			// If the distance of two points is lower than the one of two adjacent candidates,
@@ -818,7 +835,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				var (dx2, dy2) = (point.X - p1.X, point.Y - p1.Y);
 				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1))
+					&& node.ElementType == typeof(CandidateMap))
 				{
 					linkPassesThroughUsedCandidates = true;
 					break;
@@ -826,7 +844,11 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			}
 
 			// Now cut the link.
-			cut(ref pt1, ref pt2, cellSize);
+			if (node.ElementType == typeof(CandidateMap))
+			{
+				cut(ref pt1, ref pt2, cellSize);
+			}
+
 			if (linkPassesThroughUsedCandidates)
 			{
 				// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
@@ -901,29 +923,57 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					}
 				);
-				result.Add(
-					new Path
-					{
-						Stroke = new SolidColorBrush(Pane.LinkColor),
-						StrokeThickness = (double)Pane.ChainStrokeThickness,
-						Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
-						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-					}
-				);
+
+				// Append arrow cap.
+				if (node.ElementType == typeof(CandidateMap))
+				{
+					result.Add(
+						new Path
+						{
+							Stroke = new SolidColorBrush(Pane.LinkColor),
+							StrokeThickness = (double)Pane.ChainStrokeThickness,
+							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
+							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
+							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+						}
+					);
+				}
 			}
 
 		DrawGroupNodeOutlines:
-			// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
-			if (start.Count != 1 && !drawnGroupedNodes.Contains(start))
+			if (node.ElementType == typeof(CandidateMap))
 			{
-				drawnGroupedNodes.AddRef(in start);
-				result.Add(drawRectangle(in start));
+				// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
+				var (s, e) = ((CandidateMap)start, (CandidateMap)end);
+				if (s.Count != 1 && !drawnGroupedNodes.Contains(s))
+				{
+					drawnGroupedNodes.AddRef(in s);
+					result.Add(drawRectangle(in s));
+				}
+				if (e.Count != 1 && !drawnGroupedNodes.Contains(e))
+				{
+					drawnGroupedNodes.AddRef(in e);
+					result.Add(drawRectangle(in e));
+				}
 			}
-			if (end.Count != 1 && !drawnGroupedNodes.Contains(end))
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
 			{
-				drawnGroupedNodes.AddRef(in end);
-				result.Add(drawRectangle(in end));
+				if (node.ElementType == typeof(CandidateMap))
+				{
+					(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
+					var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
+					p1.X += px;
+					p1.Y += py;
+					p2.X -= px;
+					p2.Y -= py;
+				}
+				else
+				{
+					(p1, p2) = (pt1, pt2);
+				}
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -942,17 +992,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			pt2.Y = xAct * sinAngle + yAct * cosAngle;
 			pt2.X += pt1.X;
 			pt2.Y += pt1.Y;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
-		{
-			(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
-			var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
-			p1.X += px;
-			p1.Y += py;
-			p2.X -= px;
-			p2.Y -= py;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1024,21 +1063,27 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			=> value -= offset;
 
-		HashSet<Point> getPoints(ReadOnlySpan<ChainLinkViewNode> nodes)
+		HashSet<Point> getPoints(ReadOnlySpan<ILinkViewNode> nodes)
 		{
 			var points = new HashSet<Point>();
 			foreach (var node in nodes)
 			{
-				var (_, start, end, _) = node;
-				foreach (var startCandidate in start)
+				var (_, start, end) = node;
+				if (node.ElementType == typeof(CandidateMap))
 				{
-					var point = Converter.GetPosition(startCandidate);
-					points.Add(point);
+					foreach (var startCandidate in (CandidateMap)start)
+					{
+						points.Add(Converter.GetPosition(startCandidate));
+					}
+					foreach (var endCandidate in (CandidateMap)end)
+					{
+						points.Add(Converter.GetPosition(endCandidate));
+					}
 				}
-				foreach (var endCandidate in end)
+				else if (node.ElementType == typeof(Cell))
 				{
-					var point = Converter.GetPosition(endCandidate);
-					points.Add(point);
+					points.Add(Converter.GetPosition((Cell)start * 9 + 4));
+					points.Add(Converter.GetPosition((Cell)end * 9 + 4));
 				}
 			}
 			foreach (var (_, candidate) in Conclusions)

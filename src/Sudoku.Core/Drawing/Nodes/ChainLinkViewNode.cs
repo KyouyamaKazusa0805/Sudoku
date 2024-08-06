@@ -14,8 +14,18 @@ public sealed partial class ChainLinkViewNode(
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CandidateMap start,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CandidateMap end,
 	[PrimaryConstructorParameter, StringMember] bool isStrongLink
-) : BasicViewNode(identifier)
+) : BasicViewNode(identifier), ILinkViewNode
 {
+	/// <inheritdoc/>
+	object ILinkViewNode.Start => Start;
+
+	/// <inheritdoc/>
+	object ILinkViewNode.End => End;
+
+	/// <inheritdoc/>
+	Type ILinkViewNode.ElementType => typeof(CandidateMap);
+
+
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ColorIdentifier identifier, out CandidateMap start, out CandidateMap end, out bool isStrongLink)

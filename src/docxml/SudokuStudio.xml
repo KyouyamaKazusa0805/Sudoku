@@ -736,123 +736,6 @@
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Inequality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:SudokuStudio.Collection.DashArray">
-            <summary>
-            Defines a dash array of <see cref="T:System.Double"/> values used by <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/>-typed properties in controls,
-            for example, <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>.
-            </summary>
-            <seealso cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.#ctor">
-            <summary>
-            Defines a dash array of <see cref="T:System.Double"/> values used by <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/>-typed properties in controls,
-            for example, <see cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>.
-            </summary>
-            <seealso cref="P:Microsoft.UI.Xaml.Shapes.Shape.StrokeDashArray"/>
-        </member>
-        <member name="F:SudokuStudio.Collection.DashArray.InvalidValue">
-            <summary>
-            Indicates the invalid value.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Collection.DashArray._doubles">
-            <summary>
-            The double values.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Collection.DashArray.Count">
-            <summary>
-            Indicates the number of values.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Add(System.Double)">
-            <summary>
-            Adds a new value into the collection.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Equals(SudokuStudio.Collection.DashArray)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.ToDoubleCollection">
-            <summary>
-            Converts the current collection into a <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> instance.
-            </summary>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Media.DoubleCollection"/> result.</returns>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.System#Collections#Generic#IEnumerable{System#Double}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:SudokuStudio.Collection.DashArray.Enumerator">
-            <summary>
-            Defines an enumerator of this type.
-            </summary>
-            <param name="doubles">The double values.</param>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.#ctor(System.Collections.Generic.List{System.Double})">
-            <summary>
-            Defines an enumerator of this type.
-            </summary>
-            <param name="doubles">The double values.</param>
-        </member>
-        <member name="F:SudokuStudio.Collection.DashArray.Enumerator._doubles">
-            <summary>
-            The internal array to be iterated.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Collection.DashArray.Enumerator._index">
-            <summary>
-            Indicates the index of the current position.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Collection.DashArray.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:SudokuStudio.Collection.DashArray.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.op_Equality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.DashArray.op_Inequality(SudokuStudio.Collection.DashArray,SudokuStudio.Collection.DashArray)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:SudokuStudio.Collection.Converter">
-            <summary>
-            Defines JSON serialization converter on type <see cref="T:SudokuStudio.Collection.DashArray"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Collection.DashArray"/>
-        </member>
-        <member name="M:SudokuStudio.Collection.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Collection.Converter.Write(System.Text.Json.Utf8JsonWriter,SudokuStudio.Collection.DashArray,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.Collection.ObservableStack`1">
             <summary>
             <para><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/summary"/></para>
@@ -3174,7 +3057,7 @@
             </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChainLinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s.
             </summary>
@@ -3363,7 +3246,7 @@
             Indicates the square root of 2.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChainLinkViewNode})">
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode})">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>

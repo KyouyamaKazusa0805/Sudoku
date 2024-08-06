@@ -4472,6 +4472,114 @@
         <member name="M:Sudoku.Drawing.ColorIdentifier.op_Inequality(Sudoku.Drawing.ColorIdentifier,Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Drawing.DashArray">
+            <summary>
+            Defines a dash array of <see cref="T:System.Double"/> values. The values can be used in UI as dash array of a double collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.#ctor">
+            <summary>
+            Defines a dash array of <see cref="T:System.Double"/> values. The values can be used in UI as dash array of a double collection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.DashArray.InvalidValue">
+            <summary>
+            Indicates the invalid value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.DashArray._doubles">
+            <summary>
+            The double values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.DashArray.Count">
+            <summary>
+            Indicates the number of values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Add(System.Double)">
+            <summary>
+            Adds a new value into the collection.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Equals(Sudoku.Drawing.DashArray)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.ToArray">
+            <summary>
+            Converts the current collection into an array of <see cref="T:System.Double"/> values.
+            </summary>
+            <returns>An array of <see cref="T:System.Double"/> values.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.System#Collections#Generic#IEnumerable{System#Double}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.DashArray.Enumerator">
+            <summary>
+            Defines an enumerator of this type.
+            </summary>
+            <param name="_doubles">The double values.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Enumerator.#ctor(System.Collections.Generic.List{System.Double})">
+            <summary>
+            Defines an enumerator of this type.
+            </summary>
+            <param name="_doubles">The double values.</param>
+        </member>
+        <member name="F:Sudoku.Drawing.DashArray.Enumerator._index">
+            <summary>
+            Indicates the index of the current position.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.DashArray.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Sudoku.Drawing.DashArray.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.op_Equality(Sudoku.Drawing.DashArray,Sudoku.Drawing.DashArray)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.DashArray.op_Inequality(Sudoku.Drawing.DashArray,Sudoku.Drawing.DashArray)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converter">
+            <summary>
+            Defines JSON serialization converter on type <see cref="T:Sudoku.Drawing.DashArray"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.DashArray"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.DashArray,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.IDrawable">
             <summary>
             Represents a drawable instance that can be used for drawing, providing with base data structure to be used by drawing APIs.
@@ -4625,6 +4733,61 @@
         <member name="M:Sudoku.Drawing.Nodes.CandidateViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Drawing.Nodes.CellLinkViewNode">
+            <summary>
+            Defines a view node that highlights for a cell link.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,System.Int32,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a cell link.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Start">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Start">
+            <summary>
+            The generated property declaration for parameter <c>start</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.End">
+            <summary>
+            The generated property declaration for parameter <c>end</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Drawing.Nodes.CellViewNode">
             <summary>
             Defines a view node that highlights for a cell.
@@ -4686,6 +4849,15 @@
             <param name="start">Indicates the start point.</param>
             <param name="end">Indicates the end point.</param>
             <param name="isStrongLink">Indicates whether the link is a strong link.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Start">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean@)">
             <target name="method">
@@ -4920,6 +5092,39 @@
         </member>
         <member name="M:Sudoku.Drawing.Nodes.IconViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Drawing.Nodes.ILinkViewNode">
+            <summary>
+            Represents a view node kind that is represented as a link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start">
+            <summary>
+            Indicates the start element.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.End">
+            <summary>
+            Indicates the end element.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Identifier">
+            <summary>
+            Indicates the color identifier.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.ElementType">
+            <summary>
+            Indicates the element type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ILinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Object@,System.Object@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:Sudoku.Drawing.Nodes.SquareViewNode">
             <summary>

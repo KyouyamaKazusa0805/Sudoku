@@ -115,7 +115,7 @@ internal static partial class DrawableFactory
 
 	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults);
 
-	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ChainLinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
+	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
 }
 
 /// <summary>
