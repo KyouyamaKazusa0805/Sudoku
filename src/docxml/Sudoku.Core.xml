@@ -6313,6 +6313,21 @@
               Looks up a localized string similar to Y axis.
             </summary>
         </member>
+        <member name="T:Sudoku.Resources.ResourceSupportedLanguages">
+            <summary>
+            Indicates the supported languages in resource.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceSupportedLanguages.EnglishLanguage">
+            <summary>
+            Indicates English language identifier.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ResourceSupportedLanguages.ChineseLanguage">
+            <summary>
+            Indicates Chinese language identifier.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter">
             <summary>
             Represents an option provider for coordinates.

@@ -5650,31 +5650,6 @@
             Indicates the grid to be used.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Languages">
-            <summary>
-            Indicates the supported languages in resource.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Languages.EnglishLanguage">
-            <summary>
-            Indicates English language identifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Languages.ChineseLanguage">
-            <summary>
-            Indicates Chinese language identifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Languages.EnglishCulture">
-            <summary>
-            Indicates the English culture.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Languages.ChineseCulture">
-            <summary>
-            Indicates the Chinese culture.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute`1">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
