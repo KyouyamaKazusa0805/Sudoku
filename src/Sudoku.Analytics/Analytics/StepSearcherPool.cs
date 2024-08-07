@@ -22,18 +22,10 @@ public static class StepSearcherPool
 			var result = new SortedSet<StepSearcher>();
 			foreach (var type in ThisAssembly.GetDerivedTypes<StepSearcher>())
 			{
-				if (!type.IsDefined<StepSearcherAttribute>())
+				if (type.IsDefined<StepSearcherAttribute>() && type.HasParameterlessConstructor())
 				{
-					continue;
+					result.Add(GetStepSearcher(type));
 				}
-
-				if (!type.HasParameterlessConstructor())
-				{
-					continue;
-				}
-
-				var instance = GetStepSearcher(type);
-				result.Add(instance);
 			}
 			return result.ToArray();
 		}
