@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe HouseVector = House*;
-
 /// <summary>
 /// Provides with a <b>Normal Fish</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
@@ -73,10 +71,10 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
-		var r = stackalloc HouseVector[9];
-		var c = stackalloc HouseVector[9];
-		Unsafe.InitBlock(r, 0, (uint)sizeof(HouseVector) * 9);
-		Unsafe.InitBlock(c, 0, (uint)sizeof(HouseVector) * 9);
+		var r = stackalloc House*[9];
+		var c = stackalloc House*[9];
+		Unsafe.InitBlock(r, 0, (uint)sizeof(House*) * 9);
+		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
 		ref readonly var grid = ref context.Grid;
 		var accumulator = new List<FishStep>();
@@ -171,8 +169,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref AnalysisContext context,
 		int size,
-		HouseVector* r,
-		HouseVector* c,
+		House** r,
+		House** c,
 		bool withFin,
 		bool searchRow
 	)
@@ -269,7 +267,9 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 									..
 									from cell in withFin ? baseLine & ~fins : baseLine
 									select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-									.. withFin ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : [],
+									.. withFin
+										? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit)
+										: [],
 									.. from baseSet in bs select new HouseViewNode(ColorIdentifier.Normal, baseSet),
 									.. from coverSet in cs select new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet),
 								],
