@@ -4,7 +4,7 @@ namespace SudokuStudio.Input;
 /// Defines a converter instance that calculates for cursor pointers.
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid)
 {
 	/// <summary>
@@ -68,12 +68,6 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		}
 	}
 
-	[StringMember("GridWidth")]
-	private string GridWidthString => ((int)GridSize.Width).ToString();
-
-	[StringMember("GridHeight")]
-	private string GridHeightString => ((int)GridSize.Height).ToString();
-
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -124,5 +118,13 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		result.X += extraWidth;
 		result.Y += extraHeight;
 		return result;
+	}
+
+	private bool PrintMembers(StringBuilder stringBuilder)
+	{
+		stringBuilder.Append($"GridWidth = {(int)GridSize.Width}");
+		stringBuilder.Append(", ");
+		stringBuilder.Append($"GridHeight = {(int)GridSize.Height}");
+		return true;
 	}
 }

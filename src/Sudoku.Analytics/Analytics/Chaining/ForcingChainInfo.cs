@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Chaining;
 /// <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
 /// <seealso cref="Node"/>
 /// <seealso cref="Node.IsOn"/>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>
@@ -21,9 +21,6 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	/// </summary>
 	[HashCodeMember]
 	public Node StartNode => OnNodes.First().Root;
-
-	[StringMember]
-	private string StartNodeString => StartNode.ToString();
 
 
 	/// <inheritdoc/>
@@ -72,5 +69,11 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 		{
 			yield return node;
 		}
+	}
+
+	private bool PrintMembers(StringBuilder stringBuilder)
+	{
+		stringBuilder.Append($"{nameof(StartNode)} = {StartNode}");
+		return true;
 	}
 }

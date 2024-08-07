@@ -14,7 +14,6 @@ public readonly record struct UniqueLoop(ref readonly CellMap Loop, Cell[] Path,
 	/// <inheritdoc/>
 	public bool Equals(UniqueLoop other) => Loop == other.Loop;
 
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private bool PrintMembers(StringBuilder stringBuilder)
 	{
 		stringBuilder.Append($"{nameof(Loop)} = {Loop}");

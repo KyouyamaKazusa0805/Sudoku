@@ -3705,9 +3705,6 @@
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierState">
             <summary>
             Defines a quadruple <see cref="T:System.Boolean"/>s indicating the key-down state of virtual key modifiers

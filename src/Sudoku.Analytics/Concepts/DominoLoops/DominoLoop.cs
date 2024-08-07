@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a domino loop pattern.
 /// </summary>
 /// <param name="Cells">Indicates the cells used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public readonly partial record struct DominoLoop(Cell[] Cells)
 {
 	/// <summary>
@@ -13,10 +13,13 @@ public readonly partial record struct DominoLoop(Cell[] Cells)
 	[HashCodeMember]
 	public CellMap Map => [.. Cells];
 
-	[StringMember]
-	private string MapString => Map.ToString();
-
 
 	/// <inheritdoc/>
 	public bool Equals(DominoLoop other) => Map == other.Map;
+
+	private bool PrintMembers(StringBuilder stringBuilder)
+	{
+		stringBuilder.Append($"{nameof(Map)} = [{Map}]");
+		return true;
+	}
 }
