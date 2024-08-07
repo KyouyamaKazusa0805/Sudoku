@@ -197,12 +197,9 @@ public static class TechniqueExtensions
 			Technique.FullHouse or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn or Technique.NakedSingle
 				=> indirect.GetGroup() switch
 				{
-					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset
-						=> Enum.Parse<Technique>($"{indirect}{@this}"),
-					_ when Enum.IsDefined(indirect)
-						=> throw new NotSupportedException(SR.ExceptionMessage("ComplexSingleNotSupportedToday")),
-					_
-						=> throw new ArgumentOutOfRangeException(nameof(indirect))
+					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset => Enum.Parse<Technique>($"{indirect}{@this}"),
+					_ when Enum.IsDefined(indirect) => throw new NotSupportedException(SR.ExceptionMessage("ComplexSingleNotSupportedToday")),
+					_ => throw new ArgumentOutOfRangeException(nameof(indirect))
 				},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
