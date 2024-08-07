@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.CosService;
+namespace Sudoku.Runtime.CosServices;
 
 /// <summary>
 /// 表示使用对象存储服务后，上传文件后返回的结果。

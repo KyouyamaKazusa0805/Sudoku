@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.CosService;
+namespace Sudoku.Runtime.CosServices;
 
 /// <summary>
 /// 提供一个模拟出图床效果的方式——使用腾讯云的云端对象存储服务上传本地图片，以此方式达成图床对接。

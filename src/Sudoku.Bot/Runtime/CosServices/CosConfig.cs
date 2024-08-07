@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.CosService;
+namespace Sudoku.Runtime.CosServices;
 
 /// <summary>
 /// 本地的 COS（云端对象存储，Cloud Object Storage）服务配置。
