@@ -7830,7 +7830,7 @@
             <para>
             <i>
             However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})"/>
+            and returning <see langword="false"/> for the method <see cref="M:Sudoku.Concepts.UniqueLoop.IsValid``1(``0)"/>
             above this.
             If a pattern is like:
             </i>
@@ -7859,9 +7859,9 @@
             ~~~~~~~~~~~~~~~~~~~~~~~~~
             ]]></code>
             </para>
-            <para><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})" path="//remarks/para[2]"/></para>
+            <para><inheritdoc cref="M:Sudoku.Concepts.UniqueLoop.IsValid``1(``0)" path="//remarks/para[2]"/></para>
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})"/>
+            <seealso cref="M:Sudoku.Concepts.UniqueLoop.IsValid``1(``0)"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
@@ -7939,29 +7939,6 @@
             <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
             <param name="path">The path of the loop.</param>
             <returns>The step is worth.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.IsValidLoop(System.Collections.Generic.List{System.Int32})">
-            <summary>
-            Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
-            </summary>
-            <param name="loopPath">The path of the loop.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <remarks>
-            <para>
-            This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
-            The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
-            Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
-            The only point we should notice is that the color between 2 adjacent nodes should be different
-            (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
-            If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
-            Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
-            means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
-            </para>
-            <para>
-            This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
-            can also make this method return <see langword="true"/>.
-            </para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.GetLoopLinks(System.Int32[])">
             <summary>
@@ -22584,11 +22561,35 @@
         <member name="P:Sudoku.Concepts.UniqueLoop.DigitsMask">
             <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
         </member>
-        <member name="M:Sudoku.Concepts.UniqueLoop.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.UniqueLoop.Equals(Sudoku.Concepts.UniqueLoop)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.UniqueLoop.IsValid``1(``0)">
+            <summary>
+            Determine whether the specified loop is a valid unique loop or unique rectangle pattern.
+            </summary>
+            <typeparam name="TCollection">The type of the collection that can iterate on each <see cref="T:System.Int32"/> instances.</typeparam>
+            <param name="loopPath">The path of the loop.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <remarks>
+            <para>
+            This method uses a trick way (node-coloring) to check whether a loop is a unique loop.
+            The parameter <paramref name="loopPath"/> holds a list of cells, which are nodes of the loop.
+            Then we begin to colorize each node with 2 different colors <b><i>A</i></b> and <b><i>B</i></b>.
+            The only point we should notice is that the color between 2 adjacent nodes should be different
+            (i.e. one is colored with <b><i>A</i></b> and the other should be colored with <b><i>B</i></b>).
+            If at least one pair of cells in a same house are colored with a same color, it won't be a valid unique loop.
+            Those colors stands for the final filling digits. Therefore, "Two cells in a same house are colored same"
+            means "Two cells in a same house are filled with a same digit", which disobeys the basic sudoku rule.
+            </para>
+            <para>
+            This method won't check for whether the loop is a unique rectangle (of length 4). It means, a valid unique rectangle
+            can also make this method return <see langword="true"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.UniqueLoop.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Concepts.UniqueRectangle">
             <summary>
