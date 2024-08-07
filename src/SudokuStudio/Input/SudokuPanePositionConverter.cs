@@ -120,11 +120,14 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		return result;
 	}
 
-	private bool PrintMembers(StringBuilder stringBuilder)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
+	private bool PrintMembers(StringBuilder builder)
 	{
-		stringBuilder.Append($"GridWidth = {(int)GridSize.Width}");
-		stringBuilder.Append(", ");
-		stringBuilder.Append($"GridHeight = {(int)GridSize.Height}");
+		builder.Append($"GridWidth = {(int)GridSize.Width}");
+		builder.Append(", ");
+		builder.Append($"GridHeight = {(int)GridSize.Height}");
 		return true;
 	}
 }

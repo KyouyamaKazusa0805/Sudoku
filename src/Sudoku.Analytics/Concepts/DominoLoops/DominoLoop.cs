@@ -17,9 +17,12 @@ public readonly partial record struct DominoLoop(Cell[] Cells)
 	/// <inheritdoc/>
 	public bool Equals(DominoLoop other) => Map == other.Map;
 
-	private bool PrintMembers(StringBuilder stringBuilder)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
+	private bool PrintMembers(StringBuilder builder)
 	{
-		stringBuilder.Append($"{nameof(Map)} = [{Map}]");
+		builder.Append($"{nameof(Map)} = [{Map}]");
 		return true;
 	}
 }

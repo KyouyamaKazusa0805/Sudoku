@@ -3702,6 +3702,45 @@
             <seealso cref="T:Windows.Foundation.Point"/>
             <seealso cref="T:SudokuStudio.Input.Position"/>
         </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:SudokuStudio.Input.SudokuPanePositionConverter.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString" />.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>

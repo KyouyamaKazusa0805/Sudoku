@@ -16,22 +16,25 @@ public readonly partial record struct UniqueLoop(ref readonly CellMap Loop, Cell
 	/// <inheritdoc/>
 	public bool Equals(UniqueLoop other) => Loop == other.Loop;
 
-	private bool PrintMembers(StringBuilder stringBuilder)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
+	private bool PrintMembers(StringBuilder builder)
 	{
-		stringBuilder.Append($"{nameof(Loop)} = {Loop}");
-		stringBuilder.Append(", ");
-		stringBuilder.Append($"{nameof(Path)} = [");
+		builder.Append($"{nameof(Loop)} = {Loop}");
+		builder.Append(", ");
+		builder.Append($"{nameof(Path)} = [");
 		for (var i = 0; i < Path.Length; i++)
 		{
 			var cell = Path[i];
-			stringBuilder.Append(cell);
+			builder.Append(cell);
 			if (i != Path.Length - 1)
 			{
-				stringBuilder.Append(", ");
+				builder.Append(", ");
 			}
 		}
-		stringBuilder.Append("], ");
-		stringBuilder.Append($"{nameof(DigitsMask)} = {DigitsMask} (0b{Convert.ToString(DigitsMask, 2).PadLeft(9, '0')})");
+		builder.Append("], ");
+		builder.Append($"{nameof(DigitsMask)} = {DigitsMask} (0b{Convert.ToString(DigitsMask, 2).PadLeft(9, '0')})");
 		return true;
 	}
 

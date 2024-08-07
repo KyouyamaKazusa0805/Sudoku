@@ -71,9 +71,12 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 		}
 	}
 
-	private bool PrintMembers(StringBuilder stringBuilder)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
+	private bool PrintMembers(StringBuilder builder)
 	{
-		stringBuilder.Append($"{nameof(StartNode)} = {StartNode}");
+		builder.Append($"{nameof(StartNode)} = {StartNode}");
 		return true;
 	}
 }

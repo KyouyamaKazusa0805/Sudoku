@@ -64,9 +64,7 @@ Then you can reference the doc here.
 					This operator can only be used as compound one. For example:
 				</i>
 			</b>
-			<code>
-				<![CDATA[
-result &= expression;
+			<code><![CDATA[result &= expression;
 result |= expression;
 result ^= expression;
 ]]>
@@ -143,9 +141,7 @@ result ^= expression;
 					if we implement a parameterless method called <c>GetPinnableReference</c>, returning by
 					<see langword="ref"/> or <see langword="ref readonly"/>. For example, if we hold a fixed buffer
 					of element type:
-					<code>
-						<![CDATA[
-class ExampleType
+					<code><![CDATA[class ExampleType
 {
     private fixed short _maskList[100];
 
@@ -155,9 +151,7 @@ class ExampleType
 					</code>
 					We can use <see langword="fixed"/> statement to define a variable of type <see langword="short"/>*
 					as the left-value.
-					<code>
-						<![CDATA[
-var instance = new ExampleType();
+					<code><![CDATA[var instance = new ExampleType();
 fixed (short* ptr = instance)
 {
     // Operation here.
@@ -209,6 +203,45 @@ fixed (short* ptr = instance)
 
 	<!-- C# 9 -->
 	<csharp9>
+		<feature name="records">
+			<target name="method" cref="PrintMembers">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record"/>
+					or a <see langword="record struct"/> type.
+				</summary>
+				<param name="builder">
+					A <see cref="global::System.Text.StringBuilder"/> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="bool"/> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="ToString"/>.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record"/> and <see langword="record struct"/> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+		</feature>
 		<feature name="parameterless-struct-constructor">
 			<target name="constructor">
 				<i>
