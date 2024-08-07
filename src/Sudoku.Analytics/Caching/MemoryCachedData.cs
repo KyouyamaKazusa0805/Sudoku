@@ -111,7 +111,6 @@ internal static class MemoryCachedData
 	/// <param name="linkTypes">The link types to be checked.</param>
 	/// <param name="options">The options used by step searchers.</param>
 	/// <param name="rules">The <see cref="ChainingRule"/> instance that collects with strong and weak links if worth.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepSearcherOptions options, out ChainingRules rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
