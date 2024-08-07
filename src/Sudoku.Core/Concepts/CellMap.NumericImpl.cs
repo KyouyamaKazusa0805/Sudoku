@@ -1,3 +1,4 @@
+#if false
 namespace Sudoku.Concepts;
 
 public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>, IBinaryNumber<CellMap>
@@ -807,3 +808,4 @@ public partial struct CellMap : IBinaryInteger<CellMap>, ISignedNumber<CellMap>,
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator checked CellMap(Int128 value) => CreateByNumericValueChecked(value);
 }
+#endif

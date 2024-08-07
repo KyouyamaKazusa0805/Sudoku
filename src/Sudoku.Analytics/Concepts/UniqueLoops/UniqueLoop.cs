@@ -17,7 +17,7 @@ public readonly record struct UniqueLoop(ref readonly CellMap Loop, Cell[] Path,
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private bool PrintMembers(StringBuilder stringBuilder)
 	{
-		stringBuilder.Append($"{nameof(Loop)} = {Loop.ToString()}");
+		stringBuilder.Append($"{nameof(Loop)} = {Loop}");
 		stringBuilder.Append(", ");
 		stringBuilder.Append($"{nameof(Path)} = [");
 		for (var i = 0; i < Path.Length; i++)
