@@ -41,7 +41,7 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 					continue;
 				}
 
-				foreach (var cells1 in cells | 3)
+				foreach (ref readonly var cells1 in cells | 3)
 				{
 					if (!cells1.IsInIntersection)
 					{
@@ -49,7 +49,7 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 					}
 
 					var lastCellsMap = cells & ~cells1;
-					foreach (var cells2 in lastCellsMap | 3)
+					foreach (ref readonly var cells2 in lastCellsMap | 3)
 					{
 						if (cells1.Count == 1 && cells2.Count == 1 || !cells2.IsInIntersection)
 						{

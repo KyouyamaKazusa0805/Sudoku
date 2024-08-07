@@ -409,7 +409,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IEnumerable<TElement[]> IGetSubsetMethod<TSelf, TElement>.GetSubsets(int subsetSize)
 	{
 		var result = new List<TElement[]>();
-		foreach (var element in (TSelf)this & subsetSize)
+		foreach (ref readonly var element in (TSelf)this & subsetSize)
 		{
 			result.Add(element.ToArray());
 		}

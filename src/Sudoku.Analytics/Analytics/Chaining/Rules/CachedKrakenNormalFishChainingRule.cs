@@ -128,7 +128,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 						LinkOption.All => elimMap.Count,
 						_ => 3
 					};
-					foreach (var cells4 in elimMap | limit)
+					foreach (ref readonly var cells4 in elimMap | limit)
 					{
 						if (linkOption == LinkOption.Intersection && !cells4.IsInIntersection
 							|| linkOption == LinkOption.House && !cells4.InOneHouse(out _))
