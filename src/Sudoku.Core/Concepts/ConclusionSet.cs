@@ -528,7 +528,6 @@ public sealed partial class ConclusionSet :
 			}
 			i++;
 		}
-
 		return result;
 	}
 
@@ -545,7 +544,6 @@ public sealed partial class ConclusionSet :
 			}
 			i++;
 		}
-
 		return result;
 	}
 
@@ -562,7 +560,6 @@ public sealed partial class ConclusionSet :
 			}
 			i++;
 		}
-
 		return result;
 	}
 
@@ -579,7 +576,6 @@ public sealed partial class ConclusionSet :
 			}
 			i++;
 		}
-
 		return result;
 	}
 }
