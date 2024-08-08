@@ -3007,7 +3007,7 @@
             <summary>
             Determines whether all elements are of type <typeparamref name="TDerived" />.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TBase">The type of each element.</typeparam>
             <typeparam name="TDerived">The derived type to be checked.</typeparam>
             <param name="this">
             <para>The collection to be used and checked.</para>
@@ -3024,12 +3024,42 @@
         </member>
         <member name="M:System.Linq.SpanEnumerable.OfType``2(System.ReadOnlySpan{``0})">
             <summary>
-            Casts each element to type <typeparamref name="TDerived"/>.
+            Filters instances of type <typeparamref name="TBase" />, only reserving elements of type <typeparamref name="TDerived" />.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TBase">The type of base elements.</typeparam>
+            <typeparam name="TDerived">The type derived from <typeparamref name="TBase" /> to be checked.</typeparam>
+            <param name="this">
+            <para>The source elements.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>A new <see cref="T:System.ReadOnlySpan`1" /> instance of elements of type <typeparamref name="TDerived" />.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Cast``2(System.ReadOnlySpan{``0})">
+            <summary>
+            Casts each element from type <typeparamref name="TBase" /> to <typeparamref name="TDerived" />, without element type checking;
+            throws if casting operation is invalid.
+            </summary>
+            <typeparam name="TBase">The type of each element.</typeparam>
             <typeparam name="TDerived">The type of target elements.</typeparam>
-            <param name="this">The source elements.</param>
-            <returns>A new <see cref="T:System.ReadOnlySpan`1"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
+            <param name="this">
+            <para>The source elements.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>A new <see cref="T:System.ReadOnlySpan`1" /> instance of elements of type <typeparamref name="TDerived" />.</returns>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Skip``1(System.ReadOnlySpan{``0},System.Int32)">
             <summary>
@@ -4677,6 +4707,9 @@
             <typeparam name="T">The type of elements in the span.</typeparam>
             <param name="this">The current collection.</param>
             <param name="action">The <see cref="T:System.ActionRef`1"/> delegate to perform on each element of the <see cref="T:System.Span`1"/>.</param>
+        </member>
+        <member name="M:System.ReadOnlySpanExtensions.FindIndex``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.ReadOnlySpanExtensions.FindIndex``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})"/>
         </member>
         <member name="M:System.ReadOnlySpanExtensions.FindIndex``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})"/>

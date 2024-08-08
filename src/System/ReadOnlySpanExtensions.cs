@@ -21,13 +21,25 @@ public static class ReadOnlySpanExtensions
 		}
 	}
 
+	/// <inheritdoc cref="FindIndex{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
+	public static int FindIndex<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	{
+		for (var i = 0; i < @this.Length; i++)
+		{
+			if (condition(@this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	/// <inheritdoc cref="List{T}.FindIndex(Predicate{T})"/>
 	public static int FindIndex<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> condition)
 	{
 		for (var i = 0; i < @this.Length; i++)
 		{
-			ref readonly var e = ref @this[i];
-			if (condition(in e))
+			if (condition(in @this[i]))
 			{
 				return i;
 			}

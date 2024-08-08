@@ -19,7 +19,7 @@ public static class SpanEnumerable
 		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
 		var result = TNumber.MaxValue;
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
 		{
 			if (element <= result)
 			{
@@ -83,7 +83,7 @@ public static class SpanEnumerable
 		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
 		var result = TNumber.MinValue;
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
 		{
 			if (element >= result)
 			{
@@ -201,7 +201,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Any{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
 	public static bool Any<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
 		{
 			if (match(element))
 			{
@@ -236,7 +236,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="All{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
 	public static bool All<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
 		{
 			if (!match(element))
 			{
@@ -271,14 +271,14 @@ public static class SpanEnumerable
 	/// <summary>
 	/// Determines whether all elements are of type <typeparamref name="TDerived"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TBase">The type of each element.</typeparam>
 	/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
 	/// <param name="this">
 	/// <para>The collection to be used and checked.</para>
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool AllAre<T, TDerived>(this scoped ReadOnlySpan<T> @this) where TDerived : T?
+	public static bool AllAre<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this) where TDerived : class?, TBase?
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -291,19 +291,49 @@ public static class SpanEnumerable
 	}
 
 	/// <summary>
-	/// Casts each element to type <typeparamref name="TDerived"/>.
+	/// Filters instances of type <typeparamref name="TBase"/>, only reserving elements of type <typeparamref name="TDerived"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <typeparam name="TDerived">The type of target elements.</typeparam>
-	/// <param name="this">The source elements.</param>
+	/// <typeparam name="TBase">The type of base elements.</typeparam>
+	/// <typeparam name="TDerived">The type derived from <typeparamref name="TBase"/> to be checked.</typeparam>
+	/// <param name="this">
+	/// <para>The source elements.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
-	public static ReadOnlySpan<TDerived> OfType<T, TDerived>(this scoped ReadOnlySpan<T> @this)
-		where T : notnull
-		where TDerived : notnull, T
+	public static ReadOnlySpan<TDerived> OfType<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this)
+		where TBase : class?
+		where TDerived : class?, TBase?
 	{
 		var result = new TDerived[@this.Length];
 		var i = 0;
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
+		{
+			if (element is TDerived derived)
+			{
+				result[i++] = derived;
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Casts each element from type <typeparamref name="TBase"/> to <typeparamref name="TDerived"/>, without element type checking;
+	/// throws if casting operation is invalid.
+	/// </summary>
+	/// <typeparam name="TBase">The type of each element.</typeparam>
+	/// <typeparam name="TDerived">The type of target elements.</typeparam>
+	/// <param name="this">
+	/// <para>The source elements.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
+	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
+	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this)
+		where TBase : class?
+		where TDerived : class?, TBase?
+	{
+		var result = new TDerived[@this.Length];
+		var i = 0;
+		foreach (ref readonly var element in @this)
 		{
 			result[i++] = (TDerived)element;
 		}
@@ -323,13 +353,13 @@ public static class SpanEnumerable
 	/// The new instance that points to the first element that has already skipped the specified number of elements.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<T> Skip<T>(this ReadOnlySpan<T> @this, int count) => new(in @this[count]);
+	public static ReadOnlySpan<T> Skip<T>(this ReadOnlySpan<T> @this, int count) => @this[count..];
 
 	/// <inheritdoc cref="FindAll{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
 	public static ReadOnlySpan<T> FindAll<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
 		var result = new List<T>(@this.Length);
-		foreach (var element in @this)
+		foreach (ref readonly var element in @this)
 		{
 			if (match(element))
 			{
