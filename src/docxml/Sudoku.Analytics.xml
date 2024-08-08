@@ -4275,7 +4275,7 @@
             Indicates the number of techniques included in this solution.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet._techniqueBits">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet._bitArray">
             <summary>
             The internal bits to store techniques.
             </summary>

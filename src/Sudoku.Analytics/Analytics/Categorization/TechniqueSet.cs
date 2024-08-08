@@ -62,7 +62,7 @@ public sealed partial class TechniqueSet() :
 	/// <summary>
 	/// The internal bits to store techniques.
 	/// </summary>
-	private readonly BitArray _techniqueBits = new(TechniquesCount);
+	private readonly BitArray _bitArray = new(TechniquesCount);
 
 
 	/// <summary>
@@ -107,7 +107,7 @@ public sealed partial class TechniqueSet() :
 	/// <summary>
 	/// Indicates the length of the technique.
 	/// </summary>
-	public int Count => _techniqueBits.GetCardinality();
+	public int Count => _bitArray.GetCardinality();
 
 	/// <summary>
 	/// Indicates the range of difficulty that the current collection containss.
@@ -189,7 +189,7 @@ public sealed partial class TechniqueSet() :
 	/// Clears the collection, making all techniques to be removed.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => _techniqueBits.SetAll(false);
+	public void Clear() => _bitArray.SetAll(false);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] TechniqueSet? other)
@@ -216,7 +216,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Contains(Technique item) => _techniqueBits[TechniqueProjection(item)];
+	public bool Contains(Technique item) => _bitArray[TechniqueProjection(item)];
 
 	/// <summary>
 	/// Determines whether at least one <see cref="Technique"/> instance satisfies the specified condition.
@@ -243,12 +243,12 @@ public sealed partial class TechniqueSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Technique item)
 	{
-		if (_techniqueBits[TechniqueProjection(item)])
+		if (_bitArray[TechniqueProjection(item)])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set(TechniqueProjection(item), true);
+		_bitArray.Set(TechniqueProjection(item), true);
 		return true;
 	}
 
@@ -278,12 +278,12 @@ public sealed partial class TechniqueSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Technique item)
 	{
-		if (!_techniqueBits[TechniqueProjection(item)])
+		if (!_bitArray[TechniqueProjection(item)])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set(TechniqueProjection(item), false);
+		_bitArray.Set(TechniqueProjection(item), false);
 		return true;
 	}
 
@@ -340,7 +340,7 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(_techniqueBits);
+	public Enumerator GetEnumerator() => new(_bitArray);
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
@@ -449,13 +449,13 @@ public sealed partial class TechniqueSet() :
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => _techniqueBits.GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => _bitArray.GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<Technique> IEnumerable<Technique>.GetEnumerator()
 	{
 		var index = 0;
-		foreach (bool techniqueBit in _techniqueBits)
+		foreach (bool techniqueBit in _bitArray)
 		{
 			if (techniqueBit)
 			{
@@ -527,7 +527,7 @@ public sealed partial class TechniqueSet() :
 	public static TechniqueSet operator ~(TechniqueSet value)
 	{
 		var result = value[..];
-		result._techniqueBits.Not();
+		result._bitArray.Not();
 		return result;
 	}
 
@@ -536,7 +536,7 @@ public sealed partial class TechniqueSet() :
 	public static TechniqueSet operator &(TechniqueSet left, TechniqueSet right)
 	{
 		var result = left[..];
-		result._techniqueBits.And(right._techniqueBits);
+		result._bitArray.And(right._bitArray);
 		return result;
 	}
 
@@ -545,7 +545,7 @@ public sealed partial class TechniqueSet() :
 	public static TechniqueSet operator |(TechniqueSet left, TechniqueSet right)
 	{
 		var result = left[..];
-		result._techniqueBits.Or(right._techniqueBits);
+		result._bitArray.Or(right._bitArray);
 		return result;
 	}
 
@@ -554,7 +554,7 @@ public sealed partial class TechniqueSet() :
 	public static TechniqueSet operator ^(TechniqueSet left, TechniqueSet right)
 	{
 		var result = left[..];
-		result._techniqueBits.Xor(right._techniqueBits);
+		result._bitArray.Xor(right._bitArray);
 		return result;
 	}
 }
