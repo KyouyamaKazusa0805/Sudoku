@@ -7,14 +7,10 @@ namespace Sudoku.Analytics;
 /// <param name="initialGrid">Indicates the initial grid.</param>
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods, IsLargeStructure = true)]
 public ref partial struct AnalysisContext(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
-	ref readonly Grid grid,
-
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
-	ref readonly Grid initialGrid
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid initialGrid
 ) : IContext
 {
 	/// <summary>
