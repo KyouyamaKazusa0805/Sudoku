@@ -22921,7 +22921,7 @@
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
-            <param name="grid">Indicates the pattern to be checked.</param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
@@ -22929,13 +22929,13 @@
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
-            <param name="grid">Indicates the pattern to be checked.</param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid">
             <summary>
-            <inheritdoc cref="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean)" path="/param[@name='grid']"/>
+            Indicates the pattern to be checked.
             </summary>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
