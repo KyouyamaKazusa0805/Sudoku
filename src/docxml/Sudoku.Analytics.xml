@@ -22921,7 +22921,7 @@
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
-            <param name="grid"><inheritdoc cref="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
@@ -22929,18 +22929,18 @@
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
-            <param name="grid"><inheritdoc cref="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
-        </member>
-        <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.Grid">
-            <summary>
-            Indicates the pattern to be checked.
-            </summary>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
             <summary>
             Indicates the candidates the pattern used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.IsDeadlyPattern">

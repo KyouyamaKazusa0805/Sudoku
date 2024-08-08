@@ -9,15 +9,10 @@ namespace Sudoku.Inferring;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 public readonly ref partial struct DeadlyPatternInferredResult(
-	ref readonly Grid grid,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter] bool isDeadlyPattern
 )
 {
-	/// <summary>
-	/// Indicates the pattern to be checked.
-	/// </summary>
-	public Grid Grid { get; } = grid;
-
 	/// <summary>
 	/// Indicates the candidates the pattern used.
 	/// </summary>
