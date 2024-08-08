@@ -119,7 +119,8 @@ internal static class GraphicsExtensions
 	/// </exception>
 	public static void DrawRoundedRectangle(this Graphics @this, Pen pen, RectangleF rectangle, float circleRadius)
 	{
-		_ = rectangle is var (x, y, w, h) and var (l, _);
+		var (x, y, w, h) = rectangle;
+		var (l, _) = rectangle;
 
 		ArgumentOutOfRangeException.ThrowIfGreaterThan(circleRadius, Max(w, h));
 
@@ -171,7 +172,8 @@ internal static class GraphicsExtensions
 	/// </exception>
 	public static void FillRoundedRectangle(this Graphics @this, Brush brush, RectangleF rectangle, float circleRadius)
 	{
-		_ = rectangle is var (x, y, w, h) and var (l, _);
+		var (x, y, w, h) = rectangle;
+		var (l, _) = rectangle;
 
 		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(circleRadius, Max(w, h));
 
