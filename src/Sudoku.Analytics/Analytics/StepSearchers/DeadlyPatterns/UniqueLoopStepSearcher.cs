@@ -23,7 +23,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		if (BivalueCells.Count < 5)
+		if (BivalueCells.Count is 0 or 1)
 		{
 			return null;
 		}
