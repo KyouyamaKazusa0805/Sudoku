@@ -516,66 +516,38 @@ public sealed partial class ConclusionSet :
 	public static bool operator false(ConclusionSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet operator ~(ConclusionSet value)
 	{
-		var result = new ConclusionSet();
-		var i = 0;
-		foreach (bool bit in ((BitArray)value._bitArray.Clone()).Not())
-		{
-			if (bit)
-			{
-				result.Add(i);
-			}
-			i++;
-		}
+		var result = value[..];
+		result._bitArray.Not();
 		return result;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet operator &(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionSet();
-		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).And(right._bitArray))
-		{
-			if (bit)
-			{
-				result.Add(i);
-			}
-			i++;
-		}
+		var result = left[..];
+		result._bitArray.And(right._bitArray);
 		return result;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet operator |(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionSet();
-		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Or(right._bitArray))
-		{
-			if (bit)
-			{
-				result.Add(i);
-			}
-			i++;
-		}
+		var result = left[..];
+		result._bitArray.Or(right._bitArray);
 		return result;
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet operator ^(ConclusionSet left, ConclusionSet right)
 	{
-		var result = new ConclusionSet();
-		var i = 0;
-		foreach (bool bit in ((BitArray)left._bitArray.Clone()).Xor(right._bitArray))
-		{
-			if (bit)
-			{
-				result.Add(i);
-			}
-			i++;
-		}
+		var result = left[..];
+		result._bitArray.Xor(right._bitArray);
 		return result;
 	}
 }
