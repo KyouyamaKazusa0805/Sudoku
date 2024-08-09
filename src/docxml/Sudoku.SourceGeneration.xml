@@ -161,6 +161,11 @@
             Indicates the implementation flags.
             </summary>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.LengthOrCountPropertyKind">
+            <summary>
+            Indicates the property kind of length or count property.
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.EqualsBehavior">
             <summary>
             Represents a behavior for generating <see cref="M:System.Object.Equals(System.Object)"/> method.

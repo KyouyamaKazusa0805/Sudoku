@@ -565,12 +565,6 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, Range subsetSizeRange);
 
 	/// <inheritdoc/>
-	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<TSelf>.operator false(TSelf value) => !(value ? true : false);
-
-	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator !(TSelf value) => !value;
 
 	/// <inheritdoc/>

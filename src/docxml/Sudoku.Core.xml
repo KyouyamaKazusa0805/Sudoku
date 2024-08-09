@@ -383,12 +383,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_LogicalNot(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_True(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_False(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_OnesComplement(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -503,6 +497,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_True(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_False(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_True(Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_False(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -912,12 +918,6 @@
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_True(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_False(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
@@ -1068,6 +1068,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_True(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_False(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_True(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_False(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -1709,12 +1721,6 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.op_True(Sudoku.Concepts.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.op_False(Sudoku.Concepts.ConclusionSet)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_OnesComplement(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
         </member>
@@ -1772,6 +1778,18 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_Inequality(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_True(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_False(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#ILogicalOperators{Sudoku#Concepts#ConclusionSet}#op_True(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#ILogicalOperators{Sudoku#Concepts#ConclusionSet}#op_False(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionType">
             <summary>
@@ -3260,12 +3278,6 @@
             <param name="map">The instance to check subsets.</param>
             <param name="subsetSizeRange">The desired size.</param>
             <returns>All possible subsets.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_True(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_False(`0)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#ILogicalOperators{TSelf}#op_LogicalNot(`0)">
             <inheritdoc/>

@@ -19,26 +19,23 @@ internal static class TypeImplHandler
 
 	public static List<string>? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
+		var methods = new[]
+		{
+			Object_Equals,
+			gasc => Object_GetHashCode(gasc, cancellationToken),
+			gasc => Object_ToString(gasc, cancellationToken),
+			EqualityOperators,
+			ComparisonOperators,
+			TrueAndFalseOperators
+		};
+
 		var typeSources = new List<string>();
-		if (Object_Equals(gasc) is { } source1)
+		foreach (var method in methods)
 		{
-			typeSources.Add(source1);
-		}
-		if (Object_GetHashCode(gasc, cancellationToken) is { } source2)
-		{
-			typeSources.Add(source2);
-		}
-		if (Object_ToString(gasc, cancellationToken) is { } source3)
-		{
-			typeSources.Add(source3);
-		}
-		if (EqualityOperators(gasc) is { } source4)
-		{
-			typeSources.Add(source4);
-		}
-		if (ComparisonOperators(gasc) is { } source5)
-		{
-			typeSources.Add(source5);
+			if (method(gasc) is { } source)
+			{
+				typeSources.Add(source);
+			}
 		}
 		return typeSources;
 	}
@@ -946,6 +943,104 @@ internal static class TypeImplHandler
 			}
 			""";
 	}
+
+	private static string? TrueAndFalseOperators(GeneratorAttributeSyntaxContext gasc)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					Name: var typeName,
+					ContainingNamespace: var @namespace,
+					ContainingType: null,
+					IsRecord: false,
+					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct),
+					TypeParameters: var typeParameters
+				} type,
+				SemanticModel.Compilation: var compilation
+			})
+		{
+			return null;
+		}
+
+		if (!((TypeImplFlag)ctorArg).HasFlag(TypeImplFlag.TrueAndFalseOperators))
+		{
+			return null;
+		}
+
+		var propertySymbols = type.GetMembers().OfType<IPropertySymbol>();
+		var mode = propertySymbols.Any(static m => propertyPredicate(m, nameof(LengthOrCountPropertyKind.Length)))
+			? LengthOrCountPropertyKind.Length
+			: propertySymbols.Any(static m => propertyPredicate(m, nameof(LengthOrCountPropertyKind.Count)))
+				? LengthOrCountPropertyKind.Count
+				: LengthOrCountPropertyKind.Unknown;
+		if (mode == LengthOrCountPropertyKind.Unknown)
+		{
+			return null;
+		}
+
+		var modeString = mode.ToString();
+		var isLargeStructure = attribute.GetNamedArgument<bool>(IsLargeStructurePropertyName);
+		var modifierString = isLargeStructure ? "in " : string.Empty;
+		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var typeArgumentsString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+		var typeNameString = $"{typeName}{typeArgumentsString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		var typeKindString = kind switch { TypeKind.Class => "class", _ => "struct" };
+
+		var logicalOperatorsType = compilation.GetTypeByMetadataName("System.ILogicalOperators`1")!.Construct(type);
+		var explicitImplementation = string.Empty;
+		if (type.AllInterfaces.Contains(logicalOperatorsType, SymbolEqualityComparer.Default))
+		{
+			explicitImplementation =
+				$$"""
+				/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.ILogicalOperators<{{fullTypeNameString}}>.operator true({{fullTypeNameString}} value) => value.{{modeString}} != 0;
+
+						/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.ILogicalOperators<{{fullTypeNameString}}>.operator false({{fullTypeNameString}} value) => value.{{modeString}} == 0;
+				""";
+		}
+
+		return $$"""
+			namespace {{namespaceString}}
+			{
+			#line 1 "TypeImpl.{{typeNameString}}_TrueAndFalseOperators.g.cs"
+				partial {{typeKindString}} {{typeNameString}}
+				{
+					/// <inheritdoc cref="global::System.ILogicalOperators{TSelf}.op_True(TSelf)"/>
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					public static bool operator true({{modifierString}}{{fullTypeNameString}} value)
+						=> value.{{modeString}} != 0;
+
+					/// <inheritdoc cref="global::System.ILogicalOperators{TSelf}.op_False(TSelf)"/>
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+					[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+					public static bool operator false({{modifierString}}{{fullTypeNameString}} value)
+						=> value.{{modeString}} == 0;
+
+					{{explicitImplementation}}
+				}
+			#line default
+			}
+			""";
+
+
+		static bool propertyPredicate(IPropertySymbol m, string propertyName)
+			=> m is { Name: var p, Type.SpecialType: System_Int32, IsIndexer: false } && p == propertyName;
+	}
 }
 
 /// <summary>
@@ -958,7 +1053,18 @@ file enum TypeImplFlag
 	Object_GetHashCode = 1 << 1,
 	Object_ToString = 1 << 2,
 	EqualityOperators = 1 << 3,
-	ComparisonOperators = 1 << 4
+	ComparisonOperators = 1 << 4,
+	TrueAndFalseOperators = 1 << 5
+}
+
+/// <summary>
+/// Indicates the property kind of length or count property.
+/// </summary>
+file enum LengthOrCountPropertyKind
+{
+	Unknown,
+	Length,
+	Count
 }
 
 /// <summary>

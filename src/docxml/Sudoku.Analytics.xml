@@ -4485,12 +4485,6 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_True(Sudoku.Analytics.Categorization.TechniqueSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_False(Sudoku.Analytics.Categorization.TechniqueSet)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
@@ -4552,6 +4546,18 @@
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Inequality(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_True(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_False(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Analytics#Categorization#TechniqueSet}#op_True(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Analytics#Categorization#TechniqueSet}#op_False(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Converter">
             <summary>
@@ -21907,12 +21913,6 @@
         <member name="M:Sudoku.Concepts.EliminationRange.op_OnesComplement(Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_True(Sudoku.Concepts.EliminationRange@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_False(Sudoku.Concepts.EliminationRange@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
-        </member>
         <member name="M:Sudoku.Concepts.EliminationRange.op_BitwiseAnd(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
         </member>
@@ -21923,12 +21923,6 @@
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_LogicalNot(Sudoku.Concepts.EliminationRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_True(Sudoku.Concepts.EliminationRange)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_False(Sudoku.Concepts.EliminationRange)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_OnesComplement(Sudoku.Concepts.EliminationRange)">
@@ -22005,6 +21999,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_True(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_False(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_True(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_False(Sudoku.Concepts.EliminationRange)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ExocetShapeKind">

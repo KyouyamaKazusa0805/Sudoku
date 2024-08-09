@@ -9,7 +9,9 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [InlineArray(9)]
 [CollectionBuilder(typeof(EliminationRange), nameof(Create))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators,
+	IsLargeStructure = true)]
 public partial struct EliminationRange :
 	IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>,
 	IEnumerable<KeyValuePair<Digit, HouseMask>>,
@@ -296,14 +298,6 @@ public partial struct EliminationRange :
 		return result;
 	}
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_True(TSelf)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(in EliminationRange value) => value.Count != 0;
-
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_False(TSelf)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(in EliminationRange value) => value.Count == 0;
-
 	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseAnd(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static EliminationRange operator &(in EliminationRange left, in EliminationRange right)
@@ -357,12 +351,6 @@ public partial struct EliminationRange :
 
 	/// <inheritdoc/>
 	static bool ILogicalOperators<EliminationRange>.operator !(EliminationRange value) => value.Count != 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<EliminationRange>.operator true(EliminationRange value) => value.Count != 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<EliminationRange>.operator false(EliminationRange value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	static EliminationRange IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>.operator ~(EliminationRange value) => ~value;
