@@ -199,7 +199,7 @@ public abstract partial class Step(
 				: throw new();
 
 
-		bool matcher(Interpolation kvp) => culture.Name.StartsWith(kvp.LanguageName, StringComparison.OrdinalIgnoreCase);
+		bool matcher(Interpolation i) => culture.Name.StartsWith(i.LanguageName, StringComparison.OrdinalIgnoreCase);
 	}
 
 	/// <summary>
