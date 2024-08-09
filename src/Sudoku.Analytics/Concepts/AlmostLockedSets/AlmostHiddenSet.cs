@@ -12,7 +12,7 @@ namespace Sudoku.Concepts;
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
 /// </remarks>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class AlmostHiddenSet(
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
 	[PrimaryConstructorParameter, HashCodeMember] House house,

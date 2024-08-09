@@ -46,6 +46,13 @@ public enum TypeImplFlag
 	ComparisonOperators = 1 << 4,
 
 	/// <summary>
+	/// Indicates operators <see langword="true"/> and <see langword="false"/> defined in <see cref="ILogicalOperators{TSelf}"/> will be generated.
+	/// </summary>
+	/// <seealso cref="ILogicalOperators{TSelf}.op_True(TSelf)"/>
+	/// <seealso cref="ILogicalOperators{TSelf}.op_False(TSelf)"/>
+	TrueAndFalseOperators = 1 << 5,
+
+	/// <summary>
 	/// Indicates all the methods
 	/// <see cref="object.Equals(object?)"/>, <see cref="object.GetHashCode"/> and <see cref="object.ToString"/>
 	/// will be generated.
@@ -57,5 +64,5 @@ public enum TypeImplFlag
 	/// <see cref="IEqualityOperators{TSelf, TOther, TResult}"/> and <see cref="IComparisonOperators{TSelf, TOther, TResult}"/>
 	/// will be generated.
 	/// </summary>
-	AllOperators = EqualityOperators | ComparisonOperators
+	AllEqualityComparisonOperators = EqualityOperators | ComparisonOperators
 }

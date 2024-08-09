@@ -1153,6 +1153,13 @@
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.TrueAndFalseOperators">
+            <summary>
+            Indicates operators <see langword="true"/> and <see langword="false"/> defined in <see cref="T:System.ILogicalOperators`1"/> will be generated.
+            </summary>
+            <seealso cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+            <seealso cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
         <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
             <summary>
             Indicates all the methods
@@ -1160,7 +1167,7 @@
             will be generated.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllOperators">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllEqualityComparisonOperators">
             <summary>
             Indicates all the operators
             <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>

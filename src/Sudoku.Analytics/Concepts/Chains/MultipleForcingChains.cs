@@ -29,7 +29,7 @@ namespace Sudoku.Concepts;
 /// <seealso cref="StrongForcingChain"/>
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(SetterExpression = "internal set")] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, ChainOrLoop>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>,

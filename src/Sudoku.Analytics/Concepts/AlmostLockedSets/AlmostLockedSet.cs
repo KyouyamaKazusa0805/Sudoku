@@ -15,7 +15,7 @@ namespace Sudoku.Concepts;
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class AlmostLockedSet(
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,

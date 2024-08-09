@@ -16,7 +16,7 @@ namespace Sudoku.Concepts;
 /// <shared-comments>
 /// Please note that this value doesn't participate in equality comparison.
 /// </shared-comments>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class Node(
 	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map,
 	[PrimaryConstructorParameter, HashCodeMember] bool isOn,

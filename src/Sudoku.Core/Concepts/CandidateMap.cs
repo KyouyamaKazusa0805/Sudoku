@@ -12,7 +12,9 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, Candida
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators, IsLargeStructure = true)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators,
+	IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase
 {
 	/// <summary>

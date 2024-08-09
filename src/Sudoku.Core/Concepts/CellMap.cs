@@ -12,7 +12,7 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators, IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
 	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Shifting"/>

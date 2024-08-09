@@ -10,7 +10,7 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnToString = "sealed")]
 public abstract partial class Step(

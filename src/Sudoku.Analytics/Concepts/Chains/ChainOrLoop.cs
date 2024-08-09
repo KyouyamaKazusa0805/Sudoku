@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a chain or a loop.
 /// </summary>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators,
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ChainOrLoop :

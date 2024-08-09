@@ -15,7 +15,7 @@ using static IGridConstants<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(CellsCount)]
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllEqualityComparisonOperators, IsLargeStructure = true)]
 public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
 	/// <inheritdoc cref="IGridConstants{TSelf}.DefaultMask"/>
