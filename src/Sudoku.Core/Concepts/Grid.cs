@@ -817,7 +817,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] >> HeaderShift << HeaderShift);
+	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << HeaderShift) - 1));
 
 	/// <summary>
 	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
@@ -1165,16 +1165,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// </summary>
 	/// <param name="maskArray">An array of the target mask. The array must be of a valid length.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid(Mask[] maskArray)
-	{
-		var result = Empty;
-		Unsafe.CopyBlock(
-			ref @ref.ByteRef(ref result[0]),
-			in @ref.ReadOnlyByteRef(in maskArray[0]),
-			(uint)(sizeof(Mask) * maskArray.Length)
-		);
-		return result;
-	}
+	public static explicit operator Grid(Mask[] maskArray) => Create(maskArray.AsReadOnlySpan());
 
 	/// <summary>
 	/// Converts the specified array elements into the target <see cref="Grid"/> instance, with value boundary checking.
