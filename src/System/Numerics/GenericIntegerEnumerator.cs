@@ -4,9 +4,9 @@ namespace System.Numerics;
 /// Defines an enumerator type that iterates on bits of an integer of generic type.
 /// </summary>
 /// <typeparam name="TInteger">The type of the integer that supports for iteration on bits.</typeparam>
-/// <param name="value">The integer to be iterated.</param>
-/// <param name="bitsCount">The integer of bits to be iterated.</param>
-public ref struct GenericIntegerEnumerator<TInteger>(TInteger value, int bitsCount) : IEnumerator<int>
+/// <param name="_value">The integer to be iterated.</param>
+/// <param name="_bitsCount">The integer of bits to be iterated.</param>
+public ref struct GenericIntegerEnumerator<TInteger>(TInteger _value, int _bitsCount) : IEnumerator<int>
 #if NUMERIC_GENERIC_TYPE
 	where TInteger : IBitwiseOperators<TInteger, TInteger, TInteger>, INumber<TInteger>, IShiftOperators<TInteger, int, TInteger>
 #else
@@ -28,13 +28,13 @@ public ref struct GenericIntegerEnumerator<TInteger>(TInteger value, int bitsCou
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext()
 	{
-		while (++Current < bitsCount)
+		while (++Current < _bitsCount)
 		{
 			if (
 #if NUMERIC_GENERIC_TYPE
-				(value >> Current & TNumber.One) != TNumber.Zero
+				(_value >> Current & TInteger.One) != TInteger.Zero
 #else
-				(value >> Current & TInteger.MultiplicativeIdentity) != TInteger.AdditiveIdentity
+				(_value >> Current & TInteger.MultiplicativeIdentity) != TInteger.AdditiveIdentity
 #endif
 			)
 			{

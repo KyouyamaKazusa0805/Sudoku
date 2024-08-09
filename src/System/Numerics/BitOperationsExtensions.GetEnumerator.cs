@@ -1,4 +1,3 @@
-
 namespace System.Numerics;
 
 public partial class BitOperationsExtensions
@@ -69,7 +68,7 @@ public partial class BitOperationsExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static partial GenericIntegerEnumerator<TInteger> GetEnumerator<TInteger>(this TInteger @this)
 #if NUMERIC_GENERIC_TYPE
-		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
+		where TInteger : IBitwiseOperators<TInteger, TInteger, TInteger>, INumber<TInteger>, IShiftOperators<TInteger, int, TInteger>
 #else
 		where TInteger :
 			IAdditiveIdentity<TInteger, TInteger>,

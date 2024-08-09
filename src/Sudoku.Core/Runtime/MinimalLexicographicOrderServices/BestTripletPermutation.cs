@@ -7,14 +7,9 @@ namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
 /// <param name="resultMask">Indicates the result mask.</param>
 /// <param name="resultNumberOfBits">Indicates the result number of bits.</param>
 public partial struct BestTripletPermutation(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)]
-	int bestResult,
-
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)]
-	int resultMask,
-
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)]
-	int resultNumberOfBits
+	[PrimaryConstructorParameter(SetterExpression = "set")] int bestResult,
+	[PrimaryConstructorParameter(SetterExpression = "set")] int resultMask,
+	[PrimaryConstructorParameter(SetterExpression = "set")] int resultNumberOfBits
 )
 {
 	/// <summary>

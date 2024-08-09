@@ -22,9 +22,7 @@ namespace Sudoku.Drawing;
 	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
-public abstract partial class ViewNode(ColorIdentifier identifier) :
-	IEquatable<ViewNode>,
-	IEqualityOperators<ViewNode, ViewNode, bool>
+public abstract partial class ViewNode(ColorIdentifier identifier) : IEquatable<ViewNode>, IEqualityOperators<ViewNode, ViewNode, bool>
 {
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.

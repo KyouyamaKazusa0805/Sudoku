@@ -329,17 +329,15 @@
             <summary>
             Represents the bindable source for libraries.
             </summary>
-            <param name="lib">Indicates the library.</param>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.Runtime.LibraryServices.LibraryInfo)">
-            <summary>
-            Represents the bindable source for libraries.
-            </summary>
-            <param name="lib">Indicates the library.</param>
         </member>
         <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.DisplayName">
             <summary>
             Indicates the display name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
+            <summary>
+            Indicates the library.
             </summary>
         </member>
         <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.GetLibraries">
@@ -347,11 +345,6 @@
             Try to fetch all <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> instances stored in the local path.
             </summary>
             <returns>All possible <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> instances.</returns>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
-            <summary>
-            The generated property declaration for parameter <c>lib</c>.
-            </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
@@ -14914,13 +14907,13 @@
             <summary>
             Defines a backdoor visual unit.
             </summary>
-            <param name="view">The view.</param>
+            <param name="_view">The view.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.#ctor(Sudoku.Drawing.View)">
             <summary>
             Defines a backdoor visual unit.
             </summary>
-            <param name="view">The view.</param>
+            <param name="_view">The view.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Views">
             <inheritdoc/>
@@ -14932,13 +14925,13 @@
             <summary>
             Defines a true-candidate visual unit.
             </summary>
-            <param name="view">The view.</param>
+            <param name="_view">The view.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.#ctor(Sudoku.Drawing.View)">
             <summary>
             Defines a true-candidate visual unit.
             </summary>
-            <param name="view">The view.</param>
+            <param name="_view">The view.</param>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Views">
             <inheritdoc/>

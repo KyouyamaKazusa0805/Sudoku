@@ -5,12 +5,12 @@ public partial struct LinkedListReversed<T>
 	/// <summary>
 	/// Indicates the enumerator type of the <see cref="LinkedListReversed{T}"/> instance.
 	/// </summary>
-	public ref struct Enumerator(LinkedList<T> baseList) : IEnumerator<T>
+	public ref struct Enumerator(LinkedList<T> _baseList) : IEnumerator<T>
 	{
 		/// <summary>
 		/// Indicates the last node.
 		/// </summary>
-		private LinkedListNode<T>? _node = baseList.Last;
+		private LinkedListNode<T>? _node = _baseList.Last;
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>

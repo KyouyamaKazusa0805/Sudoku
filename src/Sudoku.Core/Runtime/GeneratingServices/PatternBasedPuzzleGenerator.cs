@@ -3,12 +3,12 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <summary>
 /// Represents a generator that is based on pattern.
 /// </summary>
-/// <param name="missingDigit">Indicates the missing digit that can be used.</param>
+/// <param name="_missingDigit">Indicates the missing digit that can be used.</param>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
 [StructLayout(LayoutKind.Auto)]
 public readonly ref partial struct PatternBasedPuzzleGenerator(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ref readonly CellMap seedPattern,
-	Digit missingDigit = -1
+	Digit _missingDigit = -1
 )
 {
 	/// <inheritdoc cref="IGenerator{TResult}.Generate(IProgress{GeneratorProgress}, CancellationToken)"/>
@@ -71,7 +71,7 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 
 		var cell = patternCellsSorted[i];
 		var digitsMask = playground.GetCandidates(cell);
-		var digits = ((Mask)(missingDigit != -1 ? digitsMask & ~(1 << missingDigit) : digitsMask)).GetAllSets();
+		var digits = ((Mask)(_missingDigit != -1 ? digitsMask & ~(1 << _missingDigit) : digitsMask)).GetAllSets();
 		var indexArray = Digits[..digits.Length];
 		Random.Shared.Shuffle(indexArray);
 		foreach (var randomizedIndex in indexArray)

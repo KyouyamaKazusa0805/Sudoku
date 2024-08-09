@@ -59,14 +59,14 @@
             Represents an enumerator type that can iterate on each candidate of the collection,
             with its cell and digit value in the target tuple.
             </summary>
-            <param name="candidates">Indicates the candidate offsets.</param>
+            <param name="_candidates">Indicates the candidate offsets.</param>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.#ctor(System.Int32[])">
             <summary>
             Represents an enumerator type that can iterate on each candidate of the collection,
             with its cell and digit value in the target tuple.
             </summary>
-            <param name="candidates">Indicates the candidate offsets.</param>
+            <param name="_candidates">Indicates the candidate offsets.</param>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.CellDigitEnumerator._index">
             <summary>
@@ -98,13 +98,13 @@
             <summary>
             Represents an enumerator type that can iterate on each cell of the collection.
             </summary>
-            <param name="candidates">Indicates the candidate offsets.</param>
+            <param name="_candidates">Indicates the candidate offsets.</param>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.#ctor(System.Int32[])">
             <summary>
             Represents an enumerator type that can iterate on each cell of the collection.
             </summary>
-            <param name="candidates">Indicates the candidate offsets.</param>
+            <param name="_candidates">Indicates the candidate offsets.</param>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.CellEnumerator._index">
             <summary>
@@ -432,13 +432,13 @@
             <summary>
             Represents an enumerator type that iterates on each candidate offsets.
             </summary>
-            <param name="offsets">Indicates the offsets.</param>
+            <param name="_offsets">Indicates the offsets.</param>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Enumerator.#ctor(System.Int32[])">
             <summary>
             Represents an enumerator type that iterates on each candidate offsets.
             </summary>
-            <param name="offsets">Indicates the offsets.</param>
+            <param name="_offsets">Indicates the offsets.</param>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Enumerator._index">
             <summary>
@@ -1000,13 +1000,13 @@
             <summary>
             Represents an enumerator type that iterates on each cell offsets.
             </summary>
-            <param name="offset">Indicates the offsets.</param>
+            <param name="_offset">Indicates the offsets.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Enumerator.#ctor(System.Int32[])">
             <summary>
             Represents an enumerator type that iterates on each cell offsets.
             </summary>
-            <param name="offset">Indicates the offsets.</param>
+            <param name="_offset">Indicates the offsets.</param>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Enumerator._index">
             <summary>
@@ -1737,13 +1737,13 @@
             <summary>
             The internal enumerator instance.
             </summary>
-            <param name="collection">The collection.</param>
+            <param name="_collection">The collection.</param>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.#ctor(Sudoku.Concepts.ConclusionSet)">
             <summary>
             The internal enumerator instance.
             </summary>
-            <param name="collection">The collection.</param>
+            <param name="_collection">The collection.</param>
         </member>
         <member name="F:Sudoku.Concepts.ConclusionSet.Enumerator._enumerator">
             <summary>
@@ -1830,7 +1830,7 @@
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
-            <param name="mask">Indicates the target mask.</param>
+            <param name="_mask">Indicates the target mask.</param>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32)">
             <summary>
@@ -1840,7 +1840,7 @@
             A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
             two position can fill this candidate.
             </remarks>
-            <param name="mask">Indicates the target mask.</param>
+            <param name="_mask">Indicates the target mask.</param>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -1916,11 +1916,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Concepts.Conjugate._mask">
-            <summary>
-            The generated field declaration for parameter <c>mask</c>.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -4108,11 +4103,31 @@
         <member name="M:Sudoku.Drawing.ColorColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Drawing.ColorColorIdentifier.Alpha">
+            <summary>
+            The generated property declaration for parameter <c>alpha</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.ColorColorIdentifier.Red">
+            <summary>
+            The generated property declaration for parameter <c>red</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.ColorColorIdentifier.Green">
+            <summary>
+            The generated property declaration for parameter <c>green</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.ColorColorIdentifier.Blue">
+            <summary>
+            The generated property declaration for parameter <c>blue</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Drawing.ColorColorIdentifier.GetHashCode">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Drawing.ColorColorIdentifier.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Drawing.ColorIdentifier">
             <summary>
@@ -8028,14 +8043,14 @@
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
@@ -8480,8 +8495,8 @@
             Represents an exception type that will be thrown if a library instance has already been initialized, but a user still calls
             method <see cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Initialize"/>.
             </summary>
-            <param name="directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
-            <param name="fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
+            <param name="_directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
+            <param name="_fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
             <remarks><i>
             This type is only used by Windows platform because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/>
             is marked <see cref="T:System.Runtime.Versioning.SupportedOSPlatformAttribute"/>, limited in Windows.
@@ -8493,8 +8508,8 @@
             Represents an exception type that will be thrown if a library instance has already been initialized, but a user still calls
             method <see cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Initialize"/>.
             </summary>
-            <param name="directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
-            <param name="fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
+            <param name="_directory"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='directory']"/></param>
+            <param name="_fileId"><inheritdoc cref="M:Sudoku.Runtime.LibraryServices.LibraryInfo.#ctor(System.String,System.String)" path="/param[@name='fileId']"/></param>
             <remarks><i>
             This type is only used by Windows platform because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/>
             is marked <see cref="T:System.Runtime.Versioning.SupportedOSPlatformAttribute"/>, limited in Windows.
@@ -8866,19 +8881,19 @@
             Indicates all best triplet permutations.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.BestResult">
+        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.BestResult">
             <summary>
-            The generated field declaration for parameter <c>bestResult</c>.
+            The generated property declaration for parameter <c>bestResult</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultMask">
+        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultMask">
             <summary>
-            The generated field declaration for parameter <c>resultMask</c>.
+            The generated property declaration for parameter <c>resultMask</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultNumberOfBits">
+        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultNumberOfBits">
             <summary>
-            The generated field declaration for parameter <c>resultNumberOfBits</c>.
+            The generated property declaration for parameter <c>resultNumberOfBits</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexComparisonExtensions">
@@ -9582,13 +9597,13 @@
             <summary>
             Represents as a dancing link.
             </summary>
-            <param name="root">The root node.</param>
+            <param name="_root">The root node.</param>
         </member>
         <member name="M:Sudoku.Runtime.SolvingServices.Dlx.DancingLink.#ctor(Sudoku.Runtime.SolvingServices.Dlx.ColumnNode)">
             <summary>
             Represents as a dancing link.
             </summary>
-            <param name="root">The root node.</param>
+            <param name="_root">The root node.</param>
         </member>
         <member name="P:Sudoku.Runtime.SolvingServices.Dlx.DancingLink.Entry">
             <summary>

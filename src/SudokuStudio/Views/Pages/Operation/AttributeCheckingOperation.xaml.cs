@@ -116,11 +116,11 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 /// <summary>
 /// Defines a backdoor visual unit.
 /// </summary>
-/// <param name="view">The view.</param>
-file sealed class BackdoorVisualUnit(View view) : IDrawable
+/// <param name="_view">The view.</param>
+file sealed class BackdoorVisualUnit(View _view) : IDrawable
 {
 	/// <inheritdoc/>
-	public ReadOnlyMemory<View> Views { get; } = (View[])[view];
+	public ReadOnlyMemory<View> Views { get; } = (View[])[_view];
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];
@@ -129,11 +129,11 @@ file sealed class BackdoorVisualUnit(View view) : IDrawable
 /// <summary>
 /// Defines a true-candidate visual unit.
 /// </summary>
-/// <param name="view">The view.</param>
-file sealed class TrueCandidateVisualUnit(View view) : IDrawable
+/// <param name="_view">The view.</param>
+file sealed class TrueCandidateVisualUnit(View _view) : IDrawable
 {
 	/// <inheritdoc/>
-	public ReadOnlyMemory<View> Views { get; } = (View[])[view];
+	public ReadOnlyMemory<View> Views { get; } = (View[])[_view];
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];

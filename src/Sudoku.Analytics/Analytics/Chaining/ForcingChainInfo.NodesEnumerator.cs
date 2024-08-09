@@ -5,11 +5,11 @@ public partial record struct ForcingChainInfo
 	/// <summary>
 	/// Represents an enumerator type that can iterate on nodes supposed with "on".
 	/// </summary>
-	/// <param name="enumerator">The backing enumerator.</param>
-	public ref struct NodesEnumerator(HashSet<Node>.Enumerator enumerator) : IEnumerator<Node>
+	/// <param name="_enumerator">The backing enumerator.</param>
+	public ref struct NodesEnumerator(HashSet<Node>.Enumerator _enumerator) : IEnumerator<Node>
 	{
 		/// <inheritdoc/>
-		public readonly Node Current => enumerator.Current;
+		public readonly Node Current => _enumerator.Current;
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;
@@ -23,6 +23,6 @@ public partial record struct ForcingChainInfo
 		public void Reset() => throw new NotImplementedException();
 
 		/// <inheritdoc/>
-		public bool MoveNext() => enumerator.MoveNext();
+		public bool MoveNext() => _enumerator.MoveNext();
 	}
 }

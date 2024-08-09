@@ -5,8 +5,8 @@ public partial class TechniqueSet
 	/// <summary>
 	/// The enumerator that can iterate with <see cref="Technique"/> fields for a <see cref="TechniqueSet"/> instance.
 	/// </summary>
-	/// <param name="bits">The internal bits.</param>
-	public ref struct Enumerator(BitArray bits) : IEnumerator<Technique>
+	/// <param name="_bits">The internal bits.</param>
+	public ref struct Enumerator(BitArray _bits) : IEnumerator<Technique>
 	{
 		/// <summary>
 		/// The current index.
@@ -24,9 +24,9 @@ public partial class TechniqueSet
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		public bool MoveNext()
 		{
-			for (_currentIndex++; _currentIndex < bits.Length; _currentIndex++)
+			for (_currentIndex++; _currentIndex < _bits.Length; _currentIndex++)
 			{
-				if (bits[_currentIndex])
+				if (_bits[_currentIndex])
 				{
 					return true;
 				}

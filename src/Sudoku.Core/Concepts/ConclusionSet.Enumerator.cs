@@ -5,13 +5,13 @@ public partial class ConclusionSet
 	/// <summary>
 	/// The internal enumerator instance.
 	/// </summary>
-	/// <param name="collection">The collection.</param>
-	public ref struct Enumerator(ConclusionSet collection) : IEnumerator<Conclusion>
+	/// <param name="_collection">The collection.</param>
+	public ref struct Enumerator(ConclusionSet _collection) : IEnumerator<Conclusion>
 	{
 		/// <summary>
 		/// The conclusions to be iterated.
 		/// </summary>
-		private List<Conclusion>.Enumerator _enumerator = collection._conclusionsEntry.GetEnumerator();
+		private List<Conclusion>.Enumerator _enumerator = _collection._conclusionsEntry.GetEnumerator();
 
 
 		/// <summary>

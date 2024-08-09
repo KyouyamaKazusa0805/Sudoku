@@ -6,8 +6,8 @@ public partial struct CandidateMap
 	/// Represents an enumerator type that can iterate on each candidate of the collection,
 	/// with its cell and digit value in the target tuple.
 	/// </summary>
-	/// <param name="candidates">Indicates the candidate offsets.</param>
-	public ref struct CellDigitEnumerator(Candidate[] candidates) : IEnumerator<(Candidate Candidate, Cell Cell, Digit Digit)>
+	/// <param name="_candidates">Indicates the candidate offsets.</param>
+	public ref struct CellDigitEnumerator(Candidate[] _candidates) : IEnumerator<(Candidate Candidate, Cell Cell, Digit Digit)>
 	{
 		/// <summary>
 		/// Indicates the index.
@@ -21,7 +21,7 @@ public partial struct CandidateMap
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			get
 			{
-				var candidate = candidates[_index];
+				var candidate = _candidates[_index];
 				return (candidate, candidate / 9, candidate % 9);
 			}
 		}
@@ -39,7 +39,7 @@ public partial struct CandidateMap
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool MoveNext() => ++_index < candidates.Length;
+		public bool MoveNext() => ++_index < _candidates.Length;
 
 		/// <inheritdoc/>
 		readonly void IDisposable.Dispose() { }

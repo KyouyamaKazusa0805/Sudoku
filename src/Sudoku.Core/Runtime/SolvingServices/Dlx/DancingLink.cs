@@ -3,8 +3,8 @@ namespace Sudoku.Runtime.SolvingServices.Dlx;
 /// <summary>
 /// Represents as a dancing link.
 /// </summary>
-/// <param name="root">The root node.</param>
-public sealed class DancingLink(ColumnNode root)
+/// <param name="_root">The root node.</param>
+public sealed class DancingLink(ColumnNode _root)
 {
 	/// <summary>
 	/// Indicates the entry instance.
@@ -22,9 +22,9 @@ public sealed class DancingLink(ColumnNode root)
 		var columns = new ColumnNode[324];
 		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
 		{
-			var col = new ColumnNode(columnIndex) { Right = root, Left = root.Left };
-			root.Left.Right = col;
-			root.Left = col;
+			var col = new ColumnNode(columnIndex) { Right = _root, Left = _root.Left };
+			_root.Left.Right = col;
+			_root.Left = col;
 			columns[columnIndex] = col;
 		}
 
@@ -46,7 +46,7 @@ public sealed class DancingLink(ColumnNode root)
 				FormLinks(columns, x, y, digit);
 			}
 		}
-		return root;
+		return _root;
 	}
 
 	/// <summary>

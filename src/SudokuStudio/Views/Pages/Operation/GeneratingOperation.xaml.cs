@@ -53,7 +53,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		(PuzzleLibraryChoser.Visibility, LibraryPuzzleFetchButton.Visibility, LibSeparator.Visibility) = libs.Length != 0
 			? (Visibility.Visible, Visibility.Visible, Visibility.Visible)
 			: (Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
-		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource(lib)).ToArray();
+		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource { Library = lib }).ToArray();
 
 		var lastFileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
 		PuzzleLibraryChoser.SelectedIndex = Array.FindIndex(libs, match) is var index and not -1 ? index : 0;

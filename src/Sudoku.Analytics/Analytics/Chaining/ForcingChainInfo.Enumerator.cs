@@ -5,13 +5,13 @@ public partial record struct ForcingChainInfo
 	/// <summary>
 	/// Represents an enumerator type that can iterate on all nodes in the collection.
 	/// </summary>
-	/// <param name="nodes">The collection of all nodes.</param>
-	public ref struct Enumerator(HashSet<Node> nodes) : IEnumerator<Node>
+	/// <param name="_nodes">The collection of all nodes.</param>
+	public ref struct Enumerator(HashSet<Node> _nodes) : IEnumerator<Node>
 	{
 		/// <summary>
 		/// Indicates the backing enumerator.
 		/// </summary>
-		private HashSet<Node>.Enumerator _enumerator = nodes.GetEnumerator();
+		private HashSet<Node>.Enumerator _enumerator = _nodes.GetEnumerator();
 
 
 		/// <inheritdoc/>

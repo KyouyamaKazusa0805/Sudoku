@@ -34,10 +34,7 @@ public static partial class BitOperationsExtensions
 	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this);
 	public static partial GenericIntegerEnumerator<TInteger> GetEnumerator<TInteger>(this TInteger @this)
 #if NUMERIC_GENERIC_TYPE
-		where TInteger :
-			IBitwiseOperators<TInteger, TInteger, TInteger>,
-			INumber<TInteger>,
-			IShiftOperators<TNumber, int, TInteger>
+		where TInteger : IBitwiseOperators<TInteger, TInteger, TInteger>, INumber<TInteger>, IShiftOperators<TNumber, int, TInteger>
 #else
 		where TInteger :
 			IAdditiveIdentity<TInteger, TInteger>,

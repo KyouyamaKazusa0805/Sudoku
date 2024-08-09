@@ -5,8 +5,8 @@ public partial struct CellMap
 	/// <summary>
 	/// Represents an enumerator type that iterates on each cell offsets.
 	/// </summary>
-	/// <param name="offset">Indicates the offsets.</param>
-	public ref struct Enumerator(Cell[] offset) : IEnumerator<Cell>
+	/// <param name="_offset">Indicates the offsets.</param>
+	public ref struct Enumerator(Cell[] _offset) : IEnumerator<Cell>
 	{
 		/// <summary>
 		/// Indicates the index.
@@ -15,14 +15,14 @@ public partial struct CellMap
 
 
 		/// <inheritdoc/>
-		public readonly Cell Current => offset[_index];
+		public readonly Cell Current => _offset[_index];
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;
 
 
 		/// <inheritdoc/>
-		public bool MoveNext() => ++_index < offset.Length;
+		public bool MoveNext() => ++_index < _offset.Length;
 
 		/// <inheritdoc/>
 		readonly void IDisposable.Dispose() { }

@@ -3,8 +3,8 @@ namespace System.Numerics;
 /// <summary>
 /// Represents an enumerator that iterates a <see cref="Int128"/> or <see cref="UInt128"/> value.
 /// </summary>
-/// <param name="value">The value to be iterated.</param>
-public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
+/// <param name="_value">The value to be iterated.</param>
+public ref struct Int128Enumerator(UInt128 _value) : IEnumerator<int>
 {
 	/// <summary>
 	/// Indicates the population count of the value.
@@ -13,7 +13,7 @@ public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 	{
 		get
 		{
-			var (upper, lower) = ((ulong)(value >>> 64), (ulong)(value & ulong.MaxValue));
+			var (upper, lower) = ((ulong)(_value >>> 64), (ulong)(_value & ulong.MaxValue));
 			return BitOperations.PopCount(upper) + BitOperations.PopCount(lower);
 		}
 	}
@@ -21,7 +21,7 @@ public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 	/// <summary>
 	/// Indicates the bits set.
 	/// </summary>
-	public readonly ReadOnlySpan<int> Bits => value.GetAllSets();
+	public readonly ReadOnlySpan<int> Bits => _value.GetAllSets();
 
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public int Current { get; private set; } = -1;
@@ -31,7 +31,7 @@ public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 
 
 	/// <inheritdoc cref="BitOperationsExtensions.SetAt(uint, int)"/>
-	public readonly int this[int index] => value.SetAt(index);
+	public readonly int this[int index] => _value.SetAt(index);
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -39,7 +39,7 @@ public ref struct Int128Enumerator(UInt128 value) : IEnumerator<int>
 	{
 		while (++Current < 64)
 		{
-			if ((value >> Current & 1) != 0)
+			if ((_value >> Current & 1) != 0)
 			{
 				return true;
 			}

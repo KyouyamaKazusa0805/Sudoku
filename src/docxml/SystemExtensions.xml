@@ -4274,16 +4274,16 @@
             Defines an enumerator type that iterates on bits of an integer of generic type.
             </summary>
             <typeparam name="TInteger">The type of the integer that supports for iteration on bits.</typeparam>
-            <param name="value">The integer to be iterated.</param>
-            <param name="bitsCount">The integer of bits to be iterated.</param>
+            <param name="_value">The integer to be iterated.</param>
+            <param name="_bitsCount">The integer of bits to be iterated.</param>
         </member>
         <member name="M:System.Numerics.GenericIntegerEnumerator`1.#ctor(`0,System.Int32)">
             <summary>
             Defines an enumerator type that iterates on bits of an integer of generic type.
             </summary>
             <typeparam name="TInteger">The type of the integer that supports for iteration on bits.</typeparam>
-            <param name="value">The integer to be iterated.</param>
-            <param name="bitsCount">The integer of bits to be iterated.</param>
+            <param name="_value">The integer to be iterated.</param>
+            <param name="_bitsCount">The integer of bits to be iterated.</param>
         </member>
         <member name="P:System.Numerics.GenericIntegerEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
@@ -4304,13 +4304,13 @@
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int128Enumerator.#ctor(System.UInt128)">
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="P:System.Numerics.Int128Enumerator.PopulationCount">
             <summary>
@@ -4344,13 +4344,13 @@
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int32Enumerator.#ctor(System.UInt32)">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="P:System.Numerics.Int32Enumerator.PopulationCount">
             <summary>
@@ -4384,13 +4384,13 @@
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int64Enumerator.#ctor(System.UInt64)">
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="P:System.Numerics.Int64Enumerator.PopulationCount">
             <summary>
@@ -4424,13 +4424,13 @@
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.NativeIntegerEnumerator.#ctor(System.UIntPtr)">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
-            <param name="value">The value to be iterated.</param>
+            <param name="_value">The value to be iterated.</param>
         </member>
         <member name="P:System.Numerics.NativeIntegerEnumerator.PopulationCount">
             <summary>
@@ -5386,13 +5386,13 @@
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
             </summary>
-            <param name="tuple">A tuple instance.</param>
+            <param name="_tuple">A tuple instance.</param>
         </member>
         <member name="M:System.Runtime.CompilerServices.TupleEnumerator.#ctor(System.Runtime.CompilerServices.ITuple)">
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
             </summary>
-            <param name="tuple">A tuple instance.</param>
+            <param name="_tuple">A tuple instance.</param>
         </member>
         <member name="F:System.Runtime.CompilerServices.TupleEnumerator._index">
             <summary>
@@ -5719,14 +5719,14 @@
             <summary>
             Represents an awaiter for <see cref="T:System.TimeSpan"/> instance.
             </summary>
-            <param name="awaiter">The base awaiter instance.</param>
+            <param name="_awaiter">The base awaiter instance.</param>
             <seealso cref="T:System.TimeSpan"/>
         </member>
         <member name="M:System.Threading.Tasks.TimeSpanAwaiter.#ctor(System.Runtime.CompilerServices.TaskAwaiter)">
             <summary>
             Represents an awaiter for <see cref="T:System.TimeSpan"/> instance.
             </summary>
-            <param name="awaiter">The base awaiter instance.</param>
+            <param name="_awaiter">The base awaiter instance.</param>
             <seealso cref="T:System.TimeSpan"/>
         </member>
         <member name="P:System.Threading.Tasks.TimeSpanAwaiter.IsCompleted">

@@ -3,18 +3,18 @@ namespace System.Numerics;
 /// <summary>
 /// Represents an enumerator that iterates a <see cref="long"/> or <see cref="ulong"/> value.
 /// </summary>
-/// <param name="value">The value to be iterated.</param>
-public ref struct Int64Enumerator(ulong value) : IEnumerator<int>
+/// <param name="_value">The value to be iterated.</param>
+public ref struct Int64Enumerator(ulong _value) : IEnumerator<int>
 {
 	/// <summary>
 	/// Indicates the population count of the value.
 	/// </summary>
-	public readonly int PopulationCount => BitOperations.PopCount(value);
+	public readonly int PopulationCount => BitOperations.PopCount(_value);
 
 	/// <summary>
 	/// Indicates the bits set.
 	/// </summary>
-	public readonly ReadOnlySpan<int> Bits => value.GetAllSets();
+	public readonly ReadOnlySpan<int> Bits => _value.GetAllSets();
 
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public int Current { get; private set; } = -1;
@@ -24,7 +24,7 @@ public ref struct Int64Enumerator(ulong value) : IEnumerator<int>
 
 
 	/// <inheritdoc cref="BitOperationsExtensions.SetAt(uint, int)"/>
-	public readonly int this[int index] => value.SetAt(index);
+	public readonly int this[int index] => _value.SetAt(index);
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -32,7 +32,7 @@ public ref struct Int64Enumerator(ulong value) : IEnumerator<int>
 	{
 		while (++Current < 64)
 		{
-			if ((value >> Current & 1) != 0)
+			if ((_value >> Current & 1) != 0)
 			{
 				return true;
 			}
