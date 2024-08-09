@@ -144,7 +144,7 @@ public sealed partial record K9Parser : CoordinateParser
 			{
 				foreach (var digit in digits)
 				{
-					result.Add(new Conclusion(conclusionType, cell, digit - '1'));
+					result.Add(new(conclusionType, cell, digit - '1'));
 				}
 			}
 		}

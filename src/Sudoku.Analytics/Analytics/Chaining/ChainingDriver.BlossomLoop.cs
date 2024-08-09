@@ -105,7 +105,7 @@ internal partial class ChainingDriver
 			{
 				if (grid.Exists(candidate) is true)
 				{
-					result.Add(new Conclusion(Elimination, candidate));
+					result.Add(new(Elimination, candidate));
 				}
 			}
 			return result;

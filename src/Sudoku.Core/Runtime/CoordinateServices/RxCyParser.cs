@@ -196,7 +196,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			{
 				foreach (var digit in digits)
 				{
-					result.Add(new Conclusion(conclusionType, cell, digit));
+					result.Add(new(conclusionType, cell, digit));
 				}
 			}
 		}

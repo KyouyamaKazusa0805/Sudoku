@@ -116,20 +116,6 @@ public sealed partial class ConclusionSet :
 	public Conclusion this[int index] => index >= 0 && index < Count ? _conclusionsEntry[index] : throw new IndexOutOfRangeException();
 
 
-	/// <summary>
-	/// Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
-	/// </summary>
-	/// <param name="index">
-	/// <para>The global index (between 0 and 1458) to be added.</para>
-	/// <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
-	/// </param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Add(int index)
-	{
-		_bitArray[index] = true;
-		_conclusionsEntry.Add(new((ConclusionType)(index / HalfBitsCount), index % HalfBitsCount));
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Add(Conclusion item)
@@ -143,7 +129,7 @@ public sealed partial class ConclusionSet :
 	/// Add a list of conclusions into the collection.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be added.</param>
-	public void AddRange(ReadOnlySpan<Conclusion> conclusions)
+	public void AddRange(params ReadOnlySpan<Conclusion> conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{
@@ -154,18 +140,7 @@ public sealed partial class ConclusionSet :
 	/// <summary>
 	/// Remove a conclusion, represented as a global index (between 0 and 1458), from the collection.
 	/// </summary>
-	/// <param name="index">
-	/// <para>The global index (between 0 and 1458) to be added.</para>
-	/// <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
-	/// </param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Remove(int index)
-	{
-		_bitArray[index] = false;
-		_conclusionsEntry.Remove(new((ConclusionType)(index / HalfBitsCount), index % HalfBitsCount));
-	}
-
-	/// <inheritdoc cref="ICollection{T}.Remove(T)"/>
+	/// <param name="item">The item to be removed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Remove(Conclusion item)
 	{
@@ -225,7 +200,6 @@ public sealed partial class ConclusionSet :
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -296,8 +270,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		var result = new HashCode();
-		var i = 0;
+		var (result, i) = (new HashCode(), 0);
 		foreach (bool element in _bitArray)
 		{
 			if (element)
@@ -312,7 +285,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> CoordinateConverter.GetInstance(formatProvider).ConclusionConverter([.. _conclusionsEntry]);
+		=> CoordinateConverter.GetInstance(formatProvider).ConclusionConverter(_conclusionsEntry.AsReadOnlySpan());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

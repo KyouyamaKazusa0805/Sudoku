@@ -167,7 +167,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				{
 					foreach (var cell in alsCells % CandidatesMap[digit])
 					{
-						result.Add(new Conclusion(Elimination, cell, digit));
+						result.Add(new(Elimination, cell, digit));
 					}
 				}
 			}

@@ -1545,15 +1545,6 @@
             <returns>The found <see cref="T:Sudoku.Concepts.Conclusion"/> instance at the specified index.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Add(System.Int32)">
-            <summary>
-            Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
-            </summary>
-            <param name="index">
-            <para>The global index (between 0 and 1458) to be added.</para>
-            <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
-            </param>
-        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Add(Sudoku.Concepts.Conclusion)">
             <inheritdoc/>
         </member>
@@ -1563,17 +1554,11 @@
             </summary>
             <param name="conclusions">The conclusions to be added.</param>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Remove(System.Int32)">
+        <member name="M:Sudoku.Concepts.ConclusionSet.Remove(Sudoku.Concepts.Conclusion)">
             <summary>
             Remove a conclusion, represented as a global index (between 0 and 1458), from the collection.
             </summary>
-            <param name="index">
-            <para>The global index (between 0 and 1458) to be added.</para>
-            <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Remove(Sudoku.Concepts.Conclusion)">
-            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
+            <param name="item">The item to be removed.</param>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Clear">
             <inheritdoc/>
