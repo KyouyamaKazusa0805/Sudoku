@@ -32,6 +32,9 @@
             </summary>
             <seealso cref="T:System.Collections.BitArray"/>
         </member>
+        <member name="M:System.Collections.BitArrayExtensions.SequenceEqual(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:System.Collections.BitArrayExtensions.GetCardinality(System.Collections.BitArray)">
             <summary>
             Get the cardinality of the specified <see cref="T:System.Collections.BitArray"/>.

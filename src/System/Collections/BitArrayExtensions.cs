@@ -6,6 +6,13 @@ namespace System.Collections;
 /// <seealso cref="BitArray"/>
 public static class BitArrayExtensions
 {
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool SequenceEqual(this BitArray @this, [NotNullWhen(true)] BitArray? other)
+		=> other is not null
+		&& @this.Length == other.Length
+		&& GetArrayField(@this).AsReadOnlySpan().SequenceEqual(GetArrayField(other));
+
 	/// <summary>
 	/// Get the cardinality of the specified <see cref="BitArray"/>.
 	/// </summary>

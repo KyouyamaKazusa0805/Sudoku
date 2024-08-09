@@ -192,27 +192,8 @@ public sealed partial class TechniqueSet() :
 	public void Clear() => _bitArray.SetAll(false);
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] TechniqueSet? other)
-	{
-		if (other is null)
-		{
-			return false;
-		}
-
-		if (Count != other.Count)
-		{
-			return false;
-		}
-
-		foreach (var technique in this)
-		{
-			if (!other.Contains(technique))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] TechniqueSet? other) => other is not null && _bitArray.SequenceEqual(other._bitArray);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
