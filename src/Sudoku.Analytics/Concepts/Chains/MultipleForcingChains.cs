@@ -206,7 +206,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	public bool TryCastToFinnedChain([NotNullWhen(true)] out NamedChain? result, [NotNullWhen(true)] out CandidateMap? fins)
 	{
 		// Determine whether the chain only contains one elimination.
-		if (Conclusions is not [(Assignment, var elimination) conclusion])
+		if (Conclusions is not [(Elimination, var elimination) conclusion])
 		{
 			goto ReturnFalse;
 		}
