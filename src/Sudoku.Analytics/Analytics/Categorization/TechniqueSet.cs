@@ -577,7 +577,7 @@ file sealed class Converter : JsonConverter<TechniqueSet>
 					isInitialized = true;
 					break;
 				}
-				case JsonTokenType.String when reader.GetString() is { } s && Enum.TryParse(s, out Technique technique):
+				case JsonTokenType.String when Enum.TryParse<Technique>(reader.GetString(), out var technique):
 				{
 					result.Add(technique);
 					break;
@@ -592,7 +592,6 @@ file sealed class Converter : JsonConverter<TechniqueSet>
 				}
 			}
 		}
-
 		throw new JsonException();
 	}
 
