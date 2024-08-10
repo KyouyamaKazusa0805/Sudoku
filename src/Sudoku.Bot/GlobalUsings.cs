@@ -1,7 +1,9 @@
 global using System;
+global using System.Collections.Concurrent;
 global using System.Diagnostics.CodeAnalysis;
 global using System.IO;
 global using System.Linq;
+global using System.Numerics;
 global using System.Reflection;
 global using System.Runtime.Versioning;
 global using System.Text.Json;
@@ -25,6 +27,7 @@ global using Sudoku.Runtime.CosServices;
 global using static System.Math;
 global using static Sudoku.Bot.Localization.CommonStrings;
 global using static Sudoku.Bot.Logging.Console2;
+global using static Sudoku.Runtime.EnvironmentVariables;
 global using Emoji = Sudoku.Bot.Localization.CommonStrings.Emoji;
 global using FormattingOptions = Sudoku.Analytics.AnalysisResult.FormattingOptions;
 global using QQGroupBot = MyBot.Expansions.Bot.ChannelBot;
