@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.Logging;
+namespace Sudoku.Runtime.LogServices;
 
 /// <summary>
 /// <see cref="Console"/> 类型的扩展。

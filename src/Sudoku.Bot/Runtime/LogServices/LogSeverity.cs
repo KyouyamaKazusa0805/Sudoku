@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.Logging;
+namespace Sudoku.Runtime.LogServices;
 
 /// <summary>
 /// 表示一种日志的严重级别。

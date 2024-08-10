@@ -1,4 +1,4 @@
-namespace Sudoku.Bot.Scoring;
+namespace Sudoku.Runtime.ScoreServices;
 
 /// <summary>
 /// 分数计算器。
