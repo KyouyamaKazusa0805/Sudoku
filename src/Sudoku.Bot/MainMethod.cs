@@ -29,7 +29,6 @@ bot.OnConnected += () =>
 {
 	if (_isFirstLaunch)
 	{
-		_isFirstLaunch = false;
 		var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
 		WriteLog("连接机器人成功！");
 		WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
@@ -41,10 +40,11 @@ bot.OnConnected += () =>
 };
 bot.AuthenticationSuccess += static () =>
 {
-	var (severity, message) = _isFirstLaunch
-		? (LogSeverity.None, "机器人鉴权成功！现在可以用机器人了。")
-		: (LogSeverity.Info, "机器人重启后鉴权成功！现在你可以继续使用机器人了。");
-	WriteLog(severity, message);
+	if (_isFirstLaunch)
+	{
+		WriteLog("机器人鉴权成功！现在可以用机器人了。");
+		_isFirstLaunch = false;
+	}
 };
 bot.OnError += static ex => WriteLog(LogSeverity.Error, $"机器人执行指令时出现错误：{ex.Message}");
 await bot.OnlineAsync();
