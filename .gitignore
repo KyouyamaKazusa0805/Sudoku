@@ -12,10 +12,11 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
-# Build results
+/desktop.ini
 src/ConsoleTest/
 src/Sudoku.Logging/
+
+# Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
