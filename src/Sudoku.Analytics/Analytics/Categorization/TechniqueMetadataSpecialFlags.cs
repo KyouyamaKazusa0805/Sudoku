@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents a special flag describing how special the current technique is.

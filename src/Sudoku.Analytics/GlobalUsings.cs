@@ -23,7 +23,6 @@ global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Chaining;
 global using Sudoku.Analytics.Chaining.Rules;
 global using Sudoku.Analytics.Configuration;
-global using Sudoku.Analytics.Metadata;
 global using Sudoku.Analytics.PatternSearching;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearcherModules;

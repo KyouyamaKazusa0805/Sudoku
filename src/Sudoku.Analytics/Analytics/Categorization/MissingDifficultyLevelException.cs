@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents an exception that describes for a field in <see cref="Technique"/> is missing for difficulty level attribute.

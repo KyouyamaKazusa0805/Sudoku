@@ -1,7 +1,7 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Reprsents an exception thrown when a field in <see cref="Technique"/> is missing for technique group attribute.
+/// Represents an exception thrown when a field in <see cref="Technique"/> is missing for technique group attribute.
 /// </summary>
 /// <param name="_memberName">Indicates the field name.</param>
 /// <seealso cref="Technique"/>

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.

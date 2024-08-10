@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Represents a mode that describes an area where a step searcher can be invoked.

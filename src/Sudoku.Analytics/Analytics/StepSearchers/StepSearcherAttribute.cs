@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Indicates a type marked this attribute is a runnable <see cref="StepSearcher"/>.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Represents the metadata implementation details for a <see cref="StepSearcher"/>.

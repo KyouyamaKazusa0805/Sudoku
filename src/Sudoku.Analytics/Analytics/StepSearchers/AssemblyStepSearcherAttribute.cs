@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Defines an attribute that can be applied to the solving assembly,

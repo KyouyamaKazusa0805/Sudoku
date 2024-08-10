@@ -9,9 +9,9 @@ internal static class StepSearcherDefaultImportingHandler
 
 	private const string StepSearcherTypeName = "Sudoku.Analytics.StepSearcher";
 
-	private const string StepSearcherRunningAreaTypeName = "Sudoku.Analytics.Metadata.StepSearcherRunningArea";
+	private const string StepSearcherRunningAreaTypeName = "Sudoku.Analytics.StepSearchers.StepSearcherRunningArea";
 
-	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.Metadata.AssemblyStepSearcherAttribute<>";
+	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.StepSearchers.AssemblyStepSearcherAttribute<>";
 
 
 	/// <inheritdoc/>
@@ -143,10 +143,9 @@ internal static class StepSearcherDefaultImportingHandler
 			{
 				if ((temp & 1) != 0)
 				{
-					targetList.Add($"global::Sudoku.Analytics.Metadata.StepSearcherRunningArea.{runningAreasFields[1 << i]}");
+					targetList.Add($"global::Sudoku.Analytics.StepSearchers.StepSearcherRunningArea.{runningAreasFields[1 << i]}");
 				}
 			}
-
 			return string.Join(" | ", targetList);
 		}
 	}

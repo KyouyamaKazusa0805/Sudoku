@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Represents a list of cases that describes some cases that <see cref="StepSearcher"/> is partially allowed
