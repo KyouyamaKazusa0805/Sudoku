@@ -12,7 +12,12 @@ public sealed class HelpCommand : Command
 	/// <inheritdoc/>
 	public override async Task GroupCallback(ChatMessageApi api, ChatMessage message)
 	{
-		await api.SendGroupMessageAsync(message, message.GetPlainArguments() is var str ? handle(str) : HelpUsageString);
+		await api.SendGroupMessageAsync(
+			message,
+			message.GetPlainArguments() is { Length: not 0 } str
+				? handle(str)
+				: HelpUsageString
+		);
 
 
 		static string handle(string str)

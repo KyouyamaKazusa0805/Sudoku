@@ -45,7 +45,7 @@ void onConnected()
 {
 	if (_isFirstLaunch)
 	{
-		var commandNames = string.Join(ChineseComma, from command in RegisteredCommands select command.CommandName);
+		var commandNames = string.Join(ChineseComma, (from command in RegisteredCommands select command.CommandName).Span);
 		WriteLog("连接机器人成功。");
 		WriteLog(LogSeverity.Info, $"已注册的指令一共 {RegisteredCommands.Length} 个指令：{commandNames}。");
 	}
