@@ -259,6 +259,19 @@
             <typeparam name="TKey">The type of the key.</typeparam>
             <typeparam name="TValue">The type of the value.</typeparam>
         </member>
+        <member name="T:System.Linq.SymbolGroupByExtensions">
+            <summary>
+            Represents extension methods on <see cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+            with symbol checking.
+            </summary>
+            <seealso cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SymbolGroupByExtensions.GroupBy``1(System.Collections.Immutable.ImmutableArray{``0},System.Func{``0,Microsoft.CodeAnalysis.INamedTypeSymbol},System.Boolean)">
+            <inheritdoc cref="M:System.Linq.SymbolGroupByExtensions.GroupBy``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,Microsoft.CodeAnalysis.INamedTypeSymbol},System.Boolean)"/>
+        </member>
+        <member name="M:System.Linq.SymbolGroupByExtensions.GroupBy``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,Microsoft.CodeAnalysis.INamedTypeSymbol},System.Boolean)">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
         <member name="T:System.Xml.XmlDocumentExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Xml.XmlDocument"/>.

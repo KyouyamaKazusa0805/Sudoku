@@ -8,7 +8,7 @@ internal static class ImplicitFieldHandler
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
-		foreach (var group in values.GroupBy(static value => value.ContainingType, (IEqualityComparer<ITypeSymbol>)SymbolEqualityComparer.Default))
+		foreach (var group in values.GroupBy(static r => r.ContainingType))
 		{
 			var type = group.Key;
 			var @namespace = type.ContainingNamespace;

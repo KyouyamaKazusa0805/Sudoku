@@ -5,8 +5,7 @@ internal static class FactoryPropertyHandler
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var result = new List<string>();
-		foreach (var typeGroup in
-			values.GroupBy<CollectedResult, INamedTypeSymbol>(static r => r.TypeSymbol, SymbolEqualityComparer.Default))
+		foreach (var typeGroup in values.GroupBy(static r => r.TypeSymbol))
 		{
 			var typeSymbol = typeGroup.Key;
 			var methodDeclarations = string.Join(

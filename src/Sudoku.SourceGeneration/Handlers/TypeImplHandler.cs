@@ -421,7 +421,7 @@ internal static class TypeImplHandler
 			parameterList,
 			dataMemberAttributeTypeNameSymbol,
 			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol),
-			symbol => (string?)symbol.GetAttributes().First(stringMemberAttirbuteMatcher).ConstructorArguments[0].Value ?? symbol.Name,
+			symbol => (string?)symbol.GetAttributes().First(stringMemberAttributeMatcher).ConstructorArguments[0].Value ?? symbol.Name,
 			cancellationToken
 		);
 
@@ -537,7 +537,7 @@ internal static class TypeImplHandler
 		{
 			if (type.Interfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default))
 			{
-				// Extra check: check wheteher the method is explicitly-impl'ed. If so, we should return 'false'.
+				// Extra check: check whether the method is explicitly-implemented. If so, we should return 'false'.
 #pragma warning disable format
 				return type.GetMembers().OfType<IMethodSymbol>().Any(
 					method => method is
@@ -564,7 +564,7 @@ internal static class TypeImplHandler
 			return type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default) ? false : null;
 		}
 
-		bool stringMemberAttirbuteMatcher(AttributeData a)
+		bool stringMemberAttributeMatcher(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
 	}
 

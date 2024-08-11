@@ -5,7 +5,7 @@ internal static class AttachedPropertyHandler
 	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
 	{
 		var types = new List<string>();
-		foreach (var group in values.GroupBy(static data => data.Type, (IEqualityComparer<INamedTypeSymbol>)SymbolEqualityComparer.Default))
+		foreach (var group in values.GroupBy(static r => r.Type))
 		{
 			var containingType = group.Key;
 			var containingTypeStr = containingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
