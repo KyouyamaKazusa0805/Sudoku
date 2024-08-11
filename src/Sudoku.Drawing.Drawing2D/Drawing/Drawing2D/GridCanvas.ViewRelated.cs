@@ -10,7 +10,7 @@ public partial class GridCanvas
 	/// <param name="nodes">The nodes to be checked.</param>
 	public partial void DrawEliminations(ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<CandidateViewNode> nodes)
 	{
-		if (_settings is not { EliminationColor: var eColor, CannibalismColor: var cColor })
+		if (Settings is not { EliminationColor: var eColor, CannibalismColor: var cColor })
 		{
 			return;
 		}

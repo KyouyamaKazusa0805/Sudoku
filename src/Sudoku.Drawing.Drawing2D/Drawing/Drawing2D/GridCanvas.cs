@@ -24,11 +24,6 @@ public sealed partial class GridCanvas : IDisposable
 	private readonly string? _footerText;
 
 	/// <summary>
-	/// Indicates the backing settings.
-	/// </summary>
-	private readonly GridCanvasSettings _settings;
-
-	/// <summary>
 	/// Indicates the backing point calculator to be used.
 	/// </summary>
 	private readonly PointCalculator _calculator;
@@ -75,11 +70,17 @@ public sealed partial class GridCanvas : IDisposable
 	/// <param name="footerText">Indicates the footer text to be used.</param>
 	public GridCanvas(int size, int padding, GridCanvasSettings? settings = null, string? footerText = null)
 	{
-		_settings = settings ?? new();
+		Settings = settings ?? new();
 		_calculator = new(size, padding);
 		_g = CreateGraphics(_footerText = footerText, size, settings, out _backingBitmap);
 		Clear();
 	}
+
+
+	/// <summary>
+	/// Indicates canvas settings to be used. The value can be changed if you want to change.
+	/// </summary>
+	public GridCanvasSettings Settings { get; }
 
 
 	/// <inheritdoc/>
@@ -154,7 +155,7 @@ public sealed partial class GridCanvas : IDisposable
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool TryGetPaletteColorByIndex(int paletteColorIndex, out Color result)
 	{
-		var palette = _settings.ColorPalette;
+		var palette = Settings.ColorPalette;
 		return (result = palette.Count > paletteColorIndex ? palette[paletteColorIndex] : Color.Transparent) != Color.Transparent;
 	}
 
@@ -172,21 +173,21 @@ public sealed partial class GridCanvas : IDisposable
 			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
 			WellKnownColorIdentifier { Kind: var kind } => kind switch
 			{
-				WellKnownColorIdentifierKind.Normal => _settings.NormalColor,
-				WellKnownColorIdentifierKind.Assignment => _settings.AssignmentColor,
-				WellKnownColorIdentifierKind.Elimination => _settings.EliminationColor,
-				WellKnownColorIdentifierKind.Cannibalism => _settings.CannibalismColor,
-				WellKnownColorIdentifierKind.Exofin => _settings.ExofinColor,
-				WellKnownColorIdentifierKind.Endofin => _settings.EndofinColor,
-				WellKnownColorIdentifierKind.Link => _settings.ChainColor,
-				WellKnownColorIdentifierKind.Auxiliary1 => _settings.AuxiliaryColorSet[0],
-				WellKnownColorIdentifierKind.Auxiliary2 => _settings.AuxiliaryColorSet[1],
-				WellKnownColorIdentifierKind.Auxiliary3 => _settings.AuxiliaryColorSet[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet1 => _settings.AlmostLockedSetColorSet[0],
-				WellKnownColorIdentifierKind.AlmostLockedSet2 => _settings.AlmostLockedSetColorSet[1],
-				WellKnownColorIdentifierKind.AlmostLockedSet3 => _settings.AlmostLockedSetColorSet[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet4 => _settings.AlmostLockedSetColorSet[3],
-				WellKnownColorIdentifierKind.AlmostLockedSet5 => _settings.AlmostLockedSetColorSet[4],
+				WellKnownColorIdentifierKind.Normal => Settings.NormalColor,
+				WellKnownColorIdentifierKind.Assignment => Settings.AssignmentColor,
+				WellKnownColorIdentifierKind.Elimination => Settings.EliminationColor,
+				WellKnownColorIdentifierKind.Cannibalism => Settings.CannibalismColor,
+				WellKnownColorIdentifierKind.Exofin => Settings.ExofinColor,
+				WellKnownColorIdentifierKind.Endofin => Settings.EndofinColor,
+				WellKnownColorIdentifierKind.Link => Settings.ChainColor,
+				WellKnownColorIdentifierKind.Auxiliary1 => Settings.AuxiliaryColorSet[0],
+				WellKnownColorIdentifierKind.Auxiliary2 => Settings.AuxiliaryColorSet[1],
+				WellKnownColorIdentifierKind.Auxiliary3 => Settings.AuxiliaryColorSet[2],
+				WellKnownColorIdentifierKind.AlmostLockedSet1 => Settings.AlmostLockedSetColorSet[0],
+				WellKnownColorIdentifierKind.AlmostLockedSet2 => Settings.AlmostLockedSetColorSet[1],
+				WellKnownColorIdentifierKind.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
+				WellKnownColorIdentifierKind.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
+				WellKnownColorIdentifierKind.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
 				_ => throw new ArgumentException("The specified identifier paletteColorIndex is invalid.", nameof(id))
 			},
 			_ => throw new ArgumentException("The specified identifier paletteColorIndex is invalid.", nameof(id))

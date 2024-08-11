@@ -11,8 +11,13 @@ public static class ChatMessageApiExtensions
 	/// <param name="this">当前对象。</param>
 	/// <param name="message">当发送消息时，提供的环境（如群的 ID、发送人 ID 等）的数据。</param>
 	/// <param name="str">需要发送的字符串。</param>
-	public static async Task<ChatMessageResp> SendGroupMessageAsync(this ChatMessageApi @this, ChatMessage message, string str)
-		=> await @this.SendGroupMessageAsync(message.GroupOpenId, str, passiveMsgId: message.Id);
+	/// <param name="messageSequenceValue">表示消息发出的次序编号。默认只回复一轮，所以数值为 1。</param>
+	public static async Task<ChatMessageResp> SendGroupMessageAsync(
+		this ChatMessageApi @this,
+		ChatMessage message,
+		string str,
+		int messageSequenceValue = 1
+	) => await @this.SendGroupMessageAsync(message.GroupOpenId, str, passiveMsgId: message.Id, msgSeq: messageSequenceValue);
 
 	/// <summary>
 	/// 按回复形式，往群里发送指定的图片。图片<b>必须</b>上传到图床之中，并将图床 URL 路径传入。
@@ -20,7 +25,13 @@ public static class ChatMessageApiExtensions
 	/// <param name="this">当前对象。</param>
 	/// <param name="message">当发送消息时，提供的环境（如群的 ID、发送人 ID 等）的数据。</param>
 	/// <param name="imageUrl">需要发送的图片的 URL。</param>
-	public static async Task<ChatMessageResp> SendGroupImageAsync(this ChatMessageApi @this, ChatMessage message, string imageUrl)
+	/// <param name="messageSequenceValue">表示消息发出的次序编号。默认只回复一轮，所以数值为 1。</param>
+	public static async Task<ChatMessageResp> SendGroupImageAsync(
+		this ChatMessageApi @this,
+		ChatMessage message,
+		string imageUrl,
+		int messageSequenceValue = 1
+	)
 	{
 		// 因为是回复消息，所以发送的图片会被处理为图文排版消息。
 		// 图文消息需要两步操作：先按图片单独发出；在发出后获得相应结果后，
@@ -35,7 +46,8 @@ public static class ChatMessageApiExtensions
 			string.Empty,
 			ChatMessageType.Media,
 			media: new() { FileInfo = response.FileInfo },
-			passiveMsgId: message.Id
+			passiveMsgId: message.Id,
+			msgSeq: messageSequenceValue
 		);
 	}
 }

@@ -94,9 +94,9 @@ public sealed class GridCanvasSettings
 	public FontStyle CandidateFontStyle { get; set; } = FontStyle.Regular;
 
 	/// <summary>
-	/// Indicates the font style of a baba group.
+	/// Indicates the font style of a baba grouping.
 	/// </summary>
-	public FontStyle BabaGroupCharacterFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
+	public FontStyle BabaGroupingCharacterFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
 
 	/// <summary>
 	/// Indicates the font style of footer text.

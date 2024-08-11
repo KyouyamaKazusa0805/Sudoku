@@ -23,12 +23,19 @@ WriteLog("退出机器人。");
 
 void onChatMessageReceived(ChatMessage chatMessage)
 {
+	// 要判断下长指令的运行环境。如果指令执行时间较长（如游戏），就需要判断是否当前 QQ 群是否存有运行游戏的上下文。
+	if (RunningContexts.ContainsKey(chatMessage.GroupOpenId))
+	{
+		return;
+	}
+
 	var content = chatMessage.GetCommandFullName();
 	var found = false;
 	foreach (var command in RegisteredCommands)
 	{
 		if (command.CommandFullName == content)
 		{
+			// 指令触发成功。
 			command.GroupCallback(apiProvider.GetChatMessageApi(), chatMessage);
 			found = true;
 			break;
@@ -45,7 +52,7 @@ void onConnected()
 {
 	if (_isFirstLaunch)
 	{
-		var commandNames = string.Join(ChineseComma, (from command in RegisteredCommands select command.CommandName).Span);
+		var commandNames = string.Join(ChineseComma, from command in RegisteredCommands select command.CommandName);
 		WriteLog("连接机器人成功。");
 		WriteLog(LogSeverity.Info, $"已注册的指令一共 {RegisteredCommands.Length} 个指令：{commandNames}。");
 	}

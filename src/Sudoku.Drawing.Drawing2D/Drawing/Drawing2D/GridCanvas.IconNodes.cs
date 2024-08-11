@@ -9,7 +9,7 @@ public partial class GridCanvas
 	public partial void DrawIconViewNodes(ReadOnlySpan<IconViewNode> nodes)
 	{
 		var (cw, ch) = _calculator.CellSize;
-		var padding = _settings.FigurePadding;
+		var padding = Settings.FigurePadding;
 		foreach (var figureNode in nodes)
 		{
 			switch (figureNode)

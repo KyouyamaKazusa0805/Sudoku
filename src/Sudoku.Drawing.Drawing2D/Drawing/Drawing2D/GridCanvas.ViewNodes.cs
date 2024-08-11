@@ -26,7 +26,7 @@ public partial class GridCanvas
 		if (this is not
 			{
 				_calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth },
-				_settings:
+				Settings:
 				{
 					CandidateColor: var cColor,
 					CandidateFontName: var cFontName,
@@ -107,7 +107,7 @@ public partial class GridCanvas
 	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawHouseViewNodes(ReadOnlySpan<HouseViewNode> nodes)
 	{
-		var showLightHouse = _settings.ShowLightHouse;
+		var showLightHouse = Settings.ShowLightHouse;
 		foreach (var node in nodes)
 		{
 			var house = node.House;
@@ -149,7 +149,7 @@ public partial class GridCanvas
 		// Collect all points used.
 		var (cw, ch) = _calculator.CandidateSize;
 		var (gw, gh) = _calculator.GridSize;
-		var chainColor = _settings.ChainColor;
+		var chainColor = Settings.ChainColor;
 		var points = new HashSet<PointF>();
 		var linkArray = nodes.ToArray();
 		foreach (var linkNode in linkArray)
@@ -325,7 +325,7 @@ public partial class GridCanvas
 		{
 			var chute = node.ChuteIndex;
 			var color = GetColor(node.Identifier);
-			using var brush = new SolidBrush(_settings.ShowLightHouse ? color.QuarterAlpha() : color);
+			using var brush = new SolidBrush(Settings.ShowLightHouse ? color.QuarterAlpha() : color);
 			if (chute is >= 0 and < 3)
 			{
 				var (pt1, _) = _calculator.GetAnchorsViaHouse(9 + chute * 3);
@@ -349,11 +349,11 @@ public partial class GridCanvas
 	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawBabaGroupingViewNodes(ReadOnlySpan<BabaGroupViewNode> nodes)
 	{
-		if (_settings is not
+		if (Settings is not
 			{
 				BabaGroupingCharacterColor: var uColor,
 				ValueScale: var vScale,
-				BabaGroupCharacterFontStyle: var uFontStyle,
+				BabaGroupingCharacterFontStyle: var uFontStyle,
 				BabaGroupingFontName: var uFontName
 			})
 		{

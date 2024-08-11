@@ -25,17 +25,38 @@ internal static partial class Program
 	public static readonly string DesktopPath = Environment.GetFolderPath(SpecialFolder.Desktop);
 
 	/// <summary>
+	/// 表示当前支持的游戏玩法模式。
+	/// </summary>
+	public static readonly GameMode[] GameModes = Enum.GetValues<GameMode>();
+
+	/// <summary>
+	/// 本地使用的解题工具。
+	/// </summary>
+	public static readonly Analyzer Analyzer = Analyzer.Balanced;
+
+	/// <summary>
 	/// 在反序列化 JSON 期间使用到的解析控制选项。
 	/// </summary>
 	public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
 	/// <summary>
-	/// 表示当前程序注册的指令集。
+	/// 机器人的运行上下文。为一个并发字典，按群存储不同的上下文数据。
 	/// </summary>
-	public static readonly ReadOnlyMemory<Command> RegisteredCommands = Command.AssemblyCommands();
+	internal static readonly ConcurrentDictionary<string, BotRunningContext> RunningContexts = new();
 
 	/// <summary>
 	/// 表示这个机器人是否是第一次启动。
 	/// </summary>
 	private static bool _isFirstLaunch = true;
+
+
+	/// <summary>
+	/// 本地出题工具。
+	/// </summary>
+	public static Generator Generator => new();
+
+	/// <summary>
+	/// 表示当前程序注册的指令集。
+	/// </summary>
+	public static ReadOnlySpan<Command> RegisteredCommands => Command.AssemblyCommands();
 }

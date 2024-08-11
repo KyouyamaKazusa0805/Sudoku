@@ -17,5 +17,5 @@ internal sealed class BotRunningContext
 	/// <summary>
 	/// 尝试根据群号码获得机器人在当前群里的上下文数据。
 	/// </summary>
-	public static BotRunningContext? GetContext(string group) => RunningContexts.TryGetValue(group, out var result) ? result : null;
+	public static BotRunningContext? GetContext(string group) => Program.RunningContexts.TryGetValue(group, out var result) ? result : null;
 }

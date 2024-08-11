@@ -56,6 +56,16 @@ public sealed class UserData
 	public long CoinValue { get; set; } = 0;
 
 	/// <summary>
+	/// 记录游玩游戏的正确答对次数。
+	/// </summary>
+	public Dictionary<GameMode, int> GameModeWonData { get; set; } = [];
+
+	/// <summary>
+	/// 记录游玩游戏的尝试次数。
+	/// </summary>
+	public Dictionary<GameMode, int> GameModeTriedData { get; set; } = [];
+
+	/// <summary>
 	/// 表示用户上一轮签到的时间。
 	/// </summary>
 	public DateTime LastCheckIn { get; set; } = DateTime.MinValue;
@@ -91,15 +101,17 @@ public sealed class UserData
 				File.WriteAllText(
 					path,
 					$$"""
-				{
-					"{{nameof(Id)}}": "{{id}}",
-					"{{nameof(VirtualNickname)}}": "<匿名>",
-					"{{nameof(ComboCheckedInDays)}}": 1,
-					"{{nameof(LastCheckIn)}}": {{DateTime.MinValue}},
-					"{{nameof(ExperienceValue)}}": 0,
-					"{{nameof(CoinValue)}}": 0
-				}
-				"""
+					{
+						"{{nameof(Id)}}": "{{id}}",
+						"{{nameof(VirtualNickname)}}": "<匿名>",
+						"{{nameof(ComboCheckedInDays)}}": 1,
+						"{{nameof(LastCheckIn)}}": {{DateTime.MinValue}},
+						"{{nameof(ExperienceValue)}}": 0,
+						"{{nameof(CoinValue)}}": 0,
+						"{{nameof(GameModeWonData)}}": {},
+						"{{nameof(GameModeTriedData)}}": {}
+					}
+					"""
 				);
 				return new() { Id = id };
 			}

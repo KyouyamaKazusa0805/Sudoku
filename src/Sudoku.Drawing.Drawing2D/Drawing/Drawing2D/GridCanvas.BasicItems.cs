@@ -18,7 +18,7 @@ public partial class GridCanvas
 	/// <summary>
 	/// Draw the background.
 	/// </summary>
-	public partial void DrawBackground() => _g.Clear(_settings.BackgroundColor);
+	public partial void DrawBackground() => _g.Clear(Settings.BackgroundColor);
 
 	/// <summary>
 	/// Draw border lines onto the canvas.
@@ -27,8 +27,8 @@ public partial class GridCanvas
 	{
 		const int anchorsCountTotal = PointCalculator.AnchorsCount + 1;
 		var gridPoints = _calculator.GridPoints;
-		using var pg = new Pen(_settings.GridLineColor, _settings.GridLineWidth);
-		using var pb = new Pen(_settings.BlockLineColor, _settings.BlockLineWidth);
+		using var pg = new Pen(Settings.GridLineColor, Settings.GridLineWidth);
+		using var pb = new Pen(Settings.BlockLineColor, Settings.BlockLineWidth);
 		for (var i = 0; i < anchorsCountTotal; i += PointCalculator.AnchorsCount / 9)
 		{
 			_g.DrawLine(pg, gridPoints[i, 0], gridPoints[i, PointCalculator.AnchorsCount]);
@@ -47,8 +47,8 @@ public partial class GridCanvas
 	public partial void DrawFooterText()
 	{
 		var w = _calculator.Width;
-		using var brush = new SolidBrush(_settings.FooterTextColor);
-		using var font = GetFooterTextFont(w, _settings);
+		using var brush = new SolidBrush(Settings.FooterTextColor);
+		using var font = GetFooterTextFont(w, Settings);
 		var extraHeight = _g.MeasureString(_footerText, font).Height;
 		_g.DrawString(_footerText, font, brush, new RectangleF(0, w, w, extraHeight), _stringAligner);
 	}
@@ -59,7 +59,7 @@ public partial class GridCanvas
 	/// <param name="grid">The grid to be drawn.</param>
 	public partial void DrawGrid(ref readonly Grid grid)
 	{
-		if (_settings is not
+		if (Settings is not
 			{
 				GivenColor: var gColor,
 				ModifiableColor: var mColor,
