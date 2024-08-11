@@ -27,7 +27,7 @@ public static class Console2
 				_ => ConsoleColor.Red
 			};
 		}
-		Console.WriteLine($@"[{DateTime.Now:yyyy/MM/dd hh\:mm\:ss}] {s}");
+		Console.WriteLine($@"[{DateTime.Now:yyyy/MM/dd HH\:mm\:ss}] {s}");
 		if (severity != LogSeverity.None)
 		{
 			Console.ResetColor();
