@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示将题目文本转图片的指令。
 /// </summary>
 [Command("转图片")]
+[CommandDescription("将指定的数独题目（盘面）转换为图片。")]
 [CommandUsage("转图片 <题目字符串>", IsSyntax = true)]
 public sealed class PuzzleToImageCommand : Command
 {
@@ -26,7 +27,7 @@ public sealed class PuzzleToImageCommand : Command
 		}
 		else
 		{
-			await api.SendGroupMessageAsync(message, DefaultInfoString);
+			await api.SendGroupMessageAsync(message, HelpUsageString);
 		}
 	}
 }

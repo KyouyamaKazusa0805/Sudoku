@@ -16,6 +16,11 @@ public abstract class Command
 	public string CommandFullName => $"/{CommandName}";
 
 	/// <summary>
+	/// 表示指令的描述信息。
+	/// </summary>
+	public string? Description => GetType().GetCustomAttribute<CommandDescriptionAttribute>()?.Description;
+
+	/// <summary>
 	/// 表示指令的样例用法。默认情况下，只有带斜杠和指令名称，如“/签到”。
 	/// </summary>
 	public string HelpCommandString
@@ -27,7 +32,7 @@ public abstract class Command
 	/// <summary>
 	/// 表示默认情况下（参数错误等）反馈的字符串。可以用于在参数校验后返回。
 	/// </summary>
-	protected string DefaultInfoString => $"用法：“{HelpCommandString}”。";
+	protected internal string HelpUsageString => $"用法：“{HelpCommandString}”。";
 
 
 	/// <summary>

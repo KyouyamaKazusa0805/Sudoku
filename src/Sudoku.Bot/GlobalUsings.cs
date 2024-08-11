@@ -19,6 +19,7 @@ global using MyBot.Expansions.Bot;
 global using MyBot.Models.MessageModels;
 global using Sudoku.Analytics;
 global using Sudoku.Bot;
+global using Sudoku.Bot.Annotations;
 global using Sudoku.Bot.Commands;
 global using Sudoku.Bot.Localization;
 global using Sudoku.Concepts;

@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示签到指令。
 /// </summary>
 [Command("签到")]
+[CommandDescription("每天签到，可以获得奖励哦！")]
 [CommandUsage("签到", IsSyntax = true)]
 public sealed class CheckInCommand : Command
 {

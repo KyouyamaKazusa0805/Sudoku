@@ -1,9 +1,13 @@
+#pragma warning disable CA1418
+
+[assembly: SupportedOSPlatform("windows")]
+[assembly: SupportedOSPlatform("Tencent-QQ")] // 故意的
+
 var json = File.ReadAllText(BotConfigPath);
 var botAccessInfo = (OpenApiAccessInfo?)JsonSerializer.Deserialize<BotInfo>(json, JsonOptions)!;
 var apiProvider = new QQChannelApi(botAccessInfo);
 apiProvider.UseBotIdentity();
 
-var registeredCommands = Command.AssemblyCommands();
 var bot = new ChannelBot(apiProvider);
 bot.RegisterChatEvent();
 bot.ReceivedChatGroupMessage += onChatMessageReceived;
@@ -21,7 +25,7 @@ void onChatMessageReceived(ChatMessage chatMessage)
 {
 	var content = chatMessage.GetCommandFullName();
 	var found = false;
-	foreach (var command in registeredCommands)
+	foreach (var command in RegisteredCommands)
 	{
 		if (command.CommandFullName == content)
 		{
@@ -41,9 +45,9 @@ void onConnected()
 {
 	if (_isFirstLaunch)
 	{
-		var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
+		var commandNames = string.Join(ChineseComma, from command in RegisteredCommands select command.CommandName);
 		WriteLog("连接机器人成功。");
-		WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}。");
+		WriteLog(LogSeverity.Info, $"已注册的指令一共 {RegisteredCommands.Length} 个指令：{commandNames}。");
 	}
 	else
 	{

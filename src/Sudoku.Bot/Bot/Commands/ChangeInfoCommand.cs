@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示修改信息的指令。
 /// </summary>
 [Command("更新")]
+[CommandDescription("更新用户自己的配置信息。")]
 [CommandUsage("更新 昵称 <昵称>", IsSyntax = true)]
 [CommandUsage("更新 昵称 Sunnie")]
 public sealed class ChangeInfoCommand : Command
@@ -27,7 +28,7 @@ public sealed class ChangeInfoCommand : Command
 			}
 			default:
 			{
-				await api.SendGroupMessageAsync(message, DefaultInfoString);
+				await api.SendGroupMessageAsync(message, HelpUsageString);
 				break;
 			}
 		}

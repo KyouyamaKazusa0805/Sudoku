@@ -30,6 +30,11 @@ internal static partial class Program
 	public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
 	/// <summary>
+	/// 表示当前程序注册的指令集。
+	/// </summary>
+	public static readonly ReadOnlyMemory<Command> RegisteredCommands = Command.AssemblyCommands();
+
+	/// <summary>
 	/// 表示这个机器人是否是第一次启动。
 	/// </summary>
 	private static bool _isFirstLaunch = true;

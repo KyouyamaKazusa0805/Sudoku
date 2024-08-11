@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示开始游戏的指令。
 /// </summary>
 [Command("数独", IsDebugging = true)]
+[CommandDescription("和朋友开始一局游戏。")]
 [CommandUsage("数独 <模式>", IsSyntax = true)]
 [CommandUsage("数独 找编号")]
 public sealed class PlayGameCommand : Command

@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示展示信息的指令。
 /// </summary>
 [Command("信息")]
+[CommandDescription("显示用户的信息。")]
 [CommandUsage("信息", IsSyntax = true)]
 public sealed class DisplayInfoCommand : Command
 {

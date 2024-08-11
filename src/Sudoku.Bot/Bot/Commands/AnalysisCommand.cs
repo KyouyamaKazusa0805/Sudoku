@@ -4,6 +4,7 @@ namespace Sudoku.Bot.Commands;
 /// 表示解析的指令。
 /// </summary>
 [Command("解析")]
+[CommandDescription("根据题目给定的文本，解析题目并返回解题结果。")]
 [CommandUsage("解析 <题目字符串>", IsSyntax = true)]
 public sealed class AnalysisCommand : Command
 {
@@ -26,7 +27,7 @@ public sealed class AnalysisCommand : Command
 		}
 		else
 		{
-			await api.SendGroupMessageAsync(message, DefaultInfoString);
+			await api.SendGroupMessageAsync(message, HelpUsageString);
 		}
 	}
 }
