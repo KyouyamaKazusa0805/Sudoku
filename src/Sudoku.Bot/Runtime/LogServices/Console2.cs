@@ -35,18 +35,13 @@ public static class Console2
 	}
 
 	/// <summary>
-	/// 从控制台读取一行文本。
-	/// </summary>
-	/// <returns>读入的一行文本字符串。</returns>
-	public static string? ReadLine() => Console.ReadLine();
-
-	/// <summary>
 	/// 阻塞控制台，避免控制台在执行异步函数的时候，主线程继续执行后续内容。
 	/// </summary>
-	/// <param name="exitCharacter">退出使用的字符。</param>
+	/// <param name="exitCharacters">退出使用的字符。</param>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	public static void BlockConsole(char exitCharacter)
+	public static void BlockConsole(params ReadOnlySpan<char> exitCharacters)
 	{
-		while ((ReadLine()?[0] ?? '\0') != exitCharacter) ;
+		var searchValues = SearchValues.Create(exitCharacters);
+		while (!searchValues.Contains(Console.ReadLine()?[0] ?? '\0')) ;
 	}
 }

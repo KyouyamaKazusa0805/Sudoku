@@ -4,9 +4,20 @@ var apiProvider = new QQChannelApi(botAccessInfo);
 apiProvider.UseBotIdentity();
 
 var registeredCommands = Command.AssemblyCommands();
-var bot = new QQGroupBot(apiProvider);
+var bot = new ChannelBot(apiProvider);
 bot.RegisterChatEvent();
-bot.ReceivedChatGroupMessage += chatMessage =>
+bot.ReceivedChatGroupMessage += onChatMessageReceived;
+bot.OnConnected += onConnected;
+bot.AuthenticationSuccess += onAuthenticationSuccessful;
+bot.OnError += onErrorEncountered;
+await bot.OnlineAsync();
+
+WriteLog("请按 Q 键退出机器人。");
+BlockConsole('Q', 'q');
+WriteLog("退出机器人。");
+
+
+void onChatMessageReceived(ChatMessage chatMessage)
 {
 	var content = chatMessage.GetCommandFullName();
 	var found = false;
@@ -24,8 +35,9 @@ bot.ReceivedChatGroupMessage += chatMessage =>
 		? (LogSeverity.Info, $"接收消息：“{chatMessage.Content}”。")
 		: (LogSeverity.Warning, $"接收消息：“{chatMessage.Content}”，但指令匹配失败。");
 	WriteLog(severity, message);
-};
-bot.OnConnected += () =>
+}
+
+void onConnected()
 {
 	if (_isFirstLaunch)
 	{
@@ -37,18 +49,15 @@ bot.OnConnected += () =>
 	{
 		WriteLog("机器人重连成功。");
 	}
-};
-bot.AuthenticationSuccess += static () =>
+}
+
+static void onAuthenticationSuccessful()
 {
 	if (_isFirstLaunch)
 	{
 		WriteLog("机器人鉴权成功！现在可以用机器人了。");
 		_isFirstLaunch = false;
 	}
-};
-bot.OnError += static ex => WriteLog(LogSeverity.Error, $"机器人执行指令时出现错误：{ex.Message}");
-await bot.OnlineAsync();
+}
 
-WriteLog("请按 Q 键退出机器人。");
-BlockConsole('q');
-WriteLog("退出机器人。");
+static void onErrorEncountered(Exception ex) => WriteLog(LogSeverity.Error, $"机器人执行指令时出现错误：{ex.Message}");
