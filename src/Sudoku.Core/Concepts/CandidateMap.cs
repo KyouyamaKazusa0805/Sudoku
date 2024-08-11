@@ -207,7 +207,6 @@ public partial struct CandidateMap : CandidateMapBase
 	/// <summary>
 	/// Indicates the cell offsets in this collection.
 	/// </summary>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	internal readonly Candidate[] Offsets
 	{
 		get

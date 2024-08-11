@@ -69,7 +69,6 @@ public ref partial struct Generator()
 	/// Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
 	/// or the argument <paramref name="cluesCount"/> is invalid.
 	/// </exception>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	public Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 	{
 		_stack.Fill(new());

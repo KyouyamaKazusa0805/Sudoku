@@ -38,7 +38,6 @@ public static class Console2
 	/// 阻塞控制台，避免控制台在执行异步函数的时候，主线程继续执行后续内容。
 	/// </summary>
 	/// <param name="exitCharacters">退出使用的字符。</param>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	public static void BlockConsole(params ReadOnlySpan<char> exitCharacters)
 	{
 		var searchValues = SearchValues.Create(exitCharacters);

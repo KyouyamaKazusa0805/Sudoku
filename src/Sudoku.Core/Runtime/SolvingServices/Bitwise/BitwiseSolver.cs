@@ -613,7 +613,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 			g->UnsolvedCells[0] = g->UnsolvedCells[1] = g->UnsolvedCells[2] = BitSet27;
 			g->UnsolvedRows[0] = g->UnsolvedRows[1] = g->UnsolvedRows[2] = BitSet27;
 			g->Pairs[0] = g->Pairs[1] = g->Pairs[2] = 0;
-
 			_g = g;
 		}
 
@@ -636,7 +635,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 						return false;
 					}
 				}
-
 				return true;
 			}
 			case 729:
@@ -660,7 +658,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 						}
 					}
 				}
-
 				return true;
 			}
 			default:
@@ -674,7 +671,6 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// Core of fast processing.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value.</returns>
-	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	private bool Update()
 	{
 		uint shrink = 1, a, b, c, cl;
