@@ -30,12 +30,12 @@ bot.OnConnected += () =>
 	if (_isFirstLaunch)
 	{
 		var commandNames = string.Join(ChineseComma, from command in registeredCommands select command.CommandName);
-		WriteLog("连接机器人成功！");
-		WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}");
+		WriteLog("连接机器人成功。");
+		WriteLog(LogSeverity.Info, $"已注册的指令一共 {registeredCommands.Length} 个指令：{commandNames}。");
 	}
 	else
 	{
-		WriteLog("机器人重连成功！");
+		WriteLog("机器人重连成功。");
 	}
 };
 bot.AuthenticationSuccess += static () =>

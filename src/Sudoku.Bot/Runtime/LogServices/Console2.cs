@@ -38,7 +38,7 @@ public static class Console2
 	/// 从控制台读取一行文本。
 	/// </summary>
 	/// <returns>读入的一行文本字符串。</returns>
-	public static string? ConsoleReadLine() => Console.ReadLine();
+	public static string? ReadLine() => Console.ReadLine();
 
 	/// <summary>
 	/// 阻塞控制台，避免控制台在执行异步函数的时候，主线程继续执行后续内容。
@@ -47,6 +47,6 @@ public static class Console2
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	public static void BlockConsole(char exitCharacter)
 	{
-		while ((ConsoleReadLine()?[0] ?? '\0') != exitCharacter) ;
+		while ((ReadLine()?[0] ?? '\0') != exitCharacter) ;
 	}
 }
