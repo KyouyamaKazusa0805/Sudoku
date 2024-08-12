@@ -4273,12 +4273,6 @@
             </para>
             </shared-comments>
         </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueMetadataAttribute.ExtraArguments">
-            <summary>
-            Indicates the customized tag to be used. The value may be used in reflection to define your customized data
-            that will be considered as <see langword="static"/> one.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueMetadataAttribute.SupportsSiamese">
             <summary>
             Indicates whether the current technique supports for Siamese logic.

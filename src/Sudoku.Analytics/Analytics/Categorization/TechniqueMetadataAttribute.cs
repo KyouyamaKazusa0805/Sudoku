@@ -13,12 +13,6 @@ namespace Sudoku.Analytics.Categorization;
 public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, DifficultyLevel>
 {
 	/// <summary>
-	/// Indicates the customized tag to be used. The value may be used in reflection to define your customized data
-	/// that will be considered as <see langword="static"/> one.
-	/// </summary>
-	public object?[]? ExtraArguments { get; init; }
-
-	/// <summary>
 	/// Indicates whether the current technique supports for Siamese logic.
 	/// </summary>
 	/// <remarks>
