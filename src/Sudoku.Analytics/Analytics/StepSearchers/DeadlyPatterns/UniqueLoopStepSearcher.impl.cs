@@ -352,23 +352,21 @@ public partial class UniqueLoopStepSearcher
 		Cell[] path
 	)
 	{
-		if (extraCellsMap.Count != 2 || !extraCellsMap.InOneHouse(out _))
+		if (extraCellsMap is not ([var first, var second] and { SharedHouses: var houses }) || !extraCellsMap.InOneHouse(out _))
 		{
 			return null;
 		}
 
-		foreach (var houseIndex in extraCellsMap.SharedHouses)
+		foreach (var house in houses)
 		{
 			foreach (var (digit, otherDigit) in ((d1, d2), (d2, d1)))
 			{
-				var map = HousesMap[houseIndex] & CandidatesMap[digit];
-				if (map != (HousesMap[houseIndex] & loop))
+				var map = HousesMap[house] & CandidatesMap[digit];
+				if (map != (HousesMap[house] & loop))
 				{
 					continue;
 				}
 
-				var first = extraCellsMap[0];
-				var second = extraCellsMap[1];
 				var conclusions = new List<Conclusion>(2);
 				if (CandidatesMap[otherDigit].Contains(first))
 				{
@@ -398,7 +396,7 @@ public partial class UniqueLoopStepSearcher
 
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. GetLoopLinks(path)]],
 					context.Options,
 					d1,
 					d2,
