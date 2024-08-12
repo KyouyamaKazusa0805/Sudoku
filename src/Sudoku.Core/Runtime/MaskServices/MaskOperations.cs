@@ -6,6 +6,45 @@ namespace Sudoku.Runtime.MaskServices;
 public static class MaskOperations
 {
 	/// <summary>
+	/// Try to convert the current mask value into a valid <see cref="string"/> representation of binary format.
+	/// </summary>
+	/// <param name="mask">The mask to be formatted.</param>
+	/// <param name="upperCasedPrefix">
+	/// Indicates whether the prefix <c>"0b"</c> will become upper-cased (i.e. <c>"0B"</c>).
+	/// The default value is <see langword="false"/>.
+	/// </param>
+	/// <returns>A <see cref="string"/> result representing the current mask value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToBinaryString(Mask mask, bool upperCasedPrefix = false)
+		=> $"0{(upperCasedPrefix ? 'B' : 'b')}{Convert.ToString(mask, 2).PadLeft(9, '0')}";
+
+	/// <summary>
+	/// Try to convert the current mask value into a valid <see cref="string"/> representation of octal format.
+	/// </summary>
+	/// <param name="mask">The mask to be formatted.</param>
+	/// <param name="upperCasedPrefix">
+	/// Indicates whether the prefix <c>"0o"</c> will become upper-cased (i.e. <c>"0O"</c>).
+	/// The default value is <see langword="false"/>.
+	/// </param>
+	/// <returns>A <see cref="string"/> result representing the current mask value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToOctalString(Mask mask, bool upperCasedPrefix = false)
+		=> $"0{(upperCasedPrefix ? 'O' : 'o')}{Convert.ToString(mask, 8).PadLeft(3, '0')}";
+
+	/// <summary>
+	/// Try to convert the current mask value into a valid <see cref="string"/> representation of hexadecimal format.
+	/// </summary>
+	/// <param name="mask">The mask to be formatted.</param>
+	/// <param name="upperCasedPrefix">
+	/// Indicates whether the prefix <c>"0x"</c> will become upper-cased (i.e. <c>"0X"</c>).
+	/// The default value is <see langword="false"/>.
+	/// </param>
+	/// <returns>A <see cref="string"/> result representing the current mask value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToHexadecimalString(Mask mask, bool upperCasedPrefix = false)
+		=> $"0{(upperCasedPrefix ? 'X' : 'x')}{Convert.ToString(mask, 16).PadLeft(3, '0')}";
+
+	/// <summary>
 	/// Creates for a <see cref="Mask"/> instance via the specified digits.
 	/// </summary>
 	/// <param name="digits">

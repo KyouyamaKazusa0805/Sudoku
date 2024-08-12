@@ -8799,6 +8799,39 @@
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
             </summary>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.ToBinaryString(System.Int16,System.Boolean)">
+            <summary>
+            Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of binary format.
+            </summary>
+            <param name="mask">The mask to be formatted.</param>
+            <param name="upperCasedPrefix">
+            Indicates whether the prefix <c>"0b"</c> will become upper-cased (i.e. <c>"0B"</c>).
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.ToOctalString(System.Int16,System.Boolean)">
+            <summary>
+            Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of octal format.
+            </summary>
+            <param name="mask">The mask to be formatted.</param>
+            <param name="upperCasedPrefix">
+            Indicates whether the prefix <c>"0o"</c> will become upper-cased (i.e. <c>"0O"</c>).
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.ToHexadecimalString(System.Int16,System.Boolean)">
+            <summary>
+            Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of hexadecimal format.
+            </summary>
+            <param name="mask">The mask to be formatted.</param>
+            <param name="upperCasedPrefix">
+            Indicates whether the prefix <c>"0x"</c> will become upper-cased (i.e. <c>"0X"</c>).
+            The default value is <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
+        </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
             Creates for a <see cref="T:System.Int16" /> instance via the specified digits.

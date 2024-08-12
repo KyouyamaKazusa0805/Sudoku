@@ -34,7 +34,7 @@ public readonly partial record struct UniqueLoop(ref readonly CellMap Loop, Cell
 			}
 		}
 		builder.Append("], ");
-		builder.Append($"{nameof(DigitsMask)} = {DigitsMask} (0b{Convert.ToString(DigitsMask, 2).PadLeft(9, '0')})");
+		builder.Append($"{nameof(DigitsMask)} = {DigitsMask} ({MaskOperations.ToBinaryString(DigitsMask)})");
 		return true;
 	}
 
