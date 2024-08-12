@@ -26,8 +26,7 @@ public readonly partial record struct UniqueLoop(ref readonly CellMap Loop, Cell
 		builder.Append($"{nameof(Path)} = [");
 		for (var i = 0; i < Path.Length; i++)
 		{
-			var cell = Path[i];
-			builder.Append(cell);
+			builder.Append(Path[i]);
 			if (i != Path.Length - 1)
 			{
 				builder.Append(", ");
