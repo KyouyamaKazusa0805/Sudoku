@@ -427,7 +427,7 @@
     <value>Digits {0} and {1} in cells {2} with the naked {3} with extra digits {4} in cells {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
-    <value>Digits {0} and {1} in cells {2} with the conjugate pair {3}</value>
+    <value>Digits {0} and {1} in cells {2} with conjugate pair {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
     <value>{0} in cells {1}</value>
@@ -3281,5 +3281,14 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="UniqueRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
     <value>Unique Rectangle Doubly-Linked Almost Locked Sets XZ Rule</value>
+  </data>
+  <data name="UniqueLoopStrongLinkType" xml:space="preserve">
+    <value>Unique Loop (Strong Link Type)</value>
+  </data>
+  <data name="UniqueNameName" xml:space="preserve">
+    <value>Unique Loop</value>
+  </data>
+  <data name="TechniqueFormat_UniqueLoopStrongLinkType" xml:space="preserve">
+    <value>Digits {0} and {1} in cells {2} with conjugate pairs {3}</value>
   </data>
 </root>

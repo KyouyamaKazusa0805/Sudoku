@@ -418,16 +418,16 @@
     <value>数字 {0} 位于区域 {1}\{2}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType1Step" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 里</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType2Step" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带额外数字 {3}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2}，带额外数字 {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType3Step" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有显性{3}、额外数字 {4}，单元格为 {5}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2}，带有显性{3}、额外数字 {4}，单元格为 {5}</value>
   </data>
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于单元格 {2} 里构成结构，带有共轭对 {3}</value>
+    <value>数字 {0} 和 {1} 位于单元格 {2}，带有共轭对 {3}</value>
   </data>
   <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里</value>
@@ -3385,5 +3385,15 @@
   <data name="UniqueRectangleDoublyLinkedAlmostLockedSetsXz" xml:space="preserve">
     <value>唯一矩形・待定数组・双强链・环</value>
     <comment>Technique Name</comment>
+  </data>
+  <data name="UniqueLoopStrongLinkType" xml:space="preserve">
+    <value>唯一环・强链类型</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="UniqueNameName" xml:space="preserve">
+    <value>唯一环</value>
+  </data>
+  <data name="TechniqueFormat_UniqueLoopStrongLinkType" xml:space="preserve">
+    <value>数字 {0} 和 {1} 位于单元格 {2}，带有共轭对 {3}</value>
   </data>
 </root>

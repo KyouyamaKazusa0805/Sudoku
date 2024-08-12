@@ -1,7 +1,8 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
+/// Provides with a solving step that describes for a technique usage,
+/// with conclusions and detail data for the corresponding technique pattern.
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="IDrawable.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="IDrawable.Views" path="/summary"/></param>

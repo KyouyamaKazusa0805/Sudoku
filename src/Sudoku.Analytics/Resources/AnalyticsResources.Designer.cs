@@ -8155,6 +8155,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pairs {3}.
+        /// </summary>
+        public static string TechniqueFormat_UniqueLoopStrongLinkType {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueLoopStrongLinkType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in cells {2}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType1Step {
@@ -8182,7 +8191,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with the conjugate pair {3}.
+        ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pair {3}.
         /// </summary>
         public static string TechniqueFormat_UniqueLoopType4Step {
             get {
@@ -8920,6 +8929,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unique Loop (Strong Link Type).
+        /// </summary>
+        public static string UniqueLoopStrongLinkType {
+            get {
+                return ResourceManager.GetString("UniqueLoopStrongLinkType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unique Loop Type 1.
         /// </summary>
         public static string UniqueLoopType1 {
@@ -8988,6 +9006,15 @@ namespace Sudoku.Resources {
         public static string UniqueMatrixType4 {
             get {
                 return ResourceManager.GetString("UniqueMatrixType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Loop.
+        /// </summary>
+        public static string UniqueNameName {
+            get {
+                return ResourceManager.GetString("UniqueNameName", resourceCulture);
             }
         }
         

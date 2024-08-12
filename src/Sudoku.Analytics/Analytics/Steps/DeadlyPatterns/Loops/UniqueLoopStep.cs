@@ -30,7 +30,7 @@ public abstract partial class UniqueLoopStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
+	public override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new UniqueLoopLengthFactor()];

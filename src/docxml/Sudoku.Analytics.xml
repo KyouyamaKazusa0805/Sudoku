@@ -2873,6 +2873,11 @@
             Indicates unique loop type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueLoopStrongLinkType">
+            <summary>
+            Indicates unique loop strong link type.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType1">
             <summary>
             Indicates extended rectangle type 1.
@@ -6010,7 +6015,8 @@
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
-            Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
+            Provides with a solving step that describes for a technique usage,
+            with conclusions and detail data for the corresponding technique pattern.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
@@ -6021,7 +6027,8 @@
         </member>
         <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
-            Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
+            Provides with a solving step that describes for a technique usage,
+            with conclusions and detail data for the corresponding technique pattern.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
@@ -7668,6 +7675,7 @@
             <item>Unique Loop Type 2</item>
             <item>Unique Loop Type 3</item>
             <item>Unique Loop Type 4</item>
+            <item>Unique Loop Strong Link Type</item>
             </list>
             </summary>
         </member>
@@ -7711,6 +7719,11 @@
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
             <summary>
             Check type 4.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckStrongLinkType(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Int32[])">
+            <summary>
+            Check strong link type.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher">
@@ -12471,6 +12484,56 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.LoopPath">
             <summary>
             The generated property declaration for parameter <c>loopPath</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="loopPath"><inheritdoc/></param>
+            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[],System.Int32,Sudoku.Concepts.Conjugate[])">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="loopPath"><inheritdoc/></param>
+            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.GetName(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.ExtraDigitsCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsCellsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.ConjugatePairs">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType1Step">
@@ -29136,6 +29199,11 @@
               Looks up a localized string similar to {0} in {1}\{2}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueLoopStrongLinkType">
+            <summary>
+              Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pairs {3}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueLoopType1Step">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in cells {2}.
@@ -29153,7 +29221,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueLoopType4Step">
             <summary>
-              Looks up a localized string similar to Digits {0} and {1} in cells {2} with the conjugate pair {3}.
+              Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pair {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueMatrixType1Step">
@@ -29561,6 +29629,11 @@
               Looks up a localized string similar to Two-String Kite.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueLoopStrongLinkType">
+            <summary>
+              Looks up a localized string similar to Unique Loop (Strong Link Type).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueLoopType1">
             <summary>
               Looks up a localized string similar to Unique Loop Type 1.
@@ -29599,6 +29672,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueMatrixType4">
             <summary>
               Looks up a localized string similar to Unique Matrix Type 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueNameName">
+            <summary>
+              Looks up a localized string similar to Unique Loop.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniquenessClueCover">

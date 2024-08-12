@@ -23,11 +23,13 @@ using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<List<UniqueLoopStep>, ref
 /// <item>Unique Loop Type 2</item>
 /// <item>Unique Loop Type 3</item>
 /// <item>Unique Loop Type 4</item>
+/// <item>Unique Loop Strong Link Type</item>
 /// </list>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_UniqueLoopStepSearcher",
 	Technique.UniqueLoopType1, Technique.UniqueLoopType2, Technique.UniqueLoopType3, Technique.UniqueLoopType4,
+	Technique.UniqueLoopStrongLinkType,
 	SupportedSudokuTypes = SudokuType.Standard,
 	RuntimeFlags = StepSearcherRuntimeFlags.TimeComplexity,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
@@ -36,7 +38,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the type checkers.
 	/// </summary>
-	private static readonly unsafe SearcherSubtypeCheckerFuncPtr[] TypeCheckers = [&CheckType1, &CheckType2, &CheckType3, &CheckType4];
+	private static readonly unsafe SearcherSubtypeCheckerFuncPtr[] TypeCheckers = [
+		&CheckType1,
+		&CheckType2,
+		&CheckType3,
+		&CheckType4,
+		&CheckStrongLinkType
+	];
 
 
 	/// <inheritdoc/>
@@ -250,4 +258,5 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	private static partial UniqueLoopStep? CheckType2(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, bool onlyFindOne, Cell[] path);
 	private static partial UniqueLoopStep? CheckType3(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, bool onlyFindOne, Cell[] path);
 	private static partial UniqueLoopStep? CheckType4(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, bool onlyFindOne, Cell[] path);
+	private static partial UniqueLoopStep? CheckStrongLinkType(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, bool onlyFindOne, Cell[] path);
 }

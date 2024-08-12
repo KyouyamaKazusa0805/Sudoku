@@ -4014,6 +4014,18 @@ public enum Technique
 		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType4,
+
+	/// <summary>
+	/// Indicates unique loop strong link type.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 46,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.UniqueLoop,
+		StepType = typeof(UniqueLoopStrongLinkType),
+		StepSearcherType = typeof(UniqueLoopStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
+	UniqueLoopStrongLinkType,
 	#endregion
 
 	//

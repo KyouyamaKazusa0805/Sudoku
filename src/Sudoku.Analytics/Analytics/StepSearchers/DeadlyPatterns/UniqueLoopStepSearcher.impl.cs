@@ -415,4 +415,23 @@ public partial class UniqueLoopStepSearcher
 
 		return null;
 	}
+
+	/// <summary>
+	/// Check strong link type.
+	/// </summary>
+	private static partial UniqueLoopStep? CheckStrongLinkType(
+		List<UniqueLoopStep> accumulator,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		Digit d1,
+		Digit d2,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
+		Mask comparer,
+		bool onlyFindOne,
+		Cell[] path
+	)
+	{
+		return null;
+	}
 }
