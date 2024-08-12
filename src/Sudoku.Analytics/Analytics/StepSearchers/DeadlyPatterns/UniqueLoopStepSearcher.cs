@@ -34,6 +34,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		var typeCheckers = (TypeChecker[])[CheckType1, CheckType2, CheckType3, CheckType4];
+
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		ref readonly var grid = ref context.Grid;
@@ -41,40 +43,19 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		foreach (ref readonly var pattern in FindLoops(in grid))
 		{
 			var (loop, path, comparer) = pattern;
+			if ((loop & ~BivalueCells) is not (var extraCellsMap and not []))
+			{
+				// The current puzzle has multiple solutions.
+				throw new PuzzleInvalidException(in grid, typeof(UniqueLoopStepSearcher));
+			}
+
 			var d1 = Mask.TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
-			var extraCellsMap = loop & ~BivalueCells;
-			switch (extraCellsMap.Count)
+			foreach (var typeChecker in typeCheckers)
 			{
-				case 0:
+				if (typeChecker(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step)
 				{
-					// The current puzzle has multiple solutions.
-					throw new PuzzleInvalidException(in grid, typeof(UniqueLoopStepSearcher));
-				}
-				case 1:
-				{
-					if (CheckType1(tempAccumulator, ref context, d1, d2, in loop, in extraCellsMap, context.OnlyFindOne, path) is { } step1)
-					{
-						return step1;
-					}
-					break;
-				}
-				default:
-				{
-					// Type 2, 3, 4.
-					if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step2)
-					{
-						return step2;
-					}
-					if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step3)
-					{
-						return step3;
-					}
-					if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step4)
-					{
-						return step4;
-					}
-					break;
+					return step;
 				}
 			}
 		}
@@ -245,27 +226,25 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Check type 1.
 	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="context">The context.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <param name="path">The path of the loop.</param>
-	/// <returns>The step is worth.</returns>
+	/// <inheritdoc cref="TypeChecker"/>
 	private UniqueLoopType1Step? CheckType1(
 		List<UniqueLoopStep> accumulator,
+		ref readonly Grid grid,
 		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
+		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
 	)
 	{
-		var extraCell = extraCellsMap[0];
+		if (extraCellsMap is not [var extraCell])
+		{
+			return null;
+		}
+
 		var conclusions = new List<Conclusion>(2);
 		if (CandidatesMap[d1].Contains(extraCell))
 		{
@@ -310,17 +289,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Check type 2.
 	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <param name="path">The path of the loop.</param>
-	/// <returns>The step is worth.</returns>
+	/// <inheritdoc cref="TypeChecker"/>
 	private UniqueLoopType2Step? CheckType2(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
@@ -381,17 +350,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Check type 3.
 	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <param name="path">The path of the loop.</param>
-	/// <returns>The step is worth.</returns>
+	/// <inheritdoc cref="TypeChecker"/>
 	private UniqueLoopType3Step? CheckType3(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
@@ -604,17 +563,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Check type 4.
 	/// </summary>
-	/// <param name="accumulator">The technique accumulator.</param>
-	/// <param name="grid">The grid.</param>
-	/// <param name="context">The context.</param>
-	/// <param name="d1">The digit 1.</param>
-	/// <param name="d2">The digit 2.</param>
-	/// <param name="loop">The loop.</param>
-	/// <param name="extraCellsMap">The extra cells map.</param>
-	/// <param name="comparer">The comparer mask (equals to <c><![CDATA[1 << d1 | 1 << d2]]></c>).</param>
-	/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
-	/// <param name="path">The path of the loop.</param>
-	/// <returns>The step is worth.</returns>
+	/// <inheritdoc cref="TypeChecker"/>
 	private UniqueLoopType4Step? CheckType4(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
@@ -710,3 +659,30 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		return result.AsReadOnlySpan();
 	}
 }
+
+/// <summary>
+/// The local delegate type that creates a <see cref="UniqueLoopStep"/> instance on checking subtypes.
+/// </summary>
+/// <param name="accumulator">The technique accumulator.</param>
+/// <param name="grid">The grid to be checked.</param>
+/// <param name="context">The context.</param>
+/// <param name="d1">The digit 1.</param>
+/// <param name="d2">The digit 2.</param>
+/// <param name="loop">The loop.</param>
+/// <param name="extraCellsMap">The extra cells map.</param>
+/// <param name="comparer">The digits used by unique loop pattern.</param>
+/// <param name="onlyFindOne">Indicates whether the searcher only searching for one step is okay.</param>
+/// <param name="path">The path of the loop.</param>
+/// <returns>The first found step.</returns>
+file delegate UniqueLoopStep? TypeChecker(
+	List<UniqueLoopStep> accumulator,
+	ref readonly Grid grid,
+	ref AnalysisContext context,
+	Digit d1,
+	Digit d2,
+	ref readonly CellMap loop,
+	ref readonly CellMap extraCellsMap,
+	Mask comparer,
+	bool onlyFindOne,
+	Cell[] path
+);
