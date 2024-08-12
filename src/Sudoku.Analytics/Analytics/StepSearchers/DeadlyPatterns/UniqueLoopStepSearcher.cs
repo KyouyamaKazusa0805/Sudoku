@@ -65,12 +65,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 			}
 		}
-
 		if (tempAccumulator.Count == 0)
 		{
 			return null;
 		}
 
+		// Maybe it is unnecessary because loop pattern has already been filtered.
 		var resultList = StepMarshal.RemoveDuplicateItems(tempAccumulator).ToList();
 		StepMarshal.SortItems(resultList);
 
