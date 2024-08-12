@@ -1,4 +1,15 @@
+#define USE_BREADTH_FIRST_SEARCHING
+#undef USE_DEPTH_FIRST_SEARCHING
 #undef IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
+#if USE_BREADTH_FIRST_SEARCHING && USE_DEPTH_FIRST_SEARCHING
+#undef USE_DEPTH_FIRST_SEARCHING
+#warning Both flags 'USE_BREADTH_FIRST_SEARCHING' and 'USE_DEPTH_FIRST_SEARCHING' are set. Only 'USE_BREADTH_FIRST_SEARCHING' will be used.
+#elif !USE_BREADTH_FIRST_SEARCHING && !USE_DEPTH_FIRST_SEARCHING
+#error Both flags 'USE_BREADTH_FIRST_SEARCHING' and 'USE_DEPTH_FIRST_SEARCHING' are not set. You must set one flag to enable its algorithm (BFS or DFS).
+#endif
+#if IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT && (USE_BREADTH_FIRST_SEARCHING || !USE_DEPTH_FIRST_SEARCHING)
+#warning Symbol 'IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT' can only be available when symbol 'USE_DEPTH_FIRST_SEARCHING' is enabled.
+#endif
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -23,66 +34,47 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		if (BivalueCells.Count is 0 or 1)
-		{
-			return null;
-		}
-
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
 		ref readonly var grid = ref context.Grid;
 		var tempAccumulator = new List<UniqueLoopStep>();
-		foreach (var cell in BivalueCells)
+		foreach (ref readonly var pattern in FindLoops(in grid))
 		{
-			var mask = grid.GetCandidates(cell);
-			var d1 = Mask.TrailingZeroCount(mask);
-			var d2 = mask.GetNextSet(d1);
-
-			var tempLoop = new List<Cell>(14);
-			var loopMap = CellMap.Empty;
-			var patterns = new HashSet<UniqueLoop>();
-			dfs(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
-
-			if (patterns.Count == 0)
+			var (loop, path, comparer) = pattern;
+			var d1 = Mask.TrailingZeroCount(comparer);
+			var d2 = comparer.GetNextSet(d1);
+			var extraCellsMap = loop & ~BivalueCells;
+			switch (extraCellsMap.Count)
 			{
-				continue;
-			}
-
-			foreach (var (loop, path, _) in patterns)
-			{
-				var extraCellsMap = loop & ~BivalueCells;
-				switch (extraCellsMap.Count)
+				case 0:
 				{
-					case 0:
+					// The current puzzle has multiple solutions.
+					throw new PuzzleInvalidException(in grid, typeof(UniqueLoopStepSearcher));
+				}
+				case 1:
+				{
+					if (CheckType1(tempAccumulator, ref context, d1, d2, in loop, in extraCellsMap, context.OnlyFindOne, path) is { } step1)
 					{
-						// The current puzzle has multiple solutions.
-						throw new PuzzleInvalidException(in grid, typeof(UniqueLoopStepSearcher));
+						return step1;
 					}
-					case 1:
+					break;
+				}
+				default:
+				{
+					// Type 2, 3, 4.
+					if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step2)
 					{
-						if (CheckType1(tempAccumulator, ref context, d1, d2, in loop, in extraCellsMap, context.OnlyFindOne, path) is { } step1)
-						{
-							return step1;
-						}
-						break;
+						return step2;
 					}
-					default:
+					if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step3)
 					{
-						// Type 2, 3, 4.
-						if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step2)
-						{
-							return step2;
-						}
-						if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step3)
-						{
-							return step3;
-						}
-						if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step4)
-						{
-							return step4;
-						}
-						break;
+						return step3;
 					}
+					if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step4)
+					{
+						return step4;
+					}
+					break;
 				}
 			}
 		}
@@ -102,8 +94,78 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		context.Accumulator.AddRange(resultList);
 		return null;
+	}
+
+	/// <summary>
+	/// Try to find all possible loops appeared in a grid.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <returns>A list of <see cref="UniqueLoop"/> instances.</returns>
+#if USE_BREADTH_FIRST_SEARCHING
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+	private ReadOnlySpan<UniqueLoop> FindLoops(ref readonly Grid grid)
+	{
+#if USE_BREADTH_FIRST_SEARCHING
+		return bfs(in grid);
+#else
+		var patterns = new HashSet<UniqueLoop>();
+		foreach (var cell in BivalueCells)
+		{
+			var mask = grid.GetCandidates(cell);
+			var d1 = Mask.TrailingZeroCount(mask);
+			var d2 = mask.GetNextSet(d1);
+
+			var tempLoop = new List<Cell>(14);
+			var loopMap = CellMap.Empty;
+			dfs(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
+		}
+		return patterns.ToArray();
+#endif
 
 
+#if USE_BREADTH_FIRST_SEARCHING && !USE_DEPTH_FIRST_SEARCHING
+		static ReadOnlySpan<UniqueLoop> bfs(ref readonly Grid grid)
+		{
+			var result = new HashSet<UniqueLoop>();
+			foreach (var cell in BivalueCells)
+			{
+				var queue = LinkedList.Singleton(LinkedList.Singleton(cell));
+				var comparer = grid.GetCandidates(cell);
+				var d1 = Mask.TrailingZeroCount(comparer);
+				var d2 = comparer.GetNextSet(d1);
+				var pairMap = CandidatesMap[d1] & CandidatesMap[d2];
+				while (queue.Count != 0)
+				{
+					var currentBranch = queue.RemoveFirstNode();
+
+					// The node should be appended after the last node, and its start node is the first node of the linked list.
+					foreach (var currentCell in PeersMap[currentBranch.LastValue()] & pairMap)
+					{
+						// Determine whether the current cell iterated is the first node.
+						// If so, check whether the loop is of length greater than 6, and validity of the loop.
+						if (currentCell == cell && currentBranch.Count is 6 or 8 or 10 or 12 or 14 && UniqueLoop.IsValid(currentBranch))
+						{
+							result.Add(new(currentBranch.AsCellMap(), [.. currentBranch], comparer));
+							break;
+						}
+
+						if (currentBranch.Contains(currentCell))
+						{
+							// The current cell has already been inserted into the branch.
+							continue;
+						}
+
+						// Create a new link with original value, and a new value at the last position.
+						queue.AddLast(LinkedList.Create(currentBranch, currentCell));
+					}
+				}
+			}
+			return result.ToArray();
+		}
+#endif
+
+#if USE_DEPTH_FIRST_SEARCHING && !USE_BREADTH_FIRST_SEARCHING
 		static void dfs(
 			ref readonly Grid grid,
 			Cell cell,
@@ -180,74 +242,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			loopPath.RemoveAt(^1);
 			loopMap.Remove(cell);
 		}
-	}
-
-	/// <summary>
-	/// Try to find all possible loops appeared in a grid.
-	/// </summary>
-	/// <param name="grid">The grid to be used.</param>
-	/// <returns>A list of <see cref="UniqueLoop"/> instances.</returns>
-	private ReadOnlySpan<UniqueLoop> FindLoops(ref readonly Grid grid)
-	{
-		// Print table.
-		var bivalueCellsPeers = new Dictionary<Cell, (Mask Mask, CellMap Map)>(BivalueCells.Count);
-		foreach (var cell in BivalueCells)
-		{
-			var comparer = grid.GetCandidates(cell);
-			var d1 = Mask.TrailingZeroCount(comparer);
-			var d2 = comparer.GetNextSet(d1);
-			bivalueCellsPeers.Add(cell, (comparer, PeersMap[cell] & CandidatesMap[d1] & CandidatesMap[d2]));
-		}
-
-		// Start to find loop.
-		var result = new List<UniqueLoop>();
-		foreach (var cell in BivalueCells)
-		{
-			bfs(cell, in grid);
-		}
-		return result.AsReadOnlySpan();
-
-
-		void bfs(Cell startCell, ref readonly Grid grid)
-		{
-			var queue = LinkedList.Singleton(LinkedList.Singleton(startCell));
-			while (queue.Count != 0)
-			{
-				var currentBranch = queue.RemoveFirstNode();
-				var comparer = bivalueCellsPeers.GetValueRef(currentBranch.FirstValue()).Mask;
-
-				// The node should be appended after the last node, and its start node is the first node of the linked list.
-				ref readonly var mapRef = ref bivalueCellsPeers.GetValueRef(currentBranch.LastValue()).Map;
-				foreach (var currentCell in mapRef)
-				{
-					if ((grid.GetCandidates(currentCell) & comparer) != comparer)
-					{
-						// The current cell iterated should contain all possible digits appeared in start cell.
-						continue;
-					}
-
-					if (currentBranch.Contains(currentCell))
-					{
-						// The current cell has already been inserted into the branch.
-						continue;
-					}
-
-					// Create a new link with original value, and a new value at the last position.
-					var newBranch = LinkedList.Create(currentBranch, currentCell);
-
-					// Determine whether the current cell iterated is the first node.
-					// If so, check whether the loop is of length greater than 6, and validity of the loop.
-					if (currentCell == startCell
-						&& newBranch.Count is var c and (6 or 8 or 10 or 12 or 14) && UniqueLoop.IsValid(newBranch))
-					{
-						result.AddRef(new(newBranch.AsCellMap(), [.. newBranch], comparer));
-						break;
-					}
-
-					queue.AddLast(newBranch);
-				}
-			}
-		}
+#endif
 	}
 
 	/// <summary>
