@@ -150,14 +150,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							break;
 						}
 
-						if (currentBranch.Contains(currentCell))
+						if (!currentBranch.Contains(currentCell))
 						{
-							// The current cell has already been inserted into the branch.
-							continue;
+							// Create a new link with original value, and a new value at the last position.
+							queue.AddLast(LinkedList.Create(currentBranch, currentCell));
 						}
-
-						// Create a new link with original value, and a new value at the last position.
-						queue.AddLast(LinkedList.Create(currentBranch, currentCell));
 					}
 				}
 			}
