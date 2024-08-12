@@ -52,4 +52,14 @@ public static class LinkedListExtensions
 		@this.RemoveLast();
 		return node;
 	}
+
+	/// <inheritdoc cref="LinkedList{T}.First"/>
+	/// <exception cref="NullReferenceException">Throws when the list is empty.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T FirstValue<T>(this LinkedList<T> @this) => @this.First!.Value;
+
+	/// <inheritdoc cref="LinkedList{T}.Last"/>
+	/// <exception cref="NullReferenceException">Throws when the list is empty.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static T LastValue<T>(this LinkedList<T> @this) => @this.Last!.Value;
 }

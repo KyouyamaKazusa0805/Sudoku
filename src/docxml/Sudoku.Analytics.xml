@@ -7674,6 +7674,13 @@
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.FindLoops(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find all possible loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.UniqueLoop"/> instances.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueLoopStep},Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32[])">
             <summary>
             Check type 1.

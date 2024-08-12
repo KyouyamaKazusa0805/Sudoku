@@ -41,14 +41,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var tempLoop = new List<Cell>(14);
 			var loopMap = CellMap.Empty;
 			var patterns = new HashSet<UniqueLoop>();
-			collectLoopCore(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
+			dfs(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
 
 			if (patterns.Count == 0)
 			{
 				continue;
 			}
 
-			var comparer = (Mask)(1 << d1 | 1 << d2);
 			foreach (var (loop, path, _) in patterns)
 			{
 				var extraCellsMap = loop & ~BivalueCells;
@@ -70,15 +69,15 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					default:
 					{
 						// Type 2, 3, 4.
-						if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step2)
+						if (CheckType2(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step2)
 						{
 							return step2;
 						}
-						if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step3)
+						if (CheckType3(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step3)
 						{
 							return step3;
 						}
-						if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, context.OnlyFindOne, path) is { } step4)
+						if (CheckType4(tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, mask, context.OnlyFindOne, path) is { } step4)
 						{
 							return step4;
 						}
@@ -105,7 +104,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		return null;
 
 
-		static void collectLoopCore(
+		static void dfs(
 			ref readonly Grid grid,
 			Cell cell,
 			Digit d1,
@@ -117,7 +116,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 #if !IGNORE_MULTIVALUE_CELL_CHECKING_LIMIT
 			int allowExtraDigitsCellsCount = 2,
 #endif
-			HouseType lastHouseType = unchecked((HouseType)(-1))
+			HouseType lastHouseType = (HouseType)byte.MaxValue
 		)
 		{
 			loopPath.Add(cell);
@@ -156,7 +155,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 #endif
 							{
 								// Make recursion.
-								collectLoopCore(
+								dfs(
 									in grid,
 									next,
 									d1,
@@ -180,6 +179,74 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 			loopPath.RemoveAt(^1);
 			loopMap.Remove(cell);
+		}
+	}
+
+	/// <summary>
+	/// Try to find all possible loops appeared in a grid.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <returns>A list of <see cref="UniqueLoop"/> instances.</returns>
+	private ReadOnlySpan<UniqueLoop> FindLoops(ref readonly Grid grid)
+	{
+		// Print table.
+		var bivalueCellsPeers = new Dictionary<Cell, (Mask Mask, CellMap Map)>(BivalueCells.Count);
+		foreach (var cell in BivalueCells)
+		{
+			var comparer = grid.GetCandidates(cell);
+			var d1 = Mask.TrailingZeroCount(comparer);
+			var d2 = comparer.GetNextSet(d1);
+			bivalueCellsPeers.Add(cell, (comparer, PeersMap[cell] & CandidatesMap[d1] & CandidatesMap[d2]));
+		}
+
+		// Start to find loop.
+		var result = new List<UniqueLoop>();
+		foreach (var cell in BivalueCells)
+		{
+			bfs(cell, in grid);
+		}
+		return result.AsReadOnlySpan();
+
+
+		void bfs(Cell startCell, ref readonly Grid grid)
+		{
+			var queue = LinkedList.Singleton(LinkedList.Singleton(startCell));
+			while (queue.Count != 0)
+			{
+				var currentBranch = queue.RemoveFirstNode();
+				var comparer = bivalueCellsPeers.GetValueRef(currentBranch.FirstValue()).Mask;
+
+				// The node should be appended after the last node, and its start node is the first node of the linked list.
+				ref readonly var mapRef = ref bivalueCellsPeers.GetValueRef(currentBranch.LastValue()).Map;
+				foreach (var currentCell in mapRef)
+				{
+					if ((grid.GetCandidates(currentCell) & comparer) != comparer)
+					{
+						// The current cell iterated should contain all possible digits appeared in start cell.
+						continue;
+					}
+
+					if (currentBranch.Contains(currentCell))
+					{
+						// The current cell has already been inserted into the branch.
+						continue;
+					}
+
+					// Create a new link with original value, and a new value at the last position.
+					var newBranch = LinkedList.Create(currentBranch, currentCell);
+
+					// Determine whether the current cell iterated is the first node.
+					// If so, check whether the loop is of length greater than 6, and validity of the loop.
+					if (currentCell == startCell
+						&& newBranch.Count is var c and (6 or 8 or 10 or 12 or 14) && UniqueLoop.IsValid(newBranch))
+					{
+						result.AddRef(new(newBranch.AsCellMap(), [.. newBranch], comparer));
+						break;
+					}
+
+					queue.AddLast(newBranch);
+				}
+			}
 		}
 	}
 

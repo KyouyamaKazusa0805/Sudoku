@@ -122,6 +122,29 @@
             <param name="this">A <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance to be converted from.</param>
             <returns>The final pair of values converted.</returns>
         </member>
+        <member name="T:System.Collections.Generic.LinkedList">
+            <summary>
+            Represents a type that creates a <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedList.Singleton``1(``0)">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.LinkedList`1"/> with only one element.
+            </summary>
+            <typeparam name="T">The type of each element of the return value.</typeparam>
+            <param name="value">The value to be created.</param>
+            <returns>A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance, with only one element inside it.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedList.Create``1(System.Collections.Generic.LinkedList{``0},``0)">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.LinkedList`1"/> with the original values and a new value.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="original">The original collection.</param>
+            <param name="newValue">The new value to be added.</param>
+            <returns>A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</returns>
+        </member>
         <member name="T:System.Collections.Generic.LinkedListExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
@@ -152,6 +175,14 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The collection.</param>
             <returns>The last element to be removed.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.FirstValue``1(System.Collections.Generic.LinkedList{``0})">
+            <inheritdoc cref="P:System.Collections.Generic.LinkedList`1.First"/>
+            <exception cref="T:System.NullReferenceException">Throws when the list is empty.</exception>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.LastValue``1(System.Collections.Generic.LinkedList{``0})">
+            <inheritdoc cref="P:System.Collections.Generic.LinkedList`1.Last"/>
+            <exception cref="T:System.NullReferenceException">Throws when the list is empty.</exception>
         </member>
         <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
