@@ -28,6 +28,16 @@ public sealed partial class UniqueLoopStrongLinkType(
 	public override int Type => 5;
 
 	/// <inheritdoc/>
+	public override string EnglishName
+	{
+		get
+		{
+			var uniqueLoopName = SR.Get("UniqueNameName", GetCulture(SR.DefaultCulture));
+			return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
+		}
+	}
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.UniqueLoopStrongLinkType;
 
 	/// <inheritdoc/>
@@ -49,16 +59,6 @@ public sealed partial class UniqueLoopStrongLinkType(
 		}
 	}
 
-
-	/// <inheritdoc/>
-	public override string EnglishName
-	{
-		get
-		{
-			var uniqueLoopName = SR.Get("UniqueNameName", GetCulture(SR.DefaultCulture));
-			return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
-		}
-	}
 
 	/// <inheritdoc/>
 	public override string GetName(IFormatProvider? formatProvider)
