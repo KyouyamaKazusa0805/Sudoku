@@ -432,6 +432,151 @@ public partial class UniqueLoopStepSearcher
 		Cell[] path
 	)
 	{
+		var pathLength = path.Length;
+
+		// Iterate on each digit the current loop used.
+		foreach (var (digit, theOtherDigit) in ((d1, d2), (d2, d1)))
+		{
+			// Iterate on each cell of the current loop.
+			foreach (var cell in loop)
+			{
+				var startIndex = Array.IndexOf(path, cell);
+
+				// Iterate cells.
+				// There are two ways to check: clockwise and counter-clockwise.
+				foreach (var isClockwise in (true, false))
+				{
+					// Construct an array to be iterated.
+					var loopCells = new List<Cell>(pathLength);
+					if (isClockwise)
+					{
+						for (var (i, j) = (startIndex, 0); j < pathLength; i = (i + 1) % pathLength, j++)
+						{
+							loopCells.Add(path[i]);
+						}
+					}
+					else
+					{
+						for (var (i, j) = (startIndex, 0); j < pathLength; i = makeDecrement(i) % pathLength, j++)
+						{
+							loopCells.Add(path[i]);
+						}
+
+
+						int makeDecrement(int i) => (i <= 1 ? i + pathLength : i) - 1;
+					}
+
+					// Suppose it is true, and fill digits through the path, to determine whether the loop can be filled completely.
+					var isFailed = false;
+					var conjugatePairsUsed = new List<Conjugate>();
+					for (
+						var (i, thisDigit, nextDigit) = (0, digit, theOtherDigit);
+						i < pathLength - 1;
+						i++, @ref.Swap(ref thisDigit, ref nextDigit)
+					)
+					{
+						var (thisCell, nextCell) = (loopCells[i], loopCells[i + 1]);
+						// There are two ways to continue filling:
+						//
+						//   1) Two cells 'thisCell' and 'nextCell' forms a conjugate pair of digit 'nextDigit':
+						//      If supposing 'abx' ('thisCell') is 'a', then:
+						//      .-------------------------------.
+						//      |       b        makes          |
+						//      | abx ===== aby ------>  a => b |
+						//      '-------------------------------'
+						//   2) The cell 'nextCell' is a bi-value cell.
+						//      If supposing 'abx' ('thisCell') is 'a', then:
+						//      .--------------------------.
+						//      |           makes          |
+						//      | abx  ab  ------>  a => b |
+						//      '--------------------------'
+						//
+						// If neither cases are not successful, the loop cannot continue. We should break the supposing.
+
+						// Case 2.
+						if (BivalueCells.Contains(nextCell) && (grid.GetCandidates(nextCell) & comparer) == comparer)
+						{
+							continue;
+						}
+
+						// Case 1.
+						var twoCellsMap = thisCell.AsCellMap() + nextCell;
+						var case1 = false;
+						foreach (var house in twoCellsMap.SharedHouses)
+						{
+							if ((HousesMap[house] & CandidatesMap[nextDigit]) == twoCellsMap)
+							{
+								conjugatePairsUsed.Add(new(in twoCellsMap, nextDigit));
+
+								case1 = true;
+								break;
+							}
+						}
+						if (case1)
+						{
+							continue;
+						}
+
+						// Neither cases are not successful.
+						isFailed = true;
+						break;
+					}
+					if (isFailed)
+					{
+						break;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>();
+					foreach (var c in loop)
+					{
+						foreach (var d in (Mask)(grid.GetCandidates(c) & comparer))
+						{
+							if (cell == c && digit == d)
+							{
+								continue;
+							}
+
+							candidateOffsets.Add(
+								new(
+									conjugatePairsUsed.Exists(cp => cp.Map.Contains(c) && cp.Digit == d)
+										? ColorIdentifier.Auxiliary1
+										: ColorIdentifier.Normal,
+									c * 9 + d
+								)
+							);
+						}
+					}
+
+					var step = new UniqueLoopStrongLinkType(
+						[new(Elimination, cell, digit)],
+						[
+							[
+								.. candidateOffsets,
+								..
+								from cp in conjugatePairsUsed
+								let id = cp.Digit == digit ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1
+								select new HouseViewNode(id, HouseMask.TrailingZeroCount(cp.Houses)),
+								.. GetLoopLinks(path)
+							]
+						],
+						context.Options,
+						d1,
+						d2,
+						in loop,
+						path,
+						extraCellsMap.Count,
+						[.. conjugatePairsUsed]
+					);
+					if (context.OnlyFindOne)
+					{
+						return step;
+					}
+
+					context.Accumulator.Add(step);
+				}
+			}
+		}
+
 		return null;
 	}
 }

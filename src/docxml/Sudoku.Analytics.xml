@@ -12523,6 +12523,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Interpolations">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.EnglishName">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>

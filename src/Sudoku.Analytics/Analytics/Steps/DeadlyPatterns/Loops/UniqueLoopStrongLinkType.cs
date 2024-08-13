@@ -41,17 +41,30 @@ public sealed partial class UniqueLoopStrongLinkType(
 	{
 		get
 		{
-			var culture = GetCulture(null);
-			return string.Join(SR.Get("_Token_Comma", culture), from cp in ConjugatePairs select cp.ToString(culture));
+			var converter = Options.Converter;
+			return string.Join(
+				SR.Get("_Token_Comma", GetCulture(null)),
+				from cp in ConjugatePairs select cp.ToString(converter)
+			);
 		}
 	}
 
+
+	/// <inheritdoc/>
+	public override string EnglishName
+	{
+		get
+		{
+			var uniqueLoopName = SR.Get("UniqueNameName", GetCulture(SR.DefaultCulture));
+			return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
+		}
+	}
 
 	/// <inheritdoc/>
 	public override string GetName(IFormatProvider? formatProvider)
 	{
 		var culture = GetCulture(null);
 		var uniqueLoopName = SR.Get("UniqueNameName", culture);
-		return $"{uniqueLoopName} + {extraDigitsCellsCount}";
+		return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
 	}
 }

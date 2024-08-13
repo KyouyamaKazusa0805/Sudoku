@@ -135,7 +135,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					var currentBranch = queue.RemoveFirstNode();
 
 					// The node should be appended after the last node, and its start node is the first node of the linked list.
-					foreach (var currentCell in PeersMap[currentBranch.LastValue()] & pairMap)
+					var previousCell = currentBranch.LastValue();
+					foreach (var currentCell in PeersMap[previousCell] & pairMap)
 					{
 						// Determine whether the current cell iterated is the first node.
 						// If so, check whether the loop is of length greater than 6, and validity of the loop.
@@ -145,7 +146,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							break;
 						}
 
-						if (!currentBranch.Contains(currentCell))
+						if (!currentBranch.Contains(currentCell) && currentBranch.Count < 14
+							&& (hasBivalueCell(previousCell, currentCell) || hasConjugatePair(previousCell, currentCell, d1, d2)))
 						{
 							// Create a new link with original value, and a new value at the last position.
 							queue.AddLast(LinkedList.Create(currentBranch, currentCell));
@@ -154,6 +156,25 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 			}
 			return result.ToArray();
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool hasBivalueCell(Cell previous, Cell current)
+				=> BivalueCells.Contains(previous) || BivalueCells.Contains(current);
+
+			static bool hasConjugatePair(Cell previous, Cell current, Digit d1, Digit d2)
+			{
+				var twoCellsMap = previous.AsCellMap() + current;
+				foreach (var house in twoCellsMap.SharedHouses)
+				{
+					if ((HousesMap[house] & CandidatesMap[d1]) == twoCellsMap
+						|| (HousesMap[house] & CandidatesMap[d2]) == twoCellsMap)
+					{
+						return true;
+					}
+				}
+				return false;
+			}
 		}
 #endif
 
