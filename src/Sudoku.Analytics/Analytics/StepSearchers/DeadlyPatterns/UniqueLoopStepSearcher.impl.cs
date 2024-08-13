@@ -523,7 +523,13 @@ public partial class UniqueLoopStepSearcher
 					}
 					if (isFailed)
 					{
-						break;
+						continue;
+					}
+
+					if (conjugatePairsUsed.Count == 0)
+					{
+						// If a UL doesn't use any conjugate pairs, it'll be a normal UL, we should skip it.
+						continue;
 					}
 
 					var candidateOffsets = new List<CandidateViewNode>();
