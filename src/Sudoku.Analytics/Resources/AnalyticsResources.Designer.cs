@@ -2293,6 +2293,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strong links used in Unique Loop.
+        /// </summary>
+        public static string Factor_UniqueLoopConjugatePairsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueLoopConjugatePairsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length of unique loop.
         /// </summary>
         public static string Factor_UniqueLoopLengthFactor {
@@ -8157,9 +8166,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pairs {3}.
         /// </summary>
-        public static string TechniqueFormat_UniqueLoopStrongLinkType {
+        public static string TechniqueFormat_UniqueLoopConjugatePairsTypeStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_UniqueLoopStrongLinkType", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_UniqueLoopConjugatePairsTypeStep", resourceCulture);
             }
         }
         

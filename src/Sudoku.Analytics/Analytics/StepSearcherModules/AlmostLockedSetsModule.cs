@@ -97,9 +97,9 @@ internal static class AlmostLockedSetsModule
 	/// Collect possible conjugate pairs grouped by digit.
 	/// </summary>
 	/// <returns>The conjugate pairs found, grouped by digit.</returns>
-	internal static List<Conjugate>?[] CollectConjugatePairs()
+	internal static HashSet<Conjugate>?[] CollectConjugatePairs()
 	{
-		var conjugatePairs = new List<Conjugate>?[9];
+		var conjugatePairs = new HashSet<Conjugate>?[9];
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
@@ -110,7 +110,6 @@ internal static class AlmostLockedSetsModule
 				}
 			}
 		}
-
 		return conjugatePairs;
 	}
 }

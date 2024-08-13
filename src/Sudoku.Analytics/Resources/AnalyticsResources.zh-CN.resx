@@ -3396,4 +3396,7 @@
   <data name="TechniqueFormat_UniqueLoopStrongLinkType" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2}，带有共轭对 {3}</value>
   </data>
+  <data name="Factor_UniqueLoopConjugatePairsCountFactor" xml:space="preserve">
+    <value>唯一环用到的强链</value>
+  </data>
 </root>

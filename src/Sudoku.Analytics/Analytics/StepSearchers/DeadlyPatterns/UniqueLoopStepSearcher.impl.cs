@@ -553,7 +553,7 @@ public partial class UniqueLoopStepSearcher
 						}
 					}
 
-					var step = new UniqueLoopStrongLinkType(
+					var step = new UniqueLoopConjugatePairsTypeStep(
 						[new(Elimination, cell, digit)],
 						[
 							[

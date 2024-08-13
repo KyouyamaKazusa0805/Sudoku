@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="loopPath"><inheritdoc/></param>
 /// <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs.</param>
-public sealed partial class UniqueLoopStrongLinkType(
+public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -26,6 +26,14 @@ public sealed partial class UniqueLoopStrongLinkType(
 {
 	/// <inheritdoc/>
 	public override int Type => 5;
+
+	/// <summary>
+	/// Indicates the number of conjugate pairs used.
+	/// </summary>
+	public int ConjugatePairsCount => ConjugatePairs.Length;
+
+	/// <inheritdoc/>
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override string EnglishName
@@ -46,6 +54,9 @@ public sealed partial class UniqueLoopStrongLinkType(
 			new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr]),
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [.. base.Factors, new UniqueLoopConjugatePairsCountFactor()];
 
 	private string ConjugatePairsStr
 	{

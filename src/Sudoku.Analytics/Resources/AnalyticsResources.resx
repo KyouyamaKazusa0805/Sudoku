@@ -3288,7 +3288,10 @@ Error grid: '{0:#}'</value>
   <data name="UniqueNameName" xml:space="preserve">
     <value>Unique Loop</value>
   </data>
-  <data name="TechniqueFormat_UniqueLoopStrongLinkType" xml:space="preserve">
+  <data name="TechniqueFormat_UniqueLoopConjugatePairsTypeStep" xml:space="preserve">
     <value>Digits {0} and {1} in cells {2} with conjugate pairs {3}</value>
+  </data>
+  <data name="Factor_UniqueLoopConjugatePairsCountFactor" xml:space="preserve">
+    <value>Strong links used in Unique Loop</value>
   </data>
 </root>

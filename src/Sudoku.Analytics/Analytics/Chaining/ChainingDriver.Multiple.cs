@@ -142,7 +142,7 @@ internal partial class ChainingDriver
 					newConclusions.Add(new(Elimination, candidate));
 				}
 			}
-			return [.. newConclusions];
+			return newConclusions.Count == 0 ? [] : [.. newConclusions];
 		}
 
 		ReadOnlySpan<MultipleForcingChains> cfcOn(
@@ -210,7 +210,12 @@ internal partial class ChainingDriver
 					var branchNode = offNodes[cell * 9 + d].First(n => n.Equals(node, NodeComparison.IncludeIsOn));
 					cfc.Add(cell * 9 + d, node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode));
 				}
-				cfc.Conclusions = getThoroughConclusions(in grid, cfc);
+				if (getThoroughConclusions(in grid, cfc) is not { Length: not 0 } conclusions)
+				{
+					continue;
+				}
+
+				cfc.Conclusions = conclusions;
 				if (onlyFindOne)
 				{
 					return (MultipleForcingChains[])[cfc];
@@ -291,8 +296,12 @@ internal partial class ChainingDriver
 						node.IsOn ? new StrongForcingChain(branchNode) : new WeakForcingChain(branchNode)
 					);
 				}
-				rfc.Conclusions = getThoroughConclusions(in grid, rfc);
+				if (getThoroughConclusions(in grid, rfc) is not { Length: not 0 } conclusions)
+				{
+					continue;
+				}
 
+				rfc.Conclusions = conclusions;
 				if (onlyFindOne)
 				{
 					return (MultipleForcingChains[])[rfc];

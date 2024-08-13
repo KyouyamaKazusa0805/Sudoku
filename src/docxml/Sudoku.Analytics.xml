@@ -12486,7 +12486,7 @@
             The generated property declaration for parameter <c>loopPath</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType">
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep">
             <summary>
             Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
             </summary>
@@ -12500,7 +12500,7 @@
             <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
             <param name="conjugatePairs">Indicates the conjugate pairs.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[],System.Int32,Sudoku.Concepts.Conjugate[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[],System.Int32,Sudoku.Concepts.Conjugate[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
             </summary>
@@ -12514,27 +12514,38 @@
             <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
             <param name="conjugatePairs">Indicates the conjugate pairs.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Type">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.EnglishName">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairsCount">
+            <summary>
+            Indicates the number of conjugate pairs used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Code">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.EnglishName">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.Interpolations">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Code">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.GetName(System.IFormatProvider)">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Interpolations">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.ExtraDigitsCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.GetName(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ExtraDigitsCellsCount">
             <summary>
             The generated property declaration for parameter <c>extraDigitsCellsCount</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStrongLinkType.ConjugatePairs">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairs">
             <summary>
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
@@ -24142,6 +24153,21 @@
         <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor">
+            <summary>
+            Represents a factor that describes the number of conjugate pairs used in a <see cref="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueLoopLengthFactor">
             <summary>
             Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>.
@@ -25942,6 +25968,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqIsolatedFactor">
             <summary>
               Looks up a localized string similar to Isolated digits in Sue de Coq.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueLoopConjugatePairsCountFactor">
+            <summary>
+              Looks up a localized string similar to Strong links used in Unique Loop.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueLoopLengthFactor">
@@ -29202,7 +29233,7 @@
               Looks up a localized string similar to {0} in {1}\{2}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueLoopStrongLinkType">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueLoopConjugatePairsTypeStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in cells {2} with conjugate pairs {3}.
             </summary>

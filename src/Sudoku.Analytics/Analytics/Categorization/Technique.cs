@@ -4022,7 +4022,7 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueLoop,
-		StepType = typeof(UniqueLoopStrongLinkType),
+		StepType = typeof(UniqueLoopConjugatePairsTypeStep),
 		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopStrongLinkType,
