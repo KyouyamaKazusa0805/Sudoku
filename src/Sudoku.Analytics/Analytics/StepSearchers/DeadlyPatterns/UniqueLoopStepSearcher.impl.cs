@@ -14,7 +14,6 @@ public partial class UniqueLoopStepSearcher
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne,
 		Cell[] path
 	)
 	{
@@ -53,7 +52,7 @@ public partial class UniqueLoopStepSearcher
 			in loop,
 			path
 		);
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			return step;
 		}
@@ -76,7 +75,6 @@ public partial class UniqueLoopStepSearcher
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne,
 		Cell[] path
 	)
 	{
@@ -112,8 +110,7 @@ public partial class UniqueLoopStepSearcher
 			extraDigit,
 			path
 		);
-
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			return step;
 		}
@@ -136,7 +133,6 @@ public partial class UniqueLoopStepSearcher
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne,
 		Cell[] path
 	)
 	{
@@ -243,8 +239,7 @@ public partial class UniqueLoopStepSearcher
 							mask,
 							path
 						);
-
-						if (onlyFindOne)
+						if (context.OnlyFindOne)
 						{
 							return step;
 						}
@@ -324,7 +319,7 @@ public partial class UniqueLoopStepSearcher
 					mask,
 					path
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
@@ -348,7 +343,6 @@ public partial class UniqueLoopStepSearcher
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne,
 		Cell[] path
 	)
 	{
@@ -404,7 +398,7 @@ public partial class UniqueLoopStepSearcher
 					new(first, second, digit),
 					path
 				);
-				if (onlyFindOne)
+				if (context.OnlyFindOne)
 				{
 					return step;
 				}
@@ -428,7 +422,6 @@ public partial class UniqueLoopStepSearcher
 		ref readonly CellMap loop,
 		ref readonly CellMap extraCellsMap,
 		Mask comparer,
-		bool onlyFindOne,
 		Cell[] path
 	)
 	{
