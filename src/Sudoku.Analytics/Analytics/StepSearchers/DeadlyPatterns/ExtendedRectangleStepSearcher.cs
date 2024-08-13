@@ -167,7 +167,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			foreach (var (l, r) in pairs)
 			{
 				var tempMask = (Mask)(grid.GetCandidates(l) & grid.GetCandidates(r));
-				if (tempMask == 0 || (tempMask & tempMask - 1) == 0)
+				if (tempMask == 0 || Mask.IsPow2(tempMask))
 				{
 					checkKindsFlag = false;
 					break;
@@ -180,17 +180,14 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			}
 
 			// Check the mask of cells from two houses.
-			var m1 = (Mask)0;
-			var m2 = (Mask)0;
+			var (m1, m2) = ((Mask)0, (Mask)0);
 			foreach (var (l, r) in pairs)
 			{
 				m1 |= grid.GetCandidates(l);
 				m2 |= grid.GetCandidates(r);
 			}
 
-			var resultMask = (Mask)(m1 | m2);
-			var normalDigits = (Mask)0;
-			var extraDigits = (Mask)0;
+			var (resultMask, normalDigits, extraDigits) = ((Mask)(m1 | m2), (Mask)0, (Mask)0);
 			foreach (var digit in resultMask)
 			{
 				var count = 0;
