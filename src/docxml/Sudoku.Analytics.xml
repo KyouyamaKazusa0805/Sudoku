@@ -12518,6 +12518,70 @@
             The generated property declaration for parameter <c>conjugatePair</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="loopPath"><inheritdoc/></param>
+            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[],System.Int32,Sudoku.Concepts.Conjugate[])">
+            <summary>
+            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="loop"><inheritdoc/></param>
+            <param name="loopPath"><inheritdoc/></param>
+            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
+            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairsCount">
+            <summary>
+            Indicates the number of conjugate pairs used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.EnglishName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.GetName(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ExtraDigitsCellsCount">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsCellsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairs">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePairs</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopStep">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
@@ -12584,70 +12648,6 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.LoopPath">
             <summary>
             The generated property declaration for parameter <c>loopPath</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep">
-            <summary>
-            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="loop"><inheritdoc/></param>
-            <param name="loopPath"><inheritdoc/></param>
-            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
-            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[],System.Int32,Sudoku.Concepts.Conjugate[])">
-            <summary>
-            Provides with a step that is a <b>Unique Loop Strong Link Type</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="loop"><inheritdoc/></param>
-            <param name="loopPath"><inheritdoc/></param>
-            <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
-            <param name="conjugatePairs">Indicates the conjugate pairs.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairsCount">
-            <summary>
-            Indicates the number of conjugate pairs used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.EnglishName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.GetName(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ExtraDigitsCellsCount">
-            <summary>
-            The generated property declaration for parameter <c>extraDigitsCellsCount</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep.ConjugatePairs">
-            <summary>
-            The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueLoopType1Step">
