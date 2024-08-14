@@ -2,14 +2,16 @@ namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents an instance that describes the result after executed the method
-/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly AnalyzerContext)"/>.
+/// <see cref="IAnalyzer{TSolver, TContext, TSolverResult}.Analyze(ref readonly TContext)"/>.
 /// </summary>
 /// <typeparam name="TSolver">The solver's type.</typeparam>
+/// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TSelf">The type of the target result itself.</typeparam>
-/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly AnalyzerContext)"/>
-public interface IAnalysisResult<in TSolver, out TSelf>
-	where TSolver : IAnalyzer<TSolver, TSelf>, allows ref struct
-	where TSelf : IAnalysisResult<TSolver, TSelf>, allows ref struct
+/// <seealso cref="IAnalyzer{TSolver, TContext, TSolverResult}.Analyze(ref readonly TContext)"/>
+public interface IAnalysisResult<in TSolver, TContext, out TSelf>
+	where TSolver : IAnalyzer<TSolver, TContext, TSelf>, allows ref struct
+	where TContext : allows ref struct
+	where TSelf : IAnalysisResult<TSolver, TContext, TSelf>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.

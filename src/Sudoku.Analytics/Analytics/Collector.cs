@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collector>
+public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>
 {
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
@@ -39,7 +39,6 @@ public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collecto
 
 
 	/// <inheritdoc/>
-	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
 	public ReadOnlySpan<Step> Collect(ref readonly CollectorContext context)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))

@@ -6,10 +6,12 @@ namespace Sudoku.Analytics;
 /// produced in the whole analysis time-cycle.
 /// </summary>
 /// <typeparam name="TSelf">The type of the solver itself.</typeparam>
+/// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
-public interface IAnalyzer<in TSelf, out TResult>
-	where TSelf : IAnalyzer<TSelf, TResult>, allows ref struct
-	where TResult : IAnalysisResult<TSelf, TResult>, allows ref struct
+public interface IAnalyzer<in TSelf, TContext, out TResult>
+	where TSelf : IAnalyzer<TSelf, TContext, TResult>, allows ref struct
+	where TContext : allows ref struct
+	where TResult : IAnalysisResult<TSelf, TContext, TResult>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
@@ -35,7 +37,8 @@ public interface IAnalyzer<in TSelf, out TResult>
 	/// <summary>
 	/// Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
 	/// </summary>
-	/// <param name="context">An <see cref="AnalyzerContext"/> instance that can be used for analyzing a puzzle.</param>
-	/// <returns>The solver result that provides the information after analyzing.</returns>
-	public abstract TResult Analyze(ref readonly AnalyzerContext context);
+	/// <param name="context">A context instance that can be used for analyzing a puzzle.</param>
+	/// <returns>The result value.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+	public abstract TResult Analyze(ref readonly TContext context);
 }

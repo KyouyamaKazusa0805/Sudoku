@@ -4,7 +4,12 @@ namespace Sudoku.Analytics;
 /// Represents a collector type.
 /// </summary>
 /// <typeparam name="TSelf">The type itself.</typeparam>
-public interface ICollector<in TSelf> where TSelf : ICollector<TSelf>, allows ref struct
+/// <typeparam name="TContext">The type of the context.</typeparam>
+/// <typeparam name="TResult">The type of the result value.</typeparam>
+public interface ICollector<in TSelf, TContext, out TResult>
+	where TSelf : ICollector<TSelf, TContext, TResult>, allows ref struct
+	where TContext : allows ref struct
+	where TResult : allows ref struct
 {
 	/// <summary>
 	/// Indicates the maximum steps can be collected.
@@ -23,11 +28,12 @@ public interface ICollector<in TSelf> where TSelf : ICollector<TSelf>, allows re
 
 
 	/// <summary>
-	/// Search for all possible steps in a grid.
+	/// Search for all possible <see cref="Step"/> instances appeared at the specified grid state.
 	/// </summary>
-	/// <param name="context">A <see cref="CollectorContext"/> instance that can be used for analyzing a puzzle.</param>
-	/// <returns>
-	/// The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
-	/// </returns>
-	public abstract ReadOnlySpan<Step> Collect(ref readonly CollectorContext context);
+	/// <param name="context">A context instance that can be used for analyzing a puzzle.</param>
+	/// <returns>The result value.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when property <see cref="DifficultyLevelMode"/> is not defined.
+	/// </exception>
+	public abstract ReadOnlySpan<Step> Collect(ref readonly TContext context);
 }

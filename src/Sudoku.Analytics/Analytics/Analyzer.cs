@@ -9,7 +9,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="AnalyzerFactory"/>
-public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalysisResult>
+public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -82,7 +82,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
-	Random IAnalyzer<Analyzer, AnalysisResult>.RandomNumberGenerator => _random;
+	Random IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.RandomNumberGenerator => _random;
 
 	/// <summary>
 	/// Indicates the final <see cref="CultureInfo"/> instance to be used.
@@ -179,7 +179,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 
 	/// <inheritdoc/>
-	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
 	public AnalysisResult Analyze(ref readonly AnalyzerContext context)
 	{
 		ref readonly var puzzle = ref context.Puzzle;
