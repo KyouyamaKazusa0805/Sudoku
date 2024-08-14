@@ -146,7 +146,7 @@ public readonly ref partial struct Distance(int p, int q)
 
 
 	/// <summary>
-	/// The raw value of the distance. The value will be ouput as a <see cref="double"/> value.
+	/// The raw value of the distance. The value will be output as a <see cref="double"/> value.
 	/// </summary>
 	public double RawValue => _p * Math.Sqrt(_q);
 

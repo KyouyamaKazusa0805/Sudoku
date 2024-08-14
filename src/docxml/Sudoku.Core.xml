@@ -5911,7 +5911,7 @@
         </member>
         <member name="P:Sudoku.Measuring.Distance.RawValue">
             <summary>
-            The raw value of the distance. The value will be ouput as a <see cref="T:System.Double"/> value.
+            The raw value of the distance. The value will be output as a <see cref="T:System.Double"/> value.
             </summary>
         </member>
         <member name="M:Sudoku.Measuring.Distance.Equals(Sudoku.Measuring.Distance)">
