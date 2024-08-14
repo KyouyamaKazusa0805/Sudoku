@@ -10,8 +10,19 @@ namespace Sudoku.Measuring;
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllEqualityComparisonOperators)]
-public readonly ref partial struct Distance(int p, int q)
+public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 {
+	/// <summary>
+	/// Indicates the default root part specifier.
+	/// </summary>
+	private const string RootPartSpecifier = "s";
+
+	/// <summary>
+	/// Indicates the LaTeX root part specifier.
+	/// </summary>
+	private const string LatexRootPartSpecifier = @"\sqrt";
+
+
 	/// <summary>
 	/// The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
 	/// </summary>
@@ -164,7 +175,22 @@ public readonly ref partial struct Distance(int p, int q)
 	/// The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
 	/// For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
 	/// </remarks>
-	public override string ToString() => (_p, _q) switch { (_, 1) => _p.ToString(), (1, _) => $"s{_q}", _ => $"{_p}s{_q}" };
+	public override string ToString()
+		=> (_p, _q) switch
+		{
+			(_, 1) => _p.ToString(),
+			(1, _) => $"{RootPartSpecifier}{_q}",
+			_ => $"{_p}{RootPartSpecifier}{_q}"
+		};
+
+	/// <inheritdoc/>
+	public string ToLatexString()
+		=> (_p, _q) switch
+		{
+			(_, 1) => _p.ToString(),
+			(1, _) => $$"""{{LatexRootPartSpecifier}}{{{_q}}}""",
+			_ => $$"""{{_p}}{{LatexRootPartSpecifier}}{{{_q}}}"""
+		};
 
 
 	/// <summary>
@@ -249,12 +275,4 @@ public readonly ref partial struct Distance(int p, int q)
 		@base = temp;
 		return result;
 	}
-
-
-	/// <summary>
-	/// Implicit cast from the <see cref="Distance"/> instance to a <see cref="double"/>.
-	/// </summary>
-	/// <param name="distance">The distance value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator double(Distance distance) => distance.RawValue;
 }

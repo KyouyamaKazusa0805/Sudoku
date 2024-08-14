@@ -4331,6 +4331,17 @@
         <member name="M:System.Numerics.GenericIntegerEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="T:System.Numerics.ILatexFormattable">
+            <summary>
+            Represents a type that supports formatting on LaTeX format.
+            </summary>
+        </member>
+        <member name="M:System.Numerics.ILatexFormattable.ToLatexString">
+            <summary>
+            Returns a LaTeX string to represent the current object.
+            </summary>
+            <returns>A <see cref="T:System.String"/> representation.</returns>
+        </member>
         <member name="T:System.Numerics.Int128Enumerator">
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
