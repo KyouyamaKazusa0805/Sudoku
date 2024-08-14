@@ -110,7 +110,7 @@ public sealed partial class TechniqueSet() :
 	public int Count => _bitArray.GetCardinality();
 
 	/// <summary>
-	/// Indicates the range of difficulty that the current collection containss.
+	/// Indicates the range of difficulty that the current collection contains.
 	/// </summary>
 	/// <remarks>
 	/// This property returns a list of <see cref="DifficultyLevel"/> flags, merged into one instance.
@@ -460,7 +460,7 @@ public sealed partial class TechniqueSet() :
 	/// <summary>
 	/// Project the <see cref="Technique"/> instance into an <see cref="int"/> value as an index of <see cref="BitArray"/> field.
 	/// </summary>
-	/// <param name="technique">The techniuqe.</param>
+	/// <param name="technique">The technique.</param>
 	/// <returns>The index value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static int TechniqueProjection(Technique technique) => (int)technique - 1;

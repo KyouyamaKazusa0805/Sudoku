@@ -136,11 +136,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.Abbreviation
-		?? (
-			SR.TryGet($"TechniqueAbbr_{@this}", out var resource, SR.DefaultCulture)
-				? resource
-				: @this.GetGroup().GetAbbreviation()
-		);
+		?? (SR.TryGet($"TechniqueAbbr_{@this}", out var resource, SR.DefaultCulture) ? resource : @this.GetGroup().GetAbbreviation());
 
 	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.

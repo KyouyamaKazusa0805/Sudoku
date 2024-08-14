@@ -4371,7 +4371,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSet.DifficultyRange">
             <summary>
-            Indicates the range of difficulty that the current collection containss.
+            Indicates the range of difficulty that the current collection contains.
             </summary>
             <remarks>
             This property returns a list of <see cref="T:Sudoku.Analytics.DifficultyLevel"/> flags, merged into one instance.
@@ -4537,7 +4537,7 @@
             <summary>
             Project the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance into an <see cref="T:System.Int32"/> value as an index of <see cref="T:System.Collections.BitArray"/> field.
             </summary>
-            <param name="technique">The techniuqe.</param>
+            <param name="technique">The technique.</param>
             <returns>The index value.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueProjectionBack(System.Int32)">
@@ -23372,7 +23372,7 @@
             </typeparam>
             <typeparam name="TResult">The type of the results.</typeparam>
             <param name="this">The current collection.</param>
-            <param name="selector">The selector to tranform elements.</param>
+            <param name="selector">The selector to transform elements.</param>
             <returns>The results.</returns>
         </member>
         <member name="T:Sudoku.Linq.TechniqueSetEnumerable">
