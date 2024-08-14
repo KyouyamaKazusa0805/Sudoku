@@ -73,7 +73,6 @@ public static class AnalysisResultEnumerable
 				result.Add(step);
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 
@@ -99,7 +98,6 @@ public static class AnalysisResultEnumerable
 		{
 			arr[i++] = selector(step);
 		}
-
 		return arr;
 	}
 
@@ -124,7 +122,6 @@ public static class AnalysisResultEnumerable
 				list.Add(current);
 			}
 		}
-
 		return list.AsReadOnlySpan();
 	}
 }
