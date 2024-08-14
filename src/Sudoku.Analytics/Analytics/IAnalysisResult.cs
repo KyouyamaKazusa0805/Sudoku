@@ -2,11 +2,11 @@ namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents an instance that describes the result after executed the method
-/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalysisProgress}, CancellationToken)"/>.
+/// <see cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly AnalyzerContext)"/>.
 /// </summary>
 /// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSelf">The type of the target result itself.</typeparam>
-/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalysisProgress}, CancellationToken)"/>
+/// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly AnalyzerContext)"/>
 public interface IAnalysisResult<in TSolver, out TSelf>
 	where TSolver : IAnalyzer<TSolver, TSelf>, allows ref struct
 	where TSelf : IAnalysisResult<TSolver, TSelf>, allows ref struct

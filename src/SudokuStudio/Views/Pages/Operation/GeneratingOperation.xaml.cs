@@ -233,7 +233,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					goto ReportState;
 				}
 
-				var analysisResult = analyzer.Analyze(in grid);
+				var analysisResult = analyzer.Analyze(new(in grid));
 				switch (difficultyLevel, analysisResult.DifficultyLevel)
 				{
 					case (DifficultyLevel.Easy, DifficultyLevel.Easy):
@@ -365,7 +365,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
-				var analysisResult = analyzer.Analyze(in grid);
+				var analysisResult = analyzer.Analyze(new(in grid));
 				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;
@@ -433,7 +433,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
-				var analysisResult = analyzer.Analyze(in grid);
+				var analysisResult = analyzer.Analyze(new(in grid));
 				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;

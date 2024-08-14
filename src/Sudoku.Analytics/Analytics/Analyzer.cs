@@ -180,8 +180,12 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public AnalysisResult Analyze(ref readonly Grid puzzle, IProgress<AnalysisProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalysisResult Analyze(ref readonly AnalyzerContext context)
 	{
+		ref readonly var puzzle = ref context.Puzzle;
+		var progress = context.ProgressReporter;
+		var cancellationToken = context.CancellationToken;
+
 		if (puzzle.IsSolved)
 		{
 			throw new InvalidOperationException(SR.ExceptionMessage("GridAlreadySolved"));

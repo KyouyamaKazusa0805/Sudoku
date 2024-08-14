@@ -29,7 +29,7 @@ public static class GridAnalysisExtensions
 		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
-			.Analyze(in @this)
+			.Analyze(new(in @this))
 			.IsSolved;
 
 	/// <summary>
@@ -46,7 +46,7 @@ public static class GridAnalysisExtensions
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.HiddenSingle, AllowsHiddenSingleInLines = allowHiddenSingleInLine })
-			.Analyze(in @this)
+			.Analyze(new(in @this))
 			.IsSolved;
 
 	/// <summary>
@@ -60,6 +60,6 @@ public static class GridAnalysisExtensions
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.NakedSingle })
-			.Analyze(in @this)
+			.Analyze(new(in @this))
 			.IsSolved;
 }

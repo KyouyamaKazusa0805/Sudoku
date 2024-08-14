@@ -49,7 +49,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 				return false;
 			}
 
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(new(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{
@@ -85,7 +85,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			switch (Analyzer.Analyze(in puzzle, cancellationToken: cancellationToken))
+			switch (Analyzer.Analyze(new(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

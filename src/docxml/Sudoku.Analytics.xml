@@ -7,20 +7,20 @@
         <member name="T:Sudoku.Analytics.AnalysisProgress">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisProgress.#ctor(System.String,System.Double)">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisProgress.StepSearcherName">
             <summary>Indicates the currently used step searcher.</summary>
@@ -616,7 +616,7 @@
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
@@ -625,6 +625,47 @@
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerContext">
+            <summary>
+            Represents a context that is created by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerContext.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a context that is created by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerContext.CancellationToken">
+            <summary>
+            The cancellation token that can cancel the current analyzing operation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerContext.ProgressReporter">
+            <summary>
+            An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerContext.Sudoku#Analytics#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalyzerContext.Puzzle">
+            <summary>
+            The generated field declaration for parameter <c>puzzle</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerFactory">
             <summary>
@@ -5725,11 +5766,11 @@
         <member name="T:Sudoku.Analytics.IAnalysisResult`2">
             <summary>
             Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSelf">The type of the target result itself.</typeparam>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
         </member>
         <member name="P:Sudoku.Analytics.IAnalysisResult`2.IsSolved">
             <summary>
@@ -5790,13 +5831,11 @@
             The internal <see cref="T:System.Random"/> instance to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Analytics.AnalyzerContext@)">
             <summary>
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
             </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+            <param name="context">An <see cref="T:Sudoku.Analytics.AnalyzerContext"/> instance that can be used for analyzing a puzzle.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
         </member>
         <member name="T:Sudoku.Analytics.IContext">
@@ -6152,19 +6191,21 @@
         </member>
         <member name="T:Sudoku.Analytics.StepAnalysisContext">
             <summary>
-            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            Defines a context that will be used for finding a single <see cref="T:Sudoku.Analytics.Step"/> from a <see cref="T:Sudoku.Concepts.Grid"/> state.
             </summary>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Analytics.StepAnalysisContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
-            Defines a context that is used by step searchers to check the details of the solving and analysis information.
+            Defines a context that will be used for finding a single <see cref="T:Sudoku.Analytics.Step"/> from a <see cref="T:Sudoku.Concepts.Grid"/> state.
             </summary>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.Analytics.StepAnalysisContext.#ctor(Sudoku.Concepts.Grid@)">
             <summary>

@@ -1112,19 +1112,21 @@ public sealed partial class AnalyzePage : Page
 				lock (AnalyzingRelatedSyncRoot)
 				{
 					return analyzer.Analyze(
-						in puzzle,
-						new Progress<AnalysisProgress>(
-							progress => DispatcherQueue.TryEnqueue(
-								() =>
-								{
-									var (stepSearcherName, percent) = progress;
-									ProgressPercent = progress.Percent * 100;
-									AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-									AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-								}
+						new(in puzzle)
+						{
+							CancellationToken = cts.Token,
+							ProgressReporter = new Progress<AnalysisProgress>(
+								progress => DispatcherQueue.TryEnqueue(
+									() =>
+									{
+										var (stepSearcherName, percent) = progress;
+										ProgressPercent = progress.Percent * 100;
+										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+										AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+									}
+								)
 							)
-						),
-						cts.Token
+						}
 					);
 				}
 			}))

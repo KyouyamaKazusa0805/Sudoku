@@ -1,11 +1,12 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Defines a context that is used by step searchers to check the details of the solving and analysis information.
+/// Defines a context that will be used for finding a single <see cref="Step"/> from a <see cref="Concepts.Grid"/> state.
 /// </summary>
 /// <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
 /// <param name="initialGrid">Indicates the initial grid.</param>
-/// <seealso cref="Analyzer"/>
+/// <seealso cref="Step"/>
+/// <seealso cref="Concepts.Grid"/>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods, IsLargeStructure = true)]
 public ref partial struct StepAnalysisContext(
