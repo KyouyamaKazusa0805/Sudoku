@@ -130,12 +130,7 @@ public sealed class PointCalculator
 
 		var (cw, ch) = CellSize;
 		var result = (int)(y / ch) * 9 + (int)(x / cw);
-		if (result is not >= 0 or not < 81)
-		{
-			return -1;
-		}
-
-		return result;
+		return result is >= 0 and < 81 ? result : -1;
 	}
 
 	/// <summary>
