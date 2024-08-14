@@ -3,27 +3,17 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed partial class Collector : AnalyzerOrCollector
+public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collector>
 {
-	/// <summary>
-	/// Indicates the maximum steps can be collected.
-	/// </summary>
-	/// <remarks>
-	/// The default value is 1000.
-	/// </remarks>
+	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
 	public int MaxStepsCollected { get; set; } = 1000;
 
-	/// <summary>
-	/// Indicates whether the solver only displays the techniques with the same displaying level.
-	/// </summary>
-	/// <remarks>
-	/// The default value is <see cref="CollectorDifficultyLevelMode.OnlySame"/>.
-	/// </remarks>
+	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
-	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
+	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
 	public IFormatProvider? CurrentCulture { get; set; }
 
@@ -48,22 +38,18 @@ public sealed partial class Collector : AnalyzerOrCollector
 	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 
-	/// <summary>
-	/// Search for all possible steps in a grid.
-	/// </summary>
-	/// <param name="puzzle">The puzzle grid.</param>
-	/// <param name="progress">The progress instance that is used for reporting the state.</param>
-	/// <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-	/// <returns>
-	/// The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
-	/// </returns>
+	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public ReadOnlySpan<Step> Collect(ref readonly Grid puzzle, IProgress<AnalysisProgress>? progress = null, CancellationToken cancellationToken = default)
+	public ReadOnlySpan<Step> Collect(ref readonly CollectorContext context)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
 			throw new InvalidOperationException(SR.ExceptionMessage("ModeIsUndefined"));
 		}
+
+		ref readonly var puzzle = ref context.Puzzle;
+		var progress = context.ProgressReporter;
+		var cancellationToken = context.CancellationToken;
 
 		if (puzzle.IsSolved)
 		{

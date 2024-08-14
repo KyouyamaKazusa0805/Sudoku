@@ -168,19 +168,21 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			lock (AnalyzingRelatedSyncRoot)
 			{
 				return collector.Collect(
-					in grid,
-					new Progress<AnalysisProgress>(
-						progress => DispatcherQueue.TryEnqueue(
-							() =>
-							{
-								var (stepSearcherName, percent) = progress;
-								BasePage.ProgressPercent = percent * 100;
-								BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-								BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-							}
+					new(in grid)
+					{
+						CancellationToken = cts.Token,
+						ProgressReporter = new Progress<AnalysisProgress>(
+							progress => DispatcherQueue.TryEnqueue(
+								() =>
+								{
+									var (stepSearcherName, percent) = progress;
+									BasePage.ProgressPercent = percent * 100;
+									BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+									BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+								}
+							)
 						)
-					),
-					cts.Token
+					}
 				).ToArray();
 			}
 		}

@@ -628,14 +628,14 @@
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerContext">
             <summary>
-            Represents a context that is created by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
+            Represents a context consumed by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
             </summary>
             <param name="puzzle">The puzzle to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
-            Represents a context that is created by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
+            Represents a context consumed by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
             </summary>
             <param name="puzzle">The puzzle to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
@@ -5301,23 +5301,13 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Collector.MaxStepsCollected">
-            <summary>
-            Indicates the maximum steps can be collected.
-            </summary>
-            <remarks>
-            The default value is 1000.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.DifficultyLevelMode">
-            <summary>
-            Indicates whether the solver only displays the techniques with the same displaying level.
-            </summary>
-            <remarks>
-            The default value is <see cref="F:Sudoku.Analytics.CollectorDifficultyLevelMode.OnlySame"/>.
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.CurrentCulture">
-            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.StepSearchers">
             <inheritdoc/>
@@ -5328,16 +5318,8 @@
         <member name="P:Sudoku.Analytics.Collector.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
-            <summary>
-            Search for all possible steps in a grid.
-            </summary>
-            <param name="puzzle">The puzzle grid.</param>
-            <param name="progress">The progress instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token used for canceling an operation.</param>
-            <returns>
-            The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
-            </returns>
+        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)">
+            <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> is not defined.</exception>
         </member>
         <member name="F:Sudoku.Analytics.Collector._stepSearchers">
@@ -5345,6 +5327,47 @@
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Collector.StepSearchers"/>
+        </member>
+        <member name="T:Sudoku.Analytics.CollectorContext">
+            <summary>
+            Represents a context consumed by <see cref="T:Sudoku.Analytics.Collector"/> to analyze a puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorContext.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a context consumed by <see cref="T:Sudoku.Analytics.Collector"/> to analyze a puzzle.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.Collector"/>
+        </member>
+        <member name="P:Sudoku.Analytics.CollectorContext.CancellationToken">
+            <summary>
+            The cancellation token that can cancel the current analyzing operation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.CollectorContext.ProgressReporter">
+            <summary>
+            An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.CollectorContext.Sudoku#Analytics#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.CollectorContext.Puzzle">
+            <summary>
+            The generated field declaration for parameter <c>puzzle</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.CollectorContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.CollectorDifficultyLevelMode">
             <summary>
@@ -5837,6 +5860,36 @@
             </summary>
             <param name="context">An <see cref="T:Sudoku.Analytics.AnalyzerContext"/> instance that can be used for analyzing a puzzle.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.ICollector`1">
+            <summary>
+            Represents a collector type.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.ICollector`1.MaxStepsCollected">
+            <summary>
+            Indicates the maximum steps can be collected.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ICollector`1.DifficultyLevelMode">
+            <summary>
+            Indicates whether the solver only displays the techniques with the same displaying level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.ICollector`1.CurrentCulture">
+            <summary>
+            Indicates the current culture that is used for displaying running information.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.ICollector`1.Collect(Sudoku.Analytics.CollectorContext@)">
+            <summary>
+            Search for all possible steps in a grid.
+            </summary>
+            <param name="context">A <see cref="T:Sudoku.Analytics.CollectorContext"/> instance that can be used for analyzing a puzzle.</param>
+            <returns>
+            The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
+            </returns>
         </member>
         <member name="T:Sudoku.Analytics.IContext">
             <summary>
