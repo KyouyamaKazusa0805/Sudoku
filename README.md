@@ -187,7 +187,7 @@ QR Code
 
 ## Author
 
-Sunnie, from Chengdu, SiChuan, China. I'm not a developer, but I like it!
+I'm not a developer, but I like it!
 
 Please visit file [CONTACTS](CONTACTS) to contact me if you want.
 
