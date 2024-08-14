@@ -171,7 +171,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 					new(in grid)
 					{
 						CancellationToken = cts.Token,
-						ProgressReporter = new Progress<AnalysisProgress>(
+						ProgressReporter = new Progress<AnalyzerOrCollectorProgressPresenter>(
 							progress => DispatcherQueue.TryEnqueue(
 								() =>
 								{

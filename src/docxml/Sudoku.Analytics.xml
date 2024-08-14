@@ -4,30 +4,6 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Analytics.AnalysisProgress">
-            <summary>
-            Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>.
-            </summary>
-            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
-            <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalysisProgress.#ctor(System.String,System.Double)">
-            <summary>
-            Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>.
-            </summary>
-            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
-            <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisProgress.StepSearcherName">
-            <summary>Indicates the currently used step searcher.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisProgress.Percent">
-            <summary>The percent value.</summary>
-        </member>
         <member name="T:Sudoku.Analytics.AnalysisResult">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
@@ -733,6 +709,32 @@
             <param name="in">The step searchers passed in.</param>
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter">
+            <summary>
+            Represents a progress used by <see cref="T:Sudoku.Analytics.IAnalyzer`3"/>
+            and <see cref="T:Sudoku.Analytics.ICollector`3"/> instances.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
+            <seealso cref="M:Sudoku.Analytics.ICollector`3.Collect(`1@)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.#ctor(System.String,System.Double)">
+            <summary>
+            Represents a progress used by <see cref="T:Sudoku.Analytics.IAnalyzer`3"/>
+            and <see cref="T:Sudoku.Analytics.ICollector`3"/> instances.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
+            <seealso cref="M:Sudoku.Analytics.ICollector`3.Collect(`1@)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.StepSearcherName">
+            <summary>Indicates the currently used step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.Percent">
+            <summary>The percent value.</summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.MissingDifficultyLevelException">
             <summary>

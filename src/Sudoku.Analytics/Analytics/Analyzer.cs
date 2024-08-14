@@ -244,7 +244,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			SymmetricType symmetricType,
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
-			IProgress<AnalysisProgress>? progress,
+			IProgress<AnalyzerOrCollectorProgressPresenter>? progress,
 			CancellationToken cancellationToken
 		)
 		{

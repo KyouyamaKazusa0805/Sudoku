@@ -1115,7 +1115,7 @@ public sealed partial class AnalyzePage : Page
 						new(in puzzle)
 						{
 							CancellationToken = cts.Token,
-							ProgressReporter = new Progress<AnalysisProgress>(
+							ProgressReporter = new Progress<AnalyzerOrCollectorProgressPresenter>(
 								progress => DispatcherQueue.TryEnqueue(
 									() =>
 									{

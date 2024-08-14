@@ -69,7 +69,7 @@ public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collecto
 		}
 
 
-		ReadOnlySpan<Step> s(IProgress<AnalysisProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
+		ReadOnlySpan<Step> s(IProgress<AnalyzerOrCollectorProgressPresenter>? progress, ref readonly Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 
