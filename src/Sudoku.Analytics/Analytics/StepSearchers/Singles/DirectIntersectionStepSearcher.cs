@@ -54,10 +54,10 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// Please check documentation comments for <see cref="LockedCandidatesStepSearcher.Collect(ref AnalysisContext)"/>
+	/// Please check documentation comments for <see cref="LockedCandidatesStepSearcher.Collect(ref StepAnalysisContext)"/>
 	/// to learn more information about this technique.
 	/// </remarks>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
@@ -131,7 +131,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckFullHouse(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,
@@ -210,7 +210,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckHiddenSingle(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,
@@ -286,7 +286,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="emptyCells">Indicates the empty cells.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckNakedSingle(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,

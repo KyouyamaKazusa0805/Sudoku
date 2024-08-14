@@ -71,7 +71,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var linkForEachHouse = (stackalloc Mask[27]);
 		linkForEachHouse.Clear();

@@ -80,8 +80,8 @@ public abstract partial class StepSearcher(
 	/// The analysis context. This argument offers you some elementary data configured or assigned, for the current loop of step searching.
 	/// </para>
 	/// <para>
-	/// All available <see cref="Step"/> results will be stored in property <see cref="AnalysisContext.Accumulator"/>
-	/// of this argument, if property <see cref="AnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
+	/// All available <see cref="Step"/> results will be stored in property <see cref="StepAnalysisContext.Accumulator"/>
+	/// of this argument, if property <see cref="StepAnalysisContext.OnlyFindOne"/> returns <see langword="false"/>;
 	/// otherwise, the property won't be used, and this method will return the first found step.
 	/// </para>
 	/// </param>
@@ -107,8 +107,8 @@ public abstract partial class StepSearcher(
 	/// </list>
 	/// </returns>
 	/// <seealso cref="Step"/>
-	/// <seealso cref="AnalysisContext"/>
-	protected internal abstract Step? Collect(ref AnalysisContext context);
+	/// <seealso cref="StepAnalysisContext"/>
+	protected internal abstract Step? Collect(ref StepAnalysisContext context);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

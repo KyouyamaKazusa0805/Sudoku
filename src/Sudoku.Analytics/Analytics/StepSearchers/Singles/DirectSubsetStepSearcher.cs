@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, List<DirectSubsetStep>, ref AnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
+using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, List<DirectSubsetStep>, ref StepAnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
 
 /// <summary>
 /// Provides with a <b>Direct Subset</b> step searcher.
@@ -95,7 +95,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
 	{
 		var first = stackalloc DirectSubsetHandlerFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var second = stackalloc DirectSubsetHandlerFuncPtr[] { &NakedSubset, &HiddenSubset };
@@ -146,7 +146,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	private static DirectSubsetStep? HiddenSubset(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		int size,
 		bool searchingForLocked,
@@ -265,7 +265,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	private static DirectSubsetStep? NakedSubset(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		int size,
 		bool searchingForLocked,
@@ -380,7 +380,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	private static DirectSubsetStep? CheckHiddenSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,
@@ -475,11 +475,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,
@@ -564,11 +564,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,
@@ -656,7 +656,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	private static DirectSubsetStep? CheckNakedSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,
@@ -752,11 +752,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,
@@ -841,11 +841,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref StepAnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
 		List<DirectSubsetStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
 		ref readonly CellMap subsetCells,

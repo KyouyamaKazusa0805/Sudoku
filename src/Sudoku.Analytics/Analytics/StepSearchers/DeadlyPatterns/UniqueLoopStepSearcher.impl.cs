@@ -8,7 +8,7 @@ public partial class UniqueLoopStepSearcher
 	private static partial UniqueLoopStep? CheckType1(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
@@ -69,7 +69,7 @@ public partial class UniqueLoopStepSearcher
 	private static partial UniqueLoopStep? CheckType2(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
@@ -127,7 +127,7 @@ public partial class UniqueLoopStepSearcher
 	private static partial UniqueLoopStep? CheckType3(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
@@ -337,7 +337,7 @@ public partial class UniqueLoopStepSearcher
 	private static partial UniqueLoopStep? CheckType4(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
@@ -416,7 +416,7 @@ public partial class UniqueLoopStepSearcher
 	private static partial UniqueLoopStep? CheckStrongLinkType(
 		List<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,

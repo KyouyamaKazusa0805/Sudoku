@@ -27,7 +27,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class IrregularWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (Collect_WWing(ref context) is { } w)
 		{
@@ -44,7 +44,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		return null;
 	}
 
-	/// <inheritdoc cref="Collect(ref AnalysisContext)"/>
+	/// <inheritdoc cref="Collect(ref StepAnalysisContext)"/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
 	/// A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
@@ -55,7 +55,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:435 935 567 175 185 192 193 993 195 495 995
 	/// ]]></code>
 	/// </example>
-	private WWingStep? Collect_WWing(ref AnalysisContext context)
+	private WWingStep? Collect_WWing(ref StepAnalysisContext context)
 	{
 		// The grid with possible W-Wing pattern should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)
@@ -190,8 +190,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		return null;
 	}
 
-	/// <inheritdoc cref="Collect(ref AnalysisContext)"/>
-	private MultiBranchWWingStep? Collect_MultiBranchWWing(ref AnalysisContext context)
+	/// <inheritdoc cref="Collect(ref StepAnalysisContext)"/>
+	private MultiBranchWWingStep? Collect_MultiBranchWWing(ref StepAnalysisContext context)
 	{
 		// Iterates on each digit.
 		ref readonly var grid = ref context.Grid;
@@ -305,7 +305,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		return null;
 	}
 
-	/// <inheritdoc cref="Collect(ref AnalysisContext)"/>
+	/// <inheritdoc cref="Collect(ref StepAnalysisContext)"/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
 	/// A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
@@ -316,7 +316,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:417 419 157 883 785 891 893 795
 	/// ]]></code>
 	/// </example>
-	private MWingStep? Collect_MWing(ref AnalysisContext context)
+	private MWingStep? Collect_MWing(ref StepAnalysisContext context)
 	{
 		foreach (var supportsGroupedNodes in (false, true))
 		{
@@ -328,7 +328,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		return null;
 
 
-		static MWingStep? collectCore(ref AnalysisContext context, bool supportsGroupedNodes)
+		static MWingStep? collectCore(ref StepAnalysisContext context, bool supportsGroupedNodes)
 		{
 			// A grid must contain at least one bi-value cell.
 			if (!BivalueCells)

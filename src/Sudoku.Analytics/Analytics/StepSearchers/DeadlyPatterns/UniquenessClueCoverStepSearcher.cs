@@ -30,7 +30,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 	/// ..+1.....+9.....+9..1.+9...1..2+349.5..2..+1632.9+4552.+9.43..1+84+79...39+6....7.8.5.8.6.9+4:711 716 816 721 323 723 731 333 733 435 635 835 538 638 838 647 765 865 668 768
 	/// ]]></code>
 	/// </example>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var (chuteIndex, chute, isRow, _) in Chutes)

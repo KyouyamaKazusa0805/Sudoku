@@ -18,7 +18,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);

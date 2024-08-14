@@ -30,7 +30,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<NormalChainStep>();
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);

@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearcherModules;
 
-using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
+using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref StepAnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
 
 /// <summary>
 /// Represents a subset module.
@@ -13,7 +13,7 @@ internal static class SubsetModule
 	/// <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The collected steps.</returns>
-	public static unsafe Step? CollectCore(bool searchingForLocked, ref AnalysisContext context)
+	public static unsafe Step? CollectCore(bool searchingForLocked, ref StepAnalysisContext context)
 	{
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
@@ -50,7 +50,7 @@ internal static class SubsetModule
 	/// Search for hidden subsets.
 	/// </summary>
 	private static HiddenSubsetStep? HiddenSubset(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap emptyCellsForGrid,
 		ReadOnlySpan<CellMap> candidatesMapForGrid,
@@ -158,7 +158,7 @@ internal static class SubsetModule
 	/// Search for naked subsets.
 	/// </summary>
 	private static NakedSubsetStep? NakedSubset(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap emptyCellsForGrid,
 		ReadOnlySpan<CellMap> candidatesMapForGrid,

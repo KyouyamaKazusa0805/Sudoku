@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.StepSearchers;
 using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<
 	List<UniqueLoopStep>,
 	ref readonly Grid,
-	ref AnalysisContext,
+	ref StepAnalysisContext,
 	Digit,
 	Digit,
 	ref readonly CellMap,
@@ -46,7 +46,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
 	{
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
@@ -166,9 +166,9 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	}
 
 
-	private static partial UniqueLoopStep? CheckType1(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType2(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType3(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckType4(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
-	private static partial UniqueLoopStep? CheckStrongLinkType(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType1(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType2(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType3(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckType4(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
+	private static partial UniqueLoopStep? CheckStrongLinkType(List<UniqueLoopStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Digit d1, Digit d2, ref readonly CellMap loop, ref readonly CellMap extraCellsMap, Mask comparer, Cell[] path);
 }

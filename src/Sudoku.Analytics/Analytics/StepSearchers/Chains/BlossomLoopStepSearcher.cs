@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class BlossomLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<BlossomLoopStep>();
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);

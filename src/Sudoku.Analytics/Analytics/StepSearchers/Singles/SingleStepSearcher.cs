@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref AnalysisContext, ref readonly Grid, Step?>;
+using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref StepAnalysisContext, ref readonly Grid, Step?>;
 
 /// <summary>
 /// Provides with a <b>Single</b> step searcher.
@@ -63,15 +63,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 		=> UseIttoryuMode ? Collect_IttoryuMode(ref context) : Collect_NonIttoryuMode(ref context);
 
 	/// <summary>
 	/// Checks for single steps using ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? Collect_IttoryuMode(ref AnalysisContext context)
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
+	private Step? Collect_IttoryuMode(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		for (var (i, digit) = (0, context.PreviousSetDigit); i < 9; i++, digit = (digit + 1) % 9)
@@ -199,9 +199,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for single steps using non-ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private unsafe Step? Collect_NonIttoryuMode(ref AnalysisContext context)
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
+	private unsafe Step? Collect_NonIttoryuMode(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var isFullyMarkedMode = !context.Options.DistinctDirectMode || !context.Options.IsDirectMode;
@@ -228,7 +228,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for full houses.
 	/// </summary>
-	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
+	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
 	{
 		for (var house = 0; house < 27; house++)
 		{
@@ -274,7 +274,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden singles.
 	/// </summary>
-	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
+	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
 	{
 		if (@this.HiddenSinglesInBlockFirst)
 		{
@@ -346,7 +346,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked singles.
 	/// </summary>
-	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
+	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, ref StepAnalysisContext context, ref readonly Grid grid)
 	{
 		for (var cell = 0; cell < 81; cell++)
 		{
@@ -402,7 +402,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
 		SingleStepSearcher @this,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit digit,
 		House house
 	)

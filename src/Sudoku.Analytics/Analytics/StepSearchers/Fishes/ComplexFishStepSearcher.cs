@@ -66,7 +66,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -127,7 +127,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	private void Collect(
 		List<ComplexFishStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap pomElimsOfThisDigit,
 		Digit digit,
 		bool onlyFindOne
@@ -483,11 +483,11 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(ref readonly Grid grid, ref AnalysisContext context)
+	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		var context2 = new AnalysisContext(in playground) { Accumulator = tempList, OnlyFindOne = false, Options = context.Options };
+		var context2 = new StepAnalysisContext(in playground) { Accumulator = tempList, OnlyFindOne = false, Options = context.Options };
 		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];

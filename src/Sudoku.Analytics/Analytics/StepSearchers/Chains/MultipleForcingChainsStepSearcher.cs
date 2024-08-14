@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<ChainStep>();
 		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);

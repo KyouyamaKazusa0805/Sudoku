@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		for (var (i, length) = (0, BivalueCells.Count); i < length - 1; i++)

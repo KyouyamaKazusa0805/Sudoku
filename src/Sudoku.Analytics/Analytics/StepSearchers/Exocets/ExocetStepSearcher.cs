@@ -82,7 +82,7 @@ using TargetCellsGroup = CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.En
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var chuteIndexBox = (stackalloc int[3]);
@@ -332,7 +332,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectJuniorExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -494,7 +494,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectSeniorExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -594,7 +594,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="housesCells">The houses cells to be used for the base houses.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectComplexJuniorExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -743,7 +743,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="housesCells">The houses cells to be used for the base houses.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectComplexSeniorExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -1034,7 +1034,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectWeakExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -1357,7 +1357,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
 	private static ExocetStep? CollectDoubleExocets(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -1481,7 +1481,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET || SENIOR_EXOCET
 	private static ExocetBaseStep? CheckJuniorOrSeniorBase(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -1675,7 +1675,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if SENIOR_EXOCET
 	private static ExocetStep? CheckSeniorExocetNoValueCells(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -1774,7 +1774,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	//
 #if JUNIOR_EXOCET
 	private static ExocetMirrorConjugatePairStep? CheckMirrorConjugatePair(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -1894,7 +1894,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetAdjacentTargetStep? CheckAdjacentTarget(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2013,7 +2013,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetIncompatiblePairStep? CheckIncompatiblePair(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2215,7 +2215,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetTargetPairStep? CheckTargetPair(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2333,7 +2333,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetGeneralizedFishStep? CheckGeneralizedFish(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2426,7 +2426,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetMirrorAlmostHiddenSetStep? CheckMirrorAlmostHiddenSet(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2565,7 +2565,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static ExocetLockedMemberStep? CheckJuniorLockedMember(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2736,7 +2736,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if JUNIOR_EXOCET
 	private static JuniorExocetMirrorSyncStep? CheckMirrorSync(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -2859,7 +2859,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if SENIOR_EXOCET
 	private static SeniorExocetTrueBaseStep? CheckSeniorTrueBase(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -2955,7 +2955,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if SENIOR_EXOCET
 	private static ExocetLockedMemberStep? CheckSeniorLockedMember(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -3077,7 +3077,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if WEAK_EXOCET
 	private static WeakExocetStep? CheckBaseWeak(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
@@ -3150,7 +3150,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if WEAK_EXOCET
 	private static WeakExocetAdjacentTargetStep? CheckWeakAdjacentTarget(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
@@ -3238,7 +3238,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if WEAK_EXOCET
 	private static WeakExocetSlashStep? CheckWeakExocetSlash(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
@@ -3341,7 +3341,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if WEAK_EXOCET
 	private static WeakExocetBzRectangleStep? CheckWeakExocetBzRectangle(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
@@ -3422,7 +3422,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if DOUBLE_EXOCET
 	private static DoubleExocetBaseStep? CheckDoubleBase(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -3493,7 +3493,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if DOUBLE_EXOCET
 	private static DoubleExocetGeneralizedFishStep? CheckDoubleGeneralizedFish(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -3582,7 +3582,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_JUNIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexJuniorLockedMember(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -3750,7 +3750,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexSeniorLockedMember(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -3934,7 +3934,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetLockedMemberStep? CheckComplexSeniorLockedMemberGrouped(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -4069,7 +4069,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_JUNIOR_EXOCET
 	private static ComplexExocetBaseStep? CheckComplexJuniorBase(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -4154,7 +4154,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_SENIOR_EXOCET
 	private static ComplexExocetBaseStep? CheckComplexSeniorBase(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -4240,7 +4240,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_SENIOR_EXOCET
 	private static AdvancedComplexSeniorExocetStep? CheckAdvancedComplexSenior(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		Cell targetCell,
@@ -4324,7 +4324,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_JUNIOR_EXOCET
 	private static ComplexJuniorExocetAdjacentTargetStep? CheckComplexJuniorAdjacentTarget(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
@@ -4447,7 +4447,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 #if COMPLEX_JUNIOR_EXOCET
 	private static ComplexJuniorExocetMirrorConjugatePairStep? CheckComplexJuniorMirrorConjugatePair(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,

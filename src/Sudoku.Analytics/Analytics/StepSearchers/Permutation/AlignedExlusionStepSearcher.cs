@@ -25,7 +25,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var tempAccumulator = new List<AlignedExclusionStep>();

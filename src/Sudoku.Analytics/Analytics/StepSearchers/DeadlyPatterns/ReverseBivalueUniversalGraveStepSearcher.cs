@@ -41,7 +41,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Collect all possible digits can be used for the final construction of reverse BUGs.
 		ref readonly var grid = ref context.Grid;
@@ -184,16 +184,16 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 1.
 	/// </summary>
 	/// <param name="accumulator">The accumulator.</param>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType1Step? CheckType1(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
@@ -240,16 +240,16 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 2.
 	/// </summary>
 	/// <param name="accumulator">The step accumulator.</param>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType2Step? CheckType2(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
@@ -300,16 +300,16 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 3.
 	/// </summary>
 	/// <param name="accumulator">The step accumulator.</param>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType3Step? CheckType3(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
@@ -425,16 +425,16 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Check for type 4.
 	/// </summary>
 	/// <param name="accumulator">The step accumulator.</param>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="d1">The first digit used.</param>
 	/// <param name="d2">The second digit used.</param>
 	/// <param name="comparer">A mask that contains the digits <paramref name="d1"/> and <paramref name="d2"/>.</param>
 	/// <param name="completePattern">The complete pattern.</param>
 	/// <param name="cellsChosen">The empty cells chosen.</param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType4Step? CheckType4(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,

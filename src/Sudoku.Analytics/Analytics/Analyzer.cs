@@ -256,7 +256,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 #endif
 				? []
 				: default(List<Step>);
-			var context = new AnalysisContext(in playground, in puzzle)
+			var context = new StepAnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
 				Options = Options,
@@ -597,7 +597,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			static bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
-				ref readonly AnalysisContext context,
+				ref readonly StepAnalysisContext context,
 				ref Grid playground,
 				long timestampOriginal,
 				List<Grid> steppingGrids,

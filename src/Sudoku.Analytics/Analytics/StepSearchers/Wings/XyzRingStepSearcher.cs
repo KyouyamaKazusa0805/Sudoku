@@ -47,7 +47,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// a  .  .  | a  .  . ← conjugate pair of 'a'
 	/// ]]></code>
 	/// </remarks>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var accumulator = new List<XyzRingStep>();
@@ -86,7 +86,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	private void CollectCore(List<XyzRingStep> accumulator, ref readonly Grid grid, ref readonly AnalysisContext context)
+	private void CollectCore(List<XyzRingStep> accumulator, ref readonly Grid grid, ref readonly StepAnalysisContext context)
 	{
 		// The pattern starts with a tri-value cell, so check for it.
 		var trivalueCells = CellMap.Empty;

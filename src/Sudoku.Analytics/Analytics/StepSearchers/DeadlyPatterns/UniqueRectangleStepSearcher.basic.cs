@@ -24,7 +24,7 @@ public partial class UniqueRectangleStepSearcher
 	///  ab   ab
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType1(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType1(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		var mask = grid[in otherCellsMap];
@@ -106,7 +106,7 @@ public partial class UniqueRectangleStepSearcher
 	///  ab    ab
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType2(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType2(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
 		var mask = grid[in otherCellsMap];
@@ -207,7 +207,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abx   aby
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType3(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType3(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		var notSatisfiedType3 = false;
 		foreach (var cell in otherCellsMap)
@@ -346,7 +346,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abx  aby
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType4(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType4(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -451,7 +451,7 @@ public partial class UniqueRectangleStepSearcher
 	///  abc  abc
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType5(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType5(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
 		if (grid.GetCandidates(cornerCell) != comparer)
 		{
@@ -547,7 +547,7 @@ public partial class UniqueRectangleStepSearcher
 	///        ↑corner2
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckType6(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckType6(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		if ((grid.GetCandidates(corner1) | grid.GetCandidates(corner2)) != comparer)
 		{
@@ -571,7 +571,7 @@ public partial class UniqueRectangleStepSearcher
 
 		void collectCore(
 			ref readonly Grid grid,
-			ref AnalysisContext context,
+			ref StepAnalysisContext context,
 			ref readonly CellMap otherCellsMap,
 			bool isRow,
 			Digit digit,
@@ -667,7 +667,7 @@ public partial class UniqueRectangleStepSearcher
 	///  aby  abz
 	/// ]]></code>
 	/// </remarks>
-	private partial void CheckHidden(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	private partial void CheckHidden(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
 		var cells = urCells.AsCellMap();
 		if (!arMode && grid.GetCandidates(cornerCell) != comparer || arMode && (EmptyCells & cells) != otherCellsMap)

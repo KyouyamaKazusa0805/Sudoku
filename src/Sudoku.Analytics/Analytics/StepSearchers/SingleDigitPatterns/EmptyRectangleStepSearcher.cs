@@ -27,7 +27,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		for (var digit = 0; digit < 9; digit++)
 		{

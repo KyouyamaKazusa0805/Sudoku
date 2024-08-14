@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var ((line, block), (a, b, c, _)) in Miniline.Map)

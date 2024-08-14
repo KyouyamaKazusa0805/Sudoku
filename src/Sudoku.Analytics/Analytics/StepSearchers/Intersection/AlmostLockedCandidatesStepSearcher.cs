@@ -40,7 +40,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		foreach (var checkValueCells in (false, true))
 		{
@@ -73,9 +73,9 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="Collect(ref StepAnalysisContext)" path="/summary"/>
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="size">The size.</param>
 	/// <param name="baseSet">The base set.</param>
 	/// <param name="coverSet">The cover set.</param>
@@ -109,7 +109,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// </para>
 	/// </remarks>
 	private static AlmostLockedCandidatesStep? Collect(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		int size,
 		House baseSet,
 		House coverSet,

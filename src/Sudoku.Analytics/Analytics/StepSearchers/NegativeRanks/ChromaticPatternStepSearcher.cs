@@ -110,7 +110,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -210,7 +210,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternType1Step? CheckType1(ref AnalysisContext context, ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternType1Step? CheckType1(ref StepAnalysisContext context, ref readonly CellMap pattern, House[] blocks)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
@@ -269,7 +269,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternXzStep? CheckXz(ref AnalysisContext context, ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternXzStep? CheckXz(ref StepAnalysisContext context, ref readonly CellMap pattern, House[] blocks)
 	{
 		ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid[in pattern];

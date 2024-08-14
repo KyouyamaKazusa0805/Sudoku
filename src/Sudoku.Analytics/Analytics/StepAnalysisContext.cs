@@ -8,17 +8,17 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods, IsLargeStructure = true)]
-public ref partial struct AnalysisContext(
+public ref partial struct StepAnalysisContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid initialGrid
 ) : IContext
 {
 	/// <summary>
-	/// Initializes an <see cref="AnalysisContext"/> instance via the specified grid.
+	/// Initializes an <see cref="StepAnalysisContext"/> instance via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AnalysisContext(ref readonly Grid grid) : this(in grid, in @ref.NullRef<Grid>())
+	public StepAnalysisContext(ref readonly Grid grid) : this(in grid, in @ref.NullRef<Grid>())
 	{
 	}
 

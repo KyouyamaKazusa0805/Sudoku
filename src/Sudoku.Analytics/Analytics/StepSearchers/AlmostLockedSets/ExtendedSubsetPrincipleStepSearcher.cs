@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Must starts with an extended WXYZ-Wing (4 pattern cells and at least one elimination).
 		if (EmptyCells.Count < 5)

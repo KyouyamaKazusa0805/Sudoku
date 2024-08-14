@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>;
+using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>;
 
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
@@ -29,7 +29,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
 	{
 		// Normal types are cleared in type 'Analyzer'.
 
@@ -99,7 +99,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(ref readonly Grid grid, ref AnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckDiagonal_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -231,7 +231,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(ref readonly Grid grid, ref AnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckAntiDiagonal_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -363,7 +363,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(ref readonly Grid grid, ref AnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckXAxis_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -466,7 +466,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(ref readonly Grid grid, ref AnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckYAxis_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
@@ -568,7 +568,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(ref readonly Grid grid, ref AnalysisContext context)
+	private static AntiGurthSymmetricalPlacementStep? CheckCentral_Anti(ref readonly Grid grid, ref StepAnalysisContext context)
 	{
 		var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();

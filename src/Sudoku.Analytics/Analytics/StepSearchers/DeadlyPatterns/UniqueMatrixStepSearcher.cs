@@ -72,7 +72,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -112,7 +112,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType1Step? CheckType1(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		ref readonly CellMap pattern,
 		Mask mask
@@ -174,7 +174,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType2Step? CheckType2(
 		List<Step> accumulator,
 		bool onlyFindOne,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap pattern,
 		Mask mask
 	)
@@ -231,7 +231,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType3Step? CheckType3(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		ref readonly CellMap pattern,
 		Mask mask
@@ -327,7 +327,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType4Step? CheckType4(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		ref readonly CellMap pattern,
 		Mask mask

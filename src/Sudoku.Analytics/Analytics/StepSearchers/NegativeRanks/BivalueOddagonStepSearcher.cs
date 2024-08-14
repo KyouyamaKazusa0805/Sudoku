@@ -30,7 +30,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (BivalueCells.Count < 4)
 		{
@@ -226,7 +226,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private BivalueOddagonType2Step? CheckType2(
 		List<BivalueOddagonStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,
@@ -283,7 +283,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	private BivalueOddagonType3Step? CheckType3(
 		List<BivalueOddagonStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		ref readonly CellMap loop,

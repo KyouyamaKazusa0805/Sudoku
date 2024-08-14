@@ -35,7 +35,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ChainingDriver"/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<NormalChainStep>();
 		ref readonly var grid = ref context.Grid;

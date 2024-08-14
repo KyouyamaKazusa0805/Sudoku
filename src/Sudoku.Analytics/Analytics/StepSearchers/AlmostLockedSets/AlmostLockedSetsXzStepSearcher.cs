@@ -38,7 +38,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	/// will tell you what is it.
 	/// </para>
 	/// </remarks>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);

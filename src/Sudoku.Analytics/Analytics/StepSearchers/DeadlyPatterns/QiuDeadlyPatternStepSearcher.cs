@@ -96,7 +96,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Handle for case 1.
 		foreach (var pattern in PatternsForCase1)
@@ -120,12 +120,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/summary"/>
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly QiuDeadlyPattern1 pattern)
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern1 pattern)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -158,12 +158,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/summary"/>
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref AnalysisContext context, ref readonly QiuDeadlyPattern2 pattern)
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern2 pattern)
 	{
 		// TODO: Re-implement later.
 		return null;
@@ -173,7 +173,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// Check for base type.
 	/// </summary>
 	private QiuDeadlyPatternStep? CheckForBaseType(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly QiuDeadlyPattern1 pattern,
 		ref readonly CellMap valueCellsInBothLines,
@@ -381,7 +381,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (type 1).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="grid">The grid used.</param>
@@ -389,7 +389,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l2">The line 2.</param>
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -407,7 +407,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly Grid grid,
@@ -469,7 +469,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (type 2).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="grid">The grid used.</param>
@@ -478,9 +478,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="extraDigitsMask">Indicates a mask value that holds extra digits.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private QiuDeadlyPatternType2Step? BaseType_Type2(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly Grid grid,
@@ -554,7 +554,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (type 3).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="grid">The grid used.</param>
@@ -563,7 +563,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <param name="extraDigitsMask">Indicates a mask value that holds extra digits.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -571,7 +571,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternType3Step? BaseType_Type3(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly Grid grid,
@@ -694,14 +694,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (type 4).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="l1">The line 1.</param>
 	/// <param name="l2">The line 2.</param>
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -710,7 +710,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternType4Step? BaseType_Type4(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		House l1,
@@ -786,14 +786,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (locked type).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="grid">The grid used.</param>
 	/// <param name="l1">The line 1.</param>
 	/// <param name="l2">The line 2.</param>
 	/// <param name="cornerLockedDigitsMask">A mask value that holds digits locked in cross-line cells.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -803,7 +803,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternLockedTypeStep? BaseType_TypeLocked(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly Grid grid,
@@ -895,7 +895,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (external type 1).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="mirror">Indicates the mirror cells used in a pattern.</param>
@@ -903,7 +903,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l1">The line 1.</param>
 	/// <param name="l2">The line 2.</param>
 	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -911,7 +911,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternExternalType1Step? BaseType_ExternalType1(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly CellMap mirror,
@@ -989,7 +989,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for base type (external type 2).
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
+	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="corner">Indicates the corner cells used in a pattern.</param>
 	/// <param name="crossline">Indicates the cross-line cells used in a pattern.</param>
 	/// <param name="mirror">Indicates the mirror cells used in a pattern.</param>
@@ -997,7 +997,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l1">The line 1.</param>
 	/// <param name="l2">The line 2.</param>
 	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
-	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	/// <example>
 	/// Test examples:
 	/// <code><![CDATA[
@@ -1005,7 +1005,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternExternalType2Step? BaseType_ExternalType2(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
 		ref readonly CellMap crossline,
 		ref readonly CellMap mirror,

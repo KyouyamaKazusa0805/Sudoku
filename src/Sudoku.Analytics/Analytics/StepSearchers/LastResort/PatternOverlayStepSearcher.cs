@@ -17,7 +17,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var templates = GetInvalidPos(in context.Grid);
 		for (var digit = 0; digit < 9; digit++)

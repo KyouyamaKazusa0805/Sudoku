@@ -84,7 +84,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var pairs = (stackalloc Mask[8]);
 		var tempLink = (stackalloc Mask[8]);

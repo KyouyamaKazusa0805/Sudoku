@@ -149,7 +149,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -285,7 +285,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap patternCells,
 		ref readonly CellMap extraCells,
 		Mask normalDigits,
@@ -353,7 +353,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap patternCells,
 		ref readonly CellMap extraCells,
 		Mask normalDigits,
@@ -410,7 +410,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap patternCells,
 		Mask normalDigits,
 		Mask extraDigits,
@@ -614,7 +614,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	private Step? CheckType14(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly CellMap patternCells,
 		Mask normalDigits,
 		ref readonly CellMap extraCells,

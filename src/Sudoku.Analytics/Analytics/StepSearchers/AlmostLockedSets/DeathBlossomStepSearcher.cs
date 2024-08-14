@@ -50,7 +50,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{
@@ -317,7 +317,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// Create a <see cref="DeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
 	private DeathBlossomStep? CreateStep_NormalType(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		Cell pivot,
 		scoped Span<int> alsReferenceTable,
@@ -448,7 +448,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// Create a <see cref="HouseDeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
 	private HouseDeathBlossomStep? CreateStep_HouseType(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		House house,
 		Mask disappearedDigitsMask,
@@ -581,7 +581,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// and add it into the accumulator if worth.
 	/// </summary>
 	private NTimesAlmostLockedSetsDeathBlossomStep? CreateStep_NTimesAlsType(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ReadOnlySpan<AlmostLockedSet> alses,
 		scoped Span<CellMap> alsesUsed,

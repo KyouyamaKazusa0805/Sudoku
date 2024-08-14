@@ -190,7 +190,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (EmptyCells.Count < 7)
 		{
@@ -246,7 +246,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -315,7 +315,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -377,7 +377,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
@@ -489,7 +489,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	private BorescoperDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		BorescoperDeadlyPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,

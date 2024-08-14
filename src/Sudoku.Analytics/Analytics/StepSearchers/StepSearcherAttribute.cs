@@ -26,7 +26,7 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	/// </para>
 	/// <para>
 	/// As a property reversed from <see cref="IsCachingSafe"/>, this property tags for a step searcher not using
-	/// <see cref="AnalysisContext.Grid"/>. If a step searcher type always use caching fields without any doubt,
+	/// <see cref="StepAnalysisContext.Grid"/>. If a step searcher type always use caching fields without any doubt,
 	/// this property should be set with <see langword="true"/>.
 	/// </para>
 	/// <para><i>
@@ -34,7 +34,7 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	/// </i></para>
 	/// </summary>
 	/// <seealso cref="IsCachingSafe"/>
-	/// <seealso cref="AnalysisContext.Grid"/>
+	/// <seealso cref="StepAnalysisContext.Grid"/>
 	public bool IsCachingUnsafe { get; init; }
 
 	/// <summary>

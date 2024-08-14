@@ -31,7 +31,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
 		ref readonly var grid = ref context.Grid;
@@ -87,25 +87,25 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/summary"/>
+	/// <inheritdoc cref="Collect(ref StepAnalysisContext)" path="/summary"/>
 	/// </summary>
 	/// <param name="result">The accumulator instance to gather the result.</param>
 	/// <param name="grid">The sudoku grid to be checked.</param>
 	/// <param name="context">The context.</param>
-	/// <param name="onlyFindOne"><inheritdoc cref="AnalysisContext.OnlyFindOne"/></param>
+	/// <param name="onlyFindOne"><inheritdoc cref="StepAnalysisContext.OnlyFindOne"/></param>
 	/// <param name="startCand">The start candidate to be assumed.</param>
 	/// <param name="length">The whole length to be searched.</param>
-	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private BowmanBingoStep? Collect(
 		List<BowmanBingoStep> result,
 		ref Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		Candidate startCand,
 		int length
 	)
 	{
-		var context2 = new AnalysisContext(in grid) { OnlyFindOne = true, Options = context.Options };
+		var context2 = new StepAnalysisContext(in grid) { OnlyFindOne = true, Options = context.Options };
 		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions: [{ Cell: var c, Digit: var d } conclusion, ..] })
 		{
 			// Two cases we don't need to go on.

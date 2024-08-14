@@ -103,7 +103,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	}
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
@@ -153,7 +153,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		ref readonly Firework pattern,
 		Mask digitsMask,
@@ -264,7 +264,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	private FireworkQuadrupleStep? CheckQuadruple(
 		List<Step> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		bool onlyFindOne,
 		ref readonly Firework pattern
 	)

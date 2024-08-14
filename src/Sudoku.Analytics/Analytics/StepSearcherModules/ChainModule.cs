@@ -12,7 +12,7 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref AnalysisContext context, List<NormalChainStep> accumulator, ChainingRules supportedRules)
+	public static Step? CollectCore(ref StepAnalysisContext context, List<NormalChainStep> accumulator, ChainingRules supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
 		var cachedAlsIndex = 0;
@@ -61,7 +61,7 @@ internal static class ChainModule
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
 	public static Step? CollectMultipleCore(
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		List<ChainStep> accumulator,
 		ChainingRules supportedRules,
 		bool onlyFindFinnedChain
@@ -125,7 +125,7 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectBlossomLoopCore(ref AnalysisContext context, List<BlossomLoopStep> accumulator, ChainingRules supportedRules)
+	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, List<BlossomLoopStep> accumulator, ChainingRules supportedRules)
 	{
 		ref readonly var grid = ref context.Grid;
 		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))

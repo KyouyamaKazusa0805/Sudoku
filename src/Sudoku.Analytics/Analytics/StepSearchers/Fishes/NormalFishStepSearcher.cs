@@ -69,7 +69,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
 	{
 		var r = stackalloc House*[9];
 		var c = stackalloc House*[9];
@@ -167,7 +167,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	private unsafe void Collect(
 		List<FishStep> accumulator,
 		ref readonly Grid grid,
-		ref AnalysisContext context,
+		ref StepAnalysisContext context,
 		int size,
 		House** r,
 		House** c,

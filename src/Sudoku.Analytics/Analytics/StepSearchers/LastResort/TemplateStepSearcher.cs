@@ -23,7 +23,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(ref AnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{
