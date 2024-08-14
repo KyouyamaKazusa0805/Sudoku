@@ -131,7 +131,7 @@ internal static class ChainModule
 		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
 		{
 			var step = new BlossomLoopStep(
-				blossomLoop.Conclusions,
+				[.. blossomLoop.Conclusions],
 				getViews(blossomLoop, in grid, supportedRules),
 				context.Options,
 				blossomLoop

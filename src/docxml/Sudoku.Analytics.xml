@@ -19978,7 +19978,7 @@
             </summary>
             <param name="conclusions">Indicates the conclusions used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Concepts.BlossomLoop.#ctor(Sudoku.Concepts.ConclusionSet)">
             <summary>
             Represents a blossom loop.
             </summary>

@@ -148,7 +148,7 @@ internal partial class ChainingDriver
 				}
 
 				// Collect pattern.
-				var blossomLoop = new BlossomLoop([.. conclusions]);
+				var blossomLoop = new BlossomLoop(conclusions);
 				for (var i = 0; i < cellDistribution.Count; i++)
 				{
 					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
@@ -196,7 +196,7 @@ internal partial class ChainingDriver
 				}
 
 				// Collect pattern.
-				var blossomLoop = new BlossomLoop([.. conclusions]);
+				var blossomLoop = new BlossomLoop(conclusions);
 				for (var i = 0; i < houseDistribution.Count; i++)
 				{
 					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
@@ -244,7 +244,7 @@ internal partial class ChainingDriver
 				}
 
 				// Collect pattern.
-				var blossomLoop = new BlossomLoop([.. conclusions]);
+				var blossomLoop = new BlossomLoop(conclusions);
 				for (var i = 0; i < cellDistribution.Count; i++)
 				{
 					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
@@ -290,7 +290,7 @@ internal partial class ChainingDriver
 				}
 
 				// Collect pattern.
-				var blossomLoop = new BlossomLoop([.. conclusions]);
+				var blossomLoop = new BlossomLoop(conclusions);
 				for (var i = 0; i < houseDistribution.Count; i++)
 				{
 					blossomLoop.Add(arrayCellDistribution[i].Root.Map[0], strongForcingChains[i]);
