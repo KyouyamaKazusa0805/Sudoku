@@ -18924,7 +18924,7 @@
             <param name="count">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithSameLevelConfigruation(Sudoku.Analytics.Collector,Sudoku.Analytics.CollectorDifficultyLevelMode)">
+        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithSameLevelConfiguration(Sudoku.Analytics.Collector,Sudoku.Analytics.CollectorDifficultyLevelMode)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> with the target value.
             </summary>

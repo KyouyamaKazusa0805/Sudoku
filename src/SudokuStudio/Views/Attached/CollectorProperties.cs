@@ -23,7 +23,7 @@ public static partial class CollectorProperties
 
 	[Callback]
 	private static void DifficultyLevelModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithSameLevelConfigruation((CollectorDifficultyLevelMode)(int)e.NewValue);
+		=> SudokuPaneBindable.GetStepCollector((SudokuPane)d).WithSameLevelConfiguration((CollectorDifficultyLevelMode)(int)e.NewValue);
 
 	[Callback]
 	private static void CollectorMaxStepsCollectedPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

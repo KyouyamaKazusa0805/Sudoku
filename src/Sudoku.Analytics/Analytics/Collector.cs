@@ -20,7 +20,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// <remarks>
 	/// The default value is <see cref="CollectorDifficultyLevelMode.OnlySame"/>.
 	/// </remarks>
-	[FactoryProperty(MethodSuffixName = "SameLevelConfigruation", ParameterName = "collectingMode")]
+	[FactoryProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
