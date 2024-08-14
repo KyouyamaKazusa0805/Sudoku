@@ -1,10 +1,6 @@
 namespace Sudoku.Analytics;
 
-/// <summary>
-/// Represents a factory for construction of type <see cref="Collector"/>, with extra configuration.
-/// </summary>
-/// <seealso cref="Collector"/>
-public static class CollectorFactory
+public partial class __CollectorFactoryMethods
 {
 	/// <summary>
 	/// Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.

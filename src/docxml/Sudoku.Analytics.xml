@@ -496,7 +496,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
         </member>
         <member name="F:Sudoku.Analytics.Analyzer.DefaultStepsCapacity">
             <summary>
@@ -641,34 +640,6 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerFactory">
-            <summary>
-            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.Analyzer"/>, with extra configuration.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
-            <summary>
-            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
-            </summary>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
-            <param name="level">Indicates the difficulty level preserved.</param>
-            <returns>The result.</returns>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
-            <summary>
-            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
-            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
-            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="propertySetter">The method to set the target property with new value.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
             <summary>
@@ -5389,23 +5360,6 @@
             <summary>
             Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.CollectorFactory">
-            <summary>
-            Represents a factory for construction of type <see cref="T:Sudoku.Analytics.Collector"/>, with extra configuration.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Collector"/>
-        </member>
-        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Collector,System.Action{``0})">
-            <summary>
-            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
-            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
-            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
-            </summary>
-            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
-            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="propertySetter">The method to set the target property with new value.</param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.IStepSearcherOptions`1">
             <summary>
@@ -18898,6 +18852,28 @@
             ]]></code>
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="stepSearchers">The custom collection of <see cref="T:Sudoku.Analytics.StepSearcher"/>s.</param>
+            <param name="level">Indicates the difficulty level preserved.</param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithStepSearcherSetters``1(Sudoku.Analytics.Analyzer,System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithRandomizedChoosing(Sudoku.Analytics.Analyzer,System.Boolean)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Analyzer.RandomizedChoosing"/> with the target value.
@@ -18974,6 +18950,17 @@
                 .WithBaz(1, 2, 3);
             ]]></code>
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithStepSearcherSetters``1(Sudoku.Analytics.Collector,System.Action{``0})">
+            <summary>
+            Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.
+            If the target <see cref="T:Sudoku.Analytics.StepSearcher"/> collection does not contain the step searcher instance
+            of type <typeparamref name="TStepSearcher"/>, the assignment will be skipped, never throwing exceptions.
+            </summary>
+            <typeparam name="TStepSearcher">The type of the <see cref="T:Sudoku.Analytics.StepSearcher"/>.</typeparam>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="propertySetter">The method to set the target property with new value.</param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithMaxSteps(Sudoku.Analytics.Collector,System.Int32)">
             <summary>

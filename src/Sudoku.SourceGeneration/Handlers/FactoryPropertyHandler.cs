@@ -29,9 +29,10 @@ internal static class FactoryPropertyHandler
 					///     .WithBaz(1, 2, 3);
 					/// ]]></code>
 					/// </summary>
+					[global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(FactoryPropertyHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					public static class __{{typeSymbol.Name}}FactoryMethods
+					public static partial class __{{typeSymbol.Name}}FactoryMethods
 					{
 				{{string.Join("\r\n\r\n\t\t", methodDeclarations)}}
 					}

@@ -8,7 +8,6 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
-/// <seealso cref="AnalyzerFactory"/>
 public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>
 {
 	/// <summary>

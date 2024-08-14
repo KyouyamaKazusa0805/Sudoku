@@ -1,10 +1,6 @@
 namespace Sudoku.Analytics;
 
-/// <summary>
-/// Represents a factory for construction of type <see cref="Analyzer"/>, with extra configuration.
-/// </summary>
-/// <seealso cref="Analyzer"/>
-public static class AnalyzerFactory
+public partial class __AnalyzerFactoryMethods
 {
 	/// <summary>
 	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
