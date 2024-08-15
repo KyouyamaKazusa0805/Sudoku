@@ -1,9 +1,11 @@
 namespace Sudoku.Analytics;
 
+using CollectorBase = IAnalyzerOrCollector<Collector, CollectorContext, ReadOnlySpan<Step>>;
+
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
 /// </summary>
-public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>
+public sealed partial class Collector : CollectorBase
 {
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
@@ -20,22 +22,22 @@ public sealed partial class Collector : AnalyzerOrCollector, ICollector<Collecto
 	/// <inheritdoc/>
 	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public override ReadOnlyMemory<StepSearcher> StepSearchers
+	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get => _stepSearchers;
 
-		set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
+		set => ResultStepSearchers = CollectorBase.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
 	}
 
 	/// <inheritdoc/>
-	public override ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; protected internal set; } =
+	public ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; internal set; } =
 		from searcher in StepSearcherPool.StepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Collecting)
 		select searcher;
 
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
-	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
+	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 
 	/// <inheritdoc/>

@@ -194,7 +194,11 @@ public static partial class AnalyzerProperties
 	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
-	/// <typeparam name="TAnalyzerOrCollector">The type of the instance. The type must implement <see cref="AnalyzerOrCollector"/>.</typeparam>
+	/// <typeparam name="TAnalyzerOrCollector">
+	/// The type of the instance. The type must implement <see cref="IAnalyzerOrCollector{TSelf, TContext, TResult}"/>.
+	/// </typeparam>
+	/// <typeparam name="TContext">The type of the context.</typeparam>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPropertyValue">The attached property.</param>
 	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
@@ -204,8 +208,15 @@ public static partial class AnalyzerProperties
 	/// </param>
 	/// <returns>The same reference as <paramref name="this"/>.</returns>
 	/// <seealso cref="AnalyzerProperties"/>
-	public static TAnalyzerOrCollector WithRuntimeIdentifierSetter<TAnalyzerOrCollector>(this TAnalyzerOrCollector @this, object attachedPropertyValue, string methodName, out bool propertyMatched)
-		where TAnalyzerOrCollector : AnalyzerOrCollector
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TContext, TResult>(
+		this TAnalyzerOrCollector @this,
+		object attachedPropertyValue,
+		string methodName,
+		out bool propertyMatched
+	)
+		where TAnalyzerOrCollector : IAnalyzerOrCollector<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
+		where TContext : allows ref struct
+		where TResult : allows ref struct
 	{
 		var targetStepSearcherCollection = @this.ResultStepSearchers;
 		foreach (var searcher in targetStepSearcherCollection)
@@ -228,21 +239,32 @@ public static partial class AnalyzerProperties
 	}
 
 	/// <summary>
-	/// Calls the method <see cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
-	/// for all properties in type <see cref="AnalyzerProperties"/>.
+	/// Calls the method <see cref="WithRuntimeIdentifierSetter"/> for all properties in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
+	/// <typeparam name="TAnalyzerOrCollector">
+	/// The type of the instance. The type must implement <see cref="IAnalyzerOrCollector{TSelf, TContext, TResult}"/>.
+	/// </typeparam>
+	/// <typeparam name="TContext">The type of the context.</typeparam>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <param name="this">The analyzer instance.</param>
 	/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
 	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
-	/// <seealso cref="WithRuntimeIdentifierSetter{T}(T, object, string?, out bool)"/>
-	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector>(this TAnalyzerOrCollector @this, SudokuPane attachedPane) where TAnalyzerOrCollector : AnalyzerOrCollector
+	/// <seealso cref="WithRuntimeIdentifierSetter"/>
+	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector, TContext, TResult>(this TAnalyzerOrCollector @this, SudokuPane attachedPane)
+		where TAnalyzerOrCollector : IAnalyzerOrCollector<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
+		where TContext : allows ref struct
+		where TResult : allows ref struct
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{
 			if (methodInfo.Name.StartsWith(GetSetterName))
 			{
-				@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane])!, methodInfo.Name, out _);
+				@this.WithRuntimeIdentifierSetter<TAnalyzerOrCollector, TContext, TResult>(
+					methodInfo.Invoke(null, [attachedPane])!,
+					methodInfo.Name,
+					out _
+				);
 			}
 		}
 		return @this;

@@ -139,7 +139,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			.WithCulture(App.CurrentCulture)
 			.WithSameLevelConfiguration((CollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(((App)Application.Current).GetStepSearchers())
-			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
+			.WithRuntimeIdentifierSetters<Collector, CollectorContext, ReadOnlySpan<Step>>(BasePage.SudokuPane)
 			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 

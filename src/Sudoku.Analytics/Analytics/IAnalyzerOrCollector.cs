@@ -1,9 +1,15 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Extracts a new type that represents an analyzer or a collector type.
+/// Represents an analyzer or a collector type.
 /// </summary>
-public abstract class AnalyzerOrCollector
+/// <typeparam name="TSelf">The type itself.</typeparam>
+/// <typeparam name="TContext">The type of the context.</typeparam>
+/// <typeparam name="TResult">The type of the result value.</typeparam>
+public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
+	where TSelf : IAnalyzerOrCollector<TSelf, TContext, TResult>, allows ref struct
+	where TContext : allows ref struct
+	where TResult : allows ref struct
 {
 	/// <summary>
 	/// <para>
@@ -23,7 +29,7 @@ public abstract class AnalyzerOrCollector
 	/// <summary>
 	/// Indicates the result step searchers used in the current analyzer or collector.
 	/// </summary>
-	public abstract ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; protected internal set; }
+	public abstract ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; }
 
 	/// <summary>
 	/// Indicates the extra options to be set. The options will be passed into <see cref="Step"/> instances collected

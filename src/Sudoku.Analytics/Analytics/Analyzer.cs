@@ -2,13 +2,15 @@
 
 namespace Sudoku.Analytics;
 
+using AnalyzerBase = IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>;
+
 /// <summary>
 /// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics,
 /// and creates an <see cref="AnalysisResult"/> instance indicating the analytics data.
 /// </summary>
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
-public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>
+public sealed partial class Analyzer : AnalyzerBase
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -57,22 +59,22 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
-	public override ReadOnlyMemory<StepSearcher> StepSearchers
+	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get => _stepSearchers;
 
-		set => ResultStepSearchers = FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
+		set => ResultStepSearchers = AnalyzerBase.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>
-	public override ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; protected internal set; } =
+	public ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; internal set; } =
 		from searcher in StepSearcherPool.StepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching)
 		select searcher;
 
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "UserDefinedOptions")]
-	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
+	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 	/// <summary>
 	/// Indicates the conditional options to be set.
@@ -81,7 +83,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
-	Random IAnalyzer<Analyzer, AnalyzerContext, AnalysisResult>.RandomNumberGenerator => _random;
+	Random AnalyzerBase.RandomNumberGenerator => _random;
 
 	/// <summary>
 	/// Indicates the final <see cref="CultureInfo"/> instance to be used.

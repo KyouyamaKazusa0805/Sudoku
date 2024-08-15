@@ -641,46 +641,6 @@
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
-            <summary>
-            Extracts a new type that represents an analyzer or a collector type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerOrCollector.StepSearchers">
-            <summary>
-            <para>
-            Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
-            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
-            If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
-            </para>
-            <para>
-            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
-            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerOrCollector.ResultStepSearchers">
-            <summary>
-            Indicates the result step searchers used in the current analyzer or collector.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerOrCollector.Options">
-            <summary>
-            Indicates the extra options to be set. The options will be passed into <see cref="T:Sudoku.Analytics.Step"/> instances collected
-            in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerOrCollector.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
-            <summary>
-            Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
-            </summary>
-            <param name="in">The step searchers passed in.</param>
-            <param name="runningArea">The running area to be checked.</param>
-            <returns>Filtered collection.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter">
             <summary>
             Represents a progress used by <see cref="T:Sudoku.Analytics.IAnalyzer`3"/>
@@ -5820,6 +5780,49 @@
             <param name="context">A context instance that can be used for analyzing a puzzle.</param>
             <returns>The result value.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.IAnalyzerOrCollector`3">
+            <summary>
+            Represents an analyzer or a collector type.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TContext">The type of the context.</typeparam>
+            <typeparam name="TResult">The type of the result value.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.StepSearchers">
+            <summary>
+            <para>
+            Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
+            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
+            If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
+            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
+            </para>
+            <para>
+            Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
+            however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.ResultStepSearchers">
+            <summary>
+            Indicates the result step searchers used in the current analyzer or collector.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.Options">
+            <summary>
+            Indicates the extra options to be set. The options will be passed into <see cref="T:Sudoku.Analytics.Step"/> instances collected
+            in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.IAnalyzerOrCollector`3.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
+            <summary>
+            Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
+            </summary>
+            <param name="in">The step searchers passed in.</param>
+            <param name="runningArea">The running area to be checked.</param>
+            <returns>Filtered collection.</returns>
         </member>
         <member name="T:Sudoku.Analytics.ICollector`3">
             <summary>
