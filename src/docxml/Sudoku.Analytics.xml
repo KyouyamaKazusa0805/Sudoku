@@ -9010,7 +9010,7 @@
             </summary>
             <param name="baseCells">The base cells.</param>
             <param name="targetCells">The target cells.</param>
-            <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
+            <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked members.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Extensions">
@@ -9036,7 +9036,7 @@
             <param name="this">The grid to be checked.</param>
             <param name="digit">The digit to be checked.</param>
             <param name="cells">The cells to be checked.</param>
-            <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
+            <param name="limitCount">The number of times that the digit can be filled with the specified cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">

@@ -935,14 +935,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								case { Count: > 2 } endoTargetCellsGroup when !endoTargetCellsGroup.PeerIntersection.Contains(targetCell):
 								{
 									// This will include an AHS.
-									var unappearedDigitsMask = (Mask)(grid[in endoTargetCellsGroup] & ~baseCellsDigitsMask);
-									if (Mask.PopCount(unappearedDigitsMask) < endoTargetCellsGroup.Count - 1)
+									var disappearedDigitsMask = (Mask)(grid[in endoTargetCellsGroup] & ~baseCellsDigitsMask);
+									if (Mask.PopCount(disappearedDigitsMask) < endoTargetCellsGroup.Count - 1)
 									{
 										// Endo-target cells are not enough to form an AHS.
 										continue;
 									}
 
-									foreach (var digitCombination in unappearedDigitsMask.GetAllSets().GetSubsets(endoTargetCellsGroup.Count - 1))
+									foreach (var digitCombination in disappearedDigitsMask.GetAllSets().GetSubsets(endoTargetCellsGroup.Count - 1))
 									{
 										var appearingMap = CellMap.Empty;
 										foreach (var digit in digitCombination)
@@ -1143,7 +1143,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Try to fetch the missing-value cell.
-		// Please note here is an exceception: If the missing-value cell isn't missing the digit, it can also be a weak exocet
+		// Please note here is an exception: If the missing-value cell isn't missing the digit, it can also be a weak exocet
 		// if the digit belongs to digits appeared in base cells, and such cells should only contain 1. 2 or more cells is invalid.
 		var missingValueCell = -1;
 		foreach (var row in rowsCovered)
@@ -1469,9 +1469,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			if (CheckDoubleGeneralizedFish(
 				ref context, grid, in baseCells, in targetCells, in theOtherBaseCells, in theOtherTargetCells, in crossline,
 				size, isRow, baseCellsDigitsMask, housesMask
-			) is { } unifishTypeStep)
+			) is { } generalizedFishTypeStep)
 			{
-				return unifishTypeStep;
+				return generalizedFishTypeStep;
 			}
 		}
 
@@ -1943,7 +1943,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var elimDigitsFromTheOnlyMirrorCell = (Mask)(digitsInMirrorCell & ~baseCellsDigitsMask);
 
 				// Check for the containing digits in mirror cells, and fetch which digits are appeared in base cells.
-				// Such digits will be sync'ed with the other target cell.
+				// Such digits will be synchronized with the other target cell.
 				var containedDigitsAppearedInBaseCellsInMirror = (Mask)(digitsInMirrorCell & baseCellsDigitsMask);
 				var elimDigitsFromTheOtherTargetCell = (Mask)(grid.GetCandidates(theOtherTargetCell) & ~containedDigitsAppearedInBaseCellsInMirror);
 
@@ -2832,7 +2832,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					var digitsMaskTargetCell = (Mask)(grid.GetCandidates(targetCell) & ~digitsMaskForMirrorFromTheOtherTargetCell);
 					if (digitsMaskTargetCell == 0)
 					{
-						// No candidates should be sync'ed.
+						// No candidates should be synchronized.
 						return;
 					}
 
@@ -4374,7 +4374,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var elimDigitsFromTheOnlyMirrorCell = (Mask)(digitsInMirrorCell & ~baseCellsDigitsMask);
 
 				// Check for the containing digits in mirror cells, and fetch which digits are appeared in base cells.
-				// Such digits will be sync'ed with the other target cell.
+				// Such digits will be synchronized with the other target cell.
 				var containedDigitsAppearedInBaseCellsInMirror = (Mask)(digitsInMirrorCell & baseCellsDigitsMask);
 				var elimDigitsFromTheOtherTargetCell = (Mask)(grid.GetCandidates(theOtherTargetCell) & ~containedDigitsAppearedInBaseCellsInMirror);
 
@@ -4672,7 +4672,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="baseCells">The base cells.</param>
 	/// <param name="targetCells">The target cells.</param>
-	/// <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
+	/// <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked members.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
 	private static ReadOnlySpan<LockedMember?> GetLockedMembers(
 		ref readonly CellMap baseCells,
@@ -4718,7 +4718,7 @@ file static class Extensions
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
 	/// <returns>The maximum possible times of the appearing.</returns>
-	public static int AppearingTimesOf(this scoped ref readonly Grid @this, Digit digit, ref readonly CellMap cells)
+	public static int AppearingTimesOf(this ref readonly Grid @this, Digit digit, ref readonly CellMap cells)
 	{
 		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
@@ -4740,10 +4740,10 @@ file static class Extensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
+	/// <param name="limitCount">The number of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
 	public static bool IsExactAppearingTimesOf(
-		this scoped ref readonly Grid @this,
+		this ref readonly Grid @this,
 		Digit digit,
 		ref readonly CellMap cells,
 		int limitCount
