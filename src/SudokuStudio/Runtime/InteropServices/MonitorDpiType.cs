@@ -1,4 +1,4 @@
-#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
+#if CUSTOMIZED_TITLE_BAR
 
 namespace SudokuStudio.Runtime.InteropServices;
 

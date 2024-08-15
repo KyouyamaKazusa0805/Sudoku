@@ -14,7 +14,7 @@ public sealed partial class MainWindow : Window
 		InitializeComponent();
 		InitializeField();
 
-#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
+#if CUSTOMIZED_TITLE_BAR
 		InitializeAppWindow();
 		SetAppTitleBarState();
 		SetAppIcon();
@@ -174,7 +174,7 @@ public sealed partial class MainWindow : Window
 	private void UpdateOpenPaneLengthToPreference()
 		=> ((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength = (decimal)Round(NavigationPage.MainNavigationView.OpenPaneLength, 1);
 
-#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
+#if CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Initializes for property <see cref="Window.AppWindow"/>.
 	/// </summary>
@@ -308,7 +308,7 @@ public sealed partial class MainWindow : Window
 	}
 #endif
 
-#if UI_FEATURE_CUSTOMIZED_TITLE_BAR
+#if CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to set icon of the program.
 	/// </summary>
