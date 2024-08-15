@@ -14,9 +14,23 @@ public sealed partial class View :
 	IWhereMethod<View, ViewNode>
 {
 	/// <summary>
+	/// Indicates the backing comparer.
+	/// </summary>
+	private static IEqualityComparer<View>? _backingComparer;
+
+
+	/// <summary>
 	/// Indicates an empty <see cref="View"/> instance. You can use this property to create a new instance.
 	/// </summary>
 	public static View Empty => [];
+
+	/// <summary>
+	/// Represents a <see cref="IEqualityComparer"/> of <see cref="View"/> type that can compares equality of a whole set
+	/// with specified equality comparison rules on each element of type <see cref="ViewNode"/>.
+	/// </summary>
+	/// <seealso cref="IEqualityComparer{T}"/>
+	/// <seealso cref="ViewNode"/>
+	public static IEqualityComparer<View> SetComparer => _backingComparer ??= CreateSetComparer();
 
 
 	/// <summary>
@@ -84,53 +98,11 @@ public sealed partial class View :
 	}
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] View? other)
-	{
-		if (other is null)
-		{
-			return false;
-		}
-
-		if (Count != other.Count)
-		{
-			return false;
-		}
-
-		foreach (var element in this)
-		{
-			if (!other.Contains(element))
-			{
-				return false;
-			}
-		}
-		foreach (var element in other)
-		{
-			if (!Contains(element))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] View? other) => SetComparer.Equals(this, other);
 
 	/// <inheritdoc/>
-	public override int GetHashCode()
-	{
-		var result = new HashCode();
-		var i = 0;
-		foreach (var element in this)
-		{
-			if ((i++ & 1) != 0)
-			{
-				result.Add(element.GetHashCode() * 17 & 333);
-			}
-			else
-			{
-				result.Add(element.GetHashCode() * 29 & 666);
-			}
-		}
-		return result.ToHashCode();
-	}
+	public override int GetHashCode() => SetComparer.GetHashCode(this);
 
 	/// <summary>
 	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.

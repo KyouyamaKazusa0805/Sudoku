@@ -4982,10 +4982,23 @@
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
+        <member name="F:Sudoku.Drawing.View._backingComparer">
+            <summary>
+            Indicates the backing comparer.
+            </summary>
+        </member>
         <member name="P:Sudoku.Drawing.View.Empty">
             <summary>
             Indicates an empty <see cref="T:Sudoku.Drawing.View"/> instance. You can use this property to create a new instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.View.SetComparer">
+            <summary>
+            Represents a <see cref="T:System.Collections.IEqualityComparer"/> of <see cref="T:Sudoku.Drawing.View"/> type that can compares equality of a whole set
+            with specified equality comparison rules on each element of type <see cref="T:Sudoku.Drawing.ViewNode"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
+            <seealso cref="T:Sudoku.Drawing.ViewNode"/>
         </member>
         <member name="M:Sudoku.Drawing.View.AddRange``1(System.ReadOnlySpan{``0})">
             <summary>
