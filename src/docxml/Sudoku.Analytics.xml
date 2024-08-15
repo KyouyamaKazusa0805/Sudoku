@@ -4547,9 +4547,6 @@
             <param name="index">The index.</param>
             <returns>The technique field.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
@@ -4622,6 +4619,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Analytics#Categorization#TechniqueSet}#op_False(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Analytics#Categorization#TechniqueSet}#op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Converter">
@@ -22050,9 +22053,6 @@
         <member name="M:Sudoku.Concepts.EliminationRange.op_ExclusiveOr(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_LogicalNot(Sudoku.Concepts.EliminationRange)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_OnesComplement(Sudoku.Concepts.EliminationRange)">
             <inheritdoc/>
         </member>
@@ -22139,6 +22139,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_False(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_LogicalNot(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_LogicalNot(Sudoku.Concepts.EliminationRange)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ExocetShapeKind">

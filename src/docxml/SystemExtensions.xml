@@ -1186,10 +1186,17 @@
         </member>
         <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.TrueAndFalseOperators">
             <summary>
-            Indicates operators <see langword="true"/> and <see langword="false"/> defined in <see cref="T:System.ILogicalOperators`1"/> will be generated.
+            Indicates operators <see cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+            and <see cref="M:System.ILogicalOperators`1.op_False(`0)"/> will be generated.
             </summary>
             <seealso cref="M:System.ILogicalOperators`1.op_True(`0)"/>
             <seealso cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.LogicalNotOperator">
+            <summary>
+            Indicates operator <see cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/> will be generated.
+            </summary>
+            <seealso cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
         </member>
         <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
             <summary>

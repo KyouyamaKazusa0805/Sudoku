@@ -3,7 +3,10 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a list of conclusions.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
+		| TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
+		| TypeImplFlag.LogicalNotOperator)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
@@ -460,10 +463,6 @@ public sealed partial class ConclusionSet :
 	public static ConclusionSet Parse(string s, IFormatProvider? provider)
 		=> CoordinateParser.GetInstance(provider).ConclusionParser(s);
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(ConclusionSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

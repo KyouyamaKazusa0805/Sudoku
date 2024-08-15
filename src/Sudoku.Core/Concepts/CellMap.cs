@@ -13,7 +13,8 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
+		| TypeImplFlag.LogicalNotOperator,
 	IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
@@ -827,10 +828,6 @@ public partial struct CellMap : CellMapBase
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static Vector128<long> CV(long e1, long e0) => Vector128.Create(e0, e1);
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(in CellMap offsets) => offsets.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

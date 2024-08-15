@@ -380,9 +380,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_LogicalNot(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_OnesComplement(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -509,6 +506,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_False(Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_LogicalNot(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_LogicalNot(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -915,9 +918,6 @@
             This method will only be used in constant creation, just for readability on binary integers' positions.
             </b></remarks>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
@@ -1080,6 +1080,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_False(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_LogicalNot(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Converter">
@@ -1718,9 +1724,6 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_OnesComplement(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
         </member>
@@ -1789,6 +1792,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#ILogicalOperators{Sudoku#Concepts#ConclusionSet}#op_False(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#ILogicalOperators{Sudoku#Concepts#ConclusionSet}#op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionType">

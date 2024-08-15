@@ -16,7 +16,9 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="BitArray"/>
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
+		| TypeImplFlag.LogicalNotOperator)]
 public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
@@ -473,10 +475,6 @@ public sealed partial class TechniqueSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Technique TechniqueProjectionBack(int index) => (Technique)index + 1;
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(TechniqueSet techniques) => techniques.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

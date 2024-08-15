@@ -10,7 +10,8 @@ namespace Sudoku.Concepts;
 [InlineArray(9)]
 [CollectionBuilder(typeof(EliminationRange), nameof(Create))]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators,
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
+		| TypeImplFlag.LogicalNotOperator,
 	IsLargeStructure = true)]
 public partial struct EliminationRange :
 	IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>,
@@ -348,9 +349,6 @@ public partial struct EliminationRange :
 		result[8] ^= right[8];
 		return result;
 	}
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<EliminationRange>.operator !(EliminationRange value) => value.Count != 0;
 
 	/// <inheritdoc/>
 	static EliminationRange IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>.operator ~(EliminationRange value) => ~value;

@@ -13,7 +13,9 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, Candida
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators,
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
+		| TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
+		| TypeImplFlag.LogicalNotOperator,
 	IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase
 {
@@ -678,10 +680,6 @@ public partial struct CandidateMap : CandidateMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(in CandidateMap offsets) => offsets.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
