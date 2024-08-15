@@ -5955,6 +5955,14 @@
             <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
             <returns>The distance result.</returns>
         </member>
+        <member name="M:Sudoku.Measuring.Distance.GetDistanceTo(System.Int32,System.Int32)">
+            <summary>
+            Try to get the minimal and maximal distance to the specified house from the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The minimal and maximal distance value.</returns>
+        </member>
         <member name="M:Sudoku.Measuring.Distance.GetIntermediateCells(System.Int32,System.Int32)">
             <summary>
             Try to get the intermediate cells that are between <paramref name="cell1"/> and <paramref name="cell2"/> in logical position

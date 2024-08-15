@@ -37,7 +37,7 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="GetDistance(Cell, Cell)"/>
-	public static readonly (Cell Min, Cell Max)?[][] DistanceTable = [
+	private static readonly (Cell Min, Cell Max)?[][] DistanceTable = [
 		[null, (3, 5), (6, 8), (27, 45), null, null, (54, 72), null, null, null, (9, 11), (18, 20), (27, 27), (36, 36), (45, 45), (54, 54), (63, 63), (72, 72), null, (1, 19), (2, 20), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8)],
 		[null, (3, 5), (6, 8), (28, 46), null, null, (55, 73), null, null, null, (10, 11), (19, 20), (28, 28), (37, 37), (46, 46), (55, 55), (64, 64), (73, 73), (0, 18), null, (2, 20), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8)],
 		[null, (3, 5), (6, 8), (29, 47), null, null, (56, 74), null, null, null, (11, 9), (20, 18), (29, 29), (38, 38), (47, 47), (56, 56), (65, 65), (74, 74), (0, 18), (1, 19), null, (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8)],
@@ -218,6 +218,15 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cells.Count, 2);
 		return GetDistance(cells[0], cells[1]);
 	}
+
+	/// <summary>
+	/// Try to get the minimal and maximal distance to the specified house from the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="house">The house.</param>
+	/// <returns>The minimal and maximal distance value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static (Cell Min, Cell Max)? GetDistanceTo(Cell cell, House house) => DistanceTable[cell][house];
 
 	/// <summary>
 	/// Try to get the intermediate cells that are between <paramref name="cell1"/> and <paramref name="cell2"/> in logical position
