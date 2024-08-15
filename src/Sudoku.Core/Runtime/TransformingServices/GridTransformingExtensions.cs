@@ -15,7 +15,7 @@ public static class GridTransformingExtensions
 	/// <param name="transformTypes">
 	/// The transform types can be applied. You can use <c><see cref="TransformType"/>.<see langword="operator"/> |</c> to combine flags.
 	/// </param>
-	public static unsafe void Transform(this scoped ref Grid grid, TransformType transformTypes)
+	public static unsafe void Transform(this ref Grid grid, TransformType transformTypes)
 	{
 		if (transformTypes == TransformType.None)
 		{

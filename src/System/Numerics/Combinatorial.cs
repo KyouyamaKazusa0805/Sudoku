@@ -59,7 +59,7 @@ public static class Combinatorial
 	/// ]]></code>
 	/// 3 cases.
 	/// </returns>
-	public static ReadOnlySpan<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
+	public static ReadOnlySpan<T[]> GetSubsets<T>(this ReadOnlySpan<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -103,7 +103,7 @@ public static class Combinatorial
 	/// <returns>
 	/// All possible combinations returned.
 	/// </returns>
-	public static ReadOnlySpan<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this)
+	public static ReadOnlySpan<T[]> GetSubsets<T>(this ReadOnlySpan<T> @this)
 	{
 		var result = new List<T[]>();
 		for (var size = 1; size <= @this.Length; size++)

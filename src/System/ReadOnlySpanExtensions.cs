@@ -13,7 +13,7 @@ public static class ReadOnlySpanExtensions
 	/// <typeparam name="T">The type of elements in the span.</typeparam>
 	/// <param name="this">The current collection.</param>
 	/// <param name="action">The <see cref="ActionRef{T}"/> delegate to perform on each element of the <see cref="Span{T}"/>.</param>
-	public static void ForEach<T>(this scoped Span<T> @this, ActionRef<T> action)
+	public static void ForEach<T>(this Span<T> @this, ActionRef<T> action)
 	{
 		foreach (ref var element in @this)
 		{
@@ -22,7 +22,7 @@ public static class ReadOnlySpanExtensions
 	}
 
 	/// <inheritdoc cref="FindIndex{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
-	public static int FindIndex<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	public static int FindIndex<T>(this ReadOnlySpan<T> @this, Func<T, bool> condition)
 	{
 		for (var i = 0; i < @this.Length; i++)
 		{
@@ -35,7 +35,7 @@ public static class ReadOnlySpanExtensions
 	}
 
 	/// <inheritdoc cref="List{T}.FindIndex(Predicate{T})"/>
-	public static int FindIndex<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> condition)
+	public static int FindIndex<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> condition)
 	{
 		for (var i = 0; i < @this.Length; i++)
 		{
@@ -55,7 +55,7 @@ public static class ReadOnlySpanExtensions
 	/// <param name="action">
 	/// The <see cref="ActionRefReadOnly{T}"/> delegate to perform on each element of the <see cref="ReadOnlySpan{T}"/>.
 	/// </param>
-	public static void ForEach<T>(this scoped ReadOnlySpan<T> @this, ActionRefReadOnly<T> action)
+	public static void ForEach<T>(this ReadOnlySpan<T> @this, ActionRefReadOnly<T> action)
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -70,7 +70,7 @@ public static class ReadOnlySpanExtensions
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The current collection.</param>
 	/// <returns>A new collection whose elements are in reversed order.</returns>
-	public static ReadOnlySpan<T> Reverse<T>(this scoped ReadOnlySpan<T> @this)
+	public static ReadOnlySpan<T> Reverse<T>(this ReadOnlySpan<T> @this)
 	{
 		var result = new T[@this.Length];
 		for (var (i, j) = (@this.Length - 1, 0); i >= 0; i--, j++)

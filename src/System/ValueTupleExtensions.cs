@@ -23,7 +23,7 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueTupleEnumerator<T> GetEnumerator<T>(this scoped ref readonly (T, T, T) @this) => new(@this);
+	public static ValueTupleEnumerator<T> GetEnumerator<T>(this ref readonly (T, T, T) @this) => new(@this);
 
 	/// <summary>
 	/// Gets an <see cref="ValueTupleEnumerator{T}"/> instance that can iterate for a pair of values
@@ -33,7 +33,7 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueTupleEnumerator<T> GetEnumerator<T>(this scoped ref readonly (T, T, T, T) @this) => new(@this);
+	public static ValueTupleEnumerator<T> GetEnumerator<T>(this ref readonly (T, T, T, T) @this) => new(@this);
 
 	/// <summary>
 	/// Gets an <see cref="ValueTupleEnumerator{T}"/> instance that can iterate for a pair of values
@@ -43,7 +43,7 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueTupleEnumerator<T> GetEnumerator<T>(this scoped ref readonly (T, T, T, T, T) @this) => new(@this);
+	public static ValueTupleEnumerator<T> GetEnumerator<T>(this ref readonly (T, T, T, T, T) @this) => new(@this);
 
 	/// <summary>
 	/// Gets an <see cref="ValueTupleEnumerator{T}"/> instance that can iterate for a pair of values
@@ -53,7 +53,7 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueTupleEnumerator<T> GetEnumerator<T>(this scoped ref readonly (T, T, T, T, T, T) @this) => new(@this);
+	public static ValueTupleEnumerator<T> GetEnumerator<T>(this ref readonly (T, T, T, T, T, T) @this) => new(@this);
 
 	/// <summary>
 	/// Gets an <see cref="ValueTupleEnumerator{T}"/> instance that can iterate for a pair of values
@@ -63,7 +63,7 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ValueTupleEnumerator<T> GetEnumerator<T>(this scoped ref readonly (T, T, T, T, T, T, T) @this) => new(@this);
+	public static ValueTupleEnumerator<T> GetEnumerator<T>(this ref readonly (T, T, T, T, T, T, T) @this) => new(@this);
 
 	/// <summary>
 	/// Gets an <see cref="ValueTupleEnumerator{T}"/> instance that can iterate for a pair of values
@@ -74,6 +74,6 @@ public static class ValueTupleExtensions
 	/// <param name="this">The instance to be iterated.</param>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ComplexValueTupleEnumerator<T, TRest> GetEnumerator<T, TRest>(this scoped ref readonly ValueTuple<T, T, T, T, T, T, T, TRest> @this)
+	public static ComplexValueTupleEnumerator<T, TRest> GetEnumerator<T, TRest>(this ref readonly ValueTuple<T, T, T, T, T, T, T, TRest> @this)
 		where TRest : struct => new(@this);
 }

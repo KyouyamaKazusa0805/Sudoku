@@ -50,10 +50,10 @@ public static partial class BitOperationsExtensions
 	public static partial int GetNextSet(this int @this, int index);
 	public static partial int GetNextSet(this long @this, int index);
 
-	public static partial void ReverseBits(this scoped ref byte @this);
-	public static partial void ReverseBits(this scoped ref short @this);
-	public static partial void ReverseBits(this scoped ref int @this);
-	public static partial void ReverseBits(this scoped ref long @this);
+	public static partial void ReverseBits(this ref byte @this);
+	public static partial void ReverseBits(this ref short @this);
+	public static partial void ReverseBits(this ref int @this);
+	public static partial void ReverseBits(this ref long @this);
 
 	public static partial int SetAt(this sbyte @this, int order);
 	public static partial int SetAt(this byte @this, int order);

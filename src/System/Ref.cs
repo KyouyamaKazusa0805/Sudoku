@@ -13,7 +13,7 @@ public static class @ref
 	/// <param name="left">The first element to be swapped.</param>
 	/// <param name="right">The second element to be swapped.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<T>(scoped ref T left, scoped ref T right) where T : allows ref struct
+	public static void Swap<T>(ref T left, ref T right) where T : allows ref struct
 	{
 		if (!AreSameRef(in left, in right))
 		{
@@ -44,7 +44,7 @@ public static class @ref
 	/// <exception cref="ArgumentNullException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfNullRef<T>(
-		scoped ref readonly T reference,
+		ref readonly T reference,
 		[CallerArgumentExpression(nameof(reference))] string paramName = null!
 	) where T : allows ref struct
 	{
@@ -67,7 +67,7 @@ public static class @ref
 
 	/// <inheritdoc cref="ByteRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly byte ReadOnlyByteRef<T>(scoped ref readonly T @ref) where T : allows ref struct
+	public static ref readonly byte ReadOnlyByteRef<T>(ref readonly T @ref) where T : allows ref struct
 		=> ref Unsafe.As<T, byte>(ref AsMutableRef(in @ref));
 
 	/// <summary>
@@ -77,7 +77,7 @@ public static class @ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullRef<T>(scoped ref readonly T reference) where T : allows ref struct => Unsafe.IsNullRef(in reference);
+	public static bool IsNullRef<T>(ref readonly T reference) where T : allows ref struct => Unsafe.IsNullRef(in reference);
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -87,7 +87,7 @@ public static class @ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool AreSameRef<T>(scoped ref readonly T left, scoped ref readonly T right)
+	public static bool AreSameRef<T>(ref readonly T left, ref readonly T right)
 		where T : allows ref struct => Unsafe.AreSame(in left, in right);
 
 	/// <summary>
@@ -97,7 +97,7 @@ public static class @ref
 	/// <param name="ref">The read-only reference.</param>
 	/// <returns>The non-read-only reference.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T AsMutableRef<T>(scoped ref readonly T @ref) where T : allows ref struct => ref Unsafe.AsRef(in @ref);
+	public static ref T AsMutableRef<T>(ref readonly T @ref) where T : allows ref struct => ref Unsafe.AsRef(in @ref);
 
 	/// <summary>
 	/// Advances the pointer to an element after the specified number of block memory elements.
@@ -143,7 +143,7 @@ public static class @ref
 	/// <param name="length">The length.</param>
 	/// <returns>A <see cref="Span{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe Span<T> AsSpan<T>(scoped ref T firstElementReference, int length)
+	public static unsafe Span<T> AsSpan<T>(ref T firstElementReference, int length)
 		=> new(Unsafe.AsPointer(ref firstElementReference), length);
 
 	/// <summary>
@@ -154,7 +154,7 @@ public static class @ref
 	/// <param name="length">The length.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe ReadOnlySpan<T> AsReadOnlySpan<T>(scoped ref readonly T firstElementReference, int length)
+	public static unsafe ReadOnlySpan<T> AsReadOnlySpan<T>(ref readonly T firstElementReference, int length)
 		=> new(Unsafe.AsPointer(ref Unsafe.AsRef(in firstElementReference)), length);
 
 	/// <summary>
@@ -168,7 +168,7 @@ public static class @ref
 	/// <exception cref="ArgumentNullException">
 	/// Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
 	/// </exception>
-	public static ReadOnlySpan<T> Slice<T>(scoped ref readonly T memorySpan, int start, int count)
+	public static ReadOnlySpan<T> Slice<T>(ref readonly T memorySpan, int start, int count)
 	{
 		ThrowIfNullRef(in memorySpan);
 

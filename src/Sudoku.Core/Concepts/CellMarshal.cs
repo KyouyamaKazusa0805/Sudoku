@@ -127,9 +127,9 @@ public static class CellMarshal
 	/// <param name="this">The cells to be converted.</param>
 	/// <returns>A <see cref="CellMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap AsCellMap(this scoped Span<Cell> @this) => [.. @this];
+	public static CellMap AsCellMap(this Span<Cell> @this) => [.. @this];
 
 	/// <inheritdoc cref="AsCellMap(Span{Cell})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap AsCellMap(this scoped ReadOnlySpan<Cell> @this) => [.. @this];
+	public static CellMap AsCellMap(this ReadOnlySpan<Cell> @this) => [.. @this];
 }

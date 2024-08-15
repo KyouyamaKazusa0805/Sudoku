@@ -15,7 +15,7 @@ public static class GridIttoryuExtensions
 	/// </param>
 	/// <exception cref="ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
 	/// <seealso cref="DisorderedIttoryuFinder"/>
-	public static void MakeIttoryu(this scoped ref Grid @this, DisorderedIttoryuDigitPath ittoryuPath)
+	public static void MakeIttoryu(this ref Grid @this, DisorderedIttoryuDigitPath ittoryuPath)
 	{
 		if (ittoryuPath.Digits is not { Length: >= 2 })
 		{
@@ -59,7 +59,7 @@ public static class GridIttoryuExtensions
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
+	public static bool IsIttoryu(this ref readonly Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 		=> @this.IsIttoryu(TechniqueIttoryuSets.IttoryuTechniques, out path);
 
 	/// <summary>
@@ -84,7 +84,7 @@ public static class GridIttoryuExtensions
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
+	public static bool IsIttoryu(this ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 	{
 		var pathFinder = new DisorderedIttoryuFinder(techniques);
 		var foundPath = pathFinder.FindPath(in @this);

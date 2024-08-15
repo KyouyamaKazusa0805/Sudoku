@@ -8,7 +8,7 @@ public partial class BitOperationsExtensions
 	/// </summary>
 	/// <param name="this">The value.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial void ReverseBits(this scoped ref byte @this)
+	public static partial void ReverseBits(this ref byte @this)
 	{
 		@this = (byte)(@this >> 1 & 0x55 | (@this & 0x55) << 1);
 		@this = (byte)(@this >> 2 & 0x33 | (@this & 0x33) << 2);
@@ -17,7 +17,7 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="ReverseBits(ref byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial void ReverseBits(this scoped ref short @this)
+	public static partial void ReverseBits(this ref short @this)
 	{
 		@this = (short)(@this >> 1 & 0x5555 | (@this & 0x5555) << 1);
 		@this = (short)(@this >> 2 & 0x3333 | (@this & 0x3333) << 2);
@@ -27,7 +27,7 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="ReverseBits(ref byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial void ReverseBits(this scoped ref int @this)
+	public static partial void ReverseBits(this ref int @this)
 	{
 		@this = @this >> 1 & 0x55555555 | (@this & 0x55555555) << 1;
 		@this = @this >> 2 & 0x33333333 | (@this & 0x33333333) << 2;
@@ -38,7 +38,7 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="ReverseBits(ref byte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial void ReverseBits(this scoped ref long @this)
+	public static partial void ReverseBits(this ref long @this)
 	{
 		@this = @this >> 1 & 0x55555555_55555555L | (@this & 0x55555555_55555555L) << 1;
 		@this = @this >> 2 & 0x33333333_33333333L | (@this & 0x33333333_33333333L) << 2;

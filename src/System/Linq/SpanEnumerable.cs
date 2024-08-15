@@ -15,8 +15,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The minimal value.</returns>
-	public static TNumber Min<TNumber>(this scoped ReadOnlySpan<TNumber> @this)
-		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
+	public static TNumber Min<TNumber>(this ReadOnlySpan<TNumber> @this) where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
 		var result = TNumber.MaxValue;
 		foreach (ref readonly var element in @this)
@@ -30,7 +29,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
-	public static TKey Min<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
 	{
 		var resultKey = TKey.MaxValue;
@@ -56,7 +55,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the minimum key in the sequence.</returns>
-	public static TSource? MinBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+	public static TSource? MinBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
 	{
 		var (resultKey, result) = (TKey.MaxValue, default(TSource));
@@ -79,8 +78,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The minimal value.</returns>
-	public static TNumber Max<TNumber>(this scoped ReadOnlySpan<TNumber> @this)
-		where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
+	public static TNumber Max<TNumber>(this ReadOnlySpan<TNumber> @this) where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
 		var result = TNumber.MinValue;
 		foreach (ref readonly var element in @this)
@@ -94,7 +92,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="MaxBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
-	public static TKey? Max<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+	public static TKey? Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
 	{
 		var resultKey = TKey.MinValue;
@@ -120,7 +118,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the maximum key in the sequence.</returns>
-	public static TSource? MaxBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+	public static TSource? MaxBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
 	{
 		var (resultKey, result) = (TKey.MinValue, default(TSource));
@@ -143,7 +141,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>The value with the sum key in the sequence.</returns>
-	public static T Sum<T>(this scoped ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>?, IAdditionOperators<T, T, T>?
+	public static T Sum<T>(this ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>?, IAdditionOperators<T, T, T>?
 	{
 		var result = T.AdditiveIdentity;
 		foreach (ref readonly var element in @this)
@@ -164,7 +162,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
-	public static TKey Sum<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
+	public static TKey Sum<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IAdditiveIdentity<TKey, TKey>?, IAdditionOperators<TKey, TKey, TKey>?
 	{
 		var result = TKey.AdditiveIdentity;
@@ -185,7 +183,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="condition">The condition.</param>
 	/// <returns>The number of elements satisfying the specified condition.</returns>
-	public static int Count<TSource>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, bool> condition)
+	public static int Count<TSource>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, bool> condition)
 	{
 		var result = 0;
 		foreach (ref readonly var element in @this)
@@ -199,7 +197,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Any{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
-	public static bool Any<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
+	public static bool Any<T>(this ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -221,7 +219,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Any<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
+	public static bool Any<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -234,7 +232,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="All{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
-	public static bool All<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
+	public static bool All<T>(this ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -256,7 +254,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool All<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
+	public static bool All<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -278,7 +276,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool AllAre<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this) where TDerived : class?, TBase?
+	public static bool AllAre<TBase, TDerived>(this ReadOnlySpan<TBase> @this) where TDerived : class?, TBase?
 	{
 		foreach (ref readonly var element in @this)
 		{
@@ -300,7 +298,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
-	public static ReadOnlySpan<TDerived> OfType<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this)
+	public static ReadOnlySpan<TDerived> OfType<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
 		where TBase : class?
 		where TDerived : class?, TBase?
 	{
@@ -327,7 +325,7 @@ public static class SpanEnumerable
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 	/// </param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
-	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this scoped ReadOnlySpan<TBase> @this)
+	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
 		where TBase : class?
 		where TDerived : class?, TBase?
 	{
@@ -356,7 +354,7 @@ public static class SpanEnumerable
 	public static ReadOnlySpan<T> Skip<T>(this ReadOnlySpan<T> @this, int count) => @this[count..];
 
 	/// <inheritdoc cref="FindAll{T}(ReadOnlySpan{T}, FuncRefReadOnly{T, bool})"/>
-	public static ReadOnlySpan<T> FindAll<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> match)
+	public static ReadOnlySpan<T> FindAll<T>(this ReadOnlySpan<T> @this, Func<T, bool> match)
 	{
 		var result = new List<T>(@this.Length);
 		foreach (ref readonly var element in @this)
@@ -382,7 +380,7 @@ public static class SpanEnumerable
 	/// A <see cref="ReadOnlySpan{T}"/> containing all the elements that match the conditions defined
 	/// by the specified predicate, if found; otherwise, an empty <see cref="ReadOnlySpan{T}"/>.
 	/// </returns>
-	public static ReadOnlySpan<T> FindAll<T>(this scoped ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
+	public static ReadOnlySpan<T> FindAll<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
 	{
 		var result = new List<T>(@this.Length);
 		foreach (ref readonly var element in @this)
@@ -407,7 +405,7 @@ public static class SpanEnumerable
 	/// </param>
 	/// <param name="selector">The selector.</param>
 	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
-	public static ReadOnlySpan<TResult> Select<T, TResult>(this scoped ReadOnlySpan<T> @this, Func<T, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this ReadOnlySpan<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
 		var i = 0;
@@ -419,7 +417,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<T, TResult>(this scoped ReadOnlySpan<T> @this, Func<T, int, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this ReadOnlySpan<T> @this, Func<T, int, TResult> selector)
 	{
 		var result = new TResult[@this.Length];
 		var i = 0;
@@ -432,7 +430,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, ReadOnlySpan{TCollection}}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
-		this scoped ReadOnlySpan<TSource> source,
+		this ReadOnlySpan<TSource> source,
 		Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 		Func<TSource, TCollection, TResult> resultSelector
 	)
@@ -461,7 +459,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/param[@name='predicate']"/>
 	/// </param>
 	/// <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
-	public static ReadOnlySpan<T> Where<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static ReadOnlySpan<T> Where<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		var result = new T[@this.Length];
 		var i = 0;
@@ -504,7 +502,7 @@ public static class SpanEnumerable
 		);
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
+	public static ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
 		where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
@@ -528,7 +526,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
 	public static ReadOnlySpan<SpanGrouping<TElement, TKey>> GroupBy<TSource, TKey, TElement>(
-		this scoped ReadOnlySpan<TSource> values,
+		this ReadOnlySpan<TSource> values,
 		Func<TSource, TKey> keySelector,
 		Func<TSource, TElement> elementSelector
 	) where TKey : notnull
@@ -556,7 +554,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
-		this scoped ReadOnlySpan<TOuter> outer,
+		this ReadOnlySpan<TOuter> outer,
 		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -565,7 +563,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult}, IEqualityComparer{TKey}?)"/>
 	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
-		this scoped ReadOnlySpan<TOuter> outer,
+		this ReadOnlySpan<TOuter> outer,
 		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -605,7 +603,7 @@ public static class SpanEnumerable
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
-		this scoped ReadOnlySpan<TOuter> outer,
+		this ReadOnlySpan<TOuter> outer,
 		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -614,7 +612,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
 	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
-		this scoped ReadOnlySpan<TOuter> outer,
+		this ReadOnlySpan<TOuter> outer,
 		ReadOnlySpan<TInner> inner,
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -654,7 +652,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static T First<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this)
 		{
@@ -667,7 +665,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static T? FirstOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static T? FirstOrDefault<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this)
 		{
@@ -680,7 +678,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.Last{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static T Last<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static T Last<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this.EnumerateReversely())
 		{
@@ -693,7 +691,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static T? LastOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	public static T? LastOrDefault<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this.EnumerateReversely())
 		{
@@ -707,7 +705,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<TSource> Take<TSource>(this scoped ReadOnlySpan<TSource> @this, int count)
+	public static ReadOnlySpan<TSource> Take<TSource>(this ReadOnlySpan<TSource> @this, int count)
 	{
 		var result = new List<TSource>(count);
 		result.AddRangeRef(@this[..Math.Min(count, @this.Length)]);
@@ -716,7 +714,7 @@ public static class SpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, Range)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<TSource> Take<TSource>(this scoped ReadOnlySpan<TSource> @this, Range range)
+	public static ReadOnlySpan<TSource> Take<TSource>(this ReadOnlySpan<TSource> @this, Range range)
 	{
 		var minIndex = range.Start.GetOffset(@this.Length);
 		var maxIndex = range.End.GetOffset(@this.Length);
@@ -731,7 +729,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
-	public static TSource Aggregate<TSource>(this scoped ReadOnlySpan<TSource> @this, Func<TSource, TSource, TSource> func)
+	public static TSource Aggregate<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, TSource, TSource> func)
 	{
 		var result = default(TSource)!;
 		foreach (var element in @this)
@@ -742,7 +740,7 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
-	public static TAccumulate Aggregate<TSource, TAccumulate>(this scoped ReadOnlySpan<TSource> @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+	public static TAccumulate Aggregate<TSource, TAccumulate>(this ReadOnlySpan<TSource> @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		where TAccumulate : allows ref struct
 	{
 		var result = seed;

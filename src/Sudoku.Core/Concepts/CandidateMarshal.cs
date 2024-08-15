@@ -28,9 +28,9 @@ public static class CandidateMarshal
 	/// <param name="this">The cells to be converted.</param>
 	/// <returns>A <see cref="CandidateMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap AsCandidateMap(this scoped Span<Candidate> @this) => [.. @this];
+	public static CandidateMap AsCandidateMap(this Span<Candidate> @this) => [.. @this];
 
 	/// <inheritdoc cref="AsCandidateMap(Span{Candidate})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap AsCandidateMap(this scoped ReadOnlySpan<Candidate> @this) => [.. @this];
+	public static CandidateMap AsCandidateMap(this ReadOnlySpan<Candidate> @this) => [.. @this];
 }

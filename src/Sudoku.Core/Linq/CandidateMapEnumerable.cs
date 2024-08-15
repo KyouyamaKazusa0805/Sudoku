@@ -16,7 +16,7 @@ public static class CandidateMapEnumerable
 	/// <returns>The first found candidate.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate First(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+	public static Candidate First(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
 		=> @this.FirstOrNull(match)!.Value;
 
 	/// <summary>
@@ -28,7 +28,7 @@ public static class CandidateMapEnumerable
 	/// <returns>The first found candidate.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate First(this scoped ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
+	public static Candidate First(this ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
 		=> @this.FirstOrNull(in grid, match)!.Value;
 
 	/// <summary>
@@ -37,7 +37,7 @@ public static class CandidateMapEnumerable
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate.</returns>
-	public static Candidate? FirstOrNull(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+	public static Candidate? FirstOrNull(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
@@ -56,7 +56,7 @@ public static class CandidateMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate.</returns>
-	public static Candidate? FirstOrNull(this scoped ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
+	public static Candidate? FirstOrNull(this ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
@@ -69,7 +69,7 @@ public static class CandidateMapEnumerable
 	}
 
 	/// <inheritdoc cref="CellMapEnumerable.Select{TResult}(ref readonly CellMap, Func{int, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<TResult>(this scoped ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this ref readonly CandidateMap @this, Func<Candidate, TResult> selector)
 	{
 		var offsets = @this.Offsets;
 		var result = new TResult[offsets.Length];
@@ -88,7 +88,7 @@ public static class CandidateMapEnumerable
 	/// <returns>
 	/// A <see cref="CandidateMap"/> that contains elements from the input <see cref="CandidateMap"/> satisfying the condition.
 	/// </returns>
-	public static CandidateMap Where(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> predicate)
+	public static CandidateMap Where(this ref readonly CandidateMap @this, Func<Candidate, bool> predicate)
 	{
 		var result = @this;
 		foreach (var cell in @this.Offsets)
@@ -103,7 +103,7 @@ public static class CandidateMapEnumerable
 
 	/// <inheritdoc cref="CellMapEnumerable.GroupBy{TKey}(ref readonly CellMap, Func{int, TKey})"/>
 	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> GroupBy<TKey>(
-		this scoped ref readonly CandidateMap @this,
+		this ref readonly CandidateMap @this,
 		Func<Candidate, TKey> keySelector
 	) where TKey : notnull
 	{
@@ -142,7 +142,7 @@ public static class CandidateMapEnumerable
 	/// and then mapping each of those sequences and their corresponding source element to a result element.
 	/// </returns>
 	public static ReadOnlySpan<TResult> SelectMany<TResult>(
-		this scoped ref readonly CandidateMap @this,
+		this ref readonly CandidateMap @this,
 		Func<Candidate, Mask> collectionSelector,
 		Func<Candidate, Digit, TResult> resultSelector
 	)
@@ -164,7 +164,7 @@ public static class CandidateMapEnumerable
 	/// <param name="this">The cell to be checked.</param>
 	/// <param name="match">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
-	public static bool Any(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+	public static bool Any(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
 		foreach (var candidate in @this)
 		{
@@ -182,7 +182,7 @@ public static class CandidateMapEnumerable
 	/// <param name="this">The candidate to be checked.</param>
 	/// <param name="match">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
-	public static bool All(this scoped ref readonly CandidateMap @this, Func<Candidate, bool> match)
+	public static bool All(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
 		foreach (var candidate in @this)
 		{
