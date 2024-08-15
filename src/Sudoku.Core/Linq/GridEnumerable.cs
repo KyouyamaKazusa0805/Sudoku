@@ -12,7 +12,7 @@ public static class GridEnumerable
 	/// <param name="this">The instance to be iterated.</param>
 	/// <param name="predicate">The condition to filter candidates.</param>
 	/// <returns>All candidates satisfied the specified condition.</returns>
-	public static ReadOnlySpan<Candidate> Where(this scoped ref readonly Grid @this, Func<Candidate, bool> predicate)
+	public static ReadOnlySpan<Candidate> Where(this ref readonly Grid @this, Func<Candidate, bool> predicate)
 	{
 		var (result, i) = (new Candidate[@this.CandidatesCount], 0);
 		foreach (var candidate in @this.Candidates)
