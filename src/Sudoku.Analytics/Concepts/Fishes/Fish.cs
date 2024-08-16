@@ -77,7 +77,7 @@ public readonly partial struct Fish(
 				var cs = c.HouseConverter(CoverSets);
 				var exofins = this switch
 				{
-					{ Exofins: var f and not [] } => $" f{c.CellConverter(in f)} ",
+					{ Exofins: var f and not [] } => $" f{c.CellConverter(in f)}",
 					_ => string.Empty
 				};
 				var endofins = this switch
@@ -85,7 +85,7 @@ public readonly partial struct Fish(
 					{ Endofins: var e and not [] } => $"ef{c.CellConverter(in e)}",
 					_ => string.Empty
 				};
-				return $@"{c.DigitConverter((Mask)(1 << Digit))} {bs}\{cs}{exofins}{endofins}";
+				return $@"{c.DigitConverter((Mask)(1 << Digit))} {bs}\{cs}{(string.IsNullOrEmpty(endofins) ? exofins : $"{exofins} ")}{endofins}";
 			}
 			case var c:
 			{

@@ -46,10 +46,24 @@ public sealed class ComplexSingleStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [TechniqueNotation(EnglishLanguage)]), new(ChineseLanguage, [TechniqueNotation(ChineseLanguage)])];
+		=> [new(EnglishLanguage, [TechniqueNotation]), new(ChineseLanguage, [TechniqueNotation])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ComplexSingleFactor()];
+
+	private string TechniqueNotation
+	{
+		get
+		{
+			var culture = GetCulture(null);
+			return string.Join(
+				" -> ",
+				from techniqueGroup in IndirectTechniques
+				let tt = string.Join(", ", from subtechnique in techniqueGroup select subtechnique.GetName(culture))
+				select techniqueGroup.Length == 1 ? tt : $"({tt})"
+			);
+		}
+	}
 
 
 	/// <inheritdoc/>
@@ -122,21 +136,5 @@ public sealed class ComplexSingleStep(
 		return isChinese
 			? $"{base.GetName(culture)}{SR.Get("_Token_CenterDot", culture)}{prefix}{basedOnName}"
 			: $"{base.GetName(culture)} ({prefix}{spacing}{basedOnName})";
-	}
-
-	private string TechniqueNotation(string culturePrefix)
-	{
-		var culture = culturePrefix switch
-		{
-			EnglishLanguage => new CultureInfo(EnglishLanguage),
-			ChineseLanguage => new(ChineseLanguage),
-			_ => throw new NotSupportedException()
-		};
-		return string.Join(
-			" -> ",
-			from techniqueGroup in IndirectTechniques
-			let tt = string.Join(", ", from subtechnique in techniqueGroup select subtechnique.GetName(culture))
-			select techniqueGroup.Length == 1 ? tt : $"({tt})"
-		);
 	}
 }
