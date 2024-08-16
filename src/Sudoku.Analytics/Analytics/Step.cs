@@ -200,7 +200,7 @@ public abstract partial class Step(
 				: throw new();
 
 
-		bool matcher(Interpolation i) => culture.Name.StartsWith(i.LanguageName, StringComparison.OrdinalIgnoreCase);
+		bool matcher(Interpolation i) => culture.Name.IsCultureNameEqual(i.LanguageName);
 	}
 
 	/// <summary>

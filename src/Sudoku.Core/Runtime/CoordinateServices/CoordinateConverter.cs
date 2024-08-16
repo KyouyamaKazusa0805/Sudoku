@@ -92,10 +92,8 @@ public abstract record CoordinateConverter(
 		{
 			CultureInfo c => c switch
 			{
-				{ Name: var name } when name.StartsWith("zh", StringComparison.OrdinalIgnoreCase)
-					=> new K9Converter(true, CurrentCulture: c),
-				_
-					=> new RxCyConverter(true, true, CurrentCulture: c)
+				{ Name: var name } when name.IsCultureNameEqual(ChineseLanguage) => new K9Converter(true, CurrentCulture: c),
+				_ => new RxCyConverter(true, true, CurrentCulture: c)
 			},
 			CoordinateConverter c => c,
 			_ => InvariantCultureInstance

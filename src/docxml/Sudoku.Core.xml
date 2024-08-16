@@ -6386,6 +6386,21 @@
               Looks up a localized string similar to Y axis.
             </summary>
         </member>
+        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
+            <summary>
+            Represents a type that compares culture language names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.IsCultureNameEqual(System.String,System.String)">
+            <summary>
+            Compares two <see cref="T:System.String"/> values, treated as culture name,
+            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
+            or <paramref name="this"/> includes <paramref name="otherName"/>.
+            </summary>
+            <param name="this">The culture.</param>
+            <param name="otherName">The other name to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Resources.ResourceSupportedLanguages">
             <summary>
             Indicates the supported languages in resource.

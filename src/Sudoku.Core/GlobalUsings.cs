@@ -37,4 +37,5 @@ global using Sudoku.Runtime.SolvingServices.Bitwise;
 global using Sudoku.Runtime.SolvingServices.EnumerableQuery;
 global using Sudoku.Runtime.TransformingServices;
 global using static Sudoku.Concepts.ConclusionType;
+global using static Sudoku.Resources.ResourceSupportedLanguages;
 global using static Sudoku.SolutionFields;
