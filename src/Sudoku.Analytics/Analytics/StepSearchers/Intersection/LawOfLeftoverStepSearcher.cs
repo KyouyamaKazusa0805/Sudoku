@@ -56,8 +56,8 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 					case [var targetCell]:
 					{
 						// The cell can be filled with the digit from the other side.
-						var disapperedDigit = Mask.TrailingZeroCount((Mask)(mergedDigitsMask & digitsMaskTheOtherSide));
-						conclusions.Add(new(Assignment, targetCell, disapperedDigit));
+						var disappearedDigit = Mask.TrailingZeroCount((Mask)(mergedDigitsMask & digitsMaskTheOtherSide));
+						conclusions.Add(new(Assignment, targetCell, disappearedDigit));
 						break;
 					}
 					default:

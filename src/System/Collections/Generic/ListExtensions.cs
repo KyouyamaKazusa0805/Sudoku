@@ -185,7 +185,7 @@ file sealed class ListFieldEntry<T>
 	///     file="../../global-doc-comments.xml"
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Size)]
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.List_Size)]
 	public static extern ref int GetSize(List<T> @this);
 
 	/// <summary>
@@ -201,7 +201,7 @@ file sealed class ListFieldEntry<T>
 	///     file="../../global-doc-comments.xml"
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Version)]
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.List_Version)]
 	public static extern ref int GetVersion(List<T> @this);
 
 	/// <summary>
@@ -217,6 +217,6 @@ file sealed class ListFieldEntry<T>
 	///     file="../../global-doc-comments.xml"
 	///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
 	/// </remarks>
-	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Items)]
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.List_Items)]
 	public static extern ref T[] GetItems(List<T> @this);
 }

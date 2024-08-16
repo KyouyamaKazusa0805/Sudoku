@@ -121,8 +121,10 @@ public static class CandidateMapEnumerable
 
 		var result = new CellMapOrCandidateMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>[dictionary.Count];
 		var i = 0;
-		foreach (var (key, value) in dictionary)
+		foreach (var kvp in dictionary)
 		{
+			ref readonly var key = ref kvp.KeyRef();
+			ref readonly var value = ref kvp.ValueRef();
 			result[i++] = new(key, in value);
 		}
 		return result;

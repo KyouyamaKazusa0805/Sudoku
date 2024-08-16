@@ -24,8 +24,10 @@ public static class DeathBlossomBranchCollectionEnumerable
 		where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 	{
 		var (result, i) = (new TResult[@this.Count], 0);
-		foreach (var (key, value) in @this)
+		foreach (var kvp in @this)
 		{
+			ref readonly var key = ref kvp.KeyRef();
+			ref readonly var value = ref kvp.ValueRef();
 			result[i++] = selector(new(key, value));
 		}
 		return result;

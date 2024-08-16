@@ -264,13 +264,13 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 					// Get all highlighted candidates.
 					var candidateOffsets = new List<CandidateViewNode>();
-					var relaventCandidates = GetRelevantCombinationValues(lockedCombinations, conclusions, cells);
+					var relevantCandidates = GetRelevantCombinationValues(lockedCombinations, conclusions, cells);
 					foreach (var (_, cell) in lockedCombinations)
 					{
 						if (cell != -1)
 						{
 							var digits = grid.GetCandidates(cell);
-							if ((relaventCandidates & digits) == digits)
+							if ((relevantCandidates & digits) == digits)
 							{
 								foreach (var digit in digits)
 								{

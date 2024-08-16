@@ -117,7 +117,7 @@ internal static class AddPropertyHandler
 					/// Appends an element into the property <see cref="{{typeString}}.{{propertyName}}"/>.
 					/// </summary>
 					/// <param name="instance">The instance to be set or updated.</param>
-					/// <param name="{{parameterNameString}}s">A list of values to be added.</param>
+					/// <param name="{{parameterNameString}}">A list of values to be added.</param>
 					/// <returns>The value same as <see cref="{{typeString}}"/>.</returns>
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(AddPropertyHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]

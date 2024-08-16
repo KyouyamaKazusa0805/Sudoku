@@ -427,5 +427,5 @@ public static partial class AnalyzerProperties
 		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithIgnoreHighSpaceComplexityStepSearchers((bool)e.NewValue);
 
 	private static void A<TStepSearcher>(DependencyObject d, Action<TStepSearcher> action) where TStepSearcher : StepSearcher
-		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).WithStepSearcherSetters(action);
+		=> SudokuPaneBindable.GetAnalyzer((SudokuPane)d).AddStepSearcherSetter(action);
 }

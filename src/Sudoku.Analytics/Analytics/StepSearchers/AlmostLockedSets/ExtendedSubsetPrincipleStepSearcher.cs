@@ -23,8 +23,12 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var list = new List<CellMap>(7);
 		var results = new HashSet<CellMap>();
-		foreach (var ((baseSet, coverSet), (a, b, c, _)) in Miniline.Map)
+		foreach (var kvp in Miniline.Map)
 		{
+			ref readonly var key = ref kvp.KeyRef();
+			ref readonly var value = ref kvp.ValueRef();
+			var ((baseSet, coverSet), (a, b, c, _)) = (key, value);
+
 			var emptyCellsInInterMap = c & EmptyCells;
 
 			// Add all combinations into the collection.

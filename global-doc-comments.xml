@@ -378,6 +378,14 @@ fixed (short* ptr = instance)
 						</b>
 					</para>
 				</target>
+				<target type="struct">
+					<para>
+						<b>
+							In addition, if the target type is a <see langword="struct"/>, it requires a <see langword="ref"/> keyword;
+							otherwise, <see cref="System.BadImageFormatException"/> will be thrown.
+						</b>
+					</para>
+				</target>
 			</feature>
 		</version>
 		<version value="9" preview-value="4">

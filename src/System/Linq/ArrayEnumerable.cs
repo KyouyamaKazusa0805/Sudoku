@@ -422,8 +422,10 @@ public static class ArrayEnumerable
 			var outerKey = outerKeySelector(outerItem);
 			var outerKeyHash = comparer.GetHashCode(outerKey);
 			var satisfiedInnerKvps = new List<TInner>(innerKvps.Length);
-			foreach (var (innerKey, innerItem) in innerKvps)
+			foreach (var kvp in innerKvps)
 			{
+				ref readonly var innerKey = ref kvp.KeyRef();
+				ref readonly var innerItem = ref kvp.ValueRef();
 				var innerKeyHash = comparer.GetHashCode(innerKey);
 				if (outerKeyHash != innerKeyHash)
 				{

@@ -18886,7 +18886,7 @@
             Appends an element into the property <see cref="P:Sudoku.Analytics.Analyzer.Setters"/>.
             </summary>
             <param name="instance">The instance to be set or updated.</param>
-            <param name="setterss">A list of values to be added.</param>
+            <param name="setters">A list of values to be added.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.__AnalyzerFactoryMethods_With">
@@ -19009,7 +19009,7 @@
             Appends an element into the property <see cref="P:Sudoku.Analytics.Collector.Setters"/>.
             </summary>
             <param name="instance">The instance to be set or updated.</param>
-            <param name="setterss">A list of values to be added.</param>
+            <param name="setters">A list of values to be added.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.__CollectorFactoryMethods_With">

@@ -63,6 +63,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	) where TKey : notnull => GroupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
+	[SuppressMessage("Style", "IDE0042:Deconstruct variable declaration", Justification = "<Pending>")]
 	public virtual IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
@@ -73,15 +74,17 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	{
 		comparer ??= EqualityComparer<TKey>.Default;
 
-		var innerKvps = inner.Select(element => (innerKeySelector(element), element));
+		var innerKvps = inner.Select(element => (Key: innerKeySelector(element), Value: element));
 		var result = new List<TResult>();
 		foreach (var outerItem in this)
 		{
 			var outerKey = outerKeySelector(outerItem);
 			var outerKeyHash = comparer.GetHashCode(outerKey);
 			var satisfiedInnerKvps = new List<TInner>();
-			foreach (var (innerKey, innerItem) in innerKvps)
+			foreach (var kvp in innerKvps)
 			{
+				ref readonly var innerKey = ref kvp.Key;
+				ref readonly var innerItem = ref kvp.Value;
 				var innerKeyHash = comparer.GetHashCode(innerKey);
 				if (outerKeyHash != innerKeyHash)
 				{

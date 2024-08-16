@@ -117,10 +117,102 @@
             <summary>
             Converts the current <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance into a pair of values.
             </summary>
-            <typeparam name="T1">The type of the key.</typeparam>
-            <typeparam name="T2">The type of the value.</typeparam>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <typeparam name="TValue">The type of value.</typeparam>
             <param name="this">A <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance to be converted from.</param>
             <returns>The final pair of values converted.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairExtensions.KeyRef``2(System.Collections.Generic.KeyValuePair{``0,``1}@)">
+            <summary>
+            Get reference to key.
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <typeparam name="TValue">The type of value.</typeparam>
+            <param name="this">The current <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance.</param>
+            <returns>The reference to key.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairExtensions.ValueRef``2(System.Collections.Generic.KeyValuePair{``0,``1}@)">
+            <summary>
+            Get reference to value.
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <typeparam name="TValue">The type of value.</typeparam>
+            <param name="this">The current <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance.</param>
+            <returns>The reference to value.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.KeyValuePairFieldEntry`2">
+            <summary>
+            Represents an entry to call internal fields on <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
+            </summary>
+            <typeparam name="TKey">The key type of each element in <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.</typeparam>
+            <typeparam name="TValue">The value type of each element in <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.</typeparam>
+            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairFieldEntry`2.GetKey(System.Collections.Generic.KeyValuePair{`0,`1}@)">
+            <summary>
+            Try to fetch the internal field <c>key</c> in type <see cref="T:System.Collections.Generic.KeyValuePair`2" />.
+            </summary>
+            <param name="this">The key-value pair.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            <target type="struct">
+					<para>
+						<b>
+							In addition, if the target type is a <see langword="struct" />, it requires a <see langword="ref" /> keyword;
+							otherwise, <see cref="T:System.BadImageFormatException" /> will be thrown.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.KeyValuePairFieldEntry`2.GetValue(System.Collections.Generic.KeyValuePair{`0,`1}@)">
+            <summary>
+            Try to fetch the internal field <c>value</c> in type <see cref="T:System.Collections.Generic.KeyValuePair`2" />.
+            </summary>
+            <param name="this">The key-value pair.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            <target type="struct">
+					<para>
+						<b>
+							In addition, if the target type is a <see langword="struct" />, it requires a <see langword="ref" /> keyword;
+							otherwise, <see cref="T:System.BadImageFormatException" /> will be thrown.
+						</b>
+					</para>
+				</target>
+            </remarks>
         </member>
         <member name="T:System.Collections.Generic.LinkedList">
             <summary>
@@ -5450,17 +5542,17 @@
             Represents some item names used by .NET library APIs.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Size">
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.List_Size">
             <summary>
             Indicates the name is <c>"_size"</c>.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Version">
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.List_Version">
             <summary>
             Indicates the name is <c>"_version"</c>.
             </summary>
         </member>
-        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Items">
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.List_Items">
             <summary>
             Indicates the name is <c>"_items"</c>.
             </summary>
@@ -5468,6 +5560,16 @@
         <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.BitArray_Array">
             <summary>
             Indicates the name is <c>"m_array"</c>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.KeyValuePair_Key">
+            <summary>
+            Indicates the name is <c>"key"</c>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.KeyValuePair_Value">
+            <summary>
+            Indicates the name is <c>"value"</c>.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.TupleEnumerator">
