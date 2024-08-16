@@ -20,6 +20,9 @@ public sealed partial class Collector : CollectorBase
 	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
+	public ICollection<Action<StepSearcher>> Setters { get; } = [];
+
+	/// <inheritdoc/>
 	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public ReadOnlyMemory<StepSearcher> StepSearchers

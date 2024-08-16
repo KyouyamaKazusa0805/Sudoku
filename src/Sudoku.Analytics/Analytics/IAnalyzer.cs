@@ -24,11 +24,6 @@ public interface IAnalyzer<in TSelf, TContext, out TResult> : IAnalyzerOrCollect
 	public abstract bool RandomizedChoosing { get; }
 
 	/// <summary>
-	/// Indicates the current culture that is used for displaying running information.
-	/// </summary>
-	public abstract IFormatProvider? CurrentCulture { get; set; }
-
-	/// <summary>
 	/// The internal <see cref="Random"/> instance to be used.
 	/// </summary>
 	protected abstract Random RandomNumberGenerator { get; }

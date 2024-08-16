@@ -76,6 +76,9 @@ public sealed partial class Analyzer : AnalyzerBase
 	[FactoryProperty(MethodSuffixName = "UserDefinedOptions")]
 	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
+	/// <inheritdoc/>
+	public ICollection<Action<StepSearcher>> Setters { get; } = [];
+
 	/// <summary>
 	/// Indicates the conditional options to be set.
 	/// </summary>

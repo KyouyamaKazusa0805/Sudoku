@@ -38,6 +38,19 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 	/// <seealso cref="Step"/>
 	public abstract StepSearcherOptions Options { get; set; }
 
+	/// <summary>
+	/// Indicates the current culture that is used for displaying running information.
+	/// </summary>
+	public abstract IFormatProvider? CurrentCulture { get; set; }
+
+	/// <summary>
+	/// Represents a list of <see cref="Action{T}"/> of <see cref="StepSearcher"/> instances
+	/// to assign extra configuration to step searcher instances.
+	/// </summary>
+	/// <seealso cref="Action{T}"/>
+	/// <seealso cref="StepSearcher"/>
+	public abstract ICollection<Action<StepSearcher>> Setters { get; }
+
 
 	/// <summary>
 	/// Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.

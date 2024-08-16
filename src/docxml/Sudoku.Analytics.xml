@@ -543,6 +543,9 @@
         <member name="P:Sudoku.Analytics.Analyzer.Options">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.Setters">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.ConditionalOptions">
             <summary>
             Indicates the conditional options to be set.
@@ -5244,6 +5247,9 @@
         <member name="P:Sudoku.Analytics.Collector.CurrentCulture">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Collector.Setters">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Collector.StepSearchers">
             <inheritdoc/>
         </member>
@@ -5763,11 +5769,6 @@
             Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.IAnalyzer`3.CurrentCulture">
-            <summary>
-            Indicates the current culture that is used for displaying running information.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.IAnalyzer`3.RandomNumberGenerator">
             <summary>
             The internal <see cref="T:System.Random"/> instance to be used.
@@ -5815,6 +5816,19 @@
             in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.CurrentCulture">
+            <summary>
+            Indicates the current culture that is used for displaying running information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.Setters">
+            <summary>
+            Represents a list of <see cref="T:System.Action`1"/> of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances
+            to assign extra configuration to step searcher instances.
+            </summary>
+            <seealso cref="T:System.Action`1"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.IAnalyzerOrCollector`3.FilterStepSearchers(System.ReadOnlyMemory{Sudoku.Analytics.StepSearcher},Sudoku.Analytics.StepSearchers.StepSearcherRunningArea)">
             <summary>
