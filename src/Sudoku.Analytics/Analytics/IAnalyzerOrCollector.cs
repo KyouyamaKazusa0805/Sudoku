@@ -32,16 +32,16 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 	public abstract ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; }
 
 	/// <summary>
+	/// Indicates the current culture that is used for displaying running information.
+	/// </summary>
+	public abstract CultureInfo? CurrentCulture { get; set; }
+
+	/// <summary>
 	/// Indicates the extra options to be set. The options will be passed into <see cref="Step"/> instances collected
 	/// in internal method called <c>Collect</c>, and create <see cref="Step"/> instances and pass into constructor.
 	/// </summary>
 	/// <seealso cref="Step"/>
 	public abstract StepSearcherOptions Options { get; set; }
-
-	/// <summary>
-	/// Indicates the current culture that is used for displaying running information.
-	/// </summary>
-	public abstract IFormatProvider? CurrentCulture { get; set; }
 
 	/// <summary>
 	/// Represents a list of <see cref="Action{T}"/> of <see cref="StepSearcher"/> instances
@@ -58,6 +58,6 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 	/// <param name="in">The step searchers passed in.</param>
 	/// <param name="runningArea">The running area to be checked.</param>
 	/// <returns>Filtered collection.</returns>
-	protected static ReadOnlyMemory<StepSearcher> FilterStepSearchers(ReadOnlyMemory<StepSearcher> @in, StepSearcherRunningArea runningArea)
+	protected static sealed ReadOnlyMemory<StepSearcher> FilterStepSearchers(ReadOnlyMemory<StepSearcher> @in, StepSearcherRunningArea runningArea)
 		=> from searcher in @in where searcher.RunningArea.HasFlag(runningArea) select searcher;
 }

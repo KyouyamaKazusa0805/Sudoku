@@ -554,11 +554,6 @@
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerContext,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.ResultCurrentCulture">
-            <summary>
-            Indicates the final <see cref="T:System.Globalization.CultureInfo"/> instance to be used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Analyzer.Default">
             <summary>
             Indicates the default <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has no extra configuration.
@@ -5810,17 +5805,17 @@
             Indicates the result step searchers used in the current analyzer or collector.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.CurrentCulture">
+            <summary>
+            Indicates the current culture that is used for displaying running information.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.Options">
             <summary>
             Indicates the extra options to be set. The options will be passed into <see cref="T:Sudoku.Analytics.Step"/> instances collected
             in internal method called <c>Collect</c>, and create <see cref="T:Sudoku.Analytics.Step"/> instances and pass into constructor.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.CurrentCulture">
-            <summary>
-            Indicates the current culture that is used for displaying running information.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.IAnalyzerOrCollector`3.Setters">
             <summary>
@@ -18926,7 +18921,7 @@
             <param name="ignore">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithCulture(Sudoku.Analytics.Analyzer,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods.WithCulture(Sudoku.Analytics.Analyzer,System.Globalization.CultureInfo)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/> with the target value.
             </summary>
@@ -18998,7 +18993,7 @@
             <param name="collectingMode">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithCulture(Sudoku.Analytics.Collector,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods.WithCulture(Sudoku.Analytics.Collector,System.Globalization.CultureInfo)">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Collector.CurrentCulture"/> with the target value.
             </summary>

@@ -54,7 +54,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
-	public IFormatProvider? CurrentCulture { get; set; }
+	public CultureInfo? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
@@ -87,11 +87,6 @@ public sealed partial class Analyzer : AnalyzerBase
 
 	/// <inheritdoc/>
 	Random AnalyzerBase.RandomNumberGenerator => _random;
-
-	/// <summary>
-	/// Indicates the final <see cref="CultureInfo"/> instance to be used.
-	/// </summary>
-	private CultureInfo ResultCurrentCulture => CurrentCulture as CultureInfo ?? CultureInfo.CurrentUICulture;
 
 
 	/// <summary>
@@ -563,7 +558,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				}
 
 			MakeProgress:
-				progressedStepSearcherName = searcher.ToString(ResultCurrentCulture);
+				progressedStepSearcherName = searcher.ToString(CurrentCulture);
 				goto ReportStateAndTryNextStep;
 			}
 

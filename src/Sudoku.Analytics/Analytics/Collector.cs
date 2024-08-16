@@ -17,7 +17,7 @@ public sealed partial class Collector : CollectorBase
 
 	/// <inheritdoc/>
 	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
-	public IFormatProvider? CurrentCulture { get; set; }
+	public CultureInfo? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
