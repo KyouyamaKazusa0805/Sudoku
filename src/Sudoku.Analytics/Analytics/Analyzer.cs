@@ -592,7 +592,6 @@ public sealed partial class Analyzer : AnalyzerBase
 						return false;
 					}
 				}
-
 				return true;
 			}
 
