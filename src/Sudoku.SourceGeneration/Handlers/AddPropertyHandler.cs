@@ -81,7 +81,12 @@ internal static class AddPropertyHandler
 			? p
 			: propertyName.ToCamelCasing();
 		var propertyElementType = (namedArguments.TryGetValueOrDefault<ITypeSymbol>("ParameterType", out var pt) ? pt! : propertyType)
-			.GetCollectionElementType()!;
+			.GetCollectionElementType();
+		if (propertyElementType is null)
+		{
+			return null;
+		}
+
 		var propertyTypeString = propertyElementType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 		var propertyElementListType = (namedArguments.TryGetValueOrDefault<INamedTypeSymbol>("MultipleAddingPropertyType", out var mpt) ? mpt! : spanTypeSymbol)
 			.Construct(propertyElementType)
