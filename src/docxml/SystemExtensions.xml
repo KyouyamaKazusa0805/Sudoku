@@ -623,6 +623,40 @@
             <param name="this">The instance.</param>
             <returns>An array of delegates representing the invocation list of the current delegate.</returns>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AddPropertyAttribute">
+            <summary>
+            Provides with an attribute type that can be applied to properties,
+            telling source generator that will be used in factory methods:
+            <code><![CDATA[
+            public static T AddPropertyName(this T instance, PropertyType propertyName)
+            {
+                instance.PropertyName.Add(propertyName);
+                return instance;
+            }
+            ]]></code>
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.DisallowsMultipleAddingParamsModifier">
+            <summary>
+            Indicates whether source generator instance won't emit <see langword="params"/> keyword to modify collection parameter
+            when <see cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/> is <see langword="true"/>.
+            </summary>
+            <seealso cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding">
+            <summary>
+            Indicates whether the generator also generates for multiple-element-adding methods.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.MultipleAddingPropertyType">
+            <summary>
+            Indicates the type of multiple adding property name to be generated
+            when <see cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/> is <see langword="true"/>.
+            By default the value is <see langword="typeof"/>(<see cref="T:System.ReadOnlySpan`1"/>).
+            </summary>
+            <seealso cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/>
+            <seealso cref="T:System.ReadOnlySpan`1"/>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -647,6 +681,36 @@
         <member name="F:System.Diagnostics.CodeAnalysis.EqualsBehavior.MakeAbstract">
             <summary>
             Indicates the method will be made <see langword="abstract"/>.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute">
+            <summary>
+            Represents a factory property attribute.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterModifiers">
+            <summary>
+            Indicates the parameter modifiers to be applied.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterName">
+            <summary>
+            Indicates the parameter name to be applied.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.MethodSuffixName">
+            <summary>
+            Indicates the method suffix name to be created.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the factory method generated. By default the accessibility is same as property's.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute.ParameterType">
+            <summary>
+            Indicates the parameter type to be created.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior">
@@ -1185,31 +1249,6 @@
                 return instance;
             }
             ]]></code>
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.WithPropertyAttribute.ParameterModifiers">
-            <summary>
-            Indicates the parameter modifiers to be applied.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.WithPropertyAttribute.ParameterName">
-            <summary>
-            Indicates the parameter name to be applied.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.WithPropertyAttribute.MethodSuffixName">
-            <summary>
-            Indicates the method suffix name to be created.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.WithPropertyAttribute.Accessibility">
-            <summary>
-            Indicates the accessibility of the factory method generated. By default the accessibility is same as property's.
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.WithPropertyAttribute.ParameterType">
-            <summary>
-            Indicates the parameter type to be created.
             </summary>
         </member>
         <member name="T:System.DoubleExtensions">

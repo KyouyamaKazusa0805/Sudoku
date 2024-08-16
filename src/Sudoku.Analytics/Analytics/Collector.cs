@@ -16,13 +16,6 @@ public sealed partial class Collector : CollectorBase
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
-	public CultureInfo? CurrentCulture { get; set; }
-
-	/// <inheritdoc/>
-	public ICollection<Action<StepSearcher>> Setters { get; } = [];
-
-	/// <inheritdoc/>
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
@@ -42,6 +35,14 @@ public sealed partial class Collector : CollectorBase
 	[WithProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
 	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
+	/// <inheritdoc/>
+	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
+	public CultureInfo? CurrentCulture { get; set; }
+
+	/// <inheritdoc/>
+	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
+	public ICollection<Action<StepSearcher>> Setters { get; } = [];
+
 
 	/// <inheritdoc/>
 	public ReadOnlySpan<Step> Collect(ref readonly CollectorContext context)
@@ -59,6 +60,8 @@ public sealed partial class Collector : CollectorBase
 		{
 			return [];
 		}
+
+		CollectorBase.ApplySetters(this);
 
 		try
 		{

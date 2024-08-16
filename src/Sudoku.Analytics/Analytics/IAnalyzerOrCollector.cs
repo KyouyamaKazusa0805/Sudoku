@@ -53,6 +53,20 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 
 
 	/// <summary>
+	/// Try to apply setters.
+	/// </summary>
+	protected static sealed void ApplySetters(TSelf instance)
+	{
+		foreach (var setter in instance.Setters)
+		{
+			foreach (var stepSearcher in instance.ResultStepSearchers)
+			{
+				setter(stepSearcher);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Try to filter step searchers via the specified running area; removing all step searchers if running area does not match.
 	/// </summary>
 	/// <param name="in">The step searchers passed in.</param>

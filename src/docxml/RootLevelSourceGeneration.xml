@@ -125,11 +125,12 @@
             <param name="baseType">The base type to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.INamedTypeSymbol)">
+        <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.GetAllMembers(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Boolean)">
             <summary>
             Gets all possible members in a type, even including its base type members.
             </summary>
             <param name="this">The type symbol.</param>
+            <param name="enumerateInterfaces">Indicates whether this method enumerates interface members.</param>
             <returns>All members.</returns>
         </member>
         <member name="M:Microsoft.CodeAnalysis.INamedTypeSymbolExtensions.ToFileName(Microsoft.CodeAnalysis.INamedTypeSymbol)">
@@ -186,6 +187,19 @@
             <param name="this">The instance.</param>
             <param name="attributeType">The attribute type.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.ITypeSymbolExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>.
+            </summary>
+            <seealso cref="T:Microsoft.CodeAnalysis.ITypeSymbol"/>
+        </member>
+        <member name="M:Microsoft.CodeAnalysis.ITypeSymbolExtensions.GetCollectionElementType(Microsoft.CodeAnalysis.ITypeSymbol)">
+            <summary>
+            Try to treat the current type as a collection type, to fetch its element type.
+            </summary>
+            <param name="this">The current type symbol.</param>
+            <returns>The type of element.</returns>
         </member>
         <member name="T:Microsoft.CodeAnalysis.StringExtensions">
             <summary>

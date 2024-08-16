@@ -21,7 +21,6 @@ internal static class INamedTypeSymbolExtensions
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -29,14 +28,26 @@ internal static class INamedTypeSymbolExtensions
 	/// Gets all possible members in a type, even including its base type members.
 	/// </summary>
 	/// <param name="this">The type symbol.</param>
+	/// <param name="enumerateInterfaces">Indicates whether this method enumerates interface members.</param>
 	/// <returns>All members.</returns>
-	public static IEnumerable<ISymbol> GetAllMembers(this INamedTypeSymbol @this)
+	public static IEnumerable<ISymbol> GetAllMembers(this INamedTypeSymbol @this, bool enumerateInterfaces = false)
 	{
 		for (var current = @this; current is not null; current = current.BaseType)
 		{
 			foreach (var member in current.GetMembers())
 			{
 				yield return member;
+			}
+		}
+
+		if (enumerateInterfaces)
+		{
+			foreach (var interfaceType in @this.AllInterfaces)
+			{
+				foreach (var member in interfaceType.GetMembers())
+				{
+					yield return member;
+				}
 			}
 		}
 	}
@@ -73,7 +84,6 @@ internal static class INamedTypeSymbolExtensions
 				default: { buffer[pointer++] = result[i]; break; }
 			}
 		}
-
 		return buffer[..pointer].ToString();
 	}
 
