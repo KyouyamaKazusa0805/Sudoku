@@ -21,11 +21,6 @@ public interface ICollector<in TSelf, TContext, out TResult> : IAnalyzerOrCollec
 	/// </summary>
 	public abstract CollectorDifficultyLevelMode DifficultyLevelMode { get; set; }
 
-	/// <summary>
-	/// Indicates the current culture that is used for displaying running information.
-	/// </summary>
-	public abstract IFormatProvider? CurrentCulture { get; set; }
-
 
 	/// <summary>
 	/// Search for all possible <see cref="Step"/> instances appeared at the specified grid state.

@@ -12,7 +12,7 @@ namespace System.Diagnostics.CodeAnalysis;
 /// ]]></code>
 /// </summary>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed class FactoryPropertyAttribute : Attribute
+public sealed class WithPropertyAttribute : Attribute
 {
 	/// <summary>
 	/// Indicates the parameter modifiers to be applied.

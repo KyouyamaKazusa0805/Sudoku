@@ -5851,11 +5851,6 @@
             Indicates whether the solver only displays the techniques with the same displaying level.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.ICollector`3.CurrentCulture">
-            <summary>
-            Indicates the current culture that is used for displaying running information.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.ICollector`3.Collect(`1@)">
             <summary>
             Search for all possible <see cref="T:Sudoku.Analytics.Step"/> instances appeared at the specified grid state.

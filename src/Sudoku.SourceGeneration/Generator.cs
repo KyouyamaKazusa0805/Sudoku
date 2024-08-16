@@ -49,7 +49,7 @@ public sealed class Generator : IIncrementalGenerator
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
 				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute",
+					"System.Diagnostics.CodeAnalysis.WithPropertyAttribute",
 					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
 					FactoryPropertyHandler.Transform
 				)

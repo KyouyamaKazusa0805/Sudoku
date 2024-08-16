@@ -8,22 +8,22 @@ using CollectorBase = IAnalyzerOrCollector<Collector, CollectorContext, ReadOnly
 public sealed partial class Collector : CollectorBase
 {
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
+	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
 	public int MaxStepsCollected { get; set; } = 1000;
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
+	[WithProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
+	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
 	public CultureInfo? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 	/// <inheritdoc/>
-	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
+	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
@@ -39,7 +39,7 @@ public sealed partial class Collector : CollectorBase
 		select searcher;
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
+	[WithProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
 	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 

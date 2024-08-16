@@ -25,11 +25,11 @@ public sealed partial class Analyzer : AnalyzerBase
 
 
 	/// <inheritdoc/>
-	[FactoryProperty]
+	[WithProperty]
 	public bool RandomizedChoosing { get; set; }
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "ApplyAll", ParameterName = "applyAll")]
+	[WithProperty(MethodSuffixName = "ApplyAll", ParameterName = "applyAll")]
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
@@ -39,7 +39,7 @@ public sealed partial class Analyzer : AnalyzerBase
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.TimeComplexity"/>
-	[FactoryProperty(MethodSuffixName = "IgnoreHighTimeComplexityStepSearchers", ParameterName = "ignore")]
+	[WithProperty(MethodSuffixName = "IgnoreHighTimeComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
@@ -49,16 +49,16 @@ public sealed partial class Analyzer : AnalyzerBase
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
 	/// <seealso cref="StepSearcherRuntimeFlags.SpaceComplexity"/>
-	[FactoryProperty(MethodSuffixName = "IgnoreHighSpaceComplexityStepSearchers", ParameterName = "ignore")]
+	[WithProperty(MethodSuffixName = "IgnoreHighSpaceComplexityStepSearchers", ParameterName = "ignore")]
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
+	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
 	public CultureInfo? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	[FactoryProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
+	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
 		get => _stepSearchers;
@@ -73,7 +73,7 @@ public sealed partial class Analyzer : AnalyzerBase
 		select searcher;
 
 	/// <inheritdoc/>
-	[FactoryProperty(MethodSuffixName = "UserDefinedOptions")]
+	[WithProperty(MethodSuffixName = "UserDefinedOptions")]
 	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 	/// <inheritdoc/>
@@ -82,7 +82,7 @@ public sealed partial class Analyzer : AnalyzerBase
 	/// <summary>
 	/// Indicates the conditional options to be set.
 	/// </summary>
-	[FactoryProperty]
+	[WithProperty]
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
