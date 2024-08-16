@@ -7,7 +7,7 @@ namespace System.Linq.Providers;
 public interface IIndexMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IIndexMethod<TSelf, TSource>, allows ref struct
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
 	public virtual IEnumerable<(int Index, TSource Item)> Index()
 	{
 		var i = 0;

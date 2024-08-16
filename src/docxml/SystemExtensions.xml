@@ -2474,7 +2474,7 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.Providers.IIndexMethod`2.Index">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="T:System.Linq.Providers.IIntersectionMethod`2">
             <summary>
