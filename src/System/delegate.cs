@@ -133,6 +133,5 @@ public static class @delegate
 	public static Func<T, TResult> YCombinator<T, TResult>(Func<Func<T, TResult>, Func<T, TResult>> f)
 		where T : allows ref struct
 		where TResult : allows ref struct
-		// We cannot simplify the lambda to 'f(YCombinator(f))' here.
 		=> value => f(YCombinator(f))(value);
 }
