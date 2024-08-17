@@ -6,7 +6,7 @@ using ResultInfo = (string Id, int ExperiencePoint, int Coin, int Times, bool Is
 /// <summary>
 /// 表示开始游戏的指令。
 /// </summary>
-[Command("PK")]
+[Command("PK", IsDebugging = true)]
 [CommandDescription("和朋友开始一局游戏。")]
 [CommandUsage("PK <模式>", IsSyntax = true)]
 [CommandUsage("PK 找编号")]
