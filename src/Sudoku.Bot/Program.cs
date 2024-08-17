@@ -57,7 +57,12 @@ internal static partial class Program
 	public static Generator Generator => new();
 
 	/// <summary>
+	/// 表示当前程序注册的匿名指令集。
+	/// </summary>
+	public static AnonymousCommand[] RegisteredAnonymousCommands => IAnonymousCommandBase.AssemblyCommands();
+
+	/// <summary>
 	/// 表示当前程序注册的指令集。
 	/// </summary>
-	public static ReadOnlySpan<Command> RegisteredCommands => Command.AssemblyCommands();
+	public static Command[] RegisteredCommands => ICommandBase.AssemblyCommands();
 }

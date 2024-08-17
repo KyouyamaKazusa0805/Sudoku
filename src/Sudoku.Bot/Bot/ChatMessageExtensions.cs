@@ -20,7 +20,7 @@ public static class ChatMessageExtensions
 	public static string GetPlainArguments(this ChatMessage @this)
 	{
 		var content = @this.Content.Trim();
-		return content.IndexOf(' ') is var i and not -1 ? content[(i + 1)..].Trim() : string.Empty;
+		return content[content.IndexOf(' ') is var i and not -1 ? (i + 1).. : ..].Trim();
 	}
 
 	/// <summary>

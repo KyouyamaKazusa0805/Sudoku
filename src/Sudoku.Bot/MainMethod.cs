@@ -21,31 +21,52 @@ BlockConsole('Q', 'q');
 WriteLog("退出机器人。");
 
 
-void onChatMessageReceived(ChatMessage chatMessage)
+async void onChatMessageReceived(ChatMessage chatMessage)
 {
-	// 要判断下长指令的运行环境。如果指令执行时间较长（如游戏），就需要判断是否当前 QQ 群是否存有运行游戏的上下文。
-	if (RunningContexts.ContainsKey(chatMessage.GroupOpenId))
+	var (groupId, content, found) = (chatMessage.GroupOpenId, chatMessage.GetCommandFullName(), false);
+	switch (content)
 	{
-		return;
-	}
-
-	var content = chatMessage.GetCommandFullName();
-	var found = false;
-	foreach (var command in RegisteredCommands)
-	{
-		if (command.CommandFullName == content)
+		case ['/', ..] when !RunningContexts.ContainsKey(groupId):
 		{
-			// 指令触发成功。
-			command.GroupCallback(apiProvider.GetChatMessageApi(), chatMessage);
-			found = true;
+			// 要判断下长指令的运行环境。如果指令执行时间较长（如游戏），就需要判断是否当前 QQ 群是否存有运行游戏的上下文。
+			foreach (var command in RegisteredCommands)
+			{
+				if (se(command.CommandFullName, content))
+				{
+					await command.GroupCallback(apiProvider.GetChatMessageApi(), chatMessage);
+					found = true;
+					break;
+				}
+			}
+
+			var (severity, message) = found
+				? (LogSeverity.Info, $"接收消息：“{chatMessage.Content}”。")
+				: (LogSeverity.Warning, $"接收消息：“{chatMessage.Content}”，但指令匹配失败。");
+			WriteLog(severity, message);
+			break;
+		}
+		case [_, ..] when RunningContexts.TryGetValue(groupId, out var context):
+		{
+			foreach (var command in RegisteredAnonymousCommands)
+			{
+				if (se(command.CommandName, context.ExecutingCommand))
+				{
+					await command.GroupCallback(apiProvider.GetChatMessageApi(), chatMessage);
+					found = true;
+					break;
+				}
+			}
+
+			var (severity, message) = found
+				? (LogSeverity.Info, $"在环境指令“{context.ExecutingCommand}”里接收消息：“{chatMessage.Content}”。")
+				: (LogSeverity.Warning, $"在环境指令“{context.ExecutingCommand}”里接收消息：“{chatMessage.Content}”，但指令匹配失败。");
+			WriteLog(severity, message);
 			break;
 		}
 	}
 
-	var (severity, message) = found
-		? (LogSeverity.Info, $"接收消息：“{chatMessage.Content}”。")
-		: (LogSeverity.Warning, $"接收消息：“{chatMessage.Content}”，但指令匹配失败。");
-	WriteLog(severity, message);
+
+	static bool se(string? a, string? b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
 }
 
 void onConnected()

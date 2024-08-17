@@ -6,16 +6,16 @@ using ResultInfo = (string Id, int ExperiencePoint, int Coin, int Times, bool Is
 /// <summary>
 /// 表示开始游戏的指令。
 /// </summary>
-[Command("数独")]
+[Command("PK")]
 [CommandDescription("和朋友开始一局游戏。")]
-[CommandUsage("数独 <模式>", IsSyntax = true)]
-[CommandUsage("数独 找编号")]
+[CommandUsage("PK <模式>", IsSyntax = true)]
+[CommandUsage("PK 找编号")]
 public sealed class PlayGameCommand : Command
 {
 	/// <summary>
 	/// 用静态变量记录游戏游玩过程之中产生的回复状态。默认情况为 1。每次消息回应后，这个数值都会增大一个单位。
 	/// </summary>
-	private static volatile int _answerId = 1;
+	private volatile int _answerId = 1;
 
 
 	/// <inheritdoc/>
@@ -42,8 +42,12 @@ public sealed class PlayGameCommand : Command
 	{
 		var separator = new string(' ', 4);
 		var rng = Random.Shared;
-
-		var context = new BotRunningContext { ExecutingCommand = CommandName, AnsweringContext = new() };
+		var context = new BotRunningContext
+		{
+			ExecutingCommand = CommandName,
+			AnsweringContext = new(),
+			Tag = GameMode.NineMatch
+		};
 		Program.RunningContexts.TryAdd(message.GroupOpenId, context);
 
 		// 确定题目。
