@@ -32,7 +32,8 @@ internal static partial class Program
 	/// <summary>
 	/// 本地使用的解题工具。
 	/// </summary>
-	public static readonly Analyzer Analyzer = Analyzer.Balanced;
+	public static readonly Analyzer Analyzer = Analyzer.Balanced
+		.WithUserDefinedOptions(new() { IsDirectMode = true, DistinctDirectMode = true });
 
 	/// <summary>
 	/// 在反序列化 JSON 期间使用到的解析控制选项。
