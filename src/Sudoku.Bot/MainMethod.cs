@@ -45,7 +45,7 @@ async void onChatMessageReceived(ChatMessage chatMessage)
 			WriteLog(severity, message);
 			break;
 		}
-		case [_, ..] when RunningContexts.TryGetValue(groupId, out var context):
+		case [not '/', ..] when RunningContexts.TryGetValue(groupId, out var context):
 		{
 			foreach (var command in RegisteredAnonymousCommands)
 			{

@@ -13,9 +13,9 @@ using ResultInfo = (string Id, int ExperiencePoint, int Coin, int Times, bool Is
 public sealed class PlayGameCommand : Command
 {
 	/// <summary>
-	/// 用静态变量记录游戏游玩过程之中产生的回复状态。默认情况为 1。每次消息回应后，这个数值都会增大一个单位。
+	/// 用变量记录游戏游玩过程之中产生的回复状态。默认情况为 1。每次消息回应后，这个数值都会增大一个单位。
 	/// </summary>
-	private volatile int _answerId = 1;
+	private int _answerId = 1;
 
 
 	/// <inheritdoc/>
@@ -99,7 +99,7 @@ public sealed class PlayGameCommand : Command
 				if (context.AnsweringContext.IsCancelled is true)
 				{
 					// 用户取消了游戏。
-					await api.SendGroupMessageAsync(message, "游戏已中断。", _answerId++);
+					await api.SendGroupMessageAsync(message, "游戏已取消。", _answerId++);
 
 					goto ReturnTrueAndInitializeContext;
 				}
