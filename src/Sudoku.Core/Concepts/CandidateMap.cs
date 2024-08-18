@@ -26,10 +26,10 @@ public partial struct CandidateMap : CandidateMapBase
 	private const int Length = 12;
 
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Empty"/>
+	/// <inheritdoc cref="CandidateMapBase.Empty"/>
 	public static readonly CandidateMap Empty = [];
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Full"/>
+	/// <inheritdoc cref="CandidateMapBase.Full"/>
 	public static readonly CandidateMap Full = ~default(CandidateMap);
 
 

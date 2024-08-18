@@ -18,14 +18,14 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 	IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Shifting"/>
+	/// <inheritdoc cref="CellMapBase.Shifting"/>
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Empty"/>
+	/// <inheritdoc cref="CellMapBase.Empty"/>
 	public static readonly CellMap Empty = [];
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.Full"/>
+	/// <inheritdoc cref="CellMapBase.Full"/>
 	public static readonly CellMap Full = ~default(CellMap);
 
 	/// <summary>

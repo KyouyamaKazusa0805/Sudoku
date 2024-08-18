@@ -2,7 +2,7 @@
 
 namespace Sudoku.Concepts;
 
-using static IGridConstants<Grid>;
+using GridBase = IGrid<Grid>;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -13,25 +13,25 @@ using static IGridConstants<Grid>;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
-[InlineArray(CellsCount)]
+[InlineArray(GridBase.CellsCount)]
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllEqualityComparisonOperators, IsLargeStructure = true)]
-public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
+public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
 	/// <inheritdoc cref="IGridConstants{TSelf}.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
 	/// <inheritdoc cref="IGridConstants{TSelf}.MaxCandidatesMask"/>
-	public const Mask MaxCandidatesMask = (1 << CellCandidatesCount) - 1;
+	public const Mask MaxCandidatesMask = (1 << GridBase.CellCandidatesCount) - 1;
 
 	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyMask"/>
-	public const Mask EmptyMask = (Mask)CellState.Empty << CellCandidatesCount;
+	public const Mask EmptyMask = (Mask)CellState.Empty << GridBase.CellCandidatesCount;
 
 	/// <inheritdoc cref="IGridConstants{TSelf}.ModifiableMask"/>
-	public const Mask ModifiableMask = (Mask)CellState.Modifiable << CellCandidatesCount;
+	public const Mask ModifiableMask = (Mask)CellState.Modifiable << GridBase.CellCandidatesCount;
 
 	/// <inheritdoc cref="IGridConstants{TSelf}.GivenMask"/>
-	public const Mask GivenMask = (Mask)CellState.Given << CellCandidatesCount;
+	public const Mask GivenMask = (Mask)CellState.Given << GridBase.CellCandidatesCount;
 
 #if EMPTY_GRID_STRING_CONSTANT
 	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
@@ -41,7 +41,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <summary>
 	/// Indicates the shifting bits count for header bits.
 	/// </summary>
-	internal const int HeaderShift = CellCandidatesCount + 3;
+	internal const int HeaderShift = GridBase.CellCandidatesCount + 3;
 
 	/// <summary>
 	/// Indicates ths header bits describing the sudoku type is a Sukaku.
@@ -51,7 +51,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 
 #if !EMPTY_GRID_STRING_CONSTANT
 	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
-	public static readonly string EmptyString = new('0', CellsCount);
+	public static readonly string EmptyString = new('0', GridBase.CellsCount);
 #endif
 
 	/// <inheritdoc cref="IGridConstants{TSelf}.Empty"/>
@@ -82,7 +82,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 
 		// Then traverse the array (span, pointer or etc.), to get refresh the values.
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
-		for (var i = 0; i < CellsCount; i++)
+		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
 			var value = @ref.Add(ref @ref.AsMutableRef(in firstElement), i);
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
@@ -116,7 +116,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	{
 		get
 		{
-			for (var i = 0; i < CellsCount; i++)
+			for (var i = 0; i < GridBase.CellsCount; i++)
 			{
 				if (GetState(i) == CellState.Empty)
 				{
@@ -124,7 +124,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 				}
 			}
 
-			for (var i = 0; i < CellsCount; i++)
+			for (var i = 0; i < GridBase.CellsCount; i++)
 			{
 				switch (GetState(i))
 				{
@@ -184,7 +184,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		get
 		{
 			var count = 0;
-			for (var i = 0; i < CellsCount; i++)
+			for (var i = 0; i < GridBase.CellsCount; i++)
 			{
 				if (GetState(i) == CellState.Empty)
 				{
@@ -245,25 +245,25 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap GivenCells => IGrid<Grid>.GetMap(in this, &GridPredicates.GivenCells);
+	public readonly unsafe CellMap GivenCells => GridBase.GetMap(in this, &GridPredicates.GivenCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap ModifiableCells => IGrid<Grid>.GetMap(in this, &GridPredicates.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => GridBase.GetMap(in this, &GridPredicates.ModifiableCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap EmptyCells => IGrid<Grid>.GetMap(in this, &GridPredicates.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => GridBase.GetMap(in this, &GridPredicates.EmptyCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe CellMap BivalueCells => IGrid<Grid>.GetMap(in this, &GridPredicates.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => GridBase.GetMap(in this, &GridPredicates.BivalueCells);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GridBase.GetMaps(in this, &GridPredicates.CandidatesMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GridBase.GetMaps(in this, &GridPredicates.DigitsMap);
 
 	/// <inheritdoc/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => IGrid<Grid>.GetMaps(in this, &GridPredicates.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GridBase.GetMaps(in this, &GridPredicates.ValuesMap);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<Candidate> Candidates
@@ -271,13 +271,13 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		get
 		{
 			var candidates = new Candidate[CandidatesCount];
-			for (var (cell, i) = (0, 0); cell < CellsCount; cell++)
+			for (var (cell, i) = (0, 0); cell < GridBase.CellsCount; cell++)
 			{
 				if (GetState(cell) == CellState.Empty)
 				{
 					foreach (var digit in GetCandidates(cell))
 					{
-						candidates[i++] = cell * CellCandidatesCount + digit;
+						candidates[i++] = cell * GridBase.CellCandidatesCount + digit;
 					}
 				}
 			}
@@ -292,7 +292,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 		{
 			var conjugatePairs = new List<Conjugate>();
 			var candidatesMap = CandidatesMap;
-			for (var digit = 0; digit < CellCandidatesCount; digit++)
+			for (var digit = 0; digit < GridBase.CellCandidatesCount; digit++)
 			{
 				ref readonly var cellsMap = ref candidatesMap[digit];
 				foreach (var houseMap in HousesMap)
@@ -350,7 +350,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ref readonly Mask IGrid<Grid>.FirstMaskRef => ref this[0];
+	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
 
 
 	/// <inheritdoc/>
@@ -504,7 +504,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool? Exists(Candidate candidate)
-		=> Exists(candidate / CellCandidatesCount, candidate % CellCandidatesCount);
+		=> Exists(candidate / GridBase.CellCandidatesCount, candidate % GridBase.CellCandidatesCount);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -528,8 +528,8 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <inheritdoc/>
 	public readonly Digit[] ToDigitsArray()
 	{
-		var result = new Digit[CellsCount];
-		for (var i = 0; i < CellsCount; i++)
+		var result = new Digit[GridBase.CellsCount];
+		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
 			// -1..8 -> 0..9
 			result[i] = GetDigit(i) + 1;
@@ -540,8 +540,8 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <inheritdoc/>
 	public readonly Mask[] ToCandidateMaskArray()
 	{
-		var result = new Mask[CellsCount];
-		for (var cell = 0; cell < CellsCount; cell++)
+		var result = new Mask[GridBase.CellsCount];
+		for (var cell = 0; cell < GridBase.CellsCount; cell++)
 		{
 			result[cell] = (Mask)(this[cell] & MaxCandidatesMask);
 		}
@@ -609,7 +609,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			return;
 		}
 
-		for (var i = 0; i < CellsCount; i++)
+		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
 			{
@@ -646,7 +646,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			return;
 		}
 
-		for (var i = 0; i < CellsCount; i++)
+		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
 			{
@@ -664,7 +664,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			return;
 		}
 
-		for (var i = 0; i < CellsCount; i++)
+		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Given)
 			{
@@ -699,7 +699,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	{
 		ref var mask = ref this[cell];
 		var copied = mask;
-		mask = (Mask)((Mask)(GetHeaderBits(cell) | (Mask)((int)state << CellCandidatesCount)) | (Mask)(mask & MaxCandidatesMask));
+		mask = (Mask)((int)GetHeaderBits(cell) | (int)state << GridBase.CellCandidatesCount | mask & MaxCandidatesMask);
 		OnValueChanged(ref this, cell, copied, mask, -1);
 	}
 
@@ -743,7 +743,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 				OnRefreshingCandidates(ref this);
 				break;
 			}
-			case >= 0 and < CellCandidatesCount:
+			case >= 0 and < GridBase.CellCandidatesCount:
 			{
 				ref var result = ref this[cell];
 				var copied = result;
@@ -762,7 +762,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetExistence(Cell cell, Digit digit, bool isOn)
 	{
-		if (cell is >= 0 and < CellsCount && digit is >= 0 and < CellCandidatesCount)
+		if (cell is >= 0 and < GridBase.CellsCount && digit is >= 0 and < GridBase.CellCandidatesCount)
 		{
 			var copied = this[cell];
 			if (isOn)
@@ -975,7 +975,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			{
 				if (MaskOperations.MaskToCellState(mask) != CellState.Empty)
 				{
-					mask = (Mask)((Mask)CellState.Empty << CellCandidatesCount | mask & MaxCandidatesMask);
+					mask = (Mask)((int)CellState.Empty << GridBase.CellCandidatesCount | mask & MaxCandidatesMask);
 				}
 			}
 		}
@@ -1069,7 +1069,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	static void IGridProperties<Grid>.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
 
 	/// <inheritdoc/>
-	static Grid IGrid<Grid>.Create(ReadOnlySpan<Mask> values) => Create(values);
+	static Grid GridBase.Create(ReadOnlySpan<Mask> values) => Create(values);
 
 	/// <summary>
 	/// Returns a <see cref="Grid"/> instance via the raw mask values.
@@ -1098,16 +1098,16 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			{
 				var result = Undefined;
 				var uniformValue = values[0];
-				for (var cell = 0; cell < CellsCount; cell++)
+				for (var cell = 0; cell < GridBase.CellsCount; cell++)
 				{
 					result[cell] = uniformValue;
 				}
 				return result;
 			}
-			case CellsCount:
+			case GridBase.CellsCount:
 			{
 				var result = Undefined;
-				for (var cell = 0; cell < CellsCount; cell++)
+				for (var cell = 0; cell < GridBase.CellsCount; cell++)
 				{
 					result[cell] = values[cell];
 				}
@@ -1115,7 +1115,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 			}
 			default:
 			{
-				throw new InvalidOperationException($"The argument '{nameof(values)}' must contain {CellsCount} elements.");
+				throw new InvalidOperationException($"The argument '{nameof(values)}' must contain {GridBase.CellsCount} elements.");
 			}
 		}
 	}
@@ -1141,7 +1141,7 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	/// <inheritdoc cref="IGridProperties{TSelf}.OnRefreshingCandidates(ref TSelf)"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
-		for (var cell = 0; cell < CellsCount; cell++)
+		for (var cell = 0; cell < GridBase.CellsCount; cell++)
 		{
 			if (@this.GetState(cell) == CellState.Empty)
 			{
@@ -1179,13 +1179,19 @@ public partial struct Grid : IGrid<Grid>, ISelectMethod<Grid, Candidate>, IWhere
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator checked Grid(Mask[] maskArray)
 	{
-		static bool maskMatcher(Mask element) => element >> CellCandidatesCount is 0 or 1 or 2 or 4;
-		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, CellsCount);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(maskArray.Length, GridBase.CellsCount);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref @ref.ByteRef(ref result[0]), in @ref.ReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
+		Unsafe.CopyBlock(
+			ref @ref.ByteRef(ref result[0]),
+			in @ref.ReadOnlyByteRef(in maskArray[0]),
+			sizeof(Mask) * GridBase.CellsCount
+		);
 		return result;
+
+
+		static bool maskMatcher(Mask element) => element >> GridBase.CellCandidatesCount is 0 or 1 or 2 or 4;
 	}
 }
 
