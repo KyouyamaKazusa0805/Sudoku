@@ -251,8 +251,8 @@ public sealed partial class Analyzer : AnalyzerBase
 		)
 		{
 			var playground = puzzle;
-			var totalCandidatesCount = playground.CandidatesCount;
-			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
+			var (totalCandidatesCount, stepSearchers) = (playground.CandidatesCount, ResultStepSearchers);
+			var (collectedSteps, stepGrids) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity));
 			var timestampOriginal = Stopwatch.GetTimestamp();
 			var accumulator = IsFullApplying
 				|| RandomizedChoosing
