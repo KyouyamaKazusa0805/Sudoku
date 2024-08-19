@@ -405,6 +405,15 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IOfTypeMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#OfType``1">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ConsoleEnhancer(System.String,Sudoku.Analytics.Step)">
+            <summary>
+            Represents a text enhancer method that can display colors in console when you call <see cref="P:System.Console.Out"/> methods.
+            </summary>
+            <param name="str">The string members.</param>
+            <param name="step">The step to be used.</param>
+            <returns>The output string.</returns>
+            <seealso cref="P:System.Console.Out"/>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
             <summary>
             The inner executor to get the difficulty value (total, average).

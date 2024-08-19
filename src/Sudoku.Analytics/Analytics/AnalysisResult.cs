@@ -726,6 +726,28 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 
 	/// <summary>
+	/// Represents a text enhancer method that can display colors in console when you call <see cref="Console.Out"/> methods.
+	/// </summary>
+	/// <param name="str">The string members.</param>
+	/// <param name="step">The step to be used.</param>
+	/// <returns>The output string.</returns>
+	/// <seealso cref="Console.Out"/>
+	public static string ConsoleEnhancer(string str, Step step)
+	{
+		var difficultyStr = step.DifficultyLevel switch
+		{
+			DifficultyLevel.Moderate => "0;255;0",
+			DifficultyLevel.Hard => "255;255;0",
+			DifficultyLevel.Fiendish => "255;150;80",
+			DifficultyLevel.Nightmare => "255;100;100",
+			_ => null
+		};
+
+		// 38 - foreground; 48 - background
+		return difficultyStr is null ? str : $"\e[38;2;{difficultyStr}m{str}\e[0m";
+	}
+
+	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
 	/// </summary>
 	/// <param name="steps">The steps to be calculated.</param>
