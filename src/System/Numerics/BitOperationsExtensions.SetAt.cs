@@ -92,7 +92,7 @@ public partial class BitOperationsExtensions
 	/// <inheritdoc cref="SetAt(byte, int)"/>
 	public static partial int SetAt(this ulong @this, int order)
 	{
-		var (mask, size, @base) = (0x0000FFFFu, 16u, 0u);
+		var (mask, size, @base) = (0x0000FFFFU, 16U, 0U);
 		if (order++ >= BitOperations.PopCount(@this))
 		{
 			return -1;
