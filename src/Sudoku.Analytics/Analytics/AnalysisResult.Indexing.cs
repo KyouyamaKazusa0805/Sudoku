@@ -36,7 +36,6 @@ public partial record AnalysisResult
 					return s;
 				}
 			}
-
 			throw new ArgumentOutOfRangeException(SR.ExceptionMessage("GridInvalid"));
 		}
 	}
@@ -59,19 +58,19 @@ public partial record AnalysisResult
 			{
 				var (_, step) = pair;
 				var name = step.GetName(null);
-				if (n(name))
+				if (oic(name))
 				{
 					return pair;
 				}
 
 				var aliases = step.Code.GetAliasedNames(null);
-				if (aliases is not null && Array.Exists(aliases, n))
+				if (aliases is not null && Array.Exists(aliases, oic))
 				{
 					return pair;
 				}
 
 				var abbr = step.Code.GetAbbreviation();
-				if (abbr is not null && n(abbr))
+				if (abbr is not null && oic(abbr))
 				{
 					return pair;
 				}
@@ -80,7 +79,7 @@ public partial record AnalysisResult
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			bool n(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
+			bool oic(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
 		}
 	}
 
