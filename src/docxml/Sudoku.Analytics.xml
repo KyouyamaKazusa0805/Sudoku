@@ -152,6 +152,11 @@
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.MemoryUsed">
+            <summary>
+            Indicates the memory used in bytes. This value is not <see langword="null"/> if the puzzle is solved.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.FailedReason">
             <summary>
             Indicates why the solving operation is failed.
@@ -494,6 +499,15 @@
             <summary>
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowMemoryUsage">
+            <summary>
+            Indicates the analysis result will show memory usage.
+            </summary>
+            <remarks>
+            Please note that this flag only simply make subtraction on start and end state of GC,
+            which means it may produce a negative number. Don't rely on it; just for the reference.
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.Span">
             <summary>
@@ -25063,6 +25077,16 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.AnalysisResultInStep">
             <summary>
               Looks up a localized string similar to In step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnalysisResultMemoryUsed">
+            <summary>
+              Looks up a localized string similar to Memory used:.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnalysisResultMemoryUsedMinusResult">
+            <summary>
+              Looks up a localized string similar to  (implicit collected behavior found).
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AnalysisResultMin">

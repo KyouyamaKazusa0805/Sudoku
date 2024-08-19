@@ -63,6 +63,15 @@ public partial record AnalysisResult
 		/// <summary>
 		/// Indicates the analysis result will show elapsed time on solving the puzzle.
 		/// </summary>
-		ShowElapsedTime = 1 << 9
+		ShowElapsedTime = 1 << 9,
+
+		/// <summary>
+		/// Indicates the analysis result will show memory usage.
+		/// </summary>
+		/// <remarks>
+		/// Please note that this flag only simply make subtraction on start and end state of GC,
+		/// which means it may produce a negative number. Don't rely on it; just for the reference.
+		/// </remarks>
+		ShowMemoryUsage = 1 << 10
 	}
 }

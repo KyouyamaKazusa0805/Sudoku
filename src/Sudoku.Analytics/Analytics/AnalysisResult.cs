@@ -41,7 +41,9 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids), nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids))]
+	[MemberNotNullWhen(true, nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(MemoryUsed))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -165,6 +167,11 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
 	public int? DiamondDifficulty => DiamondStep?.Difficulty;
+
+	/// <summary>
+	/// Indicates the memory used in bytes. This value is not <see langword="null"/> if the puzzle is solved.
+	/// </summary>
+	public long? MemoryUsed { get; init; }
 
 	/// <summary>
 	/// Indicates why the solving operation is failed.
@@ -485,7 +492,8 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
-				InterimSteps: var steps
+				InterimSteps: var steps,
+				MemoryUsed: var memoryUsed
 			})
 		{
 			throw new();
@@ -617,7 +625,17 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		sb.AppendLine(SR.Get("AnalysisResultBeenSolved", culture));
 		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
 		{
-			sb.AppendLine($@"{SR.Get("AnalysisResultTimeElapsed", culture)}{elapsed:hh\:mm\:ss\.fff}");
+			sb.Append(SR.Get("AnalysisResultTimeElapsed", culture));
+			sb.AppendLine(elapsed.ToString(@"hh\:mm\:ss\.fff"));
+		}
+		if (memoryUsed is not null && options.HasFlag(FormattingOptions.ShowMemoryUsage))
+		{
+			sb.Append(SR.Get("AnalysisResultMemoryUsed", culture));
+			sb.AppendLine(
+				memoryUsed <= 0
+					? $"{-memoryUsed / 1048576D:#.###} MB{SR.Get("AnalysisResultMemoryUsedMinusResult", culture)}"
+					: $"{memoryUsed / 1048576D:#.###} MB"
+			);
 		}
 
 		a(sb, options.HasFlag(FormattingOptions.ShowSeparators));

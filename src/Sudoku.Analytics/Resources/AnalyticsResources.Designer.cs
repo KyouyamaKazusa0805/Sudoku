@@ -268,6 +268,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Memory used:.
+        /// </summary>
+        public static string AnalysisResultMemoryUsed {
+            get {
+                return ResourceManager.GetString("AnalysisResultMemoryUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  (implicit collected behavior found).
+        /// </summary>
+        public static string AnalysisResultMemoryUsedMinusResult {
+            get {
+                return ResourceManager.GetString("AnalysisResultMemoryUsedMinusResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to min.
         /// </summary>
         public static string AnalysisResultMin {

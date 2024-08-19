@@ -194,6 +194,10 @@ public sealed partial class Analyzer : AnalyzerBase
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };
 		var solution = puzzle.GetSolutionGrid();
+
+		// #1 Memory usage snapshot
+		var gcSnapshot1 = GC.GetTotalMemory(false);
+
 		if (puzzle.GetUniqueness() != Uniqueness.Bad)
 		{
 			// We should check whether the puzzle is a GSP firstly.
@@ -213,6 +217,7 @@ public sealed partial class Analyzer : AnalyzerBase
 					mappingDigits,
 					selfPairedDigitsMask,
 					progress,
+					gcSnapshot1,
 					cancellationToken
 				);
 			}
@@ -247,6 +252,7 @@ public sealed partial class Analyzer : AnalyzerBase
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<AnalyzerOrCollectorProgressPresenter>? progress,
+			long gcSnapshot1,
 			CancellationToken cancellationToken
 		)
 		{
@@ -284,7 +290,7 @@ public sealed partial class Analyzer : AnalyzerBase
 					{
 						if (onCollectingSteps(
 							collectedSteps, step, in context, ref playground, timestampOriginal,
-							stepGrids, resultBase, cancellationToken, out var result))
+							stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -383,7 +389,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 								if (onCollectingSteps(
 									collectedSteps, step, in context, ref playground,
-									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+									timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -399,7 +405,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, in context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -427,7 +433,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, in context, ref playground,
-							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -473,7 +479,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, in context, ref playground,
-							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -501,7 +507,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, in context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -517,7 +523,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 								if (onCollectingSteps(
 									collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
-									resultBase, cancellationToken, out var result))
+									resultBase, gcSnapshot1, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -542,7 +548,7 @@ public sealed partial class Analyzer : AnalyzerBase
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
-										resultBase, cancellationToken, out var result))
+										resultBase, gcSnapshot1, cancellationToken, out var result))
 									{
 										return result;
 									}
@@ -606,6 +612,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				long timestampOriginal,
 				List<Grid> steppingGrids,
 				AnalysisResult resultBase,
+				long gcSnapshot1,
 				CancellationToken cancellationToken,
 				[NotNullWhen(true)] out AnalysisResult? result
 			)
@@ -652,13 +659,16 @@ public sealed partial class Analyzer : AnalyzerBase
 
 					if (playground.IsSolved)
 					{
+						var gcSnapshot2 = GC.GetTotalMemory(false);
+
 						result = resultBase with
 						{
 							IsSolved = true,
 							Solution = playground,
 							ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
 							InterimSteps = [.. steps],
-							InterimGrids = [.. steppingGrids]
+							InterimGrids = [.. steppingGrids],
+							MemoryUsed = gcSnapshot2 - gcSnapshot1
 						};
 						return true;
 					}
