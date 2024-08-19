@@ -5,13 +5,13 @@ namespace Sudoku.Analytics;
 /// The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
 /// produced in the whole analysis time-cycle.
 /// </summary>
-/// <typeparam name="TSelf">The type of the solver itself.</typeparam>
+/// <typeparam name="TSelf">The type of the analyzer itself.</typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
 public interface IAnalyzer<in TSelf, TContext, out TResult> : IAnalyzerOrCollector<TSelf, TContext, TResult>
 	where TSelf : IAnalyzer<TSelf, TContext, TResult>, allows ref struct
 	where TContext : allows ref struct
-	where TResult : IAnalysisResult<TSelf, TContext, TResult>, allows ref struct
+	where TResult : IAnalysisResult<TResult, TSelf, TContext>, allows ref struct
 {
 	/// <summary>
 	/// Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.

@@ -1618,6 +1618,18 @@
             <param name="this">The array that contains a list of elements to be calculated.</param>
             <returns>A <typeparamref name="T"/> instance as the result.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinBy``3(``0[],System.Func{``0,``1},``2)">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxBy``3(``0[],System.Func{``0,``1},``2)">
+            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
             <returns>
             An array of <typeparamref name="TResult"/> instances being the result

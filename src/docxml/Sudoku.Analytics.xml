@@ -5709,9 +5709,9 @@
             Represents an instance that describes the result after executed the method
             <see cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>.
             </summary>
-            <typeparam name="TSolver">The solver's type.</typeparam>
-            <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TSelf">The type of the target result itself.</typeparam>
+            <typeparam name="TAnalyzer">The solver's type.</typeparam>
+            <typeparam name="TContext">The type of the context.</typeparam>
             <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
         </member>
         <member name="P:Sudoku.Analytics.IAnalysisResult`3.IsSolved">
@@ -5750,7 +5750,7 @@
             The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
             produced in the whole analysis time-cycle.
             </summary>
-            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TSelf">The type of the analyzer itself.</typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
         </member>

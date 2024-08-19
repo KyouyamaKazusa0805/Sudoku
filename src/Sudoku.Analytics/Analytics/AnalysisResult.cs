@@ -5,7 +5,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TContext, TSolverResult}.Puzzle" path="/summary"/></param>
 public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
-	IAnalysisResult<Analyzer, AnalyzerContext, AnalysisResult>,
+	IAnalysisResult<AnalysisResult, Analyzer, AnalyzerContext>,
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
 	IEnumerable<Step>,
@@ -330,10 +330,11 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				if (InterimSteps[i] is SingleStep)
 				{
 					static int keySelector((Step, int Difficulty) pair) => pair.Difficulty;
-					return i < 1 ? InterimSteps[0] : (from step in InterimSteps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
+					return i < 1
+						? InterimSteps[0]
+						: (from step in InterimSteps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
 				}
 			}
-
 			throw new InvalidOperationException(SR.ExceptionMessage("GridInvalid"));
 		}
 	}

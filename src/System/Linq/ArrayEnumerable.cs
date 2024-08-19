@@ -76,6 +76,84 @@ public static class ArrayEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static TSource? MinBy<TSource, TKey>(this TSource[] @this, Func<TSource, TKey> keySelector)
+		where TKey : IComparable<TKey>, allows ref struct
+	{
+		var result = default(TSource);
+		var minValue = default(TKey);
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			var elementKey = keySelector(element);
+			if (elementKey.CompareTo(minValue) <= 0)
+			{
+				result = element;
+				minValue = elementKey;
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+	public static TSource? MinBy<TSource, TKey, TComparer>(this TSource[] @this, Func<TSource, TKey> keySelector, TComparer? comparer)
+		where TKey : allows ref struct
+		where TComparer : IComparer<TKey>, new(), allows ref struct
+	{
+		comparer ??= new();
+
+		var result = default(TSource);
+		var minValue = default(TKey);
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			var elementKey = keySelector(element);
+			if (comparer.Compare(elementKey, minValue) <= 0)
+			{
+				result = element;
+				minValue = elementKey;
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static TSource? MaxBy<TSource, TKey>(this TSource[] @this, Func<TSource, TKey> keySelector)
+		where TKey : IComparable<TKey>, allows ref struct
+	{
+		var result = default(TSource);
+		var maxValue = default(TKey);
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			var elementKey = keySelector(element);
+			if (elementKey.CompareTo(maxValue) >= 0)
+			{
+				result = element;
+				maxValue = elementKey;
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+	public static TSource? MaxBy<TSource, TKey, TComparer>(this TSource[] @this, Func<TSource, TKey> keySelector, TComparer? comparer)
+		where TKey : allows ref struct
+		where TComparer : IComparer<TKey>, new(), allows ref struct
+	{
+		comparer ??= new();
+
+		var result = default(TSource);
+		var maxValue = default(TKey);
+		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		{
+			var elementKey = keySelector(element);
+			if (comparer.Compare(elementKey, maxValue) >= 0)
+			{
+				result = element;
+				maxValue = elementKey;
+			}
+		}
+		return result;
+	}
+
 	/// <returns>
 	/// An array of <typeparamref name="TResult"/> instances being the result
 	/// of invoking the transform function on each element of <paramref name="source"/>.
