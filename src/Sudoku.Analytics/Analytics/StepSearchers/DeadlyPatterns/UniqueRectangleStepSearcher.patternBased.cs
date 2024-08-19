@@ -1526,22 +1526,19 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					var cellOffsets = new List<CellViewNode>();
-					foreach (var cell in urCells)
-					{
-						cellOffsets.Add(new(ColorIdentifier.Normal, cell));
-					}
-
-					var candidateOffsets = new List<CandidateViewNode> { new(ColorIdentifier.Normal, anotherCell * 9 + otherDigit) };
-					foreach (var cell in otherCells)
-					{
-						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + otherDigit));
-					}
-
 					accumulator.Add(
 						new AvoidableRectangleHiddenSingleStep(
 							[new(Elimination, baseCell, otherDigit)],
-							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, sameHouse)]],
+							[
+								[
+									.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),
+									new CandidateViewNode(ColorIdentifier.Normal, anotherCell * 9 + otherDigit),
+									..
+									from cell in otherCells
+									select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + otherDigit),
+									new HouseViewNode(ColorIdentifier.Normal, sameHouse)
+								]
+							],
 							context.Options,
 							d1,
 							d2,
