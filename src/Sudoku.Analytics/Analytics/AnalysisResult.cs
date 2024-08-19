@@ -32,7 +32,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	private const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
+	public const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
 		| FormattingOptions.ShowSeparators
 		| FormattingOptions.ShowStepsAfterBottleneck
 		| FormattingOptions.ShowSteps
@@ -431,14 +431,22 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <inheritdoc/>
 	public override string ToString() => ToString(DefaultOptions);
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(DefaultOptions, CoordinateConverter.GetInstance(formatProvider));
-
 	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(FormattingOptions options) => ToString(options, null);
+	public string ToString(FormattingOptions options) => ToString(options, default(IFormatProvider));
+
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(Func<string, Step, string>? stepStringReplacer) => ToString(DefaultOptions, null, stepStringReplacer);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider) => ToString(DefaultOptions, formatProvider);
+
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(FormattingOptions options, Func<string, Step, string> stepStringReplacer)
+		=> ToString(options, null, stepStringReplacer);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.
@@ -446,9 +454,61 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <param name="options">The formatting options.</param>
 	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>A string that represents the current object.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(FormattingOptions options, IFormatProvider? formatProvider)
+		=> ToString(options, formatProvider, null);
+
+	/// <summary>
+	/// Returns a string that represents the current object, with the specified formatting options,
+	/// with a string replacer method that can enhance the output string.
+	/// </summary>
+	/// <param name="options">The formatting options.</param>
+	/// <param name="formatProvider">The format provider instance.</param>
+	/// <param name="stepStringReplacer">The string replacer method that can substitute each step string.</param>
+	/// <returns>A string that represents the current object.</returns>
+	/// <remarks>
+	/// <para>
+	/// The argument <paramref name="stepStringReplacer"/> enhances the text output.
+	/// You can replace it with whatever you want to display.
+	/// For example, in <see cref="Console.Out"/> stream, you can use Epson formatting syntax to output text
+	/// by using special escaped character <c>'\e'</c>:
+	/// <code><![CDATA[
+	/// \e[38;2;255;0;0mRed text\e[0m
+	/// \e[48;2;0;255;0mGreen background\e[0m
+	/// \e[38;2;0;0;255;48;2;255;255;0mBlue text with a yellow background\e[0m
+	/// ]]></code>
+	/// Here, you can use statements like <c><![CDATA[\e[38;2;<red>;<green>;<blue>m]]></c> and <c>\e[0m</c>
+	/// to control output text color, where:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>38</term>
+	/// <description>Foreground</description>
+	/// </item>
+	/// <item>
+	/// <term>48</term>
+	/// <description>Background</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// <para>
+	/// For example, if you want to change the color to red, just surround original text with <c>\e</c> statements:
+	/// <code><![CDATA[
+	/// static string replacer(string str, Step step)
+	///     => step.DifficultyLevel == DifficultyLevel.Nightmare ? $"\e[38;2;255;0;0m{str}\e[0m" : str;
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Console.Out"/>
+	/// <seealso href="https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/epson-esc-pos-with-formatting">
+	/// Epson formatting
+	/// </seealso>
+	public string ToString(FormattingOptions options, IFormatProvider? formatProvider, Func<string, Step, string>? stepStringReplacer)
 	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
+		// Initialize and deconstruct variables.
 		if (this is not
 			{
 				IsSolved: var isSolved,
@@ -464,7 +524,8 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		{
 			throw new();
 		}
-
+		var r = stepStringReplacer ?? (static (self, _) => self);
+		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var culture = converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 		// Print header.
@@ -477,10 +538,9 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		// Print solving steps (if worth).
 		if (options.HasFlag(FormattingOptions.ShowSteps) && steps is not null)
 		{
-			sb.Append(SR.Get("AnalysisResultSolvingSteps", culture));
-			sb.AppendLine();
+			sb.AppendLine(SR.Get("AnalysisResultSolvingSteps", culture));
 
-			if (getBottleneck() is var (bIndex, bInfo))
+			if (getBottleneck() is var (bIndex, bottleneckStep))
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
@@ -490,11 +550,12 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 						break;
 					}
 
-					var info = steps[i];
-					var infoStr = options.HasFlag(FormattingOptions.ShowSimple) ? info.ToSimpleString(culture) : info.ToString(culture);
+					var step = steps[i];
+					var stepStr = options.HasFlag(FormattingOptions.ShowSimple)
+						? step.ToSimpleString(culture)
+						: step.ToString(culture);
 					var showDiff = options.HasFlag(FormattingOptions.ShowDifficulty);
-
-					var d = $"({info.Difficulty,5}";
+					var d = $"({step.Difficulty,5}";
 					var s = $"{i + 1,4}";
 					var labelInfo = (options.HasFlag(FormattingOptions.ShowStepLabel), showDiff) switch
 					{
@@ -503,10 +564,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 						(false, true) => $"{d}) ",
 						_ => string.Empty
 					};
-
-					sb.Append(labelInfo);
-					sb.Append(infoStr);
-					sb.AppendLine();
+					sb.AppendLine(r($"{labelInfo}{stepStr}", step));
 				}
 
 				if (options.HasFlag(FormattingOptions.ShowBottleneck))
@@ -523,8 +581,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					}
 
 					sb.Append(' ');
-					sb.Append(bInfo.ToString());
-					sb.AppendLine();
+					sb.AppendLine(r(bottleneckStep.ToString(), bottleneckStep));
 				}
 
 				a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
@@ -538,28 +595,27 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 			if (options.HasFlag(FormattingOptions.ShowStepDetail))
 			{
-				sb
-					.Append($"{SR.Get("AnalysisResultMin", culture),6}, ")
-					.Append($"{SR.Get("AnalysisResultTotal", culture),6}")
-					.Append(SR.Get("AnalysisResultTechniqueUsing", culture));
+				sb.Append($"{SR.Get("AnalysisResultMin", culture),6}, ");
+				sb.Append($"{SR.Get("AnalysisResultTotal", culture),6}");
+				sb.Append(SR.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
-			foreach (var solvingStepsGroup in from s in steps.AsReadOnlySpan() orderby s.Difficulty group s by s.GetName(null))
+			foreach (ref readonly var solvingStepsGroup in
+				from s in steps.AsReadOnlySpan()
+				orderby s.Difficulty
+				group s by s.GetName(null))
 			{
 				if (options.HasFlag(FormattingOptions.ShowStepDetail))
 				{
-					var currentTotal = 0;
-					var currentMinimum = int.MaxValue;
+					var (currentTotal, currentMinimum) = (0, int.MaxValue);
 					foreach (var solvingStep in solvingStepsGroup)
 					{
 						var difficulty = solvingStep.Difficulty;
 						currentTotal += difficulty;
 						currentMinimum = Math.Min(currentMinimum, difficulty);
 					}
-
 					sb.Append($"{currentMinimum,6}, {currentTotal,6}) ");
 				}
-
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
@@ -590,8 +646,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		{
 			sb.Append(SR.Get("AnalysisResultNot", culture));
 		}
-		sb.Append(SR.Get("AnalysisResultBeenSolved", culture));
-		sb.AppendLine();
+		sb.AppendLine(SR.Get("AnalysisResultBeenSolved", culture));
 		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
 		{
 			sb.AppendLine($@"{SR.Get("AnalysisResultTimeElapsed", culture)}{elapsed:hh\:mm\:ss\.fff}");
@@ -606,8 +661,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		{
 			if (showSeparator)
 			{
-				sb.Append('-', 10);
-				sb.AppendLine();
+				sb.AppendLine(new('-', 10));
 			}
 		}
 

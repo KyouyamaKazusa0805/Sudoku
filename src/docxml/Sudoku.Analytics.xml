@@ -299,11 +299,17 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
             <summary>
@@ -312,6 +318,56 @@
             <param name="options">The formatting options.</param>
             <param name="formatProvider">The format provider instance.</param>
             <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <summary>
+            Returns a string that represents the current object, with the specified formatting options,
+            with a string replacer method that can enhance the output string.
+            </summary>
+            <param name="options">The formatting options.</param>
+            <param name="formatProvider">The format provider instance.</param>
+            <param name="stepStringReplacer">The string replacer method that can substitute each step string.</param>
+            <returns>A string that represents the current object.</returns>
+            <remarks>
+            <para>
+            The argument <paramref name="stepStringReplacer"/> enhances the text output.
+            You can replace it with whatever you want to display.
+            For example, in <see cref="P:System.Console.Out"/> stream, you can use Epson formatting syntax to output text
+            by using special escaped character <c>'\e'</c>:
+            <code><![CDATA[
+            \e[38;2;255;0;0mRed text\e[0m
+            \e[48;2;0;255;0mGreen background\e[0m
+            \e[38;2;0;0;255;48;2;255;255;0mBlue text with a yellow background\e[0m
+            ]]></code>
+            Here, you can use statements like <c><![CDATA[\e[38;2;<red>;<green>;<blue>m]]></c> and <c>\e[0m</c>
+            to control output text color, where:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>38</term>
+            <description>Foreground</description>
+            </item>
+            <item>
+            <term>48</term>
+            <description>Background</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            For example, if you want to change the color to red, just surround original text with <c>\e</c> statements:
+            <code><![CDATA[
+            static string replacer(string str, Step step)
+                => step.DifficultyLevel == DifficultyLevel.Nightmare ? $"\e[38;2;255;0;0m{str}\e[0m" : str;
+            ]]></code>
+            </para>
+            </remarks>
+            <seealso cref="P:System.Console.Out"/>
+            <seealso href="https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/epson-esc-pos-with-formatting">
+            Epson formatting
+            </seealso>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.GetEnumerator">
             <summary>
