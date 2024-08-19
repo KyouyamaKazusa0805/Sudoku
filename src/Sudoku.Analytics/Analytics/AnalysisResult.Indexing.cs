@@ -95,8 +95,7 @@ public partial record AnalysisResult
 	/// only depends on property <see cref="IsSolved"/>.
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public ReadOnlySpan<Step> this[int difficultyRating]
-		=> StepsSpan.FindAll(step => step.Difficulty == difficultyRating);
+	public ReadOnlySpan<Step> this[int difficultyRating] => StepsSpan.FindAll(step => step.Difficulty == difficultyRating);
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
