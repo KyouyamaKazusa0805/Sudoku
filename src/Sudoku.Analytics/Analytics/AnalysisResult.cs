@@ -320,68 +320,34 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	{
 		get
 		{
-			if (!IsSolved)
-			{
-				return null;
-			}
+			return IsSolved && !StepsSpan.All(static step => step is FullHouseStep or HiddenSingleStep { House: < 9 })
+				? StepsSpan.AllAre<Step, SingleStep>()
+					// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
+					? Array.Find(InterimSteps, static step => step is not HiddenSingleStep { House: < 9 })
+					// Otherwise, an deletion step should be chosen. There're two cases:
+					//    1) If the first step is a single, just return it as the diamond difficulty.
+					//    2) If the first step is not a single, find for the first step that is a single,
+					//       and check the maximum difficulty rating of the span of steps
+					//       between the first step and the first single step.
+					: Array.FindIndex(InterimSteps, @delegate.Not<Step>(stepFilter)) is var a
+						? Array.FindIndex(InterimSteps, stepFilter) is var b and not 0
+							? InterimSteps.AsReadOnlySpan()[a..b].MaxBy(difficultySelector)
+							: InterimSteps[0]
+						: null
+				// No diamond step exist in all steps are hidden singles in block.
+				: null;
 
-			for (var i = 0; i < InterimSteps.Length; i++)
-			{
-				if (InterimSteps[i] is SingleStep)
-				{
-					static int keySelector((Step, int Difficulty) pair) => pair.Difficulty;
-					return i < 1
-						? InterimSteps[0]
-						: (from step in InterimSteps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
-				}
-			}
-			throw new InvalidOperationException(SR.ExceptionMessage("GridInvalid"));
+
+			static bool stepFilter(Step s) => s is SingleStep;
+
+			static int difficultySelector(Step s) => s.Difficulty;
 		}
 	}
 
 	/// <summary>
 	/// Indicates the diamond step.
 	/// </summary>
-	public Step? DiamondStep
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return null;
-			}
-
-			if (StepsSpan.All(static step => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
-			{
-				// No diamond step exist in all steps are hidden singles in block.
-				return null;
-			}
-
-			if (StepsSpan.AllAre<Step, SingleStep>())
-			{
-				// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
-				foreach (var step in InterimSteps)
-				{
-					if (step is not HiddenSingleStep { House: < 9 })
-					{
-						return step;
-					}
-				}
-			}
-			else
-			{
-				// Otherwise, an deletion step should be chosen.
-				foreach (var step in InterimSteps)
-				{
-					if (step is not SingleStep)
-					{
-						return step;
-					}
-				}
-			}
-			return null;
-		}
-	}
+	public Step? DiamondStep => IsSolved ? InterimSteps[0] : null;
 
 	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.

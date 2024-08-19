@@ -114,6 +114,72 @@ public static class @delegate
 	public static T Self<T>(T value) where T : allows ref struct => value;
 
 	/// <summary>
+	/// Negates a predicate.
+	/// </summary>
+	/// <typeparam name="T">The type of the instance to be negated.</typeparam>
+	/// <param name="predicate">The predicate.</param>
+	/// <returns>A new predicate instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Predicate<T> Not<T>(Predicate<T> predicate) where T : allows ref struct => e => !predicate(e);
+
+	/// <summary>
+	/// Make logical and between two <typeparamref name="T"/> instances
+	/// after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	/// <param name="predicate1">The first predicate to be used.</param>
+	/// <param name="predicate2">The second predicate to be used.</param>
+	/// <returns>A new predicate instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Predicate<T> And<T>(Predicate<T> predicate1, Predicate<T> predicate2) where T : allows ref struct
+		=> e => predicate1(e) && predicate2(e);
+
+	/// <inheritdoc cref="And{T}(Predicate{T}, Predicate{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Func<T, TResult> And<T, TResult>(Func<T, TResult> predicate1, Func<T, TResult> predicate2)
+		where T : allows ref struct
+		where TResult : ILogicalOperators<TResult>, allows ref struct
+		=> e => predicate1(e) && predicate2(e);
+
+	/// <summary>
+	/// Make logical or between two <typeparamref name="T"/> instances
+	/// after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	/// <param name="predicate1">The first predicate to be used.</param>
+	/// <param name="predicate2">The second predicate to be used.</param>
+	/// <returns>A new predicate instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Predicate<T> Or<T>(Predicate<T> predicate1, Predicate<T> predicate2) where T : allows ref struct
+		=> e => predicate1(e) || predicate2(e);
+
+	/// <inheritdoc cref="Or{T}(Predicate{T}, Predicate{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Func<T, TResult> Or<T, TResult>(Func<T, TResult> predicate1, Func<T, TResult> predicate2)
+		where T : allows ref struct
+		where TResult : ILogicalOperators<TResult>, allows ref struct
+		=> e => predicate1(e) || predicate2(e);
+
+	/// <summary>
+	/// Make logical or bitwise exclusive or between two <typeparamref name="T"/> instances
+	/// after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+	/// </summary>
+	/// <typeparam name="T">The type of the element.</typeparam>
+	/// <param name="predicate1">The first predicate to be used.</param>
+	/// <param name="predicate2">The second predicate to be used.</param>
+	/// <returns>A new predicate instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Predicate<T> Xor<T>(Predicate<T> predicate1, Predicate<T> predicate2) where T : allows ref struct
+		=> e => predicate1(e) ^ predicate2(e);
+
+	/// <inheritdoc cref="Xor{T}(Predicate{T}, Predicate{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Func<T, TResult> Xor<T, TResult>(Func<T, TResult> predicate1, Func<T, TResult> predicate2)
+		where T : allows ref struct
+		where TResult : ILogicalOperators<TResult>, allows ref struct
+		=> e => predicate1(e) ^ predicate2(e);
+
+	/// <summary>
 	/// Represents Y-Combinator. This method can allow you create recursive lambdas.
 	/// </summary>
 	/// <typeparam name="T">The type of the argument to be passed.</typeparam>

@@ -682,6 +682,53 @@
             <param name="value">The value.</param>
             <returns>The value itself.</returns>
         </member>
+        <member name="M:System.delegate.Not``1(System.Predicate{``0})">
+            <summary>
+            Negates a predicate.
+            </summary>
+            <typeparam name="T">The type of the instance to be negated.</typeparam>
+            <param name="predicate">The predicate.</param>
+            <returns>A new predicate instance.</returns>
+        </member>
+        <member name="M:System.delegate.And``1(System.Predicate{``0},System.Predicate{``0})">
+            <summary>
+            Make logical and between two <typeparamref name="T"/> instances
+            after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="predicate1">The first predicate to be used.</param>
+            <param name="predicate2">The second predicate to be used.</param>
+            <returns>A new predicate instance.</returns>
+        </member>
+        <member name="M:System.delegate.And``2(System.Func{``0,``1},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.delegate.And``1(System.Predicate{``0},System.Predicate{``0})"/>
+        </member>
+        <member name="M:System.delegate.Or``1(System.Predicate{``0},System.Predicate{``0})">
+            <summary>
+            Make logical or between two <typeparamref name="T"/> instances
+            after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="predicate1">The first predicate to be used.</param>
+            <param name="predicate2">The second predicate to be used.</param>
+            <returns>A new predicate instance.</returns>
+        </member>
+        <member name="M:System.delegate.Or``2(System.Func{``0,``1},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.delegate.Or``1(System.Predicate{``0},System.Predicate{``0})"/>
+        </member>
+        <member name="M:System.delegate.Xor``1(System.Predicate{``0},System.Predicate{``0})">
+            <summary>
+            Make logical or bitwise exclusive or between two <typeparamref name="T"/> instances
+            after <paramref name="predicate1"/> and <paramref name="predicate2"/> executed.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="predicate1">The first predicate to be used.</param>
+            <param name="predicate2">The second predicate to be used.</param>
+            <returns>A new predicate instance.</returns>
+        </member>
+        <member name="M:System.delegate.Xor``2(System.Func{``0,``1},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.delegate.Xor``1(System.Predicate{``0},System.Predicate{``0})"/>
+        </member>
         <member name="M:System.delegate.YCombinator``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})">
             <summary>
             Represents Y-Combinator. This method can allow you create recursive lambdas.
@@ -3471,7 +3518,7 @@
         <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
             Returns the minimum value in a generic sequence according to a specified key selector function.
             </summary>
@@ -3490,6 +3537,9 @@
             </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the minimum key in the sequence.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Max``1(System.ReadOnlySpan{``0})">
             <summary>
@@ -3512,7 +3562,7 @@
         <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
             Returns the maximum value in a generic sequence according to a specified key selector function.
             </summary>
@@ -3531,6 +3581,9 @@
             </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the maximum key in the sequence.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Sum``1(System.ReadOnlySpan{``0})">
             <summary>
