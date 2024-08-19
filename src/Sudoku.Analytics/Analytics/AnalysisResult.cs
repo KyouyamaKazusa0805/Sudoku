@@ -485,7 +485,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
-				InterimSteps: { Length: var stepsCount } steps
+				InterimSteps: var steps
 			})
 		{
 			throw new();
@@ -557,6 +557,8 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		// Print solving step statistics (if worth).
 		if (steps is not null)
 		{
+			var stepsCount = steps.Length;
+
 			sb.AppendLine(SR.Get("AnalysisResultTechniqueUsed", culture));
 
 			if (options.HasFlag(FormattingOptions.ShowStepDetail))
