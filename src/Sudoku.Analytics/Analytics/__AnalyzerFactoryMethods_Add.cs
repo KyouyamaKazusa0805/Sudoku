@@ -5,6 +5,7 @@ public partial class __AnalyzerFactoryMethods_Add
 	/// <summary>
 	/// Appends an element into the property <see cref="Analyzer.Setters"/>.
 	/// </summary>
+	/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
 	/// <param name="instance">The instance to be updated.</param>
 	/// <param name="setter">The value to be added.</param>
 	/// <returns>The value same as <see cref="Analyzer"/>.</returns>
