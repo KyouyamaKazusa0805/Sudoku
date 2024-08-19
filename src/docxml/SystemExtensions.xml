@@ -1521,6 +1521,429 @@
             <param name="right">The right-side value.</param>
             <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
         </member>
+        <member name="T:System.Indexed`1">
+            <summary>
+            Represents an object that is stored in a sequential memory, with an index to visit it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="index">Indicates the index of the value.</param>
+            <param name="reference">Indicates the reference to the object.</param>
+        </member>
+        <member name="M:System.Indexed`1.#ctor(System.Int32,`0@)">
+            <summary>
+            Represents an object that is stored in a sequential memory, with an index to visit it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="index">Indicates the index of the value.</param>
+            <param name="reference">Indicates the reference to the object.</param>
+        </member>
+        <member name="P:System.Indexed`1.Size">
+            <summary>
+            Indicates the memory size of the element.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Previous">
+            <summary>
+            Indicates the previous object.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Next">
+            <summary>
+            Indicates the next object.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Aligned">
+            <summary>
+            Indicates an <see cref="T:System.Indexed`1"/> object that matches the first element to the sequential memory.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.PreviousRef">
+            <summary>
+            Indicates the reference to the previous object.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.NextRef">
+            <summary>
+            Indicates the reference to the next object.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Pointer">
+            <summary>
+            Indicates the backing pointer.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index, with start position aligned with the current instance.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The reference to the element at the specified index.</returns>
+        </member>
+        <member name="P:System.Indexed`1.Item(System.Int32,System.IndexingMode)">
+            <summary>
+            Gets the element at the specified index, with the specified start position.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="mode">The mode to be checked.</param>
+            <returns>The reference to the element at the specified index.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="mode"/> is not defined.</exception>
+        </member>
+        <member name="M:System.Indexed`1.Equals(System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:System.Indexed`1.ReferenceGreaterThan(System.Indexed{`0}@)">
+            <summary>
+            Compares the pointer with the value with the other one, determining which one holds a greater pointer value
+            in decimal representation.
+            </summary>
+            <param name="other">The other <see cref="T:System.Indexed`1"/> instance to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current object is greater.</returns>
+        </member>
+        <member name="M:System.Indexed`1.ReferenceLessThan(System.Indexed{`0}@)">
+            <summary>
+            Compares the pointer with the value with the other one, determining which one holds a less pointer value
+            in decimal representation.
+            </summary>
+            <param name="other">The other <see cref="T:System.Indexed`1"/> instance to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the current object is less.</returns>
+        </member>
+        <member name="M:System.Indexed`1.CompareTo(System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
+        <member name="M:System.Indexed`1.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Indexed`1.ToString(System.String)">
+            <summary>
+            Returns a string that represents the current object, with the specified format string.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The string.</returns>
+            <remarks>
+            The format string is shown as follows
+            (Suppose the value is 42, at the first element in the sequential memory, with pointer value <c>0xABC123</c>):
+            <list type="table">
+            <listheader>
+            <term>Format string</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="null"/>, <c>r</c> or <c>R</c></term>
+            <description>Detail information (e.g. <c><![CDATA[42 (@0, 0x00ABC123)]]></c>)</description>
+            </item>
+            <item>
+            <term><c>i</c> or <c>I</c></term>
+            <description>Index value (e.g. <c><![CDATA[0]]></c>)</description>
+            </item>
+            <item>
+            <term><c>v</c> or <c>V</c></term>
+            <description>Value (e.g. <c><![CDATA[42]]></c>)</description>
+            </item>
+            <item>
+            <term><c>p</c> or <c>P</c> or <c>p10</c> or <c>P10</c></term>
+            <description>Pointer value (e.g. <c><![CDATA[11256099]]></c>)</description>
+            </item>
+            <item>
+            <term><c>b</c> or <c>B</c> or <c>p2</c> or <c>P2</c></term>
+            <description>Pointer value (e.g. <c><![CDATA[0b00000000101010111100000100100011]]></c>)</description>
+            </item>
+            <item>
+            <term><c>o</c> or <c>O</c> or <c>p8</c> or <c>P8</c></term>
+            <description>Pointer value (e.g. <c><![CDATA[0o00052740443]]></c>)</description>
+            </item>
+            <item>
+            <term><c>x</c> or <c>X</c> or <c>p16</c> or <c>P16</c></term>
+            <description>Pointer value (e.g. <c><![CDATA[0x00ABC123]]></c>)</description>
+            </item>
+            </list>
+            </remarks>
+            <exception cref="T:System.ArgumentException">Throws when the format is invalid.</exception>
+        </member>
+        <member name="M:System.Indexed`1.ToSpan(System.Int32,System.IndexingMode)">
+            <summary>
+            Converts the current instance into a <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <param name="length">The length.</param>
+            <param name="mode">The mode.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="mode"/> is not defined.</exception>
+        </member>
+        <member name="M:System.Indexed`1.Enumerate(System.Int32)">
+            <summary>
+            Creates an <see cref="T:System.Indexed`1.Enumerator"/> instance that can iterate on each element.
+            </summary>
+            <param name="length">The length of the whole sequence.</param>
+            <returns>An <see cref="T:System.Indexed`1.Enumerator"/> instance.</returns>
+        </member>
+        <member name="M:System.Indexed`1.EnumerateRef(System.Int32)">
+            <summary>
+            Creates an <see cref="T:System.Indexed`1.EnumeratorReturningRef"/> instance that can iterate on each element with <see langword="ref"/>.
+            </summary>
+            <param name="length">The length of the whole sequence.</param>
+            <returns>An <see cref="T:System.Indexed`1.EnumeratorReturningRef"/> instance.</returns>
+        </member>
+        <member name="M:System.Indexed`1.System#IEquatable{System#Indexed{T}}#Equals(System.Indexed{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.System#IComparable{System#Indexed{T}}#CompareTo(System.Indexed{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.op_Decrement(System.Indexed{`0}@)">
+            <summary>
+            Indicates the previous <see cref="T:System.Indexed`1"/> object.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The previous <see cref="T:System.Indexed`1"/> object.</returns>
+        </member>
+        <member name="M:System.Indexed`1.op_Increment(System.Indexed{`0}@)">
+            <summary>
+            Indicates the next <see cref="T:System.Indexed`1"/> object.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>The next <see cref="T:System.Indexed`1"/> object.</returns>
+        </member>
+        <member name="M:System.Indexed`1.op_Addition(System.Indexed{`0}@,System.Int32)">
+            <summary>
+            Advances the pointer forwardly to the specified element.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="offset">The offset.</param>
+            <returns>The new <see cref="T:System.Indexed`1"/> object.</returns>
+        </member>
+        <member name="M:System.Indexed`1.op_Subtraction(System.Indexed{`0}@,System.Int32)">
+            <summary>
+            Advances the pointer backwardly to the specified element.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="offset">The offset.</param>
+            <returns>The new <see cref="T:System.Indexed`1"/> object.</returns>
+        </member>
+        <member name="T:System.Indexed`1.Enumerator">
+            <summary>
+            Represents an enumerator that can iterate on each element of the sequence, by the specified length.
+            </summary>
+            <param name="indexed">The index.</param>
+            <param name="_length">Indicates the length to be iterated.</param>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.#ctor(System.Indexed{`0},System.Int32)">
+            <summary>
+            Represents an enumerator that can iterate on each element of the sequence, by the specified length.
+            </summary>
+            <param name="indexed">The index.</param>
+            <param name="_length">Indicates the length to be iterated.</param>
+        </member>
+        <member name="F:System.Indexed`1.Enumerator._indexed">
+            <summary>
+            Indicates the backing field.
+            </summary>
+        </member>
+        <member name="F:System.Indexed`1.Enumerator._pos">
+            <summary>
+            Indicates the current position.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.UnsafePrevious">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.UnsafeNext">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#Enumerator}#Pos">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#Enumerator}#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.Enumerator.Item(System.Int32,System.IndexingMode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.Enumerator.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Indexed`1.EnumeratorReturningRef">
+            <inheritdoc cref="T:System.Indexed`1.Enumerator"/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.#ctor(System.Indexed{`0},System.Int32)">
+            <inheritdoc cref="T:System.Indexed`1.Enumerator"/>
+        </member>
+        <member name="F:System.Indexed`1.EnumeratorReturningRef._indexed">
+            <summary>
+            Indicates the backing field.
+            </summary>
+        </member>
+        <member name="F:System.Indexed`1.EnumeratorReturningRef._pos">
+            <summary>
+            Indicates the current position.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.UnsafeNext">
+            <summary>
+            Indicates the next element. <b>This property may cause "out of bound" critical problem.</b>
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.UnsafePrevious">
+            <summary>
+            Indicates the previous element. <b>This property may cause "out of bound" critical problem.</b>
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#Pos">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#UnsafeNext">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#UnsafePrevious">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.Item(System.Int32)">
+            <inheritdoc cref="P:System.Indexed`1.ILocalEnumerator`1.Item(System.Int32)"/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.Item(System.Int32,System.IndexingMode)">
+            <inheritdoc cref="P:System.Indexed`1.ILocalEnumerator`1.Item(System.Int32,System.IndexingMode)"/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Indexed`1.EnumeratorReturningRef.System#Indexed{T}#ILocalEnumerator{System#Indexed{T}#EnumeratorReturningRef}#Item(System.Int32,System.IndexingMode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Indexed`1.EnumeratorReturningRef.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Indexed`1.ILocalEnumerator`1">
+            <summary>
+            Represents an interface type that constraints the usages and members declared in an enumerator type defined in this type.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.UnsafePrevious">
+            <summary>
+            Indicates the previous element. <b>This property may cause "out of bound" critical problem.</b>
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.UnsafeNext">
+            <summary>
+            Indicates the next element. <b>This property may cause "out of bound" critical problem.</b>
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.Pos">
+            <summary>
+            Indicates the field <c>_pos</c>.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.Length">
+            <summary>
+            Indicates the field <c>_length</c>.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.Item(System.Int32)">
+            <inheritdoc cref="P:System.Indexed`1.ILocalEnumerator`1.Item(System.Int32,System.IndexingMode)"/>
+        </member>
+        <member name="P:System.Indexed`1.ILocalEnumerator`1.Item(System.Int32,System.IndexingMode)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="mode">The mode.</param>
+            <returns>The element.</returns>
+        </member>
+        <member name="M:System.Indexed`1.ILocalEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="F:System.Indexed`1.Reference">
+            <summary>
+            The generated field declaration for parameter <c>reference</c>.
+            </summary>
+        </member>
+        <member name="P:System.Indexed`1.Index">
+            <summary>
+            The generated property declaration for parameter <c>index</c>.
+            </summary>
+        </member>
+        <member name="M:System.Indexed`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_Equality(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_Inequality(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_GreaterThan(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_LessThan(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_GreaterThanOrEqual(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:System.Indexed`1.op_LessThanOrEqual(System.Indexed{`0}@,System.Indexed{`0}@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="T:System.IndexExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Index"/> instances.
@@ -1534,6 +1957,22 @@
 					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
 			</target>
+        </member>
+        <member name="T:System.IndexingMode">
+            <summary>
+            Represents a mode that indexes a value used by <see cref="T:System.Indexed`1"/> objects.
+            </summary>
+            <seealso cref="T:System.Indexed`1"/>
+        </member>
+        <member name="F:System.IndexingMode.Current">
+            <summary>
+            Indicates the indexing mode is to treat the current element as the start position.
+            </summary>
+        </member>
+        <member name="F:System.IndexingMode.MemoryStart">
+            <summary>
+            Indicates the indexing mode is to treat the memory start position as the start position.
+            </summary>
         </member>
         <member name="T:System.Int32Extensions">
             <summary>
