@@ -35,14 +35,10 @@ public readonly partial struct Fish(
 	{
 		get
 		{
-			return this switch
+			return (k(BaseSets), k(CoverSets)) switch
 			{
-				{ IsComplex: true, BaseSets: var baseSets, CoverSets: var coverSets } => (k(baseSets), k(coverSets)) switch
-				{
-					(FishShapeKind.Mutant, _) or (_, FishShapeKind.Mutant) => FishShapeKind.Mutant,
-					(FishShapeKind.Franken, _) or (_, FishShapeKind.Franken) => FishShapeKind.Franken,
-					_ => FishShapeKind.Basic
-				},
+				(FishShapeKind.Mutant, _) or (_, FishShapeKind.Mutant) => FishShapeKind.Mutant,
+				(FishShapeKind.Franken, _) or (_, FishShapeKind.Franken) => FishShapeKind.Franken,
 				_ => FishShapeKind.Basic
 			};
 
