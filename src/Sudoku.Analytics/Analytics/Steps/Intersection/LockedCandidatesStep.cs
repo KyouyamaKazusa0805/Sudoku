@@ -26,7 +26,7 @@ public sealed partial class LockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
+		=> [new(SR.EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(SR.ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

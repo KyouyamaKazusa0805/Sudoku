@@ -26,7 +26,7 @@ public sealed partial class MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [CellsCountStr, CellsStr]), new(ChineseLanguage, [CellsCountStr, CellsStr])];
+		=> [new(SR.EnglishLanguage, [CellsCountStr, CellsStr]), new(SR.ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new MultisectorLockedSetsSizeFactor()];

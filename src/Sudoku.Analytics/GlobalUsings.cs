@@ -51,6 +51,5 @@ global using Sudoku.Strategying.Constraints;
 global using Sudoku.Traits;
 global using static Sudoku.Caching.MemoryCachedData;
 global using static Sudoku.Concepts.ConclusionType;
-global using static Sudoku.Resources.ResourceSupportedLanguages;
 global using static Sudoku.SolutionFields;
 global using ChainingRules = System.ReadOnlySpan<Sudoku.Analytics.Chaining.ChainingRule>;

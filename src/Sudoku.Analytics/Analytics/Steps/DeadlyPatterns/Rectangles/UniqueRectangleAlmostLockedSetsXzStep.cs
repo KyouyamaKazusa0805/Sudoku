@@ -55,7 +55,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]), new(ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])];
+		=> [new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]), new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

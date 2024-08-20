@@ -29,8 +29,8 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr(EnglishLanguage), SizeStr, ExtraDigitsStr, CellsStr]),
-			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr(ChineseLanguage), SizeStr, CellsStr, ExtraDigitsStr])
+			new(SR.EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr(SR.EnglishLanguage), SizeStr, ExtraDigitsStr, CellsStr]),
+			new(SR.ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr(SR.ChineseLanguage), SizeStr, CellsStr, ExtraDigitsStr])
 		];
 
 	/// <inheritdoc/>

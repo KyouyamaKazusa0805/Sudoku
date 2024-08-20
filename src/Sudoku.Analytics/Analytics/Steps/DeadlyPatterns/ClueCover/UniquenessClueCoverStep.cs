@@ -30,8 +30,8 @@ public sealed partial class UniquenessClueCoverStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [ChuteString, ChuteCellsString]),
-			new(ChineseLanguage, [ChuteString, ChuteCellsString]),
+			new(SR.EnglishLanguage, [ChuteString, ChuteCellsString]),
+			new(SR.ChineseLanguage, [ChuteString, ChuteCellsString]),
 		];
 
 	/// <inheritdoc/>

@@ -22,7 +22,7 @@ public sealed partial class BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
+		=> [new(SR.EnglishLanguage, [ContradictionSeriesStr]), new(SR.ChineseLanguage, [ContradictionSeriesStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BowmanBingoLengthFactor()];

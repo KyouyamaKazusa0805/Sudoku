@@ -22,7 +22,7 @@ public sealed partial class ChromaticPatternType1Step(
 {
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [CellsStr, BlocksStr, DigitsStr]), new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr])];
+		=> [new(SR.EnglishLanguage, [CellsStr, BlocksStr, DigitsStr]), new(SR.ChineseLanguage, [BlocksStr, CellsStr, DigitsStr])];
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ChromaticPatternType1;

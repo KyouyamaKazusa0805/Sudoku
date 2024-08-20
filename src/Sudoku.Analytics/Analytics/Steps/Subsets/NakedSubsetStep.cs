@@ -52,7 +52,7 @@ public sealed partial class NakedSubsetStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName(ChineseLanguage)])];
+		=> [new(SR.EnglishLanguage, [DigitsStr, HouseStr]), new(SR.ChineseLanguage, [DigitsStr, HouseStr, SubsetName(SR.ChineseLanguage)])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new NakedSubsetSizeFactor(), new NakedSubsetIsLockedFactor()];

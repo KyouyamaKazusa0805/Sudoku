@@ -32,8 +32,8 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(EnglishLanguage)]),
-			new(ChineseLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(SR.ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>

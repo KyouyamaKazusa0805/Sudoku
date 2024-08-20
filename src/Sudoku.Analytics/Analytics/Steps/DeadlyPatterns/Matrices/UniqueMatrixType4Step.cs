@@ -31,8 +31,8 @@ public sealed partial class UniqueMatrixType4Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str]),
-			new(ChineseLanguage, [ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr])
+			new(SR.EnglishLanguage, [DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str]),
+			new(SR.ChineseLanguage, [ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr])
 		];
 
 	private string ConjStr => Options.Converter.CellConverter(ConjugateHouse);

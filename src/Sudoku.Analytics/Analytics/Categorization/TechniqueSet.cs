@@ -293,7 +293,7 @@ public sealed partial class TechniqueSet() :
 	{
 		var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture;
 		var currentCountryOrRegionName = culture.Parent.Name;
-		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
+		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(SR.EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			SR.Get("Comma", culture),
 			from technique in this

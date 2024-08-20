@@ -38,7 +38,7 @@ public sealed partial class HWingStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [StrongLinkStr, CellsStr]), new(ChineseLanguage, [StrongLinkStr, CellsStr])];
+		=> [new(SR.EnglishLanguage, [StrongLinkStr, CellsStr]), new(SR.ChineseLanguage, [StrongLinkStr, CellsStr])];
 
 	private string StrongLinkStr => $"{Options.Converter.CellConverter(StrongLink)}({DigitX + 1})";
 

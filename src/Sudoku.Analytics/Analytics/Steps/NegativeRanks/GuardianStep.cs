@@ -27,8 +27,8 @@ public sealed partial class GuardianStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural(EnglishLanguage), GuardianStr]),
-			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural(ChineseLanguage), GuardianStr])
+			new(SR.EnglishLanguage, [CellsStr, GuardianSingularOrPlural(SR.EnglishLanguage), GuardianStr]),
+			new(SR.ChineseLanguage, [CellsStr, GuardianSingularOrPlural(SR.ChineseLanguage), GuardianStr])
 		];
 
 	/// <inheritdoc/>

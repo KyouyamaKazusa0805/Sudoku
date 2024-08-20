@@ -117,7 +117,6 @@ global using WinRT;
 global using WinRT.Interop;
 global using static System.Math;
 global using static Sudoku.Concepts.ConclusionType;
-global using static Sudoku.Resources.ResourceSupportedLanguages;
 global using static Sudoku.SolutionFields;
 global using static SudokuStudio.Drawing.DrawableFactory;
 global using static SudokuStudio.ProjectWideConstants;

@@ -56,7 +56,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		}
 
 		// Check whether the current culture is English.
-		var isCultureEnglish = App.CurrentCulture.Name.IsCultureNameEqual(EnglishLanguage);
+		var isCultureEnglish = App.CurrentCulture.Name.IsCultureNameEqual(SR.EnglishLanguage);
 
 		// Get the current technique group.
 		var techniqueGroup = TechniqueConversion.ConfigurableTechniqueGroups[techniqueGroupIndex];

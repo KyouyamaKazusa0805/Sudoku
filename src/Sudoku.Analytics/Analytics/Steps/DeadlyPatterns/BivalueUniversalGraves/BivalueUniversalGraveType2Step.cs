@@ -24,7 +24,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ExtraDigitStr, CellsStr]), new(ChineseLanguage, [CellsStr, ExtraDigitStr])];
+		=> [new(SR.EnglishLanguage, [ExtraDigitStr, CellsStr]), new(SR.ChineseLanguage, [CellsStr, ExtraDigitStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];

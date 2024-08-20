@@ -29,7 +29,7 @@ public sealed partial class QiuDeadlyPatternExternalType1Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [PatternStr, DigitsStr, CellStr]), new(ChineseLanguage, [PatternStr, CellStr, DigitsStr])];
+		=> [new(SR.EnglishLanguage, [PatternStr, DigitsStr, CellStr]), new(SR.ChineseLanguage, [PatternStr, CellStr, DigitsStr])];
 
 	private string CellStr => Options.Converter.CellConverter(in TargetCell.AsCellMap());
 

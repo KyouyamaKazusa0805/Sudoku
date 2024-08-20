@@ -36,7 +36,7 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [BurredLoopStr]), new(ChineseLanguage, [BurredLoopStr])];
+		=> [new(SR.EnglishLanguage, [BurredLoopStr]), new(SR.ChineseLanguage, [BurredLoopStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

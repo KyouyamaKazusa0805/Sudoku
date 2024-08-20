@@ -39,7 +39,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
+		=> [new(SR.EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(SR.ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

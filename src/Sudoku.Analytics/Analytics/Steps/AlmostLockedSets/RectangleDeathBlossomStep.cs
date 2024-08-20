@@ -32,8 +32,8 @@ public sealed partial class RectangleDeathBlossomStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [PatternStr, BranchesStr(EnglishLanguage)]),
-			new(ChineseLanguage, [PatternStr, BranchesStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [PatternStr, BranchesStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [PatternStr, BranchesStr(SR.ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>

@@ -25,5 +25,5 @@ public sealed class UniqueLoopType1Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr]), new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr])];
+		=> [new(SR.EnglishLanguage, [Digit1Str, Digit2Str, LoopStr]), new(SR.ChineseLanguage, [Digit1Str, Digit2Str, LoopStr])];
 }

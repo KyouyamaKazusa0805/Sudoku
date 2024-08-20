@@ -51,8 +51,8 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	/// <inheritdoc/>
 	public override Interpolation[]? Interpolations
 		=> [
-			new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(EnglishLanguage)]),
-			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(SR.ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>

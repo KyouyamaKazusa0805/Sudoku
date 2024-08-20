@@ -30,7 +30,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
+		=> [new(SR.EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(SR.ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 
 	private string Als1Str => FirstAls.ToString(Options.Converter);
 

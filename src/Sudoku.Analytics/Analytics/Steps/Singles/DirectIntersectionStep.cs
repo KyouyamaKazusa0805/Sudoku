@@ -60,8 +60,8 @@ public sealed partial class DirectIntersectionStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(EnglishLanguage)]),
-			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(SR.ChineseLanguage)])
 		];
 
 	private string CellsStr => Options.Converter.CellConverter(IntersectionCells);

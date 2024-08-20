@@ -39,7 +39,7 @@ public sealed partial class MultipleForcingChainsStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ChainsStr]), new(ChineseLanguage, [ChainsStr])];
+		=> [new(SR.EnglishLanguage, [ChainsStr]), new(SR.ChineseLanguage, [ChainsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

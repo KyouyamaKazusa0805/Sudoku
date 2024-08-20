@@ -26,7 +26,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [EspDigitStr, CellsStr]), new(ChineseLanguage, [EspDigitStr, CellsStr])];
+		=> [new(SR.EnglishLanguage, [EspDigitStr, CellsStr]), new(SR.ChineseLanguage, [EspDigitStr, CellsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ExtendedSubsetPrincipleSizeFactor()];

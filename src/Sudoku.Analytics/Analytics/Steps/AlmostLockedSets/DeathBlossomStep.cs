@@ -24,8 +24,8 @@ public sealed partial class DeathBlossomStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [PivotStr, BranchesStr(EnglishLanguage)]),
-			new(ChineseLanguage, [PivotStr, BranchesStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [PivotStr, BranchesStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [PivotStr, BranchesStr(SR.ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>

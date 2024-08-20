@@ -35,7 +35,7 @@ public sealed partial class MultiBranchWWingStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
+		=> [new(SR.EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(SR.ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new MultiBranchWWingBranchesCountFactor()];

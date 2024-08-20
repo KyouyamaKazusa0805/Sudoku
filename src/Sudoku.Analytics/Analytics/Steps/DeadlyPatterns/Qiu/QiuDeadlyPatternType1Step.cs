@@ -29,7 +29,7 @@ public sealed partial class QiuDeadlyPatternType1Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [PatternStr, TargetDigitsStr, CandidatesStr]), new(ChineseLanguage, [PatternStr, CandidatesStr, TargetDigitsStr])];
+		=> [new(SR.EnglishLanguage, [PatternStr, TargetDigitsStr, CandidatesStr]), new(SR.ChineseLanguage, [PatternStr, CandidatesStr, TargetDigitsStr])];
 
 	private string CandidatesStr
 		=> Options.Converter.CandidateConverter([.. from digit in TargetDigits select TargetCell * 9 + digit]);

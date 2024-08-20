@@ -28,7 +28,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
+		=> [new(SR.EnglishLanguage, [CandidatesStr]), new(SR.ChineseLanguage, [CandidatesStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor()];

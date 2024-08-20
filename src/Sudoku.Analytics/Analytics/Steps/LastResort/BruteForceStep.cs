@@ -17,7 +17,7 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [AssignmentStr]), new(ChineseLanguage, [AssignmentStr])];
+		=> [new(SR.EnglishLanguage, [AssignmentStr]), new(SR.ChineseLanguage, [AssignmentStr])];
 
 	private string AssignmentStr => Options.Converter.ConclusionConverter(Conclusions);
 }

@@ -29,7 +29,7 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ExtraHouseStr, ExtraDigitsStr]), new(ChineseLanguage, [ExtraHouseStr, ExtraDigitsStr])];
+		=> [new(SR.EnglishLanguage, [ExtraHouseStr, ExtraDigitsStr]), new(SR.ChineseLanguage, [ExtraHouseStr, ExtraDigitsStr])];
 
 	private string ExtraHouseStr => Options.Converter.HouseConverter(1 << SubsetHouse);
 

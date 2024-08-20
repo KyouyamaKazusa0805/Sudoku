@@ -45,8 +45,8 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
+			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),
+			new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr])
 		];
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));

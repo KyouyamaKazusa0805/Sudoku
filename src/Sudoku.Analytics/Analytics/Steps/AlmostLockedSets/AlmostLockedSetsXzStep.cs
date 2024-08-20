@@ -39,8 +39,8 @@ public sealed partial class AlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr(EnglishLanguage)]),
-			new(ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr(SR.ChineseLanguage)])
 		];
 
 	private string Als1Str => FirstAls.ToString(Options.Converter);

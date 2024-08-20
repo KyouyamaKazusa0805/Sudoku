@@ -30,7 +30,7 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ExtraDigitStr]), new(ChineseLanguage, [ExtraDigitStr])];
+		=> [new(SR.EnglishLanguage, [ExtraDigitStr]), new(SR.ChineseLanguage, [ExtraDigitStr])];
 
 	/// <inheritdoc/>
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));

@@ -47,8 +47,8 @@ public partial class HiddenSingleStep(
 	/// <inheritdoc/>
 	public sealed override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
-			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
+			new(SR.EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
+			new(SR.ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
 		];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));

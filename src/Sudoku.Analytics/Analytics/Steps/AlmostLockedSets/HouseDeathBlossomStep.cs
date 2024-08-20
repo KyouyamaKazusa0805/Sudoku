@@ -29,8 +29,8 @@ public sealed partial class HouseDeathBlossomStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [HouseStr, BranchesStr(EnglishLanguage)]),
-			new(ChineseLanguage, [HouseStr, BranchesStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [HouseStr, BranchesStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [HouseStr, BranchesStr(SR.ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>

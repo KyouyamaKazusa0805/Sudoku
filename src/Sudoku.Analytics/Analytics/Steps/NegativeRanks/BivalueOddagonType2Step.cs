@@ -28,7 +28,7 @@ public sealed partial class BivalueOddagonType2Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ExtraDigitStr, LoopStr]), new(ChineseLanguage, [LoopStr, ExtraDigitStr])];
+		=> [new(SR.EnglishLanguage, [ExtraDigitStr, LoopStr]), new(SR.ChineseLanguage, [LoopStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

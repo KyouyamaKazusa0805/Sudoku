@@ -34,8 +34,8 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb]),
-			new(ChineseLanguage, [Number, PatternStr])
+			new(SR.EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb]),
+			new(SR.ChineseLanguage, [Number, PatternStr])
 		];
 
 	private string CandidateStr => Options.Converter.CandidateConverter(CandidatesLocked);

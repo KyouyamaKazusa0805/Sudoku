@@ -37,7 +37,7 @@ public sealed partial class SWingStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [XLinkStr, YLinkStr, MidCellStr]), new(ChineseLanguage, [XLinkStr, YLinkStr, MidCellStr])];
+		=> [new(SR.EnglishLanguage, [XLinkStr, YLinkStr, MidCellStr]), new(SR.ChineseLanguage, [XLinkStr, YLinkStr, MidCellStr])];
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedSWing : Technique.SWing;

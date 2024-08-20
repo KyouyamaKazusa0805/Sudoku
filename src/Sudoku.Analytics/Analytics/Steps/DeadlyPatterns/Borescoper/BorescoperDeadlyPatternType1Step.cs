@@ -21,5 +21,5 @@ public sealed class BorescoperDeadlyPatternType1Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitsStr, CellsStr]), new(ChineseLanguage, [DigitsStr, CellsStr])];
+		=> [new(SR.EnglishLanguage, [DigitsStr, CellsStr]), new(SR.ChineseLanguage, [DigitsStr, CellsStr])];
 }

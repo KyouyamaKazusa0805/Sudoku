@@ -48,7 +48,7 @@ public sealed partial class HiddenSubsetStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [DigitStr, HouseStr])];
+		=> [new(SR.EnglishLanguage, [DigitStr, HouseStr]), new(SR.ChineseLanguage, [DigitStr, HouseStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new HiddenSubsetSizeFactor(), new HiddenSubsetIsLockedFactor()];

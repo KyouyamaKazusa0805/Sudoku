@@ -30276,9 +30276,10 @@
             </summary>
             <param name="LanguageName">
             The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
             </param>
             <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+            <seealso cref="P:Sudoku.Analytics.Step.Interpolations"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
         </member>
         <member name="M:Sudoku.Resources.Interpolation.#ctor(System.String,System.String[])">
@@ -30287,15 +30288,16 @@
             </summary>
             <param name="LanguageName">
             The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
             </param>
             <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+            <seealso cref="P:Sudoku.Analytics.Step.Interpolations"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
         </member>
         <member name="P:Sudoku.Resources.Interpolation.LanguageName">
             <summary>
             The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh"</c> and <c>"en-US"</c>.
+            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.Interpolation.ResourcePlaceholderValues">

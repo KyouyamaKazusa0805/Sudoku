@@ -21,7 +21,7 @@ public sealed partial class BasicPreferenceItemsPage : Page
 	private void InitializeControls()
 	{
 		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var isChinese = CultureInfo.CurrentUICulture.Name.Contains("zh");
+		var isChinese = SR.IsChinese(CultureInfo.CurrentUICulture);
 		LanguageComboBox.SelectedIndex = uiPref.Language switch { 0 => 0, 1033 => 1, 2052 => 2 };
 		Comma2ComboBoxItem_DefaultSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;
 		Comma2ComboBoxItem_DigitSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;

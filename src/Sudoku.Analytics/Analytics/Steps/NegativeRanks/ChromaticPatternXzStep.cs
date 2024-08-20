@@ -33,8 +33,8 @@ public sealed partial class ChromaticPatternXzStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr]),
-			new(ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
+			new(SR.EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr]),
+			new(SR.ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
 		];
 
 	private string ExtraCellStr => Options.Converter.CellConverter(in ExtraCell.AsCellMap());

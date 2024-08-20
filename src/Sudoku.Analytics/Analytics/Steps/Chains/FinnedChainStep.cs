@@ -29,7 +29,7 @@ public sealed partial class FinnedChainStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ChainString, FinsStr]), new(ChineseLanguage, [ChainString, FinsStr])];
+		=> [new(SR.EnglishLanguage, [ChainString, FinsStr]), new(SR.ChineseLanguage, [ChainString, FinsStr])];
 
 	private string FinsStr => Fins.ToString(CoordinateConverter.GetInstance(Options.Converter));
 }

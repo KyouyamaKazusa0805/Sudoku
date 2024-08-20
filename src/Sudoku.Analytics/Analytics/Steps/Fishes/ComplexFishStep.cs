@@ -81,7 +81,7 @@ public sealed partial class ComplexFishStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
+		=> [new(SR.EnglishLanguage, [InternalNotation]), new(SR.ChineseLanguage, [InternalNotation])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors

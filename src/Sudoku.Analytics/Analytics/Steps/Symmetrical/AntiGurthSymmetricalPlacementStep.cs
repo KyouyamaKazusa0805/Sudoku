@@ -34,8 +34,8 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [SymmetryTypeStr(EnglishLanguage), MappingStr(EnglishLanguage)]),
-			new(ChineseLanguage, [SymmetryTypeStr(ChineseLanguage), MappingStr(ChineseLanguage)])
+			new(SR.EnglishLanguage, [SymmetryTypeStr(SR.EnglishLanguage), MappingStr(SR.EnglishLanguage)]),
+			new(SR.ChineseLanguage, [SymmetryTypeStr(SR.ChineseLanguage), MappingStr(SR.ChineseLanguage)])
 		];
 
 

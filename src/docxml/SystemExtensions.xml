@@ -5367,6 +5367,16 @@
             Represents a easy way to fetch resource values using the specified key and culture information.
             </summary>
         </member>
+        <member name="F:System.Resources.SR.EnglishLanguage">
+            <summary>
+            Indicates English language identifier.
+            </summary>
+        </member>
+        <member name="F:System.Resources.SR.ChineseLanguage">
+            <summary>
+            Indicates Chinese language identifier.
+            </summary>
+        </member>
         <member name="F:System.Resources.SR.DefaultBindingFlags">
             <summary>
             Indicates the resource manager reflection binding flags.
@@ -5377,16 +5387,19 @@
             Indicates the default culture.
             </summary>
         </member>
-        <member name="F:System.Resources.SR.ResourceManagers">
+        <member name="M:System.Resources.SR.IsChinese(System.Globalization.CultureInfo)">
             <summary>
-            The internal resource managers.
+            Determine whether the specified culture is Chinese.
             </summary>
+            <param name="culture">The culture.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="P:System.Resources.SR.ResourceFetchingHandler">
+        <member name="M:System.Resources.SR.IsEnglish(System.Globalization.CultureInfo)">
             <summary>
-            Represents the resource fetching rule. This method can control the fetching rule,
-            especially for the cases using culture-switching.
+            Determine whether the specified culture is English.
             </summary>
+            <param name="culture">The culture.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Resources.SR.RegisterResourceManager``1">
             <summary>
@@ -5405,6 +5418,17 @@
             <exception cref="T:System.Resources.MissingResourceManagerException">
             Throws when the current calling assembly doesn't contain any resource manager.
             </exception>
+        </member>
+        <member name="F:System.Resources.SR.ResourceManagers">
+            <summary>
+            The internal resource managers.
+            </summary>
+        </member>
+        <member name="P:System.Resources.SR.ResourceFetchingHandler">
+            <summary>
+            Represents the resource fetching rule. This method can control the fetching rule,
+            especially for the cases using culture-switching.
+            </summary>
         </member>
         <member name="M:System.Resources.SR.ExceptionMessage(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>

@@ -30,7 +30,7 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ConjugatePairStr]), new(ChineseLanguage, [ConjugatePairStr])];
+		=> [new(SR.EnglishLanguage, [ConjugatePairStr]), new(SR.ChineseLanguage, [ConjugatePairStr])];
 
 	/// <inheritdoc/>
 	private string ConjugatePairStr => Options.Converter.ConjugateConverter([ConjugatePair]);

@@ -28,7 +28,7 @@ public sealed partial class LawOfLeftoverStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [Set1Str, Set2Str]), new(ChineseLanguage, [Set1Str, Set2Str])];
+		=> [new(SR.EnglishLanguage, [Set1Str, Set2Str]), new(SR.ChineseLanguage, [Set1Str, Set2Str])];
 
 	private string Set1Str => Options.Converter.CellConverter(Set1);
 

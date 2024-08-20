@@ -26,7 +26,7 @@ public sealed partial class EmptyRectangleStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
+		=> [new(SR.EnglishLanguage, [DigitStr, HouseStr, ConjStr]), new(SR.ChineseLanguage, [DigitStr, HouseStr, ConjStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

@@ -34,8 +34,8 @@ public sealed partial class MWingStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str]),
-			new(ChineseLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str])
+			new(SR.EnglishLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str]),
+			new(SR.ChineseLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str])
 		];
 
 	/// <inheritdoc/>

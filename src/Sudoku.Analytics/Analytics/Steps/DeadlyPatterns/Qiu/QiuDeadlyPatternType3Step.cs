@@ -34,8 +34,8 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),
-			new(ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
+			new(SR.EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),
+			new(SR.ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
 		];
 
 	/// <inheritdoc/>

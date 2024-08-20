@@ -32,7 +32,7 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
+		=> [new(SR.EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(SR.ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
 
 	private string CellsStr => Options.Converter.CellConverter(MirrorCells);
 

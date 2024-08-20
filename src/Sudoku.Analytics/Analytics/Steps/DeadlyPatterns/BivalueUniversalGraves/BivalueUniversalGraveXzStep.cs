@@ -29,7 +29,7 @@ public sealed partial class BivalueUniversalGraveXzStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr]), new(ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr])];
+		=> [new(SR.EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr]), new(SR.ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter(DigitsMask);
 

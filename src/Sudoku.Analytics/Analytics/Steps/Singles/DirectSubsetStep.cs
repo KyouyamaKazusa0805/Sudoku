@@ -70,26 +70,26 @@ public sealed partial class DirectSubsetStep(
 	public override Interpolation[] Interpolations
 		=> [
 			new(
-				EnglishLanguage,
+				SR.EnglishLanguage,
 				[
 					CellsStr,
 					HouseStr,
 					InterimCellStr,
 					InterimDigitStr,
-					TechniqueNameStr(EnglishLanguage), DigitsStr,
-					SubsetNameStr(EnglishLanguage)
+					TechniqueNameStr(SR.EnglishLanguage), DigitsStr,
+					SubsetNameStr(SR.EnglishLanguage)
 				]
 			),
 			new(
-				ChineseLanguage,
+				SR.ChineseLanguage,
 				[
 					CellsStr,
 					HouseStr,
 					InterimCellStr,
 					InterimDigitStr,
-					TechniqueNameStr(ChineseLanguage),
+					TechniqueNameStr(SR.ChineseLanguage),
 					DigitsStr,
-					SubsetNameStr(ChineseLanguage)
+					SubsetNameStr(SR.ChineseLanguage)
 				]
 			)
 		];

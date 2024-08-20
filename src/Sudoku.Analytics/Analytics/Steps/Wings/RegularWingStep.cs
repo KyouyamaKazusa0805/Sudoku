@@ -69,7 +69,7 @@ public sealed partial class RegularWingStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
+		=> [new(SR.EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(SR.ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new RegularWingSizeFactor(), new RegularWingIncompletenessFactor()];

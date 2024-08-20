@@ -53,7 +53,7 @@ public partial class NormalChainStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [ChainString]), new(ChineseLanguage, [ChainString])];
+		=> [new(SR.EnglishLanguage, [ChainString]), new(SR.ChineseLanguage, [ChainString])];
 
 	/// <inheritdoc/>
 	public sealed override FactorCollection Factors
