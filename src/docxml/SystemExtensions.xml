@@ -1707,7 +1707,7 @@
             </item>
             </list>
             </remarks>
-            <exception cref="T:System.ArgumentException">Throws when the format is invalid.</exception>
+            <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
         </member>
         <member name="M:System.Indexed`1.ToSpan(System.Int32,System.IndexingMode)">
             <summary>
@@ -6575,6 +6575,95 @@
             <typeparam name="TRest">The type that encapsulates a list of rest elements.</typeparam>
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
+        </member>
+        <member name="T:System.VariantColor">
+            <summary>
+            Represents a variant color type.
+            </summary>
+        </member>
+        <member name="M:System.VariantColor.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Represents a variant color type.
+            </summary>
+        </member>
+        <member name="F:System.VariantColor.Default">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
+        <member name="M:System.VariantColor.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:System.VariantColor"/> instance via red, green and blue value.
+            </summary>
+            <param name="r">The red value.</param>
+            <param name="g">The green value.</param>
+            <param name="b">The blue value.</param>
+        </member>
+        <member name="M:System.VariantColor.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:System.VariantColor"/> instance via a whole value of A, R, G, B values.
+            </summary>
+            <param name="argb">An integer that includes all A, R, G, B values.</param>
+        </member>
+        <member name="M:System.VariantColor.Equals(System.VariantColor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.VariantColor.ToString(System.String)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
+        </member>
+        <member name="M:System.VariantColor.ToHexString(System.Boolean,System.Boolean)">
+            <summary>
+            Try to convert the color into hex string.
+            </summary>
+            <param name="alpha">Indicates whether the output string will include alpha value.</param>
+            <param name="includeHashTag">Indicates whether the output string will prepend hash-tag character <c>#</c>.</param>
+            <returns>The hex string.</returns>
+        </member>
+        <member name="M:System.VariantColor.ToConsoleColorString(System.Boolean)">
+            <summary>
+            Try to convert the color into console color string, with a value indicating whether the color is used as foreground.
+            </summary>
+            <param name="isForeground">Indicates whether the color is used as foreground.</param>
+            <returns>The console color string.</returns>
+        </member>
+        <member name="M:System.VariantColor.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.VariantColor.A">
+            <summary>
+            The generated property declaration for parameter <c>a</c>.
+            </summary>
+        </member>
+        <member name="P:System.VariantColor.R">
+            <summary>
+            The generated property declaration for parameter <c>r</c>.
+            </summary>
+        </member>
+        <member name="P:System.VariantColor.G">
+            <summary>
+            The generated property declaration for parameter <c>g</c>.
+            </summary>
+        </member>
+        <member name="P:System.VariantColor.B">
+            <summary>
+            The generated property declaration for parameter <c>b</c>.
+            </summary>
+        </member>
+        <member name="M:System.VariantColor.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.VariantColor.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.VariantColor.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.VariantColor.op_Equality(System.VariantColor,System.VariantColor)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.VariantColor.op_Inequality(System.VariantColor,System.VariantColor)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.ActionRef`1">
             <summary>

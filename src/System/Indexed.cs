@@ -149,7 +149,7 @@ public readonly unsafe ref partial struct Indexed<T>(
 	/// </item>
 	/// </list>
 	/// </remarks>
-	/// <exception cref="ArgumentException">Throws when the format is invalid.</exception>
+	/// <exception cref="FormatException">Throws when the format is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(string? format)
 		=> format switch
@@ -162,7 +162,7 @@ public readonly unsafe ref partial struct Indexed<T>(
 			"b" or "B" or "p2" or "P2" => $"0b{Convert.ToString((nint)Pointer, 2).PadLeft(32, '0')}",
 			"o" or "O" or "p8" or "P8" => $"0o{Convert.ToString((nint)Pointer, 8).PadLeft(11, '0')}",
 			"x" or "X" or "p16" or "P16" => $"0x{Convert.ToString((nint)Pointer, 16).PadLeft(8, '0')}",
-			_ => throw new ArgumentException(string.Empty, nameof(format))
+			_ => throw new FormatException()
 		};
 
 	/// <summary>
