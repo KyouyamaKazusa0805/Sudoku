@@ -37,7 +37,7 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Initializes a <see cref="TextPointer"/> instance via the specified library.
 	/// </summary>
-	/// <param name="library">Indicates the libary object.</param>
+	/// <param name="library">Indicates the library object.</param>
 	/// <exception cref="ArgumentException">Throws when the library is not initialized.</exception>
 	public TextPointer(LibraryInfo library)
 		=> _stream = (Library = library) switch

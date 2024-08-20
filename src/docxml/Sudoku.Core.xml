@@ -570,6 +570,7 @@
 		</b>
 	</large-structure>
             </remarks>
+            <seealso href="https://github.com/SunnieShine/Sudoku/discussions/699">Numeric <c>CellMap</c></seealso>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Shifting"/>
@@ -8598,7 +8599,7 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance via the specified library.
             </summary>
-            <param name="library">Indicates the libary object.</param>
+            <param name="library">Indicates the library object.</param>
             <exception cref="T:System.ArgumentException">Throws when the library is not initialized.</exception>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.ForwardPuzzlesCount">
