@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc cref="SubsetStep.Cells" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="SubsetStep.DigitsMask" path="/summary"/></param>
 /// <param name="isLocked">
-/// Indicates which locked type this subset is. The cases are as belows:
+/// Indicates which locked type this subset is. The cases are as follows:
 /// <list type="table">
 /// <item>
 /// <term><see langword="true" /></term>
@@ -52,7 +52,7 @@ public sealed partial class NakedSubsetStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName])];
+		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName(ChineseLanguage)])];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new NakedSubsetSizeFactor(), new NakedSubsetIsLockedFactor()];
@@ -61,5 +61,6 @@ public sealed partial class NakedSubsetStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string SubsetName => SR.Get($"SubsetNamesSize{Size}", GetCulture(null));
+
+	private string SubsetName(string cultureName) => SR.Get($"SubsetNamesSize{Size}", new(cultureName));
 }

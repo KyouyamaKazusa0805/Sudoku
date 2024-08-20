@@ -29,8 +29,8 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr]),
-			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr])
+			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr(EnglishLanguage), SizeStr, ExtraDigitsStr, CellsStr]),
+			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr(ChineseLanguage), SizeStr, CellsStr, ExtraDigitsStr])
 		];
 
 	/// <inheritdoc/>
@@ -53,11 +53,16 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string TrueCandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 
-	private string SubsetTypeStr => SR.Get(IsNaked ? "NakedKeyword" : "HiddenKeyword", GetCulture(null));
-
 	private string SizeStr => TechniqueMarshal.GetSubsetName(Size);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
+
+
+	private string SubsetTypeStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return SR.Get(IsNaked ? "NakedKeyword" : "HiddenKeyword", culture);
+	}
 }

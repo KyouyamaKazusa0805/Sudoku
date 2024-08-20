@@ -39,8 +39,8 @@ public sealed partial class AlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr]),
-			new(ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr])
+			new(EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr(EnglishLanguage)]),
+			new(ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr(ChineseLanguage)])
 		];
 
 	private string Als1Str => FirstAls.ToString(Options.Converter);
@@ -49,8 +49,10 @@ public sealed partial class AlmostLockedSetsXzStep(
 
 	private string XStr => Options.Converter.DigitConverter(XDigitsMask);
 
-	private string ZResultStr
-		=> ZDigitsMask == 0
-			? string.Empty
-			: $"{SR.Get("Comma", GetCulture(null))}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
+
+	private string ZResultStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return ZDigitsMask == 0 ? string.Empty : $"{SR.Get("Comma", culture)}Z = {Options.Converter.DigitConverter(ZDigitsMask)}";
+	}
 }

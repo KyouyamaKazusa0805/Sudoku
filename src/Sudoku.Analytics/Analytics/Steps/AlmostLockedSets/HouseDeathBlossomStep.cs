@@ -28,7 +28,10 @@ public sealed partial class HouseDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [HouseStr, BranchesStr]), new(ChineseLanguage, [HouseStr, BranchesStr])];
+		=> [
+			new(EnglishLanguage, [HouseStr, BranchesStr(EnglishLanguage)]),
+			new(ChineseLanguage, [HouseStr, BranchesStr(ChineseLanguage)])
+		];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new HouseDeathBlossomPetalsCountFactor()];
@@ -38,15 +41,18 @@ public sealed partial class HouseDeathBlossomStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string BranchesStr
-		=> string.Join(
-			SR.Get("Comma", GetCulture(null)),
-			from b in Branches select $"{Options.Converter.CellConverter(in b.Key.AsCellMap())} - {b.Value}"
-		);
-
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
 		=> other is HouseDeathBlossomStep comparer
 		&& (House, Digit, Branches) == (comparer.House, comparer.Digit, comparer.Branches);
+
+	private string BranchesStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return string.Join(
+			SR.Get("Comma", culture),
+			from b in Branches select $"{Options.Converter.CellConverter(in b.Key.AsCellMap())} - {b.Value}"
+		);
+	}
 }

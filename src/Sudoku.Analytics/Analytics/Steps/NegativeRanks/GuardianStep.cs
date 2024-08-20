@@ -27,8 +27,8 @@ public sealed partial class GuardianStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr]),
-			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr])
+			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural(EnglishLanguage), GuardianStr]),
+			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural(ChineseLanguage), GuardianStr])
 		];
 
 	/// <inheritdoc/>
@@ -44,9 +44,6 @@ public sealed partial class GuardianStep(
 	CellMap IGuardianTrait.GuardianCells => Guardians;
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
-
-	private string GuardianSingularOrPlural
-		=> SR.Get(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", GetCulture(null));
 
 	private string GuardianStr => Options.Converter.CellConverter(Guardians);
 
@@ -70,5 +67,11 @@ public sealed partial class GuardianStep(
 		}
 
 		return Math.Abs(Guardians.Count - comparer.Guardians.Count);
+	}
+
+	private string GuardianSingularOrPlural(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return SR.Get(Guardians.Count == 1 ? "GuardianSingular" : "GuardianPlural", culture);
 	}
 }

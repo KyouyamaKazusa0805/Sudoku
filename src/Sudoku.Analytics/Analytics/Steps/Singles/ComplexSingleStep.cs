@@ -114,7 +114,7 @@ public sealed class ComplexSingleStep(
 		var lockedCandidatesName = SR.Get("Concept_LockedCandidates", culture);
 		var subsetName = SR.Get("Concept_Subset", culture);
 		var basedOnName = BasedOn.GetName(culture);
-		var isChinese = culture?.Name is ['Z' or 'z', 'H' or 'h', ..];
+		var isChinese = culture.Name.AsSpan()[..2].Equals(ChineseLanguage.AsSpan()[..2], StringComparison.OrdinalIgnoreCase);
 		var spacing = isChinese ? string.Empty : " ";
 		var prefix = (hasLockedCandidates, hasSubset) switch
 		{

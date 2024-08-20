@@ -31,7 +31,10 @@ public sealed partial class RectangleDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [PatternStr, BranchesStr]), new(ChineseLanguage, [PatternStr, BranchesStr])];
+		=> [
+			new(EnglishLanguage, [PatternStr, BranchesStr(EnglishLanguage)]),
+			new(ChineseLanguage, [PatternStr, BranchesStr(ChineseLanguage)])
+		];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors
@@ -42,15 +45,18 @@ public sealed partial class RectangleDeathBlossomStep(
 
 	private string PatternStr => Options.Converter.CellConverter(Pattern);
 
-	private string BranchesStr
-		=> string.Join(
-			SR.Get("Comma", GetCulture(null)),
-			from b in Branches select $"{Options.Converter.CandidateConverter([b.Key])} - {b.Value}"
-		);
-
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
 		=> other is RectangleDeathBlossomStep comparer
 		&& (Pattern, IsAvoidable, Branches) == (comparer.Pattern, comparer.IsAvoidable, comparer.Branches);
+
+	private string BranchesStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return string.Join(
+			SR.Get("Comma", culture),
+			from b in Branches select $"{Options.Converter.CandidateConverter([b.Key])} - {b.Value}"
+		);
+	}
 }

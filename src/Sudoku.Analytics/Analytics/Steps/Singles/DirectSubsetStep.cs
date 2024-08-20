@@ -69,8 +69,29 @@ public sealed partial class DirectSubsetStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr]),
-			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr])
+			new(
+				EnglishLanguage,
+				[
+					CellsStr,
+					HouseStr,
+					InterimCellStr,
+					InterimDigitStr,
+					TechniqueNameStr(EnglishLanguage), DigitsStr,
+					SubsetNameStr(EnglishLanguage)
+				]
+			),
+			new(
+				ChineseLanguage,
+				[
+					CellsStr,
+					HouseStr,
+					InterimCellStr,
+					InterimDigitStr,
+					TechniqueNameStr(ChineseLanguage),
+					DigitsStr,
+					SubsetNameStr(ChineseLanguage)
+				]
+			)
 		];
 
 	/// <inheritdoc/>
@@ -87,11 +108,7 @@ public sealed partial class DirectSubsetStep(
 
 	private string InterimDigitStr => Options.Converter.DigitConverter(InterimDigitsMask);
 
-	private string TechniqueNameStr => BasedOn.GetName(GetCulture(null));
-
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
-
-	private string SubsetNameStr => SubsetTechnique.GetName(GetCulture(null));
 
 
 	/// <inheritdoc/>
@@ -100,4 +117,8 @@ public sealed partial class DirectSubsetStep(
 		&& SubsetCells == comparer.SubsetCells && SubsetDigitsMask == comparer.SubsetDigitsMask
 		&& Interim == comparer.Interim && InterimDigitsMask == comparer.InterimDigitsMask
 		&& Subtype == comparer.Subtype && SubsetTechnique == comparer.SubsetTechnique;
+
+	private string TechniqueNameStr(string cultureName) => BasedOn.GetName(new CultureInfo(cultureName));
+
+	private string SubsetNameStr(string cultureName) => SubsetTechnique.GetName(new CultureInfo(cultureName));
 }

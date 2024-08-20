@@ -23,7 +23,10 @@ public sealed partial class DeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [PivotStr, BranchesStr]), new(ChineseLanguage, [PivotStr, BranchesStr])];
+		=> [
+			new(EnglishLanguage, [PivotStr, BranchesStr(EnglishLanguage)]),
+			new(ChineseLanguage, [PivotStr, BranchesStr(ChineseLanguage)])
+		];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor()];
@@ -33,9 +36,14 @@ public sealed partial class DeathBlossomStep(
 
 	private string PivotStr => Options.Converter.CellConverter(in Pivot.AsCellMap());
 
-	private string BranchesStr
-		=> string.Join(
-			SR.Get("Comma", GetCulture(null)),
-			from branch in Branches select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Key))} - {branch.Value}"
+
+	private string BranchesStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return string.Join(
+			SR.Get("Comma", culture),
+			from branch in Branches
+			select $"{Options.Converter.DigitConverter((Mask)(1 << branch.Key))} - {branch.Value}"
 		);
+	}
 }

@@ -18066,7 +18066,7 @@
             <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
             <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
             <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
+            Indicates which locked type this subset is. The cases are as follows:
             <list type="table">
             <item>
             <term><see langword="true" /></term>
@@ -18094,7 +18094,7 @@
             <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
             <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
             <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
+            Indicates which locked type this subset is. The cases are as follows:
             <list type="table">
             <item>
             <term><see langword="true" /></term>

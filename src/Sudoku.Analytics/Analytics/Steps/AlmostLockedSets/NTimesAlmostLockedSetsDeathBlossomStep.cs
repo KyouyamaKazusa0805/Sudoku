@@ -32,8 +32,8 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr]),
-			new(ChineseLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr])
+			new(EnglishLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(EnglishLanguage)]),
+			new(ChineseLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>
@@ -47,15 +47,6 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	private string CellsStr => Options.Converter.CellConverter(NTimesAlmostLockedSetsCells);
 
 	private string DigitsStr => Options.Converter.DigitConverter(NTimesAlmostLockedSetsDigitsMask);
-
-	private string BranchesStr
-		=> string.Join(
-			SR.Get("Comma", GetCulture(null)),
-			from branch in Branches
-			let p = Options.Converter.CandidateConverter(branch.Key)
-			let q = branch.Value.ToString(Options.Converter)
-			select $"{p} - {q}"
-		);
 
 
 	/// <inheritdoc/>
@@ -110,5 +101,17 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 
 
 		static int alsCellsCountSelector(AlmostLockedSet s) => s.Cells.Count;
+	}
+
+	private string BranchesStr(string cultureName)
+	{
+		var culture = new CultureInfo(cultureName);
+		return string.Join(
+			SR.Get("Comma", culture),
+			from branch in Branches
+			let p = Options.Converter.CandidateConverter(branch.Key)
+			let q = branch.Value.ToString(Options.Converter)
+			select $"{p} - {q}"
+		);
 	}
 }

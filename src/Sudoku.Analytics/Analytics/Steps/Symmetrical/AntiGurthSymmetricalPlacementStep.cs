@@ -33,29 +33,30 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
-		=> [new(EnglishLanguage, [SymmetryTypeStr, MappingStr]), new(ChineseLanguage, [SymmetryTypeStr, MappingStr])];
+		=> [
+			new(EnglishLanguage, [SymmetryTypeStr(EnglishLanguage), MappingStr(EnglishLanguage)]),
+			new(ChineseLanguage, [SymmetryTypeStr(ChineseLanguage), MappingStr(ChineseLanguage)])
+		];
 
-	private string SymmetryTypeStr => SR.Get($"{SymmetricType}Symmetry", GetCulture(null));
 
-	private string MappingStr
+	private string MappingStr(string cultureName)
 	{
-		get
+		var culture = new CultureInfo(cultureName);
+		var comma = SR.Get("Comma", culture);
+		if (Mapping is not null)
 		{
-			var culture = GetCulture(null);
-			var comma = SR.Get("Comma", culture);
-			if (Mapping is not null)
+			var sb = new StringBuilder(10);
+			for (var i = 0; i < 9; i++)
 			{
-				var sb = new StringBuilder(10);
-				for (var i = 0; i < 9; i++)
-				{
-					var currentMappingRelationDigit = Mapping[i];
-					sb.Append(i + 1);
-					sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
-					sb.Append(comma);
-				}
-				return sb.RemoveFrom(^comma.Length).ToString();
+				var currentMappingRelationDigit = Mapping[i];
+				sb.Append(i + 1);
+				sb.Append(currentMappingRelationDigit is { } c && c != i ? $" -> {c + 1}" : string.Empty);
+				sb.Append(comma);
 			}
-			return SR.Get("NoMappingRelation", culture);
+			return sb.RemoveFrom(^comma.Length).ToString();
 		}
+		return SR.Get("NoMappingRelation", culture);
 	}
+
+	private string SymmetryTypeStr(string cultureName) => SR.Get($"{SymmetricType}Symmetry", new(cultureName));
 }

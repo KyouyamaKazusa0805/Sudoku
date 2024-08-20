@@ -50,8 +50,14 @@ public sealed partial class UniqueRectangleType3Step(
 	/// <inheritdoc/>
 	public override Interpolation[] Interpolations
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeyword, CellsStr, HouseStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
+			new(
+				EnglishLanguage,
+				[D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordEnUs, CellsStr, HouseStr]
+			),
+			new(
+				ChineseLanguage,
+				[D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeywordZhCn]
+			)
 		];
 
 	/// <inheritdoc/>
@@ -72,11 +78,11 @@ public sealed partial class UniqueRectangleType3Step(
 
 	private string SubsetDigitsMask => Options.Converter.DigitConverter(ExtraDigitsMask);
 
-	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
+	private string OnlyKeywordEnUs => IsNaked ? string.Empty : "only ";
 
-	private string OnlyKeywordZhCn => SR.Get("Only", GetCulture(null));
+	private string OnlyKeywordZhCn => IsNaked ? string.Empty : SR.Get("Only", new(ChineseLanguage));
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 
-	private string AppearLimitKeyword => SR.Get("Appear", GetCulture(null));
+	private string AppearLimitKeywordZhCn => SR.Get("Appear", new(ChineseLanguage));
 }
