@@ -9,7 +9,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public sealed partial class TextPointer :
+public sealed partial class TextPointer(LibraryInfo library) :
 	IAdditionOperators<TextPointer, int, TextPointer>,
 	IAsyncDisposable,
 	IDecrementOperators<TextPointer>,
@@ -31,20 +31,11 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Indicates the internal stream.
 	/// </summary>
-	private readonly FileStream _stream;
-
-
-	/// <summary>
-	/// Initializes a <see cref="TextPointer"/> instance via the specified library.
-	/// </summary>
-	/// <param name="library">Indicates the library object.</param>
-	/// <exception cref="ArgumentException">Throws when the library is not initialized.</exception>
-	public TextPointer(LibraryInfo library)
-		=> _stream = (Library = library) switch
-		{
-			(var p, _) { IsInitialized: true } => File.OpenRead(p),
-			(var p, _) => throw new FileNotFoundException(SR.ExceptionMessage("LibraryShouldBeInitialized"), p)
-		};
+	private readonly FileStream _stream = library switch
+	{
+		(var p, _) { IsInitialized: true } => File.OpenRead(p),
+		(var p, _) => throw new FileNotFoundException(SR.ExceptionMessage("LibraryShouldBeInitialized"), p)
+	};
 
 
 	/// <summary>
@@ -145,7 +136,7 @@ public sealed partial class TextPointer :
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public LibraryInfo Library { get; }
+	public LibraryInfo Library { get; } = library;
 
 	/// <inheritdoc/>
 	object? IEnumerator.Current => Current;

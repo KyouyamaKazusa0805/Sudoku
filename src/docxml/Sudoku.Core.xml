@@ -8585,6 +8585,15 @@
             </i></remarks>
             <seealso cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.#ctor(Sudoku.Runtime.LibraryServices.LibraryInfo)">
+            <summary>
+            Represents a text pointer object that reads the detail of a <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/>.
+            </summary>
+            <remarks><i>
+            This type only supports for Windows now because the relied type <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> is limited in Windows.
+            </i></remarks>
+            <seealso cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/>
+        </member>
         <member name="F:Sudoku.Runtime.LibraryServices.TextPointer.MaxLimitOfPuzzleLength">
             <summary>
             Indicates the max limit of a puzzle length.
@@ -8594,13 +8603,6 @@
             <summary>
             Indicates the internal stream.
             </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.#ctor(Sudoku.Runtime.LibraryServices.LibraryInfo)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.LibraryServices.TextPointer"/> instance via the specified library.
-            </summary>
-            <param name="library">Indicates the library object.</param>
-            <exception cref="T:System.ArgumentException">Throws when the library is not initialized.</exception>
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.TextPointer.ForwardPuzzlesCount">
             <summary>
