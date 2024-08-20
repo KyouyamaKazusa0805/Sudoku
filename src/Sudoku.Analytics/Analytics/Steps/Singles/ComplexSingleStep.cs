@@ -75,7 +75,6 @@ public sealed class ComplexSingleStep(
 			sortKeyThis += IndirectTechniques[i].Sum(getSortKey);
 			sortKeyOther += comparer.IndirectTechniques[i].Sum(getSortKey);
 		}
-
 		return sortKeyThis.CompareTo(sortKeyOther);
 
 
