@@ -192,7 +192,7 @@ public abstract partial class Step(
 		return GetResourceFormat(null) is null
 			? ToSimpleString(formatProvider)
 			: GetCulture(formatProvider) is var culture && SR.Get("_Token_Colon", culture) is var colonToken
-				? Interpolations?.FirstOrDefault(matcher).ResourcePlaceholderValues switch
+				? Interpolations?.FirstOrDefault(matcher).Values switch
 				{
 					var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
 					_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
@@ -200,7 +200,7 @@ public abstract partial class Step(
 				: throw new();
 
 
-		bool matcher(Interpolation i) => culture.Name.IsCultureNameEqual(i.LanguageName);
+		bool matcher(Interpolation i) => culture.Name.IsCultureNameEqual(i.CultureName);
 	}
 
 	/// <summary>

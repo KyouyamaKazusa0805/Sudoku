@@ -30274,11 +30274,11 @@
             <summary>
             Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.Interpolations"/>.
             </summary>
-            <param name="LanguageName">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
+            <param name="CultureName">
+            The culture name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            e.g. <c>"zh-CN"</c> and <c>"en-US"</c>.
             </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+            <param name="Values">The values of the interpolation.</param>
             <seealso cref="P:Sudoku.Analytics.Step.Interpolations"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
         </member>
@@ -30286,21 +30286,21 @@
             <summary>
             Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.Interpolations"/>.
             </summary>
-            <param name="LanguageName">
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
+            <param name="CultureName">
+            The culture name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            e.g. <c>"zh-CN"</c> and <c>"en-US"</c>.
             </param>
-            <param name="ResourcePlaceholderValues">The values of the interpolation.</param>
+            <param name="Values">The values of the interpolation.</param>
             <seealso cref="P:Sudoku.Analytics.Step.Interpolations"/>
             <seealso cref="T:System.Globalization.CultureInfo"/>
         </member>
-        <member name="P:Sudoku.Resources.Interpolation.LanguageName">
+        <member name="P:Sudoku.Resources.Interpolation.CultureName">
             <summary>
-            The language name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
-            for example, <c>"zh-CN"</c> and <c>"en-US"</c>.
+            The culture name of the resource. This can be used for the comparison of the current culture via type <see cref="T:System.Globalization.CultureInfo"/>,
+            e.g. <c>"zh-CN"</c> and <c>"en-US"</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.Interpolation.ResourcePlaceholderValues">
+        <member name="P:Sudoku.Resources.Interpolation.Values">
             <summary>The values of the interpolation.</summary>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator">
