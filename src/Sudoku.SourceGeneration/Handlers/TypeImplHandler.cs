@@ -17,18 +17,21 @@ internal static class TypeImplHandler
 	private const string OperandNullabilityPreferPropertyName = "OperandNullabilityPrefer";
 
 
+	private static readonly Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[] Methods = [
+		Object_Equals,
+		Object_GetHashCode,
+		Object_ToString,
+		EqualityOperators,
+		ComparisonOperators,
+		TrueAndFalseOperators,
+		LogicalNotOperator
+	];
+
+
 	public static List<string>? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		var typeSources = new List<string>();
-		foreach (var method in (Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[])[
-			Object_Equals,
-			Object_GetHashCode,
-			Object_ToString,
-			EqualityOperators,
-			ComparisonOperators,
-			TrueAndFalseOperators,
-			LogicalNotOperator
-		])
+		foreach (var method in Methods)
 		{
 			if (method(gasc, cancellationToken) is { } source)
 			{
