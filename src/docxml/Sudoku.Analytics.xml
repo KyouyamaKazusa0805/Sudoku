@@ -311,7 +311,10 @@
             <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
             <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>

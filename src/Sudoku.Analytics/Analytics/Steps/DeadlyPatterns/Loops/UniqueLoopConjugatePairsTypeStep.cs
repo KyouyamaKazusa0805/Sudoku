@@ -40,7 +40,7 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	{
 		get
 		{
-			var uniqueLoopName = SR.Get("UniqueNameName", GetCulture(SR.DefaultCulture));
+			var uniqueLoopName = SR.Get("UniqueNameName", SR.DefaultCulture);
 			return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
 		}
 	}
@@ -74,7 +74,7 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	/// <inheritdoc/>
 	public override string GetName(IFormatProvider? formatProvider)
 	{
-		var culture = GetCulture(null);
+		var culture = GetCulture(formatProvider);
 		var uniqueLoopName = SR.Get("UniqueNameName", culture);
 		return $"{uniqueLoopName} + {ExtraDigitsCellsCount}/{ConjugatePairs.Length}SL";
 	}

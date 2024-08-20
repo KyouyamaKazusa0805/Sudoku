@@ -412,9 +412,14 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(Func<string, Step, string>? stepStringReplacer) => ToString(DefaultOptions, null, stepStringReplacer);
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider) => ToString(DefaultOptions, formatProvider);
+
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider, Func<string, Step, string> stepStringReplacer)
+		=> ToString(DefaultOptions, formatProvider, stepStringReplacer);
 
 	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -579,7 +584,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			foreach (ref readonly var solvingStepsGroup in
 				from s in steps.AsReadOnlySpan()
 				orderby s.Difficulty
-				group s by s.GetName(null))
+				group s by s.GetName(formatProvider))
 			{
 				if (options.HasFlag(FormattingOptions.ShowStepDetail))
 				{
