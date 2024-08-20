@@ -1582,22 +1582,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="T:System.IndexingMode">
-            <summary>
-            Represents a mode that indexes a value used by <see cref="!:Indexed&lt;T&gt;"/> objects.
-            </summary>
-            <seealso cref="!:Indexed&lt;T&gt;"/>
-        </member>
-        <member name="F:System.IndexingMode.Current">
-            <summary>
-            Indicates the indexing mode is to treat the current element as the start position.
-            </summary>
-        </member>
-        <member name="F:System.IndexingMode.MemoryStart">
-            <summary>
-            Indicates the indexing mode is to treat the memory start position as the start position.
-            </summary>
-        </member>
         <member name="T:System.Int32Extensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Int32"/>.
