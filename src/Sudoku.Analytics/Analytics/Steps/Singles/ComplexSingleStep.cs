@@ -119,8 +119,8 @@ public sealed class ComplexSingleStep(
 		var prefix = (hasLockedCandidates, hasSubset) switch
 		{
 			(true, true) => $"{lockedCandidatesName}{spacing}{subsetName}",
-			(true, false) => $"{lockedCandidatesName}",
-			(false, true) => $"{subsetName}"
+			(true, false) => lockedCandidatesName,
+			(false, true) => subsetName
 		};
 		return isChinese
 			? $"{base.GetName(culture)}{SR.Get("_Token_CenterDot", culture)}{prefix}{basedOnName}"
@@ -130,10 +130,11 @@ public sealed class ComplexSingleStep(
 	private string TechniqueNotation(string cultureName)
 	{
 		var culture = new CultureInfo(cultureName);
+		var comma = SR.Get("_Token_Comma", culture);
 		return string.Join(
 			" -> ",
 			from techniqueGroup in IndirectTechniques
-			let tt = string.Join(", ", from subtechnique in techniqueGroup select subtechnique.GetName(culture))
+			let tt = string.Join(comma, from subtechnique in techniqueGroup select subtechnique.GetName(culture))
 			select techniqueGroup.Length == 1 ? tt : $"({tt})"
 		);
 	}
