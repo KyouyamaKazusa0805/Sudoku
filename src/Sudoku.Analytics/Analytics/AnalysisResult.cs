@@ -556,7 +556,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					{
 						sb.Append(SR.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
-						sb.Append(SR.Get("Colon", culture));
+						sb.Append(SR.Get("_Token_Colon", culture));
 					}
 
 					sb.Append(' ');

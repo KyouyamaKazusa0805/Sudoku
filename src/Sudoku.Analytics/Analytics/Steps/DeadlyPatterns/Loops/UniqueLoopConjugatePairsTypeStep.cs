@@ -51,23 +51,21 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	/// <inheritdoc/>
 	public override Interpolation[]? Interpolations
 		=> [
-			new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr]),
-			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr])
+			new(EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(EnglishLanguage)]),
+			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(ChineseLanguage)])
 		];
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [.. base.Factors, new UniqueLoopConjugatePairsCountFactor()];
 
-	private string ConjugatePairsStr
+	private string ConjugatePairsStr(string cultureName)
 	{
-		get
-		{
-			var converter = Options.Converter;
-			return string.Join(
-				SR.Get("_Token_Comma", GetCulture(null)),
-				from cp in ConjugatePairs select cp.ToString(converter)
-			);
-		}
+		var converter = Options.Converter;
+		var culture = new CultureInfo(cultureName);
+		return string.Join(
+			SR.Get("_Token_Comma", culture),
+			from cp in ConjugatePairs select cp.ToString(converter)
+		);
 	}
 
 
