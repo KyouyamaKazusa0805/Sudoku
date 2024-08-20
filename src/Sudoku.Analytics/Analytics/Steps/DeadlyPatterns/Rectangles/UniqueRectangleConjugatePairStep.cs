@@ -32,7 +32,7 @@ public partial class UniqueRectangleConjugatePairStep(
 	public sealed override int BaseDifficulty => base.BaseDifficulty - 1;
 
 	/// <inheritdoc/>
-	public override int Type
+	public sealed override int Type
 		=> Code switch { Technique.UniqueRectangleType4 => 4, Technique.UniqueRectangleType6 => 6, _ => base.Type };
 
 	/// <inheritdoc/>

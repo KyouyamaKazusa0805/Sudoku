@@ -1066,4 +1066,187 @@ public partial class UniqueRectangleStepSearcher
 			}
 		}
 	}
+
+	/// <summary>
+	/// Check UR + 3x/1SL.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="cornerCell">The corner cell.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The pattern:
+	/// <code><![CDATA[
+	///   ↓ cornerCell
+	///  (ab ) | abX
+	///        |  |
+	///        |  |a
+	///        |  |
+	///   abz  | abY  a/bz
+	/// ]]></code>
+	/// Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
+	/// <code><![CDATA[
+	///  a | b
+	///  b | a  z
+	/// ]]></code>
+	/// </remarks>
+	private partial void Check3X1LSL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	{
+		var cornerDigitsMask = grid.GetCandidates(cornerCell);
+		if ((cornerDigitsMask & ~comparer) != 0)
+		{
+			// The corner cell can only contain the digits appeared in UR.
+			return;
+		}
+
+		// Determine target cell, same-block cell (as corner) and the last cell.
+		Unsafe.SkipInit(out int targetCell);
+		Unsafe.SkipInit(out int sameBlockCell);
+		var cells = (CellMap)urCells;
+		foreach (var cell in cells - cornerCell)
+		{
+			if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(cell))
+			{
+				sameBlockCell = cell;
+			}
+			else if (PeersMap[cornerCell].Contains(cell))
+			{
+				targetCell = cell;
+			}
+		}
+
+		// Check pattern.
+		// According to pattern, there should be a strong link of digit 'a' between 'targetCell' and 'lastCell',
+		// and 'sameBlockCell' can only contain one extra digit,
+		// and one peer intersection cell of 'targetCell' and 'sameBlockCell' should only contain that extra digit,
+		// and only digits appeared in UR pattern.
+		var mapOfDigit1And2 = CandidatesMap[d1] | CandidatesMap[d2];
+		var lastCell = (cells - cornerCell - targetCell - sameBlockCell)[0];
+		foreach (var (conjugatePairDigit, elimDigit) in ((d1, d2), (d2, d1)))
+		{
+			if ((grid.GetCandidates(targetCell) >> elimDigit & 1) == 0)
+			{
+				// :( The target cell must contain such elimination digit.
+				continue;
+			}
+
+			var pairMap = targetCell.AsCellMap() + lastCell;
+			foreach (var conjugatePairHouse in pairMap.SharedHouses)
+			{
+				if (!IsConjugatePair(conjugatePairDigit, in pairMap, conjugatePairHouse))
+				{
+					// :( Strong link of digit 'a' is required.
+					continue;
+				}
+
+				// Check for outside cell that contains either 'a' or 'b', and an extra digit 'z'.
+				foreach (var outsideCell in (targetCell.AsCellMap() + sameBlockCell).PeerIntersection & mapOfDigit1And2 & ~cells)
+				{
+					var outsideCellDigitsMask = grid.GetCandidates(outsideCell);
+					var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
+					if (!Mask.IsPow2(extraDigitsMaskInOutsideCell))
+					{
+						// :( The cell contains multiple extra digits.
+						continue;
+					}
+
+					var extraDigitsMaskInSameBlockCell = (Mask)(grid.GetCandidates(sameBlockCell) & ~comparer);
+					if (extraDigitsMaskInSameBlockCell != extraDigitsMaskInOutsideCell)
+					{
+						// :( The cell 'sameBlockCell' must hold exactly one extra digit that is appeared in 'outsideCell'.
+						continue;
+					}
+
+					var extraDigitInOutsideCell = Mask.Log2(extraDigitsMaskInOutsideCell);
+
+					// Now pattern is formed. Collect view nodes.
+					var candidateViewNodes = new List<CandidateViewNode>();
+					foreach (var cell in cells + outsideCell)
+					{
+						foreach (var digit in comparer)
+						{
+							if ((grid.GetCandidates(cell) >> digit & 1) != 0 && (cell != targetCell || digit != elimDigit))
+							{
+								candidateViewNodes.Add(
+									new(
+										(cell == targetCell || cell == lastCell) && digit == conjugatePairDigit
+											? ColorIdentifier.Auxiliary1
+											: ColorIdentifier.Normal,
+										cell * 9 + digit
+									)
+								);
+							}
+						}
+					}
+
+					accumulator.Add(
+						new UniqueRectangleConjugatePairExtraStep(
+							[new(Elimination, targetCell, elimDigit)],
+							[
+								[
+									.. candidateViewNodes,
+									new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+									new CandidateViewNode(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell),
+									new CandidateViewNode(ColorIdentifier.Auxiliary2, sameBlockCell * 9 + extraDigitInOutsideCell),
+									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairHouse)
+								]
+							],
+							context.Options,
+							Technique.UniqueRectangle3X1L,
+							d1,
+							d2,
+							in cells,
+							arMode,
+							[new(in pairMap, conjugatePairDigit)],
+							in outsideCell.AsCellMap(),
+							extraDigitsMaskInOutsideCell,
+							index
+						)
+					);
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Check UR + 3X/1SL.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="cornerCell">The corner cell.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The pattern:
+	/// <code><![CDATA[
+	///   ↓ cornerCell
+	///  (ab ) | abX
+	///        |  |
+	///        |  |a
+	///        |  |
+	///   abS  | abY  a/bS
+	/// ]]></code>
+	/// where <c>S</c> is for a list of subset digits in some certain cells.
+	/// Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
+	/// <code><![CDATA[
+	///  a | b
+	///  b | a  S
+	/// ]]></code>
+	/// </remarks>
+	private partial void Check3X1USL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	{
+	}
 }

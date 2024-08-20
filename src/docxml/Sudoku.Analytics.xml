@@ -8546,6 +8546,71 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X1LSL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3x/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The pattern:
+            <code><![CDATA[
+              ↓ cornerCell
+             (ab ) | abX
+                   |  |
+                   |  |a
+                   |  |
+              abz  | abY  a/bz
+            ]]></code>
+            Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
+            <code><![CDATA[
+             a | b
+             b | a  z
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X1USL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3X/1SL.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The pattern:
+            <code><![CDATA[
+              ↓ cornerCell
+             (ab ) | abX
+                   |  |
+                   |  |a
+                   |  |
+              abS  | abY  a/bS
+            ]]></code>
+            where <c>S</c> is for a list of subset digits in some certain cells.
+            Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
+            <code><![CDATA[
+             a | b
+             b | a  S
+            ]]></code>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBurredSubset(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check burred subset.
@@ -13777,6 +13842,52 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Conjugate Pair(s) Extra</b>
+            (a.k.a. <b>Unique Rectangle Strong Link Extra</b>) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="conjugatePairs"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells used.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Conjugate Pair(s) Extra</b>
+            (a.k.a. <b>Unique Rectangle Strong Link Extra</b>) technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="conjugatePairs"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells used.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.ExtraCells">
+            <summary>
+            The generated property declaration for parameter <c>extraCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.ExtraDigitsMask">
             <summary>
             The generated property declaration for parameter <c>extraDigitsMask</c>.
             </summary>
