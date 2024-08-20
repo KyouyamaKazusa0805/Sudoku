@@ -59,11 +59,18 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleType1, Technique.AvoidableRectangleType2, Technique.AvoidableRectangleType3,
 	Technique.AvoidableRectangleType5, Technique.HiddenAvoidableRectangle,
 
-	// Strong-link types (Conjugate pair types)
-	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2, Technique.UniqueRectangle3N2,
-	Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X1L, Technique.UniqueRectangle3X1U, Technique.UniqueRectangle3X2,
-	Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X1L, Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L,
-	Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
+	// ALS-XZ types
+	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
+	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
+
+	// Strong link types (Conjugate pair types)
+	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D1,
+	Technique.UniqueRectangle3E2, Technique.UniqueRectangle3N2, Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X2,
+	Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X3,
+
+	// Strong link + subset types (Conjugate pair + subset types)
+	Technique.UniqueRectangle3X1L, Technique.UniqueRectangle3X1U,
+	Technique.UniqueRectangle4X1L, Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L, Technique.UniqueRectangle4X2U,
 
 	// Burred types
 	Technique.UniqueRectangleBurredSubset,
@@ -85,10 +92,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleExternalType1, Technique.AvoidableRectangleExternalType2, Technique.AvoidableRectangleExternalType3,
 	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
 	Technique.AvoidableRectangleExternalAlmostLockedSetsXz,
-
-	// Miscellaneous
-	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
-	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 
 	SupportedSudokuTypes = SudokuType.Standard | SudokuType.Sukaku,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
