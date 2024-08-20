@@ -5395,12 +5395,16 @@
             <typeparam name="TResourceManagerProvider">
             <para>The type of the resource manager provider.</para>
             <para>
-            This type should point to a generated type, bound with your resource dictionary manifest file (*.resx), named like the file name of it.
-            For example, if you create a resource dictionary manifest file called <c>Resource.resx</c>, a generated type will be named <c>Resource</c>.
+            This type should point to a generated type, bound with your resource dictionary manifest file (*.resx),
+            named like the file name of it.
+            For example, if you create a resource dictionary manifest file called <c>Resource.resx</c>,
+            a generated type will be named <c>Resource</c>.
             You should pass in this type (<c>Resource</c> here) as type argument to this method.
             </para>
             </typeparam>
-            <exception cref="T:System.Resources.MissingResourceManagerException">Throws when the current calling assembly doesn't contain any resource manager.</exception>
+            <exception cref="T:System.Resources.MissingResourceManagerException">
+            Throws when the current calling assembly doesn't contain any resource manager.
+            </exception>
         </member>
         <member name="M:System.Resources.SR.ExceptionMessage(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)">
             <summary>
