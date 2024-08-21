@@ -8581,8 +8581,7 @@
             </para>
             <para>
             The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
-            and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL
-            (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
+            and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL (where <c>S</c> is a subset of digits).
             </para>
             </remarks>
         </member>
@@ -8623,8 +8622,7 @@
             </para>
             <para>
             The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
-            and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL
-            (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
+            and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL (where <c>S</c> is a subset of digits).
             </para>
             </remarks>
         </member>

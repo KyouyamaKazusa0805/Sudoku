@@ -1101,8 +1101,7 @@ public partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// <para>
 	/// The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
-	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL
-	/// (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
+	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL (where <c>S</c> is a subset of digits).
 	/// </para>
 	/// </remarks>
 	private partial void Check3X1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
@@ -1110,10 +1109,8 @@ public partial class UniqueRectangleStepSearcher
 		// Test example:
 		// 3+8.+75.+96+4......2+38.+49.+3871+5.....73.+68.+3.6...9..65.+3...+5273.+68.+19+34...+6..+16+8.7...3:142 244 548 552 156 268 288
 		// .46.2.13....+1+4.....2.386.7...2.9+38+1+5.3..5..9...5.1.6+4+3.5.861.2.+2...+3...+1.14.7.35.:821 829 641 751 851 753 254 754 256 756 861 977 984 986 487 991 999
-		// 9.16.+3+25.+73.8....95.6.9.3..87.....+9.+1.9.+8.4+3......+9+782+3.7.6+89.42.+8+9+34.7..9...18.3:225 432 234 734 139 543 144 244 544 145 545 246 649 652 256 463 564 582 187
 		// 6..1..2.9.+9.+6...5.....896+139...361.+5..65.49....529..+678.936.....7.+9....+62+63..7.+91:512 812 713 223 723 425 731 433 443 843 351 152 867 488
 		// +51+628.+9.379.6....+5+48..95.+6.2....+95..+9+5..2.1.6+1.85...296.59.....+8.+9...6573.1.+56.9.:442 742 343 744 345 353 754 462 762 365 766 175 375 176 376
-		// 9..48+61.+54+51.+97..+8.+8..+1+5..7..+56+2+9.8+12.+9+87+1+5.6+168+5+43..289.1+3+2.5+4.+149+5+8..+3+5+23+76+4+819:328 237 337 637 238 338 638 342 747 687
 		// +2+863+975+1+4+97415623+81+5+3..+2+9+765+4.+6...+29+62.....8.+3+9..2..+6.7+6+2...+8+53+4+15+73+86+9+2+8+392651+4+7:156 456
 
 		var cornerDigitsMask = grid.GetCandidates(cornerCell);
@@ -1137,6 +1134,16 @@ public partial class UniqueRectangleStepSearcher
 			{
 				targetCell = cell;
 			}
+		}
+
+		// Determine whether the cell 'sameBlockCell' contain at least one digit appeared in UR.
+		// To be honest, the pattern is always valid regardless of the state of 'sameBlockCell'.
+		// If such cell doesn't contain any digits appeared in UR, it will become a discontinuous nice loop.
+		// However, as for UR pattern validity, it will become invalid.
+		if ((grid.GetCandidates(sameBlockCell) & comparer) == 0)
+		{
+			// :( The cell 'sameBlockCell' must contain at least one digit appeared in UR.
+			return;
 		}
 
 		// Check pattern.
@@ -1163,16 +1170,26 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				// Check for outside cell that contains either 'a' or 'b', and an extra digit 'z'.
-				var outsideCellsRange = (targetCell.AsCellMap() + sameBlockCell).PeerIntersection & mapOfDigit1And2 & ~cells;
-				foreach (ref readonly var outsideCells in outsideCellsRange | 2)
+				// Check for cells in line of cell 'same-block', which doesn't include cell 'cornerCell'.
+				// Then we should check for empty cells that doesn't overlap with UR pattern, to determine existence of subsets.
+				var sameBlockHouses = 1 << sameBlockCell.ToHouse(HouseType.Row) | 1 << sameBlockCell.ToHouse(HouseType.Column);
+				foreach (var house in sameBlockHouses)
 				{
-					if (outsideCells.Count >= 2 && !outsideCells.CanSeeEachOther)
+					if (HousesMap[house].Contains(cornerCell))
 					{
-						// :( All selected outside cells can be seen with each other.
-						continue;
+						sameBlockHouses &= ~(1 << house);
+						break;
 					}
+				}
 
+				// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
+				var subsetHouse = HouseMask.Log2(sameBlockHouses);
+				var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
+					& ~HousesMap[sameBlockCell.ToHouse(HouseType.Block)] // won't overlap the block with same-block cell
+					& ~cells // and won't overlap with UR pattern
+					& mapOfDigit1And2; // and must contain either digit 1 or digit 2
+				foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
+				{
 					var outsideCellDigitsMask = grid[in outsideCells];
 					var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
 					if (extraDigitsMaskInOutsideCell == 0)
@@ -1191,6 +1208,14 @@ public partial class UniqueRectangleStepSearcher
 					if (extraDigitsMaskInSameBlockCell != extraDigitsMaskInOutsideCell)
 					{
 						// :( The cell 'sameBlockCell' must hold exactly one extra digit that is appeared in 'outsideCell'.
+						continue;
+					}
+
+					var subsetCellsContainingElimDigit = outsideCells & CandidatesMap[elimDigit];
+					if ((subsetCellsContainingElimDigit.SharedHouses >> conjugatePairHouse & 1) == 0)
+					{
+						// :( All cells in outside cells containing elimination digit
+						//    should share same block with conjugate pair shared.
 						continue;
 					}
 
@@ -1220,6 +1245,10 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
 						}
 					}
+					if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
+					{
+						continue;
+					}
 
 					accumulator.Add(
 						new UniqueRectangleConjugatePairExtraStep(
@@ -1234,7 +1263,8 @@ public partial class UniqueRectangleStepSearcher
 									from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
 									let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
 									select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairHouse)
+									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairHouse),
+									new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
 								]
 							],
 							context.Options,
@@ -1290,8 +1320,7 @@ public partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// <para>
 	/// The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
-	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL
-	/// (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
+	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL (where <c>S</c> is a subset of digits).
 	/// </para>
 	/// </remarks>
 	private partial void Check4X2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
