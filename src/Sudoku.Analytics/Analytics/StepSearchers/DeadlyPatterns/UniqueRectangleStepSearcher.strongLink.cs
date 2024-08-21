@@ -1101,7 +1101,8 @@ public partial class UniqueRectangleStepSearcher
 	/// </para>
 	/// <para>
 	/// The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
-	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL.
+	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 3X/1SL
+	/// (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
 	/// </para>
 	/// </remarks>
 	private partial void Check3X1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
@@ -1251,5 +1252,49 @@ public partial class UniqueRectangleStepSearcher
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// Check UR + 4x/2SL and UR + 4X/2SL.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="corner1">The corner cell 1.</param>
+	/// <param name="corner2">The corner cell 2.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// <para>
+	/// The pattern:
+	/// <code><![CDATA[
+	/// corner1   corner2
+	///    ↓    a    ↓
+	///  (abZ)--|--(abX)
+	///         |    |
+	///         |    |a
+	///         |    |
+	///   abz   |   abY  a/bz
+	/// ]]></code>
+	/// Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
+	/// <code><![CDATA[
+	///  a | b
+	///  b | a  z
+	/// ]]></code>
+	/// The pattern is called UR + 4x/2SL.
+	/// </para>
+	/// <para>
+	/// The pattern can be extended with cell <c>a/bz</c> to a pair of cells <c>a/bS</c>,
+	/// and cell <c>abz</c> extends to <c>abS</c>, which will become UR + 4X/2SL
+	/// (where <c>S</c> is a subset of digits, whose length can be 1 and 2).
+	/// </para>
+	/// </remarks>
+	private partial void Check4X2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	{
 	}
 }
