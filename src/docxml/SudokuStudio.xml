@@ -2874,24 +2874,11 @@
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.Throw``1(System.Object,System.Int32,System.String)">
-            <summary>
-            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
-            </summary>
-            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
-            <param name="o">The object.</param>
-            <param name="range">The range of the argument should be.</param>
-            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
-            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
-            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
-        </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.DrawableItemUpdatingReason,System.Object)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
             Refresh the pane view unit controls.
             </summary>
             <param name="pane">The pane.</param>
-            <param name="reason">The reason why raising this updating operation.</param>
-            <param name="value">The value specified as an <see cref="T:System.Object"/> value.</param>
         </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
@@ -2908,6 +2895,17 @@
             <param name="viewUnit">The view unit that you want to display.</param>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.Throw``1(System.Object,System.Int32,System.String)">
+            <summary>
+            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
+            </summary>
+            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
+            <param name="o">The object.</param>
+            <param name="range">The range of the argument should be.</param>
+            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
+            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
+            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
         </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)">
             <summary>
@@ -3850,169 +3848,6 @@
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.DigitSet.SelectedDigitChanged"/>
-        </member>
-        <member name="T:SudokuStudio.Interaction.DrawableItemUpdatingReason">
-            <summary>
-            Represents a list of values that describes the reason why nodes should be updated.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.None">
-            <summary>
-            Indicates none will be updated.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for non-eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their scale.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>s, <see cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>s and <see cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>s,
-            changing their background opacity.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>
-            <seealso cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s, changing their dash styles.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>, changing their stroke thickness.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.NormalColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Normal"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Normal"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Normal"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Assignment"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Assignment"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Assignment"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OverlappedAssignmentColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.OverlappedAssignment"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.OverlappedAssignment"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.OverlappedAssignment"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Elimination"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Elimination"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Elimination"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CannibalismColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Cannibalism"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Cannibalism"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Cannibalism"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.ExofinColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Exofin"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Exofin"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Exofin"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EndofinColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Endofin"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Endofin"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Endofin"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.GroupedNodeColorized">
-            <summary>
-            Indicates the updating items are grouped link view nodes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AuxiliaryColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary1"/>,
-            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary2"/> or <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary3"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary1"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary2"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary3"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary1"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary2"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary3"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AlmostLockedSetColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet1"/>,
-            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet2"/>, <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet3"/>,
-            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet4"/> or <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
-            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet1"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet2"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet3"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet4"/>
-            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet5"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.ColorPaletteColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined colors defined in color palette.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.All">
-            <summary>
-            Indicates all nodes should be refreshed.
-            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
             <summary>
@@ -12045,7 +11880,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius">
             <summary>
-            Indicates the value that describes corner radiuse for displaying cell view nodes.
+            Indicates the value that describes corner radius for displaying cell view nodes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenColor">

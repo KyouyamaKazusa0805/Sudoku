@@ -15,17 +15,12 @@ internal static partial class DrawableFactory
 	/// Refresh the pane view unit controls.
 	/// </summary>
 	/// <param name="pane">The pane.</param>
-	/// <param name="reason">The reason why raising this updating operation.</param>
-	/// <param name="value">The value specified as an <see cref="object"/> value.</param>
-	public static partial void UpdateViewUnitControls(SudokuPane pane, DrawableItemUpdatingReason reason, object? value)
+	public static void UpdateViewUnitControls(SudokuPane pane)
 	{
-		if (reason != DrawableItemUpdatingReason.None)
+		RemoveViewUnitControls(pane);
+		if (pane.ViewUnit is not null)
 		{
-			RemoveViewUnitControls(pane);
-			if (pane.ViewUnit is not null)
-			{
-				AddViewUnitControls(pane, pane.ViewUnit);
-			}
+			AddViewUnitControls(pane, pane.ViewUnit);
 		}
 	}
 
@@ -34,7 +29,7 @@ internal static partial class DrawableFactory
 	/// </summary>
 	/// <param name="pane">The target pane.</param>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	private static partial void RemoveViewUnitControls(SudokuPane pane)
+	private static void RemoveViewUnitControls(SudokuPane pane)
 	{
 		foreach (var targetControl in getParentControls(pane))
 		{
@@ -65,7 +60,7 @@ internal static partial class DrawableFactory
 	/// <param name="viewUnit">The view unit that you want to display.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	private static partial void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
+	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
 	{
 		// Check whether the data can be deconstructed.
 		if (viewUnit is not { View: var view, Conclusions: var conclusions })
@@ -164,9 +159,6 @@ internal static partial class DrawableFactory
 		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
 
 
-	public static partial void UpdateViewUnitControls(SudokuPane pane, DrawableItemUpdatingReason reason, object? value = null);
-	private static partial void RemoveViewUnitControls(SudokuPane pane);
-	private static partial void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit);
 	private static partial void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults);
 	private static partial void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults);
 	private static partial void ForIconNode(SudokuPane sudokuPane, IconViewNode iconNode, AnimatedResultCollection animatedResults);
