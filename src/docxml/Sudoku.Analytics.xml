@@ -8574,8 +8574,8 @@
             ]]></code>
             Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
             <code><![CDATA[
-             a | b
-             b | a  z
+            a | b
+            b | a  z
             ]]></code>
             The pattern is called UR + 3x/1SL.
             </para>
@@ -8615,8 +8615,8 @@
             ]]></code>
             Suppose cell <c>abX</c> is filled with digit <c>b</c>, then a deadly pattern will be formed:
             <code><![CDATA[
-             a | b
-             b | a  z
+            a | b
+            b | a  z
             ]]></code>
             The pattern is called UR + 4x/2SL.
             </para>
