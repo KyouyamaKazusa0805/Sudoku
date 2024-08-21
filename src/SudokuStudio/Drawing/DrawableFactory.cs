@@ -94,27 +94,16 @@ internal static partial class DrawableFactory
 
 
 	public static partial void UpdateViewUnitControls(SudokuPane pane, DrawableItemUpdatingReason reason, object? value = null);
-
 	private static partial void RemoveViewUnitControls(SudokuPane pane);
-
 	private static partial void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit);
-
 	private static partial void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults);
-
 	private static partial void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults);
-
 	private static partial void ForIconNode(SudokuPane sudokuPane, IconViewNode iconNode, AnimatedResultCollection animatedResults);
-
 	private static partial void ForCandidateNode(SudokuPane sudokuPane, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped, AnimatedResultCollection animatedResults);
-
 	private static partial void ForCandidateNodeCore(ColorIdentifier id, Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResultCollection animatedResults, bool isForConclusion = false, bool isForElimination = false, bool isOverlapped = false);
-
 	private static partial void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResultCollection animatedResults);
-
 	private static partial void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResultCollection animatedResults);
-
 	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults);
-
 	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
 }
 

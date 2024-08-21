@@ -3262,14 +3262,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Drawing.Extensions.GetIdentifierSuffix(Sudoku.Drawing.ColorIdentifier)">
-            <summary>
-            Try to get identifier suffix for the specified value.
-            </summary>
-            <param name="this">The color identifier.</param>
-            <returns>The string suffix text.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
-        </member>
         <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
             <summary>
             Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.

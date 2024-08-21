@@ -43,10 +43,9 @@ internal partial class DrawableFactory
 		{
 			foreach (var children in sudokuPane._children)
 			{
-				yield return children.MainGrid; // cell / candidate / baba group
+				yield return children.MainGrid; // cell, candidate, baba grouping, icons
 			}
-
-			yield return sudokuPane.MainGrid; // house / chute / link
+			yield return sudokuPane.MainGrid; // house, chute, link
 		}
 	}
 
@@ -65,13 +64,9 @@ internal partial class DrawableFactory
 			return;
 		}
 
-		var (pencilmarkMode, controlAddingActions, overlapped, links, usedCandidates) = (
-			((App)Application.Current).Preference.UIPreferences.DisplayCandidates,
-			new AnimatedResultCollection(),
-			new List<Conclusion>(),
-			new List<ILinkViewNode>(),
-			CandidateMap.Empty
-		);
+		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
+		var usedCandidates = CandidateMap.Empty;
+		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
 
 		// Iterate on each view node, and get their own corresponding controls.
 		foreach (var viewNode in view)
@@ -204,7 +199,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}{id.GetIdentifierSuffix()}",
+			Tag = nameof(DrawableFactory),
 			Opacity = 0,
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			CornerRadius = sudokuPane.CellsInnerCornerRadius,
@@ -274,7 +269,7 @@ internal partial class DrawableFactory
 		{
 			var result = instanceCreator();
 			result.BorderThickness = new(0);
-			result.Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}{id.GetIdentifierSuffix()}";
+			result.Tag = nameof(DrawableFactory);
 			result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 			result.Opacity = 0;
 			result.Margin = result switch { Star or Triangle or Diamond => new(3, 0, 0, 0), _ => new(6) };
@@ -386,7 +381,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.CircleHollow, _) or (true, false, _, _, AssignmentDisplay.CircleHollow) => new Ellipse
@@ -397,7 +392,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash, _) => new Cross
@@ -408,7 +403,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode switch
 				{
@@ -428,7 +423,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.CircleHollow, _, _) => new Ellipse
@@ -439,7 +434,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareHollow, _, _) => new Rectangle
@@ -450,7 +445,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareSolid, _, _) => new Rectangle
@@ -460,7 +455,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _, _) => new Rectangle
@@ -470,7 +465,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -482,7 +477,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = $"{nameof(DrawableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = nameof(DrawableFactory),
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -555,7 +550,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(HouseViewNode)][0]} {new RxCyConverter().HouseConverter(1 << house)}{id.GetIdentifierSuffix()}",
+			Tag = nameof(DrawableFactory),
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -616,7 +611,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(ChuteViewNode)][0]} {new RxCyConverter().ChuteConverter([Chutes[chute]])}{id.GetIdentifierSuffix()}",
+			Tag = nameof(DrawableFactory),
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
 			CornerRadius = new(18),
@@ -661,7 +656,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(DrawableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter(in cell.AsCellMap())}, {@char}{id.GetIdentifierSuffix()}",
+			Tag = nameof(DrawableFactory),
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -782,7 +777,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var tagSuffix = isStrong ?? true
 				? DrawableItemIdentifiers.StrongInferenceSuffix
 				: DrawableItemIdentifiers.WeakInferenceSuffix;
-			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 
 			// Find two candidates with a minimal distance.
 			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
@@ -893,7 +887,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 								}
 							]
 						},
-						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+						Tag = nameof(DrawableFactory),
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					}
 				);
@@ -903,7 +897,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						Stroke = new SolidColorBrush(Pane.LinkColor),
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						Data = new GeometryGroup { Children = ArrowCap(new(bx2, by2), pt2) },
-						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
+						Tag = nameof(DrawableFactory)
 					}
 				);
 			}
@@ -919,7 +913,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+						Tag = nameof(DrawableFactory),
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					}
 				);
@@ -933,7 +927,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
+							Tag = nameof(DrawableFactory),
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						}
 					);
@@ -1110,7 +1104,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				RadiusY = 10,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Top,
-				Tag = $"{nameof(DrawableFactory)}: grouped node {nodeCandidates}",
+				Tag = nameof(DrawableFactory),
 				Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 			};
 
@@ -1189,34 +1183,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 file static class Extensions
 {
 	/// <summary>
-	/// Try to get identifier suffix for the specified value.
-	/// </summary>
-	/// <param name="this">The color identifier.</param>
-	/// <returns>The string suffix text.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
-	public static string GetIdentifierSuffix(this ColorIdentifier @this)
-		=> @this switch
-		{
-			ColorColorIdentifier(var a, var r, var g, var b) => $"{DrawableItemIdentifiers.ColorColorIdentifierSeparator}{a:X2}{r:X2}{g:X2}{b:X2}|",
-			PaletteIdColorIdentifier(var id) => $"{DrawableItemIdentifiers.IdColorIdentifierSeparator}{id}|",
-			WellKnownColorIdentifier(var kind) => kind switch
-			{
-				ColorIdentifierKind.Normal => DrawableItemIdentifiers.NormalColorizedSuffix,
-				>= ColorIdentifierKind.Auxiliary1 and <= ColorIdentifierKind.Auxiliary3 => DrawableItemIdentifiers.AuxiliaryColorizedSuffix,
-				ColorIdentifierKind.Assignment => DrawableItemIdentifiers.AssignmentColorizedSuffix,
-				ColorIdentifierKind.OverlappedAssignment => DrawableItemIdentifiers.OverlappedAssignmentColorizedSuffix,
-				ColorIdentifierKind.Elimination => DrawableItemIdentifiers.EliminationColorizedSuffix,
-				ColorIdentifierKind.Exofin => DrawableItemIdentifiers.ExofinColorizedSuffix,
-				ColorIdentifierKind.Endofin => DrawableItemIdentifiers.EndofinColorizedSuffix,
-				ColorIdentifierKind.Cannibalism => DrawableItemIdentifiers.CannibalismColorizedSuffix,
-				ColorIdentifierKind.Link => DrawableItemIdentifiers.LinkColorizedSuffix,
-				>= ColorIdentifierKind.AlmostLockedSet1 and <= ColorIdentifierKind.AlmostLockedSet5 => DrawableItemIdentifiers.AlmostLockedSetColorizedSuffix,
-				_ => throw new ArgumentOutOfRangeException(nameof(@this))
-			},
-			_ => throw new ArgumentOutOfRangeException(nameof(@this))
-		};
-
-	/// <summary>
 	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
 	/// <param name="this">The collection.</param>
@@ -1224,7 +1190,7 @@ file static class Extensions
 	{
 		foreach (var control in new List<FrameworkElement>(
 			from control in @this.OfType<FrameworkElement>()
-			where control.Tag is string s && s.StartsWith(nameof(DrawableFactory))
+			where control.Tag is nameof(DrawableFactory)
 			select control
 		))
 		{
