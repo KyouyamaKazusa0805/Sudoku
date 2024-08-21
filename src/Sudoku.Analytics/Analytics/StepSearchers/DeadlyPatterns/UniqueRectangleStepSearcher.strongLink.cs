@@ -1324,9 +1324,165 @@ public partial class UniqueRectangleStepSearcher
 	/// | a(yz) ab(yz) |   | ab(yz) b(yz) |
 	/// '--------------'   '--------------'
 	/// ]]></code>
+	/// Then <c>b</c> can be removed from cell <c>abX</c>.
 	/// </remarks>
 	private partial void Check4X1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
+		// Test examples:
+		// UR + 4x/1SL
+		// 7.....4....2.......95.8...2....4..+27..61..845.....591.1+2+8+659+73+4....725.+1..741.+2..:351 355 382
+		// 6+92+8+7+4+5+3+1+1+743.+5.8+983+5+91...4.1+82.+9.45..9.5+13.+8.....89+1...+1.97+8.3.8.5..+1....71+8.4.6:637 238 652 664 665 572 281 385 685 291 591
+		// 6+92+8+7+4+5+3+1+1+743.+5.8+983+5+91...4.1+82.+9.45..9.5+13.+8.....89+1+2..+1.97+8.3.8.5..+1.+7..71+8.4.6:637 238 652 461 664 665 572 281 385 685 291 591
+		//
+		// UR + 4X/1SL
+		// ..8.+53....7.62.8.+39..+48+7+51.+75+23+18+4+69+369+2+7+418+51+8+45+96+32+7.9..3...4..7.65.3....7+4.6..:217 918 289 591 196 299
+		// 2.8.+7.+5+93+7.+593+28.+1+93.5....7.+5726..1....7.9..+5+69..514+7.5..+6.7.3.+3+76.95.+8.1.+9...7+56:412 435 436 638 452 852 453 257 277 279 494
+
+		// TODO: Bug fixes (colorization, category on cell in same block but count == 2)
+
+		// Determine target cell, same-block cell and the last cell.
+		var cells = (CellMap)urCells;
+		var sameBlockCell = (cells - cornerCell & HousesMap[cornerCell.ToHouse(HouseType.Block)])[0];
+		Unsafe.SkipInit(out int targetCell);
+		foreach (var cell in cells - cornerCell - sameBlockCell)
+		{
+			if ((cornerCell.AsCellMap() + cell).SharedLine != 32)
+			{
+				targetCell = cell;
+				break;
+			}
+		}
+		if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(targetCell))
+		{
+			// :( Cells 'cornerCell' and 'targetCell' shouldn't in a same block.
+			return;
+		}
+
+		var mapOfDigit1And2 = CandidatesMap[d1] | CandidatesMap[d2];
+		var lastCell = (cells - cornerCell - sameBlockCell - targetCell)[0];
+		var pairMap = cornerCell.AsCellMap() + targetCell;
+		foreach (var (conjugatePairDigit, elimDigit) in ((d1, d2), (d2, d1)))
+		{
+			if (!IsConjugatePair(conjugatePairDigit, in pairMap, pairMap.SharedLine))
+			{
+				// :( There should be a conjugate pair between 'cornerCell' and 'targetCell'.
+				continue;
+			}
+
+			if ((grid.GetCandidates(targetCell) >> elimDigit & 1) == 0 || (grid.GetCandidates(sameBlockCell) >> elimDigit & 1) == 0)
+			{
+				// :( Target cell and same-block cell must hold elimination digit.
+				continue;
+			}
+
+			var cornerCellBlock = cornerCell.ToHouse(HouseType.Block);
+			var targetCellBlock = targetCell.ToHouse(HouseType.Block);
+			var line = (sameBlockCell.AsCellMap() + lastCell).SharedLine;
+			var outsideCellsRange = HousesMap[line] & mapOfDigit1And2 & ~cells;
+			foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
+			{
+				if (outsideCells.Count == 1)
+				{
+					continue;
+				}
+
+				// Group them up, grouped them by block they are in.
+				var cellsGroupedByBlock =
+					from cell in outsideCells.ToArray().AsReadOnlySpan()
+					group cell by cell.ToHouse(HouseType.Block) into cellsGroup
+					let block = cellsGroup.Key
+					select (Block: block, Cells: cellsGroup.AsSpan().AsCellMap());
+				var ocCorner = from p in cellsGroupedByBlock where p.Block == cornerCellBlock select p.Cells;
+				var ocTarget = from p in cellsGroupedByBlock where p.Block == targetCellBlock select p.Cells;
+				ref readonly var outsideCellsSameCornerCell = ref ocCorner.Length != 0 ? ref ocCorner[0] : ref CellMap.Empty;
+				ref readonly var outsideCellsSameTargetCell = ref ocTarget.Length != 0 ? ref ocTarget[0] : ref CellMap.Empty;
+				var otherCells = outsideCells & ~outsideCellsSameCornerCell & ~outsideCellsSameTargetCell;
+				var extraDigitsMask = (Mask)(grid[outsideCells + lastCell + sameBlockCell] & ~comparer);
+				if (Mask.PopCount(extraDigitsMask) != outsideCells.Count)
+				{
+					// :( The number of extra digits appeared in subset cells should be equal to the number of subset cells.
+					continue;
+				}
+
+				var outsideCellsContainingConjugatePairDigit = outsideCells & CandidatesMap[conjugatePairDigit];
+				var outsideCellsContainingElimDigit = outsideCells & CandidatesMap[elimDigit];
+				if ((outsideCellsContainingConjugatePairDigit.SharedHouses >> cornerCellBlock & 1) == 0
+					|| (outsideCellsContainingElimDigit.SharedHouses >> targetCellBlock & 1) == 0)
+				{
+					// :( All cells in subset cells containing conjugate pair digit should be inside block same as corner cell,
+					//    and all cells in subset cells containing elimination digit should be inside block same as target cell.
+					continue;
+				}
+
+				var extraDigitsMaskInSameBlockCell = (Mask)(grid.GetCandidates(sameBlockCell) & ~comparer);
+				var extraDigitsMaskInLastCell = (Mask)(grid.GetCandidates(lastCell) & ~comparer);
+				if ((extraDigitsMask & extraDigitsMaskInSameBlockCell) != extraDigitsMaskInSameBlockCell
+					|| (extraDigitsMask & extraDigitsMaskInLastCell) != extraDigitsMaskInLastCell)
+				{
+					// :( The extra digits appeared in same-block cell and last cell should be a subset of all subset digits.
+					continue;
+				}
+
+				// Now pattern is formed. Collect view nodes.
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in cells | outsideCells)
+				{
+					foreach (var digit in comparer)
+					{
+						if ((grid.GetCandidates(cell) >> digit & 1) != 0 && (cell != targetCell || digit != elimDigit))
+						{
+							candidateOffsets.Add(
+								new(
+									(cell == targetCell || cell == cornerCell) && digit == conjugatePairDigit
+										? ColorIdentifier.Auxiliary1
+										: ColorIdentifier.Normal,
+									cell * 9 + digit
+								)
+							);
+						}
+					}
+				}
+				foreach (var outsideCell in outsideCells)
+				{
+					foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMask))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
+					}
+				}
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
+				{
+					continue;
+				}
+
+				accumulator.Add(
+					new UniqueRectangleConjugatePairExtraStep(
+						[new(Elimination, targetCell, elimDigit)],
+						[
+							[
+								.. candidateOffsets,
+								.. from outsideCell in outsideCells select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+								..
+								from extraDigitInOutsideCell in extraDigitsMask
+								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
+								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
+								new HouseViewNode(ColorIdentifier.Auxiliary1, pairMap.SharedLine),
+								new HouseViewNode(ColorIdentifier.Auxiliary2, outsideCells.SharedLine)
+							]
+						],
+						context.Options,
+						outsideCells.Count == 2 ? Technique.UniqueRectangle4X1L : Technique.UniqueRectangle4X1U,
+						d1,
+						d2,
+						in cells,
+						arMode,
+						[new(in pairMap, conjugatePairDigit)],
+						in outsideCells,
+						extraDigitsMask,
+						index
+					)
+				);
+			}
+		}
 	}
 
 	/// <summary>

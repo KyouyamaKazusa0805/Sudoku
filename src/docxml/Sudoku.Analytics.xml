@@ -8630,6 +8630,7 @@
             | a(yz) ab(yz) |   | ab(yz) b(yz) |
             '--------------'   '--------------'
             ]]></code>
+            Then <c>b</c> can be removed from cell <c>abX</c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check4X2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">

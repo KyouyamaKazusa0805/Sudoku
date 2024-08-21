@@ -95,6 +95,13 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	}
 
 	/// <summary>
+	/// Casts the current object into a <see cref="ReadOnlySpan{T}"/>.
+	/// </summary>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<TSource> AsSpan() => _elements;
+
+	/// <summary>
 	/// Creates an enumerator that can enumerate each element in the source collection.
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>

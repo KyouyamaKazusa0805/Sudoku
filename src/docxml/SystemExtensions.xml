@@ -3505,6 +3505,12 @@
             <param name="predicate">The condition that checks for each element.</param>
             <returns>A list of <typeparamref name="TSource"/> elements satisfying the condition.</returns>
         </member>
+        <member name="M:System.Linq.SpanGrouping`2.AsSpan">
+            <summary>
+            Casts the current object into a <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
         <member name="M:System.Linq.SpanGrouping`2.GetEnumerator">
             <summary>
             Creates an enumerator that can enumerate each element in the source collection.
