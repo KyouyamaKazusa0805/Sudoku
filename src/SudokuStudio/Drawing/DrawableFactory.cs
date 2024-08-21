@@ -31,26 +31,15 @@ internal static partial class DrawableFactory
 	/// <seealso cref="ViewUnitBindableSource"/>
 	private static void RemoveViewUnitControls(SudokuPane pane)
 	{
-		foreach (var targetControl in getParentControls(pane))
+		foreach (var child in
+			from targetControl in (FrameworkElement[])[.. from children in pane._children select children.MainGrid, pane.MainGrid]
+			let c = targetControl as GridLayout
+			where c is not null
+			select c.Children)
 		{
-			if (targetControl is GridLayout { Children: var children })
-			{
-				children.RemoveAllViewUnitControls();
-			}
+			child.RemoveAllViewUnitControls();
 		}
-
-		// Manually update property.
 		pane.ViewUnitUsedCandidates = [];
-
-
-		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
-		{
-			foreach (var children in sudokuPane._children)
-			{
-				yield return children.MainGrid; // cell, candidate, baba grouping, icons
-			}
-			yield return sudokuPane.MainGrid; // house, chute, link
-		}
 	}
 
 	/// <summary>
