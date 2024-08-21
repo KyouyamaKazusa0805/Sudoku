@@ -1106,7 +1106,7 @@ public partial class UniqueRectangleStepSearcher
 	/// </remarks>
 	private partial void Check3X1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
-		// Test example:
+		// Test examples:
 		// UR + 3x/1SL
 		// 3+8.+75.+96+4......2+38.+49.+3871+5.....73.+68.+3.6...9..65.+3...+5273.+68.+19+34...+6..+16+8.7...3:142 244 548 552 156 268 288
 		// .46.2.13....+1+4.....2.386.7...2.9+38+1+5.3..5..9...5.1.6+4+3.5.861.2.+2...+3...+1.14.7.35.:821 829 641 751 851 753 254 754 256 756 861 977 984 986 487 991 999
