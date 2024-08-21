@@ -5,15 +5,12 @@ internal partial class DrawableFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for conclusions.
 	/// </summary>
-	/// <param name="sudokuPane">
-	/// The target sudoku pane.
-	/// This instance provides with user-defined customized properties used for displaying elements, e.g. background color.
-	/// </param>
+	/// <param name="context">Indicates the drawing context.</param>
 	/// <param name="conclusion">The conclusion to be displayed.</param>
 	/// <param name="overlapped">A collection that stores for overlapped candidates.</param>
-	/// <param name="animatedResults">A list that stores the final actions to adding controls into the sudoku pane.</param>
-	private static partial void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults)
+	private static partial void ForConclusion(DrawingContext context, Conclusion conclusion, List<Conclusion> overlapped)
 	{
+		var (sudokuPane, animatedResults) = context;
 		var (type, candidate) = conclusion;
 		if (sudokuPane._children[candidate / 9] is not { } paneCellControl)
 		{
@@ -43,16 +40,12 @@ internal partial class DrawableFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CellViewNode"/>.
 	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
+	/// <param name="context">Indicates the drawing context.</param>
 	/// <param name="cellNode">The node to be displayed.</param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
 	/// <seealso cref="CellViewNode"/>
-	private static partial void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults)
+	private static partial void ForCellNode(DrawingContext context, CellViewNode cellNode)
 	{
+		var (sudokuPane, animatedResults) = context;
 		var (id, cell) = cellNode;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{
@@ -89,16 +82,12 @@ internal partial class DrawableFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="IconViewNode"/>.
 	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
+	/// <param name="context">Indicates the drawing context.</param>
 	/// <param name="iconNode">The node to be displayed.</param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
 	/// <seealso cref="IconViewNode"/>
-	private static partial void ForIconNode(SudokuPane sudokuPane, IconViewNode iconNode, AnimatedResultCollection animatedResults)
+	private static partial void ForIconNode(DrawingContext context, IconViewNode iconNode)
 	{
+		var (sudokuPane, animatedResults) = context;
 		var id = iconNode.Identifier;
 		var cell = iconNode.Cell;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
@@ -143,32 +132,18 @@ internal partial class DrawableFactory
 	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="CandidateViewNode"/>.
 	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
-	/// <param name="candidateNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="candidateNode">Indicates the candidate view nodes.</param>
 	/// <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
 	/// <param name="overlapped">
 	/// Indicates the collection that returns a possible <see cref="Conclusion"/> value indicating
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
 	/// </param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
 	/// <seealso cref="CandidateViewNode"/>
-	private static partial void ForCandidateNode(
-		SudokuPane sudokuPane,
-		CandidateViewNode candidateNode,
-		Conclusion[] conclusions,
-		out Conclusion? overlapped,
-		AnimatedResultCollection animatedResults
-	)
+	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped)
 	{
-		overlapped = null;
-
-		var (id, candidate) = candidateNode;
+		var (sudokuPane, animatedResults) = context;
+		(overlapped, var (id, candidate)) = (null, candidateNode);
 		var cell = candidate / 9;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{
@@ -186,28 +161,210 @@ internal partial class DrawableFactory
 	}
 
 	/// <summary>
-	/// The core method called by <see cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>.
+	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="HouseViewNode"/>.
+	/// </summary>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="houseNode">Indicates the house view nodes.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="HouseViewNode.House"/>.
+	/// </exception>
+	/// <seealso cref="HouseViewNode"/>
+	private static partial void ForHouseNode(DrawingContext context, HouseViewNode houseNode)
+	{
+		var (sudokuPane, animatedResults) = context;
+		var (id, house) = houseNode;
+		if (sudokuPane.MainGrid is not { } gridControl)
+		{
+			return;
+		}
+
+		var (row, column, rowSpan, columnSpan) = house switch
+		{
+			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
+			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
+			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
+			_ => T<(int, int, int, int)>(house, 27)
+		};
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			Tag = nameof(DrawableFactory),
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Margin = house switch
+			{
+				>= 0 and < 9 => new(12),
+				>= 9 and < 18 => new(6, 12, 6, 12),
+				>= 18 and < 27 => new(12, 6, 12, 6),
+				_ => T<Thickness>(house, 27)
+			},
+			CornerRadius = house switch { >= 0 and < 9 => new(12), >= 9 and < 27 => new(18), _ => T<CornerRadius>(house, 27) },
+			BorderThickness = new(0)
+		};
+
+		GridLayout.SetRow(control, row);
+		GridLayout.SetColumn(control, column);
+		GridLayout.SetRowSpan(control, rowSpan);
+		GridLayout.SetColumnSpan(control, columnSpan);
+		Canvas.SetZIndex(control, -3);
+
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
+
+		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
+	}
+
+	/// <summary>
+	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ChuteViewNode"/>.
+	/// </summary>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="chuteNode">Indicates the chute view nodes.</param>
+	/// <exception cref="ArgumentException">
+	/// Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="ChuteViewNode.ChuteIndex"/>.
+	/// </exception>
+	/// <seealso cref="ChuteViewNode"/>
+	private static partial void ForChuteNode(DrawingContext context, ChuteViewNode chuteNode)
+	{
+		var (sudokuPane, animatedResults) = context;
+		if (sudokuPane.MainGrid is not { } gridControl)
+		{
+			return;
+		}
+
+		var (id, chute) = chuteNode;
+		var (row, column, rowSpan, columnSpan) = chute switch
+		{
+			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
+			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
+			_ => T<(int, int, int, int)>(chute, 6)
+		};
+
+		var control = new Border
+		{
+			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
+			Tag = nameof(DrawableFactory),
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => T<Thickness>(chute, 6) },
+			CornerRadius = new(18),
+			BorderThickness = new(0)
+		};
+
+		GridLayout.SetRow(control, row);
+		GridLayout.SetColumn(control, column);
+		GridLayout.SetRowSpan(control, rowSpan);
+		GridLayout.SetColumnSpan(control, columnSpan);
+		Canvas.SetZIndex(control, -4);
+
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
+
+		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
+	}
+
+	/// <summary>
+	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="BabaGroupViewNode"/>.
+	/// </summary>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="babaGroupNode">Indicates the baba grouping view nodes.</param>
+	/// <seealso cref="BabaGroupViewNode"/>
+	private static partial void ForBabaGroupNode(DrawingContext context, BabaGroupViewNode babaGroupNode)
+	{
+		var (sudokuPane, animatedResults) = context;
+		var (id, cell, @char) = babaGroupNode;
+		if (sudokuPane._children[cell] is not { } paneCellControl)
+		{
+			return;
+		}
+
+		var control = new Border
+		{
+			BorderThickness = new(0),
+			Tag = nameof(DrawableFactory),
+			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
+			Child = new TextBlock
+			{
+				Text = @char.ToString(),
+				FontSize = PencilmarkTextConversion.GetFontSizeSimple(sudokuPane.ApproximateCellWidth, sudokuPane.BabaGroupLabelFontScale) * 1.618,
+				FontFamily = sudokuPane.BabaGroupLabelFont,
+				Foreground = new SolidColorBrush(sudokuPane.BabaGroupLabelColor),
+				FontWeight = FontWeights.Bold,
+				FontStyle = FontStyle.Italic,
+				HorizontalAlignment = HorizontalAlignment.Stretch,
+				VerticalAlignment = VerticalAlignment.Center,
+				HorizontalTextAlignment = TextAlignment.Center,
+				TextAlignment = TextAlignment.Center
+			}
+		};
+
+		GridLayout.SetRowSpan(control, 3);
+		GridLayout.SetColumnSpan(control, 3);
+		Canvas.SetZIndex(control, -1);
+
+		if (sudokuPane.EnableAnimationFeedback)
+		{
+			control.OpacityTransition = new();
+		}
+
+		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
+	}
+
+	/// <summary>
+	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ILinkViewNode"/> instances.
+	/// </summary>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="linkNodes">Indicates the link view nodes.</param>
+	/// <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
+	/// <remarks>
+	/// This method is special: We should handle all <see cref="ILinkViewNode"/> instances together.
+	/// </remarks>
+	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions)
+	{
+		var (sudokuPane, animatedResults) = context;
+		if (sudokuPane.MainGrid is not { } gridControl)
+		{
+			return;
+		}
+
+		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
+		{
+			GridLayout.SetRow(control, 2);
+			GridLayout.SetColumn(control, 2);
+			GridLayout.SetRowSpan(control, 9);
+			GridLayout.SetColumnSpan(control, 9);
+			Canvas.SetZIndex(control, -1);
+
+			if (sudokuPane.EnableAnimationFeedback)
+			{
+				control.OpacityTransition = new();
+			}
+			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
+		}
+	}
+
+	/// <summary>
+	/// The core method called by <see cref="ForCandidateNode(DrawingContext, CandidateViewNode, Conclusion[], out Conclusion?)"/>.
 	/// </summary>
 	/// <param name="id">The color identifier.</param>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
+	/// <param name="animatedResults"><inheritdoc cref="DrawingContext.ControlAddingActions" path="/summary"/></param>
 	/// <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
 	/// <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
 	/// <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
-	/// <seealso cref="ForCandidateNode(SudokuPane, CandidateViewNode, Conclusion[], out Conclusion?, AnimatedResultCollection)"/>
-	private static partial void ForCandidateNodeCore(
+	private static void ForCandidateNodeCore(
 		ColorIdentifier id,
 		Color color,
 		Candidate candidate,
 		SudokuPaneCell paneCellControl,
 		AnimatedResultCollection animatedResults,
-		bool isForConclusion,
-		bool isForElimination,
-		bool isOverlapped
+		bool isForConclusion = false,
+		bool isForElimination = false,
+		bool isOverlapped = false
 	)
 	{
 		const float epsilon = 1E-2F;
@@ -375,222 +532,6 @@ internal partial class DrawableFactory
 			=> new SolidColorBrush(color);
 #endif
 	}
-
-	/// <summary>
-	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="HouseViewNode"/>.
-	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
-	/// <param name="houseNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-	/// </param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="HouseViewNode.House"/>.
-	/// </exception>
-	/// <seealso cref="HouseViewNode"/>
-	private static partial void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResultCollection animatedResults)
-	{
-		var (id, house) = houseNode;
-		if (sudokuPane.MainGrid is not { } gridControl)
-		{
-			return;
-		}
-
-		var (row, column, rowSpan, columnSpan) = house switch
-		{
-			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
-			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
-			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
-			_ => T<(int, int, int, int)>(house, 27)
-		};
-
-		var control = new Border
-		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(DrawableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
-			Margin = house switch
-			{
-				>= 0 and < 9 => new(12),
-				>= 9 and < 18 => new(6, 12, 6, 12),
-				>= 18 and < 27 => new(12, 6, 12, 6),
-				_ => T<Thickness>(house, 27)
-			},
-			CornerRadius = house switch { >= 0 and < 9 => new(12), >= 9 and < 27 => new(18), _ => T<CornerRadius>(house, 27) },
-			BorderThickness = new(0)
-		};
-
-		GridLayout.SetRow(control, row);
-		GridLayout.SetColumn(control, column);
-		GridLayout.SetRowSpan(control, rowSpan);
-		GridLayout.SetColumnSpan(control, columnSpan);
-		Canvas.SetZIndex(control, -3);
-
-		if (sudokuPane.EnableAnimationFeedback)
-		{
-			control.OpacityTransition = new();
-		}
-
-		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
-	}
-
-	/// <summary>
-	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ChuteViewNode"/>.
-	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
-	/// <param name="chuteNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-	/// </param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
-	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="ChuteViewNode.ChuteIndex"/>.
-	/// </exception>
-	/// <seealso cref="ChuteViewNode"/>
-	private static partial void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResultCollection animatedResults)
-	{
-		if (sudokuPane.MainGrid is not { } gridControl)
-		{
-			return;
-		}
-
-		var (id, chute) = chuteNode;
-		var (row, column, rowSpan, columnSpan) = chute switch
-		{
-			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
-			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
-			_ => T<(int, int, int, int)>(chute, 6)
-		};
-
-		var control = new Border
-		{
-			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(DrawableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
-			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => T<Thickness>(chute, 6) },
-			CornerRadius = new(18),
-			BorderThickness = new(0)
-		};
-
-		GridLayout.SetRow(control, row);
-		GridLayout.SetColumn(control, column);
-		GridLayout.SetRowSpan(control, rowSpan);
-		GridLayout.SetColumnSpan(control, columnSpan);
-		Canvas.SetZIndex(control, -4);
-
-		if (sudokuPane.EnableAnimationFeedback)
-		{
-			control.OpacityTransition = new();
-		}
-
-		animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = (double)sudokuPane.HighlightBackgroundOpacity));
-	}
-
-	/// <summary>
-	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="BabaGroupViewNode"/>.
-	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
-	/// <param name="babaGroupNode">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-	/// </param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
-	/// <seealso cref="BabaGroupViewNode"/>
-	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults)
-	{
-		var (id, cell, @char) = babaGroupNode;
-		if (sudokuPane._children[cell] is not { } paneCellControl)
-		{
-			return;
-		}
-
-		var control = new Border
-		{
-			BorderThickness = new(0),
-			Tag = nameof(DrawableFactory),
-			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
-			Child = new TextBlock
-			{
-				Text = @char.ToString(),
-				FontSize = PencilmarkTextConversion.GetFontSizeSimple(sudokuPane.ApproximateCellWidth, sudokuPane.BabaGroupLabelFontScale) * 1.618,
-				FontFamily = sudokuPane.BabaGroupLabelFont,
-				Foreground = new SolidColorBrush(sudokuPane.BabaGroupLabelColor),
-				FontWeight = FontWeights.Bold,
-				FontStyle = FontStyle.Italic,
-				HorizontalAlignment = HorizontalAlignment.Stretch,
-				VerticalAlignment = VerticalAlignment.Center,
-				HorizontalTextAlignment = TextAlignment.Center,
-				TextAlignment = TextAlignment.Center
-			}
-		};
-
-		GridLayout.SetRowSpan(control, 3);
-		GridLayout.SetColumnSpan(control, 3);
-		Canvas.SetZIndex(control, -1);
-
-		if (sudokuPane.EnableAnimationFeedback)
-		{
-			control.OpacityTransition = new();
-		}
-
-		animatedResults.Add((() => paneCellControl.MainGrid.Children.Add(control), () => control.Opacity = 1));
-	}
-
-	/// <summary>
-	/// Create <see cref="FrameworkElement"/>s that displays for <see cref="ChainLinkViewNode"/>s.
-	/// </summary>
-	/// <param name="sudokuPane">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-	/// </param>
-	/// <param name="linkNodes">
-	/// <inheritdoc cref="ForCellNode(SudokuPane, CellViewNode, AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-	/// </param>
-	/// <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
-	/// <param name="animatedResults">
-	/// <inheritdoc cref="ForConclusion(SudokuPane, Conclusion, List{Conclusion}, AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-	/// </param>
-	/// <remarks>
-	/// This method is special: We should handle all <see cref="ChainLinkViewNode"/>s together.
-	/// </remarks>
-	private static partial void ForLinkNodes(
-		SudokuPane sudokuPane,
-		ReadOnlySpan<ILinkViewNode> linkNodes,
-		Conclusion[] conclusions,
-		AnimatedResultCollection animatedResults
-	)
-	{
-		if (sudokuPane.MainGrid is not { } gridControl)
-		{
-			return;
-		}
-
-		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
-		{
-			GridLayout.SetRow(control, 2);
-			GridLayout.SetColumn(control, 2);
-			GridLayout.SetRowSpan(control, 9);
-			GridLayout.SetColumnSpan(control, 9);
-			Canvas.SetZIndex(control, -1);
-
-			if (sudokuPane.EnableAnimationFeedback)
-			{
-				control.OpacityTransition = new();
-			}
-
-			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
-		}
-	}
-
 
 	[DoesNotReturn]
 	private static T? T<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)

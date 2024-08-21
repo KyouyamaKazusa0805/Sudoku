@@ -62,26 +62,27 @@ internal static partial class DrawableFactory
 		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
 
 		// Iterate on each view node, and get their own corresponding controls.
+		var context = new DrawingContext(pane, controlAddingActions);
 		foreach (var viewNode in view)
 		{
 			(
 				viewNode switch
 				{
-					CellViewNode c => () => ForCellNode(pane, c, controlAddingActions),
-					IconViewNode i => () => ForIconNode(pane, i, controlAddingActions),
-					CandidateViewNode c => () => onCandidateViewNode(c),
-					HouseViewNode h => () => ForHouseNode(pane, h, controlAddingActions),
-					ChuteViewNode c => () => ForChuteNode(pane, c, controlAddingActions),
-					BabaGroupViewNode b => () => ForBabaGroupNode(pane, b, controlAddingActions),
-					ILinkViewNode l => () => links.Add(l),
-					_ => default(Action)
+					CellViewNode c => context => ForCellNode(context, c),
+					IconViewNode i => context => ForIconNode(context, i),
+					CandidateViewNode c => context => onCandidateViewNode(context, c),
+					HouseViewNode h => context => ForHouseNode(context, h),
+					ChuteViewNode c => context => ForChuteNode(context, c),
+					BabaGroupViewNode b => context => ForBabaGroupNode(context, b),
+					ILinkViewNode l => _ => links.Add(l),
+					_ => default(Action<DrawingContext>)
 				}
-			)?.Invoke();
+			)?.Invoke(context);
 
 
-			void onCandidateViewNode(CandidateViewNode c)
+			void onCandidateViewNode(DrawingContext context, CandidateViewNode c)
 			{
-				ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
+				ForCandidateNode(context, c, conclusions, out var o);
 				if (o is { } currentOverlappedConclusion)
 				{
 					overlapped.Add(currentOverlappedConclusion);
@@ -93,35 +94,29 @@ internal static partial class DrawableFactory
 		// Then iterate on each conclusions. Those conclusions will also be rendered as real controls.
 		foreach (var conclusion in conclusions)
 		{
-			ForConclusion(pane, conclusion, overlapped, controlAddingActions);
-
+			ForConclusion(context, conclusion, overlapped);
 			usedCandidates.Add(conclusion.Candidate);
 		}
 
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(pane, links.AsReadOnlySpan(), conclusions, controlAddingActions);
-
-		foreach (var (animator, adder) in controlAddingActions)
-		{
-			(animator + adder)();
-		}
+		ForLinkNodes(context, links.AsReadOnlySpan(), conclusions);
+		controlAddingActions.ForEach(static p => (p.Animating + p.Adding)());
 
 		// Update property to get highlighted candidates.
 		pane.ViewUnitUsedCandidates = usedCandidates;
 	}
 
 
-	private static partial void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults);
-	private static partial void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults);
-	private static partial void ForIconNode(SudokuPane sudokuPane, IconViewNode iconNode, AnimatedResultCollection animatedResults);
-	private static partial void ForCandidateNode(SudokuPane sudokuPane, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped, AnimatedResultCollection animatedResults);
-	private static partial void ForCandidateNodeCore(ColorIdentifier id, Color color, Candidate candidate, SudokuPaneCell paneCellControl, AnimatedResultCollection animatedResults, bool isForConclusion = false, bool isForElimination = false, bool isOverlapped = false);
-	private static partial void ForHouseNode(SudokuPane sudokuPane, HouseViewNode houseNode, AnimatedResultCollection animatedResults);
-	private static partial void ForChuteNode(SudokuPane sudokuPane, ChuteViewNode chuteNode, AnimatedResultCollection animatedResults);
-	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults);
-	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
+	private static partial void ForConclusion(DrawingContext context, Conclusion conclusion, List<Conclusion> overlapped);
+	private static partial void ForCellNode(DrawingContext context, CellViewNode cellNode);
+	private static partial void ForIconNode(DrawingContext context, IconViewNode iconNode);
+	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped);
+	private static partial void ForHouseNode(DrawingContext context, HouseViewNode houseNode);
+	private static partial void ForChuteNode(DrawingContext context, ChuteViewNode chuteNode);
+	private static partial void ForBabaGroupNode(DrawingContext context, BabaGroupViewNode babaGroupNode);
+	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

@@ -2896,148 +2896,96 @@
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Drawing.DrawingContext,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion})">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
             </summary>
-            <param name="sudokuPane">
-            The target sudoku pane.
-            This instance provides with user-defined customized properties used for displaying elements, e.g. background color.
-            </param>
+            <param name="context">Indicates the drawing context.</param>
             <param name="conclusion">The conclusion to be displayed.</param>
             <param name="overlapped">A collection that stores for overlapped candidates.</param>
-            <param name="animatedResults">A list that stores the final actions to adding controls into the sudoku pane.</param>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CellViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
             <param name="cellNode">The node to be displayed.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForIconNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.IconViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForIconNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.IconViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
             <param name="iconNode">The node to be displayed.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="candidateNode">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="candidateNode">Indicates the candidate view nodes.</param>
             <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
             <param name="overlapped">
             Indicates the collection that returns a possible <see cref="T:Sudoku.Concepts.Conclusion"/> value indicating
             what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
             </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)"/>.
-            </summary>
-            <param name="id">The color identifier.</param>
-            <param name="color">The color to be used on rendering.</param>
-            <param name="candidate">The candidate to be rendered.</param>
-            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
-            <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
-            <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
-            <seealso cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.HouseViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForHouseNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.HouseViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="houseNode">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="houseNode">Indicates the house view nodes.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Drawing.Nodes.HouseViewNode.House"/>.
             </exception>
             <seealso cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForChuteNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.ChuteViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForChuteNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.ChuteViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="chuteNode">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="chuteNode">Indicates the chute view nodes.</param>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Drawing.Nodes.ChuteViewNode.ChuteIndex"/>.
             </exception>
             <seealso cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForBabaGroupNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.BabaGroupViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForBabaGroupNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.BabaGroupViewNode)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="babaGroupNode">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="babaGroupNode">Indicates the baba grouping view nodes.</param>
             <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Drawing.DrawingContext,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},Sudoku.Concepts.Conclusion[])">
             <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s.
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ILinkViewNode"/> instances.
             </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="linkNodes">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="linkNodes">Indicates the link view nodes.</param>
             <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
             <remarks>
-            This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s together.
+            This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ILinkViewNode"/> instances together.
             </remarks>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@)"/>.
+            </summary>
+            <param name="id">The color identifier.</param>
+            <param name="color">The color to be used on rendering.</param>
+            <param name="candidate">The candidate to be rendered.</param>
+            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
+            <param name="animatedResults"><inheritdoc cref="P:SudokuStudio.Drawing.DrawingContext.ControlAddingActions" path="/summary"/></param>
+            <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
+            <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
+            <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
         </member>
         <member name="T:SudokuStudio.Drawing.Extensions">
             <target name="class" when="extension">
@@ -3121,6 +3069,47 @@
             <param name="candidate">The candidate to be determined.</param>
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:SudokuStudio.Drawing.DrawingContext">
+            <summary>
+            Represents drawing context.
+            </summary>
+            <param name="sudokuPane">Indicates the sudoku pane.</param>
+            <param name="controlAddingActions">Indicates the control adding actions. The collection can be used by playing animation.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawingContext.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Represents drawing context.
+            </summary>
+            <param name="sudokuPane">Indicates the sudoku pane.</param>
+            <param name="controlAddingActions">Indicates the control adding actions. The collection can be used by playing animation.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawingContext.Deconstruct(SudokuStudio.Views.Controls.SudokuPane@,SudokuStudio.Drawing.AnimatedResultCollection@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="P:SudokuStudio.Drawing.DrawingContext.SudokuPane">
+            <summary>
+            The generated property declaration for parameter <c>sudokuPane</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Drawing.DrawingContext.ControlAddingActions">
+            <summary>
+            The generated property declaration for parameter <c>controlAddingActions</c>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawingContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawingContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawingContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:SudokuStudio.Drawing.DrawingMode">
             <summary>
