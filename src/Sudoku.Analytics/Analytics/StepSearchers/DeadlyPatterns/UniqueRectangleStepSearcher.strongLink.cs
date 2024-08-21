@@ -1111,7 +1111,7 @@ public partial class UniqueRectangleStepSearcher
 		var cornerDigitsMask = grid.GetCandidates(cornerCell);
 		if ((cornerDigitsMask & ~comparer) != 0)
 		{
-			// The corner cell can only contain the digits appeared in UR.
+			// :( The corner cell can only contain the digits appeared in UR.
 			return;
 		}
 
