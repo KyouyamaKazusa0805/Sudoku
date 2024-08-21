@@ -405,7 +405,7 @@ internal partial class DrawableFactory
 			>= 0 and < 9 => (house / 3 * 3 + 2, house % 3 * 3 + 2, 3, 3),
 			>= 9 and < 18 => (house - 9 + 2, 2, 1, 9),
 			>= 18 and < 27 => (2, house - 18 + 2, 9, 1),
-			_ => Throw<(int, int, int, int)>(house, 27)
+			_ => T<(int, int, int, int)>(house, 27)
 		};
 
 		var control = new Border
@@ -418,9 +418,9 @@ internal partial class DrawableFactory
 				>= 0 and < 9 => new(12),
 				>= 9 and < 18 => new(6, 12, 6, 12),
 				>= 18 and < 27 => new(12, 6, 12, 6),
-				_ => Throw<Thickness>(house, 27)
+				_ => T<Thickness>(house, 27)
 			},
-			CornerRadius = house switch { >= 0 and < 9 => new(12), >= 9 and < 27 => new(18), _ => Throw<CornerRadius>(house, 27) },
+			CornerRadius = house switch { >= 0 and < 9 => new(12), >= 9 and < 27 => new(18), _ => T<CornerRadius>(house, 27) },
 			BorderThickness = new(0)
 		};
 
@@ -466,7 +466,7 @@ internal partial class DrawableFactory
 		{
 			>= 0 and < 3 => (chute * 3 + 2, 2, 3, 9),
 			>= 3 and < 6 => (2, (chute - 3) * 3 + 2, 9, 3),
-			_ => Throw<(int, int, int, int)>(chute, 6)
+			_ => T<(int, int, int, int)>(chute, 6)
 		};
 
 		var control = new Border
@@ -474,7 +474,7 @@ internal partial class DrawableFactory
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			Tag = nameof(DrawableFactory),
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
-			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => Throw<Thickness>(chute, 6) },
+			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => T<Thickness>(chute, 6) },
 			CornerRadius = new(18),
 			BorderThickness = new(0)
 		};
@@ -590,6 +590,12 @@ internal partial class DrawableFactory
 			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
 		}
 	}
+
+
+	[DoesNotReturn]
+	private static T? T<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)
+		where T : allows ref struct
+		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
 }
 
 /// <summary>

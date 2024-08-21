@@ -133,21 +133,6 @@ internal static partial class DrawableFactory
 	}
 
 
-	/// <summary>
-	/// The internal helper method that creates a <see cref="InvalidOperationException"/> instance without any other operation.
-	/// </summary>
-	/// <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
-	/// <param name="o">The object.</param>
-	/// <param name="range">The range of the argument should be.</param>
-	/// <param name="s">The caller expression for argument <paramref name="o"/>.</param>
-	/// <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
-	/// <exception cref="InvalidOperationException">Always throws.</exception>
-	[DoesNotReturn]
-	private static T? Throw<T>(object? o, int range, [CallerArgumentExpression(nameof(o))] string? s = null)
-		where T : allows ref struct
-		=> throw new InvalidOperationException($"The {s} index configured is invalid - it must be between 0 and {range}.");
-
-
 	private static partial void ForConclusion(SudokuPane sudokuPane, Conclusion conclusion, List<Conclusion> overlapped, AnimatedResultCollection animatedResults);
 	private static partial void ForCellNode(SudokuPane sudokuPane, CellViewNode cellNode, AnimatedResultCollection animatedResults);
 	private static partial void ForIconNode(SudokuPane sudokuPane, IconViewNode iconNode, AnimatedResultCollection animatedResults);

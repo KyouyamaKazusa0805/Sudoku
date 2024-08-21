@@ -2896,17 +2896,6 @@
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.Throw``1(System.Object,System.Int32,System.String)">
-            <summary>
-            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
-            </summary>
-            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
-            <param name="o">The object.</param>
-            <param name="range">The range of the argument should be.</param>
-            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
-            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
-            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
-        </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
