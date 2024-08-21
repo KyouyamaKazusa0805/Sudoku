@@ -1281,6 +1281,55 @@ public partial class UniqueRectangleStepSearcher
 	}
 
 	/// <summary>
+	/// Check UR + 4x/1SL and UR + 4X/1SL.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="cornerCell">The corner cell.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The pattern:
+	/// <code><![CDATA[
+	/// Case 1:
+	/// cornerCell
+	///     ↓       .--------------------.
+	///   (abW)-----+-abX                |
+	///           a |                    |
+	///             |                    |
+	///   ab(yz)    | ab(yz) b(yz) b(yz) |
+	///             '--------------------'
+	/// 
+	/// Case 2:
+	/// .--------------------.
+	/// |   cornerCell→(abW)-+-----abX
+	/// |                    | a
+	/// |                    |
+	/// | a(yz) a(yz) ab(yz) |    ab(yz)
+	/// '--------------------'
+	/// 
+	/// Case 3:
+	/// .--------------.   .--------------.
+	/// |      cornerCell  |              |
+	/// |          ↓   |   |              |
+	/// |        (abW)-+---+-abX          |
+	/// |              | a |              |
+	/// |              |   |              |
+	/// | a(yz) ab(yz) |   | ab(yz) b(yz) |
+	/// '--------------'   '--------------'
+	/// ]]></code>
+	/// </remarks>
+	private partial void Check4X1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
+	{
+	}
+
+	/// <summary>
 	/// Check UR + 4x/2SL and UR + 4X/2SL.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
