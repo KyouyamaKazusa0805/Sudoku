@@ -64,49 +64,29 @@ internal static partial class DrawableFactory
 		// Iterate on each view node, and get their own corresponding controls.
 		foreach (var viewNode in view)
 		{
-			switch (viewNode)
-			{
-				case CellViewNode c:
+			(
+				viewNode switch
 				{
-					ForCellNode(pane, c, controlAddingActions);
-					break;
+					CellViewNode c => () => ForCellNode(pane, c, controlAddingActions),
+					IconViewNode i => () => ForIconNode(pane, i, controlAddingActions),
+					CandidateViewNode c => () => onCandidateViewNode(c),
+					HouseViewNode h => () => ForHouseNode(pane, h, controlAddingActions),
+					ChuteViewNode c => () => ForChuteNode(pane, c, controlAddingActions),
+					BabaGroupViewNode b => () => ForBabaGroupNode(pane, b, controlAddingActions),
+					ILinkViewNode l => () => links.Add(l),
+					_ => default(Action)
 				}
-				case IconViewNode i:
-				{
-					ForIconNode(pane, i, controlAddingActions);
-					break;
-				}
-				case CandidateViewNode(_, var candidate) c:
-				{
-					ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
-					if (o is { } currentOverlappedConclusion)
-					{
-						overlapped.Add(currentOverlappedConclusion);
-					}
+			)?.Invoke();
 
-					usedCandidates.Add(candidate);
-					break;
-				}
-				case HouseViewNode h:
+
+			void onCandidateViewNode(CandidateViewNode c)
+			{
+				ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
+				if (o is { } currentOverlappedConclusion)
 				{
-					ForHouseNode(pane, h, controlAddingActions);
-					break;
+					overlapped.Add(currentOverlappedConclusion);
 				}
-				case ChuteViewNode c:
-				{
-					ForChuteNode(pane, c, controlAddingActions);
-					break;
-				}
-				case BabaGroupViewNode b:
-				{
-					ForBabaGroupNode(pane, b, controlAddingActions);
-					break;
-				}
-				case ILinkViewNode l:
-				{
-					links.Add(l);
-					break;
-				}
+				usedCandidates.Add(c.Candidate);
 			}
 		}
 
