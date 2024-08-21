@@ -1,7 +1,5 @@
 namespace SudokuStudio.Drawing;
 
-using static DrawableItemIdentifiers;
-
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
 /// to display for highlighted cells, candidates and so on.
@@ -11,72 +9,145 @@ using static DrawableItemIdentifiers;
 /// in order to be used for distinction with other controls in the collection.
 /// </remarks>
 /// <seealso cref="FrameworkElement"/>
-[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 internal static partial class DrawableFactory
 {
 	/// <summary>
-	/// The internal dictionary that describes the tag prefixes of view nodes.
+	/// Refresh the pane view unit controls.
 	/// </summary>
-	internal static readonly Dictionary<Type, string[]> ViewNodeTagPrefixes = new()
+	/// <param name="pane">The pane.</param>
+	/// <param name="reason">The reason why raising this updating operation.</param>
+	/// <param name="value">The value specified as an <see cref="object"/> value.</param>
+	public static partial void UpdateViewUnitControls(SudokuPane pane, DrawableItemUpdatingReason reason, object? value)
 	{
-		{ typeof(CellViewNode), ["cell"] },
-		{ typeof(CandidateViewNode), ["candidate"] },
-		{ typeof(HouseViewNode), ["house"] },
-		{ typeof(ChainLinkViewNode), ["cell link", "curve segment", "arrow cap"] },
-		{ typeof(ChuteViewNode), ["chute"] },
-		{ typeof(BabaGroupViewNode), ["baba group"] }
-	};
+		if (reason != DrawableItemUpdatingReason.None)
+		{
+			RemoveViewUnitControls(pane);
+			if (pane.ViewUnit is not null)
+			{
+				AddViewUnitControls(pane, pane.ViewUnit);
+			}
+		}
+	}
 
 	/// <summary>
-	/// The filters for controls that describes for view node.
+	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
-	private static readonly Dictionary<DrawableItemUpdatingReason, Func<FrameworkElement, bool>> ReasonNodeFilters = new()
+	/// <param name="pane">The target pane.</param>
+	/// <seealso cref="ViewUnitBindableSource"/>
+	private static partial void RemoveViewUnitControls(SudokuPane pane)
 	{
-		{ DrawableItemUpdatingReason.CandidateViewNodeDisplayMode, Filters.CandidateViewNodeDisplayMode },
-		{ DrawableItemUpdatingReason.EliminationDisplayMode, Filters.EliminationDisplayMode },
-		{ DrawableItemUpdatingReason.AssignmentDisplayMode, Filters.AssignmentDisplayMode },
-		{ DrawableItemUpdatingReason.HighlightCandidateScale, Filters.HighlightCandidateScale },
-		{ DrawableItemUpdatingReason.Link, Filters.Link },
-		{ DrawableItemUpdatingReason.StrongLinkDashStyle, Filters.StrongLinkDashStyle },
-		{ DrawableItemUpdatingReason.WeakLinkDashStyle, Filters.WeakLinkDashStyle },
-		{ DrawableItemUpdatingReason.LinkStrokeThickness, Filters.LinkStrokeThickness },
-		{ DrawableItemUpdatingReason.BabaGrouping, Filters.BabaGrouping },
-		{ DrawableItemUpdatingReason.NormalColorized, control => Filters.Colorized(control, ColorIdentifierKind.Normal) },
-		{ DrawableItemUpdatingReason.AssignmentColorized, control => Filters.Colorized(control, ColorIdentifierKind.Assignment) },
-		{ DrawableItemUpdatingReason.OverlappedAssignmentColorized, control => Filters.Colorized(control, ColorIdentifierKind.OverlappedAssignment) },
-		{ DrawableItemUpdatingReason.EliminationColorized, control => Filters.Colorized(control, ColorIdentifierKind.Elimination) },
-		{ DrawableItemUpdatingReason.CannibalismColorized, control => Filters.Colorized(control, ColorIdentifierKind.Cannibalism) },
-		{ DrawableItemUpdatingReason.ExofinColorized, control => Filters.Colorized(control, ColorIdentifierKind.Exofin) },
-		{ DrawableItemUpdatingReason.EndofinColorized, control => Filters.Colorized(control, ColorIdentifierKind.Endofin) },
+		foreach (var targetControl in getParentControls(pane))
 		{
-			DrawableItemUpdatingReason.AuxiliaryColorized,
-			control => Filters.ColorizedRange(control, [ColorIdentifierKind.Auxiliary1, ColorIdentifierKind.Auxiliary2, ColorIdentifierKind.Auxiliary3])
-		},
-		{
-			DrawableItemUpdatingReason.AlmostLockedSetColorized,
-			control => Filters.ColorizedRange(
-				control,
-				[ColorIdentifierKind.AlmostLockedSet1, ColorIdentifierKind.AlmostLockedSet2, ColorIdentifierKind.AlmostLockedSet3, ColorIdentifierKind.AlmostLockedSet4, ColorIdentifierKind.AlmostLockedSet5]
-			)
-		},
-		{ DrawableItemUpdatingReason.ColorPaletteColorized, Filters.ColorizedPaletteId },
-	};
+			if (targetControl is GridLayout { Children: var children })
+			{
+				children.RemoveAllViewUnitControls();
+			}
+		}
 
+		// Manually update property.
+		pane.ViewUnitUsedCandidates = [];
+
+
+		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
+		{
+			foreach (var children in sudokuPane._children)
+			{
+				yield return children.MainGrid; // cell, candidate, baba grouping, icons
+			}
+			yield return sudokuPane.MainGrid; // house, chute, link
+		}
+	}
 
 	/// <summary>
-	/// Get conclusion suffix of tag.
+	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
-	/// <returns>A <see cref="string"/> text as the result.</returns>
-	private static string? GetConclusionTagSuffix(bool isForConclusion, bool isForElimination, bool isOverlapped)
-		=> (isForConclusion, isForElimination, isOverlapped) switch
+	/// <param name="pane">The target pane.</param>
+	/// <param name="viewUnit">The view unit that you want to display.</param>
+	/// <seealso cref="FrameworkElement"/>
+	/// <seealso cref="ViewUnitBindableSource"/>
+	private static partial void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
+	{
+		// Check whether the data can be deconstructed.
+		if (viewUnit is not { View: var view, Conclusions: var conclusions })
 		{
-			(true, true, true) => CannibalismConclusionSuffix,
-			(true, true, _) => EliminationConclusionSuffix,
-			(true, _, true) => OverlappedAssignmentConclusionSuffix,
-			(true, _, _) => AssignmentConclusionSuffix,
-			_ => null
-		};
+			return;
+		}
+
+		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
+		var usedCandidates = CandidateMap.Empty;
+		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
+
+		// Iterate on each view node, and get their own corresponding controls.
+		foreach (var viewNode in view)
+		{
+			switch (viewNode)
+			{
+				case CellViewNode c:
+				{
+					ForCellNode(pane, c, controlAddingActions);
+					break;
+				}
+				case IconViewNode i:
+				{
+					ForIconNode(pane, i, controlAddingActions);
+					break;
+				}
+				case CandidateViewNode(_, var candidate) c:
+				{
+					ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
+					if (o is { } currentOverlappedConclusion)
+					{
+						overlapped.Add(currentOverlappedConclusion);
+					}
+
+					usedCandidates.Add(candidate);
+					break;
+				}
+				case HouseViewNode h:
+				{
+					ForHouseNode(pane, h, controlAddingActions);
+					break;
+				}
+				case ChuteViewNode c:
+				{
+					ForChuteNode(pane, c, controlAddingActions);
+					break;
+				}
+				case BabaGroupViewNode b:
+				{
+					ForBabaGroupNode(pane, b, controlAddingActions);
+					break;
+				}
+				case ILinkViewNode l:
+				{
+					links.Add(l);
+					break;
+				}
+			}
+		}
+
+		// Then iterate on each conclusions. Those conclusions will also be rendered as real controls.
+		foreach (var conclusion in conclusions)
+		{
+			ForConclusion(pane, conclusion, overlapped, controlAddingActions);
+
+			usedCandidates.Add(conclusion.Candidate);
+		}
+
+		// Finally, iterate on links.
+		// The links are special to be handled - they will create a list of line controls.
+		// We should handle it at last.
+		ForLinkNodes(pane, links.AsReadOnlySpan(), conclusions, controlAddingActions);
+
+		foreach (var (animator, adder) in controlAddingActions)
+		{
+			(animator + adder)();
+		}
+
+		// Update property to get highlighted candidates.
+		pane.ViewUnitUsedCandidates = usedCandidates;
+	}
+
 
 	/// <summary>
 	/// The internal helper method that creates a <see cref="InvalidOperationException"/> instance without any other operation.
@@ -107,259 +178,23 @@ internal static partial class DrawableFactory
 	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
 }
 
-/// <summary>
-/// The internal type that filters the controls.
-/// </summary>
-file static class Filters
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
 {
 	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>.
+	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
 	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>
-	public static bool CandidateViewNodeDisplayMode(FrameworkElement control)
-		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && !s.Contains(ConclusionSuffixSeparator));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.EliminationDisplayMode"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.EliminationDisplayMode"/>
-	public static bool EliminationDisplayMode(FrameworkElement control)
-		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(EliminationConclusionSuffix));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.AssignmentDisplayMode"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.AssignmentDisplayMode"/>
-	public static bool AssignmentDisplayMode(FrameworkElement control)
-		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(AssignmentConclusionSuffix));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.HighlightCandidateScale"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.HighlightCandidateScale"/>
-	public static bool HighlightCandidateScale(FrameworkElement control)
-		=> TemplateMethod<CandidateViewNode>(control, static (s, element) => s.Contains(element));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>
-	public static bool HighlightBackgroundOpacity(FrameworkElement control)
-		=> TemplateMethod<CellViewNode, HouseViewNode, ChuteViewNode>(control);
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.Link"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.Link"/>
-	public static bool Link(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.BabaGrouping"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.BabaGrouping"/>
-	public static bool BabaGrouping(FrameworkElement control)
-		=> TemplateMethod<BabaGroupViewNode>(control, static (s, element) => s.Contains(element));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.StrongLinkDashStyle"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.StrongLinkDashStyle"/>
-	public static bool StrongLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(
-			control,
-			static (s, element) => s.Contains(element) && s.Contains(StrongInferenceSuffix)
-		);
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.WeakLinkDashStyle"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.WeakLinkDashStyle"/>
-	public static bool WeakLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(
-			control,
-			static (s, element) => s.Contains(element) && s.Contains(WeakInferenceSuffix)
-		);
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.LinkStrokeThickness"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.LinkStrokeThickness"/>
-	public static bool LinkStrokeThickness(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element));
-
-	/// <summary>
-	/// The filter for colorized items (except for <see cref="ColorPalette"/>-based items).
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <param name="kind">The kind to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="ColorPalette"/>
-	public static bool Colorized(FrameworkElement control, ColorIdentifierKind kind)
+	/// <param name="this">The collection.</param>
+	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
 	{
-		if (control.Tag is not string s)
+		var controls = (
+			from control in @this.OfType<FrameworkElement>()
+			where control.Tag is nameof(DrawableFactory)
+			select control
+		).ToArray();
+		foreach (var control in controls)
 		{
-			return false;
+			@this.Remove(control);
 		}
-
-		var array = (string[])[
-			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
-			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
-			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
-			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
-		];
-		foreach (var element in array)
-		{
-			if (s.Contains(element) && Enum.TryParse<ColorIdentifierKind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..^1], out var final) && final == kind)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// The filter for colorized range items (for <see cref="ColorPalette"/>-based items).
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <param name="kinds">The kinds to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="ColorPalette"/>
-	public static bool ColorizedRange(FrameworkElement control, ColorIdentifierKind[] kinds)
-	{
-		if (control.Tag is not string s)
-		{
-			return false;
-		}
-
-		var array = (string[])[
-			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
-			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
-			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
-			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
-		];
-		foreach (var element in array)
-		{
-			if (s.Contains(element)
-				&& Enum.TryParse<ColorIdentifierKind>(s[(s.IndexOf(ColorizedSuffixSeparator) + 2)..], out var final)
-				&& Array.IndexOf(kinds, final) != -1)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// The filter for colorized palette ID items.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ColorizedPaletteId(FrameworkElement control)
-	{
-		if (control.Tag is not string s)
-		{
-			return false;
-		}
-
-		var array = (string[])[
-			.. ViewNodeTagPrefixes[typeof(CellViewNode)],
-			.. ViewNodeTagPrefixes[typeof(CandidateViewNode)],
-			.. ViewNodeTagPrefixes[typeof(HouseViewNode)],
-			.. ViewNodeTagPrefixes[typeof(ChuteViewNode)]
-		];
-		foreach (var element in array)
-		{
-			if (s.Contains(element)
-				&& s.IndexOf(IdColorIdentifierSeparator) is var pos and not -1 && int.TryParse(s[(pos + 2)..], out _))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// The template method for view nodes.
-	/// </summary>
-	/// <typeparam name="TViewNode">The type of the node.</typeparam>
-	/// <param name="control">The control to be checked.</param>
-	/// <param name="tagMatcher">
-	/// The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool TemplateMethod<TViewNode>(FrameworkElement control, Func<string, string, bool> tagMatcher)
-		where TViewNode : ViewNode
-	{
-		if (control.Tag is not string s)
-		{
-			return false;
-		}
-
-		foreach (var element in ViewNodeTagPrefixes[typeof(TViewNode)])
-		{
-			if (tagMatcher(s, element))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/// <summary>
-	/// The template method for view nodes.
-	/// </summary>
-	/// <typeparam name="T1">The first type of the node.</typeparam>
-	/// <typeparam name="T2">The second type of the node.</typeparam>
-	/// <typeparam name="T3">The third type of the node.</typeparam>
-	/// <param name="control">The control to be checked.</param>
-	/// <param name="tagMatcher">
-	/// The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool TemplateMethod<T1, T2, T3>(FrameworkElement control, Func<string, string, bool>? tagMatcher = null)
-		where T1 : ViewNode
-		where T2 : ViewNode
-		where T3 : ViewNode
-	{
-		if (control.Tag is not string s)
-		{
-			return false;
-		}
-
-		if (tagMatcher is null)
-		{
-			return true;
-		}
-
-		var array = (string[])[.. ViewNodeTagPrefixes[typeof(T1)], .. ViewNodeTagPrefixes[typeof(T2)], .. ViewNodeTagPrefixes[typeof(T3)]];
-		foreach (var element in array)
-		{
-			if (tagMatcher(s, element))
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 }

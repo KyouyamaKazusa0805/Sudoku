@@ -3,143 +3,6 @@ namespace SudokuStudio.Drawing;
 internal partial class DrawableFactory
 {
 	/// <summary>
-	/// Refresh the pane view unit controls.
-	/// </summary>
-	/// <param name="pane">The pane.</param>
-	/// <param name="reason">The reason why raising this updating operation.</param>
-	/// <param name="value">The value specified as an <see cref="object"/> value.</param>
-	public static partial void UpdateViewUnitControls(SudokuPane pane, DrawableItemUpdatingReason reason, object? value)
-	{
-		if (reason != DrawableItemUpdatingReason.None)
-		{
-			RemoveViewUnitControls(pane);
-			if (pane.ViewUnit is not null)
-			{
-				AddViewUnitControls(pane, pane.ViewUnit);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Removes all possible controls that are used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
-	/// </summary>
-	/// <param name="pane">The target pane.</param>
-	/// <seealso cref="ViewUnitBindableSource"/>
-	private static partial void RemoveViewUnitControls(SudokuPane pane)
-	{
-		foreach (var targetControl in getParentControls(pane))
-		{
-			if (targetControl is GridLayout { Children: var children })
-			{
-				children.RemoveAllViewUnitControls();
-			}
-		}
-
-		// Manually update property.
-		pane.ViewUnitUsedCandidates = [];
-
-
-		static IEnumerable<FrameworkElement> getParentControls(SudokuPane sudokuPane)
-		{
-			foreach (var children in sudokuPane._children)
-			{
-				yield return children.MainGrid; // cell, candidate, baba grouping, icons
-			}
-			yield return sudokuPane.MainGrid; // house, chute, link
-		}
-	}
-
-	/// <summary>
-	/// Adds a list of <see cref="FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="ViewUnitBindableSource"/>.
-	/// </summary>
-	/// <param name="pane">The target pane.</param>
-	/// <param name="viewUnit">The view unit that you want to display.</param>
-	/// <seealso cref="FrameworkElement"/>
-	/// <seealso cref="ViewUnitBindableSource"/>
-	private static partial void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
-	{
-		// Check whether the data can be deconstructed.
-		if (viewUnit is not { View: var view, Conclusions: var conclusions })
-		{
-			return;
-		}
-
-		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
-		var usedCandidates = CandidateMap.Empty;
-		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
-
-		// Iterate on each view node, and get their own corresponding controls.
-		foreach (var viewNode in view)
-		{
-			switch (viewNode)
-			{
-				case CellViewNode c:
-				{
-					ForCellNode(pane, c, controlAddingActions);
-					break;
-				}
-				case IconViewNode i:
-				{
-					ForIconNode(pane, i, controlAddingActions);
-					break;
-				}
-				case CandidateViewNode(_, var candidate) c:
-				{
-					ForCandidateNode(pane, c, conclusions, out var o, controlAddingActions);
-					if (o is { } currentOverlappedConclusion)
-					{
-						overlapped.Add(currentOverlappedConclusion);
-					}
-
-					usedCandidates.Add(candidate);
-					break;
-				}
-				case HouseViewNode h:
-				{
-					ForHouseNode(pane, h, controlAddingActions);
-					break;
-				}
-				case ChuteViewNode c:
-				{
-					ForChuteNode(pane, c, controlAddingActions);
-					break;
-				}
-				case BabaGroupViewNode b:
-				{
-					ForBabaGroupNode(pane, b, controlAddingActions);
-					break;
-				}
-				case ILinkViewNode l:
-				{
-					links.Add(l);
-					break;
-				}
-			}
-		}
-
-		// Then iterate on each conclusions. Those conclusions will also be rendered as real controls.
-		foreach (var conclusion in conclusions)
-		{
-			ForConclusion(pane, conclusion, overlapped, controlAddingActions);
-
-			usedCandidates.Add(conclusion.Candidate);
-		}
-
-		// Finally, iterate on links.
-		// The links are special to be handled - they will create a list of line controls.
-		// We should handle it at last.
-		ForLinkNodes(pane, links.AsReadOnlySpan(), conclusions, controlAddingActions);
-
-		foreach (var (animator, adder) in controlAddingActions)
-		{
-			(animator + adder)();
-		}
-
-		// Update property to get highlighted candidates.
-		pane.ViewUnitUsedCandidates = usedCandidates;
-	}
-
-	/// <summary>
 	/// Create <see cref="FrameworkElement"/>s that displays for conclusions.
 	/// </summary>
 	/// <param name="sudokuPane">
@@ -370,8 +233,6 @@ internal partial class DrawableFactory
 			? new((float)f, (float)f)
 			: size;
 		var (width, height) = resultSize / 3F * (float)highlightScale;
-		var tagPrefix = ViewNodeTagPrefixes[typeof(CandidateViewNode)][0];
-		var conclusionTagStr = GetConclusionTagSuffix(isForConclusion, isForElimination, isOverlapped);
 		var control = (isForConclusion, isForElimination, candidateDisplayMode, eliminationDisplayMode, assignmentDisplayMode) switch
 		{
 			(true, true, _, EliminationDisplay.CircleSolid, _) or (true, false, _, _, AssignmentDisplay.CircleSolid) => new Ellipse
@@ -773,10 +634,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				ChainLinkViewNode { IsStrongLink: var i } => [.. i ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle],
 				_ => default(DoubleCollection)
 			};
-			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
-			var tagSuffix = isStrong ?? true
-				? DrawableItemIdentifiers.StrongInferenceSuffix
-				: DrawableItemIdentifiers.WeakInferenceSuffix;
 
 			// Find two candidates with a minimal distance.
 			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
@@ -1182,22 +1039,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
-	/// <summary>
-	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
-	/// </summary>
-	/// <param name="this">The collection.</param>
-	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
-	{
-		foreach (var control in new List<FrameworkElement>(
-			from control in @this.OfType<FrameworkElement>()
-			where control.Tag is nameof(DrawableFactory)
-			select control
-		))
-		{
-			@this.Remove(control);
-		}
-	}
-
 	/// <summary>
 	/// <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
 	/// <para>This method is used for checking cannibalism.</para>

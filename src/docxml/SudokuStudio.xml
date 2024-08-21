@@ -2874,22 +2874,6 @@
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="F:SudokuStudio.Drawing.DrawableFactory.ViewNodeTagPrefixes">
-            <summary>
-            The internal dictionary that describes the tag prefixes of view nodes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableFactory.ReasonNodeFilters">
-            <summary>
-            The filters for controls that describes for view node.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.GetConclusionTagSuffix(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Get conclusion suffix of tag.
-            </summary>
-            <returns>A <see cref="T:System.String"/> text as the result.</returns>
-        </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.Throw``1(System.Object,System.Int32,System.String)">
             <summary>
             The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
@@ -3068,139 +3052,18 @@
             This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s together.
             </remarks>
         </member>
-        <member name="T:SudokuStudio.Drawing.Filters">
-            <summary>
-            The internal type that filters the controls.
-            </summary>
+        <member name="T:SudokuStudio.Drawing.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
-        <member name="M:SudokuStudio.Drawing.Filters.CandidateViewNodeDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
+        <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
             <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>.
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.EliminationDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.AssignmentDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.HighlightCandidateScale(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.HighlightBackgroundOpacity(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.Link(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.BabaGrouping(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.StrongLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.WeakLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.LinkStrokeThickness(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.Colorized(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Drawing.WellKnownColorIdentifierKind)">
-            <summary>
-            The filter for colorized items (except for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <param name="kind">The kind to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.ColorizedRange(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Drawing.WellKnownColorIdentifierKind[])">
-            <summary>
-            The filter for colorized range items (for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <param name="kinds">The kinds to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.ColorizedPaletteId(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for colorized palette ID items.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.TemplateMethod``1(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
-            <summary>
-            The template method for view nodes.
-            </summary>
-            <typeparam name="TViewNode">The type of the node.</typeparam>
-            <param name="control">The control to be checked.</param>
-            <param name="tagMatcher">
-            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.TemplateMethod``3(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
-            <summary>
-            The template method for view nodes.
-            </summary>
-            <typeparam name="T1">The first type of the node.</typeparam>
-            <typeparam name="T2">The second type of the node.</typeparam>
-            <typeparam name="T3">The third type of the node.</typeparam>
-            <param name="control">The control to be checked.</param>
-            <param name="tagMatcher">
-            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">The collection.</param>
         </member>
         <member name="T:SudokuStudio.Drawing.PathCreator">
             <summary>
@@ -3262,12 +3125,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
-            <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
-            </summary>
-            <param name="this">The collection.</param>
-        </member>
         <member name="M:SudokuStudio.Drawing.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
@@ -3277,122 +3134,6 @@
             <param name="candidate">The candidate to be determined.</param>
             <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:SudokuStudio.Drawing.DrawableItemIdentifiers">
-            <summary>
-            Represents a list of identifiers used by renderable items that will be consumed by <see cref="T:SudokuStudio.Drawing.DrawableFactory"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Drawing.DrawableFactory"/>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ConclusionSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of conclusions in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.InferenceSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of inferences in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorizedSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized color identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.IdColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized named identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.CannibalismConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EliminationConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.OverlappedAssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.StrongInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.WeakInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.NormalColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.OverlappedAssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EliminationColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.CannibalismColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.LinkColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ExofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EndofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AuxiliaryColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AlmostLockedSetColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorPaletteColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
         </member>
         <member name="T:SudokuStudio.Drawing.DrawingMode">
             <summary>
