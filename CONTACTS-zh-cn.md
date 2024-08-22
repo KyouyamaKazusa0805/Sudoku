@@ -7,5 +7,3 @@
 | 哔哩哔哩 | 视频分享平台     | https://space.bilibili.com/23736703  |
 | GitHub   | 同性码农交流窝子 | https://github.com/SunnieShine       |
 | Gitee    | 同性码农交流窝子 | https://gitee.com/SunnieShine/Sudoku |
-| QQ       | 交流平台         | 747507738                            |
-

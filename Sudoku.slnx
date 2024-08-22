@@ -12,24 +12,16 @@
   <Folder Name="/Global Items/">
     <File Path="README-zh-cn.md" />
     <File Path="README.md" />
-  </Folder>
-  <Folder Name="/Global Items/Code of Conduct/">
-    <File Path="CODE_OF_CONDUCT.md" />
-  </Folder>
-  <Folder Name="/Global Items/Contacts/">
-    <File Path="CONTACTS-zh-cn.md" />
-    <File Path="CONTACTS.md" />
-  </Folder>
-  <Folder Name="/Global Items/License/">
-    <File Path="LICENSE" />
-  </Folder>
-  <Folder Name="/Global Items/Miscellaneous/">
     <File Path=".editorconfig" />
     <File Path=".filenesting.json" />
     <File Path="Directory.Build.props" />
     <File Path="global-doc-comments.xml" />
+    <File Path="LICENSE" />
     <File Path="misspelling-exclusion.dic" />
     <File Path="NuGet.config" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="CONTACTS-zh-cn.md" />
+    <File Path="CONTACTS.md" />
   </Folder>
   <Folder Name="/Source Generators/">
   <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
