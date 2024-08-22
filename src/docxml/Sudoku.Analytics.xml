@@ -5319,7 +5319,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.DifficultyLevelMode">
-            <inheritdoc/>
+            <summary>
+            Indicates the difficulty level mode that the step searcher will be called and checked.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Collector.StepSearchers">
             <inheritdoc/>

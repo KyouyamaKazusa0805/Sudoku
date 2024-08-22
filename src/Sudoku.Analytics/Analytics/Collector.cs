@@ -11,7 +11,9 @@ public sealed partial class Collector : CollectorBase
 	[WithProperty(MethodSuffixName = "MaxSteps", ParameterName = "count")]
 	public int MaxStepsCollected { get; set; } = 1000;
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the difficulty level mode that the step searcher will be called and checked.
+	/// </summary>
 	[WithProperty(MethodSuffixName = "SameLevelConfiguration", ParameterName = "collectingMode")]
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
