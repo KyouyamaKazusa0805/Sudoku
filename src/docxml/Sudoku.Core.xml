@@ -4406,6 +4406,26 @@
             Indicates the views of the step that may be displayed onto the screen using pictures.
             </summary>
         </member>
+        <member name="T:Sudoku.Drawing.LinkShape">
+            <summary>
+            Represents a link shape.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.LinkShape.Chain">
+            <summary>
+            Indicates the link is inside a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.LinkShape.Cell">
+            <summary>
+            Indicates the link is between two cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.LinkShape.ConjugatePair">
+            <summary>
+            Indicates the link is inside a conjugate pair.
+            </summary>
+        </member>
         <member name="T:Sudoku.Drawing.Nodes.BabaGroupViewNode">
             <summary>
             Defines a view node that highlights for a Baba group.
@@ -4566,7 +4586,7 @@
         <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+        <member name="P:Sudoku.Drawing.Nodes.CellLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Shape">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Int32@,System.Int32@)">
@@ -4667,7 +4687,7 @@
         <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Shape">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean@)">
@@ -4807,7 +4827,7 @@
         <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Shape">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Int32@,System.Int32@,System.Int32@)">
@@ -4974,12 +4994,7 @@
         <member name="T:Sudoku.Drawing.Nodes.ILinkViewNode">
             <summary>
             Represents a view node kind that is represented as a link.
-            This type is the base type
-            of types <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>, <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/> and <see cref="T:Sudoku.Drawing.Nodes.ConjugateLinkViewNode"/>.
             </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
-            <seealso cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/>
-            <seealso cref="T:Sudoku.Drawing.Nodes.ConjugateLinkViewNode"/>
         </member>
         <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start">
             <summary>
@@ -4991,21 +5006,15 @@
             Indicates the end element.
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Shape">
+            <summary>
+            Indicates the link shape.
+            </summary>
+        </member>
         <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Identifier">
             <summary>
             Indicates the color identifier.
             </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.ElementType">
-            <summary>
-            Indicates the element type.
-            </summary>
-            <remarks>
-            The result value may not match property type of <see cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start"/> and <see cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.End"/>.
-            This property is only used as distinct link types.
-            </remarks>
-            <seealso cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start"/>
-            <seealso cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.End"/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ILinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Object@,System.Object@)">
             <target name="method">

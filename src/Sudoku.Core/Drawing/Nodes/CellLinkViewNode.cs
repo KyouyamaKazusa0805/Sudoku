@@ -21,7 +21,7 @@ public sealed partial class CellLinkViewNode(
 	object ILinkViewNode.End => End;
 
 	/// <inheritdoc/>
-	Type ILinkViewNode.ElementType => typeof(Cell);
+	LinkShape ILinkViewNode.Shape => LinkShape.Cell;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

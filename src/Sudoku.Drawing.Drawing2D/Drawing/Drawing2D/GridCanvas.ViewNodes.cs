@@ -154,15 +154,22 @@ public partial class GridCanvas
 		var linkArray = nodes.ToArray();
 		foreach (var linkNode in linkArray)
 		{
-			if (linkNode.ElementType == typeof(CandidateMap))
+			switch (linkNode.Shape)
 			{
-				points.Add(_calculator.GetMouseCenter((CandidateMap)linkNode.Start));
-				points.Add(_calculator.GetMouseCenter((CandidateMap)linkNode.End));
-			}
-			else if (linkNode.ElementType == typeof(Cell))
-			{
-				points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.Start));
-				points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.End));
+				case LinkShape.Chain or LinkShape.ConjugatePair:
+				{
+					var startCandidates = linkNode.Start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					var endCandidates = linkNode.End switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					points.Add(_calculator.GetMouseCenter(in startCandidates));
+					points.Add(_calculator.GetMouseCenter(in endCandidates));
+					break;
+				}
+				case LinkShape.Cell:
+				{
+					points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.Start));
+					points.Add(_calculator.GetMousePointInCenter((Cell)linkNode.End));
+					break;
+				}
 			}
 		}
 		foreach (var conclusion in conclusions)
@@ -174,7 +181,7 @@ public partial class GridCanvas
 		using var arrowPen = new Pen(chainColor, 2F);
 		foreach (var node in linkArray)
 		{
-			if (node.ElementType == typeof(CandidateMap))
+			if (node.Shape == LinkShape.Chain)
 			{
 				arrowPen.CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F);
 			}
@@ -186,11 +193,13 @@ public partial class GridCanvas
 				_ => DashStyle.Solid
 			};
 
-			var pt1 = node.ElementType == typeof(CandidateMap)
-				? _calculator.GetMouseCenter((CandidateMap)start)
+			var pt1 = node.Shape is LinkShape.Chain or LinkShape.ConjugatePair
+				&& start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() } is var startCandidates
+				? _calculator.GetMouseCenter(in startCandidates)
 				: _calculator.GetMousePointInCenter((Cell)start);
-			var pt2 = node.ElementType == typeof(CandidateMap)
-				? _calculator.GetMouseCenter((CandidateMap)end)
+			var pt2 = node.Shape is LinkShape.Chain or LinkShape.ConjugatePair
+				&& end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() } is var endCandidates
+				? _calculator.GetMouseCenter(in endCandidates)
 				: _calculator.GetMousePointInCenter((Cell)end);
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 
@@ -208,25 +217,29 @@ public partial class GridCanvas
 			var alpha = Atan2(deltaY, deltaX);
 			var dx1 = deltaX;
 			var dy1 = deltaY;
+
 			var through = false;
 			adjust(pt1, pt2, out var p1, out _, alpha, cw);
-			foreach (var point in points)
-			{
-				if (point == pt1 || point == pt2)
-				{
-					// The point is itself.
-					continue;
-				}
 
-				var dx2 = point.X - p1.X;
-				var dy2 = point.Y - p1.Y;
-				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F))
-					&& node.ElementType == typeof(CandidateMap))
+			if (node.Shape == LinkShape.Chain)
+			{
+				foreach (var point in points)
 				{
-					through = true;
-					break;
+					if (point == pt1 || point == pt2)
+					{
+						// The point is itself.
+						continue;
+					}
+
+					var dx2 = point.X - p1.X;
+					var dy2 = point.Y - p1.Y;
+					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
+					{
+						through = true;
+						break;
+					}
 				}
 			}
 
@@ -262,19 +275,39 @@ public partial class GridCanvas
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void adjust(PointF pt1, PointF pt2, out PointF p1, out PointF p2, float alpha, float candidateSize)
 			{
-				(p1, p2) = (pt1, pt2);
-				if (node.ElementType == typeof(CandidateMap))
+				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
 				{
-					return;
+					(p1, p2, var tempDelta) = (pt1, pt2, candidateSize / 2);
+					var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
+					p1.X += px;
+					p1.Y += py;
+					p2.X -= px;
+					p2.Y -= py;
 				}
+				else
+				{
+					(p1, p2) = (pt1, pt2);
+				}
+			}
 
-				var tempDelta = candidateSize / 2;
-				var px = (int)(tempDelta * Cos(alpha));
-				var py = (int)(tempDelta * Sin(alpha));
-				p1.X += px;
-				p1.Y += py;
-				p2.X -= px;
-				p2.Y -= py;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void cut(ref PointF pt1, ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
+			{
+				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
+				{
+					var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+					var x = cw / (float)Sqrt(1 + slope * slope);
+					var y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
+
+					if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2; pt2.Y += ch / 2; }
+					else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2; pt2.Y -= ch / 2; }
+					else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2; pt2.X += cw / 2; }
+					else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cw / 2; pt2.X -= cw / 2; }
+					else if (pt1y > pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y -= y / 2; pt2.X += x / 2; pt2.Y += y / 2; }
+					else if (pt1y > pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y -= y / 2; pt2.X -= x / 2; pt2.Y += y / 2; }
+					else if (pt1y < pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y += y / 2; pt2.X += x / 2; pt2.Y -= y / 2; }
+					else if (pt1y < pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y += y / 2; pt2.X -= x / 2; pt2.Y -= y / 2; }
+				}
 			}
 		}
 
@@ -295,23 +328,6 @@ public partial class GridCanvas
 			pt2.Y = (float)(xAct * sinAngle + yAct * cosAngle);
 			pt2.X += pt1.X;
 			pt2.Y += pt1.Y;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(ref PointF pt1, ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
-		{
-			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			var x = cw / (float)Sqrt(1 + slope * slope);
-			var y = ch * (float)Sqrt(slope * slope / (1 + slope * slope));
-
-			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y -= ch / 2; pt2.Y += ch / 2; }
-			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x)) { pt1.Y += ch / 2; pt2.Y -= ch / 2; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x) { pt1.X -= cw / 2; pt2.X += cw / 2; }
-			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x) { pt1.X += cw / 2; pt2.X -= cw / 2; }
-			else if (pt1y > pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y -= y / 2; pt2.X += x / 2; pt2.Y += y / 2; }
-			else if (pt1y > pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y -= y / 2; pt2.X -= x / 2; pt2.Y += y / 2; }
-			else if (pt1y < pt2y && pt1x > pt2x) { pt1.X -= x / 2; pt1.Y += y / 2; pt2.X += x / 2; pt2.Y -= y / 2; }
-			else if (pt1y < pt2y && pt1x < pt2x) { pt1.X += x / 2; pt1.Y += y / 2; pt2.X -= x / 2; pt2.Y -= y / 2; }
 		}
 	}
 

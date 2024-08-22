@@ -2,12 +2,7 @@ namespace Sudoku.Drawing.Nodes;
 
 /// <summary>
 /// Represents a view node kind that is represented as a link.
-/// This type is the base type
-/// of types <see cref="ChainLinkViewNode"/>, <see cref="CellLinkViewNode"/> and <see cref="ConjugateLinkViewNode"/>.
 /// </summary>
-/// <seealso cref="ChainLinkViewNode"/>
-/// <seealso cref="CellLinkViewNode"/>
-/// <seealso cref="ConjugateLinkViewNode"/>
 public interface ILinkViewNode
 {
 	/// <summary>
@@ -21,20 +16,14 @@ public interface ILinkViewNode
 	public abstract object End { get; }
 
 	/// <summary>
+	/// Indicates the link shape.
+	/// </summary>
+	public abstract LinkShape Shape { get; }
+
+	/// <summary>
 	/// Indicates the color identifier.
 	/// </summary>
 	public abstract ColorIdentifier Identifier { get; }
-
-	/// <summary>
-	/// Indicates the element type.
-	/// </summary>
-	/// <remarks>
-	/// The result value may not match property type of <see cref="Start"/> and <see cref="End"/>.
-	/// This property is only used as distinct link types.
-	/// </remarks>
-	/// <seealso cref="Start"/>
-	/// <seealso cref="End"/>
-	public abstract Type ElementType { get; }
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

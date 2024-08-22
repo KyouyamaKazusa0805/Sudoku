@@ -23,7 +23,7 @@ public sealed partial class ChainLinkViewNode(
 	object ILinkViewNode.End => End;
 
 	/// <inheritdoc/>
-	Type ILinkViewNode.ElementType => typeof(CandidateMap);
+	LinkShape ILinkViewNode.Shape => LinkShape.Chain;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

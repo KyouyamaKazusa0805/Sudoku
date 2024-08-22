@@ -584,29 +584,34 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 			// Find two candidates with a minimal distance.
 			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
-			if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
+			switch (node.Shape)
 			{
-				var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-				var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-				foreach (var s in startCandidates)
+				case LinkShape.Chain or LinkShape.ConjugatePair:
 				{
-					var tempPoint1 = Converter.GetPosition(s);
-					foreach (var e in endCandidates)
+					var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					foreach (var s in startCandidates)
 					{
-						var tempPoint2 = Converter.GetPosition(e);
-						var d = tempPoint1.DistanceTo(tempPoint2);
-						if (d <= distance)
+						var tempPoint1 = Converter.GetPosition(s);
+						foreach (var e in endCandidates)
 						{
-							(distance, pt1, pt2) = (d, tempPoint1, tempPoint2);
+							var tempPoint2 = Converter.GetPosition(e);
+							var d = tempPoint1.DistanceTo(tempPoint2);
+							if (d <= distance)
+							{
+								(distance, pt1, pt2) = (d, tempPoint1, tempPoint2);
+							}
 						}
 					}
+					break;
 				}
-			}
-			else if (node.ElementType == typeof(Cell))
-			{
-				pt1 = Converter.GetPosition((Cell)start * 9 + 4);
-				pt2 = Converter.GetPosition((Cell)end * 9 + 4);
-				distance = pt1.DistanceTo(pt2);
+				case LinkShape.Cell:
+				{
+					pt1 = Converter.GetPosition((Cell)start * 9 + 4);
+					pt2 = Converter.GetPosition((Cell)end * 9 + 4);
+					distance = pt1.DistanceTo(pt2);
+					break;
+				}
 			}
 
 			// If the distance of two points is lower than the one of two adjacent candidates,
@@ -623,23 +628,25 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 			// Check whether the link will pass through a candidate used in pattern.
 			var linkPassesThroughUsedCandidates = false;
-			var (dx1, dy1) = (deltaX, deltaY);
-			foreach (var point in points)
+			if (node.Shape == LinkShape.Chain)
 			{
-				if (point == pt1 || point == pt2)
+				var (dx1, dy1) = (deltaX, deltaY);
+				foreach (var point in points)
 				{
-					// Skip itself.
-					continue;
-				}
+					if (point == pt1 || point == pt2)
+					{
+						// Skip itself.
+						continue;
+					}
 
-				var (dx2, dy2) = (point.X - p1.X, point.Y - p1.Y);
-				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1))
-					&& node.ElementType == typeof(CandidateMap))
-				{
-					linkPassesThroughUsedCandidates = true;
-					break;
+					var (dx2, dy2) = (point.X - p1.X, point.Y - p1.Y);
+					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+					{
+						linkPassesThroughUsedCandidates = true;
+						break;
+					}
 				}
 			}
 
@@ -713,7 +720,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					new Path
 					{
 						Stroke = new SolidColorBrush(Pane.LinkColor),
-						StrokeThickness = (double)Pane.ChainStrokeThickness * (node.ElementType == typeof(Conjugate) ? 2 : 1),
+						StrokeThickness = (double)Pane.ChainStrokeThickness * (node.Shape == LinkShape.ConjugatePair ? 2 : 1),
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
 						Tag = nameof(DrawableFactory),
@@ -722,7 +729,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				);
 
 				// Append arrow cap.
-				if (node.ElementType == typeof(CandidateMap))
+				if (node.Shape == LinkShape.Chain)
 				{
 					result.Add(
 						new Path
@@ -738,7 +745,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			}
 
 		DrawGroupNodeOutlines:
-			if (node.ElementType == typeof(CandidateMap))
+			if (node.Shape == LinkShape.Chain)
 			{
 				// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
 				var (s, e) = ((CandidateMap)start, (CandidateMap)end);
@@ -758,7 +765,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
 			{
-				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
+				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
 				{
 					(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
 					var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
@@ -776,7 +783,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void cut(ref Point pt1, ref Point pt2, double cs)
 			{
-				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
+				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
 				{
 					var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 					var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
@@ -869,29 +876,33 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			foreach (var node in nodes)
 			{
 				var (_, start, end) = node;
-				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
+				switch (node.Shape)
 				{
-					var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-					var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-					foreach (var startCandidate in startCandidates)
+					case LinkShape.Chain or LinkShape.ConjugatePair:
 					{
-						points.Add(Converter.GetPosition(startCandidate));
+						var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+						var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+						foreach (var startCandidate in startCandidates)
+						{
+							points.Add(Converter.GetPosition(startCandidate));
+						}
+						foreach (var endCandidate in endCandidates)
+						{
+							points.Add(Converter.GetPosition(endCandidate));
+						}
+						break;
 					}
-					foreach (var endCandidate in endCandidates)
+					case LinkShape.Cell:
 					{
-						points.Add(Converter.GetPosition(endCandidate));
+						points.Add(Converter.GetPosition((Cell)start * 9 + 4));
+						points.Add(Converter.GetPosition((Cell)end * 9 + 4));
+						break;
 					}
-				}
-				else if (node.ElementType == typeof(Cell))
-				{
-					points.Add(Converter.GetPosition((Cell)start * 9 + 4));
-					points.Add(Converter.GetPosition((Cell)end * 9 + 4));
 				}
 			}
 			foreach (var (_, candidate) in Conclusions)
 			{
-				var point = Converter.GetPosition(candidate);
-				points.Add(point);
+				points.Add(Converter.GetPosition(candidate));
 			}
 			return points;
 		}

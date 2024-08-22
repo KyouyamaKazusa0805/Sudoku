@@ -28,7 +28,7 @@ public sealed partial class ConjugateLinkViewNode(
 	object ILinkViewNode.End => End * 9 + Digit;
 
 	/// <inheritdoc/>
-	Type ILinkViewNode.ElementType => typeof(Conjugate);
+	LinkShape ILinkViewNode.Shape => LinkShape.ConjugatePair;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
