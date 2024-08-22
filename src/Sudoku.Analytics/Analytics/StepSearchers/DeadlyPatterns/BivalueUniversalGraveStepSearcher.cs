@@ -405,8 +405,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		// Check two cell has same house.
 		var cells = TargetCandidatesGroup.CreateMapByKeys(candsGroupByCell);
-		var houses = cells.SharedHouses;
-		if (houses == 0)
+		if (cells is not ([var cell1, var cell2] and { SharedHouses: var houses and not 0 }))
 		{
 			return null;
 		}
@@ -415,12 +414,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		foreach (var house in houses)
 		{
 			// Add up all digits.
-			var digits = new HashSet<Digit>();
+			var digits = (Mask)0;
 			foreach (var candGroupByCell in candsGroupByCell)
 			{
 				foreach (var cand in candGroupByCell)
 				{
-					digits.Add(cand % 9);
+					digits |= (Mask)(1 << cand % 9);
 				}
 			}
 
@@ -437,15 +436,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				// Check whether the conjugate pair lies in current two cells.
 				var first = Mask.TrailingZeroCount(mask);
 				var second = mask.GetNextSet(first);
-				var c1 = HousesCells[house][first];
-				var c2 = HousesCells[house][second];
-				if (c1 != cells[0] || c2 != cells[1])
+				if (HousesCells[house][first] != cell1 || HousesCells[house][second] != cell2)
 				{
 					continue;
 				}
 
 				// Check whether all digits contain that digit.
-				if (digits.Contains(conjugatePairDigit))
+				if ((digits >> conjugatePairDigit & 1) != 0)
 				{
 					continue;
 				}
@@ -465,12 +462,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					// Bitwise not.
 					foreach (var d in digitMask = (Mask)(Grid.MaxCandidatesMask & ~digitMask))
 					{
-						if (conjugatePairDigit == d || !CandidatesMap[d].Contains(cell))
+						if (conjugatePairDigit != d && CandidatesMap[d].Contains(cell))
 						{
-							continue;
+							conclusions.Add(new(Elimination, cell, d));
 						}
-
-						conclusions.Add(new(Elimination, cell, d));
 					}
 				}
 
@@ -486,15 +481,15 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					[
 						[
 							.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate),
-							new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + conjugatePairDigit),
-							new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + conjugatePairDigit),
-							new ConjugateLinkViewNode(ColorIdentifier.Normal, c1, c2, conjugatePairDigit)
+							new CandidateViewNode(ColorIdentifier.Auxiliary1, cell1 * 9 + conjugatePairDigit),
+							new CandidateViewNode(ColorIdentifier.Auxiliary1, cell2 * 9 + conjugatePairDigit),
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, cell1, cell2, conjugatePairDigit)
 						]
 					],
 					context.Options,
 					MaskOperations.Create(digits),
 					in cells,
-					new(c1, c2, conjugatePairDigit)
+					new(cell1, cell2, conjugatePairDigit)
 				);
 				if (onlyFindOne)
 				{
