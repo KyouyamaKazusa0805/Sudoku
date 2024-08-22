@@ -4344,6 +4344,53 @@
         <member name="M:Sudoku.Drawing.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.DashArray,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Drawing.Drawing2D.IPointCalculator">
+            <summary>
+            Represents a base type of pointer calculator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.Width">
+            <summary>
+            Indicates the width of the picture to draw.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.Height">
+            <summary>
+            Indicates the height of the picture to draw.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.Padding">
+            <summary>
+            Indicates the padding of the gap between the picture box outline and the sudoku grid outline.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.ControlSize">
+            <summary>
+            Indicates the control size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.GridSize">
+            <summary>
+            Indicates the grid size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.CellSize">
+            <summary>
+            Indicates the cell size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.CandidateSize">
+            <summary>
+            Indicates the candidate size.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.IPointCalculator.GridPoints">
+            <summary>
+            Indicates the absolutely points in grid cross-lines.
+            This property will be assigned later (and not <see langword="null"/>).
+            </summary>
+            <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
+        </member>
         <member name="T:Sudoku.Drawing.IDrawable">
             <summary>
             Represents a drawable instance that can be used for drawing, providing with base data structure to be used by drawing APIs.

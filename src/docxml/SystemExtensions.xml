@@ -2332,6 +2332,17 @@
         <member name="M:System.Linq.MemoryEnumerable.Where``1(System.ReadOnlyMemory{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
         </member>
+        <member name="T:System.Linq.MultidimensionalArrayEnumerable">
+            <summary>
+            Provides with LINQ methods on multi-dimensional array.
+            </summary>
+        </member>
+        <member name="M:System.Linq.MultidimensionalArrayEnumerable.Select``2(``0[0:,0:],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.MultidimensionalArrayEnumerable.Select``2(``0[0:,0:],System.Func{``0,System.Int32,System.Int32,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,System.Int32,``1})"/>
+        </member>
         <member name="T:System.Linq.Providers.IAggregateMethod`2">
             <summary>
             Represents a type that supports method group <c>Aggregate</c>.

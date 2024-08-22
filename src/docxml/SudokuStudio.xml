@@ -3369,6 +3369,30 @@
             Indicates the grid points.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Width">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Height">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Padding">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#ControlSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#GridSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#CellSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#CandidateSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#GridPoints">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Deconstruct(Windows.Foundation.Point@,Windows.Foundation.Point[0:,0:]@)">
             <target name="method">
 				<summary>

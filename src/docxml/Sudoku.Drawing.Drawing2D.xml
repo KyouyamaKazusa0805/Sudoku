@@ -467,19 +467,13 @@
             <seealso cref="F:Sudoku.Drawing.Drawing2D.PointCalculator.DefaultPadding"/>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Width">
-            <summary>
-            Indicates the width of the picture to draw.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Height">
-            <summary>
-            Indicates the height of the picture to draw.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Padding">
-            <summary>
-            Indicates the padding of the gap between the picture box outline and the sudoku grid outline.
-            </summary>
+            <inheritdoc/>
             <remarks>The default value is <c>10</c>.</remarks>
         </member>
         <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.ControlSize">
@@ -508,6 +502,21 @@
             This property will be assigned later (and not <see langword="null"/>).
             </summary>
             <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#ControlSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#GridSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#CellSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#CandidateSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#GridPoints">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetCell(System.Drawing.PointF)">
             <summary>

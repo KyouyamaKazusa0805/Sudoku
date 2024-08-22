@@ -3,7 +3,7 @@ namespace Sudoku.Drawing.Drawing2D;
 /// <summary>
 /// Provides a serial of methods for a point calculator that interacts with the UI projects.
 /// </summary>
-public sealed class PointCalculator
+public sealed class PointCalculator : IPointCalculator
 {
 	/// <summary>
 	/// Indicates the number of anchors hold per house.
@@ -70,19 +70,13 @@ public sealed class PointCalculator
 	}
 
 
-	/// <summary>
-	/// Indicates the width of the picture to draw.
-	/// </summary>
+	/// <inheritdoc/>
 	public float Width { get; }
 
-	/// <summary>
-	/// Indicates the height of the picture to draw.
-	/// </summary>
+	/// <inheritdoc/>
 	public float Height { get; }
 
-	/// <summary>
-	/// Indicates the padding of the gap between the picture box outline and the sudoku grid outline.
-	/// </summary>
+	/// <inheritdoc/>
 	/// <remarks>The default value is <c>10</c>.</remarks>
 	public float Padding { get; } = DefaultPadding;
 
@@ -112,6 +106,21 @@ public sealed class PointCalculator
 	/// </summary>
 	/// <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
 	public PointF[,] GridPoints { get; }
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.ControlSize => (ControlSize.Width, ControlSize.Height);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.GridSize => (GridSize.Width, GridSize.Height);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.CellSize => (CellSize.Width, CellSize.Height);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.CandidateSize => (CandidateSize.Width, CandidateSize.Height);
+
+	/// <inheritdoc/>
+	(float X, float Y)[,] IPointCalculator.GridPoints => from pt in GridPoints select (pt.X, pt.Y);
 
 
 	/// <summary>

@@ -5,7 +5,7 @@ namespace SudokuStudio.Input;
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
-internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid)
+internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid) : IPointCalculator
 {
 	/// <summary>
 	/// Indicates the first cell top-left position.
@@ -63,10 +63,33 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 					result[i, j] = new(cw * i + ox, ch * j + oy);
 				}
 			}
-
 			return result;
 		}
 	}
+
+	/// <inheritdoc/>
+	float IPointCalculator.Width => (float)Grid.ActualWidth;
+
+	/// <inheritdoc/>
+	float IPointCalculator.Height => (float)Grid.ActualHeight;
+
+	/// <inheritdoc/>
+	float IPointCalculator.Padding => 0;
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.ControlSize => ((float)Grid.ActualWidth, (float)Grid.ActualHeight);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.GridSize => ((float)GridSize.Width, (float)GridSize.Height);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.CellSize => ((float)CellSize.Width, (float)CellSize.Height);
+
+	/// <inheritdoc/>
+	(float Width, float Height) IPointCalculator.CandidateSize => ((float)CandidateSize.Width, (float)CandidateSize.Height);
+
+	/// <inheritdoc/>
+	(float X, float Y)[,] IPointCalculator.GridPoints => from pt in GridPoints select ((float)pt.X, (float)pt.Y);
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

@@ -58,6 +58,7 @@ global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing;
+global using Sudoku.Drawing.Drawing2D;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Inferring;
 global using Sudoku.Linq;
