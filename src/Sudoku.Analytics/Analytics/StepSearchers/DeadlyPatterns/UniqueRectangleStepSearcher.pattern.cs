@@ -411,8 +411,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <i>Also, this method is useless because it may be replaced with another techniques such as UR-XY-Wing and UR External Type 2.</i>
 	/// </para>
 	/// </remarks>
-	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
-	private partial void CheckWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
+	partial void CheckWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Firstly, we should check whether the 2 corner cells should contain both a and b, and only contain a and b.
 		// This expression only uses candidates to check digits appearing, so it doesn't determine whether the pattern is a UR or not.
@@ -941,7 +940,6 @@ public partial class UniqueRectangleStepSearcher
 
 				// Check whether the ALS pattern intersects with the current UR pattern.
 				// If so, we should skip it because it'll disturb out work.
-				#region Extra description
 				// In fact, technique allows ALS pattern intersects with UR. There're two cases:
 				//
 				//   1) ALS node (strong link node) overlaps with cells that UR uses.
@@ -952,7 +950,6 @@ public partial class UniqueRectangleStepSearcher
 				//      but extra eliminations produced by UR pattern will become unavailable.
 				//
 				// Considered its complexity of implementation, I will skip overlapped cases and may not handle such cases.
-				#endregion
 				var alsCells = als.Cells;
 				if (alsCells & cells)
 				{
