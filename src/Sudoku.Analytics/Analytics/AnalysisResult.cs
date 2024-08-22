@@ -509,13 +509,13 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 		// Print header.
 		var sb = new StringBuilder();
-		if (options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
+		if (f(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzle", culture)}{puzzle:#}");
 		}
 
 		// Print solving steps (if worth).
-		if (options.HasFlag(FormattingOptions.ShowSteps) && steps is not null)
+		if (f(FormattingOptions.ShowSteps) && steps is not null)
 		{
 			sb.AppendLine(SR.Get("AnalysisResultSolvingSteps", culture));
 
@@ -523,20 +523,18 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && !options.HasFlag(FormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !f(FormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.AppendLine(SR.Get("Ellipsis", culture));
 						break;
 					}
 
 					var step = steps[i];
-					var stepStr = options.HasFlag(FormattingOptions.ShowSimple)
-						? step.ToSimpleString(culture)
-						: step.ToString(culture);
-					var showDiff = options.HasFlag(FormattingOptions.ShowDifficulty);
+					var stepStr = f(FormattingOptions.ShowSimple) ? step.ToSimpleString(culture) : step.ToString(culture);
+					var showDiff = f(FormattingOptions.ShowDifficulty);
 					var d = $"({step.Difficulty,5}";
 					var s = $"{i + 1,4}";
-					var labelInfo = (options.HasFlag(FormattingOptions.ShowStepLabel), showDiff) switch
+					var labelInfo = (f(FormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -546,13 +544,13 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					sb.AppendLine(r($"{labelInfo}{stepStr}", step));
 				}
 
-				if (options.HasFlag(FormattingOptions.ShowBottleneck))
+				if (f(FormattingOptions.ShowBottleneck))
 				{
-					a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+					a(sb, f(FormattingOptions.ShowSeparators));
 
 					sb.Append(SR.Get("AnalysisResultBottleneckStep", culture));
 
-					if (options.HasFlag(FormattingOptions.ShowStepLabel))
+					if (f(FormattingOptions.ShowStepLabel))
 					{
 						sb.Append(SR.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
@@ -563,7 +561,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					sb.AppendLine(r(bottleneckStep.ToString(), bottleneckStep));
 				}
 
-				a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+				a(sb, f(FormattingOptions.ShowSeparators));
 			}
 		}
 
@@ -574,7 +572,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 			sb.AppendLine(SR.Get("AnalysisResultTechniqueUsed", culture));
 
-			if (options.HasFlag(FormattingOptions.ShowStepDetail))
+			if (f(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"{SR.Get("AnalysisResultMin", culture),6}, ");
 				sb.Append($"{SR.Get("AnalysisResultTotal", culture),6}");
@@ -586,7 +584,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				orderby s.Difficulty
 				group s by s.GetName(formatProvider))
 			{
-				if (options.HasFlag(FormattingOptions.ShowStepDetail))
+				if (f(FormattingOptions.ShowStepDetail))
 				{
 					var (currentTotal, currentMinimum) = (0, int.MaxValue);
 					foreach (var solvingStep in solvingStepsGroup)
@@ -600,7 +598,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
-			if (options.HasFlag(FormattingOptions.ShowStepDetail))
+			if (f(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"  (---{total,8}) ");
 			}
@@ -608,7 +606,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			sb.Append($"{stepsCount,3} ");
 			sb.AppendLine(SR.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 
-			a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+			a(sb, f(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
@@ -616,7 +614,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
-		if (!solution.IsUndefined && options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
+		if (!solution.IsUndefined && f(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzleSolution", culture)}{solution:!}");
 		}
@@ -628,12 +626,12 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			sb.Append(SR.Get("AnalysisResultNot", culture));
 		}
 		sb.AppendLine(SR.Get("AnalysisResultBeenSolved", culture));
-		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
+		if (f(FormattingOptions.ShowElapsedTime))
 		{
 			sb.Append(SR.Get("AnalysisResultTimeElapsed", culture));
 			sb.AppendLine(elapsed.ToString(@"hh\:mm\:ss\.fff"));
 		}
-		if (memoryUsed is not null && options.HasFlag(FormattingOptions.ShowMemoryUsage))
+		if (memoryUsed is not null && f(FormattingOptions.ShowMemoryUsage))
 		{
 			sb.Append(SR.Get("AnalysisResultMemoryUsed", culture));
 			sb.AppendLine(
@@ -643,7 +641,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			);
 		}
 
-		a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+		a(sb, f(FormattingOptions.ShowSeparators));
 		return sb.ToString();
 
 
@@ -655,6 +653,9 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				sb.AppendLine(new('-', 10));
 			}
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		bool f(FormattingOptions x) => options.HasFlag(x);
 
 		(int, Step)? getBottleneck()
 		{
