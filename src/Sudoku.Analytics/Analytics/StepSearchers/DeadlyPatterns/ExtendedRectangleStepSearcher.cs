@@ -722,7 +722,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 						var step = new ExtendedRectangleType4Step(
 							[.. conclusions],
-							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
+							[
+								[
+									.. candidateOffsets,
+									new ConjugateLinkViewNode(ColorIdentifier.Normal, extraCells[0], extraCells[1], conjugateDigit)
+								]
+							],
 							context.Options,
 							in patternCells,
 							normalDigits,
@@ -736,7 +741,6 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						accumulator.Add(step);
 					}
 				}
-
 				break;
 			}
 		}

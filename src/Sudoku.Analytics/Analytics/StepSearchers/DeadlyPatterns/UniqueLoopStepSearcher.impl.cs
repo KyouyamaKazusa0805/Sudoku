@@ -390,7 +390,13 @@ public partial class UniqueLoopStepSearcher
 
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. GetLoopLinks(path)]],
+					[
+						[
+							.. candidateOffsets,
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, first, second, digit),
+							.. GetLoopLinks(path)
+						]
+					],
 					context.Options,
 					d1,
 					d2,
@@ -554,7 +560,7 @@ public partial class UniqueLoopStepSearcher
 								..
 								from cp in conjugatePairsUsed
 								let id = cp.Digit == digit ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1
-								select new HouseViewNode(id, HouseMask.TrailingZeroCount(cp.Houses)),
+								select new ConjugateLinkViewNode(id, cp.Map[0], cp.Map[1], cp.Digit),
 								.. GetLoopLinks(path)
 							]
 						],

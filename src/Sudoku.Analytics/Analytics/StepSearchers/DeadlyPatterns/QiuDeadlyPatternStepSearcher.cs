@@ -758,7 +758,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 								.. candidateOffsets,
 								new HouseViewNode(ColorIdentifier.Normal, l1),
 								new HouseViewNode(ColorIdentifier.Normal, l2),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, cornerCellCoveredHouse),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, corner[0], corner[1], digit),
 								new CellViewNode(ColorIdentifier.Normal, corner[0]),
 								new CellViewNode(ColorIdentifier.Normal, corner[1])
 							]

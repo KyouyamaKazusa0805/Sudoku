@@ -497,7 +497,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 						.. cellOffsets,
 						new CandidateViewNode(ColorIdentifier.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit),
 						new CandidateViewNode(ColorIdentifier.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit),
-						new HouseViewNode(ColorIdentifier.Normal, house),
+						new ConjugateLinkViewNode(
+							ColorIdentifier.Normal,
+							possibleConjugatePairCells[0],
+							possibleConjugatePairCells[1],
+							selectedDigit
+						),
 						new ChainLinkViewNode(
 							ColorIdentifier.Normal,
 							[conjugatePairCellInnerPattern * 9 + selectedDigit],

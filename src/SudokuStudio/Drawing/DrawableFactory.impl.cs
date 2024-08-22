@@ -713,7 +713,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					new Path
 					{
 						Stroke = new SolidColorBrush(Pane.LinkColor),
-						StrokeThickness = (double)Pane.ChainStrokeThickness,
+						StrokeThickness = (double)Pane.ChainStrokeThickness * (node.ElementType == typeof(Conjugate) ? 2 : 1),
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
 						Tag = nameof(DrawableFactory),

@@ -491,7 +491,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 							.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate),
 							new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + conjugatePairDigit),
 							new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + conjugatePairDigit),
-							new HouseViewNode(ColorIdentifier.Normal, house)
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, c1, c2, conjugatePairDigit)
 						]
 					],
 					context.Options,
