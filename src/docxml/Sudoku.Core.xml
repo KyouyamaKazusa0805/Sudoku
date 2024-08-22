@@ -1287,7 +1287,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chute.TryParse(System.String,Sudoku.Concepts.Chute@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Chute.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Chute@)">
             <inheritdoc/>

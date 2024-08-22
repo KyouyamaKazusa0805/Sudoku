@@ -20,7 +20,7 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool TryParse(string str, out Chute result) => TryParse(str, null, out result);
 
