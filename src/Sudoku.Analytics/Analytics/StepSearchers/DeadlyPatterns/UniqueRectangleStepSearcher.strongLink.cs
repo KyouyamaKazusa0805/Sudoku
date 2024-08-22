@@ -430,8 +430,8 @@ public partial class UniqueRectangleStepSearcher
 						[
 							.. arMode ? GetHighlightCells(urCells) : [],
 							.. candidateOffsets,
-							new HouseViewNode(ColorIdentifier.Normal, map1.SharedLine),
-							new HouseViewNode(ColorIdentifier.Auxiliary1, map2.SharedLine)
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, abxCell, abzCell, b),
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, abyCell, abzCell, a)
 						]
 					],
 					context.Options,
