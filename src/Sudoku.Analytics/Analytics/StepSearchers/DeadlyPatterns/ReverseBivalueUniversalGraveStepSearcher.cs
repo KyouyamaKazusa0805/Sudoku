@@ -317,6 +317,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		ref readonly CellMap cellsChosen
 	)
 	{
+		// Test examples:
+		// +7.+2+4.36+5+9..9..741+3.3+45.+92+8+7..89...6.+9....5..827..3....821.+5+4..6.9.1..+8......9.5.+1:824 145 449 155 458 681 683 285 694 696
+
 		if (cellsChosen is not [var cell1, var cell2])
 		{
 			return null;
