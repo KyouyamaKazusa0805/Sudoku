@@ -7229,27 +7229,27 @@
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Check for type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType3Naked(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Check for type 3 with naked subsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckType4(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Check for type 4.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckMultiple(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckMultiple(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Check for BUG + n.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckXz(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.CheckXz(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Check for BUG-XZ.
             </summary>
