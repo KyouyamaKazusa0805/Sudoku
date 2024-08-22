@@ -4747,9 +4747,6 @@
         <member name="P:System.PairEnumerator`1.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="M:System.PairEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
         <member name="M:System.PairEnumerator`1.GetEnumerator">
             <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
         </member>
@@ -4765,6 +4762,9 @@
             <inheritdoc cref="T:System.PairEnumeratorCasted`3" path="/typeparam[@name='TSecond']"/>
             </typeparam>
             <returns>A <see cref="T:System.PairEnumeratorCasted`3"/> instance.</returns>
+        </member>
+        <member name="M:System.PairEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:System.PairEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
@@ -4849,7 +4849,7 @@
             <param name="ptr">The pointer.</param>
             <param name="index">The start index that you want to pick from.</param>
             <param name="length">The length of the array that pointer points to.</param>
-            <param name="removeTrailingZeros">
+            <param name="skipTrailingZeros">
             Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
             the method will be same as <see cref="M:System.PointerOperations.Slice``1(``0*,System.Int32,System.Int32)"/>.
             </param>

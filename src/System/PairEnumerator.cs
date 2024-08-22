@@ -23,9 +23,6 @@ public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberK
 	readonly object IEnumerator.Current => Current;
 
 
-	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public bool MoveNext() => (_index += 2) < _sequence.Length - 1;
-
 	/// <inheritdoc cref="ReverseEnumerator{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly PairEnumerator<T> GetEnumerator() => this;
@@ -44,6 +41,9 @@ public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberK
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly PairEnumeratorCasted<T, TFirst, TSecond> Cast<TFirst, TSecond>() where TFirst : T where TSecond : T
 		=> new(_sequence);
+
+	/// <inheritdoc cref="IEnumerator.MoveNext"/>
+	public bool MoveNext() => (_index += 2) < _sequence.Length - 1;
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

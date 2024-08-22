@@ -41,7 +41,7 @@ public static class PointerOperations
 	/// <param name="ptr">The pointer.</param>
 	/// <param name="index">The start index that you want to pick from.</param>
 	/// <param name="length">The length of the array that pointer points to.</param>
-	/// <param name="removeTrailingZeros">
+	/// <param name="skipTrailingZeros">
 	/// Indicates whether the method will remove the trailing zeros. If <see langword="false"/>,
 	/// the method will be same as <see cref="Slice{T}(T*, int, int)"/>.
 	/// </param>
@@ -56,12 +56,12 @@ public static class PointerOperations
 	/// 5 elements in this case.
 	/// </remarks>
 	/// <seealso cref="Slice{T}(T*, int, int)"/>
-	public static unsafe ReadOnlySpan<T> Slice<T>(T* ptr, int index, int length, bool removeTrailingZeros)
+	public static unsafe ReadOnlySpan<T> Slice<T>(T* ptr, int index, int length, bool skipTrailingZeros)
 		where T : IEqualityOperators<T, T, bool>
 	{
 		ArgumentNullException.ThrowIfNull(ptr);
 
-		if (removeTrailingZeros)
+		if (skipTrailingZeros)
 		{
 			var count = 0;
 			var p = ptr + length - 1;
