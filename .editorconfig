@@ -437,10 +437,8 @@ dotnet_diagnostic.IDE0161.severity = warning
 csharp_style_prefer_tuple_swap = false:suggestion
 
 # IDE0220: Add explicit cast
-dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
-
-# IDE0220: Add explicit cast
 dotnet_diagnostic.IDE0220.severity = silent
+dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
 
 
 # CA1000: Do not declare static members on generic types
