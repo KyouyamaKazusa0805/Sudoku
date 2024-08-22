@@ -96,7 +96,7 @@ public static class ReadOnlySpanExtensions
 	/// <param name="this">The array.</param>
 	/// <returns>An enumerable collection.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static PairEnumerator<T> EnumeratePairly<T>(this ReadOnlySpan<T> @this) where T : notnull
+	public static PairEnumerator<T> EnumeratePaired<T>(this ReadOnlySpan<T> @this) where T : notnull
 		=> new(
 			(@this.Length & 1) == 0
 				? @this

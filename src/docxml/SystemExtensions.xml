@@ -4724,14 +4724,14 @@
         </member>
         <member name="T:System.PairEnumerator`1">
             <summary>
-            Represents an enumerator that can iterate on elements, adjacent-pairly combined.
+            Represents an enumerator that can iterate on elements, paired.
             </summary>
             <typeparam name="T">The type of each element to be iterated.</typeparam>
             <param name="sequence">The sequence value.</param>
         </member>
         <member name="M:System.PairEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
             <summary>
-            Represents an enumerator that can iterate on elements, adjacent-pairly combined.
+            Represents an enumerator that can iterate on elements, paired.
             </summary>
             <typeparam name="T">The type of each element to be iterated.</typeparam>
             <param name="sequence">The sequence value.</param>
@@ -5013,7 +5013,7 @@
             <param name="this">The sequence to be iterated.</param>
             <returns>An enumerator type that iterates on each element.</returns>
         </member>
-        <member name="M:System.ReadOnlySpanExtensions.EnumeratePairly``1(System.ReadOnlySpan{``0})">
+        <member name="M:System.ReadOnlySpanExtensions.EnumeratePaired``1(System.ReadOnlySpan{``0})">
             <summary>
             Creates a <see cref="T:System.PairEnumerator`1"/> instance that iterates on each element of pair elements.
             </summary>
