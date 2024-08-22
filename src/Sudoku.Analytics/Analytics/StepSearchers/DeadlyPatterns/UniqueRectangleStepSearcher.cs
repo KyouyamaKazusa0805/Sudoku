@@ -408,7 +408,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		return modifiableCount != 4 && emptyCountWhenArMode != 4;
 	}
 
-#pragma warning disable IDE0051
 	/// <summary>
 	/// Checks whether the specified UR cells satisfies the precondition of an incomplete UR.
 	/// </summary>
@@ -516,7 +515,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static CellViewNode[] GetHighlightCells(Cell[] urCells)
 		=> from urCell in urCells select new CellViewNode(ColorIdentifier.Normal, urCell);
-#pragma warning restore IDE0051
 
 
 	//
