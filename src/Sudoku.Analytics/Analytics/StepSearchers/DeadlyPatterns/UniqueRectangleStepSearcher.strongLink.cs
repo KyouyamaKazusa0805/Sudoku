@@ -1338,8 +1338,6 @@ public partial class UniqueRectangleStepSearcher
 		// ..8.+53....7.62.8.+39..+48+7+51.+75+23+18+4+69+369+2+7+418+51+8+45+96+32+7.9..3...4..7.65.3....7+4.6..:217 918 289 591 196 299
 		// 2.8.+7.+5+93+7.+593+28.+1+93.5....7.+5726..1....7.9..+5+69..514+7.5..+6.7.3.+3+76.95.+8.1.+9...7+56:412 435 436 638 452 852 453 257 277 279 494
 
-		// TODO: Bug fixes (colorization, category on cell in same block but count == 2)
-
 		// Determine target cell, same-block cell and the last cell.
 		var cells = (CellMap)urCells;
 		var sameBlockCell = (cells - cornerCell & HousesMap[cornerCell.ToHouse(HouseType.Block)])[0];
@@ -1470,7 +1468,9 @@ public partial class UniqueRectangleStepSearcher
 							]
 						],
 						context.Options,
-						outsideCells.Count == 2 ? Technique.UniqueRectangle4X1L : Technique.UniqueRectangle4X1U,
+						outsideCells.Count == 2 && !HouseMask.IsPow2(outsideCells.BlockMask)
+							? Technique.UniqueRectangle4X1L
+							: Technique.UniqueRectangle4X1U,
 						d1,
 						d2,
 						in cells,

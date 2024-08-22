@@ -12,5 +12,5 @@ public sealed class RectangleConjugatePairsCountFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleConjugatePairStep);
 
 	/// <inheritdoc/>
-	public override Func<ReadOnlySpan<object?>, int> Formula => static args => OeisSequences.A004526((int)args![0]!);
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => OeisSequences.A004526((int)args![0]! + 2);
 }

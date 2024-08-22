@@ -29,7 +29,7 @@ public partial class UniqueRectangleConjugatePairStep(
 	IConjugatePairTrait
 {
 	/// <inheritdoc/>
-	public sealed override int BaseDifficulty => base.BaseDifficulty - 1;
+	public override int BaseDifficulty => base.BaseDifficulty - 1;
 
 	/// <inheritdoc/>
 	public sealed override int Type
