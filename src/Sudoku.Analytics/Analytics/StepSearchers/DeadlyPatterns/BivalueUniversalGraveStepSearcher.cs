@@ -406,7 +406,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		// Check two cell has same house.
 		var cells = TargetCandidatesGroup.CreateMapByKeys(candsGroupByCell);
 		var houses = cells.SharedHouses;
-		if (houses != 0)
+		if (houses == 0)
 		{
 			return null;
 		}
