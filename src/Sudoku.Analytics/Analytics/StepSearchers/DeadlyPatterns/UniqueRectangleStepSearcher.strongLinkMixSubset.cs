@@ -194,7 +194,7 @@ public partial class UniqueRectangleStepSearcher
 									from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
 									let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
 									select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairHouse),
+									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
 									new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
 								]
 							],
@@ -398,7 +398,7 @@ public partial class UniqueRectangleStepSearcher
 								from extraDigitInOutsideCell in extraDigitsMask
 								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
 								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, pairMap.SharedLine),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
 								new HouseViewNode(ColorIdentifier.Auxiliary2, outsideCells.SharedLine)
 							]
 						],
@@ -610,8 +610,8 @@ public partial class UniqueRectangleStepSearcher
 									from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
 									let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
 									select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairHouse),
-									new HouseViewNode(ColorIdentifier.Auxiliary1, pairMap1.SharedLine),
+									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap1[0], pairMap1[1], conjugatePairDigit),
+									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap2[0], pairMap2[1], conjugatePairDigit),
 									new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
 								]
 							],

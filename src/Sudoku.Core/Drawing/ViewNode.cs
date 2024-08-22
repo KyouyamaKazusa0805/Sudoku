@@ -12,6 +12,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(BabaGroupViewNode), 4)]
 [JsonDerivedType(typeof(ChainLinkViewNode), 5)]
 [JsonDerivedType(typeof(CellLinkViewNode), 6)]
+[JsonDerivedType(typeof(ConjugateLinkViewNode), 7)]
 [JsonDerivedType(typeof(CircleViewNode), 10)]
 [JsonDerivedType(typeof(CrossViewNode), 11)]
 [JsonDerivedType(typeof(TriangleViewNode), 12)]

@@ -414,7 +414,12 @@ public partial class UniqueRectangleStepSearcher
 				accumulator.Add(
 					new UniqueRectangleConjugatePairStep(
 						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
+						[
+							[
+								.. candidateOffsets,
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, otherCellsMap[0], otherCellsMap[1], digit)
+							]
+						],
 						context.Options,
 						Technique.UniqueRectangleType4,
 						d1,
@@ -628,8 +633,8 @@ public partial class UniqueRectangleStepSearcher
 					[
 						[
 							.. candidateOffsets,
-							new HouseViewNode(ColorIdentifier.Normal, house1),
-							new HouseViewNode(ColorIdentifier.Normal, house2)
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, corner1, isRow ? o1 : o2, digit),
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, corner2, isRow ? o2 : o1, digit),
 						]
 					],
 					context.Options,
@@ -679,8 +684,6 @@ public partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var r = abzCell.ToHouse(HouseType.Row);
-		var c = abzCell.ToHouse(HouseType.Column);
 		foreach (var digit in (d1, d2))
 		{
 			var map1 = abzCell.AsCellMap() + abxCell;
@@ -749,8 +752,8 @@ public partial class UniqueRectangleStepSearcher
 						[
 							.. arMode ? GetHighlightCells(urCells) : [],
 							.. candidateOffsets,
-							new HouseViewNode(ColorIdentifier.Normal, r),
-							new HouseViewNode(ColorIdentifier.Normal, c)
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, abzCell, abxCell, digit),
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, abzCell, abyCell, digit)
 						]
 					],
 					context.Options,

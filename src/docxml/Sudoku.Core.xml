@@ -4731,6 +4731,73 @@
         <member name="M:Sudoku.Drawing.Nodes.CircleViewNode.Clone">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Drawing.Nodes.ConjugateLinkViewNode">
+            <summary>
+            Defines a view node that highlights for a conjugate pair.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+            <param name="digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Defines a view node that highlights for a conjugate pair.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+            <param name="digit">Indicates the digit used.</param>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.ConjugatePair">
+            <summary>
+            Indicates the target conjugate pair.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Start">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#End">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#ElementType">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Start">
+            <summary>
+            The generated property declaration for parameter <c>start</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.End">
+            <summary>
+            The generated property declaration for parameter <c>end</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Drawing.Nodes.CrossViewNode">
             <summary>
             Defines a cross view node.
@@ -4860,10 +4927,12 @@
         <member name="T:Sudoku.Drawing.Nodes.ILinkViewNode">
             <summary>
             Represents a view node kind that is represented as a link.
-            This type is the base type of <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/> and <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/>.
+            This type is the base type
+            of types <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>, <see cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/> and <see cref="T:Sudoku.Drawing.Nodes.ConjugateLinkViewNode"/>.
             </summary>
             <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
             <seealso cref="T:Sudoku.Drawing.Nodes.CellLinkViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ConjugateLinkViewNode"/>
         </member>
         <member name="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start">
             <summary>
@@ -4884,6 +4953,12 @@
             <summary>
             Indicates the element type.
             </summary>
+            <remarks>
+            The result value may not match property type of <see cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start"/> and <see cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.End"/>.
+            This property is only used as distinct link types.
+            </remarks>
+            <seealso cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.Start"/>
+            <seealso cref="P:Sudoku.Drawing.Nodes.ILinkViewNode.End"/>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ILinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Object@,System.Object@)">
             <target name="method">

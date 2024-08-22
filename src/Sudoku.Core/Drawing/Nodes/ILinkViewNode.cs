@@ -2,10 +2,12 @@ namespace Sudoku.Drawing.Nodes;
 
 /// <summary>
 /// Represents a view node kind that is represented as a link.
-/// This type is the base type of <see cref="ChainLinkViewNode"/> and <see cref="CellLinkViewNode"/>.
+/// This type is the base type
+/// of types <see cref="ChainLinkViewNode"/>, <see cref="CellLinkViewNode"/> and <see cref="ConjugateLinkViewNode"/>.
 /// </summary>
 /// <seealso cref="ChainLinkViewNode"/>
 /// <seealso cref="CellLinkViewNode"/>
+/// <seealso cref="ConjugateLinkViewNode"/>
 public interface ILinkViewNode
 {
 	/// <summary>
@@ -26,6 +28,12 @@ public interface ILinkViewNode
 	/// <summary>
 	/// Indicates the element type.
 	/// </summary>
+	/// <remarks>
+	/// The result value may not match property type of <see cref="Start"/> and <see cref="End"/>.
+	/// This property is only used as distinct link types.
+	/// </remarks>
+	/// <seealso cref="Start"/>
+	/// <seealso cref="End"/>
 	public abstract Type ElementType { get; }
 
 

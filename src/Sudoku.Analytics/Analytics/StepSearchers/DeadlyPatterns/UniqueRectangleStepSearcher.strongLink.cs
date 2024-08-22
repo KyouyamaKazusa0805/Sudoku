@@ -148,7 +148,7 @@ public partial class UniqueRectangleStepSearcher
 									[
 										.. arMode ? GetHighlightCells(urCells) : [],
 										.. candidateOffsets,
-										new HouseViewNode(ColorIdentifier.Normal, house)
+										new ConjugateLinkViewNode(ColorIdentifier.Normal, cell, otherCell, digit)
 									]
 								],
 								context.Options,
@@ -314,7 +314,7 @@ public partial class UniqueRectangleStepSearcher
 									[
 										.. arMode ? GetHighlightCells(urCells) : [],
 										.. candidateOffsets,
-										new HouseViewNode(ColorIdentifier.Normal, house)
+										new ConjugateLinkViewNode(ColorIdentifier.Normal, cell, otherCell, digit)
 									]
 								],
 								context.Options,
@@ -549,8 +549,8 @@ public partial class UniqueRectangleStepSearcher
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
 								.. candidateOffsets,
-								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[0].Line),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, cornerCell, begin, a),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, begin, abzCell, b)
 							]
 						],
 						context.Options,
@@ -663,8 +663,8 @@ public partial class UniqueRectangleStepSearcher
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
 								.. candidateOffsets,
-								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[0].Line),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, cornerCell, end, a),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, begin, abzCell, b)
 							]
 						],
 						context.Options,
@@ -777,8 +777,8 @@ public partial class UniqueRectangleStepSearcher
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
 								.. candidateOffsets,
-								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[0].Line),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, cornerCell, end, a),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, begin, abzCell, a)
 							]
 						],
 						context.Options,
@@ -903,9 +903,9 @@ public partial class UniqueRectangleStepSearcher
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
 								.. candidateOffsets,
-								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[0].Line),
-								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line),
-								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[2].Line)
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, head, begin, a),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, begin, end, b),
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, end, extra, a)
 							]
 						],
 						context.Options,
@@ -1047,9 +1047,9 @@ public partial class UniqueRectangleStepSearcher
 								[
 									.. arMode ? GetHighlightCells(urCells) : [],
 									.. candidateOffsets,
-									new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[0].Line),
-									new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[1].Line),
-									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
+									new ConjugateLinkViewNode(ColorIdentifier.Normal, abx, aby, a),
+									new ConjugateLinkViewNode(ColorIdentifier.Normal, aby, abw, a),
+									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, linkMap[0], linkMap[1], b)
 								]
 							],
 							context.Options,

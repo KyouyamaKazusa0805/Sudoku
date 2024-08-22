@@ -431,7 +431,12 @@ public partial class UniqueRectangleStepSearcher
 									[
 										.. cellOffsets,
 										.. candidateOffsets,
-										new HouseViewNode(ColorIdentifier.Normal, house),
+										new ConjugateLinkViewNode(
+											ColorIdentifier.Normal,
+											guardianCellPair[0],
+											guardianCellPair[1],
+											conjugatePairDigit
+										),
 										new HouseViewNode(ColorIdentifier.Auxiliary2, houseCombination[0]),
 										new HouseViewNode(ColorIdentifier.Auxiliary2, houseCombination[1])
 									]

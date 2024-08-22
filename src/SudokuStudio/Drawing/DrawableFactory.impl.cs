@@ -584,12 +584,14 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 			// Find two candidates with a minimal distance.
 			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
-			if (node.ElementType == typeof(CandidateMap))
+			if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
 			{
-				foreach (var s in (CandidateMap)start)
+				var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+				var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+				foreach (var s in startCandidates)
 				{
 					var tempPoint1 = Converter.GetPosition(s);
-					foreach (var e in (CandidateMap)end)
+					foreach (var e in endCandidates)
 					{
 						var tempPoint2 = Converter.GetPosition(e);
 						var d = tempPoint1.DistanceTo(tempPoint2);
@@ -642,10 +644,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			}
 
 			// Now cut the link.
-			if (node.ElementType == typeof(CandidateMap))
-			{
-				cut(ref pt1, ref pt2, cellSize);
-			}
+			cut(ref pt1, ref pt2, cellSize);
 
 			if (linkPassesThroughUsedCandidates)
 			{
@@ -759,7 +758,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
 			{
-				if (node.ElementType == typeof(CandidateMap))
+				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
 				{
 					(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
 					var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
@@ -771,6 +770,65 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				else
 				{
 					(p1, p2) = (pt1, pt2);
+				}
+			}
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			void cut(ref Point pt1, ref Point pt2, double cs)
+			{
+				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
+				{
+					var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
+					var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
+					var (x, y) = (cs / Sqrt(1 + slope * slope), cs * Sqrt(slope * slope / (1 + slope * slope)));
+					if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
+					{
+						pt1.Y -= cs / 2;
+						pt2.Y += cs / 2;
+					}
+					else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x))
+					{
+						pt1.Y += cs / 2;
+						pt2.Y -= cs / 2;
+					}
+					else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x)
+					{
+						pt1.X -= cs / 2;
+						pt2.X += cs / 2;
+					}
+					else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x)
+					{
+						pt1.X += cs / 2;
+						pt2.X -= cs / 2;
+					}
+					else if (pt1y > pt2y && pt1x > pt2x)
+					{
+						pt1.X -= x / 2;
+						pt1.Y -= y / 2;
+						pt2.X += x / 2;
+						pt2.Y += y / 2;
+					}
+					else if (pt1y > pt2y && pt1x < pt2x)
+					{
+						pt1.X += x / 2;
+						pt1.Y -= y / 2;
+						pt2.X -= x / 2;
+						pt2.Y += y / 2;
+					}
+					else if (pt1y < pt2y && pt1x > pt2x)
+					{
+						pt1.X -= x / 2;
+						pt1.Y += y / 2;
+						pt2.X += x / 2;
+						pt2.Y -= y / 2;
+					}
+					else if (pt1y < pt2y && pt1x < pt2x)
+					{
+						pt1.X += x / 2;
+						pt1.Y += y / 2;
+						pt2.X -= x / 2;
+						pt2.Y -= y / 2;
+					}
 				}
 			}
 		}
@@ -793,62 +851,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(ref Point pt1, ref Point pt2, double cs)
-		{
-			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
-			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
-			var (x, y) = (cs / Sqrt(1 + slope * slope), cs * Sqrt(slope * slope / (1 + slope * slope)));
-			if (pt1y > pt2y && pt1x.NearlyEquals(pt2x))
-			{
-				pt1.Y -= cs / 2;
-				pt2.Y += cs / 2;
-			}
-			else if (pt1y < pt2y && pt1x.NearlyEquals(pt2x))
-			{
-				pt1.Y += cs / 2;
-				pt2.Y -= cs / 2;
-			}
-			else if (pt1y.NearlyEquals(pt2y) && pt1x > pt2x)
-			{
-				pt1.X -= cs / 2;
-				pt2.X += cs / 2;
-			}
-			else if (pt1y.NearlyEquals(pt2y) && pt1x < pt2x)
-			{
-				pt1.X += cs / 2;
-				pt2.X -= cs / 2;
-			}
-			else if (pt1y > pt2y && pt1x > pt2x)
-			{
-				pt1.X -= x / 2;
-				pt1.Y -= y / 2;
-				pt2.X += x / 2;
-				pt2.Y += y / 2;
-			}
-			else if (pt1y > pt2y && pt1x < pt2x)
-			{
-				pt1.X += x / 2;
-				pt1.Y -= y / 2;
-				pt2.X -= x / 2;
-				pt2.Y += y / 2;
-			}
-			else if (pt1y < pt2y && pt1x > pt2x)
-			{
-				pt1.X -= x / 2;
-				pt1.Y += y / 2;
-				pt2.X += x / 2;
-				pt2.Y -= y / 2;
-			}
-			else if (pt1y < pt2y && pt1x < pt2x)
-			{
-				pt1.X += x / 2;
-				pt1.Y += y / 2;
-				pt2.X -= x / 2;
-				pt2.Y -= y / 2;
-			}
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void correctOffsetOfPoint(ref Point point, double ow, double oh)
 		{
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
@@ -867,13 +869,15 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			foreach (var node in nodes)
 			{
 				var (_, start, end) = node;
-				if (node.ElementType == typeof(CandidateMap))
+				if (node.ElementType == typeof(CandidateMap) || node.ElementType == typeof(Conjugate))
 				{
-					foreach (var startCandidate in (CandidateMap)start)
+					var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					foreach (var startCandidate in startCandidates)
 					{
 						points.Add(Converter.GetPosition(startCandidate));
 					}
-					foreach (var endCandidate in (CandidateMap)end)
+					foreach (var endCandidate in endCandidates)
 					{
 						points.Add(Converter.GetPosition(endCandidate));
 					}
