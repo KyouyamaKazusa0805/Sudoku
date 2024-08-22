@@ -6170,6 +6170,11 @@
             Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.EqualityContract">
+            <summary>
+            Represents a <see cref="T:System.Type"/> instance that defines the current type.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Conclusions">
             <inheritdoc/>
         </member>
@@ -13702,6 +13707,9 @@
             <param name="conjugatePairs"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.EqualityContract">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
@@ -13946,6 +13954,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.EqualityContract">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.Sudoku#Traits#IConjugatePairTrait#ConjugatePairsCount">

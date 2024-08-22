@@ -101,7 +101,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates the identifier of this type. The value is equivalent to <c>GetType().Name</c>.
 	/// </summary>
-	public string FormatTypeIdentifier => GetType().Name;
+	public string FormatTypeIdentifier => EqualityContract.Name;
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -135,6 +135,11 @@ public abstract partial class Step(
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
 	/// </summary>
 	public virtual FactorCollection Factors => [];
+
+	/// <summary>
+	/// Represents a <see cref="Type"/> instance that defines the current type.
+	/// </summary>
+	protected virtual Type EqualityContract => GetType();
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<Conclusion> IDrawable.Conclusions => Conclusions;

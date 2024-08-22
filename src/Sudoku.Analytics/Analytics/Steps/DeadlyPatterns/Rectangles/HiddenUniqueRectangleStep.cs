@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -33,4 +34,8 @@ public sealed class HiddenUniqueRectangleStep(
 	isAvoidable,
 	conjugatePairs,
 	absoluteOffset
-);
+)
+{
+	/// <inheritdoc/>
+	protected override Type EqualityContract => base.EqualityContract.BaseType!;
+}
