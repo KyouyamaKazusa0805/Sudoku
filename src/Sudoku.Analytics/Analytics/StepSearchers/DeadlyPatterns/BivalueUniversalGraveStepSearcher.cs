@@ -324,66 +324,63 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			}
 
 			// Iterate on each size.
-			for (var size = 1; size < otherCellsMap.Count; size++)
+			foreach (ref readonly var cells in otherCellsMap | otherCellsMap.Count - 1)
 			{
-				foreach (ref readonly var cells in otherCellsMap & size)
+				var mask = (Mask)(digitsMask | grid[in cells]);
+				if (Mask.PopCount(mask) != cells.Count + 1)
 				{
-					var mask = (Mask)(digitsMask | grid[in cells]);
-					if (Mask.PopCount(mask) != size + 1)
-					{
-						continue;
-					}
-
-					if ((houseMap & ~cells & ~map & EmptyCells) is not (var elimMap and not []))
-					{
-						continue;
-					}
-
-					var conclusions = new List<Conclusion>();
-					foreach (var cell in elimMap)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							if ((mask >> digit & 1) != 0)
-							{
-								conclusions.Add(new(Elimination, cell, digit));
-							}
-						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
-
-					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var cand in trueCandidates)
-					{
-						candidateOffsets.Add(new(ColorIdentifier.Normal, cand));
-					}
-					foreach (var cell in cells)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
-						}
-					}
-
-					var step = new BivalueUniversalGraveType3Step(
-						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-						context.Options,
-						in trueCandidates,
-						digitsMask,
-						in cells,
-						true
-					);
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator.Add(step);
+					continue;
 				}
+
+				if ((houseMap & ~cells & ~map & EmptyCells) is not (var elimMap and not []))
+				{
+					continue;
+				}
+
+				var conclusions = new List<Conclusion>();
+				foreach (var cell in elimMap)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						if ((mask >> digit & 1) != 0)
+						{
+							conclusions.Add(new(Elimination, cell, digit));
+						}
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cand in trueCandidates)
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cand));
+				}
+				foreach (var cell in cells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
+				var step = new BivalueUniversalGraveType3Step(
+					[.. conclusions],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+					context.Options,
+					in trueCandidates,
+					digitsMask,
+					in cells,
+					true
+				);
+				if (onlyFindOne)
+				{
+					return step;
+				}
+
+				accumulator.Add(step);
 			}
 		}
 		return null;
