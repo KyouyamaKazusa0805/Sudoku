@@ -106,7 +106,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<TSource>.Enumerator GetEnumerator() => SourceSpan.GetEnumerator();
+	public AnonymousSpanEnumerator<TSource> GetEnumerator() => new(SourceSpan);
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

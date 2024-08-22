@@ -54,7 +54,7 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Digit>.Enumerator GetEnumerator() => ((ReadOnlySpan<Digit>)Digits).GetEnumerator();
+	public AnonymousSpanEnumerator<Digit> GetEnumerator() => new(Digits);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

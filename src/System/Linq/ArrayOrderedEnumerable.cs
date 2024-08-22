@@ -199,7 +199,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<T>.Enumerator GetEnumerator() => ArrayOrdered.AsReadOnlySpan().GetEnumerator();
+	public AnonymousSpanEnumerator<T> GetEnumerator() => new(ArrayOrdered);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();

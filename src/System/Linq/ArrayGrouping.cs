@@ -87,7 +87,7 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<TSource>.Enumerator GetEnumerator() => _elements.AsReadOnlySpan().GetEnumerator();
+	public AnonymousSpanEnumerator<TSource> GetEnumerator() => new(_elements);
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetPinnableReference"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -76,7 +76,7 @@ public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(M
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<SingleSubtype>.Enumerator GetEnumerator() => _values.Span.GetEnumerator();
+	public AnonymousSpanEnumerator<SingleSubtype> GetEnumerator() => new(_values.Span);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _values.ToArray().GetEnumerator();

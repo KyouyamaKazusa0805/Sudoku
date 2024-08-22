@@ -683,7 +683,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Step>.Enumerator GetEnumerator() => StepsSpan.GetEnumerator();
+	public AnonymousSpanEnumerator<Step> GetEnumerator() => new(StepsSpan);
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<AnalysisResult, Step>.Any() => InterimSteps is { Length: not 0 };

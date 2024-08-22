@@ -4,6 +4,57 @@
         <name>SystemExtensions</name>
     </assembly>
     <members>
+        <member name="T:System.AnonymousSpanEnumerator`1">
+            <summary>
+            Represents an enumerator that can be used in anonymous span iteration cases.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents an enumerator that can be used in anonymous span iteration cases.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+        </member>
+        <member name="F:System.AnonymousSpanEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.AnonymousSpanEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.AnonymousSpanEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.AnonymousSpanEnumerator`1._elements">
+            <summary>
+            The generated field declaration for parameter <c>elements</c>.
+            </summary>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.AnonymousSpanEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Array"/>, especially for one-dimensional array.

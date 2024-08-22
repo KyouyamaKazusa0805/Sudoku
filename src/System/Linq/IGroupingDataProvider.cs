@@ -41,7 +41,7 @@ public interface IGroupingDataProvider<TSelf, out TKey, TElement> :
 	/// Creates an enumerator that can enumerate each element in the source collection.
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
-	public abstract new ReadOnlySpan<TElement>.Enumerator GetEnumerator();
+	public abstract new AnonymousSpanEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)Elements.ToArray()).GetEnumerator();
