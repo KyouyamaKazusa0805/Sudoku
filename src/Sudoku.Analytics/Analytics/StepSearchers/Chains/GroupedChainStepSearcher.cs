@@ -32,6 +32,10 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		// Test examples:
+		// AAR Loop
+		// 8+2+6.374+1...5...+6.8...6...2+3+41..2..5+6..8+1693+4..+63..+4.+816+8.........4..+68...9+2..5+1+64:921 135 935 937 744 561 761 767 974 977 779 381 781 785 589
+
 		var accumulator = new List<NormalChainStep>();
 		if (ChainModule.CollectCore(ref context, accumulator, true) is { } step)
 		{
