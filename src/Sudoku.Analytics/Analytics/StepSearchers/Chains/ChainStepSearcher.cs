@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.XChain, Technique.XyChain, Technique.XyXChain,
 	Technique.AlternatingInferenceChain, Technique.DiscontinuousNiceLoop,
 
-	// Overlappings
+	// Overlapping
 	Technique.SelfConstraint,
 
 	// Loops

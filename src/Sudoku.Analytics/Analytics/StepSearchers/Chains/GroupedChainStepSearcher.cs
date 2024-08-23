@@ -22,7 +22,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.GroupedXChain, Technique.XyChain, Technique.GroupedXyXChain,
 	Technique.GroupedAlternatingInferenceChain, Technique.GroupedDiscontinuousNiceLoop,
 
-	// Overlappings
+	// Overlapping
 	Technique.GroupedSelfConstraint, Technique.NodeCollision,
 
 	// Loops
