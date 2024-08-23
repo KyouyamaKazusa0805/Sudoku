@@ -7,7 +7,7 @@ internal static class ProjectWideConstants
 {
 	/// <summary>
 	/// Indicates the instance that is used for synchronization for asynchronous environment,
-	/// used for the operations that is analyzing a puzzle, or gathering steps.
+	/// used for the operations that is analyzing a puzzle, or collecting steps.
 	/// </summary>
 	/// <seealso cref="Step"/>
 	public static readonly Lock AnalyzingRelatedSyncRoot = new();

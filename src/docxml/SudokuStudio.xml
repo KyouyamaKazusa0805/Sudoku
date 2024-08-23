@@ -5356,7 +5356,7 @@
         <member name="F:SudokuStudio.ProjectWideConstants.AnalyzingRelatedSyncRoot">
             <summary>
             Indicates the instance that is used for synchronization for asynchronous environment,
-            used for the operations that is analyzing a puzzle, or gathering steps.
+            used for the operations that is analyzing a puzzle, or collecting steps.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
@@ -5970,11 +5970,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_FetchPuzzleFromLibrary">
             <summary>
               Looks up a localized string similar to Fetch from library.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_FilterGatheredSteps">
-            <summary>
-              Looks up a localized string similar to Filter gathered steps.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_FilteringFailedDueToInvalidExpression">
@@ -7989,7 +7984,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AnalysisDescription">
             <summary>
-              Looks up a localized string similar to This page lists options that controls the analysis and gathering solving steps of a puzzle.
+              Looks up a localized string similar to This page lists options that controls the analysis and collecting solving steps of a puzzle.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AnimationFeedback">
@@ -13251,7 +13246,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched">
             <summary>
-            Indicates whether the gatherer is launched.
+            Indicates whether the collector is launched.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched">

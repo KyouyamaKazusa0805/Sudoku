@@ -81,7 +81,7 @@ public sealed partial class AnalyzePage : Page
 	internal partial bool IsAnalyzerLaunched { get; set; }
 
 	/// <summary>
-	/// Indicates whether the gatherer is launched.
+	/// Indicates whether the collector is launched.
 	/// </summary>
 	[DependencyProperty]
 	internal partial bool IsGathererLaunched { get; set; }

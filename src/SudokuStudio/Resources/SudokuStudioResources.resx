@@ -387,9 +387,6 @@
   <data name="AnalyzePage_FetchPuzzleFromLibrary" xml:space="preserve">
     <value>Fetch from library</value>
   </data>
-  <data name="AnalyzePage_FilterGatheredSteps" xml:space="preserve">
-    <value>Filter gathered steps</value>
-  </data>
   <data name="AnalyzePage_FilteringFailedDueToInvalidExpression" xml:space="preserve">
     <value>Filtering expression is invalid. Please check.</value>
   </data>
@@ -1240,7 +1237,7 @@
     <value>Solving &amp; Analysis</value>
   </data>
   <data name="SettingsPage_AnalysisDescription" xml:space="preserve">
-    <value>This page lists options that controls the analysis and gathering solving steps of a puzzle</value>
+    <value>This page lists options that controls the analysis and collecting solving steps of a puzzle</value>
   </data>
   <data name="SettingsPage_AnimationFeedback" xml:space="preserve">
     <value>Animation Feedbacks</value>

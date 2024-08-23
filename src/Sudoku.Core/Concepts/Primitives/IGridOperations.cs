@@ -18,7 +18,7 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : un
 	/// Creates a mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9,
 	/// ranged in a specified list of cells in the current sudoku grid.
 	/// </summary>
-	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
+	/// <param name="cells">A list of desired cells.</param>
 	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
 	public abstract Mask this[ref readonly CellMap cells] { get; }
 
@@ -27,7 +27,7 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : un
 	/// </summary>
 	/// <param name="cells"><inheritdoc cref="this[ref readonly CellMap]" path="/param[@name='cells']"/></param>
 	/// <param name="withValueCells">
-	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+	/// Indicates whether the value cells (given or modifiable ones) will be included to be checked.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
 	/// <param name="mergingMethod">

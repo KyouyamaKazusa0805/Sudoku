@@ -132,7 +132,7 @@ public sealed class DancingLinksSolver : ISolver
 	}
 
 	/// <summary>
-	/// Try to gather all possible solutions, and determine whether the puzzle is valid.
+	/// Try to collect all possible solutions, and determine whether the puzzle is valid.
 	/// </summary>
 	/// <param name="answer">The answers found.</param>
 	/// <param name="result">The solution if the puzzle is unique.</param>

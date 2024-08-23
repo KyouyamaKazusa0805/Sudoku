@@ -387,9 +387,6 @@
   <data name="AnalyzePage_FetchPuzzleFromLibrary" xml:space="preserve">
     <value>题库抽题</value>
   </data>
-  <data name="AnalyzePage_FilterGatheredSteps" xml:space="preserve">
-    <value>过滤</value>
-  </data>
   <data name="AnalyzePage_FilteringFailedDueToInvalidExpression" xml:space="preserve">
     <value>查询表达式无法正确被程序解析。请检查。</value>
   </data>

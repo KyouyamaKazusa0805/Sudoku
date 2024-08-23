@@ -2,7 +2,7 @@ namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
 /// Represents a list of cases that describes some cases that <see cref="StepSearcher"/> is partially allowed
-/// in searching or gathering operation. Fields in this type can be used
+/// in searching or collecting operation. Fields in this type can be used
 /// by <see cref="StepSearcherAttribute.RuntimeFlags"/> property assigning.
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>

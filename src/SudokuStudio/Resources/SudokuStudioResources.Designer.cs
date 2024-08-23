@@ -1123,15 +1123,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter gathered steps.
-        /// </summary>
-        internal static string AnalyzePage_FilterGatheredSteps {
-            get {
-                return ResourceManager.GetString("AnalyzePage_FilterGatheredSteps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Filtering expression is invalid. Please check..
         /// </summary>
         internal static string AnalyzePage_FilteringFailedDueToInvalidExpression {
@@ -4750,7 +4741,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page lists options that controls the analysis and gathering solving steps of a puzzle.
+        ///   Looks up a localized string similar to This page lists options that controls the analysis and collecting solving steps of a puzzle.
         /// </summary>
         internal static string SettingsPage_AnalysisDescription {
             get {

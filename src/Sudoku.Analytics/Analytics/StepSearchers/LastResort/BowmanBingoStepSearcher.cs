@@ -89,7 +89,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <summary>
 	/// <inheritdoc cref="Collect(ref StepAnalysisContext)" path="/summary"/>
 	/// </summary>
-	/// <param name="result">The accumulator instance to gather the result.</param>
+	/// <param name="result">The accumulator.</param>
 	/// <param name="grid">The sudoku grid to be checked.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="onlyFindOne"><inheritdoc cref="StepAnalysisContext.OnlyFindOne"/></param>

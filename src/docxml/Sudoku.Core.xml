@@ -3642,7 +3642,7 @@
             Creates a mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9,
             ranged in a specified list of cells in the current sudoku grid.
             </summary>
-            <param name="cells">The list of cells to gather the usages on all digits.</param>
+            <param name="cells">A list of desired cells.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGridOperations`1.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
@@ -3651,7 +3651,7 @@
             </summary>
             <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Primitives.IGridOperations`1.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
             <param name="withValueCells">
-            Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
+            Indicates whether the value cells (given or modifiable ones) will be included to be checked.
             If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
             </param>
             <param name="mergingMethod">
@@ -9945,7 +9945,7 @@
         </member>
         <member name="M:Sudoku.Runtime.SolvingServices.Dlx.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Runtime.SolvingServices.Dlx.DancingLinkNode},Sudoku.Concepts.Grid@)">
             <summary>
-            Try to gather all possible solutions, and determine whether the puzzle is valid.
+            Try to collect all possible solutions, and determine whether the puzzle is valid.
             </summary>
             <param name="answer">The answers found.</param>
             <param name="result">The solution if the puzzle is unique.</param>
