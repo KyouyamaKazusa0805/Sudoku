@@ -694,6 +694,17 @@
             Indicates a view of highlight elements.
             </summary>
         </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Sudoku#Drawing#IDrawable#Conclusions">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Sudoku#Drawing#IDrawable#Views">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.op_Subtraction(SudokuStudio.BindableSource.ViewUnitBindableSource,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+            <summary>
+            Make subtraction to get delta items.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ConclusionsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>.
@@ -705,6 +716,31 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>.
             </summary>
             <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Drawing.IDrawableItem"/> instances to indicate diff items
+            (which items are added, and which items are removed).
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.IDrawableItem"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Positives">
+            <summary>
+            Indicates the positives.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Negatives">
+            <summary>
+            Indicates the negatives.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Deconstruct(System.ReadOnlySpan{Sudoku.Drawing.IDrawableItem}@,System.ReadOnlySpan{Sudoku.Drawing.IDrawableItem}@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="T:SudokuStudio.Collection.ColorPalette">
             <summary>
@@ -2873,6 +2909,14 @@
             in order to be used for distinction with other controls in the collection.
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.IncrementalUpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+            <summary>
+            Refresh the pan view unit controls incrementally.
+            </summary>
+            <param name="pane">The pane.</param>
+            <param name="old">The original value to be compared.</param>
+            <param name="new">The new value to be compared.</param>
         </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>

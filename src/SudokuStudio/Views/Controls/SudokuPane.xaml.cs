@@ -1036,7 +1036,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		if (d is SudokuPane pane)
 		{
-			UpdateViewUnitControls(pane);
+			IncrementalUpdateViewUnitControls(pane, (ViewUnitBindableSource?)e.OldValue, (ViewUnitBindableSource?)e.NewValue);
 			pane.Caching?.Invoke(pane, EventArgs.Empty);
 		}
 	}

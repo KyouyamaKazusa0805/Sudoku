@@ -12,6 +12,26 @@ namespace SudokuStudio.Drawing;
 internal static partial class DrawableFactory
 {
 	/// <summary>
+	/// Refresh the pan view unit controls incrementally.
+	/// </summary>
+	/// <param name="pane">The pane.</param>
+	/// <param name="old">The original value to be compared.</param>
+	/// <param name="new">The new value to be compared.</param>
+	public static void IncrementalUpdateViewUnitControls(SudokuPane pane, ViewUnitBindableSource? old, ViewUnitBindableSource? @new)
+#if false
+	{
+		// Determine which nodes should be updated.
+		// We may not clear all possible controls, in order to optimize the memory usage and performance.
+		var (negatives, positives) = old - @new;
+
+		// Find all bound controls that have already displayed in control.
+		// TODO: Change tag property values from all controls that are used by displaying view nodes to view nodes or conclusion instances directly.
+	}
+#else
+		=> UpdateViewUnitControls(pane);
+#endif
+
+	/// <summary>
 	/// Refresh the pane view unit controls.
 	/// </summary>
 	/// <param name="pane">The pane.</param>

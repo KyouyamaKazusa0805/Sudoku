@@ -28,6 +28,7 @@ namespace Sudoku.Concepts;
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
+	IDrawableItem,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
 	IFormattable,

@@ -4427,6 +4427,13 @@
             Indicates the views of the step that may be displayed onto the screen using pictures.
             </summary>
         </member>
+        <member name="T:Sudoku.Drawing.IDrawableItem">
+            <summary>
+            Represents a drawable item (<see cref="T:Sudoku.Drawing.ViewNode"/> or <see cref="T:Sudoku.Concepts.Conclusion"/>).
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.ViewNode"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
         <member name="T:Sudoku.Drawing.LinkShape">
             <summary>
             Represents a link shape.
