@@ -1,11 +1,11 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 using static BestTripletPermutation;
 
 /// <summary>
 /// Represents a finder type.
 /// </summary>
-public sealed unsafe class MinLexFinder
+public sealed unsafe class MinlexFinder
 {
 	/// <summary>
 	/// Indicates the total number of candidate list, which means the worst case.
@@ -48,8 +48,8 @@ public sealed unsafe class MinLexFinder
 		result[8] = (char)((minTopRowScore) & 1);
 
 		// Step 1: Determine for top rows.
-		var candidatesRow02468 = (stackalloc MinLexCandidate[CandidateListTotal]);
-		var candidatesRow1357 = (stackalloc MinLexCandidate[CandidateListTotal]);
+		var candidatesRow02468 = (stackalloc MinlexCandidate[CandidateListTotal]);
+		var candidatesRow1357 = (stackalloc MinlexCandidate[CandidateListTotal]);
 		var currentCandidatesCount = 0;
 		for (var nowTransposed = (sbyte)0; nowTransposed < 2; nowTransposed++)
 		{
@@ -64,7 +64,7 @@ public sealed unsafe class MinLexFinder
 				{
 					// Here we have a top row candidate.
 					// In the empty template fix only the transposition and row 0.
-					var cand = new MinLexCandidate(nowTransposed, topRow);
+					var cand = new MinlexCandidate(nowTransposed, topRow);
 
 					// To fix all minimal stack permutations and store for later row expansion
 					cand.ExpandStacks(pair, minTopRowScore, candidatesRow02468, ref currentCandidatesCount);

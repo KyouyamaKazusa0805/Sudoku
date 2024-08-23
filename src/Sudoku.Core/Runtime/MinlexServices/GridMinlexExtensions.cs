@@ -1,9 +1,9 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, by checking min-lex-related properties.
 /// </summary>
-public static class GridMinLexExtensions
+public static class GridMinlexExtensions
 {
 	/// <summary>
 	/// Checks whether the current grid is the minimal lexicographical form, which means the corresponding string text code
@@ -14,7 +14,7 @@ public static class GridMinLexExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsMinLexGrid(this ref readonly Grid @this)
 		=> @this.PuzzleType != SudokuType.Sukaku && @this.GetUniqueness() == Uniqueness.Unique && @this.ToString("0") is var s
-			? new MinLexFinder().Find(s) == s
+			? new MinlexFinder().Find(s) == s
 			: throw new InvalidOperationException(SR.ExceptionMessage("MinLexShouldBeUniqueAndNotSukaku"));
 
 	/// <summary>
@@ -22,7 +22,7 @@ public static class GridMinLexExtensions
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid GetMinLexGrid(this ref readonly Grid @this) => new MinLexFinder().Find(in @this);
+	public static Grid GetMinLexGrid(this ref readonly Grid @this) => new MinlexFinder().Find(in @this);
 
 	/// <summary>
 	/// Adjust the grid to minimal lexicographical form.

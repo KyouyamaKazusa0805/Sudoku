@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 /// <summary>
 /// Represents the permutation information for best triplet.

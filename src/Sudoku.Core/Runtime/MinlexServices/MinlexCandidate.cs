@@ -1,11 +1,11 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 using static BestTripletPermutation;
 
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
-public unsafe struct MinLexCandidate
+public unsafe struct MinlexCandidate
 {
 	/// <summary>
 	/// A flag field indicating whether the candidate is handled as transposed.
@@ -34,18 +34,18 @@ public unsafe struct MinLexCandidate
 
 
 	/// <summary>
-	/// Initializes a <see cref="MinLexCandidate"/> instance.
+	/// Initializes a <see cref="MinlexCandidate"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public MinLexCandidate() => this = Empty;
+	public MinlexCandidate() => this = Empty;
 
 	/// <summary>
-	/// Initializes a <see cref="MinLexCandidate"/> instance via the specified flag for tranpose case and top row.
+	/// Initializes a <see cref="MinlexCandidate"/> instance via the specified flag for transpose case and top row.
 	/// </summary>
 	/// <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
 	/// <param name="topRow">The top row used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public MinLexCandidate(sbyte transpose, int topRow) : this()
+	public MinlexCandidate(sbyte transpose, int topRow) : this()
 	{
 		IsTransposed = transpose;
 		MapRowsForward[topRow] = 0;
@@ -54,13 +54,13 @@ public unsafe struct MinLexCandidate
 
 
 	/// <summary>
-	/// Represents an empty <see cref="MinLexCandidate"/> instance.
+	/// Represents an empty <see cref="MinlexCandidate"/> instance.
 	/// </summary>
-	public static MinLexCandidate Empty
+	public static MinlexCandidate Empty
 	{
 		get
 		{
-			var result = default(MinLexCandidate) with { IsTransposed = 0, StacksPermutation = 63 };
+			var result = default(MinlexCandidate) with { IsTransposed = 0, StacksPermutation = 63 };
 			for (var i = 0; i < 9; i++)
 			{
 				result.MapRowsForward[i] = -1;
@@ -84,7 +84,7 @@ public unsafe struct MinLexCandidate
 	/// <param name="topKey">Indicates the top key.</param>
 	/// <param name="results">Indicates the results.</param>
 	/// <param name="resultCount">The result count.</param>
-	public readonly void ExpandStacks(ReadOnlySpan<GridPattern> pair, int topKey, Span<MinLexCandidate> results, ref int resultCount)
+	public readonly void ExpandStacks(ReadOnlySpan<GridPattern> pair, int topKey, Span<MinlexCandidate> results, ref int resultCount)
 	{
 		// For a top row, obtain stack and columns permutations.
 		ref readonly var gr = ref pair[IsTransposed];

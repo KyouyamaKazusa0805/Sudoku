@@ -1,10 +1,10 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/> for minlex.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridMinLexComparisonExtensions
+public static class GridMinlexComparisonExtensions
 {
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance,

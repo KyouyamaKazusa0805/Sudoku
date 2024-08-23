@@ -9072,248 +9072,6 @@
             <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation">
-            <summary>
-            Represents the permutation information for best triplet.
-            </summary>
-            <param name="bestResult">Indicates the best result.</param>
-            <param name="resultMask">Indicates the result mask.</param>
-            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Represents the permutation information for best triplet.
-            </summary>
-            <param name="bestResult">Indicates the best result.</param>
-            <param name="resultMask">Indicates the result mask.</param>
-            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.Perm">
-            <summary>
-            Indicates the permutation cases.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.BestTripletPermutations">
-            <summary>
-            Indicates all best triplet permutations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.BestResult">
-            <summary>
-            The generated property declaration for parameter <c>bestResult</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultMask">
-            <summary>
-            The generated property declaration for parameter <c>resultMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.BestTripletPermutation.ResultNumberOfBits">
-            <summary>
-            The generated property declaration for parameter <c>resultNumberOfBits</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexComparisonExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexComparisonExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
-            by using the specified comparison type.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="other">The instance to compare.</param>
-            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexComparisonExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
-            <param name="this">Indicates the current instance.</param>
-            <param name="comparisonType">
-            Indicates the comparison type that specifies the target grid to be calculated its hash code.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="comparisonType"/> isn't defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexComparisonExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
-            <summary>
-            Compares the current instance with another object of the same type and returns an integer
-            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="other">The other object to be compared.</param>
-            <param name="comparisonType">The comparison type to be used.</param>
-            <returns>A value that indicates the relative order of the objects being compared.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, by checking min-lex-related properties.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the current grid is the minimal lexicographical form, which means the corresponding string text code
-            is the minimum value in all equivalent transforming cases in lexicographical order.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexExtensions.GetMinLexGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks the minimal lexicographical grid form.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridMinLexExtensions.MakeMinLex(Sudoku.Concepts.Grid@)">
-            <summary>
-            Adjust the grid to minimal lexicographical form.
-            </summary>
-            <param name="this">The grid to be changed.</param>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern">
-            <summary>
-            Represents a pattern for a sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.MinCanNineBits">
-            <summary>
-            A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.Rows">
-            <summary>
-            Indicates the rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.Digits">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.BestTopRowScore(Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern@)">
-            <summary>
-            Try to calculate the best top row score from the specified <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern"/> instance.
-            </summary>
-            <param name="p">The grid pattern instance.</param>
-            <returns>The score value calculated.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern.FromString(System.String,System.ReadOnlySpan{Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern}@)">
-            <summary>
-            Initializes for normal and transposed <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern"/> instances from a string grid code.
-            </summary>
-            <param name="grid">Indicates the grid code to be used.</param>
-            <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern"/> instances for normal and transposed cases.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.Mapper">
-            <summary>
-            Indicates a data structure that describes the cell and label handled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.Mapper.Cell">
-            <summary>
-            Indicates the cell <see cref="T:System.Byte"/> values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.Mapper.Label">
-            <summary>
-            Indicates the label <see cref="T:System.Byte"/> values.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate">
-            <summary>
-            Indicates a node representing the min-lexicographical candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.IsTransposed">
-            <summary>
-            A flag field indicating whether the candidate is handled as transposed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.MapRowsForward">
-            <summary>
-            Indicates the map bits on forward rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.MapRowsBackward">
-            <summary>
-            Indicates the map bits on backward rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.StacksPermutation">
-            <summary>
-            Indicates the stack permutation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.ColumnsPermutationMask">
-            <summary>
-            Indicates mask bit values for column permutation.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.#ctor(System.SByte,System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate"/> instance via the specified flag for tranpose case and top row.
-            </summary>
-            <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
-            <param name="topRow">The top row used.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.Empty">
-            <summary>
-            Represents an empty <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.ExpandStacks(System.ReadOnlySpan{Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern},System.Int32,System.Span{Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate},System.Int32@)">
-            <summary>
-            To expand stacks.
-            </summary>
-            <param name="pair">A pair of <see cref="T:Sudoku.Runtime.MinimalLexicographicOrderServices.GridPattern"/> instance.</param>
-            <param name="topKey">Indicates the top key.</param>
-            <param name="results">Indicates the results.</param>
-            <param name="resultCount">The result count.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexCandidate.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder">
-            <summary>
-            Represents a finder type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder.CandidateListTotal">
-            <summary>
-            Indicates the total number of candidate list, which means the worst case.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder._mappers">
-            <summary>
-            Indicates the internal mappers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder.Find(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder.Find(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalLexicographicOrderServices.MinLexFinder.Find(System.String)">
-            <summary>
-            Finds the minimal lexicographical form of the source grid code.
-            </summary>
-            <param name="grid">Indicates the source grid.</param>
-            <returns>The corresponding minimal lexicographical form of the grid.</returns>
-        </member>
         <member name="T:Sudoku.Runtime.MinimalPuzzleServices.GridMinimalExtensions">
             <summary>
             Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
@@ -9343,6 +9101,248 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.BestTripletPermutation">
+            <summary>
+            Represents the permutation information for best triplet.
+            </summary>
+            <param name="bestResult">Indicates the best result.</param>
+            <param name="resultMask">Indicates the result mask.</param>
+            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Represents the permutation information for best triplet.
+            </summary>
+            <param name="bestResult">Indicates the best result.</param>
+            <param name="resultMask">Indicates the result mask.</param>
+            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.BestTripletPermutation.Perm">
+            <summary>
+            Indicates the permutation cases.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.BestTripletPermutation.BestTripletPermutations">
+            <summary>
+            Indicates all best triplet permutations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.BestResult">
+            <summary>
+            The generated property declaration for parameter <c>bestResult</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.ResultMask">
+            <summary>
+            The generated property declaration for parameter <c>resultMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.ResultNumberOfBits">
+            <summary>
+            The generated property declaration for parameter <c>resultNumberOfBits</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
+            by using the specified comparison type.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="other">The instance to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
+            <param name="this">Indicates the current instance.</param>
+            <param name="comparisonType">
+            Indicates the comparison type that specifies the target grid to be calculated its hash code.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparisonType"/> isn't defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="other">The other object to be compared.</param>
+            <param name="comparisonType">The comparison type to be used.</param>
+            <returns>A value that indicates the relative order of the objects being compared.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.GridMinlexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, by checking min-lex-related properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the current grid is the minimal lexicographical form, which means the corresponding string text code
+            is the minimum value in all equivalent transforming cases in lexicographical order.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.GetMinLexGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks the minimal lexicographical grid form.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.MakeMinLex(Sudoku.Concepts.Grid@)">
+            <summary>
+            Adjust the grid to minimal lexicographical form.
+            </summary>
+            <param name="this">The grid to be changed.</param>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.GridPattern">
+            <summary>
+            Represents a pattern for a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.MinCanNineBits">
+            <summary>
+            A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.Rows">
+            <summary>
+            Indicates the rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.Digits">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.BestTopRowScore(Sudoku.Runtime.MinlexServices.GridPattern@)">
+            <summary>
+            Try to calculate the best top row score from the specified <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instance.
+            </summary>
+            <param name="p">The grid pattern instance.</param>
+            <returns>The score value calculated.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.FromString(System.String,System.ReadOnlySpan{Sudoku.Runtime.MinlexServices.GridPattern}@)">
+            <summary>
+            Initializes for normal and transposed <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instances from a string grid code.
+            </summary>
+            <param name="grid">Indicates the grid code to be used.</param>
+            <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instances for normal and transposed cases.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.Mapper">
+            <summary>
+            Indicates a data structure that describes the cell and label handled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.Mapper.Cell">
+            <summary>
+            Indicates the cell <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.Mapper.Label">
+            <summary>
+            Indicates the label <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.MinlexCandidate">
+            <summary>
+            Indicates a node representing the min-lexicographical candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.IsTransposed">
+            <summary>
+            A flag field indicating whether the candidate is handled as transposed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.MapRowsForward">
+            <summary>
+            Indicates the map bits on forward rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.MapRowsBackward">
+            <summary>
+            Indicates the map bits on backward rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.StacksPermutation">
+            <summary>
+            Indicates the stack permutation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.ColumnsPermutationMask">
+            <summary>
+            Indicates mask bit values for column permutation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.#ctor(System.SByte,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance via the specified flag for transpose case and top row.
+            </summary>
+            <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
+            <param name="topRow">The top row used.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.MinlexServices.MinlexCandidate.Empty">
+            <summary>
+            Represents an empty <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.ExpandStacks(System.ReadOnlySpan{Sudoku.Runtime.MinlexServices.GridPattern},System.Int32,System.Span{Sudoku.Runtime.MinlexServices.MinlexCandidate},System.Int32@)">
+            <summary>
+            To expand stacks.
+            </summary>
+            <param name="pair">A pair of <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instance.</param>
+            <param name="topKey">Indicates the top key.</param>
+            <param name="results">Indicates the results.</param>
+            <param name="resultCount">The result count.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.MinlexServices.MinlexFinder">
+            <summary>
+            Represents a finder type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexFinder.CandidateListTotal">
+            <summary>
+            Indicates the total number of candidate list, which means the worst case.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.MinlexServices.MinlexFinder._mappers">
+            <summary>
+            Indicates the internal mappers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(System.String)">
+            <summary>
+            Finds the minimal lexicographical form of the source grid code.
+            </summary>
+            <param name="grid">Indicates the source grid.</param>
+            <returns>The corresponding minimal lexicographical form of the grid.</returns>
         </member>
         <member name="T:Sudoku.Runtime.SolvingServices.Backtracking.BacktrackingSolver">
             <summary>

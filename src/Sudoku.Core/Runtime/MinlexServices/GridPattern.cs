@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
+namespace Sudoku.Runtime.MinlexServices;
 
 /// <summary>
 /// Represents a pattern for a sudoku grid.
