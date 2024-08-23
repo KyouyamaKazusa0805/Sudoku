@@ -347,81 +347,77 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var house in tempMap.SharedHouses)
+			var (house, d1, d2, count) = (tempMap.FirstSharedHouse, -1, -1, 0);
+			var conjugateMap = HousesMap[house] & pattern;
+			foreach (var digit in digits)
 			{
-				var d1 = -1;
-				var d2 = -1;
-				var count = 0;
-				var conjugateMap = HousesMap[house] & pattern;
-				foreach (var digit in digits)
+				if ((conjugateMap | HousesMap[house] & CandidatesMap[digit]) == conjugateMap)
 				{
-					if ((conjugateMap | HousesMap[house] & CandidatesMap[digit]) == conjugateMap)
+					switch (count++)
 					{
-						switch (count++)
+						case 0:
 						{
-							case 0:
-							{
-								d1 = digit;
-								break;
-							}
-							case 1:
-							{
-								d2 = digit;
-								goto Finally;
-							}
+							d1 = digit;
+							break;
+						}
+						case 1:
+						{
+							d2 = digit;
+							goto Finally;
 						}
 					}
 				}
-
-			Finally:
-				var comparer = (Mask)(1 << d1 | 1 << d2);
-				var otherDigitsMask = (Mask)(digitsMask & ~comparer);
-				var conclusions = new List<Conclusion>();
-				foreach (var digit in otherDigitsMask)
-				{
-					foreach (var cell in conjugateMap & CandidatesMap[digit])
-					{
-						conclusions.Add(new(Elimination, cell, digit));
-					}
-				}
-				if (conclusions.Count == 0)
-				{
-					continue;
-				}
-
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in pattern & ~conjugateMap)
-				{
-					foreach (var digit in grid.GetCandidates(cell))
-					{
-						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
-					}
-				}
-				foreach (var cell in conjugateMap & CandidatesMap[d1])
-				{
-					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
-				}
-				foreach (var cell in conjugateMap & CandidatesMap[d2])
-				{
-					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d2));
-				}
-
-				var step = new UniqueMatrixType4Step(
-					[.. conclusions],
-					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-					context.Options,
-					in pattern,
-					digitsMask,
-					d1,
-					d2,
-					in conjugateMap
-				);
-				if (onlyFindOne)
-				{
-					return step;
-				}
-				accumulator.Add(step);
 			}
+
+		Finally:
+			var comparer = (Mask)(1 << d1 | 1 << d2);
+			var otherDigitsMask = (Mask)(digitsMask & ~comparer);
+			var conclusions = new List<Conclusion>();
+			foreach (var digit in otherDigitsMask)
+			{
+				foreach (var cell in conjugateMap & CandidatesMap[digit])
+				{
+					conclusions.Add(new(Elimination, cell, digit));
+				}
+			}
+			if (conclusions.Count == 0)
+			{
+				continue;
+			}
+
+			var candidateOffsets = new List<CandidateViewNode>();
+			foreach (var cell in pattern & ~conjugateMap)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+				}
+			}
+			foreach (var cell in conjugateMap & CandidatesMap[d1])
+			{
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
+			}
+			foreach (var cell in conjugateMap & CandidatesMap[d2])
+			{
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d2));
+			}
+
+			var step = new UniqueMatrixType4Step(
+				[.. conclusions],
+				[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+				context.Options,
+				in pattern,
+				digitsMask,
+				d1,
+				d2,
+				in conjugateMap
+			);
+			if (onlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
 		}
 
 		return null;

@@ -92,7 +92,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var pairMap = targetCell.AsCellMap() + lastCell;
-			var conjugatePairHouse = pairMap.SharedBlock;
+			var conjugatePairHouse = pairMap.FirstSharedHouse;
 			if (!IsConjugatePair(conjugatePairDigit, in pairMap, conjugatePairHouse))
 			{
 				// :( Strong link of digit 'a' is required.

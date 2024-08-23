@@ -248,6 +248,20 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <summary>
+	/// Indicates the first shared house returned.
+	/// </summary>
+	/// <remarks>
+	/// A shared house is a house of 9 cells that contain all possible cells stored in the current collection.
+	/// For example, cells <c>r1c25</c> is lying in row 1, the return value will be 9 (index of row 1).
+	/// However, <b>if the collection has no cells, the return value will be 32</b> (not -1).
+	/// </remarks>
+	public readonly House FirstSharedHouse
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => HouseMask.TrailingZeroCount(SharedHouses);
+	}
+
+	/// <summary>
 	/// Indicates all houses shared. This property is used to check all houses that all cells of this instance shared.
 	/// For example, if the cells are <c>[0, 1]</c>, the property <see cref="SharedHouses"/> will return
 	/// house indices 0 (block 1) and 9 (row 1); however, if cells span two houses or more (e.g. cells <c>[0, 1, 27]</c>),

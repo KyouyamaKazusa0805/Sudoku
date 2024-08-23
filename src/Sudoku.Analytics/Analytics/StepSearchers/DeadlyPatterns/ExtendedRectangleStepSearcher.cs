@@ -419,12 +419,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		// Iterate on each case of cannibalism.
-		// For cannibalism example:
-		//
-		//   03010000+210005000900400800+1+3+1502080+6+460+8+100+2320036001070+100006009+3001200002070+108
-		//     :611 913 517 418 428 631 537 338 467 569 576 477 577 588 596 996 498 598
-		//
+		// Test examples:
+		// Cannibalism
+		// 03010000+210005000900400800+1+3+1502080+6+460+8+100+2320036001070+100006009+3001200002070+108:611 913 517 418 428 631 537 338 467 569 576 477 577 588 596 996 498 598
+
 		foreach (var isCannibalism in (false, true))
 		{
 			// Iterate on each shared house.
@@ -685,61 +683,59 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				foreach (var conjugateDigit in conjugateMask)
 				{
-					foreach (var houseIndex in extraCells.SharedHouses)
+					var house = extraCells.FirstSharedHouse;
+					var map = HousesMap[house] & extraCells;
+					if (map != extraCells || map != (CandidatesMap[conjugateDigit] & HousesMap[house]))
 					{
-						var map = HousesMap[houseIndex] & extraCells;
-						if (map != extraCells || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))
-						{
-							continue;
-						}
-
-						var elimDigits = (Mask)(normalDigits & ~(1 << conjugateDigit));
-						var conclusions = new List<Conclusion>();
-						foreach (var digit in elimDigits)
-						{
-							foreach (var cell in extraCells & CandidatesMap[digit])
-							{
-								conclusions.Add(new(Elimination, cell, digit));
-							}
-						}
-						if (conclusions.Count == 0)
-						{
-							continue;
-						}
-
-						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (var cell in patternCells & ~extraCells)
-						{
-							foreach (var digit in grid.GetCandidates(cell))
-							{
-								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
-							}
-						}
-						foreach (var cell in extraCells)
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + conjugateDigit));
-						}
-
-						var step = new ExtendedRectangleType4Step(
-							[.. conclusions],
-							[
-								[
-									.. candidateOffsets,
-									new ConjugateLinkViewNode(ColorIdentifier.Normal, extraCells[0], extraCells[1], conjugateDigit)
-								]
-							],
-							context.Options,
-							in patternCells,
-							normalDigits,
-							new(in extraCells, conjugateDigit)
-						);
-						if (onlyFindOne)
-						{
-							return step;
-						}
-
-						accumulator.Add(step);
+						continue;
 					}
+
+					var elimDigits = (Mask)(normalDigits & ~(1 << conjugateDigit));
+					var conclusions = new List<Conclusion>();
+					foreach (var digit in elimDigits)
+					{
+						foreach (var cell in extraCells & CandidatesMap[digit])
+						{
+							conclusions.Add(new(Elimination, cell, digit));
+						}
+					}
+					if (conclusions.Count == 0)
+					{
+						continue;
+					}
+
+					var candidateOffsets = new List<CandidateViewNode>();
+					foreach (var cell in patternCells & ~extraCells)
+					{
+						foreach (var digit in grid.GetCandidates(cell))
+						{
+							candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+						}
+					}
+					foreach (var cell in extraCells)
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + conjugateDigit));
+					}
+
+					var step = new ExtendedRectangleType4Step(
+						[.. conclusions],
+						[
+							[
+								.. candidateOffsets,
+								new ConjugateLinkViewNode(ColorIdentifier.Normal, extraCells[0], extraCells[1], conjugateDigit)
+							]
+						],
+						context.Options,
+						in patternCells,
+						normalDigits,
+						new(in extraCells, conjugateDigit)
+					);
+					if (onlyFindOne)
+					{
+						return step;
+					}
+
+					accumulator.Add(step);
 				}
 				break;
 			}

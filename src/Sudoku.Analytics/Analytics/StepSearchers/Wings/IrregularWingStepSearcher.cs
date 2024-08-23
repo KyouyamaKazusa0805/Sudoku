@@ -415,69 +415,71 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											{
 												foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 												{
-													foreach (var strongXyCellHouse in theOtherNode.SharedHouses)
+													if (theOtherNode.FirstSharedHouse is not (var strongXyCellHouse and not 32))
 													{
-														foreach (var strongXyCell in
-															possibleBivalueCells & HousesMap[strongXyCellHouse] & ~node & ~theOtherNode)
+														continue;
+													}
+
+													foreach (var strongXyCell in
+														possibleBivalueCells & HousesMap[strongXyCellHouse] & ~node & ~theOtherNode)
+													{
+														if (strongXyCell == weakXyCell)
 														{
-															if (strongXyCell == weakXyCell)
-															{
-																// Invalid.
-																continue;
-															}
-
-															if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
-																|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
-															{
-																// Rescue check: We should guarantee the case that both two are real strong links,
-																// which means, the target houses for those strong links produced should
-																// only contains the cells that hold the nodes and 'weakXyCell'.
-																continue;
-															}
-
-															var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
-															if (!elimMap)
-															{
-																// No conclusions will be found.
-																continue;
-															}
-
-															var step = new MWingStep(
-																[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
-																[
-																	[
-																		..
-																		from cell in node
-																		let cand = cell * 9 + elimDigit
-																		select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
-																		..
-																		from cell in theOtherNode
-																		let cand = cell * 9 + theOtherDigit
-																		select new CandidateViewNode(ColorIdentifier.Normal, cand),
-																		new CellViewNode(ColorIdentifier.Normal, strongXyCell),
-																		new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
-																		new CandidateViewNode(ColorIdentifier.Auxiliary1, strongXyCell * 9 + elimDigit),
-																		new CandidateViewNode(ColorIdentifier.Normal, strongXyCell * 9 + theOtherDigit),
-																		new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d1),
-																		new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d2),
-																		new HouseViewNode(ColorIdentifier.Normal, h1),
-																		.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
-																	]
-																],
-																context.Options,
-																in node,
-																in theOtherNode,
-																strongXyCell,
-																weakXyCell,
-																(Mask)(1 << d1 | 1 << d2)
-															);
-															if (context.OnlyFindOne)
-															{
-																return step;
-															}
-
-															context.Accumulator.Add(step);
+															// Invalid.
+															continue;
 														}
+
+														if ((HousesMap[h1] & CandidatesMap[elimDigit]) - weakXyCell != node
+															|| (HousesMap[h2] & CandidatesMap[theOtherDigit]) - weakXyCell != theOtherNode)
+														{
+															// Rescue check: We should guarantee the case that both two are real strong links,
+															// which means, the target houses for those strong links produced should
+															// only contains the cells that hold the nodes and 'weakXyCell'.
+															continue;
+														}
+
+														var elimMap = (node + strongXyCell).PeerIntersection & CandidatesMap[elimDigit];
+														if (!elimMap)
+														{
+															// No conclusions will be found.
+															continue;
+														}
+
+														var step = new MWingStep(
+															[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+															[
+																[
+																		..
+																	from cell in node
+																	let cand = cell * 9 + elimDigit
+																	select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
+																	..
+																	from cell in theOtherNode
+																	let cand = cell * 9 + theOtherDigit
+																	select new CandidateViewNode(ColorIdentifier.Normal, cand),
+																	new CellViewNode(ColorIdentifier.Normal, strongXyCell),
+																	new CellViewNode(ColorIdentifier.Auxiliary1, weakXyCell),
+																	new CandidateViewNode(ColorIdentifier.Auxiliary1, strongXyCell * 9 + elimDigit),
+																	new CandidateViewNode(ColorIdentifier.Normal, strongXyCell * 9 + theOtherDigit),
+																	new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d1),
+																	new CandidateViewNode(ColorIdentifier.Normal, weakXyCell * 9 + d2),
+																	new HouseViewNode(ColorIdentifier.Normal, h1),
+																	.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
+																]
+															],
+															context.Options,
+															in node,
+															in theOtherNode,
+															strongXyCell,
+															weakXyCell,
+															(Mask)(1 << d1 | 1 << d2)
+														);
+														if (context.OnlyFindOne)
+														{
+															return step;
+														}
+
+														context.Accumulator.Add(step);
 													}
 												}
 											}

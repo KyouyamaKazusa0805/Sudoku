@@ -147,17 +147,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool hasBivalueCell(Cell previous, Cell current) => BivalueCells.Contains(previous) || BivalueCells.Contains(current);
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool hasConjugatePair(Cell previous, Cell current, Digit d1, Digit d2)
 		{
 			var twoCellsMap = previous.AsCellMap() + current;
-			foreach (var house in twoCellsMap.SharedHouses)
-			{
-				if ((HousesMap[house] & CandidatesMap[d1]) == twoCellsMap || (HousesMap[house] & CandidatesMap[d2]) == twoCellsMap)
-				{
-					return true;
-				}
-			}
-			return false;
+			var house = twoCellsMap.FirstSharedHouse;
+			return (HousesMap[house] & CandidatesMap[d1]) == twoCellsMap || (HousesMap[house] & CandidatesMap[d2]) == twoCellsMap;
 		}
 	}
 

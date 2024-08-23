@@ -687,6 +687,16 @@
             In such case, the return value will be 32 (instead of -1, intuitive value).
             </b></remarks>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.FirstSharedHouse">
+            <summary>
+            Indicates the first shared house returned.
+            </summary>
+            <remarks>
+            A shared house is a house of 9 cells that contain all possible cells stored in the current collection.
+            For example, cells <c>r1c25</c> is lying in row 1, the return value will be 9 (index of row 1).
+            However, <b>if the collection has no cells, the return value will be 32</b> (not -1).
+            </remarks>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.SharedHouses">
             <summary>
             Indicates all houses shared. This property is used to check all houses that all cells of this instance shared.

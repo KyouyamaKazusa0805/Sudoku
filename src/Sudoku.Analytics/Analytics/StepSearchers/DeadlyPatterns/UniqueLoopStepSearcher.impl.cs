@@ -499,17 +499,12 @@ public partial class UniqueLoopStepSearcher
 						}
 
 						// Case 1.
-						var twoCellsMap = thisCell.AsCellMap() + nextCell;
-						var case1 = false;
-						foreach (var house in twoCellsMap.SharedHouses)
+						var (twoCellsMap, case1) = (thisCell.AsCellMap() + nextCell, false);
+						var house = twoCellsMap.FirstSharedHouse;
+						if ((HousesMap[house] & CandidatesMap[nextDigit]) == twoCellsMap)
 						{
-							if ((HousesMap[house] & CandidatesMap[nextDigit]) == twoCellsMap)
-							{
-								conjugatePairsUsed.Add(new(in twoCellsMap, nextDigit));
-
-								case1 = true;
-								break;
-							}
+							conjugatePairsUsed.Add(new(in twoCellsMap, nextDigit));
+							case1 = true;
 						}
 						if (case1)
 						{

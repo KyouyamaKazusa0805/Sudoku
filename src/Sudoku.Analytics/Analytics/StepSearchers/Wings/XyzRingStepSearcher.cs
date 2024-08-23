@@ -99,12 +99,12 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 		}
 
 		// Iterate on patterns found.
-		foreach (var (pivot, leafCell1, leafCell2, house1, house2, unionedDigitsMask, zDigit) in XyzWingPatternSearcher.Search(in grid))
+		foreach (var (pivot, leafCell1, leafCell2, house1, house2, unionDigitsMask, zDigit) in XyzWingPatternSearcher.Search(in grid))
 		{
 			var digitsMaskPivot = grid.GetCandidates(pivot);
 			var digitsMask1 = grid.GetCandidates(leafCell1);
 			var digitsMask2 = grid.GetCandidates(leafCell2);
-			var theOtherTwoDigitsMask = (Mask)(unionedDigitsMask & ~(1 << zDigit));
+			var theOtherTwoDigitsMask = (Mask)(unionDigitsMask & ~(1 << zDigit));
 			var theOtherDigit1 = Mask.TrailingZeroCount(theOtherTwoDigitsMask);
 			var theOtherDigit2 = theOtherTwoDigitsMask.GetNextSet(theOtherDigit1);
 			var coveringHouseForDigit1 = (digitsMask1 >> theOtherDigit1 & 1) != 0 ? house1 : house2;

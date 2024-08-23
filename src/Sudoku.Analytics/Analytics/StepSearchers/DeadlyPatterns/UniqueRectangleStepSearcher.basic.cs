@@ -353,84 +353,76 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		foreach (var houseIndex in otherCellsMap.SharedHouses)
+		var house = otherCellsMap.FirstSharedHouse;
+		foreach (var digit in (d1, d2))
 		{
-			if (houseIndex < 9)
+			if (!IsConjugatePair(digit, in otherCellsMap, house))
 			{
-				// Process the case in lines.
 				continue;
 			}
 
-			foreach (var digit in (d1, d2))
+			// Yes, Type 4 found.
+			// Now check elimination.
+			var elimDigit = Mask.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
+			if ((otherCellsMap & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 			{
-				if (!IsConjugatePair(digit, in otherCellsMap, houseIndex))
-				{
-					continue;
-				}
-
-				// Yes, Type 4 found.
-				// Now check elimination.
-				var elimDigit = Mask.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
-				if ((otherCellsMap & CandidatesMap[elimDigit]) is not (var elimMap and not []))
-				{
-					continue;
-				}
-
-				var candidateOffsets = new List<CandidateViewNode>(6);
-				foreach (var cell in urCells)
-				{
-					if (grid.GetState(cell) != CellState.Empty)
-					{
-						continue;
-					}
-
-					if (otherCellsMap.Contains(cell))
-					{
-						if (d1 != elimDigit && CandidatesMap[d1].Contains(cell))
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
-						}
-						if (d2 != elimDigit && CandidatesMap[d2].Contains(cell))
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d2));
-						}
-					}
-					else
-					{
-						// Corner1 and corner2.
-						foreach (var d in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d));
-						}
-					}
-				}
-
-				var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, elimDigit);
-				if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
-				{
-					continue;
-				}
-
-				accumulator.Add(
-					new UniqueRectangleConjugatePairStep(
-						[.. conclusions],
-						[
-							[
-								.. candidateOffsets,
-								new ConjugateLinkViewNode(ColorIdentifier.Normal, otherCellsMap[0], otherCellsMap[1], digit)
-							]
-						],
-						context.Options,
-						Technique.UniqueRectangleType4,
-						d1,
-						d2,
-						[.. urCells],
-						false,
-						[new(otherCellsMap[0], otherCellsMap[1], digit)],
-						index
-					)
-				);
+				continue;
 			}
+
+			var candidateOffsets = new List<CandidateViewNode>(6);
+			foreach (var cell in urCells)
+			{
+				if (grid.GetState(cell) != CellState.Empty)
+				{
+					continue;
+				}
+
+				if (otherCellsMap.Contains(cell))
+				{
+					if (d1 != elimDigit && CandidatesMap[d1].Contains(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d1));
+					}
+					if (d2 != elimDigit && CandidatesMap[d2].Contains(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + d2));
+					}
+				}
+				else
+				{
+					// Corner1 and corner2.
+					foreach (var d in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d));
+					}
+				}
+			}
+
+			var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, elimDigit);
+			if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
+			{
+				continue;
+			}
+
+			accumulator.Add(
+				new UniqueRectangleConjugatePairStep(
+					[.. conclusions],
+					[
+						[
+							.. candidateOffsets,
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, otherCellsMap[0], otherCellsMap[1], digit)
+						]
+					],
+					context.Options,
+					Technique.UniqueRectangleType4,
+					d1,
+					d2,
+					[.. urCells],
+					false,
+					[new(otherCellsMap[0], otherCellsMap[1], digit)],
+					index
+				)
+			);
 		}
 	}
 
