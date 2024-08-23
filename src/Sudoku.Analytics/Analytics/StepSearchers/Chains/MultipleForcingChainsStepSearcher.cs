@@ -16,6 +16,9 @@ public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		// Test examples:
+		// +27+1+896...+9+4352+768+1+8+56+3+147+9248.....2.+6+3.......51.......+3+9+5....7.+7+2+4.3+85.9168...+2+43
+
 		var accumulator = new List<ChainStep>();
 		if (ChainModule.CollectMultipleCore(ref context, accumulator, true, false) is { } step)
 		{

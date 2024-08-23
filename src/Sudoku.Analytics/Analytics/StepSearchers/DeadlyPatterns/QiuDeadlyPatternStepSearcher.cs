@@ -390,22 +390,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
-	/// .48.163.736...2.4.5..3.....+4.....+1.8...451+7..1.....+4..+7....9..4.2.1...736.478.21+9:918 938 862 574
-	/// +4+6+2+9+517+38.7.+843..6.+83+62+7..474+8+3+6+25.....7+89+6+4...6+4+1+5.878.+7+13+64.+53..57+4+86.6+542+9+8.+7.:928 938 252 159 262 967 189
-	/// 1+6.72+48.....65.....57....6+4.2647+59+1....+1.+2+6...+71.8654+2+79..+6.42+1+6...19+7...+18.47+3+96:326 329 331 931 359 374 583 584 884
-	/// 5....4+762..+4...5+9.....6.41.2.+7.5..34..6+48+32+7.43..7...9.72.9..+4...1.+4....84.3.+6..7:321 126 331 942 144 867 677 379 879 687 588 389 889
-	/// 1+85+43.62.+9.4.8....7....1...6..8....+1+2186+9473+5+5....3..6+8..3....4+4...2.3..+351+74.9.2:222 234 537 938 942 746 962 467 672 973 578 983 688
-	/// +412..39+5+7+3+97.4+5..86+8+5..+7.4+3.+2..7.38..+3.5.1....69+32.....5..+3...19+7..5.8+3..+437..59.:624 227 161 274 876 284
-	/// ..+3......+2.+7...659+95..27..3+4398+16+5+27.2.975.3.1+7+52+4398+67+8+246+1+39+5561......+3+9+4....+6.:815 816 117 417 418 119 419 137
-	/// .+2.75.....9.+3...2.5+8392...1+47+2+59+3186.+3.+8...+5.856+21..3.2+1.+4356.8+36+8+1+7+9.4..+4+5+682.+1.:416 616 426 626 727 729 457 957 959
-	/// 4.5+8+1+6..9.7.94.+56116+9+5....+4+9+5+736+14+28+6+8+1...+3+5+72+43+785+1+9+6.......1571..58+94+35..+1..6.2:737 738 273 274 276
-	/// +8.....7219...7.34+6..+7..4+5+8+9.+7+92.+54383...9..755.......+2+49+36812+5+77...5.8...........:232 135 154 662 663 164 192 292 692 193 293 693 394 296
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -417,6 +401,19 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
+		// Test examples:
+		// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
+		// .48.163.736...2.4.5..3.....+4.....+1.8...451+7..1.....+4..+7....9..4.2.1...736.478.21+9:918 938 862 574
+		// +4+6+2+9+517+38.7.+843..6.+83+62+7..474+8+3+6+25.....7+89+6+4...6+4+1+5.878.+7+13+64.+53..57+4+86.6+542+9+8.+7.:928 938 252 159 262 967 189
+		// 1+6.72+48.....65.....57....6+4.2647+59+1....+1.+2+6...+71.8654+2+79..+6.42+1+6...19+7...+18.47+3+96:326 329 331 931 359 374 583 584 884
+		// 5....4+762..+4...5+9.....6.41.2.+7.5..34..6+48+32+7.43..7...9.72.9..+4...1.+4....84.3.+6..7:321 126 331 942 144 867 677 379 879 687 588 389 889
+		// 1+85+43.62.+9.4.8....7....1...6..8....+1+2186+9473+5+5....3..6+8..3....4+4...2.3..+351+74.9.2:222 234 537 938 942 746 962 467 672 973 578 983 688
+		// +412..39+5+7+3+97.4+5..86+8+5..+7.4+3.+2..7.38..+3.5.1....69+32.....5..+3...19+7..5.8+3..+437..59.:624 227 161 274 876 284
+		// ..+3......+2.+7...659+95..27..3+4398+16+5+27.2.975.3.1+7+52+4398+67+8+246+1+39+5561......+3+9+4....+6.:815 816 117 417 418 119 419 137
+		// .+2.75.....9.+3...2.5+8392...1+47+2+59+3186.+3.+8...+5.856+21..3.2+1.+4356.8+36+8+1+7+9.4..+4+5+682.+1.:416 616 426 626 727 729 457 957 959
+		// 4.5+8+1+6..9.7.94.+56116+9+5....+4+9+5+736+14+28+6+8+1...+3+5+72+43+785+1+9+6.......1571..58+94+35..+1..6.2:737 738 273 274 276
+		// +8.....7219...7.34+6..+7..4+5+8+9.+7+92.+54383...9..755.......+2+49+36812+5+77...5.8...........:232 135 154 662 663 164 192 292 692 193 293 693 394 296
+
 		if (cornerContainingExtraDigit is not [var targetCell])
 		{
 			return null;
@@ -564,12 +561,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <param name="extraDigitsMask">Indicates a mask value that holds extra digits.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// 1.2..+6348.4....5+76.6....+9122.6..4....3.6......1..5.+6......+61..9.+2.93.76.6....2..5:324 824 825 925 348 368
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternType3Step? BaseType_Type3(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -582,6 +573,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
+		// Test examples:
+		// 1.2..+6348.4....5+76.6....+9122.6..4....3.6......1..5.+6......+61..9.+2.93.76.6....2..5:324 824 825 925 348 368
+
 		if (Mask.IsPow2(digitsMaskAppearedInCorner))
 		{
 			return null;
@@ -702,13 +696,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMaskAppearedInCorner">A mask value that holds a list of digits appeared in corner cells.</param>
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// 83+59+71+6+4+27.4+63+28+5..+2+6.5....4+5.+2+869+1...2.1.5.+8.+815+9...4....4......9.2.4+86+2+4+81+69+735:139 939 171 172 376
-	/// ..2...1..+15..3.+87.83+67.1.29..+8.6.....2.514.8.....8....98.6.3+251.6.+12..4.+2.1...6..:914 415 916 947 348 349 749 359 361 962 368 369 669 769 781 783 586 786 387 389 796 996 799
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternType4Step? BaseType_Type4(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -719,6 +706,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap cornerContainingExtraDigit
 	)
 	{
+		// Test examples:
+		// 83+59+71+6+4+27.4+63+28+5..+2+6.5....4+5.+2+869+1...2.1.5.+8.+815+9...4....4......9.2.4+86+2+4+81+69+735:139 939 171 172 376
+		// ..2...1..+15..3.+87.83+67.1.29..+8.6.....2.514.8.....8....98.6.3+251.6.+12..4.+2.1...6..:914 415 916 947 348 349 749 359 361 962 368 369 669 769 781 783 586 786 387 389 796 996 799
+
 		foreach (var digit in digitsMaskAppearedInCorner)
 		{
 			foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).SharedHouses)
@@ -794,14 +785,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l2">The line 2.</param>
 	/// <param name="cornerLockedDigitsMask">A mask value that holds digits locked in cross-line cells.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// .....+2+185..591..23.12.+5+3.7.3+8.52+1.46.....93+1.+14..3..5...12........1.....6.83.5.+9+1:613 713 913 931 751 652 752 259 677 783 983 687
-	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
-	/// .+7+6.84+932+9.27.+68+5+4+4.8.+29..16.........87+26.34+9+3.......68..6+9+31+2+7+7+63..24+9.29+147...+3:542 543 144 544 145 546 846 748 462 164 564 165 584
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternLockedTypeStep? BaseType_TypeLocked(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -812,6 +795,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		Mask cornerLockedDigitsMask
 	)
 	{
+		// Test examples:
+		// .....+2+185..591..23.12.+5+3.7.3+8.52+1.46.....93+1.+14..3..5...12........1.....6.83.5.+9+1:613 713 913 931 751 652 752 259 677 783 983 687
+		// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+		// .+7+6.84+932+9.27.+68+5+4+4.8.+29..16.........87+26.34+9+3.......68..6+9+31+2+7+7+63..24+9.29+147...+3:542 543 144 544 145 546 846 748 462 164 564 165 584
+
 		var currentDigitsMask = grid[in corner];
 		if (Mask.PopCount(currentDigitsMask) > 4)
 		{
@@ -904,12 +892,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l2">The line 2.</param>
 	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternExternalType1Step? BaseType_ExternalType1(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -921,6 +903,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		Mask externalDigitsMaskToBeChecked
 	)
 	{
+		// Test examples:
+		// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+
 		if ((mirror & EmptyCells) is not [var targetCell])
 		{
 			return null;
@@ -998,12 +983,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="l2">The line 2.</param>
 	/// <param name="externalDigitsMaskToBeChecked">A mask value that holds digits should be checked.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	/// <example>
-	/// Test examples:
-	/// <code><![CDATA[
-	/// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
-	/// ]]></code>
-	/// </example>
 	private QiuDeadlyPatternExternalType2Step? BaseType_ExternalType2(
 		ref StepAnalysisContext context,
 		ref readonly CellMap corner,
@@ -1015,6 +994,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		Mask externalDigitsMaskToBeChecked
 	)
 	{
+		// Test examples:
+		// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
+
 		var elimDigits = (Mask)(grid[in mirror] & externalDigitsMaskToBeChecked);
 		if (!Mask.IsPow2(elimDigits))
 		{

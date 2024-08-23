@@ -8,13 +8,6 @@ internal partial class ChainingDriver
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	/// <example>
-	/// Test example:
-	/// <code><![CDATA[
-	/// 070096000003520680006004702480000020000000000510000000000000070000030509168000003
-	/// ]]></code>
-	/// This example only contains one forcing chains pattern and direct singles.
-	/// </example>
 	public static ReadOnlySpan<MultipleForcingChains> CollectMultipleChains(ref readonly Grid grid, bool onlyFindOne)
 	{
 		var result = new SortedSet<MultipleForcingChains>(ChainingComparers.MultipleForcingChainsComparer);
