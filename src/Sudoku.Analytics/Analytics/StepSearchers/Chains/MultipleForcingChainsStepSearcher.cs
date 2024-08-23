@@ -10,9 +10,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Merged Region Forcing Chains (i.e. Merged House Forcing Chains)</item>
 /// </list>
 /// </summary>
-[StepSearcher(
-	"StepSearcherName_MultipleForcingChainsStepSearcher",
-	Technique.CellForcingChains, Technique.RegionForcingChains)]
+[StepSearcher("StepSearcherName_MultipleForcingChainsStepSearcher", Technique.CellForcingChains, Technique.RegionForcingChains)]
 public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -8,9 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped Finned Chain</item>
 /// </list>
 /// </summary>
-[StepSearcher(
-	"StepSearcherName_FinnedChainStepSearcher",
-	Technique.FinnedChain, Technique.FinnedGroupedChain)]
+[StepSearcher("StepSearcherName_FinnedChainStepSearcher", Technique.FinnedChain, Technique.FinnedGroupedChain)]
 public sealed partial class FinnedChainStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
