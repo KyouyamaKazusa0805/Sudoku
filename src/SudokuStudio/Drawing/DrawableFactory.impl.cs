@@ -55,7 +55,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = nameof(DrawableFactory),
+			Tag = cellNode,
 			Opacity = 0,
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 			CornerRadius = sudokuPane.CellsInnerCornerRadius,
@@ -121,7 +121,7 @@ internal partial class DrawableFactory
 		{
 			var result = instanceCreator();
 			result.BorderThickness = new(0);
-			result.Tag = nameof(DrawableFactory);
+			result.Tag = iconNode;
 			result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 			result.Opacity = 0;
 			result.Margin = result switch { Star or Triangle or Diamond => new(3, 0, 0, 0), _ => new(6) };
@@ -189,7 +189,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(DrawableFactory),
+			Tag = houseNode,
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = house switch
 			{
@@ -244,7 +244,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-			Tag = nameof(DrawableFactory),
+			Tag = chuteNode,
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Margin = chute switch { >= 0 and < 3 => new(6, 12, 6, 12), >= 3 and < 6 => new(12, 6, 12, 6), _ => T<Thickness>(chute, 6) },
 			CornerRadius = new(18),
@@ -283,7 +283,7 @@ internal partial class DrawableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = nameof(DrawableFactory),
+			Tag = babaGroupNode,
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{
@@ -399,7 +399,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.CircleHollow, _) or (true, false, _, _, AssignmentDisplay.CircleHollow) => new Ellipse
@@ -410,7 +410,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash, _) => new Cross
@@ -421,7 +421,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode switch
 				{
@@ -441,7 +441,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.CircleHollow, _, _) => new Ellipse
@@ -452,7 +452,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareHollow, _, _) => new Rectangle
@@ -463,7 +463,7 @@ internal partial class DrawableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareSolid, _, _) => new Rectangle
@@ -473,7 +473,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _, _) => new Rectangle
@@ -483,7 +483,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -495,7 +495,7 @@ internal partial class DrawableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = getFillBrush(color),
-				Tag = nameof(DrawableFactory),
+				Tag = c(),
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -531,6 +531,8 @@ internal partial class DrawableFactory
 #else
 			=> new SolidColorBrush(color);
 #endif
+
+		Conclusion c() => new(isForElimination ? Elimination : Assignment, candidate);
 	}
 
 	[DoesNotReturn]
@@ -575,7 +577,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		foreach (var node in nodes)
 		{
 			var (_, start, end) = node;
-			var isStrong = node switch { ChainLinkViewNode { IsStrongLink: var i } => i, _ => default(bool?) };
 			var dashArray = node switch
 			{
 				ChainLinkViewNode { IsStrongLink: var i } => [.. i ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle],
@@ -697,7 +698,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 								}
 							]
 						},
-						Tag = nameof(DrawableFactory),
+						Tag = node,
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					}
 				);
@@ -707,7 +708,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						Stroke = new SolidColorBrush(Pane.LinkColor),
 						StrokeThickness = (double)Pane.ChainStrokeThickness,
 						Data = new GeometryGroup { Children = ArrowCap(new(bx2, by2), pt2) },
-						Tag = nameof(DrawableFactory)
+						Tag = node
 					}
 				);
 			}
@@ -723,7 +724,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						StrokeThickness = (double)Pane.ChainStrokeThickness * (node.Shape == LinkShape.ConjugatePair ? 2 : 1),
 						StrokeDashArray = dashArray,
 						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-						Tag = nameof(DrawableFactory),
+						Tag = node,
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 					}
 				);
@@ -737,7 +738,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Stroke = new SolidColorBrush(Pane.LinkColor),
 							StrokeThickness = (double)Pane.ChainStrokeThickness,
 							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = nameof(DrawableFactory),
+							Tag = node,
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						}
 					);
@@ -909,9 +910,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 		Rectangle drawRectangle(ref readonly CandidateMap nodeCandidates)
 		{
-			var (firstCandidate, lastCandidate) = (nodeCandidates[0], nodeCandidates[^1]);
-			var topLeft = Converter.GetPosition(firstCandidate, Position.TopLeft);
-			var bottomRight = Converter.GetPosition(lastCandidate, Position.BottomRight);
 			var fill = new SolidColorBrush(Pane.GroupedNodeBackgroundColor);
 			var stroke = new SolidColorBrush(Pane.GroupedNodeStrokeColor);
 			var result = new Rectangle
@@ -923,7 +921,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				RadiusY = 10,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Top,
-				Tag = nameof(DrawableFactory),
+				Tag = nodeCandidates,
 				Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 			};
 

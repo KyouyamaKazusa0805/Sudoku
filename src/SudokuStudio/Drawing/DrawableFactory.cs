@@ -150,7 +150,7 @@ file static class Extensions
 	{
 		var controls = (
 			from control in @this.OfType<FrameworkElement>()
-			where control.Tag is nameof(DrawableFactory)
+			where control.Tag is IDrawableItem and (ViewNode or CandidateMap or Conclusion)
 			select control
 		).ToArray();
 		foreach (var control in controls)

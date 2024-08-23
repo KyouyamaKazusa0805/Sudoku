@@ -17,7 +17,7 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, Candida
 		| TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
 		| TypeImplFlag.LogicalNotOperator,
 	IsLargeStructure = true)]
-public partial struct CandidateMap : CandidateMapBase
+public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 {
 	/// <summary>
 	/// Indicates the length of the backing buffer.

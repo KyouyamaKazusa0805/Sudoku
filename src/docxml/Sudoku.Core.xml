@@ -4429,9 +4429,10 @@
         </member>
         <member name="T:Sudoku.Drawing.IDrawableItem">
             <summary>
-            Represents a drawable item (<see cref="T:Sudoku.Drawing.ViewNode"/> or <see cref="T:Sudoku.Concepts.Conclusion"/>).
+            Represents a drawable item (<see cref="T:Sudoku.Drawing.ViewNode"/>, <see cref="T:Sudoku.Concepts.CandidateMap"/> or <see cref="T:Sudoku.Concepts.Conclusion"/>).
             </summary>
             <seealso cref="T:Sudoku.Drawing.ViewNode"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="T:Sudoku.Drawing.LinkShape">
