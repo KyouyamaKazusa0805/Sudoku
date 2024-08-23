@@ -7152,11 +7152,22 @@
             The step searcher will include the following techniques:
             <list type="bullet">
             <item>Finned Chain</item>
-            <item>Grouped Finned Chain</item>
             </list>
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.FinnedChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GroupedFinnedChainStepSearcher">
+            <summary>
+            Provides with a <b>Grouped Finned Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Grouped Finned Chain</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GroupedFinnedChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher">
@@ -26928,6 +26939,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GroupedChainStepSearcher">
             <summary>
               Looks up a localized string similar to Grouped Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GroupedFinnedChainStepSearcher">
+            <summary>
+              Looks up a localized string similar to Grouped Finned Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GroupedTwoStrongLinksStepSearcher">

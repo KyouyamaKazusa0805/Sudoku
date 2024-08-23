@@ -3266,7 +3266,7 @@
     <value>{0}，鱼鳍为 {1}</value>
   </data>
   <data name="StepSearcherName_FinnedChainStepSearcher" xml:space="preserve">
-    <value>鳍链/区块鳍链</value>
+    <value>鳍链</value>
     <comment>Step Searcher Name</comment>
   </data>
   <data name="Factor_BlossomLoopGroupedFactor" xml:space="preserve">
@@ -3404,5 +3404,9 @@
   </data>
   <data name="AnalysisResultMemoryUsedMinusResult" xml:space="preserve">
     <value>（有潜在回收行为）</value>
+  </data>
+  <data name="StepSearcherName_GroupedFinnedChainStepSearcher" xml:space="preserve">
+    <value>区块鳍链</value>
+    <comment>Step Searcher Name</comment>
   </data>
 </root>

@@ -3300,4 +3300,7 @@ Error grid: '{0:#}'</value>
   <data name="AnalysisResultMemoryUsedMinusResult" xml:space="preserve">
     <value> (implicit collected behavior found)</value>
   </data>
+  <data name="StepSearcherName_GroupedFinnedChainStepSearcher" xml:space="preserve">
+    <value>Grouped Finned Chain</value>
+  </data>
 </root>

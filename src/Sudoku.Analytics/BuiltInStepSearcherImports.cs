@@ -41,6 +41,8 @@
 [assembly: AssemblyStepSearcher<ChromaticPatternStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<BlossomLoopStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<FinnedChainStepSearcher>(2)]
+[assembly: AssemblyStepSearcher<GroupedFinnedChainStepSearcher>(2)]
+
 [assembly: AssemblyStepSearcher<MultipleForcingChainsStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<DeathBlossomStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<BowmanBingoStepSearcher>(3, Areas = 0)]
