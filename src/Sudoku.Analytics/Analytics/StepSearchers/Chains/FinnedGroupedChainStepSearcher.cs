@@ -14,11 +14,7 @@ public sealed partial class GroupedFinnedChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<ChainStep>();
-		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, elementary | advanced, context.Options, out var rules);
-		if (ChainModule.CollectMultipleCore(ref context, accumulator, rules, true) is { } step)
+		if (ChainModule.CollectMultipleCore(ref context, accumulator, true, true) is { } step)
 		{
 			return step;
 		}

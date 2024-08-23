@@ -14,11 +14,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new List<BlossomLoopStep>();
-		var elementary = ChainingRule.ElementaryLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		var advanced = ChainingRule.AdvancedLinkTypes.Aggregate(@delegate.EnumFlagMerger);
-		ref readonly var grid = ref context.Grid;
-		InitializeLinks(in grid, elementary | advanced, context.Options, out var rules);
-		if (ChainModule.CollectBlossomLoopCore(ref context, accumulator, rules) is { } step)
+		if (ChainModule.CollectBlossomLoopCore(ref context, accumulator) is { } step)
 		{
 			return step;
 		}

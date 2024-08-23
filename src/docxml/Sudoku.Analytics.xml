@@ -6664,33 +6664,47 @@
             Represents a chain module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
             <summary>
             The collect method called by chain step searchers.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="supportedRules">Indicates the supported chaining rules.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="supportedRules">Indicates the supported rules.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
             <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep},System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             The collect method called by blossom loop step searchers.
             </summary>
             <param name="context">The context.</param>
             <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="supportedRules">Indicates the supported chaining rules.</param>
             <returns>The first found step.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
+            <summary>
+            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
             <summary>

@@ -10,11 +10,19 @@ internal static class ChainModule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
-	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref StepAnalysisContext context, List<NormalChainStep> accumulator, ChainingRules supportedRules)
+	public static Step? CollectCore(ref StepAnalysisContext context, List<NormalChainStep> accumulator, bool allowsAdvancedLinks)
 	{
 		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
+				.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
 		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
 		{
@@ -24,6 +32,11 @@ internal static class ChainModule
 				context.Options,
 				chain
 			);
+			if (!step.IsAdvancedAllowed(allowsAdvancedLinks))
+			{
+				continue;
+			}
+
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -57,17 +70,25 @@ internal static class ChainModule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
-	/// <param name="supportedRules">Indicates the supported rules.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
 	public static Step? CollectMultipleCore(
 		ref StepAnalysisContext context,
 		List<ChainStep> accumulator,
-		ChainingRules supportedRules,
+		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain
 	)
 	{
 		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
+				.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
 		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
@@ -92,6 +113,11 @@ internal static class ChainModule
 				}
 
 				var finnedChainStep = new FinnedChainStep(chain.Conclusions, views, context.Options, finnedChain, in fins);
+				if (!finnedChainStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
+					continue;
+				}
+
 				if (context.OnlyFindOne)
 				{
 					return finnedChainStep;
@@ -108,6 +134,11 @@ internal static class ChainModule
 					context.Options,
 					chain
 				);
+				if (!mfcStep.IsAdvancedAllowed(allowsAdvancedLinks))
+				{
+					continue;
+				}
+
 				if (context.OnlyFindOne)
 				{
 					return mfcStep;
@@ -123,11 +154,19 @@ internal static class ChainModule
 	/// </summary>
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
-	/// <param name="supportedRules">Indicates the supported chaining rules.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, List<BlossomLoopStep> accumulator, ChainingRules supportedRules)
+	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, List<BlossomLoopStep> accumulator)
 	{
+		const bool allowsAdvancedLinks = true;
 		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			in grid,
+			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
+				.Aggregate(@delegate.EnumFlagMerger),
+			context.Options,
+			out var supportedRules
+		);
+
 		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
 		{
 			var step = new BlossomLoopStep(
@@ -136,6 +175,11 @@ internal static class ChainModule
 				context.Options,
 				blossomLoop
 			);
+			if (!step.IsAdvancedAllowed(allowsAdvancedLinks))
+			{
+				continue;
+			}
+
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -184,5 +228,61 @@ internal static class ChainModule
 			}
 			return [globalView, .. otherViews];
 		}
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Determine whether a <see cref="ChainStep"/> instance is allowed to contain advanced links.
+	/// </summary>
+	/// <param name="this">The chain to be checked.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the element has already been added.</returns>
+	public static bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
+	{
+		if (!allowsAdvancedLinks)
+		{
+			// Check whether the chain contains grouped links.
+			switch (@this)
+			{
+				case NormalChainStep { Pattern.Links: var links }:
+				{
+					if (links.Any(static link => link.GroupedLinkPattern is not null))
+					{
+						return false;
+					}
+					break;
+				}
+				case MultipleForcingChainsStep { Pattern: var pattern }:
+				{
+					foreach (var (_, branch) in pattern)
+					{
+						if (branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+						{
+							return false;
+						}
+					}
+					break;
+				}
+				case BlossomLoopStep { Pattern: var pattern }:
+				{
+					foreach (var (_, branch) in pattern)
+					{
+						if (branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+						{
+							return false;
+						}
+					}
+					break;
+				}
+				default:
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
