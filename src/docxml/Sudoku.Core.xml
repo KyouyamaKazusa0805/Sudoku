@@ -673,15 +673,19 @@
             For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
             </remarks>
         </member>
+        <member name="P:Sudoku.Concepts.CellMap.SharedBlock">
+            <summary>
+            Indicates the shared block.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.CellMap.SharedLine">
             <summary>
-            Indicates the shared line. In other words, the line will contain all cells in this collection.
+            Indicates the shared line, i.e. a line of 9 cells that contain all possible cells stored in the current collection.
             </summary>
-            <remarks>
-            If no shared houses can be found (i.e. return value of property <see cref="P:Sudoku.Concepts.CellMap.SharedHouses"/> is 0),
-            this property will return 32.
-            </remarks>
-            <seealso cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>
+            <remarks><b>
+            Please note that the result value may be invalid if no shared houses can be found.
+            In such case, the return value will be 32 (instead of -1, intuitive value).
+            </b></remarks>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.SharedHouses">
             <summary>

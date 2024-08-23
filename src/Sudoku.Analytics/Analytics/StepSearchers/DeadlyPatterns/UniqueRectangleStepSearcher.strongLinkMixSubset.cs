@@ -92,125 +92,123 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var pairMap = targetCell.AsCellMap() + lastCell;
-			foreach (var conjugatePairHouse in pairMap.SharedHouses)
+			var conjugatePairHouse = pairMap.SharedBlock;
+			if (!IsConjugatePair(conjugatePairDigit, in pairMap, conjugatePairHouse))
 			{
-				if (!IsConjugatePair(conjugatePairDigit, in pairMap, conjugatePairHouse))
+				// :( Strong link of digit 'a' is required.
+				continue;
+			}
+
+			// Check for cells in line of cell 'same-block', which doesn't include cell 'cornerCell'.
+			// Then we should check for empty cells that doesn't overlap with UR pattern, to determine existence of subsets.
+			var sameBlockHouses = 1 << sameBlockCell.ToHouse(HouseType.Row) | 1 << sameBlockCell.ToHouse(HouseType.Column);
+			foreach (var house in sameBlockHouses)
+			{
+				if (HousesMap[house].Contains(cornerCell))
 				{
-					// :( Strong link of digit 'a' is required.
+					sameBlockHouses &= ~(1 << house);
+					break;
+				}
+			}
+
+			// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
+			var subsetHouse = HouseMask.Log2(sameBlockHouses);
+			var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
+				& ~HousesMap[sameBlockCell.ToHouse(HouseType.Block)] // won't overlap the block with same-block cell
+				& ~cells // and won't overlap with UR pattern
+				& mapOfDigit1And2; // and must contain either digit 1 or digit 2
+			foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
+			{
+				var outsideCellDigitsMask = grid[in outsideCells];
+				var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
+				if (extraDigitsMaskInOutsideCell == 0)
+				{
+					// :( The cell contains at least one extra digit.
 					continue;
 				}
 
-				// Check for cells in line of cell 'same-block', which doesn't include cell 'cornerCell'.
-				// Then we should check for empty cells that doesn't overlap with UR pattern, to determine existence of subsets.
-				var sameBlockHouses = 1 << sameBlockCell.ToHouse(HouseType.Row) | 1 << sameBlockCell.ToHouse(HouseType.Column);
-				foreach (var house in sameBlockHouses)
+				if (Mask.PopCount(extraDigitsMaskInOutsideCell) != outsideCells.Count)
 				{
-					if (HousesMap[house].Contains(cornerCell))
-					{
-						sameBlockHouses &= ~(1 << house);
-						break;
-					}
+					// :( The size of the extra cell must be equal to the number of extra digits.
+					continue;
 				}
 
-				// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
-				var subsetHouse = HouseMask.Log2(sameBlockHouses);
-				var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
-					& ~HousesMap[sameBlockCell.ToHouse(HouseType.Block)] // won't overlap the block with same-block cell
-					& ~cells // and won't overlap with UR pattern
-					& mapOfDigit1And2; // and must contain either digit 1 or digit 2
-				foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
+				var extraDigitsMaskInSameBlockCell = (Mask)(grid.GetCandidates(sameBlockCell) & ~comparer);
+				if (extraDigitsMaskInSameBlockCell != extraDigitsMaskInOutsideCell)
 				{
-					var outsideCellDigitsMask = grid[in outsideCells];
-					var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
-					if (extraDigitsMaskInOutsideCell == 0)
-					{
-						// :( The cell contains at least one extra digit.
-						continue;
-					}
+					// :( The cell 'sameBlockCell' must hold the exactly number of extra digits
+					//    with the number of cells 'outsideCells'.
+					continue;
+				}
 
-					if (Mask.PopCount(extraDigitsMaskInOutsideCell) != outsideCells.Count)
-					{
-						// :( The size of the extra cell must be equal to the number of extra digits.
-						continue;
-					}
+				var subsetCellsContainingElimDigit = outsideCells & CandidatesMap[elimDigit];
+				if ((subsetCellsContainingElimDigit.SharedHouses >> conjugatePairHouse & 1) == 0)
+				{
+					// :( All cells in outside cells containing elimination digit
+					//    should share same block with conjugate pair shared.
+					continue;
+				}
 
-					var extraDigitsMaskInSameBlockCell = (Mask)(grid.GetCandidates(sameBlockCell) & ~comparer);
-					if (extraDigitsMaskInSameBlockCell != extraDigitsMaskInOutsideCell)
+				// Now pattern is formed. Collect view nodes.
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in cells | outsideCells)
+				{
+					foreach (var digit in comparer)
 					{
-						// :( The cell 'sameBlockCell' must hold the exactly number of extra digits
-						//    with the number of cells 'outsideCells'.
-						continue;
-					}
-
-					var subsetCellsContainingElimDigit = outsideCells & CandidatesMap[elimDigit];
-					if ((subsetCellsContainingElimDigit.SharedHouses >> conjugatePairHouse & 1) == 0)
-					{
-						// :( All cells in outside cells containing elimination digit
-						//    should share same block with conjugate pair shared.
-						continue;
-					}
-
-					// Now pattern is formed. Collect view nodes.
-					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var cell in cells | outsideCells)
-					{
-						foreach (var digit in comparer)
+						if ((grid.GetCandidates(cell) >> digit & 1) != 0 && (cell != targetCell || digit != elimDigit))
 						{
-							if ((grid.GetCandidates(cell) >> digit & 1) != 0 && (cell != targetCell || digit != elimDigit))
-							{
-								candidateOffsets.Add(
-									new(
-										(cell == targetCell || cell == lastCell) && digit == conjugatePairDigit
-											? ColorIdentifier.Auxiliary1
-											: ColorIdentifier.Normal,
-										cell * 9 + digit
-									)
-								);
-							}
+							candidateOffsets.Add(
+								new(
+									(cell == targetCell || cell == lastCell) && digit == conjugatePairDigit
+										? ColorIdentifier.Auxiliary1
+										: ColorIdentifier.Normal,
+									cell * 9 + digit
+								)
+							);
 						}
 					}
-					foreach (var outsideCell in outsideCells)
+				}
+				foreach (var outsideCell in outsideCells)
+				{
+					foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMaskInOutsideCell))
 					{
-						foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMaskInOutsideCell))
-						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
-						}
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
 					}
-					if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
-					{
-						continue;
-					}
+				}
+				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
+				{
+					continue;
+				}
 
-					accumulator.Add(
-						new UniqueRectangleConjugatePairExtraStep(
-							[new(Elimination, targetCell, elimDigit)],
+				accumulator.Add(
+					new UniqueRectangleConjugatePairExtraStep(
+						[new(Elimination, targetCell, elimDigit)],
+						[
 							[
-								[
-									.. candidateOffsets,
-									..
-									from outsideCell in outsideCells
-									select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
-									..
-									from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
-									let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
-									select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
-									new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
-								]
-							],
-							context.Options,
-							outsideCells.Count == 1 ? Technique.UniqueRectangle3X1L : Technique.UniqueRectangle3X1U,
-							d1,
-							d2,
-							in cells,
-							arMode,
-							[new(in pairMap, conjugatePairDigit)],
-							in outsideCells,
-							extraDigitsMaskInOutsideCell,
-							index
-						)
-					);
-				}
+								.. candidateOffsets,
+								..
+								from outsideCell in outsideCells
+								select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+								..
+								from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
+								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
+								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
+								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
+								new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
+							]
+						],
+						context.Options,
+						outsideCells.Count == 1 ? Technique.UniqueRectangle3X1L : Technique.UniqueRectangle3X1U,
+						d1,
+						d2,
+						in cells,
+						arMode,
+						[new(in pairMap, conjugatePairDigit)],
+						in outsideCells,
+						extraDigitsMaskInOutsideCell,
+						index
+					)
+				);
 			}
 		}
 	}

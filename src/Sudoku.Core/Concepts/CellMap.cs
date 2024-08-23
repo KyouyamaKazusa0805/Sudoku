@@ -226,13 +226,21 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <summary>
-	/// Indicates the shared line. In other words, the line will contain all cells in this collection.
+	/// Indicates the shared block.
 	/// </summary>
-	/// <remarks>
-	/// If no shared houses can be found (i.e. return value of property <see cref="SharedHouses"/> is 0),
-	/// this property will return 32.
-	/// </remarks>
-	/// <seealso cref="SharedHouses"/>
+	public readonly House SharedBlock
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => HouseMask.TrailingZeroCount(SharedHouses & Grid.MaxCandidatesMask);
+	}
+
+	/// <summary>
+	/// Indicates the shared line, i.e. a line of 9 cells that contain all possible cells stored in the current collection.
+	/// </summary>
+	/// <remarks><b>
+	/// Please note that the result value may be invalid if no shared houses can be found.
+	/// In such case, the return value will be 32 (instead of -1, intuitive value).
+	/// </b></remarks>
 	public readonly House SharedLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
