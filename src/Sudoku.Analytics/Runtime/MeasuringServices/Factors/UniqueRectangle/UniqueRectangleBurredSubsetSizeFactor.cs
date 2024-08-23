@@ -1,0 +1,17 @@
+namespace Sudoku.Runtime.MeasuringServices.Factors;
+
+/// <summary>
+/// Represents a type that describes the size of subset appeared in <see cref="UniqueRectangleBurredSubsetStep"/>.
+/// </summary>
+/// <seealso cref="UniqueRectangleBurredSubsetStep"/>
+public sealed class UniqueRectangleBurredSubsetSizeFactor : Factor
+{
+	/// <inheritdoc/>
+	public override string[] ParameterNames => [nameof(IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(UniqueRectangleBurredSubsetStep);
+
+	/// <inheritdoc/>
+	public override Func<ReadOnlySpan<object?>, int> Formula => static args => (int)args![0]!;
+}

@@ -6,7 +6,7 @@ namespace Sudoku.Runtime.MinimalLexicographicOrderServices;
 public unsafe struct GridPattern
 {
 	/// <summary>
-	/// A precomputed min-lex'ed recomposition of the bit triplets for a 9-bits input.
+	/// A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
 	/// </summary>
 	internal static readonly int[] MinCanNineBits = [
 		0, 1, 1, 3, 1, 3, 3, 7, 1, 9, 9, 11, 9, 11, 11, 15, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11,
