@@ -23,7 +23,7 @@ internal partial class DrawableFactory
 			(Assignment, true) => ColorIdentifierKind.OverlappedAssignment,
 			(Assignment, _) => ColorIdentifierKind.Assignment,
 			(Elimination, true) => ColorIdentifierKind.Cannibalism,
-			_ => (ColorIdentifier)ColorIdentifierKind.Elimination
+			_ => ColorIdentifierKind.Elimination
 		};
 		ForCandidateNodeCore(
 			id,
