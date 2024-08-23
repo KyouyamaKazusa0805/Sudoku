@@ -132,7 +132,7 @@ public abstract class GridFormatInfo : IFormatProvider
 	public char Placeholder { get; init; } = '.';
 
 	/// <summary>
-	/// Indicaets the separator used. By default it's comma <c>", "</c>.
+	/// Indicates the separator used. By default it's comma <c>", "</c>.
 	/// </summary>
 	public string Separator { get; set; } = ", ";
 
@@ -183,13 +183,7 @@ public abstract class GridFormatInfo : IFormatProvider
 		=> GetInstance(
 			formatProvider switch
 			{
-				CultureInfo c => c.Name.ToLower() switch
-				{
-					['e', 'n', ..] => "@:",
-					['z', 'h', ..] => ".",
-					_ when c.Equals(CultureInfo.InvariantCulture) => "@:",
-					_ => "#"
-				},
+				CultureInfo c => c.Name switch { SR.EnglishLanguage => "@:", SR.ChineseLanguage => ".", _ => "#" },
 				_ => "#"
 			}
 		);

@@ -1044,10 +1044,10 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		=> provider switch
 		{
 			GridFormatInfo g => g.ParseGrid(s),
-			CultureInfo { Name: var n } => n.ToLower() switch
+			CultureInfo { Name: var n } => n switch
 			{
-			['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
-			['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
+				SR.EnglishLanguage => new PencilmarkGridFormatInfo().ParseGrid(s),
+				SR.ChineseLanguage => new SusserGridFormatInfo().ParseGrid(s),
 				_ => Parse(s)
 			},
 			_ => Parse(s)

@@ -7360,7 +7360,7 @@
         </member>
         <member name="P:Sudoku.Runtime.FormattingServices.GridFormatInfo.Separator">
             <summary>
-            Indicaets the separator used. By default it's comma <c>", "</c>.
+            Indicates the separator used. By default it's comma <c>", "</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Runtime.FormattingServices.GridFormatInfo.InvariantInfo">
