@@ -29,6 +29,7 @@ internal partial class DrawableFactory
 			id,
 			IdentifierConversion.GetColor(id),
 			candidate,
+			null,
 			paneCellControl,
 			animatedResults,
 			true,
@@ -157,7 +158,7 @@ internal partial class DrawableFactory
 			return;
 		}
 
-		ForCandidateNodeCore(id, IdentifierConversion.GetColor(id), candidate, paneCellControl, animatedResults);
+		ForCandidateNodeCore(id, IdentifierConversion.GetColor(id), candidate, candidateNode, paneCellControl, animatedResults);
 	}
 
 	/// <summary>
@@ -351,6 +352,7 @@ internal partial class DrawableFactory
 	/// <param name="id">The color identifier.</param>
 	/// <param name="color">The color to be used on rendering.</param>
 	/// <param name="candidate">The candidate to be rendered.</param>
+	/// <param name="candidateNode">The back candidate node.</param>
 	/// <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
 	/// <param name="animatedResults"><inheritdoc cref="DrawingContext.ControlAddingActions" path="/summary"/></param>
 	/// <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
@@ -360,6 +362,7 @@ internal partial class DrawableFactory
 		ColorIdentifier id,
 		Color color,
 		Candidate candidate,
+		CandidateViewNode? candidateNode,
 		SudokuPaneCell paneCellControl,
 		AnimatedResultCollection animatedResults,
 		bool isForConclusion = false,
@@ -532,7 +535,10 @@ internal partial class DrawableFactory
 			=> new SolidColorBrush(color);
 #endif
 
-		Conclusion c() => new(isForElimination ? Elimination : Assignment, candidate);
+		IDrawableItem c()
+			=> candidateNode is not null
+				? candidateNode
+				: new Conclusion(isForElimination ? Elimination : Assignment, candidate);
 	}
 
 	[DoesNotReturn]

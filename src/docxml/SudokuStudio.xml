@@ -2940,6 +2940,12 @@
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.IterateControls(SudokuStudio.Views.Controls.SudokuPane)">
+            <summary>
+            Iterate <see cref="T:Microsoft.UI.Xaml.Controls.UIElementCollection"/> values that may contain drawable-item-based controls.
+            </summary>
+            <param name="pane">The pane.</param>
+        </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Drawing.DrawingContext,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion})">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
@@ -3018,13 +3024,14 @@
             This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ILinkViewNode"/> instances together.
             </remarks>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,Sudoku.Drawing.Nodes.CandidateViewNode,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@)"/>.
             </summary>
             <param name="id">The color identifier.</param>
             <param name="color">The color to be used on rendering.</param>
             <param name="candidate">The candidate to be rendered.</param>
+            <param name="candidateNode">The back candidate node.</param>
             <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
             <param name="animatedResults"><inheritdoc cref="P:SudokuStudio.Drawing.DrawingContext.ControlAddingActions" path="/summary"/></param>
             <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
@@ -3043,6 +3050,12 @@
             Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
             <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.FindDrawableControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Returns a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/> instances that bound with drawable items.
+            </summary>
+            <param name="collection">The pane.</param>
         </member>
         <member name="T:SudokuStudio.Drawing.PathCreator">
             <summary>

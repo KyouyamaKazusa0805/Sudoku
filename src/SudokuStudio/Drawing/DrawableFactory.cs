@@ -18,18 +18,32 @@ internal static partial class DrawableFactory
 	/// <param name="old">The original value to be compared.</param>
 	/// <param name="new">The new value to be compared.</param>
 	public static void IncrementalUpdateViewUnitControls(SudokuPane pane, ViewUnitBindableSource? old, ViewUnitBindableSource? @new)
-#if false
 	{
 		// Determine which nodes should be updated.
 		// We may not clear all possible controls, in order to optimize the memory usage and performance.
 		var (negatives, positives) = old - @new;
 
 		// Find all bound controls that have already displayed in control.
-		// TODO: Change tag property values from all controls that are used by displaying view nodes to view nodes or conclusion instances directly.
+		// If some controls can be found in 'negatives', it should be removed.
+		foreach (var child in IterateControls(pane))
+		{
+			foreach (var z in child.FindDrawableControls())
+			{
+				switch (z.Tag)
+				{
+					case ViewNode v when negatives.Any(n => n is ViewNode p && p == v): { child.Remove(z); break; }
+					case CandidateMap: { child.Remove(z); break; }
+					case Conclusion c when negatives.Any(n => n is Conclusion p && p == c): { child.Remove(z); break; }
+				}
+			}
+		}
+
+		// Then add controls.
+		var conclusions = from p in positives where p is Conclusion select (Conclusion)p;
+		var viewNodes = from p in positives where p is ViewNode select (ViewNode)p;
+		var source = new ViewUnitBindableSource { Conclusions = conclusions.ToArray(), View = [.. viewNodes] };
+		AddViewUnitControls(pane, source);
 	}
-#else
-		=> UpdateViewUnitControls(pane);
-#endif
 
 	/// <summary>
 	/// Refresh the pane view unit controls.
@@ -51,11 +65,7 @@ internal static partial class DrawableFactory
 	/// <seealso cref="ViewUnitBindableSource"/>
 	private static void RemoveViewUnitControls(SudokuPane pane)
 	{
-		foreach (var child in
-			from targetControl in (FrameworkElement[])[.. from children in pane._children select children.MainGrid, pane.MainGrid]
-			let c = targetControl as GridLayout
-			where c is not null
-			select c.Children)
+		foreach (var child in IterateControls(pane))
 		{
 			child.RemoveAllViewUnitControls();
 		}
@@ -128,6 +138,15 @@ internal static partial class DrawableFactory
 		pane.ViewUnitUsedCandidates = usedCandidates;
 	}
 
+	/// <summary>
+	/// Iterate <see cref="UIElementCollection"/> values that may contain drawable-item-based controls.
+	/// </summary>
+	/// <param name="pane">The pane.</param>
+	private static IEnumerable<UIElementCollection> IterateControls(SudokuPane pane)
+		=>
+		from targetControl in (from children in pane._children select children.MainGrid).Append(pane.MainGrid)
+		select targetControl.Children;
+
 
 	private static partial void ForConclusion(DrawingContext context, Conclusion conclusion, List<Conclusion> overlapped);
 	private static partial void ForCellNode(DrawingContext context, CellViewNode cellNode);
@@ -148,14 +167,20 @@ file static class Extensions
 	/// <param name="this">The collection.</param>
 	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
 	{
-		var controls = (
-			from control in @this.OfType<FrameworkElement>()
-			where control.Tag is IDrawableItem and (ViewNode or CandidateMap or Conclusion)
-			select control
-		).ToArray();
-		foreach (var control in controls)
+		foreach (var control in @this.FindDrawableControls())
 		{
 			@this.Remove(control);
 		}
 	}
+
+	/// <summary>
+	/// Returns a list of <see cref="FrameworkElement"/> instances that bound with drawable items.
+	/// </summary>
+	/// <param name="collection">The pane.</param>
+	public static IEnumerable<FrameworkElement> FindDrawableControls(this UIElementCollection collection)
+		=> (
+			from child in collection.OfType<FrameworkElement>()
+			where child.Tag is IDrawableItem and (ViewNode or CandidateMap or Conclusion)
+			select child
+		).ToArray();
 }
