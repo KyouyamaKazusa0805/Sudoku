@@ -51,7 +51,7 @@ public sealed class FullHouseGenerator : SingleGenerator
 			// Fix the grid and check validity.
 			grid.Fix();
 			if (grid.GetIsValid()
-				&& Analyzer.Analyze(new(in grid) { CancellationToken = cancellationToken }) is { IsSolved: true, InterimSteps: var steps }
+				&& Analyzer.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken }) is { IsSolved: true, InterimSteps: var steps }
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{
 				result = grid.FixedGrid;
@@ -124,7 +124,7 @@ public sealed class FullHouseGenerator : SingleGenerator
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			switch (Analyzer.Analyze(new(in puzzle) { CancellationToken = cancellationToken }))
+			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

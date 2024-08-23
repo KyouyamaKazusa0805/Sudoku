@@ -1112,7 +1112,7 @@ public sealed partial class AnalyzePage : Page
 				lock (AnalyzingRelatedSyncRoot)
 				{
 					return analyzer.Analyze(
-						new(in puzzle)
+						new AnalyzerContext(in puzzle)
 						{
 							CancellationToken = cts.Token,
 							ProgressReporter = new Progress<AnalyzerOrCollectorProgressPresenter>(

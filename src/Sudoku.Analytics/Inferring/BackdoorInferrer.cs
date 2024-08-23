@@ -16,7 +16,7 @@ public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 		}
 
 		var sstsChecker = Analyzer.SstsOnly;
-		result = sstsChecker.Analyze(new(in grid)).IsSolved && grid.GetSolutionGrid() is var solution
+		result = sstsChecker.Analyze(in grid).IsSolved && grid.GetSolutionGrid() is var solution
 			? new(
 				from candidate in grid
 				let digit = solution.GetDigit(candidate / 9)
@@ -36,7 +36,7 @@ public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 				var case1Playground = grid;
 				case1Playground.SetDigit(cell, solution.GetDigit(cell));
 
-				if (sstsChecker.Analyze(new(in case1Playground)).IsSolved)
+				if (sstsChecker.Analyze(in case1Playground).IsSolved)
 				{
 					assignment.Add(new(Assignment, cell, solution.GetDigit(cell)));
 
@@ -45,7 +45,7 @@ public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 					{
 						var case2Playground = grid;
 						case2Playground.SetExistence(cell, digit, false);
-						if (sstsChecker.Analyze(new(in case2Playground)).IsSolved)
+						if (sstsChecker.Analyze(in case2Playground).IsSolved)
 						{
 							elimination.Add(new(Elimination, cell, digit));
 						}

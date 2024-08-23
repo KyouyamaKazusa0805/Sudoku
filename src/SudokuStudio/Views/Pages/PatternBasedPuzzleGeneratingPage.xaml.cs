@@ -355,7 +355,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		{
 			lock (AnalyzingRelatedSyncRoot)
 			{
-				return analyzer.Analyze(new(in grid) { CancellationToken = cancellationToken });
+				return analyzer.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken });
 			}
 		}
 

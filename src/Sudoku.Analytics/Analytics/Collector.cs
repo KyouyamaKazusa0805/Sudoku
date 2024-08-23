@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics;
 
-using CollectorBase = IAnalyzerOrCollector<Collector, CollectorContext, ReadOnlySpan<Step>>;
+using CollectorBase = ICollector<Collector, CollectorContext, ReadOnlySpan<Step>>;
 
 /// <summary>
 /// Represents an instance that can collect all possible <see cref="Step"/>s in a grid for one state.
@@ -46,8 +46,12 @@ public sealed partial class Collector : CollectorBase
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
 
+	/// <inheritdoc cref="Collect(ref readonly CollectorContext)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<Step> Collect(ref readonly Grid grid) => Collect(new CollectorContext(in grid));
+
 	/// <inheritdoc/>
-	public ReadOnlySpan<Step> Collect(ref readonly CollectorContext context)
+	public ReadOnlySpan<Step> Collect(scoped ref readonly CollectorContext context)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{

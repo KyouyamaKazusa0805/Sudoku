@@ -168,7 +168,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			lock (AnalyzingRelatedSyncRoot)
 			{
 				return collector.Collect(
-					new(in grid)
+					new CollectorContext(in grid)
 					{
 						CancellationToken = cts.Token,
 						ProgressReporter = new Progress<AnalyzerOrCollectorProgressPresenter>(

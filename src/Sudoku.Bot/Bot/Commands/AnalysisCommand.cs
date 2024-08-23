@@ -21,7 +21,7 @@ public sealed class AnalysisCommand : Command
 	{
 		if (message.GetPlainArguments() is var str && Grid.TryParse(str, out var grid))
 		{
-			var analysisResult = Program.Analyzer.Analyze(new(in grid));
+			var analysisResult = Program.Analyzer.Analyze(in grid);
 			var resultString = analysisResult.ToString(DefaultFormattingOptions);
 			await api.SendGroupMessageAsync(message, resultString);
 		}

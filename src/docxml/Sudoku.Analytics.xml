@@ -671,6 +671,9 @@
             Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)">
             <inheritdoc/>
         </member>
@@ -5337,6 +5340,9 @@
         </member>
         <member name="P:Sudoku.Analytics.Collector.Setters">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)"/>
         </member>
         <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)">
             <inheritdoc/>

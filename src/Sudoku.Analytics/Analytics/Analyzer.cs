@@ -177,6 +177,9 @@ public sealed partial class Analyzer : AnalyzerBase
 			)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
+	/// <inheritdoc cref="Analyze(ref readonly AnalyzerContext)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public AnalysisResult Analyze(ref readonly Grid grid) => Analyze(new AnalyzerContext(in grid));
 
 	/// <inheritdoc/>
 	public AnalysisResult Analyze(ref readonly AnalyzerContext context)

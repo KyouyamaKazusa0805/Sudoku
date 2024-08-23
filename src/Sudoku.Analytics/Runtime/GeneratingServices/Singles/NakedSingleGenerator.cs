@@ -87,7 +87,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
-			switch (Analyzer.Analyze(new(in puzzle) { CancellationToken = cancellationToken }))
+			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
 				{

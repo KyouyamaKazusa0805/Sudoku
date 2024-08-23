@@ -258,7 +258,7 @@ public sealed class PlayGameCommand : Command
 			while (true)
 			{
 				var grid = generator.Generate();
-				switch (Program.Analyzer.Analyze(new(in grid)))
+				switch (Program.Analyzer.Analyze(in grid))
 				{
 					case { IsSolved: true, Solution: var solution, DifficultyLevel: var l and <= DifficultyLevel.Hard }:
 					{
