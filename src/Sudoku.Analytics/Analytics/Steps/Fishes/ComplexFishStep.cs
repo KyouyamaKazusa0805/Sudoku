@@ -61,7 +61,7 @@ public sealed partial class ComplexFishStep(
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			ReadOnlySpan<char> internalName()
+			ReadOnlyCharSequence internalName()
 			{
 				var finKindStr = finKind() is var finModifier and not FishFinKind.Normal
 					? IsSiamese ? $"Siamese {finModifier} " : $"{finModifier} "

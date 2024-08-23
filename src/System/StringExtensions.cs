@@ -141,7 +141,7 @@ public static partial class StringExtensions
 	/// </summary>
 	/// <param name="this">The current <see cref="string"/> instance.</param>
 	/// <returns>An array of <see cref="string"/> elements.</returns>
-	public static string[] ExpandCharacters(this string @this) => [.. from c in (ReadOnlySpan<char>)@this select c.ToString()];
+	public static string[] ExpandCharacters(this string @this) => [.. from c in (ReadOnlyCharSequence)@this select c.ToString()];
 
 	/// <summary>
 	/// Cut the array to multiple part, making them are all of length <paramref name="length"/>.

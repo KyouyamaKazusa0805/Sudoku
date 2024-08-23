@@ -167,8 +167,8 @@ public interface IGrid<TSelf> :
 		}
 	}
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static new virtual bool TryParse(ReadOnlySpan<char> s, IFormatProvider? formatProvider, out TSelf result)
+	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlyCharSequence, IFormatProvider?, out TSelf)"/>
+	public static new virtual bool TryParse(ReadOnlyCharSequence s, IFormatProvider? formatProvider, out TSelf result)
 	{
 		try
 		{
@@ -185,8 +185,8 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
 	public static virtual bool TryParse(string? s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static virtual bool TryParse(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
+	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlyCharSequence, IFormatProvider?, out TSelf)"/>
+	public static virtual bool TryParse(ReadOnlyCharSequence s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
 	/// <summary>
 	/// Creates a <typeparamref name="TSelf"/> instance via the specified list of <see cref="Mask"/> values.
@@ -198,8 +198,8 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string?, IFormatProvider?)"/>
 	public static virtual TSelf Parse(string? s) => TSelf.Parse(s, null);
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
-	public static virtual TSelf Parse(ReadOnlySpan<char> s) => TSelf.Parse(s, null);
+	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlyCharSequence, IFormatProvider?)"/>
+	public static virtual TSelf Parse(ReadOnlyCharSequence s) => TSelf.Parse(s, null);
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>

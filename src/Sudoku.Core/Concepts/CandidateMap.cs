@@ -307,7 +307,7 @@ public partial struct CandidateMap : CandidateMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	public readonly bool TryFormat(CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(provider);
 		if (destination.Length < targetString.Length)
@@ -328,7 +328,7 @@ public partial struct CandidateMap : CandidateMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	public readonly bool TryFormat(Utf8CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(provider);
 		if (destination.Length < targetString.Length)
@@ -605,12 +605,12 @@ public partial struct CandidateMap : CandidateMapBase
 		}
 	}
 
-	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out CandidateMap)"/>
+	/// <inheritdoc cref="TryParse(ReadOnlyCharSequence, IFormatProvider?, out CandidateMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(ReadOnlySpan<char> s, out CandidateMap result) => TryParse(s, null, out result);
+	public static bool TryParse(ReadOnlyCharSequence s, out CandidateMap result) => TryParse(s, null, out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CandidateMap result)
+	public static bool TryParse(ReadOnlyCharSequence s, IFormatProvider? provider, out CandidateMap result)
 	{
 		try
 		{
@@ -672,13 +672,13 @@ public partial struct CandidateMap : CandidateMapBase
 			_ => CoordinateParser.GetInstance(provider).CandidateParser(s)
 		};
 
-	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="Parse(ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse(ReadOnlySpan<char> s) => Parse(s, null);
+	public static CandidateMap Parse(ReadOnlyCharSequence s) => Parse(s, null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
+	public static CandidateMap Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 
 	/// <inheritdoc/>

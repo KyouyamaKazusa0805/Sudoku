@@ -478,7 +478,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	public readonly bool TryFormat(CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(format.IsEmpty ? null : format.ToString(), provider);
 		if (destination.Length < targetString.Length)
@@ -877,12 +877,12 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		}
 	}
 
-	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out Grid)"/>
+	/// <inheritdoc cref="TryParse(ReadOnlyCharSequence, IFormatProvider?, out Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(ReadOnlySpan<char> s, out Grid result) => TryParse(s, null, out result);
+	public static bool TryParse(ReadOnlyCharSequence s, out Grid result) => TryParse(s, null, out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Grid result)
+	public static bool TryParse(ReadOnlyCharSequence s, IFormatProvider? provider, out Grid result)
 	{
 		try
 		{
@@ -1053,13 +1053,13 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 			_ => Parse(s)
 		};
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<char> s) => Parse(s, null);
+	public static Grid Parse(ReadOnlyCharSequence s) => Parse(s, null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
+	public static Grid Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 	/// <inheritdoc/>
 	static void IGridProperties<Grid>.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)

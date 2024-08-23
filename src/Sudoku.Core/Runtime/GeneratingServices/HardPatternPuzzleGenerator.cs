@@ -22,12 +22,12 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Indicates the block factor.
 	/// </summary>
-	private static ReadOnlySpan<byte> BlockFactor => [0, 6, 54, 60, 3, 27, 33, 57, 30];
+	private static ReadOnlySpan<Cell> BlockFactor => [0, 6, 54, 60, 3, 27, 33, 57, 30];
 
 	/// <summary>
 	/// Indicates the swapping factor.
 	/// </summary>
-	private static ReadOnlySpan<byte[]> SwappingFactor => (byte[][])[[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+	private static ReadOnlySpan<Cell[]> SwappingFactor => (Cell[][])[[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 	/// <summary>
 	/// Indicates the backing random.
@@ -92,7 +92,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="solutionString">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private unsafe void GenerateAnswerGrid(Span<char> puzzleString, Span<char> solutionString)
+	private unsafe void GenerateAnswerGrid(CharSequence puzzleString, CharSequence solutionString)
 	{
 		do
 		{
@@ -167,7 +167,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="gridString">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(Span<char> gridString, Cell cell)
+	private static bool CheckDuplicate(CharSequence gridString, Cell cell)
 	{
 		var value = gridString[cell];
 		foreach (var c in PeersMap[cell])

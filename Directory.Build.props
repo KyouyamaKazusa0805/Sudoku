@@ -58,6 +58,10 @@
 		<Using Include="System.Int32" Alias="RowIndex" />
 		<Using Include="System.Int32" Alias="ColumnIndex" />
 		<Using Include="System.Int16" Alias="Mask" />
+		<Using Include="System.ReadOnlySpan&lt;System.Char&gt;" Alias="ReadOnlyCharSequence" />
+		<Using Include="System.Span&lt;System.Char&gt;" Alias="CharSequence" />
+		<Using Include="System.ReadOnlySpan&lt;System.Byte&gt;" Alias="ReadOnlyUtf8CharSequence" />
+		<Using Include="System.Span&lt;System.Byte&gt;" Alias="Utf8CharSequence" />
 	</ItemGroup>
 
 	<!--

@@ -487,9 +487,9 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
 
-	/// <inheritdoc cref="ISpanFormattable.TryFormat(Span{char}, out int, ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="ISpanFormattable.TryFormat(CharSequence, out int, ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	public readonly bool TryFormat(CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(provider);
 		if (destination.Length < targetString.Length)
@@ -508,9 +508,9 @@ public partial struct CellMap : CellMapBase
 		return false;
 	}
 
-	/// <inheritdoc cref="IUtf8SpanFormattable.TryFormat(Span{byte}, out int, ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="IUtf8SpanFormattable.TryFormat(Utf8CharSequence, out int, ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool TryFormat(Span<byte> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	public readonly bool TryFormat(Utf8CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(provider);
 		if (destination.Length < targetString.Length)
@@ -716,12 +716,12 @@ public partial struct CellMap : CellMapBase
 		}
 	}
 
-	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out CellMap)"/>
+	/// <inheritdoc cref="TryParse(ReadOnlyCharSequence, IFormatProvider?, out CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(ReadOnlySpan<char> s, out CellMap result) => TryParse(s, null, out result);
+	public static bool TryParse(ReadOnlyCharSequence s, out CellMap result) => TryParse(s, null, out result);
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
+	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlyCharSequence, IFormatProvider?, out TSelf)"/>
+	public static bool TryParse(ReadOnlyCharSequence s, IFormatProvider? provider, out CellMap result)
 	{
 		try
 		{
@@ -807,13 +807,13 @@ public partial struct CellMap : CellMapBase
 			_ => CoordinateParser.GetInstance(provider).CellParser(s)
 		};
 
-	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="Parse(ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(ReadOnlySpan<char> s) => Parse(s, null);
+	public static CellMap Parse(ReadOnlyCharSequence s) => Parse(s, null);
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
+	public static CellMap Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 	/// <summary>
 	/// Creates a <see cref="Vector128{T}"/> of <see cref="long"/> instance.

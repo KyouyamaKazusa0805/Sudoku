@@ -10,7 +10,7 @@ public static class GridToken
 	/// <summary>
 	/// The character span that indicates all possible characters appeared in a number with base 32.
 	/// </summary>
-	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv";
+	internal static ReadOnlyCharSequence Base32CharSpan => "0123456789abcdefghijklmnopqrstuv";
 
 
 	/// <summary>
@@ -67,7 +67,7 @@ public static class GridToken
 
 	/// <inheritdoc cref="CreateFromToken(string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid CreateFromToken(ReadOnlySpan<char> token) => CreateFromToken(token.ToString());
+	public static Grid CreateFromToken(ReadOnlyCharSequence token) => CreateFromToken(token.ToString());
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.

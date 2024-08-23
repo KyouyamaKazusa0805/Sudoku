@@ -37,7 +37,7 @@ public static class StringEnumerable
 	/// <returns>
 	/// A new <see cref="string"/> instance that contains characters from the input sequence that satisfy the condition.
 	/// </returns>
-	public static ReadOnlySpan<char> Where(this string @this, Func<char, bool> predicate)
+	public static ReadOnlyCharSequence Where(this string @this, Func<char, bool> predicate)
 	{
 		var result = new char[@this.Length];
 		var i = 0;
