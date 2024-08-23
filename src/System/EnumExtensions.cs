@@ -36,7 +36,7 @@ public static class EnumExtensions
 		{
 			set.Add(flag);
 		}
-		return set.ToArray();
+		return (T[])[.. set];
 	}
 
 	/// <summary>

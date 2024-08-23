@@ -2201,14 +2201,6 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
         </member>
-        <member name="M:System.Linq.HashSetEnumerable.ToArray``1(System.Collections.Generic.HashSet{``0})">
-            <summary>
-            Converts the collection into an array.
-            </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="source">The collection.</param>
-            <returns>An array of <typeparamref name="TSource"/> instances.</returns>
-        </member>
         <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0})">
             <summary>
             Indicates the first element of the collection.

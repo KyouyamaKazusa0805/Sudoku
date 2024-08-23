@@ -129,7 +129,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 			}
 		}
-		return result.ToArray();
+		return (UniqueLoop[])[.. result];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

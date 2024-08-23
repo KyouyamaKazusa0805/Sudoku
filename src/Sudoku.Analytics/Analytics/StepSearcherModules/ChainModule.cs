@@ -71,7 +71,7 @@ internal static class ChainModule
 		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
-			if (chain.TryCastToFinnedChain(out var finnedChain, out var f) && onlyFindFinnedChain)
+			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
 				var views = (View[])[
@@ -82,7 +82,7 @@ internal static class ChainModule
 				];
 
 				// Change nodes into fin-like view nodes.
-				foreach (var node in views[0].ToArray())
+				foreach (var node in (ViewNode[])[.. views[0]])
 				{
 					if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
 					{

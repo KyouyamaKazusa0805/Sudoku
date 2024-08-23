@@ -7,24 +7,6 @@ namespace System.Linq;
 public static class HashSetEnumerable
 {
 	/// <summary>
-	/// Converts the collection into an array.
-	/// </summary>
-	/// <typeparam name="TSource">The type of each element.</typeparam>
-	/// <param name="source">The collection.</param>
-	/// <returns>An array of <typeparamref name="TSource"/> instances.</returns>
-	public static TSource[] ToArray<TSource>(this HashSet<TSource> source)
-	{
-		var result = new TSource[source.Count];
-		using var enumerator = source.GetEnumerator();
-		var i = 0;
-		while (enumerator.MoveNext())
-		{
-			result[i++] = enumerator.Current;
-		}
-		return result;
-	}
-
-	/// <summary>
 	/// Indicates the first element of the collection.
 	/// </summary>
 	/// <typeparam name="TSource">The type of each element.</typeparam>
