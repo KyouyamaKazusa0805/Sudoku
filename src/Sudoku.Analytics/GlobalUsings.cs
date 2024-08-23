@@ -43,7 +43,7 @@ global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Runtime.MeasuringServices;
 global using Sudoku.Runtime.MeasuringServices.Factors;
 global using Sudoku.Runtime.MeasuringServices.Functions;
-global using Sudoku.Runtime.MinimalPuzzleServices;
+global using Sudoku.Runtime.MinPuzzleServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.TransformingServices;
 global using Sudoku.Snyder;

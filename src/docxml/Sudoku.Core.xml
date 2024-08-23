@@ -9072,36 +9072,6 @@
             <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.MinimalPuzzleServices.GridMinimalExtensions">
-            <summary>
-            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalPuzzleServices.GridMinimalExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MinimalPuzzleServices.GridMinimalExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="firstCandidateMakePuzzleNotMinimal">
-            <para>
-            Indicates the first found candidate that can make the puzzle not minimal, which means
-            if we remove the digit in the cell, the puzzle will still keep unique.
-            </para>
-            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-        </member>
         <member name="T:Sudoku.Runtime.MinlexServices.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.
@@ -9343,6 +9313,36 @@
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.MinPuzzleServices.MinGridExtensions">
+            <summary>
+            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Runtime.MinPuzzleServices.MinGridExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MinPuzzleServices.MinGridExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
+            <summary>
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
+            </summary>
+            <param name="this">Indicates the current instance.</param>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
         <member name="T:Sudoku.Runtime.SolvingServices.Backtracking.BacktrackingSolver">
             <summary>
