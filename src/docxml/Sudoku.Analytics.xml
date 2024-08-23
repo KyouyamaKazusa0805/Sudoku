@@ -5517,6 +5517,9 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForExtendedUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForExtendedUniqueLoops">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.SearchExtendedTypes"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchExtendedBivalueUniversalGraveTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
         </member>
@@ -7805,6 +7808,11 @@
         <member name="F:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.TypeCheckers">
             <summary>
             Indicates the type checkers.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.SearchExtendedTypes">
+            <summary>
+            Indicates whether the searcher collects for extended types of Unique Loop patterns.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

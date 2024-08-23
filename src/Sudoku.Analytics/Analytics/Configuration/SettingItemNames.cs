@@ -73,6 +73,9 @@ public static class SettingItemNames
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
 	public const string SearchForExtendedUniqueRectangles = nameof(SearchForExtendedUniqueRectangles);
 
+	/// <inheritdoc cref="UniqueLoopStepSearcher.SearchExtendedTypes"/>
+	public const string SearchForExtendedUniqueLoops = nameof(SearchForExtendedUniqueLoops);
+
 	/// <inheritdoc cref="BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
 	public const string SearchExtendedBivalueUniversalGraveTypes = nameof(SearchExtendedBivalueUniversalGraveTypes);
 

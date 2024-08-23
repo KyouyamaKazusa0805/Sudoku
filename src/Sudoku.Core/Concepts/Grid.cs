@@ -1061,6 +1061,15 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
+	/// <summary>
+	/// Creates an <see cref="IEqualityComparer{T}"/> instance from the basic grid checking rule.
+	/// </summary>
+	/// <param name="comparison">Indicates the comparison rule.</param>
+	/// <returns>An <see cref="IEqualityComparer{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static IEqualityComparer<Grid> CreateEqualityComparer(GridComparison comparison)
+		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(in b, comparison), obj => obj.GetHashCode(comparison));
+
 	/// <inheritdoc/>
 	static void IGridProperties<Grid>.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 		=> OnValueChanged(ref @this, cell, oldMask, newMask, setValue);

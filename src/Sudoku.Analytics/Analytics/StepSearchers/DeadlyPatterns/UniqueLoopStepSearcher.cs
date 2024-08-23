@@ -45,6 +45,13 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	];
 
 
+	/// <summary>
+	/// Indicates whether the searcher collects for extended types of Unique Loop patterns.
+	/// </summary>
+	[SettingItemName(SettingItemNames.SearchForExtendedUniqueLoops)]
+	public bool SearchExtendedTypes { get; set; } = true;
+
+
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
 	{
@@ -65,6 +72,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var d2 = comparer.GetNextSet(d1);
 			for (var i = 0; i < TypeCheckers.Length; i++)
 			{
+				if (!SearchExtendedTypes && i == TypeCheckers.Length - 1)
+				{
+					continue;
+				}
+
 				if (TypeCheckers[i](tempAccumulator, in grid, ref context, d1, d2, in loop, in extraCellsMap, comparer, path) is { } step)
 				{
 					return step;
