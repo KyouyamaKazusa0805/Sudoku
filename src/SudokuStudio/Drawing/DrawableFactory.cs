@@ -21,7 +21,10 @@ internal static partial class DrawableFactory
 	{
 		// Determine which nodes should be updated.
 		// We may not clear all possible controls, in order to optimize the memory usage and performance.
-		var (negatives, positives) = old - @new;
+		if (old - @new is not (var negatives, var positives) { IsEmpty: false })
+		{
+			return;
+		}
 
 		// Find all bound controls that have already displayed in control.
 		// If some controls can be found in 'negatives', it should be removed.

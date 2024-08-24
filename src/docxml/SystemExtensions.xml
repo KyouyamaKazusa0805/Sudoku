@@ -93,6 +93,13 @@
             <param name="this">The array.</param>
             <returns>The total number of bits set <see langword="true"/>.</returns>
         </member>
+        <member name="M:System.Collections.BitArrayExtensions.GetInternalArrayField(System.Collections.BitArray)">
+            <summary>
+            Try to get internal array field.
+            </summary>
+            <param name="this">The array.</param>
+            <returns>The field.</returns>
+        </member>
         <member name="M:System.Collections.BitArrayExtensions.GetArrayField(System.Collections.BitArray)">
             <summary>
             Try to fetch the internal field <c>m_array</c> in type <see cref="T:System.Collections.BitArray" />.

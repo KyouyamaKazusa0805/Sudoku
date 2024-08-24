@@ -22,6 +22,14 @@ public static class BitArrayExtensions
 	public static int GetCardinality(this BitArray @this) => GetArrayField(@this).Sum(int.PopCount);
 
 	/// <summary>
+	/// Try to get internal array field.
+	/// </summary>
+	/// <param name="this">The array.</param>
+	/// <returns>The field.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int[] GetInternalArrayField(this BitArray @this) => GetArrayField(@this);
+
+	/// <summary>
 	/// Try to fetch the internal field <c>m_array</c> in type <see cref="BitArray"/>.
 	/// </summary>
 	/// <param name="this">The list.</param>

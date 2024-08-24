@@ -1529,6 +1529,11 @@
             The maximum number of candidates can exist in a grid.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.Length">
+            <summary>
+            Indicates the total length of bit array.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.ConclusionSet.PrimeNumbers">
             <summary>
             The prime numbers below 100.
@@ -1537,11 +1542,6 @@
         <member name="F:Sudoku.Concepts.ConclusionSet._bitArray">
             <summary>
             The internal bit array.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.ConclusionSet._conclusionsEntry">
-            <summary>
-            The entry point that can visit conclusions.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.ContainsAssignment">
@@ -1562,13 +1562,13 @@
         <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#IsReadOnly">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#Count">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Empty">
             <summary>
             An empty instance.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#Count">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Item(System.Int32)">
             <summary>
@@ -1749,40 +1749,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_ExclusiveOr(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.ConclusionSet.Enumerator">
-            <summary>
-            The internal enumerator instance.
-            </summary>
-            <param name="_collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.#ctor(Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            The internal enumerator instance.
-            </summary>
-            <param name="_collection">The collection.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.ConclusionSet.Enumerator._enumerator">
-            <summary>
-            The conclusions to be iterated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.Current">
-            <summary>
-            Indicates the current iterated element.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Equals(System.Object)">

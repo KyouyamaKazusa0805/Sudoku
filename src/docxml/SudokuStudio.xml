@@ -724,6 +724,11 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.IDrawableItem"/>
         </member>
+        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.IsEmpty">
+            <summary>
+            Indicates whether the collection is empty.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Positives">
             <summary>
             Indicates the positives.

@@ -34,6 +34,11 @@ public sealed partial class ConclusionSet :
 	/// </summary>
 	private const int HalfBitsCount = 729;
 
+	/// <summary>
+	/// Indicates the total length of bit array.
+	/// </summary>
+	private const int Length = 45;
+
 
 	/// <summary>
 	/// The prime numbers below 100.
@@ -45,11 +50,6 @@ public sealed partial class ConclusionSet :
 	/// The internal bit array.
 	/// </summary>
 	private readonly BitArray _bitArray = new(BitsCount);
-
-	/// <summary>
-	/// The entry point that can visit conclusions.
-	/// </summary>
-	private readonly List<Conclusion> _conclusionsEntry = [];
 
 
 	/// <summary>
@@ -94,20 +94,20 @@ public sealed partial class ConclusionSet :
 	public int Count
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _conclusionsEntry.Count;
+		get => _bitArray.GetCardinality();
 	}
 
 	/// <inheritdoc/>
 	bool ICollection<Conclusion>.IsReadOnly => false;
+
+	/// <inheritdoc/>
+	int ICollection<Conclusion>.Count => Count;
 
 
 	/// <summary>
 	/// An empty instance.
 	/// </summary>
 	public static ConclusionSet Empty => [];
-
-	/// <inheritdoc/>
-	int ICollection<Conclusion>.Count { get; }
 
 
 	/// <summary>
@@ -116,7 +116,38 @@ public sealed partial class ConclusionSet :
 	/// <param name="index">The desired index to be checked.</param>
 	/// <returns>The found <see cref="Conclusion"/> instance at the specified index.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
-	public Conclusion this[int index] => index >= 0 && index < Count ? _conclusionsEntry[index] : throw new IndexOutOfRangeException();
+	public Conclusion this[int index]
+	{
+		get
+		{
+			if (index < 0 || index >= Count)
+			{
+				throw new IndexOutOfRangeException();
+			}
+
+			var bmi2IsSupported = Bmi2.IsSupported;
+			var popCountSum = 0;
+			var internalField = _bitArray.GetInternalArrayField();
+			for (var i = 0; i < Length; i++)
+			{
+				var bits = (uint)internalField[i];
+				var z = bmi2IsSupported
+					? BitOperations.TrailingZeroCount(Bmi2.ParallelBitDeposit(1U << index - popCountSum, bits))
+					: bits.SetAt(index - popCountSum);
+				switch (bmi2IsSupported)
+				{
+					case true when z != 32:
+					case false when z != -1:
+					{
+						return new((short)(z + (i << 5))); // * 32
+					}
+				}
+
+				popCountSum += BitOperations.PopCount(bits);
+			}
+			return default;
+		}
+	}
 
 
 	/// <inheritdoc/>
@@ -125,7 +156,6 @@ public sealed partial class ConclusionSet :
 	{
 		var (type, cell, digit) = item;
 		_bitArray[(int)type * HalfBitsCount + cell * 9 + digit] = true;
-		_conclusionsEntry.Add(item);
 	}
 
 	/// <summary>
@@ -149,16 +179,11 @@ public sealed partial class ConclusionSet :
 	{
 		var (type, cell, digit) = item;
 		_bitArray[(int)type * HalfBitsCount + cell * 9 + digit] = false;
-		_conclusionsEntry.Remove(item);
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear()
-	{
-		_bitArray.SetAll(false);
-		_conclusionsEntry.Clear();
-	}
+	public void Clear() => _bitArray.SetAll(false);
 
 	/// <summary>
 	/// Removes all elements in the collection and add all elements from <paramref name="conclusions"/>.
@@ -273,22 +298,32 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> CoordinateConverter.GetInstance(formatProvider).ConclusionConverter(_conclusionsEntry.AsReadOnlySpan());
+		=> CoordinateConverter.GetInstance(formatProvider).ConclusionConverter(ToArray());
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion[] ToArray() => [.. _conclusionsEntry];
+	public Conclusion[] ToArray()
+	{
+		var result = new Conclusion[Count];
+		for (var (i, z) = ((short)0, 0); i < BitsCount; i++)
+		{
+			if (_bitArray[i])
+			{
+				result[z++] = new(i);
+			}
+		}
+		return result;
+	}
 
 	/// <summary>
 	/// Try to get an enumerator type that iterates on each conclusion.
 	/// </summary>
 	/// <returns>An enumerator type that iterates on each conclusion.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(this);
+	public AnonymousSpanEnumerator<Conclusion> GetEnumerator() => new(ToArray());
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConclusionSet Slice(int start, int count) => [.. _conclusionsEntry[start..(start + count)]];
+	public ConclusionSet Slice(int start, int count) => [.. ToArray().AsReadOnlySpan()[start..(start + count)]];
 
 	/// <inheritdoc/>
 	void ICollection<Conclusion>.CopyTo(Conclusion[] array, int arrayIndex) => CopyTo(array.AsSpan()[arrayIndex..]);
@@ -424,7 +459,7 @@ public sealed partial class ConclusionSet :
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => _conclusionsEntry.GetEnumerator();
+	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => ((IEnumerable<Conclusion>)ToArray()).GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<Conclusion> ISliceMethod<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);

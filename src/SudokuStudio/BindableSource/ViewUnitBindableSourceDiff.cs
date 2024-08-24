@@ -8,6 +8,11 @@ namespace SudokuStudio.BindableSource;
 public readonly ref struct ViewUnitBindableSourceDiff
 {
 	/// <summary>
+	/// Indicates whether the collection is empty.
+	/// </summary>
+	public bool IsEmpty => Positives.Length == 0 && Negatives.Length == 0;
+
+	/// <summary>
 	/// Indicates the positives.
 	/// </summary>
 	public readonly required ReadOnlySpan<IDrawableItem> Positives { get; init; }
