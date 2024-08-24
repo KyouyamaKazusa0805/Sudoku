@@ -308,7 +308,7 @@ public sealed partial class ConclusionSet :
 		{
 			if (_bitArray[i])
 			{
-				result[z++] = new(i);
+				result[z++] = new(i >= HalfBitsCount ? Elimination : Assignment, i % HalfBitsCount);
 			}
 		}
 		return result;
