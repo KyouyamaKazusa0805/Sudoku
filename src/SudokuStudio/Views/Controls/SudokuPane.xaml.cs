@@ -841,7 +841,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			return;
 		}
 
-		foreach (var cells in e.LastCell.GetCellsOrdered(e.House))
+		foreach (var cells in e.LastCell.GetCellsOrdered(e.House).ToArray())
 		{
 			cells.ForEach(cell => _children[cell].LightUpAsync(250));
 			await .1.Seconds();
@@ -1345,7 +1345,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
-	public static CellMap[] GetCellsOrdered(this Cell @this, House house)
+	public static ReadOnlySpan<CellMap> GetCellsOrdered(this Cell @this, House house)
 	{
 		var cells = HousesCells[house];
 		switch (house.ToHouseType())
@@ -1373,7 +1373,7 @@ file static class Extensions
 					}
 					break;
 				}
-				return [.. result];
+				return result.AsReadOnlySpan();
 			}
 			case HouseType.Column:
 			{
@@ -1398,7 +1398,7 @@ file static class Extensions
 					}
 					break;
 				}
-				return [.. result];
+				return result.AsReadOnlySpan();
 			}
 			case HouseType.Block:
 			{
