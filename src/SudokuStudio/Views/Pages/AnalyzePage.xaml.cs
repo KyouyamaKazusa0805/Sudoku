@@ -976,8 +976,6 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="CurrentViewIndex"/>
 	private static void ChangeCurrentViewIndex(AnalyzePage page, int value)
 	{
-		var visualUnit = page.VisualUnit;
-
 		if (value == -1)
 		{
 			page.VisualUnit = null;
@@ -985,39 +983,41 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		page.SudokuPane.ViewUnit = visualUnit switch
+		switch (page.VisualUnit)
 		{
-			{ Conclusions: var conclusions, Views.Length: 0 } => new() { Conclusions = conclusions.ToArray(), View = [] },
-			{ Conclusions: var conclusions, Views: var views } => new() { Conclusions = conclusions.ToArray(), View = views.Span[value] },
-			_ => null
-		};
+			case { Conclusions: var conclusions, Views.Length: 0 }:
+			{
+				page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = [] };
+				break;
+			}
+			case { Conclusions: var conclusions, Views: var views }:
+			{
+				page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = views.Span[value] };
+				break;
+			}
+		}
 	}
 
 	[Callback]
 	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (AnalyzePage page, { NewValue: int value }))
+		if ((d, e) is (AnalyzePage page, { NewValue: int value }))
 		{
-			return;
+			ChangeCurrentViewIndex(page, value);
 		}
-
-		ChangeCurrentViewIndex(page, value);
 	}
 
 	[Callback]
 	private static void VisualUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or IDrawable) }))
+		if ((d, e) is (AnalyzePage page, { NewValue: var value and (null or IDrawable) }))
 		{
-			return;
+			page.CurrentViewIndex = value is IDrawable ? 0 : -1;
+
+			// A rescue. The code snippet is used for manually updating the pips pager and text block.
+			page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
+			page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 		}
-
-		var currentViewIndex = value is IDrawable ? 0 : -1;
-		page.CurrentViewIndex = currentViewIndex;
-
-		// A rescue. The code snippet is used for manually updating the pips pager and text block.
-		page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
-		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 	}
 
 	[Callback]
