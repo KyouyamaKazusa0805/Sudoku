@@ -1256,7 +1256,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 							break;
 						}
 					}
-
 					break;
 				}
 			}
