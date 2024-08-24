@@ -1252,7 +1252,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
-
 							eventHandler();
 							break;
 						}
@@ -1359,7 +1358,7 @@ file static class Extensions
 				for (var i = 1; ; i++)
 				{
 					var map = CellMap.Empty;
-					if (pos - i >= 0)
+					if (pos >= i)
 					{
 						map.Add(cells[pos - i]);
 					}
@@ -1373,10 +1372,8 @@ file static class Extensions
 						result.AddRef(in map);
 						continue;
 					}
-
 					break;
 				}
-
 				return [.. result];
 			}
 			case HouseType.Column:
@@ -1386,7 +1383,7 @@ file static class Extensions
 				for (var i = 1; ; i++)
 				{
 					var map = CellMap.Empty;
-					if (pos - i >= 0)
+					if (pos >= i)
 					{
 						map.Add(cells[pos - i]);
 					}
@@ -1400,10 +1397,8 @@ file static class Extensions
 						result.AddRef(in map);
 						continue;
 					}
-
 					break;
 				}
-
 				return [.. result];
 			}
 			case HouseType.Block:
