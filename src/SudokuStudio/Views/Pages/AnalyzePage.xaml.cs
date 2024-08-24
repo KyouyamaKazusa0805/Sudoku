@@ -968,35 +968,24 @@ public sealed partial class AnalyzePage : Page
 	}
 
 
-	/// <summary>
-	/// Try to change the value of the property <see cref="CurrentViewIndex"/>.
-	/// </summary>
-	/// <param name="page">The triggering page.</param>
-	/// <param name="value">The index value set.</param>
-	/// <seealso cref="CurrentViewIndex"/>
-	private static void ChangeCurrentViewIndex(AnalyzePage page, int value)
-	{
-		switch (page.VisualUnit)
-		{
-			case { Conclusions: var conclusions, Views.Length: 0 }:
-			{
-				page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = [] };
-				break;
-			}
-			case { Conclusions: var conclusions, Views: var views }:
-			{
-				page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = views.Span[value] };
-				break;
-			}
-		}
-	}
-
 	[Callback]
 	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is (AnalyzePage page, { NewValue: int value }))
 		{
-			ChangeCurrentViewIndex(page, value);
+			switch (page.VisualUnit)
+			{
+				case { Conclusions: var conclusions, Views.Length: 0 }:
+				{
+					page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = [] };
+					break;
+				}
+				case { Conclusions: var conclusions, Views: var views }:
+				{
+					page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = views.Span[value] };
+					break;
+				}
+			}
 		}
 	}
 
@@ -1007,7 +996,7 @@ public sealed partial class AnalyzePage : Page
 		{
 			page.CurrentViewIndex = value is IDrawable ? 0 : -1;
 
-			// A rescue. The code snippet is used for manually updating the pips pager and text block.
+			// Manually updating the pips pager and text block.
 			page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 			page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 		}

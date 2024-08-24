@@ -342,13 +342,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				tempMap |= CandidatesMap[digit];
 			}
-			if (tempMap.InOneHouse(out _))
+			if (tempMap.FirstSharedHouse is not (var house and not 32))
 			{
 				continue;
 			}
 
-			var (house, d1, d2, count) = (tempMap.FirstSharedHouse, -1, -1, 0);
-			var conjugateMap = HousesMap[house] & pattern;
+			var (d1, d2, count, conjugateMap) = (-1, -1, 0, HousesMap[house] & pattern);
 			foreach (var digit in digits)
 			{
 				if ((conjugateMap | HousesMap[house] & CandidatesMap[digit]) == conjugateMap)
