@@ -29,4 +29,12 @@ public readonly ref struct ViewUnitBindableSourceDiff
 		negatives = Negatives;
 		positives = Positives;
 	}
+
+
+	/// <inheritdoc cref="IUnaryPlusOperators{TSelf, TResult}.op_UnaryPlus(TSelf)"/>
+	public static ViewUnitBindableSourceDiff operator +(ViewUnitBindableSourceDiff value) => value;
+
+	/// <inheritdoc cref="IUnaryNegationOperators{TSelf, TResult}.op_UnaryNegation(TSelf)"/>
+	public static ViewUnitBindableSourceDiff operator -(ViewUnitBindableSourceDiff value)
+		=> new() { Negatives = value.Positives, Positives = value.Negatives };
 }

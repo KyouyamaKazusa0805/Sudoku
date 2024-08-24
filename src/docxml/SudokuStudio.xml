@@ -753,6 +753,12 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.op_UnaryPlus(SudokuStudio.BindableSource.ViewUnitBindableSourceDiff)">
+            <inheritdoc cref="M:System.Numerics.IUnaryPlusOperators`2.op_UnaryPlus(`0)"/>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.op_UnaryNegation(SudokuStudio.BindableSource.ViewUnitBindableSourceDiff)">
+            <inheritdoc cref="M:System.Numerics.IUnaryNegationOperators`2.op_UnaryNegation(`0)"/>
+        </member>
         <member name="T:SudokuStudio.Collection.ColorPalette">
             <summary>
             Represents a color palette that contains a list of <see cref="T:Windows.UI.Color"/> instances that can be used in UI binding.
