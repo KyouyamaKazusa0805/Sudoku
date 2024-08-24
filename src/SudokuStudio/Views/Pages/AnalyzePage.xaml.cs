@@ -976,13 +976,6 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="CurrentViewIndex"/>
 	private static void ChangeCurrentViewIndex(AnalyzePage page, int value)
 	{
-		if (value == -1)
-		{
-			page.VisualUnit = null;
-			page.SudokuPane.ViewUnit = null;
-			return;
-		}
-
 		switch (page.VisualUnit)
 		{
 			case { Conclusions: var conclusions, Views.Length: 0 }:
