@@ -1015,8 +1015,6 @@ public sealed partial class AnalyzePage : Page
 		var currentViewIndex = value is IDrawable ? 0 : -1;
 		page.CurrentViewIndex = currentViewIndex;
 
-		ChangeCurrentViewIndex(page, currentViewIndex);
-
 		// A rescue. The code snippet is used for manually updating the pips pager and text block.
 		page.ViewsSwitcher.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
 		page.ViewsCountDisplayer.Visibility = value is null ? Visibility.Collapsed : Visibility.Visible;
