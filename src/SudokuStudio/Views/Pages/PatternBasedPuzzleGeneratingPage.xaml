@@ -62,7 +62,7 @@
 					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
 					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
-					DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False" ClearViewWhenUpdated="False"
+					DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
 					HighlightBackgroundOpacity="{m:Decimal ParseString='0.8'}" DisplayCursors="False"
 					EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="False"
 					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"

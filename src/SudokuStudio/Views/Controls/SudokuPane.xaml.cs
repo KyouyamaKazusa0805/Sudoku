@@ -281,12 +281,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	public partial bool TransparentBackground { get; set; }
 
 	/// <summary>
-	/// Indicates whether the view unit will be cleared if grid updated.
-	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool ClearViewWhenUpdated { get; set; }
-
-	/// <summary>
 	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
 	/// </summary>
 	[DependencyProperty]
@@ -991,12 +985,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				_redoStack.Clear();
 				break;
 			}
-		}
-
-		// Clears the view unit.
-		if (ClearViewWhenUpdated)
-		{
-			ViewUnit = null;
 		}
 
 		// Reset scale.

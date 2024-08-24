@@ -220,16 +220,16 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			return;
 		}
 
+		var copied = view.Clone();
 		var (a, r, g, b) = App.CurrentTheme switch
 		{
 			ApplicationTheme.Light => (Color)page.Resources["SelectedCellColorLight"]!,
 			_ => (Color)page.Resources["SelectedCellColorDark"]!
 		};
-		view.View.Clear();
-		view.View.AddRange(from cell in newValue select new CellViewNode(new ColorColorIdentifier(a, r, g, b), cell));
+		copied.View.Clear();
+		copied.View.AddRange(from cell in newValue select new CellViewNode(new ColorColorIdentifier(a, r, g, b), cell));
 
-		pane.ViewUnit = null;
-		pane.ViewUnit = view;
+		pane.ViewUnit = copied;
 
 		var p = SR.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
 		counterTextBlock.Text = $"{p}{newValue.Count}";
