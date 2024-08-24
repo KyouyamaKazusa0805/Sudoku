@@ -3,8 +3,7 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a type that can be used for binding as source, for a view unit.
 /// </summary>
-[SuppressMessage("Design", "CA1067:Override Object.Equals(object) when implementing IEquatable<T>", Justification = "<Pending>")]
-public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneable, IDrawable, IEquatable<ViewUnitBindableSource>
+public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneable, IDrawable
 {
 	/// <summary>
 	/// Initializes a <see cref="ViewUnitBindableSource"/> instance.
@@ -45,9 +44,6 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
-
-	/// <inheritdoc/>
-	bool IEquatable<ViewUnitBindableSource>.Equals(ViewUnitBindableSource? other) => false;
 
 
 	/// <summary>

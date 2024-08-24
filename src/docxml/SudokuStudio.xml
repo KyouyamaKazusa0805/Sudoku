@@ -706,9 +706,6 @@
         <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.System#ICloneable#Clone">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.System#IEquatable{SudokuStudio#BindableSource#ViewUnitBindableSource}#Equals(SudokuStudio.BindableSource.ViewUnitBindableSource)">
-            <inheritdoc/>
-        </member>
         <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.op_Subtraction(SudokuStudio.BindableSource.ViewUnitBindableSource,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
             Make subtraction to get delta items.
