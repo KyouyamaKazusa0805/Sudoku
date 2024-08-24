@@ -266,6 +266,7 @@ public partial class UniqueRectangleStepSearcher
 		// 7.....4....2.......95.8...2....4..+27..61..845.....591.1+2+8+659+73+4....725.+1..741.+2..:351 355 382
 		// 6+92+8+7+4+5+3+1+1+743.+5.8+983+5+91...4.1+82.+9.45..9.5+13.+8.....89+1...+1.97+8.3.8.5..+1....71+8.4.6:637 238 652 664 665 572 281 385 685 291 591
 		// 6+92+8+7+4+5+3+1+1+743.+5.8+983+5+91...4.1+82.+9.45..9.5+13.+8.....89+1+2..+1.97+8.3.8.5..+1.+7..71+8.4.6:637 238 652 461 664 665 572 281 385 685 291 591
+		// .8.492.6...3+71+68....+9+3+5+8+4.+183+72+65+914..+4+93+7+2+8+692+61+84+537....+4......2.7.6...9.623.4.:521 731 171 571 771 172 572 777 579 181 581
 		//
 		// UR + 4X/1SL
 		// ..8.+53....7.62.8.+39..+48+7+51.+75+23+18+4+69+369+2+7+418+51+8+45+96+32+7.9..3...4..7.65.3....7+4.6..:217 918 289 591 196 299
@@ -393,7 +394,7 @@ public partial class UniqueRectangleStepSearcher
 								.. candidateOffsets,
 								.. from outsideCell in outsideCells select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
 								..
-								from extraDigitInOutsideCell in extraDigitsMask
+								from extraDigitInOutsideCell in (Mask)(grid.GetCandidates(sameBlockCell) & extraDigitsMask)
 								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
 								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
 								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
