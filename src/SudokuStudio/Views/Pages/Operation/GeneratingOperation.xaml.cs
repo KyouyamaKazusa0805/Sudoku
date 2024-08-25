@@ -300,6 +300,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 
 				BasePage.SudokuPane.Puzzle = grid;
+				BasePage.SudokuPane.ViewUnit = null;
 			}
 		);
 

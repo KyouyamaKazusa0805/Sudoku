@@ -13501,11 +13501,6 @@
             To update puzzle via solution grid.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateViewUnit">
-            <summary>
-            Try to update view unit.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.OnSavingOrCopyingSudokuPanePictureAsync``1(``0)">
             <summary>
             Produces a copying/saving operation for pictures from sudoku pane <see cref="F:SudokuStudio.Views.Pages.AnalyzePage.SudokuPane"/>.

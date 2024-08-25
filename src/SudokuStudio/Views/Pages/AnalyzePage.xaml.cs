@@ -701,15 +701,6 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	/// <summary>
-	/// Try to update view unit.
-	/// </summary>
-	private void UpdateViewUnit()
-	{
-		SudokuPane.ViewUnit = null; // Change the reference to update view.
-		SudokuPane.ViewUnit = _userColoringView;
-	}
-
 	private bool CheckCellNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
 		switch (e)
@@ -725,12 +716,10 @@ public sealed partial class AnalyzePage : Page
 					view.View.Add(new CellViewNode(index, cell));
 				}
 
-				UpdateViewUnit();
-
+				SudokuPane.ViewUnit = _userColoringView;
 				break;
 			}
 		}
-
 		return true;
 	}
 
@@ -749,7 +738,7 @@ public sealed partial class AnalyzePage : Page
 					view.View.Add(new CandidateViewNode(index, candidate));
 				}
 
-				UpdateViewUnit();
+				SudokuPane.ViewUnit = _userColoringView;
 				break;
 			}
 		}
@@ -786,7 +775,7 @@ public sealed partial class AnalyzePage : Page
 					view.View.Add(new HouseViewNode(index, house));
 				}
 
-				UpdateViewUnit();
+				SudokuPane.ViewUnit = _userColoringView;
 				break;
 			}
 		}
@@ -818,7 +807,7 @@ public sealed partial class AnalyzePage : Page
 						view.View.Add(new ChuteViewNode(index, mr1));
 					}
 
-					UpdateViewUnit();
+					SudokuPane.ViewUnit = _userColoringView;
 					break;
 				}
 
@@ -833,7 +822,7 @@ public sealed partial class AnalyzePage : Page
 						view.View.Add(new ChuteViewNode(index, mc1 + 3));
 					}
 
-					UpdateViewUnit();
+					SudokuPane.ViewUnit = _userColoringView;
 					break;
 				}
 				break;
@@ -873,7 +862,7 @@ public sealed partial class AnalyzePage : Page
 						)
 					);
 				}
-				UpdateViewUnit();
+				SudokuPane.ViewUnit = _userColoringView;
 				break;
 
 
@@ -913,7 +902,7 @@ public sealed partial class AnalyzePage : Page
 					v.Add(new BabaGroupViewNode(id, cell, character, Grid.MaxCandidatesMask));
 				}
 
-				UpdateViewUnit();
+				SudokuPane.ViewUnit = _userColoringView;
 
 				wrongHintControl().Visibility = Visibility.Collapsed;
 				break;
@@ -1032,9 +1021,8 @@ public sealed partial class AnalyzePage : Page
 			ClearAnalyzeTabsData();
 		}
 
-		VisualUnit = null;
 		_userColoringView = null;
-		UpdateViewUnit();
+		VisualUnit = null;
 	}
 
 	private void SudokuPane_ReceivedDroppedFileSuccessfully(SudokuPane sender, ReceivedDroppedFileSuccessfullyEventArgs e)
