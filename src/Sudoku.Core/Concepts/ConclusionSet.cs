@@ -315,6 +315,13 @@ public sealed partial class ConclusionSet :
 	}
 
 	/// <summary>
+	/// Converts the current collection into a <see cref="ReadOnlySpan{T}"/> instance.
+	/// </summary>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="Conclusion"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<Conclusion> AsSpan() => ToArray();
+
+	/// <summary>
 	/// Try to get an enumerator type that iterates on each conclusion.
 	/// </summary>
 	/// <returns>An enumerator type that iterates on each conclusion.</returns>

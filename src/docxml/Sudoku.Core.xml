@@ -1640,6 +1640,12 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.AsSpan">
+            <summary>
+            Converts the current collection into a <see cref="T:System.ReadOnlySpan`1"/> instance.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Conclusion"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">
             <summary>
             Try to get an enumerator type that iterates on each conclusion.
