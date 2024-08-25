@@ -300,6 +300,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 
 				BasePage.SudokuPane.Puzzle = grid;
+				BasePage.ClearAnalyzeTabsData();
 				BasePage.SudokuPane.ViewUnit = null;
 			}
 		);
@@ -316,6 +317,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var types = ((App)Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations;
 		BasePage.SudokuPane.Puzzle = await library.RandomReadOneAsync(types);
 		BasePage.ClearAnalyzeTabsData();
+		BasePage.SudokuPane.ViewUnit = null;
 	}
 
 	private void PuzzleLibraryChooser_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -181,8 +181,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		{
 			try
 			{
-				var p = CellMap.Parse(targetText, new BitmapCellMapFormatInfo());
-				SelectedCells = p;
+				SelectedCells = CellMap.Parse(targetText, new BitmapCellMapFormatInfo());
 			}
 			catch (Exception ex) when (ex is InvalidOperationException or FormatException)
 			{
@@ -249,6 +248,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			puzzle.SetDigit(cell, digit);
 		}
 		pane.Puzzle = puzzle;
+		pane.ViewUnit = null;
 	}
 
 
@@ -275,6 +275,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		if (SudokuPane.Puzzle is { ModifiablesCount: 0 })
 		{
 			SudokuPane.Puzzle = Grid.Empty;
+			SudokuPane.ViewUnit = null;
 		}
 
 		// Update fixed candidates.
@@ -309,6 +310,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 				})
 			{
 				SudokuPane.Puzzle = grid;
+				//SudokuPane.ViewUnit = null; // This is expected to be removed because we should always show view nodes.
 				RatingDisplayer.Text = string.Format(
 					SR.Get("PatternBasedPuzzleGeneratingPage_RatingInfo", App.CurrentCulture),
 					[

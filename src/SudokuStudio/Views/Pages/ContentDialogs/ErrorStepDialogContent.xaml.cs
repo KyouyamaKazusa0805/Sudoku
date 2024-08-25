@@ -34,7 +34,14 @@ public sealed partial class ErrorStepDialogContent : Page
 	/// <para><inheritdoc cref="ErrorStepText" path="//summary/para[2]"/></para>
 	/// </summary>
 	/// <value><inheritdoc cref="ErrorStepGrid" path="//summary/para[1]"/></value>
-	public Grid ErrorStepGrid { set => ErrorStepDisplayer.Puzzle = value; }
+	public Grid ErrorStepGrid
+	{
+		set
+		{
+			ErrorStepDisplayer.Puzzle = value;
+			ErrorStepDisplayer.ViewUnit = null;
+		}
+	}
 
 	/// <summary>
 	/// <para>Indicates the <see cref="ViewNode"/>s displayed for the current wrong step.</para>

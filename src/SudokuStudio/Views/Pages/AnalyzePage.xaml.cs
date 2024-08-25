@@ -281,6 +281,7 @@ public sealed partial class AnalyzePage : Page
 			&& Grid.TryParse(targetText, out var grid))
 		{
 			SudokuPane.Puzzle = grid;
+			SudokuPane.ViewUnit = null;
 		}
 	}
 
@@ -450,13 +451,13 @@ public sealed partial class AnalyzePage : Page
 						}
 
 						SudokuPane.Puzzle = g;
+						SudokuPane.ViewUnit = null;
 						break;
 					}
 					case FileExtensions.Text:
 					{
 						switch (SudokuFileHandler.Read(filePath))
 						{
-#pragma warning disable format
 							case [
 								{
 									BaseGrid: var g,
@@ -465,7 +466,6 @@ public sealed partial class AnalyzePage : Page
 									RenderableData: var nullableRenderableData
 								}
 							]:
-#pragma warning restore format
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
 								SudokuPane.DisplayCandidates = showCandidates;
@@ -483,11 +483,9 @@ public sealed partial class AnalyzePage : Page
 								return;
 							}
 						}
-
 						break;
 					}
 				}
-
 				break;
 			}
 		}
@@ -499,6 +497,7 @@ public sealed partial class AnalyzePage : Page
 		if (e.Parameter is Grid targetGrid)
 		{
 			SudokuPane.Puzzle = targetGrid;
+			SudokuPane.ViewUnit = null;
 		}
 	}
 
@@ -1037,6 +1036,7 @@ public sealed partial class AnalyzePage : Page
 			case (FileExtensions.PlainText, { BaseGrid: var g }):
 			{
 				SudokuPane.Puzzle = g;
+				SudokuPane.ViewUnit = null;
 				break;
 			}
 			case (FileExtensions.Text, { BaseGrid: var g, RenderableData: { } visualUnit, ShowCandidates: var showCandidates }):
