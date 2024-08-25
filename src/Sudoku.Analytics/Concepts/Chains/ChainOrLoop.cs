@@ -77,8 +77,13 @@ public abstract partial class ChainOrLoop :
 
 
 	/// <summary>
-	/// Indicates whether the chain can be categorized by a technique name.
+	/// Indicates whether the current pattern is bound with a technique (i.e. having a technique name).
 	/// </summary>
+	/// <remarks>
+	/// Due to design of this type, the derived types may not be consumed by showing a pattern.
+	/// It may be a "segment" of a whole pattern (for example, a branch inside a multiple forcing chains).
+	/// In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
+	/// </remarks>
 	public abstract bool IsNamed { get; }
 
 	/// <summary>
