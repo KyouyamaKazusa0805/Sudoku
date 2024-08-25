@@ -231,7 +231,6 @@ public sealed partial class AnalyzePage : Page
 				OpenFileFailed?.Invoke(this, new(OpenFileFailedReason.UnsnappingFailed));
 			}
 		}
-
 		return unsnapped;
 	}
 
@@ -751,11 +750,9 @@ public sealed partial class AnalyzePage : Page
 				}
 
 				UpdateViewUnit();
-
 				break;
 			}
 		}
-
 		return true;
 	}
 
@@ -790,11 +787,9 @@ public sealed partial class AnalyzePage : Page
 				}
 
 				UpdateViewUnit();
-
 				break;
 			}
 		}
-
 		return true;
 	}
 
@@ -841,11 +836,9 @@ public sealed partial class AnalyzePage : Page
 					UpdateViewUnit();
 					break;
 				}
-
 				break;
 			}
 		}
-
 		return true;
 	}
 
