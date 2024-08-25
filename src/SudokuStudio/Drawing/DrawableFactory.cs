@@ -42,10 +42,14 @@ internal static partial class DrawableFactory
 		}
 
 		// Then add controls.
-		var conclusions = from p in positives where p is Conclusion select (Conclusion)p;
-		var viewNodes = from p in positives where p is ViewNode select (ViewNode)p;
-		var source = new ViewUnitBindableSource { Conclusions = conclusions.ToArray(), View = [.. viewNodes] };
-		AddViewUnitControls(pane, source);
+		AddViewUnitControls(
+			pane,
+			new()
+			{
+				Conclusions = [.. from p in positives where p is Conclusion select (Conclusion)p],
+				View = [.. from p in positives where p is ViewNode select (ViewNode)p]
+			}
+		);
 	}
 
 	/// <summary>
