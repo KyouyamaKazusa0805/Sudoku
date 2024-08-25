@@ -69,8 +69,8 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			var (oldSet, newSet) = (left.Conclusions.AsSet(), right.Conclusions.AsSet());
 			negatives.AddRange(from conclusion in (oldSet & ~newSet).ToArray() select (IDrawableItem)conclusion);
 			positives.AddRange(from conclusion in (newSet & ~oldSet).ToArray() select (IDrawableItem)conclusion);
-			negatives.AddRange(from node in left.View.Except(right.View).ToArray() select (IDrawableItem)node);
-			positives.AddRange(from node in right.View.Except(left.View).ToArray() select (IDrawableItem)node);
+			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
+			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
 			return new() { Negatives = negatives.AsReadOnlySpan(), Positives = positives.AsReadOnlySpan() };
 		}
 	}

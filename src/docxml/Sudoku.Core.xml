@@ -5161,6 +5161,9 @@
         <member name="M:Sudoku.Drawing.View.GetHashCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.View.ExceptWith(Sudoku.Drawing.View)">
+            <inheritdoc cref="M:System.Linq.Providers.IExceptMethod`2.Except(System.Collections.Generic.IEnumerable{`1})"/>
+        </member>
         <member name="M:Sudoku.Drawing.View.Clone">
             <summary>
             Creates a new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance, with independency.
@@ -5201,6 +5204,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.View.System#Linq#Providers#IWhereMethod{Sudoku#Drawing#View,Sudoku#Drawing#ViewNode}#Where(System.Func{Sudoku.Drawing.ViewNode,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.View.System#Linq#Providers#IExceptMethod{Sudoku#Drawing#View,Sudoku#Drawing#ViewNode}#Except(System.Collections.Generic.IEnumerable{Sudoku.Drawing.ViewNode})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.View.System#Linq#Providers#IExceptMethod{Sudoku#Drawing#View,Sudoku#Drawing#ViewNode}#Except(System.Collections.Generic.IEnumerable{Sudoku.Drawing.ViewNode},System.Collections.Generic.IEqualityComparer{Sudoku.Drawing.ViewNode})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.View.System#Linq#Providers#ISelectMethod{Sudoku#Drawing#View,Sudoku#Drawing#ViewNode}#Select``1(System.Func{Sudoku.Drawing.ViewNode,``0})">

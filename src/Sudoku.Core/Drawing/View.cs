@@ -7,6 +7,7 @@ namespace Sudoku.Drawing;
 public sealed partial class View :
 	HashSet<ViewNode>,
 	IEquatable<View>,
+	IExceptMethod<View, ViewNode>,
 	IEqualityOperators<View, View, bool>,
 	IFirstLastMethod<View, ViewNode>,
 	IOfTypeMethod<View, ViewNode>,
@@ -104,6 +105,15 @@ public sealed partial class View :
 	/// <inheritdoc/>
 	public override int GetHashCode() => SetComparer.GetHashCode(this);
 
+	/// <inheritdoc cref="IExceptMethod{TSelf, TSource}.Except(IEnumerable{TSource})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public View ExceptWith(View other)
+	{
+		var result = ShallowClone();
+		result.ExceptWith((IEnumerable<ViewNode>)other);
+		return result;
+	}
+
 	/// <summary>
 	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.
 	/// </summary>
@@ -149,6 +159,13 @@ public sealed partial class View :
 
 	/// <inheritdoc/>
 	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate) => this.Where(predicate).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<ViewNode> IExceptMethod<View, ViewNode>.Except(IEnumerable<ViewNode> second) => ExceptWith([.. second]);
+
+	/// <inheritdoc/>
+	IEnumerable<ViewNode> IExceptMethod<View, ViewNode>.Except(IEnumerable<ViewNode> second, IEqualityComparer<ViewNode>? comparer)
+		=> ((IExceptMethod<View, ViewNode>)this).Except(second);
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<View, ViewNode>.Select<TResult>(Func<ViewNode, TResult> selector)
