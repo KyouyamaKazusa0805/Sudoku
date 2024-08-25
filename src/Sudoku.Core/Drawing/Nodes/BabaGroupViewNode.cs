@@ -51,7 +51,8 @@ public sealed partial class BabaGroupViewNode(
 		=> ((identifier, cell, unknownValueChar), digitsMask) = (this, DigitsMask);
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is BabaGroupViewNode comparer && Cell == comparer.Cell;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> base.Equals(other) && other is BabaGroupViewNode comparer && Cell == comparer.Cell;
 
 	/// <inheritdoc/>
 	public override BabaGroupViewNode Clone() => new(Identifier, Cell, UnknownValueChar, DigitsMask);

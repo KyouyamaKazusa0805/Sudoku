@@ -27,7 +27,8 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Prima
 	public void Deconstruct(out ColorIdentifier identifier, out Candidate candidate) => (identifier, candidate) = (Identifier, Candidate);
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CandidateViewNode comparer && Candidate == comparer.Candidate;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> base.Equals(other) && other is CandidateViewNode comparer && Candidate == comparer.Candidate;
 
 	/// <inheritdoc/>
 	public override CandidateViewNode Clone() => new(Identifier, Candidate);

@@ -31,7 +31,7 @@ public sealed partial class CellLinkViewNode(
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is CellLinkViewNode comparer && Start == comparer.Start && End == comparer.End;
+		=> base.Equals(other) && other is CellLinkViewNode comparer && Start == comparer.Start && End == comparer.End;
 
 	/// <inheritdoc/>
 	public override CellLinkViewNode Clone() => new(Identifier, Start, End);

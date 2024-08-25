@@ -14,5 +14,6 @@ public abstract partial class IconViewNode(ColorIdentifier identifier, [PrimaryC
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other) => other is IconViewNode comparer && Cell == comparer.Cell;
+	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> base.Equals(other) && other is IconViewNode comparer && Cell == comparer.Cell;
 }

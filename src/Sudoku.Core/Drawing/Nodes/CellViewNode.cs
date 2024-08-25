@@ -21,7 +21,8 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCon
 	public void Deconstruct(out ColorIdentifier identifier, out Cell cell) => (identifier, cell) = (Identifier, Cell);
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ViewNode? other) => other is CellViewNode comparer && Cell == comparer.Cell;
+	public override bool Equals([NotNullWhen(true)] ViewNode? other)
+		=> base.Equals(other) && other is CellViewNode comparer && Cell == comparer.Cell;
 
 	/// <inheritdoc/>
 	public override CellViewNode Clone() => new(Identifier, Cell);

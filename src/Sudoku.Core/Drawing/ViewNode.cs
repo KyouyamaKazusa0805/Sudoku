@@ -1,7 +1,7 @@
 namespace Sudoku.Drawing;
 
 /// <summary>
-/// Defines a view node.
+/// Represents an item that can be drawn by GDI+ graphics module or UI shape controls.
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="Identifier" path="/summary"/></param>
 [JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType, TypeDiscriminatorPropertyName = "$typeid")]
@@ -18,12 +18,14 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(TriangleViewNode), 12)]
 [JsonDerivedType(typeof(DiamondViewNode), 13)]
 [JsonDerivedType(typeof(StarViewNode), 14)]
-[JsonDerivedType(typeof(HeartViewNode), 15)]
+[JsonDerivedType(typeof(SquareViewNode), 15)]
+[JsonDerivedType(typeof(HeartViewNode), 16)]
 [TypeImpl(
 	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
+	ICloneable,
 	IDrawableItem,
 	IEquatable<ViewNode>,
 	IEqualityOperators<ViewNode, ViewNode, bool>
@@ -49,11 +51,11 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 
 
 	/// <inheritdoc/>
-	public abstract bool Equals([NotNullWhen(true)] ViewNode? other);
+	public virtual bool Equals([NotNullWhen(true)] ViewNode? other) => Identifier == other?.Identifier;
 
-	/// <summary>
-	/// Creates a new <see cref="View"/> instance with same values as the current instance, with independency.
-	/// </summary>
-	/// <returns>A new <see cref="View"/> instance with same values as the current instance.</returns>
+	/// <inheritdoc cref="ICloneable.Clone"/>
 	public abstract ViewNode Clone();
+
+	/// <inheritdoc/>
+	object ICloneable.Clone() => Clone();
 }

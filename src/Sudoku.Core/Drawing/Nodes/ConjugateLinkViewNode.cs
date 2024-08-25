@@ -38,7 +38,11 @@ public sealed partial class ConjugateLinkViewNode(
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		=> other is ConjugateLinkViewNode comparer && Start == comparer.Start && End == comparer.End && Digit == comparer.Digit;
+		=> base.Equals(other)
+		&& other is ConjugateLinkViewNode comparer
+		&& Start == comparer.Start
+		&& End == comparer.End
+		&& Digit == comparer.Digit;
 
 	/// <inheritdoc/>
 	public override ConjugateLinkViewNode Clone() => new(Identifier, Start, End, Digit);

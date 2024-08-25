@@ -5260,13 +5260,13 @@
         </member>
         <member name="T:Sudoku.Drawing.ViewNode">
             <summary>
-            Defines a view node.
+            Represents an item that can be drawn by GDI+ graphics module or UI shape controls.
             </summary>
             <param name="identifier"><inheritdoc cref="P:Sudoku.Drawing.ViewNode.Identifier" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.#ctor(Sudoku.Drawing.ColorIdentifier)">
             <summary>
-            Defines a view node.
+            Represents an item that can be drawn by GDI+ graphics module or UI shape controls.
             </summary>
             <param name="identifier"><inheritdoc cref="P:Sudoku.Drawing.ViewNode.Identifier" path="/summary"/></param>
         </member>
@@ -5290,10 +5290,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.Clone">
-            <summary>
-            Creates a new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance, with independency.
-            </summary>
-            <returns>A new <see cref="T:Sudoku.Drawing.View"/> instance with same values as the current instance.</returns>
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Drawing.ViewNode.System#ICloneable#Clone">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
