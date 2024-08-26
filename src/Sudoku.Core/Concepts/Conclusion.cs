@@ -47,7 +47,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, Candidate candidate) : this((Mask)(((int)type << 10) + candidate))
+	public Conclusion(ConclusionType type, Candidate candidate) : this((Mask)((int)type * 729 + candidate))
 	{
 	}
 
@@ -58,7 +58,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this((Mask)(((int)type << 10) + cell * 9 + digit))
+	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this((Mask)((int)type * 729 + cell * 9 + digit))
 	{
 	}
 
@@ -87,7 +87,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	public Candidate Candidate
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _mask & 1023;
+		get => _mask % 729;
 	}
 
 	/// <summary>
@@ -98,7 +98,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	public ConclusionType ConclusionType
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => (ConclusionType)(_mask >> 10 & 1);
+		get => (ConclusionType)(_mask / 729);
 	}
 
 
