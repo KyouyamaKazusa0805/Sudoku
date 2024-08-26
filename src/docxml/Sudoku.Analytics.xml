@@ -707,7 +707,7 @@
             An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.AnalyzerContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.AnalyzerContext.Puzzle">
@@ -4905,7 +4905,7 @@
             <param name="weakLinks">The dictionary that stores a list of weak links.</param>
             <param name="options">Indicates the step searcher options to be used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetLinkOption(Sudoku.Concepts.LinkType)">
@@ -4967,7 +4967,7 @@
             Indicates the found conclusions.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Grid">
@@ -5015,7 +5015,7 @@
             Indicates the view nodes produced.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Grid">
@@ -5370,7 +5370,7 @@
             An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.CollectorContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.CollectorContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.CollectorContext.Puzzle">
@@ -5952,16 +5952,6 @@
             Throws when property <see cref="P:Sudoku.Analytics.ICollector`3.DifficultyLevelMode"/> is not defined.
             </exception>
         </member>
-        <member name="T:Sudoku.Analytics.IContext">
-            <summary>
-            Represents a type that is a context.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IContext.Grid">
-            <summary>
-            Indicates the grid to be used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.PatternSearching.IPatternSearcher`1">
             <summary>
             Represents a pattern searcher type.
@@ -6392,7 +6382,7 @@
             Indicates the accumulator to store each step while searching.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepAnalysisContext.Sudoku#Analytics#IContext#Grid">
+        <member name="P:Sudoku.Analytics.StepAnalysisContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.StepAnalysisContext.Grid">

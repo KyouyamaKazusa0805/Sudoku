@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Runtime;
 
 /// <summary>
 /// Represents a type that is a context.

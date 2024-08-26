@@ -8067,6 +8067,16 @@
             The generated field declaration for parameter <c>seedPattern</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Runtime.IContext">
+            <summary>
+            Represents a type that is a context.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.IContext.Grid">
+            <summary>
+            Indicates the grid to be used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Runtime.LibraryServices.LibraryInfo">
             <summary>
             Represents an entry that plays with a puzzle library file.

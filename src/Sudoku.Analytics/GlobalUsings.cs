@@ -37,6 +37,7 @@ global using Sudoku.Drawing.Nodes;
 global using Sudoku.Inferring;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
+global using Sudoku.Runtime;
 global using Sudoku.Runtime.CoordinateServices;
 global using Sudoku.Runtime.IttoryuServices;
 global using Sudoku.Runtime.MaskServices;
