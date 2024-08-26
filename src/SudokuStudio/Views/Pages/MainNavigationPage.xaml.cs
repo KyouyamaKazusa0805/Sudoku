@@ -129,16 +129,5 @@ internal sealed partial class MainNavigationPage : Page
 		}
 	}
 
-	private void HeaderBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
-	{
-		if (HeaderBar.ItemsSource is ObservableCollection<PageNavigationBindableSource> items)
-		{
-			for (var i = items.Count - 1; i >= args.Index + 1; i--)
-			{
-				items.RemoveAt(i);
-			}
-		}
-	}
-
 	private static string PageTypeResourceKey(Type type) => $"{nameof(MainWindow)}_{type.Name}Title";
 }
