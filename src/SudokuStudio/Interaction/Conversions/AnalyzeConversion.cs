@@ -81,7 +81,10 @@ internal static class AnalyzeConversion
 		=> drawable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
 	public static Visibility GetEnglishNameTextBlockVisibility()
-		=> ((App)Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep ? Visibility.Visible : Visibility.Collapsed;
+		=> ((App)Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep
+		&& App.CurrentCulture.Name != SR.EnglishLanguage
+			? Visibility.Visible
+			: Visibility.Collapsed;
 
 	public static IEnumerable<Inline> GetInlinesOfTooltip(SolvingPathStepBindableSource s)
 	{
