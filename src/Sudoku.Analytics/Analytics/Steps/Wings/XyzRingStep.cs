@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="intersectedDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
+/// <param name="intersectDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
 /// <param name="pivot">Indicates the pivot cell.</param>
 /// <param name="leafCell1">Indicates the leaf cell 1.</param>
 /// <param name="leafCell2">Indicates the leaf cell 2.</param>
@@ -18,7 +18,7 @@ public sealed partial class XyzRingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] Digit intersectedDigit,
+	[PrimaryConstructorParameter] Digit intersectDigit,
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] Cell leafCell1,
 	[PrimaryConstructorParameter] Cell leafCell2,
@@ -44,4 +44,16 @@ public sealed partial class XyzRingStep(
 			(true, _, _) => Technique.SiameseXyzLoop,
 			_ => Technique.XyzLoop
 		};
+
+	/// <summary>
+	/// Indicates the pattern.
+	/// </summary>
+	private CellMap Pattern => Pivot.AsCellMap() + LeafCell1 + LeafCell2;
+
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is XyzRingStep comparer
+		&& Pattern == comparer.Pattern && IntersectDigit == comparer.IntersectDigit && IsGrouped == comparer.IsGrouped
+		&& IsNice == comparer.IsNice && IsSiamese == comparer.IsSiamese;
 }

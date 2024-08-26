@@ -6882,7 +6882,7 @@
             Represents XYZ-Ring module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.XyzRingModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
             <summary>
             Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
             </summary>
@@ -10967,7 +10967,7 @@
             ---------+--------
             ac .  .  | .  .  .
             .  .  .  | .  .  .
-            .  .  a  | a  .  . ← conjugate pair of 'a'
+            .  .  a--+-a  .  .
             ]]></code>
             Or
             <code><![CDATA[
@@ -10977,11 +10977,11 @@
             ---------+--------
             ac .  .  | .  .  .
             .  .  .  | .  .  .
-            a  .  .  | a  .  . ← conjugate pair of 'a'
+            a--------+-a  .  .
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.CollectCore(System.Collections.Generic.List{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.CollectCore(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@)">
             <summary>
             The core method to collect steps.
             </summary>
@@ -19010,7 +19010,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="intersectedDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
+            <param name="intersectDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
@@ -19026,7 +19026,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="intersectedDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
+            <param name="intersectDigit">Indicates the digit Z for XYZ-Wing pattern.</param>
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
@@ -19041,9 +19041,17 @@
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IntersectedDigit">
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pattern">
             <summary>
-            The generated property declaration for parameter <c>intersectedDigit</c>.
+            Indicates the pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IntersectDigit">
+            <summary>
+            The generated property declaration for parameter <c>intersectDigit</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pivot">

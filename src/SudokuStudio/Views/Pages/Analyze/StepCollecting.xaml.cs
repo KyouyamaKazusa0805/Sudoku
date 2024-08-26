@@ -198,5 +198,10 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		};
 
 	private void MainTreeView_ItemInvoked(TreeView sender, TreeViewItemInvokedEventArgs args)
-		=> BasePage.VisualUnit = args.InvokedItem switch { CollectedStepBindableSource { Step: { } step } => step, _ => null };
+	{
+		if (args.InvokedItem is CollectedStepBindableSource { Step: { } step })
+		{
+			BasePage.VisualUnit = step;
+		}
+	}
 }

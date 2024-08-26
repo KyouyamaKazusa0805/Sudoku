@@ -11,10 +11,10 @@ internal static class XyzRingModule
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All Siamese steps of type <see cref="XyzRingStep"/>.</returns>
-	public static ReadOnlySpan<XyzRingStep> GetSiamese(List<XyzRingStep> accumulator, ref readonly Grid grid)
+	public static ReadOnlySpan<XyzRingStep> GetSiamese(HashSet<XyzRingStep> accumulator, ref readonly Grid grid)
 	{
 		var result = new List<XyzRingStep>();
-		var stepsSpan = accumulator.AsReadOnlySpan();
+		var stepsSpan = accumulator.ToArray().AsReadOnlySpan();
 		for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
 		{
 			var xyz1 = stepsSpan[index1];
@@ -38,7 +38,7 @@ internal static class XyzRingModule
 				goto ReturnFalse;
 			}
 
-			if (xyz1.IntersectedDigit != xyz2.IntersectedDigit)
+			if (xyz1.IntersectDigit != xyz2.IntersectDigit)
 			{
 				// They should contain a same digit Z in XYZ-Wing pattern.
 				goto ReturnFalse;
@@ -46,7 +46,7 @@ internal static class XyzRingModule
 
 			var house1 = HouseMask.Log2(xyz1.ConjugateHousesMask);
 			var house2 = HouseMask.Log2(xyz2.ConjugateHousesMask);
-			if ((HousesMap[house1] & CandidatesMap[xyz1.IntersectedDigit]) == (HousesMap[house2] & CandidatesMap[xyz1.IntersectedDigit]))
+			if ((HousesMap[house1] & CandidatesMap[xyz1.IntersectDigit]) == (HousesMap[house2] & CandidatesMap[xyz1.IntersectDigit]))
 			{
 				// They cannot hold a same cells of the conjugate.
 				goto ReturnFalse;
@@ -67,7 +67,7 @@ internal static class XyzRingModule
 					xyz2ViewNodes
 				],
 				xyz1.Options,
-				xyz1.IntersectedDigit,
+				xyz1.IntersectDigit,
 				xyz1.Pivot,
 				xyz1.LeafCell1,
 				xyz1.LeafCell2,

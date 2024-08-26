@@ -34,7 +34,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// ---------+--------
 	/// ac .  .  | .  .  .
 	/// .  .  .  | .  .  .
-	/// .  .  a  | a  .  . ← conjugate pair of 'a'
+	/// .  .  a--+-a  .  .
 	/// ]]></code>
 	/// Or
 	/// <code><![CDATA[
@@ -44,13 +44,13 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// ---------+--------
 	/// ac .  .  | .  .  .
 	/// .  .  .  | .  .  .
-	/// a  .  .  | a  .  . ← conjugate pair of 'a'
+	/// a--------+-a  .  .
 	/// ]]></code>
 	/// </remarks>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var accumulator = new List<XyzRingStep>();
+		var accumulator = new HashSet<XyzRingStep>();
 		CollectCore(accumulator, in grid, in context);
 
 		if (accumulator.Count == 0)
@@ -62,21 +62,17 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 		var siameses = AllowSiamese ? XyzRingModule.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
-			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
+			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;
 		}
 
-		if (siameses.Length != 0)
+		foreach (var step in siameses)
 		{
-			foreach (var step in siameses)
-			{
-				context.Accumulator.Add(step);
-			}
+			context.Accumulator.Add(step);
 		}
 		if (accumulator.Count != 0)
 		{
 			context.Accumulator.AddRange(accumulator);
 		}
-
 		return null;
 	}
 
@@ -86,7 +82,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	private void CollectCore(List<XyzRingStep> accumulator, ref readonly Grid grid, ref readonly StepAnalysisContext context)
+	private void CollectCore(HashSet<XyzRingStep> accumulator, ref readonly Grid grid, ref readonly StepAnalysisContext context)
 	{
 		// The pattern starts with a tri-value cell, so check for it.
 		var trivalueCells = CellMap.Empty;
@@ -131,52 +127,54 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 				var patternCells = cellsShouldBeCovered + pivot + leafCell1 + leafCell2;
 				var conclusions = new List<Conclusion>();
 
-				// Elim zone 1: Sharing house for pivot and leaf cell 1 -> eliminate digit they both hold (not intersected digit).
+				// Elimination zone 1: Sharing house for pivot and leaf cell 1 -> eliminate digit they both hold
+				// (digits not intersect).
 				foreach (var cell in
 					HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1] & ~patternCells & ~cellsShouldBeCovered)
 				{
 					conclusions.Add(new(Elimination, cell, theOtherDigit1));
 				}
 
-				// Elim zone 2: Sharing house for pivot and leaf cell 2 -> eliminate digit they both hold (not intersected digit).
+				// Elimination zone 2: Sharing house for pivot and leaf cell 2 -> eliminate digit they both hold
+				// (digits not intersect).
 				foreach (var cell in
 					HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2] & ~patternCells & ~cellsShouldBeCovered)
 				{
 					conclusions.Add(new(Elimination, cell, theOtherDigit2));
 				}
 
-				var isType2 = false;
+				var isNice = false;
 				foreach (var (leaf, theOtherLeaf) in ((leafCell1, leafCell2), (leafCell2, leafCell1)))
 				{
-					var linkCellsIntersected = cellsShouldBeCovered & PeersMap[leaf];
-					foreach (var linkCellHouse in linkCellsIntersected.SharedHouses)
+					var linkCellsIntersect = cellsShouldBeCovered & PeersMap[leaf];
+					foreach (var linkCellHouse in linkCellsIntersect.SharedHouses)
 					{
 						foreach (var leafCellHouse in (pivot.AsCellMap() + leaf).SharedHouses)
 						{
 							if (linkCellHouse.ToHouseType() == HouseType.Block ^ leafCellHouse.ToHouseType() == HouseType.Block
 								&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)
 							{
-								// Elim zone 3: Intersected cell for the leaf and one grouped node of cells in (grouped) strong link
-								// that they shares in a same mini-line -> eliminate intersected digit.
+								// Elimination zone 3: Intersected cell for the leaf and one grouped node of cells
+								// in (grouped) strong link that they shares in a same mini-line -> eliminate intersected digit.
 								foreach (var cell in i & CandidatesMap[zDigit] & ~patternCells & ~cellsShouldBeCovered)
 								{
 									conclusions.Add(new(Elimination, cell, zDigit));
 								}
 							}
 
-							if ((HousesMap[leafCellHouse] & linkCellsIntersected) == linkCellsIntersected)
+							// Check whether loop is nice.
+							if ((HousesMap[leafCellHouse] & linkCellsIntersect) == linkCellsIntersect)
 							{
-								// Type 2 is checked.
-								isType2 = true;
+								isNice = true;
 
-								// Elim zone 4 and 5: shared houses for leaf and (grouped) strong link nodes.
+								// Elimination zone 4 and 5: shared houses for leaf and (grouped) strong link nodes.
 								foreach (var cell in
 									((HousesMap[leafCellHouse] & CandidatesMap[zDigit]) - pivot & ~cellsShouldBeCovered) - leaf)
 								{
 									conclusions.Add(new(Elimination, cell, zDigit));
 								}
 
-								var lastCellsToCheck = (cellsShouldBeCovered & ~linkCellsIntersected) + theOtherLeaf;
+								var lastCellsToCheck = (cellsShouldBeCovered & ~linkCellsIntersect) + theOtherLeaf;
 								foreach (var house in lastCellsToCheck.SharedHouses)
 								{
 									foreach (var cell in HousesMap[house] & CandidatesMap[zDigit] & ~lastCellsToCheck)
@@ -221,7 +219,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						leafCell1,
 						leafCell2,
 						1 << conflictedHouse,
-						isType2,
+						isNice,
 						cellsShouldBeCovered.Count > 2
 					)
 				);
