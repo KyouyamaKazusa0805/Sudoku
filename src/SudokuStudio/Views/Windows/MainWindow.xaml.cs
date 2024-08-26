@@ -246,8 +246,8 @@ public sealed partial class MainWindow : Window
 					new(
 						(int)(LeftPaddingColumn.ActualWidth * scaleAdjustment),
 						0,
-						(int)(AppTitleBar.ActualHeight * scaleAdjustment),
-						(int)((IconColumn.ActualWidth + TitleColumn.ActualWidth + LeftDragColumn.ActualWidth) * scaleAdjustment)
+						(int)((IconColumn.ActualWidth + TitleColumn.ActualWidth + LeftDragColumn.ActualWidth) * scaleAdjustment),
+						(int)(AppTitleBar.ActualHeight * scaleAdjustment)
 					),
 					new(
 						(int)(
@@ -260,8 +260,8 @@ public sealed partial class MainWindow : Window
 							) * scaleAdjustment
 						),
 						0,
-						(int)(AppTitleBar.ActualHeight * scaleAdjustment),
-						(int)(RightDragColumn.ActualWidth * scaleAdjustment)
+						(int)(RightDragColumn.ActualWidth * scaleAdjustment),
+						(int)(AppTitleBar.ActualHeight * scaleAdjustment)
 					)
 				]
 			);
