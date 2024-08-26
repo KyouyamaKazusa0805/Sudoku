@@ -26,7 +26,8 @@ public sealed partial class MainWindow : Window
 	/// Try to navigate to the target page.
 	/// </summary>
 	/// <param name="pageType">The target page type.</param>
-	public void NavigateToPage(Type pageType) => NavigationPage.PageTo = pageType;
+	/// <param name="stackPage">Indicates whether the page should be stacked.</param>
+	public void NavigateToPage(Type pageType, bool stackPage = false) => NavigationPage.PageToWithStack = (stackPage, pageType);
 
 	/// <summary>
 	/// Try to navigate to the target page with the custom data.

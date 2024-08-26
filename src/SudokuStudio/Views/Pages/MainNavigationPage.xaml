@@ -23,7 +23,7 @@
 						<BreadcrumbBarItem Content="{Binding}">
 							<BreadcrumbBarItem.ContentTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding PageTitle}" Style="{StaticResource TitleTextBlockStyle}" />
+									<TextBlock Text="{Binding PageTitle}" FontSize="28" Margin="6,0" FontWeight="SemiLight" />
 								</DataTemplate>
 							</BreadcrumbBarItem.ContentTemplate>
 						</BreadcrumbBarItem>

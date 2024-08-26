@@ -7571,6 +7571,11 @@
               Looks up a localized string similar to Solving &amp; Analysis.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AnimationFeedbackSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Animation Feedback.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BasicFunctions">
             <summary>
               Looks up a localized string similar to Basic Functions.
@@ -7621,6 +7626,11 @@
               Looks up a localized string similar to Generating Strategies.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_HistorySettingPageTitle">
+            <summary>
+              Looks up a localized string similar to History.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_HotkeyCheatTable">
             <summary>
               Looks up a localized string similar to Hotkeys.
@@ -7629,6 +7639,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_HotkeyCheatTablePageTitle">
             <summary>
               Looks up a localized string similar to Hotkey Cheat Table.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_LanguageSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Languages.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_LibraryPageTitle">
@@ -7654,6 +7669,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MiscellaneousBasicSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Miscellanous Behaviors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_NotationSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Notation.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_OnlinePuzzleLibraryPage">
@@ -7698,7 +7723,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_RatingFormulaPageTitle">
             <summary>
-              Looks up a localized string similar to Rating customization.
+              Looks up a localized string similar to Rating Customization.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Search">
@@ -7728,7 +7753,12 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepSearcherSorterPageTitle">
             <summary>
-              Looks up a localized string similar to Sorting step searchers....
+              Looks up a localized string similar to Sorting Step Searchers.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_SudokuGridBehaviorsSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Grid Behaviors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueData">
@@ -7759,6 +7789,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueSelectionPageTitle">
             <summary>
               Looks up a localized string similar to Select Techniques....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ThemeSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Theme.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.No">
@@ -14435,14 +14470,14 @@
             Indicates the header bar items.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageTo">
-            <summary>
-            Sets the navigated page type.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToWithValue">
             <summary>
             Sets the navigated page type with custom data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToWithStack">
+            <summary>
+            Sets the navigated page type with a <see cref="T:System.Boolean"/> value indicating whether the page should be stacked.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.UpdateMemoryWidth">
@@ -15030,11 +15065,6 @@
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.InitializeControls">
-            <summary>
-            Initializes for control properties.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -15046,6 +15076,196 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.BasicPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage">
+            <summary>
+            Represents animation feedback setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.AnimationFeedbackSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage">
+            <summary>
+            Represents history setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage">
+            <summary>
+            Indicates the language setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage.InitializeControls">
+            <summary>
+            Initializes for control properties.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.LanguageSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage">
+            <summary>
+            Represents miscellaneous basic setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.MiscellaneousBasicSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage">
+            <summary>
+            Represents notation setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage.InitializeControls">
+            <summary>
+            Initializes for control properties.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage">
+            <summary>
+            Represents sudoku grid behavior setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.SudokuGridBehaviorsSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage">
+            <summary>
+            Represents theme setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.InitializeControls">
+            <summary>
+            Initializes for control properties.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
@@ -15547,11 +15767,12 @@
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Boolean)">
             <summary>
             Try to navigate to the target page.
             </summary>
             <param name="pageType">The target page type.</param>
+            <param name="stackPage">Indicates whether the page should be stacked.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Object)">
             <summary>

@@ -8,102 +8,27 @@ public sealed partial class BasicPreferenceItemsPage : Page
 	/// <summary>
 	/// Initializes a <see cref="BasicPreferenceItemsPage"/> instance.
 	/// </summary>
-	public BasicPreferenceItemsPage()
-	{
-		InitializeComponent();
-		InitializeControls();
-	}
+	public BasicPreferenceItemsPage() => InitializeComponent();
 
 
-	/// <summary>
-	/// Initializes for control properties.
-	/// </summary>
-	private void InitializeControls()
-	{
-		var uiPref = ((App)Application.Current).Preference.UIPreferences;
-		var isChinese = SR.IsChinese(CultureInfo.CurrentUICulture);
-		LanguageComboBox.SelectedIndex = uiPref.Language switch { 0 => 0, 1033 => 1, 2052 => 2 };
-		Comma2ComboBoxItem_DefaultSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;
-		Comma2ComboBoxItem_DigitSeparator.Visibility = isChinese ? Visibility.Visible : Visibility.Collapsed;
-		ThemeComboBox.SelectedIndex = (int)uiPref.CurrentTheme;
-	}
+	private void LanguageSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(LanguageSettingPage), true);
 
-	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
-		{
-			((App)Application.Current).Preference.UIPreferences.Backdrop = value;
-		}
-	}
+	private void ThemeSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(ThemeSettingPage), true);
 
-	private void HouseCompletedFeedbackColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor = e;
+	private void SudokuGridBehaviorsSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(SudokuGridBehaviorsSettingPage), true);
 
-	private void ConceptNotationModeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: int rawValue } })
-		{
-			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
-		}
-	}
+	private void NotationSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(NotationSettingPage), true);
 
-	private void NotationDefaultSeparatorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
-		{
-			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
-		}
-	}
+	private void AnimationFeedbackSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(AnimationFeedbackSettingPage), true);
 
-	private void NotationDigitSeparatorSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
-		{
-			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
-		}
-	}
+	private void HistorySettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(HistorySettingPage), true);
 
-	private void FinalRowLetterInK9NotationSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
-		{
-			((App)Application.Current).Preference.UIPreferences.FinalRowLetterInK9Notation = ch;
-		}
-	}
-
-	private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> ((App)Application.Current).Preference.UIPreferences.Language = (int)((SegmentedItem)LanguageComboBox.SelectedItem).Tag!;
-
-	private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		var theme = (Theme)((SegmentedItem)ThemeComboBox.SelectedItem).Tag!;
-		((App)Application.Current).Preference.UIPreferences.CurrentTheme = theme;
-
-		// Manually set theme.
-		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
-		{
-			if (window is MainWindow instance)
-			{
-				instance.ManuallySetTitleBarButtonsColor(theme);
-			}
-
-			if (window.Content is FrameworkElement control)
-			{
-				control.RequestedTheme = theme switch
-				{
-					Theme.Default => ElementTheme.Default,
-					Theme.Light => ElementTheme.Light,
-					_ => ElementTheme.Dark
-				};
-			}
-		}
-	}
-
-	private void PlaceholderTextSegmented_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
-		{
-			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
-		}
-	}
+	private void MiscellaneousBehaviorsSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(MiscellaneousBasicSettingPage), true);
 }

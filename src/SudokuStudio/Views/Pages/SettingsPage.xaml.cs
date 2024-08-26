@@ -12,16 +12,16 @@ public sealed partial class SettingsPage : Page
 
 
 	private void GoToBasicOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage(typeof(BasicPreferenceItemsPage));
+		=> App.GetMainWindow(this).NavigateToPage(typeof(BasicPreferenceItemsPage), true);
 
 	private void GoToLibraryOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage(typeof(LibraryPreferenceItemsPage));
+		=> App.GetMainWindow(this).NavigateToPage(typeof(LibraryPreferenceItemsPage), true);
 
 	private void GoToAnalysisOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage(typeof(AnalysisPreferenceItemsPage));
+		=> App.GetMainWindow(this).NavigateToPage(typeof(AnalysisPreferenceItemsPage), true);
 
 	private void GoToRenderingOptionsButton_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage(typeof(DrawingPreferenceItemsPage));
+		=> App.GetMainWindow(this).NavigateToPage(typeof(DrawingPreferenceItemsPage), true);
 
 	private async void OpenSettingsFolderButton_ClickAsync(object sender, RoutedEventArgs e)
 		=> await Launcher.LaunchFolderPathAsync(io::Path.GetDirectoryName(CommonPaths.UserPreference));

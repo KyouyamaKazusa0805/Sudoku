@@ -1129,7 +1129,7 @@
     <value>Single Counting Practicing</value>
   </data>
   <data name="MainWindow_StepSearcherSorterPageTitle" xml:space="preserve">
-    <value>Sorting step searchers...</value>
+    <value>Sorting Step Searchers</value>
   </data>
   <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>Techniques Gallery</value>
@@ -2535,7 +2535,7 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Rating Customization</value>
   </data>
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
-    <value>Rating customization</value>
+    <value>Rating Customization</value>
   </data>
   <data name="ParameterName" xml:space="preserve">
     <value>@{0}</value>
@@ -2605,5 +2605,26 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="SettingsPage_SingleDigitPatternGroup" xml:space="preserve">
     <value>Single-Digit Patterns</value>
+  </data>
+  <data name="MainWindow_LanguageSettingPageTitle" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="MainWindow_ThemeSettingPageTitle" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="MainWindow_SudokuGridBehaviorsSettingPageTitle" xml:space="preserve">
+    <value>Grid Behaviors</value>
+  </data>
+  <data name="MainWindow_NotationSettingPageTitle" xml:space="preserve">
+    <value>Notation</value>
+  </data>
+  <data name="MainWindow_AnimationFeedbackSettingPageTitle" xml:space="preserve">
+    <value>Animation Feedback</value>
+  </data>
+  <data name="MainWindow_HistorySettingPageTitle" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="MainWindow_MiscellaneousBasicSettingPageTitle" xml:space="preserve">
+    <value>Miscellanous Behaviors</value>
   </data>
 </root>

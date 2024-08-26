@@ -1,0 +1,26 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Basic.HistorySettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Basic"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:HistorySettingPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+		<w:SettingsCard
+			Header="{m:R Key=SettingsPage_SavePuzzleGeneratingHistory}"
+			Description="{m:R Key=SettingsPage_SavePuzzleGeneratingHistoryDescription}">
+			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=TwoWay}" />
+		</w:SettingsCard>
+		<w:SettingsCard
+			Header="{m:R Key=SettingsPage_AlsoSaveBatchGeneratedPuzzlesIntoHistory}"
+			IsEnabled="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory,Mode=OneWay}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory,Mode=TwoWay}" />
+		</w:SettingsCard>
+	</StackPanel>
+</Page>

@@ -603,6 +603,15 @@
             <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
             <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
         </member>
+        <member name="T:System.Collections.ObjectModel.CollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.ObjectModel.Collection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.ObjectModel.Collection`1"/>
+        </member>
+        <member name="M:System.Collections.ObjectModel.CollectionExtensions.RemoveAt``1(System.Collections.ObjectModel.Collection{``0},System.Index)">
+            <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)"/>
+        </member>
         <member name="T:System.ComplexValueTupleEnumerator`2">
             <summary>
             Defines a complex value tuple enumerator.

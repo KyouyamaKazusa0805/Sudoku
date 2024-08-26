@@ -1,0 +1,97 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Basic.NotationSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Basic"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:NotationSettingPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+		<w:SettingsCard
+			Header="{m:R Key=SettingsPage_ConceptNotationBasedKind}"
+			Description="{m:R Key=SettingsPage_ConceptNotationBasedKindDescription}">
+			<w:Segmented
+				x:Name="ConceptNotationModeSelector"
+				SelectedIndex="{x:Bind cvt:ConceptNotationConversion.GetSelectedIndex(ConceptNotationModeSelector)}"
+				SelectionChanged="ConceptNotationModeSelector_SelectionChanged">
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_RxCyNotation}" Tag="{m:Int32 Value=1}" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_K9Notation}" Tag="{m:Int32 Value=2}" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_ExcelNotation}" Tag="{m:Int32 Value=3}" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_LiteralNotation}" Tag="{m:Int32 Value=0}" />
+			</w:Segmented>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDefaultSeparator}">
+			<w:Segmented
+				x:Name="NotationDefaultSeparatorSelector"
+				SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDefaultSeparatorSelector)}"
+				SelectionChanged="NotationDefaultSeparatorSelector_SelectionChanged">
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}">
+					<w:SegmentedItem.Tag>
+						<x:String></x:String>
+					</w:SegmentedItem.Tag>
+				</w:SegmentedItem>
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+				<w:SegmentedItem
+					x:Name="Comma2ComboBoxItem_DefaultSeparator"
+					Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
+			</w:Segmented>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_NotationDigitSeparator}">
+			<w:Segmented
+				x:Name="NotationDigitSeparatorSelector"
+				SelectedIndex="{x:Bind cvt:ConceptNotationConversion.NotationSeparatorSelectorSelectedIndex(NotationDigitSeparatorSelector)}"
+				SelectionChanged="NotationDigitSeparatorSelector_SelectionChanged">
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsEmpty}" Tag="{m:EmptyString}" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_SeparatorIsComma}" Tag=", " />
+				<w:SegmentedItem x:Name="Comma2ComboBoxItem_DigitSeparator" Content="{m:R Key=SettingsPage_SeparatorIsComma2}" Tag="&#3001;" />
+			</w:Segmented>
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInRxCyNotation}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInRxCyNotation,Mode=TwoWay}" />
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeDigitBeforeCellInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_MakeDigitBeforeCellInRxCyNotation}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeDigitBeforeCellInRxCyNotation,Mode=TwoWay}" />
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_HouseNotationOnlyDisplayCapitalsInRxCyNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_HouseNotationOnlyDisplayCapitalsInRxCyNotation}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HouseNotationOnlyDisplayCapitalsInRxCyNotation,Mode=TwoWay}" />
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInK9Notation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInK9Notation}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInK9Notation,Mode=TwoWay}" />
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_FinalRowLetterInK9Notation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_FinalRowLetterInK9Notation}">
+			<w:Segmented
+				x:Name="FinalRowLetterInK9NotationSelector"
+				SelectedIndex="{x:Bind cvt:ConceptNotationConversion.FinalRowLetterInK9NotationSelectedIndex(FinalRowLetterInK9NotationSelector)}"
+				SelectionChanged="FinalRowLetterInK9NotationSelector_SelectionChanged">
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_I}" Tag="I" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_J}" Tag="J" />
+				<w:SegmentedItem Content="{m:R Key=SettingsPage_FinalRowLetter_K}" Tag="K" />
+			</w:Segmented>
+		</w:SettingsCard>
+		<w:SettingsCard
+			IsEnabled="{x:Bind cvt:ConceptNotationConversion.IsEnabled_SettingsCard_MakeLettersUpperCaseInExcelNotation(ConceptNotationModeSelector.SelectedItem),Mode=OneWay}"
+			Header="{m:R Key=SettingsPage_MakeLettersUpperCaseInExcelNotation}">
+			<ToggleSwitch
+				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.MakeLettersUpperCaseInExcelNotation,Mode=TwoWay}" />
+		</w:SettingsCard>
+	</StackPanel>
+</Page>

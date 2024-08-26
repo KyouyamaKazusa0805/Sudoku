@@ -1129,7 +1129,7 @@
     <value>唯余数数练习</value>
   </data>
   <data name="MainWindow_StepSearcherSorterPageTitle" xml:space="preserve">
-    <value>为技巧模块排序……</value>
+    <value>定义技巧模块次序</value>
   </data>
   <data name="MainWindow_TechniqueGallery" xml:space="preserve">
     <value>技巧展览馆</value>
@@ -2581,5 +2581,26 @@
   </data>
   <data name="SettingsPage_SingleDigitPatternGroup" xml:space="preserve">
     <value>同数技巧</value>
+  </data>
+  <data name="MainWindow_LanguageSettingPageTitle" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="MainWindow_ThemeSettingPageTitle" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="MainWindow_SudokuGridBehaviorsSettingPageTitle" xml:space="preserve">
+    <value>盘面行为</value>
+  </data>
+  <data name="MainWindow_NotationSettingPageTitle" xml:space="preserve">
+    <value>记号</value>
+  </data>
+  <data name="MainWindow_AnimationFeedbackSettingPageTitle" xml:space="preserve">
+    <value>动画反馈</value>
+  </data>
+  <data name="MainWindow_HistorySettingPageTitle" xml:space="preserve">
+    <value>历史记录</value>
+  </data>
+  <data name="MainWindow_MiscellaneousBasicSettingPageTitle" xml:space="preserve">
+    <value>其他行为</value>
   </data>
 </root>

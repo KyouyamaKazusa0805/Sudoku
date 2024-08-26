@@ -45,23 +45,6 @@ internal sealed partial class MainNavigationPage : Page
 	public partial ObservableCollection<PageNavigationBindableSource> HeaderBarItems { get; set; }
 
 	/// <summary>
-	/// Sets the navigated page type.
-	/// </summary>
-	public Type PageTo
-	{
-		set
-		{
-			if (NavigationViewFrame.SourcePageType != value)
-			{
-				NavigationViewFrame.Navigate(value, null, new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
-				HeaderBarItems = SR.TryGet(PageTypeResourceKey(value), out var resource, App.CurrentCulture)
-					? [new() { PageType = value, PageTitle = resource }]
-					: [];
-			}
-		}
-	}
-
-	/// <summary>
 	/// Sets the navigated page type with custom data.
 	/// </summary>
 	public (Type PageType, object? Value) PageToWithValue
@@ -75,6 +58,44 @@ internal sealed partial class MainNavigationPage : Page
 				HeaderBarItems = SR.TryGet(PageTypeResourceKey(p), out var resource, App.CurrentCulture)
 					? [new() { PageType = p, PageTitle = resource }]
 					: [];
+			}
+		}
+	}
+
+	/// <summary>
+	/// Sets the navigated page type with a <see cref="bool"/> value indicating whether the page should be stacked.
+	/// </summary>
+	public (bool StackPage, Type PageType) PageToWithStack
+	{
+		set
+		{
+			var p = value.PageType;
+			if (NavigationViewFrame.SourcePageType == p)
+			{
+				return;
+			}
+
+			var info = new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight };
+			NavigationViewFrame.Navigate(p, null, info);
+
+			SR.TryGet(PageTypeResourceKey(p), out var resource, App.CurrentCulture);
+			switch (value.StackPage, resource)
+			{
+				case (true, _):
+				{
+					HeaderBarItems.Add(new() { PageType = p, PageTitle = resource ?? "<null>" });
+					break;
+				}
+				case (false, not null):
+				{
+					HeaderBarItems = [new() { PageType = p, PageTitle = resource }];
+					break;
+				}
+				default:
+				{
+					HeaderBarItems = [];
+					break;
+				}
 			}
 		}
 	}
@@ -122,9 +143,18 @@ internal sealed partial class MainNavigationPage : Page
 		if (NavigationViewFrame is { CanGoBack: true, BackStack: [.., { SourcePageType: var lastPageType }] })
 		{
 			NavigationViewFrame.GoBack();
-			HeaderBarItems = SR.TryGet(PageTypeResourceKey(lastPageType), out var resource, App.CurrentCulture)
-				? [new() { PageType = lastPageType, PageTitle = resource }]
-				: [];
+
+			if (HeaderBarItems.Count == 1)
+			{
+				HeaderBarItems = SR.TryGet(PageTypeResourceKey(lastPageType), out var resource, App.CurrentCulture)
+					? [new() { PageType = lastPageType, PageTitle = resource }]
+					: [];
+			}
+			else
+			{
+				HeaderBarItems.RemoveAt(^1);
+			}
+
 			HandleNavigation((_, p) => p == lastPageType, static (c, _) => c.IsSelected = true);
 		}
 	}

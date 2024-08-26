@@ -120,6 +120,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\Basic\MiscellaneousBasicSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\HistorySettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\AnimationFeedbackSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\NotationSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\SudokuGridBehaviorsSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\ThemeSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\TechniqueInfoModifierPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -262,6 +280,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\PatternBasedPuzzleGeneratingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Basic\LanguageSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>
