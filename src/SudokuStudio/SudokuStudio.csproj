@@ -120,6 +120,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\Analysis\MiscellaneousAnalysisSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\CompatibilitySettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\StepSearcherBehaviorsSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\DualitySettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\PermutationSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\AlmostLockedSetAndIntersectionSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\DeadlyPatternSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\SingleDigitPatternSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\FishSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\IttoryuSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\Basic\MiscellaneousBasicSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -286,6 +316,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Settings\Library\LibrarySettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Analysis\DirectTechniquesSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

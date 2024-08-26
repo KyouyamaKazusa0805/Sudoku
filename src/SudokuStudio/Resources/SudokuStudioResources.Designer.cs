@@ -3814,6 +3814,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets &amp; Intersections.
+        /// </summary>
+        internal static string MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analysis Options.
         /// </summary>
         internal static string MainWindow_AnalysisPreferenceItemsPageTitle {
@@ -3868,6 +3877,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Program Compatibility.
+        /// </summary>
+        internal static string MainWindow_CompatibilitySettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_CompatibilitySettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadly Patterns.
+        /// </summary>
+        internal static string MainWindow_DeadlyPatternSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_DeadlyPatternSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Singles.
+        /// </summary>
+        internal static string MainWindow_DirectTechniquesSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_DirectTechniquesSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customized Drawing.
         /// </summary>
         internal static string MainWindow_DrawingPageTitle {
@@ -3886,6 +3922,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Siamesity &amp; Duality.
+        /// </summary>
+        internal static string MainWindow_DualitySettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_DualitySettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Experimental.
         /// </summary>
         internal static string MainWindow_Experiemental {
@@ -3900,6 +3945,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fishes.
+        /// </summary>
+        internal static string MainWindow_FishSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_FishSettingPageTitle", resourceCulture);
             }
         }
         
@@ -3967,6 +4021,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu.
+        /// </summary>
+        internal static string MainWindow_IttoryuSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_IttoryuSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Languages.
         /// </summary>
         internal static string MainWindow_LanguageSettingPageTitle {
@@ -4030,7 +4093,16 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Miscellanous Behaviors.
+        ///   Looks up a localized string similar to Miscellaneous Behaviors.
+        /// </summary>
+        internal static string MainWindow_MiscellaneousAnalysisSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_MiscellaneousAnalysisSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miscellaneous Behaviors.
         /// </summary>
         internal static string MainWindow_MiscellaneousBasicSettingPageTitle {
             get {
@@ -4080,6 +4152,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_PatternBasedPuzzleGeneratorPage {
             get {
                 return ResourceManager.GetString("MainWindow_PatternBasedPuzzleGeneratorPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permutations.
+        /// </summary>
+        internal static string MainWindow_PermutationSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_PermutationSettingPageTitle", resourceCulture);
             }
         }
         
@@ -4170,6 +4251,24 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_SingleCountingPracticingPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_SingleCountingPracticingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single-Digit Patterns.
+        /// </summary>
+        internal static string MainWindow_SingleDigitPatternSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_SingleDigitPatternSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step Searcher Modules.
+        /// </summary>
+        internal static string MainWindow_StepSearcherBehaviorsSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_StepSearcherBehaviorsSettingPageTitle", resourceCulture);
             }
         }
         
@@ -5652,6 +5751,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Global Settings.
+        /// </summary>
+        internal static string SettingsPage_GlobalSettingsGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_GlobalSettingsGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped node background color.
         /// </summary>
         internal static string SettingsPage_GroupedNodeBackgroundColor {
@@ -6647,6 +6755,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_SWingPattern {
             get {
                 return ResourceManager.GetString("SettingsPage_SWingPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique Patterns.
+        /// </summary>
+        internal static string SettingsPage_TechniqueGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_TechniqueGroup", resourceCulture);
             }
         }
         

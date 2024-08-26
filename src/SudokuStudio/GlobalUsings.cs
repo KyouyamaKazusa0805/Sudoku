@@ -97,6 +97,7 @@ global using SudokuStudio.Views.Pages.ContentDialogs;
 global using SudokuStudio.Views.Pages.Manuals;
 global using SudokuStudio.Views.Pages.Operation;
 global using SudokuStudio.Views.Pages.Settings;
+global using SudokuStudio.Views.Pages.Settings.Analysis;
 global using SudokuStudio.Views.Pages.Settings.Basic;
 global using SudokuStudio.Views.Pages.Settings.Library;
 global using SudokuStudio.Views.Windows;

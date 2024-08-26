@@ -7556,6 +7556,11 @@
               Looks up a localized string similar to About....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets &amp; Intersections.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AnalysisPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Analysis Options.
@@ -7586,6 +7591,21 @@
               Looks up a localized string similar to Program Basic Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_CompatibilitySettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Program Compatibility.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DeadlyPatternSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Deadly Patterns.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DirectTechniquesSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Singles.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DrawingPageTitle">
             <summary>
               Looks up a localized string similar to Customized Drawing.
@@ -7596,6 +7616,11 @@
               Looks up a localized string similar to Drawing Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DualitySettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Siamesity &amp; Duality.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Experiemental">
             <summary>
               Looks up a localized string similar to Experimental.
@@ -7604,6 +7629,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_FishSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Fishes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPage">
@@ -7641,6 +7671,11 @@
               Looks up a localized string similar to Hotkey Cheat Table.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_IttoryuSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Ittoryu.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_LanguageSettingPageTitle">
             <summary>
               Looks up a localized string similar to Languages.
@@ -7676,9 +7711,14 @@
               Looks up a localized string similar to Menu.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MiscellaneousAnalysisSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Miscellaneous Behaviors.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MiscellaneousBasicSettingPageTitle">
             <summary>
-              Looks up a localized string similar to Miscellanous Behaviors.
+              Looks up a localized string similar to Miscellaneous Behaviors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_NotationSettingPageTitle">
@@ -7704,6 +7744,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PatternBasedPuzzleGeneratorPage">
             <summary>
               Looks up a localized string similar to Patterned Generator.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PermutationSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Permutations.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ProgramManual">
@@ -7754,6 +7799,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_SingleCountingPracticingPageTitle">
             <summary>
               Looks up a localized string similar to Single Counting Practicing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_SingleDigitPatternSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Single-Digit Patterns.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepSearcherBehaviorsSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Step Searcher Modules.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepSearcherSorterPageTitle">
@@ -8578,6 +8633,11 @@
               Looks up a localized string similar to Given font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_GlobalSettingsGroup">
+            <summary>
+              Looks up a localized string similar to Global Settings.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_GroupedNodeBackgroundColor">
             <summary>
               Looks up a localized string similar to Grouped node background color.
@@ -9131,6 +9191,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_SWingPattern">
             <summary>
               Looks up a localized string similar to x=x-(x=y)-y=y.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_TechniqueGroup">
+            <summary>
+              Looks up a localized string similar to Technique Patterns.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Theme">
@@ -15063,6 +15128,276 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.AnalysisPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage">
+            <summary>
+            Represents almost locked set and intersection setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage">
+            <summary>
+            Represents compatibility setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.CompatibilitySettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage">
+            <summary>
+            Represents deadly pattern setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DeadlyPatternSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage">
+            <summary>
+            Represents direct techniques setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DirectTechniquesSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage">
+            <summary>
+            Represents duality setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.DualitySettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage">
+            <summary>
+            Represents fish setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.FishSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage">
+            <summary>
+            Represents ittoryu setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.IttoryuSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage">
+            <summary>
+            Represents miscellaneous analysis setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.MiscellaneousAnalysisSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage">
+            <summary>
+            Represents permutation setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.PermutationSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage">
+            <summary>
+            An empty page that can be used on its own or navigated to within a Frame.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage">
+            <summary>
+            Represents step searcher behaviors setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.StepSearcherBehaviorsSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

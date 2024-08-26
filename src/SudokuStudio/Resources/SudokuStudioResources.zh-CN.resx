@@ -2135,6 +2135,10 @@
   <data name="_Inference_Weak" xml:space="preserve">
     <value>弱链关系</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_ProgramName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>
   </data>
@@ -2605,5 +2609,44 @@
   </data>
   <data name="MainWindow_LibrarySettingPageTitle" xml:space="preserve">
     <value>题库</value>
+  </data>
+  <data name="MainWindow_DirectTechniquesSettingPageTitle" xml:space="preserve">
+    <value>出数类技巧</value>
+  </data>
+  <data name="MainWindow_IttoryuSettingPageTitle" xml:space="preserve">
+    <value>一刀流</value>
+  </data>
+  <data name="MainWindow_FishSettingPageTitle" xml:space="preserve">
+    <value>鱼</value>
+  </data>
+  <data name="MainWindow_SingleDigitPatternSettingPageTitle" xml:space="preserve">
+    <value>同数技巧</value>
+  </data>
+  <data name="MainWindow_DeadlyPatternSettingPageTitle" xml:space="preserve">
+    <value>致命结构</value>
+  </data>
+  <data name="MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle" xml:space="preserve">
+    <value>待定数组和欠一数组</value>
+  </data>
+  <data name="MainWindow_PermutationSettingPageTitle" xml:space="preserve">
+    <value>枚举类技巧</value>
+  </data>
+  <data name="MainWindow_DualitySettingPageTitle" xml:space="preserve">
+    <value>孪生性和对偶性</value>
+  </data>
+  <data name="MainWindow_StepSearcherBehaviorsSettingPageTitle" xml:space="preserve">
+    <value>技巧搜索器模块</value>
+  </data>
+  <data name="MainWindow_CompatibilitySettingPageTitle" xml:space="preserve">
+    <value>程序兼容性</value>
+  </data>
+  <data name="MainWindow_MiscellaneousAnalysisSettingPageTitle" xml:space="preserve">
+    <value>其他行为</value>
+  </data>
+  <data name="SettingsPage_TechniqueGroup" xml:space="preserve">
+    <value>技巧结构</value>
+  </data>
+  <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
+    <value>全局设置</value>
   </data>
 </root>

@@ -2625,9 +2625,48 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>History</value>
   </data>
   <data name="MainWindow_MiscellaneousBasicSettingPageTitle" xml:space="preserve">
-    <value>Miscellanous Behaviors</value>
+    <value>Miscellaneous Behaviors</value>
   </data>
   <data name="MainWindow_LibrarySettingPageTitle" xml:space="preserve">
     <value>Library</value>
+  </data>
+  <data name="MainWindow_DirectTechniquesSettingPageTitle" xml:space="preserve">
+    <value>Singles</value>
+  </data>
+  <data name="MainWindow_IttoryuSettingPageTitle" xml:space="preserve">
+    <value>Ittoryu</value>
+  </data>
+  <data name="MainWindow_FishSettingPageTitle" xml:space="preserve">
+    <value>Fishes</value>
+  </data>
+  <data name="MainWindow_SingleDigitPatternSettingPageTitle" xml:space="preserve">
+    <value>Single-Digit Patterns</value>
+  </data>
+  <data name="MainWindow_DeadlyPatternSettingPageTitle" xml:space="preserve">
+    <value>Deadly Patterns</value>
+  </data>
+  <data name="MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle" xml:space="preserve">
+    <value>Almost Locked Sets &amp; Intersections</value>
+  </data>
+  <data name="MainWindow_PermutationSettingPageTitle" xml:space="preserve">
+    <value>Permutations</value>
+  </data>
+  <data name="MainWindow_DualitySettingPageTitle" xml:space="preserve">
+    <value>Siamesity &amp; Duality</value>
+  </data>
+  <data name="MainWindow_StepSearcherBehaviorsSettingPageTitle" xml:space="preserve">
+    <value>Step Searcher Modules</value>
+  </data>
+  <data name="MainWindow_CompatibilitySettingPageTitle" xml:space="preserve">
+    <value>Program Compatibility</value>
+  </data>
+  <data name="MainWindow_MiscellaneousAnalysisSettingPageTitle" xml:space="preserve">
+    <value>Miscellaneous Behaviors</value>
+  </data>
+  <data name="SettingsPage_TechniqueGroup" xml:space="preserve">
+    <value>Technique Patterns</value>
+  </data>
+  <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
+    <value>Global Settings</value>
   </data>
 </root>
