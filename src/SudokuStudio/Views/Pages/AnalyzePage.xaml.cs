@@ -952,7 +952,7 @@ public sealed partial class AnalyzePage : Page
 	[Callback]
 	private static void CurrentViewIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (AnalyzePage page, { NewValue: int value and not -1 }))
+		if ((d, e) is (AnalyzePage page, { NewValue: int value }))
 		{
 			switch (page.VisualUnit)
 			{
@@ -961,7 +961,7 @@ public sealed partial class AnalyzePage : Page
 					page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = [] };
 					break;
 				}
-				case { Conclusions: var conclusions, Views: var views }:
+				case { Conclusions: var conclusions, Views: var views } when value != -1:
 				{
 					page.SudokuPane.ViewUnit = new() { Conclusions = conclusions.ToArray(), View = views.Span[value] };
 					break;
@@ -975,7 +975,11 @@ public sealed partial class AnalyzePage : Page
 	{
 		if ((d, e) is (AnalyzePage page, { NewValue: var value and (null or IDrawable) }))
 		{
+			// By forcing assign the value to -1, to trigger view updating operation.
+			// Otherwise, the value will always keep the value 0,
+			// the view unit won't update because property value 'CurrentViewIndex' won't change.
 			page.CurrentViewIndex = -1;
+
 			page.CurrentViewIndex = value is IDrawable ? 0 : -1;
 
 			// Manually updating the pips pager and text block.
