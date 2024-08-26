@@ -2603,4 +2603,7 @@
   <data name="MainWindow_MiscellaneousBasicSettingPageTitle" xml:space="preserve">
     <value>其他行为</value>
   </data>
+  <data name="MainWindow_LibrarySettingPageTitle" xml:space="preserve">
+    <value>题库</value>
+  </data>
 </root>

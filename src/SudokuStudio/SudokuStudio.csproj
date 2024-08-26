@@ -285,6 +285,9 @@
 		<Page Update="Views\Pages\Settings\Basic\LanguageSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\Settings\Library\LibrarySettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--

@@ -7661,6 +7661,11 @@
               Looks up a localized string similar to Library Puzzles.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_LibrarySettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MainPage">
             <summary>
               Looks up a localized string similar to Main page.
@@ -15435,11 +15440,6 @@
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.InitializeFields">
-            <summary>
-            Initializes for fields.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -15451,6 +15451,36 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.LibraryPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage">
+            <summary>
+            Represents library setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage.InitializeControls">
+            <summary>
+            Initializes for controls.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Library.LibrarySettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

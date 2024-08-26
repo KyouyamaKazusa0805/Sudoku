@@ -8,21 +8,9 @@ public sealed partial class LibraryPreferenceItemsPage : Page
 	/// <summary>
 	/// Initializes a <see cref="LibraryPreferenceItemsPage"/> instance.
 	/// </summary>
-	public LibraryPreferenceItemsPage()
-	{
-		InitializeComponent();
-
-		InitializeFields();
-	}
+	public LibraryPreferenceItemsPage() => InitializeComponent();
 
 
-	/// <summary>
-	/// Initializes for fields.
-	/// </summary>
-	private void InitializeFields()
-		=> CandidateDisplayingComboBox.SelectedIndex = (int)((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility;
-
-
-	private void CandidateDisplayingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> ((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility = (LibraryCandidatesVisibility)CandidateDisplayingComboBox.SelectedIndex;
+	private void LibrarySettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(LibrarySettingPage), true);
 }

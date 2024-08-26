@@ -4003,6 +4003,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string MainWindow_LibrarySettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_LibrarySettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main page.
         /// </summary>
         internal static string MainWindow_MainPage {

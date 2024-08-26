@@ -2627,4 +2627,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_MiscellaneousBasicSettingPageTitle" xml:space="preserve">
     <value>Miscellanous Behaviors</value>
   </data>
+  <data name="MainWindow_LibrarySettingPageTitle" xml:space="preserve">
+    <value>Library</value>
+  </data>
 </root>
