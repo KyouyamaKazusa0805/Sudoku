@@ -2644,7 +2644,7 @@
     <value>其他行为</value>
   </data>
   <data name="SettingsPage_TechniqueGroup" xml:space="preserve">
-    <value>技巧结构</value>
+    <value>技巧</value>
   </data>
   <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
     <value>全局设置</value>

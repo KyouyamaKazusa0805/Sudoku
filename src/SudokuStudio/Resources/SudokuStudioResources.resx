@@ -2664,7 +2664,7 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Miscellaneous Behaviors</value>
   </data>
   <data name="SettingsPage_TechniqueGroup" xml:space="preserve">
-    <value>Technique Patterns</value>
+    <value>Techniques</value>
   </data>
   <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
     <value>Global Settings</value>

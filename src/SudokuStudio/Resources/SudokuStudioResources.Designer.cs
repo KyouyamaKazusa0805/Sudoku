@@ -6759,7 +6759,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technique Patterns.
+        ///   Looks up a localized string similar to Techniques.
         /// </summary>
         internal static string SettingsPage_TechniqueGroup {
             get {

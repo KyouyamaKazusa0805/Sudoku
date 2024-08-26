@@ -9195,7 +9195,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_TechniqueGroup">
             <summary>
-              Looks up a localized string similar to Technique Patterns.
+              Looks up a localized string similar to Techniques.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Theme">
@@ -15359,7 +15359,12 @@
         </member>
         <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage">
             <summary>
-            An empty page that can be used on its own or navigated to within a Frame.
+            Represents single digit pattern setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage"/> instance.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.SingleDigitPatternSettingPage.InitializeComponent">
