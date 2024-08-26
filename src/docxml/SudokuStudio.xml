@@ -14435,12 +14435,12 @@
             Indicates the header bar items.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.NavigatedPageType">
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageTo">
             <summary>
             Sets the navigated page type.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.NavigatedPageTypeWithValue">
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToWithValue">
             <summary>
             Sets the navigated page type with custom data.
             </summary>

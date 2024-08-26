@@ -26,14 +26,14 @@ public sealed partial class MainWindow : Window
 	/// Try to navigate to the target page.
 	/// </summary>
 	/// <param name="pageType">The target page type.</param>
-	public void NavigateToPage(Type pageType) => NavigationPage.NavigatedPageType = pageType;
+	public void NavigateToPage(Type pageType) => NavigationPage.PageTo = pageType;
 
 	/// <summary>
 	/// Try to navigate to the target page with the custom data.
 	/// </summary>
 	/// <param name="pageType">The page type.</param>
 	/// <param name="value">The value to be passed.</param>
-	public void NavigateToPage(Type pageType, object? value) => NavigationPage.NavigatedPageTypeWithValue = (pageType, value);
+	public void NavigateToPage(Type pageType, object? value) => NavigationPage.PageToWithValue = (pageType, value);
 
 	/// <summary>
 	/// Set title bar button colors using the specified theme.

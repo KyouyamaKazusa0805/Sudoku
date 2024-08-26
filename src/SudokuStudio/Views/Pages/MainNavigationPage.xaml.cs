@@ -47,7 +47,7 @@ internal sealed partial class MainNavigationPage : Page
 	/// <summary>
 	/// Sets the navigated page type.
 	/// </summary>
-	public Type NavigatedPageType
+	public Type PageTo
 	{
 		set
 		{
@@ -64,7 +64,7 @@ internal sealed partial class MainNavigationPage : Page
 	/// <summary>
 	/// Sets the navigated page type with custom data.
 	/// </summary>
-	public (Type PageType, object? Value) NavigatedPageTypeWithValue
+	public (Type PageType, object? Value) PageToWithValue
 	{
 		set
 		{
@@ -110,11 +110,12 @@ internal sealed partial class MainNavigationPage : Page
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> (
-			args.IsSettingsSelected
-				? new Action(() => ParentWindow.NavigateToPage(typeof(SettingsPage)))
-				: () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p))
-		)();
+	{
+		Action action = args.IsSettingsSelected
+			? () => ParentWindow.NavigateToPage(typeof(SettingsPage))
+			: () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p));
+		action();
+	}
 
 	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
 	{
@@ -130,7 +131,7 @@ internal sealed partial class MainNavigationPage : Page
 
 	private void HeaderBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
 	{
-		if (HeaderBar.ItemsSource is ObservableCollection<string> items)
+		if (HeaderBar.ItemsSource is ObservableCollection<PageNavigationBindableSource> items)
 		{
 			for (var i = items.Count - 1; i >= args.Index + 1; i--)
 			{
