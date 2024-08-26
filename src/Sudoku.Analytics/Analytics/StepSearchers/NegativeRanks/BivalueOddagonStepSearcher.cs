@@ -122,7 +122,6 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					}
 				}
 			}
-
 			return result;
 		}
 

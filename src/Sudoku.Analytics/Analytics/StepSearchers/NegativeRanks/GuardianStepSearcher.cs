@@ -31,7 +31,12 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		var pomContext = new StepAnalysisContext(in playground) { Accumulator = pomSteps, OnlyFindOne = false, Options = context.Options };
+		var pomContext = new StepAnalysisContext(in playground)
+		{
+			Accumulator = pomSteps,
+			OnlyFindOne = false,
+			Options = context.Options
+		};
 		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (PatternOverlayStep step in pomSteps)
@@ -115,12 +120,12 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	private static unsafe Guardian[] CollectGuardianLoops(Digit digit)
 	{
 		static bool predicate(ref readonly CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
-		var result = new List<Guardian>();
+		var result = new HashSet<Guardian>();
 		foreach (var cell in CandidatesMap[digit])
 		{
 			dfs(cell, cell, 0, [cell], [], digit, &predicate, result);
 		}
-		return [.. result.Distinct()];
+		return [.. result];
 
 
 		static void dfs(
@@ -131,7 +136,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			ref readonly CellMap currentGuardians,
 			Digit digit,
 			CollectorPredicateFuncPtr condition,
-			List<Guardian> result
+			HashSet<Guardian> result
 		)
 		{
 			foreach (var houseType in HouseTypes)
