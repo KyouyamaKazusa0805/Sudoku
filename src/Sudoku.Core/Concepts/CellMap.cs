@@ -120,6 +120,9 @@ public partial struct CellMap : CellMapBase
 	/// <summary>
 	/// Indicates whether every cell in the current collection cannot see each other.
 	/// </summary>
+	/// <remarks><b>
+	/// Please note that this property will return <see langword="false"/> if there's no cells or 1 cell in the current collection.
+	/// </b></remarks>
 	public readonly bool CanSeeEachOther
 	{
 		get

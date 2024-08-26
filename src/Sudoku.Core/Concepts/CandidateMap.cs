@@ -708,7 +708,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	{
 		var result = collection;
 		result.Add(offset);
-
 		return result;
 	}
 
@@ -728,7 +727,8 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template) => (@base & template).PeerIntersection & template;
+	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
+		=> (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -736,18 +736,18 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += BitOperations.PopCount((ulong)(result._bits[0] &= right._bits[0]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[1] &= right._bits[1]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[2] &= right._bits[2]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[3] &= right._bits[3]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[4] &= right._bits[4]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[5] &= right._bits[5]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[6] &= right._bits[6]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[7] &= right._bits[7]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[8] &= right._bits[8]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[9] &= right._bits[9]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[10] &= right._bits[10]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[11] &= right._bits[11]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] &= right._bits[0]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] &= right._bits[1]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] &= right._bits[2]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] &= right._bits[3]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] &= right._bits[4]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] &= right._bits[5]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] &= right._bits[6]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] &= right._bits[7]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] &= right._bits[8]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] &= right._bits[9]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] &= right._bits[10]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] &= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}
@@ -758,18 +758,18 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += BitOperations.PopCount((ulong)(result._bits[0] |= right._bits[0]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[1] |= right._bits[1]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[2] |= right._bits[2]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[3] |= right._bits[3]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[4] |= right._bits[4]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[5] |= right._bits[5]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[6] |= right._bits[6]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[7] |= right._bits[7]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[8] |= right._bits[8]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[9] |= right._bits[9]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[10] |= right._bits[10]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[11] |= right._bits[11]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] |= right._bits[0]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] |= right._bits[1]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] |= right._bits[2]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] |= right._bits[3]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] |= right._bits[4]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] |= right._bits[5]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] |= right._bits[6]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] |= right._bits[7]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] |= right._bits[8]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] |= right._bits[9]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] |= right._bits[10]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] |= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}
@@ -780,18 +780,18 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	{
 		var finalCount = 0;
 		var result = left;
-		finalCount += BitOperations.PopCount((ulong)(result._bits[0] ^= right._bits[0]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[1] ^= right._bits[1]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[2] ^= right._bits[2]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[3] ^= right._bits[3]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[4] ^= right._bits[4]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[5] ^= right._bits[5]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[6] ^= right._bits[6]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[7] ^= right._bits[7]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[8] ^= right._bits[8]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[9] ^= right._bits[9]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[10] ^= right._bits[10]));
-		finalCount += BitOperations.PopCount((ulong)(result._bits[11] ^= right._bits[11]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] ^= right._bits[0]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] ^= right._bits[1]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] ^= right._bits[2]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] ^= right._bits[3]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] ^= right._bits[4]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] ^= right._bits[5]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] ^= right._bits[6]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] ^= right._bits[7]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] ^= right._bits[8]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] ^= right._bits[9]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] ^= right._bits[10]));
+		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] ^= right._bits[11]));
 		result.Count = finalCount;
 		return result;
 	}
