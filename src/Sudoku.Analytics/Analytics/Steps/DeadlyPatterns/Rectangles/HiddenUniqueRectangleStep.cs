@@ -1,4 +1,3 @@
-
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -37,5 +36,5 @@ public sealed class HiddenUniqueRectangleStep(
 )
 {
 	/// <inheritdoc/>
-	protected override Type EqualityContract => base.EqualityContract.BaseType!;
+	protected override bool TechniqueResourceKeyInheritsFromBase => true;
 }

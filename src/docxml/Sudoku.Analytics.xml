@@ -6130,11 +6130,6 @@
             Indicates the string representation of the conclusions of the step.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.FormatTypeIdentifier">
-            <summary>
-            Indicates the identifier of this type. The value is equivalent to <c>GetType().Name</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
             The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -6164,9 +6159,25 @@
             Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Step.EqualityContract">
+        <member name="P:Sudoku.Analytics.Step.TechniqueResourceKeyInheritsFromBase">
             <summary>
-            Represents a <see cref="T:System.Type"/> instance that defines the current type.
+            <para>Indicates whether property <see cref="P:Sudoku.Analytics.Step.FormatTypeIdentifier"/> will inherit from base type.</para>
+            <para>
+            By default, this property is <see langword="false"/>, meaning technique resource key must match its containing type.
+            </para>
+            <para>
+            If there's no corresponding resource found, <see cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
+            and other methods in a same method group will fail to output information,
+            and return default value same as <see cref="M:Sudoku.Analytics.Step.ToSimpleString(System.IFormatProvider)"/>.
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Step.FormatTypeIdentifier"/>
+            <seealso cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
+            <seealso cref="M:Sudoku.Analytics.Step.ToSimpleString(System.IFormatProvider)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.FormatTypeIdentifier">
+            <summary>
+            Indicates the identifier of this type. This property will be used in resource.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.Sudoku#Drawing#IDrawable#Conclusions">
@@ -6240,13 +6251,6 @@
         <member name="M:Sudoku.Analytics.Step.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.GetResourceFormat(System.Globalization.CultureInfo)">
-            <summary>
-            Returns the format of the specified culture.
-            The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
-            </summary>
-            <param name="culture">Indicates the current culture used.</param>
-        </member>
         <member name="M:Sudoku.Analytics.Step.FormatDescription(System.Globalization.CultureInfo,System.ReadOnlySpan{System.String})">
             <summary>
             Try to format description of the current instance.
@@ -6255,6 +6259,13 @@
             <param name="formatArguments">The format arguments.</param>
             <returns>The final result.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified culture doesn't contain the specified resource.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.GetResourceFormat(System.Globalization.CultureInfo)">
+            <summary>
+            Returns the format of the specified culture.
+            The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
+            </summary>
+            <param name="culture">Indicates the current culture used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
@@ -13672,7 +13683,7 @@
             <param name="conjugatePairs"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.EqualityContract">
+        <member name="P:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.TechniqueResourceKeyInheritsFromBase">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep">
@@ -13921,7 +13932,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.EqualityContract">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.TechniqueResourceKeyInheritsFromBase">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.Sudoku#Traits#IConjugatePairTrait#ConjugatePairsCount">

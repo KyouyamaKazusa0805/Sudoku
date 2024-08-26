@@ -99,11 +99,6 @@ public abstract partial class Step(
 	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
-	/// Indicates the identifier of this type. The value is equivalent to <c>GetType().Name</c>.
-	/// </summary>
-	public string FormatTypeIdentifier => EqualityContract.Name;
-
-	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
 	[HashCodeMember]
@@ -137,9 +132,25 @@ public abstract partial class Step(
 	public virtual FactorCollection Factors => [];
 
 	/// <summary>
-	/// Represents a <see cref="Type"/> instance that defines the current type.
+	/// <para>Indicates whether property <see cref="FormatTypeIdentifier"/> will inherit from base type.</para>
+	/// <para>
+	/// By default, this property is <see langword="false"/>, meaning technique resource key must match its containing type.
+	/// </para>
+	/// <para>
+	/// If there's no corresponding resource found, <see cref="ToString(IFormatProvider?)"/>
+	/// and other methods in a same method group will fail to output information,
+	/// and return default value same as <see cref="ToSimpleString(IFormatProvider?)"/>.
+	/// </para>
 	/// </summary>
-	protected virtual Type EqualityContract => GetType();
+	/// <seealso cref="FormatTypeIdentifier"/>
+	/// <seealso cref="ToString(IFormatProvider?)"/>
+	/// <seealso cref="ToSimpleString(IFormatProvider?)"/>
+	protected virtual bool TechniqueResourceKeyInheritsFromBase => false;
+
+	/// <summary>
+	/// Indicates the identifier of this type. This property will be used in resource.
+	/// </summary>
+	protected string FormatTypeIdentifier => (TechniqueResourceKeyInheritsFromBase ? GetType().BaseType! : GetType()).Name;
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<Conclusion> IDrawable.Conclusions => Conclusions;
@@ -233,15 +244,6 @@ public abstract partial class Step(
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <summary>
-	/// Returns the format of the specified culture.
-	/// The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
-	/// </summary>
-	/// <param name="culture">Indicates the current culture used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private string? GetResourceFormat(CultureInfo? culture)
-		=> SR.TryGet(TechniqueResourceKey, out var resource, culture) ? resource : null;
-
-	/// <summary>
 	/// Try to format description of the current instance.
 	/// </summary>
 	/// <param name="culture">The culture information.</param>
@@ -253,4 +255,13 @@ public abstract partial class Step(
 		=> GetResourceFormat(culture) is { } p
 			? string.Format(culture, p, ReadOnlySpan<object?>.CastUp(formatArguments))
 			: throw new ResourceNotFoundException(typeof(Step).Assembly, TechniqueResourceKey, culture);
+
+	/// <summary>
+	/// Returns the format of the specified culture.
+	/// The return value can be <see langword="null"/> if the step doesn't contain an equivalent resource key.
+	/// </summary>
+	/// <param name="culture">Indicates the current culture used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private string? GetResourceFormat(CultureInfo? culture)
+		=> SR.TryGet(TechniqueResourceKey, out var resource, culture) ? resource : null;
 }

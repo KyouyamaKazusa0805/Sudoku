@@ -48,7 +48,7 @@ public sealed partial class UniqueRectangleConjugatePairExtraStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
-	protected override Type EqualityContract => base.EqualityContract.BaseType!;
+	protected override bool TechniqueResourceKeyInheritsFromBase => true;
 
 	/// <inheritdoc/>
 	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;
