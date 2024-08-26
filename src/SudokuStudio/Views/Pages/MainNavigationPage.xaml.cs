@@ -128,6 +128,14 @@ internal sealed partial class MainNavigationPage : Page
 	}
 
 
+	/// <summary>
+	/// Returns page type resource key.
+	/// </summary>
+	/// <param name="type">The type of the page.</param>
+	/// <returns>The resource key.</returns>
+	private static string PageTypeResourceKey(Type type) => $"{nameof(MainWindow)}_{type.Name}Title";
+
+
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -158,6 +166,4 @@ internal sealed partial class MainNavigationPage : Page
 			HandleNavigation((_, p) => p == lastPageType, static (c, _) => c.IsSelected = true);
 		}
 	}
-
-	private static string PageTypeResourceKey(Type type) => $"{nameof(MainWindow)}_{type.Name}Title";
 }

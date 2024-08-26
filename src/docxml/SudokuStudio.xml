@@ -14492,6 +14492,13 @@
             <param name="pageTypeChecker">The method that checks whether the <see cref="T:System.Type"/> instance is matched.</param>
             <param name="action">The action to handle navigation.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.PageTypeResourceKey(System.Type)">
+            <summary>
+            Returns page type resource key.
+            </summary>
+            <param name="type">The type of the page.</param>
+            <returns>The resource key.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeComponent">
             <summary>
             InitializeComponent()
