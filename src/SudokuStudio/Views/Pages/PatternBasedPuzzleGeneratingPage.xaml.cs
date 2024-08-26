@@ -429,7 +429,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private void CopyPuzzleButton_Click(object sender, RoutedEventArgs e) => CopyGridText();
 
 	private void GoToAnalyzePageButton_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage<AnalyzePage, Grid>(SudokuPane.Puzzle);
+		=> App.GetMainWindow(this).NavigateToPage(typeof(AnalyzePage), SudokuPane.Puzzle);
 
 	private void ClearCellButton_Click(object sender, RoutedEventArgs e)
 	{

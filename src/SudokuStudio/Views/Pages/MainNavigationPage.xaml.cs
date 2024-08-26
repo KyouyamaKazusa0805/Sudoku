@@ -29,7 +29,7 @@ internal sealed partial class MainNavigationPage : Page
 	public MainNavigationPage()
 	{
 		InitializeComponent();
-		SetMemoryWidth();
+		UpdateMemoryWidth();
 	}
 
 
@@ -38,21 +38,52 @@ internal sealed partial class MainNavigationPage : Page
 	/// </summary>
 	public MainWindow ParentWindow { get; set; } = null!;
 
+	/// <summary>
+	/// Indicates the header bar items.
+	/// </summary>
+	[DependencyProperty]
+	public partial ObservableCollection<PageNavigationBindableSource> HeaderBarItems { get; set; }
 
 	/// <summary>
-	/// Try to set the title of the main navigation frame.
+	/// Sets the navigated page type.
 	/// </summary>
-	/// <param name="pageType">The page type.</param>
-	internal void SetFrameDisplayTitle(Type pageType)
+	public Type NavigatedPageType
 	{
-		var titleKey = $"{nameof(MainWindow)}_{pageType.Name}Title";
-		MainNavigationView.Header = SR.TryGet(titleKey, out var resource, App.CurrentCulture) ? resource : string.Empty;
+		set
+		{
+			if (NavigationViewFrame.SourcePageType != value)
+			{
+				NavigationViewFrame.Navigate(value, null, new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
+				HeaderBarItems = SR.TryGet(PageTypeResourceKey(value), out var resource, App.CurrentCulture)
+					? [new() { PageType = value, PageTitle = resource }]
+					: [];
+			}
+		}
 	}
+
+	/// <summary>
+	/// Sets the navigated page type with custom data.
+	/// </summary>
+	public (Type PageType, object? Value) NavigatedPageTypeWithValue
+	{
+		set
+		{
+			var (p, v) = value;
+			if (NavigationViewFrame.SourcePageType != p)
+			{
+				NavigationViewFrame.Navigate(p, v, new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
+				HeaderBarItems = SR.TryGet(PageTypeResourceKey(p), out var resource, App.CurrentCulture)
+					? [new() { PageType = p, PageTitle = resource }]
+					: [];
+			}
+		}
+	}
+
 
 	/// <summary>
 	/// Sets memory width.
 	/// </summary>
-	private void SetMemoryWidth()
+	private void UpdateMemoryWidth()
 		=> MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
 
 	/// <summary>
@@ -60,7 +91,10 @@ internal sealed partial class MainNavigationPage : Page
 	/// </summary>
 	/// <param name="pageTypeChecker">The method that checks whether the <see cref="Type"/> instance is matched.</param>
 	/// <param name="action">The action to handle navigation.</param>
-	private void HandleNavigation(Func<NavigationViewItemBase, Type, bool> pageTypeChecker, Action<NavigationViewItemBase, Type> action)
+	private void HandleNavigation(
+		Func<NavigationViewItemBase, Type, bool> pageTypeChecker,
+		Action<NavigationViewItemBase, Type> action
+	)
 	{
 		foreach (var (match, pageType) in NavigatingArray)
 		{
@@ -78,7 +112,7 @@ internal sealed partial class MainNavigationPage : Page
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 		=> (
 			args.IsSettingsSelected
-				? (Action)ParentWindow.NavigateToPage<SettingsPage>
+				? new Action(() => ParentWindow.NavigateToPage(typeof(SettingsPage)))
 				: () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p))
 		)();
 
@@ -87,9 +121,23 @@ internal sealed partial class MainNavigationPage : Page
 		if (NavigationViewFrame is { CanGoBack: true, BackStack: [.., { SourcePageType: var lastPageType }] })
 		{
 			NavigationViewFrame.GoBack();
-			SetFrameDisplayTitle(lastPageType);
-
+			HeaderBarItems = SR.TryGet(PageTypeResourceKey(lastPageType), out var resource, App.CurrentCulture)
+				? [new() { PageType = lastPageType, PageTitle = resource }]
+				: [];
 			HandleNavigation((_, p) => p == lastPageType, static (c, _) => c.IsSelected = true);
 		}
 	}
+
+	private void HeaderBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
+	{
+		if (HeaderBar.ItemsSource is ObservableCollection<string> items)
+		{
+			for (var i = items.Count - 1; i >= args.Index + 1; i--)
+			{
+				items.RemoveAt(i);
+			}
+		}
+	}
+
+	private static string PageTypeResourceKey(Type type) => $"{nameof(MainWindow)}_{type.Name}Title";
 }

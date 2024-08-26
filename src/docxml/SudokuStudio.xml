@@ -346,6 +346,21 @@
             </summary>
             <returns>All possible <see cref="T:Sudoku.Runtime.LibraryServices.LibraryInfo"/> instances.</returns>
         </member>
+        <member name="T:SudokuStudio.BindableSource.PageNavigationBindableSource">
+            <summary>
+            Represents a bindable source for page navigation.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PageNavigationBindableSource.PageType">
+            <summary>
+            Indicates the page type.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.PageNavigationBindableSource.PageTitle">
+            <summary>
+            Indicates the page title.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.RepositoryInfoBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for repository information
@@ -14415,13 +14430,22 @@
             Indicates the parent window.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SetFrameDisplayTitle(System.Type)">
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.HeaderBarItems">
             <summary>
-            Try to set the title of the main navigation frame.
+            Indicates the header bar items.
             </summary>
-            <param name="pageType">The page type.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SetMemoryWidth">
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.NavigatedPageType">
+            <summary>
+            Sets the navigated page type.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.NavigatedPageTypeWithValue">
+            <summary>
+            Sets the navigated page type with custom data.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.UpdateMemoryWidth">
             <summary>
             Sets memory width.
             </summary>
@@ -14447,6 +14471,12 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage.HeaderBarItemsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.MainNavigationPage.HeaderBarItems"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.MainNavigationPage.HeaderBarItems"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Manuals.AboutPage">
             <summary>
@@ -15517,39 +15547,24 @@
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
-            <summary>
-            Set title bar button colors using the specified theme.
-            </summary>
-            <param name="theme">The theme.</param>
-        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
             <summary>
             Try to navigate to the target page.
             </summary>
             <param name="pageType">The target page type.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1(System.Type,``0)">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Object)">
             <summary>
             Try to navigate to the target page with the custom data.
             </summary>
-            <typeparam name="TValue">The target page type.</typeparam>
             <param name="pageType">The page type.</param>
             <param name="value">The value to be passed.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
             <summary>
-            Try to navigate to the target page via its type specified as type argument.
+            Set title bar button colors using the specified theme.
             </summary>
-            <typeparam name="TPage">The type of the page.</typeparam>
-        </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``2(``1)">
-            <summary>
-            Try to navigate to the target page via its type specified as type argument.
-            </summary>
-            <typeparam name="TPage">The type of the page.</typeparam>
-            <typeparam name="TValue">The value type.</typeparam>
-            <param name="value">The value.</param>
+            <param name="theme">The theme.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>

@@ -5,6 +5,7 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:wc="using:CommunityToolkit.WinUI.Controls"
@@ -15,6 +16,23 @@
 		PaneTitle="{m:R Key=MainWindow_Menu}" IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}"
 		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged"
 		BackRequested="MainNavigationView_BackRequested">
+		<NavigationView.Header>
+			<BreadcrumbBar
+				x:Name="HeaderBar" ItemsSource="{x:Bind HeaderBarItems,Mode=OneWay}"
+				ItemClicked="HeaderBar_ItemClicked">
+				<BreadcrumbBar.ItemTemplate>
+					<DataTemplate x:DataType="bs:PageNavigationBindableSource">
+						<BreadcrumbBarItem Content="{Binding}">
+							<BreadcrumbBarItem.ContentTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding PageTitle}" Style="{StaticResource TitleTextBlockStyle}" />
+								</DataTemplate>
+							</BreadcrumbBarItem.ContentTemplate>
+						</BreadcrumbBarItem>
+					</DataTemplate>
+				</BreadcrumbBar.ItemTemplate>
+			</BreadcrumbBar>
+		</NavigationView.Header>
 		<NavigationView.MenuItems>
 			<!--Main page-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_MainPage}" />

@@ -12,5 +12,5 @@ public sealed partial class AnalysisPreferenceItemsPage : Page
 
 
 	private void GoToStepSearcherSorterPageSettingsCard_Click(object sender, RoutedEventArgs e)
-		=> App.GetMainWindow(this).NavigateToPage<StepSearcherSorterPage>();
+		=> App.GetMainWindow(this).NavigateToPage(typeof(StepSearcherSorterPage));
 }

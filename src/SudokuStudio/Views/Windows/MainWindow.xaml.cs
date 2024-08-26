@@ -23,6 +23,19 @@ public sealed partial class MainWindow : Window
 
 
 	/// <summary>
+	/// Try to navigate to the target page.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	public void NavigateToPage(Type pageType) => NavigationPage.NavigatedPageType = pageType;
+
+	/// <summary>
+	/// Try to navigate to the target page with the custom data.
+	/// </summary>
+	/// <param name="pageType">The page type.</param>
+	/// <param name="value">The value to be passed.</param>
+	public void NavigateToPage(Type pageType, object? value) => NavigationPage.NavigatedPageTypeWithValue = (pageType, value);
+
+	/// <summary>
 	/// Set title bar button colors using the specified theme.
 	/// </summary>
 	/// <param name="theme">The theme.</param>
@@ -69,56 +82,6 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to navigate to the target page.
-	/// </summary>
-	/// <param name="pageType">The target page type.</param>
-	internal void NavigateToPage(Type pageType)
-	{
-		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
-		{
-			NavigationPage.NavigationViewFrame.Navigate(
-				pageType,
-				null,
-				new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight }
-			);
-			NavigationPage.SetFrameDisplayTitle(pageType);
-		}
-	}
-
-	/// <summary>
-	/// Try to navigate to the target page with the custom data.
-	/// </summary>
-	/// <typeparam name="TValue">The target page type.</typeparam>
-	/// <param name="pageType">The page type.</param>
-	/// <param name="value">The value to be passed.</param>
-	internal void NavigateToPage<TValue>(Type pageType, TValue value)
-	{
-		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
-		{
-			NavigationPage.NavigationViewFrame.Navigate(
-				pageType,
-				value,
-				new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight }
-			);
-			NavigationPage.SetFrameDisplayTitle(pageType);
-		}
-	}
-
-	/// <summary>
-	/// Try to navigate to the target page via its type specified as type argument.
-	/// </summary>
-	/// <typeparam name="TPage">The type of the page.</typeparam>
-	internal void NavigateToPage<TPage>() where TPage : Page => NavigateToPage(typeof(TPage));
-
-	/// <summary>
-	/// Try to navigate to the target page via its type specified as type argument.
-	/// </summary>
-	/// <typeparam name="TPage">The type of the page.</typeparam>
-	/// <typeparam name="TValue">The value type.</typeparam>
-	/// <param name="value">The value.</param>
-	internal void NavigateToPage<TPage, TValue>(TValue value) where TPage : Page => NavigateToPage(typeof(TPage), value);
-
-	/// <summary>
 	/// Initializes for fields.
 	/// </summary>
 	private void InitializeField() => NavigationPage.ParentWindow = this;
@@ -126,31 +89,30 @@ public sealed partial class MainWindow : Window
 	/// <summary>
 	/// Saves for preferences.
 	/// </summary>
-	private void SavePreference() => ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
+	private void SavePreference()
+		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
 
 	/// <summary>
 	/// Saves for puzzle generating history.
 	/// </summary>
 	private void SavePuzzleGeneratingHistory()
 	{
-		if (Application.Current is not App
+		if (Application.Current is App
 			{
 				Preference.UIPreferences.SavePuzzleGeneratingHistory: true,
 				PuzzleGeneratingHistory: { Puzzles: { Count: not 0 } puzzles } history
 			})
 		{
-			return;
-		}
-
-		if (File.Exists(CommonPaths.GeneratingHistory) && PuzzleGeneratingHistoryFileHandler.Read(CommonPaths.GeneratingHistory) is { } @base)
-		{
-			@base.Puzzles.AddRange(puzzles);
-
-			PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, @base);
-		}
-		else
-		{
-			PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, history);
+			if (File.Exists(CommonPaths.GeneratingHistory)
+				&& PuzzleGeneratingHistoryFileHandler.Read(CommonPaths.GeneratingHistory) is { } @base)
+			{
+				@base.Puzzles.AddRange(puzzles);
+				PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, @base);
+			}
+			else
+			{
+				PuzzleGeneratingHistoryFileHandler.Write(CommonPaths.GeneratingHistory, history);
+			}
 		}
 	}
 
@@ -275,34 +237,45 @@ public sealed partial class MainWindow : Window
 	{
 		if (AppWindowTitleBar.IsCustomizationSupported() && appWindow.TitleBar.ExtendsContentIntoTitleBar)
 		{
-#if SEARCH_AUTO_SUGGESTION_BOX
 			var scaleAdjustment = GetScaleAdjustment();
-
+#if SEARCH_AUTO_SUGGESTION_BOX
 			RightPaddingColumn.Width = new(appWindow.TitleBar.RightInset / scaleAdjustment);
 			LeftPaddingColumn.Width = new(appWindow.TitleBar.LeftInset / scaleAdjustment);
-
-			RectInt32 dragRectL;
-			dragRectL.X = (int)(LeftPaddingColumn.ActualWidth * scaleAdjustment);
-			dragRectL.Y = 0;
-			dragRectL.Height = (int)(AppTitleBar.ActualHeight * scaleAdjustment);
-			dragRectL.Width = (int)((IconColumn.ActualWidth + TitleColumn.ActualWidth + LeftDragColumn.ActualWidth) * scaleAdjustment);
-
-			RectInt32 dragRectR;
-			dragRectR.X = (int)((LeftPaddingColumn.ActualWidth + IconColumn.ActualWidth + TitleTextBlock.ActualWidth + LeftDragColumn.ActualWidth + SearchColumn.ActualWidth) * scaleAdjustment);
-			dragRectR.Y = 0;
-			dragRectR.Height = (int)(AppTitleBar.ActualHeight * scaleAdjustment);
-			dragRectR.Width = (int)(RightDragColumn.ActualWidth * scaleAdjustment);
-
-			appWindow.TitleBar.SetDragRectangles([dragRectL, dragRectR]);
+			appWindow.TitleBar.SetDragRectangles(
+				[
+					new(
+						(int)(LeftPaddingColumn.ActualWidth * scaleAdjustment),
+						0,
+						(int)(AppTitleBar.ActualHeight * scaleAdjustment),
+						(int)((IconColumn.ActualWidth + TitleColumn.ActualWidth + LeftDragColumn.ActualWidth) * scaleAdjustment)
+					),
+					new(
+						(int)(
+							(
+								LeftPaddingColumn.ActualWidth
+									+ IconColumn.ActualWidth
+									+ TitleTextBlock.ActualWidth
+									+ LeftDragColumn.ActualWidth
+									+ SearchColumn.ActualWidth
+							) * scaleAdjustment
+						),
+						0,
+						(int)(AppTitleBar.ActualHeight * scaleAdjustment),
+						(int)(RightDragColumn.ActualWidth * scaleAdjustment)
+					)
+				]
+			);
 #else
-			var scaleAdjustment = GetScaleAdjustment();
-
-			RectInt32 rect;
-			rect.X = 0;
-			rect.Y = 0;
-			rect.Width = (int)(AppTitleBarWithoutAutoSuggestBox.ActualWidth * scaleAdjustment);
-			rect.Height = (int)(AppTitleBarWithoutAutoSuggestBox.ActualHeight * scaleAdjustment);
-			appWindow.TitleBar.SetDragRectangles([rect]);
+			appWindow.TitleBar.SetDragRectangles(
+				[
+					new(
+						0,
+						0,
+						(int)(AppTitleBarWithoutAutoSuggestBox.ActualWidth * scaleAdjustment),
+						(int)(AppTitleBarWithoutAutoSuggestBox.ActualHeight * scaleAdjustment)
+					)
+				]
+			);
 #endif
 		}
 	}
