@@ -62,7 +62,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <param name="withItself">Indicates whether the map will process itself with <see langword="true"/> value.</param>
 	private CandidateMap(Candidate candidate, bool withItself)
 	{
-		(this, var cell, var digit) = ([], candidate / 9, candidate % 9);
+		(this, var (cell, digit)) = ([], (candidate / 9, candidate % 9));
 		foreach (var c in PeersMap[cell])
 		{
 			Add(c * 9 + digit);
