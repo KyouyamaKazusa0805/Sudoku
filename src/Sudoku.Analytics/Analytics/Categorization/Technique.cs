@@ -3210,6 +3210,7 @@ public enum Technique
 	/// Indicates unique rectangle + 3x / 1SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 49,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
@@ -3223,6 +3224,7 @@ public enum Technique
 	/// Indicates unique rectangle + 3X / 1SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 49,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
@@ -3300,6 +3302,7 @@ public enum Technique
 	/// Indicates unique rectangle + 4x / 1SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 49,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
@@ -3313,6 +3316,7 @@ public enum Technique
 	/// Indicates unique rectangle + 4X / 1SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 49,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
@@ -3326,6 +3330,7 @@ public enum Technique
 	/// Indicates unique rectangle + 4x / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 51,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
@@ -3339,6 +3344,7 @@ public enum Technique
 	/// Indicates unique rectangle + 4X / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
+		Rating = 51,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		Links = [
