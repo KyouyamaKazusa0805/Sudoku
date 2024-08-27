@@ -189,7 +189,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 			// Iterate on the base set combination.
 			var baseSetsSpan = new ReadOnlySpan<House>(pBase, 10);
 			var coverSetsSpan = new ReadOnlySpan<House>(pCover, 10);
-			foreach (var bs in baseSetsSpan[1..baseSetsSpan.IndexOf(0)].GetSubsets(size))
+			foreach (var bs in baseSetsSpan[1..(baseSetsSpan.IndexOf(0) is var i and not -1 ? i : ^0)].GetSubsets(size))
 			{
 				// 'baseLine' is the map that contains all base set cells.
 				var baseLine = size switch
@@ -200,7 +200,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 				};
 
 				// Iterate on the cover set combination.
-				foreach (var cs in coverSetsSpan[1..coverSetsSpan.IndexOf(0)].GetSubsets(size))
+				foreach (var cs in coverSetsSpan[1..(coverSetsSpan.IndexOf(0) is var j and not -1 ? j : ^0)].GetSubsets(size))
 				{
 					// 'coverLine' is the map that contains all cover set cells.
 					var coverLine = size switch
