@@ -18,10 +18,12 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
+	IFiniteSet<TSelf, TElement>,
 	IFormattable,
 	IFirstLastMethod<TSelf, TElement>,
 	IGetSubsetMethod<TSelf, TElement>,
 	IGroupByMethod<TSelf, TElement>,
+	IInfiniteSet<TSelf, TElement>,
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
@@ -387,6 +389,12 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	TElement IElementAtMethod<TSelf, TElement>.ElementAtOrDefault(Index index) => this[index];
+
+	/// <inheritdoc/>
+	TSelf IFiniteSet<TSelf, TElement>.Negate() => ~(TSelf)this;
+
+	/// <inheritdoc/>
+	TSelf IInfiniteSet<TSelf, TElement>.ExceptWith(TSelf other) => (TSelf)this & ~other;
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();

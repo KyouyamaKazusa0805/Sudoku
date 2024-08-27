@@ -15,7 +15,9 @@ public sealed partial class ConclusionSet :
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
+	IFiniteSet<ConclusionSet, Conclusion>,
 	IFormattable,
+	IInfiniteSet<ConclusionSet, Conclusion>,
 	ILogicalOperators<ConclusionSet>,
 	IParsable<ConclusionSet>,
 	IReadOnlyCollection<Conclusion>,
@@ -461,6 +463,12 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+	/// <inheritdoc/>
+	ConclusionSet IFiniteSet<ConclusionSet, Conclusion>.Negate() => ~this;
+
+	/// <inheritdoc/>
+	ConclusionSet IInfiniteSet<ConclusionSet, Conclusion>.ExceptWith(ConclusionSet other) => this & ~other;
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();

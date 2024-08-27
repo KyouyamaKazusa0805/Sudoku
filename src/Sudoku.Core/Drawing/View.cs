@@ -10,6 +10,7 @@ public sealed partial class View :
 	IExceptMethod<View, ViewNode>,
 	IEqualityOperators<View, View, bool>,
 	IFirstLastMethod<View, ViewNode>,
+	IInfiniteSet<View, ViewNode>,
 	IOfTypeMethod<View, ViewNode>,
 	ISelectMethod<View, ViewNode>,
 	IWhereMethod<View, ViewNode>

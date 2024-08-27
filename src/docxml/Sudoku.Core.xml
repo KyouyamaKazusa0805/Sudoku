@@ -1727,6 +1727,12 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IFiniteSet{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Negate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IInfiniteSet{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#ExceptWith(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -3135,6 +3141,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Linq#Providers#IElementAtMethod{TSelf,TElement}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#Generic#IFiniteSet{TSelf,TElement}#Negate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#Generic#IInfiniteSet{TSelf,TElement}#ExceptWith(`0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#IEnumerable#GetEnumerator">

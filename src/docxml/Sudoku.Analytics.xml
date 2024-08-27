@@ -4561,6 +4561,12 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#IFiniteSet{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Negate">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#IInfiniteSet{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#ExceptWith(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>

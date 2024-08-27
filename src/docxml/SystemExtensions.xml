@@ -165,6 +165,36 @@
             </remarks>
             <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
         </member>
+        <member name="T:System.Collections.Generic.IFiniteSet`2">
+            <summary>
+            Represents an object that is a set of elements of type <typeparamref name="T"/>, and is a closed set,
+            meaning the set contains concept "all", i.e. set can be negated.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:System.Collections.Generic.IFiniteSet`2.Negate">
+            <summary>
+            Returns an object that inverts elements including the current collection.
+            </summary>
+            <returns>An instance as the result.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.IInfiniteSet`2">
+            <summary>
+            Represents an object that is a set of elements of type <typeparamref name="T"/>, and isn't a closed set,
+            meaning the set doesn't contain concept "all", i.e. set cannot be negated.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:System.Collections.Generic.IInfiniteSet`2.ExceptWith(`0)">
+            <summary>
+            Makes an subtraction from two objects of type <typeparamref name="TSelf"/>,
+            to get elements that are in the current collection, but not in the collection <paramref name="other"/>.
+            </summary>
+            <param name="other">The collection to make subraction.</param>
+            <returns>An instance as the result.</returns>
+        </member>
         <member name="T:System.Collections.Generic.KeyValuePairExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.

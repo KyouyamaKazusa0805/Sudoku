@@ -28,7 +28,9 @@ public sealed partial class TechniqueSet() :
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
+	IFiniteSet<TechniqueSet, Technique>,
 	IFormattable,
+	IInfiniteSet<TechniqueSet, Technique>,
 	ILogicalOperators<TechniqueSet>,
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
@@ -430,6 +432,12 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+	/// <inheritdoc/>
+	TechniqueSet IFiniteSet<TechniqueSet, Technique>.Negate() => ~this;
+
+	/// <inheritdoc/>
+	TechniqueSet IInfiniteSet<TechniqueSet, Technique>.ExceptWith(TechniqueSet other) => this & ~other;
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _bitArray.GetEnumerator();
