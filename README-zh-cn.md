@@ -42,21 +42,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ## 界面
 
-### 主页
-
 ![](miscellaneous/pic/ui.png)
-
-### 题库
-
-![](miscellaneous/pic/puzzle-lib.png)
-
-### 技巧难度配置页
-
-![](miscellaneous/pic/config.png)
-
-### 技巧展览馆
-
-![](miscellaneous/pic/gallery.png)
 
 ## 支持的技巧
 

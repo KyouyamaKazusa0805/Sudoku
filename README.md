@@ -46,17 +46,7 @@ This repository is created for the following users:
 
 ## Prefaces
 
-### Main Page
-
 ![](miscellaneous/pic/ui-en.png)
-
-### Technique Configuration Page
-
-![](miscellaneous/pic/config-en.png)
-
-### Technique Gallery Page
-
-![](miscellaneous/pic/gallery-en.png)
 
 ## Technique Supports
 
