@@ -10,47 +10,49 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SudokuGridBehaviorsSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard Header="{m:R Key=SettingsPage_EnableCornerRadiusForSudokuPanes}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}"
-			Description="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
-			<w:Segmented SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
-			</w:Segmented>
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_PreventConflictingInput}"
-			Description="{m:R Key=SettingsPage_PreventConflictingInputDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPane}"
-			Description="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPane}"
-			Description="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPaneDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_TransparentBackground}"
-			Description="{m:R Key=SettingsPage_TransparentBackgroundDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableCornerRadiusForSudokuPanes}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_DisplayCursorsTitle}" Description="{m:R Key=SettingsPage_DisplayCursorsDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DistinctWithDeltaDigitsTitle}"
+				Description="{m:R Key=SettingsPage_DistinctWithDeltaDigitsDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_DisableSudokuPaneLayoutDisplaying}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisableSudokuPaneLayout,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_OutsideCoordinateDisplayDirectionsTitle}">
+				<w:Segmented SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Mode=TwoWay}">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateNone}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateUpperAndLeft}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_OutsideCoordinateFourDirection}" />
+				</w:Segmented>
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_PreventConflictingInput}"
+				Description="{m:R Key=SettingsPage_PreventConflictingInputDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PreventConflictingInput,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPane}"
+				Description="{m:R Key=SettingsPage_EnableDoubleTapFillingForSudokuPaneDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableDoubleTapFillingForSudokuPane,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPane}"
+				Description="{m:R Key=SettingsPage_EnableRightTapRemovingForSudokuPaneDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableRightTapRemovingForSudokuPane,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_TransparentBackground}"
+				Description="{m:R Key=SettingsPage_TransparentBackgroundDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}" />
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

@@ -9,13 +9,15 @@
 	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:ThemeSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Theme}">
-			<w:Segmented x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged">
-				<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE97E;}" Tag="{m:Int32 Value=0}" />
-				<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE706;}" Tag="{m:Int32 Value=1}" />
-				<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE708;}" Tag="{m:Int32 Value=2}" />
-			</w:Segmented>
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Theme}">
+				<w:Segmented x:Name="ThemeComboBox" SelectionChanged="ThemeComboBox_SelectionChanged">
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE97E;}" Tag="{m:Int32 Value=0}" />
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE706;}" Tag="{m:Int32 Value=1}" />
+					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE708;}" Tag="{m:Int32 Value=2}" />
+				</w:Segmented>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

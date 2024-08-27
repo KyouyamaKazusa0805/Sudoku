@@ -8,13 +8,15 @@
 	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Basic"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:LanguageSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Language}" Description="{m:R Key=SettingsPage_LanguageDescription}">
-			<w:Segmented x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged">
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_PreferCurrentCulture}" Tag="{m:Int32 Value=0}" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_1033}" Tag="{m:Int32 Value=1033}" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
-			</w:Segmented>
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Language}" Description="{m:R Key=SettingsPage_LanguageDescription}">
+				<w:Segmented x:Name="LanguageComboBox" SelectionChanged="LanguageComboBox_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PreferCurrentCulture}" Tag="{m:Int32 Value=0}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_1033}" Tag="{m:Int32 Value=1033}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_2052}" Tag="{m:Int32 Value=2052}" />
+				</w:Segmented>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

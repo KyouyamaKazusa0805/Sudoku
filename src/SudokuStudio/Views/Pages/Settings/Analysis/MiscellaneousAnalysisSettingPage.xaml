@@ -15,49 +15,51 @@
 		<vcvt:StepTooltipDisplayItemToBooleanConverter x:Key="StepDisplayItemConverter" />
 	</Page.Resources>
 
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_StepDisplayItems}" Description="{m:R Key=SettingsPage_StepDisplayItemsDescription}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueName'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueIndex'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_Abbreviation}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Abbreviation'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_Aliases}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Aliases'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='SimpleDescription'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='DifficultyRating'}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='ExtraDifficultyCases'}" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_AlsoDisplayEnglishNameOfTheStep}">
-			<ToggleSwitch
-				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep,Mode=TwoWay}" />
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_StepDisplayItems}" Description="{m:R Key=SettingsPage_StepDisplayItemsDescription}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueName}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueName'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_TechniqueIndex}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='TechniqueIndex'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_Abbreviation}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Abbreviation'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_Aliases}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='Aliases'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_SimpleDescription}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='SimpleDescription'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_DifficultyRating}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='DifficultyRating'}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_StepDisplayItem_ExtraDifficultyCases}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StepDisplayItems,Mode=TwoWay,Converter={StaticResource StepDisplayItemConverter},ConverterParameter='ExtraDifficultyCases'}" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AlsoDisplayEnglishNameOfTheStep}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep,Mode=TwoWay}" />
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

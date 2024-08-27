@@ -13,45 +13,47 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MiscellaneousBasicSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}" IsEnabled="False">
-			<w:SettingsCard.Description>
-				<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
-			</w:SettingsCard.Description>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}" IsEnabled="False">
+				<w:SettingsCard.Description>
+					<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
+				</w:SettingsCard.Description>
 
-			<w:Segmented
-				x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
-				SelectionChanged="BackdropSelector_SelectionChanged">
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
-			</w:Segmented>
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_PictureSizeOnSaving}"
-			Description="{m:R Key=SettingsPage_PictureSizeOnSavingDescription}">
-			<c:IntegerBox
-				Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving,Mode=TwoWay}"
-				Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_AutoCachePuzzleAndViews}"
-			Description="{m:R Key=SettingsPage_AutoCachePuzzleAndViewsDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_EmptyCellCharacter}">
-			<w:Segmented
-				x:Name="EmptyCellCharacterSelector"
-				SelectedIndex="{x:Bind cvt:SettingsPageConversion.GetSelectedIndexForEmptyCellCharacter(EmptyCellCharacterSelector)}"
-				SelectionChanged="PlaceholderTextSegmented_SelectionChanged">
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderZero}" Icon="{ui:FontIcon Glyph=&#xEA3A;}">
-					<w:SegmentedItem.Tag>
-						<x:String>0</x:String>
-					</w:SegmentedItem.Tag>
-				</w:SegmentedItem>
-				<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderDot}" Icon="{ui:FontIcon Glyph=&#xE915;}" Tag="." />
-			</w:Segmented>
-		</w:SettingsCard>
-	</StackPanel>
+				<w:Segmented
+					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
+					SelectionChanged="BackdropSelector_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
+				</w:Segmented>
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_PictureSizeOnSaving}"
+				Description="{m:R Key=SettingsPage_PictureSizeOnSavingDescription}">
+				<c:IntegerBox
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving,Mode=TwoWay}"
+					Minimum="500" Maximum="2000" SmallChange="10" LargeChange="50" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_AutoCachePuzzleAndViews}"
+				Description="{m:R Key=SettingsPage_AutoCachePuzzleAndViewsDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EmptyCellCharacter}">
+				<w:Segmented
+					x:Name="EmptyCellCharacterSelector"
+					SelectedIndex="{x:Bind cvt:SettingsPageConversion.GetSelectedIndexForEmptyCellCharacter(EmptyCellCharacterSelector)}"
+					SelectionChanged="PlaceholderTextSegmented_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderZero}" Icon="{ui:FontIcon Glyph=&#xEA3A;}">
+						<w:SegmentedItem.Tag>
+							<x:String>0</x:String>
+						</w:SegmentedItem.Tag>
+					</w:SegmentedItem>
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_PlaceholderDot}" Icon="{ui:FontIcon Glyph=&#xE915;}" Tag="." />
+				</w:Segmented>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

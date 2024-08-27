@@ -12,16 +12,18 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ps:DrawingPreferenceItemsPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<TextBlock Text="{x:Bind ThemeDescription}" Foreground="Red" />
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Deltas}" IsClickEnabled="True" Click="DeltaSettingsCard_Click" />
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Colors}" IsClickEnabled="True" Click="ItemColorSettingsCard_Click" />
-		<w:SettingsCard Header="{m:R Key=SettingsPage_StepsColoring}" IsClickEnabled="True" Click="StepColorSettingsCard_Click" />
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Fonts}" IsClickEnabled="True" Click="FontSettingsCard_Click" />
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DashStyles}" Description="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}"
-			IsClickEnabled="True"
-			Click="DashStyleSettingsCard_Click" />
-		<w:SettingsCard Header="{m:R Key=SettingsPage_Others}" IsClickEnabled="True" Click="MiscellaneousSettingsCard_Click" />
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<TextBlock Text="{x:Bind ThemeDescription}" Foreground="Red" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Deltas}" IsClickEnabled="True" Click="DeltaSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Colors}" IsClickEnabled="True" Click="ItemColorSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_StepsColoring}" IsClickEnabled="True" Click="StepColorSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Fonts}" IsClickEnabled="True" Click="FontSettingsCard_Click" />
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DashStyles}" Description="{m:R Key=SettingsPage_StrongLinkDashStyleDescription}"
+				IsClickEnabled="True"
+				Click="DashStyleSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Others}" IsClickEnabled="True" Click="MiscellaneousSettingsCard_Click" />
+		</StackPanel>
+	</ScrollViewer>
 </Page>

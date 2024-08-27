@@ -10,27 +10,29 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:StepSearcherBehaviorsSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DistinctDirectAndIndirectModes}"
-			Description="{m:R Key=SettingsPage_DistinctDirectAndIndirectModesDescription}">
-			<ToggleSwitch
-				IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DistinctDirectAndIndirectModes,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_StepSearcherOrdering}" Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}"
-			IsClickEnabled="True"
-			Click="GoToStepSearcherSorterPageSettingsCard_Click" />
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DifficultyLevelMode}"
-			Description="{m:R Key=SettingsPage_DifficultyLevelModeDescription}">
-			<ComboBox
-				Width="260"
-				SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=TwoWay}">
-				<ComboBoxItem Content="{m:R Key=SettingsPage_SameLevel}" />
-				<ComboBoxItem Content="{m:R Key=SettingsPage_OneLevelHarder}" />
-				<ComboBoxItem Content="{m:R Key=SettingsPage_AllLevelsAllowed}" />
-			</ComboBox>
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DistinctDirectAndIndirectModes}"
+				Description="{m:R Key=SettingsPage_DistinctDirectAndIndirectModesDescription}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DistinctDirectAndIndirectModes,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_StepSearcherOrdering}" Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}"
+				IsClickEnabled="True"
+				Click="GoToStepSearcherSorterPageSettingsCard_Click" />
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DifficultyLevelMode}"
+				Description="{m:R Key=SettingsPage_DifficultyLevelModeDescription}">
+				<ComboBox
+					Width="260"
+					SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DifficultyLevelMode,Mode=TwoWay}">
+					<ComboBoxItem Content="{m:R Key=SettingsPage_SameLevel}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_OneLevelHarder}" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_AllLevelsAllowed}" />
+				</ComboBox>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

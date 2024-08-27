@@ -11,79 +11,81 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:DirectTechniquesSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsCard Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_EnableLastDigit}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
-			<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsExpander
-			Header="{m:R Key=SettingsPage_AllowedDirectTechniques}"
-			Description="{m:R Key=SettingsPage_AllowedDirectTechniquesDescription}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectPointing}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectPointing,Mode=TwoWay}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectClaiming}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectClaiming,Mode=TwoWay}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectLockedSubset}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedSubset,Mode=TwoWay}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectNakedSubset}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectNakedSubset,Mode=TwoWay}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectLockedHiddenSubset}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedHiddenSubset,Mode=TwoWay}" />
-				</w:SettingsCard>
-				<w:SettingsCard ContentAlignment="Left">
-					<CheckBox
-						Content="{m:R Key=SettingsPage_AllowDirectHiddenSubset}"
-						IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectHiddenSubset,Mode=TwoWay}" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DirectNakedSubsetMaxSize}"
-			Description="{m:R Key=SettingsPage_DirectNakedSubsetMaxSizeDescription}">
-			<c:IntegerBox
-				Minimum="2" Maximum="4" LargeChange="2"
-				Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectNakedSubsetMaxSize,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_DirectHiddenSubsetMaxSize}"
-			Description="{m:R Key=SettingsPage_DirectHiddenSubsetMaxSizeDescription}">
-			<c:IntegerBox
-				Minimum="2" Maximum="4" LargeChange="2"
-				Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectHiddenSubsetMaxSize,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingle}"
-			Description="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription}">
-			<c:IntegerBox
-				Minimum="2" Maximum="4" LargeChange="2"
-				Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.NakedSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
-		</w:SettingsCard>
-		<w:SettingsCard
-			Header="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingle}"
-			Description="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription}">
-			<c:IntegerBox
-				Minimum="2" Maximum="4" LargeChange="2"
-				Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
-		</w:SettingsCard>
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableFullHouse}" Description="{m:R Key=SettingsPage_EnableFullHouseDescription}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_EnableLastDigit}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsExpander
+				Header="{m:R Key=SettingsPage_AllowedDirectTechniques}"
+				Description="{m:R Key=SettingsPage_AllowedDirectTechniquesDescription}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectPointing}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectPointing,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectClaiming}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectClaiming,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectLockedSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectNakedSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectNakedSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectLockedHiddenSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedHiddenSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+					<w:SettingsCard ContentAlignment="Left">
+						<CheckBox
+							Content="{m:R Key=SettingsPage_AllowDirectHiddenSubset}"
+							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectHiddenSubset,Mode=TwoWay}" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DirectNakedSubsetMaxSize}"
+				Description="{m:R Key=SettingsPage_DirectNakedSubsetMaxSizeDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectNakedSubsetMaxSize,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_DirectHiddenSubsetMaxSize}"
+				Description="{m:R Key=SettingsPage_DirectHiddenSubsetMaxSizeDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectHiddenSubsetMaxSize,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingle}"
+				Description="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.NakedSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingle}"
+				Description="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

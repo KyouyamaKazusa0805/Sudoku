@@ -11,82 +11,84 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:FontSettingPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_GivenFontData}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-					<c:FontPicker
-						x:Name="GivenFontPicker" Margin="40,10"
-						SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
-						SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
-						SelectedFontColor="{x:Bind GivenFontColor}"
-						SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
-						SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
-						SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_ModifiableFontData}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-					<c:FontPicker
-						x:Name="ModifiableFontPicker" Margin="40,10"
-						SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
-						SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
-						SelectedFontColor="{x:Bind ModifiableFontColor}"
-						SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
-						SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
-						SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_CandidateFontData}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-					<c:FontPicker
-							x:Name="PencilmarkFontPicker" Margin="40,10"
-							SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
-							SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
-							SelectedFontColor="{x:Bind PencilmarkFontColor}"
-							SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
-							SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
-							SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_CoordinateLabelFontData}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-					<c:FontPicker
-						x:Name="CoordinateFontPicker" Margin="40,10"
-						SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
-						SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
-						SelectedFontColor="{x:Bind CoordinateLabelFontColor}"
-						SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
-						SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
-						SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
-		</w:SettingsExpander>
-		<w:SettingsExpander Header="{m:R Key=SettingsPage_BabaGroupFontData}">
-			<w:SettingsExpander.Items>
-				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-					<c:FontPicker
-						x:Name="BabaGroupingFontPicker" Margin="40,10"
-						SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
-						SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
-						SelectedFontColor="{x:Bind BabaGroupingFontColor}"
-						SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
-						SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
-						SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />
-				</w:SettingsCard>
-			</w:SettingsExpander.Items>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_GivenFontData}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<c:FontPicker
+							x:Name="GivenFontPicker" Margin="40,10"
+							SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName}"
+							SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale}"
+							SelectedFontColor="{x:Bind GivenFontColor}"
+							SelectedFontChanged="GivenFontPicker_SelectedFontChanged"
+							SelectedFontScaleChanged="GivenFontPicker_SelectedFontScaleChanged"
+							SelectedFontColorChanged="GivenFontPicker_SelectedFontColorChanged" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_ModifiableFontData}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<c:FontPicker
+							x:Name="ModifiableFontPicker" Margin="40,10"
+							SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName}"
+							SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale}"
+							SelectedFontColor="{x:Bind ModifiableFontColor}"
+							SelectedFontChanged="ModifiableFontPicker_SelectedFontChanged"
+							SelectedFontScaleChanged="ModifiableFontPicker_SelectedFontScaleChanged"
+							SelectedFontColorChanged="ModifiableFontPicker_SelectedFontColorChanged" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_CandidateFontData}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<c:FontPicker
+								x:Name="PencilmarkFontPicker" Margin="40,10"
+								SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontName}"
+								SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.PencilmarkFontScale}"
+								SelectedFontColor="{x:Bind PencilmarkFontColor}"
+								SelectedFontChanged="PencilmarkFontPicker_SelectedFontChanged"
+								SelectedFontScaleChanged="PencilmarkFontPicker_SelectedFontScaleChanged"
+								SelectedFontColorChanged="PencilmarkFontPicker_SelectedFontColorChanged" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_CoordinateLabelFontData}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<c:FontPicker
+							x:Name="CoordinateFontPicker" Margin="40,10"
+							SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName}"
+							SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale}"
+							SelectedFontColor="{x:Bind CoordinateLabelFontColor}"
+							SelectedFontChanged="CoordinateFontPicker_SelectedFontChanged"
+							SelectedFontScaleChanged="CoordinateFontPicker_SelectedFontScaleChanged"
+							SelectedFontColorChanged="CoordinateFontPicker_SelectedFontColorChanged" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+			<w:SettingsExpander Header="{m:R Key=SettingsPage_BabaGroupFontData}">
+				<w:SettingsExpander.Items>
+					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+						<c:FontPicker
+							x:Name="BabaGroupingFontPicker" Margin="40,10"
+							SelectedFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontName}"
+							SelectedFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.BabaGroupingFontScale}"
+							SelectedFontColor="{x:Bind BabaGroupingFontColor}"
+							SelectedFontChanged="BabaGroupingFontPicker_SelectedFontChanged"
+							SelectedFontScaleChanged="BabaGroupingFontPicker_SelectedFontScaleChanged"
+							SelectedFontColorChanged="BabaGroupingFontPicker_SelectedFontColorChanged" />
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
 
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-				<Image Source="{m:Image UriSource='/Assets/images/baba.gif',AutoPlay=true}" />
-				<Image Source="{m:Image UriSource='/Assets/images/is.gif',AutoPlay=True}" />
-				<Image Source="{m:Image UriSource='/Assets/images/group.gif',AutoPlay=True}" />
-			</StackPanel>
-		</w:SettingsExpander>
-	</StackPanel>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+					<Image Source="{m:Image UriSource='/Assets/images/baba.gif',AutoPlay=true}" />
+					<Image Source="{m:Image UriSource='/Assets/images/is.gif',AutoPlay=True}" />
+					<Image Source="{m:Image UriSource='/Assets/images/group.gif',AutoPlay=True}" />
+				</StackPanel>
+			</w:SettingsExpander>
+		</StackPanel>
+	</ScrollViewer>
 </Page>
