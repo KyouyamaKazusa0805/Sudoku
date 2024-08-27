@@ -9,7 +9,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Indicates the shared <see cref="Random"/> instance.
 	/// </summary>
-	private static Random? _randomShared;
+	private static Random? _rng;
 
 
 	/// <summary>
@@ -32,7 +32,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Indicates the backing random.
 	/// </summary>
-	private static Random Rng => _randomShared ??= Random.Shared;
+	private static Random Rng => _rng ??= Random.Shared;
 
 
 	/// <inheritdoc/>

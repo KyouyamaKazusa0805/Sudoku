@@ -7931,7 +7931,7 @@
             A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator._randomShared">
+        <member name="F:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator._rng">
             <summary>
             Indicates the shared <see cref="T:System.Random"/> instance.
             </summary>
