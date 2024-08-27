@@ -1,0 +1,142 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Drawing"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:ItemColorSettingPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+		<w:SettingsCard Header="{m:R Key=SettingsPage_BorderColor}">
+			<c:ColorSelector x:Name="BorderColorSelector" SelectedColor="{x:Bind SudokuPaneBorderColor}" ColorChanged="BorderColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_CursorBackgroundColor}">
+			<c:ColorSelector
+				x:Name="CursorBackgroundColorSelector" SelectedColor="{x:Bind CursorBackgroundColor}"
+				ColorChanged="CursorBackgroundColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_ChainColor}">
+			<c:ColorSelector x:Name="ChainColorSelector" SelectedColor="{x:Bind ChainColor}" ColorChanged="ChainColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_NormalColor}">
+			<c:ColorSelector x:Name="NormalColorSelector" SelectedColor="{x:Bind NormalColor}" ColorChanged="NormalColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_AssignmentColor}">
+			<c:ColorSelector x:Name="AssignmentColorSelector" SelectedColor="{x:Bind AssignmentColor}" ColorChanged="AssignmentColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_OverlappedAssignmentColor}">
+			<c:ColorSelector
+				x:Name="OverlappedAssignmentColorSelector" SelectedColor="{x:Bind OverlappedAssignmentColor}"
+				ColorChanged="OverlappedAssignmentColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationColor}">
+			<c:ColorSelector x:Name="EliminationColorSelector" SelectedColor="{x:Bind EliminationColor}" ColorChanged="EliminationColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_CannibalismColor}">
+			<c:ColorSelector x:Name="CannibalismColorSelector" SelectedColor="{x:Bind CannibalismColor}" ColorChanged="CannibalismColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_ExofinColor}">
+			<c:ColorSelector x:Name="ExofinColorSelector" SelectedColor="{x:Bind ExofinColor}" ColorChanged="ExofinColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_EndofinColor}">
+			<c:ColorSelector x:Name="EndofinColorSelector" SelectedColor="{x:Bind EndofinColor}" ColorChanged="EndofinColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_GroupedNodeStrokeColor}">
+			<c:ColorSelector x:Name="GroupedNodeStrokeColorSelector" SelectedColor="{x:Bind GroupedNodeStrokeColor}" ColorChanged="GroupedNodeStrokeColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_GroupedNodeBackgroundColor}">
+			<c:ColorSelector x:Name="GroupedNodeBackgroundColorSelector" SelectedColor="{x:Bind GroupedNodeBackgroundColor}" ColorChanged="GroupedNodeBackgroundColorSelector_ColorChanged" />
+		</w:SettingsCard>
+		<w:SettingsExpander Header="{m:R Key=SettingsPage_AuxiliaryColors}" Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}">
+			<w:SettingsExpander.Items>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,10,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors1SelectorTitle" Text="#1:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AuxiliaryColors1SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors1SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AuxiliaryColors[0]}"
+							ColorChanged="AuxiliaryColor1Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors2SelectorTitle" Text="#2:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AuxiliaryColors2SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors2SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AuxiliaryColors[1]}"
+							ColorChanged="AuxiliaryColor2Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AuxiliaryColors3SelectorTitle" Text="#3:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AuxiliaryColors3SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AuxiliaryColors3SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AuxiliaryColors[2]}"
+							ColorChanged="AuxiliaryColor3Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+			</w:SettingsExpander.Items>
+		</w:SettingsExpander>
+		<w:SettingsExpander Header="{m:R Key=SettingsPage_AlmostLockedSetsColors}">
+			<w:SettingsExpander.Items>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,10,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors1SelectorTitle" Text="#1:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AlmostLockedSetsColors1SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors1SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AlmostLockedSetsColors[0]}"
+							ColorChanged="AlmostLockedSetsColor1Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors2SelectorTitle" Text="#2:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AlmostLockedSetsColors2SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors2SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AlmostLockedSetsColors[1]}"
+							ColorChanged="AlmostLockedSetsColor2Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors3SelectorTitle" Text="#3:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AlmostLockedSetsColors3SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors3SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AlmostLockedSetsColors[2]}"
+							ColorChanged="AlmostLockedSetsColor3Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors4SelectorTitle" Text="#4:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AlmostLockedSetsColors4SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors4SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AlmostLockedSetsColors[3]}"
+							ColorChanged="AlmostLockedSetsColor4Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+				<w:SettingsCard ContentAlignment="Left" Padding="0,12">
+					<RelativePanel Margin="40,0,0,0">
+						<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" x:Name="AlmostLockedSetsColors5SelectorTitle" Text="#5:" />
+						<c:ColorSelector
+							RelativePanel.RightOf="AlmostLockedSetsColors5SelectorTitle"
+							RelativePanel.AlignVerticalCenterWith="AlmostLockedSetsColors5SelectorTitle" Margin="10,0,0,0"
+							SelectedColor="{x:Bind AlmostLockedSetsColors[4]}"
+							ColorChanged="AlmostLockedSetsColor5Selector_ColorChanged" />
+					</RelativePanel>
+				</w:SettingsCard>
+			</w:SettingsExpander.Items>
+		</w:SettingsExpander>
+	</StackPanel>
+</Page>

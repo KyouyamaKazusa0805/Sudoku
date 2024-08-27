@@ -2649,4 +2649,22 @@
   <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
     <value>全局设置</value>
   </data>
+  <data name="MainWindow_DeltaSettingPageTitle" xml:space="preserve">
+    <value>差分数字</value>
+  </data>
+  <data name="MainWindow_ItemColorSettingPageTitle" xml:space="preserve">
+    <value>组件颜色</value>
+  </data>
+  <data name="MainWindow_StepColorSettingPageTitle" xml:space="preserve">
+    <value>步骤主题配色</value>
+  </data>
+  <data name="MainWindow_FontSettingPageTitle" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="MainWindow_DashStyleSettingPageTitle" xml:space="preserve">
+    <value>线条组件</value>
+  </data>
+  <data name="MainWindow_MiscellaneousDrawingSettingPageTitle" xml:space="preserve">
+    <value>其他行为</value>
+  </data>
 </root>

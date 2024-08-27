@@ -7596,9 +7596,19 @@
               Looks up a localized string similar to Program Compatibility.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DashStyleSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Dash Styles.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DeadlyPatternSettingPageTitle">
             <summary>
               Looks up a localized string similar to Deadly Patterns.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DeltaSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Deltas.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DirectTechniquesSettingPageTitle">
@@ -7636,6 +7646,11 @@
               Looks up a localized string similar to Fishes.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_FontSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Fonts.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPage">
             <summary>
               Looks up a localized string similar to Generating automation config.
@@ -7669,6 +7684,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_HotkeyCheatTablePageTitle">
             <summary>
               Looks up a localized string similar to Hotkey Cheat Table.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ItemColorSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Item Colors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_IttoryuSettingPageTitle">
@@ -7717,6 +7737,11 @@
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MiscellaneousBasicSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Miscellaneous Behaviors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MiscellaneousDrawingSettingPageTitle">
             <summary>
               Looks up a localized string similar to Miscellaneous Behaviors.
             </summary>
@@ -7804,6 +7829,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_SingleDigitPatternSettingPageTitle">
             <summary>
               Looks up a localized string similar to Single-Digit Patterns.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepColorSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Step Theme Colors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepSearcherBehaviorsSettingPageTitle">
@@ -15627,11 +15657,6 @@
             Represents drawing preferences page.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage._defaultViewUnit">
-            <summary>
-            The default view unit.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage"/> instance.
@@ -15641,119 +15666,6 @@
             <summary>
             The theme description.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.DeltaValueColor">
-            <summary>
-            The delta value color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.DeltaPencilmarkColor">
-            <summary>
-            The delta pencilmark color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.SudokuPaneBorderColor">
-            <summary>
-            Indicates the border color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.CursorBackgroundColor">
-            <summary>
-            Indicates cursor background color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.ChainColor">
-            <summary>
-            Indicates chain color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.NormalColor">
-            <summary>
-            The normal color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.AssignmentColor">
-            <summary>
-            The assignment color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.OverlappedAssignmentColor">
-            <summary>
-            The overlapped assignment color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.EliminationColor">
-            <summary>
-            The elimination color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.CannibalismColor">
-            <summary>
-            The cannibalism color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.ExofinColor">
-            <summary>
-            The exofin color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.EndofinColor">
-            <summary>
-            The endofin color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GroupedNodeStrokeColor">
-            <summary>
-            The grouped node stroke color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GroupedNodeBackgroundColor">
-            <summary>
-            Indicates grouped node background color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GivenFontColor">
-            <summary>
-            The given color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.ModifiableFontColor">
-            <summary>
-            The modifiable color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.PencilmarkFontColor">
-            <summary>
-            The pencilmark color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.CoordinateLabelFontColor">
-            <summary>
-            The coordinate label color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.BabaGroupingFontColor">
-            <summary>
-            The baba grouping label color.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.AuxiliaryColors">
-            <summary>
-            The auxiliary colors.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.AlmostLockedSetsColors">
-            <summary>
-            The almost locked set colors.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.ChangeColor(SudokuStudio.Collection.ColorPalette,System.Int32,Windows.UI.Color)">
-            <summary>
-            Try to set color to the specified <see cref="T:SudokuStudio.Collection.ColorPalette"/> instance.
-            </summary>
-            <param name="palette">The instance.</param>
-            <param name="index">The index to be set.</param>
-            <param name="newColor">The new color to be set.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.InitializeComponent">
             <summary>
@@ -15766,6 +15678,269 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage">
+            <summary>
+            Represents dash style setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DashStyleSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage">
+            <summary>
+            Represents delta setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.DeltaValueColor">
+            <summary>
+            The delta value color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.DeltaPencilmarkColor">
+            <summary>
+            The delta pencilmark color.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.DeltaSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage">
+            <summary>
+            Represents font setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.GivenFontColor">
+            <summary>
+            The given color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.ModifiableFontColor">
+            <summary>
+            The modifiable color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.PencilmarkFontColor">
+            <summary>
+            The pencilmark color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.CoordinateLabelFontColor">
+            <summary>
+            The coordinate label color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.BabaGroupingFontColor">
+            <summary>
+            The baba grouping label color.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.FontSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage">
+            <summary>
+            Represents item color setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.SudokuPaneBorderColor">
+            <summary>
+            Indicates the border color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.CursorBackgroundColor">
+            <summary>
+            Indicates cursor background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.ChainColor">
+            <summary>
+            Indicates chain color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.NormalColor">
+            <summary>
+            The normal color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.AssignmentColor">
+            <summary>
+            The assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.OverlappedAssignmentColor">
+            <summary>
+            The overlapped assignment color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.EliminationColor">
+            <summary>
+            The elimination color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.CannibalismColor">
+            <summary>
+            The cannibalism color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.ExofinColor">
+            <summary>
+            The exofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.EndofinColor">
+            <summary>
+            The endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.GroupedNodeStrokeColor">
+            <summary>
+            The grouped node stroke color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.GroupedNodeBackgroundColor">
+            <summary>
+            Indicates grouped node background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.AuxiliaryColors">
+            <summary>
+            The auxiliary colors.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.AlmostLockedSetsColors">
+            <summary>
+            The almost locked set colors.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.ChangeColor(SudokuStudio.Collection.ColorPalette,System.Int32,Windows.UI.Color)">
+            <summary>
+            Try to set color to the specified <see cref="T:SudokuStudio.Collection.ColorPalette"/> instance.
+            </summary>
+            <param name="palette">The instance.</param>
+            <param name="index">The index to be set.</param>
+            <param name="newColor">The new color to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage">
+            <summary>
+            Represents miscellaneous drawing setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage">
+            <summary>
+            Represents step color setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Drawing.StepColorSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

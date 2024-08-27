@@ -120,6 +120,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\Drawing\MiscellaneousDrawingSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Drawing\DashStyleSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Drawing\FontSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Drawing\StepColorSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Drawing\ItemColorSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\Analysis\MiscellaneousAnalysisSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -319,6 +334,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Settings\Analysis\DirectTechniquesSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Settings\Drawing\DeltaSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

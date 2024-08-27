@@ -2669,4 +2669,22 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_GlobalSettingsGroup" xml:space="preserve">
     <value>Global Settings</value>
   </data>
+  <data name="MainWindow_DeltaSettingPageTitle" xml:space="preserve">
+    <value>Deltas</value>
+  </data>
+  <data name="MainWindow_ItemColorSettingPageTitle" xml:space="preserve">
+    <value>Item Colors</value>
+  </data>
+  <data name="MainWindow_StepColorSettingPageTitle" xml:space="preserve">
+    <value>Step Theme Colors</value>
+  </data>
+  <data name="MainWindow_FontSettingPageTitle" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
+  <data name="MainWindow_DashStyleSettingPageTitle" xml:space="preserve">
+    <value>Dash Styles</value>
+  </data>
+  <data name="MainWindow_MiscellaneousDrawingSettingPageTitle" xml:space="preserve">
+    <value>Miscellaneous Behaviors</value>
+  </data>
 </root>

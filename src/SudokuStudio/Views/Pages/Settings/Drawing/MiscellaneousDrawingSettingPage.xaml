@@ -1,0 +1,83 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Drawing.MiscellaneousDrawingSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Drawing"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MiscellaneousDrawingSettingPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+		<w:SettingsCard
+			Header="{m:R Key=SettingsPage_CandidateViewNodeDisplayMode}"
+			Description="{m:R Key=SettingsPage_CandidateViewNodeDisplayModeDescription}">
+			<ComboBox
+				Width="150"
+				SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CandidateViewNodeDisplayMode,Mode=TwoWay}">
+				<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_SolidSquare}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_HollowSquare}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleSolid}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_RoundedRectangleHollow}" />
+			</ComboBox>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_EliminationDisplayMode}">
+			<ComboBox
+				Width="150"
+				SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationDisplayMode,Mode=TwoWay}">
+				<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_Cross}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_Slash}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_Backslash}" />
+			</ComboBox>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_AssignmentDisplayMode}">
+			<ComboBox
+				Width="150"
+				SelectedIndex="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentDisplayMode,Mode=TwoWay}">
+				<ComboBoxItem Content="{m:R Key=SettingsPage_SolidCircle}" />
+				<ComboBoxItem Content="{m:R Key=SettingsPage_HollowCircle}" />
+			</ComboBox>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_HighlightedPencilmarkBackgroundEllipseScaleTitle}">
+			<StackPanel Orientation="Horizontal" Spacing="16">
+				<Slider
+					x:Name="SliderEllipseScale" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+					Minimum="0" Maximum="1" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedPencilmarkBackgroundEllipseScale,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderEllipseScale.Value,'0.0'),Mode=OneWay}" />
+			</StackPanel>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_HighlightBackgroundOpacityTitle}">
+			<StackPanel Orientation="Horizontal" Spacing="16">
+				<Slider
+					x:Name="SliderBackgroundOpacity" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+					Minimum="0" Maximum="1" TickFrequency="0.05" StepFrequency="0.05" HorizontalAlignment="Left"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.HighlightedBackgroundOpacity,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderBackgroundOpacity.Value,'0.00'),Mode=OneWay}" />
+			</StackPanel>
+		</w:SettingsCard>
+		<w:SettingsCard Header="{m:R Key=SettingsPage_ChainStrokeThicknessTitle}">
+			<StackPanel Orientation="Horizontal" Spacing="16">
+				<Slider
+					x:Name="SliderChainStrokeThickness" Style="{StaticResource PreferenceSliderStyle}" TickPlacement="Outside"
+					Minimum="0" Maximum="5" TickFrequency="0.1" StepFrequency="0.1" HorizontalAlignment="Left"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Converter={StaticResource Decimal2DoubleConverter},Mode=TwoWay}" />
+				<TextBlock
+					VerticalAlignment="Center"
+					Text="{x:Bind cvt:SettingsPageConversion.GetSliderString(SliderChainStrokeThickness.Value,'0.0'),Mode=OneWay}" />
+			</StackPanel>
+		</w:SettingsCard>
+	</StackPanel>
+</Page>
