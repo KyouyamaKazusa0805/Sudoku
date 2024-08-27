@@ -23,9 +23,7 @@
 						<BreadcrumbBarItem Content="{Binding}">
 							<BreadcrumbBarItem.ContentTemplate>
 								<DataTemplate>
-									<TextBlock
-										Text="{Binding PageTitle}" Margin="6,0"
-										FontSize="28" FontWeight="ExtraLight" FontFamily="Segoe UI" />
+									<TextBlock Text="{Binding PageTitle}" Margin="6,0" FontSize="28" FontWeight="ExtraLight" />
 								</DataTemplate>
 							</BreadcrumbBarItem.ContentTemplate>
 						</BreadcrumbBarItem>
