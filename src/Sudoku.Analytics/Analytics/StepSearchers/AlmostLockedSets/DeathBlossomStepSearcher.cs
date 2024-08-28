@@ -64,9 +64,8 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var alsReferenceTable = (stackalloc Candidate[729]);
 		alsReferenceTable.Fill(-1);
 		var accumulatorNormal = new List<DeathBlossomStep>();
-		var accumulatorHouse = new List<HouseDeathBlossomStep>();
-		var accumulatorRectangle = new List<RectangleDeathBlossomStep>();
-		var accumulatorNTimesAls = new List<NTimesAlmostLockedSetsDeathBlossomStep>();
+		var accumulatorHouse = new HashSet<HouseDeathBlossomStep>();
+		var accumulatorNTimesAls = new SortedSet<NTimesAlmostLockedSetsDeathBlossomStep>();
 
 		// Iterate on each cell to collect cell-blooming type.
 		var playgroundCached = grid.ToCandidateMaskArray();
@@ -289,24 +288,15 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			{
 				context.Accumulator.AddRange(accumulatorNormal);
 			}
-
 			if (accumulatorHouse.Count != 0)
 			{
-				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorHouse));
+				context.Accumulator.AddRange(accumulatorHouse);
 			}
-
-			if (accumulatorRectangle.Count != 0)
-			{
-				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorRectangle));
-			}
-
 			if (accumulatorNTimesAls.Count != 0)
 			{
-				StepMarshal.SortItems(accumulatorNTimesAls);
-				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorNTimesAls));
+				context.Accumulator.AddRange(accumulatorNTimesAls);
 			}
 		}
-
 		return null;
 	}
 
@@ -448,7 +438,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped Span<int> alsReferenceTable,
 		ReadOnlySpan<AlmostLockedSet> alses,
 		Mask[] playgroundCached,
-		List<HouseDeathBlossomStep> accumulator
+		HashSet<HouseDeathBlossomStep> accumulator
 	)
 	{
 		// A house death blossom is found. Now check for eliminations.
@@ -584,7 +574,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		scoped Span<Mask> selectedCellDigitsMask,
 		Digit wrongDigit,
 		scoped Span<Candidate> alsReferenceTable,
-		List<NTimesAlmostLockedSetsDeathBlossomStep> accumulator
+		SortedSet<NTimesAlmostLockedSetsDeathBlossomStep> accumulator
 	)
 	{
 		alsesUsed[9..].Clear();

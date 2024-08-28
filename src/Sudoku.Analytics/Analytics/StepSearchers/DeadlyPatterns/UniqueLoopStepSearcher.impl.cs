@@ -6,7 +6,7 @@ public partial class UniqueLoopStepSearcher
 	/// Check type 1.
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType1(
-		List<UniqueLoopStep> accumulator,
+		SortedSet<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
@@ -67,7 +67,7 @@ public partial class UniqueLoopStepSearcher
 	/// Check type 2.
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType2(
-		List<UniqueLoopStep> accumulator,
+		SortedSet<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
@@ -125,7 +125,7 @@ public partial class UniqueLoopStepSearcher
 	/// Check type 3.
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType3(
-		List<UniqueLoopStep> accumulator,
+		SortedSet<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
@@ -335,7 +335,7 @@ public partial class UniqueLoopStepSearcher
 	/// Check type 4.
 	/// </summary>
 	private static partial UniqueLoopStep? CheckType4(
-		List<UniqueLoopStep> accumulator,
+		SortedSet<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
@@ -420,7 +420,7 @@ public partial class UniqueLoopStepSearcher
 	/// Check strong link type.
 	/// </summary>
 	private static partial UniqueLoopStep? CheckStrongLinkType(
-		List<UniqueLoopStep> accumulator,
+		SortedSet<UniqueLoopStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,

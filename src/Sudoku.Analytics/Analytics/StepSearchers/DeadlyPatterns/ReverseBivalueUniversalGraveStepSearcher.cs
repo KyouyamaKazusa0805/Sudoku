@@ -74,7 +74,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
-		var accumulator = new List<ReverseBivalueUniversalGraveStep>();
+		var accumulator = new HashSet<ReverseBivalueUniversalGraveStep>();
 		var globalMapUpperBound = AllowPartiallyUsedTypes ? GlobalMaps.Length : 1;
 
 		// Iterates on all combinations of digits, with length of each combination 2.
@@ -172,11 +172,10 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 		}
 
-		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		if (!context.OnlyFindOne && accumulator.Count != 0)
 		{
-			context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulator));
+			context.Accumulator.AddRange(accumulator);
 		}
-
 		return null;
 	}
 
@@ -192,7 +191,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType1Step? CheckType1(
-		List<ReverseBivalueUniversalGraveStep> accumulator,
+		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -248,7 +247,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType2Step? CheckType2(
-		List<ReverseBivalueUniversalGraveStep> accumulator,
+		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -308,7 +307,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType3Step? CheckType3(
-		List<ReverseBivalueUniversalGraveStep> accumulator,
+		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
@@ -436,7 +435,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <param name="cellsChosen">The empty cells chosen.</param>
 	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType4Step? CheckType4(
-		List<ReverseBivalueUniversalGraveStep> accumulator,
+		HashSet<ReverseBivalueUniversalGraveStep> accumulator,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
