@@ -1096,6 +1096,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex Remote Pair.
+        /// </summary>
+        public static string ComplexRemotePair {
+            get {
+                return ResourceManager.GetString("ComplexRemotePair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked Candidates.
         /// </summary>
         public static string Concept_LockedCandidates {
@@ -5851,6 +5860,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remote Pair.
+        /// </summary>
+        public static string StepSearcherName_RemotePairStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_RemotePairStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reverse Bivalue Universal Grave.
         /// </summary>
         public static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
@@ -8083,6 +8101,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign cells {0} with mark {1} and {2}, to make an confliction.
+        /// </summary>
+        public static string TechniqueFormat_RemotePairStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RemotePairStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} will lead to a deadly pattern if the grid only contains cells {2} hold that digits.
         /// </summary>
         public static string TechniqueFormat_ReverseBivalueUniversalGraveType1Step {
@@ -8529,6 +8556,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_AvoidableRectangle {
             get {
                 return ResourceManager.GetString("TechniqueGroup_AvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baba Grouping.
+        /// </summary>
+        public static string TechniqueGroup_BabaGrouping {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_BabaGrouping", resourceCulture);
             }
         }
         

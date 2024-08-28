@@ -4808,6 +4808,34 @@ public enum Technique
 	#endregion
 
 	//
+	// Remote Pair
+	//
+	#region MyRegion
+	/// <summary>
+	/// Indicates remote pair.
+	/// </summary>
+	[Hodoku(Rating = 110, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0703")]
+	[TechniqueMetadata(
+		Rating = 50,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.BabaGrouping,
+		StepType = typeof(RemotePairStep),
+		StepSearcherType = typeof(RemotePairStepSearcher))]
+	RemotePair,
+
+	/// <summary>
+	/// Indicates complex remote pair.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 52,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.BabaGrouping,
+		StepType = typeof(RemotePairStep),
+		StepSearcherType = typeof(RemotePairStepSearcher))]
+	ComplexRemotePair,
+	#endregion
+
+	//
 	// Chains & Loops
 	//
 	#region Chains & Loops
@@ -4890,19 +4918,6 @@ public enum Technique
 		StepType = typeof(NormalChainStep),
 		StepSearcherType = typeof(ChainStepSearcher))]
 	XyXChain,
-
-	/// <summary>
-	/// Indicates remote pair.
-	/// </summary>
-	[Hodoku(Rating = 110, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0703")]
-	[TechniqueMetadata(
-		Rating = 60,
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(NormalChainStep),
-		StepSearcherType = typeof(ChainStepSearcher),
-		Features = TechniqueFeatures.NotImplemented)]
-	RemotePair,
 
 	/// <summary>
 	/// Indicates purple cow.

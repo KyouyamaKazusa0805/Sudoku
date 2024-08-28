@@ -3409,4 +3409,18 @@
     <value>区块鳍链</value>
     <comment>Step Searcher Name</comment>
   </data>
+  <data name="StepSearcherName_RemotePairStepSearcher" xml:space="preserve">
+    <value>远程数对</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="ComplexRemotePair" xml:space="preserve">
+    <value>复杂远程数对</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueGroup_BabaGrouping" xml:space="preserve">
+    <value>代数</value>
+  </data>
+  <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
+    <value>在单元格 {0} 之中代入数字{1}和{2}，并得到矛盾</value>
+  </data>
 </root>

@@ -3105,6 +3105,16 @@
             Indicates empty rectangle.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.RemotePair">
+            <summary>
+            Indicates remote pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexRemotePair">
+            <summary>
+            Indicates complex remote pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.XChain">
             <summary>
             Indicates X-Chain.
@@ -3133,11 +3143,6 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.XyXChain">
             <summary>
             Indicates XY-X-Chain.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.RemotePair">
-            <summary>
-            Indicates remote pair.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.PurpleCow">
@@ -3930,6 +3935,11 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.IrregularWing">
             <summary>
             Indicates the irregular wing technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BabaGrouping">
+            <summary>
+            Indicates the baba grouping technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.ExtendedSubsetPrinciple">
@@ -5504,6 +5514,9 @@
         </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableRemotePair">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.DisableRemotePair"/>
         </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableGroupedTurbotFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
@@ -7136,6 +7149,19 @@
             <summary>
             The generated property declaration for parameter <c>level</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher">
+            <summary>
+            Provides with a <b>Remote Pair</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Remote Pair</item>
+            <item>Complex Remote Pair</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
             <summary>
@@ -10131,6 +10157,11 @@
             </list>
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.DisableRemotePair">
+            <summary>
+            Indicates whether the searcher will ignore patterns when it can formed a dual two-strong-link pattern (i.e. a remote pair).
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -11599,6 +11630,71 @@
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BabaGroupingStep">
+            <summary>
+            Represents a data structure that describes for baba grouping techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BabaGroupingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a data structure that describes for baba grouping techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RemotePairStep">
+            <summary>
+            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="isComplex">Indicates whether the pattern is complex.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="isComplex">Indicates whether the pattern is complex.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.IsComplex">
+            <summary>
+            The generated property declaration for parameter <c>isComplex</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
@@ -24117,6 +24213,11 @@
               Looks up a localized string similar to Complex Naked Single.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexRemotePair">
+            <summary>
+              Looks up a localized string similar to Complex Remote Pair.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Concept_LockedCandidates">
             <summary>
               Looks up a localized string similar to Locked Candidates.
@@ -26760,6 +26861,11 @@
               Looks up a localized string similar to Regular Wings.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RemotePairStepSearcher">
+            <summary>
+              Looks up a localized string similar to Remote Pair.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ReverseBivalueUniversalGraveStepSearcher">
             <summary>
               Looks up a localized string similar to Reverse Bivalue Universal Grave.
@@ -28000,6 +28106,11 @@
               Looks up a localized string similar to {0} in {1} with {2}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RemotePairStep">
+            <summary>
+              Looks up a localized string similar to Assign cells {0} with mark {1} and {2}, to make an confliction.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ReverseBivalueUniversalGraveType1Step">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} will lead to a deadly pattern if the grid only contains cells {2} hold that digits.
@@ -28248,6 +28359,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_AvoidableRectangle">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_BabaGrouping">
+            <summary>
+              Looks up a localized string similar to Baba Grouping.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_BivalueOddagon">

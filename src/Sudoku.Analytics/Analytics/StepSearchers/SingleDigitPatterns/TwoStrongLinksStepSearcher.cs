@@ -15,9 +15,17 @@ namespace Sudoku.Analytics.StepSearchers;
 	IsCachingUnsafe = true)]
 public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether the searcher will ignore patterns when it can formed a dual two-strong-link pattern (i.e. a remote pair).
+	/// </summary>
+	[SettingItemName(SettingItemNames.DisableRemotePair)]
+	public bool DisableRemotePair { get; set; } = false;
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		ref readonly var grid = ref context.Grid;
 		for (var digit = 0; digit < 9; digit++)
 		{
 			for (var h1 = 0; h1 < 26; h1++)
@@ -34,8 +42,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					// Get all cells.
 					var (cells1, cells2) = (CellMap.Empty, CellMap.Empty);
-					var cellsList1 = new List<Cell>(2);
-					var cellsList2 = new List<Cell>(2);
+					var (cellsList1, cellsList2) = (new List<Cell>(2), new List<Cell>(2));
 					foreach (var pos1 in mask1)
 					{
 						var cell1 = HousesCells[h1][pos1];
@@ -77,7 +84,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 				Checking:
 					// Two strong link found.
-					// Record all eliminations.
+					// Now we should collect for eliminations.
 					var (head, tail) = (cellsList1[headIndex], cellsList2[tailIndex]);
 					if ((head.AsCellMap() + tail).InOneHouse(out _))
 					{
@@ -87,6 +94,29 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 
 					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
+						// Eliminations may not found.
+						continue;
+					}
+
+					// We should insert an extra check - whether all 4 chosen cells are bi-value cells
+					// and contain same two digits. If so, this will be a technique called "Remote Pair".
+					// Remote Pair patterns may contain 4 or more bi-value cells, with same 2 digits found.
+					// However, it will be generalized and replaced by two-strong-link techniques.
+					// Here is an optimization: We should ignore the pattern found here
+					// if all four used cells only use same two digits, and the other digit also contains elimination.
+					//
+					// Maybe you might say, "We can change the rule (this step searcher logic) to collect both two-strong-links
+					// and remote pairs!". Okay, I admit this is a good question but the answer is no.
+					// Because the remote pair pattern is designed as a harder technique to be used. If we put here to find them,
+					// we may break the balance on the difficulty on searching for such patterns.
+					if (DisableRemotePair
+						&& grid[cellsList1[c1Index].AsCellMap() + cellsList2[c2Index] + head + tail] is var mergedDigitsMask
+						&& Mask.PopCount(mergedDigitsMask) == 2
+						&& mergedDigitsMask.GetAllSets() is var pairDigits
+						&& (pairDigits[0] == digit ? pairDigits[1] : pairDigits[0]) is var theOtherDigit
+						&& !!(CandidatesMap[theOtherDigit] & elimMap))
+					{
+						// Skip the pattern when it is a remote pair.
 						continue;
 					}
 
@@ -109,7 +139,6 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 						h2,
 						false
 					);
-
 					if (context.OnlyFindOne)
 					{
 						return step;

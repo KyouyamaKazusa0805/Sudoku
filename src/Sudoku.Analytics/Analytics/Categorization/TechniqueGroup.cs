@@ -54,6 +54,11 @@ public enum TechniqueGroup
 	IrregularWing,
 
 	/// <summary>
+	/// Indicates the baba grouping technique.
+	/// </summary>
+	BabaGrouping,
+
+	/// <summary>
 	/// Indicates the wing extension (extended subset principle) technique.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "ESP")]

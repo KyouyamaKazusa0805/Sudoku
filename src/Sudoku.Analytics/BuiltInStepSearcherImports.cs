@@ -12,6 +12,7 @@
 [assembly: AssemblyStepSearcher<RegularWingStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<UniqueRectangleStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<AlmostLockedCandidatesStepSearcher>(1)]
+[assembly: AssemblyStepSearcher<RemotePairStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<SueDeCoqStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<SueDeCoq3DimensionStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<IrregularWingStepSearcher>(1)]

@@ -3303,4 +3303,16 @@ Error grid: '{0:#}'</value>
   <data name="StepSearcherName_GroupedFinnedChainStepSearcher" xml:space="preserve">
     <value>Grouped Finned Chain</value>
   </data>
+  <data name="StepSearcherName_RemotePairStepSearcher" xml:space="preserve">
+    <value>Remote Pair</value>
+  </data>
+  <data name="ComplexRemotePair" xml:space="preserve">
+    <value>Complex Remote Pair</value>
+  </data>
+  <data name="TechniqueGroup_BabaGrouping" xml:space="preserve">
+    <value>Baba Grouping</value>
+  </data>
+  <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
+    <value>Assign cells {0} with mark {1} and {2}, to make an confliction</value>
+  </data>
 </root>
