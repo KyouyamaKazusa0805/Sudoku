@@ -19438,6 +19438,16 @@
             Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.
             </summary>
         </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary">
+            <summary>
+            The backing field storing on strong links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary">
+            <summary>
+            The backing field storing on weak links.
+            </summary>
+        </member>
         <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkTypesEntried">
             <summary>
             The backing field storing on strong links, grouped by link type.
@@ -19446,6 +19456,11 @@
         <member name="F:Sudoku.Caching.MemoryCachedData.WeakLinkTypesEntried">
             <summary>
             The backing field storing on weak links, grouped by link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Caching.MemoryCachedData.CandidatesCount">
+            <summary>
+            Indicates the number of candidates appeared in the puzzle.
             </summary>
         </member>
         <member name="F:Sudoku.Caching.MemoryCachedData.EmptyCells">
@@ -19503,16 +19518,6 @@
             You must check validity of this field before using this field.
             </b></remarks>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary">
-            <summary>
-            The backing field storing on strong links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary">
-            <summary>
-            The backing field storing on weak links.
-            </summary>
         </member>
         <member name="M:Sudoku.Caching.MemoryCachedData.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>

@@ -6,6 +6,17 @@ namespace Sudoku.Caching;
 internal static class MemoryCachedData
 {
 	/// <summary>
+	/// The backing field storing on strong links.
+	/// </summary>
+	public static readonly LinkDictionary StrongLinkDictionary = [];
+
+	/// <summary>
+	/// The backing field storing on weak links.
+	/// </summary>
+	public static readonly LinkDictionary WeakLinkDictionary = [];
+
+
+	/// <summary>
 	/// The backing field storing on strong links, grouped by link type.
 	/// </summary>
 	public static LinkType StrongLinkTypesEntried = LinkType.Unknown;
@@ -14,6 +25,11 @@ internal static class MemoryCachedData
 	/// The backing field storing on weak links, grouped by link type.
 	/// </summary>
 	public static LinkType WeakLinkTypesEntried = LinkType.Unknown;
+
+	/// <summary>
+	/// Indicates the number of candidates appeared in the puzzle.
+	/// </summary>
+	public static Candidate CandidatesCount;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.EmptyCells"/>
@@ -71,16 +87,6 @@ internal static class MemoryCachedData
 	/// <seealso cref="Grid.Undefined"/>
 	public static Grid Solution;
 
-	/// <summary>
-	/// The backing field storing on strong links.
-	/// </summary>
-	public static readonly LinkDictionary StrongLinkDictionary = [];
-
-	/// <summary>
-	/// The backing field storing on weak links.
-	/// </summary>
-	public static readonly LinkDictionary WeakLinkDictionary = [];
-
 
 	/// <summary>
 	/// Initialize the maps that used later.
@@ -90,6 +96,7 @@ internal static class MemoryCachedData
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
+		CandidatesCount = g.CandidatesCount;
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;
 		CandidatesMap = [.. g.CandidatesMap];

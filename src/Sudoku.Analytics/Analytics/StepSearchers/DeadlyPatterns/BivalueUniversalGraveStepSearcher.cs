@@ -50,31 +50,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
-	{
-		ref readonly var grid = ref context.Grid;
-		var emptyCellsCount = EmptyCells.Count;
-		var candidatesCount = 0;
-		foreach (var cell in EmptyCells)
-		{
-			candidatesCount += Mask.PopCount(grid.GetCandidates(cell));
-		}
-
-		if (candidatesCount > (emptyCellsCount << 1) + PeersCount + 8)
-		{
-			// No possible eliminations can be found, regardless of types.
-			return null;
-		}
-
-		if (CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep)
-		{
-			return trueCandidateTypeFirstFoundStep;
-		}
-		if (CheckForFalseCandidateTypes(ref context) is { } falseCandidateTypeFirstFoundStep)
-		{
-			return falseCandidateTypeFirstFoundStep;
-		}
-		return null;
-	}
+		=> CandidatesCount > (EmptyCells.Count << 1) + PeersCount + 8
+			? null
+			: CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep
+				? trueCandidateTypeFirstFoundStep
+				: SearchExtendedTypes && CheckForFalseCandidateTypes(ref context) is { } falseCandidateTypeFirstFoundStep
+					? falseCandidateTypeFirstFoundStep
+					: null;
 
 	/// <summary>
 	/// Check for types that uses true candidates.
