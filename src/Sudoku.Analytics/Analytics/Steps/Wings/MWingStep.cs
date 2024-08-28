@@ -48,4 +48,10 @@ public sealed partial class MWingStep(
 	private string Cell1Str => Options.Converter.CellConverter(in WeakXyCell.AsCellMap());
 
 	private string Cell2Str => Options.Converter.CellConverter(in StrongXyCell.AsCellMap());
+
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is MWingStep comparer && Node1 == comparer.Node1 && Node2 == comparer.Node2
+		&& StrongXyCell == comparer.StrongXyCell && WeakXyCell == comparer.WeakXyCell;
 }

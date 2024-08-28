@@ -318,6 +318,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// </example>
 	private MWingStep? Collect_MWing(ref StepAnalysisContext context)
 	{
+		var accumulator = new HashSet<MWingStep>();
 		foreach (var supportsGroupedNodes in (false, true))
 		{
 			if (collectCore(ref context, supportsGroupedNodes) is { } step)
@@ -325,10 +326,15 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 				return step;
 			}
 		}
+
+		if (!context.OnlyFindOne && accumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(accumulator);
+		}
 		return null;
 
 
-		static MWingStep? collectCore(ref StepAnalysisContext context, bool supportsGroupedNodes)
+		MWingStep? collectCore(ref StepAnalysisContext context, bool supportsGroupedNodes)
 		{
 			// A grid must contain at least one bi-value cell.
 			if (!BivalueCells)
@@ -449,7 +455,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 															[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
 															[
 																[
-																		..
+																	..
 																	from cell in node
 																	let cand = cell * 9 + elimDigit
 																	select new CandidateViewNode(ColorIdentifier.Auxiliary1, cand),
@@ -479,7 +485,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 															return step;
 														}
 
-														context.Accumulator.Add(step);
+														accumulator.Add(step);
 													}
 												}
 											}

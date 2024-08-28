@@ -18776,6 +18776,9 @@
         <member name="P:Sudoku.Analytics.Steps.MWingStep.Code">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.MWingStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.MWingStep.Node1">
             <summary>
             The generated property declaration for parameter <c>node1</c>.
