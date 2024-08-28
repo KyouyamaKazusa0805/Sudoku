@@ -32,6 +32,11 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		// Test examples:
+		// VWXYZ-Wing
+		// 9....2.+1+7.+12..7.9+6..6..+1.28+6+8+5+71+9+2+434..258..12.+1.4....16....7...5.8..1...+2.1....4:413 953 362 567 667 668 474 574 975 383 397 597
+		// 8..+6154..1+6.9+4...5.+4+5.7.6+1.+6..+4...31.+51.6.2+4.49...+1.....4+53....5....6..4..618+4..7:327 334 754 356 979 987 988
+
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
