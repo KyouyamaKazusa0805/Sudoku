@@ -43,7 +43,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			foreach (var cell in CandidatesMap[digit])
 			{
 				_tempConclusions.Add(new(Assignment, cell, digit));
-				var (candList, mask) = RecordUndoInfo(in tempGrid, cell, digit);
+				var pair = RecordUndoInfo(in tempGrid, cell, digit);
+				ref readonly var map = ref pair.Candidates;
+				var mask = pair.Mask;
 
 				// Try to fill this cell.
 				tempGrid.SetDigit(cell, digit);
@@ -55,17 +57,15 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				}
 				else
 				{
-					var candidateOffsets = new CandidateViewNode[_tempConclusions.Count];
-					var i = 0;
-					foreach (var (_, candidate) in _tempConclusions)
-					{
-						candidateOffsets[i++] = new(ColorIdentifier.Normal, candidate);
-					}
-
 					tempAccumulator.Add(
-						new BowmanBingoStep(
+						new(
 							[new(Elimination, startCandidate)],
-							[[.. candidateOffsets, .. GetLinks()]],
+							[
+								[
+									.. from p in _tempConclusions select new CandidateViewNode(ColorIdentifier.Normal, p.Candidate),
+									.. GetLinks()
+								]
+							],
 							context.Options,
 							[.. _tempConclusions]
 						)
@@ -73,8 +73,8 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				}
 
 				// Undo the operation.
-				_tempConclusions.RemoveAt(_tempConclusions.Count - 1);
-				UndoGrid(ref tempGrid, candList, cell, mask);
+				_tempConclusions.RemoveAt(^1);
+				UndoGrid(ref tempGrid, in map, cell, mask);
 			}
 		}
 
@@ -117,7 +117,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 		// Try to fill.
 		_tempConclusions.Add(conclusion);
-		var (candList, mask) = RecordUndoInfo(in grid, c, d);
+		var pair = RecordUndoInfo(in grid, c, d);
+		ref readonly var map = ref pair.Candidates;
+		var mask = pair.Mask;
 
 		grid.SetDigit(c, d);
 		if (IsValidGrid(in grid, c))
@@ -153,7 +155,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 		// Undo grid.
 		_tempConclusions.RemoveAt(_tempConclusions.Count - 1);
-		UndoGrid(ref grid, candList, c, mask);
+		UndoGrid(ref grid, in map, c, mask);
 
 	ReturnNull:
 		return null;
@@ -183,15 +185,9 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(ref readonly Grid grid, Cell cell, Digit digit)
-	{
-		var list = new List<Candidate>();
-		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
-		{
-			list.Add(c * 9 + digit);
-		}
-		return (list, grid[cell]);
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static (CandidateMap Candidates, Mask Mask) RecordUndoInfo(ref readonly Grid grid, Cell cell, Digit digit)
+		=> ((from c in PeersMap[cell] & CandidatesMap[digit] select c * 9 + digit).AsCandidateMap(), grid[cell]);
 
 	/// <summary>
 	/// Undo the grid.
@@ -200,7 +196,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(ref Grid grid, List<Candidate> list, Cell cell, Mask mask)
+	private static void UndoGrid(ref Grid grid, ref readonly CandidateMap list, Cell cell, Mask mask)
 	{
 		foreach (var candidate in list)
 		{
