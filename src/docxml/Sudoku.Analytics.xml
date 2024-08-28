@@ -5796,6 +5796,43 @@
             Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.GridAnalysisExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
+            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house and hidden single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="allowHiddenSingleInLine">
+            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only naked single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.IAnalysisResult`3">
             <summary>
             Represents an instance that describes the result after executed the method
@@ -22641,43 +22678,6 @@
             <summary>
             Indicates the mutant fish.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.GridAnalysisExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
-            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house and hidden single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="allowHiddenSingleInLine">
-            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only naked single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Guardian">
             <summary>
