@@ -37,7 +37,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultAccumulator = new List<BivalueOddagonStep>();
+		var resultAccumulator = new SortedSet<BivalueOddagonStep>();
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
@@ -79,19 +79,14 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 		}
 
-		if (resultAccumulator.Count == 0)
-		{
-			return null;
-		}
-
-		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
-		StepMarshal.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
-			return resultList.First();
+			return resultAccumulator.First();
 		}
-
-		context.Accumulator.AddRange(resultList);
+		if (resultAccumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(resultAccumulator);
+		}
 		return null;
 
 
@@ -223,7 +218,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// Check for type 2.
 	/// </summary>
 	private BivalueOddagonType2Step? CheckType2(
-		List<BivalueOddagonStep> accumulator,
+		SortedSet<BivalueOddagonStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
@@ -280,7 +275,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// Check for type 3.
 	/// </summary>
 	private BivalueOddagonType3Step? CheckType3(
-		List<BivalueOddagonStep> accumulator,
+		SortedSet<BivalueOddagonStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,

@@ -81,7 +81,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var tempGrid = grid;
 
 		// Sum up how many digits exist complex fish.
-		var tempList = new List<ComplexFishStep>();
+		var tempList = new HashSet<ComplexFishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
@@ -93,7 +93,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			}
 		}
 
-		var accumulator = StepMarshal.RemoveDuplicateItems(tempList).ToList();
+		var accumulator = tempList.ToList();
 		var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
 		if (context.OnlyFindOne)
 		{
@@ -125,7 +125,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="digit">The current digit used.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private void Collect(
-		List<ComplexFishStep> accumulator,
+		HashSet<ComplexFishStep> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		ref readonly CellMap pomElimsOfThisDigit,

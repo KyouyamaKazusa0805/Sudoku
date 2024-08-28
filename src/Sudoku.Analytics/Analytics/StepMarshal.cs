@@ -16,24 +16,6 @@ public static class StepMarshal
 		=> accumulator.Sort(Comparer<TStep>.Create(static (l, r) => l.CompareTo(r)));
 
 	/// <summary>
-	/// Compares <typeparamref name="TStep"/> instances from the list collection,
-	/// removing duplicate items by using <see cref="Step.Equals(Step?)"/> to as equality comparison rules.
-	/// </summary>
-	/// <typeparam name="TStep">The type of each step.</typeparam>
-	/// <param name="accumulator">The accumulator instance.</param>
-	/// <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
-	/// <seealso cref="Step.Equals(Step?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IEnumerable<TStep> RemoveDuplicateItems<TStep>(List<TStep> accumulator) where TStep : Step
-		=> accumulator switch
-		{
-			[] => [],
-			[var firstElement] => [firstElement],
-			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TStep>(accumulator, EqualityComparer<Step>.Create(static (a, b) => a == b, static v => v.GetHashCode()))
-		};
-
-	/// <summary>
 	/// Zips the collection, pairing each step and corresponding grid into a <see cref="ValueTuple{T1, T2}"/>,
 	/// and return the collection of pairs.
 	/// </summary>

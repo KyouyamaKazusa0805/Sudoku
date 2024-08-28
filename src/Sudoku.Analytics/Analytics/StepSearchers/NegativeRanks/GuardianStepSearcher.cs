@@ -48,7 +48,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			}
 		}
 
-		var resultAccumulator = new List<GuardianStep>();
+		var resultAccumulator = new SortedSet<GuardianStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
 			if (!eliminationMaps[digit])
@@ -93,19 +93,14 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			}
 		}
 
-		if (resultAccumulator.Count == 0)
-		{
-			return null;
-		}
-
-		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
-		StepMarshal.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
-			return resultList[0];
+			return resultAccumulator.First();
 		}
-
-		context.Accumulator.AddRange(resultList);
+		if (resultAccumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(resultAccumulator);
+		}
 		return null;
 	}
 
