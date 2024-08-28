@@ -94,10 +94,8 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					continue;
 				}
 
-				var tailCells = twinArea;
-
 				// Iterate on remaining cells using the twinArea.
-				foreach (ref readonly var tIndices in tailCells & size - 2)
+				foreach (ref readonly var tIndices in twinArea & size - 2)
 				{
 					var (cells, cardinalities) = (new Cell[size], new int[size]);
 
