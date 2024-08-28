@@ -13,15 +13,14 @@ public sealed partial class FinnedChainStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
-		var accumulator = new List<ChainStep>();
+		var accumulator = new SortedSet<ChainStep>();
 		if (ChainModule.CollectMultipleCore(ref context, accumulator, false, true) is { } step)
 		{
 			return step;
 		}
 
-		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		if (!context.OnlyFindOne && accumulator.Count != 0)
 		{
-			StepMarshal.SortItems(accumulator);
 			context.Accumulator.AddRange(accumulator);
 		}
 		return null;

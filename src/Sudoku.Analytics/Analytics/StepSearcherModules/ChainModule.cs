@@ -12,7 +12,7 @@ internal static class ChainModule
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectCore(ref StepAnalysisContext context, List<NormalChainStep> accumulator, bool allowsAdvancedLinks)
+	public static Step? CollectCore(ref StepAnalysisContext context, SortedSet<NormalChainStep> accumulator, bool allowsAdvancedLinks)
 	{
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(
@@ -41,10 +41,8 @@ internal static class ChainModule
 			{
 				return step;
 			}
-			if (!accumulator.Contains(step))
-			{
-				accumulator.Add(step);
-			}
+
+			accumulator.Add(step);
 		}
 		return null;
 
@@ -75,7 +73,7 @@ internal static class ChainModule
 	/// <returns>The first found step.</returns>
 	public static Step? CollectMultipleCore(
 		ref StepAnalysisContext context,
-		List<ChainStep> accumulator,
+		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,
 		bool onlyFindFinnedChain
 	)
@@ -122,6 +120,7 @@ internal static class ChainModule
 				{
 					return finnedChainStep;
 				}
+
 				accumulator.Add(finnedChainStep);
 				continue;
 			}
@@ -143,6 +142,7 @@ internal static class ChainModule
 				{
 					return mfcStep;
 				}
+
 				accumulator.Add(mfcStep);
 			}
 		}
@@ -155,7 +155,7 @@ internal static class ChainModule
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, List<BlossomLoopStep> accumulator)
+	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
 	{
 		const bool allowsAdvancedLinks = true;
 		ref readonly var grid = ref context.Grid;
@@ -179,15 +179,12 @@ internal static class ChainModule
 			{
 				continue;
 			}
-
 			if (context.OnlyFindOne)
 			{
 				return step;
 			}
-			if (!accumulator.Contains(step))
-			{
-				accumulator.Add(step);
-			}
+
+			accumulator.Add(step);
 		}
 		return null;
 

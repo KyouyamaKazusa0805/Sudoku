@@ -7,15 +7,6 @@ namespace Sudoku.Analytics;
 public static class StepMarshal
 {
 	/// <summary>
-	/// Sorts <typeparamref name="TStep"/> instances from the list collection.
-	/// </summary>
-	/// <typeparam name="TStep">The type of each step.</typeparam>
-	/// <param name="accumulator">The accumulator instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step
-		=> accumulator.Sort(Comparer<TStep>.Create(static (l, r) => l.CompareTo(r)));
-
-	/// <summary>
 	/// Zips the collection, pairing each step and corresponding grid into a <see cref="ValueTuple{T1, T2}"/>,
 	/// and return the collection of pairs.
 	/// </summary>

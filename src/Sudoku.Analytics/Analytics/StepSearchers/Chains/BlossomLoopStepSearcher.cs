@@ -13,15 +13,14 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
-		var accumulator = new List<BlossomLoopStep>();
+		var accumulator = new SortedSet<BlossomLoopStep>();
 		if (ChainModule.CollectBlossomLoopCore(ref context, accumulator) is { } step)
 		{
 			return step;
 		}
 
-		if (accumulator.Count != 0 && !context.OnlyFindOne)
+		if (!context.OnlyFindOne && accumulator.Count != 0)
 		{
-			StepMarshal.SortItems(accumulator);
 			context.Accumulator.AddRange(accumulator);
 		}
 		return null;

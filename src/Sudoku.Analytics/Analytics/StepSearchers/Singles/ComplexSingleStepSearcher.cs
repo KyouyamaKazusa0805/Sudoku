@@ -76,7 +76,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Recursively searching for all possible steps.
-		var accumulator = new List<ComplexSingleStep>();
+		var accumulator = new SortedSet<ComplexSingleStep>();
 		dfs(ref context, accumulator, in context.Grid, [], []);
 
 		// Remove steps that don't satisfy the size limit.
@@ -90,13 +90,14 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			return null;
 		}
 
-		StepMarshal.SortItems(stepsFiltered);
 		if (context.OnlyFindOne)
 		{
-			return stepsFiltered[0];
+			return stepsFiltered.First();
 		}
-
-		context.Accumulator.AddRange(stepsFiltered);
+		if (stepsFiltered.Count != 0)
+		{
+			context.Accumulator.AddRange(stepsFiltered);
+		}
 		return null;
 
 
@@ -120,7 +121,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 		void dfs(
 			ref StepAnalysisContext context,
-			List<ComplexSingleStep> accumulator,
+			SortedSet<ComplexSingleStep> accumulator,
 			ref readonly Grid grid,
 			LinkedList<Step[]> interimSteps,
 			List<Step> previousIndirectFoundSteps
@@ -282,9 +283,9 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			}
 		}
 
-		List<Step> filterStepsBySize(List<ComplexSingleStep> accumulator)
+		SortedSet<Step> filterStepsBySize(SortedSet<ComplexSingleStep> accumulator)
 		{
-			var stepsSatisfied = new List<Step>();
+			var stepsSatisfied = new SortedSet<Step>();
 			foreach (var step in accumulator)
 			{
 				var flag = true;

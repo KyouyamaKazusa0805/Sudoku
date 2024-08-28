@@ -6464,13 +6464,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepMarshal.SortItems``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Sorts <typeparamref name="TStep"/> instances from the list collection.
-            </summary>
-            <typeparam name="TStep">The type of each step.</typeparam>
-            <param name="accumulator">The accumulator instance.</param>
-        </member>
         <member name="M:Sudoku.Analytics.StepMarshal.Combine(System.ReadOnlySpan{Sudoku.Concepts.Grid},System.ReadOnlySpan{Sudoku.Analytics.Step})">
             <summary>
             Zips the collection, pairing each step and corresponding grid into a <see cref="T:System.ValueTuple`2"/>,
@@ -6694,7 +6687,7 @@
             Represents a chain module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
             <summary>
             The collect method called by chain step searchers.
             </summary>
@@ -6703,7 +6696,7 @@
             <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
             </summary>
@@ -6713,7 +6706,7 @@
             <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             The collect method called by blossom loop step searchers.
             </summary>
