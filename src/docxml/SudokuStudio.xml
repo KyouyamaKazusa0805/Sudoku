@@ -1602,12 +1602,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.StepSearcherInfo.IsEnabled"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.StepSearcherInfo.NameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.Name"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.StepSearcherInfo.Name"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherInfo.TypeNameProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherInfo.TypeName"/>.

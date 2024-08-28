@@ -14,7 +14,6 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 			select new StepSearcherInfo
 			{
 				IsEnabled = searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching),
-				Name = searcher.ToString(),
 				TypeName = searcher.GetType().Name
 			}
 		).ToArray()

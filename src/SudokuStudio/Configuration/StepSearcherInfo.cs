@@ -9,11 +9,13 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// <summary>
 	/// Indicates whether the technique option is not fixed and can be used for drag-and-drop operation.
 	/// </summary>
+	[JsonIgnore]
 	public bool CanDrag => !CreateStepSearcher().Metadata.IsOrderingFixed;
 
 	/// <summary>
 	/// Indicates whether the technique option is not read-only and can be used for toggle operation.
 	/// </summary>
+	[JsonIgnore]
 	public bool CanToggle => !CreateStepSearcher().Metadata.IsReadOnly;
 
 
@@ -27,9 +29,9 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// <summary>
 	/// Indicates the name of the step searcher.
 	/// </summary>
-	[DependencyProperty]
 	[StringMember]
-	public partial string Name { get; set; }
+	[JsonIgnore]
+	public string Name => CreateStepSearcher().Metadata.GetName(App.CurrentCulture);
 
 	/// <summary>
 	/// Indicates the type name of the step searcher.
