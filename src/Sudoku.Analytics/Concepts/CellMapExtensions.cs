@@ -1,5 +1,7 @@
 namespace Sudoku.Concepts;
 
+using CellMapGroupingOfHouse = CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>;
+
 /// <summary>
 /// Provides with extension methods on <see cref="CellMap"/> instances.
 /// </summary>
@@ -12,16 +14,12 @@ public static class CellMapExtensions
 	/// <param name="this">The target cells to be split.</param>
 	/// <param name="houses">The mask value holding a list of houses to be matched.</param>
 	/// <returns>
-	/// A list of <see cref="CellMap"/> grouped,
-	/// representing as a <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>.
+	/// A list of <see cref="CellMap"/> grouped, representing as a <see cref="CellMapGroupingOfHouse"/>.
 	/// </returns>
-	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
-	public static ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>> GroupTargets(
-		this ref readonly CellMap @this,
-		HouseMask houses
-	)
+	/// <seealso cref="CellMapGroupingOfHouse"/>
+	public static ReadOnlySpan<CellMapGroupingOfHouse> GroupTargets(this ref readonly CellMap @this, HouseMask houses)
 	{
-		var (result, i) = (new CellMapOrCandidateMapGrouping<CellMap, Cell, CellMap.Enumerator, House>[HouseMask.PopCount(houses)], 0);
+		var (result, i) = (new CellMapGroupingOfHouse[HouseMask.PopCount(houses)], 0);
 		foreach (var house in houses)
 		{
 			if ((@this & HousesMap[house]) is var map and not [])

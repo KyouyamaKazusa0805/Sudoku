@@ -20587,8 +20587,7 @@
             <param name="this">The target cells to be split.</param>
             <param name="houses">The mask value holding a list of houses to be matched.</param>
             <returns>
-            A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped,
-            representing as a <see cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>.
+            A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped, representing as a <see cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>.
             </returns>
             <seealso cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>
         </member>
