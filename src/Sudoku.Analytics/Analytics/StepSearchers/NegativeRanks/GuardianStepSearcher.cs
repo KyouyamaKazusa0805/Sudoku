@@ -93,11 +93,11 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			}
 		}
 
-		if (context.OnlyFindOne)
+		if (context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
 			return resultAccumulator.First();
 		}
-		if (resultAccumulator.Count != 0)
+		if (!context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
 			context.Accumulator.AddRange(resultAccumulator);
 		}

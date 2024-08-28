@@ -73,17 +73,16 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					{
 						return step3;
 					}
-
 					break;
 				}
 			}
 		}
 
-		if (context.OnlyFindOne)
+		if (context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
 			return resultAccumulator.First();
 		}
-		if (resultAccumulator.Count != 0)
+		if (!context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
 			context.Accumulator.AddRange(resultAccumulator);
 		}

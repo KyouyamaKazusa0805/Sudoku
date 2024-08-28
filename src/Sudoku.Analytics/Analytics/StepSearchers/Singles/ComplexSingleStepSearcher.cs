@@ -85,16 +85,11 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		// Sort instances if worth.
 		// We don't remove duplicate items because the searcher may not produce same steps,
 		// and the corresponding step type doesn't override method 'Equals'.
-		if (stepsFiltered.Count == 0)
-		{
-			return null;
-		}
-
-		if (context.OnlyFindOne)
+		if (context.OnlyFindOne && stepsFiltered.Count != 0)
 		{
 			return stepsFiltered.First();
 		}
-		if (stepsFiltered.Count != 0)
+		if (!context.OnlyFindOne && stepsFiltered.Count != 0)
 		{
 			context.Accumulator.AddRange(stepsFiltered);
 		}
@@ -142,8 +137,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// However, this limit will produce a potential bug - if two steps are not relative,
 			// the searcher will ignore the second one aggressively, but the final assignment will use both,
 			// meaning we have removed a step that may be a key one. One example is this:
-			//
-			//     0002+471630+6+300+500041039+6+500001000+60568+97+51+234500+600900000063052000000+30+6326508000
+			// 0002+471630+6+300+500041039+6+500001000+60568+97+51+234500+600900000063052000000+30+6326508000
 			//
 			// Here the puzzle will use two locked candidates of digit 4 and 9 in r9b9. But both of them can be found
 			// in the first step.
