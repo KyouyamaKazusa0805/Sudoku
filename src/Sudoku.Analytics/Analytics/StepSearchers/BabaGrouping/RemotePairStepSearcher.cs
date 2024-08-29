@@ -63,19 +63,15 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 
 							// There must be 2 cases. Now we should iterate two collections to get contradiction.
 							var conflictedCells = CellMap.Empty;
-							var conflictedPair = new HashSet<ConflictedInfo>(
-								EqualityComparer<ConflictedInfo>.Create(
-									static (a, b) => a.InfluencedRange == b.InfluencedRange,
-									static obj => obj.InfluencedRange.GetHashCode()
-								)
-							);
+							var conflictedPair = new HashSet<ConflictedInfo>();
 							foreach (var cell1 in nodeGroups[0].Cells)
 							{
 								foreach (var cell2 in nodeGroups[1].Cells)
 								{
 									var intersection = (cell1.AsCellMap() + cell2).PeerIntersection;
 									var currentConflictCells = intersection & (CandidatesMap[d1] | CandidatesMap[d2]);
-									if (currentConflictCells)
+									if (!!currentConflictCells
+										&& !conflictedPair.Any(p => (p.InfluencedRange & currentConflictCells) == currentConflictCells))
 									{
 										conflictedPair.Add(((cell1, cell2), currentConflictCells));
 										conflictedCells |= currentConflictCells;
