@@ -107,6 +107,11 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Burred logic
       * Finned Chain
       * Grouped Finned Chain
+  * Baba Grouping
+    * Remote Pair
+      * Standard Remote Pair
+      * Complex Remote Pair
+    * Unique Rectangle Baba Grouping
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Extended Subset Principle
