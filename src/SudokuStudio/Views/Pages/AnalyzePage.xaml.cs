@@ -280,8 +280,8 @@ public sealed partial class AnalyzePage : Page
 			&& await dataPackageView.GetTextAsync() is var targetText
 			&& Grid.TryParse(targetText, out var grid))
 		{
-			SudokuPane.Puzzle = grid;
 			SudokuPane.ViewUnit = null;
+			SudokuPane.Puzzle = grid;
 		}
 	}
 
