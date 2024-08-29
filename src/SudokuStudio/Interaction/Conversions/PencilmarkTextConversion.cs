@@ -20,11 +20,11 @@ internal static class PencilmarkTextConversion
 		Digit digit,
 		bool displayCandidates,
 		bool useDifferentColorToDisplayDeltaDigits,
-		CandidateMap usedCandidates
+		ViewUnitBindableSource? viewUnit
 	)
 	{
 		// Special case: If the candidate is drawn by a view node, display it.
-		if (cellState == CellState.Empty && usedCandidates.Contains(cell * 9 + digit))
+		if (cellState == CellState.Empty && (viewUnit?.CandidateContains(cell * 9 + digit) ?? false))
 		{
 			return new SolidColorBrush(pencilmarkColor);
 		}

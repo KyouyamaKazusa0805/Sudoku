@@ -76,7 +76,6 @@ internal static partial class DrawableFactory
 		{
 			child.RemoveAllViewUnitControls();
 		}
-		pane.ViewUnitUsedCandidates = [];
 	}
 
 	/// <summary>
@@ -140,9 +139,6 @@ internal static partial class DrawableFactory
 		// We should handle it at last.
 		ForLinkNodes(context, links.AsReadOnlySpan(), conclusions);
 		controlAddingActions.ForEach(static p => (p.Animating + p.Adding)());
-
-		// Update property to get highlighted candidates.
-		pane.ViewUnitUsedCandidates = usedCandidates;
 	}
 
 	/// <summary>

@@ -715,6 +715,13 @@
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Sudoku#Drawing#IDrawable#Views">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.CandidateContains(System.Int32)">
+            <summary>
+            Determine whether the collection contains the specified candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>

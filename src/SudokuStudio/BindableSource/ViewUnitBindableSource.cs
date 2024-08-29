@@ -39,6 +39,30 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 	ReadOnlyMemory<View> IDrawable.Views => (View[])[View];
 
 
+	/// <summary>
+	/// Determine whether the collection contains the specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool CandidateContains(Candidate candidate)
+	{
+		foreach (var conclusion in Conclusions)
+		{
+			if (conclusion.Candidate == candidate)
+			{
+				return true;
+			}
+		}
+		foreach (var viewNode in View.OfType<CandidateViewNode>())
+		{
+			if (viewNode.Candidate == candidate)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	public ViewUnitBindableSource Clone() => new() { Conclusions = Conclusions[..], View = View.Clone() };
 
