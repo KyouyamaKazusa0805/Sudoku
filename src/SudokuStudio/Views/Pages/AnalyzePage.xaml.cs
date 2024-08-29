@@ -1287,7 +1287,6 @@ public sealed partial class AnalyzePage : Page
 
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(puzzle.ToString(flag.GetConverter()));
-
 		Clipboard.SetContent(dataPackage);
 	}
 

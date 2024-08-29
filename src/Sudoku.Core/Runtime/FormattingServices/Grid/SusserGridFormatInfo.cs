@@ -67,7 +67,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	protected internal override string FormatGrid(ref readonly Grid grid)
 	{
 		return b(in grid) is var r && IsCompatibleMode
-			? $":0000:x:{r}{new(':', WithCandidates ? 2 : 3)}"
+			? $":0000:x:{r}{new(':', 3)}"
 			: OnlyEliminations
 				? EliminationPattern.Match(r) is { Success: true, Value: var value } ? value : string.Empty
 				: r;
