@@ -9258,6 +9258,9 @@
         <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_OnesComplement(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
+        </member>
         <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_BitwiseAnd(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
         </member>

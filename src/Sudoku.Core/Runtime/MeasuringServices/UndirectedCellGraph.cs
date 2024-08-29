@@ -6,6 +6,7 @@ namespace Sudoku.Runtime.MeasuringServices;
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
 public readonly partial struct UndirectedCellGraph() :
+	IBitwiseOperators<UndirectedCellGraph, UndirectedCellGraph, UndirectedCellGraph>,
 	IEquatable<UndirectedCellGraph>,
 	IEqualityOperators<UndirectedCellGraph, UndirectedCellGraph, bool>,
 	IReadOnlySet<Cell>,
@@ -270,6 +271,10 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <inheritdoc/>
 	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => ((IEnumerable<Cell>)[.. _map]).GetEnumerator();
 
+
+	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_OnesComplement(TSelf)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static UndirectedCellGraph operator ~(UndirectedCellGraph value) => new(~value._map);
 
 	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseAnd(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
