@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
+
 /// <summary>
 /// Provides with a <b>Remote Pair</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -61,7 +63,12 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 
 							// There must be 2 cases. Now we should iterate two collections to get contradiction.
 							var conflictedCells = CellMap.Empty;
-							var conflictedPair = new List<(Cell Left, Cell Right)>();
+							var conflictedPair = new HashSet<ConflictedInfo>(
+								EqualityComparer<ConflictedInfo>.Create(
+									static (a, b) => a.InfluencedRange == b.InfluencedRange,
+									static obj => obj.InfluencedRange.GetHashCode()
+								)
+							);
 							foreach (var cell1 in nodeGroups[0].Cells)
 							{
 								foreach (var cell2 in nodeGroups[1].Cells)
@@ -70,7 +77,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 									var currentConflictCells = intersection & (CandidatesMap[d1] | CandidatesMap[d2]);
 									if (currentConflictCells)
 									{
-										conflictedPair.Add((cell1, cell2));
+										conflictedPair.Add(((cell1, cell2), currentConflictCells));
 										conflictedCells |= currentConflictCells;
 									}
 								}
@@ -107,7 +114,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d1));
 								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + d2));
 							}
-							foreach (var (c1, c2) in conflictedPair)
+							foreach (var ((c1, c2), _) in conflictedPair)
 							{
 								cellOffsets.Add(new(ColorIdentifier.Auxiliary1, c1));
 								cellOffsets.Add(new(ColorIdentifier.Auxiliary1, c2));
@@ -122,7 +129,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 
 							var step = new RemotePairStep(
 								[.. conclusions],
-								[[.. candidateOffsets, .. cellOffsets], [.. cellOffsets, .. babaGroupingOffsets]],
+								[[.. candidateOffsets], [.. cellOffsets, .. babaGroupingOffsets]],
 								context.Options,
 								in component.Map,
 								nodeGroups[0].Cells.Count != nodeGroups[1].Cells.Count,
