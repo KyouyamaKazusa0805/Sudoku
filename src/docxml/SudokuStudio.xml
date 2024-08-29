@@ -12090,11 +12090,6 @@
             Indicates the core-operating sudoku puzzle.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates">
-            <summary>
-            Indicates a map that stores candidates used in a view unit.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius">
             <summary>
             Indicates the value that describes corner radius for displaying cell view nodes.
@@ -12622,12 +12617,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.SelectedCell"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidatesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ViewUnitUsedCandidates"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadiusProperty">
             <summary>

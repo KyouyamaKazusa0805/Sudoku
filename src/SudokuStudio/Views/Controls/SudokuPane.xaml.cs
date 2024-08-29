@@ -390,12 +390,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 	/// <summary>
-	/// Indicates a map that stores candidates used in a view unit.
-	/// </summary>
-	[DependencyProperty]
-	public partial CandidateMap ViewUnitUsedCandidates { get; set; }
-
-	/// <summary>
 	/// Indicates the value that describes corner radius for displaying cell view nodes.
 	/// </summary>
 	[DependencyProperty]
