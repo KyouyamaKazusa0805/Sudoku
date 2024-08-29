@@ -90,6 +90,8 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
 		{
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
+
+			// TODO: Implement a way to control delta conclusions.
 			negatives.AddRange(from conclusion in left.Conclusions select (IDrawableItem)conclusion);
 			positives.AddRange(from conclusion in right.Conclusions select (IDrawableItem)conclusion);
 			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
