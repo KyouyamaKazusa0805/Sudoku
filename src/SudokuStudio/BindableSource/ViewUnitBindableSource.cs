@@ -90,9 +90,8 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
 		{
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
-			var (oldSet, newSet) = (left.Conclusions.AsSet(), right.Conclusions.AsSet());
-			negatives.AddRange(from conclusion in (oldSet & ~newSet).AsSpan() select (IDrawableItem)conclusion);
-			positives.AddRange(from conclusion in (newSet & ~oldSet).AsSpan() select (IDrawableItem)conclusion);
+			negatives.AddRange(from conclusion in left.Conclusions select (IDrawableItem)conclusion);
+			positives.AddRange(from conclusion in right.Conclusions select (IDrawableItem)conclusion);
 			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
 			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
 			return new() { Negatives = negatives.AsReadOnlySpan(), Positives = positives.AsReadOnlySpan() };
