@@ -23,7 +23,6 @@ public readonly partial struct UndirectedCellGraph() :
 	[HashCodeMember]
 	private readonly CellMap _map;
 
-
 	/// <summary>
 	/// Indicates the directly-connected cells.
 	/// </summary>
@@ -111,6 +110,28 @@ public readonly partial struct UndirectedCellGraph() :
 	int IReadOnlyCollection<Cell>.Count => VerticesCount;
 
 
+	/// <summary>
+	/// Try to get all cells whose degree is the specified value.
+	/// </summary>
+	/// <param name="degree">The degree. The value must be between 0 and 20.</param>
+	/// <returns>All cells whose degree is equal to the specified value.</returns>
+	public UndirectedCellGraph this[[ConstantExpected(Min = 0, Max = 20)] int degree]
+	{
+		get
+		{
+			var result = CellMap.Empty;
+			foreach (var cell in _map)
+			{
+				if (GetDegreeOf(cell) == degree)
+				{
+					result.Add(cell);
+				}
+			}
+			return new(in result);
+		}
+	}
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(UndirectedCellGraph other) => _map == other._map;
@@ -165,22 +186,12 @@ public readonly partial struct UndirectedCellGraph() :
 	public CellMap GetConnectedCells(Cell cell) => _directlyConnectedCellsDictionary[cell];
 
 	/// <summary>
-	/// Try to get all cells whose degree is the specified value.
+	/// Creates an enumerator type that can iterate on each cell in the collection.
 	/// </summary>
-	/// <param name="degree">The degree. The value must be 1, 2 or 3.</param>
-	/// <returns>All cells whose degree is equal to the specified value.</returns>
-	public CellMap GetCellsOfDegree([ConstantExpected(Min = 1, Max = 3)] int degree)
-	{
-		var result = CellMap.Empty;
-		foreach (var cell in _map)
-		{
-			if (GetDegreeOf(cell) == degree)
-			{
-				result.Add(cell);
-			}
-		}
-		return result;
-	}
+	/// <returns>An enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[SuppressMessage("Style", "IDE0305:Simplify collection initialization", Justification = "<Pending>")]
+	public Enumerator GetEnumerator() => new(_map.ToArray());
 
 	/// <summary>
 	/// Try to get a <see cref="UndirectedCellGraph"/> that contains the specified cell.
