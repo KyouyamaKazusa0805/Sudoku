@@ -17,9 +17,22 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	public bool DistinctDirectMode { get; init; } = false;
 
 	/// <summary>
-	/// Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
+	/// Indicates whether the current solver uses direct mode to solve a puzzle,
+	/// meaning UI will display the grid without any candidates.
 	/// </summary>
 	public bool IsDirectMode { get; init; } = false;
+
+	/// <summary>
+	/// Indicates the initial letter to be used and displayed in a <see cref="BabaGroupViewNode"/>.
+	/// </summary>
+	/// <seealso cref="BabaGroupViewNode"/>
+	public BabaGroupInitialLetter BabaGroupInitialLetter { get; init; } = BabaGroupInitialLetter.EnglishLetter_X;
+
+	/// <summary>
+	/// Indicates letter casing of characters in <see cref="BabaGroupViewNode"/> should be displayed.
+	/// </summary>
+	/// <seealso cref="BabaGroupViewNode"/>
+	public BabaGroupLetterCasing BabaGroupLetterCasing { get; init; } = BabaGroupLetterCasing.Lower;
 
 	/// <summary>
 	/// Indicates the default link option.
@@ -47,6 +60,8 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
 	/// <item><see cref="DistinctDirectMode"/>: <see langword="false"/></item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
+	/// <item><see cref="BabaGroupInitialLetter"/>: <see cref="BabaGroupInitialLetter.EnglishLetter_X"/></item>
+	/// <item><see cref="BabaGroupLetterCasing"/>: <see cref="BabaGroupLetterCasing.Lower"/></item>
 	/// <item><see cref="DefaultLinkOption"/>: <see cref="LinkOption.House"/></item>
 	/// <item><see cref="OverriddenLinkOptions"/>: <c>[]</c></item>
 	/// </list>

@@ -5424,6 +5424,95 @@
             Indicates the collecting mode is to collect all possible steps, no matter which level the step belongs to.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter">
+            <summary>
+            Provides a style that displays for a letter in a baba group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Digit_Zero">
+            <summary>
+            Indicates the initial letter is digit '<c>0</c>'. The sequence would be <c>0, 1, 2 ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Digit_One">
+            <summary>
+            Indicates the initial letter is digit '<c>1</c>'. The sequence would be <c>1, 2, 3 ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_A">
+            <summary>
+            Indicates the initial letter is English letter '<c>A (a)</c>'. The sequence would be <c>A, B, C, ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X">
+            <summary>
+            Indicates the initial letter is English letter '<c>X (x)</c>'. The sequence would be <c>X, Y, Z, W, ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.GreeceLetter_Alpha">
+            <summary>
+            Indicates the initial letter is Greece letter '<c>A (α)</c>'. The sequence would be <c>A, B, Γ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseCharacter_One">
+            <summary>
+            Indicates the initial letter is Chinese character '<c>一</c>' (pinyin: yī, meaning "one").
+            The sequence would be <c>一, 二, 三...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseHavenlyStem_Jia">
+            <summary>
+            Indicates the initial letter is Chinese Havenly stem '<c>甲</c>' (pinyin: jiǎ, meaning "one").
+            The sequence would be <c>甲, 乙, 丙...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.CapitalChineseCharacter_One">
+            <summary>
+            Indicates the initial letter is Chinese character '<c>壹</c>' (pinyin: yī, meaning "one").
+            The sequence would be <c>壹, 贰, 叁...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Kanji_One">
+            <summary>
+            Indicates the initial letter is Japanese character (i.e. Kanji) '<c>壱</c>' (Roman: Ichi, meaning "one").
+            The sequence would be <c>壱, 弐, 参...</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.CharSequences">
+            <summary>
+            Indicates the sequences.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.GetSequence(Sudoku.Analytics.Configuration.BabaGroupInitialLetter,Sudoku.Analytics.Configuration.BabaGroupLetterCasing)">
+            <summary>
+            Try to get character sequence from the specified initial letter.
+            </summary>
+            <param name="this">The initial letter.</param>
+            <param name="casing">The letter casing.</param>
+            <returns>The character sequence.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified arguments are not defined.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.BabaGroupLetterCasing">
+            <summary>
+            Provides with a letter casing of baba group letter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Upper">
+            <summary>
+            Indicates the upper casing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower">
+            <summary>
+            Indicates the lower casing.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.IStepSearcherOptions`1">
             <summary>
             Represents an option type that will be consumed by <see cref="T:Sudoku.Analytics.Analyzer"/>.
@@ -5729,8 +5818,21 @@
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode">
             <summary>
-            Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
+            Indicates whether the current solver uses direct mode to solve a puzzle,
+            meaning UI will display the grid without any candidates.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter">
+            <summary>
+            Indicates the initial letter to be used and displayed in a <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing">
+            <summary>
+            Indicates letter casing of characters in <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/> should be displayed.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption">
             <summary>
@@ -5758,6 +5860,8 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.House"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.OverriddenLinkOptions"/>: <c>[]</c></item>
             </list>
