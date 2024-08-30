@@ -285,6 +285,9 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
+		// Test examples:
+		// .1..69+2...8.153.+4.....+7.1......4+1.25+17..28+493...3+9..6+152+7+9+1+6+3+8+4.31.8..724.8.+3.+5+1.:727 231 632 932 233 333 533
+
 		var notSatisfiedType3 = false;
 		foreach (var cell in extraCellsMap)
 		{
