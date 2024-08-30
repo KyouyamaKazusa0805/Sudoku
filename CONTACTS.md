@@ -2,8 +2,8 @@
 
 If you want to contact me or learn more about sudoku techniques, I'll list the accounts that I use.
 
-| Website / Platform | Type                     | Site URL                             |
-| ------------------ | ------------------------ | ------------------------------------ |
-| Bilibili           | Video Platform           | https://space.bilibili.com/23736703  |
-| GitHub             | Open-Source Sharing Site | https://github.com/SunnieShine       |
-| Gitee              | Open-Source Sharing Site | https://gitee.com/SunnieShine/Sudoku |
+| Website / Platform | Type                     | Site URL                                |
+| ------------------ | ------------------------ | --------------------------------------- |
+| Bilibili           | Video Platform           | https://space.bilibili.com/23736703     |
+| GitHub             | Open-Source Sharing Site | https://github.com/SunnieShine          |
+| Gitee              | Open-Source Sharing Site | https://gitee.com/KyouyamaKazusa/Sudoku |
