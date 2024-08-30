@@ -1987,6 +1987,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chinese Earthly Branches (子, 丑, 寅, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_ChineseEarthlyBranch_Zi {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_ChineseEarthlyBranch_Zi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chinese Havenly Stems (甲, 乙, 丙, ...).
         /// </summary>
         internal static string BabaGroupInitialLetter_ChineseHavenlyStem_Jia {

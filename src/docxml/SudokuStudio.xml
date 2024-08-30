@@ -6574,6 +6574,11 @@
               Looks up a localized string similar to Chinese numerals (一, 二, 三, ...).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_ChineseEarthlyBranch_Zi">
+            <summary>
+              Looks up a localized string similar to Chinese Earthly Branches (子, 丑, 寅, ...).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_ChineseHavenlyStem_Jia">
             <summary>
               Looks up a localized string similar to Chinese Havenly Stems (甲, 乙, 丙, ...).

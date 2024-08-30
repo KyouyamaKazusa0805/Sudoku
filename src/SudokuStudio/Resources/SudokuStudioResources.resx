@@ -2723,4 +2723,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_BabaGroupingSettingPageTitle" xml:space="preserve">
     <value>Baba Grouping</value>
   </data>
+  <data name="BabaGroupInitialLetter_ChineseEarthlyBranch_Zi" xml:space="preserve">
+    <value>Chinese Earthly Branches (子, 丑, 寅, ...)</value>
+  </data>
 </root>

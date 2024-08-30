@@ -23,6 +23,7 @@
 					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_ChineseCharacter_One}" Tag="{m:BabaGroupInitialLetter Value=ChineseCharacter_One}" />
 					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_CapitalChineseCharacter_One}" Tag="{m:BabaGroupInitialLetter Value=CapitalChineseCharacter_One}" />
 					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_ChineseHavenlyStem_Jia}" Tag="{m:BabaGroupInitialLetter Value=ChineseHavenlyStem_Jia}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_ChineseEarthlyBranch_Zi}" Tag="{m:BabaGroupInitialLetter Value=ChineseEarthlyBranch_Zi}" />
 					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_Kanji_One}" Tag="{m:BabaGroupInitialLetter Value=Kanji_One}" />
 				</ComboBox>
 			</w:SettingsCard>

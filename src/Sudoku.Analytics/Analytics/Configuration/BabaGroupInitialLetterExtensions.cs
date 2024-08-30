@@ -27,6 +27,8 @@ public static class BabaGroupInitialLetterExtensions
 		{ (BabaGroupInitialLetter.ChineseCharacter_One, BabaGroupLetterCasing.Lower), "\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d" },
 		{ (BabaGroupInitialLetter.ChineseHavenlyStem_Jia, BabaGroupLetterCasing.Upper), "\u7532\u4e59\u4e19\u4e01\u620a\u5df1\u5e9a\u8f9b\u58ec" },
 		{ (BabaGroupInitialLetter.ChineseHavenlyStem_Jia, BabaGroupLetterCasing.Lower), "\u7532\u4e59\u4e19\u4e01\u620a\u5df1\u5e9a\u8f9b\u58ec" },
+		{ (BabaGroupInitialLetter.ChineseEarthlyBranch_Zi, BabaGroupLetterCasing.Upper), "\u5b50\u4e11\u5bc5\u536f\u8fb0\u5df3\u5348\u672a\u7533" },
+		{ (BabaGroupInitialLetter.ChineseEarthlyBranch_Zi, BabaGroupLetterCasing.Lower), "\u5b50\u4e11\u5bc5\u536f\u8fb0\u5df3\u5348\u672a\u7533" },
 		{ (BabaGroupInitialLetter.CapitalChineseCharacter_One, BabaGroupLetterCasing.Upper), "\u58f9\u8d30\u53c1\u8086\u4f0d\u9646\u67d2\u634c\u7396" },
 		{ (BabaGroupInitialLetter.CapitalChineseCharacter_One, BabaGroupLetterCasing.Lower), "\u58f9\u8d30\u53c1\u8086\u4f0d\u9646\u67d2\u634c\u7396" },
 		{ (BabaGroupInitialLetter.Kanji_One, BabaGroupLetterCasing.Upper), "\u58f1\u5f10\u53c2\u8086\u4f0d\u9678\u6f06\u634c\u7396" },

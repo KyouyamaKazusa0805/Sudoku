@@ -2714,4 +2714,7 @@
   <data name="MainWindow_BabaGroupingSettingPageTitle" xml:space="preserve">
     <value>代数</value>
   </data>
+  <data name="BabaGroupInitialLetter_ChineseEarthlyBranch_Zi" xml:space="preserve">
+    <value>中文地支（子、丑、寅、……）</value>
+  </data>
 </root>

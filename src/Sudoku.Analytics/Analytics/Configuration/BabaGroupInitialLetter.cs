@@ -43,10 +43,16 @@ public enum BabaGroupInitialLetter : byte
 	ChineseCharacter_One,
 
 	/// <summary>
-	/// Indicates the initial letter is Chinese Havenly stem '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
+	/// Indicates the initial letter is Chinese Havenly Stems '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
 	/// The sequence would be <c>&#30002;, &#20057;, &#19993; ...</c>.
 	/// </summary>
 	ChineseHavenlyStem_Jia,
+
+	/// <summary>
+	/// Indicates the initial letter is Chinese Earthly Branches '<c>&#23376;</c>' (pinyin: zǐ, meaning "the first").
+	/// The sequence would be <c>&#23376;, &#19985;, &#23493; ...</c>.
+	/// </summary>
+	ChineseEarthlyBranch_Zi,
 
 	/// <summary>
 	/// Indicates the initial letter is Chinese character '<c>&#22777;</c>' (pinyin: yī, meaning "one").

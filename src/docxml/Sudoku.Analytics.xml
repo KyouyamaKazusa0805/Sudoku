@@ -5468,8 +5468,14 @@
         </member>
         <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseHavenlyStem_Jia">
             <summary>
-            Indicates the initial letter is Chinese Havenly stem '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
+            Indicates the initial letter is Chinese Havenly Stems '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
             The sequence would be <c>&#30002;, &#20057;, &#19993; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseEarthlyBranch_Zi">
+            <summary>
+            Indicates the initial letter is Chinese Earthly Branches '<c>&#23376;</c>' (pinyin: zǐ, meaning "the first").
+            The sequence would be <c>&#23376;, &#19985;, &#23493; ...</c>.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.CapitalChineseCharacter_One">
