@@ -4924,7 +4924,7 @@
         <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Runtime#IContext#Grid">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetLinkOption(Sudoku.Concepts.LinkType)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetLinkOption(Sudoku.Analytics.Configuration.LinkType)">
             <summary>
             Try to get the link option for the specified link type.
             </summary>
@@ -5228,9 +5228,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule">
             <summary>
-            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle"/>).
+            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5240,9 +5240,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule">
             <summary>
-            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostLockedSets"/>).
+            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSets"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5255,9 +5255,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule">
             <summary>
-            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>).
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5270,9 +5270,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
             <summary>
-            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>).
+            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5285,27 +5285,27 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule">
             <summary>
-            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>).
+            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule">
             <summary>
-            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>).
+            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule">
             <summary>
-            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.XyzWing"/>).
+            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.XyzWing"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5315,9 +5315,9 @@
         </member>
         <member name="T:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule">
             <summary>
-            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>).
             </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
@@ -5434,6 +5434,84 @@
         <member name="P:Sudoku.Analytics.Configuration.IStepSearcherOptions`1.Default">
             <summary>
             Represents a default instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.LinkOption">
+            <summary>
+            Represents an option that controls the link collecting rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkOption.Intersection">
+            <summary>
+            Indicates link collecting method only collects for node lying in an intersection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkOption.House">
+            <summary>
+            Indicates link collecting method only collects for node lying in one house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkOption.All">
+            <summary>
+            Indicates link collecting method collects for all possible nodes, regardless of position.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.LinkType">
+            <summary>
+            Represents a link type.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.Unknown">
+            <summary>
+            Indicates the placeholder of the enumeration. The value can be represented in cases "None" or "Unknown".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit">
+            <summary>
+            Indicates the link type is a single digit (X rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.SingleCell">
+            <summary>
+            Indicates the link type is a single cell (Y rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates">
+            <summary>
+            Indicates the link type is a locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets">
+            <summary>
+            Indicates the link type is an almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish">
+            <summary>
+            Indicates the link type is a kraken normal fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.XyzWing">
+            <summary>
+            Indicates the link type is an XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle">
+            <summary>
+            Indicates the link type is an almost unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle">
+            <summary>
+            Indicates the link type is an almost avoidable rectangle.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute">
@@ -5680,7 +5758,7 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Concepts.LinkOption.House"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.House"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.OverriddenLinkOptions"/>: <c>[]</c></item>
             </list>
             </remarks>
@@ -19508,7 +19586,7 @@
             Clears the cached rules.
             </summary>
         </member>
-        <member name="M:Sudoku.Caching.ChainingRulePool.TryCreate(Sudoku.Concepts.LinkType)">
+        <member name="M:Sudoku.Caching.ChainingRulePool.TryCreate(Sudoku.Analytics.Configuration.LinkType)">
             <summary>
             Creates a <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance via the specified link type.
             </summary>
@@ -19608,7 +19686,7 @@
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
-        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType,Sudoku.Analytics.Configuration.StepSearcherOptions,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule}@)">
+        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.LinkType,Sudoku.Analytics.Configuration.StepSearcherOptions,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule}@)">
             <summary>
             Try to collect strong and weak links appeared in a grid.
             </summary>
@@ -21358,84 +21436,6 @@
             <param name="node2">Indicates the second node to be added.</param>
             <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
             <param name="pattern">The advanced pattern to be used.</param>
-        </member>
-        <member name="T:Sudoku.Concepts.LinkOption">
-            <summary>
-            Represents an option that controls the link collecting rules.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkOption.Intersection">
-            <summary>
-            Indicates link collecting method only collects for node lying in an intersection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkOption.House">
-            <summary>
-            Indicates link collecting method only collects for node lying in one house.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkOption.All">
-            <summary>
-            Indicates link collecting method collects for all possible nodes, regardless of position.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.LinkType">
-            <summary>
-            Represents a link type.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.Unknown">
-            <summary>
-            Indicates the placeholder of the enumeration. The value can be represented in cases "None" or "Unknown".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.SingleDigit">
-            <summary>
-            Indicates the link type is a single digit (X rule).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.SingleCell">
-            <summary>
-            Indicates the link type is a single cell (Y rule).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.LockedCandidates">
-            <summary>
-            Indicates the link type is a locked candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSets">
-            <summary>
-            Indicates the link type is an almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.KrakenNormalFish">
-            <summary>
-            Indicates the link type is a kraken normal fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.XyzWing">
-            <summary>
-            Indicates the link type is an XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle">
-            <summary>
-            Indicates the link type is an almost unique rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.LinkType.AlmostAvoidableRectangle">
-            <summary>
-            Indicates the link type is an almost avoidable rectangle.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Loop">
             <summary>

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
 /// Represents a link type.

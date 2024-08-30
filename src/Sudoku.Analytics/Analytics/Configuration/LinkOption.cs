@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
 /// Represents an option that controls the link collecting rules.
