@@ -22,20 +22,6 @@
 
 A sudoku handling SDK using brute forces and logical techniques. Now this solution supports generating puzzles, solving puzzles (with logical & illogical techniques) and some attribute checking (for example, to determine whether the specified grid is a minimal puzzle, which will become multiple solutions when any a digit is missing).
 
-### Sample
-
-Here I give you [a sample](https://sunnieshine.github.io/Sudoku/usages/en/solve-by-manual) to demonstrate how to solve a puzzle using manual sudoku techniques.
-
-### Extra description
-
-In the future, I'd like to apply this solution to **almost every platform**. I may finish the Win10/11 app project, android app project, bot on common on-line platforms (QQ, Bilibili and so on).
-
-Please note that the programming language version is always used as 'preview', which means some preview features are still used in this solution.
-
-You can also use JetBrains Rider as your IDE. Use whatever you want to use, even Notepad :D Although C# contains some syntaxes that are only allowed in Visual Studio (e.g. keyword `__makeref`), this repo doesn't use them. Therefore, you can use other IDEs to develop the code in this repo liberally.
-
-In addition, the framework and IDE version may update in the future; in other words, they aren't changeless. The information is **for reference only**.
-
 ### Repository Positioning
 
 This repository is created for the following users:
