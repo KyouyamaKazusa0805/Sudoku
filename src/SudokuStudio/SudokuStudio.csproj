@@ -120,6 +120,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\Analysis\BabaGroupingSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\Drawing\MiscellaneousDrawingSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

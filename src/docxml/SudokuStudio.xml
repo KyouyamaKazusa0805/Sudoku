@@ -1110,6 +1110,12 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode">
             <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.InitialLetter">
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing">
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
             <inheritdoc cref="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
@@ -1370,6 +1376,18 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DifficultyLevelMode"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.InitialLetterProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.InitialLetter"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.InitialLetter"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniquesProperty">
             <summary>
@@ -5185,6 +5203,20 @@
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
         </member>
+        <member name="T:SudokuStudio.Markup.BabaGroupInitialLetterExtension">
+            <summary>
+            Represents a markup extension to provide a <see cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/> value.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.BabaGroupInitialLetterExtension.Value">
+            <summary>
+            The target value to be set.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.BabaGroupInitialLetterExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.BooleanExtension">
             <summary>
             Represents a markup extension to provide a <see cref="T:System.Boolean"/> value.
@@ -6532,6 +6564,56 @@
               Looks up a localized string similar to &lt;Anonymous&gt;.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_CapitalChineseCharacter_One">
+            <summary>
+              Looks up a localized string similar to Chinese numerals (壹, 贰, 叁, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_ChineseCharacter_One">
+            <summary>
+              Looks up a localized string similar to Chinese numerals (一, 二, 三, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_ChineseHavenlyStem_Jia">
+            <summary>
+              Looks up a localized string similar to Chinese Havenly Stems (甲, 乙, 丙, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_Digit_One">
+            <summary>
+              Looks up a localized string similar to Digits (1, 2, 3, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_Digit_Zero">
+            <summary>
+              Looks up a localized string similar to Digits (0, 1, 2, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_EnglishLetter_A">
+            <summary>
+              Looks up a localized string similar to English letters (A, B, C, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_EnglishLetter_X">
+            <summary>
+              Looks up a localized string similar to English letters (X, Y, Z, W, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_GreeceLetter_Alpha">
+            <summary>
+              Looks up a localized string similar to Greece letters (Α, Β, Γ, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_Kanji_One">
+            <summary>
+              Looks up a localized string similar to Kanjis (壱, 弐, 参, ...).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BabaGroupInitialLetter_RomanticNumber_One">
+            <summary>
+              Looks up a localized string similar to Roman numerals (Ⅰ, Ⅱ, Ⅲ, ...).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_ColumnLabel">
             <summary>
               Looks up a localized string similar to column {0}.
@@ -7582,6 +7664,11 @@
               Looks up a localized string similar to Animation Feedback.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BabaGroupingSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Baba Grouping.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BasicFunctions">
             <summary>
               Looks up a localized string similar to Basic Functions.
@@ -8062,34 +8149,19 @@
               Looks up a localized string similar to Allow Almost Locked Quadruples (ALQs).
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsWWing">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetWWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-W-Wing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
             <summary>
               Looks up a localized string similar to Allow collision on ALS-XY-Wing.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule">
-            <summary>
-              Looks up a localized string similar to Allow collision on ALS-XZ.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetWWing">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXyWing">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowCollisionOnAlmostLockedSetXzRule">
             <summary>
-              Looks up a localized string similar to .
+              Looks up a localized string similar to Allow collision on ALS-XZ.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowDirectClaiming">
@@ -8147,14 +8219,9 @@
               Looks up a localized string similar to The name of the subtypes are &quot;terrible&quot;, so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule">
-            <summary>
-              Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule">
             <summary>
-              Looks up a localized string similar to .
+              Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowSiameseComplexFish">
@@ -8239,7 +8306,22 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BabaGroupFontData">
             <summary>
-              Looks up a localized string similar to Baba Is Group.
+              Looks up a localized string similar to Baba Group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BabaGroupingGroup">
+            <summary>
+              Looks up a localized string similar to Baba Grouping (Unknown Values).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BabaGroupingInitialLetter">
+            <summary>
+              Looks up a localized string similar to Initial letter or characters in baba group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BabaGroupingLetterCasing">
+            <summary>
+              Looks up a localized string similar to Letter casing.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop">
@@ -8812,6 +8894,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_LanguageDescription">
             <summary>
               Looks up a localized string similar to If you have already changed the language, it will become available in the second time you open this program..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_LetterCasingLowerCase">
+            <summary>
+              Looks up a localized string similar to Lower case (a).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_LetterCasingUpperCase">
+            <summary>
+              Looks up a localized string similar to Upper case (A).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Library">
@@ -15173,6 +15265,31 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.AlmostLockedSetAndIntersectionSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage">
+            <summary>
+            Represents baba grouping setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

@@ -29,6 +29,9 @@ public sealed partial class AnalysisPreferenceItemsPage : Page
 	private void AlmostLockedSetsAndIntersectionSettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(AlmostLockedSetAndIntersectionSettingPage), true);
 
+	private void BabaGroupingSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(BabaGroupingSettingPage), true);
+
 	private void PermutationSettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(PermutationSettingPage), true);
 

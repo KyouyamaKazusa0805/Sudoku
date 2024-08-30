@@ -20,6 +20,7 @@
 			<w:SettingsCard Header="{m:R Key=SettingsPage_SingleDigitPatternGroup}" IsClickEnabled="True" Click="SingleDigitPatternSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_DeadlyPatternsGroup}" IsClickEnabled="True" Click="DeadlyPatternSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AlmostLockedSetsAndIntersectionsGroup}" IsClickEnabled="True" Click="AlmostLockedSetsAndIntersectionSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BabaGroupingGroup}" IsClickEnabled="True" Click="BabaGroupingSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_PermutationsGroup}" IsClickEnabled="True" Click="PermutationSettingsCard_Click" />
 
 			<TextBlock Text="{m:R Key=SettingsPage_GlobalSettingsGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />

@@ -1170,12 +1170,6 @@
   <data name="SettingsPage_AllowAlmostLockedQuadruples" xml:space="preserve">
     <value>Allow Almost Locked Quadruples (ALQs)</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing" xml:space="preserve">
-    <value>Allow collision on ALS-XY-Wing</value>
-  </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule" xml:space="preserve">
-    <value>Allow collision on ALS-XZ</value>
-  </data>
   <data name="SettingsPage_AllowDirectClaiming" xml:space="preserve">
     <value>Direct Claiming</value>
   </data>
@@ -1208,9 +1202,6 @@
   </data>
   <data name="SettingsPage_AllowIrregularWingSubtypesDescription" xml:space="preserve">
     <value>The name of the subtypes are "terrible", so I will give you the pattern detail of each subtype. The brace means strong or weak links are produced in cells</value>
-  </data>
-  <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule" xml:space="preserve">
-    <value>Allow Doubly-Linked ALS-XZ</value>
   </data>
   <data name="SettingsPage_AllowSiameseComplexFish" xml:space="preserve">
     <value>Allow Siamese Fish (Franken/Mutant Fish)</value>
@@ -1261,7 +1252,7 @@
     <value>Auxiliary colors are used by views, for displaying highlighted elements in a technique step</value>
   </data>
   <data name="SettingsPage_BabaGroupFontData" xml:space="preserve">
-    <value>Baba Is Group</value>
+    <value>Baba Group</value>
   </data>
   <data name="SettingsPage_Backdrop" xml:space="preserve">
     <value>Program background style</value>
@@ -2573,9 +2564,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
     <value>Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}.</value>
   </data>
-  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetsWWing" xml:space="preserve">
-    <value>Allow collision on ALS-W-Wing</value>
-  </data>
   <data name="SettingsPage_GroupedNodeBackgroundColor" xml:space="preserve">
     <value>Grouped node background color</value>
   </data>
@@ -2583,19 +2571,19 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Grouped node stroke color</value>
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXyWing" xml:space="preserve">
-    <value />
+    <value>Allow collision on ALS-XY-Wing</value>
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetXzRule" xml:space="preserve">
-    <value />
+    <value>Allow collision on ALS-XZ</value>
   </data>
   <data name="SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule" xml:space="preserve">
-    <value />
+    <value>Allow Doubly-Linked ALS-XZ</value>
   </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value />
   </data>
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
-    <value />
+    <value>Allow collision on ALS-W-Wing</value>
   </data>
   <data name="SettingsPage_DisableGroupedTurbotFish" xml:space="preserve">
     <value>Disable for Grouped Turbot Fish</value>
@@ -2686,5 +2674,53 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="MainWindow_MiscellaneousDrawingSettingPageTitle" xml:space="preserve">
     <value>Miscellaneous Behaviors</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingGroup" xml:space="preserve">
+    <value>Baba Grouping (Unknown Values)</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingInitialLetter" xml:space="preserve">
+    <value>Initial letter or characters in baba group</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Digit_Zero" xml:space="preserve">
+    <value>Digits (0, 1, 2, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Digit_One" xml:space="preserve">
+    <value>Digits (1, 2, 3, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_RomanticNumber_One" xml:space="preserve">
+    <value>Roman numerals (Ⅰ, Ⅱ, Ⅲ, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_EnglishLetter_A" xml:space="preserve">
+    <value>English letters (A, B, C, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_EnglishLetter_X" xml:space="preserve">
+    <value>English letters (X, Y, Z, W, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_GreeceLetter_Alpha" xml:space="preserve">
+    <value>Greece letters (Α, Β, Γ, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_ChineseCharacter_One" xml:space="preserve">
+    <value>Chinese numerals (一, 二, 三, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_CapitalChineseCharacter_One" xml:space="preserve">
+    <value>Chinese numerals (壹, 贰, 叁, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_ChineseHavenlyStem_Jia" xml:space="preserve">
+    <value>Chinese Havenly Stems (甲, 乙, 丙, ...)</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Kanji_One" xml:space="preserve">
+    <value>Kanjis (壱, 弐, 参, ...)</value>
+  </data>
+  <data name="SettingsPage_LetterCasingUpperCase" xml:space="preserve">
+    <value>Upper case (A)</value>
+  </data>
+  <data name="SettingsPage_LetterCasingLowerCase" xml:space="preserve">
+    <value>Lower case (a)</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingLetterCasing" xml:space="preserve">
+    <value>Letter casing</value>
+  </data>
+  <data name="MainWindow_BabaGroupingSettingPageTitle" xml:space="preserve">
+    <value>Baba Grouping</value>
   </data>
 </root>

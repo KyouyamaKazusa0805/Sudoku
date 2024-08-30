@@ -201,6 +201,13 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = 0)]
 	public partial int DifficultyLevelMode { get; set; }
 
+	/// <inheritdoc cref="StepSearcherOptions.BabaGroupInitialLetter"/>
+	[DependencyProperty(DefaultValue = BabaGroupInitialLetter.EnglishLetter_X)]
+	public partial BabaGroupInitialLetter InitialLetter { get; set; }
+
+	/// <inheritdoc cref="StepSearcherOptions.BabaGroupLetterCasing"/>
+	[DependencyProperty(DefaultValue = BabaGroupLetterCasing.Lower)]
+	public partial BabaGroupLetterCasing LetterCasing { get; set; }
 
 	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
 	[DependencyProperty]

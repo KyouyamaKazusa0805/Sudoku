@@ -2135,9 +2135,8 @@
   <data name="_Inference_Weak" xml:space="preserve">
     <value>弱链关系</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_ProgramName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="_ProgramName" xml:space="preserve">
+    <value>Sudoku Studio</value>
   </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>
@@ -2666,5 +2665,53 @@
   </data>
   <data name="MainWindow_MiscellaneousDrawingSettingPageTitle" xml:space="preserve">
     <value>其他行为</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingGroup" xml:space="preserve">
+    <value>代数</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingInitialLetter" xml:space="preserve">
+    <value>代数使用的字母或字符</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Digit_Zero" xml:space="preserve">
+    <value>数字（0、1、2、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Digit_One" xml:space="preserve">
+    <value>数字（1、2、3、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_RomanticNumber_One" xml:space="preserve">
+    <value>罗马数字（Ⅰ、Ⅱ、Ⅲ、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_EnglishLetter_A" xml:space="preserve">
+    <value>英语字母（A、B、C、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_EnglishLetter_X" xml:space="preserve">
+    <value>英语字母（X、Y、Z、W、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_GreeceLetter_Alpha" xml:space="preserve">
+    <value>希腊字母（Α、Β、Γ、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_ChineseCharacter_One" xml:space="preserve">
+    <value>小写中文数字（一、二、三、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_CapitalChineseCharacter_One" xml:space="preserve">
+    <value>大写中文数字（壹、贰、叁、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_ChineseHavenlyStem_Jia" xml:space="preserve">
+    <value>中文天干（甲、乙、丙、……）</value>
+  </data>
+  <data name="BabaGroupInitialLetter_Kanji_One" xml:space="preserve">
+    <value>日语数字（壱、弐、参、……）</value>
+  </data>
+  <data name="SettingsPage_LetterCasingUpperCase" xml:space="preserve">
+    <value>大写（A）</value>
+  </data>
+  <data name="SettingsPage_LetterCasingLowerCase" xml:space="preserve">
+    <value>小写（a）</value>
+  </data>
+  <data name="SettingsPage_BabaGroupingLetterCasing" xml:space="preserve">
+    <value>代数字符的大小写</value>
+  </data>
+  <data name="MainWindow_BabaGroupingSettingPageTitle" xml:space="preserve">
+    <value>代数</value>
   </data>
 </root>

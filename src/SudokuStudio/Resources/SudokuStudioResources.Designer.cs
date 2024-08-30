@@ -1969,6 +1969,96 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chinese numerals (壹, 贰, 叁, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_CapitalChineseCharacter_One {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_CapitalChineseCharacter_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chinese numerals (一, 二, 三, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_ChineseCharacter_One {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_ChineseCharacter_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chinese Havenly Stems (甲, 乙, 丙, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_ChineseHavenlyStem_Jia {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_ChineseHavenlyStem_Jia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digits (1, 2, 3, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_Digit_One {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_Digit_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digits (0, 1, 2, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_Digit_Zero {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_Digit_Zero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English letters (A, B, C, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_EnglishLetter_A {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_EnglishLetter_A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English letters (X, Y, Z, W, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_EnglishLetter_X {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_EnglishLetter_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greece letters (Α, Β, Γ, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_GreeceLetter_Alpha {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_GreeceLetter_Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kanjis (壱, 弐, 参, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_Kanji_One {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_Kanji_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roman numerals (Ⅰ, Ⅱ, Ⅲ, ...).
+        /// </summary>
+        internal static string BabaGroupInitialLetter_RomanticNumber_One {
+            get {
+                return ResourceManager.GetString("BabaGroupInitialLetter_RomanticNumber_One", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to column {0}.
         /// </summary>
         internal static string CandidatePicker_ColumnLabel {
@@ -3859,6 +3949,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Baba Grouping.
+        /// </summary>
+        internal static string MainWindow_BabaGroupingSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_BabaGroupingSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Functions.
         /// </summary>
         internal static string MainWindow_BasicFunctions {
@@ -4725,33 +4824,6 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-W-Wing.
         /// </summary>
-        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsWWing {
-            get {
-                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsWWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
-        /// </summary>
-        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing {
-            get {
-                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsXyWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow collision on ALS-XZ.
-        /// </summary>
-        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule {
-            get {
-                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetsXzRule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetWWing {
             get {
                 return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetWWing", resourceCulture);
@@ -4759,7 +4831,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {
             get {
@@ -4768,7 +4840,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Allow collision on ALS-XZ.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXzRule {
             get {
@@ -4877,15 +4949,6 @@ namespace SudokuStudio.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Allow Doubly-Linked ALS-XZ.
-        /// </summary>
-        internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule {
-            get {
-                return ResourceManager.GetString("SettingsPage_AllowLoopedPatternsOnAlmostLockedSetsXzRule", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string SettingsPage_AllowLoopedPatternsOnAlmostLockedSetXzRule {
             get {
@@ -5038,11 +5101,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Baba Is Group.
+        ///   Looks up a localized string similar to Baba Group.
         /// </summary>
         internal static string SettingsPage_BabaGroupFontData {
             get {
                 return ResourceManager.GetString("SettingsPage_BabaGroupFontData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baba Grouping (Unknown Values).
+        /// </summary>
+        internal static string SettingsPage_BabaGroupingGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_BabaGroupingGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial letter or characters in baba group.
+        /// </summary>
+        internal static string SettingsPage_BabaGroupingInitialLetter {
+            get {
+                return ResourceManager.GetString("SettingsPage_BabaGroupingInitialLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter casing.
+        /// </summary>
+        internal static string SettingsPage_BabaGroupingLetterCasing {
+            get {
+                return ResourceManager.GetString("SettingsPage_BabaGroupingLetterCasing", resourceCulture);
             }
         }
         
@@ -6071,6 +6161,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_LanguageDescription {
             get {
                 return ResourceManager.GetString("SettingsPage_LanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lower case (a).
+        /// </summary>
+        internal static string SettingsPage_LetterCasingLowerCase {
+            get {
+                return ResourceManager.GetString("SettingsPage_LetterCasingLowerCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upper case (A).
+        /// </summary>
+        internal static string SettingsPage_LetterCasingUpperCase {
+            get {
+                return ResourceManager.GetString("SettingsPage_LetterCasingUpperCase", resourceCulture);
             }
         }
         

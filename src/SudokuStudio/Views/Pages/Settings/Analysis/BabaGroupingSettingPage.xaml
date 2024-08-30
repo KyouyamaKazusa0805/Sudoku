@@ -1,0 +1,37 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:conf="using:Sudoku.Analytics.Configuration"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Analysis"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:BabaGroupingSettingPage}"
+	Loaded="Page_Loaded">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BabaGroupingInitialLetter}">
+				<ComboBox x:Name="InitialLetterComboBox" SelectionChanged="InitialLetterComboBox_SelectionChanged">
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_Digit_Zero}" Tag="{m:BabaGroupInitialLetter Value=Digit_Zero}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_Digit_One}" Tag="{m:BabaGroupInitialLetter Value=Digit_One}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_RomanticNumber_One}" Tag="{m:BabaGroupInitialLetter Value=RomanticNumber_One}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_EnglishLetter_A}" Tag="{m:BabaGroupInitialLetter Value=EnglishLetter_A}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_EnglishLetter_X}" Tag="{m:BabaGroupInitialLetter Value=EnglishLetter_X}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_GreeceLetter_Alpha}" Tag="{m:BabaGroupInitialLetter Value=GreeceLetter_Alpha}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_ChineseCharacter_One}" Tag="{m:BabaGroupInitialLetter Value=ChineseCharacter_One}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_CapitalChineseCharacter_One}" Tag="{m:BabaGroupInitialLetter Value=CapitalChineseCharacter_One}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_ChineseHavenlyStem_Jia}" Tag="{m:BabaGroupInitialLetter Value=ChineseHavenlyStem_Jia}" />
+					<ComboBoxItem Content="{m:R Key=BabaGroupInitialLetter_Kanji_One}" Tag="{m:BabaGroupInitialLetter Value=Kanji_One}" />
+				</ComboBox>
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BabaGroupingLetterCasing}">
+				<w:Segmented x:Name="LetterCasingComboBox" SelectionChanged="LetterCasingComboBox_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_LetterCasingUpperCase}" Tag="{m:Boolean Value=True}" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_LetterCasingLowerCase}" Tag="{m:Boolean Value=False}" />
+				</w:Segmented>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
+</Page>
