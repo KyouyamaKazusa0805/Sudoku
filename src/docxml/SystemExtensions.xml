@@ -1928,6 +1928,12 @@
         <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Append``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
         <member name="T:System.Linq.ArrayGrouping`2">
             <summary>
             Represents a type that enumerates elements of type <typeparamref name="TSource"/>[],
@@ -2298,6 +2304,111 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.IGroupingDataProvider`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Iterators.ArrayAppendIterator`1">
+            <summary>
+            Represents an enumerator that will be created after <see cref="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="_array">The array.</param>
+            <param name="value">The final element to be iterated.</param>
+            <seealso cref="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)"/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayAppendIterator`1.#ctor(`0[],`0)">
+            <summary>
+            Represents an enumerator that will be created after <see cref="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="_array">The array.</param>
+            <param name="value">The final element to be iterated.</param>
+            <seealso cref="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)"/>
+        </member>
+        <member name="F:System.Linq.Iterators.ArrayAppendIterator`1._value">
+            <summary>
+            Indicates the internal value.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Iterators.ArrayAppendIterator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Iterators.ArrayAppendIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Iterators.ArrayAppendIterator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayAppendIterator`1.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayAppendIterator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:System.Linq.Iterators.ArrayPrependIterator`1">
+            <summary>
+            Represents an enumerator that will be created after <see cref="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="_array">The array.</param>
+            <param name="value">The final element to be iterated.</param>
+            <seealso cref="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)"/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayPrependIterator`1.#ctor(`0[],`0)">
+            <summary>
+            Represents an enumerator that will be created after <see cref="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="_array">The array.</param>
+            <param name="value">The final element to be iterated.</param>
+            <seealso cref="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)"/>
+        </member>
+        <member name="F:System.Linq.Iterators.ArrayPrependIterator`1._value">
+            <summary>
+            Indicates the internal value.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Iterators.ArrayPrependIterator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Iterators.ArrayPrependIterator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Iterators.ArrayPrependIterator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayPrependIterator`1.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.ArrayPrependIterator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:System.Linq.Iterators.IIterator`2">
+            <summary>
+            Represents an iterator type.
+            </summary>
+            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="T">The type of each element.</typeparam>
+        </member>
+        <member name="P:System.Linq.Iterators.IIterator`2.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.IIterator`2.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.Iterators.IIterator`2.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.IIterator`2.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.IIterator`2.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Iterators.IIterator`2.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:System.Linq.LinkedListEnumerable">
