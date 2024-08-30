@@ -16,6 +16,8 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		var characters = context.Options.BabaGroupInitialLetter.GetSequence(context.Options.BabaGroupLetterCasing);
+
 		// Try to collect digits that contain at least one unfilled state.
 		var mask = (Mask)0;
 		for (var digit = 0; digit < 9; digit++)
@@ -119,7 +121,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 							{
 								foreach (var cell in cells)
 								{
-									babaGroupingOffsets.Add(new(cell, isMarkX ? 'x' : 'y', pairMask));
+									babaGroupingOffsets.Add(new(cell, characters[isMarkX ? 0 : 1], pairMask));
 								}
 							}
 

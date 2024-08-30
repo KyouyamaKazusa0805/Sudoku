@@ -331,8 +331,7 @@ public sealed class PlayGameCommand : Command
 		}
 
 
-		static BabaGroupViewNode markerNodeSelector(Cell cell, int i)
-			=> new(WellKnownColorIdentifierKind.Normal, cell, (char)(i + '1'), 511);
+		static BabaGroupViewNode markerNodeSelector(Cell cell, int i) => new(cell, (char)(i + '1'), 511);
 	}
 
 

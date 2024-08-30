@@ -119,6 +119,8 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		bool checkValueCells
 	)
 	{
+		var characters = context.Options.BabaGroupInitialLetter.GetSequence(context.Options.BabaGroupLetterCasing);
+
 		ref readonly var grid = ref context.Grid;
 
 		// Iterate on each cell combination.
@@ -225,21 +227,18 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			}
 
 			var babaGroupingNodes = new List<BabaGroupViewNode>(alsCells.Count + ahsCells.Count);
-			var character = 'a';
+			var (characterIndexAhs, characterIndexAls) = (0, 0);
 			foreach (var cell in alsCells)
 			{
-				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(cell, characters[characterIndexAhs++], grid.GetCandidates(cell)));
 			}
-
-			character = 'a';
 			foreach (var cell in ahsCells)
 			{
-				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(cell, characters[characterIndexAls++], grid.GetCandidates(cell)));
 			}
-
 			foreach (var cell in c & EmptyCells)
 			{
-				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, (char)('a' - 1 + size), grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(cell, characters[size - 1], grid.GetCandidates(cell)));
 			}
 
 			var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);

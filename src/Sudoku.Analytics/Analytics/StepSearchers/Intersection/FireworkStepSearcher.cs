@@ -160,6 +160,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		Cell pivot
 	)
 	{
+		var characters = context.Options.BabaGroupInitialLetter.GetSequence(context.Options.BabaGroupLetterCasing).ToArray();
+
 		var nonPivotCells = pattern.Map - pivot;
 		var cell1 = nonPivotCells[0];
 		var cell2 = nonPivotCells[1];
@@ -234,13 +236,13 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						select new CellViewNode(ColorIdentifier.Elimination, house2CellExcluded),
 						..
 						from cell in (HousesMap[(cell1.AsCellMap() + pivot).SharedLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(cell, 'y', currentDigitsMask),
+						select new BabaGroupViewNode(cell, characters[1], currentDigitsMask),
 						..
 						from cell in (HousesMap[(cell2.AsCellMap() + pivot).SharedLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(cell, 'x', currentDigitsMask),
-						new BabaGroupViewNode(pivot, 'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
-						new BabaGroupViewNode(cell1, 'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
-						new BabaGroupViewNode(cell2, 'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
+						select new BabaGroupViewNode(cell, characters[0], currentDigitsMask),
+						new BabaGroupViewNode(pivot, characters[2], (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+						new BabaGroupViewNode(cell1, characters[0], (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+						new BabaGroupViewNode(cell2, characters[1], (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 					]
 				],
 				context.Options,

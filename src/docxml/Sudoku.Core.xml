@@ -4444,7 +4444,7 @@
         </member>
         <member name="T:Sudoku.Drawing.Nodes.BabaGroupViewNode">
             <summary>
-            Defines a view node that highlights for a Baba group.
+            Defines a view node that highlights for a baba group.
             </summary>
             <param name="identifier"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>
@@ -4453,7 +4453,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Nodes.BabaGroupViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,System.Int32,System.Char,System.Int16)">
             <summary>
-            Defines a view node that highlights for a Baba group.
+            Defines a view node that highlights for a baba group.
             </summary>
             <param name="identifier"><inheritdoc/></param>
             <param name="cell">Indicates the cell used.</param>

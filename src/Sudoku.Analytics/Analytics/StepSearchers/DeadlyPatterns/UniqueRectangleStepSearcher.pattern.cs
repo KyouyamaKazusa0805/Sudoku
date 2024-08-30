@@ -1165,6 +1165,8 @@ public partial class UniqueRectangleStepSearcher
 	/// </remarks>
 	private partial void CheckBabaGroupingUnique(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
+		var characters = context.Options.BabaGroupInitialLetter.GetSequence(context.Options.BabaGroupLetterCasing);
+
 		var cells = urCells.AsCellMap();
 
 		// Check all cells are empty.
@@ -1304,7 +1306,7 @@ public partial class UniqueRectangleStepSearcher
 					}
 
 					// Add into the list.
-					var extraDigitId = (char)(extraDigit + '1');
+					var extraDigitId = context.Options.BabaGroupInitialLetter.EscapeDigit(extraDigit);
 					var extraDigitMask = (Mask)(1 << extraDigit);
 					accumulator.Add(
 						new UniqueRectangleWithBabaGroupingStep(
@@ -1318,10 +1320,10 @@ public partial class UniqueRectangleStepSearcher
 								],
 								[
 									.. candidateOffsets2,
-									new BabaGroupViewNode(bivalueCellToCheck, 'y', _xOr_yMask),
-									new BabaGroupViewNode(targetCell, 'x', _xOr_yMask),
+									new BabaGroupViewNode(bivalueCellToCheck, characters[1], _xOr_yMask),
+									new BabaGroupViewNode(targetCell, characters[0], _xOr_yMask),
 									new BabaGroupViewNode(urCellInSameBlock, extraDigitId, extraDigitMask),
-									new BabaGroupViewNode(anotherCell, 'x', _xOr_yMask),
+									new BabaGroupViewNode(anotherCell, characters[0], _xOr_yMask),
 									new BabaGroupViewNode(resultCell, extraDigitId, extraDigitMask)
 								]
 							],
@@ -1422,7 +1424,7 @@ public partial class UniqueRectangleStepSearcher
 					}
 
 					// Add into the list.
-					var extraDigitId2 = (char)(extraDigit + '1');
+					var extraDigitId2 = context.Options.BabaGroupInitialLetter.EscapeDigit(extraDigit);
 					var extraDigitMask2 = (Mask)(1 << extraDigit);
 					accumulator.Add(
 						new UniqueRectangleWithBabaGroupingStep(
@@ -1442,10 +1444,10 @@ public partial class UniqueRectangleStepSearcher
 								[
 									.. candidateOffsets2,
 									new CandidateViewNode(ColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit),
-									new BabaGroupViewNode(bivalueCellToCheck, 'y', _xOr_yMask2),
-									new BabaGroupViewNode(targetCell, 'x', _xOr_yMask2),
+									new BabaGroupViewNode(bivalueCellToCheck, characters[1], _xOr_yMask2),
+									new BabaGroupViewNode(targetCell, characters[0], _xOr_yMask2),
 									new BabaGroupViewNode(urCellInSameBlock, extraDigitId2, extraDigitMask2),
-									new BabaGroupViewNode(anotherCell, 'x', _xOr_yMask2),
+									new BabaGroupViewNode(anotherCell, characters[0], _xOr_yMask2),
 									new BabaGroupViewNode(resultCell, extraDigitId2, extraDigitMask2)
 								]
 							],

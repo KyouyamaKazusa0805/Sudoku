@@ -1,7 +1,7 @@
 namespace Sudoku.Drawing.Nodes;
 
 /// <summary>
-/// Defines a view node that highlights for a Baba group.
+/// Defines a view node that highlights for a baba group.
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="cell">Indicates the cell used.</param>
