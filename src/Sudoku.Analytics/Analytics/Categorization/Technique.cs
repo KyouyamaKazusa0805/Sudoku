@@ -4810,14 +4810,14 @@ public enum Technique
 	//
 	// Remote Pair
 	//
-	#region MyRegion
+	#region Remote Pair
 	/// <summary>
 	/// Indicates remote pair.
 	/// </summary>
 	[Hodoku(Rating = 110, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0703")]
 	[TechniqueMetadata(
 		Rating = 50,
-		DifficultyLevel = DifficultyLevel.Fiendish,
+		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BabaGrouping,
 		StepType = typeof(RemotePairStep),
 		StepSearcherType = typeof(RemotePairStepSearcher))]
@@ -4828,7 +4828,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 52,
-		DifficultyLevel = DifficultyLevel.Fiendish,
+		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BabaGrouping,
 		StepType = typeof(RemotePairStep),
 		StepSearcherType = typeof(RemotePairStepSearcher))]
