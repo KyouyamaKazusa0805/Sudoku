@@ -29123,6 +29123,135 @@
         <member name="P:Sudoku.Resources.Interpolation.Values">
             <summary>The values of the interpolation.</summary>
         </member>
+        <member name="T:Sudoku.Resources.InterpolationArray">
+            <summary>
+            Represents a read-only array of <see cref="T:Sudoku.Resources.Interpolation"/> values.
+            </summary>
+            <param name="_values">Indicates the values.</param>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.#ctor(System.ReadOnlyMemory{Sudoku.Resources.Interpolation})">
+            <summary>
+            Represents a read-only array of <see cref="T:Sudoku.Resources.Interpolation"/> values.
+            </summary>
+            <param name="_values">Indicates the values.</param>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Length">
+            <summary>
+            Indicates the number of elements in the collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Span">
+            <summary>
+            Provides a way to visit each elements in the collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Int32)">
+            <summary>
+            Try to get the target resource value at the desired index, and belong the specified culture.
+            </summary>
+            <param name="culture">The desired culture.</param>
+            <param name="valueIndex">The index of the target resource value.</param>
+            <returns>The target resource value.</returns>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Index)">
+            <inheritdoc cref="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Int32)"/>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.Globalization.CultureInfo,System.Int32)">
+            <inheritdoc cref="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Int32)"/>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.Globalization.CultureInfo,System.Index)">
+            <inheritdoc cref="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Int32)"/>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Range)">
+            <summary>
+            Try to get a slice of <see cref="T:System.String"/> resource values
+            inside the specified culture resource dictionary.
+            </summary>
+            <param name="culture">The desired culture.</param>
+            <param name="range">The range.</param>
+            <returns>A list of resource value sliced.</returns>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.Globalization.CultureInfo,System.Range)">
+            <inheritdoc cref="P:Sudoku.Resources.InterpolationArray.Item(System.String,System.Range)"/>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.Int32)">
+            <summary>
+            Try to get the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the target element.</returns>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.String)">
+            <summary>
+            Returns an <see cref="T:Sudoku.Resources.Interpolation"/> instance via the specified culture.
+            </summary>
+            <param name="culture">The desired culture.</param>
+            <returns>An <see cref="T:Sudoku.Resources.Interpolation"/> instance.</returns>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Item(System.Globalization.CultureInfo)">
+            <inheritdoc cref="P:Sudoku.Resources.InterpolationArray.Item(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.System#Collections#Generic#IEnumerable{Sudoku#Resources#Interpolation}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.Create(System.ReadOnlySpan{Sudoku.Resources.Interpolation})">
+            <summary>
+            Creates an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance via a list of <see cref="T:Sudoku.Resources.Interpolation"/> instances.
+            </summary>
+            <param name="values">A list of interpolations.</param>
+            <returns>An <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Resources.InterpolationArray.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each element of an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.
+            </summary>
+            <param name="values">The internal values.</param>
+            <seealso cref="T:Sudoku.Resources.InterpolationArray"/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.#ctor(Sudoku.Resources.InterpolationArray@)">
+            <summary>
+            Represents an enumerator type that can iterate on each element of an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.
+            </summary>
+            <param name="values">The internal values.</param>
+            <seealso cref="T:Sudoku.Resources.InterpolationArray"/>
+        </member>
+        <member name="F:Sudoku.Resources.InterpolationArray.Enumerator._values">
+            <summary>
+            Indicates the backing span.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.InterpolationArray.Enumerator._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator">
             <summary>
             Represents a generator type that can generate puzzles with complex single techniques.
