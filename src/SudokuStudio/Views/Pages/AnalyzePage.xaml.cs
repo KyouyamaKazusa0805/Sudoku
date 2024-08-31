@@ -470,16 +470,16 @@ public sealed partial class AnalyzePage : Page
 									BaseGrid: var g,
 									GridString: var gridStr,
 									ShowCandidates: var showCandidates,
-									RenderableData: var nullableRenderableData
+									RenderableData: var possibleDrawable
 								}
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
 								SudokuPane.DisplayCandidates = showCandidates;
 
-								if (nullableRenderableData is { } renderableData)
+								if (possibleDrawable is { } drawable)
 								{
-									VisualUnit = renderableData;
+									VisualUnit = drawable;
 								}
 								break;
 							}
@@ -582,11 +582,11 @@ public sealed partial class AnalyzePage : Page
 				BaseGrid: var grid,
 				GridString: _,
 				ShowCandidates: var showCandidates,
-				RenderableData: var renderableData
+				RenderableData: var drawable
 			})
 		{
 			SudokuPane.Puzzle = grid;
-			VisualUnit = renderableData;
+			VisualUnit = drawable;
 			SudokuPane.DisplayCandidates = showCandidates;
 
 			((App)Application.Current).AppStartingGridInfo = null; // Maybe not necessary...
