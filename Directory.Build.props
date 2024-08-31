@@ -24,10 +24,12 @@
 	</PropertyGroup>
 
 	<!--Enables the preview features if the project is not the source generators.-->
+	<!--
 	<PropertyGroup Condition="'$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' And '$(LangVersion)'=='preview'">
 		<Feature>InterceptorsPreview</Feature>
 		<EnablePreviewFeatures>true</EnablePreviewFeatures>
 	</PropertyGroup>
+	-->
 
 	<!--Select the default configuration as 'DEBUG', and set the compilation symbols.-->
 	<Choose>
