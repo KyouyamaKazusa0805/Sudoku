@@ -10,7 +10,9 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_LawOfLeftoverStepSearcher",
 	Technique.LawOfLeftover,
-	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly,
+	IsOrderingFixed = true,
+	IsAvailabilityReadOnly = true)]
 public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
