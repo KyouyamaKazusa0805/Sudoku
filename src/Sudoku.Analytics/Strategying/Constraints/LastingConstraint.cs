@@ -52,13 +52,17 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		return context.AnalyzerResult.Any(predicate);
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		bool predicate(Step s)
-			=> s is SingleStep { Subtype: var st } and ILastingTrait { Lasting: var l }
-			&& st.GetSingleTechnique() == Technique
-			&& Operator.GetOperator<int>()(LimitCount, l);
+		foreach (var step in context.AnalyzerResult)
+		{
+			if (step is SingleStep { Subtype: var st } and ILastingTrait { Lasting: var l }
+				&& st.GetSingleTechnique() == Technique)
+			{
+				if (!Operator.GetOperator<int>()(l, LimitCount))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
