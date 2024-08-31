@@ -4,6 +4,7 @@ namespace System;
 /// Represents a variant color type.
 /// </summary>
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[method: JsonConstructor]
 public readonly partial struct VariantColor(
 	[PrimaryConstructorParameter, StringMember] byte a,
 	[PrimaryConstructorParameter, StringMember] byte r,
