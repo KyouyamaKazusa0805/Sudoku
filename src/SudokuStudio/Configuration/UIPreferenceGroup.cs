@@ -277,6 +277,12 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCandidates { get; set; }
 
+	/// <summary>
+	/// Indicates whether the current mode is direct mode.
+	/// </summary>
+	[DependencyProperty(DefaultValue = false)]
+	public partial bool IsDirectMode { get; set; }
+
 	/// <inheritdoc cref="SudokuPane.DisplayCursors"/>
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool DisplayCursors { get; set; }

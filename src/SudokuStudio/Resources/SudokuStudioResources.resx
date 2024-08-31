@@ -2726,4 +2726,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="BabaGroupInitialLetter_ChineseEarthlyBranch_Zi" xml:space="preserve">
     <value>Chinese Earthly Branches (子, 丑, 寅, ...)</value>
   </data>
+  <data name="AnalyzePage_IsDirectMode" xml:space="preserve">
+    <value>Direct mode</value>
+  </data>
+  <data name="AnalyzePage_IsDirectModeDescription" xml:space="preserve">
+    <value>In direct mode, analyzer will temporarily override the following configuration items:
+ • Hidden Singles first (Default Naked Singles)
+ • Enable Direct Intersections / Direct Subsets and Complex Singles
+ • Different technique names (In direct modes, "Hidden Singles" will be called "Crosshatching")</value>
+  </data>
 </root>

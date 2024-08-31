@@ -2717,4 +2717,13 @@
   <data name="BabaGroupInitialLetter_ChineseEarthlyBranch_Zi" xml:space="preserve">
     <value>中文地支（子、丑、寅、……）</value>
   </data>
+  <data name="AnalyzePage_IsDirectMode" xml:space="preserve">
+    <value>直观模式</value>
+  </data>
+  <data name="AnalyzePage_IsDirectModeDescription" xml:space="preserve">
+    <value>在直观模式下，分析器会临时覆盖如下的一些配置项：
+ • 优先用排除技巧（默认是唯一余数技巧）
+ • 启用带区块和数组，以及各种组合使用的出数类技巧
+ • 一些技巧名的变更（在非直观模式下，排除技巧会换个名字，叫“隐性唯一”）</value>
+  </data>
 </root>

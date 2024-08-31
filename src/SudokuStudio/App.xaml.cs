@@ -360,7 +360,7 @@ public partial class App : Application
 					CurrentCulture
 				)
 			},
-			IsDirectMode = !uiPref.DisplayCandidates,
+			IsDirectMode = uiPref.IsDirectMode,
 			BabaGroupInitialLetter = analysisPref.InitialLetter,
 			BabaGroupLetterCasing = analysisPref.LetterCasing,
 			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes

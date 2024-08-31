@@ -372,7 +372,11 @@ public sealed partial class AnalyzePage : Page
 								BaseGrid = grid,
 								RenderableData = viewUnit switch
 								{
-									{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = (View[])[view] },
+									{ Conclusions: var conclusions, View: var view } => new()
+									{
+										Conclusions = conclusions,
+										Views = (View[])[view]
+									},
 									_ => null
 								},
 								ShowCandidates = displayCandidates
@@ -386,7 +390,11 @@ public sealed partial class AnalyzePage : Page
 							GridString = grid.ToString(formatter),
 							RenderableData = viewUnit switch
 							{
-								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = (View[])[view] },
+								{ Conclusions: var conclusions, View: var view } => new()
+								{
+									Conclusions = conclusions,
+									Views = (View[])[view]
+								},
 								_ => null
 							},
 							ShowCandidates = displayCandidates
@@ -400,7 +408,6 @@ public sealed partial class AnalyzePage : Page
 				break;
 			}
 		}
-
 		return true;
 	}
 
@@ -474,7 +481,6 @@ public sealed partial class AnalyzePage : Page
 								{
 									VisualUnit = renderableData;
 								}
-
 								break;
 							}
 							default:
@@ -516,7 +522,6 @@ public sealed partial class AnalyzePage : Page
 				break;
 			}
 		}
-
 		e.Handled = false;
 	}
 
@@ -1124,7 +1129,6 @@ public sealed partial class AnalyzePage : Page
 							ViewUnit = new() { View = views?[0] ?? [], Conclusions = conclusions }
 						}
 					}.ShowAsync();
-
 					break;
 				}
 				case { FailedReason: FailedReason.ExceptionThrown, UnhandledException: { } ex }:
@@ -1138,7 +1142,6 @@ public sealed partial class AnalyzePage : Page
 						DefaultButton = ContentDialogButton.Close,
 						Content = new ExceptionThrownOnAnalyzingContent { ThrownException = ex }
 					}.ShowAsync();
-
 					break;
 				}
 			}
@@ -1373,7 +1376,6 @@ public sealed partial class AnalyzePage : Page
 					: SlideNavigationTransitionEffect.FromLeft
 			}
 		);
-
 		_previouslySelectedIndexOfOperationPage = currentSelectedIndex;
 	}
 }

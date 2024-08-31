@@ -1785,6 +1785,11 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidates"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IsDirectMode">
+            <summary>
+            Indicates whether the current mode is direct mode.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursors">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.DisplayCursors"/>
         </member>
@@ -2246,6 +2251,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCandidates"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.IsDirectModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IsDirectMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IsDirectMode"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.DisplayCursorsProperty">
             <summary>
@@ -6152,6 +6163,19 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_InitialGridFormat">
             <summary>
               Looks up a localized string similar to Initial grid format.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsDirectMode">
+            <summary>
+              Looks up a localized string similar to Direct mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsDirectModeDescription">
+            <summary>
+              Looks up a localized string similar to In direct mode, analyzer will temporarily override the following configuration items:
+            • Hidden Singles first (Default Naked Singles)
+            • Enable Direct Intersections / Direct Subsets and Complex Singles
+            • Different technique names (In direct modes, &quot;Hidden Singles&quot; will be called &quot;Crosshatching&quot;).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsMinimal">

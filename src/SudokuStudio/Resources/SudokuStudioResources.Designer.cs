@@ -1231,6 +1231,27 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct mode.
+        /// </summary>
+        internal static string AnalyzePage_IsDirectMode {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IsDirectMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In direct mode, analyzer will temporarily override the following configuration items:
+        /// • Hidden Singles first (Default Naked Singles)
+        /// • Enable Direct Intersections / Direct Subsets and Complex Singles
+        /// • Different technique names (In direct modes, &quot;Hidden Singles&quot; will be called &quot;Crosshatching&quot;).
+        /// </summary>
+        internal static string AnalyzePage_IsDirectModeDescription {
+            get {
+                return ResourceManager.GetString("AnalyzePage_IsDirectModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Minimal puzzle: .
         /// </summary>
         internal static string AnalyzePage_IsMinimal {
