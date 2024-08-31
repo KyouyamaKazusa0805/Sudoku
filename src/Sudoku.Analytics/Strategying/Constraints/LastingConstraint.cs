@@ -55,12 +55,10 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 		foreach (var step in context.AnalyzerResult)
 		{
 			if (step is SingleStep { Subtype: var st } and ILastingTrait { Lasting: var l }
-				&& st.GetSingleTechnique() == Technique)
+				&& st.GetSingleTechnique() == Technique
+				&& !Operator.GetOperator<int>()(l, LimitCount))
 			{
-				if (!Operator.GetOperator<int>()(l, LimitCount))
-				{
-					return false;
-				}
+				return false;
 			}
 		}
 		return true;
