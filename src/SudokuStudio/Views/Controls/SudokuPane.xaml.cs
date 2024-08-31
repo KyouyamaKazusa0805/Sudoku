@@ -610,12 +610,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <seealso cref="Puzzle"/>
 	internal Grid Solution => _puzzle.GetSolutionGrid();
 
-	/// <summary>
-	/// Indicates the mode that the current pane uses.
-	/// </summary>
-	[DependencyProperty(DefaultValue = PaneMode.Normal)]
-	internal partial PaneMode CurrentPaneMode { get; set; }
-
 
 	/// <inheritdoc/>
 	public event PropertyChangedEventHandler? PropertyChanged;
@@ -843,11 +837,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <param name="cell">The cell to be checked.</param>
 	private void ValueClicked(MouseButton button, Cell cell)
 	{
-		if (CurrentPaneMode != PaneMode.Normal)
-		{
-			return;
-		}
-
 		if (button != MouseButton.Left)
 		{
 			return;

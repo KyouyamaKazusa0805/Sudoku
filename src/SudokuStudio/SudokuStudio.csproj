@@ -306,9 +306,6 @@
 		<Page Update="Views\Pages\ContentDialogs\ErrorStepDialogContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\Analyze\Drawing.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Controls\Shapes\CircleRing.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

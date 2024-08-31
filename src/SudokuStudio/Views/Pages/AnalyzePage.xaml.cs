@@ -5,9 +5,6 @@ namespace SudokuStudio.Views.Pages;
 /// </summary>
 public sealed partial class AnalyzePage : Page
 {
-	[Default]
-	private static readonly ColorPalette UserDefinedPaletteDefaultValue = ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette;
-
 	/// <summary>
 	/// Indicates the default thickness.
 	/// </summary>
@@ -15,26 +12,9 @@ public sealed partial class AnalyzePage : Page
 
 
 	/// <summary>
-	/// <para>Indicates the previously selected candidate.</para>
-	/// <para>
-	/// This field can record the previous data in a pair of clicking operation.
-	/// For example, constructing a chain, we should click twice, for the head and tail of the chain.
-	/// If we click at the second time, this field will be set the candidate having clicked at the first time.
-	/// </para>
-	/// </summary>
-	internal Candidate? _previousSelectedCandidate;
-
-	/// <summary>
 	/// Indicates the cancellation token source used by analyzing-related operations.
 	/// </summary>
 	internal CancellationTokenSource? _ctsForAnalyzingRelatedOperations;
-
-	/// <summary>
-	/// Defines a user-defined view that will be used when <see cref="SudokuPane.CurrentPaneMode"/> is <see cref="PaneMode.Drawing"/>.
-	/// </summary>
-	/// <seealso cref="SudokuPane.CurrentPaneMode"/>
-	/// <seealso cref="PaneMode.Drawing"/>
-	internal ViewUnitBindableSource? _userColoringView = new();
 
 	/// <summary>
 	/// Represents a list of <see cref="Type"/> instances, for operation pages.
@@ -106,12 +86,6 @@ public sealed partial class AnalyzePage : Page
 	internal partial int CurrentViewIndex { get; set; }
 
 	/// <summary>
-	/// Indicates the selected color index.
-	/// </summary>
-	[DependencyProperty(DefaultValue = -1)]
-	internal partial int SelectedColorIndex { get; set; }
-
-	/// <summary>
 	/// Indicates the input character that is used as a baba group variable.
 	/// </summary>
 	[DependencyProperty]
@@ -134,12 +108,6 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	[DependencyProperty]
 	internal partial AnalysisResult? AnalysisResultCache { get; set; }
-
-	/// <summary>
-	/// Indicates the user-defined colors.
-	/// </summary>
-	[DependencyProperty]
-	internal partial ColorPalette UserDefinedPalette { get; set; }
 
 	/// <summary>
 	/// Indicates the visual unit.
@@ -548,11 +516,6 @@ public sealed partial class AnalyzePage : Page
 				SR.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Shuffle },
 				new StepCollecting { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
-			),
-			new(
-				SR.Get("AnalyzePage_Drawing", App.CurrentCulture),
-				new SymbolIconSource { Symbol = Symbol.Edit },
-				new Analyze.Drawing { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			)
 		];
 		_hotkeyFunctions = [
@@ -705,222 +668,6 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	private bool CheckCellNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		switch (e)
-		{
-			case { Cell: var cell, MouseButton: MouseButton.Left }:
-			{
-				if (view.View.FirstOrDefault(node => node is CellViewNode { Cell: var c } && c == cell) is { } foundNode)
-				{
-					view.View.Remove(foundNode);
-				}
-				else
-				{
-					view.View.Add(new CellViewNode(index, cell));
-				}
-
-				SudokuPane.ViewUnit = _userColoringView;
-				break;
-			}
-		}
-		return true;
-	}
-
-	private bool CheckCandidateNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		switch (e)
-		{
-			case { Candidate: var candidate, MouseButton: MouseButton.Left }:
-			{
-				if (view.View.FirstOrDefault(node => node is CandidateViewNode { Candidate: var c } && c == candidate) is { } foundNode)
-				{
-					view.View.Remove(foundNode);
-				}
-				else
-				{
-					view.View.Add(new CandidateViewNode(index, candidate));
-				}
-
-				SudokuPane.ViewUnit = _userColoringView;
-				break;
-			}
-		}
-		return true;
-	}
-
-	private bool CheckHouseNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		switch (e)
-		{
-			case { Candidate: var candidate2 }:
-			{
-				if (_previousSelectedCandidate is not { } candidate1)
-				{
-					_previousSelectedCandidate = candidate2;
-					return false;
-				}
-
-				var cell1 = candidate1 / 9;
-				var cell2 = candidate2 / 9;
-				if ((cell1.AsCellMap() + cell2).SharedHouses is not (var coveredHouses and not 0))
-				{
-					_previousSelectedCandidate = null;
-					return true;
-				}
-
-				var house = coveredHouses.GetAllSets()[^1];
-				if (view.View.FirstOrDefault(node => node is HouseViewNode { House: var h } && h == house) is { } foundNode)
-				{
-					view.View.Remove(foundNode);
-				}
-				else
-				{
-					view.View.Add(new HouseViewNode(index, house));
-				}
-
-				SudokuPane.ViewUnit = _userColoringView;
-				break;
-			}
-		}
-		return true;
-	}
-
-	private bool CheckChuteNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		switch (e)
-		{
-			case { Candidate: var candidate2 }:
-			{
-				if (_previousSelectedCandidate is not { } candidate1)
-				{
-					_previousSelectedCandidate = candidate2;
-					return false;
-				}
-
-				var (mr1, mc1) = GridClickedEventArgs.GetChute(candidate1);
-				var (mr2, mc2) = GridClickedEventArgs.GetChute(candidate2);
-				if (mr1 == mr2)
-				{
-					if (view.View.FirstOrDefault(node => node is ChuteViewNode { ChuteIndex: var c } && c == mr1) is { } foundNode)
-					{
-						view.View.Remove(foundNode);
-					}
-					else
-					{
-						view.View.Add(new ChuteViewNode(index, mr1));
-					}
-
-					SudokuPane.ViewUnit = _userColoringView;
-					break;
-				}
-
-				if (mc1 == mc2)
-				{
-					if (view.View.FirstOrDefault(node => node is ChuteViewNode { ChuteIndex: var c } && c - 3 == mc1) is { } foundNode)
-					{
-						view.View.Remove(foundNode);
-					}
-					else
-					{
-						view.View.Add(new ChuteViewNode(index, mc1 + 3));
-					}
-
-					SudokuPane.ViewUnit = _userColoringView;
-					break;
-				}
-				break;
-			}
-		}
-		return true;
-	}
-
-	private bool CheckLinkNode(GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		switch (e)
-		{
-			case { Candidate: var candidate2 }:
-			{
-				if (_previousSelectedCandidate is not { } candidate1)
-				{
-					_previousSelectedCandidate = candidate2;
-					return false;
-				}
-
-				var cell1 = candidate1 / 9;
-				var cell2 = candidate2 / 9;
-				var digit1 = candidate1 % 9;
-				var digit2 = candidate2 % 9;
-				if (view.View.FirstOrDefault(predicate) is { } foundNode)
-				{
-					view.View.Remove(foundNode);
-				}
-				else
-				{
-					view.View.Add(
-						new ChainLinkViewNode(
-							ColorIdentifier.Normal,
-							candidate1.AsCandidateMap(),
-							candidate2.AsCandidateMap(),
-							LinkKind == Inference.Strong
-						)
-					);
-				}
-				SudokuPane.ViewUnit = _userColoringView;
-				break;
-
-
-				bool predicate(ViewNode element)
-					=> element switch
-					{
-						ChainLinkViewNode { Start: [var startCandidate], End: [var endCandidate] }
-						when (startCandidate / 9, startCandidate % 9, endCandidate / 9, endCandidate % 9) is var (c1, d1, c2, d2)
-							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
-							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2,
-						_ => false
-					};
-			}
-		}
-		return true;
-	}
-
-	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
-	{
-		TextBlock wrongHintControl() => ((Analyze.Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
-		switch (BabaGroupNameInput, e, view)
-		{
-			case (null or [], _, _):
-			{
-				return true;
-			}
-			case ([var character], { Candidate: var candidate }, { View: var v }):
-			{
-				var cell = candidate / 9;
-				if (v.FirstOrDefault(node => node is BabaGroupViewNode { Cell: var c } && c == cell) is { } foundNode)
-				{
-					v.Remove(foundNode);
-				}
-				else
-				{
-					var id = index != -1 ? (ColorIdentifier)index : new ColorColorIdentifier(0, 255, 255, 255);
-					v.Add(new BabaGroupViewNode(id, cell, character, Grid.MaxCandidatesMask));
-				}
-
-				SudokuPane.ViewUnit = _userColoringView;
-
-				wrongHintControl().Visibility = Visibility.Collapsed;
-				break;
-			}
-			default:
-			{
-				wrongHintControl().Visibility = Visibility.Visible;
-				break;
-			}
-		}
-
-		return true;
-	}
-
 	/// <summary>
 	/// Produces a copying/saving operation for pictures from sudoku pane <see cref="SudokuPane"/>.
 	/// </summary>
@@ -993,15 +740,6 @@ public sealed partial class AnalyzePage : Page
 		}
 	}
 
-	[Callback]
-	private static void SelectedColorIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	{
-		if ((d, e) is (AnalyzePage page, { NewValue: int value }))
-		{
-			page.SudokuPane.CurrentPaneMode = value == -1 ? PaneMode.Normal : PaneMode.Drawing;
-		}
-	}
-
 
 	private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
 	{
@@ -1030,7 +768,6 @@ public sealed partial class AnalyzePage : Page
 			ClearAnalyzeTabsData();
 		}
 
-		_userColoringView = null;
 		VisualUnit = null;
 	}
 
@@ -1159,76 +896,55 @@ public sealed partial class AnalyzePage : Page
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
-		switch (this, sender, e)
+		switch (this, e)
 		{
-			case ({ SelectedMode: var selectionMode, SelectedColorIndex: var index }, { CurrentPaneMode: PaneMode.Drawing }, { MouseButton: MouseButton.Left }):
+#pragma warning disable format
+			case (
+				{
+					SudokuPane: { DisableFlyout: false, Puzzle: var puzzle },
+					MainMenuFlyout.SecondaryCommands: var secondaryCommands
+				},
+				{
+					MouseButton: MouseButton.Right,
+					Cell: var cell
+				}
+			) when secondaryCommands.OfType<AppBarButton>() is var appBarButtons:
+#pragma warning restore format
 			{
-				makeColoring(selectionMode, index, _userColoringView ??= new());
-				break;
-			}
-			case ({ SudokuPane: { DisableFlyout: false, Puzzle: var puzzle } }, _, { MouseButton: MouseButton.Right, Cell: var cell }):
-			{
-				openFlyout(in puzzle, cell);
+				switch (puzzle.GetState(cell))
+				{
+					case CellState.Empty:
+					{
+						SudokuPane._temporarySelectedCell = cell;
+						foreach (var element in appBarButtons)
+						{
+							element.IsEnabled = (puzzle.GetCandidates(cell) >> Abs((Digit)element.Tag) - 1 & 1) != 0;
+						}
+
+						MainMenuFlyout.ShowAt(SudokuPane);
+						break;
+					}
+					case CellState.Given or CellState.Modifiable:
+					{
+						SudokuPane._temporarySelectedCell = cell;
+						foreach (var element in appBarButtons)
+						{
+							element.IsEnabled = false;
+						}
+
+						MainMenuFlyout.ShowAt(SudokuPane, new() { ShowMode = FlyoutShowMode.Transient });
+						break;
+					}
+				}
 				break;
 			}
 			default:
 			{
 				// Manually set focus for pane because user clicked a candidate, displayed using a text block, making the pane unfocused.
-				defaultFocusToGrid();
+				SudokuPane.Focus(FocusState.Programmatic);
 				break;
 			}
 		}
-
-
-		void makeColoring(DrawingMode selectionMode, int index, ViewUnitBindableSource tempView)
-		{
-			var condition = (selectionMode, index) switch
-			{
-				(DrawingMode.Cell, not -1) => CheckCellNode(index, e, tempView),
-				(DrawingMode.Candidate, not -1) => CheckCandidateNode(index, e, tempView),
-				(DrawingMode.House, not -1) => CheckHouseNode(index, e, tempView),
-				(DrawingMode.Chute, not -1) => CheckChuteNode(index, e, tempView),
-				(DrawingMode.Link, _) => CheckLinkNode(e, tempView),
-				(DrawingMode.BabaGrouping, _) => CheckBabaGroupingNode(index, e, tempView),
-				_ => true
-			};
-			if (condition)
-			{
-				_previousSelectedCandidate = null;
-			}
-		}
-
-		void openFlyout(ref readonly Grid puzzle, Cell cell)
-		{
-			var appBarButtons = MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>();
-			switch (puzzle.GetState(cell))
-			{
-				case CellState.Empty:
-				{
-					SudokuPane._temporarySelectedCell = cell;
-					foreach (var element in appBarButtons)
-					{
-						element.IsEnabled = (puzzle.GetCandidates(cell) >> Abs((Digit)element.Tag) - 1 & 1) != 0;
-					}
-
-					MainMenuFlyout.ShowAt(SudokuPane);
-					break;
-				}
-				case CellState.Given or CellState.Modifiable:
-				{
-					SudokuPane._temporarySelectedCell = cell;
-					foreach (var element in appBarButtons)
-					{
-						element.IsEnabled = false;
-					}
-
-					MainMenuFlyout.ShowAt(SudokuPane, new() { ShowMode = FlyoutShowMode.Transient });
-					break;
-				}
-			}
-		}
-
-		void defaultFocusToGrid() => SudokuPane.Focus(FocusState.Programmatic);
 	}
 
 	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)

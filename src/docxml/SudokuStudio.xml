@@ -4418,21 +4418,6 @@
             Indicates the failed reason is the file cannot be parsed and converted into a valid sudoku grid.
             </summary>
         </member>
-        <member name="T:SudokuStudio.Interaction.PaneMode">
-            <summary>
-            Represents a mode that describes which mode a sudoku pane is running.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.PaneMode.Normal">
-            <summary>
-            Indicates the mode is normal.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.PaneMode.Drawing">
-            <summary>
-            Indicates the mode is drawing.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Interaction.PuzzleCompletedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.PuzzleCompletedEventHandler"/>.
@@ -12397,11 +12382,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
         </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode">
-            <summary>
-            Indicates the mode that the current pane uses.
-            </summary>
-        </member>
         <member name="E:SudokuStudio.Views.Controls.SudokuPane.PropertyChanged">
             <inheritdoc/>
         </member>
@@ -12948,12 +12928,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.Extensions">
             <target name="class" when="extension">
@@ -13516,27 +13490,10 @@
             Indicates the default thickness.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._previousSelectedCandidate">
-            <summary>
-            <para>Indicates the previously selected candidate.</para>
-            <para>
-            This field can record the previous data in a pair of clicking operation.
-            For example, constructing a chain, we should click twice, for the head and tail of the chain.
-            If we click at the second time, this field will be set the candidate having clicked at the first time.
-            </para>
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._ctsForAnalyzingRelatedOperations">
             <summary>
             Indicates the cancellation token source used by analyzing-related operations.
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._userColoringView">
-            <summary>
-            Defines a user-defined view that will be used when <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/> is <see cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
-            <seealso cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._operationPageTypes">
             <summary>
@@ -13589,11 +13546,6 @@
             </summary>
             <seealso cref="P:Sudoku.Drawing.IDrawable.Views"/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex">
-            <summary>
-            Indicates the selected color index.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput">
             <summary>
             Indicates the input character that is used as a baba group variable.
@@ -13612,11 +13564,6 @@
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache">
             <summary>
             Indicates the analysis result cache.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette">
-            <summary>
-            Indicates the user-defined colors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit">
@@ -13819,12 +13766,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndexProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInputProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>.
@@ -13849,48 +13790,11 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPaletteProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.UserDefinedPalette"/>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage.VisualUnitProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.Analyze.Drawing">
-            <summary>
-            Represents a tab page.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.Drawing"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.BasePage">
-            <inheritdoc/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.Drawing.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.Drawing.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
@@ -15085,7 +14989,6 @@
             <summary>
             Defines a user-defined view that will be used.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._generatingCount">
             <summary>

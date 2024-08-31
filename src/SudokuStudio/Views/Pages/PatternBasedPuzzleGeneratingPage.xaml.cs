@@ -8,7 +8,6 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// <summary>
 	/// Defines a user-defined view that will be used.
 	/// </summary>
-	/// <seealso cref="SudokuPane.CurrentPaneMode"/>
 	private readonly ViewUnitBindableSource _userColoringView = new();
 
 
