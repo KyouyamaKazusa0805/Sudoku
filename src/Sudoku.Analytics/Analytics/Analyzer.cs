@@ -80,12 +80,6 @@ public sealed partial class Analyzer : AnalyzerBase
 	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
-	/// <summary>
-	/// Indicates the conditional options to be set.
-	/// </summary>
-	[WithProperty]
-	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
-
 	/// <inheritdoc/>
 	Random AnalyzerBase.RandomNumberGenerator => _random;
 
@@ -265,9 +259,7 @@ public sealed partial class Analyzer : AnalyzerBase
 			var timestampOriginal = Stopwatch.GetTimestamp();
 			var accumulator = IsFullApplying
 				|| RandomizedChoosing
-#if SINGLE_TECHNIQUE_LIMIT_FLAG
-				|| ConditionalOptions?.LimitedSingle is not (null or 0)
-#endif
+				|| Options.PrimarySingle != SingleTechniqueFlag.None
 				? []
 				: default(List<Step>);
 			var context = new StepAnalysisContext(in playground, in puzzle)
@@ -276,9 +268,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				Options = Options,
 				OnlyFindOne = !IsFullApplying
 					&& !RandomizedChoosing
-#if SINGLE_TECHNIQUE_LIMIT_FLAG
-					&& ConditionalOptions?.LimitedSingle is null or 0
-#endif
+					&& Options.PrimarySingle == SingleTechniqueFlag.None
 			};
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
@@ -331,8 +321,20 @@ public sealed partial class Analyzer : AnalyzerBase
 						// 7. If the searcher doesn't support for analyzing puzzles with multiple solutions, but we enable it.
 						continue;
 					}
-#if SINGLE_TECHNIQUE_LIMIT_FLAG
-					case (_, _, SingleStepSearcher, { ConditionalOptions: { AllowsHiddenSingleInLines: var allowLine, LimitedSingle: var limited and not 0 } }):
+#pragma warning disable format
+					case (
+						_,
+						_,
+						SingleStepSearcher,
+						{
+							Options:
+							{
+								PrimaryHiddenSingleAllowsLines: var allowLine,
+								PrimarySingle: var limited and not 0
+							}
+						}
+					):
+#pragma warning restore format
 					{
 						accumulator!.Clear();
 
@@ -416,7 +418,6 @@ public sealed partial class Analyzer : AnalyzerBase
 
 						goto MakeProgress;
 					}
-#endif
 					case (_, _, BruteForceStepSearcher, { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();

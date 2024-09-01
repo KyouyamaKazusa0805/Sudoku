@@ -628,11 +628,6 @@
         <member name="P:Sudoku.Analytics.Analyzer.Setters">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.ConditionalOptions">
-            <summary>
-            Indicates the conditional options to be set.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerContext,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
@@ -5791,35 +5786,6 @@
             Indicates the supported techniques used in ittoryu mode.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions">
-            <summary>
-            Represents condition options on <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.AllowsHiddenSingleInLines">
-            <summary>
-            Indicates whether the step searcher will checks for hidden singles in rows or columns.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.LimitedSingle">
-            <summary>
-            Indicates the preferred single technique. If the value is not (<see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>)0,
-            the analyzer will ignore the other single technique not related to this field.
-            </summary>
-            <remarks>
-            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
-            the analyzer will automatically ignore naked single steps to analyze the grid.
-            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalysisResult"/> with
-            <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> a <see langword="false"/> value.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.Default">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -5841,6 +5807,27 @@
             Indicates whether the current solver uses direct mode to solve a puzzle,
             meaning UI will display the grid without any candidates.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimaryHiddenSingleAllowsLines">
+            <summary>
+            Indicates whether the step searcher will checks for hidden singles in rows or columns
+            if <see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimarySingle"/> property has flag <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimarySingle">
+            <summary>
+            Indicates the preferred single technique. If the value isn't (<see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>)0,
+            the analyzer will ignore the other single technique not related to this field.
+            </summary>
+            <remarks>
+            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
+            the analyzer will automatically ignore naked single steps to analyze the grid.
+            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalysisResult"/> with
+            <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> a <see langword="false"/> value.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter">
             <summary>
@@ -5884,6 +5871,8 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.House"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.OverriddenLinkOptions"/>: <c>[]</c></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
             </list>
             </remarks>
         </member>
@@ -19552,14 +19541,6 @@
             </summary>
             <param name="instance">The instance to be set or updated.</param>
             <param name="options">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherConditionalOptions)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="conditionalOptions">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.__CollectorFactoryMethods_Add">
