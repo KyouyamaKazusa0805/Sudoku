@@ -37,7 +37,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor()];
+	public override FactorArray Factors => [new NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor()];
 
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;

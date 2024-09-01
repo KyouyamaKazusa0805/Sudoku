@@ -39,7 +39,7 @@ public sealed partial class BlossomLoopStep(
 		=> [new(SR.EnglishLanguage, [BurredLoopStr]), new(SR.ChineseLanguage, [BurredLoopStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new BlossomLoopGroupedFactor(), new BlossomLoopGroupedNodeFactor(), new BlossomLoopLengthFactor()];
 
 	private string BurredLoopStr => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));

@@ -58,7 +58,7 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 		=> [new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, AlsStr]), new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, AlsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new RectangleIsAvoidableFactor(), new UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor()];
 
 	private string AlsStr => AlmostLockedSet.ToString(Options.Converter);

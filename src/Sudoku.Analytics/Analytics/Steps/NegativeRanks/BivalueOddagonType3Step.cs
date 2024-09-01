@@ -33,7 +33,7 @@ public sealed partial class BivalueOddagonType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor()];
+	public override FactorArray Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	int IExtraCellListTrait.ExtraCellSize => ExtraCells.Count;

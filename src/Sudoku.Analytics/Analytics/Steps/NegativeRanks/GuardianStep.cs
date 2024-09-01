@@ -32,7 +32,7 @@ public sealed partial class GuardianStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new GuardianFactor()];
+	public override FactorArray Factors => [new GuardianFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => LoopCells.Count;

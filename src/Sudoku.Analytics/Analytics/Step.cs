@@ -129,7 +129,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
 	/// </summary>
-	public virtual FactorCollection Factors => [];
+	public virtual FactorArray Factors => [];
 
 	/// <summary>
 	/// <para>Indicates whether property <see cref="FormatTypeIdentifier"/> will inherit from base type.</para>

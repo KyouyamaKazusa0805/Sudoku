@@ -33,7 +33,7 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BorescoperDeadlyPatternSubsetSizeFactor()];
+	public override FactorArray Factors => [new BorescoperDeadlyPatternSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<BorescoperDeadlyPatternType3Step>.IsHidden => false;

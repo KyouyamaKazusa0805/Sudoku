@@ -52,7 +52,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new UniqueRectangleExternalXyWingGuardianFactor(),
 			new RectangleIsAvoidableFactor(),

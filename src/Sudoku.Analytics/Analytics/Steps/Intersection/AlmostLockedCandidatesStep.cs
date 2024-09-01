@@ -42,7 +42,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 		=> [new(SR.EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(SR.ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new AlmostLockedCandidatesSizeFactor(), new AlmostLockedCandidatesValueCellExistenceFactor()];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);

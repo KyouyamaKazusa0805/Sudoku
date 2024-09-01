@@ -29,7 +29,7 @@ public sealed partial class DeathBlossomStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor()];
+	public override FactorArray Factors => [new BasicDeathBlossomPetalsCountFactor()];
 
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;

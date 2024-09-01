@@ -43,7 +43,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public CellMap PatternNonEmptyCells => CompletePattern & ~EmptyCells;
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ReverseBivalueUniversalGraveSizeFactor()];
+	public override FactorArray Factors => [new ReverseBivalueUniversalGraveSizeFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => CompletePattern.Count;

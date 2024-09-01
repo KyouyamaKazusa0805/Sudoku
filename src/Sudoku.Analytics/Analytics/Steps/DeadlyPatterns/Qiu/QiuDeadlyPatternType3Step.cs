@@ -39,7 +39,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new QiuDeadlyPatternSubsetSizeFactor()];
+	public override FactorArray Factors => [new QiuDeadlyPatternSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<QiuDeadlyPatternType3Step>.IsHidden => false;

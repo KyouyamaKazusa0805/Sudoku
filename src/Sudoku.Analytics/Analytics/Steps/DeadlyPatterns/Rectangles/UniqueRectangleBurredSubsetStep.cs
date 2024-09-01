@@ -49,7 +49,7 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new UniqueRectangleBurredSubsetSizeFactor()];
+	public override FactorArray Factors => [new UniqueRectangleBurredSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.IsHidden => false;

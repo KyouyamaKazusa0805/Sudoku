@@ -52,7 +52,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor(),
 			new RectangleIsAvoidableFactor(),

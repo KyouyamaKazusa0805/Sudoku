@@ -4,10 +4,13 @@ namespace Sudoku.Resources;
 /// Represents a read-only array of <see cref="Interpolation"/> values.
 /// </summary>
 /// <param name="_values">Indicates the values.</param>
+/// <seealso cref="Interpolation"/>
 [CollectionBuilder(typeof(InterpolationArray), nameof(Create))]
 public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolation> _values) :
 	IEnumerable<Interpolation>,
-	IToArrayMethod<InterpolationArray, Interpolation>
+	IToArrayMethod<InterpolationArray, Interpolation>,
+	IReadOnlyList<Interpolation>,
+	IReadOnlyCollection<Interpolation>
 {
 	/// <summary>
 	/// Indicates the number of elements in the collection.
@@ -26,6 +29,9 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _values.Span;
 	}
+
+	/// <inheritdoc/>
+	int IReadOnlyCollection<Interpolation>.Count => Length;
 
 
 	/// <summary>

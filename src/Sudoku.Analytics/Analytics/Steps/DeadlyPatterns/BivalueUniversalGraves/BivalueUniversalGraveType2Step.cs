@@ -27,7 +27,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 		=> [new(SR.EnglishLanguage, [ExtraDigitStr, CellsStr]), new(SR.ChineseLanguage, [CellsStr, ExtraDigitStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];
+	public override FactorArray Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

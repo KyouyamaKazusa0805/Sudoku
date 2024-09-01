@@ -38,7 +38,7 @@ public sealed partial class MultiBranchWWingStep(
 		=> [new(SR.EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(SR.ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new MultiBranchWWingBranchesCountFactor()];
+	public override FactorArray Factors => [new MultiBranchWWingBranchesCountFactor()];
 
 	private string LeavesStr => Options.Converter.CellConverter(Leaves);
 

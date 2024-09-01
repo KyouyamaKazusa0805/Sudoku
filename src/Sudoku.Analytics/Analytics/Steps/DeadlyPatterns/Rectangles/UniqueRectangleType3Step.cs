@@ -61,7 +61,7 @@ public sealed partial class UniqueRectangleType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new UniqueRectangleSubsetIsHiddenFactor(), new UniqueRectangleSubsetSizeFactor()];
 
 	/// <inheritdoc/>

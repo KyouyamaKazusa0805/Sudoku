@@ -33,7 +33,7 @@ public abstract partial class UniqueLoopStep(
 	public override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new UniqueLoopLengthFactor()];
+	public override FactorArray Factors => [new UniqueLoopLengthFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Loop.Count;

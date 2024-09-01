@@ -34,7 +34,7 @@ public sealed partial class HouseDeathBlossomStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new HouseDeathBlossomPetalsCountFactor()];
+	public override FactorArray Factors => [new HouseDeathBlossomPetalsCountFactor()];
 
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;

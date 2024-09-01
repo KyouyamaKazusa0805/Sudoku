@@ -29,7 +29,7 @@ public sealed partial class MultisectorLockedSetsStep(
 		=> [new(SR.EnglishLanguage, [CellsCountStr, CellsStr]), new(SR.ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new MultisectorLockedSetsSizeFactor()];
+	public override FactorArray Factors => [new MultisectorLockedSetsSizeFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

@@ -38,7 +38,7 @@ public sealed partial class ExtendedRectangleType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(), new ExtendedRectangleCannibalismFactor()];
 
 	/// <inheritdoc/>

@@ -25,7 +25,7 @@ public sealed partial class BowmanBingoStep(
 		=> [new(SR.EnglishLanguage, [ContradictionSeriesStr]), new(SR.ChineseLanguage, [ContradictionSeriesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BowmanBingoLengthFactor()];
+	public override FactorArray Factors => [new BowmanBingoLengthFactor()];
 
 	/// <inheritdoc/>
 	int ISizeTrait.Size => ContradictionLinks.Length;

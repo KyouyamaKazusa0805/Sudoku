@@ -31,7 +31,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 		=> [new(SR.EnglishLanguage, [CandidatesStr]), new(SR.ChineseLanguage, [CandidatesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor()];
+	public override FactorArray Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor()];
 
 	/// <inheritdoc/>
 	int ICandidateListTrait.CandidateSize => TrueCandidates.Count;

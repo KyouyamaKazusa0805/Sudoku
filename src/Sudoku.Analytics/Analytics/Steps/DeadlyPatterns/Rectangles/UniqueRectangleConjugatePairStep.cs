@@ -43,7 +43,7 @@ public partial class UniqueRectangleConjugatePairStep(
 		];
 
 	/// <inheritdoc/>
-	public sealed override FactorCollection Factors
+	public sealed override FactorArray Factors
 		=> [new RectangleConjugatePairsCountFactor(), new RectangleIsAvoidableFactor()];
 
 	/// <inheritdoc/>

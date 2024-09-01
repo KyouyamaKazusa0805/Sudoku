@@ -1,27 +1,31 @@
 namespace Sudoku.Runtime.MeasuringServices;
 
 /// <summary>
-/// Represents a read-only collection of <see cref="Factor"/> instances.
+/// Represents a read-only array of <see cref="Factor"/> values.
 /// </summary>
-/// <param name="_factors">Indicates the factors inside the data structure.</param>
+/// <param name="_values">Indicates the values.</param>
 /// <seealso cref="Factor"/>
-[CollectionBuilder(typeof(FactorCollection), nameof(Create))]
-public sealed partial class FactorCollection(ReadOnlyMemory<Factor> _factors) : IEnumerable<Factor>, IReadOnlyList<Factor>, IReadOnlyCollection<Factor>
+[CollectionBuilder(typeof(FactorArray), nameof(Create))]
+public readonly ref partial struct FactorArray(ReadOnlyMemory<Factor> _values) :
+	IEnumerable<Factor>,
+	ISliceMethod<FactorArray, Factor>,
+	IToArrayMethod<FactorArray, Factor>,
+	IReadOnlyList<Factor>,
+	IReadOnlyCollection<Factor>
 {
-	/// <summary>
-	/// Represents the empty instance.
-	/// </summary>
-	public static readonly FactorCollection Empty = new(ReadOnlyMemory<Factor>.Empty);
-
-
 	/// <summary>
 	/// Indicates the length of elements stored in this collection.
 	/// </summary>
 	public int Length
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _factors.Length;
+		get => _values.Length;
 	}
+
+	/// <summary>
+	/// Indicates the sequence of <see cref="Factor"/> instances stored in the current collection.
+	/// </summary>
+	public ReadOnlySpan<Factor> Span => _values.Span;
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Factor>.Count => Length;
@@ -35,19 +39,19 @@ public sealed partial class FactorCollection(ReadOnlyMemory<Factor> _factors) : 
 	public Factor this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _factors.Span[index];
+		get => _values.Span[index];
 	}
 
 
 	/// <summary>
 	/// Checks for all elements in this collection, finding for the first element satisfying the specified condition;
-	/// return <see langword="null"/> if no such elements in this colletion.
+	/// return <see langword="null"/> if no such elements in this collection.
 	/// </summary>
 	/// <param name="match">The condition to be checked.</param>
 	/// <returns>The first found <see cref="Factor"/> instance.</returns>
 	public Factor? FirstOrDefault(Func<Factor, bool> match)
 	{
-		foreach (var factor in _factors)
+		foreach (var factor in _values)
 		{
 			if (match(factor))
 			{
@@ -63,7 +67,7 @@ public sealed partial class FactorCollection(ReadOnlyMemory<Factor> _factors) : 
 	/// <param name="action">The action to be executed and applied to each element.</param>
 	public void ForEach(Action<Factor> action)
 	{
-		foreach (var factor in _factors)
+		foreach (var factor in _values)
 		{
 			action(factor);
 		}
@@ -79,43 +83,49 @@ public sealed partial class FactorCollection(ReadOnlyMemory<Factor> _factors) : 
 		var result = 0;
 		foreach (var element in this)
 		{
-			result += element.Formula(from pi in element.Parameters.AsReadOnlySpan() select pi.GetValue(step)!);
+			result += element.Formula(from pi in element.Parameters select pi.GetValue(step)!);
 		}
 		return result;
 	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(_factors.Span);
+	public Enumerator GetEnumerator() => new(_values.Span);
 
 	/// <summary>
 	/// Slices the collection via the specified index as the start, and the number of elements to be sliced.
 	/// </summary>
 	/// <param name="start">The index of the start element.</param>
 	/// <param name="length">The number of elements to be sliced.</param>
-	/// <returns>A <see cref="FactorCollection"/> instance sliced.</returns>
+	/// <returns>A <see cref="FactorArray"/> instance sliced.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FactorCollection Slice(int start, int length) => new(_factors[start..(start + length)]);
+	public FactorArray Slice(int start, int length) => new(_values[start..(start + length)]);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Factor>)this).GetEnumerator();
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Factor[] ToArray() => _values.ToArray();
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<Factor> IEnumerable<Factor>.GetEnumerator()
-	{
-		foreach (var element in _factors.ToArray())
-		{
-			yield return element;
-		}
-	}
+		=> ((IEnumerable<Factor>)ToArray()).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<Factor> ISliceMethod<FactorArray, Factor>.Slice(int start, int count)
+		=> Slice(start, count).ToArray();
 
 
 	/// <summary>
-	/// Creates a <see cref="FactorCollection"/> instance.
+	/// Creates a <see cref="FactorArray"/> instance.
 	/// </summary>
-	/// <param name="factors">The factors to be used as initial values.</param>
-	/// <returns>A <see cref="FactorCollection"/> instance.</returns>
-	[EditorBrowsable(EditorBrowsableState.Never)]
+	/// <param name="factors">
+	/// <para>The factors to be used as initial values.</para>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
+	/// <returns>A <see cref="FactorArray"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FactorCollection Create(ReadOnlySpan<Factor> factors) => factors.IsEmpty ? Empty : new(factors.ToArray());
+	public static FactorArray Create(scoped ReadOnlySpan<Factor> factors)
+		=> factors.IsEmpty ? new(ReadOnlyMemory<Factor>.Empty) : new(factors.ToArray());
 }

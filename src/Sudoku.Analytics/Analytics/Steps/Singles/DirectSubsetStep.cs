@@ -95,7 +95,7 @@ public sealed partial class DirectSubsetStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new DirectSubsetSizeFactor(), new DirectSubsetIsLockedFactor()];
+	public override FactorArray Factors => [new DirectSubsetSizeFactor(), new DirectSubsetIsLockedFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => SubsetCells.Count;

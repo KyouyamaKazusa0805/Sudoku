@@ -38,7 +38,7 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new UniqueRectangleExternalTurbotFishGuardianFactor(),
 			new UniqueRectangleExternalTurbotFishIsIncompleteFactor()

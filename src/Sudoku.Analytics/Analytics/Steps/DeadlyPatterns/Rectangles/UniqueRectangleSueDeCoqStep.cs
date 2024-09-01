@@ -67,7 +67,7 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new RectangleSueDeCoqIsolatedFactor(),
 			new RectangleSueDeCoqCannibalismFactor(),

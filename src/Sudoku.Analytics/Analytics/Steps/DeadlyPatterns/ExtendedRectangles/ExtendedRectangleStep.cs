@@ -29,7 +29,7 @@ public abstract partial class ExtendedRectangleStep(
 	public override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExtendedRectangleSizeFactor()];
+	public override FactorArray Factors => [new ExtendedRectangleSizeFactor()];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

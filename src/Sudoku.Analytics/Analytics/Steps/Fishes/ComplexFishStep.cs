@@ -84,7 +84,7 @@ public sealed partial class ComplexFishStep(
 		=> [new(SR.EnglishLanguage, [InternalNotation]), new(SR.ChineseLanguage, [InternalNotation])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new ComplexFishSizeFactor(),
 			new ComplexFishIsSashimiFactor(),

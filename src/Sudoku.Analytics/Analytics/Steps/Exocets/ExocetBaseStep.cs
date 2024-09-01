@@ -39,7 +39,7 @@ public sealed partial class ExocetBaseStep(
 		};
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExocetConjugatePairsCountFactor()];
+	public override FactorArray Factors => [new ExocetConjugatePairsCountFactor()];
 
 	/// <inheritdoc/>
 	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;

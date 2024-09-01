@@ -29,7 +29,7 @@ public abstract class Factor
 	/// <exception cref="AmbiguousMatchException">Throws when property names is invalid.</exception>
 	/// <seealso cref="ParameterNames"/>
 	/// <seealso cref="PropertyInfo"/>
-	public PropertyInfo[] Parameters
+	public ReadOnlySpan<PropertyInfo> Parameters
 	{
 		get
 		{
@@ -60,6 +60,6 @@ public abstract class Factor
 	/// </summary>
 	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The name of the factor.</returns>
-	public virtual string GetName(IFormatProvider? formatProvider)
+	public string GetName(IFormatProvider? formatProvider)
 		=> SR.Get($"Factor_{GetType().Name}", formatProvider as CultureInfo);
 }

@@ -35,7 +35,7 @@ public sealed partial class UniqueLoopType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [.. base.Factors, new UniqueLoopSubsetSizeFactor()];
+	public override FactorArray Factors => [.. base.Factors, new UniqueLoopSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<UniqueLoopType3Step>.IsHidden => false;

@@ -54,7 +54,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new RectangleIsAvoidableFactor(),
 			new UniqueRectangleExternalSubsetSizeFactor(),

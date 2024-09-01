@@ -34,7 +34,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new BivalueUniversalGraveSubsetSizeFactor(), new BivalueUniversalGraveSubsetIsHiddenFactor()];
 
 	/// <inheritdoc/>

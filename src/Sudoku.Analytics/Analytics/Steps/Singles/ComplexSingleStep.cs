@@ -52,7 +52,7 @@ public sealed class ComplexSingleStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ComplexSingleFactor()];
+	public override FactorArray Factors => [new ComplexSingleFactor()];
 
 
 	/// <inheritdoc/>

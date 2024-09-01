@@ -37,7 +37,7 @@ public sealed partial class RectangleDeathBlossomStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new RectangleDeathBlossomPetalsCountFactor(), new RectangleDeathBlossomIsAvoidableFactor()];
 
 	/// <inheritdoc/>

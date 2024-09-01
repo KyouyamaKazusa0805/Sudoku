@@ -38,7 +38,7 @@ public sealed partial class UniqueRectangleRegularWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [new RectangleIsAvoidableFactor(), new UniqueRectangleWingSizeFactor()];
 
 	private string BranchesStr => Options.Converter.CellConverter(Branches);

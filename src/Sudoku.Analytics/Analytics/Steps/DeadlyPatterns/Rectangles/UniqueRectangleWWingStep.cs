@@ -48,7 +48,7 @@ public sealed partial class UniqueRectangleWWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new RectangleIsAvoidableFactor()];
+	public override FactorArray Factors => [new RectangleIsAvoidableFactor()];
 
 	private string ConnectorsString => Options.Converter.CellConverter(Connectors);
 

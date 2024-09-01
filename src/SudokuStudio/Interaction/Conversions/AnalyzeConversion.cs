@@ -206,17 +206,18 @@ internal static class AnalyzeConversion
 			}
 		}
 
-		IEnumerable<Inline> appendExtraDifficultyFactors(FactorCollection factors)
+		ReadOnlySpan<Inline> appendExtraDifficultyFactors(FactorArray factors)
 		{
+			var result = new List<Inline>();
 			for (var i = 0; i < factors.Length; i++)
 			{
-				yield return new Run { Text = $"{factors[i].ToString(step, pref.RatingScale, App.CurrentCulture)}" };
-
+				result.Add(new Run { Text = $"{factors[i].ToString(step, pref.RatingScale, App.CurrentCulture)}" });
 				if (i != factors.Length - 1)
 				{
-					yield return new LineBreak();
+					result.Add(new LineBreak());
 				}
 			}
+			return result.AsReadOnlySpan();
 		}
 	}
 }

@@ -42,7 +42,7 @@ public sealed partial class MultipleForcingChainsStep(
 		=> [new(SR.EnglishLanguage, [ChainsStr]), new(SR.ChineseLanguage, [ChainsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors
+	public override FactorArray Factors
 		=> [
 			new MultipleForcingChainsGroupedFactor(),
 			new MultipleForcingChainsGroupedNodeFactor(),

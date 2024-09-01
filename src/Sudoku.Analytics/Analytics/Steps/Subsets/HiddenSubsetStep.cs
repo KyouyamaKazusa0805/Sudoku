@@ -51,7 +51,7 @@ public sealed partial class HiddenSubsetStep(
 		=> [new(SR.EnglishLanguage, [DigitStr, HouseStr]), new(SR.ChineseLanguage, [DigitStr, HouseStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new HiddenSubsetSizeFactor(), new HiddenSubsetIsLockedFactor()];
+	public override FactorArray Factors => [new HiddenSubsetSizeFactor(), new HiddenSubsetIsLockedFactor()];
 
 	private string DigitStr => Options.Converter.DigitConverter(DigitsMask);
 

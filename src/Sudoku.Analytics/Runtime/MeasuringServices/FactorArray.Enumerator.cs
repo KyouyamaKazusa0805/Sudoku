@@ -1,6 +1,6 @@
 namespace Sudoku.Runtime.MeasuringServices;
 
-public partial class FactorCollection
+public partial struct FactorArray
 {
 	/// <summary>
 	/// The back enumerator of this type.
