@@ -29209,10 +29209,20 @@
         </member>
         <member name="M:Sudoku.Resources.InterpolationArray.Create(System.ReadOnlySpan{Sudoku.Resources.Interpolation})">
             <summary>
-            Creates an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance via a list of <see cref="T:Sudoku.Resources.Interpolation"/> instances.
+            Creates an <see cref="T:Sudoku.Resources.InterpolationArray" /> instance via a list of <see cref="T:Sudoku.Resources.Interpolation" /> instances.
             </summary>
-            <param name="values">A list of interpolations.</param>
-            <returns>An <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.</returns>
+            <param name="values">
+            <para>A list of interpolations.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>An <see cref="T:Sudoku.Resources.InterpolationArray" /> instance.</returns>
         </member>
         <member name="T:Sudoku.Resources.InterpolationArray.Enumerator">
             <summary>

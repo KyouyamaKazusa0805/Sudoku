@@ -171,7 +171,10 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	/// <summary>
 	/// Creates an <see cref="InterpolationArray"/> instance via a list of <see cref="Interpolation"/> instances.
 	/// </summary>
-	/// <param name="values">A list of interpolations.</param>
+	/// <param name="values">
+	/// <para>A list of interpolations.</para>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
 	/// <returns>An <see cref="InterpolationArray"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static InterpolationArray Create(scoped ReadOnlySpan<Interpolation> values) => new(values.ToArray());
