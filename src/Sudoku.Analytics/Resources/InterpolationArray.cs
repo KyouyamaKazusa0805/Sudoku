@@ -5,7 +5,7 @@ namespace Sudoku.Resources;
 /// </summary>
 /// <param name="_values">Indicates the values.</param>
 [CollectionBuilder(typeof(InterpolationArray), nameof(Create))]
-public readonly partial struct InterpolationArray(ReadOnlyMemory<Interpolation> _values) :
+public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolation> _values) :
 	IEnumerable<Interpolation>,
 	IToArrayMethod<InterpolationArray, Interpolation>
 {
@@ -174,5 +174,5 @@ public readonly partial struct InterpolationArray(ReadOnlyMemory<Interpolation> 
 	/// <param name="values">A list of interpolations.</param>
 	/// <returns>An <see cref="InterpolationArray"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static InterpolationArray Create(ReadOnlySpan<Interpolation> values) => new(values.ToArray());
+	public static InterpolationArray Create(scoped ReadOnlySpan<Interpolation> values) => new(values.ToArray());
 }
