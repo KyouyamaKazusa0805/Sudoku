@@ -37,7 +37,7 @@ public sealed partial class HWingStep(
 	public override Technique Code => IsGrouped ? Technique.GroupedHWing : Technique.HWing;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [StrongLinkStr, CellsStr]), new(SR.ChineseLanguage, [StrongLinkStr, CellsStr])];
 
 	private string StrongLinkStr => $"{Options.Converter.CellConverter(StrongLink)}({DigitX + 1})";

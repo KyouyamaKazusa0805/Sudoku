@@ -37,7 +37,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 		=> IsDoublyLinked ? Technique.DoublyLinkedAlmostLockedSetsXzRule : Technique.SinglyLinkedAlmostLockedSetsXzRule;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [Als1Str, Als2Str, XStr, ZResultStr(SR.ChineseLanguage)])

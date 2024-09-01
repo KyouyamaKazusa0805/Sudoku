@@ -80,7 +80,7 @@ public sealed partial class ComplexFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [InternalNotation]), new(SR.ChineseLanguage, [InternalNotation])];
 
 	/// <inheritdoc/>

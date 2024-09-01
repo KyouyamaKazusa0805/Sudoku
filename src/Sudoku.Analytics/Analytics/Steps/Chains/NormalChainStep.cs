@@ -52,7 +52,7 @@ public partial class NormalChainStep(
 	public override Technique Code => Pattern.GetTechnique(Conclusions.AsSet());
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ChainString]), new(SR.ChineseLanguage, [ChainString])];
 
 	/// <inheritdoc/>

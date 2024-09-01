@@ -25,7 +25,7 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitsStr, CellsStr, ConjStr]), new(SR.ChineseLanguage, [DigitsStr, CellsStr, ConjStr])];
 
 	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);

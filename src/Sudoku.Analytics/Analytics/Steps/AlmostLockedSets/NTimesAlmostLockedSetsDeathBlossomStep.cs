@@ -30,7 +30,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	public override Technique Code => Technique.NTimesAlmostLockedSetsDeathBlossom;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [FreedomDegreeStr, CellsStr, DigitsStr, BranchesStr(SR.ChineseLanguage)])

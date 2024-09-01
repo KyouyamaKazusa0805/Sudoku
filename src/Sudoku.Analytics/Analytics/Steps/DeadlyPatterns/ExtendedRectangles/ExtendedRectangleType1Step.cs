@@ -20,6 +20,6 @@ public sealed class ExtendedRectangleType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitsStr, CellsStr]), new(SR.ChineseLanguage, [DigitsStr, CellsStr])];
 }

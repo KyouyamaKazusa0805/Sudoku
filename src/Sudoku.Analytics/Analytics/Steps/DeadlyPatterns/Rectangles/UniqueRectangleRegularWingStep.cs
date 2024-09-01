@@ -31,7 +31,7 @@ public sealed partial class UniqueRectangleRegularWingStep(
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr]),
 			new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr])

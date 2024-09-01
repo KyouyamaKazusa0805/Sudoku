@@ -28,7 +28,7 @@ public sealed partial class BivalueUniversalGraveXzStep(
 	public override Technique Code => Technique.BivalueUniversalGraveXzRule;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitStr, CellsStr, ExtraCellStr]), new(SR.ChineseLanguage, [DigitStr, CellsStr, ExtraCellStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter(DigitsMask);

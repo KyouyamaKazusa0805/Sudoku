@@ -47,7 +47,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, SubsetDigitsStr]),
 			new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsStr, SubsetCellsStr])

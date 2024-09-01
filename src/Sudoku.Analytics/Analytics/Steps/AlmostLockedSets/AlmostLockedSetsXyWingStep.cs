@@ -31,7 +31,7 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	public override Technique Code => Technique.AlmostLockedSetsXyWing;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr]),
 			new(SR.ChineseLanguage, [Als1Str, BridgeStr, Als2Str, XStr, YStr, ZStr])

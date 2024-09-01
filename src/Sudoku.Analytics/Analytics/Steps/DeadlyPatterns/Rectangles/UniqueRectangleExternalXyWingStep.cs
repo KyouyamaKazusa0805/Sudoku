@@ -45,7 +45,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr]),
 			new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr])

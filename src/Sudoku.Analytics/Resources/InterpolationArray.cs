@@ -86,6 +86,7 @@ public readonly partial struct InterpolationArray(ReadOnlyMemory<Interpolation> 
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>The reference to the target element.</returns>
+	/// <exception cref="IndexOutOfRangeException">Throws when <paramref name="index"/> is out of range.</exception>
 	public Interpolation this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -110,7 +111,7 @@ public readonly partial struct InterpolationArray(ReadOnlyMemory<Interpolation> 
 					return element;
 				}
 			}
-			throw new ArgumentOutOfRangeException(nameof(culture));
+			return default;
 		}
 	}
 

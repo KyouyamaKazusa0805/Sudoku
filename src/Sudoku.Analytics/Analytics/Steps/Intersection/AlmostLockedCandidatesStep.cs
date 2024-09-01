@@ -38,7 +38,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 		};
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(SR.ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
 	/// <inheritdoc/>

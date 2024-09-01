@@ -47,7 +47,7 @@ public sealed partial class HiddenSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitStr, HouseStr]), new(SR.ChineseLanguage, [DigitStr, HouseStr])];
 
 	/// <inheritdoc/>

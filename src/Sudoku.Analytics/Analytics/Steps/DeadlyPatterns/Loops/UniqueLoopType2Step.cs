@@ -29,7 +29,7 @@ public sealed partial class UniqueLoopType2Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr]),
 			new(SR.ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraDigitStr])

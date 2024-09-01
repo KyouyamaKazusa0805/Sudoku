@@ -25,7 +25,7 @@ public sealed partial class LockedCandidatesStep(
 	public override Technique Code => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitStr, BaseSetStr, CoverSetStr]), new(SR.ChineseLanguage, [DigitStr, BaseSetStr, CoverSetStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));

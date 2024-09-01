@@ -38,7 +38,7 @@ public sealed partial class MultipleForcingChainsStep(
 			: Pattern.IsCellMultiple ? Technique.CellForcingChains : Technique.RegionForcingChains;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ChainsStr]), new(SR.ChineseLanguage, [ChainsStr])];
 
 	/// <inheritdoc/>

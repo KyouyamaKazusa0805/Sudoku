@@ -16,7 +16,7 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 	public override Technique Code => Technique.BruteForce;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [AssignmentStr]), new(SR.ChineseLanguage, [AssignmentStr])];
 
 	private string AssignmentStr => Options.Converter.ConclusionConverter(Conclusions);

@@ -31,7 +31,7 @@ public sealed partial class ExtendedRectangleType3Step(
 	public override Technique Code => IsCannibalism ? Technique.ExtendedRectangleType3Cannibalism : Technique.ExtendedRectangleType3;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr, HouseStr]),
 			new(SR.ChineseLanguage, [DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr])

@@ -58,7 +58,7 @@ public sealed partial class DirectIntersectionStep(
 	public override Technique Code => BasedOn.ComplexSingleUsing(IsPointing ? Technique.Pointing : Technique.Claiming);
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr(SR.ChineseLanguage)])

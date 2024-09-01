@@ -45,7 +45,7 @@ public sealed class ComplexSingleStep(
 		};
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [TechniqueNotation(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [TechniqueNotation(SR.ChineseLanguage)])

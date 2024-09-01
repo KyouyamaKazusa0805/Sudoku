@@ -34,7 +34,7 @@ public sealed partial class MultiBranchWWingStep(
 	public override Technique Code => Technique.MultiBranchWWing;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(SR.ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
 
 	/// <inheritdoc/>

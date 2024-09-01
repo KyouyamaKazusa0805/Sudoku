@@ -25,7 +25,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	public override Technique Code => Technique.ExtendedSubsetPrinciple;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [EspDigitStr, CellsStr]), new(SR.ChineseLanguage, [EspDigitStr, CellsStr])];
 
 	/// <inheritdoc/>

@@ -30,7 +30,7 @@ public sealed partial class RectangleDeathBlossomStep(
 	public override Technique Code => Technique.RectangleDeathBlossom;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PatternStr, BranchesStr(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [PatternStr, BranchesStr(SR.ChineseLanguage)])

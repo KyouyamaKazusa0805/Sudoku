@@ -26,7 +26,7 @@ public sealed partial class FireworkTripleStep(
 	public override Technique Code => Technique.FireworkTriple;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [CellsStr, DigitsStr]), new(SR.ChineseLanguage, [CellsStr, DigitsStr])];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);

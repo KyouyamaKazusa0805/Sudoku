@@ -20,7 +20,8 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOpt
 	public override Technique Code => Technique.PatternOverlay;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations => [new(SR.EnglishLanguage, [DigitStr]), new(SR.ChineseLanguage, [DigitStr])];
+	public override InterpolationArray Interpolations
+		=> [new(SR.EnglishLanguage, [DigitStr]), new(SR.ChineseLanguage, [DigitStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 }

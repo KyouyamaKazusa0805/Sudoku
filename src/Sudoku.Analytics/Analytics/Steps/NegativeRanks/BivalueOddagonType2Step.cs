@@ -27,7 +27,7 @@ public sealed partial class BivalueOddagonType2Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ExtraDigitStr, LoopStr]), new(SR.ChineseLanguage, [LoopStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));

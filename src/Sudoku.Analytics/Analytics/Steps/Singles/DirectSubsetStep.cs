@@ -67,7 +67,7 @@ public sealed partial class DirectSubsetStep(
 	public override Technique Code => BasedOn.ComplexSingleUsing(SubsetTechnique);
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(
 				SR.EnglishLanguage,

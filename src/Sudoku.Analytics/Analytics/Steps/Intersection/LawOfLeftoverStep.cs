@@ -27,7 +27,7 @@ public sealed partial class LawOfLeftoverStep(
 	public override Technique Code => Technique.LawOfLeftover;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [Set1Str, Set2Str]), new(SR.ChineseLanguage, [Set1Str, Set2Str])];
 
 	private string Set1Str => Options.Converter.CellConverter(Set1);

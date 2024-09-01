@@ -48,7 +48,7 @@ public sealed partial class UniqueRectangleType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(
 				SR.EnglishLanguage,

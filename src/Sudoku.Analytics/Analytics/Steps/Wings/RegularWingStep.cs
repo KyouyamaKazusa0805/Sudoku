@@ -68,7 +68,7 @@ public sealed partial class RegularWingStep(
 	public override Technique Code => TechniqueMarshal.MakeRegularWingTechniqueCode(TechniqueMarshal.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(SR.ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
 	/// <inheritdoc/>

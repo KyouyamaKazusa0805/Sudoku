@@ -36,7 +36,7 @@ public sealed partial class SWingStep(
 	public override int BaseDifficulty => 47;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [XLinkStr, YLinkStr, MidCellStr]), new(SR.ChineseLanguage, [XLinkStr, YLinkStr, MidCellStr])];
 
 	/// <inheritdoc/>

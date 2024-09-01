@@ -49,7 +49,7 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	public override Technique Code => Technique.UniqueLoopStrongLinkType;
 
 	/// <inheritdoc/>
-	public override Interpolation[]? Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(SR.EnglishLanguage)]),
 			new(SR.ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ConjugatePairsStr(SR.ChineseLanguage)])

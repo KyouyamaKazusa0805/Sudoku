@@ -29,7 +29,7 @@ public sealed partial class UniqueMatrixType4Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [DigitsStr, CellsStr, ConjStr, Digit1Str, Digit2Str]),
 			new(SR.ChineseLanguage, [ConjStr, Digit1Str, Digit2Str, DigitsStr, CellsStr])

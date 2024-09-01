@@ -31,7 +31,7 @@ public sealed partial class WWingStep(
 	public override Technique Code => IsGrouped ? Technique.GroupedWWing : Technique.WWing;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(SR.ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
 	private string StartCellStr => Options.Converter.CellConverter(in StartCell.AsCellMap());

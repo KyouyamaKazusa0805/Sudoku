@@ -32,7 +32,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),
 			new(SR.ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])

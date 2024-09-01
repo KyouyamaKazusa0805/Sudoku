@@ -42,7 +42,7 @@ public sealed partial class TwoStrongLinksStep(
 		};
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitStr, BaseHouseStr, TargetHouseStr]), new(SR.ChineseLanguage, [DigitStr, BaseHouseStr, TargetHouseStr])];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));

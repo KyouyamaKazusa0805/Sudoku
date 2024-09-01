@@ -47,7 +47,7 @@ public sealed partial class NormalFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [InternalNotation]), new(SR.ChineseLanguage, [InternalNotation])];
 
 	/// <inheritdoc/>

@@ -27,7 +27,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [CandidatesStr]), new(SR.ChineseLanguage, [CandidatesStr])];
 
 	/// <inheritdoc/>

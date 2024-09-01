@@ -39,7 +39,7 @@ public sealed partial class AlignedExclusionStep(
 		};
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.ChineseLanguage, [CellsStr, ConclusionNegatedStr]), new(SR.EnglishLanguage, [CellsStr, ConclusionNegatedStr])];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
@@ -48,5 +48,6 @@ public sealed partial class AlignedExclusionStep(
 
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Step? other) => other is AlignedExclusionStep comparer && Cells == comparer.Cells;
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is AlignedExclusionStep comparer && Cells == comparer.Cells;
 }

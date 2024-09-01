@@ -28,7 +28,7 @@ public sealed partial class QiuDeadlyPatternType1Step(
 	public override int Type => 1;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [PatternStr, TargetDigitsStr, CandidatesStr]), new(SR.ChineseLanguage, [PatternStr, CandidatesStr, TargetDigitsStr])];
 
 	private string CandidatesStr

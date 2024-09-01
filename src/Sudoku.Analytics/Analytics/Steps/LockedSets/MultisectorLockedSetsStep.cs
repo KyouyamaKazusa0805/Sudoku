@@ -25,7 +25,7 @@ public sealed partial class MultisectorLockedSetsStep(
 	public override Technique Code => Technique.MultisectorLockedSets;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [CellsCountStr, CellsStr]), new(SR.ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	/// <inheritdoc/>

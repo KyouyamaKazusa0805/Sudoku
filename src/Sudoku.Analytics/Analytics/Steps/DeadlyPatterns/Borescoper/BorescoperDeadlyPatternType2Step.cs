@@ -25,7 +25,7 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]), new(SR.ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])];
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));

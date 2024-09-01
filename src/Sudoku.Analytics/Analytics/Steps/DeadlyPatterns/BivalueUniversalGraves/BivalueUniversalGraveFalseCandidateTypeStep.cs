@@ -24,7 +24,7 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	public override Technique Code => Technique.BivalueUniversalGraveFalseCandidateType;
 
 	/// <inheritdoc/>
-	public override Interpolation[] Interpolations
+	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [FalseCandidateStr]), new(SR.ChineseLanguage, [FalseCandidateStr])];
 
 	private string FalseCandidateStr => Options.Converter.CandidateConverter([FalseCandidate]);

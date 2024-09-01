@@ -124,7 +124,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates all interpolations used by description information to the current step, stored in resource dictionary.
 	/// </summary>
-	public virtual Interpolation[]? Interpolations => null;
+	public virtual InterpolationArray Interpolations => [];
 
 	/// <summary>
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
@@ -204,20 +204,17 @@ public abstract partial class Step(
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-	{
-		return GetResourceFormat(null) is null
+		=> GetResourceFormat(null) is null
 			? ToSimpleString(formatProvider)
 			: GetCulture(formatProvider) is var culture && SR.Get("_Token_Colon", culture) is var colonToken
-				? Interpolations?.FirstOrDefault(matcher).Values switch
+				? Interpolations[culture] switch
 				{
-					var formatArgs and not null => $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
-					_ => $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
+					{ Values: { } formatArgs }
+						=> $"{GetName(formatProvider)}{colonToken}{FormatDescription(culture, formatArgs)} => {ConclusionText}",
+					_
+						=> $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
 				}
 				: throw new();
-
-
-		bool matcher(Interpolation i) => culture.Name.IsCultureNameEqual(i.CultureName);
-	}
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
