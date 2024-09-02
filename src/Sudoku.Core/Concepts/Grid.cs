@@ -525,6 +525,33 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <inheritdoc cref="object.ToString"/>
 	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default(string));
 
+	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(string? format) => ToString(format, null);
+
+	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			GridFormatInfo f => f.FormatGrid(in this),
+			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatGrid(in this),
+			_ => throw new FormatException()
+		};
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(string? format, IFormatProvider? formatProvider)
+		=> (this, formatProvider) switch
+		{
+			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
+			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
+			(_, GridFormatInfo f) => f.FormatGrid(in this),
+			(_, CultureInfo c) => ToString(c),
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
+			_ => GridFormatInfo.GetInstance(format)!.FormatGrid(in this)
+		};
+
 	/// <inheritdoc/>
 	public readonly Digit[] ToDigitsArray()
 	{
@@ -558,33 +585,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
-
-	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format) => ToString(format, null);
-
-	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(IFormatProvider? formatProvider)
-		=> formatProvider switch
-		{
-			GridFormatInfo f => f.FormatGrid(in this),
-			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatGrid(in this),
-			_ => throw new FormatException()
-		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> (this, formatProvider) switch
-		{
-			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
-			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
-			(_, GridFormatInfo f) => f.FormatGrid(in this),
-			(_, CultureInfo c) => ToString(c),
-			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
-			_ => GridFormatInfo.GetInstance(format)!.FormatGrid(in this)
-		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

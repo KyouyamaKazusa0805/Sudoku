@@ -2204,6 +2204,15 @@
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ToDigitsArray">
             <inheritdoc/>
         </member>
@@ -2217,15 +2226,6 @@
             <returns>An array of <see cref="T:System.Int16"/> values.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetState(System.Int32)">
