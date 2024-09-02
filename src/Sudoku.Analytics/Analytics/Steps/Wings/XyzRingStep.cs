@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pivot">Indicates the pivot cell.</param>
 /// <param name="leafCell1">Indicates the leaf cell 1.</param>
 /// <param name="leafCell2">Indicates the leaf cell 2.</param>
+/// <param name="xyzDigitsMask">Indicates the digits used.</param>
 /// <param name="conjugateHousesMask">Indicates the conjugate houses used.</param>
 /// <param name="isNice">Indicates whether the pattern is a nice loop.</param>
 /// <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
@@ -22,6 +23,7 @@ public sealed partial class XyzRingStep(
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] Cell leafCell1,
 	[PrimaryConstructorParameter] Cell leafCell2,
+	[PrimaryConstructorParameter] Mask xyzDigitsMask,
 	[PrimaryConstructorParameter] HouseMask conjugateHousesMask,
 	[PrimaryConstructorParameter] bool isNice,
 	[PrimaryConstructorParameter] bool isGrouped,
@@ -44,6 +46,9 @@ public sealed partial class XyzRingStep(
 			(true, _, _) => Technique.SiameseXyzLoop,
 			_ => Technique.XyzLoop
 		};
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => XyzDigitsMask;
 
 	/// <summary>
 	/// Indicates the pattern.

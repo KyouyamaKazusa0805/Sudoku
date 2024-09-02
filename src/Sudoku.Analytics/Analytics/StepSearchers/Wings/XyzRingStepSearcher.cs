@@ -218,6 +218,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 						pivot,
 						leafCell1,
 						leafCell2,
+						grid[[pivot, leafCell1, leafCell2]],
 						1 << conflictedHouse,
 						isNice,
 						cellsShouldBeCovered.Count > 2

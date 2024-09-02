@@ -7,11 +7,13 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the cells used.</param>
+/// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class DominoLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
@@ -19,6 +21,9 @@ public sealed partial class DominoLoopStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DominoLoop;
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

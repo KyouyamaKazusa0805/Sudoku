@@ -9,13 +9,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="leaves">The leaves of the pattern.</param>
 /// <param name="root">The root cells that corresponds to each leaf.</param>
 /// <param name="house">Indicates the house that all cells in <see cref="Root"/> lie in.</param>
+/// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap leaves,
 	[PrimaryConstructorParameter] ref readonly CellMap root,
-	[PrimaryConstructorParameter] House house
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : IrregularWingStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
@@ -32,6 +34,9 @@ public sealed partial class MultiBranchWWingStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultiBranchWWing;
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

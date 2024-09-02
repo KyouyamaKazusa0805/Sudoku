@@ -17390,8 +17390,9 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -17399,11 +17400,15 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Interpolations">
@@ -17412,6 +17417,11 @@
         <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DominoLoopStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LockedSetStep">
@@ -17440,8 +17450,9 @@
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="rowsCount">Indicates the number of rows used.</param>
             <param name="columnsCount">Indicates the number of columns used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -17451,11 +17462,15 @@
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="rowsCount">Indicates the number of rows used.</param>
             <param name="columnsCount">Indicates the number of columns used.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Interpolations">
@@ -17480,6 +17495,11 @@
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ColumnsCount">
             <summary>
             The generated property declaration for parameter <c>columnsCount</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
@@ -18045,9 +18065,10 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
             <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.ValueTuple{System.Int32[],System.Int32}[])">
             <summary>
             Provides with a step that is an <b>Aligned Exclusion</b> technique.
             </summary>
@@ -18055,6 +18076,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the target cells used in the pattern.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
             <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.BaseDifficulty">
@@ -18066,6 +18088,9 @@
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -18075,6 +18100,11 @@
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.LockedCombinations">
@@ -19048,8 +19078,9 @@
             <param name="leaves">The leaves of the pattern.</param>
             <param name="root">The root cells that corresponds to each leaf.</param>
             <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -19059,6 +19090,7 @@
             <param name="leaves">The leaves of the pattern.</param>
             <param name="root">The root cells that corresponds to each leaf.</param>
             <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.IsGrouped">
             <inheritdoc/>
@@ -19073,6 +19105,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Interpolations">
@@ -19094,6 +19129,11 @@
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.MWingStep">
@@ -19294,8 +19334,9 @@
             <param name="startCell">Indicates the start cell.</param>
             <param name="endCell">Indicates the end cell.</param>
             <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
             </summary>
@@ -19305,6 +19346,7 @@
             <param name="startCell">Indicates the start cell.</param>
             <param name="endCell">Indicates the end cell.</param>
             <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.IsSymmetricPattern">
             <inheritdoc/>
@@ -19316,6 +19358,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WWingStep.Interpolations">
@@ -19336,6 +19381,11 @@
             The generated property declaration for parameter <c>bridge</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.WWingStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.XyzRingStep">
             <summary>
             Provides with a step that is a <b>(Siamese) (Grouped) XYZ-Ring</b> technique.
@@ -19347,12 +19397,13 @@
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="xyzDigitsMask">Indicates the digits used.</param>
             <param name="conjugateHousesMask">Indicates the conjugate houses used.</param>
             <param name="isNice">Indicates whether the pattern is a nice loop.</param>
             <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
             <param name="isSiamese">Indicates whether the XYZ-loop is a Siamese one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>(Siamese) (Grouped) XYZ-Ring</b> technique.
             </summary>
@@ -19363,6 +19414,7 @@
             <param name="pivot">Indicates the pivot cell.</param>
             <param name="leafCell1">Indicates the leaf cell 1.</param>
             <param name="leafCell2">Indicates the leaf cell 2.</param>
+            <param name="xyzDigitsMask">Indicates the digits used.</param>
             <param name="conjugateHousesMask">Indicates the conjugate houses used.</param>
             <param name="isNice">Indicates whether the pattern is a nice loop.</param>
             <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
@@ -19372,6 +19424,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.Pattern">
@@ -19400,6 +19455,11 @@
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.LeafCell2">
             <summary>
             The generated property declaration for parameter <c>leafCell2</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.XyzRingStep.XyzDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>xyzDigitsMask</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.ConjugateHousesMask">

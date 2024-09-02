@@ -174,7 +174,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 							context.Options,
 							c1,
 							c2,
-							in bridge
+							in bridge,
+							(Mask)(1 << digit | 1 << anotherDigit)
 						);
 						if (context.OnlyFindOne)
 						{
@@ -287,7 +288,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									context.Options,
 									in cells,
 									in emptyCellsInThisHouse,
-									emptyCellsInThisHouse.SharedLine
+									emptyCellsInThisHouse.SharedLine,
+									(Mask)(1 << xDigit | 1 << wDigit)
 								);
 								if (context.OnlyFindOne)
 								{

@@ -71,6 +71,7 @@ internal static class XyzRingModule
 				xyz1.Pivot,
 				xyz1.LeafCell1,
 				xyz1.LeafCell2,
+				(Mask)(xyz1.XyzDigitsMask | xyz2.XyzDigitsMask),
 				xyz1.ConjugateHousesMask | xyz2.ConjugateHousesMask,
 				xyz1.IsNice && xyz2.IsNice,
 				xyz1.IsGrouped || xyz2.IsGrouped,

@@ -9,13 +9,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used in this pattern.</param>
 /// <param name="rowsCount">Indicates the number of rows used.</param>
 /// <param name="columnsCount">Indicates the number of columns used.</param>
+/// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] int rowsCount,
-	[PrimaryConstructorParameter] int columnsCount
+	[PrimaryConstructorParameter] int columnsCount,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : LockedSetStep(conclusions, views, options), ICellListTrait
 {
 	/// <inheritdoc/>
@@ -23,6 +25,9 @@ public sealed partial class MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultisectorLockedSets;
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

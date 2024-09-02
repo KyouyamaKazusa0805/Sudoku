@@ -7,12 +7,14 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 /// <param name="cells">Indicates the target cells used in the pattern.</param>
+/// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="lockedCombinations">Indicates all locked combinations.</param>
 public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
+	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
 ) : PermutationStep(conclusions, views, options), ISizeTrait
 {
@@ -37,6 +39,9 @@ public sealed partial class AlignedExclusionStep(
 			>= 2 and <= 5 => Technique.AlignedPairExclusion + (Size - 2),
 			_ => throw new NotSupportedException(SR.ExceptionMessage("SubsetSizeExceeds"))
 		};
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
