@@ -13,6 +13,23 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
 	where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 {
+	/// <summary>
+	/// Indicates all digits used.
+	/// </summary>
+	public Mask DigitsMask
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var branch in Values)
+			{
+				result |= branch.DigitsMask;
+			}
+			return result;
+		}
+	}
+
+
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);
 

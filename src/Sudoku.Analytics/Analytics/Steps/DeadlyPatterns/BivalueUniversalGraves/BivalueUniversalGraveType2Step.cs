@@ -23,6 +23,9 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	public override Technique Code => Technique.BivalueUniversalGraveType2;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << ExtraDigit);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ExtraDigitStr, CellsStr]), new(SR.ChineseLanguage, [CellsStr, ExtraDigitStr])];
 

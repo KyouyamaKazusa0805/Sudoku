@@ -13,5 +13,8 @@ public sealed partial class BivalueUniversalGraveType1Step(Conclusion[] conclusi
 	public override int Type => 1;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Conclusions[0].Digit);
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType1;
 }

@@ -28,6 +28,9 @@ public sealed partial class UniquenessClueCoverStep(
 	public override Technique Code => Technique.UniquenessClueCover;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => ExtraDigits;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [ChuteString, ChuteCellsString]),

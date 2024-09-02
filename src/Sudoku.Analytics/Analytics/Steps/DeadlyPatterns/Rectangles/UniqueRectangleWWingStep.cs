@@ -41,6 +41,9 @@ public sealed partial class UniqueRectangleWWingStep(
 )
 {
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << WDigit));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, ConnectorsString, EndCellsString, WDigitsString]),

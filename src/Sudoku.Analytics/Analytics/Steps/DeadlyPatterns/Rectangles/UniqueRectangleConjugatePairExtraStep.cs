@@ -48,6 +48,9 @@ public sealed partial class UniqueRectangleConjugatePairExtraStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);
+
+	/// <inheritdoc/>
 	protected override bool TechniqueResourceKeyInheritsFromBase => true;
 
 	/// <inheritdoc/>

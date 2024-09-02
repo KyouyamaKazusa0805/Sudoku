@@ -132,6 +132,11 @@ public abstract partial class Step(
 	public virtual FactorArray Factors => [];
 
 	/// <summary>
+	/// Indicates all digits used in the corresponding pattern of the current step.
+	/// </summary>
+	public virtual Mask DigitsUsed { get; }
+
+	/// <summary>
 	/// <para>Indicates whether property <see cref="FormatTypeIdentifier"/> will inherit from base type.</para>
 	/// <para>
 	/// By default, this property is <see langword="false"/>, meaning technique resource key must match its containing type.

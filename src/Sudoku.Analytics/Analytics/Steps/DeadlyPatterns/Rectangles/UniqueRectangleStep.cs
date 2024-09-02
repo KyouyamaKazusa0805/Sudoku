@@ -43,6 +43,9 @@ public abstract partial class UniqueRectangleStep(
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 45;
 
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
+
 	private protected string DigitsStr => Options.Converter.DigitConverter((Mask)(1 << Digit1 | 1 << Digit2));
 
 	private protected string D1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));

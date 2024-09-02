@@ -32,6 +32,9 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override Technique Code => Technique.LockedQiuDeadlyPattern;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => CandidatesLocked.Digits;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PatternStr, Quantifier, Number, SingularOrPlural, CandidateStr, BeVerb]),

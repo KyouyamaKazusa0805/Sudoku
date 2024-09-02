@@ -33,6 +33,9 @@ public abstract partial class UniqueLoopStep(
 	public override Technique Code => Enum.Parse<Technique>($"UniqueLoopType{Type}");
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
+
+	/// <inheritdoc/>
 	public override FactorArray Factors => [new UniqueLoopLengthFactor()];
 
 	/// <inheritdoc/>

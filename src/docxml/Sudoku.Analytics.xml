@@ -6399,6 +6399,11 @@
             Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Step.DigitsUsed">
+            <summary>
+            Indicates all digits used in the corresponding pattern of the current step.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Step.TechniqueResourceKeyInheritsFromBase">
             <summary>
             <para>Indicates whether property <see cref="P:Sudoku.Analytics.Step.FormatTypeIdentifier"/> will inherit from base type.</para>
@@ -11278,6 +11283,9 @@
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -11338,6 +11346,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.Interpolations">
@@ -11419,6 +11430,9 @@
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -11491,6 +11505,9 @@
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -11545,6 +11562,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.Interpolations">
@@ -11603,6 +11623,9 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -11655,6 +11678,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Interpolations">
@@ -11717,6 +11743,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Interpolations">
@@ -11782,6 +11811,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Interpolations">
@@ -11860,6 +11892,9 @@
         <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -11917,6 +11952,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Interpolations">
@@ -11998,6 +12036,9 @@
         <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FinnedChainStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -12042,6 +12083,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultipleForcingChainsStep.Interpolations">
@@ -12115,6 +12159,9 @@
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -12179,6 +12226,9 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -12215,6 +12265,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Interpolations">
@@ -12281,6 +12334,9 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Code">
             <inheritdoc/>
         </member>
@@ -12308,6 +12364,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Interpolations">
@@ -12360,6 +12419,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Interpolations">
@@ -12433,6 +12495,9 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -12480,6 +12545,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Interpolations">
@@ -12530,6 +12598,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Cells">
@@ -12596,6 +12667,9 @@
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -12629,6 +12703,9 @@
             <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Interpolations">
@@ -12727,6 +12804,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -12804,6 +12884,9 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Factors">
             <inheritdoc/>
         </member>
@@ -12874,6 +12957,9 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -12914,6 +13000,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Interpolations">
@@ -13084,6 +13173,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Factors">
             <inheritdoc/>
         </member>
@@ -13178,6 +13270,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -13215,6 +13310,9 @@
             <param name="loopPath"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Interpolations">
@@ -13311,6 +13409,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
@@ -13382,6 +13483,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -13415,6 +13519,9 @@
             <param name="subsetCells">Indicates the cells that the subset used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Interpolations">
@@ -13520,6 +13627,9 @@
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -13565,6 +13675,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.Interpolations">
@@ -13643,6 +13756,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Interpolations">
@@ -13757,6 +13873,9 @@
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -13802,6 +13921,9 @@
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -13841,6 +13963,9 @@
             <param name="isNaked">Indicates whether the subset is naked one.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Interpolations">
@@ -13900,6 +14025,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.Interpolations">
@@ -14029,6 +14157,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -14082,6 +14213,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleAlmostLockedSetsXzStep.Interpolations">
@@ -14166,6 +14300,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -14236,6 +14373,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.TechniqueResourceKeyInheritsFromBase">
@@ -14337,6 +14477,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Interpolations">
@@ -14445,6 +14588,9 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -14504,6 +14650,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Interpolations">
@@ -14571,6 +14720,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.Interpolations">
@@ -14746,6 +14898,9 @@
             <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleRegularWingStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleRegularWingStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -14822,6 +14977,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Equals(Sudoku.Analytics.Step)">
@@ -14911,6 +15069,9 @@
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Interpolations">
@@ -15043,6 +15204,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -15090,6 +15254,9 @@
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Interpolations">
@@ -15161,6 +15328,9 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.Interpolations">
             <inheritdoc/>
         </member>
@@ -15207,6 +15377,9 @@
             <param name="connectors">Indicates the connectors.</param>
             <param name="endCells">Indicates the end cells.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWWingStep.DigitsUsed">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWWingStep.Interpolations">
             <inheritdoc/>
@@ -15268,6 +15441,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.PatternNonEmptyCells">
@@ -15366,6 +15542,9 @@
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.Interpolations">
             <inheritdoc/>
         </member>
@@ -15406,6 +15585,9 @@
             <param name="emptyCells"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.Interpolations">
@@ -15451,6 +15633,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.DigitsUsed">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.Interpolations">
@@ -20627,6 +20812,11 @@
             Indicates the complexity of the whole pattern.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.BlossomLoop.DigitsMask">
+            <summary>
+            Indicates the digits used in this pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.BlossomLoop.Entries">
             <summary>
             Indicates the entry candidates that start each branch.
@@ -21110,6 +21300,11 @@
             For example, a loop has a same complexity and length.
             </remarks>
             <seealso cref="P:Sudoku.Concepts.ChainOrLoop.Length"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainOrLoop.DigitsMask">
+            <summary>
+            Indicates all digits used in this pattern.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.ChainOrLoop.Links">
             <summary>
@@ -21716,6 +21911,11 @@
             Indicates the complexity of the whole pattern.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.MultipleForcingChains.DigitsMask">
+            <summary>
+            Indicates the digits used in this pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.MultipleForcingChains.BranchedComplexity">
             <summary>
             Indicates the complexity of each branch.
@@ -22311,6 +22511,11 @@
             </summary>
             <typeparam name="TSelf">The type of itself.</typeparam>
             <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.DeathBlossomBranchCollection`2.DigitsMask">
+            <summary>
+            Indicates all digits used.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(`0)">
             <inheritdoc/>

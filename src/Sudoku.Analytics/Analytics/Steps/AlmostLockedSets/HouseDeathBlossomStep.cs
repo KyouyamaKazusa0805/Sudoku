@@ -27,6 +27,9 @@ public sealed partial class HouseDeathBlossomStep(
 	public override Technique Code => Technique.HouseDeathBlossom;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => Branches.DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [HouseStr, BranchesStr(SR.EnglishLanguage)]),

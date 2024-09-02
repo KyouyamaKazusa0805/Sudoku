@@ -29,6 +29,9 @@ public sealed partial class AlmostLockedSetsWWingStep(
 	public override Technique Code => Technique.AlmostLockedSetsWWing;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(FirstAls.DigitsMask | SecondAls.DigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr]), new(SR.ChineseLanguage, [Als1Str, Als2Str, ConjStr, WStr, XStr])];
 

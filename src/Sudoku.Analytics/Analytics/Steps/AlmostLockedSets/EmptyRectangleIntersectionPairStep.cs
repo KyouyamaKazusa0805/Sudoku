@@ -29,6 +29,9 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Digit1Str, Digit2Str, StartCellStr, EndCellStr, HouseStr]),

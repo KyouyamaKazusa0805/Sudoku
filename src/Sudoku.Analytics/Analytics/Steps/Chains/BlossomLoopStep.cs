@@ -35,6 +35,9 @@ public sealed partial class BlossomLoopStep(
 	public override Technique Code => Technique.BlossomLoop;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => Pattern.DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [BurredLoopStr]), new(SR.ChineseLanguage, [BurredLoopStr])];
 

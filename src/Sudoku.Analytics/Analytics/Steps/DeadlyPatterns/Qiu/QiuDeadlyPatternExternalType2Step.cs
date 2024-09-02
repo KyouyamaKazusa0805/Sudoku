@@ -31,6 +31,9 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << TargetDigit);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(SR.ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
 

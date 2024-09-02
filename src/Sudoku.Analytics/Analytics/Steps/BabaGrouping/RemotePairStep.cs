@@ -25,6 +25,9 @@ public sealed partial class RemotePairStep(
 	public override Technique Code => IsComplex ? Technique.ComplexRemotePair : Technique.RemotePair;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [CellsStr, FirstLetterStr, SecondLetterStr]),

@@ -10,4 +10,4 @@ namespace Sudoku.Resources;
 /// <param name="Values">The values of the interpolation.</param>
 /// <seealso cref="Step.Interpolations"/>
 /// <seealso cref="CultureInfo"/>
-public readonly record struct Interpolation(string CultureName, string[] Values);
+public readonly record struct Interpolation([ConstantExpected] string CultureName, string[] Values);

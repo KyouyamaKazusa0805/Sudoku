@@ -28,6 +28,9 @@ public abstract partial class UniqueMatrixStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"UniqueMatrixType{Type}");
 
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
+
 	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
 	private protected string CellsStr => Options.Converter.CellConverter(Cells);

@@ -22,6 +22,9 @@ public sealed partial class DeathBlossomStep(
 	public override Technique Code => Technique.DeathBlossom;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => Branches.DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PivotStr, BranchesStr(SR.EnglishLanguage)]),

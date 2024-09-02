@@ -48,6 +48,9 @@ public sealed partial class UniqueRectangleType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(

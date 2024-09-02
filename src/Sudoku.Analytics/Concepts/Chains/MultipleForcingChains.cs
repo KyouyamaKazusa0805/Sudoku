@@ -65,6 +65,25 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	public int Complexity => BranchedComplexity.Sum();
 
 	/// <summary>
+	/// Indicates the digits used in this pattern.
+	/// </summary>
+	public Mask DigitsMask
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var element in this)
+			{
+				foreach (var value in element.Value)
+				{
+					result |= value.Map.Digits;
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the complexity of each branch.
 	/// </summary>
 	public ReadOnlySpan<int> BranchedComplexity => (from kvp in Values select kvp.Length).ToArray();

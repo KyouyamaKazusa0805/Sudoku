@@ -32,6 +32,9 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => SubsetDigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),

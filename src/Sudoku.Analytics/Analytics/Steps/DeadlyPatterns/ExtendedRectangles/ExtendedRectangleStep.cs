@@ -29,6 +29,9 @@ public abstract partial class ExtendedRectangleStep(
 	public override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
+
+	/// <inheritdoc/>
 	public override FactorArray Factors => [new ExtendedRectangleSizeFactor()];
 
 	/// <inheritdoc/>

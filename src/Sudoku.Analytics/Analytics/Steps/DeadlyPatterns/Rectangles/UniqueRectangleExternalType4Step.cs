@@ -44,6 +44,9 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << ConjugatePair.Digit));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr]),

@@ -30,6 +30,9 @@ public sealed partial class RectangleDeathBlossomStep(
 	public override Technique Code => Technique.RectangleDeathBlossom;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => Branches.DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [PatternStr, BranchesStr(SR.EnglishLanguage)]),

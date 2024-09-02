@@ -24,6 +24,9 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 	public override Technique Code => Technique.BivalueUniversalGraveFalseCandidateType;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << FalseCandidate % 9);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [FalseCandidateStr]), new(SR.ChineseLanguage, [FalseCandidateStr])];
 

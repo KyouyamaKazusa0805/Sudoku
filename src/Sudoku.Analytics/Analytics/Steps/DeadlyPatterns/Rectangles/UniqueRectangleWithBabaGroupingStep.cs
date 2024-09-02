@@ -38,6 +38,9 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 4;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << ExtraDigit));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr]),

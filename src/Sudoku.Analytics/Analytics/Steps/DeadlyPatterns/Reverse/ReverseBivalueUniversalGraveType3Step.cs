@@ -28,6 +28,9 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | SubsetMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ExtraHouseStr, ExtraDigitsStr]), new(SR.ChineseLanguage, [ExtraHouseStr, ExtraDigitsStr])];
 

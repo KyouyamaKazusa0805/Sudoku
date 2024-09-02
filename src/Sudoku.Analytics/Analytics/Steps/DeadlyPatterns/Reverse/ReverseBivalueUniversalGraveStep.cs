@@ -37,6 +37,9 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	/// <inheritdoc/>
 	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (Type - 1);
 
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
+
 	/// <summary>
 	/// Indicates the last cells used that are not empty.
 	/// </summary>

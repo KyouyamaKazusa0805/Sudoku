@@ -163,6 +163,22 @@ public abstract partial class ChainOrLoop :
 	public virtual int Complexity => Length;
 
 	/// <summary>
+	/// Indicates all digits used in this pattern.
+	/// </summary>
+	public Mask DigitsMask
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var node in this)
+			{
+				result |= node.Map.Digits;
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the links used.
 	/// </summary>
 	public ReadOnlySpan<Link> Links

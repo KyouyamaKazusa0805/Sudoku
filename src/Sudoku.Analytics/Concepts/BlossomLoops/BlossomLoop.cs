@@ -29,6 +29,25 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	public int Complexity => BranchedComplexity.Sum();
 
 	/// <summary>
+	/// Indicates the digits used in this pattern.
+	/// </summary>
+	public Mask DigitsMask
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var element in this)
+			{
+				foreach (var value in element.Value)
+				{
+					result |= value.Map.Digits;
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the entry candidates that start each branch.
 	/// </summary>
 	public CandidateMap Entries => [.. Keys];

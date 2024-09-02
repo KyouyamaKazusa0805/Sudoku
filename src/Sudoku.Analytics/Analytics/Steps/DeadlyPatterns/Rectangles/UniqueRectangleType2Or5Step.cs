@@ -43,6 +43,9 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	public override int Type => Code is Technique.UniqueRectangleType2 or Technique.AvoidableRectangleType2 ? 2 : 5;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << ExtraDigit));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, ExtraDigitStr]),

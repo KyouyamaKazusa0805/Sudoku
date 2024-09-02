@@ -29,6 +29,9 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << ConjugatePair.Digit));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ConjugatePairStr]), new(SR.ChineseLanguage, [ConjugatePairStr])];
 

@@ -37,6 +37,9 @@ public sealed partial class AlmostLockedSetsXzStep(
 		=> IsDoublyLinked ? Technique.DoublyLinkedAlmostLockedSetsXzRule : Technique.SinglyLinkedAlmostLockedSetsXzRule;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(FirstAls.DigitsMask | SecondAls.DigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Als1Str, Als2Str, XStr, ZResultStr(SR.EnglishLanguage)]),

@@ -60,6 +60,10 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 	public override int BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed
+		=> (Mask)(base.DigitsUsed | (Mask)((Mask)((Mask)(BlockMask | LineMask) | IntersectionMask) | IsolatedDigitsMask));
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask]),

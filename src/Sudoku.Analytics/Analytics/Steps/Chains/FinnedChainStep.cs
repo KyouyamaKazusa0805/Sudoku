@@ -28,6 +28,9 @@ public sealed partial class FinnedChainStep(
 	public override Technique Code => IsGrouped ? Technique.FinnedGroupedChain : Technique.FinnedChain;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => Pattern.DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ChainString, FinsStr]), new(SR.ChineseLanguage, [ChainString, FinsStr])];
 
