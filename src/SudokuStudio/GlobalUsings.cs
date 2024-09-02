@@ -70,7 +70,7 @@ global using Sudoku.Runtime.IttoryuServices;
 global using Sudoku.Runtime.LibraryServices;
 global using Sudoku.Runtime.MeasuringServices;
 global using Sudoku.Runtime.MinlexServices;
-global using Sudoku.Runtime.MinPuzzleServices;
+global using Sudoku.Runtime.MingridServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.SolvingServices.Bitwise;
 global using Sudoku.Runtime.TransformingServices;
