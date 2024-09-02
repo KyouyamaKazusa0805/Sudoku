@@ -16,4 +16,8 @@ public abstract partial class SingleStep(
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] SingleSubtype subtype
-) : DirectStep(conclusions, views, options);
+) : DirectStep(conclusions, views, options)
+{
+	/// <inheritdoc/>
+	public sealed override Mask DigitsUsed => (Mask)(1 << Digit);
+}

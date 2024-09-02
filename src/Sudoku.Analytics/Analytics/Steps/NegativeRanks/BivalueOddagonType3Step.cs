@@ -26,6 +26,9 @@ public sealed partial class BivalueOddagonType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr]),

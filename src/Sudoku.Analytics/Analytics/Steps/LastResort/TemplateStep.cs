@@ -14,16 +14,19 @@ public sealed partial class TemplateStep(
 	[PrimaryConstructorParameter] bool isTemplateDeletion
 ) : LastResortStep(conclusions, views, options)
 {
+	/// <inheritdoc/>
+	public override int BaseDifficulty => 90;
+
+	/// <inheritdoc/>
+	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
+
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
 	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => 90;
-
-	/// <inheritdoc/>
-	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;
+	public override Mask DigitsUsed => (Mask)(1 << Digit);
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

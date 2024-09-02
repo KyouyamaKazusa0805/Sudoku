@@ -23,4 +23,7 @@ public abstract partial class SubsetStep(
 
 	/// <inheritdoc/>
 	public int Size => Mask.PopCount(DigitsMask);
+
+	/// <inheritdoc/>
+	public sealed override Mask DigitsUsed => DigitsMask;
 }

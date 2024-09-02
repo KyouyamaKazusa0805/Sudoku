@@ -39,6 +39,9 @@ public sealed partial class ExocetBaseStep(
 		};
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | MaskOperations.Create(from c in ConjugatePairs select c.Digit));
+
+	/// <inheritdoc/>
 	public override FactorArray Factors => [new ExocetConjugatePairsCountFactor()];
 
 	/// <inheritdoc/>

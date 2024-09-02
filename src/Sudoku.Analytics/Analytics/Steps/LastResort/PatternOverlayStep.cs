@@ -8,16 +8,19 @@ namespace Sudoku.Analytics.Steps;
 public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOptions options) :
 	LastResortStep(conclusions, null, options)
 {
+	/// <inheritdoc/>
+	public override int BaseDifficulty => 85;
+
+	/// <inheritdoc/>
+	public override Technique Code => Technique.PatternOverlay;
+
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
 	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => 85;
-
-	/// <inheritdoc/>
-	public override Technique Code => Technique.PatternOverlay;
+	public override Mask DigitsUsed => (Mask)(1 << Digit);
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

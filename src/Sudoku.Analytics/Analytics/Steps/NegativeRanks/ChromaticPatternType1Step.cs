@@ -21,9 +21,12 @@ public sealed partial class ChromaticPatternType1Step(
 ) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
-	public override InterpolationArray Interpolations
-		=> [new(SR.EnglishLanguage, [CellsStr, BlocksStr, DigitsStr]), new(SR.ChineseLanguage, [BlocksStr, CellsStr, DigitsStr])];
+	public override Technique Code => Technique.ChromaticPatternType1;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.ChromaticPatternType1;
+	public override Mask DigitsUsed => DigitsMask;
+
+	/// <inheritdoc/>
+	public override InterpolationArray Interpolations
+		=> [new(SR.EnglishLanguage, [CellsStr, BlocksStr, DigitsStr]), new(SR.ChineseLanguage, [BlocksStr, CellsStr, DigitsStr])];
 }

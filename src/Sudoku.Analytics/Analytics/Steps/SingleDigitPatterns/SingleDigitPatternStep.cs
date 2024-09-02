@@ -12,4 +12,8 @@ public abstract partial class SingleDigitPatternStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Digit digit
-) : IndirectStep(conclusions, views, options);
+) : IndirectStep(conclusions, views, options)
+{
+	/// <inheritdoc/>
+	public sealed override Mask DigitsUsed => (Mask)(1 << Digit);
+}

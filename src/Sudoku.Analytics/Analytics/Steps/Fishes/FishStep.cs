@@ -64,6 +64,9 @@ public abstract partial class FishStep(
 	/// </remarks>
 	public int Size => HouseMask.PopCount(BaseSetsMask);
 
+	/// <inheritdoc/>
+	public sealed override Mask DigitsUsed => (Mask)(1 << Digit);
+
 	/// <summary>
 	/// Creates a <see cref="Fish"/> instance via the current data.
 	/// </summary>

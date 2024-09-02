@@ -31,6 +31,9 @@ public sealed partial class ChromaticPatternXzStep(
 	public override Technique Code => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(DigitsMask | ExtraDigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [DigitsStr, CellsStr, BlocksStr, ExtraCellStr]),

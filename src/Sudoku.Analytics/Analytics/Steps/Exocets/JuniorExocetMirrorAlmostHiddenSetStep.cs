@@ -38,6 +38,9 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	public override Technique Code => Technique.JuniorExocetMirrorAlmostHiddenSet;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);
+
+	/// <inheritdoc/>
 	public override FactorArray Factors => [new ExocetAlmostHiddenSetSizeFactor()];
 
 	/// <inheritdoc/>

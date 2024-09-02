@@ -21,6 +21,9 @@ public abstract partial class ChromaticPatternStep(
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 65;
 
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
+
 	private protected string BlocksStr
 		=> Options.Converter.HouseConverter(Blocks.Aggregate(@delegate.BitMerger));
 

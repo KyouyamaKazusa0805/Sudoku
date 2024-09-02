@@ -32,6 +32,9 @@ public sealed partial class MWingStep(
 	public override int BaseDifficulty => 45;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Node1Str, Node2Str, Cell1Str, Cell2Str]),

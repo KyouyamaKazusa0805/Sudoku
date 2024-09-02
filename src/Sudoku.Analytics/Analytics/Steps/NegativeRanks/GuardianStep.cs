@@ -25,6 +25,9 @@ public sealed partial class GuardianStep(
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(1 << Digit);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [CellsStr, GuardianSingularOrPlural(SR.EnglishLanguage), GuardianStr]),

@@ -46,4 +46,7 @@ public sealed partial class AdvancedComplexSeniorExocetStep(
 			ExocetShapeKind.Franken => Technique.AdvancedFrankenSeniorExocet,
 			ExocetShapeKind.Mutant => Technique.AdvancedMutantSeniorExocet
 		};
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | AlmostHiddenSetMask);
 }

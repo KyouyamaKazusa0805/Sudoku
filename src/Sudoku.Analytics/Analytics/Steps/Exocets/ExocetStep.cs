@@ -52,4 +52,7 @@ public abstract partial class ExocetStep(
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => Delta switch { -2 or -1 => 96, 0 => 94, 1 or 2 => 95 };
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 }

@@ -43,4 +43,7 @@ public sealed partial class ComplexJuniorExocetMirrorConjugatePairStep(
 			ExocetShapeKind.Franken => Technique.FrankenJuniorExocetMirrorConjugatePair,
 			ExocetShapeKind.Mutant => Technique.MutantJuniorExocetMirrorConjugatePair
 		};
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | MaskOperations.Create(from c in ConjugatePairs select c.Digit));
 }

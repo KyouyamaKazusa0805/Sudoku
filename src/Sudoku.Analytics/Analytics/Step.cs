@@ -134,7 +134,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates all digits used in the corresponding pattern of the current step.
 	/// </summary>
-	public virtual Mask DigitsUsed { get; }
+	public virtual Mask DigitsUsed => 0;
 
 	/// <summary>
 	/// <para>Indicates whether property <see cref="FormatTypeIdentifier"/> will inherit from base type.</para>

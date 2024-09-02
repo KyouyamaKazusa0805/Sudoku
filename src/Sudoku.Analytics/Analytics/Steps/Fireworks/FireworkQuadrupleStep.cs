@@ -6,15 +6,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="cells">Indicates the cells used.</param>
-/// <param name="digitsMask">Indicates the mask of digits used.</param>
+/// <param name="cells"><inheritdoc/></param>
+/// <param name="digitsMask"><inheritdoc/></param>
 public sealed partial class FireworkQuadrupleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask
-) : FireworkStep(conclusions, views, options)
+	ref readonly CellMap cells,
+	Mask digitsMask
+) : FireworkStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 4;

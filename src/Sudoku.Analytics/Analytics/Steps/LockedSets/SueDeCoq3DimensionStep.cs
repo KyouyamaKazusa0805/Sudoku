@@ -31,6 +31,9 @@ public sealed partial class SueDeCoq3DimensionStep(
 	public override Technique Code => Technique.SueDeCoq3Dimension;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)((Mask)(RowDigitsMask | ColumnDigitsMask) | BlockDigitsMask);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [Cells1Str, Digits1Str, Cells2Str, Digits2Str, Cells3Str, Digits3Str]),
