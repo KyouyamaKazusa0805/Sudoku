@@ -17,7 +17,7 @@ internal static class SubsetModule
 	{
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
-		var searchers = context.Options is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
+		var searchers = context.Options is { IsDirectMode: true } ? p : q;
 
 		ref readonly var grid = ref context.Grid;
 		var emptyCellsForGrid = grid.EmptyCells;

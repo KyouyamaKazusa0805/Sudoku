@@ -23,7 +23,7 @@ public static class GridSnyderExtensions
 				DirectNakedSubsetMaxSize = 4
 			}
 		)
-		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+		.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

@@ -22,7 +22,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 				DirectNakedSubsetMaxSize = 4
 			}
 		)
-		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+		.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

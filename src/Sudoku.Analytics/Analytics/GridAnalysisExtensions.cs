@@ -47,7 +47,6 @@ public static class GridAnalysisExtensions
 			.WithUserDefinedOptions(
 				new()
 				{
-					DistinctDirectMode = true,
 					IsDirectMode = true,
 					PrimarySingle = SingleTechniqueFlag.HiddenSingle,
 					PrimaryHiddenSingleAllowsLines = allowHiddenSingleInLine
@@ -65,14 +64,7 @@ public static class GridAnalysisExtensions
 	public static bool CanPrimaryNakedSingle(this ref readonly Grid @this)
 		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
-			.WithUserDefinedOptions(
-				new()
-				{
-					DistinctDirectMode = true,
-					IsDirectMode = true,
-					PrimarySingle = SingleTechniqueFlag.NakedSingle
-				}
-			)
+			.WithUserDefinedOptions(new() { IsDirectMode = true, PrimarySingle = SingleTechniqueFlag.NakedSingle })
 			.Analyze(in @this)
 			.IsSolved;
 }

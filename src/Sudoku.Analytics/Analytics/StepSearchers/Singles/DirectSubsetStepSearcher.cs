@@ -99,7 +99,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	{
 		var first = stackalloc DirectSubsetHandlerFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var second = stackalloc DirectSubsetHandlerFuncPtr[] { &NakedSubset, &HiddenSubset };
-		var searchers = context.Options switch { { DistinctDirectMode: true, IsDirectMode: true } => first, _ => second };
+		var searchers = context.Options switch { { IsDirectMode: true } => first, _ => second };
 
 		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;

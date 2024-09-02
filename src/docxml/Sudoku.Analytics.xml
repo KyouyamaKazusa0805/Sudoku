@@ -5796,12 +5796,6 @@
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode">
-            <summary>
-            Indicates whether the step searchers will adjust the searching order to distinct two modes on displaying candidates,
-            making the experience better.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode">
             <summary>
             Indicates whether the current solver uses direct mode to solve a puzzle,
@@ -5865,7 +5859,6 @@
             This default option makes the internal members be:
             <list type="bullet">
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower"/></item>

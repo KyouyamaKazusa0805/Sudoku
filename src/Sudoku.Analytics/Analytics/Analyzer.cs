@@ -147,7 +147,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher()
 			)
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+			.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
@@ -169,7 +169,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
 				new ChainStepSearcher()
 			)
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+			.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 	/// <inheritdoc cref="Analyze(ref readonly AnalyzerContext)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -307,8 +307,8 @@ public sealed partial class Analyzer : AnalyzerBase
 					case (_, _, { RunningArea: StepSearcherRunningArea.None }, _):
 					case (_, _, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
 					case (_, _, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
-					case (_, _, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
-					case (_, _, { Metadata.IsOnlyRunForIndirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: true } }):
+					case (_, _, { Metadata.IsOnlyRunForDirectViews: true }, { Options.IsDirectMode: false }):
+					case (_, _, { Metadata.IsOnlyRunForIndirectViews: true }, { Options.IsDirectMode: true }):
 					case (_, { IsUndefined: true }, { Metadata.SupportAnalyzingMultipleSolutionsPuzzle: false }, _):
 					{
 						// Skips on those two cases:

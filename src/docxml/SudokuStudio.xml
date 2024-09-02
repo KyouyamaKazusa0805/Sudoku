@@ -1089,12 +1089,6 @@
             Indicates whether the step will display its corresponding rating defined in program HoDoKu.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes">
-            <summary>
-            Indicates whether the step searchers will distinct for direct and indirect views,
-            in order to re-order the step searchers' calculation, to make the experience better.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerIsFullApplying">
             <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
         </member>
@@ -1340,12 +1334,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodoku"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DisplayDifficultyRatingForHodoku"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DistinctDirectAndIndirectModes"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerIsFullApplyingProperty">
             <summary>

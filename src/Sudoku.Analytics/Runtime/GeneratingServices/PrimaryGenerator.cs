@@ -35,7 +35,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerat
 	/// </summary>
 	protected static readonly Analyzer Analyzer = Analyzer.Default
 		.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true })
-		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+		.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

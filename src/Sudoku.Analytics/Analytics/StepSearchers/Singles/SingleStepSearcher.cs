@@ -204,7 +204,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	private unsafe Step? Collect_NonIttoryuMode(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var isFullyMarkedMode = !context.Options.DistinctDirectMode || !context.Options.IsDirectMode;
 
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
@@ -213,7 +212,13 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		var q = stackalloc SingleModuleSearcherFuncPtr[] { &CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle };
 		var r = stackalloc SingleModuleSearcherFuncPtr[] { &CheckNakedSingle, &CheckHiddenSingle };
 		var s = stackalloc SingleModuleSearcherFuncPtr[] { &CheckHiddenSingle, &CheckNakedSingle };
-		var searchers = (EnableFullHouse, isFullyMarkedMode) switch { (true, true) => p, (true, _) => q, (_, true) => r, _ => s };
+		var searchers = (EnableFullHouse, !context.Options.IsDirectMode) switch
+		{
+			(true, true) => p,
+			(true, _) => q,
+			(_, true) => r,
+			_ => s
+		};
 		for (var i = 0; i < (searchers == p || searchers == q ? 3 : 2); i++)
 		{
 			if (searchers[i](this, ref context, in grid) is { } step)

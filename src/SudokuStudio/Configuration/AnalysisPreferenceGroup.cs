@@ -172,13 +172,6 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty]
 	public partial bool DisplayDifficultyRatingForHodoku { get; set; }
 
-	/// <summary>
-	/// Indicates whether the step searchers will distinct for direct and indirect views,
-	/// in order to re-order the step searchers' calculation, to make the experience better.
-	/// </summary>
-	[DependencyProperty]
-	public partial bool DistinctDirectAndIndirectModes { get; set; }
-
 
 	/// <inheritdoc cref="Analyzer.IsFullApplying"/>
 	[DependencyProperty]

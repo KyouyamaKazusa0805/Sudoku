@@ -13,12 +13,6 @@
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
 			<w:SettingsCard
-				Header="{m:R Key=SettingsPage_DistinctDirectAndIndirectModes}"
-				Description="{m:R Key=SettingsPage_DistinctDirectAndIndirectModesDescription}">
-				<ToggleSwitch
-					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DistinctDirectAndIndirectModes,Mode=TwoWay}" />
-			</w:SettingsCard>
-			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_StepSearcherOrdering}" Description="{m:R Key=SettingsPage_StepSearcherOrderingDescription}"
 				IsClickEnabled="True"
 				Click="GoToStepSearcherSorterPageSettingsCard_Click" />

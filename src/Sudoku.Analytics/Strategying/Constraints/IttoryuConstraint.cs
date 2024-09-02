@@ -19,7 +19,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 				UseIttoryuMode = true
 			}
 		)
-		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+		.WithUserDefinedOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

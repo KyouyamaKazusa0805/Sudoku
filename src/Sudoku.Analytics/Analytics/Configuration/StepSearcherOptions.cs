@@ -11,12 +11,6 @@ namespace Sudoku.Analytics.Configuration;
 public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOptions>
 {
 	/// <summary>
-	/// Indicates whether the step searchers will adjust the searching order to distinct two modes on displaying candidates,
-	/// making the experience better.
-	/// </summary>
-	public bool DistinctDirectMode { get; init; } = false;
-
-	/// <summary>
 	/// Indicates whether the current solver uses direct mode to solve a puzzle,
 	/// meaning UI will display the grid without any candidates.
 	/// </summary>
@@ -79,7 +73,6 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// This default option makes the internal members be:
 	/// <list type="bullet">
 	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
-	/// <item><see cref="DistinctDirectMode"/>: <see langword="false"/></item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
 	/// <item><see cref="BabaGroupInitialLetter"/>: <see cref="BabaGroupInitialLetter.EnglishLetter_X"/></item>
 	/// <item><see cref="BabaGroupLetterCasing"/>: <see cref="BabaGroupLetterCasing.Lower"/></item>
