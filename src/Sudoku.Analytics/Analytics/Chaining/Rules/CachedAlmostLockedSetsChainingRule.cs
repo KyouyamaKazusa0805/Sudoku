@@ -9,6 +9,11 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.AlmostLockedSets) == LinkOption.None)
+		{
+			return;
+		}
+
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.AlmostLockedSets);
 		var maskTempList = (stackalloc Mask[81]);

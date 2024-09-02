@@ -1,0 +1,92 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Analysis"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:z="using:SudokuStudio"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:ChainOrLoopSettingPage}"
+	Loaded="Page_Loaded">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<w:SettingsExpander IsExpanded="True" Header="{m:R Key=SettingsPage_AllowedChainLinkType}">
+				<w:SettingsExpander.Description>
+					<TextBlock>
+						<Run Text="{m:R Key=SettingsPage_AllowedChainLinkTypeDescription}" />
+						<LineBreak />
+						<Bold>
+							<Run Text="{m:R Key=SettingsPage_AllowedChainLinkTypeWarning}" />
+						</Bold>
+					</TextBlock>
+				</w:SettingsExpander.Description>
+				<w:SettingsExpander.Items>
+					<w:SettingsCard Header="{m:R Key=LinkType_SingleDigit}">
+						<w:Segmented
+							x:Name="SingleDigitComboBox" IsEnabled="False"
+							SelectionChanged="SingleDigitComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_SingleCell}">
+						<w:Segmented
+							x:Name="SingleCellComboBox" IsEnabled="False"
+							SelectionChanged="SingleCellComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_LockedCandidates}">
+						<w:Segmented x:Name="LockedCandidatesComboBox" SelectionChanged="LockedCandidatesComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_AlmostLockedSets}">
+						<w:Segmented x:Name="AlmostLockedSetsComboBox" SelectionChanged="AlmostLockedSetsComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_AlmostUniqueRectangle}">
+						<w:Segmented x:Name="AlmostUniqueRectangleComboBox" SelectionChanged="AlmostUniqueRectangleComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_AlmostAvoidableRectangle}">
+						<w:Segmented x:Name="AlmostAvoidableRectangleComboBox" SelectionChanged="AlmostAvoidableRectangleComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+					<w:SettingsCard Header="{m:R Key=LinkType_KrakenNormalFish}">
+						<w:Segmented x:Name="KrakenNormalFishComboBox" SelectionChanged="KrakenNormalFishComboBox_SelectionChanged">
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
+							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
+						</w:Segmented>
+					</w:SettingsCard>
+				</w:SettingsExpander.Items>
+			</w:SettingsExpander>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

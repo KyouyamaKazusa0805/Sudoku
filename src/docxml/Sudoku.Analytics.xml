@@ -5527,6 +5527,12 @@
             Represents an option that controls the link collecting rules.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.LinkOption.None">
+            <summary>
+            Indicates the link collecting method doesn't check for the current link type,
+            i.e. it will be skipped to be searched.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.LinkOption.Intersection">
             <summary>
             Indicates link collecting method only collects for node lying in an intersection.
@@ -5861,14 +5867,18 @@
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see langword="new"/> <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/>()</item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.House"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.OverriddenLinkOptions"/>: <c>[]</c></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
+            <item>
+            <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.OverriddenLinkOptions"/>:
+            [<see cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.None"/>,
+            <see cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>: <see cref="F:Sudoku.Analytics.Configuration.LinkOption.None"/>]
+            </item>
             </list>
             </remarks>
         </member>

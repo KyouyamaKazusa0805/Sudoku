@@ -22,6 +22,7 @@
 			<w:SettingsCard Header="{m:R Key=SettingsPage_AlmostLockedSetsAndIntersectionsGroup}" IsClickEnabled="True" Click="AlmostLockedSetsAndIntersectionSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_BabaGroupingGroup}" IsClickEnabled="True" Click="BabaGroupingSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_PermutationsGroup}" IsClickEnabled="True" Click="PermutationSettingsCard_Click" />
+			<w:SettingsCard Header="{m:R Key=SettingsPage_ChainGroup}" IsClickEnabled="True" Click="ChainSettingsCard_Click" />
 
 			<TextBlock Text="{m:R Key=SettingsPage_GlobalSettingsGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Duality}" IsClickEnabled="True" Click="DualitySettingsCard_Click" />

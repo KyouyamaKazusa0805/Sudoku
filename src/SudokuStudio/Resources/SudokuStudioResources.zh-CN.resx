@@ -2726,4 +2726,52 @@
  • 启用带区块和数组，以及各种组合使用的出数类技巧
  • 一些技巧名的变更（在非直观模式下，排除技巧会换个名字，叫“隐性唯一”）</value>
   </data>
+  <data name="SettingsPage_ChainGroup" xml:space="preserve">
+    <value>链和环</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkType" xml:space="preserve">
+    <value>允许搜索的强弱链类型</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkTypeDescription" xml:space="preserve">
+    <value>通过修改链类型，你可以按你的意愿控制搜索器搜索的强弱链的类型哪些允许哪些不允许。</value>
+  </data>
+  <data name="LinkType_SingleDigit" xml:space="preserve">
+    <value>X 链：同数之间、位于同一个区域的链</value>
+  </data>
+  <data name="LinkType_SingleCell" xml:space="preserve">
+    <value>Y 链：同单元格的链</value>
+  </data>
+  <data name="LinkType_LockedCandidates" xml:space="preserve">
+    <value>区块：连接区块节点的链</value>
+  </data>
+  <data name="LinkType_AlmostLockedSets" xml:space="preserve">
+    <value>待定数组：连接待定数组（ALS）的链</value>
+  </data>
+  <data name="LinkType_KrakenNormalFish" xml:space="preserve">
+    <value>鱼：连接鱼的链（目前只包含普通鱼，复杂鱼暂未实现）</value>
+  </data>
+  <data name="LinkType_AlmostUniqueRectangle" xml:space="preserve">
+    <value>唯一矩形：连接唯一矩形（UR）的链</value>
+  </data>
+  <data name="LinkType_AlmostAvoidableRectangle" xml:space="preserve">
+    <value>可规避矩形：连接可规避矩形（AR）的链</value>
+  </data>
+  <data name="LinkOptions_None" xml:space="preserve">
+    <value>不启用</value>
+  </data>
+  <data name="LinkOptions_Intersection" xml:space="preserve">
+    <value>区块内</value>
+  </data>
+  <data name="LinkOptions_House" xml:space="preserve">
+    <value>区域内</value>
+  </data>
+  <data name="LinkOptions_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkTypeWarning" xml:space="preserve">
+    <value>如果你选择允许的链类型越丰富，搜索需要的内存就会越大。如果你的电脑并不是大内存的的话，强烈不建议你把节点类型全部打开成“全部”。</value>
+  </data>
+  <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
+    <value>链和环</value>
+  </data>
 </root>

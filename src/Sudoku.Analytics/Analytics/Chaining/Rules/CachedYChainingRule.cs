@@ -9,6 +9,11 @@ internal sealed class CachedYChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.SingleCell) == LinkOption.None)
+		{
+			return;
+		}
+
 		ref readonly var grid = ref context.Grid;
 		foreach (var cell in EmptyCells)
 		{

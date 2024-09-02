@@ -3916,6 +3916,105 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        internal static string LinkOptions_All {
+            get {
+                return ResourceManager.GetString("LinkOptions_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In house.
+        /// </summary>
+        internal static string LinkOptions_House {
+            get {
+                return ResourceManager.GetString("LinkOptions_House", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In intersection.
+        /// </summary>
+        internal static string LinkOptions_Intersection {
+            get {
+                return ResourceManager.GetString("LinkOptions_Intersection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        internal static string LinkOptions_None {
+            get {
+                return ResourceManager.GetString("LinkOptions_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
+        /// </summary>
+        internal static string LinkType_AlmostAvoidableRectangle {
+            get {
+                return ResourceManager.GetString("LinkType_AlmostAvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Locked Sets: Links connecting with an Almost Locked Set (ALS) pattern.
+        /// </summary>
+        internal static string LinkType_AlmostLockedSets {
+            get {
+                return ResourceManager.GetString("LinkType_AlmostLockedSets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Almost Unique Rectangles: Links connecting with an Almost Unique Rectangle (AUR) pattern.
+        /// </summary>
+        internal static string LinkType_AlmostUniqueRectangle {
+            get {
+                return ResourceManager.GetString("LinkType_AlmostUniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kraken Fishes: Links connecting with fishes (only normal fishes, complex fishes are not implemented).
+        /// </summary>
+        internal static string LinkType_KrakenNormalFish {
+            get {
+                return ResourceManager.GetString("LinkType_KrakenNormalFish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates: Links connecting with a locked candidates.
+        /// </summary>
+        internal static string LinkType_LockedCandidates {
+            get {
+                return ResourceManager.GetString("LinkType_LockedCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y Rule: Links of single cell.
+        /// </summary>
+        internal static string LinkType_SingleCell {
+            get {
+                return ResourceManager.GetString("LinkType_SingleCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X Rule: Links of single digit in a same house.
+        /// </summary>
+        internal static string LinkType_SingleDigit {
+            get {
+                return ResourceManager.GetString("LinkType_SingleDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_About {
@@ -4002,6 +4101,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_BasicPreferenceItemsPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_BasicPreferenceItemsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chains &amp; Loops.
+        /// </summary>
+        internal static string MainWindow_ChainOrLoopSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_ChainOrLoopSettingPageTitle", resourceCulture);
             }
         }
         
@@ -4933,6 +5041,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allowed types of chain links.
+        /// </summary>
+        internal static string SettingsPage_AllowedChainLinkType {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowedChainLinkType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By setting the link types, searching module will allow or disallow some types of links if you want or don&apos;t want..
+        /// </summary>
+        internal static string SettingsPage_AllowedChainLinkTypeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowedChainLinkTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The more supported link types you choose, the more memory will use. If your computer doesn&apos;t have a large memory, DON&apos;T enable all functions of the following values..
+        /// </summary>
+        internal static string SettingsPage_AllowedChainLinkTypeWarning {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowedChainLinkTypeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allowed direct techinques.
         /// </summary>
         internal static string SettingsPage_AllowedDirectTechniques {
@@ -5298,6 +5433,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_ChainColor {
             get {
                 return ResourceManager.GetString("SettingsPage_ChainColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chains &amp; Loops.
+        /// </summary>
+        internal static string SettingsPage_ChainGroup {
+            get {
+                return ResourceManager.GetString("SettingsPage_ChainGroup", resourceCulture);
             }
         }
         

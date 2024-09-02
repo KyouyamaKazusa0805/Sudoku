@@ -84,7 +84,11 @@ public sealed record StepGathererOptions
 	/// <summary>
 	/// Indicates the link options overridden.
 	/// </summary>
-	public IDictionary<LinkType, LinkOption> OverriddenLinkOptions { get; } = new Dictionary<LinkType, LinkOption>();
+	public IDictionary<LinkType, LinkOption>? OverriddenLinkOptions { get; set; } = new Dictionary<LinkType, LinkOption>
+	{
+		{ LinkType.KrakenNormalFish, LinkOption.None },
+		{ LinkType.XyzWing, LinkOption.None }
+	};
 
 
 	/// <summary>
@@ -93,14 +97,18 @@ public sealed record StepGathererOptions
 	/// <remarks>
 	/// This default option makes the internal members be:
 	/// <list type="bullet">
-	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
+	/// <item><see cref="Converter"/>: <see langword="new"/> <see cref="RxCyConverter"/>()</item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
+	/// <item><see cref="PrimarySingle"/>: <see cref="SingleTechniqueFlag.None"/></item>
+	/// <item><see cref="PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
 	/// <item><see cref="BabaGroupInitialLetter"/>: <see cref="BabaGroupInitialLetter.EnglishLetter_X"/></item>
 	/// <item><see cref="BabaGroupLetterCasing"/>: <see cref="BabaGroupLetterCasing.Lower"/></item>
 	/// <item><see cref="DefaultLinkOption"/>: <see cref="LinkOption.House"/></item>
-	/// <item><see cref="OverriddenLinkOptions"/>: <c>[]</c></item>
-	/// <item><see cref="PrimarySingle"/>: <see cref="SingleTechniqueFlag.None"/></item>
-	/// <item><see cref="PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
+	/// <item>
+	/// <see cref="OverriddenLinkOptions"/>:
+	/// [<see cref="LinkType.KrakenNormalFish"/>: <see cref="LinkOption.None"/>,
+	/// <see cref="LinkType.XyzWing"/>: <see cref="LinkOption.None"/>]
+	/// </item>
 	/// </list>
 	/// </remarks>
 	public static StepGathererOptions Default => new();

@@ -31,5 +31,5 @@ public ref partial struct ChainingRuleLinkContext(
 	/// <seealso cref="StepGathererOptions.DefaultLinkOption"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly LinkOption GetLinkOption(LinkType linkType)
-		=> Options.OverriddenLinkOptions.TryGetValue(linkType, out var lo) ? lo : Options.DefaultLinkOption;
+		=> Options.OverriddenLinkOptions is { } p && p.TryGetValue(linkType, out var lo) ? lo : Options.DefaultLinkOption;
 }

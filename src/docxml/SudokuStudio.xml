@@ -1125,6 +1125,9 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing">
             <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptions">
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.OverriddenLinkOptions"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
             <inheritdoc cref="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
@@ -1391,6 +1394,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptionsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptions"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptions"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniquesProperty">
             <summary>
@@ -7646,6 +7655,61 @@
               Looks up a localized string similar to Tower swap (Randomly swap two towers).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkOptions_All">
+            <summary>
+              Looks up a localized string similar to All.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkOptions_House">
+            <summary>
+              Looks up a localized string similar to In house.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkOptions_Intersection">
+            <summary>
+              Looks up a localized string similar to In intersection.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkOptions_None">
+            <summary>
+              Looks up a localized string similar to Disabled.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostAvoidableRectangle">
+            <summary>
+              Looks up a localized string similar to Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostLockedSets">
+            <summary>
+              Looks up a localized string similar to Almost Locked Sets: Links connecting with an Almost Locked Set (ALS) pattern.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_AlmostUniqueRectangle">
+            <summary>
+              Looks up a localized string similar to Almost Unique Rectangles: Links connecting with an Almost Unique Rectangle (AUR) pattern.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_KrakenNormalFish">
+            <summary>
+              Looks up a localized string similar to Kraken Fishes: Links connecting with fishes (only normal fishes, complex fishes are not implemented).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_LockedCandidates">
+            <summary>
+              Looks up a localized string similar to Locked Candidates: Links connecting with a locked candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_SingleCell">
+            <summary>
+              Looks up a localized string similar to Y Rule: Links of single cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.LinkType_SingleDigit">
+            <summary>
+              Looks up a localized string similar to X Rule: Links of single digit in a same house.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_About">
             <summary>
               Looks up a localized string similar to About.
@@ -7694,6 +7758,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BasicPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Program Basic Options.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ChainOrLoopSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Chains &amp; Loops.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_CompatibilitySettingPageTitle">
@@ -8211,6 +8280,21 @@
               Looks up a localized string similar to Direct Pointing.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedChainLinkType">
+            <summary>
+              Looks up a localized string similar to Allowed types of chain links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedChainLinkTypeDescription">
+            <summary>
+              Looks up a localized string similar to By setting the link types, searching module will allow or disallow some types of links if you want or don&apos;t want..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedChainLinkTypeWarning">
+            <summary>
+              Looks up a localized string similar to The more supported link types you choose, the more memory will use. If your computer doesn&apos;t have a large memory, DON&apos;T enable all functions of the following values..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AllowedDirectTechniques">
             <summary>
               Looks up a localized string similar to Allowed direct techinques.
@@ -8414,6 +8498,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ChainColor">
             <summary>
               Looks up a localized string similar to Chain links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ChainGroup">
+            <summary>
+              Looks up a localized string similar to Chains &amp; Loops.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ChainStrokeThicknessTitle">
@@ -15225,6 +15314,45 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage">
+            <summary>
+            Represents chain or loop setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.GetSegmentedItemIndex(Sudoku.Analytics.Configuration.LinkType)">
+            <summary>
+            Sets and updates the segmented item index.
+            </summary>
+            <param name="linkType">The link type.</param>
+            <returns>The index.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.SetSegmentedItemIndex(Sudoku.Analytics.Configuration.LinkType,System.Int32)">
+            <summary>
+            Sets and updates overridden link type value.
+            </summary>
+            <param name="linkType">The link type.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

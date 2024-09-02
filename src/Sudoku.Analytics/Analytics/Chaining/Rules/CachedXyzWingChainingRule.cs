@@ -9,6 +9,11 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.XyzWing) == LinkOption.None)
+		{
+			return;
+		}
+
 		ref readonly var grid = ref context.Grid;
 		var linkOption = context.GetLinkOption(LinkType.XyzWing);
 

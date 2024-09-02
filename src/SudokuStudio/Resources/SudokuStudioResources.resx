@@ -2735,4 +2735,52 @@ Correct rate: {3:P} ({4}/{5})</value>
  • Enable Direct Intersections / Direct Subsets and Complex Singles
  • Different technique names (In direct modes, "Hidden Singles" will be called "Crosshatching")</value>
   </data>
+  <data name="SettingsPage_ChainGroup" xml:space="preserve">
+    <value>Chains &amp; Loops</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkType" xml:space="preserve">
+    <value>Allowed types of chain links</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkTypeDescription" xml:space="preserve">
+    <value>By setting the link types, searching module will allow or disallow some types of links if you want or don't want.</value>
+  </data>
+  <data name="LinkType_SingleDigit" xml:space="preserve">
+    <value>X Rule: Links of single digit in a same house</value>
+  </data>
+  <data name="LinkType_SingleCell" xml:space="preserve">
+    <value>Y Rule: Links of single cell</value>
+  </data>
+  <data name="LinkType_LockedCandidates" xml:space="preserve">
+    <value>Locked Candidates: Links connecting with a locked candidates</value>
+  </data>
+  <data name="LinkType_AlmostLockedSets" xml:space="preserve">
+    <value>Almost Locked Sets: Links connecting with an Almost Locked Set (ALS) pattern</value>
+  </data>
+  <data name="LinkType_KrakenNormalFish" xml:space="preserve">
+    <value>Kraken Fishes: Links connecting with fishes (only normal fishes, complex fishes are not implemented)</value>
+  </data>
+  <data name="LinkType_AlmostUniqueRectangle" xml:space="preserve">
+    <value>Almost Unique Rectangles: Links connecting with an Almost Unique Rectangle (AUR) pattern</value>
+  </data>
+  <data name="LinkType_AlmostAvoidableRectangle" xml:space="preserve">
+    <value>Almost Avoidable Rectangles: Links connecting with Almost Avoidable Rectangles (AUR) pattern</value>
+  </data>
+  <data name="LinkOptions_None" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="LinkOptions_Intersection" xml:space="preserve">
+    <value>In intersection</value>
+  </data>
+  <data name="LinkOptions_House" xml:space="preserve">
+    <value>In house</value>
+  </data>
+  <data name="LinkOptions_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="SettingsPage_AllowedChainLinkTypeWarning" xml:space="preserve">
+    <value>The more supported link types you choose, the more memory will use. If your computer doesn't have a large memory, DON'T enable all functions of the following values.</value>
+  </data>
+  <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
+    <value>Chains &amp; Loops</value>
+  </data>
 </root>

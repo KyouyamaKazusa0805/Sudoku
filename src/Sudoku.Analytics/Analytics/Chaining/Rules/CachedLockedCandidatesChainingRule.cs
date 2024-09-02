@@ -9,6 +9,11 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.LockedCandidates) == LinkOption.None)
+		{
+			return;
+		}
+
 		// Strong.
 		for (var house = 0; house < 27; house++)
 		{

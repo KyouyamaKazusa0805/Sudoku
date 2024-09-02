@@ -6,6 +6,12 @@ namespace Sudoku.Analytics.Configuration;
 public enum LinkOption
 {
 	/// <summary>
+	/// Indicates the link collecting method doesn't check for the current link type,
+	/// i.e. it will be skipped to be searched.
+	/// </summary>
+	None,
+
+	/// <summary>
 	/// Indicates link collecting method only collects for node lying in an intersection.
 	/// </summary>
 	Intersection,

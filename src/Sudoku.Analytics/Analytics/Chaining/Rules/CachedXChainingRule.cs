@@ -9,6 +9,11 @@ internal sealed class CachedXChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.SingleDigit) == LinkOption.None)
+		{
+			return;
+		}
+
 		// Strong.
 		for (var digit = 0; digit < 9; digit++)
 		{

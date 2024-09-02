@@ -361,7 +361,8 @@ public partial class App : Application
 			},
 			IsDirectMode = uiPref.IsDirectMode,
 			BabaGroupInitialLetter = analysisPref.InitialLetter,
-			BabaGroupLetterCasing = analysisPref.LetterCasing
+			BabaGroupLetterCasing = analysisPref.LetterCasing,
+			OverriddenLinkOptions = analysisPref.OverriddenLinkOptions
 		};
 	}
 }

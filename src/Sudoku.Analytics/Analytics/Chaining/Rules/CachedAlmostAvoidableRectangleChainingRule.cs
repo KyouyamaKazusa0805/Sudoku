@@ -9,6 +9,11 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.AlmostAvoidableRectangle) == LinkOption.None)
+		{
+			return;
+		}
+
 		ref readonly var grid = ref context.Grid;
 		if (grid.GetUniqueness() != Uniqueness.Unique)
 		{

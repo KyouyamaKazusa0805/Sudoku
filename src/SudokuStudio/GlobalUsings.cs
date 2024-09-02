@@ -135,6 +135,7 @@ global using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 global using @io = System.IO;
 global using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using LineGeometry = Microsoft.UI.Xaml.Media.LineGeometry;
+global using LinkType = Sudoku.Analytics.Configuration.LinkType;
 global using Millisecond = int;
 global using Page = Microsoft.UI.Xaml.Controls.Page;
 global using Path = Microsoft.UI.Xaml.Shapes.Path;

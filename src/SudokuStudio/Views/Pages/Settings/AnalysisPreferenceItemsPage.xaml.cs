@@ -35,6 +35,9 @@ public sealed partial class AnalysisPreferenceItemsPage : Page
 	private void PermutationSettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(PermutationSettingPage), true);
 
+	private void ChainSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(ChainOrLoopSettingPage), true);
+
 	private void DualitySettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(DualitySettingPage), true);
 

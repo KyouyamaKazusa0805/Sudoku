@@ -9,6 +9,11 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLinks(ref ChainingRuleLinkContext context)
 	{
+		if (context.GetLinkOption(LinkType.KrakenNormalFish) == LinkOption.None)
+		{
+			return;
+		}
+
 		// Collect for available rows and columns.
 		var sets = (stackalloc HouseMask[9]);
 		sets.Clear();

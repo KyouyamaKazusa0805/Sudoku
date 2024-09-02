@@ -16,6 +16,14 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 		Technique.NakedSingle
 	];
 
+	[Default]
+	private static readonly Dictionary<LinkType, LinkOption> OverriddenLinkOptionsDefaultValue = new()
+	{
+		{ LinkType.SingleDigit, LinkOption.All },
+		{ LinkType.SingleCell, LinkOption.All },
+		{ LinkType.KrakenNormalFish, LinkOption.None }
+	};
+
 
 	/// <inheritdoc cref="SingleStepSearcher.EnableFullHouse"/>
 	[DependencyProperty(DefaultValue = true)]
@@ -201,6 +209,10 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	/// <inheritdoc cref="StepGathererOptions.BabaGroupLetterCasing"/>
 	[DependencyProperty(DefaultValue = BabaGroupLetterCasing.Lower)]
 	public partial BabaGroupLetterCasing LetterCasing { get; set; }
+
+	/// <inheritdoc cref="StepGathererOptions.OverriddenLinkOptions"/>
+	[DependencyProperty]
+	public partial Dictionary<LinkType, LinkOption> OverriddenLinkOptions { get; set; }
 
 	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
 	[DependencyProperty]
