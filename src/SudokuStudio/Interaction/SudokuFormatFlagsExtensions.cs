@@ -19,8 +19,11 @@ internal static class SudokuFormatFlagsExtensions
 			SudokuFormatFlags.CurrentFormat => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true },
 			SudokuFormatFlags.CurrentFormatIgnoringValueKind
 				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, TreatValueAsGiven = true },
+#if false
+			// Deprecated. This will be handled as special one.
 			SudokuFormatFlags.HodokuCompatibleFormat
 				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, IsCompatibleMode = true },
+#endif
 			SudokuFormatFlags.MultipleGridFormat => new MultipleLineGridFormatInfo { RemoveGridLines = true },
 			SudokuFormatFlags.PencilMarkFormat => new PencilmarkGridFormatInfo { SubtleGridLines = true },
 			SudokuFormatFlags.SukakuFormat => new SukakuGridFormatInfo(),

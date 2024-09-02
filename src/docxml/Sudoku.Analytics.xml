@@ -19892,22 +19892,26 @@
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
-            by another program called <see href="https://sourceforge.net/projects/hodoku/">Hodoku</see>.
+            by another program called <see href="https://sourceforge.net/projects/hodoku/">HoDoKu</see>.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuCompatibility.DefaultLibraryFormatPrefix">
             <summary>
-            Gets all possible aliased names that are defined by Hodoku.
+            Indicates the default library format prefix "<c>0000</c>".
             </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            The array of aliased names, or <see langword="null"/> if it is not defined by Hodoku.
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="F:Sudoku.Compatibility.Hodoku.HodokuCompatibility.DefaultLibraryFormatDigitPlaceholder">
+            <summary>
+            Indicates the default library format digit placeholder "<c>x</c>".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuLibraryFormat(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Formats the current puzzle with specified step information, to output as HoDoKu library format.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="step">The corresponding step.</param>
+            <returns>The library format.</returns>
         </member>
         <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuLibraryPrefix(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -19919,26 +19923,41 @@
             <returns>
             <para>
             A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
-            in a sudoku grid, which is defined by the project Hodoku.
+            in a sudoku grid, which is defined by the project HoDoKu.
             </para>
             <para>
-            If this technique is not supported by Hodoku, <see langword="null"/> will be returned.
+            If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.
             </para>
             </returns>
             <remarks>
             <para>
             Please note that some technique fields are separated into multiple sub-types, but they all
-            belong to a same type of a technique supported by Hodoku. For example,
+            belong to a same type of a technique supported by HoDoKu. For example,
             <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
-            Hodoku as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
+            HoDoKu as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
             are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
             </para>
             <para>
-            However, if a sub-type is not supported by Hodoku (e.g. the field
+            However, if a sub-type is not supported by HoDoKu (e.g. the field
             <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
-            indicating the "Not supported" state.
+            indicating the "Not supported" state;
+            no exceptions will throw, except the value <paramref name="this"/> is not defined in the containing enumeration type.
             </para>
             </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by HoDoKu.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by HoDoKu.
+            </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
             or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
@@ -19950,10 +19969,10 @@
             Try to get difficulty score of the specified technique.
             </summary>
             <param name="this">The technique.</param>
-            <param name="difficultyLevel">The difficulty level that is defined by Hodoku.</param>
+            <param name="difficultyLevel">The difficulty level that is defined by HoDoKu.</param>
             <returns>
-            <para>An <see cref="T:System.Int32"/> value defined by the project Hodoku.</para>
-            <para>If this technique is not supported by Hodoku, <see langword="null"/> will be returned.</para>
+            <para>An <see cref="T:System.Int32"/> value defined by the project HoDoKu.</para>
+            <para>If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.</para>
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
@@ -20984,11 +21003,13 @@
             <summary>
             Represents a chain.
             </summary>
+            <param name="lastNode"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node)">
             <summary>
             Represents a chain.
             </summary>
+            <param name="lastNode"><inheritdoc/></param>
         </member>
         <member name="F:Sudoku.Concepts.Chain._weakStart">
             <summary>
@@ -21633,11 +21654,13 @@
             <summary>
             Represents a loop.
             </summary>
+            <param name="lastNode"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Concepts.Loop.#ctor(Sudoku.Concepts.Node)">
             <summary>
             Represents a loop.
             </summary>
+            <param name="lastNode"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Concepts.Loop.WeakStartIdentity">
             <inheritdoc/>

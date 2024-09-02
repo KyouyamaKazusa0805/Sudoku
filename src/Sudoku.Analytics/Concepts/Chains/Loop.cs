@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a loop.
 /// </summary>
+/// <param name="lastNode"><inheritdoc/></param>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 {

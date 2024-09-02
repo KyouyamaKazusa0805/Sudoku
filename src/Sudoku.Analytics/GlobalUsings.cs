@@ -39,6 +39,7 @@ global using Sudoku.Linq;
 global using Sudoku.Resources;
 global using Sudoku.Runtime;
 global using Sudoku.Runtime.CoordinateServices;
+global using Sudoku.Runtime.FormattingServices;
 global using Sudoku.Runtime.IttoryuServices;
 global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Runtime.MeasuringServices;

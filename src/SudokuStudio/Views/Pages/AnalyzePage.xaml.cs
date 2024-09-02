@@ -1005,7 +1005,11 @@ public sealed partial class AnalyzePage : Page
 		}
 
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(puzzle.ToString(flag.GetConverter()));
+		dataPackage.SetText(
+			flag != SudokuFormatFlags.HodokuCompatibleFormat
+				? puzzle.ToString(flag.GetConverter())
+				: HodokuCompatibility.GetHodokuLibraryFormat(in puzzle, VisualUnit as Step)
+		);
 		Clipboard.SetContent(dataPackage);
 	}
 

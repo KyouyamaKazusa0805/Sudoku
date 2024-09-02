@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a chain.
 /// </summary>
+/// <param name="lastNode"><inheritdoc/></param>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 {
