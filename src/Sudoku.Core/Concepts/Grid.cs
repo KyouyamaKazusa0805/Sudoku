@@ -158,6 +158,20 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public readonly bool IsMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
 
 	/// <inheritdoc/>
+	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
+
+	/// <summary>
+	/// Indicates the type of the puzzle.
+	/// </summary>
+	/// <remarks>
+	/// By design, this property can only be either <see cref="SudokuType.Standard"/> or <see cref="SudokuType.Sukaku"/>;
+	/// other values like <see cref="SudokuType.JustOneCell"/> won't be created here.
+	/// </remarks>
+	/// <seealso cref="SudokuType.Standard"/>
+	/// <seealso cref="SudokuType.Sukaku"/>
+	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
+
+	/// <inheritdoc/>
 	public readonly Cell GivensCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -229,20 +243,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 			return result;
 		}
 	}
-
-	/// <inheritdoc/>
-	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
-
-	/// <summary>
-	/// Indicates the type of the puzzle.
-	/// </summary>
-	/// <remarks>
-	/// Although the property type supports for other values, this property can only return a value
-	/// either <see cref="SudokuType.Standard"/> or <see cref="SudokuType.Sukaku"/>.
-	/// </remarks>
-	/// <seealso cref="SudokuType.Standard"/>
-	/// <seealso cref="SudokuType.Sukaku"/>
-	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
 	public readonly unsafe CellMap GivenCells => GridBase.GetMap(in this, &GridPredicates.GivenCells);

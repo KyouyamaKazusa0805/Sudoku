@@ -2043,6 +2043,20 @@
         <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Symmetry">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.PuzzleType">
+            <summary>
+            Indicates the type of the puzzle.
+            </summary>
+            <remarks>
+            By design, this property can only be either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>;
+            other values like <see cref="F:Sudoku.SudokuType.JustOneCell"/> won't be created here.
+            </remarks>
+            <seealso cref="F:Sudoku.SudokuType.Standard"/>
+            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.GivensCount">
             <inheritdoc/>
         </member>
@@ -2060,20 +2074,6 @@
         </member>
         <member name="P:Sudoku.Concepts.Grid.CompletedHouses">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Symmetry">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.PuzzleType">
-            <summary>
-            Indicates the type of the puzzle.
-            </summary>
-            <remarks>
-            Although the property type supports for other values, this property can only return a value
-            either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.SudokuType.Standard"/>
-            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <inheritdoc/>
