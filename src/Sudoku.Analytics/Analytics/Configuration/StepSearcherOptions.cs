@@ -24,18 +24,29 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	public bool PrimaryHiddenSingleAllowsLines { get; init; } = false;
 
 	/// <summary>
-	/// Indicates the preferred single technique. If the value isn't (<see cref="SingleTechniqueFlag"/>)0,
-	/// the analyzer will ignore the other single technique not related to this field.
+	/// Indicates the preferred single technique.
 	/// </summary>
 	/// <remarks>
-	/// For example, if the value is <see cref="SingleTechniqueFlag.HiddenSingle"/>,
-	/// the analyzer will automatically ignore naked single steps to analyze the grid.
+	/// <para>
+	/// If the value isn't <see cref="SingleTechniqueFlag.None"/>,
+	/// the analyzer will ignore the other single technique not related to this field;
+	/// in other words, the analyzer module will only perform usages of the specified technique,
+	/// determining whether the puzzle can be finished by only use this technique.
+	/// </para>
+	/// <para>
+	/// For example, if the value is <see cref="SingleTechniqueFlag.NakedSingle"/>,
+	/// the analyzer will only use naked singles to finish the puzzle.
 	/// If the puzzle cannot be solved, the analyzer will return an <see cref="AnalysisResult"/> with
 	/// <see cref="AnalysisResult.IsSolved"/> a <see langword="false"/> value.
+	/// </para>
+	/// <para>
+	/// Please note that if hidden single flag is chosen <see cref="SingleTechniqueFlag.HiddenSingle"/>,
+	/// full houses will also be used; this is an only exception.
+	/// </para>
 	/// </remarks>
 	/// <seealso cref="SingleTechniqueFlag"/>
 	/// <seealso cref="AnalysisResult.IsSolved"/>
-	public SingleTechniqueFlag PrimarySingle { get; init; } = 0;
+	public SingleTechniqueFlag PrimarySingle { get; init; } = SingleTechniqueFlag.None;
 
 	/// <summary>
 	/// Indicates the initial letter to be used and displayed in a <see cref="BabaGroupViewNode"/>.

@@ -5811,14 +5811,25 @@
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.PrimarySingle">
             <summary>
-            Indicates the preferred single technique. If the value isn't (<see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>)0,
-            the analyzer will ignore the other single technique not related to this field.
+            Indicates the preferred single technique.
             </summary>
             <remarks>
-            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
-            the analyzer will automatically ignore naked single steps to analyze the grid.
+            <para>
+            If the value isn't <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/>,
+            the analyzer will ignore the other single technique not related to this field;
+            in other words, the analyzer module will only perform usages of the specified technique,
+            determining whether the puzzle can be finished by only use this technique.
+            </para>
+            <para>
+            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle"/>,
+            the analyzer will only use naked singles to finish the puzzle.
             If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalysisResult"/> with
             <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> a <see langword="false"/> value.
+            </para>
+            <para>
+            Please note that if hidden single flag is chosen <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
+            full houses will also be used; this is an only exception.
+            </para>
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
