@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Configuration;
 /// </summary>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Analyzer"/>
-public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOptions>
+public sealed record StepSearcherOptions
 {
 	/// <summary>
 	/// Indicates whether the current solver uses direct mode to solve a puzzle,
@@ -79,7 +79,9 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	public IDictionary<LinkType, LinkOption> OverriddenLinkOptions { get; } = new Dictionary<LinkType, LinkOption>();
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Represents a default instance, with all property having been initialized with default state.
+	/// </summary>
 	/// <remarks>
 	/// This default option makes the internal members be:
 	/// <list type="bullet">

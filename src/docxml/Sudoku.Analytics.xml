@@ -5522,18 +5522,6 @@
             Indicates the lower casing.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Configuration.IStepSearcherOptions`1">
-            <summary>
-            Represents an option type that will be consumed by <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.IStepSearcherOptions`1.Default">
-            <summary>
-            Represents a default instance.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Configuration.LinkOption">
             <summary>
             Represents an option that controls the link collecting rules.
@@ -5859,7 +5847,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
-            <inheritdoc/>
+            <summary>
+            Represents a default instance, with all property having been initialized with default state.
+            </summary>
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
