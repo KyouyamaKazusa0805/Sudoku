@@ -79,7 +79,7 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEn
 	IEnumerable<TElement> IWhereMethod<TMap, TElement>.Where(Func<TElement, bool> predicate) => this.Where(predicate).ToArray();
 
 	/// <inheritdoc/>
-	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Values).GetEnumerator();
+	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => Values.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<TMap, TElement>.Select<TResult>(Func<TElement, TResult> selector)

@@ -56,7 +56,7 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	public NodesEnumerator EnumerateOffNodes() => new(OffNodes.GetEnumerator());
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Node>)this).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => this.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<Node> IEnumerable<Node>.GetEnumerator()

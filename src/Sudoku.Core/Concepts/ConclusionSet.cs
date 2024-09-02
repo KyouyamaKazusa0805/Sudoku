@@ -471,10 +471,10 @@ public sealed partial class ConclusionSet :
 	ConclusionSet IInfiniteSet<ConclusionSet, Conclusion>.ExceptWith(ConclusionSet other) => this & ~other;
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => ((IEnumerable<Conclusion>)ToArray()).GetEnumerator();
+	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<Conclusion> ISliceMethod<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);

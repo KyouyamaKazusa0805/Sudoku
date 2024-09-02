@@ -41,11 +41,11 @@ public interface IGroupingDataProvider<TSelf, out TKey, TElement> :
 	/// Creates an enumerator that can enumerate each element in the source collection.
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
-	public abstract new AnonymousSpanEnumerator<TElement> GetEnumerator();
+	public new abstract AnonymousSpanEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)Elements.ToArray()).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => Elements.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Elements.ToArray()).GetEnumerator();
+	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => Elements.ToArray().AsEnumerable().GetEnumerator();
 }

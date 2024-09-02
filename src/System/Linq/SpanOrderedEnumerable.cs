@@ -205,7 +205,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	IEnumerator IEnumerable.GetEnumerator() => Span.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)Span.ToArray()).GetEnumerator();
+	IEnumerator<T> IEnumerable<T>.GetEnumerator() => Span.ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)

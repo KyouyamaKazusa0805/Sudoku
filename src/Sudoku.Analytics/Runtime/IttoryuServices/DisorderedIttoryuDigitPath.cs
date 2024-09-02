@@ -62,7 +62,7 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)Digits).GetEnumerator();
+	IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => Digits.AsEnumerable().GetEnumerator();
 
 
 	/// <summary>

@@ -170,8 +170,7 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	IEnumerator IEnumerable.GetEnumerator() => ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Interpolation> IEnumerable<Interpolation>.GetEnumerator()
-		=> ((IEnumerable<Interpolation>)ToArray()).GetEnumerator();
+	IEnumerator<Interpolation> IEnumerable<Interpolation>.GetEnumerator() => ToArray().AsEnumerable().GetEnumerator();
 
 
 	/// <summary>

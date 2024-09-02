@@ -54,7 +54,6 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 		{
 			result.Add(element);
 		}
-
 		return result.ToHashCode();
 	}
 
@@ -65,7 +64,7 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	IEnumerator IEnumerable.GetEnumerator() => _doubles.GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<double> IEnumerable<double>.GetEnumerator() => ((IEnumerable<double>)_doubles).GetEnumerator();
+	IEnumerator<double> IEnumerable<double>.GetEnumerator() => _doubles.AsEnumerable().GetEnumerator();
 }
 
 /// <summary>

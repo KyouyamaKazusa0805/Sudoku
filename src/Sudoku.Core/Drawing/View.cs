@@ -111,7 +111,7 @@ public sealed partial class View :
 	public View ExceptWith(View other)
 	{
 		var result = ShallowClone();
-		result.ExceptWith((IEnumerable<ViewNode>)other);
+		result.ExceptWith(other.AsEnumerable());
 		return result;
 	}
 

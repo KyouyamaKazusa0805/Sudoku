@@ -202,10 +202,10 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	public AnonymousSpanEnumerator<T> GetEnumerator() => new(ArrayOrdered);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => ArrayOrdered.GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
+	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ArrayOrdered.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<T> ISliceMethod<ArrayOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count);

@@ -397,7 +397,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	TSelf IInfiniteSet<TSelf, TElement>.ExceptWith(TSelf other) => (TSelf)this & ~other;
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => this.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()

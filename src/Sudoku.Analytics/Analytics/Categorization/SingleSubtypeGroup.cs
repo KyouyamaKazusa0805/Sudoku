@@ -82,7 +82,7 @@ public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(M
 	IEnumerator IEnumerable.GetEnumerator() => _values.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<SingleSubtype> IEnumerable<SingleSubtype>.GetEnumerator() => ((IEnumerable<SingleSubtype>)_values.ToArray()).GetEnumerator();
+	IEnumerator<SingleSubtype> IEnumerable<SingleSubtype>.GetEnumerator() => _values.ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<SingleSubtype> ISliceMethod<SingleSubtypeGroup, SingleSubtype>.Slice(int start, int count) => Slice(start, count);

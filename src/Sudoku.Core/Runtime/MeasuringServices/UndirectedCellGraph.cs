@@ -266,10 +266,10 @@ public readonly partial struct UndirectedCellGraph() :
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Cell>)this).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => _map.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => ((IEnumerable<Cell>)[.. _map]).GetEnumerator();
+	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _map.ToArray().AsEnumerable().GetEnumerator();
 
 
 	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_OnesComplement(TSelf)"/>

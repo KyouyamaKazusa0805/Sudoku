@@ -701,7 +701,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	IEnumerator IEnumerable.GetEnumerator() => StepsSpan.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)StepsSpan.ToArray()).GetEnumerator();
+	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => StepsSpan.ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<Step> IWhereMethod<AnalysisResult, Step>.Where(Func<Step, bool> predicate) => this.Where(predicate).ToArray();

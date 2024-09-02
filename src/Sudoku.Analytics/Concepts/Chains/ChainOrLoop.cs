@@ -457,7 +457,7 @@ public abstract partial class ChainOrLoop :
 	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
+	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => _nodes.AsEnumerable().GetEnumerator();
 
 
 	/// <inheritdoc cref="GetConclusions(ref readonly Grid, Node, Node)"/>
