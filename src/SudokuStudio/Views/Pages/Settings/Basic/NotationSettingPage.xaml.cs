@@ -30,7 +30,7 @@ public sealed partial class NotationSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: int rawValue } })
 		{
-			((App)Application.Current).Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
+			Application.Current.AsApp().Preference.UIPreferences.ConceptNotationBasedKind = (CoordinateType)rawValue;
 		}
 	}
 
@@ -38,7 +38,7 @@ public sealed partial class NotationSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
 		{
-			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
+			Application.Current.AsApp().Preference.UIPreferences.DefaultSeparatorInNotation = s;
 		}
 	}
 
@@ -46,7 +46,7 @@ public sealed partial class NotationSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } })
 		{
-			((App)Application.Current).Preference.UIPreferences.DefaultSeparatorInNotation = s;
+			Application.Current.AsApp().Preference.UIPreferences.DefaultSeparatorInNotation = s;
 		}
 	}
 
@@ -54,7 +54,7 @@ public sealed partial class NotationSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
 		{
-			((App)Application.Current).Preference.UIPreferences.FinalRowLetterInK9Notation = ch;
+			Application.Current.AsApp().Preference.UIPreferences.FinalRowLetterInK9Notation = ch;
 		}
 	}
 }

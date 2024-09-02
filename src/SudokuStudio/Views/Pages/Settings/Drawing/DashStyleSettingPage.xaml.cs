@@ -12,8 +12,8 @@ public sealed partial class DashStyleSettingPage : Page
 
 
 	private void StrongLinkDashStyleBox_DashArrayChanged(object sender, DashArray e)
-		=> ((App)Application.Current).Preference.UIPreferences.StrongLinkDashStyle = e;
+		=> Application.Current.AsApp().Preference.UIPreferences.StrongLinkDashStyle = e;
 
 	private void WeakLinkDashStyleBox_DashArrayChanged(object sender, DashArray e)
-		=> ((App)Application.Current).Preference.UIPreferences.WeakLinkDashStyle = e;
+		=> Application.Current.AsApp().Preference.UIPreferences.WeakLinkDashStyle = e;
 }

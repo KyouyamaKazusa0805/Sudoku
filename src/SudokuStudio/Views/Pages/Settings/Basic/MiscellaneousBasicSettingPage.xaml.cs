@@ -15,7 +15,7 @@ public sealed partial class MiscellaneousBasicSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
 		{
-			((App)Application.Current).Preference.UIPreferences.Backdrop = value;
+			Application.Current.AsApp().Preference.UIPreferences.Backdrop = value;
 		}
 	}
 
@@ -23,7 +23,7 @@ public sealed partial class MiscellaneousBasicSettingPage : Page
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })
 		{
-			((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter = ch;
+			Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter = ch;
 		}
 	}
 }

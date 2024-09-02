@@ -12,5 +12,5 @@ public sealed partial class AnimationFeedbackSettingPage : Page
 
 
 	private void HouseCompletedFeedbackColorSelector_ColorChanged(object sender, Color e)
-		=> ((App)Application.Current).Preference.UIPreferences.HouseCompletedFeedbackColor = e;
+		=> Application.Current.AsApp().Preference.UIPreferences.HouseCompletedFeedbackColor = e;
 }

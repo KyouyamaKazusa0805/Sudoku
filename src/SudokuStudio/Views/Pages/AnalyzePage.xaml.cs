@@ -173,7 +173,7 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
-		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var character = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(puzzle.ToString($"#{character}"));
 		Clipboard.SetContent(dataPackage);
@@ -540,7 +540,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	private void LoadInitialGrid()
 	{
-		if (((App)Application.Current).AppStartingGridInfo is
+		if (Application.Current.AsApp().AppStartingGridInfo is
 			{
 				BaseGrid: var grid,
 				GridString: _,
@@ -552,7 +552,7 @@ public sealed partial class AnalyzePage : Page
 			VisualUnit = drawable;
 			SudokuPane.DisplayCandidates = showCandidates;
 
-			((App)Application.Current).AppStartingGridInfo = null; // Maybe not necessary...
+			Application.Current.AsApp().AppStartingGridInfo = null; // Maybe not necessary...
 		}
 	}
 
@@ -680,13 +680,13 @@ public sealed partial class AnalyzePage : Page
 	/// <seealso cref="StorageFile"/>
 	private async Task OnSavingOrCopyingSudokuPanePictureAsync<T>(T obj) where T : class
 	{
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
 		{
 			var color = App.CurrentTheme switch { ApplicationTheme.Light => Colors.White, _ => Colors.Black };
 			SudokuPane.MainGrid.Background = new SolidColorBrush(color);
 		}
 
-		var desiredSize = ((App)Application.Current).Preference.UIPreferences.DesiredPictureSizeOnSaving;
+		var desiredSize = Application.Current.AsApp().Preference.UIPreferences.DesiredPictureSizeOnSaving;
 		var (originalWidth, originalHeight) = (SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height);
 		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (desiredSize, desiredSize);
 
@@ -694,7 +694,7 @@ public sealed partial class AnalyzePage : Page
 
 		(SudokuPaneOutsideViewBox.Width, SudokuPaneOutsideViewBox.Height) = (originalWidth, originalHeight);
 
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
 		{
 			SudokuPane.MainGrid.Background = null;
 		}
@@ -810,7 +810,7 @@ public sealed partial class AnalyzePage : Page
 
 		var textFormat = SR.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
-		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
+		var analyzer = Application.Current.AsApp().GetAnalyzerConfigured(SudokuPane);
 		_ctsForAnalyzingRelatedOperations = cts;
 
 		try
@@ -948,7 +948,7 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	private void SudokuPane_CandidatesDisplayingToggled(SudokuPane sender, CandidatesDisplayingToggledEventArgs e)
-		=> ((App)Application.Current).Preference.UIPreferences.DisplayCandidates = sender.DisplayCandidates;
+		=> Application.Current.AsApp().Preference.UIPreferences.DisplayCandidates = sender.DisplayCandidates;
 
 	private void SudokuPane_Caching(object sender, EventArgs e)
 	{
@@ -960,8 +960,8 @@ public sealed partial class AnalyzePage : Page
 		// Set as cached values.
 		// No matter whether the option 'AutoCachePuzzleAndView' is true or not,
 		// here we should save them because in a same program thread we may use the values to recover it.
-		((App)Application.Current).Preference.UIPreferences.LastGridPuzzle = puzzle;
-		((App)Application.Current).Preference.UIPreferences.LastRenderable = viewUnit switch
+		Application.Current.AsApp().Preference.UIPreferences.LastGridPuzzle = puzzle;
+		Application.Current.AsApp().Preference.UIPreferences.LastRenderable = viewUnit switch
 		{
 			ViewUnitBindableSource { View: var view, Conclusions: var conclusions } => new() { Conclusions = conclusions, Views = (View[])[view] },
 			_ => null
@@ -1016,10 +1016,10 @@ public sealed partial class AnalyzePage : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 		// This method is created to solve the problem that WinUI cannot cache navigation view pages due to internal error.
-		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView)
+		if (Application.Current.AsApp().Preference.UIPreferences.AutoCachePuzzleAndView)
 		{
 #if false
-			var pref = ((App)Application.Current).Preference.UIPreferences;
+			var pref = Application.Current.AsApp().Preference.UIPreferences;
 
 			SudokuPane.Puzzle = pref.LastGridPuzzle;
 			SudokuPane.ViewUnit = pref.LastRenderable is ({ } conclusions, [var view, ..])
@@ -1030,10 +1030,10 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
-		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 
 	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
-		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 
 	private async void SaveToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
 	{

@@ -60,7 +60,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// </i></remarks>
 	public async void LightUpAsync(Millisecond duration)
 	{
-		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
+		if (!Application.Current.AsApp().Preference.UIPreferences.EnableAnimationFeedback)
 		{
 			return;
 		}
@@ -89,7 +89,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 			Candidate8TextBlock
 		];
 
-		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
+		if (!Application.Current.AsApp().Preference.UIPreferences.EnableAnimationFeedback)
 		{
 			return;
 		}

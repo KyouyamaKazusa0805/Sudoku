@@ -4,7 +4,7 @@ internal static class SettingsPageConversion
 {
 	public static int GetSelectedIndexForEmptyCellCharacter(Segmented segmented)
 	{
-		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var character = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
 		var i = 0;
 		foreach (var element in segmented.Items.Cast<SegmentedItem>())
 		{

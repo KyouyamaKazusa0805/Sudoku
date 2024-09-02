@@ -8,7 +8,7 @@ public static class FileSavePickerExtensions
 {
 	internal static void Initialize<TUIElement>(this FileSavePicker @this, TUIElement control) where TUIElement : UIElement
 	{
-		var window = ((App)Application.Current).WindowManager.GetWindowForElement(control);
+		var window = Application.Current.AsApp().WindowManager.GetWindowForElement(control);
 		var hWnd = WindowNative.GetWindowHandle(window);
 		InitializeWithWindow.Initialize(@this, hWnd);
 	}

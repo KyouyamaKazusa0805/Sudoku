@@ -20,7 +20,7 @@ public partial class GeneratedPuzzleConstraintPage
 			return null;
 		}
 
-		var scale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
+		var scale = Application.Current.AsApp().Preference.TechniqueInfoPreferences.RatingScale;
 		var r = Application.Current.Resources;
 		var maximum = (int)r["MaximumRatingValue"]!;
 

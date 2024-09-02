@@ -18,14 +18,14 @@ public sealed partial class DeltaSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.DeltaValueColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.DeltaValueColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.DeltaValueColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.DeltaValueColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.DeltaValueColor_Dark = value
 		};
 	}
 
@@ -36,14 +36,14 @@ public sealed partial class DeltaSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.DeltaPencilmarkColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.DeltaPencilmarkColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.DeltaPencilmarkColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.DeltaPencilmarkColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.DeltaPencilmarkColor_Dark = value
 		};
 	}
 

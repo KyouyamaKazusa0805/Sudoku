@@ -7,7 +7,7 @@ internal static class BackdropConversion
 {
 	public static int GetSelectedIndex(Segmented segmented)
 	{
-		var backdropKind = ((App)Application.Current).Preference.UIPreferences.Backdrop;
+		var backdropKind = Application.Current.AsApp().Preference.UIPreferences.Backdrop;
 		var i = 0;
 		foreach (var element in segmented.Items.Cast<SegmentedItem>())
 		{

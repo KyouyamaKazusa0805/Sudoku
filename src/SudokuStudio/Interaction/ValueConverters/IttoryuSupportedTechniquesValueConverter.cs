@@ -25,7 +25,7 @@ internal sealed class IttoryuSupportedTechniquesValueConverter : IValueConverter
 			throw new InvalidOperationException(error_Value);
 		}
 
-		var result = ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques;
+		var result = Application.Current.AsApp().Preference.AnalysisPreferences.IttoryuSupportedTechniques;
 		if (parameter is not string rawTechniqueName || !Enum.TryParse(rawTechniqueName, out Technique technique))
 		{
 			throw new InvalidOperationException(error_Parameter);

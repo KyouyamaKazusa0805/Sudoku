@@ -71,7 +71,7 @@ public partial class App : Application
 	/// Indicates the configured application theme.
 	/// </summary>
 	internal static ApplicationTheme CurrentTheme
-		=> ((App)Current).Preference.UIPreferences.CurrentTheme switch
+		=> Current.AsApp().Preference.UIPreferences.CurrentTheme switch
 		{
 			Theme.Default when !ShouldSystemUseDarkMode() => ApplicationTheme.Light,
 			Theme.Default => ApplicationTheme.Dark,
@@ -93,7 +93,7 @@ public partial class App : Application
 	/// Indicates the current culture.
 	/// </summary>
 	internal static CultureInfo CurrentCulture
-		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0
+		=> Current.AsApp().Preference.UIPreferences.Language is var cultureInfoId and not 0
 			? new(cultureInfoId)
 			: CultureInfo.CurrentUICulture;
 
@@ -104,7 +104,7 @@ public partial class App : Application
 	/// <param name="pane">The sudoku pane to be set.</param>
 	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
 	{
-		var uiPref = ((App)Current).Preference.UIPreferences;
+		var uiPref = Current.AsApp().Preference.UIPreferences;
 		var a = setSudokuPaneColors_Light;
 		var b = setSudokuPaneColors_Dark;
 		(CurrentTheme switch { ApplicationTheme.Light => a, _ => b })();
@@ -179,7 +179,7 @@ public partial class App : Application
 	/// <returns>The final <see cref="Sudoku.Analytics.Analyzer"/> instance.</returns>
 	internal Analyzer GetAnalyzerConfigured(SudokuPane sudokuPane, DifficultyLevel difficultyLevel = DifficultyLevel.Unknown)
 		=> Analyzer
-			.WithStepSearchers(((App)Current).GetStepSearchers(), difficultyLevel)
+			.WithStepSearchers(Current.AsApp().GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters<Analyzer, AnalyzerContext, AnalysisResult>(sudokuPane)
 			.WithCulture(CurrentCulture)
 			.WithIgnoreHighTimeComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms)
@@ -203,7 +203,7 @@ public partial class App : Application
 		var window = WindowManager.CreateWindow<MainWindow>();
 		if (window.Content is FrameworkElement control)
 		{
-			control.RequestedTheme = ((App)Current).Preference.UIPreferences.CurrentTheme switch
+			control.RequestedTheme = Current.AsApp().Preference.UIPreferences.CurrentTheme switch
 			{
 				Theme.Default => ElementTheme.Default,
 				Theme.Light => ElementTheme.Light,
@@ -211,7 +211,7 @@ public partial class App : Application
 				//_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
 			};
 		}
-		//window.SystemBackdrop = ((App)Current).Preference.UIPreferences.Backdrop.GetBackdrop();
+		//window.SystemBackdrop = Current.AsApp().Preference.UIPreferences.Backdrop.GetBackdrop();
 
 		window.Activate();
 	}
@@ -315,7 +315,7 @@ public partial class App : Application
 	/// <returns>The <see cref="MainWindow"/> found.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the main window isn't found.</exception>
 	internal static MainWindow GetMainWindow<TUIElement>(TUIElement @this) where TUIElement : UIElement
-		=> ((App)Current).WindowManager.GetWindowForElement(@this) switch
+		=> Current.AsApp().WindowManager.GetWindowForElement(@this) switch
 		{
 			MainWindow mainWindow => mainWindow,
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("MainWindowNotFound"))
@@ -327,8 +327,8 @@ public partial class App : Application
 	/// <returns>A <see cref="StepSearcherOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
 	internal static StepSearcherOptions CreateStepSearcherOptions()
 	{
-		var uiPref = ((App)Current).Preference.UIPreferences;
-		var analysisPref = ((App)Current).Preference.AnalysisPreferences;
+		var uiPref = Current.AsApp().Preference.UIPreferences;
+		var analysisPref = Current.AsApp().Preference.AnalysisPreferences;
 		return StepSearcherOptions.Default with
 		{
 			Converter = Converter = uiPref.ConceptNotationBasedKind switch

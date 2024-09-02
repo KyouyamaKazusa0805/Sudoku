@@ -105,7 +105,11 @@ internal sealed partial class MainNavigationPage : Page
 	/// Sets memory width.
 	/// </summary>
 	private void UpdateMemoryWidth()
-		=> MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
+		=> MainNavigationView.OpenPaneLength = (double)Application.Current
+			.AsApp()
+			.Preference
+			.UIPreferences
+			.MainNavigationPageOpenPaneLength;
 
 	/// <summary>
 	/// Handle navigation.

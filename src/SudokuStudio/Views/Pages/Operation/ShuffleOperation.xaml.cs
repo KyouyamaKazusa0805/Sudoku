@@ -74,7 +74,7 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	private void AdjustToMakeIttoryuButton_Click(object sender, RoutedEventArgs e)
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
-		var techniques = ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques;
+		var techniques = Application.Current.AsApp().Preference.AnalysisPreferences.IttoryuSupportedTechniques;
 		if (!modified.IsIttoryu([.. techniques], out var digitPath)
 			|| digitPath is not { } path)
 		{

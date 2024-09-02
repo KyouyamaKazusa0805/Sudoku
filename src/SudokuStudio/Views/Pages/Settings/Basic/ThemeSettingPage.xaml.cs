@@ -20,7 +20,7 @@ public sealed partial class ThemeSettingPage : Page
 	/// </summary>
 	private void InitializeControls()
 	{
-		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		var uiPref = Application.Current.AsApp().Preference.UIPreferences;
 		ThemeComboBox.SelectedIndex = (int)uiPref.CurrentTheme;
 	}
 
@@ -28,10 +28,10 @@ public sealed partial class ThemeSettingPage : Page
 	private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		var theme = (Theme)((SegmentedItem)ThemeComboBox.SelectedItem).Tag!;
-		((App)Application.Current).Preference.UIPreferences.CurrentTheme = theme;
+		Application.Current.AsApp().Preference.UIPreferences.CurrentTheme = theme;
 
 		// Manually set theme.
-		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows)
 		{
 			if (window is MainWindow instance)
 			{

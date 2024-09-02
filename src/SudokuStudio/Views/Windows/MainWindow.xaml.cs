@@ -91,7 +91,7 @@ public sealed partial class MainWindow : Window
 	/// Saves for preferences.
 	/// </summary>
 	private void SavePreference()
-		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, ((App)Application.Current).Preference);
+		=> ProgramPreferenceFileHandler.Write(CommonPaths.UserPreference, Application.Current.AsApp().Preference);
 
 	/// <summary>
 	/// Saves for puzzle generating history.
@@ -135,7 +135,7 @@ public sealed partial class MainWindow : Window
 	/// Update value for open-pane length into preference.
 	/// </summary>
 	private void UpdateOpenPaneLengthToPreference()
-		=> ((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength = (decimal)Round(NavigationPage.MainNavigationView.OpenPaneLength, 1);
+		=> Application.Current.AsApp().Preference.UIPreferences.MainNavigationPageOpenPaneLength = (decimal)Round(NavigationPage.MainNavigationView.OpenPaneLength, 1);
 
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
@@ -152,7 +152,7 @@ public sealed partial class MainWindow : Window
 		// Check to see if customization is supported. Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported())
 		{
-			ManuallySetTitleBarButtonsColor(((App)Application.Current).Preference.UIPreferences.CurrentTheme);
+			ManuallySetTitleBarButtonsColor(Application.Current.AsApp().Preference.UIPreferences.CurrentTheme);
 
 #if SEARCH_AUTO_SUGGESTION_BOX
 			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);

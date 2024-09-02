@@ -170,6 +170,21 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
+        <member name="T:SudokuStudio.AppCastExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:SudokuStudio.App"/> and <see cref="T:Microsoft.UI.Xaml.Application"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.App"/>
+            <seealso cref="T:Microsoft.UI.Xaml.Application"/>
+        </member>
+        <member name="M:SudokuStudio.AppCastExtensions.AsApp(Microsoft.UI.Xaml.Application)">
+            <summary>
+            Converts the current instance into an <see cref="T:SudokuStudio.App"/> instance;
+            throw <see cref="T:System.InvalidCastException"/> if the current object is not an <see cref="T:SudokuStudio.App"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>The result casted.</returns>
+        </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
             <summary>
             Represents a type that binds with a analyze tab page type that implements <see cref="T:SudokuStudio.ComponentModel.IAnalyzerTab"/>.

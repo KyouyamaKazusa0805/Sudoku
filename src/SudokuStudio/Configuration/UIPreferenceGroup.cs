@@ -851,7 +851,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 			return;
 		}
 
-		foreach (var window in ((App)Application.Current).WindowManager.ActiveWindows)
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows)
 		{
 			window.SystemBackdrop = value.GetBackdrop();
 		}

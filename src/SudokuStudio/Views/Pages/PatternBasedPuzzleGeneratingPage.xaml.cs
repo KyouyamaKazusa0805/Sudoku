@@ -113,7 +113,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// </summary>
 	private void CopyGridText()
 	{
-		var placeholderText = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var placeholderText = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(SudokuPane.Puzzle.ToString($"{placeholderText}"));
 		Clipboard.SetContent(dataPackage);
@@ -154,7 +154,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// <seealso cref="StorageFile"/>
 	private async Task OnSavingOrCopyingSudokuPanePictureSimpleAsync<T>(T obj) where T : class
 	{
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
 		{
 			var color = App.CurrentTheme switch { ApplicationTheme.Light => Colors.White, _ => Colors.Black };
 			SudokuPane.MainGrid.Background = new SolidColorBrush(color);
@@ -162,7 +162,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 		await SudokuPane.RenderToAsync(obj);
 
-		if (((App)Application.Current).Preference.UIPreferences.TransparentBackground)
+		if (Application.Current.AsApp().Preference.UIPreferences.TransparentBackground)
 		{
 			SudokuPane.MainGrid.Background = null;
 		}
@@ -252,10 +252,10 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
-		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 
 	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
-		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
 
 	private void SudokuPane_Clicked(SudokuPane sender, GridClickedEventArgs e)
 	{
@@ -294,9 +294,9 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private async void GeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var (pattern, missingDigit, fixedCandidates) = (SelectedCells, MissingDigit, FixedCandidates);
-		var ratingScale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
+		var ratingScale = Application.Current.AsApp().Preference.TechniqueInfoPreferences.RatingScale;
 		var ratingScaleFormat = FactorMarshal.GetScaleFormatString(1 / ratingScale);
-		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane)
+		var analyzer = Application.Current.AsApp().GetAnalyzerConfigured(SudokuPane)
 			.WithUserDefinedOptions(new() { IsDirectMode = true });
 		using var cts = new CancellationTokenSource();
 		try

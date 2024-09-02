@@ -39,7 +39,7 @@ public static class UIElementExtensions
 		// Gets the DPI value.
 #if true
 		// using Windows.Win32;
-		var hWnd = WindowNative.GetWindowHandle(((App)Application.Current).WindowManager.GetWindowForElement(@this));
+		var hWnd = WindowNative.GetWindowHandle(Application.Current.AsApp().WindowManager.GetWindowForElement(@this));
 		var dpi = PInvoke.GetDpiForWindow(new(hWnd)) / 96F;
 #else
 		// using System.Runtime.InteropServices;

@@ -27,7 +27,7 @@ internal static class AnalyzeConversion
 
 	public static string GetDifficultyRatingText(Step step)
 	{
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		var resultDifficulty = pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
 	}
@@ -81,7 +81,7 @@ internal static class AnalyzeConversion
 		=> drawable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
 	public static Visibility GetEnglishNameTextBlockVisibility()
-		=> ((App)Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep
+		=> Application.Current.AsApp().Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep
 		&& App.CurrentCulture.Name != SR.EnglishLanguage
 			? Visibility.Visible
 			: Visibility.Collapsed;
@@ -104,7 +104,7 @@ internal static class AnalyzeConversion
 			throw new ArgumentException($"The argument '{nameof(s)}' is invalid.", nameof(s));
 		}
 
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		var result = new List<Inline>();
 
 		if (displayKind.HasFlag(StepTooltipDisplayItems.TechniqueName))

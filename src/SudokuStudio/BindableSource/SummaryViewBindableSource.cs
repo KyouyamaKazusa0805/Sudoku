@@ -30,7 +30,7 @@ internal sealed partial class SummaryViewBindableSource(
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
 	public static ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalysisResult analysisResult)
 	{
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		return analysisResult switch
 		{
 			{ IsSolved: true, InterimSteps: var steps } => [.. g(steps, pref)],
@@ -41,7 +41,7 @@ internal sealed partial class SummaryViewBindableSource(
 
 		static decimal r(Step step)
 		{
-			var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+			var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 			return pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		}
 

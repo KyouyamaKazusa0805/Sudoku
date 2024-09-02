@@ -94,7 +94,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		}
 
 		// Add for children controls.
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		for (var (rowIndex, i) = (1, 0); i < values.Count; rowIndex++, i++)
 		{
 			addRowDefinition(g);
@@ -373,5 +373,5 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	}
 
 	private void ScaleValueBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
-		=> ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale = (decimal)sender.Value;
+		=> Application.Current.AsApp().Preference.TechniqueInfoPreferences.RatingScale = (decimal)sender.Value;
 }

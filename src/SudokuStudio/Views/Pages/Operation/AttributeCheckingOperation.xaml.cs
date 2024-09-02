@@ -104,7 +104,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		var techniqueSet = (TechniqueSet)([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
+		var techniqueSet = (TechniqueSet)([.. Application.Current.AsApp().Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
 		var finder = new DisorderedIttoryuFinder(techniqueSet);
 		(InfoDialog_DisorderedIttoryuDigitSequence.Subtitle, InfoDialog_DisorderedIttoryuDigitSequence.IsOpen) =
 			finder.FindPath(in puzzle) is { Digits.Length: not 0 } path

@@ -20,11 +20,11 @@ public sealed partial class LibrarySettingPage : Page
 	/// </summary>
 	private void InitializeControls()
 	{
-		var libPref = ((App)Application.Current).Preference.LibraryPreferences;
+		var libPref = Application.Current.AsApp().Preference.LibraryPreferences;
 		CandidateDisplayingComboBox.SelectedIndex = (int)libPref.LibraryCandidatesVisibility;
 	}
 
 
 	private void CandidateDisplayingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		=> ((App)Application.Current).Preference.LibraryPreferences.LibraryCandidatesVisibility = (LibraryCandidatesVisibility)CandidateDisplayingComboBox.SelectedIndex;
+		=> Application.Current.AsApp().Preference.LibraryPreferences.LibraryCandidatesVisibility = (LibraryCandidatesVisibility)CandidateDisplayingComboBox.SelectedIndex;
 }

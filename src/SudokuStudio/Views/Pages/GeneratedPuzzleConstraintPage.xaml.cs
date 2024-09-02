@@ -52,7 +52,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// Indicates entry that visits constraints property in preference set <see cref="ConstraintPreferenceGroup.Constraints"/>.
 	/// </summary>
 	/// <seealso cref="ConstraintPreferenceGroup.Constraints"/>
-	private static ConstraintCollection ConstraintsEntry => ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
+	private static ConstraintCollection ConstraintsEntry => Application.Current.AsApp().Preference.ConstraintPreferences.Constraints;
 
 
 	/// <summary>

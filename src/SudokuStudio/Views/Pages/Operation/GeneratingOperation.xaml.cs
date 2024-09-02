@@ -37,7 +37,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <param name="basePage">The base page.</param>
 	private void SetGeneratingStrategyTooltip(AnalyzePage basePage)
 	{
-		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
+		var constraints = Application.Current.AsApp().Preference.ConstraintPreferences.Constraints;
 		TextBlockBindable.SetInlines(
 			GeneratorStrategyTooltip,
 			[new Run { Text = string.Join(Environment.NewLine, from c in constraints select c.ToString(App.CurrentCulture)) }]
@@ -55,7 +55,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			: (Visibility.Collapsed, Visibility.Collapsed, Visibility.Collapsed);
 		PuzzleLibraryChoser.ItemsSource = (from lib in libs select new LibrarySimpleBindableSource { Library = lib }).ToArray();
 
-		var lastFileId = ((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary;
+		var lastFileId = Application.Current.AsApp().Preference.UIPreferences.FetchingPuzzleLibrary;
 		PuzzleLibraryChoser.SelectedIndex = Array.FindIndex(libs, match) is var index and not -1 ? index : 0;
 
 
@@ -83,9 +83,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = SR.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
-		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
+		var constraints = Application.Current.AsApp().Preference.ConstraintPreferences.Constraints;
 		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
-		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
+		var analyzer = Application.Current.AsApp().GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
 		var ittoryuFinder = new DisorderedIttoryuFinder(TechniqueIttoryuSets.IttoryuTechniques);
 
 		using var cts = new CancellationTokenSource();
@@ -294,9 +294,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			gridTextConsumer: gridText =>
 			{
 				var grid = Grid.Parse(gridText);
-				if (((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				if (Application.Current.AsApp().Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
-					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
+					Application.Current.AsApp().PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = grid });
 				}
 
 				BasePage.SudokuPane.Puzzle = grid;
@@ -314,7 +314,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			return;
 		}
 
-		var types = ((App)Application.Current).Preference.LibraryPreferences.LibraryPuzzleTransformations;
+		var types = Application.Current.AsApp().Preference.LibraryPreferences.LibraryPuzzleTransformations;
 		BasePage.SudokuPane.Puzzle = await library.RandomReadOneAsync(types);
 		BasePage.ClearAnalyzeTabsData();
 		BasePage.SudokuPane.ViewUnit = null;
@@ -323,7 +323,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void PuzzleLibraryChooser_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		var source = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
-		((App)Application.Current).Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
+		Application.Current.AsApp().Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
 	}
 
 	private async void BatchGeneratingToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -375,7 +375,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 
 				var techniques = TechniqueSets.None;
-				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
+				foreach (var constraint in Application.Current.AsApp().Preference.ConstraintPreferences.Constraints)
 				{
 					switch (constraint)
 					{
@@ -405,10 +405,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				await appendToLibraryTask($"{gridText}{Environment.NewLine}");
 
-				if (((App)Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
-					&& ((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				var app = Application.Current.AsApp();
+				if (app.Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
+					&& app.Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
-					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
+					app.PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
 				}
 			}
 		);
@@ -443,7 +444,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 
 				var techniques = TechniqueSets.None;
-				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
+				foreach (var constraint in Application.Current.AsApp().Preference.ConstraintPreferences.Constraints)
 				{
 					switch (constraint)
 					{
@@ -473,10 +474,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				File.AppendAllText(filePath, $"{gridText}{Environment.NewLine}");
 
-				if (((App)Application.Current).Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
-					&& ((App)Application.Current).Preference.UIPreferences.SavePuzzleGeneratingHistory)
+				var app = Application.Current.AsApp();
+				if (app.Preference.UIPreferences.AlsoSaveBatchGeneratedPuzzlesIntoHistory
+					&& app.Preference.UIPreferences.SavePuzzleGeneratingHistory)
 				{
-					((App)Application.Current).PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
+					app.PuzzleGeneratingHistory.Puzzles.Add(new() { BaseGrid = Grid.Parse(gridText) });
 				}
 			}
 		);

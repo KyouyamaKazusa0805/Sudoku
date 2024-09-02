@@ -93,7 +93,7 @@ internal static partial class DrawableFactory
 			return;
 		}
 
-		var pencilmarkMode = ((App)Application.Current).Preference.UIPreferences.DisplayCandidates;
+		var pencilmarkMode = Application.Current.AsApp().Preference.UIPreferences.DisplayCandidates;
 		var usedCandidates = CandidateMap.Empty;
 		var (controlAddingActions, overlapped, links) = (new AnimatedResultCollection(), new List<Conclusion>(), new List<ILinkViewNode>());
 

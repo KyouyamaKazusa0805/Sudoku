@@ -25,7 +25,7 @@ internal static class SudokuGridConversion
 
 	public static string GetPuzzleCode(Grid grid)
 	{
-		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var character = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
 		return grid switch
 		{
 			{ IsUndefined: true } => SR.Get("AnalyzePage_UndefinedGrid", App.CurrentCulture),
@@ -46,7 +46,7 @@ internal static class SudokuGridConversion
 			return SR.Get("AnalyzePage_PuzzleHasMultipleSolutions", App.CurrentCulture);
 		}
 
-		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var character = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
 		var hasNoGivenCells = grid.GivensCount == 0;
 		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
 		return SR.Get(

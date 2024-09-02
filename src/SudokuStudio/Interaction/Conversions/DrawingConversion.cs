@@ -25,7 +25,7 @@ internal static class DrawingConversion
 	public static Brush GetBrush(Color color) => new SolidColorBrush(color);
 
 	public static Brush GetSelectedBrush(int currentColorIndex)
-		=> ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette switch
+		=> Application.Current.AsApp().Preference.UIPreferences.UserDefinedColorPalette switch
 		{
 			{ Count: var countOfColors } palette when currentColorIndex >= 0 && currentColorIndex < countOfColors
 				=> new SolidColorBrush(palette[currentColorIndex]),

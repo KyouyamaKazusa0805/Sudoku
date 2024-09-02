@@ -22,22 +22,22 @@ internal static class DifficultyLevelConversion
 	public static Color GetBackgroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.LastResort => ((App)Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[^1],
-			_ => ((App)Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[byte.Log2((byte)difficultyLevel)]
+			0 or > DifficultyLevel.LastResort => Application.Current.AsApp().Preference.UIPreferences.DifficultyLevelBackgrounds[^1],
+			_ => Application.Current.AsApp().Preference.UIPreferences.DifficultyLevelBackgrounds[byte.Log2((byte)difficultyLevel)]
 		};
 
 	public static Color GetForegroundRawColor(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			0 or > DifficultyLevel.LastResort => ((App)Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[^1],
-			_ => ((App)Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[byte.Log2((byte)difficultyLevel)]
+			0 or > DifficultyLevel.LastResort => Application.Current.AsApp().Preference.UIPreferences.DifficultyLevelForegrounds[^1],
+			_ => Application.Current.AsApp().Preference.UIPreferences.DifficultyLevelForegrounds[byte.Log2((byte)difficultyLevel)]
 		};
 
 	public static SolidColorBrush GetBackgroundColor(DifficultyLevel difficultyLevel) => new(GetBackgroundRawColor(difficultyLevel));
 
 	public static SolidColorBrush GetBackgroundColorFromCode(Technique technique)
 	{
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		return GetBackgroundColor(pref.GetDifficultyLevelOrDefault(technique));
 	}
 
@@ -45,7 +45,7 @@ internal static class DifficultyLevelConversion
 
 	public static SolidColorBrush GetForegroundColorFromCode(Technique technique)
 	{
-		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		var pref = Application.Current.AsApp().Preference.TechniqueInfoPreferences;
 		return GetForegroundColor(pref.GetDifficultyLevelOrDefault(technique));
 	}
 }

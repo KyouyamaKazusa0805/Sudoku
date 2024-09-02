@@ -18,14 +18,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.SudokuPaneBorderColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.SudokuPaneBorderColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.SudokuPaneBorderColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.SudokuPaneBorderColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.SudokuPaneBorderColor_Dark = value
 		};
 	}
 
@@ -36,14 +36,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.CursorBackgroundColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.CursorBackgroundColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.CursorBackgroundColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.CursorBackgroundColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.CursorBackgroundColor_Dark = value
 		};
 	}
 
@@ -54,14 +54,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ChainColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.ChainColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ChainColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ChainColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ChainColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.ChainColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ChainColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ChainColor_Dark = value
 		};
 	}
 
@@ -72,14 +72,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.NormalColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.NormalColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.NormalColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.NormalColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.NormalColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.NormalColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.NormalColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.NormalColor_Dark = value
 		};
 	}
 
@@ -90,14 +90,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AssignmentColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.AssignmentColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AssignmentColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AssignmentColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AssignmentColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.AssignmentColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AssignmentColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AssignmentColor_Dark = value
 		};
 	}
 
@@ -108,14 +108,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.OverlappedAssignmentColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.OverlappedAssignmentColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.OverlappedAssignmentColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.OverlappedAssignmentColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.OverlappedAssignmentColor_Dark = value
 		};
 	}
 
@@ -126,14 +126,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EliminationColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.EliminationColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.EliminationColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.EliminationColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EliminationColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.EliminationColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.EliminationColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.EliminationColor_Dark = value
 		};
 	}
 
@@ -144,14 +144,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CannibalismColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.CannibalismColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.CannibalismColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.CannibalismColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.CannibalismColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.CannibalismColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.CannibalismColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.CannibalismColor_Dark = value
 		};
 	}
 
@@ -162,14 +162,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ExofinColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.ExofinColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ExofinColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ExofinColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.ExofinColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.ExofinColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ExofinColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ExofinColor_Dark = value
 		};
 	}
 
@@ -180,14 +180,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EndofinColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.EndofinColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.EndofinColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.EndofinColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.EndofinColor = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.EndofinColor_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.EndofinColor = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.EndofinColor_Dark = value
 		};
 	}
 
@@ -198,14 +198,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeStrokeColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeStrokeColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeStrokeColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeStrokeColor_Dark
 		};
 	}
 
@@ -216,14 +216,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeBackgroundColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,
-			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeBackgroundColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
 		};
 	}
 
@@ -234,14 +234,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors_Dark = value
 		};
 	}
 
@@ -252,14 +252,14 @@ public sealed partial class ItemColorSettingPage : Page
 	{
 		get => App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		};
 
 		set => _ = App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors = value,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark = value
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors = value,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark = value
 		};
 	}
 
@@ -300,56 +300,56 @@ public sealed partial class ItemColorSettingPage : Page
 	private void AuxiliaryColor1Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors_Dark
 		}, 0, e);
 
 	private void AuxiliaryColor2Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors_Dark
 		}, 1, e);
 
 	private void AuxiliaryColor3Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AuxiliaryColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AuxiliaryColors_Dark
 		}, 2, e);
 
 	private void AlmostLockedSetsColor1Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 0, e);
 
 	private void AlmostLockedSetsColor2Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 1, e);
 
 	private void AlmostLockedSetsColor3Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 2, e);
 
 	private void AlmostLockedSetsColor4Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 3, e);
 
 	private void AlmostLockedSetsColor5Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
-			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors,
-			_ => ((App)Application.Current).Preference.UIPreferences.AlmostLockedSetsColors_Dark
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
+			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 4, e);
 }
