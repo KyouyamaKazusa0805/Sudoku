@@ -181,7 +181,6 @@ public partial class App : Application
 		=> Analyzer
 			.WithStepSearchers(Current.AsApp().GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters<Analyzer, AnalyzerContext, AnalysisResult>(sudokuPane)
-			.WithCulture(CurrentCulture)
 			.WithIgnoreHighTimeComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresSlowAlgorithms)
 			.WithIgnoreHighSpaceComplexityStepSearchers(Preference.AnalysisPreferences.AnalyzerIgnoresHighAllocationAlgorithms)
 			.WithUserDefinedOptions(CreateStepSearcherOptions());

@@ -53,10 +53,6 @@ public sealed partial class Analyzer : AnalyzerBase
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
-	public CultureInfo? CurrentCulture { get; set; }
-
-	/// <inheritdoc/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
@@ -571,7 +567,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				}
 
 			MakeProgress:
-				progressedStepSearcherName = searcher.ToString(CurrentCulture);
+				progressedStepSearcherName = searcher.ToString(((AnalyzerBase)this).CurrentCulture);
 				goto ReportStateAndTryNextStep;
 			}
 

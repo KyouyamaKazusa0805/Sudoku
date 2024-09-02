@@ -613,9 +613,6 @@
             </remarks>
             <seealso cref="F:Sudoku.Analytics.StepSearchers.StepSearcherRuntimeFlags.SpaceComplexity"/>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.CurrentCulture">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Analyzer.StepSearchers">
             <inheritdoc/>
         </member>
@@ -5337,9 +5334,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.Options">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Collector.CurrentCulture">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Collector.Setters">
@@ -19607,14 +19601,6 @@
             <param name="ignore">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithCulture(Sudoku.Analytics.Analyzer,System.Globalization.CultureInfo)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Analyzer.CurrentCulture"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="culture">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Analyzer"/>.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
             <summary>
             Sets the property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the target value.
@@ -19710,14 +19696,6 @@
             </summary>
             <param name="instance">The instance to be set or updated.</param>
             <param name="options">The value to be set or updated.</param>
-            <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.__CollectorFactoryMethods_With.WithCulture(Sudoku.Analytics.Collector,System.Globalization.CultureInfo)">
-            <summary>
-            Sets the property <see cref="P:Sudoku.Analytics.Collector.CurrentCulture"/> with the target value.
-            </summary>
-            <param name="instance">The instance to be set or updated.</param>
-            <param name="culture">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
         <member name="T:Sudoku.Caching.ChainingComparers">

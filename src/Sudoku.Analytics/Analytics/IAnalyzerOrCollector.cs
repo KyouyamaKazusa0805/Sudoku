@@ -34,7 +34,7 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 	/// <summary>
 	/// Indicates the current culture that is used for displaying running information.
 	/// </summary>
-	public abstract CultureInfo? CurrentCulture { get; set; }
+	public CultureInfo CurrentCulture => Options.CurrentCulture;
 
 	/// <summary>
 	/// Indicates the extra options to be set. The options will be passed into <see cref="Step"/> instances collected

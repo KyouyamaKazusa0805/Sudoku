@@ -38,10 +38,6 @@ public sealed partial class Collector : CollectorBase
 	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
 	/// <inheritdoc/>
-	[WithProperty(MethodSuffixName = "Culture", ParameterName = "culture")]
-	public CultureInfo? CurrentCulture { get; set; }
-
-	/// <inheritdoc/>
 	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
 	public ICollection<Action<StepSearcher>> Setters { get; } = [];
 
@@ -142,7 +138,7 @@ public sealed partial class Collector : CollectorBase
 
 			// Report the progress if worth.
 			ReportProgress:
-				progress?.Report(new(searcher.ToString(CurrentCulture), ++currentSearcherIndex / (double)totalSearchersCount));
+				progress?.Report(new(searcher.ToString(((CollectorBase)this).CurrentCulture), ++currentSearcherIndex / (double)totalSearchersCount));
 			}
 
 			// Return the result.

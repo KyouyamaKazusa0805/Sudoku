@@ -136,7 +136,6 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		var collector = Application.Current.AsApp()
 			.Collector
 			.WithMaxSteps(analysisPref.CollectorMaxStepsCollected)
-			.WithCulture(App.CurrentCulture)
 			.WithSameLevelConfiguration((CollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(Application.Current.AsApp().GetStepSearchers())
 			.WithRuntimeIdentifierSetters<Collector, CollectorContext, ReadOnlySpan<Step>>(BasePage.SudokuPane)
