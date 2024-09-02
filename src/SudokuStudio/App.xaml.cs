@@ -68,6 +68,18 @@ public partial class App : Application
 
 
 	/// <summary>
+	/// Indicates the configured application theme.
+	/// </summary>
+	internal static ApplicationTheme CurrentTheme
+		=> ((App)Current).Preference.UIPreferences.CurrentTheme switch
+		{
+			Theme.Default when !ShouldSystemUseDarkMode() => ApplicationTheme.Light,
+			Theme.Default => ApplicationTheme.Dark,
+			Theme.Light => ApplicationTheme.Light,
+			_ => ApplicationTheme.Dark
+		};
+
+	/// <summary>
 	/// Indicates the internal converter object.
 	/// </summary>
 	internal static CoordinateConverter Converter { get; private set; } = null!;
@@ -84,18 +96,6 @@ public partial class App : Application
 		=> ((App)Current).Preference.UIPreferences.Language is var cultureInfoId and not 0
 			? new(cultureInfoId)
 			: CultureInfo.CurrentUICulture;
-
-	/// <summary>
-	/// Indicates the configured application theme.
-	/// </summary>
-	internal static ApplicationTheme CurrentTheme
-		=> ((App)Current).Preference.UIPreferences.CurrentTheme switch
-		{
-			Theme.Default when !ShouldSystemUseDarkMode() => ApplicationTheme.Light,
-			Theme.Default => ApplicationTheme.Dark,
-			Theme.Light => ApplicationTheme.Light,
-			_ => ApplicationTheme.Dark
-		};
 
 
 	/// <summary>

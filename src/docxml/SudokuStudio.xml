@@ -69,6 +69,11 @@
             Improved APIs for Picker/Dialog classes that implement <see cref="T:WinRT.Interop.InitializeWithWindow"/>
             </seealso>
         </member>
+        <member name="P:SudokuStudio.App.CurrentTheme">
+            <summary>
+            Indicates the configured application theme.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.Converter">
             <summary>
             Indicates the internal converter object.
@@ -82,11 +87,6 @@
         <member name="P:SudokuStudio.App.CurrentCulture">
             <summary>
             Indicates the current culture.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.App.CurrentTheme">
-            <summary>
-            Indicates the configured application theme.
             </summary>
         </member>
         <member name="M:SudokuStudio.App.CoverSettingsToSudokuPaneViaApplicationTheme(SudokuStudio.Views.Controls.SudokuPane)">
