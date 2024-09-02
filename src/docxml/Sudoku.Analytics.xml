@@ -32078,10 +32078,10 @@
         <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Operator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Maximum">
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Minimum">
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
@@ -32101,6 +32101,47 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.IBetweenRuleConstraint">
+            <summary>
+            Represents a constraint that contains between rule property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IBetweenRuleConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">
+            <summary>
+            Represents a type that supports for comparison operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint.Operator">
+            <summary>
+            Indicates the comparison operator used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ILimitCountConstraint`1">
+            <summary>
+            Represents a type that supports limit number.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.LimitCount">
+            <summary>
+            Indicates the limit number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Minimum">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Maximum">
+            <summary>
+            Indicates the maximum value.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
             <summary>
@@ -32125,7 +32166,7 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#LimitCount">
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
@@ -32170,7 +32211,7 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Operator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#LimitCount">
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
@@ -32213,10 +32254,10 @@
         <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Operator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Minimum">
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Maximum">
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Equals(Sudoku.Strategying.Constraint)">
@@ -32484,47 +32525,6 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.IBetweenRuleConstraint">
-            <summary>
-            Represents a constraint that contains between rule property.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.IBetweenRuleConstraint.BetweenRule">
-            <summary>
-            Indicates the between rule.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.IComparisonOperatorConstraint">
-            <summary>
-            Represents a type that supports for comparison operator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.IComparisonOperatorConstraint.Operator">
-            <summary>
-            Indicates the comparison operator used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.ILimitCountConstraint`1">
-            <summary>
-            Represents a type that supports limit number.
-            </summary>
-            <typeparam name="TNumber">The type of the number.</typeparam>
-        </member>
-        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.LimitCount">
-            <summary>
-            Indicates the limit number.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.Minimum">
-            <summary>
-            Indicates the minimum value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.Maximum">
-            <summary>
-            Indicates the maximum value.
-            </summary>
         </member>
         <member name="T:Sudoku.Traits.IBranchTrait">
             <summary>
