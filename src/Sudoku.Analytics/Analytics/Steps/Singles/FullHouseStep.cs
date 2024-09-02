@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FullHouseStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House house,
 	Cell cell,
 	Digit digit,

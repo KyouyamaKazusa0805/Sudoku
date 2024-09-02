@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] ref readonly CellMap baseCells,
 	[PrimaryConstructorParameter] ref readonly CellMap targetCells,

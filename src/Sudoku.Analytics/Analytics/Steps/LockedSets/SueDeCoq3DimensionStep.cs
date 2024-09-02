@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoq3DimensionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Mask rowDigitsMask,
 	[PrimaryConstructorParameter] Mask columnDigitsMask,
 	[PrimaryConstructorParameter] Mask blockDigitsMask,

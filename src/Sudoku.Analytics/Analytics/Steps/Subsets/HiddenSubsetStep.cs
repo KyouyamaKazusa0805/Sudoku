@@ -25,7 +25,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class HiddenSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	House house,
 	ref readonly CellMap cells,
 	Mask digitsMask,

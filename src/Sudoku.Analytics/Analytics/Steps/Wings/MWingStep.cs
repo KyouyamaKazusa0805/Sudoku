@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap node1,
 	[PrimaryConstructorParameter] ref readonly CellMap node2,
 	[PrimaryConstructorParameter] Cell strongXyCell,

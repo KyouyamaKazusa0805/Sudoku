@@ -29,7 +29,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NakedSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	House house,
 	ref readonly CellMap cells,
 	Mask digitsMask,

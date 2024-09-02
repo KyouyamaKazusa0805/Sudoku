@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ExtendedRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait

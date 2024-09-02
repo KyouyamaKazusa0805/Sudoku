@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangle2DOr3XStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Technique code,
 	Digit digit1,
 	Digit digit2,

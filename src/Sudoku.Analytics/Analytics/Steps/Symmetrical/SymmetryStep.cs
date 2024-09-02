@@ -6,5 +6,5 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public abstract class SymmetryStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) :
+public abstract class SymmetryStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
 	IndirectStep(conclusions, views, options);

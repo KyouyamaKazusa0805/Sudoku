@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BorescoperDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,

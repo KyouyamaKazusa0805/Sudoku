@@ -70,7 +70,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "UserDefinedOptions")]
-	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
+	public StepGathererOptions Options { get; set; } = StepGathererOptions.Default;
 
 	/// <inheritdoc/>
 	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
@@ -567,7 +567,7 @@ public sealed partial class Analyzer : AnalyzerBase
 				}
 
 			MakeProgress:
-				progressedStepSearcherName = searcher.ToString(((AnalyzerBase)this).CurrentCulture);
+				progressedStepSearcherName = searcher.ToString(Options.CurrentCulture);
 				goto ReportStateAndTryNextStep;
 			}
 

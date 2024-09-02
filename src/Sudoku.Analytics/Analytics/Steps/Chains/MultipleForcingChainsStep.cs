@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MultipleForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] MultipleForcingChains pattern
 ) : ChainStep(conclusions, views, options)
 {

@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class LawOfLeftoverStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House set1House,
 	[PrimaryConstructorParameter] House set2House,
 	[PrimaryConstructorParameter] ref readonly CellMap set1,

@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class ComplexSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,

@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Cell startCell,
 	[PrimaryConstructorParameter] Cell endCell,
 	[PrimaryConstructorParameter] ref readonly CellMap bridge,

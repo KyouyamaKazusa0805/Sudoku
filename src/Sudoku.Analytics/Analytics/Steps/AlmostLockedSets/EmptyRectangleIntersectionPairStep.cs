@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class EmptyRectangleIntersectionPairStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Cell startCell,
 	[PrimaryConstructorParameter] Cell endCell,
 	[PrimaryConstructorParameter] House house,

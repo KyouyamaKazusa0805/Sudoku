@@ -21,7 +21,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House block,
 	[PrimaryConstructorParameter] House line,
 	[PrimaryConstructorParameter] Mask blockMask,

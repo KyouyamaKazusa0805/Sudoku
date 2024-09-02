@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NormalFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,

@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract class QiuDeadlyPatternExternalTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	bool is2LinesWith2Cells,
 	HouseMask houses,
 	Cell? corner1,

@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BlossomLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] BlossomLoop pattern
 ) : ChainStep(conclusions, views, options)
 {

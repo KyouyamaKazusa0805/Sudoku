@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
 	[PrimaryConstructorParameter] House subsetHouse,

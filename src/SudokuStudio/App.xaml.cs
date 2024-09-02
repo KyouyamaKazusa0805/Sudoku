@@ -321,14 +321,14 @@ public partial class App : Application
 		};
 
 	/// <summary>
-	/// Creates a <see cref="StepSearcherOptions"/> instance via the currently-configured preferences.
+	/// Creates a <see cref="StepGathererOptions"/> instance via the currently-configured preferences.
 	/// </summary>
-	/// <returns>A <see cref="StepSearcherOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
-	internal static StepSearcherOptions CreateStepSearcherOptions()
+	/// <returns>A <see cref="StepGathererOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
+	internal static StepGathererOptions CreateStepSearcherOptions()
 	{
 		var uiPref = Current.AsApp().Preference.UIPreferences;
 		var analysisPref = Current.AsApp().Preference.AnalysisPreferences;
-		return StepSearcherOptions.Default with
+		return StepGathererOptions.Default with
 		{
 			Converter = Converter = uiPref.ConceptNotationBasedKind switch
 			{

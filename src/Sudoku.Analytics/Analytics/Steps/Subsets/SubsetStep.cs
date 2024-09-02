@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask

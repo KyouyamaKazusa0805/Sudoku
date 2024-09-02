@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class EmptyRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit,
 	[PrimaryConstructorParameter] House block,
 	[PrimaryConstructorParameter] ref readonly Conjugate conjugatePair

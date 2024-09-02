@@ -146,9 +146,9 @@
         </member>
         <member name="M:SudokuStudio.App.CreateStepSearcherOptions">
             <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Configuration.StepSearcherOptions"/> instance via the currently-configured preferences.
+            Creates a <see cref="T:Sudoku.Analytics.Configuration.StepGathererOptions"/> instance via the currently-configured preferences.
             </summary>
-            <returns>A <see cref="T:Sudoku.Analytics.Configuration.StepSearcherOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
+            <returns>A <see cref="T:Sudoku.Analytics.Configuration.StepGathererOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
         </member>
         <member name="M:SudokuStudio.App.InitializeComponent">
             <summary>
@@ -1120,10 +1120,10 @@
             <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.InitialLetter">
-            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupInitialLetter"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing">
-            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.BabaGroupLetterCasing"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
             <inheritdoc cref="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.SupportedTechniques"/>
@@ -10399,7 +10399,7 @@
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IAnalyzerOrCollector`3"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`3"/>.
             </typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
@@ -10418,7 +10418,7 @@
             Calls the method <see cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``3(``0,System.Object,System.String,System.Boolean@)"/> for all properties in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IAnalyzerOrCollector`3"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`3"/>.
             </typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>

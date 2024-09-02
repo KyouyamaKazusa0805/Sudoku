@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueMatrixType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Candidate candidate

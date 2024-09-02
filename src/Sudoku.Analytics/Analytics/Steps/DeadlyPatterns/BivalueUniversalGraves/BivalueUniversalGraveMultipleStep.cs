@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveMultipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait, ICandidateListTrait
 {

@@ -77,7 +77,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>The found step.</returns>
-	internal static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepSearcherOptions options)
+	internal static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepGathererOptions options)
 	{
 		if (CheckDiagonal(in grid, options) is { } diagonalTypeStep)
 		{
@@ -481,7 +481,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckDiagonal(ref readonly Grid grid, StepGathererOptions options)
 	{
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -561,7 +561,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(ref readonly Grid grid, StepGathererOptions options)
 	{
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -635,7 +635,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckCentral(ref readonly Grid grid, StepGathererOptions options)
 	{
 		if (!IsSymmetricalPlacement(in grid, SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{

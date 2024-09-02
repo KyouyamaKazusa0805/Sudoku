@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] ref readonly CellMap loop,

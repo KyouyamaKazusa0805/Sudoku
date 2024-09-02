@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class HouseDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] HouseBlossomBranchCollection branches,

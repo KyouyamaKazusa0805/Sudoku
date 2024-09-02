@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class LastDigitStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	House house,

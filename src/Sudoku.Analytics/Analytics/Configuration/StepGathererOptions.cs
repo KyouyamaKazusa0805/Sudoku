@@ -1,14 +1,22 @@
 namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
-/// Represents a type that encapsulates a list of options adjusted by users and used by <see cref="StepSearcher"/> instances.
-/// Some options may not relate to a real <see cref="StepSearcher"/> instance directly, but relate to a <see cref="Step"/>
-/// that a <see cref="StepSearcher"/> instance can create.
+/// <para>
+/// Represents a type that encapsulates a list of options adjusted by users,
+/// consumed by <seealso cref="IStepGatherer{TSelf, TContext, TResult}"/> object
+/// (especially for types <see cref="Analyzer"/> and <see cref="Collector"/>).
+/// </para>
+/// <para>
+/// Some options may not relate to a real <see cref="StepSearcher"/> instance directly,
+/// but relate to a <see cref="Step"/> that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
+/// </para>
 /// </summary>
+/// <seealso cref="IStepGatherer{TSelf, TContext, TResult}"/>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Analyzer"/>
-public sealed record StepSearcherOptions
+/// <seealso cref="Collector"/>
+public sealed record StepGathererOptions
 {
 	/// <summary>
 	/// Indicates whether the current solver uses direct mode to solve a puzzle,
@@ -95,5 +103,5 @@ public sealed record StepSearcherOptions
 	/// <item><see cref="PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
 	/// </list>
 	/// </remarks>
-	public static StepSearcherOptions Default => new();
+	public static StepGathererOptions Default => new();
 }

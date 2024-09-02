@@ -35,7 +35,7 @@ public sealed partial class Collector : CollectorBase
 
 	/// <inheritdoc/>
 	[WithProperty(MethodSuffixName = "UserDefinedOptions", ParameterName = "options")]
-	public StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
+	public StepGathererOptions Options { get; set; } = StepGathererOptions.Default;
 
 	/// <inheritdoc/>
 	[AddProperty(AllowsMultipleAdding = true, MethodSuffixName = "StepSearcherSetter")]
@@ -138,7 +138,7 @@ public sealed partial class Collector : CollectorBase
 
 			// Report the progress if worth.
 			ReportProgress:
-				progress?.Report(new(searcher.ToString(((CollectorBase)this).CurrentCulture), ++currentSearcherIndex / (double)totalSearchersCount));
+				progress?.Report(new(searcher.ToString(Options.CurrentCulture), ++currentSearcherIndex / (double)totalSearchersCount));
 			}
 
 			// Return the result.

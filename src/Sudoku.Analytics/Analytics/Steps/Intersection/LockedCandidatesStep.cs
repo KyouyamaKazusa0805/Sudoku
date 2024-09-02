@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class LockedCandidatesStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] House baseSet,
 	[PrimaryConstructorParameter] House coverSet

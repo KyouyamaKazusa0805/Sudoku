@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class DeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] NormalBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask

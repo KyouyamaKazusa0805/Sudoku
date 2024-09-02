@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ExocetLockedMemberStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Mask lockedMemberDigitsMask,
 	ref readonly CellMap baseCells,

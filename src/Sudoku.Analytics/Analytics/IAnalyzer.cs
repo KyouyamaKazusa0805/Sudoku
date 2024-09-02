@@ -8,7 +8,7 @@ namespace Sudoku.Analytics;
 /// <typeparam name="TSelf">The type of the analyzer itself.</typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
-public interface IAnalyzer<in TSelf, TContext, out TResult> : IAnalyzerOrCollector<TSelf, TContext, TResult>
+public interface IAnalyzer<in TSelf, TContext, out TResult> : IStepGatherer<TSelf, TContext, TResult>
 	where TSelf : IAnalyzer<TSelf, TContext, TResult>, allows ref struct
 	where TContext : allows ref struct
 	where TResult : IAnalysisResult<TResult, TSelf, TContext>, allows ref struct

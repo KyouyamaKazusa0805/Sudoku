@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed class JuniorExocetMirrorSyncStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,

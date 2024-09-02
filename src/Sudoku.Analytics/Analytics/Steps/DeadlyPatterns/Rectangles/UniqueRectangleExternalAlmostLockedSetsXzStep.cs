@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit1,
 	Digit digit2,
 	ref readonly CellMap cells,

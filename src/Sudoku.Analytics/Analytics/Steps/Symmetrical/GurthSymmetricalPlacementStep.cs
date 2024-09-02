@@ -20,7 +20,7 @@ namespace Sudoku.Analytics.Steps;
 public partial class GurthSymmetricalPlacementStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] SymmetricType symmetricType,
 	[PrimaryConstructorParameter] Digit?[]? mapping
 ) : SymmetryStep(conclusions, views, options)

@@ -1,13 +1,14 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents an analyzer or a collector type.
+/// Represents a type that support collecting <see cref="Step"/> instances from a grid puzzle.
 /// </summary>
 /// <typeparam name="TSelf">The type itself.</typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the result value.</typeparam>
-public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
-	where TSelf : IAnalyzerOrCollector<TSelf, TContext, TResult>, allows ref struct
+/// <seealso cref="Step"/>
+public interface IStepGatherer<in TSelf, TContext, out TResult>
+	where TSelf : IStepGatherer<TSelf, TContext, TResult>, allows ref struct
 	where TContext : allows ref struct
 	where TResult : allows ref struct
 {
@@ -32,16 +33,11 @@ public interface IAnalyzerOrCollector<in TSelf, TContext, out TResult>
 	public abstract ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; }
 
 	/// <summary>
-	/// Indicates the current culture that is used for displaying running information.
-	/// </summary>
-	public CultureInfo CurrentCulture => Options.CurrentCulture;
-
-	/// <summary>
 	/// Indicates the extra options to be set. The options will be passed into <see cref="Step"/> instances collected
 	/// in internal method called <c>Collect</c>, and create <see cref="Step"/> instances and pass into constructor.
 	/// </summary>
 	/// <seealso cref="Step"/>
-	public abstract StepSearcherOptions Options { get; set; }
+	public abstract StepGathererOptions Options { get; set; }
 
 	/// <summary>
 	/// Represents a list of <see cref="Action{T}"/> of <see cref="StepSearcher"/> instances

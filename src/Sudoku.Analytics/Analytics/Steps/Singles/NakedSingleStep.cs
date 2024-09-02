@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NakedSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,

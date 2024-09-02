@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ChromaticPatternXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	House[] blocks,
 	ref readonly CellMap pattern,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,

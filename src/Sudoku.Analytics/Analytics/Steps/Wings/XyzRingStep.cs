@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class XyzRingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit intersectDigit,
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] Cell leafCell1,

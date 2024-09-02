@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class GuardianStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] ref readonly CellMap guardians

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ExtendedRectangleType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Digit extraDigit

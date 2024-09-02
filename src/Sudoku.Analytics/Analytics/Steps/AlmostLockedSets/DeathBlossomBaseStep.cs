@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public abstract class DeathBlossomBaseStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) :
+public abstract class DeathBlossomBaseStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
 	AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

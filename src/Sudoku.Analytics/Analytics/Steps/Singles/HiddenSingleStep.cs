@@ -21,7 +21,7 @@ namespace Sudoku.Analytics.Steps;
 public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	[PrimaryConstructorParameter] House house,

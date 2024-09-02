@@ -13,7 +13,7 @@ public ref partial struct ChainingRuleLinkContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary strongLinks,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] LinkDictionary weakLinks,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] StepSearcherOptions options
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] StepGathererOptions options
 ) : IContext
 {
 	/// <inheritdoc/>
@@ -26,9 +26,9 @@ public ref partial struct ChainingRuleLinkContext(
 	/// <param name="linkType">The link type.</param>
 	/// <returns>
 	/// The link option returned.
-	/// If there's no overridden link option, return <see cref="StepSearcherOptions.DefaultLinkOption"/>.
+	/// If there's no overridden link option, return <see cref="StepGathererOptions.DefaultLinkOption"/>.
 	/// </returns>
-	/// <seealso cref="StepSearcherOptions.DefaultLinkOption"/>
+	/// <seealso cref="StepGathererOptions.DefaultLinkOption"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly LinkOption GetLinkOption(LinkType linkType)
 		=> Options.OverriddenLinkOptions.TryGetValue(linkType, out var lo) ? lo : Options.DefaultLinkOption;

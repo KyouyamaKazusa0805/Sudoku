@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RectangleDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap pattern,
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] RectangleBlossomBranchCollection branches,

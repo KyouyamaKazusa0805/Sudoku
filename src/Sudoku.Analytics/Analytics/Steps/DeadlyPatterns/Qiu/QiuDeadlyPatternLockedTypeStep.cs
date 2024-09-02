@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	bool is2LinesWith2Cells,
 	HouseMask houses,
 	Cell? corner1,

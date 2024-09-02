@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class DominoLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : LockedSetStep(conclusions, views, options)

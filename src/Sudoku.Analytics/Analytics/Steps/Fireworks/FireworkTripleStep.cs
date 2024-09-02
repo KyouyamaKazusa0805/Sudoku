@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FireworkTripleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask
 ) : FireworkStep(conclusions, views, options, in cells, digitsMask)

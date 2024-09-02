@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] int pivotCandidatesCount,
 	[PrimaryConstructorParameter] Mask digitsMask,

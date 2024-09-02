@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class BivalueOddagonStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class UniquenessClueCoverStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigits,
 	[PrimaryConstructorParameter] int chuteIndex

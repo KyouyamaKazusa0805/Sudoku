@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class JuniorExocetGeneralizedFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Mask targetPairMask,
 	ref readonly CellMap baseCells,

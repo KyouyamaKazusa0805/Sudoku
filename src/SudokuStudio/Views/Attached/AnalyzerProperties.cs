@@ -195,7 +195,7 @@ public static partial class AnalyzerProperties
 	/// stored in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
 	/// <typeparam name="TAnalyzerOrCollector">
-	/// The type of the instance. The type must implement <see cref="IAnalyzerOrCollector{TSelf, TContext, TResult}"/>.
+	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TContext, TResult}"/>.
 	/// </typeparam>
 	/// <typeparam name="TContext">The type of the context.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
@@ -214,7 +214,7 @@ public static partial class AnalyzerProperties
 		string methodName,
 		out bool propertyMatched
 	)
-		where TAnalyzerOrCollector : IAnalyzerOrCollector<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
+		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
 		where TContext : allows ref struct
 		where TResult : allows ref struct
 	{
@@ -242,7 +242,7 @@ public static partial class AnalyzerProperties
 	/// Calls the method <see cref="WithRuntimeIdentifierSetter"/> for all properties in type <see cref="AnalyzerProperties"/>.
 	/// </summary>
 	/// <typeparam name="TAnalyzerOrCollector">
-	/// The type of the instance. The type must implement <see cref="IAnalyzerOrCollector{TSelf, TContext, TResult}"/>.
+	/// The type of the instance. The type must implement <see cref="IStepGatherer{TSelf, TContext, TResult}"/>.
 	/// </typeparam>
 	/// <typeparam name="TContext">The type of the context.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
@@ -252,7 +252,7 @@ public static partial class AnalyzerProperties
 	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
 	/// <seealso cref="WithRuntimeIdentifierSetter"/>
 	public static TAnalyzerOrCollector WithRuntimeIdentifierSetters<TAnalyzerOrCollector, TContext, TResult>(this TAnalyzerOrCollector @this, SudokuPane attachedPane)
-		where TAnalyzerOrCollector : IAnalyzerOrCollector<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
+		where TAnalyzerOrCollector : IStepGatherer<TAnalyzerOrCollector, TContext, TResult>, allows ref struct
 		where TContext : allows ref struct
 		where TResult : allows ref struct
 	{

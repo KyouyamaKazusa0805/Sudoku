@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap leaves,
 	[PrimaryConstructorParameter] ref readonly CellMap root,
 	[PrimaryConstructorParameter] House house,

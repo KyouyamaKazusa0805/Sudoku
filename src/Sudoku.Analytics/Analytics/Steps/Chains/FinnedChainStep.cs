@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class FinnedChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	NamedChain pattern,
 	[PrimaryConstructorParameter] ref readonly CandidateMap fins
 ) : NormalChainStep(conclusions, views, options, pattern)

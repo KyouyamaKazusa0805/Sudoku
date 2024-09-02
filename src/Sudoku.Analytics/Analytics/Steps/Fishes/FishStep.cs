@@ -34,7 +34,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] HouseMask baseSetsMask,
 	[PrimaryConstructorParameter] HouseMask coverSetsMask,

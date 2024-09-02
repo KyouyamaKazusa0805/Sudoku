@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class DirectSubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
@@ -45,7 +45,7 @@ public sealed partial class DirectSubsetStep(
 
 	/// <summary>
 	/// <inheritdoc
-	///     cref="NakedSubsetStep(Conclusion[], View[], StepSearcherOptions, int, ref readonly CellMap, short, bool?)"
+	///     cref="NakedSubsetStep(Conclusion[], View[], StepGathererOptions, int, ref readonly CellMap, short, bool?)"
 	///     path="/param[@name='isLocked']"/>
 	/// </summary>
 	public bool? IsLocked

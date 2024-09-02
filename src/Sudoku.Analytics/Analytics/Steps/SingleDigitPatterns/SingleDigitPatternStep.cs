@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class SingleDigitPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Digit digit
 ) : IndirectStep(conclusions, views, options)
 {

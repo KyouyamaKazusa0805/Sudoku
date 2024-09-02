@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class ChromaticPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] House[] blocks,
 	[PrimaryConstructorParameter] ref readonly CellMap pattern,
 	[PrimaryConstructorParameter] Mask digitsMask

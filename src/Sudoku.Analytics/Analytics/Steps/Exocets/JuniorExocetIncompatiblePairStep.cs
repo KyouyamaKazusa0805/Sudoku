@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class JuniorExocetIncompatiblePairStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] ref readonly CandidateMap incompatibleCandidates,
 	ref readonly CellMap baseCells,

@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public partial class NormalChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] NamedChain pattern
 ) : ChainStep(conclusions, views, options)
 {

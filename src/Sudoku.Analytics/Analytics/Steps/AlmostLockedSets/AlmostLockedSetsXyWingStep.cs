@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsXyWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
 	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[PrimaryConstructorParameter(GeneratedMemberName = "BridgeAls")] AlmostLockedSet bridge,

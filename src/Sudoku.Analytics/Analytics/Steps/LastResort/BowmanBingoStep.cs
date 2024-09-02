@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BowmanBingoStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Conclusion[] contradictionLinks
 ) : LastResortStep(conclusions, views, options), ISizeTrait
 {

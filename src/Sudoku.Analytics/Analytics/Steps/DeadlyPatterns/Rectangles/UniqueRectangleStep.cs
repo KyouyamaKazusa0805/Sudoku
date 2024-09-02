@@ -25,7 +25,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter(Accessibility = "public sealed override")] Technique code,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2,

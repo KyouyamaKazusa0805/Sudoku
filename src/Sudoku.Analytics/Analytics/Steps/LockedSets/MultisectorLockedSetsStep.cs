@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] int rowsCount,
 	[PrimaryConstructorParameter] int columnsCount,

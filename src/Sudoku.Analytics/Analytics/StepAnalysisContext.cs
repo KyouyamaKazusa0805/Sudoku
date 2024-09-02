@@ -79,7 +79,7 @@ public ref partial struct StepAnalysisContext(
 	/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
 	/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
 	/// </summary>
-	public required StepSearcherOptions Options { get; init; }
+	public required StepGathererOptions Options { get; init; }
 
 	/// <summary>
 	/// Indicates the accumulator to store each step while searching.

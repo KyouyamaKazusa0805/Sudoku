@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations

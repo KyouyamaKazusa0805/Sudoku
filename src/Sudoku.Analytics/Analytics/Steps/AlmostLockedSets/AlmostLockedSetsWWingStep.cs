@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
 	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[PrimaryConstructorParameter] Conjugate conjugatePair,

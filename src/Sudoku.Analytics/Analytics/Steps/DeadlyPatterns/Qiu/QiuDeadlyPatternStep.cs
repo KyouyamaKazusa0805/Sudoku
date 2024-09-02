@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] bool is2LinesWith2Cells,
 	[PrimaryConstructorParameter] HouseMask houses,
 	[PrimaryConstructorParameter] Cell? corner1,

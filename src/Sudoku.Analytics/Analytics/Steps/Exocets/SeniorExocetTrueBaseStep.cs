@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class SeniorExocetTrueBaseStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Digit trueBaseDigit,
 	ref readonly CellMap baseCells,

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class BivalueUniversalGraveXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Cell xzCell

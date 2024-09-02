@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class DirectIntersectionStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
 	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells,

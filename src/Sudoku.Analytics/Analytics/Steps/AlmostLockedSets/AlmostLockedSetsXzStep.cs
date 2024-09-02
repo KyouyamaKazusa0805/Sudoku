@@ -21,7 +21,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class AlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
 	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
 	[PrimaryConstructorParameter] Mask xDigitsMask,

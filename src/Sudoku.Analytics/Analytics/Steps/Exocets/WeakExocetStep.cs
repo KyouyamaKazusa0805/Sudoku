@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class WeakExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Cell stabilityBalancer,
 	[PrimaryConstructorParameter] Cell missingValueCell,

@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class DoubleExocetBaseStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Mask digitsMask,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,

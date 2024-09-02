@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	[PrimaryConstructorParameter] Mask nTimesAlmostLockedSetsDigitsMask,
 	[PrimaryConstructorParameter] ref readonly CellMap nTimesAlmostLockedSetsCells,
 	[PrimaryConstructorParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,

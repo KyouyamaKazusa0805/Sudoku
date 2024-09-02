@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class TwoStrongLinksStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit,
 	[PrimaryConstructorParameter] House baseHouse,
 	[PrimaryConstructorParameter] House targetHouse,

@@ -25,7 +25,7 @@ namespace Sudoku.Analytics.Steps;
 public sealed partial class ComplexFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
-	StepSearcherOptions options,
+	StepGathererOptions options,
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
