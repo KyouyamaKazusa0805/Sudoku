@@ -129,12 +129,6 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the system theme is dark.</returns>
         </member>
-        <member name="M:SudokuStudio.App.EnsureUnsnapped">
-            <summary>
-            To determine whether the current application view is in an unsnapped state.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="M:SudokuStudio.App.GetMainWindow``1(``0)">
             <summary>
             Try to get main window the program uses. This operation can be used for locating pages.

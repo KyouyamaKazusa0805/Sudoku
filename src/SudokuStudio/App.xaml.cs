@@ -283,22 +283,6 @@ public partial class App : Application
 #endif
 
 	/// <summary>
-	/// To determine whether the current application view is in an unsnapped state.
-	/// </summary>
-	/// <returns>The <see cref="bool"/> value indicating that.</returns>
-	internal static bool EnsureUnsnapped()
-	{
-		// 'FileOpenPicker' APIs will not work if the application is in a snapped state.
-		// If an app wants to show a 'FileOpenPicker' while snapped, it must attempt to unsnap first.
-		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
-		if (!unsnapped)
-		{
-			throw new InvalidOperationException(SR.ExceptionMessage("EnsureFileIsUnsnapped"));
-		}
-		return unsnapped;
-	}
-
-	/// <summary>
 	/// Try to get main window the program uses. This operation can be used for locating pages.
 	/// </summary>
 	/// <typeparam name="TUIElement">The type of the calling instance.</typeparam>
