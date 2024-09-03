@@ -1004,20 +1004,6 @@
             Try to dispose resource of backdrop-related resources.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.SetBackdrop(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
-            <summary>
-            Manually set backdrop via the specified kind.
-            </summary>
-            <param name="window">The window.</param>
-            <param name="backdrop">The backdrop to be set.</param>
-        </member>
-        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.ManuallyUpdateBackground(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
-            <summary>
-            Manually update background.
-            </summary>
-            <param name="window">The window.</param>
-            <param name="backdrop">The backdrop.</param>
-        </member>
         <member name="T:SudokuStudio.Composition.IThemeSupportedWindow">
             <summary>
             Represents a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that supports theme.
@@ -1030,10 +1016,31 @@
             </summary>
             <param name="theme">The theme.</param>
         </member>
-        <member name="M:SudokuStudio.Composition.IThemeSupportedWindow.SetTheme(SudokuStudio.Composition.IThemeSupportedWindow,SudokuStudio.Theme)">
+        <member name="T:SudokuStudio.Composition.WindowComposition">
+            <summary>
+            Represents a list of methods that operates with <see cref="T:Microsoft.UI.Xaml.Window"/> objects, with composition options.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="M:SudokuStudio.Composition.WindowComposition.SetBackdrop(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
+            <summary>
+            Manually set backdrop via the specified kind.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="backdrop">The backdrop to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Composition.WindowComposition.ManuallyUpdateBackground(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
+            <summary>
+            Manually update background.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="backdrop">The backdrop.</param>
+        </member>
+        <member name="M:SudokuStudio.Composition.WindowComposition.SetTheme``1(``0,SudokuStudio.Theme)">
             <summary>
             Sets the theme.
             </summary>
+            <typeparam name="TWindow">The type of the window.</typeparam>
             <param name="window">The window.</param>
             <param name="theme">The theme to be set.</param>
         </member>

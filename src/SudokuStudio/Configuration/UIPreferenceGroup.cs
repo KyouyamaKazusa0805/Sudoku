@@ -854,7 +854,7 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IBackdropSupportedWindow>())
 		{
-			IBackdropSupportedWindow.SetBackdrop(window, value);
+			WindowComposition.SetBackdrop(window, value);
 		}
 #endif
 	}

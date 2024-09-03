@@ -448,7 +448,7 @@ public sealed partial class MainWindow :
 	private void InitialSetBackdrop()
 	{
 		var backdrop = Application.Current.AsApp().Preference.UIPreferences.Backdrop;
-		IBackdropSupportedWindow.SetBackdrop(this, backdrop);
+		WindowComposition.SetBackdrop(this, backdrop);
 	}
 #endif
 

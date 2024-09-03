@@ -31,9 +31,9 @@ public sealed partial class ThemeSettingPage : Page
 		Application.Current.AsApp().Preference.UIPreferences.CurrentTheme = theme;
 
 		// Manually set theme.
-		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IThemeSupportedWindow>())
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<MainWindow>())
 		{
-			IThemeSupportedWindow.SetTheme(window, theme);
+			WindowComposition.SetTheme(window, theme);
 		}
 	}
 

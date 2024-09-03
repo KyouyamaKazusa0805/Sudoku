@@ -203,7 +203,7 @@ public partial class App : Application
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
 		var theme = Current.AsApp().Preference.UIPreferences.CurrentTheme;
-		IThemeSupportedWindow.SetTheme(window, theme);
+		WindowComposition.SetTheme(window, theme);
 		window.Activate();
 	}
 
