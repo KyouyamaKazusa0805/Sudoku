@@ -1257,9 +1257,6 @@
   <data name="SettingsPage_Backdrop" xml:space="preserve">
     <value>Program background style</value>
   </data>
-  <data name="SettingsPage_BackdropDescription" xml:space="preserve">
-    <value>This option is deprecated, meaning you cannot modify for this option because it is no longer supported by Windows. The backdrops will be back if higher versions of Windows application SDK.</value>
-  </data>
   <data name="SettingsPage_Backdrop_Acrylic" xml:space="preserve">
     <value>Acrylic</value>
   </data>

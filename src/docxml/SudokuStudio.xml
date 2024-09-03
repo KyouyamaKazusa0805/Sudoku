@@ -980,6 +980,57 @@
             Indicates the data of library.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Composition.IBackdropSupportedWindow">
+            <summary>
+            Represents a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that supports backdrop.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.TrySetMicaBackdrop(System.Boolean)">
+            <summary>
+            Try to set Mica backdrop.
+            </summary>
+            <param name="useMicaAlt">Indicates whether the current Mica backdrop use alternated configuration.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the Mica backdrop is supported.</returns>
+        </member>
+        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.TrySetAcrylicBackdrop(System.Boolean)">
+            <summary>
+            Try to set Acrylic backdrop.
+            </summary>
+            <param name="useAcrylicThin">Indicates whether the current Acrylic backdrop use thin configuration.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the Acrylic backdrop is supported.</returns>
+        </member>
+        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.DisposeBackdropRelatedResources">
+            <summary>
+            Try to dispose resource of backdrop-related resources.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.SetBackdrop(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
+            <summary>
+            Manually set backdrop via the specified kind.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="backdrop">The backdrop to be set.</param>
+        </member>
+        <member name="T:SudokuStudio.Composition.IThemeSupportedWindow">
+            <summary>
+            Represents a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that supports theme.
+            </summary>
+            <seealso cref="T:Microsoft.UI.Xaml.Window"/>
+        </member>
+        <member name="M:SudokuStudio.Composition.IThemeSupportedWindow.ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
+            <summary>
+            Set title bar button colors using the specified theme.
+            </summary>
+            <param name="theme">The theme.</param>
+        </member>
+        <member name="M:SudokuStudio.Composition.IThemeSupportedWindow.SetTheme(SudokuStudio.Composition.IThemeSupportedWindow,SudokuStudio.Theme)">
+            <summary>
+            Sets the theme.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="theme">The theme to be set.</param>
+        </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
             Represents with preference items that is used by <see cref="T:Sudoku.Analytics.Analyzer"/> or <see cref="T:Sudoku.Analytics.Collector"/>.
@@ -1447,14 +1498,6 @@
             Provides with extension methods on <see cref="T:SudokuStudio.Configuration.BackdropKind"/>.
             </summary>
             <seealso cref="T:SudokuStudio.Configuration.BackdropKind"/>
-        </member>
-        <member name="M:SudokuStudio.Configuration.BackdropKindExtensions.GetBackdrop(SudokuStudio.Configuration.BackdropKind)">
-            <summary>
-            Try to get target <see cref="T:Microsoft.UI.Xaml.Media.SystemBackdrop"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:SudokuStudio.Configuration.BackdropKind"/> instance.</param>
-            <returns>The target <see cref="T:Microsoft.UI.Xaml.Media.SystemBackdrop"/> instance.</returns>
-            <exception cref="T:System.NotSupportedException">Throws when the value is out of range.</exception>
         </member>
         <member name="T:SudokuStudio.Configuration.BuiltInColorPalette">
             <summary>
@@ -5211,6 +5254,88 @@
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when <paramref name="parameter"/> or <paramref name="value"/> is invalid.</exception>
         </member>
+        <member name="T:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper">
+            <summary>
+            Represents a helper type for <see cref="T:Windows.System.DispatcherQueue"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper._dispatcherQueueController">
+            <summary>
+            Indicates the backing field of controller object.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.EnsureWindowsSystemDispatcherQueueController">
+            <summary>
+            Try ensure controller is not <see langword="null"/> and initialize options.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.CreateDispatcherQueueController(SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions,System.Object@)">
+            <summary>
+            Creates a <see cref="T:Windows.System.DispatcherQueueController"/>.
+            Use the created <see cref="T:Windows.System.DispatcherQueueController"/> to create and manage the lifetime
+            of a <see cref="T:Windows.System.DispatcherQueue"/> to run queued tasks in priority order on the dispatcher queue's thread.
+            </summary>
+            <param name="options">
+            The threading affinity and type of COM apartment for the created <see cref="T:Windows.System.DispatcherQueueController"/>.
+            See remarks for details.
+            </param>
+            <param name="dispatcherQueueController">The created dispatcher queue controller.</param>
+            <returns><c>S_OK</c> for success; otherwise a failure code.</returns>
+            <remarks>
+            <para>Introduced in Windows 10, version 1709.</para>
+            <para>
+            If <paramref name="options"/>.<c>threadType</c> is <c>DQTYPE_THREAD_DEDICATED</c>, then this function creates a thread,
+            initializes it with the specified COM apartment, and associates a <see cref="T:Microsoft.UI.Dispatching.DispatcherQueue"/> with that thread.
+            The dispatcher queue event loop runs on the new dedicated thread until the dispatcher queue is explicitly shut down.
+            To avoid thread and memory leaks, call <see cref="M:Windows.System.DispatcherQueueController.ShutdownQueueAsync"/>
+            when you are finished with the dispatcher queue.
+            </para>
+            <para>
+            If <paramref name="options"/>.<c>threadType</c> is <c>DQTYPE_THREAD_CURRENT</c>,
+            then a <see cref="T:Windows.System.DispatcherQueue"/> is created and associated with the current thread.
+            An error results if there is already a <see cref="T:Windows.System.DispatcherQueue"/> associated with the current thread.
+            The current thread must pump messages to allow the dispatcher queue to dispatch tasks. Before the current thread exits,
+            it must call <see cref="M:Windows.System.DispatcherQueueController.ShutdownQueueAsync"/>,
+            and continue pumping messages until the <see cref="T:Windows.Foundation.IAsyncAction"/> completes.
+            </para>
+            <para>
+            This call does not return until the <see cref="T:Windows.System.DispatcherQueueController"/> and new thread (if any) are created.
+            </para>
+            <para>
+            <b>Important</b><br/>
+            The <see cref="T:Windows.System.DispatcherQueueController"/>, and its associated <see cref="T:Windows.System.DispatcherQueue"/>, are WinRT objects.
+            See their documentation for usage details.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions">
+            <summary>
+            Represents options around threading affinity and type of COM apartment for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+            <remarks>
+            Introduced in Windows 10, version 1709.
+            </remarks>
+            <seealso cref="M:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.CreateDispatcherQueueController(SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions,System.Object@)"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.dwSize">
+            <summary>
+            Size of this <see cref="T:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions"/> structure.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType">
+            <summary>
+            Thread affinity for a new <see cref="T:Windows.System.DispatcherQueueController"/>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.apartmentType">
+            <summary>
+            Specifies whether to initialize the COM apartment on the new thread as an application single-threaded apartment (ASTA)
+            or a single-threaded apartment (STA).
+            This field is relevant only if threadType is <c>DQTYPE_THREAD_DEDICATED</c>.
+            Use <c>DQTAT_COM_NONE</c> when <see cref="F:SudokuStudio.Interaction.WindowsSystemDispatcherQueueHelper.DispatcherQueueOptions.threadType"/> is <c>DQTYPE_THREAD_CURRENT</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Markup.BabaGroupInitialLetterExtension">
             <summary>
             Represents a markup extension to provide a <see cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/> value.
@@ -8448,11 +8573,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop_MicaDeep">
             <summary>
               Looks up a localized string similar to Mica deep.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BackdropDescription">
-            <summary>
-              Looks up a localized string similar to This option is deprecated, meaning you cannot modify for this option because it is no longer supported by Windows. The backdrops will be back if higher versions of Windows application SDK..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backslash">
@@ -16484,6 +16604,27 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper">
+            <summary>
+            Indicates helper object for <see cref="T:Windows.System.DispatcherQueue"/>.
+            </summary>
+            <seealso cref="T:Windows.System.DispatcherQueue"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._micaController">
+            <summary>
+            Indicates Mica backdrop controller.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._acrylicController">
+            <summary>
+            Indicates desktop acrylic backdrop controller.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Windows.MainWindow._configurationSource">
+            <summary>
+            Indicates backdrop configuration.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
@@ -16503,11 +16644,27 @@
             <param name="pageType">The page type.</param>
             <param name="value">The value to be passed.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IThemeSupportedWindow#ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#TrySetMicaBackdrop(System.Boolean)">
             <summary>
-            Set title bar button colors using the specified theme.
+            Try to set Mica backdrop.
             </summary>
-            <param name="theme">The theme.</param>
+            <param name="useMicaAlt">Indicates whether the current Mica backdrop use alternated configuration.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the Mica backdrop is supported.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#TrySetAcrylicBackdrop(System.Boolean)">
+            <summary>
+            Try to set Acrylic backdrop.
+            </summary>
+            <param name="useAcrylicThin">Indicates whether the current Acrylic backdrop use thin configuration.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the Acrylic backdrop is supported.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#DisposeBackdropRelatedResources">
+            <summary>
+            Try to dispose resource of backdrop-related resources.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>
@@ -16548,6 +16705,21 @@
             Sets the draggable region that is used for the whole window.
             </summary>
             <param name="appWindow">The <see cref="T:Microsoft.UI.Windowing.AppWindow"/> instance.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.SetConfigurationSourceTheme">
+            <summary>
+            Try to update configuration source theme.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.KeepWsdqHelperNotNull">
+            <summary>
+            Make <see cref="F:SudokuStudio.Views.Windows.MainWindow._wsdqHelper"/> not null.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.InitialSetBackdrop">
+            <summary>
+            Initialize backdrop settings read.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SetAppIcon">
             <summary>

@@ -4,8 +4,38 @@ namespace SudokuStudio.Views.Windows;
 /// Provides with a <see cref="Window"/> instance that is running as main instance of the program.
 /// </summary>
 /// <seealso cref="Window"/>
-public sealed partial class MainWindow : Window
+public sealed partial class MainWindow :
+	Window,
+	IThemeSupportedWindow
+#if CUSTOMIZED_BACKDROP
+	,
+	IBackdropSupportedWindow
+#endif
 {
+#if CUSTOMIZED_BACKDROP
+	/// <summary>
+	/// Indicates helper object for <see cref="winsys::DispatcherQueue"/>.
+	/// </summary>
+	/// <seealso cref="winsys::DispatcherQueue"/>
+	private WindowsSystemDispatcherQueueHelper? _wsdqHelper;
+
+	/// <summary>
+	/// Indicates Mica backdrop controller.
+	/// </summary>
+	private MicaController? _micaController;
+
+	/// <summary>
+	/// Indicates desktop acrylic backdrop controller.
+	/// </summary>
+	private DesktopAcrylicController? _acrylicController;
+
+	/// <summary>
+	/// Indicates backdrop configuration.
+	/// </summary>
+	private SystemBackdropConfiguration? _configurationSource;
+#endif
+
+
 	/// <summary>
 	/// Initializes a <see cref="MainWindow"/> instance.
 	/// </summary>
@@ -36,11 +66,8 @@ public sealed partial class MainWindow : Window
 	/// <param name="value">The value to be passed.</param>
 	public void NavigateToPage(Type pageType, object? value) => NavigationPage.PageToWithValue = (pageType, value);
 
-	/// <summary>
-	/// Set title bar button colors using the specified theme.
-	/// </summary>
-	/// <param name="theme">The theme.</param>
-	internal void ManuallySetTitleBarButtonsColor(Theme theme)
+	/// <inheritdoc/>
+	void IThemeSupportedWindow.ManuallySetTitleBarButtonsColor(Theme theme)
 	{
 		// Check to see if customization is supported. Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported())
@@ -81,6 +108,100 @@ public sealed partial class MainWindow : Window
 			}
 		}
 	}
+
+#if CUSTOMIZED_BACKDROP
+	/// <summary>
+	/// Try to set Mica backdrop.
+	/// </summary>
+	/// <param name="useMicaAlt">Indicates whether the current Mica backdrop use alternated configuration.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the Mica backdrop is supported.</returns>
+	bool IBackdropSupportedWindow.TrySetMicaBackdrop(bool useMicaAlt)
+	{
+		if (MicaController.IsSupported())
+		{
+			KeepWsdqHelperNotNull();
+
+			// Hooking up the policy object.
+			_configurationSource = null;
+			_configurationSource = new();
+			Activated += Window_Activated;
+			Closed += (_, _) => ((IBackdropSupportedWindow)this).DisposeBackdropRelatedResources();
+			((FrameworkElement)Content).ActualThemeChanged += Window_ThemeChanged;
+
+			// Initial configuration state.
+			_configurationSource.IsInputActive = true;
+			SetConfigurationSourceTheme();
+
+			_micaController = new() { Kind = useMicaAlt ? MicaKind.BaseAlt : MicaKind.Base };
+
+			// Enable the system backdrop.
+			// Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
+			_micaController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
+			_micaController.SetSystemBackdropConfiguration(_configurationSource);
+			return true; // Succeeded.
+		}
+
+		return false; // Mica is not supported on this system.
+	}
+
+	/// <summary>
+	/// Try to set Acrylic backdrop.
+	/// </summary>
+	/// <param name="useAcrylicThin">Indicates whether the current Acrylic backdrop use thin configuration.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the Acrylic backdrop is supported.</returns>
+	bool IBackdropSupportedWindow.TrySetAcrylicBackdrop(bool useAcrylicThin)
+	{
+		if (DesktopAcrylicController.IsSupported())
+		{
+			KeepWsdqHelperNotNull();
+
+			// Hooking up the policy object.
+			_configurationSource = null;
+			_configurationSource = new();
+			Activated += Window_Activated;
+			Closed += (_, _) => ((IBackdropSupportedWindow)this).DisposeBackdropRelatedResources();
+			((FrameworkElement)Content).ActualThemeChanged += Window_ThemeChanged;
+
+			// Initial configuration state.
+			_configurationSource.IsInputActive = true;
+			SetConfigurationSourceTheme();
+
+			_acrylicController = new() { Kind = useAcrylicThin ? DesktopAcrylicKind.Thin : DesktopAcrylicKind.Base };
+
+			// Enable the system backdrop.
+			// Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
+			_acrylicController.AddSystemBackdropTarget(this.As<ICompositionSupportsSystemBackdrop>());
+			_acrylicController.SetSystemBackdropConfiguration(_configurationSource);
+			return true; // Succeeded.
+		}
+
+		return false; // Acrylic is not supported on this system.
+	}
+
+	/// <summary>
+	/// Try to dispose resource of backdrop-related resources.
+	/// </summary>
+	void IBackdropSupportedWindow.DisposeBackdropRelatedResources()
+	{
+		if (_configurationSource is not null)
+		{
+			// Make sure any Mica/Acrylic controller is disposed so it doesn't try to use this closed window.
+			if (_micaController is not null)
+			{
+				_micaController.Dispose();
+				_micaController = null;
+			}
+			if (_acrylicController is not null)
+			{
+				_acrylicController.Dispose();
+				_acrylicController = null;
+			}
+
+			Activated -= Window_Activated;
+			_configurationSource = null;
+		}
+	}
+#endif
 
 	/// <summary>
 	/// Initializes for fields.
@@ -152,7 +273,8 @@ public sealed partial class MainWindow : Window
 		// Check to see if customization is supported. Currently only supported on Windows 11.
 		if (AppWindowTitleBar.IsCustomizationSupported())
 		{
-			ManuallySetTitleBarButtonsColor(Application.Current.AsApp().Preference.UIPreferences.CurrentTheme);
+			var theme = Application.Current.AsApp().Preference.UIPreferences.CurrentTheme;
+			((IThemeSupportedWindow)this).ManuallySetTitleBarButtonsColor(theme);
 
 #if SEARCH_AUTO_SUGGESTION_BOX
 			AppTitleBar.Loaded += (_, _) => SetDragRegionForCustomTitleBar(AppWindow);
@@ -172,6 +294,10 @@ public sealed partial class MainWindow : Window
 			AppTitleBarWithoutAutoSuggestBox.Visibility = Visibility.Collapsed;
 #endif
 		}
+
+#if CUSTOMIZED_BACKDROP
+		InitialSetBackdrop();
+#endif
 
 
 		void appWindowChangedHandler(AppWindow sender, AppWindowChangedEventArgs args)
@@ -282,6 +408,46 @@ public sealed partial class MainWindow : Window
 	}
 #endif
 
+#if CUSTOMIZED_BACKDROP
+	/// <summary>
+	/// Try to update configuration source theme.
+	/// </summary>
+	private void SetConfigurationSourceTheme()
+	{
+		if (_configurationSource is not null)
+		{
+			_configurationSource.Theme = ((FrameworkElement)Content).ActualTheme switch
+			{
+				ElementTheme.Light => SystemBackdropTheme.Light,
+				ElementTheme.Dark => SystemBackdropTheme.Dark,
+				_ => App.ShouldSystemUseDarkMode() ? SystemBackdropTheme.Dark : SystemBackdropTheme.Light
+			};
+		}
+	}
+
+	/// <summary>
+	/// Make <see cref="_wsdqHelper"/> not null.
+	/// </summary>
+	[MemberNotNull(nameof(_wsdqHelper))]
+	private void KeepWsdqHelperNotNull()
+	{
+		if (_wsdqHelper is null)
+		{
+			_wsdqHelper = new();
+			_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+		}
+	}
+
+	/// <summary>
+	/// Initialize backdrop settings read.
+	/// </summary>
+	private void InitialSetBackdrop()
+	{
+		var backdrop = Application.Current.AsApp().Preference.UIPreferences.Backdrop;
+		IBackdropSupportedWindow.SetBackdrop(this, backdrop);
+	}
+#endif
+
 #if CUSTOMIZED_TITLE_BAR
 	/// <summary>
 	/// Try to set icon of the program.
@@ -319,4 +485,24 @@ public sealed partial class MainWindow : Window
 		SavePreference();
 		SavePuzzleGeneratingHistory();
 	}
+
+	private void Window_Activated(object sender, WindowActivatedEventArgs args)
+	{
+#if CUSTOMIZED_BACKDROP
+		if (_configurationSource is not null)
+		{
+			_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+		}
+#endif
+	}
+
+#if CUSTOMIZED_BACKDROP
+	private void Window_ThemeChanged(FrameworkElement sender, object args)
+	{
+		if (_configurationSource is not null)
+		{
+			SetConfigurationSourceTheme();
+		}
+	}
+#endif
 }

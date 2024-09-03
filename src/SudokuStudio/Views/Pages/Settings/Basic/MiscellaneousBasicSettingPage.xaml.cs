@@ -11,14 +11,6 @@ public sealed partial class MiscellaneousBasicSettingPage : Page
 	public MiscellaneousBasicSettingPage() => InitializeComponent();
 
 
-	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-	{
-		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
-		{
-			Application.Current.AsApp().Preference.UIPreferences.Backdrop = value;
-		}
-	}
-
 	private void PlaceholderTextSegmented_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string and [var ch] } })

@@ -5347,15 +5347,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This option is deprecated, meaning you cannot modify for this option because it is no longer supported by Windows. The backdrops will be back if higher versions of Windows application SDK..
-        /// </summary>
-        internal static string SettingsPage_BackdropDescription {
-            get {
-                return ResourceManager.GetString("SettingsPage_BackdropDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Backslash (\).
         /// </summary>
         internal static string SettingsPage_Backslash {

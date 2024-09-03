@@ -15,20 +15,6 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MiscellaneousBasicSettingPage}">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}" IsEnabled="False">
-				<w:SettingsCard.Description>
-					<TextBlock Text="{m:R Key=SettingsPage_BackdropDescription}" Foreground="Red" />
-				</w:SettingsCard.Description>
-
-				<w:Segmented
-					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
-					SelectionChanged="BackdropSelector_SelectionChanged">
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
-				</w:Segmented>
-			</w:SettingsCard>
 			<w:SettingsCard
 				Header="{m:R Key=SettingsPage_PictureSizeOnSaving}"
 				Description="{m:R Key=SettingsPage_PictureSizeOnSavingDescription}">

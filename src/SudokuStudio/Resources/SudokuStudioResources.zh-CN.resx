@@ -1257,9 +1257,6 @@
   <data name="SettingsPage_Backdrop" xml:space="preserve">
     <value>程序背景风格</value>
   </data>
-  <data name="SettingsPage_BackdropDescription" xml:space="preserve">
-    <value>该设置项已过时，这意味着你无法改变这个设置项，而且也不会产生任何的效果。该选项可能会在以后回归，具体需要依赖于新版本的 Windows 应用程序的 SDK。</value>
-  </data>
   <data name="SettingsPage_Backdrop_Acrylic" xml:space="preserve">
     <value>磨砂透明</value>
   </data>

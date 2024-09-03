@@ -31,22 +31,17 @@ public sealed partial class ThemeSettingPage : Page
 		Application.Current.AsApp().Preference.UIPreferences.CurrentTheme = theme;
 
 		// Manually set theme.
-		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows)
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IThemeSupportedWindow>())
 		{
-			if (window is MainWindow instance)
-			{
-				instance.ManuallySetTitleBarButtonsColor(theme);
-			}
+			IThemeSupportedWindow.SetTheme(window, theme);
+		}
+	}
 
-			if (window.Content is FrameworkElement control)
-			{
-				control.RequestedTheme = theme switch
-				{
-					Theme.Default => ElementTheme.Default,
-					Theme.Light => ElementTheme.Light,
-					_ => ElementTheme.Dark
-				};
-			}
+	private void BackdropSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (sender is Segmented { SelectedItem: SegmentedItem { Tag: string s } } && Enum.TryParse<BackdropKind>(s, out var value))
+		{
+			Application.Current.AsApp().Preference.UIPreferences.Backdrop = value;
 		}
 	}
 }

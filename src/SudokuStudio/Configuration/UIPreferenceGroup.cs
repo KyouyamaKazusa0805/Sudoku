@@ -846,14 +846,16 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	[Callback]
 	private static void BackdropPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (e.NewValue is not BackdropKind value)
+#if CUSTOMIZED_BACKDROP
+		if (e.NewValue is not BackdropKind value/* || !Enum.IsDefined(value)*/)
 		{
 			return;
 		}
 
-		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows)
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IBackdropSupportedWindow>())
 		{
-			window.SystemBackdrop = value.GetBackdrop();
+			IBackdropSupportedWindow.SetBackdrop(window, value);
 		}
+#endif
 	}
 }

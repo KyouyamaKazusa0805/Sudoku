@@ -200,18 +200,8 @@ public partial class App : Application
 	private void ActivateMainWindow()
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
-		if (window.Content is FrameworkElement control)
-		{
-			control.RequestedTheme = Current.AsApp().Preference.UIPreferences.CurrentTheme switch
-			{
-				Theme.Default => ElementTheme.Default,
-				Theme.Light => ElementTheme.Light,
-				Theme.Dark => ElementTheme.Dark,
-				//_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
-			};
-		}
-		//window.SystemBackdrop = Current.AsApp().Preference.UIPreferences.Backdrop.GetBackdrop();
-
+		var theme = Current.AsApp().Preference.UIPreferences.CurrentTheme;
+		IThemeSupportedWindow.SetTheme(window, theme);
 		window.Activate();
 	}
 

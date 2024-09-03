@@ -6,6 +6,7 @@ namespace SudokuStudio.Configuration;
 /// <seealso cref="BackdropKind"/>
 public static class BackdropKindExtensions
 {
+#if !CUSTOMIZED_BACKDROP
 	/// <summary>
 	/// Try to get target <see cref="SystemBackdrop"/> instance.
 	/// </summary>
@@ -19,10 +20,9 @@ public static class BackdropKindExtensions
 			BackdropKind.Mica => new MicaBackdrop(),
 			BackdropKind.MicaDeep => new MicaBackdrop { Kind = MicaKind.BaseAlt },
 			BackdropKind.Acrylic => new DesktopAcrylicBackdrop(),
-#if false
-			BackdropKind.AcrylicThin => new AcrylicBackdrop { Kind = DesktopAcrylicKind.Thin },
-			BackdropKind.Transparent => new TransparentBackdrop(),
-#endif
+			BackdropKind.AcrylicThin => new @winui::AcrylicSystemBackdrop(DesktopAcrylicKind.Thin),
+			BackdropKind.Transparent => new @winui::TransparentBackdrop(),
 			_ => throw new NotSupportedException()
 		};
+#endif
 }

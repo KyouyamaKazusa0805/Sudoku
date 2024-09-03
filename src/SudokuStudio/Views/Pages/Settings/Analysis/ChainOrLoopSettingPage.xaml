@@ -25,20 +25,16 @@
 					</TextBlock>
 				</w:SettingsExpander.Description>
 				<w:SettingsExpander.Items>
-					<w:SettingsCard Header="{m:R Key=LinkType_SingleDigit}">
-						<w:Segmented
-							x:Name="SingleDigitComboBox" IsEnabled="False"
-							SelectionChanged="SingleDigitComboBox_SelectionChanged">
+					<w:SettingsCard Header="{m:R Key=LinkType_SingleDigit}" IsEnabled="False">
+						<w:Segmented x:Name="SingleDigitComboBox" SelectionChanged="SingleDigitComboBox_SelectionChanged">
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_All}" />
 						</w:Segmented>
 					</w:SettingsCard>
-					<w:SettingsCard Header="{m:R Key=LinkType_SingleCell}">
-						<w:Segmented
-							x:Name="SingleCellComboBox" IsEnabled="False"
-							SelectionChanged="SingleCellComboBox_SelectionChanged">
+					<w:SettingsCard Header="{m:R Key=LinkType_SingleCell}" IsEnabled="False">
+						<w:Segmented x:Name="SingleCellComboBox" SelectionChanged="SingleCellComboBox_SelectionChanged">
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_None}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_Intersection}" />
 							<w:SegmentedItem Content="{m:R Key=LinkOptions_House}" />

@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Basic"
 	xmlns:ui="using:CommunityToolkit.WinUI"
@@ -16,6 +17,16 @@
 					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE97E;}" Tag="{m:Int32 Value=0}" />
 					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE706;}" Tag="{m:Int32 Value=1}" />
 					<w:SegmentedItem Icon="{ui:FontIcon Glyph=&#xE708;}" Tag="{m:Int32 Value=2}" />
+				</w:Segmented>
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}">
+				<w:Segmented
+					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
+					SelectionChanged="BackdropSelector_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
+					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
 				</w:Segmented>
 			</w:SettingsCard>
 		</StackPanel>
