@@ -56,12 +56,8 @@ public sealed partial class MainWindow :
 	Panel IBackdropSupportedWindow.RootGridLayout => RootGridLayout;
 
 
-	/// <summary>
-	/// Try to navigate to the target page.
-	/// </summary>
-	/// <param name="pageType">The target page type.</param>
-	/// <param name="stackPage">Indicates whether the page should be stacked.</param>
-	public void NavigateToPage(Type pageType, bool stackPage = false) => NavigationPage.PageToWithStack = (stackPage, pageType);
+	/// <inheritdoc cref="NavigateToPage(Type, bool)"/>
+	public void NavigateToPage(Type pageType) => NavigateToPage(pageType, false);
 
 	/// <summary>
 	/// Try to navigate to the target page with the custom data.
@@ -69,6 +65,20 @@ public sealed partial class MainWindow :
 	/// <param name="pageType">The page type.</param>
 	/// <param name="value">The value to be passed.</param>
 	public void NavigateToPage(Type pageType, object? value) => NavigationPage.PageToWithValue = (pageType, value);
+
+	/// <summary>
+	/// Try to navigate to the target page.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	/// <param name="stackPage">Indicates whether the page should be stacked.</param>
+	public void NavigateToPage(Type pageType, bool stackPage) => NavigationPage.PageToWithStack = (stackPage, pageType);
+
+	/// <summary>
+	/// Try to navigate to the target page with the specified number of pages to pop.
+	/// </summary>
+	/// <param name="pageType">The target page type.</param>
+	/// <param name="popPageCount">The number of pages to pop.</param>
+	public void NavigateToPage(Type pageType, int popPageCount) => NavigationPage.PageToPop = (pageType, popPageCount);
 
 	/// <inheritdoc/>
 	void IThemeSupportedWindow.ManuallySetTitleBarButtonsColor(Theme theme)

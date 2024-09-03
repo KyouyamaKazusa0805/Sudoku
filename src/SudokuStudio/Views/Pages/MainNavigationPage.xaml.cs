@@ -22,6 +22,22 @@ internal sealed partial class MainNavigationPage : Page
 		(static @this => @this.TechniqueGalleryPageItem, typeof(TechniqueGalleryPage))
 	];
 
+	/// <summary>
+	/// Indicates the slide navigation information instance, from right.
+	/// </summary>
+	private static readonly SlideNavigationTransitionInfo SlideNavigationRight = new()
+	{
+		Effect = SlideNavigationTransitionEffect.FromRight
+	};
+
+	/// <summary>
+	/// Indicates the slide navigation information instance, from left.
+	/// </summary>
+	private static readonly SlideNavigationTransitionInfo SlideNavigationLeft = new()
+	{
+		Effect = SlideNavigationTransitionEffect.FromLeft
+	};
+
 
 	/// <summary>
 	/// Initializes a <see cref="MainNavigationPage"/> instance.
@@ -54,10 +70,29 @@ internal sealed partial class MainNavigationPage : Page
 			var (p, v) = value;
 			if (NavigationViewFrame.SourcePageType != p)
 			{
-				NavigationViewFrame.Navigate(p, v, new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
+				NavigationViewFrame.Navigate(p, v, SlideNavigationRight);
 				HeaderBarItems = SR.TryGet(PageTypeResourceKey(p), out var resource, App.CurrentCulture)
 					? [new() { PageType = p, PageTitle = resource }]
 					: [];
+			}
+		}
+	}
+
+	/// <summary>
+	/// Sets the navigated page type with pop pages count.
+	/// </summary>
+	public (Type PageType, int PopPagesCount) PageToPop
+	{
+		set
+		{
+			var (p, v) = value;
+			if (NavigationViewFrame.SourcePageType != p)
+			{
+				NavigationViewFrame.Navigate(p, v, SlideNavigationLeft);
+				for (var i = 0; i < v; i++)
+				{
+					HeaderBarItems.RemoveAt(^1);
+				}
 			}
 		}
 	}
@@ -75,8 +110,7 @@ internal sealed partial class MainNavigationPage : Page
 				return;
 			}
 
-			var info = new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight };
-			NavigationViewFrame.Navigate(p, null, info);
+			NavigationViewFrame.Navigate(p, null, SlideNavigationRight);
 
 			SR.TryGet(PageTypeResourceKey(p), out var resource, App.CurrentCulture);
 			switch (value.StackPage, resource)
@@ -169,5 +203,11 @@ internal sealed partial class MainNavigationPage : Page
 
 			HandleNavigation((_, p) => p == lastPageType, static (c, _) => c.IsSelected = true);
 		}
+	}
+
+	private void HeaderBar_ItemClicked(BreadcrumbBar sender, BreadcrumbBarItemClickedEventArgs args)
+	{
+		var type = ((PageNavigationBindableSource)args.Item).PageType!;
+		ParentWindow.NavigateToPage(type, HeaderBarItems.Count - args.Index - 1);
 	}
 }

@@ -14795,6 +14795,16 @@
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.MainNavigationPage.NavigationViewFrame"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage.SlideNavigationRight">
+            <summary>
+            Indicates the slide navigation information instance, from right.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage.SlideNavigationLeft">
+            <summary>
+            Indicates the slide navigation information instance, from left.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.MainNavigationPage"/> instance.
@@ -14813,6 +14823,11 @@
         <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToWithValue">
             <summary>
             Sets the navigated page type with custom data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToPop">
+            <summary>
+            Sets the navigated page type with pop pages count.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.MainNavigationPage.PageToWithStack">
@@ -16646,12 +16661,8 @@
         <member name="P:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#RootGridLayout">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Boolean)">
-            <summary>
-            Try to navigate to the target page.
-            </summary>
-            <param name="pageType">The target page type.</param>
-            <param name="stackPage">Indicates whether the page should be stacked.</param>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">
+            <inheritdoc cref="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Boolean)"/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Object)">
             <summary>
@@ -16659,6 +16670,20 @@
             </summary>
             <param name="pageType">The page type.</param>
             <param name="value">The value to be passed.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Boolean)">
+            <summary>
+            Try to navigate to the target page.
+            </summary>
+            <param name="pageType">The target page type.</param>
+            <param name="stackPage">Indicates whether the page should be stacked.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Int32)">
+            <summary>
+            Try to navigate to the target page with the specified number of pages to pop.
+            </summary>
+            <param name="pageType">The target page type.</param>
+            <param name="popPageCount">The number of pages to pop.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IThemeSupportedWindow#ManuallySetTitleBarButtonsColor(SudokuStudio.Theme)">
             <inheritdoc/>

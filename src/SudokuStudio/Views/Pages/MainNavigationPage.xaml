@@ -17,7 +17,9 @@
 		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged"
 		BackRequested="MainNavigationView_BackRequested">
 		<NavigationView.Header>
-			<BreadcrumbBar x:Name="HeaderBar" ItemsSource="{x:Bind HeaderBarItems,Mode=OneWay}">
+			<BreadcrumbBar
+				x:Name="HeaderBar" ItemsSource="{x:Bind HeaderBarItems,Mode=OneWay}"
+				ItemClicked="HeaderBar_ItemClicked">
 				<BreadcrumbBar.ItemTemplate>
 					<DataTemplate x:DataType="bs:PageNavigationBindableSource">
 						<BreadcrumbBarItem Content="{Binding}">
