@@ -33,6 +33,11 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// </summary>
 	public bool IsNegated { get; set; }
 
+	/// <summary>
+	/// Indicates the description to the constraint.
+	/// </summary>
+	public string Description => SR.Get($"ConstraintDescription_{GetType().Name}");
+
 
 	/// <summary>
 	/// Determine whether the specified grid is passed the constraint.

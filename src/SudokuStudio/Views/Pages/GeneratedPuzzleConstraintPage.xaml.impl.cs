@@ -62,6 +62,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_BottleneckRating", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -107,6 +108,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_BottleneckTechnique", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -150,6 +152,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_DifficultyLevel", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -221,6 +224,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Symmetry", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = symmetryControl,
 			Tag = constraint
@@ -280,6 +284,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -343,6 +348,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Lasting", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -369,6 +375,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Minimal", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = minimalControl,
 			Tag = constraint
@@ -390,6 +397,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = control,
 			Tag = constraint
@@ -494,6 +502,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_CountBetween", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -575,6 +584,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Ittoryu", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -605,6 +615,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_IttoryuLength", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -647,6 +658,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_Technique", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -705,6 +717,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_TechniqueCount", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -748,6 +761,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_TechniqueSet", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -807,6 +821,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
@@ -882,6 +897,7 @@ public partial class GeneratedPuzzleConstraintPage
 		return new()
 		{
 			Header = SR.Get("GeneratedPuzzleConstraintPage_PrimarySingle", App.CurrentCulture),
+			Description = constraint.Description,
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{

@@ -3315,4 +3315,55 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
     <value>Assign cells {0} with mark {1} and {2}, to make an confliction</value>
   </data>
+  <data name="ConstraintDescription_BottleneckStepRatingConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified rating of bottleneck</value>
+  </data>
+  <data name="ConstraintDescription_BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>Catch a puzzle using specified technique in bottleneck</value>
+  </data>
+  <data name="ConstraintDescription_ConclusionConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified conclusion</value>
+  </data>
+  <data name="ConstraintDescription_CountBetweenConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified number of given or empty cells</value>
+  </data>
+  <data name="ConstraintDescription_DiamondConstraint" xml:space="preserve">
+    <value>Catch a puzzle being a diamond one</value>
+  </data>
+  <data name="ConstraintDescription_DifficultyLevelConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified difficulty level of step</value>
+  </data>
+  <data name="ConstraintDescription_EliminationCountConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified number of eliminations</value>
+  </data>
+  <data name="ConstraintDescription_IttoryuConstraint" xml:space="preserve">
+    <value>Catch a puzzle being an ittoryu one</value>
+  </data>
+  <data name="ConstraintDescription_IttoryuLengthConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified length of ittoryu rounds</value>
+  </data>
+  <data name="ConstraintDescription_LastingConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified lasting number of a single step</value>
+  </data>
+  <data name="ConstraintDescription_MinimalConstraint" xml:space="preserve">
+    <value>Catch a puzzle being a minimal one</value>
+  </data>
+  <data name="ConstraintDescription_PearlConstraint" xml:space="preserve">
+    <value>Catch a puzzle being a pearl one</value>
+  </data>
+  <data name="ConstraintDescription_PrimarySingleConstraint" xml:space="preserve">
+    <value>Catch a puzzle solving by only using one single technique</value>
+  </data>
+  <data name="ConstraintDescription_SymmetryConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified symmetric pattern of givens</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueConstraint" xml:space="preserve">
+    <value>Catch a puzzle having one or more specified technique usages</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueCountConstraint" xml:space="preserve">
+    <value>Catch a puzzle having specified number of usages in a puzzle solving path</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueSetConstraint" xml:space="preserve">
+    <value>Catch a puzzle solving by only using specified technique set</value>
+  </data>
 </root>

@@ -2831,6 +2831,13 @@
   <data name="TechniqueFormat_DirectSubsetStep" xml:space="preserve">
     <value>单元格 {0} 的数字 {5} 在 {1} 里形成{6}，于是 {2} 不能填入 {3}，因而形成{4}技巧</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ErrorInfo_StepContainsNoConclusions" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ErrorInfo_SubsetSizeExceeds" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="Easy" xml:space="preserve">
     <value>容易</value>
   </data>
@@ -2934,8 +2941,14 @@
   <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
     <value>&lt;未选择任何对称性&gt;</value>
   </data>
+  <data name="ErrorInfo_ArgumentMustBeSingle" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
     <value>最高难度技巧：</value>
+  </data>
+  <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="BottleneckStepRatingConstraint" xml:space="preserve">
     <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
@@ -3258,7 +3271,6 @@
     <value>区块鳍链</value>
     <comment>Technique Name</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ErrorInfo_CannotCastFinnedChain" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
@@ -3422,5 +3434,56 @@
   </data>
   <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
     <value>在单元格 {0} 之中代入数字{1}和{2}，并得到矛盾</value>
+  </data>
+  <data name="ConstraintDescription_BottleneckStepRatingConstraint" xml:space="preserve">
+    <value>限制卡点步骤的难度</value>
+  </data>
+  <data name="ConstraintDescription_BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>限制卡点步骤的技巧</value>
+  </data>
+  <data name="ConstraintDescription_ConclusionConstraint" xml:space="preserve">
+    <value>限制题目某步骤的结论</value>
+  </data>
+  <data name="ConstraintDescription_CountBetweenConstraint" xml:space="preserve">
+    <value>限制题目的提示数或空格数</value>
+  </data>
+  <data name="ConstraintDescription_DiamondConstraint" xml:space="preserve">
+    <value>限制题目必须是钻石题</value>
+  </data>
+  <data name="ConstraintDescription_DifficultyLevelConstraint" xml:space="preserve">
+    <value>限制题目某步骤的难度级别</value>
+  </data>
+  <data name="ConstraintDescription_EliminationCountConstraint" xml:space="preserve">
+    <value>限制题目某步骤的删数个数</value>
+  </data>
+  <data name="ConstraintDescription_IttoryuConstraint" xml:space="preserve">
+    <value>限制题目必须是一刀流题</value>
+  </data>
+  <data name="ConstraintDescription_IttoryuLengthConstraint" xml:space="preserve">
+    <value>限制题目完成的一刀流轮数</value>
+  </data>
+  <data name="ConstraintDescription_LastingConstraint" xml:space="preserve">
+    <value>限制题目出数步骤的剩余空格数</value>
+  </data>
+  <data name="ConstraintDescription_MinimalConstraint" xml:space="preserve">
+    <value>限制题目必须是最小题</value>
+  </data>
+  <data name="ConstraintDescription_PearlConstraint" xml:space="preserve">
+    <value>限制题目必须是珍珠题</value>
+  </data>
+  <data name="ConstraintDescription_PrimarySingleConstraint" xml:space="preserve">
+    <value>限制题目必须只使用某个出数技巧就可完成解题</value>
+  </data>
+  <data name="ConstraintDescription_SymmetryConstraint" xml:space="preserve">
+    <value>限制题目提示数图案的对称性</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueConstraint" xml:space="preserve">
+    <value>限制题目必须使用某个/些技巧</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueCountConstraint" xml:space="preserve">
+    <value>限制题目解题使用的某技巧的次数</value>
+  </data>
+  <data name="ConstraintDescription_TechniqueSetConstraint" xml:space="preserve">
+    <value>限制题目解题必须只使用设定的技巧系列</value>
   </data>
 </root>

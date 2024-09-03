@@ -100,6 +100,7 @@ public enum Technique
 	[TechniqueMetadata(
 		Rating = 23,
 		DirectRating = 10,
+		Abbreviation = "NS",
 		DifficultyLevel = DifficultyLevel.Easy,
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(NakedSingleStep),
@@ -117,6 +118,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 12,
+		Abbreviation = "CHB",
 		DifficultyLevel = DifficultyLevel.Easy,
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
@@ -131,6 +133,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 15,
+		Abbreviation = "CHR",
 		DifficultyLevel = DifficultyLevel.Easy,
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
@@ -145,6 +148,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 15,
+		Abbreviation = "CHC",
 		DifficultyLevel = DifficultyLevel.Easy,
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),

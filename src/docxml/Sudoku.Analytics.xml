@@ -31700,6 +31700,11 @@
             Indicates whether the constraint should be negated.
             </summary>
         </member>
+        <member name="P:Sudoku.Strategying.Constraint.Description">
+            <summary>
+            Indicates the description to the constraint.
+            </summary>
+        </member>
         <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <summary>
             Determine whether the specified grid is passed the constraint.
