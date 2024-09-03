@@ -1,6 +1,6 @@
 <center>Language switch to: <a href="README.md">English</a></center>
 
-![](miscellaneous/pic/icon.png)
+<center><img src="miscellaneous/pic/icon.png" /></center>
 
 [![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
 [![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
