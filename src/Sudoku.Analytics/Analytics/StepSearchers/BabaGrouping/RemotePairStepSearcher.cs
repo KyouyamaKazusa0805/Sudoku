@@ -16,6 +16,9 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
+		// Test examples:
+		// 46+8....2.7+2.....48.+91+4287...+8.+2.14.7..2.9......76+8...+2+8+761.+9+2.+415+4..+2..9+23+98+4..71:315 515 317 517 325 525 327 527 627 341 541 348 548 157 357 657 358 167 967 385 688
+
 		var characters = context.Options.BabaGroupInitialLetter.GetSequence(context.Options.BabaGroupLetterCasing);
 
 		// Try to collect digits that contain at least one unfilled state.
