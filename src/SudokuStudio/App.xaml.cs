@@ -73,10 +73,9 @@ public partial class App : Application
 	internal static ApplicationTheme CurrentTheme
 		=> Current.AsApp().Preference.UIPreferences.CurrentTheme switch
 		{
-			Theme.Default when !ShouldSystemUseDarkMode() => ApplicationTheme.Light,
 			Theme.Default => ApplicationTheme.Dark,
 			Theme.Light => ApplicationTheme.Light,
-			_ => ApplicationTheme.Dark
+			_ => ShouldSystemUseDarkMode() ? ApplicationTheme.Dark : ApplicationTheme.Light
 		};
 
 	/// <summary>
@@ -105,9 +104,12 @@ public partial class App : Application
 	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
 	{
 		var uiPref = Current.AsApp().Preference.UIPreferences;
-		var a = setSudokuPaneColors_Light;
-		var b = setSudokuPaneColors_Dark;
-		(CurrentTheme switch { ApplicationTheme.Light => a, _ => b })();
+		Action action = CurrentTheme switch
+		{
+			ApplicationTheme.Light => setSudokuPaneColors_Light,
+			_ => setSudokuPaneColors_Dark
+		};
+		action();
 
 
 		void setSudokuPaneColors_Light()
