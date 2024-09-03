@@ -73,7 +73,7 @@ public partial class App : Application
 	internal static ApplicationTheme CurrentTheme
 		=> Current.AsApp().Preference.UIPreferences.CurrentTheme switch
 		{
-			Theme.Default => ApplicationTheme.Dark,
+			Theme.Dark => ApplicationTheme.Dark,
 			Theme.Light => ApplicationTheme.Light,
 			_ => ShouldSystemUseDarkMode() ? ApplicationTheme.Dark : ApplicationTheme.Light
 		};

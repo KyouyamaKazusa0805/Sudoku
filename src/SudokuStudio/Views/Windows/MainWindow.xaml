@@ -8,7 +8,7 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" Title="{m:R Key=_ProgramName}"
 	Closed="Window_Closed" Activated="Window_Activated">
-	<Grid RowDefinitions="Auto,*">
+	<Grid x:Name="RootGridLayout" RowDefinitions="Auto,*">
 		<!--Title bar-->
 		<Grid Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 			<Grid x:Name="AppTitleBar" Visibility="Collapsed">

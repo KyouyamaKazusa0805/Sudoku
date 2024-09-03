@@ -15,10 +15,12 @@
 			<!--Customized theme dictionary-->
 			<ResourceDictionary.ThemeDictionaries>
 				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="_DefaultBackground" Color="#F3F3F3" />
 					<SolidColorBrush x:Key="MenuBarBorderBrush">#EAEAEA</SolidColorBrush>
 					<SolidColorBrush x:Key="SolvingStepItemForeground">Black</SolidColorBrush>
 				</ResourceDictionary>
 				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="_DefaultBackground" Color="#202020" />
 					<SolidColorBrush x:Key="MenuBarBorderBrush">#262626</SolidColorBrush>
 					<SolidColorBrush x:Key="SolvingStepItemForeground">DarkGray</SolidColorBrush>
 				</ResourceDictionary>

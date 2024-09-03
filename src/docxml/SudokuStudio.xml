@@ -980,6 +980,11 @@
             </summary>
             <seealso cref="T:Microsoft.UI.Xaml.Window"/>
         </member>
+        <member name="P:SudokuStudio.Composition.IBackdropSupportedWindow.RootGridLayout">
+            <summary>
+            Indicates the root grid layout.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.TrySetMicaBackdrop(System.Boolean)">
             <summary>
             Try to set Mica backdrop.
@@ -1005,6 +1010,13 @@
             </summary>
             <param name="window">The window.</param>
             <param name="backdrop">The backdrop to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Composition.IBackdropSupportedWindow.ManuallyUpdateBackground(SudokuStudio.Composition.IBackdropSupportedWindow,SudokuStudio.Configuration.BackdropKind)">
+            <summary>
+            Manually update background.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="backdrop">The backdrop.</param>
         </member>
         <member name="T:SudokuStudio.Composition.IThemeSupportedWindow">
             <summary>
@@ -16623,6 +16635,9 @@
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Windows.MainWindow"/> instance.
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#RootGridLayout">
+            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type,System.Boolean)">
             <summary>

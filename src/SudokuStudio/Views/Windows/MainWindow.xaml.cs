@@ -52,6 +52,10 @@ public sealed partial class MainWindow :
 	}
 
 
+	/// <inheritdoc/>
+	Panel IBackdropSupportedWindow.RootGridLayout => RootGridLayout;
+
+
 	/// <summary>
 	/// Try to navigate to the target page.
 	/// </summary>

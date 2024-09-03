@@ -30,6 +30,12 @@ internal interface IThemeSupportedWindow
 				Theme.Dark => ElementTheme.Dark,
 				_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
 			};
+
+			if (window is IBackdropSupportedWindow backdropWindow)
+			{
+				var backdrop = Application.Current.AsApp().Preference.UIPreferences.Backdrop;
+				IBackdropSupportedWindow.ManuallyUpdateBackground(backdropWindow, backdrop);
+			}
 		}
 	}
 }

@@ -7,6 +7,12 @@ namespace SudokuStudio.Composition;
 internal interface IBackdropSupportedWindow
 {
 	/// <summary>
+	/// Indicates the root grid layout.
+	/// </summary>
+	public abstract Panel RootGridLayout { get; }
+
+
+	/// <summary>
 	/// Try to set Mica backdrop.
 	/// </summary>
 	/// <param name="useMicaAlt">Indicates whether the current Mica backdrop use alternated configuration.</param>
@@ -42,5 +48,30 @@ internal interface IBackdropSupportedWindow
 			case BackdropKind.AcrylicThin: { window.TrySetAcrylicBackdrop(true); break; }
 			case BackdropKind.Transparent: { break; } // Not supported.
 		}
+
+		ManuallyUpdateBackground(window, backdrop);
+	}
+
+	/// <summary>
+	/// Manually update background.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	/// <param name="backdrop">The backdrop.</param>
+	internal static sealed void ManuallyUpdateBackground(IBackdropSupportedWindow window, BackdropKind backdrop)
+	{
+		var isDark = Application.Current.AsApp().Preference.UIPreferences.CurrentTheme switch
+		{
+			Theme.Light => false,
+			Theme.Dark => true,
+			_ => App.ShouldSystemUseDarkMode()
+		};
+		if (isDark && backdrop == BackdropKind.Default && (isDark ? "Dark" : "Light") is var resourceDictionaryKey)
+		{
+			var dictionary = (ResourceDictionary)Application.Current.Resources.ThemeDictionaries[resourceDictionaryKey];
+			window.RootGridLayout.Background = (Brush)dictionary["_DefaultBackground"]!;
+			return;
+		}
+
+		window.RootGridLayout.Background = null;
 	}
 }
