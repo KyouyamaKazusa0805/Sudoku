@@ -124,7 +124,7 @@
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_LastingConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:LastingConstraint Technique="NakedSingle" LimitCount="3" Operator="Equality" />
+								<con:LastingConstraint TechniqueFlag="NakedSingle" LimitCount="3" Operator="Equality" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 					</MenuFlyout>

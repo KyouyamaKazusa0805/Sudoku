@@ -2780,4 +2780,16 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
     <value>Chains &amp; Loops</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock" xml:space="preserve">
+    <value>Crosshatching Block</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn" xml:space="preserve">
+    <value>Crosshatching Column</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow" xml:space="preserve">
+    <value>Crosshatching Row</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_NakedSingle" xml:space="preserve">
+    <value>Naked Single</value>
+  </data>
 </root>

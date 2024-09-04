@@ -2771,4 +2771,16 @@
   <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
     <value>链和环</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock" xml:space="preserve">
+    <value>宫排除</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn" xml:space="preserve">
+    <value>列排除</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow" xml:space="preserve">
+    <value>行排除</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting_NakedSingle" xml:space="preserve">
+    <value>唯一余数</value>
+  </data>
 </root>

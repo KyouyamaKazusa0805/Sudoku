@@ -16,7 +16,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public SingleTechniqueFlag Technique { get; set; }
+	public SingleTechniqueFlag TechniqueFlag { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
@@ -33,7 +33,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is LastingConstraint comparer
-		&& (LimitCount, Technique, Operator) == (comparer.LimitCount, comparer.Technique, comparer.Operator);
+		&& (LimitCount, TechniqueFlag, Operator) == (comparer.LimitCount, comparer.TechniqueFlag, comparer.Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)
@@ -41,26 +41,38 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			SR.Get("LastingConstraint", culture),
-			[Technique.GetName(culture), Operator.GetOperatorString(), LimitCount.ToString()]
+			[TechniqueFlag.GetName(culture), Operator.GetOperatorString(), LimitCount.ToString()]
 		);
 	}
 
 	/// <inheritdoc/>
 	public override LastingConstraint Clone()
-		=> new() { LimitCount = LimitCount, Technique = Technique, Operator = Operator, IsNegated = IsNegated };
+		=> new() { LimitCount = LimitCount, TechniqueFlag = TechniqueFlag, Operator = Operator, IsNegated = IsNegated };
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
+		var techniquesUsed = TechniqueSets.None;
 		foreach (var step in context.AnalyzerResult)
 		{
-			if (step is SingleStep { Subtype: var st } and ILastingTrait { Lasting: var l }
-				&& st.GetSingleTechnique() == Technique
-				&& !Operator.GetOperator<int>()(l, LimitCount))
+			if (step is SingleStep { Subtype: var st, Code: var technique } and ILastingTrait { Lasting: var l }
+				&& (st.GetSingleTechnique() != TechniqueFlag || Operator.GetOperator<int>()(l, LimitCount)))
 			{
-				return false;
+				techniquesUsed.Add(technique);
+				continue;
 			}
+
+			return false;
 		}
-		return true;
+
+		return techniquesUsed.Contains(
+			TechniqueFlag switch
+			{
+				SingleTechniqueFlag.HiddenSingleBlock => Technique.CrosshatchingBlock,
+				SingleTechniqueFlag.HiddenSingleRow => Technique.CrosshatchingRow,
+				SingleTechniqueFlag.HiddenSingleColumn => Technique.CrosshatchingColumn,
+				SingleTechniqueFlag.NakedSingle => Technique.NakedSingle
+			}
+		);
 	}
 }

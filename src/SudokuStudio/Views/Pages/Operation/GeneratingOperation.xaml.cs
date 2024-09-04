@@ -144,40 +144,53 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		unsafe Grid taskEntry()
 		{
+			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
+			var hasNakedSingleConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }];
+			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
 			return coreHandler(
 				constraints,
-				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }] // hasFullHouseConstraint
-					&& !constraints.Has<SymmetryConstraint>() // hasSymmetryConstraint
-					|| constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }] // hasFullHouseConstraintInTechniqueSet
+				hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
 					? &handlerFullHouse
-					: &handlerDefault,
-				progressReporter,
+					: hasNakedSingleConstraint
+						? &handlerNakedSingle
+						: &handlerDefault,
+				progress => DispatcherQueue.TryEnqueue(
+					() =>
+					{
+						BasePage.AnalyzeProgressLabel.Text = processingText;
+						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+					}
+				),
 				cts.Token,
-				analyzer,
+				hasNakedSingleConstraint
+					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
+					: analyzer,
 				ittoryuFinder
 			);
 
 
-			static Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
+			static Grid handlerFullHouse(int givens, SymmetricType type, CancellationToken ct)
 			{
-				new FullHouseGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens }.TryGenerateUnique(out var p, ct);
+				new FullHouseGenerator
+				{
+					SymmetricType = type,
+					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
+				}.TryGenerateUnique(out var p, ct);
+				return p;
+			}
+
+			static Grid handlerNakedSingle(int givens, SymmetricType type, CancellationToken ct)
+			{
+				new NakedSingleGenerator
+				{
+					SymmetricType = type,
+					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
+				}.TryGenerateUnique(out var p, ct);
 				return p;
 			}
 
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
 				=> new Generator().Generate(givens, symmetry, ct);
-
-			void progressReporter(TProgressDataProvider progress)
-			{
-				DispatcherQueue.TryEnqueue(dispatchingHandler);
-
-
-				void dispatchingHandler()
-				{
-					BasePage.AnalyzeProgressLabel.Text = processingText;
-					BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-				}
-			}
 		}
 
 		unsafe Grid coreHandler(

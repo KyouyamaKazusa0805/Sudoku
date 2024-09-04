@@ -13,10 +13,11 @@ public sealed class NakedSingleGenerator : SingleGenerator
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
+		var emptyCellsCount = GetValidEmptyCellsCount();
 		var generator = new Generator();
 		while (true)
 		{
-			var puzzle = generator.Generate(cancellationToken: cancellationToken);
+			var puzzle = generator.Generate(81 - emptyCellsCount, SymmetricType, cancellationToken: cancellationToken);
 			if (puzzle.IsUndefined)
 			{
 				result = Grid.Undefined;
@@ -128,4 +129,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	protected override Cell GetValidEmptyCellsCount() => EmptyCellsCount;
 }

@@ -73,6 +73,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })
@@ -120,6 +121,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_DifficultyLevel(DifficultyLevelConstraint constraint)
 	{
 		if (constraint is not { DifficultyLevel: var difficultyLevel, Operator: var @operator })
@@ -163,6 +165,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_Symmetry(SymmetryConstraint constraint)
 	{
 		// There may exist a bug that we cannot select "SymmetricType.None" because the flag value is 0, no flags can use this bit.
@@ -230,6 +233,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_Conclusion(ConclusionConstraint constraint)
 	{
 		if (constraint is not { Conclusion: var conclusion, ShouldAppear: var shouldAppear })
@@ -301,9 +305,10 @@ public partial class GeneratedPuzzleConstraintPage
 
 		void appearControlCallback(DependencyObject d, DependencyProperty _) => constraint.ShouldAppear = ((ToggleSwitch)d).IsOn;
 	}
+
 	private partial SettingsCard? Create_Lasting(LastingConstraint constraint)
 	{
-		if (constraint is not { LimitCount: var limitCount, Technique: var technique, Operator: var @operator })
+		if (constraint is not { LimitCount: var limitCount, TechniqueFlag: var technique, Operator: var @operator })
 		{
 			return null;
 		}
@@ -323,22 +328,31 @@ public partial class GeneratedPuzzleConstraintPage
 			{
 				new SegmentedItem
 				{
-					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
-					Tag = SingleTechniqueFlag.FullHouse
+					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock", App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleBlock
 				},
 				new SegmentedItem
 				{
-					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
-					Tag = SingleTechniqueFlag.HiddenSingle
+					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow", App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleRow
 				},
 				new SegmentedItem
 				{
-					Content = SR.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
+					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn", App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleColumn
+				},
+				new SegmentedItem
+				{
+					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_NakedSingle", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
 		};
-		EnumBinder<Segmented, SegmentedItem, SingleTechniqueFlag>(techniqueSelectorControl, constraint.Technique, value => constraint.Technique = value);
+		EnumBinder<Segmented, SegmentedItem, SingleTechniqueFlag>(
+			techniqueSelectorControl,
+			constraint.TechniqueFlag,
+			value => constraint.TechniqueFlag = value
+		);
 
 		//
 		// limit count
@@ -359,6 +373,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_Minimal(MinimalConstraint constraint)
 	{
 		if (constraint is not { ShouldBeMinimal: var value })
@@ -381,6 +396,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint
 	{
 		if (constraint is not { CheckPearl: var checkPearl, ShouldBePearlOrDiamond: var value })
@@ -403,6 +419,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_CountBetween(CountBetweenConstraint constraint)
 	{
 		if (constraint is not
@@ -523,6 +540,7 @@ public partial class GeneratedPuzzleConstraintPage
 
 		void rangeSetter() => constraint.Range = minimumControl.Value..maximumControl.Value;
 	}
+
 	private partial SettingsCard? Create_Ittoryu(IttoryuConstraint constraint)
 	{
 		if (constraint is not { LimitedSingle: var limitedSingle, Operator: var @operator, Rounds: var rounds })
@@ -595,6 +613,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_IttoryuLength(IttoryuLengthConstraint constraint)
 	{
 		if (constraint is not { Length: var length, Operator: var @operator })
@@ -626,6 +645,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })
@@ -670,6 +690,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint)
 	{
 		if (constraint is not { Technique: var technique, LimitCount: var appearingTimes, Operator: var @operator })
@@ -729,6 +750,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })
@@ -773,6 +795,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsExpander? Create_EliminationCount(EliminationCountConstraint constraint)
 	{
 		if (constraint is not { LimitCount: var limitCount, Operator: var @operator, Technique: var technique })
@@ -833,6 +856,7 @@ public partial class GeneratedPuzzleConstraintPage
 			Tag = constraint
 		};
 	}
+
 	private partial SettingsCard? Create_PrimarySingle(PrimarySingleConstraint constraint)
 	{
 		if (constraint is not { Primary: var prefer, AllowsHiddenSingleInLines: var allowsForLine })

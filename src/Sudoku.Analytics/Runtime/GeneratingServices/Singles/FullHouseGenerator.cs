@@ -6,11 +6,6 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <seealso cref="Technique.FullHouse"/>
 public sealed class FullHouseGenerator : SingleGenerator
 {
-	/// <summary>
-	/// Indicates the number of empty cells the current generator will generate on puzzles.
-	/// </summary>
-	public Cell EmptyCellsCount { get; set; }
-
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques => [Technique.FullHouse];
 
@@ -18,17 +13,12 @@ public sealed class FullHouseGenerator : SingleGenerator
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
-		var emptyCellsCount = EmptyCellsCount;
-		if (emptyCellsCount is not (-1 or >= 1 and <= PeersCount + 1))
-		{
-			emptyCellsCount = Math.Clamp(emptyCellsCount, 1, PeersCount + 1);
-		}
-
+		var emptyCellsCount = GetValidEmptyCellsCount();
 		var generator = new Generator();
 		while (true)
 		{
 			// Try generating a solution.
-			var grid = generator.Generate(cancellationToken: cancellationToken);
+			var grid = generator.Generate(symmetricType: SymmetricType, cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
 				result = Grid.Undefined;
