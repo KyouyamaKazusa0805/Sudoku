@@ -147,11 +147,12 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
 			var hasNakedSingleConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }];
 			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
+			var hasNakedSingleConnstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.NakedSingle] }];
 			return coreHandler(
 				constraints,
 				hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
 					? &handlerFullHouse
-					: hasNakedSingleConstraint
+					: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
 						? &handlerNakedSingle
 						: &handlerDefault,
 				progress => DispatcherQueue.TryEnqueue(
@@ -162,7 +163,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				),
 				cts.Token,
-				hasNakedSingleConstraint
+				hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
 					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
 					: analyzer,
 				ittoryuFinder
