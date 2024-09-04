@@ -1004,6 +1004,16 @@
             Try to dispose resource of backdrop-related resources.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Composition.IBackgroundPictureSupportedWindow">
+            <summary>
+            Represents a <see cref="T:Microsoft.UI.Xaml.Window"/> type that supports background picture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Composition.IBackgroundPictureSupportedWindow.RootGridLayout">
+            <summary>
+            Indicates the root grid layout.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Composition.IThemeSupportedWindow">
             <summary>
             Represents a <see cref="T:Microsoft.UI.Xaml.Window"/> instance that supports theme.
@@ -1043,6 +1053,13 @@
             <typeparam name="TWindow">The type of the window.</typeparam>
             <param name="window">The window.</param>
             <param name="theme">The theme to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Composition.WindowComposition.SetBackgroundPicture(SudokuStudio.Composition.IBackgroundPictureSupportedWindow,System.String)">
+            <summary>
+            Sets the background picture.
+            </summary>
+            <param name="window">The window.</param>
+            <param name="filePath">The background picture path.</param>
         </member>
         <member name="T:SudokuStudio.Configuration.AnalysisPreferenceGroup">
             <summary>
@@ -2048,6 +2065,11 @@
             Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.BackgroundPicturePath">
+            <summary>
+            Indicates the background picture path.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.Backdrop">
             <summary>
             Indicates the backdrop.
@@ -2583,6 +2605,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackgroundPicturePathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BackgroundPicturePath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.BackgroundPicturePath"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.BackdropProperty">
             <summary>
@@ -15955,6 +15983,11 @@
             Initializes for control properties.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.EnsureUnsnapped">
+            <summary>
+            To determine whether the current application view is in an unsnapped state.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Basic.ThemeSettingPage.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -16659,6 +16692,9 @@
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackdropSupportedWindow#RootGridLayout">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Windows.MainWindow.SudokuStudio#Composition#IBackgroundPictureSupportedWindow#RootGridLayout">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage(System.Type)">

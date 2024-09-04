@@ -73,4 +73,12 @@ internal static class WindowComposition
 			ManuallyUpdateBackground(window, backdrop);
 		}
 	}
+
+	/// <summary>
+	/// Sets the background picture.
+	/// </summary>
+	/// <param name="window">The window.</param>
+	/// <param name="filePath">The background picture path.</param>
+	public static void SetBackgroundPicture(IBackgroundPictureSupportedWindow window, string filePath)
+		=> window.RootGridLayout.Background = new ImageBrush { ImageSource = new BitmapImage(new(filePath)) };
 }

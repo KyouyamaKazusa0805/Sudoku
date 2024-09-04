@@ -2783,4 +2783,16 @@
   <data name="GeneratedPuzzleConstraintPage_Lasting_NakedSingle" xml:space="preserve">
     <value>唯一余数</value>
   </data>
+  <data name="SettingsPage_BackgroundPicture" xml:space="preserve">
+    <value>背景图片</value>
+  </data>
+  <data name="SettingsPage_BackgroundPictureDescription" xml:space="preserve">
+    <value>你可以自定义这个应用程序的背景图片。</value>
+  </data>
+  <data name="SettingsPage_BackgroundPictureDescriptionWarning" xml:space="preserve">
+    <value>但是如果你设置了背景图片后，程序背景风格的配置将会失效。</value>
+  </data>
+  <data name="SettingsPage_ChooseBackgroundPicture" xml:space="preserve">
+    <value>选择……</value>
+  </data>
 </root>

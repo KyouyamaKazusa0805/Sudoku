@@ -2792,4 +2792,16 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_Lasting_NakedSingle" xml:space="preserve">
     <value>Naked Single</value>
   </data>
+  <data name="SettingsPage_BackgroundPicture" xml:space="preserve">
+    <value>Background picture</value>
+  </data>
+  <data name="SettingsPage_BackgroundPictureDescription" xml:space="preserve">
+    <value>You can customize background picture of this application.</value>
+  </data>
+  <data name="SettingsPage_BackgroundPictureDescriptionWarning" xml:space="preserve">
+    <value>If you set backrgound picture, this application will override settings of backdrop, causing backdrop not working.</value>
+  </data>
+  <data name="SettingsPage_ChooseBackgroundPicture" xml:space="preserve">
+    <value>Select...</value>
+  </data>
 </root>

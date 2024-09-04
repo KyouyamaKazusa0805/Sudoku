@@ -202,8 +202,13 @@ public partial class App : Application
 	private void ActivateMainWindow()
 	{
 		var window = WindowManager.CreateWindow<MainWindow>();
-		var theme = Current.AsApp().Preference.UIPreferences.CurrentTheme;
-		WindowComposition.SetTheme(window, theme);
+		var uiPref = Current.AsApp().Preference.UIPreferences;
+
+		WindowComposition.SetTheme(window, uiPref.CurrentTheme);
+		if (uiPref.BackgroundPicturePath is { } filePath && File.Exists(filePath))
+		{
+			WindowComposition.SetBackgroundPicture(window, filePath);
+		}
 		window.Activate();
 	}
 

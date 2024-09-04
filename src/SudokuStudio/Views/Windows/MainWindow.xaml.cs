@@ -6,11 +6,13 @@ namespace SudokuStudio.Views.Windows;
 /// <seealso cref="Window"/>
 public sealed partial class MainWindow :
 	Window,
-	IThemeSupportedWindow
+	IBackgroundPictureSupportedWindow
 #if CUSTOMIZED_BACKDROP
 	,
 	IBackdropSupportedWindow
 #endif
+	,
+	IThemeSupportedWindow
 {
 #if CUSTOMIZED_BACKDROP
 	/// <summary>
@@ -54,6 +56,9 @@ public sealed partial class MainWindow :
 
 	/// <inheritdoc/>
 	Panel IBackdropSupportedWindow.RootGridLayout => RootGridLayout;
+
+	/// <inheritdoc/>
+	Panel IBackgroundPictureSupportedWindow.RootGridLayout => RootGridLayout;
 
 
 	/// <inheritdoc cref="NavigateToPage(Type, bool)"/>

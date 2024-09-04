@@ -37,23 +37,8 @@ public static class UIElementExtensions
 		var pixelBuffer = await rtb.GetPixelsAsync();
 
 		// Gets the DPI value.
-#if true
-		// using Windows.Win32;
 		var hWnd = WindowNative.GetWindowHandle(Application.Current.AsApp().WindowManager.GetWindowForElement(@this));
 		var dpi = PInvoke.GetDpiForWindow(new(hWnd)) / 96F;
-#else
-		// using System.Runtime.InteropServices;
-		// using Windows.Graphics.Display;
-		float dpi;
-		try
-		{
-			dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-		}
-		catch (COMException ex) when (ex.ErrorCode == unchecked((int)0x80070490))
-		{
-			dpi = 96;
-		}
-#endif
 
 		switch (fileOrStream)
 		{
@@ -72,7 +57,6 @@ public static class UIElementExtensions
 				// outside of this block, variable 'pictureFileStream' will be released when executed all code in this block,
 				// and then 'encoder.FlushAsync()' won't find 'pictureFileStream', then a COMException will be thrown.
 				await encoder.FlushAsync();
-
 				break;
 			}
 			case IRandomAccessStream stream:
@@ -83,7 +67,6 @@ public static class UIElementExtensions
 
 				// Flushes the encoder.
 				await encoder.FlushAsync();
-
 				break;
 			}
 			default:

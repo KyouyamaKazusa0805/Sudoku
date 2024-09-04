@@ -24,6 +24,11 @@ public sealed partial class ThemeSettingPage : Page
 		ThemeComboBox.SelectedIndex = (int)uiPref.CurrentTheme;
 	}
 
+	/// <summary>
+	/// To determine whether the current application view is in an unsnapped state.
+	/// </summary>
+	private bool EnsureUnsnapped() => ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
+
 
 	private void ThemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
@@ -43,5 +48,32 @@ public sealed partial class ThemeSettingPage : Page
 		{
 			Application.Current.AsApp().Preference.UIPreferences.Backdrop = value;
 		}
+	}
+
+	private async void BackgroundPictureButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		if (!EnsureUnsnapped())
+		{
+			return;
+		}
+
+		var fop = new FileOpenPicker();
+		fop.Initialize(this);
+		fop.ViewMode = PickerViewMode.Thumbnail;
+		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.AddFileFormat(FileFormats.PortablePicture);
+
+		if (await fop.PickSingleFileAsync() is not { Path: var filePath })
+		{
+			return;
+		}
+
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IBackgroundPictureSupportedWindow>())
+		{
+			WindowComposition.SetBackgroundPicture(window, filePath);
+		}
+
+		BackgroundPicturePathDisplayer.Text = filePath;
+		Application.Current.AsApp().Preference.UIPreferences.BackgroundPicturePath = filePath;
 	}
 }

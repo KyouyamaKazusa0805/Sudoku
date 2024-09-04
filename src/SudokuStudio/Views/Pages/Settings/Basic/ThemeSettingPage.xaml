@@ -29,6 +29,18 @@
 					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
 				</w:Segmented>
 			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BackgroundPicture}">
+				<w:SettingsCard.Description>
+					<TextBlock>
+						<Run Text="{m:R Key=SettingsPage_BackgroundPictureDescription}" />
+						<Run Foreground="Red" Text="{m:R Key=SettingsPage_BackgroundPictureDescriptionWarning}" />
+					</TextBlock>
+				</w:SettingsCard.Description>
+				<StackPanel Orientation="Horizontal" Spacing="6">
+					<TextBlock x:Name="BackgroundPicturePathDisplayer" HorizontalAlignment="Right" VerticalAlignment="Center" />
+					<Button Content="{m:R Key=SettingsPage_ChooseBackgroundPicture}" Click="BackgroundPictureButton_ClickAsync" />
+				</StackPanel>
+			</w:SettingsCard>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

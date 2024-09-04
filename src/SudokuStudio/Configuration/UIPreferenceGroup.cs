@@ -517,6 +517,12 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	public partial string? FetchingPuzzleLibrary { get; set; }
 
 	/// <summary>
+	/// Indicates the background picture path.
+	/// </summary>
+	[DependencyProperty(DefaultValue = null)]
+	public partial string? BackgroundPicturePath { get; set; }
+
+	/// <summary>
 	/// Indicates the backdrop.
 	/// </summary>
 	[DependencyProperty(DefaultValue = BackdropKind.Acrylic)]
