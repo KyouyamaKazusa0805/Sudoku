@@ -3,7 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode, GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
 public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :

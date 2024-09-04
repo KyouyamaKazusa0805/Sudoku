@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <summary>
 /// Represents a grid that contains solving members.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGridSolvingMembers<TSelf> : IGridConstants<TSelf> where TSelf : unmanaged, IGridSolvingMembers<TSelf>
 {
 	/// <summary>

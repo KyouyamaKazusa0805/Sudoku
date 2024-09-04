@@ -3,7 +3,7 @@ namespace System.Linq;
 /// <summary>
 /// Represents a grouping data structure for LINQ grouping methods.
 /// </summary>
-/// <typeparam name="TSelf">The type itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TKey">Indicates the type of keys that group values.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 public interface IGroupingDataProvider<TSelf, out TKey, TElement> :

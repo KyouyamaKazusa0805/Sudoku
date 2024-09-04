@@ -1123,20 +1123,27 @@
         </member>
         <member name="T:Sudoku.Concepts.CellMapOrCandidateMapPredicate`3">
             <summary>
-            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
-            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
+            Represents a method that checks for an offset of type <typeparamref name="TElement" />
+            in the collection of type <typeparamref name="TSelf" />, referenced from <paramref name="grid" />,
             determining whether the offset satisfies the specified condition.
             </summary>
-            <typeparam name="TSelf">
-            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
-            </typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TElement">
-            The type of each element in the collection of type <typeparamref name="TSelf"/>.
+            The type of each element in the collection of type <typeparamref name="TSelf" />.
             </typeparam>
             <typeparam name="TEnumerator">The type of enumerator.</typeparam>
-            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
+            <param name="offset">The <typeparamref name="TElement" /> offset value to be checked.</param>
             <param name="grid">The grid as candidate reference.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CellMapToken">
             <summary>
@@ -2849,9 +2856,18 @@
         </member>
         <member name="T:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3">
             <summary>
-            Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
+            Extracts a base type that describes state table from elements of <typeparamref name="TSelf" /> type.
             </summary>
-            <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TElement">The type of each element.</typeparam>
             <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
         </member>
@@ -3348,7 +3364,16 @@
             <summary>
             Represents a sudoku grid.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.IsMissingCandidates">
             <summary>
@@ -3558,7 +3583,16 @@
             <summary>
             Represents constant values for type.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="F:Sudoku.Concepts.Primitives.IGridConstants`1.CellsCount">
             <summary>
@@ -3636,7 +3670,16 @@
             <summary>
             Represents a type that supports operations used by a sudoku grid.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGridOperations`1.Item(System.Int32)">
             <summary>
@@ -3838,7 +3881,16 @@
             <summary>
             Represents a type that contains properties inside a grid.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGridProperties`1.Symmetry">
             <summary>
@@ -4003,7 +4055,16 @@
             <summary>
             Represents a grid that contains solving members.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGridSolvingMembers`1.IsSolved">
             <summary>
@@ -6634,7 +6695,16 @@
             <summary>
             Represents a type that supports formatting or parsing rules around coordinates.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Runtime.CoordinateServices.ICoordinateProvider`1.InvariantCultureInstance">
             <summary>
@@ -8021,7 +8091,16 @@
             <summary>
             Indicates the data provider type,
             </summary>
-            <typeparam name="TSelf">The type of the implementation data provider.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Runtime.GeneratingServices.IProgressDataProvider`1.Count">
             <summary>

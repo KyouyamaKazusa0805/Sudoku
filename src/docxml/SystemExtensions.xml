@@ -157,21 +157,39 @@
         </member>
         <member name="T:System.Collections.Generic.IDictionaryEntry`1">
             <summary>
-            Represents an entry that can be used as a type parameter <c>TKey</c> in <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            Represents an entry that can be used as a type parameter <c>TKey</c> in <see cref="T:System.Collections.Generic.Dictionary`2" />.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <remarks>
             <b>The type is only used as a constraint, while implementing a data type for key usages temporarily.</b>
             </remarks>
-            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2" />
         </member>
         <member name="T:System.Collections.Generic.IFiniteSet`2">
             <summary>
-            Represents an object that is a set of elements of type <typeparamref name="T"/>, and is a closed set,
+            Represents an object that is a set of elements of type <typeparamref name="T" />, and is a closed set,
             meaning the set contains concept "all", i.e. set can be negated.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']"/></typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']" /></typeparam>
         </member>
         <member name="M:System.Collections.Generic.IFiniteSet`2.Negate">
             <summary>
@@ -181,11 +199,20 @@
         </member>
         <member name="T:System.Collections.Generic.IInfiniteSet`2">
             <summary>
-            Represents an object that is a set of elements of type <typeparamref name="T"/>, and isn't a closed set,
+            Represents an object that is a set of elements of type <typeparamref name="T" />, and isn't a closed set,
             meaning the set doesn't contain concept "all", i.e. set cannot be negated.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
-            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']"/></typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="T"><inheritdoc cref="T:System.Collections.Generic.ISet`1" path="/typeparam[@name='T']" /></typeparam>
         </member>
         <member name="M:System.Collections.Generic.IInfiniteSet`2.ExceptWith(`0)">
             <summary>
@@ -1616,9 +1643,18 @@
         </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
-            Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.
+            Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf" />.
             </summary>
-            <typeparam name="TSelf">The implementation.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="M:System.ILogicalOperators`1.op_True(`0)">
             <summary>
@@ -2272,7 +2308,16 @@
             <summary>
             Represents a grouping data structure for LINQ grouping methods.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TKey">Indicates the type of keys that group values.</typeparam>
             <typeparam name="TElement">The type of each element.</typeparam>
         </member>
@@ -2390,7 +2435,16 @@
             <summary>
             Represents an iterator type.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="T">The type of each element.</typeparam>
         </member>
         <member name="P:System.Linq.Iterators.IIterator`2.System#Collections#IEnumerator#Current">
@@ -2909,11 +2963,20 @@
         </member>
         <member name="T:System.Linq.Providers.ILinqMethod`2">
             <summary>
-            Represents a type that supports a certain method group defined in <see cref="T:System.Linq.Enumerable"/>, well-known as LINQ methods.
+            Represents a type that supports a certain method group defined in <see cref="T:System.Linq.Enumerable" />, well-known as LINQ methods.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
-            <seealso cref="T:System.Linq.Enumerable"/>
+            <seealso cref="T:System.Linq.Enumerable" />
         </member>
         <member name="P:System.Linq.Providers.ILinqMethod`2.IsValueLazilyCalculated">
             <summary>

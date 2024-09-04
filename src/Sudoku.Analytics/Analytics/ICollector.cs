@@ -3,7 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents a collector type.
 /// </summary>
-/// <typeparam name="TSelf">The type itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the result value.</typeparam>
 public interface ICollector<in TSelf, TContext, out TResult> : IStepGatherer<TSelf, TContext, TResult>

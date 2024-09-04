@@ -3,7 +3,7 @@ namespace Sudoku.Bot.Commands;
 /// <summary>
 /// 提供一个指令的基础类。
 /// </summary>
-/// <typeparam name="TSelf">当前类型。</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TAttribute">特性的类型。</typeparam>
 public interface IProgramCommand<TSelf, TAttribute>
 	where TSelf : class, IProgramCommand<TSelf, TAttribute>

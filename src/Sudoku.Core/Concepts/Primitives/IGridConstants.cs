@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <summary>
 /// Represents constant values for type.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGridConstants<TSelf> : IEqualityOperators<TSelf, TSelf, bool> where TSelf : unmanaged, IGridConstants<TSelf>
 {
 	/// <summary>

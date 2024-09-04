@@ -6046,12 +6046,23 @@
         <member name="T:Sudoku.Analytics.IAnalysisResult`3">
             <summary>
             Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>.
+            <see cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)" />.
             </summary>
-            <typeparam name="TSelf">The type of the target result itself.</typeparam>
+            <typeparam name="TSelf">
+            <self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint>
+            </typeparam>
             <typeparam name="TAnalyzer">The solver's type.</typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)" />
         </member>
         <member name="P:Sudoku.Analytics.IAnalysisResult`3.IsSolved">
             <summary>
@@ -6085,11 +6096,20 @@
         </member>
         <member name="T:Sudoku.Analytics.IAnalyzer`3">
             <summary>
-            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
-            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid" />.
+            The result is a <typeparamref name="TResult" /> instance that encapsulates all possible information
             produced in the whole analysis time-cycle.
             </summary>
-            <typeparam name="TSelf">The type of the analyzer itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
         </member>
@@ -6120,7 +6140,16 @@
             <summary>
             Represents a collector type.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result value.</typeparam>
         </member>
@@ -6146,12 +6175,21 @@
         </member>
         <member name="T:Sudoku.Analytics.IStepGatherer`3">
             <summary>
-            Represents a type that support collecting <see cref="T:Sudoku.Analytics.Step"/> instances from a grid puzzle.
+            Represents a type that support collecting <see cref="T:Sudoku.Analytics.Step" /> instances from a grid puzzle.
             </summary>
-            <typeparam name="TSelf">The type itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result value.</typeparam>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="T:Sudoku.Analytics.Step" />
         </member>
         <member name="P:Sudoku.Analytics.IStepGatherer`3.StepSearchers">
             <summary>
@@ -22422,9 +22460,18 @@
         </member>
         <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">
             <summary>
-            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
+            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey" />.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TKey">The type of the distinction key.</typeparam>
         </member>
         <member name="P:Sudoku.Concepts.DeathBlossomBranchCollection`2.DigitsMask">
@@ -22468,7 +22515,16 @@
             <summary>
             Represents the basic data for a death blossom.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TKey">The type of the distinction key.</typeparam>
         </member>
         <member name="P:Sudoku.Concepts.IDeathBlossomCollection`2.Branches">
@@ -23787,11 +23843,18 @@
             <summary>
             Transforms the current collection into another representation, using the specified function to transform.
             </summary>
-            <typeparam name="TSelf">
-            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
-            </typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
             <typeparam name="TKey">
-            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']" />
             </typeparam>
             <typeparam name="TResult">The type of the results.</typeparam>
             <param name="this">The current collection.</param>
@@ -32687,9 +32750,18 @@
         </member>
         <member name="T:Sudoku.Traits.IPatternType3StepTrait`1">
             <summary>
-            Represents a step of type <typeparamref name="TSelf"/>, presenting the third subtype.
+            Represents a step of type <typeparamref name="TSelf" />, presenting the third subtype.
             </summary>
-            <typeparam name="TSelf">The type of the step applied.</typeparam>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
         </member>
         <member name="P:Sudoku.Traits.IPatternType3StepTrait`1.IsHidden">
             <summary>

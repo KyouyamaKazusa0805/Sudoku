@@ -5,9 +5,7 @@ namespace Sudoku.Concepts;
 /// in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
 /// determining whether the offset satisfies the specified condition.
 /// </summary>
-/// <typeparam name="TSelf">
-/// The type of the bit status map. The value can be <see cref="CellMap"/> or <see cref="CandidateMap"/>.
-/// </typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TElement">
 /// The type of each element in the collection of type <typeparamref name="TSelf"/>.
 /// </typeparam>

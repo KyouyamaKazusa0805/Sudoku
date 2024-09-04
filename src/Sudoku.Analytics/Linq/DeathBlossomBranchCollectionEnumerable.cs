@@ -9,9 +9,7 @@ public static class DeathBlossomBranchCollectionEnumerable
 	/// <summary>
 	/// Transforms the current collection into another representation, using the specified function to transform.
 	/// </summary>
-	/// <typeparam name="TSelf">
-	/// <inheritdoc cref="DeathBlossomBranchCollection{TSelf, TKey}" path="/typeparam[@name='TSelf']"/>
-	/// </typeparam>
+	/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 	/// <typeparam name="TKey">
 	/// <inheritdoc cref="DeathBlossomBranchCollection{TSelf, TKey}" path="/typeparam[@name='TKey']"/>
 	/// </typeparam>

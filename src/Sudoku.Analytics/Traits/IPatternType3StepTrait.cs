@@ -3,7 +3,7 @@ namespace Sudoku.Traits;
 /// <summary>
 /// Represents a step of type <typeparamref name="TSelf"/>, presenting the third subtype.
 /// </summary>
-/// <typeparam name="TSelf">The type of the step applied.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IPatternType3StepTrait<TSelf> : ITrait where TSelf : Step, IPatternType3StepTrait<TSelf>
 {
 	/// <summary>

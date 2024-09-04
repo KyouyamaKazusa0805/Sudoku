@@ -5,7 +5,7 @@ namespace Sudoku.Analytics;
 /// The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
 /// produced in the whole analysis time-cycle.
 /// </summary>
-/// <typeparam name="TSelf">The type of the analyzer itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <typeparam name="TResult">The type of the target result.</typeparam>
 public interface IAnalyzer<in TSelf, TContext, out TResult> : IStepGatherer<TSelf, TContext, TResult>

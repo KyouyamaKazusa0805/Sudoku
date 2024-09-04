@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <summary>
 /// Represents a sudoku grid.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGrid<TSelf> :
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,

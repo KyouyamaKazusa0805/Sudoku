@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.
 /// </summary>
-/// <typeparam name="TSelf">The implementation.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>?, allows ref struct
 {
 	/// <summary>

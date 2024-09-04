@@ -3,7 +3,7 @@ namespace System.Linq.Iterators;
 /// <summary>
 /// Represents an iterator type.
 /// </summary>
-/// <typeparam name="TSelf">The type itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="T">The type of each element.</typeparam>
 public interface IIterator<TSelf, T> : IEnumerable<T>, IEnumerator<T> where TSelf : IIterator<TSelf, T>
 {

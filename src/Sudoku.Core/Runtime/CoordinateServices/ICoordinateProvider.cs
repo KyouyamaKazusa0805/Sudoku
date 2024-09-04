@@ -3,7 +3,7 @@ namespace Sudoku.Runtime.CoordinateServices;
 /// <summary>
 /// Represents a type that supports formatting or parsing rules around coordinates.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface ICoordinateProvider<out TSelf> : IFormatProvider where TSelf : ICoordinateProvider<TSelf>, allows ref struct
 {
 	/// <summary>

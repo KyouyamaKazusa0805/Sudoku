@@ -4,7 +4,9 @@ namespace Sudoku.Analytics;
 /// Represents an instance that describes the result after executed the method
 /// <see cref="IAnalyzer{TSolver, TContext, TSolverResult}.Analyze(ref readonly TContext)"/>.
 /// </summary>
-/// <typeparam name="TSelf">The type of the target result itself.</typeparam>
+/// <typeparam name="TSelf">
+/// <include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/>
+/// </typeparam>
 /// <typeparam name="TAnalyzer">The solver's type.</typeparam>
 /// <typeparam name="TContext">The type of the context.</typeparam>
 /// <seealso cref="IAnalyzer{TSolver, TContext, TSolverResult}.Analyze(ref readonly TContext)"/>

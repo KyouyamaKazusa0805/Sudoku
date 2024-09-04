@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <summary>
 /// Represents a type that contains properties inside a grid.
 /// </summary>
-/// <typeparam name="TSelf">The type of itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : unmanaged, IGridProperties<TSelf>
 {
 	/// <summary>

@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <summary>
 /// Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
 /// </summary>
-/// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
 public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :

@@ -3,7 +3,7 @@ namespace System.Collections.Generic;
 /// <summary>
 /// Represents an entry that can be used as a type parameter <c>TKey</c> in <see cref="Dictionary{TKey, TValue}"/>.
 /// </summary>
-/// <typeparam name="TSelf">The type itself.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <remarks>
 /// <b>The type is only used as a constraint, while implementing a data type for key usages temporarily.</b>
 /// </remarks>

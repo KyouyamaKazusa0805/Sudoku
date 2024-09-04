@@ -3,7 +3,7 @@ namespace Sudoku.Runtime.GeneratingServices;
 /// <summary>
 /// Indicates the data provider type,
 /// </summary>
-/// <typeparam name="TSelf">The type of the implementation data provider.</typeparam>
+/// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IProgressDataProvider<TSelf>
 	where TSelf : struct, IEquatable<TSelf>, IProgressDataProvider<TSelf>, allows ref struct
 {
