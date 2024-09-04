@@ -1,6 +1,6 @@
 namespace SudokuStudio.Interaction;
 
-internal sealed partial class WindowsSystemDispatcherQueueHelper
+internal partial class WindowsSystemDispatcherQueueHelper
 {
 	/// <summary>
 	/// Represents options around threading affinity and type of COM apartment for a new <see cref="DispatcherQueueController"/>.
