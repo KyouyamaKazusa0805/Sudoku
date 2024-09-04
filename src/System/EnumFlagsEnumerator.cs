@@ -55,7 +55,6 @@ public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(Me
 				}
 			}
 		}
-
 		return false;
 	}
 
