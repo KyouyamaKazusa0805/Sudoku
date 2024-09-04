@@ -6484,7 +6484,23 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
-            <inheritdoc/>
+            <summary>
+            Determine whether the current <see cref="T:Sudoku.Analytics.Step"/> instance has same data or same meaning with the specified one.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are same.</returns>
+            <remarks>
+            <para>
+            This method is used for filtering duplicate <see cref="T:Sudoku.Analytics.Step"/> instances,
+            and you can customize the checking rule to compare instances by overridding this method.
+            </para>
+            <para>
+            By default, the method only checks technique used (i.e. property <see cref="P:Sudoku.Analytics.Step.Code"/>)
+            and conclusions used (i.e. <see cref="P:Sudoku.Analytics.Step.Conclusions"/>). If both are same, they will be treated as same one.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Code"/>
+            <seealso cref="P:Sudoku.Analytics.Step.Conclusions"/>
         </member>
         <member name="M:Sudoku.Analytics.Step.CompareTo(Sudoku.Analytics.Step)">
             <summary>

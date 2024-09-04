@@ -169,7 +169,23 @@ public abstract partial class Step(
 	private string TechniqueResourceKey => $"TechniqueFormat_{FormatTypeIdentifier}";
 
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the current <see cref="Step"/> instance has same data or same meaning with the specified one.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether they are same.</returns>
+	/// <remarks>
+	/// <para>
+	/// This method is used for filtering duplicate <see cref="Step"/> instances,
+	/// and you can customize the checking rule to compare instances by overridding this method.
+	/// </para>
+	/// <para>
+	/// By default, the method only checks technique used (i.e. property <see cref="Code"/>)
+	/// and conclusions used (i.e. <see cref="Conclusions"/>). If both are same, they will be treated as same one.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Code"/>
+	/// <seealso cref="Conclusions"/>
 	public virtual bool Equals([NotNullWhen(true)] Step? other)
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
 
