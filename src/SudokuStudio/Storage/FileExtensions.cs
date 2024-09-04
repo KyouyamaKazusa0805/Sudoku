@@ -54,6 +54,11 @@ public static class FileExtensions
 	public const string PlainText = ".txt";
 
 	/// <summary>
+	/// Indicates the joint photographic expert group picture format.
+	/// </summary>
+	public const string JointPhotographicExpertGroup = ".jpg";
+
+	/// <summary>
 	/// Indicates the portable picture format.
 	/// </summary>
 	public const string PortablePicture = ".png";

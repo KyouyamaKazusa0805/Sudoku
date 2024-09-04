@@ -21,6 +21,11 @@ public static class FileFormats
 	public static readonly FileFormat CommaSeparated = new(SR.Get("FileExtension_CommaSeparated", App.CurrentCulture), FileExtensions.CommaSeparated);
 
 	/// <summary>
+	/// Indicates the joint photographic expert group picture format.
+	/// </summary>
+	public static readonly FileFormat JointPhotographicExpertGroup = new(SR.Get("FileExtension_JointPhotographicExpertGroup", App.CurrentCulture), FileExtensions.JointPhotographicExpertGroup);
+
+	/// <summary>
 	/// Indicates the portable picture format.
 	/// </summary>
 	public static readonly FileFormat PortablePicture = new(SR.Get("FileExtension_Picture", App.CurrentCulture), FileExtensions.PortablePicture);

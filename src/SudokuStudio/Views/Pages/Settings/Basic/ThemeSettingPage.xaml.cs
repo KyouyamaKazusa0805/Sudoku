@@ -61,6 +61,7 @@ public sealed partial class ThemeSettingPage : Page
 		fop.Initialize(this);
 		fop.ViewMode = PickerViewMode.Thumbnail;
 		fop.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+		fop.AddFileFormat(FileFormats.JointPhotographicExpertGroup);
 		fop.AddFileFormat(FileFormats.PortablePicture);
 
 		if (await fop.PickSingleFileAsync() is not { Path: var filePath })

@@ -691,7 +691,7 @@
     <value>Select Mode: </value>
   </data>
   <data name="FileExtension_CommaSeparated" xml:space="preserve">
-    <value>Comma-separated values format</value>
+    <value>CSV format</value>
   </data>
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>Generating history file</value>
@@ -700,13 +700,13 @@
     <value>Grid library file</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
-    <value>Portable picture format</value>
+    <value>PNG format</value>
   </data>
   <data name="FileExtension_PlainTextDescription" xml:space="preserve">
     <value>Plain text format</value>
   </data>
   <data name="FileExtension_PortableDocument" xml:space="preserve">
-    <value>Portable document format</value>
+    <value>PDF format</value>
   </data>
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>Sudoku puzzle format</value>
@@ -2799,9 +2799,12 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>You can customize background picture of this application.</value>
   </data>
   <data name="SettingsPage_BackgroundPictureDescriptionWarning" xml:space="preserve">
-    <value>If you set backrgound picture, this application will override settings of backdrop, causing backdrop not working.</value>
+    <value>However, if you set backrgound picture, this application will override settings of backdrop, causing backdrop not working.</value>
   </data>
   <data name="SettingsPage_ChooseBackgroundPicture" xml:space="preserve">
     <value>Select...</value>
+  </data>
+  <data name="FileExtension_JointPhotographicExpertGroup" xml:space="preserve">
+    <value>JPEG/JPG format</value>
   </data>
 </root>

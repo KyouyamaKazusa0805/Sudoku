@@ -691,7 +691,7 @@
     <value>选择模式：</value>
   </data>
   <data name="FileExtension_CommaSeparated" xml:space="preserve">
-    <value>逗号分隔表格式</value>
+    <value>CSV 表格</value>
   </data>
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>题目生成记录文件</value>
@@ -700,13 +700,13 @@
     <value>题库文件</value>
   </data>
   <data name="FileExtension_Picture" xml:space="preserve">
-    <value>图片文件</value>
+    <value>PNG 图片</value>
   </data>
   <data name="FileExtension_PlainTextDescription" xml:space="preserve">
     <value>普通文本文件格式</value>
   </data>
   <data name="FileExtension_PortableDocument" xml:space="preserve">
-    <value>便携式文档格式</value>
+    <value>PDF 文件</value>
   </data>
   <data name="FileExtension_TextDescription" xml:space="preserve">
     <value>数独题目格式</value>
@@ -2794,5 +2794,8 @@
   </data>
   <data name="SettingsPage_ChooseBackgroundPicture" xml:space="preserve">
     <value>选择……</value>
+  </data>
+  <data name="FileExtension_JointPhotographicExpertGroup" xml:space="preserve">
+    <value>JPEG/JPG 图片</value>
   </data>
 </root>

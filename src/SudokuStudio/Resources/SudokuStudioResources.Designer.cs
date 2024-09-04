@@ -2269,7 +2269,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comma-separated values format.
+        ///   Looks up a localized string similar to CSV format.
         /// </summary>
         internal static string FileExtension_CommaSeparated {
             get {
@@ -2296,7 +2296,16 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Portable picture format.
+        ///   Looks up a localized string similar to JPEG/JPG format.
+        /// </summary>
+        internal static string FileExtension_JointPhotographicExpertGroup {
+            get {
+                return ResourceManager.GetString("FileExtension_JointPhotographicExpertGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PNG format.
         /// </summary>
         internal static string FileExtension_Picture {
             get {
@@ -2314,7 +2323,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Portable document format.
+        ///   Looks up a localized string similar to PDF format.
         /// </summary>
         internal static string FileExtension_PortableDocument {
             get {
@@ -2697,6 +2706,42 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_Lasting {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crosshatching Block.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crosshatching Column.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crosshatching Row.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Single.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Lasting_NakedSingle {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting_NakedSingle", resourceCulture);
             }
         }
         
@@ -5347,6 +5392,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Background picture.
+        /// </summary>
+        internal static string SettingsPage_BackgroundPicture {
+            get {
+                return ResourceManager.GetString("SettingsPage_BackgroundPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can customize background picture of this application..
+        /// </summary>
+        internal static string SettingsPage_BackgroundPictureDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BackgroundPictureDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to However, if you set backrgound picture, this application will override settings of backdrop, causing backdrop not working..
+        /// </summary>
+        internal static string SettingsPage_BackgroundPictureDescriptionWarning {
+            get {
+                return ResourceManager.GetString("SettingsPage_BackgroundPictureDescriptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backslash (\).
         /// </summary>
         internal static string SettingsPage_Backslash {
@@ -5451,6 +5523,15 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_CheckValueTypes {
             get {
                 return ResourceManager.GetString("SettingsPage_CheckValueTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select....
+        /// </summary>
+        internal static string SettingsPage_ChooseBackgroundPicture {
+            get {
+                return ResourceManager.GetString("SettingsPage_ChooseBackgroundPicture", resourceCulture);
             }
         }
         

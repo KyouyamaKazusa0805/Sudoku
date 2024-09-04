@@ -6908,7 +6908,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_CommaSeparated">
             <summary>
-              Looks up a localized string similar to Comma-separated values format.
+              Looks up a localized string similar to CSV format.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_GeneratingHistory">
@@ -6921,9 +6921,14 @@
               Looks up a localized string similar to Grid library file.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_JointPhotographicExpertGroup">
+            <summary>
+              Looks up a localized string similar to JPEG/JPG format.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_Picture">
             <summary>
-              Looks up a localized string similar to Portable picture format.
+              Looks up a localized string similar to PNG format.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_PlainTextDescription">
@@ -6933,7 +6938,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_PortableDocument">
             <summary>
-              Looks up a localized string similar to Portable document format.
+              Looks up a localized string similar to PDF format.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_TextDescription">
@@ -7144,6 +7149,26 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting">
             <summary>
               Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock">
+            <summary>
+              Looks up a localized string similar to Crosshatching Block.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn">
+            <summary>
+              Looks up a localized string similar to Crosshatching Column.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow">
+            <summary>
+              Looks up a localized string similar to Crosshatching Row.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_NakedSingle">
+            <summary>
+              Looks up a localized string similar to Naked Single.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_LastingConstraint">
@@ -8616,6 +8641,21 @@
               Looks up a localized string similar to Mica deep.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BackgroundPicture">
+            <summary>
+              Looks up a localized string similar to Background picture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BackgroundPictureDescription">
+            <summary>
+              Looks up a localized string similar to You can customize background picture of this application..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BackgroundPictureDescriptionWarning">
+            <summary>
+              Looks up a localized string similar to However, if you set backrgound picture, this application will override settings of backdrop, causing backdrop not working..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backslash">
             <summary>
               Looks up a localized string similar to Backslash (\).
@@ -8674,6 +8714,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_CheckValueTypes">
             <summary>
               Looks up a localized string similar to Check for Extended Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ChooseBackgroundPicture">
+            <summary>
+              Looks up a localized string similar to Select....
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Colors">
@@ -10289,6 +10334,11 @@
             Indicates the plain text format.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.JointPhotographicExpertGroup">
+            <summary>
+            Indicates the joint photographic expert group picture format.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.PortablePicture">
             <summary>
             Indicates the portable picture format.
@@ -10349,6 +10399,11 @@
         <member name="F:SudokuStudio.Storage.FileFormats.CommaSeparated">
             <summary>
             Indicates the comma-separated values file format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileFormats.JointPhotographicExpertGroup">
+            <summary>
+            Indicates the joint photographic expert group picture format.
             </summary>
         </member>
         <member name="F:SudokuStudio.Storage.FileFormats.PortablePicture">
