@@ -216,11 +216,7 @@ public sealed class ConstraintCollection :
 		var result = new ConstraintCollection(left.Count - 1);
 		foreach (var element in left)
 		{
-#if false
-			if (!ReferenceEquals(element, right))
-#else
 			if (element != right)
-#endif
 			{
 				result.Add(element);
 			}
