@@ -22,7 +22,6 @@ internal static class WindowComposition
 			case BackdropKind.AcrylicThin: { window.TrySetAcrylicBackdrop(true); break; }
 			case BackdropKind.Transparent: { break; } // Not supported.
 		}
-
 		ManuallyUpdateBackground(window, backdrop);
 	}
 
@@ -33,6 +32,13 @@ internal static class WindowComposition
 	/// <param name="backdrop">The backdrop.</param>
 	public static void ManuallyUpdateBackground(IBackdropSupportedWindow window, BackdropKind backdrop)
 	{
+		if (window is IBackgroundPictureSupportedWindow { RootGridLayout: _ }
+			&& Application.Current.AsApp().Preference.UIPreferences.BackgroundPicturePath is not null)
+		{
+			// This will override the configuration of the setting.
+			return;
+		}
+
 		var isDark = Application.Current.AsApp().Preference.UIPreferences.CurrentTheme switch
 		{
 			Theme.Light => false,
@@ -68,7 +74,6 @@ internal static class WindowComposition
 				Theme.Dark => ElementTheme.Dark,
 				_ => App.ShouldSystemUseDarkMode() ? ElementTheme.Dark : ElementTheme.Light
 			};
-
 			var backdrop = Application.Current.AsApp().Preference.UIPreferences.Backdrop;
 			ManuallyUpdateBackground(window, backdrop);
 		}
@@ -79,6 +84,8 @@ internal static class WindowComposition
 	/// </summary>
 	/// <param name="window">The window.</param>
 	/// <param name="filePath">The background picture path.</param>
-	public static void SetBackgroundPicture(IBackgroundPictureSupportedWindow window, string filePath)
-		=> window.RootGridLayout.Background = new ImageBrush { ImageSource = new BitmapImage(new(filePath)) };
+	public static void SetBackgroundPicture(IBackgroundPictureSupportedWindow window, string? filePath)
+		=> window.RootGridLayout.Background = filePath is null
+			? null
+			: new ImageBrush { ImageSource = new BitmapImage(new(filePath)) };
 }

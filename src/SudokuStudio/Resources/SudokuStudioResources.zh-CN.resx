@@ -2798,4 +2798,7 @@
   <data name="FileExtension_JointPhotographicExpertGroup" xml:space="preserve">
     <value>JPEG/JPG 图片</value>
   </data>
+  <data name="SettingsPage_ClearBackgroundPicture" xml:space="preserve">
+    <value>清除背景图片</value>
+  </data>
 </root>

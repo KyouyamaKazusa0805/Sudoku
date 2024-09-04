@@ -22,6 +22,7 @@ public sealed partial class ThemeSettingPage : Page
 	{
 		var uiPref = Application.Current.AsApp().Preference.UIPreferences;
 		ThemeComboBox.SelectedIndex = (int)uiPref.CurrentTheme;
+		BackgroundPicturePathDisplayer.Text = uiPref.BackgroundPicturePath;
 	}
 
 	/// <summary>
@@ -76,5 +77,16 @@ public sealed partial class ThemeSettingPage : Page
 
 		BackgroundPicturePathDisplayer.Text = filePath;
 		Application.Current.AsApp().Preference.UIPreferences.BackgroundPicturePath = filePath;
+	}
+
+	private void ClearBackgroundPictureButton_Click(object sender, RoutedEventArgs e)
+	{
+		foreach (var window in Application.Current.AsApp().WindowManager.ActiveWindows.OfType<IBackgroundPictureSupportedWindow>())
+		{
+			WindowComposition.SetBackgroundPicture(window, null);
+		}
+
+		BackgroundPicturePathDisplayer.Text = string.Empty;
+		Application.Current.AsApp().Preference.UIPreferences.BackgroundPicturePath = null;
 	}
 }

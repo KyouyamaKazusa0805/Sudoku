@@ -39,6 +39,7 @@
 				<StackPanel Orientation="Horizontal" Spacing="6">
 					<TextBlock x:Name="BackgroundPicturePathDisplayer" HorizontalAlignment="Right" VerticalAlignment="Center" />
 					<Button Content="{m:R Key=SettingsPage_ChooseBackgroundPicture}" Click="BackgroundPictureButton_ClickAsync" />
+					<Button Content="{m:R Key=SettingsPage_ClearBackgroundPicture}" Click="ClearBackgroundPictureButton_Click" />
 				</StackPanel>
 			</w:SettingsCard>
 		</StackPanel>

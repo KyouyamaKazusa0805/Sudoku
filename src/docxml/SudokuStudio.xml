@@ -8721,6 +8721,11 @@
               Looks up a localized string similar to Select....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ClearBackgroundPicture">
+            <summary>
+              Looks up a localized string similar to Clear.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Colors">
             <summary>
               Looks up a localized string similar to Colors.

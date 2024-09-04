@@ -5536,6 +5536,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string SettingsPage_ClearBackgroundPicture {
+            get {
+                return ResourceManager.GetString("SettingsPage_ClearBackgroundPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Colors.
         /// </summary>
         internal static string SettingsPage_Colors {

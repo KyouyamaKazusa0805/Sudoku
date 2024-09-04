@@ -2807,4 +2807,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="FileExtension_JointPhotographicExpertGroup" xml:space="preserve">
     <value>JPEG/JPG format</value>
   </data>
+  <data name="SettingsPage_ClearBackgroundPicture" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 </root>
