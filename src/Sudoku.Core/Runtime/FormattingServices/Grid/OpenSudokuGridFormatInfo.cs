@@ -26,12 +26,12 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 		var result = new string('\0', length);
 
 		// Modify the string value via pointers.
-		ref var pResult = ref result.MutableRef();
+		ref var pResult = ref Unsafe.AsRef(in result.AsSpan()[0]);
 
 		// Replace the base character with the separator.
 		for (var pos = 1; pos < length; pos += 2)
 		{
-			@ref.Add(ref pResult, pos) = '|';
+			Unsafe.Add(ref pResult, pos) = '|';
 		}
 
 		// Now replace some positions with the specified values.
@@ -41,17 +41,17 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 			{
 				case CellState.Empty:
 				{
-					@ref.Add(ref pResult, pos) = '0';
-					@ref.Add(ref pResult, pos + 2) = '0';
-					@ref.Add(ref pResult, pos + 4) = '1';
+					Unsafe.Add(ref pResult, pos) = '0';
+					Unsafe.Add(ref pResult, pos + 2) = '0';
+					Unsafe.Add(ref pResult, pos + 4) = '1';
 					break;
 				}
 				case CellState.Modifiable:
 				case CellState.Given:
 				{
-					@ref.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + '1');
-					@ref.Add(ref pResult, pos + 2) = '0';
-					@ref.Add(ref pResult, pos + 4) = '0';
+					Unsafe.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + '1');
+					Unsafe.Add(ref pResult, pos + 2) = '0';
+					Unsafe.Add(ref pResult, pos + 4) = '0';
 					break;
 				}
 				default:

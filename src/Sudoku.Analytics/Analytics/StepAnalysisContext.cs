@@ -19,7 +19,7 @@ public ref partial struct StepAnalysisContext(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public StepAnalysisContext(ref readonly Grid grid) : this(in grid, in @ref.NullRef<Grid>())
+	public StepAnalysisContext(ref readonly Grid grid) : this(in grid, in Unsafe.NullRef<Grid>())
 	{
 	}
 

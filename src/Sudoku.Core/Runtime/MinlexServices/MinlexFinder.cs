@@ -82,7 +82,7 @@ public sealed unsafe class MinlexFinder
 			var (bestTriplets0, bestTriplets1, bestTriplets2, rowInBand) = (7, 7, 7, toRow % 3);
 			for (var curCandidateIndex = 0; curCandidateIndex < currentCandidatesCount; curCandidateIndex++)
 			{
-				ref readonly var old = ref @ref.Add(ref currentCandidates, curCandidateIndex);
+				ref readonly var old = ref Unsafe.Add(ref currentCandidates, curCandidateIndex);
 				var (startRow, endRow) = rowInBand != 0 && old.MapRowsBackward[3 * (toRow / 3)] / 3 is var band
 					? (band * 3, (band + 1) * 3) // Combine with unmapped rows from the same band.
 					: (0, 9); // Try any unmapped row.
@@ -138,7 +138,7 @@ public sealed unsafe class MinlexFinder
 					}
 
 					// Tests passed, output the new candidate.
-					ref var next = ref @ref.Add(ref nextCandidates, nextCandidatesCount++);
+					ref var next = ref Unsafe.Add(ref nextCandidates, nextCandidatesCount++);
 					next = old;
 					next.MapRowsForward[fromRow] = (sbyte)toRow;
 					next.MapRowsBackward[toRow] = (sbyte)fromRow;
@@ -158,14 +158,14 @@ public sealed unsafe class MinlexFinder
 			// Store the best result.
 			ref var r = ref result[9 * toRow];
 			r = (char)((bestTriplets0 >> 2) & 1);
-			@ref.Add(ref r, 1) = (char)((bestTriplets0 >> 1) & 1);
-			@ref.Add(ref r, 2) = (char)((bestTriplets0) & 1);
-			@ref.Add(ref r, 3) = (char)((bestTriplets1 >> 2) & 1);
-			@ref.Add(ref r, 4) = (char)((bestTriplets1 >> 1) & 1);
-			@ref.Add(ref r, 5) = (char)((bestTriplets1) & 1);
-			@ref.Add(ref r, 6) = (char)((bestTriplets2 >> 2) & 1);
-			@ref.Add(ref r, 7) = (char)((bestTriplets2 >> 1) & 1);
-			@ref.Add(ref r, 8) = (char)((bestTriplets2) & 1);
+			Unsafe.Add(ref r, 1) = (char)((bestTriplets0 >> 1) & 1);
+			Unsafe.Add(ref r, 2) = (char)((bestTriplets0) & 1);
+			Unsafe.Add(ref r, 3) = (char)((bestTriplets1 >> 2) & 1);
+			Unsafe.Add(ref r, 4) = (char)((bestTriplets1 >> 1) & 1);
+			Unsafe.Add(ref r, 5) = (char)((bestTriplets1) & 1);
+			Unsafe.Add(ref r, 6) = (char)((bestTriplets2 >> 2) & 1);
+			Unsafe.Add(ref r, 7) = (char)((bestTriplets2 >> 1) & 1);
+			Unsafe.Add(ref r, 8) = (char)((bestTriplets2) & 1);
 		}
 
 		if (currentCandidatesCount == 0)
@@ -184,7 +184,7 @@ public sealed unsafe class MinlexFinder
 
 		for (var currentCandidateIndex = 0; currentCandidateIndex < currentCandidatesCount; currentCandidateIndex++)
 		{
-			ref var target = ref @ref.Add(ref currentCandidates, currentCandidateIndex);
+			ref var target = ref Unsafe.Add(ref currentCandidates, currentCandidateIndex);
 			var toTriplets = new int[3];
 			toTriplets[Perm[target.StacksPermutation][0]] = 0;
 			toTriplets[Perm[target.StacksPermutation][1]] = 3;
@@ -226,7 +226,7 @@ public sealed unsafe class MinlexFinder
 							ref readonly var rowGivens = ref pair[target.IsTransposed].Digits[target.MapRowsBackward[toRow] * 9];
 							for (var col = 0; col < 9; col++)
 							{
-								var fromDigit = @ref.Add(ref @ref.AsMutableRef(in rowGivens), toColsInStack[col]);
+								var fromDigit = Unsafe.Add(ref Unsafe.AsRef(in rowGivens), toColsInStack[col]);
 								if (fromDigit == 0)
 								{
 									continue;

@@ -60,22 +60,6 @@ public static partial class StringExtensions
 			: throw new InvalidOperationException(SR.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
-	/// Try to get the reference to the first character from a string, and immutable by default.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>A read-only reference that points to the first character of the specified string.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly char Ref(this string @this) => ref @this.AsSpan()[0];
-
-	/// <summary>
-	/// Try to get the reference to the first character of a string.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <returns>The reference to the first element.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref char MutableRef(this string @this) => ref @ref.AsMutableRef(in @this.Ref());
-
-	/// <summary>
 	/// Removes all specified characters.
 	/// </summary>
 	/// <param name="this">The string value.</param>

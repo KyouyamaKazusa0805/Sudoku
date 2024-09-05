@@ -15,7 +15,7 @@ public static class @ref
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<T>(ref T left, ref T right) where T : allows ref struct
 	{
-		if (!AreSameRef(in left, in right))
+		if (!Unsafe.AreSame(in left, in right))
 		{
 			var temp = left;
 			left = right;
@@ -43,12 +43,10 @@ public static class @ref
 	/// </param>
 	/// <exception cref="ArgumentNullException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(
-		ref readonly T reference,
-		[CallerArgumentExpression(nameof(reference))] string paramName = null!
-	) where T : allows ref struct
+	public static void ThrowIfNullRef<T>(ref readonly T reference, [CallerArgumentExpression(nameof(reference))] string paramName = null!)
+		where T : allows ref struct
 	{
-		if (IsNullRef(in reference))
+		if (Unsafe.IsNullRef(in reference))
 		{
 			throw new ArgumentNullException(nameof(reference));
 		}
@@ -68,36 +66,7 @@ public static class @ref
 	/// <inheritdoc cref="ByteRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly byte ReadOnlyByteRef<T>(ref readonly T @ref) where T : allows ref struct
-		=> ref Unsafe.As<T, byte>(ref AsMutableRef(in @ref));
-
-	/// <summary>
-	/// Determines whether the current reference points to <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the referenced element.</typeparam>
-	/// <param name="reference">The reference to be checked.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullRef<T>(ref readonly T reference) where T : allows ref struct => Unsafe.IsNullRef(in reference);
-
-	/// <summary>
-	/// Check whether two references point to a same memory location.
-	/// </summary>
-	/// <typeparam name="T">The type of both two arguments.</typeparam>
-	/// <param name="left">The first element to be checked.</param>
-	/// <param name="right">The second element to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool AreSameRef<T>(ref readonly T left, ref readonly T right)
-		where T : allows ref struct => Unsafe.AreSame(in left, in right);
-
-	/// <summary>
-	/// Re-interpret the read-only reference to non-read-only reference.
-	/// </summary>
-	/// <typeparam name="T">The type of the referenced item.</typeparam>
-	/// <param name="ref">The read-only reference.</param>
-	/// <returns>The non-read-only reference.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref T AsMutableRef<T>(ref readonly T @ref) where T : allows ref struct => ref Unsafe.AsRef(in @ref);
+		=> ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
 
 	/// <summary>
 	/// Advances the pointer to an element after the specified number of block memory elements.
@@ -113,27 +82,6 @@ public static class @ref
 	/// <seealso cref="Unsafe.Subtract{T}(ref T, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref T Add<T>(ref T @ref, int length) where T : allows ref struct => ref Unsafe.Add(ref @ref, length);
-
-	/// <summary>
-	/// Converts the managed pointer into unmanaged one,
-	/// meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
-	/// </summary>
-	/// <typeparam name="T">The type of the value that pointer points to.</typeparam>
-	/// <param name="ref">The reference to be converted.</param>
-	/// <returns>The unmanaged pointer as the result value.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe T* ToPointer<T>(ref readonly T @ref) where T : allows ref struct
-		=> (T*)Unsafe.AsPointer(ref AsMutableRef(in @ref));
-
-	/// <summary>
-	/// Returns a reference that points to <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">
-	/// The type of the element the reference points to if this reference were not <see langword="null"/>.
-	/// </typeparam>
-	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T NullRef<T>() where T : allows ref struct => ref Unsafe.NullRef<T>();
 
 	/// <summary>
 	/// Casts the reference to a valid <see cref="Span{T}"/> object.
@@ -175,7 +123,7 @@ public static class @ref
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = Add(ref AsMutableRef(in memorySpan), i);
+			result[i - start] = Unsafe.Add(ref Unsafe.AsRef(in memorySpan), i);
 		}
 		return result;
 	}

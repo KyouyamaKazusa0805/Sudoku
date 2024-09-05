@@ -84,7 +84,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < GridBase.CellsCount; i++)
 		{
-			var value = @ref.Add(ref @ref.AsMutableRef(in firstElement), i);
+			var value = Unsafe.Add(ref Unsafe.AsRef(in firstElement), i);
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).

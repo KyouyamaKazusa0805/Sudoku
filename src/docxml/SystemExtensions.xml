@@ -5287,31 +5287,6 @@
         <member name="M:System.ref.ReadOnlyByteRef``1(``0@)">
             <inheritdoc cref="M:System.ref.ByteRef``1(``0@)"/>
         </member>
-        <member name="M:System.ref.IsNullRef``1(``0@)">
-            <summary>
-            Determines whether the current reference points to <see langword="null"/>.
-            </summary>
-            <typeparam name="T">The type of the referenced element.</typeparam>
-            <param name="reference">The reference to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.ref.AreSameRef``1(``0@,``0@)">
-            <summary>
-            Check whether two references point to a same memory location.
-            </summary>
-            <typeparam name="T">The type of both two arguments.</typeparam>
-            <param name="left">The first element to be checked.</param>
-            <param name="right">The second element to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.ref.AsMutableRef``1(``0@)">
-            <summary>
-            Re-interpret the read-only reference to non-read-only reference.
-            </summary>
-            <typeparam name="T">The type of the referenced item.</typeparam>
-            <param name="ref">The read-only reference.</param>
-            <returns>The non-read-only reference.</returns>
-        </member>
         <member name="M:System.ref.Add``1(``0@,System.Int32)">
             <summary>
             Advances the pointer to an element after the specified number of block memory elements.
@@ -5325,24 +5300,6 @@
             which is equivalent to method call <see cref="M:System.Runtime.CompilerServices.Unsafe.Subtract``1(``0@,System.Int32)"/>
             </remarks>
             <seealso cref="M:System.Runtime.CompilerServices.Unsafe.Subtract``1(``0@,System.Int32)"/>
-        </member>
-        <member name="M:System.ref.ToPointer``1(``0@)">
-            <summary>
-            Converts the managed pointer into unmanaged one,
-            meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
-            </summary>
-            <typeparam name="T">The type of the value that pointer points to.</typeparam>
-            <param name="ref">The reference to be converted.</param>
-            <returns>The unmanaged pointer as the result value.</returns>
-        </member>
-        <member name="M:System.ref.NullRef``1">
-            <summary>
-            Returns a reference that points to <see langword="null"/>.
-            </summary>
-            <typeparam name="T">
-            The type of the element the reference points to if this reference were not <see langword="null"/>.
-            </typeparam>
-            <returns>A read-only reference that points to <see langword="null"/>.</returns>
         </member>
         <member name="M:System.ref.AsSpan``1(``0@,System.Int32)">
             <summary>
@@ -6057,20 +6014,6 @@
             Throws when the specified <paramref name="pattern"/> is not a valid regular
             expression pattern.
             </exception>
-        </member>
-        <member name="M:System.StringExtensions.Ref(System.String)">
-            <summary>
-            Try to get the reference to the first character from a string, and immutable by default.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>A read-only reference that points to the first character of the specified string.</returns>
-        </member>
-        <member name="M:System.StringExtensions.MutableRef(System.String)">
-            <summary>
-            Try to get the reference to the first character of a string.
-            </summary>
-            <param name="this">The string.</param>
-            <returns>The reference to the first element.</returns>
         </member>
         <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
             <summary>

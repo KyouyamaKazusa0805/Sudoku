@@ -468,11 +468,11 @@ public sealed unsafe class BitwiseSolver : ISolver
 
 	/// <inheritdoc cref="CheckValidity(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(ref readonly char grid) => CheckValidity(@ref.ToPointer(in grid));
+	public bool CheckValidity(ref readonly char grid) => CheckValidity((char*)Unsafe.AsPointer(ref Unsafe.AsRef(in grid)));
 
 	/// <inheritdoc cref="CheckValidity(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(string grid) => CheckValidity(in grid.Ref());
+	public bool CheckValidity(string grid) => CheckValidity(in grid.AsSpan()[0]);
 
 	/// <summary>
 	/// Check the validity of the puzzle.

@@ -184,7 +184,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 						// Can't find any simplifications.
 						Unsafe.CopyBlock(
 							ref @ref.ByteRef(ref resultSpan[characterIndexStart]),
-							in @ref.ReadOnlyByteRef(in sliced.Ref()),
+							in @ref.ReadOnlyByteRef(in sliced.AsSpan()[0]),
 							sizeof(char) * 9
 						);
 						spanIndex += 9;

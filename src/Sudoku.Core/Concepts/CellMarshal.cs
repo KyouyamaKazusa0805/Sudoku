@@ -25,8 +25,8 @@ public static class CellMarshal
 		@ref.ThrowIfNullRef(in reference);
 
 		reference = BlockTable[@this];
-		@ref.Add(ref reference, 1) = RowTable[@this];
-		@ref.Add(ref reference, 2) = ColumnTable[@this];
+		Unsafe.Add(ref reference, 1) = RowTable[@this];
+		Unsafe.Add(ref reference, 2) = ColumnTable[@this];
 	}
 
 	/// <summary>

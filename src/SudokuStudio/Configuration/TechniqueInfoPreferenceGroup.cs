@@ -97,7 +97,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	) where T : allows ref struct
 	{
 		ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
-		var isNullRef = @ref.IsNullRef(in data);
+		var isNullRef = Unsafe.IsNullRef(in data);
 		var a = valueUpdaterWhenNullRef;
 		var b = valueUpdaterWhenNotNullRef;
 		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(in data, value));
