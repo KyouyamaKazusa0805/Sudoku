@@ -421,12 +421,6 @@ dotnet_diagnostic.IDE0060.severity = none
 # IDE0065: Misplaced using directive
 dotnet_diagnostic.IDE0065.severity = none
 
-# IDE0079: Remove unnecessary suppression
-dotnet_diagnostic.IDE0079.severity = none
-
-# IDE0080: Remove unnecessary suppression operator
-dotnet_diagnostic.IDE0080.severity = none
-
 # IDE0130: Namespace does not match folder structure
 dotnet_diagnostic.IDE0130.severity = silent
 
@@ -434,6 +428,7 @@ dotnet_diagnostic.IDE0130.severity = silent
 dotnet_diagnostic.IDE0161.severity = warning
 
 # IDE0180: Use tuple to swap values
+dotnet_diagnostic.IDE0180.severity = none
 csharp_style_prefer_tuple_swap = false:suggestion
 
 # IDE0220: Add explicit cast
@@ -482,15 +477,6 @@ dotnet_diagnostic.CA1822.severity = none
 
 # CA2011: Avoid infinite recursion
 dotnet_diagnostic.CA2011.severity = error
-
-# CA2200: Rethrow to preserve stack details
-dotnet_diagnostic.CA2200.severity = silent
-
-# CA2201: Do not raise reserved exception types
-dotnet_diagnostic.CA2201.severity = none
-
-# CA2208: Instantiate argument exceptions correctly
-dotnet_diagnostic.CA2208.severity = silent
 
 # CA2244: Do not duplicate indexed element initializations
 dotnet_diagnostic.CA2244.severity = error
