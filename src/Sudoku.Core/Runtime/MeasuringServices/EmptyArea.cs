@@ -9,34 +9,34 @@ public static class EmptyArea
 	/// Try to get the maximum empty area exists in the specified grid.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
-	/// <returns>An <see cref="int"/> value indicating the result.</returns>
+	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
 	/// <inheritdoc cref="GetMaxEmptyArea(ref readonly CellMap)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetMaxEmptyArea(this ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptyArea();
+	public static Cell GetMaxEmptyArea(this ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptyArea();
 
 	/// <summary>
 	/// Try to get the maximum empty square area exists in the specified grid.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
-	/// <returns>An <see cref="int"/> value indicating the result.</returns>
+	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
 	/// <inheritdoc cref="GetMaxEmptySquareArea(ref readonly CellMap)" path="/remarks"/>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetMaxEmptySquareArea(this ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptySquareArea();
+	public static Cell GetMaxEmptySquareArea(this ref readonly Grid @this) => @this.EmptyCells.GetMaxEmptySquareArea();
 
 	/// <summary>
 	/// Try to get the maximum empty area exists in the specified cells.
 	/// </summary>
 	/// <param name="this">The cells to be checked.</param>
-	/// <returns>An <see cref="int"/> value indicating the result.</returns>
+	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
 	/// </remarks>
-	public static int GetMaxEmptyArea(this ref readonly CellMap @this)
+	public static Cell GetMaxEmptyArea(this ref readonly CellMap @this)
 	{
 		var dp = (stackalloc int[9]);
 		dp.Clear();
@@ -53,9 +53,9 @@ public static class EmptyArea
 		return max;
 
 
-		static int getMaxRow(ReadOnlySpan<int> height)
+		static Cell getMaxRow(ReadOnlySpan<Cell> height)
 		{
-			var stack = new Stack<int>();
+			var stack = new Stack<Cell>();
 			var max = 0;
 			for (var i = 0; i <= 9; i++)
 			{
@@ -76,15 +76,15 @@ public static class EmptyArea
 	/// Try to get the maximum empty square area exists in the specified cells.
 	/// </summary>
 	/// <param name="this">The cells to be checked.</param>
-	/// <returns>An <see cref="int"/> value indicating the result.</returns>
+	/// <returns>A <see cref="Cell"/> value indicating the result.</returns>
 	/// <remarks>
 	/// This algorithm is from the puzzle called
 	/// <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
 	/// </remarks>
-	public static int GetMaxEmptySquareArea(this ref readonly CellMap @this)
+	public static Cell GetMaxEmptySquareArea(this ref readonly CellMap @this)
 	{
 		var maxSide = 0;
-		var dp = (stackalloc int[81]);
+		var dp = (stackalloc Cell[81]);
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 9; j++)
