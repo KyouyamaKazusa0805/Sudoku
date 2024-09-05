@@ -25,7 +25,9 @@
 						<BreadcrumbBarItem Content="{Binding}">
 							<BreadcrumbBarItem.ContentTemplate>
 								<DataTemplate>
-									<TextBlock Text="{Binding PageTitle}" Margin="6,0" FontSize="28" FontWeight="ExtraLight" />
+									<TextBlock
+										Style="{StaticResource BaseTextBlockStyle}" Text="{Binding PageTitle}"
+										Margin="6,0" FontSize="28" />
 								</DataTemplate>
 							</BreadcrumbBarItem.ContentTemplate>
 						</BreadcrumbBarItem>
