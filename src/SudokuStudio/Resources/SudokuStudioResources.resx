@@ -1261,13 +1261,13 @@
     <value>Acrylic</value>
   </data>
   <data name="SettingsPage_Backdrop_Default" xml:space="preserve">
-    <value>Default (White background)</value>
+    <value>Default</value>
   </data>
   <data name="SettingsPage_Backdrop_Mica" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
-    <value>Mica deep</value>
+    <value>Mica (Deeper)</value>
   </data>
   <data name="SettingsPage_Backslash" xml:space="preserve">
     <value>Backslash (\)</value>
@@ -2809,5 +2809,8 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="SettingsPage_ClearBackgroundPicture" xml:space="preserve">
     <value>Clear</value>
+  </data>
+  <data name="SettingsPage_Backdrop_AcrylicThin" xml:space="preserve">
+    <value>Acrylic (Thin)</value>
   </data>
 </root>

@@ -20,14 +20,15 @@
 				</w:Segmented>
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Backdrop}">
-				<w:Segmented
+				<ComboBox
 					x:Name="BackdropSelector" SelectedIndex="{x:Bind cvt:BackdropConversion.GetSelectedIndex(BackdropSelector)}"
 					SelectionChanged="BackdropSelector_SelectionChanged">
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
-					<w:SegmentedItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
-				</w:Segmented>
+					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Default}" Tag="Default" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Mica}" Tag="Mica" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_MicaDeep}" Tag="MicaDeep" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_Acrylic}" Tag="Acrylic" />
+					<ComboBoxItem Content="{m:R Key=SettingsPage_Backdrop_AcrylicThin}" Tag="AcrylicThin" />
+				</ComboBox>
 			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_BackgroundPicture}">
 				<w:SettingsCard.Description>

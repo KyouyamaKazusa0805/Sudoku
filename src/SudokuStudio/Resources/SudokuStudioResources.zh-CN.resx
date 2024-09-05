@@ -1261,13 +1261,13 @@
     <value>磨砂透明</value>
   </data>
   <data name="SettingsPage_Backdrop_Default" xml:space="preserve">
-    <value>默认（白色背景）</value>
+    <value>默认</value>
   </data>
   <data name="SettingsPage_Backdrop_Mica" xml:space="preserve">
-    <value>Mica 透色</value>
+    <value>云母透明</value>
   </data>
   <data name="SettingsPage_Backdrop_MicaDeep" xml:space="preserve">
-    <value>Mica 透色，不过跟深一些</value>
+    <value>云母透明（更透一些）</value>
   </data>
   <data name="SettingsPage_Backslash" xml:space="preserve">
     <value>反斜杠（\）</value>
@@ -2800,5 +2800,8 @@
   </data>
   <data name="SettingsPage_ClearBackgroundPicture" xml:space="preserve">
     <value>清除背景图片</value>
+  </data>
+  <data name="SettingsPage_Backdrop_AcrylicThin" xml:space="preserve">
+    <value>磨砂透明（更透一些）</value>
   </data>
 </root>
