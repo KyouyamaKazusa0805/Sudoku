@@ -723,7 +723,7 @@
             Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
             </summary>
         </member>
-        <member name="M:System.delegate.True``1(``0)">
+        <member name="M:System.delegate.True``1(``0@)">
             <summary>
             Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
             </summary>
@@ -752,10 +752,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:System.delegate.True``1(``0@)">
-            <inheritdoc cref="M:System.delegate.True``1(``0)"/>
-        </member>
-        <member name="M:System.delegate.False``1(``0)">
+        <member name="M:System.delegate.False``1(``0@)">
             <summary>
             Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
             </summary>
@@ -763,11 +760,8 @@
             <param name="value">The value to be checked.</param>
             <returns>The logical conversion result.</returns>
             <remarks>
-            <inheritdoc cref="M:System.delegate.True``1(``0)" path="/remarks"/>
+            <inheritdoc cref="M:System.delegate.True``1(``0@)" path="/remarks"/>
             </remarks>
-        </member>
-        <member name="M:System.delegate.False``1(``0@)">
-            <inheritdoc cref="M:System.delegate.False``1(``0)"/>
         </member>
         <member name="M:System.delegate.ReturnEmptyString``1(``0)">
             <summary>
@@ -791,9 +785,9 @@
         </member>
         <member name="M:System.delegate.EnumFlagMerger``1(``0,``0)">
             <summary>
-            Merges two flags of type <typeparamref name="T"/>.
+            Merges two flags of type <typeparamref name="TEnum"/>.
             </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
             <param name="left">The first instance to be merged.</param>
             <param name="right">The second instance to be merged.</param>
             <returns>A merged result.</returns>

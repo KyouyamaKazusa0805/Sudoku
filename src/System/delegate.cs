@@ -42,10 +42,6 @@ public static class @delegate
 	/// ]]></code>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
-
-	/// <inheritdoc cref="True{T}(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool True<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !!value;
 
 	/// <summary>
@@ -55,12 +51,8 @@ public static class @delegate
 	/// <param name="value">The value to be checked.</param>
 	/// <returns>The logical conversion result.</returns>
 	/// <remarks>
-	/// <inheritdoc cref="True{T}(T)" path="/remarks"/>
+	/// <inheritdoc cref="True" path="/remarks"/>
 	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(T value) where T : ILogicalOperators<T>, allows ref struct => !value;
-
-	/// <inheritdoc cref="False{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T>, allows ref struct => !value;
 
@@ -89,18 +81,18 @@ public static class @delegate
 		=> interim | TBinaryInteger.MultiplicativeIdentity << next;
 
 	/// <summary>
-	/// Merges two flags of type <typeparamref name="T"/>.
+	/// Merges two flags of type <typeparamref name="TEnum"/>.
 	/// </summary>
-	/// <typeparam name="T">The type of the enumeration.</typeparam>
+	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 	/// <param name="left">The first instance to be merged.</param>
 	/// <param name="right">The second instance to be merged.</param>
 	/// <returns>A merged result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe T EnumFlagMerger<T>(T left, T right) where T : unmanaged, Enum
-		=> sizeof(T) switch
+	public static unsafe TEnum EnumFlagMerger<TEnum>(TEnum left, TEnum right) where TEnum : unmanaged, Enum
+		=> sizeof(TEnum) switch
 		{
-			1 or 2 or 4 when (Unsafe.As<T, int>(ref left) | Unsafe.As<T, int>(ref right)) is var f => Unsafe.As<int, T>(ref f),
-			8 when (Unsafe.As<T, long>(ref left) | Unsafe.As<T, long>(ref right)) is var f => Unsafe.As<long, T>(ref f),
+			1 or 2 or 4 when (Unsafe.As<TEnum, int>(ref left) | Unsafe.As<TEnum, int>(ref right)) is var f => Unsafe.As<int, TEnum>(ref f),
+			8 when (Unsafe.As<TEnum, long>(ref left) | Unsafe.As<TEnum, long>(ref right)) is var f => Unsafe.As<long, TEnum>(ref f),
 			_ => throw new NotSupportedException(SR.ExceptionMessage("UnderlyingTypeNotSupported"))
 		};
 
