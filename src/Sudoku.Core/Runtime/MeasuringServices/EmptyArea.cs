@@ -38,7 +38,7 @@ public static class EmptyArea
 	/// </remarks>
 	public static Cell GetMaxEmptyArea(this ref readonly CellMap @this)
 	{
-		var dp = (stackalloc int[9]);
+		var dp = (stackalloc Cell[9]);
 		dp.Clear();
 
 		var max = 0;
