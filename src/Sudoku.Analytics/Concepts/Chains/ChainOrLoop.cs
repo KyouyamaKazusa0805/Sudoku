@@ -432,7 +432,7 @@ public abstract partial class ChainOrLoop :
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <param name="alsIndex">Indicates the currently operated ALS index.</param>
 	/// <returns>The views.</returns>
-	public View[] GetViews(ref readonly Grid grid, ChainingRules supportedRules, ref int alsIndex)
+	public View[] GetViews(ref readonly Grid grid, ChainingRuleCollection supportedRules, ref int alsIndex)
 	{
 		var result = (View[])[
 			[

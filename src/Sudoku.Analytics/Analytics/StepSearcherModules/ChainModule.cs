@@ -47,7 +47,7 @@ internal static class ChainModule
 		return null;
 
 
-		static Conclusion[] c(NamedChain pattern, ref readonly Grid grid, ChainingRules rules)
+		static Conclusion[] c(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection rules)
 		{
 			var conclusions = pattern.GetConclusions(in grid);
 			if (pattern is Loop { Links: var links })
@@ -189,7 +189,7 @@ internal static class ChainModule
 		return null;
 
 
-		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ChainingRules supportedRules)
+		static View[] getViews(BlossomLoop blossomLoop, ref readonly Grid grid, ChainingRuleCollection supportedRules)
 		{
 			var globalView = View.Empty;
 			var otherViews = new View[blossomLoop.Count];

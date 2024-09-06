@@ -4744,7 +4744,7 @@
             Please check separated files to get chaining algorithm.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
             <summary>
             Collect all blossom loops appeared in a grid.
             </summary>
@@ -4893,6 +4893,69 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleCollection">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
+            </summary>
+            <param name="rules">A list of rules.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.#ctor(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
+            </summary>
+            <param name="rules">A list of rules.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Length">
+            <summary>
+            Indicates the length of rules.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance returned.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Chaining#ChainingRule}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.Create(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance via a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})~Sudoku.Analytics.Chaining.ChainingRuleCollection">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance.
+            </summary>
+            <param name="rules">The rules.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Rules">
+            <summary>
+            The generated property declaration for parameter <c>rules</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRuleLinkContext">
@@ -19926,7 +19989,7 @@
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
-        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.LinkType,Sudoku.Analytics.Configuration.StepGathererOptions,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule}@)">
+        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.LinkType,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Chaining.ChainingRuleCollection@)">
             <summary>
             Try to collect strong and weak links appeared in a grid.
             </summary>
@@ -21409,7 +21472,7 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Int32@)">
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection,System.Int32@)">
             <summary>
             Collect views for the current chain.
             </summary>
@@ -21962,7 +22025,7 @@
             <returns>The pattern converted.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Chaining.ChainingRuleCollection)">
             <summary>
             Collect views for the current chain.
             </summary>

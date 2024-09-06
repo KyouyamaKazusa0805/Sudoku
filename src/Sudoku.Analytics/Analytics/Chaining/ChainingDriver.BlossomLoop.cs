@@ -12,7 +12,7 @@ internal partial class ChainingDriver
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
 	/// <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
 	/// <returns>All possible multiple forcing chain instances.</returns>
-	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne, ChainingRules supportedRules)
+	public static ReadOnlySpan<BlossomLoop> CollectBlossomLoops(ref readonly Grid grid, bool onlyFindOne, ChainingRuleCollection supportedRules)
 	{
 		var result = new List<BlossomLoop>();
 
@@ -79,7 +79,7 @@ internal partial class ChainingDriver
 			return rootMap;
 		}
 
-		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ref readonly CandidateMap exits, ChainingRules supportedRules)
+		static ConclusionSet collectConclusions(ref readonly Grid grid, List<Link> patternLinks, ref readonly CandidateMap exits, ChainingRuleCollection supportedRules)
 		{
 			var result = ConclusionSet.Empty;
 
@@ -111,7 +111,7 @@ internal partial class ChainingDriver
 			return result;
 		}
 
-		void cellToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRules supportedRules)
+		void cellToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
@@ -157,7 +157,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void cellToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRules supportedRules)
+		void cellToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, Cell startCell, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
@@ -205,7 +205,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void houseToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, House startHouse, Digit startDigit, ChainingRules supportedRules)
+		void houseToCell(ref readonly Grid grid, CellsDistribution cellsDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
@@ -253,7 +253,7 @@ internal partial class ChainingDriver
 			}
 		}
 
-		void houseToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRules supportedRules)
+		void houseToHouse(ref readonly Grid grid, HousesDistribution housesDistribution, House startHouse, Digit startDigit, ChainingRuleCollection supportedRules)
 		{
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, startCurrentDigit), houseDistribution) in housesDistribution)
