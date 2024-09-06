@@ -22,5 +22,5 @@ public interface IInferrable<TResult> where TResult : notnull, allows ref struct
 	/// even if the return value is <see langword="true"/>.
 	/// </para>
 	/// </returns>
-	public static abstract bool TryInfer(ref readonly Grid grid, out TResult? result);
+	public static abstract bool TryInfer(ref readonly Grid grid, [NotNullWhen(true)] out TResult? result);
 }
