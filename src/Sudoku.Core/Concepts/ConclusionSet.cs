@@ -216,6 +216,7 @@ public sealed partial class ConclusionSet :
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] ConclusionSet? other) => other is not null && _bitArray.SequenceEqual(other._bitArray);
 
 	/// <inheritdoc/>
