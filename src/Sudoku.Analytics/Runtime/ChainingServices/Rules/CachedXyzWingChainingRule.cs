@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining.Rules;
+namespace Sudoku.Runtime.ChainingServices.Rules;
 
 /// <summary>
 /// Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="LinkType.XyzWing"/>).

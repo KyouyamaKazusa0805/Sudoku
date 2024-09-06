@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Runtime.ChainingServices;
 
 /// <summary>
 /// Represents a pair of data on a certain <see cref="Node"/>, describing all possible <see cref="Node"/> instances

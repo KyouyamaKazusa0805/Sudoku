@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Runtime.ChainingServices;
 
 /// <summary>
 /// Represents the properties used while chaining.

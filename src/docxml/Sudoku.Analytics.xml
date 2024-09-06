@@ -4709,647 +4709,6 @@
             Indicates all assignment techniques.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingDriver">
-            <summary>
-            Provides a driver that can generate normal chains and forcing chains.
-            </summary>
-            <remarks>
-            Please check separated files to get chaining algorithm.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
-            <summary>
-            Collect all blossom loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all chains and loops appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
-            <returns>All possible <see cref="T:Sudoku.Concepts.ChainOrLoop" /> instances.</returns>
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid chain can only belong to the following three cases:
-            <list type="number">
-            <item>
-            <para><b>Discontinuous Nice Loop</b></para>
-            <para>
-            Start with weak link, alternating strong and weak links and return to itself of a weak link
-            (with an even number of nodes, odd number of links).
-            </para>
-            </item>
-            <item>
-            <para><b>Discontinuous Nice Loop</b></para>
-            <para>
-            Start with strong link, alternating strong and weak links and return to itself of a strong link
-            (with an even number of nodes, even number of links).
-            </para>
-            </item>
-            <item>
-            <para><b>Continuous Nice Loop</b></para>
-            <para>
-            Start with strong link, alternating strong and weak links and return to itself of a weak link
-            (with an even number of nodes, even number of links).
-            </para>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.NamedChain})">
-            <summary>
-            <para>
-            Find all possible <see cref="T:Sudoku.Concepts.NamedChain"/> patterns starting with the current node,
-            and to make an confliction with itself.
-            </para>
-            <para>
-            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
-            or the method cannot find a valid chain that forms a confliction with the current node.
-            </para>
-            </summary>
-            <param name="startNode">The current instance.</param>
-            <param name="grid">The grid to be checked.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.NamedChain"/> and return.</param>
-            <param name="result">
-            A collection that stores all possible found <see cref="T:Sudoku.Concepts.NamedChain"/> patterns
-            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
-            </param>
-            <returns>The first found <see cref="T:Sudoku.Concepts.NamedChain"/> pattern.</returns>
-            <seealso cref="T:Sudoku.Concepts.NamedChain"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Collect all multiple forcing chains appeared in a grid.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
-            <returns>All possible multiple forcing chain instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.FindForcingChains(Sudoku.Concepts.Node)">
-            <summary>
-            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
-            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>.</para>
-            </summary>
-            <param name="startNode">The current instance.</param>
-            <returns>
-            A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
-            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
-            encapsulating with type <see cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>.
-            </returns>
-            <seealso cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/>
-            <seealso cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>
-            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
-            <seealso cref="T:Sudoku.Concepts.Node"/>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
-            <summary>
-            Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Node"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRule.ElementaryLinkTypes">
-            <summary>
-            Indicates the elementary link types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRule.AdvancedLinkTypes">
-            <summary>
-            Indicates the advanced link types.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <summary>
-            Collects for both strong links and weak links appeared <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Grid"/>
-            and insert all found links into <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.StrongLinks"/>
-            and <see cref="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.WeakLinks"/> respectively.
-            </summary>
-            <param name="context">The context.</param>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRuleLinkContext"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <summary>
-            Collects for extra view nodes for the pattern.
-            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
-            </summary>
-            <param name="context">The context.</param>
-            <remarks>
-            The method by default will do nothing, with an empty sequence
-            assigned to <see cref="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.ProducedViewNodes"/>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.ProducedViewNodes"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext@)">
-            <summary>
-            Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
-            This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
-            </summary>
-            <param name="context">The context.</param>
-            <returns>A list of found conclusions.</returns>
-            <remarks>
-            This method should not be overridden if no eliminations exists in the loop pattern.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleCollection">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
-            </summary>
-            <param name="rules">A list of rules.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.#ctor(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
-            </summary>
-            <param name="rules">A list of rules.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Length">
-            <summary>
-            Indicates the length of rules.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance returned.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.ToArray">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Chaining#ChainingRule}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.Create(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance via a list of <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})~Sudoku.Analytics.Chaining.ChainingRuleCollection">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Chaining.ChainingRuleCollection"/> instance.
-            </summary>
-            <param name="rules">The rules.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleCollection.Rules">
-            <summary>
-            The generated property declaration for parameter <c>rules</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleCollection.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleLinkContext">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="strongLinks">The dictionary that stores a list of strong links.</param>
-            <param name="weakLinks">The dictionary that stores a list of weak links.</param>
-            <param name="options">Indicates the step searcher options to be used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="strongLinks">The dictionary that stores a list of strong links.</param>
-            <param name="weakLinks">The dictionary that stores a list of weak links.</param>
-            <param name="options">Indicates the step searcher options to be used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Sudoku#Runtime#IContext#Grid">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetLinkOption(Sudoku.Analytics.Configuration.LinkType)">
-            <summary>
-            Try to get the link option for the specified link type.
-            </summary>
-            <param name="linkType">The link type.</param>
-            <returns>
-            The link option returned.
-            If there's no overridden link option, return <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.StrongLinks">
-            <summary>
-            The generated field declaration for parameter <c>strongLinks</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.WeakLinks">
-            <summary>
-            The generated field declaration for parameter <c>weakLinks</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Options">
-            <summary>
-            The generated field declaration for parameter <c>options</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLinkContext.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="links">The links inside the loop or loop-like pattern.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.#ctor(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.Link})">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="links">The links inside the loop or loop-like pattern.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Conclusions">
-            <summary>
-            Indicates the found conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Sudoku#Runtime#IContext#Grid">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Links">
-            <summary>
-            The generated field declaration for parameter <c>links</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="pattern">The pattern.</param>
-            <param name="view">The view.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View)">
-            <summary>
-            Represents the properties used while chaining.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="pattern">The pattern.</param>
-            <param name="view">The view.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.CurrentAlmostLockedSetIndex">
-            <summary>
-            Indicates the currently used almost locked set index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.ProducedViewNodes">
-            <summary>
-            Indicates the view nodes produced.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Sudoku#Runtime#IContext#Grid">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Pattern">
-            <summary>
-            The generated field declaration for parameter <c>pattern</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.View">
-            <summary>
-            The generated field declaration for parameter <c>view</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ForcingChainInfo">
-            <summary>
-            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
-            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
-            </summary>
-            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
-            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
-            <seealso cref="T:Sudoku.Concepts.Node"/>
-            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node},System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
-            <summary>
-            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
-            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
-            </summary>
-            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
-            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
-            <seealso cref="T:Sudoku.Concepts.Node"/>
-            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.OnNodes">
-            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "on".</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.OffNodes">
-            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "off".</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.StartNode">
-            <summary>
-            Indicates the start node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Equals(Sudoku.Analytics.Chaining.ForcingChainInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Equals(Sudoku.Analytics.Chaining.ForcingChainInfo,Sudoku.Concepts.NodeComparison)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Analytics.Chaining.ForcingChainInfo"/> instances contain a same <see cref="P:Sudoku.Analytics.Chaining.ForcingChainInfo.StartNode"/> property,
-            with the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The node comparison rule.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.EnumerateOnNodes">
-            <summary>
-            Try to enumerate for nodes that supposed with "on" state.
-            </summary>
-            <returns>An enumerator that can iterate on nodes supposed with "on" state.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.EnumerateOffNodes">
-            <summary>
-            Try to enumerate for nodes that supposed with "off" state.
-            </summary>
-            <returns>An enumerator that can iterate on nodes supposed with "off" state.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Analytics.Chaining.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Analytics.Chaining.ForcingChainInfo.ToString" />.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator">
-            <summary>
-            Represents an enumerator type that can iterate on all nodes in the collection.
-            </summary>
-            <param name="_nodes">The collection of all nodes.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
-            <summary>
-            Represents an enumerator type that can iterate on all nodes in the collection.
-            </summary>
-            <param name="_nodes">The collection of all nodes.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator._enumerator">
-            <summary>
-            Indicates the backing enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator">
-            <summary>
-            Represents an enumerator type that can iterate on nodes supposed with "on".
-            </summary>
-            <param name="_enumerator">The backing enumerator.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node}.Enumerator)">
-            <summary>
-            Represents an enumerator type that can iterate on nodes supposed with "on".
-            </summary>
-            <param name="_enumerator">The backing enumerator.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.NodesEnumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ForcingChainInfo.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostAvoidableRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule">
-            <summary>
-            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostLockedSetsChainingRule.GetLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule">
-            <summary>
-            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedAlmostUniqueRectangleChainingRule.GetLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule">
-            <summary>
-            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedKrakenNormalFishChainingRule.GetLoopConclusions(Sudoku.Analytics.Chaining.ChainingRuleLoopConclusionContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule">
-            <summary>
-            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedLockedCandidatesChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule">
-            <summary>
-            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule">
-            <summary>
-            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedXyzWingChainingRule.GetViewNodes(Sudoku.Analytics.Chaining.ChainingRuleViewNodeContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule">
-            <summary>
-            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.Rules.CachedYChainingRule.GetLinks(Sudoku.Analytics.Chaining.ChainingRuleLinkContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
@@ -7542,10 +6901,10 @@
 		</para>
 	</developer-notes>
             <para>
-            All implementations are extracted in type <see cref="T:Sudoku.Analytics.Chaining.ChainingDriver" />. Please visit it to learn more information.
+            All implementations are extracted in type <see cref="T:Sudoku.Runtime.ChainingServices.ChainingDriver" />. Please visit it to learn more information.
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingDriver" />
+            <seealso cref="T:Sudoku.Runtime.ChainingServices.ChainingDriver" />
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.FinnedChainStepSearcher">
             <summary>
@@ -19930,9 +19289,9 @@
         </member>
         <member name="T:Sudoku.Caching.ChainingRulePool">
             <summary>
-            Provides with an easy way to create <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instances.
+            Provides with an easy way to create <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Chaining.ChainingRule"/>
+            <seealso cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/>
         </member>
         <member name="F:Sudoku.Caching.ChainingRulePool.RuleRouter">
             <summary>
@@ -19951,10 +19310,10 @@
         </member>
         <member name="M:Sudoku.Caching.ChainingRulePool.TryCreate(Sudoku.Analytics.Configuration.LinkType)">
             <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance via the specified link type.
+            Creates a <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instance via the specified link type.
             </summary>
             <param name="linkType">The link type.</param>
-            <returns>The created <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance created.</returns>
+            <returns>The created <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instance created.</returns>
         </member>
         <member name="T:Sudoku.Caching.MemoryCachedData">
             <summary>
@@ -20049,14 +19408,14 @@
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
-        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.LinkType,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Chaining.ChainingRuleCollection@)">
+        <member name="M:Sudoku.Caching.MemoryCachedData.InitializeLinks(Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.LinkType,Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Runtime.ChainingServices.ChainingRuleCollection@)">
             <summary>
             Try to collect strong and weak links appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="linkTypes">The link types to be checked.</param>
             <param name="options">The options used by step searchers.</param>
-            <param name="rules">The <see cref="T:Sudoku.Analytics.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
+            <param name="rules">The <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
             <summary>
@@ -21537,7 +20896,7 @@
         <member name="M:Sudoku.Concepts.ChainOrLoop.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection,System.Int32@)">
+        <member name="M:Sudoku.Concepts.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,Sudoku.Runtime.ChainingServices.ChainingRuleCollection,System.Int32@)">
             <summary>
             Collect views for the current chain.
             </summary>
@@ -22090,7 +21449,7 @@
             <returns>The pattern converted.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the current instance cannot be converted.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Analytics.Chaining.ChainingRuleCollection)">
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.GetViews(Sudoku.Concepts.Grid@,Sudoku.Concepts.Conclusion[],Sudoku.Runtime.ChainingServices.ChainingRuleCollection)">
             <summary>
             Collect views for the current chain.
             </summary>
@@ -29566,6 +28925,647 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingDriver">
+            <summary>
+            Provides a driver that can generate normal chains and forcing chains.
+            </summary>
+            <remarks>
+            Please check separated files to get chaining algorithm.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Runtime.ChainingServices.ChainingRuleCollection)">
+            <summary>
+            Collect all blossom loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all chains and loops appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
+            <returns>All possible <see cref="T:Sudoku.Concepts.ChainOrLoop" /> instances.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid chain can only belong to the following three cases:
+            <list type="number">
+            <item>
+            <para><b>Discontinuous Nice Loop</b></para>
+            <para>
+            Start with weak link, alternating strong and weak links and return to itself of a weak link
+            (with an even number of nodes, odd number of links).
+            </para>
+            </item>
+            <item>
+            <para><b>Discontinuous Nice Loop</b></para>
+            <para>
+            Start with strong link, alternating strong and weak links and return to itself of a strong link
+            (with an even number of nodes, even number of links).
+            </para>
+            </item>
+            <item>
+            <para><b>Continuous Nice Loop</b></para>
+            <para>
+            Start with strong link, alternating strong and weak links and return to itself of a weak link
+            (with an even number of nodes, even number of links).
+            </para>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingDriver.FindChains(Sudoku.Concepts.Node,Sudoku.Concepts.Grid@,System.Boolean,System.Collections.Generic.SortedSet{Sudoku.Concepts.NamedChain})">
+            <summary>
+            <para>
+            Find all possible <see cref="T:Sudoku.Concepts.NamedChain"/> patterns starting with the current node,
+            and to make an confliction with itself.
+            </para>
+            <para>
+            This method will return <see langword="null"/> if <paramref name="onlyFindOne"/> is <see langword="false"/>,
+            or the method cannot find a valid chain that forms a confliction with the current node.
+            </para>
+            </summary>
+            <param name="startNode">The current instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid <see cref="T:Sudoku.Concepts.NamedChain"/> and return.</param>
+            <param name="result">
+            A collection that stores all possible found <see cref="T:Sudoku.Concepts.NamedChain"/> patterns
+            if <paramref name="onlyFindOne"/> is <see langword="false"/>.
+            </param>
+            <returns>The first found <see cref="T:Sudoku.Concepts.NamedChain"/> pattern.</returns>
+            <seealso cref="T:Sudoku.Concepts.NamedChain"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingDriver.CollectMultipleChains(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Collect all multiple forcing chains appeared in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="onlyFindOne">Indicates whether the method only find one valid chain.</param>
+            <returns>All possible multiple forcing chain instances.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingDriver.FindForcingChains(Sudoku.Concepts.Node)">
+            <summary>
+            <para>Finds a list of nodes that can implicitly connects to current node via a forcing chain.</para>
+            <para>This method only uses cached fields <see cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/> and <see cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>.</para>
+            </summary>
+            <param name="startNode">The current instance.</param>
+            <returns>
+            A pair of <see cref="T:System.Collections.Generic.HashSet`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances, indicating all possible nodes
+            that can implicitly connects to the current node via the whole forcing chain, grouped by their own initial states,
+            encapsulating with type <see cref="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo"/>.
+            </returns>
+            <seealso cref="F:Sudoku.Caching.MemoryCachedData.StrongLinkDictionary"/>
+            <seealso cref="F:Sudoku.Caching.MemoryCachedData.WeakLinkDictionary"/>
+            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+            <seealso cref="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingRule">
+            <summary>
+            Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRule.ElementaryLinkTypes">
+            <summary>
+            Indicates the elementary link types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRule.AdvancedLinkTypes">
+            <summary>
+            Indicates the advanced link types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <summary>
+            Collects for both strong links and weak links appeared <see cref="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.Grid"/>
+            and insert all found links into <see cref="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.StrongLinks"/>
+            and <see cref="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.WeakLinks"/> respectively.
+            </summary>
+            <param name="context">The context.</param>
+            <seealso cref="T:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <summary>
+            Collects for extra view nodes for the pattern.
+            This method will be useful in advanced chaining rules such as ALS and AUR extra maps checking.
+            </summary>
+            <param name="context">The context.</param>
+            <remarks>
+            The method by default will do nothing, with an empty sequence
+            assigned to <see cref="P:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.ProducedViewNodes"/>
+            </remarks>
+            <seealso cref="P:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.ProducedViewNodes"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.GetLoopConclusions(Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext@)">
+            <summary>
+            Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
+            This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>A list of found conclusions.</returns>
+            <remarks>
+            This method should not be overridden if no eliminations exists in the loop pattern.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRule.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingRuleCollection">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instances.
+            </summary>
+            <param name="rules">A list of rules.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.#ctor(System.ReadOnlySpan{Sudoku.Runtime.ChainingServices.ChainingRule})">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instances.
+            </summary>
+            <param name="rules">A list of rules.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.Length">
+            <summary>
+            Indicates the length of rules.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instance at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>A <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instance returned.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.System#Collections#Generic#IEnumerable{Sudoku#Runtime#ChainingServices#ChainingRule}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.Create(System.ReadOnlySpan{Sudoku.Runtime.ChainingServices.ChainingRule})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRuleCollection"/> instance via a list of <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRule"/> instances.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRuleCollection"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.op_Implicit(System.ReadOnlySpan{Sudoku.Runtime.ChainingServices.ChainingRule})~Sudoku.Runtime.ChainingServices.ChainingRuleCollection">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.ChainingServices.ChainingRuleCollection"/> instance.
+            </summary>
+            <param name="rules">The rules.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.Rules">
+            <summary>
+            The generated property declaration for parameter <c>rules</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="strongLinks">The dictionary that stores a list of strong links.</param>
+            <param name="weakLinks">The dictionary that stores a list of weak links.</param>
+            <param name="options">Indicates the step searcher options to be used.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary,Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="strongLinks">The dictionary that stores a list of strong links.</param>
+            <param name="weakLinks">The dictionary that stores a list of weak links.</param>
+            <param name="options">Indicates the step searcher options to be used.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.Sudoku#Runtime#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.GetLinkOption(Sudoku.Analytics.Configuration.LinkType)">
+            <summary>
+            Try to get the link option for the specified link type.
+            </summary>
+            <param name="linkType">The link type.</param>
+            <returns>
+            The link option returned.
+            If there's no overridden link option, return <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.StrongLinks">
+            <summary>
+            The generated field declaration for parameter <c>strongLinks</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.WeakLinks">
+            <summary>
+            The generated field declaration for parameter <c>weakLinks</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.Options">
+            <summary>
+            The generated field declaration for parameter <c>options</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="links">The links inside the loop or loop-like pattern.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.#ctor(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.Link})">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="links">The links inside the loop or loop-like pattern.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.Conclusions">
+            <summary>
+            Indicates the found conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.Sudoku#Runtime#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.Links">
+            <summary>
+            The generated field declaration for parameter <c>links</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="view">The view.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainOrLoop,Sudoku.Drawing.View)">
+            <summary>
+            Represents the properties used while chaining.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="view">The view.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.CurrentAlmostLockedSetIndex">
+            <summary>
+            Indicates the currently used almost locked set index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.ProducedViewNodes">
+            <summary>
+            Indicates the view nodes produced.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.Sudoku#Runtime#IContext#Grid">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.Pattern">
+            <summary>
+            The generated field declaration for parameter <c>pattern</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.View">
+            <summary>
+            The generated field declaration for parameter <c>view</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo">
+            <summary>
+            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
+            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node},System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
+            <summary>
+            Represents a pair of data on a certain <see cref="T:Sudoku.Concepts.Node"/>, describing all possible <see cref="T:Sudoku.Concepts.Node"/> instances
+            that can implicitly connect to it, grouped by its <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="OnNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "on".</param>
+            <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.OnNodes">
+            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "on".</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.OffNodes">
+            <summary>Indicates all possible nodes that can implicitly connect to node, supposed to "off".</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.StartNode">
+            <summary>
+            Indicates the start node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Equals(Sudoku.Runtime.ChainingServices.ForcingChainInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Equals(Sudoku.Runtime.ChainingServices.ForcingChainInfo,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo"/> instances contain a same <see cref="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.StartNode"/> property,
+            with the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.EnumerateOnNodes">
+            <summary>
+            Try to enumerate for nodes that supposed with "on" state.
+            </summary>
+            <returns>An enumerator that can iterate on nodes supposed with "on" state.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.EnumerateOffNodes">
+            <summary>
+            Try to enumerate for nodes that supposed with "off" state.
+            </summary>
+            <returns>An enumerator that can iterate on nodes supposed with "off" state.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.ToString" />.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on all nodes in the collection.
+            </summary>
+            <param name="_nodes">The collection of all nodes.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node})">
+            <summary>
+            Represents an enumerator type that can iterate on all nodes in the collection.
+            </summary>
+            <param name="_nodes">The collection of all nodes.</param>
+        </member>
+        <member name="F:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator._enumerator">
+            <summary>
+            Indicates the backing enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator">
+            <summary>
+            Represents an enumerator type that can iterate on nodes supposed with "on".
+            </summary>
+            <param name="_enumerator">The backing enumerator.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.#ctor(System.Collections.Generic.HashSet{Sudoku.Concepts.Node}.Enumerator)">
+            <summary>
+            Represents an enumerator type that can iterate on nodes supposed with "on".
+            </summary>
+            <param name="_enumerator">The backing enumerator.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.NodesEnumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.ForcingChainInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostAvoidableRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AAR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostAvoidableRectangle"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostAvoidableRectangleChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostAvoidableRectangleChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostLockedSetsChainingRule">
+            <summary>
+            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostLockedSets"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostLockedSetsChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostLockedSetsChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostLockedSetsChainingRule.GetLoopConclusions(Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostUniqueRectangleChainingRule">
+            <summary>
+            Represents a chaining rule on AUR rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.AlmostUniqueRectangle"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostUniqueRectangleChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostUniqueRectangleChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedAlmostUniqueRectangleChainingRule.GetLoopConclusions(Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedKrakenNormalFishChainingRule">
+            <summary>
+            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.KrakenNormalFish"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedKrakenNormalFishChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedKrakenNormalFishChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedKrakenNormalFishChainingRule.GetLoopConclusions(Sudoku.Runtime.ChainingServices.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedLockedCandidatesChainingRule">
+            <summary>
+            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.LockedCandidates"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedLockedCandidatesChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedXChainingRule">
+            <summary>
+            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedXChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedXyzWingChainingRule">
+            <summary>
+            Represents a chaining rule on XYZ-Wing rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.XyzWing"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedXyzWingChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedXyzWingChainingRule.GetViewNodes(Sudoku.Runtime.ChainingServices.ChainingRuleViewNodeContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.ChainingServices.Rules.CachedYChainingRule">
+            <summary>
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Configuration.LinkType.SingleCell"/>
+        </member>
+        <member name="M:Sudoku.Runtime.ChainingServices.Rules.CachedYChainingRule.GetLinks(Sudoku.Runtime.ChainingServices.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.ComplexSingleBaseGenerator">

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining;
+namespace Sudoku.Runtime.ChainingServices;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
 using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;

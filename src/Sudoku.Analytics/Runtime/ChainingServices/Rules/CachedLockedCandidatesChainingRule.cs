@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Chaining.Rules;
+namespace Sudoku.Runtime.ChainingServices.Rules;
 
 /// <summary>
 /// Represents a chaining rule on locked candidates (i.e. <see cref="LinkType.LockedCandidates"/>).
