@@ -16,9 +16,9 @@ public sealed partial class MainWindow :
 {
 #if CUSTOMIZED_BACKDROP
 	/// <summary>
-	/// Indicates helper object for <see cref="winsys::DispatcherQueue"/>.
+	/// Indicates helper object for <see cref="DispatcherQueue"/>.
 	/// </summary>
-	/// <seealso cref="winsys::DispatcherQueue"/>
+	/// <seealso cref="DispatcherQueue"/>
 	private WindowsSystemDispatcherQueueHelper? _wsdqHelper;
 
 	/// <summary>

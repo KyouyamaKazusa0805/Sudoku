@@ -14,9 +14,9 @@ file static class Program
 	{
 		checkProcessRequirements();
 		ComWrappersSupport.InitializeComWrappers();
-		Application.Start(static __ =>
+		Application.Start(static delegate
 		{
-			var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+			var context = new dispatching::DispatcherQueueSynchronizationContext(dispatching::DispatcherQueue.GetForCurrentThread());
 			SynchronizationContext.SetSynchronizationContext(context);
 			_ = new App();
 		});
