@@ -48,12 +48,12 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 	/// <summary>
 	/// Indicates whether the puzzle is solved, or failed by <see cref="FailedReason.AnalyzerGiveUp"/>.
-	/// If the property returns <see langword="true"/>, properties <see cref="InterimSteps"/> and <see cref="InterimGrids"/>
-	/// won't be <see langword="null"/>.
+	/// If the property returns <see langword="true"/>, properties <see cref="StepsSpan"/> and <see cref="GridsSpan"/>
+	/// won't be empty.
 	/// </summary>
 	/// <seealso cref="FailedReason.AnalyzerGiveUp"/>
-	/// <seealso cref="InterimSteps"/>
-	/// <seealso cref="InterimGrids"/>
+	/// <seealso cref="StepsSpan"/>
+	/// <seealso cref="GridsSpan"/>
 	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids))]
 	public bool IsPartiallySolved => IsSolved || FailedReason == FailedReason.AnalyzerGiveUp;
 
@@ -132,19 +132,20 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="MaximumRatingValueTheory"/>
-	public unsafe int MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.MaxUnsafe, MaximumRatingValueTheory);
+	public unsafe int MaxDifficulty => EvaluateRatingUnsafe(StepsSpan, &SpanEnumerable.MaxUnsafe, MaximumRatingValueTheory);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
 	/// </summary>
 	/// <remarks>
 	/// When the puzzle is solved by <see cref="Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
-	/// If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="InterimSteps"/>.
+	/// If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded
+	/// in <see cref="StepsSpan"/>.
 	/// However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	/// <seealso cref="InterimSteps"/>
-	public unsafe int TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.SumUnsafe, MinimumRatingValue);
+	/// <seealso cref="StepsSpan"/>
+	public unsafe int TotalDifficulty => EvaluateRatingUnsafe(StepsSpan, &SpanEnumerable.SumUnsafe, MinimumRatingValue);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -185,35 +186,13 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// If the puzzle has not solved or solved by other solvers, this value will be <see cref="DifficultyLevel.Unknown"/>.
 	/// </summary>
 	public DifficultyLevel DifficultyLevel
-	{
-		get
-		{
-			var maxLevel = DifficultyLevel.Unknown;
-			if (IsSolved)
-			{
-				foreach (var step in InterimSteps)
-				{
-					if (step.DifficultyLevel > maxLevel)
-					{
-						maxLevel = step.DifficultyLevel;
-					}
-				}
-			}
-			return maxLevel;
-		}
-	}
+		=> (DifficultyLevel)StepsSpan.Max(static (ref readonly Step step) => (int)step.DifficultyLevel);
 
 	/// <inheritdoc/>
 	public Grid Solution { get; init; }
 
 	/// <inheritdoc/>
 	public TimeSpan ElapsedTime { get; init; }
-
-	/// <summary>
-	/// Indicates a list, whose element is the intermediate grid for each step.
-	/// </summary>
-	/// <seealso cref="InterimSteps"/>
-	public Grid[]? InterimGrids { get; init; }
 
 	/// <summary>
 	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> instances,
@@ -288,14 +267,14 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			{
 				{ IsSolved: true, DifficultyLevel: var difficultyLevel } => difficultyLevel switch
 				{
-					DifficultyLevel.Easy => bottleneckEasy(InterimSteps),
-					_ => bottleneckNotEasy(InterimSteps)
+					DifficultyLevel.Easy => bottleneckEasy(StepsSpan),
+					_ => bottleneckNotEasy(StepsSpan)
 				},
 				_ => null
 			};
 
 
-			static Step[] bottleneckEasy(Step[] steps)
+			static Step[] bottleneckEasy(ReadOnlySpan<Step> steps)
 			{
 				var maxStep = default(Step);
 				foreach (var step in steps)
@@ -309,13 +288,36 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				}
 
 				// Checks whether 'maxStep' is null or not. If not null, a step that is neither full house nor hidden single.
-				return maxStep is not null ? Array.FindAll(steps, s => s.Code == maxStep.Code) : [];
+				if (maxStep is not null)
+				{
+					var result = new List<Step>();
+					foreach (var element in steps)
+					{
+						if (element.Code == maxStep.Code)
+						{
+							result.Add(element);
+						}
+					}
+					return [.. result];
+				}
+				return [];
 			}
 
-			static Step[] bottleneckNotEasy(Step[] steps)
+			static Step[] bottleneckNotEasy(ReadOnlySpan<Step> steps)
 			{
-				var maxStep = steps.MaxBy(static step => step.Difficulty);
-				return maxStep is not null ? Array.FindAll(steps, s => s.Difficulty == maxStep.Difficulty) : [];
+				if (steps.MaxBy(static step => step.Difficulty) is { } maxStep)
+				{
+					var result = new List<Step>();
+					foreach (var element in steps)
+					{
+						if (element.Code == maxStep.Code)
+						{
+							result.Add(element);
+						}
+					}
+					return [.. result];
+				}
+				return [];
 			}
 		}
 	}
@@ -330,16 +332,16 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			return IsSolved && !StepsSpan.All(static step => step is FullHouseStep or HiddenSingleStep { House: < 9 })
 				? StepsSpan.AllAre<Step, SingleStep>()
 					// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
-					? Array.Find(InterimSteps, static step => step is not HiddenSingleStep { House: < 9 })
+					? StepsSpan.First(static step => step is not HiddenSingleStep { House: < 9 })
 					// Otherwise, an deletion step should be chosen. There're two cases:
 					//    1) If the first step is a single, just return it as the diamond difficulty.
 					//    2) If the first step is not a single, find for the first step that is a single,
 					//       and check the maximum difficulty rating of the span of steps
 					//       between the first step and the first single step.
-					: Array.FindIndex(InterimSteps, @delegate.Not<Step>(stepFilter)) is var a
-						? Array.FindIndex(InterimSteps, stepFilter) is var b and not 0
-							? InterimSteps.AsReadOnlySpan()[a..b].MaxBy(difficultySelector)
-							: InterimSteps[0]
+					: StepsSpan.FirstIndex(static s => !stepFilter(s)) is var a
+						? StepsSpan.FirstIndex(stepFilter) is var b and not 0
+							? StepsSpan[a..b].MaxBy(difficultySelector)
+							: StepsSpan[0]
 						: null
 				// No diamond step exist in all steps are hidden singles in block.
 				: null;
@@ -354,13 +356,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates the diamond step.
 	/// </summary>
-	public Step? DiamondStep => IsSolved ? InterimSteps[0] : null;
-
-	/// <summary>
-	/// Indicates all solving steps that the solver has recorded.
-	/// </summary>
-	/// <seealso cref="InterimGrids"/>
-	public Step[]? InterimSteps { get; init; }
+	public Step? DiamondStep => IsSolved ? StepsSpan[0] : null;
 
 	/// <summary>
 	/// Indicates the techniques used during the solving operation.
@@ -378,6 +374,18 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <seealso cref="FailedReason.ExceptionThrown"/>
 	/// <seealso cref="FailedReason.WrongStep"/>
 	public Exception? UnhandledException { get; init; }
+
+	/// <summary>
+	/// Indicates a list, whose element is the intermediate grid for each step.
+	/// </summary>
+	/// <seealso cref="InterimSteps"/>
+	internal Grid[]? InterimGrids { get; init; }
+
+	/// <summary>
+	/// Indicates all solving steps that the solver has recorded.
+	/// </summary>
+	/// <seealso cref="InterimGrids"/>
+	internal Step[]? InterimSteps { get; init; }
 
 
 	/// <inheritdoc/>
@@ -497,7 +505,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
-				InterimSteps: var steps,
+				StepsSpan: var steps,
 				MemoryUsed: var memoryUsed
 			})
 		{
@@ -515,7 +523,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		}
 
 		// Print solving steps (if worth).
-		if (f(FormattingOptions.ShowSteps) && steps is not null)
+		if (f(FormattingOptions.ShowSteps) && steps.Length != 0)
 		{
 			sb.AppendLine(SR.Get("AnalysisResultSolvingSteps", culture));
 
@@ -566,7 +574,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 		}
 
 		// Print solving step statistics (if worth).
-		if (steps is not null)
+		if (steps.Length != 0)
 		{
 			var stepsCount = steps.Length;
 
@@ -579,10 +587,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 				sb.Append(SR.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
-			foreach (ref readonly var solvingStepsGroup in
-				from s in steps.AsReadOnlySpan()
-				orderby s.Difficulty
-				group s by s.GetName(formatProvider))
+			foreach (ref readonly var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.GetName(formatProvider))
 			{
 				if (f(FormattingOptions.ShowStepDetail))
 				{
@@ -659,7 +664,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 		(int, Step)? getBottleneck()
 		{
-			if (this is not { IsSolved: true, InterimSteps: { Length: var stepsCount } steps })
+			if (this is not { IsSolved: true, StepsSpan: { Length: var stepsCount and not 0 } steps })
 			{
 				return null;
 			}
@@ -686,7 +691,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	public AnonymousSpanEnumerator<Step> GetEnumerator() => new(StepsSpan);
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<AnalysisResult, Step>.Any() => InterimSteps is { Length: not 0 };
+	bool IAnyAllMethod<AnalysisResult, Step>.Any() => StepsSpan.Length != 0;
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<AnalysisResult, Step>.Any(Func<Step, bool> predicate) => this.Any(predicate);
@@ -743,15 +748,17 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// </summary>
 	/// <param name="steps">The steps to be calculated.</param>
 	/// <param name="executor">The execute method.</param>
-	/// <param name="d">
-	/// The default value as the return value when <see cref="Steps"/> is <see langword="null"/> or empty.
-	/// </param>
+	/// <param name="defaultRating">The default value as the return value when <see cref="StepsSpan"/> is empty.</param>
 	/// <returns>The result.</returns>
-	/// <seealso cref="Steps"/>
+	/// <seealso cref="StepsSpan"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static unsafe int EvaluateRatingUnsafe(Step[]? steps, delegate*<Step[], delegate*<Step, int>, int> executor, int d)
+	private static unsafe int EvaluateRatingUnsafe(
+		ReadOnlySpan<Step> steps,
+		delegate*<ReadOnlySpan<Step>, delegate*<Step, int>, int> executor,
+		int defaultRating
+	)
 	{
-		return steps is null ? d : executor(steps, &difficultySelector);
+		return steps.IsEmpty ? defaultRating : executor(steps, &difficultySelector);
 
 
 		static int difficultySelector(Step step) => step.Difficulty;

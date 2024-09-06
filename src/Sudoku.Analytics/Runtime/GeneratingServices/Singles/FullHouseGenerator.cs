@@ -41,8 +41,12 @@ public sealed class FullHouseGenerator : SingleGenerator
 			// Fix the grid and check validity.
 			grid.Fix();
 			if (grid.GetIsValid()
-				&& Analyzer.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken }) is { IsSolved: true, InterimSteps: var steps }
-				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
+				&& Analyzer.Analyze(new AnalyzerContext(in grid) { CancellationToken = cancellationToken }) is
+				{
+					IsSolved: true,
+					StepsSpan: var steps
+				}
+				&& ((SortedSet<Technique>)[.. from step in steps select step.Code]).Max == Technique.FullHouse)
 			{
 				result = grid.FixedGrid;
 				return true;
@@ -121,9 +125,9 @@ public sealed class FullHouseGenerator : SingleGenerator
 					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
 					return false;
 				}
-				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
+				case { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps }:
 				{
-					foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
+					foreach (var (currentGrid, s) in StepMarshal.Combine(grids, steps))
 					{
 						if (s is not FullHouseStep { House: var house })
 						{

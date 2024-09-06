@@ -3326,6 +3326,28 @@
             </summary>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.FirstIndex``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Finds the first element satisfying the specified condition, and return its corresponding index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The sequence.</param>
+            <param name="predicate">The condition.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> indicating the found element. -1 returns if the sequence has no element satisfying the condition.
+            </returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.LastIndex``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Finds the last element satisfying the specified condition, and return its corresponding index.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The sequence.</param>
+            <param name="predicate">The condition.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> indicating the found element. -1 returns if the sequence has no element satisfying the condition.
+            </returns>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Min``1(System.ReadOnlySpan{``0})">
             <summary>
             Try to get the minimal value appeared in the collection.
@@ -3414,6 +3436,9 @@
         <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.MaxUnsafe``2(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Sum``1(System.ReadOnlySpan{``0})">
             <summary>
             Totals up all elements, and return the result of the sum by the specified property calculated from each element.
@@ -3451,6 +3476,9 @@
             </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the sum key in the sequence.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.SumUnsafe``2(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Count``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>

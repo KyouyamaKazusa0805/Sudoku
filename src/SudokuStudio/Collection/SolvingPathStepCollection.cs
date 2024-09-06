@@ -13,13 +13,18 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 	/// <returns>An instance of the current type.</returns>
 	public static IEnumerable<SolvingPathStepBindableSource> Create(AnalysisResult analysisResult, StepTooltipDisplayItems displayItems)
 	{
-		var (steps, grids) = analysisResult switch
+		ReadOnlySpan<Step> steps = [];
+		ReadOnlySpan<Grid> grids = [];
+		switch (analysisResult)
 		{
-			{ IsSolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
-			{ IsPartiallySolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
-			_ => (null, null)
-		};
-		if ((steps, grids) is not (not null, not null))
+			case ({ IsSolved: true } or { IsPartiallySolved: true }) and { StepsSpan: var s, GridsSpan: var g }:
+			{
+				steps = s;
+				grids = g;
+				break;
+			}
+		}
+		if (steps.Length == 0 || grids.Length == 0)
 		{
 			yield break;
 		}

@@ -45,12 +45,12 @@
         <member name="P:Sudoku.Analytics.AnalysisResult.IsPartiallySolved">
             <summary>
             Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>.
-            If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/> and <see cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
-            won't be <see langword="null"/>.
+            If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/> and <see cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
+            won't be empty.
             </summary>
             <seealso cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.IsPearl">
             <summary>
@@ -124,11 +124,12 @@
             </summary>
             <remarks>
             When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
-            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>.
+            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded
+            in <see cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>.
             However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.PearlDifficulty">
             <summary>
@@ -175,12 +176,6 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.ElapsedTime">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.InterimGrids">
-            <summary>
-            Indicates a list, whose element is the intermediate grid for each step.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.GridsSpan">
             <summary>
@@ -259,12 +254,6 @@
             Indicates the diamond step.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.InterimSteps">
-            <summary>
-            Indicates all solving steps that the solver has recorded.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
-        </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.TechniquesUsed">
             <summary>
             Indicates the techniques used during the solving operation.
@@ -281,6 +270,18 @@
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
             <seealso cref="F:Sudoku.Analytics.FailedReason.ExceptionThrown"/>
             <seealso cref="F:Sudoku.Analytics.FailedReason.WrongStep"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.InterimGrids">
+            <summary>
+            Indicates a list, whose element is the intermediate grid for each step.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.InterimSteps">
+            <summary>
+            Indicates all solving steps that the solver has recorded.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.Equals(Sudoku.Analytics.AnalysisResult)">
             <inheritdoc/>
@@ -422,17 +423,15 @@
             <returns>The output string.</returns>
             <seealso cref="P:System.Console.Out"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
+        <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(System.ReadOnlySpan{Sudoku.Analytics.Step},,System.Int32)">
             <summary>
             The inner executor to get the difficulty value (total, average).
             </summary>
             <param name="steps">The steps to be calculated.</param>
             <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
-            </param>
+            <param name="defaultRating">The default value as the return value when <see cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/> is empty.</param>
             <returns>The result.</returns>
-            <seealso cref="N:Sudoku.Analytics.Steps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalysisResult.FormattingOptions">
             <summary>

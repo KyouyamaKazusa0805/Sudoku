@@ -83,14 +83,14 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,
-				InterimSteps: { Length: var stepsCount } steps,
-				InterimGrids: var stepGrids
+				StepsSpan: { Length: var stepsCount } steps,
+				GridsSpan: var stepGrids
 			})
 		{
 			return false;
 		}
 
-		var maximum = new SortedSet<SingleTechniqueFlag>(from step in steps select step.Code.GetSingleTechnique()).Max;
+		var maximum = ((SortedSet<SingleTechniqueFlag>)[.. from step in steps select step.Code.GetSingleTechnique()]).Max;
 		if (maximum > LimitedSingle)
 		{
 			// The puzzle will use advanced techniques.

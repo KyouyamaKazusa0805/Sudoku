@@ -60,7 +60,7 @@ public static class AnalysisResultEnumerable
 	/// <returns>An array of <see cref="Step"/> instances.</returns>
 	public static ReadOnlySpan<Step> Where(this AnalysisResult @this, Func<Step, bool> condition)
 	{
-		if (@this.InterimSteps is not { Length: var stepsCount } steps)
+		if (@this.StepsSpan is not { Length: var stepsCount and not 0 } steps)
 		{
 			return [];
 		}
@@ -87,7 +87,7 @@ public static class AnalysisResultEnumerable
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
 	public static ReadOnlySpan<TResult> Select<TResult>(this AnalysisResult @this, Func<Step, TResult> selector)
 	{
-		if (@this.InterimSteps is not { Length: var stepsCount } steps)
+		if (@this.StepsSpan is not { Length: var stepsCount and not 0 } steps)
 		{
 			return [];
 		}
@@ -109,7 +109,7 @@ public static class AnalysisResultEnumerable
 	/// <returns>An array of <typeparamref name="TStep"/> instances.</returns>
 	public static ReadOnlySpan<TStep> OfType<TStep>(this AnalysisResult @this) where TStep : Step
 	{
-		if (@this.InterimSteps is not { Length: var stepsCount } steps)
+		if (@this.StepsSpan is not { Length: var stepsCount and not 0 } steps)
 		{
 			return [];
 		}

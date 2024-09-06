@@ -7,6 +7,48 @@ namespace System.Linq;
 public static class SpanEnumerable
 {
 	/// <summary>
+	/// Finds the first element satisfying the specified condition, and return its corresponding index.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The sequence.</param>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>
+	/// An <see cref="int"/> indicating the found element. -1 returns if the sequence has no element satisfying the condition.
+	/// </returns>
+	public static int FirstIndex<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		for (var i = 0; i < @this.Length; i++)
+		{
+			if (predicate(@this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// Finds the last element satisfying the specified condition, and return its corresponding index.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The sequence.</param>
+	/// <param name="predicate">The condition.</param>
+	/// <returns>
+	/// An <see cref="int"/> indicating the found element. -1 returns if the sequence has no element satisfying the condition.
+	/// </returns>
+	public static int LastIndex<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		for (var i = @this.Length - 1; i >= 0; i--)
+		{
+			if (predicate(@this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
 	/// Try to get the minimal value appeared in the collection.
 	/// </summary>
 	/// <typeparam name="TNumber">The type of each element.</typeparam>
@@ -162,6 +204,22 @@ public static class SpanEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="ArrayEnumerable.Max{T, TInterim}(T[], Func{T, TInterim})"/>
+	public static unsafe TInterim MaxUnsafe<T, TInterim>(this ReadOnlySpan<T> @this, delegate*<T, TInterim> selector)
+		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
+	{
+		var result = TInterim.MinValue;
+		foreach (var element in @this)
+		{
+			var elementCasted = selector(element);
+			if (elementCasted >= result)
+			{
+				result = elementCasted;
+			}
+		}
+		return result;
+	}
+
 	/// <summary>
 	/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.
 	/// </summary>
@@ -199,6 +257,18 @@ public static class SpanEnumerable
 		foreach (ref readonly var element in @this)
 		{
 			result += keySelector(in element);
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="ArrayEnumerable.Sum{T, TResult}(T[], Func{T, TResult})"/>
+	public static unsafe TResult SumUnsafe<T, TResult>(this ReadOnlySpan<T> source, delegate*<T, TResult> selector)
+		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
+	{
+		var result = TResult.AdditiveIdentity;
+		foreach (var element in source)
+		{
+			result += selector(element);
 		}
 		return result;
 	}

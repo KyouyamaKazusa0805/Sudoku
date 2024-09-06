@@ -95,9 +95,9 @@ public sealed class NakedSingleGenerator : SingleGenerator
 					(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
 					return false;
 				}
-				case { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps }:
+				case { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps }:
 				{
-					foreach (var (currentGrid, s) in StepMarshal.Combine(interimGrids, interimSteps))
+					foreach (var (currentGrid, s) in StepMarshal.Combine(grids, steps))
 					{
 						if (s is not NakedSingleStep { Cell: var cell, Digit: var digit })
 						{

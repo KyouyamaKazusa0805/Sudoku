@@ -383,7 +383,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
 				var analysisResult = analyzer.Analyze(in grid);
-				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })
 				{
 					return;
 				}
@@ -406,7 +406,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 
-				foreach (var (g, s) in StepMarshal.Combine(interimGrids, interimSteps))
+				foreach (var (g, s) in StepMarshal.Combine(grids, steps))
 				{
 					if (techniques.Contains(s.Code))
 					{
@@ -452,7 +452,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
 				var analysisResult = analyzer.Analyze(in grid);
-				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+				if (analysisResult is not { IsSolved: true, GridsSpan: var grids, StepsSpan: var steps })
 				{
 					return;
 				}
@@ -475,7 +475,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 
-				foreach (var (g, s) in StepMarshal.Combine(interimGrids, interimSteps))
+				foreach (var (g, s) in StepMarshal.Combine(grids, steps))
 				{
 					if (techniques.Contains(s.Code))
 					{
