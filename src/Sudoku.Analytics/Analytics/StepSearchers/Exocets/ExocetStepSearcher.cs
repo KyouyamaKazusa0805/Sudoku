@@ -4767,4 +4767,26 @@ file static class Extensions
 		}
 		return false;
 	}
+
+	/// <summary>
+	/// Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
+	/// </summary>
+	/// <param name="this">The target cells to be split.</param>
+	/// <param name="houses">The mask value holding a list of houses to be matched.</param>
+	/// <returns>
+	/// A list of <see cref="CellMap"/> grouped, representing as a <see cref="TargetCellsGroup"/>.
+	/// </returns>
+	/// <seealso cref="TargetCellsGroup"/>
+	public static ReadOnlySpan<TargetCellsGroup> GroupTargets(this ref readonly CellMap @this, HouseMask houses)
+	{
+		var (result, i) = (new TargetCellsGroup[HouseMask.PopCount(houses)], 0);
+		foreach (var house in houses)
+		{
+			if ((@this & HousesMap[house]) is var map and not [])
+			{
+				result[i++] = new(house, in map);
+			}
+		}
+		return result.AsReadOnlySpan()[..i];
+	}
 }

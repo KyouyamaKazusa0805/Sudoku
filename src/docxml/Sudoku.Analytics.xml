@@ -9549,6 +9549,17 @@
             <param name="limitCount">The number of times that the digit can be filled with the specified cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.Extensions.GroupTargets(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
+            </summary>
+            <param name="this">The target cells to be split.</param>
+            <param name="houses">The mask value holding a list of houses to be matched.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped, representing as a <see cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher">
             <summary>
             Provides with a <b>Complex Fish</b> step searcher.
@@ -21028,23 +21039,6 @@
             <summary>
             The generated field declaration for parameter <c>mask</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.CellMapExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMapExtensions.GroupTargets(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
-            </summary>
-            <param name="this">The target cells to be split.</param>
-            <param name="houses">The mask value holding a list of houses to be matched.</param>
-            <returns>
-            A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped, representing as a <see cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>.
-            </returns>
-            <seealso cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>
         </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
