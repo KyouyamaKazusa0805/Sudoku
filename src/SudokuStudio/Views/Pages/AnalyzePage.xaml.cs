@@ -823,7 +823,7 @@ public sealed partial class AnalyzePage : Page
 						new AnalyzerContext(in puzzle)
 						{
 							CancellationToken = cts.Token,
-							ProgressReporter = new Progress<AnalyzerOrCollectorProgressPresenter>(
+							ProgressReporter = new Progress<StepGathererProgressPresenter>(
 								progress => DispatcherQueue.TryEnqueue(
 									() =>
 									{

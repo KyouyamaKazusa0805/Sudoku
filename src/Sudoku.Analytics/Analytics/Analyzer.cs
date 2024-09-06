@@ -244,7 +244,7 @@ public sealed partial class Analyzer : AnalyzerBase
 			SymmetricType symmetricType,
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
-			IProgress<AnalyzerOrCollectorProgressPresenter>? progress,
+			IProgress<StepGathererProgressPresenter>? progress,
 			long gcSnapshot1,
 			CancellationToken cancellationToken
 		)
@@ -253,18 +253,14 @@ public sealed partial class Analyzer : AnalyzerBase
 			var (totalCandidatesCount, stepSearchers) = (playground.CandidatesCount, ResultStepSearchers);
 			var (collectedSteps, stepGrids) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity));
 			var timestampOriginal = Stopwatch.GetTimestamp();
-			var accumulator = IsFullApplying
-				|| RandomizedChoosing
-				|| Options.PrimarySingle != SingleTechniqueFlag.None
+			var accumulator = IsFullApplying || RandomizedChoosing || Options.PrimarySingle != SingleTechniqueFlag.None
 				? []
 				: default(List<Step>);
 			var context = new StepAnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
 				Options = Options,
-				OnlyFindOne = !IsFullApplying
-					&& !RandomizedChoosing
-					&& Options.PrimarySingle == SingleTechniqueFlag.None
+				OnlyFindOne = !IsFullApplying && !RandomizedChoosing && Options.PrimarySingle == SingleTechniqueFlag.None
 			};
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.

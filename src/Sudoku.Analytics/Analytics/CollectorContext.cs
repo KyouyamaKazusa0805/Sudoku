@@ -19,7 +19,7 @@ public readonly ref partial struct CollectorContext(
 	/// <summary>
 	/// An <see cref="IProgress{T}"/> instance that is used for reporting the state.
 	/// </summary>
-	public IProgress<AnalyzerOrCollectorProgressPresenter>? ProgressReporter { get; init; }
+	public IProgress<StepGathererProgressPresenter>? ProgressReporter { get; init; }
 
 	/// <inheritdoc/>
 	ref readonly Grid IContext.Grid => ref Puzzle;

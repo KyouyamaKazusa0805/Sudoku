@@ -716,32 +716,6 @@
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter">
-            <summary>
-            Represents a progress used by <see cref="T:Sudoku.Analytics.IAnalyzer`3"/>
-            and <see cref="T:Sudoku.Analytics.ICollector`3"/> instances.
-            </summary>
-            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
-            <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
-            <seealso cref="M:Sudoku.Analytics.ICollector`3.Collect(`1@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.#ctor(System.String,System.Double)">
-            <summary>
-            Represents a progress used by <see cref="T:Sudoku.Analytics.IAnalyzer`3"/>
-            and <see cref="T:Sudoku.Analytics.ICollector`3"/> instances.
-            </summary>
-            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
-            <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`3.Analyze(`1@)"/>
-            <seealso cref="M:Sudoku.Analytics.ICollector`3.Collect(`1@)"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.StepSearcherName">
-            <summary>Indicates the currently used step searcher.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerOrCollectorProgressPresenter.Percent">
-            <summary>The percent value.</summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.MissingDifficultyLevelException">
             <summary>
             Represents an exception that describes for a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for difficulty level attribute.
@@ -6823,6 +6797,28 @@
         </member>
         <member name="M:Sudoku.Analytics.StepAnalysisContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepGathererProgressPresenter">
+            <summary>
+            Represents a progress used by <see cref="T:Sudoku.Analytics.IStepGatherer`3"/> instances.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="T:Sudoku.Analytics.IStepGatherer`3"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepGathererProgressPresenter.#ctor(System.String,System.Double)">
+            <summary>
+            Represents a progress used by <see cref="T:Sudoku.Analytics.IStepGatherer`3"/> instances.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="T:Sudoku.Analytics.IStepGatherer`3"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepGathererProgressPresenter.StepSearcherName">
+            <summary>Indicates the currently used step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepGathererProgressPresenter.Percent">
+            <summary>The percent value.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepMarshal">
             <summary>
