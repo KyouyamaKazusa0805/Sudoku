@@ -20490,6 +20490,11 @@
             Represents hidden quad.
             </summary>
         </member>
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.RemotePair">
+            <summary>
+            Represents remote pair.
+            </summary>
+        </member>
         <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGrave">
             <summary>
             Represents bi-value universal grave.

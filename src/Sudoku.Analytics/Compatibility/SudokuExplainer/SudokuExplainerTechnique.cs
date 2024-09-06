@@ -131,6 +131,11 @@ public enum SudokuExplainerTechnique
 	HiddenQuad,
 
 	/// <summary>
+	/// Represents remote pair.
+	/// </summary>
+	RemotePair,
+
+	/// <summary>
 	/// Represents bi-value universal grave.
 	/// </summary>
 	BivalueUniversalGrave,

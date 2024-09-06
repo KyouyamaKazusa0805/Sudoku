@@ -4818,6 +4818,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates remote pair.
 	/// </summary>
+	[SudokuExplainer(RatingAdvanced = [5.0], Technique = SudokuExplainerTechnique.RemotePair)]
 	[Hodoku(Rating = 110, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0703")]
 	[TechniqueMetadata(
 		Rating = 50,
