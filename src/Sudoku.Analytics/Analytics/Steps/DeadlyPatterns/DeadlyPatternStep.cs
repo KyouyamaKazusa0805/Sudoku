@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 public abstract class DeadlyPatternStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
-	IndirectStep(conclusions, views, options)
+	FullMarkStep(conclusions, views, options)
 {
 	/// <summary>
 	/// Indicates whether the deadly pattern only uses bi-value cells.

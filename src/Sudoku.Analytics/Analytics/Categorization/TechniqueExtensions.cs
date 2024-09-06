@@ -283,7 +283,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static PencilmarkVisibility GetSupportedPencilmarkVisibilityModes(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PencilmarkVisibility
-		?? PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
+		?? PencilmarkVisibilities.All;
 
 	/// <summary>
 	/// Try to get suitable <see cref="Type"/> which refers to a <see cref="Step"/> type,

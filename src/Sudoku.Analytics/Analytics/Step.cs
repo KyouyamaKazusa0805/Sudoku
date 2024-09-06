@@ -122,6 +122,11 @@ public abstract partial class Step(
 			: throw new InvalidOperationException(SR.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
 
 	/// <summary>
+	/// Represents a type that describes which mode this step can be created in a puzzle grid.
+	/// </summary>
+	public abstract PencilmarkVisibility PencilmarkType { get; }
+
+	/// <summary>
 	/// Indicates all interpolations used by description information to the current step, stored in resource dictionary.
 	/// </summary>
 	public virtual InterpolationArray Interpolations => [];

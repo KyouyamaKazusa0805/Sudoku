@@ -57,11 +57,11 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, D
 
 	/// <summary>
 	/// Indicates the mode that the current technique can be used by solving a puzzle.
-	/// By default the value is both <see cref="PencilmarkVisibility.Direct"/> and <see cref="PencilmarkVisibility.Indirect"/>.
+	/// By default the value is both <see cref="PencilmarkVisibility.Direct"/> and <see cref="PencilmarkVisibility.FullMark"/>.
 	/// </summary>
 	/// <seealso cref="PencilmarkVisibility.Direct"/>
-	/// <seealso cref="PencilmarkVisibility.Indirect"/>
-	public PencilmarkVisibility PencilmarkVisibility { get; init; } = PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
+	/// <seealso cref="PencilmarkVisibility.FullMark"/>
+	public PencilmarkVisibility PencilmarkVisibility { get; init; } = PencilmarkVisibility.Direct | PencilmarkVisibility.FullMark;
 
 	/// <summary>
 	/// Indicates the customized related technique that the current technique is applied.

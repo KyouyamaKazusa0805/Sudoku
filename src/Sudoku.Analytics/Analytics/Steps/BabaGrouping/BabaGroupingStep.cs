@@ -7,4 +7,4 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
 /// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
 public abstract class BabaGroupingStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
-	Step(conclusions, views, options);
+	FullMarkStep(conclusions, views, options);

@@ -20,7 +20,7 @@ public abstract partial class ExocetStep(
 	[PrimaryConstructorParameter] ref readonly CellMap targetCells,
 	[PrimaryConstructorParameter] ref readonly CellMap endoTargetCells,
 	[PrimaryConstructorParameter] ref readonly CellMap crosslineCells
-) : IndirectStep(conclusions, views, options)
+) : FullMarkStep(conclusions, views, options)
 {
 	/// <summary>
 	/// <para>Indicates the delta value of the pattern.</para>
