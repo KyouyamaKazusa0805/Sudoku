@@ -397,21 +397,10 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	TSelf IInfiniteSet<TSelf, TElement>.ExceptWith(TSelf other) => (TSelf)this & ~other;
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => this.AsEnumerable().GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => Offsets.GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
-	{
-		if (Offsets.Length == 0)
-		{
-			yield break;
-		}
-
-		foreach (var element in Offsets)
-		{
-			yield return element;
-		}
-	}
+	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => Offsets.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<TElement[]> IGetSubsetMethod<TSelf, TElement>.GetSubsets(int subsetSize)
