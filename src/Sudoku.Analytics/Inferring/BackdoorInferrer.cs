@@ -5,6 +5,13 @@ namespace Sudoku.Inferring;
 /// </summary>
 public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 {
+	/// <summary>
+	/// Hides the constructor of this type.
+	/// </summary>
+	[Obsolete("Don't instantiate this type.", true)]
+	private BackdoorInferrer() => throw new NotSupportedException();
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool TryInfer(ref readonly Grid grid, out BackdoorInferredResult result)

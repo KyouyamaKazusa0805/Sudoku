@@ -23537,6 +23537,11 @@
             Defines a backdoor searcher.
             </summary>
         </member>
+        <member name="M:Sudoku.Inferring.BackdoorInferrer.#ctor">
+            <summary>
+            Hides the constructor of this type.
+            </summary>
+        </member>
         <member name="M:Sudoku.Inferring.BackdoorInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.BackdoorInferredResult@)">
             <inheritdoc/>
         </member>
