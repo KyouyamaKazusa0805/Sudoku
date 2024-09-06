@@ -104,7 +104,7 @@ public sealed record RxCyConverter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = (CellMap)([.. from candidate in digitGroup select candidate / 9]);
+				CellMap cells = [.. from candidate in digitGroup select candidate / 9];
 				if (MakeDigitBeforeCell)
 				{
 					sb.Append(digitGroup.Key + 1);

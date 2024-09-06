@@ -363,7 +363,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 		var result = new View[viewNodes.Length];
 		for (var i = 0; i < viewNodes.Length; i++)
 		{
-			var elimMap = (CandidateMap)([.. from conclusion in newConclusions select conclusion.Candidate]);
+			CandidateMap elimMap = [.. from conclusion in newConclusions select conclusion.Candidate];
 			result[i] = [
 				..
 				from node in viewNodes[i]

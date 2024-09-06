@@ -16,8 +16,8 @@ public sealed partial class HouseBlossomBranchCollection :
 			return false;
 		}
 
-		var thisCells = (CellMap)([.. Keys]);
-		var otherCells = (CellMap)([.. other.Keys]);
+		CellMap thisCells = [.. Keys];
+		CellMap otherCells = [.. other.Keys];
 		if (thisCells != otherCells)
 		{
 			return false;

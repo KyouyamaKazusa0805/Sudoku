@@ -79,10 +79,10 @@ internal static class ChainModule
 	)
 	{
 		ref readonly var grid = ref context.Grid;
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		InitializeLinks(
 			in grid,
-			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
-				.Aggregate(@delegate.EnumFlagMerger),
+			linkTypes.Aggregate(@delegate.EnumFlagMerger),
 			context.Options,
 			out var supportedRules
 		);

@@ -358,7 +358,7 @@ public sealed partial class TechniqueSet() :
 	/// <inheritdoc/>
 	void ISet<Technique>.SymmetricExceptWith(IEnumerable<Technique> other)
 	{
-		var otherSet = (TechniqueSet)([.. other]);
+		TechniqueSet otherSet = [.. other];
 
 		Clear();
 		foreach (var technique in (this & ~otherSet) | (otherSet & ~this))
@@ -397,14 +397,14 @@ public sealed partial class TechniqueSet() :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other)
 	{
-		var otherSet = (TechniqueSet)([.. other]);
+		TechniqueSet otherSet = [.. other];
 		return (otherSet & this) == this && this != otherSet;
 	}
 
 	/// <inheritdoc/>
 	bool IReadOnlySet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other)
 	{
-		var otherSet = (TechniqueSet)([.. other]);
+		TechniqueSet otherSet = [.. other];
 		return (this & otherSet) == otherSet && this != otherSet;
 	}
 
@@ -414,7 +414,7 @@ public sealed partial class TechniqueSet() :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Technique>.IsSupersetOf(IEnumerable<Technique> other)
 	{
-		var otherSet = (TechniqueSet)([.. other]);
+		TechniqueSet otherSet = [.. other];
 		return (this & otherSet) == otherSet;
 	}
 

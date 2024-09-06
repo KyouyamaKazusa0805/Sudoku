@@ -364,7 +364,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	void ISet<Conclusion>.SymmetricExceptWith(IEnumerable<Conclusion> other)
 	{
-		var p = (ConclusionSet)([.. other]);
+		ConclusionSet p = [.. other];
 		Replace(this & ~p | p & ~this);
 	}
 
@@ -404,14 +404,14 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Conclusion>.IsProperSubsetOf(IEnumerable<Conclusion> other)
 	{
-		var p = (ConclusionSet)([.. other]);
+		ConclusionSet p = [.. other];
 		return (p & this) == this && p != this;
 	}
 
 	/// <inheritdoc/>
 	bool IReadOnlySet<Conclusion>.IsProperSupersetOf(IEnumerable<Conclusion> other)
 	{
-		var p = (ConclusionSet)([.. other]);
+		ConclusionSet p = [.. other];
 		return (this & p) == p && p != this;
 	}
 
@@ -421,7 +421,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Conclusion>.IsSupersetOf(IEnumerable<Conclusion> other)
 	{
-		var p = (ConclusionSet)([.. other]);
+		ConclusionSet p = [.. other];
 		return (this & p) == p;
 	}
 

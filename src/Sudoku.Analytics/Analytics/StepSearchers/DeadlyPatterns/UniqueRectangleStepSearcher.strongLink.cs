@@ -35,7 +35,7 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var digits = (ReadOnlySpan<Digit>)([d1, d2]);
+		ReadOnlySpan<Digit> digits = [d1, d2];
 		foreach (var cell in (corner1, corner2))
 		{
 			foreach (var otherCell in otherCellsMap)
@@ -484,8 +484,8 @@ public partial class UniqueRectangleStepSearcher
 		var adjacentCellsMap = otherCellsMap - abzCell;
 		var abxCell = adjacentCellsMap[0];
 		var abyCell = adjacentCellsMap[1];
-		var digitPairs = (ReadOnlySpan<(Digit, Digit)>)([(d1, d2), (d2, d1)]);
-		var digits = (ReadOnlySpan<Digit>)([d1, d2]);
+		ReadOnlySpan<(Digit, Digit)> digitPairs = [(d1, d2), (d2, d1)];
+		ReadOnlySpan<Digit> digits = [d1, d2];
 		foreach (var (begin, end) in ((abxCell, abyCell), (abyCell, abxCell)))
 		{
 			var linkMap = begin.AsCellMap() + abzCell;

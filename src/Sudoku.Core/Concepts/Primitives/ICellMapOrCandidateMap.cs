@@ -247,7 +247,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	bool ISet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = (TSelf)[];
+		TSelf otherCells = [];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -258,7 +258,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	bool ISet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = (TSelf)[];
+		TSelf otherCells = [];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -269,7 +269,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	bool ISet<TElement>.IsSubsetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = (TSelf)[];
+		TSelf otherCells = [];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -280,7 +280,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	bool ISet<TElement>.IsSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = (TSelf)[];
+		TSelf otherCells = [];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);

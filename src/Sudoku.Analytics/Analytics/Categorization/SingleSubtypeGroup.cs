@@ -45,7 +45,7 @@ public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(M
 	{
 		get
 		{
-			var result = (TechniqueSet)[];
+			TechniqueSet result = [];
 			foreach (var element in _values)
 			{
 				result.Add(element.GetRelatedTechnique());

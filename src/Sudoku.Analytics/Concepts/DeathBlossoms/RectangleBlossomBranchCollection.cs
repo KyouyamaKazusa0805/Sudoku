@@ -16,8 +16,8 @@ public sealed partial class RectangleBlossomBranchCollection :
 			return false;
 		}
 
-		var thisCandidates = (CandidateMap)([.. Keys]);
-		var otherCandidates = (CandidateMap)([.. other.Keys]);
+		CandidateMap thisCandidates = [.. Keys];
+		CandidateMap otherCandidates = [.. other.Keys];
 		if (thisCandidates != otherCandidates)
 		{
 			return false;

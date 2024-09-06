@@ -235,14 +235,14 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Cell>.IsProperSubsetOf(IEnumerable<Cell> other)
 	{
-		var map = (CellMap)([.. other]);
+		CellMap map = [.. other];
 		return _map != map && (map & _map) == _map;
 	}
 
 	/// <inheritdoc/>
 	bool IReadOnlySet<Cell>.IsProperSupersetOf(IEnumerable<Cell> other)
 	{
-		var map = (CellMap)([.. other]);
+		CellMap map = [.. other];
 		return _map != map && (_map & map) == map;
 	}
 
@@ -252,7 +252,7 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <inheritdoc/>
 	bool IReadOnlySet<Cell>.IsSupersetOf(IEnumerable<Cell> other)
 	{
-		var map = (CellMap)([.. other]);
+		CellMap map = [.. other];
 		return (_map & map) == map;
 	}
 
