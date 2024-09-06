@@ -38,17 +38,20 @@ This repository is created for the following users:
 
 This solution supports many kinds of human-friendly techniques. Here I will list them.
 
-* Singles
-  * Naked Single, Full House
-  * Hidden Single, Last Digit
-* Complex Singles
+* Directs
+  * Full House
+  * Last Digit
+  * Hidden Single (Crosshatching)
+  * Naked Single
+* Partial-mark Candidates
   * Direct Intersection
   * Direct Subset
-* Candidate-Related Techniques
-  * Locked Candidates Family
-    * LC (Locked Candidates)
-    * LoL (Law of Leftover)
-    * ALC (Almost Locked Candidates)
+  * Complex Singles
+* Full-mark Candidates
+  * Intersections
+    * Locked Candidates (*LC*)
+    * Law of Leftover (*LoL*)
+    * Almost Locked Candidates (*ALC*)
     * Firework Subsets (Hanabi)
   * Subsets
     * Naked Subsets
@@ -58,39 +61,44 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Hidden Subsets
       * Locked Hidden Subsets
       * Normal Hidden Subsets
-  * Fishes (including finned types)
+  * Fishes
     * Normal Fishes
-    * Complex Fishes (Franken, Mutant)
-  * Single-Digit Structures
-    * Two-Strong-Links (Non-grouped, Grouped)
+    * Complex Fishes
+      * Franken Fishes
+      * Mutant Fishes
+  * Single-Digit Patterns (*SDP*)
+    * Two Strong Links
+      * Skyscraper
+      * Two-String Kite
+      * Turbot Fish
     * Empty Rectangle
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing[^2]
-      * W-Wing (Non-grouped, Grouped, Multi-Branch)
-      * M/S/H/L-Wing (Non-grouped, Grouped)
-    * XYZ-Loops (Non-nice, Nice)
-  * Uniqueness
-    * UR (Unique Rectangle)
-    * UL (Unique Loop)
-    * XR (Extended Rectangle, fit & fat types)
+      * Woods-Wing (*W-Wing*)
+      * Medusa/Split/Hybrid/Local-Wing (*M/S/H/L-Wing*)
+    * XYZ-Loop
+  * Deadly Patterns
+    * Unique Rectangle (*UR*)
+    * Unique Loop (*UL*)
+    * Extended Rectangle (*XR*)
     * Borescoper's Deadly Pattern
     * Qiu's Deadly Pattern
-    * Unique Matrix
-    * BUG (Bivalue Universal Grave)
-    * Reverse BUG (Reverse Bivalue Universal Grave)
-    * Uniqueness Clue Cover (2-Digit)
+    * Unique Matrix (*UM*)
+    * Bi-value Universal Grave (*BUG*)
+    * Reverse Bi-value Universal Grave (*Reverse BUG*)
+    * Uniqueness Clue Cover (*UCC*)
   * Chains
     * Non-grouped Chains
-      * Alternating Inference Chains
-      * Continuous Nice Loops
+      * Alternating Inference Chains (*AIC*)
+      * Continuous Nice Loops (*CNL*)
     * Grouped Chains
-      * Grouped Alternating Inference Chains
-      * Grouped Continuous Nice Loops
+      * Grouped Alternating Inference Chains (*GAIC*)
+      * Grouped Continuous Nice Loops (*GCNL*)
       * Node Collision
     * Blossom logic
       * Blossom Loop
-    * Burred logic
+    * Finned logic
       * Finned Chain
       * Grouped Finned Chain
   * Baba Grouping
@@ -99,39 +107,42 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Complex Remote Pair
     * Unique Rectangle Baba Grouping
   * Almost Locked Sets
-    * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
-    * Extended Subset Principle
-    * Empty Rectangle Intersection Pair
+    * Chaining ALSes
+      * Almost Locked Sets XZ Rule (*ALS-XZ*)
+      * Almost Locked Sets XY-Wing (*ALS-XY-Wing*)
+      * Almost Locked Sets W-Wing (*ALS-W-Wing*)
+    * Extended Subset Principle (*ESP*)
+    * Empty Rectangle Intersection Pair (*ERIP*)
     * Death Blossom
-      * Cell Blooming
-      * House Blooming
-      * $\text{A}^n\text{LS}$ Blooming
   * Rank Logic
     * 0 Ranks
-      * SDC (Sue de Coq, Including basic type, isolated digit type and cannibalistic type)
-      * 3D SDC (3-Dimensional Sue de Coq)
-      * DL (Domino Loop)
-      * MSLS (Multi-Sector Locked Sets)
+      * Sue de Coq (SdC)
+      * 3-Dimensional Sue de Coq (3D SdC)
+      * Domino Loop
+      * Multi-sector Locked Sets
     * Negative Ranks
       * Guardian
       * Bi-value Oddagon
       * Chromatic Pattern (i.e. Tri-value Oddagon)
   * Exocets
-    * JE (Junior Exocet)
-    * SE (Senior Exocet)
-    * Double JE (Double Junior Exocet)
-    * WE (Weak Exocet)
+    * Junior Exocet (*JE*)
+    * Senior Exocet (*SE*)
+    * Double Junior Exocet (*Double JE*)
+    * Weak Exocet (*WE*)
     * Complex Exocet
+      * Complex Junior Exocet (*Complex JE*)
+      * Complex Senior Exocet (*Complex SE*)
   * Symmetrical Placements
-    * GSP (Gurth's Symmetrical Placements, Normal & Anti Type)
+    * Gurth's Symmetrical Placement (*GSP*)
+      * Standard Type
+      * Anti Type
   * Permutations
     * Aligned Exclusion
   * Last Resorts
     * Bowman's Bingo
-    * Computer Algorithms
-      * Pattern Overlay
-      * Templating
-      * Brute Force
+    * Pattern Overlay
+    * Templating
+    * Brute Force
 
 Some other techniques will be implemented later, such as baba grouping and chains. Today I use algorithm from Sudoku Explainer to implement, because I'm not good at writing chaining algorithms by myself.
 
