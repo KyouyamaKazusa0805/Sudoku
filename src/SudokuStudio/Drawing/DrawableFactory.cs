@@ -137,7 +137,7 @@ internal static partial class DrawableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(context, links.AsReadOnlySpan(), conclusions);
+		ForLinkNodes(context, links.AsReadOnlySpan(), view.OfType<CandidateViewNode>(), conclusions);
 		controlAddingActions.ForEach(static p => (p.Animating + p.Adding)());
 	}
 
@@ -158,7 +158,7 @@ internal static partial class DrawableFactory
 	private static partial void ForHouseNode(DrawingContext context, HouseViewNode houseNode);
 	private static partial void ForChuteNode(DrawingContext context, ChuteViewNode chuteNode);
 	private static partial void ForBabaGroupNode(DrawingContext context, BabaGroupViewNode babaGroupNode);
-	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, Conclusion[] conclusions);
+	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, Conclusion[] conclusions);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
