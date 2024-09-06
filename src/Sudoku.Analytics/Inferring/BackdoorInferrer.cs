@@ -16,14 +16,15 @@ public sealed class BackdoorInferrer : IInferrable<BackdoorInferredResult>
 		}
 
 		var sstsChecker = Analyzer.SstsOnly;
-		result = sstsChecker.Analyze(in grid).IsSolved && grid.GetSolutionGrid() is var solution
-			? new(
+		result = new(
+			sstsChecker.Analyze(in grid).IsSolved && grid.GetSolutionGrid() is var solution
+				?
 				from candidate in grid
 				let digit = solution.GetDigit(candidate / 9)
 				where digit != -1
 				select new Conclusion(digit == candidate % 9 ? Assignment : Elimination, candidate)
-			)
-			: new(g(in grid));
+				: g(in grid)
+		);
 		return true;
 
 
