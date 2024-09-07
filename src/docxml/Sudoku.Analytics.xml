@@ -31647,7 +31647,7 @@
             <param name="excluderInfo">The excluder information.</param>
             <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
+        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
             </summary>

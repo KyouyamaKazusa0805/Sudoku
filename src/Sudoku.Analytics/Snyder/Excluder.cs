@@ -76,17 +76,37 @@ public static class Excluder
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
-	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
 	{
-		(var (result, i), excluderHouses) = ((new IconViewNode[8], 0), new House[8]);
-		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
+		var (block, row, column) = (
+			HousesMap[cell.ToHouse(HouseType.Block)] & ~grid.EmptyCells,
+			HousesMap[cell.ToHouse(HouseType.Row)] & ~grid.EmptyCells,
+			HousesMap[cell.ToHouse(HouseType.Column)] & ~grid.EmptyCells
+		);
+		var (result, i) = (new IconViewNode[8], 0);
+		excluderHouses = new House[8];
+		var lastDigitsMask = (Mask)(Grid.MaxCandidatesMask & ~(1 << digit));
+		foreach (var tempCell in MathExtensions.Max(block.Count, row.Count, column.Count) switch
+		{
+			var z when z == block.Count => block,
+			var z when z == row.Count => row,
+			_ => column
+		})
+		{
+			var tempDigit = grid.GetDigit(tempCell);
+			result[i] = new CircleViewNode(ColorIdentifier.Normal, tempCell);
+			(cell.AsCellMap() + tempCell).InOneHouse(out Unsafe.AsRef(in excluderHouses[i]));
+			i++;
+			lastDigitsMask &= (Mask)~(1 << tempDigit);
+		}
+		foreach (var otherDigit in lastDigitsMask)
 		{
 			foreach (var otherCell in PeersMap[cell])
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i] = new CircleViewNode(ColorIdentifier.Normal, otherCell);
-					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
+					(cell.AsCellMap() + otherCell).InOneHouse(out Unsafe.AsRef(in excluderHouses[i]));
 					i++;
 					break;
 				}
