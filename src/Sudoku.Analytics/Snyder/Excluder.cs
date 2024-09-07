@@ -13,24 +13,9 @@ public static class Excluder
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
-	{
-		(var (result, i), excluderHouses) = ((CellMap.Empty, 0), new House[8]);
-		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & ~(1 << digit)))
-		{
-			foreach (var otherCell in PeersMap[cell])
-			{
-				if (grid.GetDigit(otherCell) == otherDigit)
-				{
-					result.Add(otherCell);
-					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
-					i++;
-					break;
-				}
-			}
-		}
-		return result;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
+		=> [.. from node in GetNakedSingleExcluders(in grid, cell, digit, out excluderHouses) select node.Cell];
 
 	/// <summary>
 	/// Try to create a list of <see cref="IconViewNode"/>s indicating the crosshatching base cells.

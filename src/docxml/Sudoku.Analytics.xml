@@ -31625,7 +31625,7 @@
             Represents a type that supports excluders marking inside a direct technique.
             </summary>
         </member>
-        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
+        <member name="M:Sudoku.Snyder.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
             </summary>
