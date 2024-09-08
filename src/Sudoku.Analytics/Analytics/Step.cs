@@ -182,7 +182,7 @@ public abstract partial class Step(
 	/// <remarks>
 	/// <para>
 	/// This method is used for filtering duplicate <see cref="Step"/> instances,
-	/// and you can customize the checking rule to compare instances by overridding this method.
+	/// and you can customize the checking rule to compare instances by overriding this method.
 	/// </para>
 	/// <para>
 	/// By default, the method only checks technique used (i.e. property <see cref="Code"/>)

@@ -5887,7 +5887,7 @@
             <remarks>
             <para>
             This method is used for filtering duplicate <see cref="T:Sudoku.Analytics.Step"/> instances,
-            and you can customize the checking rule to compare instances by overridding this method.
+            and you can customize the checking rule to compare instances by overriding this method.
             </para>
             <para>
             By default, the method only checks technique used (i.e. property <see cref="P:Sudoku.Analytics.Step.Code"/>)
