@@ -67,7 +67,7 @@ public sealed partial class ComplexFishStep(
 					? IsSiamese ? $"Siamese {finModifier} " : $"{finModifier} "
 					: string.Empty;
 				var shapeKindStr = shapeKind() is var shapeModifier and not FishShapeKind.Basic ? $"{shapeModifier} " : string.Empty;
-				return $"{finKindStr}{shapeKindStr}{TechniqueMarshal.GetFishEnglishName(Size)}";
+				return $"{finKindStr}{shapeKindStr}{TechniqueNaming.GetFishEnglishName(Size)}";
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]

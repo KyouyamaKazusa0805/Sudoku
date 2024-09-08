@@ -65,7 +65,8 @@ public sealed partial class RegularWingStep(
 	public int Size => Mask.PopCount(DigitsMask);
 
 	/// <inheritdoc/>
-	public override Technique Code => TechniqueMarshal.MakeRegularWingTechniqueCode(TechniqueMarshal.GetRegularWingEnglishName(Size, IsIncomplete));
+	public override Technique Code
+		=> TechniqueNaming.MakeRegularWingTechniqueCode(TechniqueNaming.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => DigitsMask;

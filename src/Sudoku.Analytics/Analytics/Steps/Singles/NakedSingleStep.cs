@@ -25,4 +25,27 @@ public sealed partial class NakedSingleStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.NakedSingle;
+
+
+	/// <inheritdoc/>
+	public override string GetName(IFormatProvider? formatProvider)
+	{
+		var baseName = base.GetName(formatProvider);
+		if (!Options.IsDirectMode)
+		{
+			return baseName;
+		}
+
+		var culture = Options.CurrentCulture;
+		var lastDigitsCountString = string.Format(
+			SR.Get("LastPrefix", culture),
+			TechniqueNaming.GetDigitCharacter(culture, Lasting - 1)
+		);
+		if (SR.IsChinese(culture))
+		{
+			var centerDot = SR.Get("_Token_CenterDot", culture);
+			return $"{baseName}{centerDot}{lastDigitsCountString}";
+		}
+		return $"{baseName} ({lastDigitsCountString})";
+	}
 }

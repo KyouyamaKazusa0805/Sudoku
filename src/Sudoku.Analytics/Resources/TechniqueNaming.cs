@@ -1,18 +1,33 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Resources;
 
 /// <summary>
-/// Represents a set of methods that operates with <see cref="Technique"/> enumeration.
+/// Represents the naming of techniques.
 /// </summary>
-/// <seealso cref="Technique"/>
-public static class TechniqueMarshal
+public static class TechniqueNaming
 {
+	/// <summary>
+	/// Indicates the digit characters.
+	/// </summary>
+	private static readonly string ChineseDigitCharacters = "\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341";
+
+
+	/// <summary>
+	/// Returns a character that represents the digit.
+	/// </summary>
+	/// <param name="culture">The culture.</param>
+	/// <param name="digit">The digit value.</param>
+	/// <returns>The character that represents the specified digit.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static char GetDigitCharacter(CultureInfo culture, Digit digit)
+		=> SR.IsChinese(culture) ? ChineseDigitCharacters[digit] : (char)(digit + '1');
+
 	/// <summary>
 	/// Try to get the real name for the specified size of subset.
 	/// </summary>
 	/// <param name="size">The number of cells used in a subset.</param>
 	/// <returns>The name of the subset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetSubsetName(int size) => SR.Get($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture);
+	public static string GetSubsetName(Digit size) => SR.Get($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture);
 
 	/// <summary>
 	/// Make the real name of the regular wing.
@@ -21,7 +36,7 @@ public static class TechniqueMarshal
 	/// <param name="isIncomplete">A <see cref="bool"/> value indicating whether the wing is incomplete.</param>
 	/// <returns>The real name of the regular wing.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> isn't between 3 and 9.</exception>
-	internal static string GetRegularWingEnglishName(int size, bool isIncomplete)
+	internal static string GetRegularWingEnglishName(Digit size, bool isIncomplete)
 		=> size switch
 		{
 			3 => isIncomplete ? "XY-Wing" : "XYZ-Wing",
@@ -43,7 +58,7 @@ public static class TechniqueMarshal
 	/// <param name="size">The size.</param>
 	/// <returns>The fish name.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="size"/> is 0.</exception>
-	internal static string GetFishEnglishName(int size)
+	internal static string GetFishEnglishName(Digit size)
 		=> size switch
 		{
 			0 => throw new ArgumentOutOfRangeException(nameof(size)),

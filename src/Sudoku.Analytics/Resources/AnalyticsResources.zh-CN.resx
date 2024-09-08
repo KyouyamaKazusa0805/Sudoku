@@ -3486,4 +3486,7 @@
   <data name="ConstraintDescription_TechniqueSetConstraint" xml:space="preserve">
     <value>限制题目解题必须只使用设定的技巧系列</value>
   </data>
+  <data name="LastPrefix" xml:space="preserve">
+    <value>{0}余</value>
+  </data>
 </root>

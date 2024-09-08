@@ -56,7 +56,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	private string TrueCandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 
-	private string SizeStr => TechniqueMarshal.GetSubsetName(Size);
+	private string SizeStr => TechniqueNaming.GetSubsetName(Size);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

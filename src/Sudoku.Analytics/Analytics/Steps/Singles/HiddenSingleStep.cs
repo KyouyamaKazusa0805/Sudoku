@@ -26,7 +26,7 @@ public partial class HiddenSingleStep(
 	Digit digit,
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
-	[PrimaryConstructorParameter] int lasting,
+	[PrimaryConstructorParameter] Cell lasting,
 	SingleSubtype subtype,
 	[PrimaryConstructorParameter] ExcluderInfo? excluderInfo
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
@@ -54,4 +54,27 @@ public partial class HiddenSingleStep(
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
+
+
+	/// <inheritdoc/>
+	public override string GetName(IFormatProvider? formatProvider)
+	{
+		var baseName = base.GetName(formatProvider);
+		if (!Options.IsDirectMode || Code is Technique.LastDigit or Technique.CrosshatchingBlock)
+		{
+			return baseName;
+		}
+
+		var culture = Options.CurrentCulture;
+		var lastDigitsCountString = string.Format(
+			SR.Get("LastPrefix", culture),
+			TechniqueNaming.GetDigitCharacter(culture, Lasting - 1)
+		);
+		if (SR.IsChinese(culture))
+		{
+			var centerDot = SR.Get("_Token_CenterDot", culture);
+			return $"{baseName}{centerDot}{lastDigitsCountString}";
+		}
+		return $"{baseName} ({lastDigitsCountString})";
+	}
 }
