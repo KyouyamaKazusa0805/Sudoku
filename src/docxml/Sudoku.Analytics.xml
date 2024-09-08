@@ -18143,7 +18143,7 @@
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="excluderInfo">
-            Indiactes the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
+            Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
             </param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Snyder.ExcluderInfo)">
@@ -18163,7 +18163,7 @@
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="excluderInfo">
-            Indiactes the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
+            Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">

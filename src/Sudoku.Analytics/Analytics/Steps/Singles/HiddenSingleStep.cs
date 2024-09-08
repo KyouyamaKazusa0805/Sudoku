@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
 /// <param name="excluderInfo">
-/// Indiactes the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
+/// Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
 /// </param>
 public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
