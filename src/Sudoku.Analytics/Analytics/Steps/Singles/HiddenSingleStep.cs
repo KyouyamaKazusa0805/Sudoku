@@ -78,4 +78,36 @@ public partial class HiddenSingleStep(
 		}
 		return $"{baseName} ({lastDigitsCountString})";
 	}
+
+	/// <inheritdoc/>
+	protected override int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	{
+		var (leftCode, rightCode) = (d(Code), d(other.Code));
+		if (leftCode.CompareTo(rightCode) is var codeComparisonResult and not 0)
+		{
+			return codeComparisonResult;
+		}
+
+		var culture = GetCulture(formatProvider);
+		if (SR.IsChinese(culture))
+		{
+			return base.NameCompareTo(other, formatProvider);
+		}
+
+		var leftName = GetName(formatProvider);
+		var rightName = other.GetName(formatProvider);
+		var leftDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(leftName).Value[0]);
+		var rightDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(rightName).Value[0]);
+		return leftDigit.CompareTo(rightDigit);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static Technique d(Technique @base)
+			=> @base switch
+			{
+				Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => Technique.HiddenSingleBlock,
+				Technique.CrosshatchingRow or Technique.HiddenSingleRow => Technique.HiddenSingleRow,
+				_ => Technique.HiddenSingleColumn
+			};
+	}
 }

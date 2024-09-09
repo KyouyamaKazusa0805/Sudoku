@@ -5965,17 +5965,20 @@
             </param>
             <returns>An <see cref="T:System.Int32"/> value indicating which one is logically larger.</returns>
             <remarks>
+            <para>
             Some techniques may not contain a correct order of comparison on its name.
             For example, in Chinese, digit characters <c>2</c> (i.e. "&#20108;") and <c>3</c> (i.e. "&#19977;")
             won't satisfy the comparison rule on the default order of their own Unicode value.
             <c>2</c> is for <c>U + 4e8c</c>, while <c>3</c> is for <c>U + 4e09</c>.
             In logic, <c>U + 4e8c</c> (2) has a larger Unicode value with <c>4e09</c> (3).
             However, in meaning of such text, <c>3</c> is greater than <c>2</c>. This method will handle on this case.
+            </para>
+            <para>By default, this method only checks for the Unicode order of two strings (default string comparison rule).</para>
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Step.GetCulture(System.IFormatProvider)">
             <summary>
-            Try to get the current culture used. The return value cannot be <see langword="null"/>.
+            Try to get the current culture used. The return value won't be <see langword="null"/>.
             </summary>
             <param name="formatProvider">
             The format provider instance.
@@ -18189,6 +18192,9 @@
         <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.NameCompareTo(Sudoku.Analytics.Step,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
@@ -18266,6 +18272,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.GetName(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.NameCompareTo(Sudoku.Analytics.Step,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting">
@@ -29051,6 +29060,18 @@
             Indicates the digit characters.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.TechniqueNaming.ChineseDigitsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[一二三四五六七八九十]</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [\u4E00\u4E03\u4E09\u4E5D\u4E8C\u4E94\u516B\u516D\u5341\u56DB].<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Resources.TechniqueNaming.GetDigitCharacter(System.Globalization.CultureInfo,System.Int32)">
             <summary>
             Returns a character that represents the digit.
@@ -29073,6 +29094,13 @@
             </summary>
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
+        </member>
+        <member name="M:Sudoku.Resources.TechniqueNaming.GetChineseDigit(System.Char)">
+            <summary>
+            Returns corresponding 0-based digit value by the specified digit character in Chinese.
+            </summary>
+            <param name="digitCharacter">The digit character.</param>
+            <returns>The corresponding digit.</returns>
         </member>
         <member name="M:Sudoku.Resources.TechniqueNaming.GetRegularWingEnglishName(System.Int32,System.Boolean)">
             <summary>
@@ -33124,34 +33152,61 @@
             Indicates the true candidates used.
             </summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SubtypeTextPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ChineseDigitsPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the SubtypeTextPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.SubtypeTextPattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
@@ -33164,6 +33219,9 @@
         </member>
         <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
             <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_nonAscii_7D48D515833A7A26E4966C3F7C4A48F565625142FCE47D2547DDE52125C43A42">
+            <summary>Supports searching for characters in or not in "一七三九二五八六十四".</summary>
         </member>
     </members>
 </doc>

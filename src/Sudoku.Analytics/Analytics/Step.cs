@@ -285,12 +285,15 @@ public abstract partial class Step(
 	/// </param>
 	/// <returns>An <see cref="int"/> value indicating which one is logically larger.</returns>
 	/// <remarks>
+	/// <para>
 	/// Some techniques may not contain a correct order of comparison on its name.
 	/// For example, in Chinese, digit characters <c>2</c> (i.e. "&#20108;") and <c>3</c> (i.e. "&#19977;")
 	/// won't satisfy the comparison rule on the default order of their own Unicode value.
 	/// <c>2</c> is for <c>U + 4e8c</c>, while <c>3</c> is for <c>U + 4e09</c>.
 	/// In logic, <c>U + 4e8c</c> (2) has a larger Unicode value with <c>4e09</c> (3).
 	/// However, in meaning of such text, <c>3</c> is greater than <c>2</c>. This method will handle on this case.
+	/// </para>
+	/// <para>By default, this method only checks for the Unicode order of two strings (default string comparison rule).</para>
 	/// </remarks>
 	protected virtual int NameCompareTo(Step other, IFormatProvider? formatProvider)
 	{
@@ -300,7 +303,7 @@ public abstract partial class Step(
 	}
 
 	/// <summary>
-	/// Try to get the current culture used. The return value cannot be <see langword="null"/>.
+	/// Try to get the current culture used. The return value won't be <see langword="null"/>.
 	/// </summary>
 	/// <param name="formatProvider">
 	/// The format provider instance.

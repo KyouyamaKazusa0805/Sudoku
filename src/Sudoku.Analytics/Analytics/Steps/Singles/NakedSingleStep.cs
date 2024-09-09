@@ -51,4 +51,26 @@ public sealed partial class NakedSingleStep(
 		}
 		return $"{baseName} ({lastDigitsCountString})";
 	}
+
+	/// <inheritdoc/>
+	protected override int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	{
+		if (Code.CompareTo(other.Code) is var codeComparisonResult and not 0)
+		{
+			return codeComparisonResult;
+		}
+
+		var a = LastingHouseType;
+		var b = ((NakedSingleStep)other).LastingHouseType;
+		if (a.CompareTo(b) is var lastingHouseTypeComparisonResult and not 0)
+		{
+			return lastingHouseTypeComparisonResult;
+		}
+
+		var leftName = GetName(formatProvider);
+		var rightName = other.GetName(formatProvider);
+		var leftDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(leftName).Value[0]);
+		var rightDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(rightName).Value[0]);
+		return leftDigit.CompareTo(rightDigit);
+	}
 }

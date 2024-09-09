@@ -3,12 +3,16 @@ namespace Sudoku.Resources;
 /// <summary>
 /// Represents the naming of techniques.
 /// </summary>
-public static class TechniqueNaming
+public static partial class TechniqueNaming
 {
 	/// <summary>
 	/// Indicates the digit characters.
 	/// </summary>
-	private static readonly string ChineseDigitCharacters = "\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341";
+	private const string ChineseDigitCharacters = "\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d\u5341";
+
+
+	[GeneratedRegex($"[{ChineseDigitCharacters}]", RegexOptions.Compiled)]
+	public static partial Regex ChineseDigitsPattern { get; }
 
 
 	/// <summary>
@@ -38,6 +42,14 @@ public static class TechniqueNaming
 	/// <returns>The name of the subset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetSubsetName(Digit size) => SR.Get($"SubsetNamesSize{size}", CultureInfo.CurrentUICulture);
+
+	/// <summary>
+	/// Returns corresponding 0-based digit value by the specified digit character in Chinese.
+	/// </summary>
+	/// <param name="digitCharacter">The digit character.</param>
+	/// <returns>The corresponding digit.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Digit GetChineseDigit(char digitCharacter) => ChineseDigitCharacters.AsSpan().IndexOf(digitCharacter);
 
 	/// <summary>
 	/// Make the real name of the regular wing.
