@@ -1975,6 +1975,272 @@
             <param name="this">The type of the coordinate type.</param>
             <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraph">
+            <summary>
+            Represents a list of cells that form a undirected graph.
+            </summary>
+            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.#ctor">
+            <summary>
+            Represents a list of cells that form a undirected graph.
+            </summary>
+            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph.Empty">
+            <summary>
+            Indicates the default empty graph without any cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._map">
+            <summary>
+            Indicates the backing field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._directlyConnectedCellsDictionary">
+            <summary>
+            Indicates the directly-connected cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsConnected">
+            <summary>
+            Indicates whether the graph is connected, i.e. all nodes in the graph is a part of the whole graph without being separated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsEmpty">
+            <summary>
+            Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.VerticesCount">
+            <summary>
+            Indicates the vertices count, i.e. the number of cells in the graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.Map">
+            <summary>
+            Indicates the internal map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.Components">
+            <summary>
+            Indicates all possible connected components of the graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.Item(System.Int32)">
+            <summary>
+            Try to get all cells whose degree is the specified value.
+            </summary>
+            <param name="degree">The degree. The value must be between 0 and 20.</param>
+            <returns>All cells whose degree is equal to the specified value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Equals(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsSupersetOf(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <summary>
+            Indicates whether the current graph is superset of the specified graph,
+            i.e. all nodes in <paramref name="other"/> belong to the current graph.
+            </summary>
+            <param name="other">The other graph to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsSubsetOf(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <summary>
+            Indicates whether the current graph is subset of the specified graph,
+            i.e. all nodes in the current instance belong to the graph <paramref name="other"/>.
+            </summary>
+            <param name="other">The other graph to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetDegreeOf(System.Int32)">
+            <summary>
+            Try to get the degree of the specified cell.
+            </summary>
+            <param name="cell">The desired cell.</param>
+            <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetConnectedCells(System.Int32)">
+            <summary>
+            Try to get connected cells for the specified cell. 
+            </summary>
+            <param name="cell">Indicates the cell to be checked.</param>
+            <returns>All cells that connect the current cell.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetEnumerator">
+            <summary>
+            Creates an enumerator type that can iterate on each cell in the collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.UndirectedCellGraphDepth}@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> that contains the specified cell.
+            </summary>
+            <param name="cell">The desired cell.</param>
+            <param name="depths">A list of <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth"/> values.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Contains(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_OnesComplement(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_BitwiseAnd(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_BitwiseOr(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_ExclusiveOr(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator">
+            <summary>
+            Represents an enumerator type that iterates on each cell offsets.
+            </summary>
+            <param name="_offset">Indicates the offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.#ctor(System.Int32[])">
+            <summary>
+            Represents an enumerator type that iterates on each cell offsets.
+            </summary>
+            <param name="_offset">Indicates the offsets.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_Equality(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_Inequality(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth">
+            <summary>
+            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/>, with depth from a node.
+            </summary>
+            <param name="Depth">Indicates the depth.</param>
+            <param name="Cell">The cell.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/>, with depth from a node.
+            </summary>
+            <param name="Depth">Indicates the depth.</param>
+            <param name="Cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.Depth">
+            <summary>Indicates the depth.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.Cell">
+            <summary>The cell.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="M:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth.ToString" />.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -9185,272 +9451,6 @@
             This algorithm is from the puzzle called
             <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
-        </member>
-        <member name="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph">
-            <summary>
-            Represents a list of cells that form a undirected graph.
-            </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.#ctor">
-            <summary>
-            Represents a list of cells that form a undirected graph.
-            </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
-        </member>
-        <member name="F:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Empty">
-            <summary>
-            Indicates the default empty graph without any cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph._map">
-            <summary>
-            Indicates the backing field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph._directlyConnectedCellsDictionary">
-            <summary>
-            Indicates the directly-connected cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.#ctor(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph"/> instance.
-            </summary>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.IsConnected">
-            <summary>
-            Indicates whether the graph is connected, i.e. all nodes in the graph is a part of the whole graph without being separated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.IsEmpty">
-            <summary>
-            Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.VerticesCount">
-            <summary>
-            Indicates the vertices count, i.e. the number of cells in the graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Map">
-            <summary>
-            Indicates the internal map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Components">
-            <summary>
-            Indicates all possible connected components of the graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Item(System.Int32)">
-            <summary>
-            Try to get all cells whose degree is the specified value.
-            </summary>
-            <param name="degree">The degree. The value must be between 0 and 20.</param>
-            <returns>All cells whose degree is equal to the specified value.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Equals(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.IsSupersetOf(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <summary>
-            Indicates whether the current graph is superset of the specified graph,
-            i.e. all nodes in <paramref name="other"/> belong to the current graph.
-            </summary>
-            <param name="other">The other graph to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.IsSubsetOf(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <summary>
-            Indicates whether the current graph is subset of the specified graph,
-            i.e. all nodes in the current instance belong to the graph <paramref name="other"/>.
-            </summary>
-            <param name="other">The other graph to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.GetDegreeOf(System.Int32)">
-            <summary>
-            Try to get the degree of the specified cell.
-            </summary>
-            <param name="cell">The desired cell.</param>
-            <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.GetConnectedCells(System.Int32)">
-            <summary>
-            Try to get connected cells for the specified cell. 
-            </summary>
-            <param name="cell">Indicates the cell to be checked.</param>
-            <returns>All cells that connect the current cell.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.GetEnumerator">
-            <summary>
-            Creates an enumerator type that can iterate on each cell in the collection.
-            </summary>
-            <returns>An enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth}@)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph"/> that contains the specified cell.
-            </summary>
-            <param name="cell">The desired cell.</param>
-            <param name="depths">A list of <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth"/> values.</param>
-            <returns>A <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Contains(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_OnesComplement(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_BitwiseAnd(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_BitwiseOr(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_ExclusiveOr(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator">
-            <summary>
-            Represents an enumerator type that iterates on each cell offsets.
-            </summary>
-            <param name="_offset">Indicates the offsets.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.#ctor(System.Int32[])">
-            <summary>
-            Represents an enumerator type that iterates on each cell offsets.
-            </summary>
-            <param name="_offset">Indicates the offsets.</param>
-        </member>
-        <member name="F:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_Equality(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph.op_Inequality(Sudoku.Runtime.MeasuringServices.UndirectedCellGraph,Sudoku.Runtime.MeasuringServices.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth">
-            <summary>
-            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph"/>, with depth from a node.
-            </summary>
-            <param name="Depth">Indicates the depth.</param>
-            <param name="Cell">The cell.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Runtime.MeasuringServices.UndirectedCellGraph"/>, with depth from a node.
-            </summary>
-            <param name="Depth">Indicates the depth.</param>
-            <param name="Cell">The cell.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.Depth">
-            <summary>Indicates the depth.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.Cell">
-            <summary>The cell.</summary>
-        </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Runtime.MeasuringServices.UndirectedCellGraphDepth.ToString" />.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="T:Sudoku.Runtime.MingridServices.MingridExtensions">
             <summary>

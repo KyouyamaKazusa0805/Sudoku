@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MeasuringServices;
+namespace Sudoku.Concepts.Graphs;
 
 public partial struct UndirectedCellGraph
 {

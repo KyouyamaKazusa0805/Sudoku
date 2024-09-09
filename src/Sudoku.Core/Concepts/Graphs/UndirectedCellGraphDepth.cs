@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MeasuringServices;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// Represents a node that describes for a graph node inside a <see cref="UndirectedCellGraph"/>, with depth from a node.

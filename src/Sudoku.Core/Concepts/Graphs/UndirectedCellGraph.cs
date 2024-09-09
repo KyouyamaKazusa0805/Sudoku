@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MeasuringServices;
+namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
 /// Represents a list of cells that form a undirected graph.
