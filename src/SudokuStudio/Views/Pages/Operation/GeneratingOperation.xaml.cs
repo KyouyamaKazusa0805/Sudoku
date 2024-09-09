@@ -243,11 +243,19 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 				if (grid.IsEmpty)
 				{
-					// The other case that return an invalid value.
+					// The case that return an invalid value.
 					goto ReportState;
 				}
 
 				var analysisResult = analyzer.Analyze(in grid);
+				if (!analysisResult.IsSolved)
+				{
+					// The case that the puzzle cannot be solved in easy ways.
+					// For example, the analyzer has been configured with step searcher in "easy" difficulty level,
+					// but it cannot be solved.
+					goto ReportState;
+				}
+
 				switch (difficultyLevel, analysisResult.DifficultyLevel)
 				{
 					case (DifficultyLevel.Easy, DifficultyLevel.Easy):
