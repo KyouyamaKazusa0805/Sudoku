@@ -67,7 +67,8 @@ public partial class HiddenSingleStep(
 
 		var culture = Options.CurrentCulture;
 		var lastDigitsCountString = string.Format(
-			SR.Get("LastPrefix", culture),
+			SR.Get("DirectSingleLastSuffix", culture),
+			null, // Placeholder for the house type - hidden singles won't check on this case.
 			TechniqueNaming.GetDigitCharacter(culture, Lasting - 1)
 		);
 		if (SR.IsChinese(culture))

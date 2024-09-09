@@ -3366,7 +3366,7 @@ Error grid: '{0:#}'</value>
   <data name="ConstraintDescription_TechniqueSetConstraint" xml:space="preserve">
     <value>Catch a puzzle solving by only using specified technique set</value>
   </data>
-  <data name="LastPrefix" xml:space="preserve">
-    <value>Last {0}</value>
+  <data name="DirectSingleLastSuffix" xml:space="preserve">
+    <value>Last {1} in {0}</value>
   </data>
 </root>

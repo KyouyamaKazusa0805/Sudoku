@@ -189,4 +189,7 @@
   <data name="DigitName" xml:space="preserve">
     <value>数字</value>
   </data>
+  <data name="BlockName" xml:space="preserve">
+    <value>宫</value>
+  </data>
 </root>

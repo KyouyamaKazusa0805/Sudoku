@@ -18244,8 +18244,9 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lastingHouseType">Indicates the lasting house type.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
             Represents a data structure that describes for a technique of <b>Naked Single</b>.
             </summary>
@@ -18256,6 +18257,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lastingHouseType">Indicates the lasting house type.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -18269,6 +18271,11 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting">
             <summary>
             The generated property declaration for parameter <c>lasting</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.LastingHouseType">
+            <summary>
+            The generated property declaration for parameter <c>lastingHouseType</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
@@ -24033,6 +24040,91 @@
               Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_BottleneckStepRatingConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified rating of bottleneck.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_BottleneckTechniqueConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle using specified technique in bottleneck.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_ConclusionConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified conclusion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_CountBetweenConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified number of given or empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_DiamondConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle being a diamond one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_DifficultyLevelConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified difficulty level of step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_EliminationCountConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified number of eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_IttoryuConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle being an ittoryu one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_IttoryuLengthConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified length of ittoryu rounds.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_LastingConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified lasting number of a single step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_MinimalConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle being a minimal one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_PearlConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle being a pearl one.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_PrimarySingleConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle solving by only using one single technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_SymmetryConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified symmetric pattern of givens.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_TechniqueConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having one or more specified technique usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_TechniqueCountConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having specified number of usages in a puzzle solving path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_TechniqueSetConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle solving by only using specified technique set.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ContinuousNiceLoop">
             <summary>
               Looks up a localized string similar to Continuous Nice Loop.
@@ -24076,6 +24168,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.DifficultyLevelConstraint">
             <summary>
               Looks up a localized string similar to Difficulty level rule: {0} {1} ({2}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.DirectSingleLastSuffix">
+            <summary>
+              Looks up a localized string similar to Last {1} in {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.DiscontinuousNiceLoop">

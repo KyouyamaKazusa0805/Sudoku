@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
+/// <param name="lastingHouseType">Indicates the lasting house type.</param>
 public sealed partial class NakedSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -17,7 +18,8 @@ public sealed partial class NakedSingleStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	[PrimaryConstructorParameter] int lasting
+	[PrimaryConstructorParameter] int lasting,
+	[PrimaryConstructorParameter] HouseType lastingHouseType
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
@@ -38,7 +40,8 @@ public sealed partial class NakedSingleStep(
 
 		var culture = Options.CurrentCulture;
 		var lastDigitsCountString = string.Format(
-			SR.Get("LastPrefix", culture),
+			SR.Get("DirectSingleLastSuffix", culture),
+			SR.Get($"{LastingHouseType}Name", culture),
 			TechniqueNaming.GetDigitCharacter(culture, Lasting - 1)
 		);
 		if (SR.IsChinese(culture))

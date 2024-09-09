@@ -1132,6 +1132,159 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified rating of bottleneck.
+        /// </summary>
+        public static string ConstraintDescription_BottleneckStepRatingConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_BottleneckStepRatingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle using specified technique in bottleneck.
+        /// </summary>
+        public static string ConstraintDescription_BottleneckTechniqueConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_BottleneckTechniqueConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified conclusion.
+        /// </summary>
+        public static string ConstraintDescription_ConclusionConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_ConclusionConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified number of given or empty cells.
+        /// </summary>
+        public static string ConstraintDescription_CountBetweenConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_CountBetweenConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle being a diamond one.
+        /// </summary>
+        public static string ConstraintDescription_DiamondConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_DiamondConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified difficulty level of step.
+        /// </summary>
+        public static string ConstraintDescription_DifficultyLevelConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_DifficultyLevelConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified number of eliminations.
+        /// </summary>
+        public static string ConstraintDescription_EliminationCountConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_EliminationCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle being an ittoryu one.
+        /// </summary>
+        public static string ConstraintDescription_IttoryuConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_IttoryuConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified length of ittoryu rounds.
+        /// </summary>
+        public static string ConstraintDescription_IttoryuLengthConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_IttoryuLengthConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified lasting number of a single step.
+        /// </summary>
+        public static string ConstraintDescription_LastingConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_LastingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle being a minimal one.
+        /// </summary>
+        public static string ConstraintDescription_MinimalConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_MinimalConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle being a pearl one.
+        /// </summary>
+        public static string ConstraintDescription_PearlConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_PearlConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle solving by only using one single technique.
+        /// </summary>
+        public static string ConstraintDescription_PrimarySingleConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_PrimarySingleConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified symmetric pattern of givens.
+        /// </summary>
+        public static string ConstraintDescription_SymmetryConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_SymmetryConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having one or more specified technique usages.
+        /// </summary>
+        public static string ConstraintDescription_TechniqueConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_TechniqueConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having specified number of usages in a puzzle solving path.
+        /// </summary>
+        public static string ConstraintDescription_TechniqueCountConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_TechniqueCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle solving by only using specified technique set.
+        /// </summary>
+        public static string ConstraintDescription_TechniqueSetConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_TechniqueSetConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
         public static string ContinuousNiceLoop {
@@ -1209,6 +1362,15 @@ namespace Sudoku.Resources {
         public static string DifficultyLevelConstraint {
             get {
                 return ResourceManager.GetString("DifficultyLevelConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last {1} in {0}.
+        /// </summary>
+        public static string DirectSingleLastSuffix {
+            get {
+                return ResourceManager.GetString("DirectSingleLastSuffix", resourceCulture);
             }
         }
         
