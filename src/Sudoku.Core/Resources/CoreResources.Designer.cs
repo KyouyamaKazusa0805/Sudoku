@@ -70,6 +70,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Block.
+        /// </summary>
+        internal static string BlockName {
+            get {
+                return ResourceManager.GetString("BlockName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}, digit {1}.
         /// </summary>
         internal static string CandidateLabel {

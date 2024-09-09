@@ -15,7 +15,7 @@ public readonly record struct UndirectedCellGraphDepth(int Depth, Cell Cell)
 		builder.Append($"{nameof(Depth)} = ");
 		builder.Append(Depth);
 		builder.Append($", {nameof(Cell)} = ");
-		builder.Append($@"""{CoordinateConverter.GetInstance(null).CellConverter(in Cell.AsCellMap())}""");
+		builder.Append($@"""{CoordinateConverter.InvariantCultureInstance.CellConverter(in Cell.AsCellMap())}""");
 		return true;
 	}
 }

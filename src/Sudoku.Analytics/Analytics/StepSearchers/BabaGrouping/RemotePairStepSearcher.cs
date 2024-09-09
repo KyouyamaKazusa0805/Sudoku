@@ -56,7 +56,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 						var component = components.First(graph => graph.Contains(componentStartCell));
 
 						// Iterate on cells whose degree is 1.
-						foreach (var cellDegree1 in component[degree: 1])
+						foreach (var cellDegree1 in component[1])
 						{
 							graph.GetComponentOf(cellDegree1, out var depths);
 							var nodeGroups =

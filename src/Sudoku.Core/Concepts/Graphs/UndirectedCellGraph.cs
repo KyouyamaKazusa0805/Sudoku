@@ -114,9 +114,9 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <summary>
 	/// Try to get all cells whose degree is the specified value.
 	/// </summary>
-	/// <param name="degree">The degree. The value must be between 0 and 20.</param>
+	/// <param name="degree">The degree. The value must be between 0 and 3.</param>
 	/// <returns>All cells whose degree is equal to the specified value.</returns>
-	public UndirectedCellGraph this[[ConstantExpected(Min = 0, Max = 20)] int degree]
+	public UndirectedCellGraph this[[ConstantExpected(Min = 0, Max = 3)] int degree]
 	{
 		get
 		{

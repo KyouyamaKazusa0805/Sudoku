@@ -1975,6 +1975,72 @@
             <param name="this">The type of the coordinate type.</param>
             <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.Graphs.Cluster">
+            <summary>
+            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
+            <para>
+            This data structure will simplify the defintion, only reserving for single-digit strong links (i.e. conjugate pairs),
+            in order to make the implementation behave well and easily on representing data.
+            </para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
+            </para>
+            </summary>
+            <param name="map">Indicates the cells used.</param>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
+            <para>
+            This data structure will simplify the defintion, only reserving for single-digit strong links (i.e. conjugate pairs),
+            in order to make the implementation behave well and easily on representing data.
+            </para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
+            </para>
+            </summary>
+            <param name="map">Indicates the cells used.</param>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.Cluster._map">
+            <summary>
+            Indicates the map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.Cluster.Map">
+            <summary>
+            Indicates the internal map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.Cluster.WrapContradictions">
+            <summary>
+            Represents a list of cells that will form wrap contradictions in the cluster.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(Sudoku.Concepts.Graphs.Cluster)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance via the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <param name="digit">Indicates the digits used.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Equality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Inequality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraph">
             <summary>
             Represents a list of cells that form a undirected graph.
@@ -2040,7 +2106,7 @@
             <summary>
             Try to get all cells whose degree is the specified value.
             </summary>
-            <param name="degree">The degree. The value must be between 0 and 20.</param>
+            <param name="degree">The degree. The value must be between 0 and 3.</param>
             <returns>All cells whose degree is equal to the specified value.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Equals(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
@@ -6404,6 +6470,11 @@
         <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
             <summary>
               Looks up a localized string similar to Block {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockName">
+            <summary>
+              Looks up a localized string similar to Block.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
