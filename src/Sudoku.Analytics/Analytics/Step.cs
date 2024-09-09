@@ -193,33 +193,6 @@ public abstract partial class Step(
 	public virtual bool Equals([NotNullWhen(true)] Step? other)
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
 
-	/// <inheritdoc cref="Equals(Step?, StepComparisonOption, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Step? other, StepComparisonOption option) => Equals(other, option, null);
-
-	/// <summary>
-	/// Determine whether the current <see cref="Step"/> instance has a same value with the specified one,
-	/// under the specified comparison rule.
-	/// </summary>
-	/// <param name="other">The other instance to be compared.</param>
-	/// <param name="option">The option that controls the comparison rule.</param>
-	/// <param name="formatProvider">
-	/// The format provider instance that can be used in formatting the output text of the step.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="option"/> is not defined.</exception>
-	public bool Equals([NotNullWhen(true)] Step? other, StepComparisonOption option, IFormatProvider? formatProvider)
-		=> other switch
-		{
-			null => false,
-			_ => option switch
-			{
-				StepComparisonOption.Default => Equals(other),
-				StepComparisonOption.Name => NameCompareTo(other, formatProvider) == 0,
-				_ => throw new ArgumentOutOfRangeException(nameof(option))
-			}
-		};
-
 	/// <summary>
 	/// Compares two <see cref="Step"/> instances, determining which one is greater.
 	/// </summary>
@@ -295,7 +268,7 @@ public abstract partial class Step(
 	/// </para>
 	/// <para>By default, this method only checks for the Unicode order of two strings (default string comparison rule).</para>
 	/// </remarks>
-	protected virtual int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	protected internal virtual int NameCompareTo(Step other, IFormatProvider? formatProvider)
 	{
 		var left = GetName(formatProvider);
 		var right = other.GetName(formatProvider);

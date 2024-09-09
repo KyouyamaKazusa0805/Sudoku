@@ -613,6 +613,15 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
         </member>
+        <member name="M:System.Collections.Generic.SortedSetExtensions.AddRange``1(System.Collections.Generic.SortedSet{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Adds the elements into the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The current collection.</param>
+            <param name="values">The elements to be added.</param>
+            <returns>The number of elements successfully to be added.</returns>
+        </member>
         <member name="M:System.Collections.Generic.SortedSetExtensions.ToArray``1(System.Collections.Generic.SortedSet{``0})">
             <summary>
             Try to convert the current instance into an array.

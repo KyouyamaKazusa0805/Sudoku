@@ -53,7 +53,7 @@ public sealed partial class NakedSingleStep(
 	}
 
 	/// <inheritdoc/>
-	protected override int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	protected internal override int NameCompareTo(Step other, IFormatProvider? formatProvider)
 	{
 		if (Code.CompareTo(other.Code) is var codeComparisonResult and not 0)
 		{

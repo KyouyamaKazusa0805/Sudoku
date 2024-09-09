@@ -93,27 +93,6 @@ public enum Technique
 	HiddenSingleColumn,
 
 	/// <summary>
-	/// Indicates naked single.
-	/// </summary>
-	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0003")]
-	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedSingle, RatingOriginal = [2.3])]
-	[TechniqueMetadata(
-		Rating = 23,
-		DirectRating = 10,
-		Abbreviation = "NS",
-		DifficultyLevel = DifficultyLevel.Easy,
-		ContainingGroup = TechniqueGroup.Single,
-		StepType = typeof(NakedSingleStep),
-		StepSearcherType = typeof(SingleStepSearcher),
-		Links = ["http://sudopedia.enjoysudoku.com/Naked_Single.html"])]
-	NakedSingle,
-	#endregion
-
-	//
-	// Direct Singles
-	//
-	#region Direct Singles
-	/// <summary>
 	/// Indicates crosshatching in block, equivalent to hidden single in block, but used in direct views.
 	/// </summary>
 	[TechniqueMetadata(
@@ -157,6 +136,22 @@ public enum Technique
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
 		Features = TechniqueFeatures.DirectTechniques)]
 	CrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates naked single.
+	/// </summary>
+	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0003")]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedSingle, RatingOriginal = [2.3])]
+	[TechniqueMetadata(
+		Rating = 23,
+		DirectRating = 10,
+		Abbreviation = "NS",
+		DifficultyLevel = DifficultyLevel.Easy,
+		ContainingGroup = TechniqueGroup.Single,
+		StepType = typeof(NakedSingleStep),
+		StepSearcherType = typeof(SingleStepSearcher),
+		Links = ["http://sudopedia.enjoysudoku.com/Naked_Single.html"])]
+	NakedSingle,
 	#endregion
 
 	//

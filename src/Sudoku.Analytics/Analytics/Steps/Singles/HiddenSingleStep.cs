@@ -80,34 +80,42 @@ public partial class HiddenSingleStep(
 	}
 
 	/// <inheritdoc/>
-	protected override int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	protected internal override int NameCompareTo(Step other, IFormatProvider? formatProvider)
 	{
-		var (leftCode, rightCode) = (d(Code), d(other.Code));
-		if (leftCode.CompareTo(rightCode) is var codeComparisonResult and not 0)
+		if (Code.CompareTo(other.Code) is var codeComparisonResult and not 0)
 		{
 			return codeComparisonResult;
 		}
 
 		var culture = GetCulture(formatProvider);
-		if (SR.IsChinese(culture))
+		if (!SR.IsChinese(culture))
 		{
 			return base.NameCompareTo(other, formatProvider);
 		}
 
 		var leftName = GetName(formatProvider);
 		var rightName = other.GetName(formatProvider);
-		var leftDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(leftName).Value[0]);
-		var rightDigit = TechniqueNaming.GetChineseDigit(TechniqueNaming.ChineseDigitsPattern.Match(rightName).Value[0]);
-		return leftDigit.CompareTo(rightDigit);
+		var leftMatch = TechniqueNaming.ChineseDigitsPattern.Match(leftName);
+		var rightMatch = TechniqueNaming.ChineseDigitsPattern.Match(rightName);
+		return (leftMatch, rightMatch) switch
+		{
+			// Invalid case. Use this check to ignore 'not null' checking in the following case branches.
+			not (not null, not null) => throw new InvalidOperationException(),
 
+			// Valid case. Now we should check the first matched character to compare its corresponding digit.
+			({ Success: true, Value: [var l] }, { Success: true, Value: [var r] })
+			when (TechniqueNaming.GetChineseDigit(l), TechniqueNaming.GetChineseDigit(r)) is var (leftDigit, rightDigit)
+				=> leftDigit.CompareTo(rightDigit),
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Technique d(Technique @base)
-			=> @base switch
-			{
-				Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => Technique.HiddenSingleBlock,
-				Technique.CrosshatchingRow or Technique.HiddenSingleRow => Technique.HiddenSingleRow,
-				_ => Technique.HiddenSingleColumn
-			};
+			// The first value is less than the second because it has no lasting value to be matched,
+			// meaning it can only be hidden single in block, full house or last digit.
+			({ Success: false }, { Success: true }) => -1,
+
+			// Same case as above.
+			({ Success: true }, { Success: false }) => 1,
+
+			// Same technique but neither matched a lasting value.
+			_ => 0
+		};
 	}
 }

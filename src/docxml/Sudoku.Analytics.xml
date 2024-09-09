@@ -1417,11 +1417,6 @@
             Indicates hidden single (in column).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedSingle">
-            <summary>
-            Indicates naked single.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock">
             <summary>
             Indicates crosshatching in block, equivalent to hidden single in block, but used in direct views.
@@ -1435,6 +1430,11 @@
         <member name="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn">
             <summary>
             Indicates crosshatching in column, equivalent to hidden single in column, but used in direct views.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.NakedSingle">
+            <summary>
+            Indicates naked single.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.PointingFullHouse">
@@ -5896,22 +5896,6 @@
             <seealso cref="P:Sudoku.Analytics.Step.Code"/>
             <seealso cref="P:Sudoku.Analytics.Step.Conclusions"/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step,Sudoku.Analytics.StepComparisonOption)">
-            <inheritdoc cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step,Sudoku.Analytics.StepComparisonOption,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step,Sudoku.Analytics.StepComparisonOption,System.IFormatProvider)">
-            <summary>
-            Determine whether the current <see cref="T:Sudoku.Analytics.Step"/> instance has a same value with the specified one,
-            under the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="option">The option that controls the comparison rule.</param>
-            <param name="formatProvider">
-            The format provider instance that can be used in formatting the output text of the step.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="option"/> is not defined.</exception>
-        </member>
         <member name="M:Sudoku.Analytics.Step.CompareTo(Sudoku.Analytics.Step)">
             <summary>
             Compares two <see cref="T:Sudoku.Analytics.Step"/> instances, determining which one is greater.
@@ -6154,22 +6138,6 @@
         <member name="M:Sudoku.Analytics.StepAnalysisContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.StepComparisonOption">
-            <summary>
-            Represents an option that compares two <see cref="T:Sudoku.Analytics.Step"/> instances using a specified kind of value to be compared.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="F:Sudoku.Analytics.StepComparisonOption.Default">
-            <summary>
-            Indicates the comparison rule is to compare internal values of the step.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepComparisonOption.Name">
-            <summary>
-            Indicates the comparison rule is to compare the name of the step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepGathererProgressPresenter">
             <summary>
             Represents a progress used by <see cref="T:Sudoku.Analytics.IStepGatherer`3"/> instances.
@@ -6197,6 +6165,15 @@
             Represents a list of methods operating with <see cref="T:Sudoku.Analytics.Step"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepMarshal.CompareName(Sudoku.Analytics.Step,Sudoku.Analytics.Step,System.IFormatProvider)">
+            <summary>
+            Compare names of two <see cref="T:Sudoku.Analytics.Step"/> instances.
+            </summary>
+            <param name="left">The left instance to be compared.</param>
+            <param name="right">The right instance to be compared.</param>
+            <param name="formatProvider">The culture information.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which is bigger.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepMarshal.Combine(System.ReadOnlySpan{Sudoku.Concepts.Grid},System.ReadOnlySpan{Sudoku.Analytics.Step})">
             <summary>

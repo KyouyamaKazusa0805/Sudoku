@@ -46,10 +46,19 @@ internal sealed partial class SummaryViewBindableSource(
 		}
 
 		static unsafe SummaryViewBindableSource[] g(ReadOnlySpan<Step> steps, TechniqueInfoPreferenceGroup pref)
-			=> [
+		{
+			var stepsSortedByName = new List<Step>();
+			stepsSortedByName.AddRange(steps);
+			stepsSortedByName.Sort(
+				static (left, right) => left.DifficultyLevel.CompareTo(right.DifficultyLevel) is var difficultyLevelComparisonResult and not 0
+					? difficultyLevelComparisonResult
+					: left.Code.CompareTo(right.Code) is var codeComparisonResult and not 0
+						? codeComparisonResult
+						: StepMarshal.CompareName(left, right, App.CurrentCulture)
+			);
+			return [
 				..
-				from step in steps
-				orderby step.DifficultyLevel, step.Code
+				from step in stepsSortedByName
 				group step by step.GetName(App.CurrentCulture) into stepGroup
 				let stepGroupArray = (Step[])[.. stepGroup]
 				let difficultyLevels =
@@ -67,5 +76,6 @@ internal sealed partial class SummaryViewBindableSource(
 					stepGroupArray.Length
 				)
 			];
+		}
 	}
 }
