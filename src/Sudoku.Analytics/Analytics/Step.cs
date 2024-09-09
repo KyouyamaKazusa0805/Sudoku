@@ -183,16 +183,42 @@ public abstract partial class Step(
 	/// <para>
 	/// This method is used for filtering duplicate <see cref="Step"/> instances,
 	/// and you can customize the checking rule to compare instances by overriding this method.
-	/// </para>
-	/// <para>
 	/// By default, the method only checks technique used (i.e. property <see cref="Code"/>)
-	/// and conclusions used (i.e. <see cref="Conclusions"/>). If both are same, they will be treated as same one.
+	/// and conclusions used (i.e. property <see cref="Conclusions"/>). If both are same, they will be treated as same one.
 	/// </para>
+	/// <para>By overriding this method, the comparison rule will be updated.</para>
 	/// </remarks>
 	/// <seealso cref="Code"/>
 	/// <seealso cref="Conclusions"/>
 	public virtual bool Equals([NotNullWhen(true)] Step? other)
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
+
+	/// <inheritdoc cref="Equals(Step?, StepComparisonOption, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] Step? other, StepComparisonOption option) => Equals(other, option, null);
+
+	/// <summary>
+	/// Determine whether the current <see cref="Step"/> instance has a same value with the specified one,
+	/// under the specified comparison rule.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="option">The option that controls the comparison rule.</param>
+	/// <param name="formatProvider">
+	/// The format provider instance that can be used in formatting the output text of the step.
+	/// </param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="option"/> is not defined.</exception>
+	public bool Equals([NotNullWhen(true)] Step? other, StepComparisonOption option, IFormatProvider? formatProvider)
+		=> other switch
+		{
+			null => false,
+			_ => option switch
+			{
+				StepComparisonOption.Default => Equals(other),
+				StepComparisonOption.Name => NameCompareTo(other, formatProvider) == 0,
+				_ => throw new ArgumentOutOfRangeException(nameof(option))
+			}
+		};
 
 	/// <summary>
 	/// Compares two <see cref="Step"/> instances, determining which one is greater.
@@ -249,6 +275,29 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(IFormatProvider? formatProvider) => $"{GetName(formatProvider)} => {ConclusionText}";
+
+	/// <summary>
+	/// Compares the real name of the step to the specified one. This method is to distinct names on displaying in UI.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="formatProvider">
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)" path="/param[@name='formatProvider']"/>
+	/// </param>
+	/// <returns>An <see cref="int"/> value indicating which one is logically larger.</returns>
+	/// <remarks>
+	/// Some techniques may not contain a correct order of comparison on its name.
+	/// For example, in Chinese, digit characters <c>2</c> (i.e. "&#20108;") and <c>3</c> (i.e. "&#19977;")
+	/// won't satisfy the comparison rule on the default order of their own Unicode value.
+	/// <c>2</c> is for <c>U + 4e8c</c>, while <c>3</c> is for <c>U + 4e09</c>.
+	/// In logic, <c>U + 4e8c</c> (2) has a larger Unicode value with <c>4e09</c> (3).
+	/// However, in meaning of such text, <c>3</c> is greater than <c>2</c>. This method will handle on this case.
+	/// </remarks>
+	protected virtual int NameCompareTo(Step other, IFormatProvider? formatProvider)
+	{
+		var left = GetName(formatProvider);
+		var right = other.GetName(formatProvider);
+		return left.CompareTo(right);
+	}
 
 	/// <summary>
 	/// Try to get the current culture used. The return value cannot be <see langword="null"/>.

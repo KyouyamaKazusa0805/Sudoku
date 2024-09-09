@@ -22,6 +22,16 @@ public static class TechniqueNaming
 		=> SR.IsChinese(culture) ? ChineseDigitCharacters[digit] : (char)(digit + '1');
 
 	/// <summary>
+	/// Compares Chinese digit characters of two digits.
+	/// </summary>
+	/// <param name="left">The left value to be compared.</param>
+	/// <param name="right">The right value to be compared.</param>
+	/// <returns>An <see cref="int"/> indicating which is bigger.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int ChineseDigitCompare(Digit left, Digit right)
+		=> Math.Sign(ChineseDigitCharacters[left] - ChineseDigitCharacters[right]);
+
+	/// <summary>
 	/// Try to get the real name for the specified size of subset.
 	/// </summary>
 	/// <param name="size">The number of cells used in a subset.</param>
