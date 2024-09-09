@@ -24,7 +24,7 @@ public sealed partial class Summary : Page, IAnalyzerTab
 	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (Summary page, { NewValue: var rawValue and (null or Sudoku.Analytics.AnalysisResult) }))
+		if ((d, e) is not (Summary page, { NewValue: var rawValue and (null or AnalysisResult _) }))
 		{
 			return;
 		}
