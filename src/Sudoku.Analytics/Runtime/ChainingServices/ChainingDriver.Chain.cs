@@ -40,15 +40,23 @@ internal partial class ChainingDriver
 		var result = new SortedSet<NamedChain>(ChainingComparers.ChainComparer);
 		foreach (var cell in EmptyCells)
 		{
-			var filterMask = (Mask)(Solution.IsUndefined ? 0 : ~(1 << Solution.GetDigit(cell)));
-			foreach (var digit in (Mask)(grid.GetCandidates(cell) & filterMask))
+			var correctDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
+			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var node = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
-				if (FindChains(node, in grid, onlyFindOne, result) is { } chain1)
+
+				// Suppose the digit as "off" (false) to make a contradiction.
+				// Obviously, only incorrect digits can be formed a contradiction.
+				// Therefore, we only need to check such incorrect digits.
+				if ((correctDigit != -1 && digit != correctDigit || correctDigit == -1)
+					&& FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
 					return (NamedChain[])[chain1];
 				}
-				if (FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
+
+				// Same reason as above - only correct digits can be formed a chain that makes an assignment.
+				if ((/*correctDigit != -1 && */digit == correctDigit || correctDigit == -1)
+					&& FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
 				{
 					return (NamedChain[])[chain2];
 				}
@@ -80,7 +88,7 @@ internal partial class ChainingDriver
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
-		(startNode.IsOn ? pendingNodesSupposedOff : pendingNodesSupposedOn).AddLast(startNode);
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
 
 		var visitedNodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var visitedNodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);

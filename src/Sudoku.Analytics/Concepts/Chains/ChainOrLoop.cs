@@ -65,13 +65,12 @@ public abstract partial class ChainOrLoop :
 		}
 		_nodes = [.. nodes];
 
-		if (autoReversingOnComparison)
+		// Now reverse the chain if worth.
+		// If the last node is supposed 'on', it will be a normal elimination-typed chain, and can be reversed.
+		// Now we should reverse the whole chain if the first node is greater than the last node in logic.
+		if (autoReversingOnComparison && _nodes[^1].IsOn && nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
 		{
-			// Reverse the whole chain if the first node is greater than the last node in logic.
-			if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
-			{
-				Reverse();
-			}
+			Reverse();
 		}
 	}
 

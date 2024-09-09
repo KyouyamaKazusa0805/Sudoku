@@ -20549,11 +20549,6 @@
             </summary>
             <param name="lastNode"><inheritdoc/></param>
         </member>
-        <member name="F:Sudoku.Concepts.Chain._weakStart">
-            <summary>
-            Indicates whether the chain starts with weak link.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Chain.IsWoodsWing">
             <summary>
             Indicates whether the chain is formed a W-Wing.
@@ -20605,6 +20600,11 @@
         </member>
         <member name="P:Sudoku.Concepts.Chain.ValidNodes">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.WeakStart">
+            <summary>
+            Indicates whether the chain starts with weak link.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Chain.SplitMask">
             <summary>

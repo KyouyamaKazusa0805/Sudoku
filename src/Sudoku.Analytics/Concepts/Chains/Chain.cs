@@ -8,12 +8,6 @@ namespace Sudoku.Concepts;
 public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 {
 	/// <summary>
-	/// Indicates whether the chain starts with weak link.
-	/// </summary>
-	private readonly bool _weakStart = lastNode.IsOn;
-
-
-	/// <summary>
 	/// Indicates whether the chain is formed a W-Wing.
 	/// </summary>
 	/// <remarks>
@@ -77,7 +71,12 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	protected override int LoopIdentity => 1;
 
 	/// <inheritdoc/>
-	protected override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
+	protected override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[WeakStart ? 1..^1 : ..];
+
+	/// <summary>
+	/// Indicates whether the chain starts with weak link.
+	/// </summary>
+	private bool WeakStart => _nodes[^1].IsOn;
 
 	/// <summary>
 	/// Split mask for 6 nodes.
@@ -85,16 +84,16 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	private (bool, Mask, Mask, Mask, Mask, Mask, Mask)? SplitMask
 		=> this switch
 		{
-			[
-				{ Map.Digits: var m1 },
-				{ Map.Digits: var m2 },
-				{ Map.Digits: var m3 },
-				{ Map.Digits: var m4 },
-				{ Map.Digits: var m5 },
-				{ Map.Digits: var m6 }
-			] => Mask.IsPow2(m1) && Mask.IsPow2(m2) && Mask.IsPow2(m3) && Mask.IsPow2(m4) && Mask.IsPow2(m5) && Mask.IsPow2(m6)
-				? (true, m1, m2, m3, m4, m5, m6)
-				: (false, m1, m2, m3, m4, m5, m6),
+		[
+		{ Map.Digits: var m1 },
+		{ Map.Digits: var m2 },
+		{ Map.Digits: var m3 },
+		{ Map.Digits: var m4 },
+		{ Map.Digits: var m5 },
+		{ Map.Digits: var m6 }
+		] => Mask.IsPow2(m1) && Mask.IsPow2(m2) && Mask.IsPow2(m3) && Mask.IsPow2(m4) && Mask.IsPow2(m5) && Mask.IsPow2(m6)
+			? (true, m1, m2, m3, m4, m5, m6)
+			: (false, m1, m2, m3, m4, m5, m6),
 			_ => null
 		};
 
