@@ -90,13 +90,75 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
 		{
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
-
-			// TODO: Implement a way to control delta conclusions.
-			negatives.AddRange(from conclusion in left.Conclusions select (IDrawableItem)conclusion);
-			positives.AddRange(from conclusion in right.Conclusions select (IDrawableItem)conclusion);
+			getDeltaConclusions(left, right, out var negativeConclusions, out var positiveConclusions);
+			negatives.AddRange(negativeConclusions);
+			positives.AddRange(positiveConclusions);
 			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
 			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
 			return new() { Negatives = negatives.AsReadOnlySpan(), Positives = positives.AsReadOnlySpan() };
 		}
+
+		static void getDeltaConclusions(
+			ViewUnitBindableSource left,
+			ViewUnitBindableSource right,
+			out ReadOnlySpan<IDrawableItem> negativeConclusions,
+			out ReadOnlySpan<IDrawableItem> positiveConclusions
+		)
+		{
+			// To distinct conclusions, we should split into two steps:
+			//   1) Find conclusions that will be used in both old and new collection (it won't be removed).
+			//   2) Check the state on conclusion overlapping cases.
+			//
+			// If and only if the conclusion will be appeared in both collections, and its state has been changed,
+			// it will be updated from both negatives and positives; otherwise, don't change anything.
+			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
+			(ConclusionSet l, ConclusionSet r) = ([.. left.Conclusions], [.. right.Conclusions]);
+			foreach (var c in l & ~r)
+			{
+				negatives.Add(c);
+			}
+			foreach (var c in r & ~l)
+			{
+				positives.Add(c);
+			}
+
+			foreach (var conclusion in l & r)
+			{
+				var leftCase = new ConclusionInfo(conclusion, false);
+				var rightCase = new ConclusionInfo(conclusion, false);
+				foreach (var node in left.View.OfType<CandidateViewNode>())
+				{
+					if (node.Candidate == conclusion.Candidate)
+					{
+						leftCase = leftCase with { IsOverlapped = true };
+						break;
+					}
+				}
+				foreach (var node in right.View.OfType<CandidateViewNode>())
+				{
+					if (node.Candidate == conclusion.Candidate)
+					{
+						rightCase = rightCase with { IsOverlapped = true };
+						break;
+					}
+				}
+
+				if (leftCase != rightCase)
+				{
+					negatives.Add(conclusion);
+					positives.Add(conclusion);
+				}
+			}
+
+			negativeConclusions = negatives.AsReadOnlySpan();
+			positiveConclusions = positives.AsReadOnlySpan();
+		}
 	}
 }
+
+/// <summary>
+/// Indicates information of a conclusion.
+/// </summary>
+/// <param name="Conclusion">Indicates the conclusion to be used.</param>
+/// <param name="IsOverlapped">Indicates whether the conclusion is overlapped.</param>
+file readonly record struct ConclusionInfo(Conclusion Conclusion, bool IsOverlapped);

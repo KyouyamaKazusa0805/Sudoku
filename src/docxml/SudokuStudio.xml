@@ -754,6 +754,26 @@
             </summary>
             <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>
         </member>
+        <member name="T:SudokuStudio.BindableSource.ConclusionInfo">
+            <summary>
+            Indicates information of a conclusion.
+            </summary>
+            <param name="Conclusion">Indicates the conclusion to be used.</param>
+            <param name="IsOverlapped">Indicates whether the conclusion is overlapped.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.ConclusionInfo.#ctor(Sudoku.Concepts.Conclusion,System.Boolean)">
+            <summary>
+            Indicates information of a conclusion.
+            </summary>
+            <param name="Conclusion">Indicates the conclusion to be used.</param>
+            <param name="IsOverlapped">Indicates whether the conclusion is overlapped.</param>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ConclusionInfo.Conclusion">
+            <summary>Indicates the conclusion to be used.</summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.ConclusionInfo.IsOverlapped">
+            <summary>Indicates whether the conclusion is overlapped.</summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff">
             <summary>
             Represents a list of <see cref="T:Sudoku.Drawing.IDrawableItem"/> instances to indicate diff items
