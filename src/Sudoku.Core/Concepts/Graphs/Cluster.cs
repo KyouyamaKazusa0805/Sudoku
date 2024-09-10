@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.Graphs;
 /// <summary>
 /// <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
 /// <para>
-/// This data structure will simplify the defintion, only reserving for single-digit strong links (i.e. conjugate pairs),
+/// This data structure will simplify the definition, only reserving for single-digit strong links (i.e. conjugate pairs),
 /// in order to make the implementation behave well and easily on representing data.
 /// </para>
 /// <para>
