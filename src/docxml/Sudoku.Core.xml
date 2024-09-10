@@ -1986,10 +1986,12 @@
             Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
             </para>
             </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="digit">Indicates the digit used.</param>
             <param name="map">Indicates the cells used.</param>
             <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.#ctor(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.#ctor(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
             <para>
@@ -2000,13 +2002,10 @@
             Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
             </para>
             </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="digit">Indicates the digit used.</param>
             <param name="map">Indicates the cells used.</param>
             <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.Cluster._map">
-            <summary>
-            Indicates the map.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Graphs.Cluster.Map">
             <summary>
@@ -2028,6 +2027,21 @@
             <param name="grid">The grid to be used.</param>
             <param name="digit">Indicates the digits used.</param>
             <returns>A <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.Cluster._grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.Cluster._map">
+            <summary>
+            The generated field declaration for parameter <c>map</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.Cluster.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -2058,10 +2072,17 @@
             Indicates the default empty graph without any cells.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._map">
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._cells">
             <summary>
-            Indicates the backing field.
+            Indicates the cells used.
             </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._invalidCells">
+            <summary>
+            Indicates invalid cells. Such cells may not be covered from the grid.
+            <see cref="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.UndirectedCellGraphDepth}@)"/> will ignore them.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.UndirectedCellGraphDepth}@)"/>
         </member>
         <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph._directlyConnectedCellsDictionary">
             <summary>
@@ -2070,9 +2091,16 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.#ctor(Sudoku.Concepts.CellMap@)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.
+            Initializes an <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.
             </summary>
             <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="invalidCells">Indicates invalid cells.</param>
         </member>
         <member name="P:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsConnected">
             <summary>
@@ -2165,24 +2193,6 @@
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Contains(System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSubsetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#IsSupersetOf(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#Overlaps(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IReadOnlySet{System#Int32}#SetEquals(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -2192,17 +2202,21 @@
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_OnesComplement(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Create(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance via the specified cells.
+            </summary>
+            <param name="cells">The cells.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_BitwiseAnd(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_BitwiseOr(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_ExclusiveOr(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.CreateFromConjugatePair(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance via a list of cells, checking conjugate pairs.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <param name="digit">The digit to be used.</param>
+            <param name="cells">The cells to be used.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator">
             <summary>
@@ -2235,18 +2249,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_Equality(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.op_Inequality(Sudoku.Concepts.Graphs.UndirectedCellGraph,Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraphDepth">
             <summary>

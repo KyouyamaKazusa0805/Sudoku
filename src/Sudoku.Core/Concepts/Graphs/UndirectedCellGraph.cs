@@ -4,13 +4,7 @@ namespace Sudoku.Concepts.Graphs;
 /// Represents a list of cells that form a undirected graph.
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public readonly partial struct UndirectedCellGraph() :
-	IBitwiseOperators<UndirectedCellGraph, UndirectedCellGraph, UndirectedCellGraph>,
-	IEquatable<UndirectedCellGraph>,
-	IEqualityOperators<UndirectedCellGraph, UndirectedCellGraph, bool>,
-	IReadOnlySet<Cell>,
-	IFormattable
+public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
 	/// Indicates the default empty graph without any cells.
@@ -19,10 +13,16 @@ public readonly partial struct UndirectedCellGraph() :
 
 
 	/// <summary>
-	/// Indicates the backing field.
+	/// Indicates the cells used.
 	/// </summary>
-	[HashCodeMember]
-	private readonly CellMap _map;
+	private readonly CellMap _cells;
+
+	/// <summary>
+	/// Indicates invalid cells. Such cells may not be covered from the grid.
+	/// <see cref="GetComponentOf(Cell, out ReadOnlySpan{UndirectedCellGraphDepth})"/> will ignore them.
+	/// </summary>
+	/// <seealso cref="GetComponentOf(Cell, out ReadOnlySpan{UndirectedCellGraphDepth})"/>
+	private readonly CellMap _invalidCells;
 
 	/// <summary>
 	/// Indicates the directly-connected cells.
@@ -31,12 +31,12 @@ public readonly partial struct UndirectedCellGraph() :
 
 
 	/// <summary>
-	/// Initializes a <see cref="UndirectedCellGraph"/> instance.
+	/// Initializes an <see cref="UndirectedCellGraph"/> instance.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
 	public UndirectedCellGraph(ref readonly CellMap cells) : this()
 	{
-		_map = cells;
+		_cells = cells;
 
 		_directlyConnectedCellsDictionary = new(cells.Count);
 		foreach (var cell in cells)
@@ -45,27 +45,36 @@ public readonly partial struct UndirectedCellGraph() :
 		}
 	}
 
+	/// <summary>
+	/// Initializes an <see cref="UndirectedCellGraph"/> instance.
+	/// </summary>
+	/// <param name="cells">Indicates the cells used.</param>
+	/// <param name="invalidCells">Indicates invalid cells.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private UndirectedCellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells) : this(in cells)
+		=> _invalidCells = invalidCells;
+
 
 	/// <summary>
 	/// Indicates whether the graph is connected, i.e. all nodes in the graph is a part of the whole graph without being separated.
 	/// </summary>
-	public bool IsConnected => Components is [var onlyComponent] && this == onlyComponent;
+	public bool IsConnected => Components is [var onlyComponent] && _cells == onlyComponent._cells;
 
 	/// <summary>
 	/// Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
 	/// </summary>
-	public bool IsEmpty => this == Empty;
+	public bool IsEmpty => _cells.Count == 0;
 
 	/// <summary>
 	/// Indicates the vertices count, i.e. the number of cells in the graph.
 	/// </summary>
-	public int VerticesCount => _map.Count;
+	public int VerticesCount => _cells.Count;
 
 	/// <summary>
 	/// Indicates the internal map.
 	/// </summary>
 	[UnscopedRef]
-	public ref readonly CellMap Map => ref _map;
+	public ref readonly CellMap Map => ref _cells;
 
 	/// <summary>
 	/// Indicates all possible connected components of the graph.
@@ -74,7 +83,7 @@ public readonly partial struct UndirectedCellGraph() :
 	{
 		get
 		{
-			var lastCells = _map;
+			var lastCells = _cells;
 			var result = new List<UndirectedCellGraph>();
 			while (lastCells)
 			{
@@ -121,7 +130,7 @@ public readonly partial struct UndirectedCellGraph() :
 		get
 		{
 			var result = CellMap.Empty;
-			foreach (var cell in _map)
+			foreach (var cell in _cells)
 			{
 				if (GetDegreeOf(cell) == degree)
 				{
@@ -135,7 +144,7 @@ public readonly partial struct UndirectedCellGraph() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(UndirectedCellGraph other) => _map == other._map;
+	public bool Equals(UndirectedCellGraph other) => _cells == other._cells;
 
 	/// <summary>
 	/// Indicates whether the current graph is superset of the specified graph,
@@ -144,7 +153,7 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <param name="other">The other graph to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool IsSupersetOf(UndirectedCellGraph other) => (_map & other._map) == other._map;
+	public bool IsSupersetOf(UndirectedCellGraph other) => (_cells & other._cells) == other._cells;
 
 	/// <summary>
 	/// Indicates whether the current graph is subset of the specified graph,
@@ -153,7 +162,7 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <param name="other">The other graph to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool IsSubsetOf(UndirectedCellGraph other) => (other._map & _map) == _map;
+	public bool IsSubsetOf(UndirectedCellGraph other) => (other._cells & _cells) == _cells;
 
 	/// <summary>
 	/// Try to get the degree of the specified cell.
@@ -161,7 +170,7 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <param name="cell">The desired cell.</param>
 	/// <returns>An <see cref="int"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetDegreeOf(Cell cell) => _map.Contains(cell) ? _directlyConnectedCellsDictionary[cell].Count : -1;
+	public int GetDegreeOf(Cell cell) => _cells.Contains(cell) ? _directlyConnectedCellsDictionary[cell].Count : -1;
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(null);
@@ -192,7 +201,7 @@ public readonly partial struct UndirectedCellGraph() :
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SuppressMessage("Style", "IDE0305:Simplify collection initialization", Justification = "<Pending>")]
-	public Enumerator GetEnumerator() => new(_map.ToArray());
+	public Enumerator GetEnumerator() => new(_cells.ToArray());
 
 	/// <summary>
 	/// Try to get a <see cref="UndirectedCellGraph"/> that contains the specified cell.
@@ -213,16 +222,26 @@ public readonly partial struct UndirectedCellGraph() :
 		{
 			var (currentDepth, currentCell) = queue.Dequeue();
 			var connectedCells = _directlyConnectedCellsDictionary[currentCell];
+			var coveredCells = CellMap.Empty;
 			foreach (var peerCell in connectedCells)
 			{
-				if (!currentGraph.Contains(peerCell))
+				if (currentGraph.Contains(peerCell) || _invalidCells.Contains(peerCell))
 				{
-					var depth = new UndirectedCellGraphDepth(currentDepth + 1, peerCell);
-					queue.Enqueue(depth);
-					depthValues.Add(depth);
+					continue;
 				}
+
+				var matchHouse = (currentCell.AsCellMap() + peerCell).FirstSharedHouse;
+				if (HousesMap[matchHouse] & _invalidCells)
+				{
+					continue;
+				}
+
+				var depth = new UndirectedCellGraphDepth(currentDepth + 1, peerCell);
+				queue.Enqueue(depth);
+				depthValues.Add(depth);
+				coveredCells.Add(peerCell);
 			}
-			currentGraph |= connectedCells;
+			currentGraph |= coveredCells;
 		}
 
 		depths = depthValues.AsReadOnlySpan();
@@ -230,61 +249,45 @@ public readonly partial struct UndirectedCellGraph() :
 	}
 
 	/// <inheritdoc/>
-	public bool Contains(Cell item) => _map.Contains(item);
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.IsProperSubsetOf(IEnumerable<Cell> other)
-	{
-		CellMap map = [.. other];
-		return _map != map && (map & _map) == _map;
-	}
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.IsProperSupersetOf(IEnumerable<Cell> other)
-	{
-		CellMap map = [.. other];
-		return _map != map && (_map & map) == map;
-	}
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.IsSubsetOf(IEnumerable<Cell> other) => ([.. other] & _map) == _map;
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.IsSupersetOf(IEnumerable<Cell> other)
-	{
-		CellMap map = [.. other];
-		return (_map & map) == map;
-	}
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.Overlaps(IEnumerable<Cell> other) => !!(_map & [.. other]);
-
-	/// <inheritdoc/>
-	bool IReadOnlySet<Cell>.SetEquals(IEnumerable<Cell> other) => _map == [.. other];
+	public bool Contains(Cell item) => _cells.Contains(item);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => _map.ToArray().GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => _cells.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _map.ToArray().AsEnumerable().GetEnumerator();
+	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _cells.ToArray().AsEnumerable().GetEnumerator();
 
 
-	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_OnesComplement(TSelf)"/>
+	/// <summary>
+	/// Creates an <see cref="UndirectedCellGraph"/> instance via the specified cells.
+	/// </summary>
+	/// <param name="cells">The cells.</param>
+	/// <returns>An <see cref="UndirectedCellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph operator ~(UndirectedCellGraph value) => new(~value._map);
+	public static UndirectedCellGraph Create(ref readonly CellMap cells) => new(in cells);
 
-	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseAnd(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph operator &(UndirectedCellGraph left, UndirectedCellGraph right) => new(left._map & right._map);
-
-	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseOr(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph operator |(UndirectedCellGraph left, UndirectedCellGraph right) => new(left._map | right._map);
-
-	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_ExclusiveOr(TSelf, TOther)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph operator ^(UndirectedCellGraph left, UndirectedCellGraph right) => new(left._map ^ right._map);
+	/// <summary>
+	/// Initializes an <see cref="UndirectedCellGraph"/> instance via a list of cells, checking conjugate pairs.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="digit">The digit to be used.</param>
+	/// <param name="cells">The cells to be used.</param>
+	/// <returns>An <see cref="UndirectedCellGraph"/> instance.</returns>
+	public static UndirectedCellGraph CreateFromConjugatePair(ref readonly Grid grid, Digit digit, ref readonly CellMap cells)
+	{
+		var globalCells = grid.CandidatesMap[digit];
+		var invalidCells = CellMap.Empty;
+		foreach (var house in globalCells.Houses)
+		{
+			var tempCells = globalCells & HousesMap[house];
+			if (tempCells != (cells & HousesMap[house]))
+			{
+				invalidCells |= tempCells & ~(cells & HousesMap[house]);
+			}
+		}
+		return new(in cells, in invalidCells);
+	}
 }

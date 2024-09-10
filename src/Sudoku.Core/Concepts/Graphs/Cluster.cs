@@ -10,19 +10,18 @@ namespace Sudoku.Concepts.Graphs;
 /// Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
 /// </para>
 /// </summary>
+/// <param name="grid">Indicates the grid used.</param>
+/// <param name="digit">Indicates the digit used.</param>
 /// <param name="map">Indicates the cells used.</param>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public readonly ref partial struct Cluster(scoped ref readonly CellMap map) : IEquatable<Cluster>
+public readonly ref partial struct Cluster(
+	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly Grid grid,
+	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
+	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] scoped ref readonly CellMap map
+) : IEquatable<Cluster>
 {
-	/// <summary>
-	/// Indicates the map.
-	/// </summary>
-	[HashCodeMember]
-	private readonly CellMap _map = map;
-
-
 	/// <summary>
 	/// Indicates the internal map.
 	/// </summary>
@@ -37,7 +36,7 @@ public readonly ref partial struct Cluster(scoped ref readonly CellMap map) : IE
 		get
 		{
 			var result = CellMap.Empty;
-			var graph = new UndirectedCellGraph(in Map);
+			var graph = UndirectedCellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
 			var components = graph.Components;
 			var lastCells = Map;
 			while (lastCells)
@@ -103,6 +102,6 @@ public readonly ref partial struct Cluster(scoped ref readonly CellMap map) : IE
 				result |= cp.Map;
 			}
 		}
-		return new(in result);
+		return new(in grid, digit, in result);
 	}
 }
