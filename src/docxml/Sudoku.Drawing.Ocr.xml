@@ -8,15 +8,15 @@
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
-            <param name="cell">Indicates the wrong cell.</param>
-            <param name="digit">Indicates the wrong digit.</param>
+            <param name="_cell">Indicates the wrong cell.</param>
+            <param name="_digit">Indicates the wrong digit.</param>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.FailedToFillValueException.#ctor(System.Int32,System.Int32)">
             <summary>
             Indicates the exception that throws when the value is failed to fill into a cell.
             </summary>
-            <param name="cell">Indicates the wrong cell.</param>
-            <param name="digit">Indicates the wrong digit.</param>
+            <param name="_cell">Indicates the wrong cell.</param>
+            <param name="_digit">Indicates the wrong digit.</param>
         </member>
         <member name="P:Sudoku.Drawing.Ocr.FailedToFillValueException.Message">
             <inheritdoc/>
@@ -29,7 +29,7 @@
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
             please see the 'remark' part of <see cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>.
             </summary>
-            <param name="photo">Indicates the photo to be assigned.</param>
+            <param name="_photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.#ctor(System.Drawing.Bitmap)">
@@ -37,7 +37,7 @@
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
             please see the 'remark' part of <see cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>.
             </summary>
-            <param name="photo">Indicates the photo to be assigned.</param>
+            <param name="_photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>
         </member>
         <member name="F:Sudoku.Drawing.Ocr.GridRecognizer.L2Gradient">
@@ -283,13 +283,13 @@
             <summary>
             Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
-            <param name="detail">Indicates the detail.</param>
+            <param name="_detail">Indicates the detail.</param>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.TesseractException.#ctor(System.String)">
             <summary>
             Indicates the exception that throws when the tesseract has encountered an error.
             </summary>
-            <param name="detail">Indicates the detail.</param>
+            <param name="_detail">Indicates the detail.</param>
         </member>
         <member name="P:Sudoku.Drawing.Ocr.TesseractException.Message">
             <inheritdoc/>
