@@ -1,9 +1,14 @@
 namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
-/// Represents a list of cells that form a undirected graph.
+/// <para>Represents a list of cells that form a undirected graph.</para>
+/// <para>
+/// Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
+/// to learn more information about concept Component.
+/// </para>
 /// </summary>
-/// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
+/// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
+[CollectionBuilder(typeof(UndirectedCellGraph), nameof(Create))]
 public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
@@ -147,24 +152,6 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	public bool Equals(UndirectedCellGraph other) => _cells == other._cells;
 
 	/// <summary>
-	/// Indicates whether the current graph is superset of the specified graph,
-	/// i.e. all nodes in <paramref name="other"/> belong to the current graph.
-	/// </summary>
-	/// <param name="other">The other graph to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool IsSupersetOf(UndirectedCellGraph other) => (_cells & other._cells) == other._cells;
-
-	/// <summary>
-	/// Indicates whether the current graph is subset of the specified graph,
-	/// i.e. all nodes in the current instance belong to the graph <paramref name="other"/>.
-	/// </summary>
-	/// <param name="other">The other graph to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool IsSubsetOf(UndirectedCellGraph other) => (other._cells & _cells) == _cells;
-
-	/// <summary>
 	/// Try to get the degree of the specified cell.
 	/// </summary>
 	/// <param name="cell">The desired cell.</param>
@@ -268,6 +255,10 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	/// <returns>An <see cref="UndirectedCellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static UndirectedCellGraph Create(ref readonly CellMap cells) => new(in cells);
+
+	/// <inheritdoc cref="Create(ref readonly CellMap)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static UndirectedCellGraph Create(scoped ReadOnlySpan<Cell> cells) => Create(cells.AsCellMap());
 
 	/// <summary>
 	/// Initializes an <see cref="UndirectedCellGraph"/> instance via a list of cells, checking conjugate pairs.

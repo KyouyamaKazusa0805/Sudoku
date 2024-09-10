@@ -2057,15 +2057,23 @@
         </member>
         <member name="T:Sudoku.Concepts.Graphs.UndirectedCellGraph">
             <summary>
-            Represents a list of cells that form a undirected graph.
+            <para>Represents a list of cells that form a undirected graph.</para>
+            <para>
+            Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
+            to learn more information about concept Component.
+            </para>
             </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
+            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.#ctor">
             <summary>
-            Represents a list of cells that form a undirected graph.
+            <para>Represents a list of cells that form a undirected graph.</para>
+            <para>
+            Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
+            to learn more information about concept Component.
+            </para>
             </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Component (Graph Theory)</seealso>
+            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
         </member>
         <member name="F:Sudoku.Concepts.Graphs.UndirectedCellGraph.Empty">
             <summary>
@@ -2140,22 +2148,6 @@
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Equals(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsSupersetOf(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <summary>
-            Indicates whether the current graph is superset of the specified graph,
-            i.e. all nodes in <paramref name="other"/> belong to the current graph.
-            </summary>
-            <param name="other">The other graph to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.IsSubsetOf(Sudoku.Concepts.Graphs.UndirectedCellGraph)">
-            <summary>
-            Indicates whether the current graph is subset of the specified graph,
-            i.e. all nodes in the current instance belong to the graph <paramref name="other"/>.
-            </summary>
-            <param name="other">The other graph to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.GetDegreeOf(System.Int32)">
             <summary>
             Try to get the degree of the specified cell.
@@ -2208,6 +2200,9 @@
             </summary>
             <param name="cells">The cells.</param>
             <returns>An <see cref="T:Sudoku.Concepts.Graphs.UndirectedCellGraph"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Create(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.Create(Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.UndirectedCellGraph.CreateFromConjugatePair(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
