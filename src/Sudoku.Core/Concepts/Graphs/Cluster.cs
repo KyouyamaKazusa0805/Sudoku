@@ -39,35 +39,28 @@ public readonly ref partial struct Cluster(
 		{
 			var result = CellMap.Empty;
 			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
-			var components = graph.Components;
-			var lastCells = Map;
-			while (lastCells)
+			foreach (ref readonly var component in graph.Components)
 			{
-				foreach (var componentStartCell in lastCells.ToArray())
+				ref readonly var firstParityPair = ref Parity.Create(in component)[0];
+				var parity1 = firstParityPair.On.Cells;
+				var parity2 = firstParityPair.Off.Cells;
+				for (var i = 0; i < 2; i++)
 				{
-					ref readonly var component = ref components.FirstRef((ref readonly CellGraph g) => g.Contains(componentStartCell));
-					ref readonly var firstParityPair = ref Parity.Create(in component)[0];
-					var parity1 = firstParityPair.On.Cells;
-					var parity2 = firstParityPair.Off.Cells;
-					for (var i = 0; i < 2; i++)
+					// Check whether there're two or more cells lying in a same house.
+					ref readonly var parity = ref i == 0 ? ref parity1 : ref parity2;
+					foreach (var house in parity.Houses)
 					{
-						// Check whether there're two or more cells lying in a same house.
-						ref readonly var parity = ref i == 0 ? ref parity1 : ref parity2;
-						foreach (var house in parity.Houses)
+						if ((HousesMap[house] & parity).Count >= 2)
 						{
-							if ((HousesMap[house] & parity).Count >= 2)
-							{
-								// All this parity is incorrect, and the other one is correct.
-								result |= parity;
-								goto NextComponent;
-							}
+							// All this parity is incorrect, and the other one is correct.
+							result |= parity;
+							goto NextComponent;
 						}
 					}
-
-				NextComponent:
-					lastCells &= ~component.Map;
-					break;
 				}
+
+			NextComponent:
+				;
 			}
 			return result;
 		}
@@ -83,41 +76,29 @@ public readonly ref partial struct Cluster(
 			var candsMap = _grid.CandidatesMap[Digit];
 			var result = CellMap.Empty;
 			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
-			var components = graph.Components;
-			var lastCells = Map;
-			while (lastCells)
+			foreach (ref readonly var component in graph.Components)
 			{
-				foreach (var componentStartCell in lastCells.ToArray())
-				{
-					ref readonly var component = ref components.FirstRef((ref readonly CellGraph g) => g.Contains(componentStartCell));
-					ref readonly var firstParityPair = ref Parity.Create(in component)[0];
-					var parity1 = firstParityPair.On.Cells;
-					var parity2 = firstParityPair.Off.Cells;
+				ref readonly var firstParityPair = ref Parity.Create(in component)[0];
+				var parity1 = firstParityPair.On.Cells;
+				var parity2 = firstParityPair.Off.Cells;
 
-					// Now we should iterate two collections to get contradiction.
-					var (conflictedCells, conflictedPair) = (CellMap.Empty, new HashSet<ConflictedInfo>());
-					foreach (var cell1 in parity1)
+				// Now we should iterate two collections to get contradiction.
+				var (conflictedCells, conflictedPair) = (CellMap.Empty, new HashSet<ConflictedInfo>());
+				foreach (var cell1 in parity1)
+				{
+					foreach (var cell2 in parity2)
 					{
-						foreach (var cell2 in parity2)
+						var intersection = (cell1.AsCellMap() + cell2).PeerIntersection;
+						var currentConflictCells = intersection & candsMap;
+						if (!!currentConflictCells
+							&& !conflictedPair.Any(p => (p.InfluencedRange & currentConflictCells) == currentConflictCells))
 						{
-							var intersection = (cell1.AsCellMap() + cell2).PeerIntersection;
-							var currentConflictCells = intersection & candsMap;
-							if (!!currentConflictCells
-								&& !conflictedPair.Any(p => (p.InfluencedRange & currentConflictCells) == currentConflictCells))
-							{
-								conflictedPair.Add(((cell1, cell2), currentConflictCells));
-								conflictedCells |= currentConflictCells;
-							}
+							conflictedPair.Add(((cell1, cell2), currentConflictCells));
+							conflictedCells |= currentConflictCells;
 						}
 					}
-					if (conflictedCells)
-					{
-						result |= conflictedCells;
-					}
-
-					lastCells &= ~component.Map;
-					break;
 				}
+				result |= conflictedCells;
 			}
 			return result;
 		}
