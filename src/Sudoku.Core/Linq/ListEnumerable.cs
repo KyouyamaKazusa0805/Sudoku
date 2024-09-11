@@ -10,7 +10,7 @@ public static class ListEnumerable
 	/// Projects each element in a <see cref="List{T}"/> to a <see cref="CellMap"/>,
 	/// flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
 	/// </summary>
-	/// <typeparam name="TSource">The type of the elements in sourece.</typeparam>
+	/// <typeparam name="TSource">The type of the elements in source.</typeparam>
 	/// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
 	/// <param name="this">A sequence of values to project.</param>
 	/// <param name="collectionSelector">A transform function to apply to each element of the input <see cref="List{T}"/>.</param>
@@ -41,7 +41,7 @@ public static class ListEnumerable
 	/// Projects each element in a <see cref="List{T}"/> to a <see cref="CandidateMap"/>,
 	/// flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
 	/// </summary>
-	/// <typeparam name="TSource">The type of the elements in sourece.</typeparam>
+	/// <typeparam name="TSource">The type of the elements in source.</typeparam>
 	/// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
 	/// <param name="this">A sequence of values to project.</param>
 	/// <param name="collectionSelector">A transform function to apply to each element of the input <see cref="List{T}"/>.</param>
