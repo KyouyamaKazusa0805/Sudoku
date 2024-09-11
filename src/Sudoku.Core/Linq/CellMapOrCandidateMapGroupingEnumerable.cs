@@ -6,6 +6,7 @@ namespace Sudoku.Linq;
 /// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
 public static class CellMapOrCandidateMapGroupingEnumerable
 {
+#if WHY_THIS_MEMBER_SHOULD_BE_DISABLED
 	/// <summary>
 	/// Filters a sequence of values based on a predicate.
 	/// </summary>
@@ -19,7 +20,10 @@ public static class CellMapOrCandidateMapGroupingEnumerable
 	/// <typeparam name="TKey">The type of the key in the group.</typeparam>
 	/// <param name="this">The instance to be checked.</param>
 	/// <param name="predicate">A function to test each element for a condition.</param>
-	/// <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
+	/// <returns>
+	/// An array of <typeparamref name="TElement"/> instances
+	/// that contains elements from the input sequence that satisfy the condition.
+	/// </returns>
 	public static ReadOnlySpan<TElement> Where<TMap, TElement, TEnumerator, TKey>(
 		this CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
 		Func<TElement, bool> predicate
@@ -64,8 +68,8 @@ public static class CellMapOrCandidateMapGroupingEnumerable
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})" path="/param[@name='selector']"/>
 	/// </param>
 	/// <returns>
-	/// An array of <typeparamref name="TResult"/> instances whose elements are the result of invoking the transform function
-	/// on each element of the current instance.
+	/// A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TResult"/> instances
+	/// whose elements are the result of invoking the transform function on each element of the current instance.
 	/// </returns>
 	public static ReadOnlySpan<TResult> Select<TMap, TElement, TEnumerator, TKey, TResult>(
 		this CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> @this,
@@ -84,6 +88,7 @@ public static class CellMapOrCandidateMapGroupingEnumerable
 		}
 		return result;
 	}
+#endif
 
 	/// <summary>
 	/// Projects a list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CellMap"/>,

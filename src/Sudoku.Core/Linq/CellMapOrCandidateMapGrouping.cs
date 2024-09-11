@@ -14,7 +14,7 @@ namespace Sudoku.Linq;
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[PrimaryConstructorParameter] TKey key,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly TMap values
+	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly TMap values
 ) :
 	IEnumerable<TElement>,
 	IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>,
@@ -73,7 +73,7 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEn
 	bool IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>.Equals(CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Equals(in other);
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => Values.AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<TElement> IWhereMethod<TMap, TElement>.Where(Func<TElement, bool> predicate) => this.Where(predicate).ToArray();
