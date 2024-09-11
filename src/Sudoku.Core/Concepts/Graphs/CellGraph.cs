@@ -9,7 +9,7 @@ namespace Sudoku.Concepts.Graphs;
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
-public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<Cell>
+public readonly partial struct CellGraph : IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
 	/// Indicates the default empty graph without any cells.
@@ -39,25 +39,23 @@ public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<C
 	/// Initializes an <see cref="CellGraph"/> instance.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
-	public CellGraph(ref readonly CellMap cells) : this()
+	/// <param name="invalidCells">
+	/// <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
+	/// <para>
+	/// In general, this argument is an empty collection of <see cref="CellMap"/> (i.e. a <see cref="CellMap.Empty"/> or <c>[]</c>),
+	/// but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
+	/// </para>
+	/// </param>
+	public CellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells)
 	{
 		_cells = cells;
-
+		_invalidCells = invalidCells;
 		_directlyConnectedCellsDictionary = new(cells.Count);
 		foreach (var cell in cells)
 		{
 			_directlyConnectedCellsDictionary.Add(cell, cells & PeersMap[cell]);
 		}
 	}
-
-	/// <summary>
-	/// Initializes an <see cref="CellGraph"/> instance.
-	/// </summary>
-	/// <param name="cells">Indicates the cells used.</param>
-	/// <param name="invalidCells">Indicates invalid cells.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private CellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells) : this(in cells)
-		=> _invalidCells = invalidCells;
 
 
 	/// <summary>
@@ -113,7 +111,7 @@ public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<C
 					}
 
 					lastCells &= ~currentGraph;
-					result.Add(new(in currentGraph));
+					result.Add(new(in currentGraph, in _invalidCells));
 					break;
 				}
 			}
@@ -142,7 +140,7 @@ public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<C
 					result.Add(cell);
 				}
 			}
-			return new(in result);
+			return new(in result, in _invalidCells);
 		}
 	}
 
@@ -232,7 +230,7 @@ public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<C
 		}
 
 		depths = depthValues.AsReadOnlySpan();
-		return new(in currentGraph);
+		return new(in currentGraph, in _invalidCells);
 	}
 
 	/// <inheritdoc/>
@@ -254,7 +252,7 @@ public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<C
 	/// <param name="cells">The cells.</param>
 	/// <returns>An <see cref="CellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellGraph Create(ref readonly CellMap cells) => new(in cells);
+	public static CellGraph Create(ref readonly CellMap cells) => new(in cells, in CellMap.Empty);
 
 	/// <inheritdoc cref="Create(ref readonly CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

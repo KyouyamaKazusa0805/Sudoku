@@ -1985,16 +1985,6 @@
             </summary>
             <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.#ctor">
-            <summary>
-            <para>Represents a list of cells that form a undirected graph.</para>
-            <para>
-            Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
-            to learn more information about concept Component.
-            </para>
-            </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
-        </member>
         <member name="F:Sudoku.Concepts.Graphs.CellGraph.Empty">
             <summary>
             Indicates the default empty graph without any cells.
@@ -2017,18 +2007,18 @@
             Indicates the directly-connected cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.#ctor(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.
-            </summary>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Initializes an <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.
             </summary>
             <param name="cells">Indicates the cells used.</param>
-            <param name="invalidCells">Indicates invalid cells.</param>
+            <param name="invalidCells">
+            <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
+            <para>
+            In general, this argument is an empty collection of <see cref="T:Sudoku.Concepts.CellMap"/> (i.e. a <see cref="F:Sudoku.Concepts.CellMap.Empty"/> or <c>[]</c>),
+            but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
+            </para>
+            </param>
         </member>
         <member name="P:Sudoku.Concepts.Graphs.CellGraph.IsConnected">
             <summary>
@@ -2240,7 +2230,7 @@
             <param name="grid">Indicates the grid used.</param>
             <param name="digit">Indicates the digit used.</param>
             <param name="map">Indicates the cells used.</param>
-            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.#ctor(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -2256,7 +2246,7 @@
             <param name="grid">Indicates the grid used.</param>
             <param name="digit">Indicates the digit used.</param>
             <param name="map">Indicates the cells used.</param>
-            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
         </member>
         <member name="P:Sudoku.Concepts.Graphs.Cluster.Map">
             <summary>
@@ -2313,6 +2303,63 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Inequality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Graphs.Parity">
+            <summary>
+            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/>.</para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
+            to learn more information about this concept.
+            </para>
+            </summary>
+            <param name="ParityFlag">
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </param>
+            <param name="Cells">Indicates the cells used.</param>
+            <seealso cref="T:Sudoku.Concepts.Graphs.Cluster"/>
+            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Parity.#ctor(System.Boolean,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/>.</para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
+            to learn more information about this concept.
+            </para>
+            </summary>
+            <param name="ParityFlag">
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </param>
+            <param name="Cells">Indicates the cells used.</param>
+            <seealso cref="T:Sudoku.Concepts.Graphs.Cluster"/>
+            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.Parity.ParityFlag">
+            <summary>
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Graphs.Parity.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.Parity.Create(Sudoku.Concepts.Graphs.CellGraph@)">
+            <summary>
+            Try to get all pairs of parities of all components of the specified graph.
+            </summary>
+            <param name="graph">The graph.</param>
+            <returns>A list of pairs of parities of components of the specified graph.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>

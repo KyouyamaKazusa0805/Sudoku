@@ -766,6 +766,19 @@ public static class SpanEnumerable
 		throw new InvalidOperationException(SR.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 
+	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static ref readonly T FirstRef<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> predicate)
+	{
+		foreach (ref readonly var element in @this)
+		{
+			if (predicate(in element))
+			{
+				return ref element;
+			}
+		}
+		throw new InvalidOperationException(SR.ExceptionMessage("NoSuchElementSatisfyingCondition"));
+	}
+
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T? FirstOrDefault<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
