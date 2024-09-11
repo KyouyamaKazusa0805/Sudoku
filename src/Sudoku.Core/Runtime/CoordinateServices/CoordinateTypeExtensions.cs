@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Runtime.CoordinateServices;
 
 /// <summary>
 /// Provides with extension methods on <see cref="CoordinateType"/>.

@@ -1944,37 +1944,6 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Runtime.CoordinateServices.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Runtime.CoordinateServices.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>
-            A valid <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Runtime.CoordinateServices.CoordinateType)">
-            <summary>
-            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
-            </summary>
-            <param name="this">The type of the coordinate type.</param>
-            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.Graphs.CellGraph">
             <summary>
             <para>Represents a list of cells that form a undirected graph.</para>
@@ -7027,6 +6996,37 @@
             <summary>
             Indicates the notation is based on <b>Excel</b> notation.
             </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.CoordinateServices.CoordinateTypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/>
+        </member>
+        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateTypeExtensions.GetConverter(Sudoku.Runtime.CoordinateServices.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateTypeExtensions.GetParser(Sudoku.Runtime.CoordinateServices.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateType"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            A valid <see cref="T:Sudoku.Runtime.CoordinateServices.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.CoordinateServices.CoordinateTypeExtensions.GetField(Sudoku.Runtime.CoordinateServices.CoordinateType)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
+            </summary>
+            <param name="this">The type of the coordinate type.</param>
+            <returns>The final <see cref="T:System.Reflection.FieldInfo"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Runtime.CoordinateServices.ExcelCoordinateConverter">
             <summary>
