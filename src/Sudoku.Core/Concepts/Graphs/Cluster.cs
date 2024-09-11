@@ -1,5 +1,7 @@
 namespace Sudoku.Concepts.Graphs;
 
+using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
+
 /// <summary>
 /// <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
 /// <para>
@@ -87,8 +89,51 @@ public readonly ref partial struct Cluster(
 	{
 		get
 		{
-			// TODO: Implement later.
-			return CellMap.Empty;
+			var candsMap = _grid.CandidatesMap[Digit];
+			var result = CellMap.Empty;
+			var graph = UndirectedCellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
+			var components = graph.Components;
+			var lastCells = Map;
+			while (lastCells)
+			{
+				foreach (var componentStartCell in lastCells.ToArray())
+				{
+					var component = components.First(graph => graph.Contains(componentStartCell));
+					foreach (var cellDegree1 in graph[1])
+					{
+						graph.GetComponentOf(cellDegree1, out var depths);
+						var nodeGroups =
+							from depth in depths
+							let depthKey = (depth.Depth & 1) == 1
+							group depth by depthKey into depthGroup
+							let depthCells = (from depth in depthGroup select depth.Cell).AsCellMap()
+							select (DepthValueIsOdd: depthGroup.Key, Cells: depthCells);
+
+						// There must be 2 cases. Now we should iterate two collections to get contradiction.
+						var conflictedCells = CellMap.Empty;
+						var conflictedPair = new HashSet<ConflictedInfo>();
+						foreach (var cell1 in nodeGroups[0].Cells)
+						{
+							foreach (var cell2 in nodeGroups[1].Cells)
+							{
+								var intersection = (cell1.AsCellMap() + cell2).PeerIntersection;
+								var currentConflictCells = intersection & candsMap;
+								if (!!currentConflictCells
+									&& !conflictedPair.Any(p => (p.InfluencedRange & currentConflictCells) == currentConflictCells))
+								{
+									conflictedPair.Add(((cell1, cell2), currentConflictCells));
+									conflictedCells |= currentConflictCells;
+								}
+							}
+						}
+						result |= conflictedCells;
+					}
+
+					lastCells &= ~component.Map;
+					break;
+				}
+			}
+			return result;
 		}
 	}
 
