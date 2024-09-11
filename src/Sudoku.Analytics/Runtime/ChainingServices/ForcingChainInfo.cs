@@ -19,8 +19,10 @@ public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, Ha
 	/// <summary>
 	/// Indicates the start node.
 	/// </summary>
-	[HashCodeMember]
 	public Node StartNode => OnNodes.First().Root;
+
+	[HashCodeMember]
+	private int StartNodeHashCode => StartNode.GetHashCode();
 
 
 	/// <inheritdoc/>
