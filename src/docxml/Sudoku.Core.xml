@@ -2017,6 +2017,11 @@
             Represents a list of cells that will form wrap contradictions in the cluster.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Graphs.Cluster.TrapContradictions">
+            <summary>
+            Represents a list of cells that will form trap contradictions in the cluster.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(Sudoku.Concepts.Graphs.Cluster)">
             <inheritdoc/>
         </member>

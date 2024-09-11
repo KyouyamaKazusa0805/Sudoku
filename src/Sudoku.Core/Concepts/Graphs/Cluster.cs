@@ -80,6 +80,18 @@ public readonly ref partial struct Cluster(
 		}
 	}
 
+	/// <summary>
+	/// Represents a list of cells that will form trap contradictions in the cluster.
+	/// </summary>
+	public CellMap TrapContradictions
+	{
+		get
+		{
+			// TODO: Implement later.
+			return CellMap.Empty;
+		}
+	}
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
