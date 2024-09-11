@@ -2054,6 +2054,9 @@
         <member name="M:Sudoku.Concepts.Graphs.Cluster.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Equality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>

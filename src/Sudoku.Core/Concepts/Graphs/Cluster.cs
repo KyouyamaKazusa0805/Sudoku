@@ -17,11 +17,11 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 /// <param name="map">Indicates the cells used.</param>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Cluster</seealso>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators, ToStringBehavior = ToStringBehavior.RecordLike)]
 public readonly ref partial struct Cluster(
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly Grid grid,
-	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] scoped ref readonly CellMap map
+	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] ref readonly Grid grid,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] Digit digit,
+	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] scoped ref readonly CellMap map
 ) : IEquatable<Cluster>
 {
 	/// <summary>
