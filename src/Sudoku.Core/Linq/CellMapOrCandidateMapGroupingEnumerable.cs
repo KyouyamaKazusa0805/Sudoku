@@ -6,7 +6,6 @@ namespace Sudoku.Linq;
 /// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/>
 public static class CellMapOrCandidateMapGroupingEnumerable
 {
-#if WHY_THIS_MEMBER_SHOULD_BE_DISABLED
 	/// <summary>
 	/// Filters a sequence of values based on a predicate.
 	/// </summary>
@@ -88,7 +87,6 @@ public static class CellMapOrCandidateMapGroupingEnumerable
 		}
 		return result;
 	}
-#endif
 
 	/// <summary>
 	/// Projects a list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TEnumerator, TKey}"/> of types <see cref="CellMap"/>,

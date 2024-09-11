@@ -6147,6 +6147,53 @@
             </summary>
             <seealso cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/>
         </member>
+        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGroupingEnumerable.Where``4(Sudoku.Linq.CellMapOrCandidateMapGrouping{``0,``1,``2,``3},System.Func{``1,System.Boolean})">
+            <summary>
+            Filters a sequence of values based on a predicate.
+            </summary>
+            <typeparam name="TMap">
+            The type of the map that stores the <see cref="P:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.Values"/>.
+            </typeparam>
+            <typeparam name="TElement">
+            The type of elements stored in <see cref="P:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.Values"/>.
+            </typeparam>
+            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
+            <typeparam name="TKey">The type of the key in the group.</typeparam>
+            <param name="this">The instance to be checked.</param>
+            <param name="predicate">A function to test each element for a condition.</param>
+            <returns>
+            An array of <typeparamref name="TElement"/> instances
+            that contains elements from the input sequence that satisfy the condition.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGroupingEnumerable.Select``5(Sudoku.Linq.CellMapOrCandidateMapGrouping{``0,``1,``2,``3},System.Func{``1,``4})">
+            <summary>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
+            </summary>
+            <typeparam name="TMap">
+            <inheritdoc cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4" path="/typeparam[@name='TMap']"/>
+            </typeparam>
+            <typeparam name="TElement">
+            <inheritdoc cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4" path="/typeparam[@name='TElement']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TEnumerator">
+            The type of enumerator.
+            </typeparam>
+            <typeparam name="TResult">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/typeparam[@name='TResult']"/>
+            </typeparam>
+            <param name="this">The instance to be checked.</param>
+            <param name="selector">
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
+            </param>
+            <returns>
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> instances
+            whose elements are the result of invoking the transform function on each element of the current instance.
+            </returns>
+        </member>
         <member name="M:Sudoku.Linq.CellMapOrCandidateMapGroupingEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.CellMapOrCandidateMapGrouping{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0}},System.Func{Sudoku.Linq.CellMapOrCandidateMapGrouping{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0},System.Int32})">
             <summary>
             Projects a list of <see cref="T:Sudoku.Linq.CellMapOrCandidateMapGrouping`4"/> of types <see cref="T:Sudoku.Concepts.CellMap"/>,
