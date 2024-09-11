@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts.Graphs;
 
-public partial struct UndirectedCellGraph
+public partial struct CellGraph
 {
 	/// <summary>
 	/// Represents an enumerator type that iterates on each cell offsets.

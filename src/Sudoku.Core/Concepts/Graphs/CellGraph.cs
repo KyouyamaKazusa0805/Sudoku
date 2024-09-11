@@ -8,13 +8,13 @@ namespace Sudoku.Concepts.Graphs;
 /// </para>
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
-[CollectionBuilder(typeof(UndirectedCellGraph), nameof(Create))]
-public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCollection<Cell>
+[CollectionBuilder(typeof(CellGraph), nameof(Create))]
+public readonly partial struct CellGraph() : IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
 	/// Indicates the default empty graph without any cells.
 	/// </summary>
-	public static readonly UndirectedCellGraph Empty = new();
+	public static readonly CellGraph Empty = new();
 
 
 	/// <summary>
@@ -24,9 +24,9 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 
 	/// <summary>
 	/// Indicates invalid cells. Such cells may not be covered from the grid.
-	/// <see cref="GetComponentOf(Cell, out ReadOnlySpan{UndirectedCellGraphDepth})"/> will ignore them.
+	/// <see cref="GetComponentOf(Cell, out ReadOnlySpan{CellGraphDepth})"/> will ignore them.
 	/// </summary>
-	/// <seealso cref="GetComponentOf(Cell, out ReadOnlySpan{UndirectedCellGraphDepth})"/>
+	/// <seealso cref="GetComponentOf(Cell, out ReadOnlySpan{CellGraphDepth})"/>
 	private readonly CellMap _invalidCells;
 
 	/// <summary>
@@ -36,10 +36,10 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 
 
 	/// <summary>
-	/// Initializes an <see cref="UndirectedCellGraph"/> instance.
+	/// Initializes an <see cref="CellGraph"/> instance.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
-	public UndirectedCellGraph(ref readonly CellMap cells) : this()
+	public CellGraph(ref readonly CellMap cells) : this()
 	{
 		_cells = cells;
 
@@ -51,12 +51,12 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	}
 
 	/// <summary>
-	/// Initializes an <see cref="UndirectedCellGraph"/> instance.
+	/// Initializes an <see cref="CellGraph"/> instance.
 	/// </summary>
 	/// <param name="cells">Indicates the cells used.</param>
 	/// <param name="invalidCells">Indicates invalid cells.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private UndirectedCellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells) : this(in cells)
+	private CellGraph(ref readonly CellMap cells, ref readonly CellMap invalidCells) : this(in cells)
 		=> _invalidCells = invalidCells;
 
 
@@ -84,12 +84,12 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	/// <summary>
 	/// Indicates all possible connected components of the graph.
 	/// </summary>
-	public ReadOnlySpan<UndirectedCellGraph> Components
+	public ReadOnlySpan<CellGraph> Components
 	{
 		get
 		{
 			var lastCells = _cells;
-			var result = new List<UndirectedCellGraph>();
+			var result = new List<CellGraph>();
 			while (lastCells)
 			{
 				foreach (var cell in lastCells.Offsets)
@@ -130,7 +130,7 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	/// </summary>
 	/// <param name="degree">The degree. The value must be between 0 and 3.</param>
 	/// <returns>All cells whose degree is equal to the specified value.</returns>
-	public UndirectedCellGraph this[[ConstantExpected(Min = 0, Max = 3)] int degree]
+	public CellGraph this[[ConstantExpected(Min = 0, Max = 3)] int degree]
 	{
 		get
 		{
@@ -149,7 +149,7 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(UndirectedCellGraph other) => _cells == other._cells;
+	public bool Equals(CellGraph other) => _cells == other._cells;
 
 	/// <summary>
 	/// Try to get the degree of the specified cell.
@@ -191,16 +191,16 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 	public Enumerator GetEnumerator() => new(_cells.ToArray());
 
 	/// <summary>
-	/// Try to get a <see cref="UndirectedCellGraph"/> that contains the specified cell.
+	/// Try to get a <see cref="CellGraph"/> that contains the specified cell.
 	/// </summary>
 	/// <param name="cell">The desired cell.</param>
-	/// <param name="depths">A list of <see cref="UndirectedCellGraphDepth"/> values.</param>
-	/// <returns>A <see cref="UndirectedCellGraph"/> instance.</returns>
-	public UndirectedCellGraph GetComponentOf(Cell cell, out ReadOnlySpan<UndirectedCellGraphDepth> depths)
+	/// <param name="depths">A list of <see cref="CellGraphDepth"/> values.</param>
+	/// <returns>A <see cref="CellGraph"/> instance.</returns>
+	public CellGraph GetComponentOf(Cell cell, out ReadOnlySpan<CellGraphDepth> depths)
 	{
-		var startDepthInstance = new UndirectedCellGraphDepth(0, cell);
-		var queue = new Queue<UndirectedCellGraphDepth>();
-		var depthValues = new List<UndirectedCellGraphDepth>();
+		var startDepthInstance = new CellGraphDepth(0, cell);
+		var queue = new Queue<CellGraphDepth>();
+		var depthValues = new List<CellGraphDepth>();
 		queue.Enqueue(startDepthInstance);
 		depthValues.Add(startDepthInstance);
 
@@ -223,7 +223,7 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 					continue;
 				}
 
-				var depth = new UndirectedCellGraphDepth(currentDepth + 1, peerCell);
+				var depth = new CellGraphDepth(currentDepth + 1, peerCell);
 				queue.Enqueue(depth);
 				depthValues.Add(depth);
 				coveredCells.Add(peerCell);
@@ -249,25 +249,25 @@ public readonly partial struct UndirectedCellGraph() : IFormattable, IReadOnlyCo
 
 
 	/// <summary>
-	/// Creates an <see cref="UndirectedCellGraph"/> instance via the specified cells.
+	/// Creates an <see cref="CellGraph"/> instance via the specified cells.
 	/// </summary>
 	/// <param name="cells">The cells.</param>
-	/// <returns>An <see cref="UndirectedCellGraph"/> instance.</returns>
+	/// <returns>An <see cref="CellGraph"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph Create(ref readonly CellMap cells) => new(in cells);
+	public static CellGraph Create(ref readonly CellMap cells) => new(in cells);
 
 	/// <inheritdoc cref="Create(ref readonly CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static UndirectedCellGraph Create(scoped ReadOnlySpan<Cell> cells) => Create(cells.AsCellMap());
+	public static CellGraph Create(scoped ReadOnlySpan<Cell> cells) => Create(cells.AsCellMap());
 
 	/// <summary>
-	/// Initializes an <see cref="UndirectedCellGraph"/> instance via a list of cells, checking conjugate pairs.
+	/// Initializes an <see cref="CellGraph"/> instance via a list of cells, checking conjugate pairs.
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="digit">The digit to be used.</param>
 	/// <param name="cells">The cells to be used.</param>
-	/// <returns>An <see cref="UndirectedCellGraph"/> instance.</returns>
-	public static UndirectedCellGraph CreateFromConjugatePair(ref readonly Grid grid, Digit digit, ref readonly CellMap cells)
+	/// <returns>An <see cref="CellGraph"/> instance.</returns>
+	public static CellGraph CreateFromConjugatePair(ref readonly Grid grid, Digit digit, ref readonly CellMap cells)
 	{
 		var globalCells = grid.CandidatesMap[digit];
 		var invalidCells = CellMap.Empty;

@@ -38,7 +38,7 @@ public readonly ref partial struct Cluster(
 		get
 		{
 			var result = CellMap.Empty;
-			var graph = UndirectedCellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
+			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
 			var components = graph.Components;
 			var lastCells = Map;
 			while (lastCells)
@@ -91,7 +91,7 @@ public readonly ref partial struct Cluster(
 		{
 			var candsMap = _grid.CandidatesMap[Digit];
 			var result = CellMap.Empty;
-			var graph = UndirectedCellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
+			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
 			var components = graph.Components;
 			var lastCells = Map;
 			while (lastCells)

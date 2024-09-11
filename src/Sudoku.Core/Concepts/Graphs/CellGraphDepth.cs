@@ -1,11 +1,12 @@
 namespace Sudoku.Concepts.Graphs;
 
 /// <summary>
-/// Represents a node that describes for a graph node inside a <see cref="UndirectedCellGraph"/>, with depth from a node.
+/// Represents a node that describes for a graph node inside a <see cref="CellGraph"/>, with depth from a node.
 /// </summary>
 /// <param name="Depth">Indicates the depth.</param>
 /// <param name="Cell">The cell.</param>
-public readonly record struct UndirectedCellGraphDepth(int Depth, Cell Cell)
+/// <seealso cref="CellGraph"/>
+public readonly record struct CellGraphDepth(int Depth, Cell Cell)
 {
 	/// <include
 	///     file="../../global-doc-comments.xml"
