@@ -88,6 +88,15 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Bi-value Universal Grave (*BUG*)
     * Reverse Bi-value Universal Grave (*Reverse BUG*)
     * Uniqueness Clue Cover (*UCC*)
+  * Coloring (**Only in API**)
+    * Simple Coloring
+      * Simple Coloring Wrap
+      * Simple Coloring Trap
+  * Baba Grouping
+    * Remote Pair
+      * Standard Remote Pair
+      * Complex Remote Pair
+    * Unique Rectangle Baba Grouping
   * Chains
     * Non-grouped Chains
       * Alternating Inference Chains (*AIC*)
@@ -101,12 +110,10 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Finned logic
       * Finned Chain
       * Grouped Finned Chain
-  * Baba Grouping
-    * Remote Pair
-      * Standard Remote Pair
-      * Complex Remote Pair
-    * Unique Rectangle Baba Grouping
-  * Almost Locked Sets
+  * Forcing Chains
+    * Region Forcing Chains
+    * Cell Forcing Chains
+  * Almost Locked Sets (*ALS*)
     * Chaining ALSes
       * Almost Locked Sets XZ Rule (*ALS-XZ*)
       * Almost Locked Sets XY-Wing (*ALS-XY-Wing*)
@@ -117,7 +124,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Rank Logic
     * 0 Ranks
       * Sue de Coq (SdC)
-      * 3-Dimensional Sue de Coq (3D SdC)
+      * 3-Dimensional Sue de Coq (*3D SdC*)
       * Domino Loop
       * Multi-sector Locked Sets
     * Negative Ranks
