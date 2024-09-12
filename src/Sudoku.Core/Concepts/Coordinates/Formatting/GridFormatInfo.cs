@@ -1,11 +1,11 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents extra options that formats a <see cref="Grid"/> instance, or parses into a <see cref="Grid"/> instance.
 /// </summary>
 /// <seealso cref="Grid"/>
 /// <seealso cref="NumberFormatInfo"/>
-public abstract class GridFormatInfo : IFormatProvider
+public abstract class GridFormatInfo : FormatInfo<Grid>
 {
 	/// <summary>
 	/// Indicates the table of format and creator.
@@ -146,31 +146,6 @@ public abstract class GridFormatInfo : IFormatProvider
 	/// Gets a <see cref="GridFormatInfo"/> that formats values based on the current culture.
 	/// </summary>
 	public static GridFormatInfo? CurrentInfo => GetInstance(CultureInfo.CurrentCulture);
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public abstract object? GetFormat(Type? formatType);
-
-	/// <summary>
-	/// Creates a copy of the current instance.
-	/// </summary>
-	/// <returns>A new instance whose internal values are equal to the current instance.</returns>
-	public abstract GridFormatInfo Clone();
-
-	/// <summary>
-	/// Try to format the current grid into a valid string result.
-	/// </summary>
-	/// <param name="grid">The grid to be formatted.</param>
-	/// <returns>The <see cref="string"/> representation of the argument <paramref name="grid"/>.</returns>
-	protected internal abstract string FormatGrid(ref readonly Grid grid);
-
-	/// <summary>
-	/// Try to parse the specified <see cref="string"/> instance into a valid <see cref="Grid"/>.
-	/// </summary>
-	/// <param name="str">The string value to be parsed.</param>
-	/// <returns>The <see cref="Grid"/> as the result.</returns>
-	protected internal abstract Grid ParseGrid(string str);
 
 
 	/// <summary>

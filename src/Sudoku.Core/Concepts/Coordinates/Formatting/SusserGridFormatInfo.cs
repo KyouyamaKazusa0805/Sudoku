@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Susser formatting.
@@ -64,7 +64,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 		};
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		return b(in grid) is var r && IsCompatibleMode
 			? $":0000:x:{r}{new(':', 3)}"
@@ -81,7 +81,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 			var sb = new StringBuilder(162);
 			var originalGrid = this switch
 			{
-				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(thisCopied.FormatGrid(in grid)),
+				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse(thisCopied.FormatCore(in grid)),
 				_ => Grid.Undefined
 			};
 
@@ -251,7 +251,7 @@ public sealed partial class SusserGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		if (IsCompatibleMode)
 		{

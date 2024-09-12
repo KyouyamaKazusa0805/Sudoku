@@ -5205,7 +5205,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter">
-            <inheritdoc cref="T:Sudoku.Runtime.CoordinateServices.CoordinateConverter"/>
+            <inheritdoc cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepGathererOptions.CurrentCulture">
             <summary>
@@ -5224,7 +5224,7 @@
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see langword="new"/> <see cref="T:Sudoku.Runtime.CoordinateServices.RxCyConverter"/>()</item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see langword="new"/> <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>()</item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>

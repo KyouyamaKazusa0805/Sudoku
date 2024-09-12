@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports inline Susser grid formatting.
@@ -28,7 +28,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	public override InlineSusserGridFormatInfo Clone() => new() { NegateEliminationsTripletRule = NegateEliminationsTripletRule };
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		var sb = new StringBuilder();
 		for (var cell = 0; cell < 81; cell++)
@@ -61,7 +61,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		var match = GridSusserPattern.Matches(str);
 		if (match is not { Count: 81 } captures)

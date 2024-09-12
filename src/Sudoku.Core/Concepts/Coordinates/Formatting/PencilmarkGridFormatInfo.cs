@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports pencilmark grid formatting.
@@ -18,7 +18,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 		=> new() { SubtleGridLines = SubtleGridLines, TreatValueAsGiven = TreatValueAsGiven, IsCompatibleMode = IsCompatibleMode };
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		// Step 1: gets the candidates information grouped by columns.
 		var valuesByColumn = createTempDictionary();
@@ -193,7 +193,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		// Older regular expression pattern:
 		if ((from m in GridPencilmarkPattern.Matches(str) select m.Value) is not { Length: 81 } matches)

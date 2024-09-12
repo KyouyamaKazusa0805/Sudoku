@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="CandidateMapFormatInfo"/> type that supports bitmap formatting.
@@ -13,7 +13,7 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 	public override BitmapCandidateMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatMap(ref readonly CandidateMap map)
+	protected internal override string FormatCore(ref readonly CandidateMap map)
 	{
 		var result = (stackalloc char[729]);
 		result.Fill('0');
@@ -29,7 +29,7 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 	}
 
 	/// <inheritdoc/>
-	protected internal override CandidateMap ParseMap(string str)
+	protected internal override CandidateMap ParseCore(string str)
 	{
 		if (str.Length != 729)
 		{

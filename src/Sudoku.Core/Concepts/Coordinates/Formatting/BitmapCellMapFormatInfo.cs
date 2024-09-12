@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="CellMapFormatInfo"/> type that supports bitmap formatting.
@@ -13,7 +13,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	public override BitmapCellMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatMap(ref readonly CellMap map)
+	protected internal override string FormatCore(ref readonly CellMap map)
 	{
 		var result = (stackalloc char[81]);
 		result.Fill('0');
@@ -29,7 +29,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override CellMap ParseMap(string str)
+	protected internal override CellMap ParseCore(string str)
 	{
 		if (str.Length != 81)
 		{

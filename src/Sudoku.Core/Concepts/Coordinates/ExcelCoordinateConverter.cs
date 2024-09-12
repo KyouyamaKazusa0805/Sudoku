@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.CoordinateServices;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents for Excel coordinate-based converter.

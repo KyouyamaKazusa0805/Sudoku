@@ -534,8 +534,8 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			GridFormatInfo f => f.FormatGrid(in this),
-			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatGrid(in this),
+			GridFormatInfo f => f.FormatCore(in this),
+			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatCore(in this),
 			_ => throw new FormatException()
 		};
 
@@ -546,10 +546,10 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		{
 			({ IsEmpty: true }, _) => $"<{nameof(Empty)}>",
 			({ IsUndefined: true }, _) => $"<{nameof(Undefined)}>",
-			(_, GridFormatInfo f) => f.FormatGrid(in this),
+			(_, GridFormatInfo f) => f.FormatCore(in this),
 			(_, CultureInfo c) => ToString(c),
-			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
-			_ => GridFormatInfo.GetInstance(format)!.FormatGrid(in this)
+			(_, not null) when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatCore(in this),
+			_ => GridFormatInfo.GetInstance(format)!.FormatCore(in this)
 		};
 
 	/// <inheritdoc/>
@@ -983,7 +983,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool parseAsSukaku(string str, out Grid result)
 		{
-			if (new SukakuGridFormatInfo().ParseGrid(str) is { IsUndefined: false } g)
+			if (new SukakuGridFormatInfo().ParseCore(str) is { IsUndefined: false } g)
 			{
 				g.AddSukakuHeader();
 				result = g;
@@ -997,7 +997,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool parseAsExcel(string str, out Grid result)
 		{
-			if (new CsvGridFormatInfo().ParseGrid(str) is { IsUndefined: false } g)
+			if (new CsvGridFormatInfo().ParseCore(str) is { IsUndefined: false } g)
 			{
 				result = g;
 				return true;
@@ -1011,7 +1011,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		{
 			foreach (var parser in parsers[..3])
 			{
-				if (parser.ParseGrid(str) is { IsUndefined: false } g)
+				if (parser.ParseCore(str) is { IsUndefined: false } g)
 				{
 					result = g;
 					return true;
@@ -1027,7 +1027,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 			for (var trial = 0; trial < parsers.Length; trial++)
 			{
 				var currentParser = parsers[trial];
-				if (currentParser.ParseGrid(str) is { IsUndefined: false } g)
+				if (currentParser.ParseCore(str) is { IsUndefined: false } g)
 				{
 					result = g;
 					return true;
@@ -1043,11 +1043,11 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public static Grid Parse(string s, IFormatProvider? provider)
 		=> provider switch
 		{
-			GridFormatInfo g => g.ParseGrid(s),
+			GridFormatInfo g => g.ParseCore(s),
 			CultureInfo { Name: var n } => n switch
 			{
-				SR.EnglishLanguage => new PencilmarkGridFormatInfo().ParseGrid(s),
-				SR.ChineseLanguage => new SusserGridFormatInfo().ParseGrid(s),
+				SR.EnglishLanguage => new PencilmarkGridFormatInfo().ParseCore(s),
+				SR.ChineseLanguage => new SusserGridFormatInfo().ParseCore(s),
 				_ => Parse(s)
 			},
 			_ => Parse(s)

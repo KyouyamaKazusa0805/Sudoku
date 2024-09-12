@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Comma-separated-values formatting.
@@ -13,7 +13,7 @@ public sealed class CsvGridFormatInfo : GridFormatInfo
 	public override CsvGridFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		var span = grid.ToString("0").AsSpan();
 		var sb = new StringBuilder(81 + 72 + 9);
@@ -33,7 +33,7 @@ public sealed class CsvGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		if (!str.Contains('\t'))
 		{

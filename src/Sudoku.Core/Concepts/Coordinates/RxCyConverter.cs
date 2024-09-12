@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.CoordinateServices;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents a coordinate converter using RxCy notation.

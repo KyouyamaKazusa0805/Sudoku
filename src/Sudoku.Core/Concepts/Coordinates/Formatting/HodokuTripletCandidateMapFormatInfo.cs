@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="CandidateMapFormatInfo"/> type that supports Hodoku elimination candidates formatting.
@@ -13,7 +13,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 	public override HodokuTripletCandidateMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatMap(ref readonly CandidateMap map)
+	protected internal override string FormatCore(ref readonly CandidateMap map)
 	{
 		return map switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in map) };
 
@@ -32,7 +32,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override CandidateMap ParseMap(string str)
+	protected internal override CandidateMap ParseCore(string str)
 	{
 		var segments = str.SplitBy(' ');
 		if (Array.IndexOf(segments, string.Empty) != -1)

@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Sukaku formatting.
@@ -17,7 +17,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 	public override SukakuGridFormatInfo Clone() => new() { Placeholder = Placeholder, Multiline = Multiline };
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		if (Multiline)
 		{
@@ -78,7 +78,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		if (Multiline)
 		{

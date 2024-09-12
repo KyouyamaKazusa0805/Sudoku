@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports mask formatting.
@@ -23,7 +23,7 @@ public sealed class MaskGridFormatInfo : GridFormatInfo
 	public override MaskGridFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		var sb = new StringBuilder(400);
 		foreach (var mask in grid)
@@ -35,5 +35,5 @@ public sealed class MaskGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	protected internal override Grid ParseGrid(string str) => throw new NotSupportedException();
+	protected internal override Grid ParseCore(string str) => throw new NotSupportedException();
 }

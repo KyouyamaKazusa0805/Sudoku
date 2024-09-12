@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports OpenSudoku formatting.
@@ -17,7 +17,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 	public override OpenSudokuGridFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		// Calculates the length of the result string.
 		const int length = 1 + (81 * 3 - 1 << 1);
@@ -66,7 +66,7 @@ public sealed partial class OpenSudokuGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		if (GridOpenSudokuPattern.Match(str) is not { Success: true, Value: var match })
 		{

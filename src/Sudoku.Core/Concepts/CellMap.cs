@@ -583,7 +583,7 @@ public partial struct CellMap : CellMapBase
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CellMapFormatInfo i => i.FormatMap(in this),
+			CellMapFormatInfo i => i.FormatCore(in this),
 			_ => CoordinateConverter.GetInstance(formatProvider).CellConverter(in this)
 		};
 
@@ -828,7 +828,7 @@ public partial struct CellMap : CellMapBase
 	public static CellMap Parse(string s, IFormatProvider? provider)
 		=> provider switch
 		{
-			CellMapFormatInfo i => i.ParseMap(s),
+			CellMapFormatInfo i => i.ParseCore(s),
 			_ => CoordinateParser.GetInstance(provider).CellParser(s)
 		};
 

@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.FormattingServices;
+namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports multiple formatting.
@@ -21,7 +21,7 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 		=> new() { SubtleGridLines = SubtleGridLines, TreatValueAsGiven = TreatValueAsGiven };
 
 	/// <inheritdoc/>
-	protected internal override string FormatGrid(ref readonly Grid grid)
+	protected internal override string FormatCore(ref readonly Grid grid)
 	{
 		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		return new StringBuilder()
@@ -69,13 +69,13 @@ public sealed partial class MultipleLineGridFormatInfo : GridFormatInfo
 	}
 
 	/// <inheritdoc/>
-	protected internal override Grid ParseGrid(string str)
+	protected internal override Grid ParseCore(string str)
 	{
 		if (RemoveGridLines)
 		{
 			return GridSimpleMultilinePattern.Match(str) is not { Success: true, Value: var match }
 				? Grid.Undefined
-				: new SusserGridFormatInfo().ParseGrid(new(from @char in match where @char is not ('\r' or '\n') select @char));
+				: new SusserGridFormatInfo().ParseCore(new(from @char in match where @char is not ('\r' or '\n') select @char));
 		}
 		else
 		{

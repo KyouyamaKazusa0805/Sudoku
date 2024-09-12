@@ -410,7 +410,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CandidateMapFormatInfo i => i.FormatMap(in this),
+			CandidateMapFormatInfo i => i.FormatCore(in this),
 			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(in this)
 		};
 
@@ -668,7 +668,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public static CandidateMap Parse(string s, IFormatProvider? provider)
 		=> provider switch
 		{
-			CandidateMapFormatInfo c => c.ParseMap(s),
+			CandidateMapFormatInfo c => c.ParseCore(s),
 			_ => CoordinateParser.GetInstance(provider).CandidateParser(s)
 		};
 
