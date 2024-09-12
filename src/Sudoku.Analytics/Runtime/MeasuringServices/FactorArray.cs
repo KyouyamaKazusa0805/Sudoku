@@ -112,8 +112,7 @@ public readonly ref partial struct FactorArray(ReadOnlyMemory<Factor> _values) :
 	IEnumerator<Factor> IEnumerable<Factor>.GetEnumerator() => ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerable<Factor> ISliceMethod<FactorArray, Factor>.Slice(int start, int count)
-		=> Slice(start, count).ToArray();
+	IEnumerable<Factor> ISliceMethod<FactorArray, Factor>.Slice(int start, int count) => Slice(start, count).ToArray();
 
 
 	/// <summary>
