@@ -3366,4 +3366,7 @@ Error grid: '{0:#}'</value>
   <data name="DirectSingleLastSuffix" xml:space="preserve">
     <value>Last {1} in {0}</value>
   </data>
+  <data name="Message_DisorderedIttoryuModuleAlreadyFinished" xml:space="preserve">
+    <value>Disordered ittoryu module has already finished.</value>
+  </data>
 </root>

@@ -25422,11 +25422,6 @@
               Looks up a localized string similar to Ittoryu rule: finish puzzle with {0} {1} rounds.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.IttoryuLengthConstraint">
-            <summary>
-              Looks up a localized string similar to Ittoryu length rule: {0} {1} consecutively-finished digits.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Jellyfish">
             <summary>
               Looks up a localized string similar to Jellyfish.
@@ -25675,6 +25670,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.MergedRegionForcingChains">
             <summary>
               Looks up a localized string similar to Merged Region Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_DisorderedIttoryuModuleAlreadyFinished">
+            <summary>
+              Looks up a localized string similar to Disordered ittoryu module has already finished..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Message_MissingDifficultyLevelException">
@@ -30256,58 +30256,12 @@
             The generated property declaration for parameter <c>supportedTechniques</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.IttoryuServices.AlreadyFinishedException">
+        <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuModuleAlreadyFinishedException">
             <summary>
             The internal exception type that reports "Already finished" information, breaking the recursion.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.IttoryuServices.PathNode">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Grid">
-            <summary>Indicates the currently-used grid.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.House">
-            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Candidate">
-            <summary>Indicates the target candidate.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Digit">
-            <summary>
-            Indicates the target digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.IttoryuServices.PathNode.Cell">
-            <summary>
-            Indicates the target cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.IttoryuServices.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="P:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuModuleAlreadyFinishedException.Message">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.GridIttoryuExtensions">
@@ -30357,6 +30311,55 @@
             </param>
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Runtime.IttoryuServices.IttoryuPathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.IttoryuServices.IttoryuPathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.TechniqueIttoryuSets">
             <summary>

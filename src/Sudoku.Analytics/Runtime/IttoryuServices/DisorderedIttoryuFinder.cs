@@ -47,7 +47,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 		catch (OperationCanceledException)
 		{
 		}
-		catch (AlreadyFinishedException)
+		catch (DisorderedIttoryuModuleAlreadyFinishedException)
 		{
 			return [.. digitsStack.Reverse()];
 		}
@@ -58,7 +58,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			Grid grid,
 			Digit digit,
 			Stack<Digit> digitsStack,
-			ReadOnlySpan<PathNode> foundNodes,
+			ReadOnlySpan<IttoryuPathNode> foundNodes,
 			Mask finishedDigits,
 			bool skipApplying = false
 		)
@@ -87,7 +87,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			if (grid.ValuesMap[digit].Count != 9)
 			{
 				// If the current digit is not completed, we should continue searching for this digit.
-				var tempNodes = new List<PathNode>(16);
+				var tempNodes = new List<IttoryuPathNode>(16);
 				fullHouses(in grid, tempNodes, digit);
 				hiddenSingles(in grid, tempNodes, digit);
 				nakedSingles(in grid, tempNodes, digit);
@@ -105,11 +105,11 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 				if (finishedDigits == Grid.MaxCandidatesMask)
 				{
 					// Just find one.
-					throw new AlreadyFinishedException();
+					throw new DisorderedIttoryuModuleAlreadyFinishedException();
 				}
 
 				// If not, we should search for available path nodes again, and iterate on them.
-				var tempNodes = new List<PathNode>(16);
+				var tempNodes = new List<IttoryuPathNode>(16);
 				foreach (var anotherDigit in (Mask)(Grid.MaxCandidatesMask & ~finishedDigits))
 				{
 					fullHouses(in grid, tempNodes, anotherDigit);
@@ -136,7 +136,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			cancellationToken.ThrowIfCancellationRequested();
 		}
 
-		void fullHouses(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void fullHouses(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.FullHouse))
 			{
@@ -154,7 +154,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 
-		void hiddenSingles(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void hiddenSingles(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			var candidatesMap = grid.CandidatesMap;
 			for (var house = 0; house < 27; house++)
@@ -177,7 +177,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 
-		void nakedSingles(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void nakedSingles(ref readonly Grid grid, List<IttoryuPathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.NakedSingle))
 			{
@@ -193,47 +193,4 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 	}
-}
-
-/// <summary>
-/// The internal exception type that reports "Already finished" information, breaking the recursion.
-/// </summary>
-file sealed class AlreadyFinishedException : Exception;
-
-/// <summary>
-/// Represents for a path node in a whole solving path via ittoryu solving logic.
-/// </summary>
-/// <param name="Grid">Indicates the currently-used grid.</param>
-/// <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-/// <param name="Candidate">Indicates the target candidate.</param>
-file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candidate) : IFormattable
-{
-	/// <summary>
-	/// Indicates the target digit.
-	/// </summary>
-	public Digit Digit => Candidate % 9;
-
-	/// <summary>
-	/// Indicates the target cell.
-	/// </summary>
-	public Cell Cell => Candidate / 9;
-
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out Grid grid, out House house, out Cell cell, out Digit digit)
-		=> ((grid, house, _), cell, digit) = (this, Candidate / 9, Candidate % 9);
-
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider)
-	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return House != -1
-			? $"Full House / Hidden Single: {converter.CandidateConverter([Candidate])} in house {converter.HouseConverter(1 << House)}"
-			: $"Naked Single: {converter.CandidateConverter([Candidate])}";
-	}
-
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

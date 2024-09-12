@@ -3616,15 +3616,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ittoryu length rule: {0} {1} consecutively-finished digits.
-        /// </summary>
-        public static string IttoryuLengthConstraint {
-            get {
-                return ResourceManager.GetString("IttoryuLengthConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Jellyfish.
         /// </summary>
         public static string Jellyfish {
@@ -4071,6 +4062,15 @@ namespace Sudoku.Resources {
         public static string MergedRegionForcingChains {
             get {
                 return ResourceManager.GetString("MergedRegionForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disordered ittoryu module has already finished..
+        /// </summary>
+        public static string Message_DisorderedIttoryuModuleAlreadyFinished {
+            get {
+                return ResourceManager.GetString("Message_DisorderedIttoryuModuleAlreadyFinished", resourceCulture);
             }
         }
         
