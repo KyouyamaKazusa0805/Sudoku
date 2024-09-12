@@ -90,8 +90,8 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			return false;
 		}
 
-		var maximum = ((SortedSet<SingleTechniqueFlag>)[.. from step in steps select step.Code.GetSingleTechnique()]).Max;
-		if (maximum > LimitedSingle)
+		SortedSet<SingleTechniqueFlag> techniqueList = [.. from step in steps select step.Code.GetSingleTechnique()];
+		if (techniqueList.Max > LimitedSingle)
 		{
 			// The puzzle will use advanced techniques.
 			return false;
