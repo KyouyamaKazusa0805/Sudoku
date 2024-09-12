@@ -5,5 +5,5 @@ If you want to contact me or learn more about sudoku techniques, I'll list the a
 | Website / Platform | Type                     | Site URL                                |
 | ------------------ | ------------------------ | --------------------------------------- |
 | Bilibili           | Video Platform           | https://space.bilibili.com/23736703     |
-| GitHub             | Open-Source Sharing Site | https://github.com/SunnieShine          |
+| GitHub             | Open-Source Sharing Site | https://github.com/KyouyamaKazusa0805   |
 | Gitee              | Open-Source Sharing Site | https://gitee.com/KyouyamaKazusa/Sudoku |
