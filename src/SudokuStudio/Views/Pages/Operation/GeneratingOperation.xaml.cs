@@ -197,6 +197,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				while (true)
 				{
 					var puzzle = generator.Generate(givens, symmetry, ct);
+					if (puzzle.IsUndefined)
+					{
+						throw new OperationCanceledException();
+					}
+
 					if (finder.FindPath(in puzzle, ct) is { IsComplete: true } path)
 					{
 						puzzle.MakeIttoryu(path);
