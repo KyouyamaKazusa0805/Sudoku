@@ -49,6 +49,12 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 				var graph = new CellGraph(in suchCells, in CellMap.Empty);
 				foreach (ref readonly var component in graph.Components)
 				{
+					var parities = Parity.Create(in component);
+					if (parities.Length == 0)
+					{
+						continue;
+					}
+
 					ref readonly var firstParityPair = ref Parity.Create(in component)[0];
 					var parity1 = firstParityPair.On.Cells;
 					var parity2 = firstParityPair.Off.Cells;
