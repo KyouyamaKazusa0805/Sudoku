@@ -3865,6 +3865,9 @@
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGridConstants{Sudoku#Concepts#Grid}#EmptyString">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGridConstants{Sudoku#Concepts#Grid}#DefaultMask">
             <inheritdoc/>
         </member>
@@ -3878,9 +3881,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGridConstants{Sudoku#Concepts#Grid}#GivenMask">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGridConstants{Sudoku#Concepts#Grid}#EmptyString">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#Primitives#IGridConstants{Sudoku#Concepts#Grid}#Empty">

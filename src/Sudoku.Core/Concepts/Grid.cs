@@ -354,6 +354,9 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 	/// <inheritdoc/>
+	static string IGridConstants<Grid>.EmptyString => EmptyString;
+
+	/// <inheritdoc/>
 	static Mask IGridConstants<Grid>.DefaultMask => DefaultMask;
 
 	/// <inheritdoc/>
@@ -367,9 +370,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	static Mask IGridConstants<Grid>.GivenMask => GivenMask;
-
-	/// <inheritdoc/>
-	static string IGridConstants<Grid>.EmptyString => EmptyString;
 
 	/// <inheritdoc/>
 	static ref readonly Grid IGridConstants<Grid>.Empty => ref Empty;
