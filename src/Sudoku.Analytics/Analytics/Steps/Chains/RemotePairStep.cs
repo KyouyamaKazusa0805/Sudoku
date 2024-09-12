@@ -16,8 +16,17 @@ public sealed partial class RemotePairStep(
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isComplex,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : BabaGroupingStep(conclusions, views, options)
+) : ChainStep(conclusions, views, options)
 {
+	/// <inheritdoc/>
+	public override bool IsMultiple => false;
+
+	/// <inheritdoc/>
+	public override bool IsDynamic => Code == Technique.ComplexRemotePair;
+
+	/// <inheritdoc/>
+	public override int Complexity => Cells.Count;
+
 	/// <inheritdoc/>
 	public override int BaseDifficulty => IsComplex ? 50 : 52;
 
@@ -30,15 +39,17 @@ public sealed partial class RemotePairStep(
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
-			new(SR.EnglishLanguage, [CellsStr, FirstLetterStr, SecondLetterStr]),
-			new(SR.ChineseLanguage, [CellsStr, FirstLetterStr, SecondLetterStr])
+			new(SR.EnglishLanguage, [CellsStr, FirstUnknownCharacterString, SecondUnknownCharacterString]),
+			new(SR.ChineseLanguage, [CellsStr, FirstUnknownCharacterString, SecondUnknownCharacterString])
 		];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 
-	private string FirstLetterStr => "a";
+	private string FirstUnknownCharacterString => UnknownCharacters[0].ToString();
 
-	private string SecondLetterStr => "b";
+	private string SecondUnknownCharacterString => UnknownCharacters[1].ToString();
+
+	private ReadOnlyCharSequence UnknownCharacters => Options.BabaGroupInitialLetter.GetSequence(Options.BabaGroupLetterCasing);
 
 
 	/// <inheritdoc/>

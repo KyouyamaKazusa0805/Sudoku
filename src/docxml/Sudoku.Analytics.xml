@@ -6864,19 +6864,6 @@
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher">
-            <summary>
-            Provides with a <b>Remote Pair</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Remote Pair</item>
-            <item>Complex Remote Pair</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BlossomLoopStepSearcher">
             <summary>
             Provides with a <b>Blossom Loop</b> step searcher.
@@ -6963,6 +6950,19 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultipleForcingChainsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher">
+            <summary>
+            Provides with a <b>Remote Pair</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Remote Pair</item>
+            <item>Complex Remote Pair</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
@@ -11384,74 +11384,6 @@
             The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.BabaGroupingStep">
-            <summary>
-            Represents a data structure that describes for baba grouping techniques.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.BabaGroupingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Represents a data structure that describes for baba grouping techniques.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.RemotePairStep">
-            <summary>
-            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="isComplex">Indicates whether the pattern is complex.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
-            <summary>
-            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="isComplex">Indicates whether the pattern is complex.</param>
-            <param name="digitsMask">Indicates the digits used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.Equals(Sudoku.Analytics.Step)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.IsComplex">
-            <summary>
-            The generated property declaration for parameter <c>isComplex</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.BlossomLoopStep">
             <summary>
             Provides with a step that is a <b>Blossom Loop</b> technique.
@@ -11734,6 +11666,67 @@
             <param name="this">The pattern.</param>
             <param name="conclusions">Indicates conclusions to be used.</param>
             <returns>The pattern sort key.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RemotePairStep">
+            <summary>
+            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="isComplex">Indicates whether the pattern is complex.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Boolean,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>(Complex) Remote Pair</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="isComplex">Indicates whether the pattern is complex.</param>
+            <param name="digitsMask">Indicates the digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RemotePairStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.IsComplex">
+            <summary>
+            The generated property declaration for parameter <c>isComplex</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
