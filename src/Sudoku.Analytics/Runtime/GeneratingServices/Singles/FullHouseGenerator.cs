@@ -52,7 +52,11 @@ public sealed class FullHouseGenerator : SingleGenerator
 				return true;
 			}
 
-			cancellationToken.ThrowIfCancellationRequested();
+			if (cancellationToken.IsCancellationRequested)
+			{
+				result = Grid.Undefined;
+				return false;
+			}
 		}
 	}
 
@@ -118,6 +122,12 @@ public sealed class FullHouseGenerator : SingleGenerator
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
+			if (puzzle.IsUndefined)
+			{
+				(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+				return false;
+			}
+
 			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
@@ -151,7 +161,11 @@ public sealed class FullHouseGenerator : SingleGenerator
 				}
 				default:
 				{
-					cancellationToken.ThrowIfCancellationRequested();
+					if (cancellationToken.IsCancellationRequested)
+					{
+						(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+						return false;
+					}
 					break;
 				}
 			}

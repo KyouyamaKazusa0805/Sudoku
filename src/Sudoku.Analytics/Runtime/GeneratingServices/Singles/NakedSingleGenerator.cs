@@ -13,7 +13,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
-		var emptyCellsCount = GetValidEmptyCellsCount();
+		var emptyCellsCount = GetValidEmptyCellsCount() is var z and not -1 ? z : 82;
 		var generator = new Generator();
 		while (true)
 		{
@@ -26,12 +26,18 @@ public sealed class NakedSingleGenerator : SingleGenerator
 
 			if (!puzzle.CanPrimaryNakedSingle())
 			{
-				cancellationToken.ThrowIfCancellationRequested();
-				continue;
+				goto NextLoop;
 			}
 
 			result = puzzle;
 			return true;
+
+		NextLoop:
+			if (cancellationToken.IsCancellationRequested)
+			{
+				result = Grid.Undefined;
+				return false;
+			}
 		}
 	}
 
@@ -89,6 +95,12 @@ public sealed class NakedSingleGenerator : SingleGenerator
 		while (true)
 		{
 			var puzzle = generator.Generate(cancellationToken: cancellationToken);
+			if (puzzle.IsUndefined)
+			{
+				(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+				return false;
+			}
+
 			switch (Analyzer.Analyze(new AnalyzerContext(in puzzle) { CancellationToken = cancellationToken }))
 			{
 				case { FailedReason: FailedReason.UserCancelled }:
@@ -124,13 +136,14 @@ public sealed class NakedSingleGenerator : SingleGenerator
 				}
 				default:
 				{
-					cancellationToken.ThrowIfCancellationRequested();
+					if (cancellationToken.IsCancellationRequested)
+					{
+						(result, phasedGrid, step) = (Grid.Undefined, Grid.Undefined, null);
+						return false;
+					}
 					break;
 				}
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	protected override Cell GetValidEmptyCellsCount() => EmptyCellsCount;
 }

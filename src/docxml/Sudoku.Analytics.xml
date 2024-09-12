@@ -30065,9 +30065,6 @@
         <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HiddenSingleGenerator.GetValidEmptyCellsCount">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator">
             <summary>
             Represents a generator that supports generating for puzzles that can be solved by only using Naked Singles.
@@ -30087,9 +30084,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.NakedSingleGenerator.GetValidEmptyCellsCount">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Runtime.GeneratingServices.SingleGenerator">

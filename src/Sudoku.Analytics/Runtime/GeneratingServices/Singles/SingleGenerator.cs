@@ -20,14 +20,5 @@ public abstract class SingleGenerator : PrimaryGenerator
 	/// Returns a new <see cref="Cell"/> value indicating the valid empty cells count.
 	/// </summary>
 	/// <returns>The result valid empty cells count.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected virtual Cell GetValidEmptyCellsCount()
-	{
-		var emptyCellsCount = EmptyCellsCount;
-		if (emptyCellsCount is not (-1 or >= 1 and <= PeersCount + 1))
-		{
-			emptyCellsCount = Math.Clamp(emptyCellsCount, 1, PeersCount + 1);
-		}
-		return emptyCellsCount;
-	}
+	protected Cell GetValidEmptyCellsCount() => EmptyCellsCount == -1 ? -1 : Math.Clamp(EmptyCellsCount, 1, 64);
 }
