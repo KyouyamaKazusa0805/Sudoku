@@ -2243,9 +2243,6 @@
   <data name="GeneratedPuzzleConstraintPage_AppearingTimes" xml:space="preserve">
     <value>出现次数</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_IttoryuLength" xml:space="preserve">
-    <value>一刀流长度</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_AddNewConstraint" xml:space="preserve">
     <value>添加约束条件</value>
   </data>
@@ -2257,9 +2254,6 @@
   </data>
   <data name="GeneratedPuzzleConstraintPage_IttoryuConstraint" xml:space="preserve">
     <value>一刀流约束</value>
-  </data>
-  <data name="GeneratedPuzzleConstraintPage_IttoryuLengthConstraint" xml:space="preserve">
-    <value>一刀流长度约束</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_MinimalConstraint" xml:space="preserve">
     <value>最小题约束</value>

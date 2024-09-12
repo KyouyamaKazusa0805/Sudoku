@@ -30,10 +30,11 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 	/// Find a suitable ittoryu path.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>
 	/// The target digit path. If none found, a longest path will be returned.
 	/// </returns>
-	public DisorderedIttoryuDigitPath FindPath(ref readonly Grid grid)
+	public DisorderedIttoryuDigitPath FindPath(ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
 		var digitsStack = new Stack<Digit>();
 		try
@@ -43,11 +44,13 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 				dfs(grid, digit, digitsStack, [], 0, true);
 			}
 		}
+		catch (OperationCanceledException)
+		{
+		}
 		catch (AlreadyFinishedException)
 		{
 			return [.. digitsStack.Reverse()];
 		}
-
 		return null;
 
 
@@ -129,6 +132,8 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 				// If all available found path nodes cannot make the path complete, pop it.
 				digitsStack.Pop();
 			}
+
+			cancellationToken.ThrowIfCancellationRequested();
 		}
 
 		void fullHouses(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)

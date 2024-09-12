@@ -5251,6 +5251,7 @@
 			</i>
 		</para>
 	</flags-attribute></remarks>
+            <completionlist cref="T:Sudoku.Analytics.DifficultyLevels" />
         </member>
         <member name="F:Sudoku.Analytics.DifficultyLevel.Unknown">
             <summary>
@@ -5300,6 +5301,21 @@
             <param name="this">The value.</param>
             <param name="formatProvider">The culture.</param>
             <returns>The string value.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.DifficultyLevels">
+            <summary>
+            Represents a list of difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevels.AllValid">
+            <summary>
+            Indicates all valid difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevels.All">
+            <summary>
+            Indicates all difficulty levels.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.FailedReason">
             <summary>
@@ -30225,11 +30241,12 @@
             </summary>
             <param name="techniques">A list of techniques.</param>
         </member>
-        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Find a suitable ittoryu path.
             </summary>
             <param name="grid">The grid to be checked.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>
             The target digit path. If none found, a longest path will be returned.
             </returns>
@@ -32441,11 +32458,6 @@
             Represents difficulty level constraint.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.AllValidDifficultyLevelFlags">
-            <summary>
-            Indicates all valid difficulty level flags.
-            </summary>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.DifficultyLevel">
             <summary>
             Indicates the difficulty level.
@@ -32563,11 +32575,6 @@
             Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Constraints.IttoryuConstraint.LocalAnalyzer">
-            <summary>
-            Indicates the step searcher used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
             <summary>
             Indicates the rounds used.
@@ -32606,51 +32613,6 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.IttoryuLengthConstraint">
-            <summary>
-            Represents ittoryu length constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Finder">
-            <summary>
-            Indicates the disordered ittoryu finder.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
-            <summary>
-            Indicates the length.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.LastingConstraint">

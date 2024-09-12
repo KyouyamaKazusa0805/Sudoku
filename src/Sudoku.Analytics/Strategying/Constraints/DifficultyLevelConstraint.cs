@@ -7,12 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
 {
 	/// <summary>
-	/// Indicates all valid difficulty level flags.
-	/// </summary>
-	public const DifficultyLevel AllValidDifficultyLevelFlags = (DifficultyLevel)0b0001_1111;
-
-
-	/// <summary>
 	/// Indicates the difficulty level.
 	/// </summary>
 	[HashCodeMember]
@@ -31,7 +25,7 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	{
 		get
 		{
-			var allValues = DifficultyLevel.Easy | DifficultyLevel.Moderate | DifficultyLevel.Hard | DifficultyLevel.Fiendish | DifficultyLevel.Nightmare;
+			var allValues = DifficultyLevels.AllValid;
 			var allValuesLower = DifficultyLevel switch
 			{
 				DifficultyLevel.Easy => DifficultyLevel.Unknown,

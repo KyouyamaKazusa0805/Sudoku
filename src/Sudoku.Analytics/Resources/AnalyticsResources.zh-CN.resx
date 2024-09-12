@@ -2895,9 +2895,6 @@
   <data name="IttoryuConstraint" xml:space="preserve">
     <value>一刀流：在 {0} {1} 轮约束下完成题目</value>
   </data>
-  <data name="IttoryuLengthConstraint" xml:space="preserve">
-    <value>一刀流长度：{0} {1} 个连续完成的数字</value>
-  </data>
   <data name="MinimalConstraint" xml:space="preserve">
     <value>最小题：{0}是一个最小题</value>
   </data>

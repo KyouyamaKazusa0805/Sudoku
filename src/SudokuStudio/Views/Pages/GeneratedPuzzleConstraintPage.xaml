@@ -112,11 +112,6 @@
 								<con:IttoryuConstraint LimitedSingle="NakedSingle" Operator="Equality" Rounds="1" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
-						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_IttoryuLengthConstraint}" Click="MenuFlyoutItem_Click">
-							<MenuFlyoutItem.Tag>
-								<con:IttoryuLengthConstraint Length="9" Operator="Equality" />
-							</MenuFlyoutItem.Tag>
-						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PrimarySingleConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
 								<con:PrimarySingleConstraint Primary="HiddenSingle" AllowsHiddenSingleInLines="False" />

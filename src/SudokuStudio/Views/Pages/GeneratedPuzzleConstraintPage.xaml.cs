@@ -20,7 +20,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{ typeof(DifficultyLevelConstraint), static (@this, s) => @this.Create_DifficultyLevel((DifficultyLevelConstraint)s) },
 		{ typeof(EliminationCountConstraint), static (@this, s) => @this.Create_EliminationCount((EliminationCountConstraint)s) },
 		{ typeof(IttoryuConstraint), static (@this, s) => @this.Create_Ittoryu((IttoryuConstraint)s) },
-		{ typeof(IttoryuLengthConstraint), static (@this, s) => @this.Create_IttoryuLength((IttoryuLengthConstraint)s) },
 		{ typeof(LastingConstraint), static (@this, s) => @this.Create_Lasting((LastingConstraint)s) },
 		{ typeof(MinimalConstraint), static (@this, s) => @this.Create_Minimal((MinimalConstraint)s) },
 		{ typeof(PearlConstraint), static (@this, s) => @this.Create_PearlOrDiamond((PearlConstraint)s) },
@@ -74,7 +73,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// Indicates whether the constraint control is created, and also appended into property <see cref="ConstraintsEntry"/>.
 	/// </param>
 	/// <seealso cref="ConstraintsEntry"/>
-	[SuppressMessage("Style", "IDE0039:Use local function", Justification = "<Pending>")]
 	private void AddControl(Constraint constraint, bool createNew)
 	{
 		if (ControlCreatorFactory[constraint.GetType()](this, constraint) is { } control)
@@ -147,7 +145,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	private partial SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint;
 	private partial SettingsCard? Create_CountBetween(CountBetweenConstraint constraint);
 	private partial SettingsCard? Create_Ittoryu(IttoryuConstraint constraint);
-	private partial SettingsCard? Create_IttoryuLength(IttoryuLengthConstraint constraint);
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint);
 	private partial SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint);
 	private partial SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint);

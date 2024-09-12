@@ -2775,9 +2775,6 @@ Error grid: '{0:#}'</value>
   <data name="IttoryuConstraint" xml:space="preserve">
     <value>Ittoryu rule: finish puzzle with {0} {1} rounds</value>
   </data>
-  <data name="IttoryuLengthConstraint" xml:space="preserve">
-    <value>Ittoryu length rule: {0} {1} consecutively-finished digits</value>
-  </data>
   <data name="MinimalConstraint" xml:space="preserve">
     <value>Minimal rule: should {0}be a minimal puzzle</value>
   </data>

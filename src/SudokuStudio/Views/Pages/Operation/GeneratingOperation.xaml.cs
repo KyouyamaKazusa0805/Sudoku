@@ -98,7 +98,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				if (await Task.Run(taskEntry) is { IsUndefined: false } grid)
 				{
-					h(ref grid, analyzer);
+					triggerEvents(ref grid, analyzer);
 				}
 			}
 			else
@@ -107,7 +107,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				{
 					if (await Task.Run(taskEntry) is { IsUndefined: false } grid)
 					{
-						h(ref grid, analyzer);
+						triggerEvents(ref grid, analyzer);
 
 						_generatingFilteredCount++;
 						continue;
@@ -127,47 +127,44 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		static (int, int) b(BetweenRule betweenRule, int start, int end)
-			=> betweenRule switch
-			{
-				BetweenRule.BothOpen => (start + 1, end - 1),
-				BetweenRule.LeftOpen => (start + 1, end),
-				BetweenRule.RightOpen => (start, end + 1),
-				_ => (start, end)
-			};
-
-		void h(ref Grid grid, Analyzer analyzer)
+		void triggerEvents(ref Grid grid, Analyzer analyzer)
 		{
 			gridStateChanger?.Invoke(ref grid, analyzer);
-			gridTextConsumer?.Invoke($"{grid:#}");
+			gridTextConsumer?.Invoke(grid.ToString("#"));
 		}
 
-		unsafe Grid taskEntry()
+		Grid taskEntry()
 		{
 			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
 			var hasNakedSingleConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }];
 			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
 			var hasNakedSingleConnstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.NakedSingle] }];
-			return coreHandler(
-				constraints,
-				hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
-					? &handlerFullHouse
-					: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
-						? &handlerNakedSingle
-						: &handlerDefault,
-				progress => DispatcherQueue.TryEnqueue(
-					() =>
-					{
-						BasePage.AnalyzeProgressLabel.Text = processingText;
-						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-					}
-				),
-				cts.Token,
-				hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
-					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
-					: analyzer,
-				ittoryuFinder
-			);
+			var hasIttoryuConstraint = constraints.OfType<IttoryuConstraint>() is [{ Operator: ComparisonOperator.Equality, Rounds: 1 }];
+			unsafe
+			{
+				return coreHandler(
+					constraints,
+					hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
+						? &handlerFullHouse
+						: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
+							? &handlerNakedSingle
+							: hasIttoryuConstraint
+								? &handlerIttoryu
+								: &handlerDefault,
+					progress => DispatcherQueue.TryEnqueue(
+						() =>
+						{
+							BasePage.AnalyzeProgressLabel.Text = processingText;
+							BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+						}
+					),
+					cts.Token,
+					hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
+						? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
+						: analyzer,
+					ittoryuFinder
+				);
+			}
 
 
 			static Grid handlerFullHouse(int givens, SymmetricType type, CancellationToken ct)
@@ -192,6 +189,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
 				=> new Generator().Generate(givens, symmetry, ct);
+
+			static Grid handlerIttoryu(int givens, SymmetricType symmetry, CancellationToken ct)
+			{
+				var finder = new DisorderedIttoryuFinder();
+				var generator = new Generator();
+				while (true)
+				{
+					var puzzle = generator.Generate(givens, symmetry, ct);
+					if (finder.FindPath(in puzzle, ct) is { IsComplete: true } path)
+					{
+						puzzle.MakeIttoryu(path);
+						return puzzle;
+					}
+				}
+			}
 		}
 
 		unsafe Grid coreHandler(
@@ -203,37 +215,36 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			DisorderedIttoryuFinder finder
 		)
 		{
-			var rs = Random.Shared;
-			var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
-			var chosenGivensCount =
-				from c in constraints.OfType<CountBetweenConstraint>()
-				let betweenRule = c.BetweenRule
-				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
-				let targetPair = c.CellState switch { CellState.Given => (pair.Start, pair.End), CellState.Empty => (81 - pair.End, 81 - pair.Start) }
-				select (betweenRule, targetPair);
-			var chosenDifficultyLevels =
-				from c in constraints.OfType<DifficultyLevelConstraint>()
-				select c.ValidDifficultyLevels.GetAllFlags().ToArray();
-			var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
-			var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
+			var rng = Random.Shared;
+			var symmetries = (
+				(
+					from c in constraints.OfType<SymmetryConstraint>()
+					select c.SymmetricTypes
+				) is [var p] ? p : SymmetryConstraint.AllSymmetricTypes
+			) switch
 			{
 				SymmetryConstraint.InvalidSymmetricType => [],
 				SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
 				var symmetricTypes and not 0 => symmetricTypes.GetAllFlags(),
 				_ => [SymmetricType.None]
 			};
-
-			var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
-			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rs.Next(s, e + 1) : -1;
-			var difficultyLevel = chosenDifficultyLevels is [var d]
-				? d[rs.Next(0, d.Length)]
-				: DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
-
+			var chosenGivensCountSeed = (
+				from c in constraints.OfType<CountBetweenConstraint>()
+				let betweenRule = c.BetweenRule
+				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
+				let targetPair = c.CellState switch { CellState.Given => (pair.Start, pair.End), CellState.Empty => (81 - pair.End, 81 - pair.Start) }
+				select (betweenRule, targetPair)
+			) is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
+			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
+			var difficultyLevel = (
+				from c in constraints.OfType<DifficultyLevelConstraint>()
+				select c.ValidDifficultyLevels.GetAllFlags().ToArray()
+			) is [var d] ? d[rng.Next(0, d.Length)] : DifficultyLevels.AllValid;
 			var progress = new SelfReportingProgress<TProgressDataProvider>(reporter);
-
 			while (true)
 			{
-				var grid = gridCreator(givensCount, symmetries[rs.Next(0, symmetries.Length)], cancellationToken);
+				var chosenSymmetricType = symmetries[rng.Next(0, symmetries.Length)];
+				var grid = gridCreator(givensCount, chosenSymmetricType, cancellationToken);
 				if (grid.IsUndefined)
 				{
 					// Cancel the task if 'Grid.Undefined' is encountered.
@@ -241,71 +252,30 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					throw new OperationCanceledException();
 				}
 
-				if (grid.IsEmpty)
+				if (grid.IsEmpty || analyzer.Analyze(in grid) is var analysisResult && !analysisResult.IsSolved)
 				{
-					// The case that return an invalid value.
 					goto ReportState;
 				}
 
-				var analysisResult = analyzer.Analyze(in grid);
-				if (!analysisResult.IsSolved)
+				if (constraints.IsValidFor(new(in grid, analysisResult)))
 				{
-					// The case that the puzzle cannot be solved in easy ways.
-					// For example, the analyzer has been configured with step searcher in "easy" difficulty level,
-					// but it cannot be solved.
-					goto ReportState;
-				}
-
-				switch (difficultyLevel, analysisResult.DifficultyLevel)
-				{
-					case (DifficultyLevel.Easy, DifficultyLevel.Easy):
-					{
-						// Optimize: transform the grid if worth.
-						if (ittoryu is { Operator: ComparisonOperator.Equality, Rounds: 1 })
-						{
-							switch (finder.FindPath(in grid))
-							{
-								case { IsComplete: true } foundIttoryu:
-								{
-									grid.MakeIttoryu(foundIttoryu);
-									goto CheckIttoryuConstraint;
-								}
-								default:
-								{
-									break;
-								}
-							}
-							break;
-						}
-
-					CheckIttoryuConstraint:
-						// Check for ittoryu and ittoryu length constraint if worth.
-						if (!(ittoryu?.Check(new(in grid, analysisResult)) ?? true))
-						{
-							break;
-						}
-
-						// Check for the last constraints.
-						if ((constraints - ittoryu).IsValidFor(new(in grid, analysisResult)))
-						{
-							return grid;
-						}
-						break;
-					}
-					default:
-					{
-						if (constraints.IsValidFor(new(in grid, analysisResult)))
-						{
-							return grid;
-						}
-						break;
-					}
+					return grid;
 				}
 
 			ReportState:
 				progress.Report(TProgressDataProvider.Create(++_generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
 			}
+
+
+			static (Cell, Cell) b(BetweenRule betweenRule, Cell start, Cell end)
+				=> betweenRule switch
+				{
+					BetweenRule.BothOpen => (start + 1, end - 1),
+					BetweenRule.LeftOpen => (start + 1, end),
+					BetweenRule.RightOpen => (start, end + 1),
+					_ => (start, end)
+				};
 		}
 	}
 

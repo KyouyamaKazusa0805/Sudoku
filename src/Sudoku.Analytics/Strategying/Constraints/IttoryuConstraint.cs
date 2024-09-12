@@ -7,22 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <summary>
-	/// Indicates the step searcher used.
-	/// </summary>
-	private static readonly Analyzer LocalAnalyzer = Analyzer.Default
-		.WithStepSearchers(
-			new SingleStepSearcher
-			{
-				EnableFullHouse = true,
-				EnableLastDigit = true,
-				HiddenSinglesInBlockFirst = true,
-				UseIttoryuMode = true
-			}
-		)
-		.WithUserDefinedOptions(new() { IsDirectMode = true });
-
-
-	/// <summary>
 	/// Indicates the rounds used.
 	/// </summary>
 	[HashCodeMember]
@@ -79,7 +63,18 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			return false;
 		}
 
-		if (LocalAnalyzer.Analyze(in context.Grid) is not
+		var localAnalyzer = Analyzer.Default
+			.WithStepSearchers(
+				new SingleStepSearcher
+				{
+					EnableFullHouse = true,
+					EnableLastDigit = true,
+					HiddenSinglesInBlockFirst = true,
+					UseIttoryuMode = true
+				}
+			)
+			.WithUserDefinedOptions(new() { IsDirectMode = true });
+		if (localAnalyzer.Analyze(in context.Grid) is not
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,

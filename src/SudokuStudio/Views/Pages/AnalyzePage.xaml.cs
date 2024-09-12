@@ -883,7 +883,7 @@ public sealed partial class AnalyzePage : Page
 				}
 			}
 		}
-		catch (TaskCanceledException)
+		catch (OperationCanceledException)
 		{
 		}
 		finally

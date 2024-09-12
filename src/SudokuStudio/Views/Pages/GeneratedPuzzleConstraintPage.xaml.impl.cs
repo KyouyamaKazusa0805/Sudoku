@@ -614,38 +614,6 @@ public partial class GeneratedPuzzleConstraintPage
 		};
 	}
 
-	private partial SettingsCard? Create_IttoryuLength(IttoryuLengthConstraint constraint)
-	{
-		if (constraint is not { Length: var length, Operator: var @operator })
-		{
-			return null;
-		}
-
-		//
-		// length
-		//
-		var lengthControl = LimitCountControl(length, constraint);
-
-		//
-		// operator
-		//
-		var operatorControl = ComparisonOperatorControl(@operator, constraint);
-
-		return new()
-		{
-			Header = SR.Get("GeneratedPuzzleConstraintPage_IttoryuLength", App.CurrentCulture),
-			Description = constraint.Description,
-			Margin = DefaultMargin,
-			Content = new StackPanel
-			{
-				Orientation = Orientation.Horizontal,
-				Spacing = DefaultSpacing,
-				Children = { operatorControl, lengthControl }
-			},
-			Tag = constraint
-		};
-	}
-
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })

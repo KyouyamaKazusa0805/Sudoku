@@ -2243,9 +2243,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_AppearingTimes" xml:space="preserve">
     <value>appearing times</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_IttoryuLength" xml:space="preserve">
-    <value>Ittoryu length</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_AddNewConstraint" xml:space="preserve">
     <value>Add constraint</value>
   </data>
@@ -2257,9 +2254,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_IttoryuConstraint" xml:space="preserve">
     <value>Ittoryu constraint</value>
-  </data>
-  <data name="GeneratedPuzzleConstraintPage_IttoryuLengthConstraint" xml:space="preserve">
-    <value>Ittoryu length constraint</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_MinimalConstraint" xml:space="preserve">
     <value>Minimal constraint</value>
