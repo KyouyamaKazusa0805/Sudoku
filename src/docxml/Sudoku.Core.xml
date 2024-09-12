@@ -1121,30 +1121,6 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CellMapOrCandidateMapPredicate`3">
-            <summary>
-            Represents a method that checks for an offset of type <typeparamref name="TElement" />
-            in the collection of type <typeparamref name="TSelf" />, referenced from <paramref name="grid" />,
-            determining whether the offset satisfies the specified condition.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-            <typeparam name="TElement">
-            The type of each element in the collection of type <typeparamref name="TSelf" />.
-            </typeparam>
-            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
-            <param name="offset">The <typeparamref name="TElement" /> offset value to be checked.</param>
-            <param name="grid">The grid as candidate reference.</param>
-            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.CellMapToken">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/>.
@@ -4617,6 +4593,30 @@
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate`3">
+            <summary>
+            Represents a method that checks for an offset of type <typeparamref name="TElement" />
+            in the collection of type <typeparamref name="TSelf" />, referenced from <paramref name="grid" />,
+            determining whether the offset satisfies the specified condition.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TElement">
+            The type of each element in the collection of type <typeparamref name="TSelf" />.
+            </typeparam>
+            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
+            <param name="offset">The <typeparamref name="TElement" /> offset value to be checked.</param>
+            <param name="grid">The grid as candidate reference.</param>
+            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3">
             <summary>
             Extracts a base type that describes state table from elements of <typeparamref name="TSelf" /> type.
@@ -7284,7 +7284,7 @@
             <returns>The first found candidate.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -7302,7 +7302,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found candidate.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -7373,7 +7373,7 @@
             <returns>The first found cell.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
@@ -7391,7 +7391,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found cell.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
