@@ -168,27 +168,24 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 
 			static Grid handlerFullHouse(int givens, SymmetricType type, CancellationToken ct)
-			{
-				new FullHouseGenerator
+				=> new FullHouseGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
-				}.TryGenerateUnique(out var p, ct);
-				return p;
-			}
+				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
 			static Grid handlerNakedSingle(int givens, SymmetricType type, CancellationToken ct)
-			{
-				new NakedSingleGenerator
+				=> new NakedSingleGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
-				}.TryGenerateUnique(out var p, ct);
-				return p;
-			}
+				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
 			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
-				=> new Generator().Generate(givens, symmetry, ct);
+			{
+				var puzzle = new Generator().Generate(givens, symmetry, ct);
+				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
+			}
 
 			static Grid handlerIttoryu(int givens, SymmetricType symmetry, CancellationToken ct)
 			{
@@ -250,13 +247,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				var chosenSymmetricType = symmetries[rng.Next(0, symmetries.Length)];
 				var grid = gridCreator(givensCount, chosenSymmetricType, cancellationToken);
-				if (grid.IsUndefined)
-				{
-					// Cancel the task if 'Grid.Undefined' is encountered.
-					// The value can be returned by method 'HodokuPuzzleGenerator.Generate' if cancelled.
-					throw new OperationCanceledException();
-				}
-
 				if (grid.IsEmpty || analyzer.Analyze(in grid) is var analysisResult && !analysisResult.IsSolved)
 				{
 					goto ReportState;
