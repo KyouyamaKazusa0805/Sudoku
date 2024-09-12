@@ -10765,7 +10765,7 @@
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`3"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/>.
             </typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
@@ -10784,7 +10784,7 @@
             Calls the method <see cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``3(``0,System.Object,System.String,System.Boolean@)"/> for all properties in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
             <typeparam name="TAnalyzerOrCollector">
-            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.IStepGatherer`3"/>.
+            The type of the instance. The type must implement <see cref="T:Sudoku.Analytics.Primitives.IStepGatherer`3"/>.
             </typeparam>
             <typeparam name="TContext">The type of the context.</typeparam>
             <typeparam name="TResult">The type of the result.</typeparam>
