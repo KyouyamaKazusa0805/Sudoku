@@ -90,15 +90,14 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Simple Coloring
       * Simple Coloring Wrap
       * Simple Coloring Trap
-  * Baba Grouping
-    * Remote Pair
-      * Standard Remote Pair
-      * Complex Remote Pair
-    * Unique Rectangle Baba Grouping
   * Chains
     * Non-grouped Chains
       * Alternating Inference Chains (*AIC*)
       * Continuous Nice Loops (*CNL*)
+    * Wellknown Chains
+      * Remote Pair
+        * Standard Remote Pair
+        * Complex Remote Pair
     * Grouped Chains
       * Grouped Alternating Inference Chains (*GAIC*)
       * Grouped Continuous Nice Loops (*GCNL*)
