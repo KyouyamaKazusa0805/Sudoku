@@ -154,6 +154,12 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color HouseCompletedFeedbackColor_DarkDefaultValue = Colors.DarkMagenta;
 
 	[Default]
+	private static readonly Color ActiveCellColorDefaultValue = Colors.SkyBlue;
+
+	[Default]
+	private static readonly Color ActiveCellColor_DarkDefaultValue = Color.FromArgb(255, 93, 138, 226);
+
+	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]
@@ -787,6 +793,18 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	/// </summary>
 	[DependencyProperty]
 	public partial Color HouseCompletedFeedbackColor_Dark { get; set; }
+
+	/// <summary>
+	/// Indicates active cell color.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color ActiveCellColor { get; set; }
+
+	/// <summary>
+	/// Indicates active cell color, in dark theme.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color ActiveCellColor_Dark { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.StrongLinkDashStyle"/>
 	[DependencyProperty]

@@ -2798,4 +2798,7 @@
   <data name="SettingsPage_Backdrop_AcrylicThin" xml:space="preserve">
     <value>磨砂透明（更透一些）</value>
   </data>
+  <data name="SettingsPage_ActiveCellColorPatternBasedGeneratorPage" xml:space="preserve">
+    <value>图形题出题页面的选中单元格</value>
+  </data>
 </root>

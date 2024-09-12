@@ -2807,4 +2807,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_Backdrop_AcrylicThin" xml:space="preserve">
     <value>Acrylic (Thin)</value>
   </data>
+  <data name="SettingsPage_ActiveCellColorPatternBasedGeneratorPage" xml:space="preserve">
+    <value>Active cells in pattern-based generator page</value>
+  </data>
 </root>

@@ -204,26 +204,22 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	[Callback]
 	private static void SelectedCellsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not
+		if ((d, e) is not (
+			PatternBasedPuzzleGeneratingPage
 			{
-				Item1: PatternBasedPuzzleGeneratingPage
-				{
-					_userColoringView: var view,
-					PatternCounter: var counterTextBlock,
-					SudokuPane: var pane
-				} page,
-				Item2.NewValue: CellMap newValue
-			})
+				_userColoringView: var view,
+				PatternCounter: var counterTextBlock,
+				SudokuPane: var pane
+			} page,
+			{ NewValue: CellMap newValue }
+		))
 		{
 			return;
 		}
 
+		var uiPref = Application.Current.AsApp().Preference.UIPreferences;
 		var copied = view.Clone();
-		var (a, r, g, b) = App.CurrentTheme switch
-		{
-			ApplicationTheme.Light => (Color)page.Resources["SelectedCellColorLight"]!,
-			_ => (Color)page.Resources["SelectedCellColorDark"]!
-		};
+		var (a, r, g, b) = App.CurrentTheme switch { ApplicationTheme.Light => uiPref.ActiveCellColor, _ => uiPref.ActiveCellColor_Dark };
 		copied.View.Clear();
 		copied.View.AddRange(from cell in newValue select new CellViewNode(new ColorColorIdentifier(a, r, g, b), cell));
 

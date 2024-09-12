@@ -228,6 +228,24 @@ public sealed partial class ItemColorSettingPage : Page
 	}
 
 	/// <summary>
+	/// Indicates active cell color used in pattern-based generator page.
+	/// </summary>
+	internal Color ActiveCellColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ActiveCellColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ActiveCellColor_Dark
+		};
+
+		set => _ = App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.ActiveCellColor,
+			_ => Application.Current.AsApp().Preference.UIPreferences.ActiveCellColor_Dark
+		};
+	}
+
+	/// <summary>
 	/// The auxiliary colors.
 	/// </summary>
 	internal ColorPalette AuxiliaryColors
@@ -352,4 +370,6 @@ public sealed partial class ItemColorSettingPage : Page
 			ApplicationTheme.Light => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors,
 			_ => Application.Current.AsApp().Preference.UIPreferences.AlmostLockedSetsColors_Dark
 		}, 4, e);
+
+	private void ActiveCellColorSelector_ColorChanged(object sender, Color e) => ActiveCellColor = e;
 }

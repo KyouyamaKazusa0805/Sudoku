@@ -139,6 +139,9 @@
 					</w:SettingsCard>
 				</w:SettingsExpander.Items>
 			</w:SettingsExpander>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_ActiveCellColorPatternBasedGeneratorPage}">
+				<c:ColorSelector x:Name="ActiveCellColorSelector" SelectedColor="{x:Bind ActiveCellColor}" ColorChanged="ActiveCellColorSelector_ColorChanged" />
+			</w:SettingsCard>
 		</StackPanel>
 	</ScrollViewer>
 </Page>

@@ -2310,6 +2310,16 @@
             Indicates house completed feedback color, in dark theme.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor">
+            <summary>
+            Indicates active cell color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor_Dark">
+            <summary>
+            Indicates active cell color, in dark theme.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle"/>
         </member>
@@ -2895,6 +2905,18 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.ActiveCellColor_Dark"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.StrongLinkDashStyleProperty">
             <summary>
@@ -16305,6 +16327,11 @@
         <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.GroupedNodeBackgroundColor">
             <summary>
             Indicates grouped node background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.ActiveCellColor">
+            <summary>
+            Indicates active cell color used in pattern-based generator page.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Settings.Drawing.ItemColorSettingPage.AuxiliaryColors">

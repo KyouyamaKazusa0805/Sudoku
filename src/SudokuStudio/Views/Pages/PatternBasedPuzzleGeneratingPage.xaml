@@ -15,8 +15,6 @@
 	d:DataContext="{d:DesignInstance Type=p:PatternBasedPuzzleGeneratingPage}"
 	Loaded="Page_Loaded">
 	<Page.Resources>
-		<Color x:Key="SelectedCellColorLight">Skyblue</Color>
-		<Color x:Key="SelectedCellColorDark">#5D8AE2</Color>
 		<TeachingTip
 			x:Name="Dialog_AreYouSureToReturnToEmpty" IsLightDismissEnabled="True" Target="{x:Bind ClearButton}"
 			ActionButtonContent="{m:R Key=AnalyzePage_Sure}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
