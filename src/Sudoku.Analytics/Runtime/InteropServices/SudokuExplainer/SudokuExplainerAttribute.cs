@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.SudokuExplainer;
+namespace Sudoku.Runtime.InteropServices.SudokuExplainer;
 
 /// <summary>
 /// Represents compatibility rules for Sudoku Explainer.

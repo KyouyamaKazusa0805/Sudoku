@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.Hodoku;
+namespace Sudoku.Runtime.InteropServices.Hodoku;
 
 /// <summary>
 /// Represents compatibility rules for Hodoku.

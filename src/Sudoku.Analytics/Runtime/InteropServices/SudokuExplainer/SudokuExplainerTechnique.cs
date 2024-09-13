@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.SudokuExplainer;
+namespace Sudoku.Runtime.InteropServices.SudokuExplainer;
 
 /// <summary>
 /// Represents an enumeration that describes for a technique usage designed by Sudoku Explainer.

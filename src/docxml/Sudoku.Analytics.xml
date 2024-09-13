@@ -19436,503 +19436,6 @@
             <param name="options">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
-            <summary>
-            Represents compatibility rules for Hodoku.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuAttribute.Prefix">
-            <summary>
-            Indicates the technique prefix defined in Hodoku program.
-            See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
-            </summary>
-            <seealso href="https://hodoku.sourceforge.net/en/libs.php">Hodoku: libraries</seealso>
-        </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuCompatibility">
-            <summary>
-            Represents some methods that are used for get the details supported and defined
-            by another program called <see href="https://sourceforge.net/projects/hodoku/">HoDoKu</see>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuCompatibility.DefaultLibraryFormatPrefix">
-            <summary>
-            Indicates the default library format prefix "<c>0000</c>".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuCompatibility.DefaultLibraryFormatDigitPlaceholder">
-            <summary>
-            Indicates the default library format digit placeholder "<c>x</c>".
-            </summary>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuLibraryFormat(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Formats the current puzzle with specified step information, to output as HoDoKu library format.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="step">The corresponding step.</param>
-            <returns>The library format.</returns>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetHodokuLibraryPrefix(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the prefix of the specified technique. The return value will be a four-digit value
-            represented as a <see cref="T:System.String"/> value. For more information please visit
-            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            <para>
-            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
-            in a sudoku grid, which is defined by the project HoDoKu.
-            </para>
-            <para>
-            If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.
-            </para>
-            </returns>
-            <remarks>
-            <para>
-            Please note that some technique fields are separated into multiple sub-types, but they all
-            belong to a same type of a technique supported by HoDoKu. For example,
-            <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
-            HoDoKu as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
-            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
-            </para>
-            <para>
-            However, if a sub-type is not supported by HoDoKu (e.g. the field
-            <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
-            indicating the "Not supported" state;
-            no exceptions will throw, except the value <paramref name="this"/> is not defined in the containing enumeration type.
-            </para>
-            </remarks>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets all possible aliased names that are defined by HoDoKu.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            The array of aliased names, or <see langword="null"/> if it is not defined by HoDoKu.
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetDifficultyScore(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel}@)">
-            <summary>
-            Try to get difficulty score of the specified technique.
-            </summary>
-            <param name="this">The technique.</param>
-            <param name="difficultyLevel">The difficulty level that is defined by HoDoKu.</param>
-            <returns>
-            <para>An <see cref="T:System.Int32"/> value defined by the project HoDoKu.</para>
-            <para>If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.</para>
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel">
-            <summary>
-            The difficulty level defined by Hodoku.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Easy">
-            <summary>
-            Indicates the level is easy.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Medium">
-            <summary>
-            Indicates the level is medium.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Hard">
-            <summary>
-            Indicates the level is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Unfair">
-            <summary>
-            Indicates the level is unfair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel.Extreme">
-            <summary>
-            Indicates the level is extreme.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute">
-            <summary>
-            Represents program compatibility attribute type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute.Aliases">
-            <summary>
-            Represents the aliased names for the current technique defined in the current program.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute`1">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <typeparam name="TRating">
-            Indicates the type of the rating value. The value must be a number (e.g. a <see cref="T:System.Double"/> or an <see cref="T:System.Int32"/>).
-            </typeparam>
-        </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`1.Rating">
-            <summary>
-            Indicates the type of the rating value.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute`2">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <typeparam name="TRating"><inheritdoc/></typeparam>
-            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
-        </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute">
-            <summary>
-            Represents compatibility rules for Sudoku Explainer.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal">
-            <summary>
-            Indicates the rating value that is defined in original program.
-            </summary>
-            <remarks>
-            The value of this property is an array of 1 or 2 elements.
-            If two, the first one is the minimal possible rating value of the technique;
-            and the second one is the maximum possible rating value.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingAdvanced">
-            <summary>
-            Indicates the rating value that is defined in advanced concept.
-            </summary>
-            <remarks><inheritdoc cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal" path="/remarks"/></remarks>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.Technique">
-            <summary>
-            Indicates the defined technique enumeration field in Sudoku Explainer.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
-            <summary>
-            Represents some methods that are used for get the details supported and defined
-            by another program called
-            <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets all possible aliased names that are defined by Sudoku Explainer.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            The array of aliased names, or <see langword="null"/> if it is not defined by Sudoku Explainer.
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetCorrespondingTechnique(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the corresponding technique defined by Sudoku Explainer.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get difficulty rating of the specified technique.
-            </summary>
-            <param name="this">The technique.</param>
-            <returns>
-            <para>A <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating"/> value defined by the project Sudoku Explainer.</para>
-            <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
-            </returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.#ctor(System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange},System.Nullable{Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange})">
-            <summary>
-            Defines a pair of <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
-            for the specified technique defined in application Sudoku Explainer.
-            </summary>
-            <param name="Original">The original difficulty rating of the technique.</param>
-            <param name="Advanced">The advanced difficulty rating of the technique.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.Original">
-            <summary>The original difficulty rating of the technique.</summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating.Advanced">
-            <summary>The advanced difficulty rating of the technique.</summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange">
-            <summary>
-            Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
-            </summary>
-            <param name="min">Indicates the minimum possible value.</param>
-            <param name="max">Indicates the maximum possible value.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half,System.Half)">
-            <summary>
-            Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
-            </summary>
-            <param name="min">Indicates the minimum possible value.</param>
-            <param name="max">Indicates the maximum possible value.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.
-            </summary>
-            <param name="min">The difficulty rating value.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.IsRange">
-            <summary>
-            Indicates whether the current range is a real range, i.e. property <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Max"/> holds different value
-            with <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Min"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Min">
-            <summary>
-            The generated property declaration for parameter <c>min</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRatingRange.Max">
-            <summary>
-            The generated property declaration for parameter <c>max</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique">
-            <summary>
-            Represents an enumeration that describes for a technique usage designed by Sudoku Explainer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Single">
-            <summary>
-            Represents single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenSingle">
-            <summary>
-            Represents hidden single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectPointing">
-            <summary>
-            Represents direct pointing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenPair">
-            <summary>
-            Represents direct hidden pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedSingle">
-            <summary>
-            Represents naked single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenTriplet">
-            <summary>
-            Represents direct hidden triplet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Pointing">
-            <summary>
-            Represents pointing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Claiming">
-            <summary>
-            Represents claiming.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedPair">
-            <summary>
-            Represents naked pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XWing">
-            <summary>
-            Represents X-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenPair">
-            <summary>
-            Represents hidden pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedTriplet">
-            <summary>
-            Represent naked triplet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Swordfish">
-            <summary>
-            Represent swordfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenTriplet">
-            <summary>
-            Represents hidden triplet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.TurbotFish">
-            <summary>
-            Represent turbot fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XyWing">
-            <summary>
-            Represents XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.XyzWing">
-            <summary>
-            Represents XYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.WWing">
-            <summary>
-            Represents W-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.WXYZWing">
-            <summary>
-            Represents WXYZ-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.UniqueRectangle">
-            <summary>
-            Represents unique rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AvoidableRectangle">
-            <summary>
-            Represents avoidable rectangle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.UniqueLoop">
-            <summary>
-            Represents unique loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NakedQuad">
-            <summary>
-            Represents naked quad.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.Jellyfish">
-            <summary>
-            Represents jellyfish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.HiddenQuad">
-            <summary>
-            Represents hidden quad.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.RemotePair">
-            <summary>
-            Represents remote pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGrave">
-            <summary>
-            Represents bi-value universal grave.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGravePlusN">
-            <summary>
-            Represents bi-value universal grave + n.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlignedPairExclusion">
-            <summary>
-            Represents aligned pair exclusion.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlsXz">
-            <summary>
-            Represents ALS-XZ.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlsXyWing">
-            <summary>
-            Represents ALS-XY-Wing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.ForcingChainCycle">
-            <summary>
-            Represents forcing chains / cycles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.AlignedTripletExclusion">
-            <summary>
-            Represents aligned triplet exclusion.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NishioForcingChain">
-            <summary>
-            Represents nishio forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.MultipleForcingChain">
-            <summary>
-            Represents multiple forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChain">
-            <summary>
-            Represents dynamic forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChainPlus">
-            <summary>
-            Represents dynamic forcing chains (+).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.NestedForcingChain">
-            <summary>
-            Represents nested forcing chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BruteForce">
-            <summary>
-            Represents brute force.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.AlmostHiddenSet">
             <summary>
             Defines a data pattern that describes an AHS.
@@ -30126,6 +29629,503 @@
         </member>
         <member name="M:Sudoku.Runtime.GeneratingServices.TechniqueGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuAttribute">
+            <summary>
+            Represents compatibility rules for Hodoku.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.Hodoku.HodokuAttribute.Prefix">
+            <summary>
+            Indicates the technique prefix defined in Hodoku program.
+            See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
+            </summary>
+            <seealso href="https://hodoku.sourceforge.net/en/libs.php">Hodoku: libraries</seealso>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called <see href="https://sourceforge.net/projects/hodoku/">HoDoKu</see>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.DefaultLibraryFormatPrefix">
+            <summary>
+            Indicates the default library format prefix "<c>0000</c>".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.DefaultLibraryFormatDigitPlaceholder">
+            <summary>
+            Indicates the default library format digit placeholder "<c>x</c>".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.GetHodokuLibraryFormat(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Formats the current puzzle with specified step information, to output as HoDoKu library format.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="step">The corresponding step.</param>
+            <returns>The library format.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.GetHodokuLibraryPrefix(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the prefix of the specified technique. The return value will be a four-digit value
+            represented as a <see cref="T:System.String"/> value. For more information please visit
+            <see href="https://sourceforge.net/p/hodoku/code/HEAD/tree/HoDoKu/trunk/reglib-1.4.txt">this link</see>.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>
+            A <see cref="T:System.String"/> value using a four-digit value to describe a technique used
+            in a sudoku grid, which is defined by the project HoDoKu.
+            </para>
+            <para>
+            If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.
+            </para>
+            </returns>
+            <remarks>
+            <para>
+            Please note that some technique fields are separated into multiple sub-types, but they all
+            belong to a same type of a technique supported by HoDoKu. For example,
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoq"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.SueDeCoqIsolated"/> are supported by
+            HoDoKu as one technique "Sue de Coq", so if you get the prefix from the two fields, the return value
+            are same (i.e. the <see cref="T:System.String"/> value <c>"1101"</c>).
+            </para>
+            <para>
+            However, if a sub-type is not supported by HoDoKu (e.g. the field
+            <see cref="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangle2B1"/>), this method will still return <see langword="null"/>
+            indicating the "Not supported" state;
+            no exceptions will throw, except the value <paramref name="this"/> is not defined in the containing enumeration type.
+            </para>
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by HoDoKu.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by HoDoKu.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.Hodoku.HodokuCompatibility.GetDifficultyScore(Sudoku.Analytics.Categorization.Technique,System.Nullable{Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel}@)">
+            <summary>
+            Try to get difficulty score of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <param name="difficultyLevel">The difficulty level that is defined by HoDoKu.</param>
+            <returns>
+            <para>An <see cref="T:System.Int32"/> value defined by the project HoDoKu.</para>
+            <para>If this technique is not supported by HoDoKu, <see langword="null"/> will be returned.</para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel">
+            <summary>
+            The difficulty level defined by Hodoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel.Easy">
+            <summary>
+            Indicates the level is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel.Medium">
+            <summary>
+            Indicates the level is medium.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel.Hard">
+            <summary>
+            Indicates the level is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel.Unfair">
+            <summary>
+            Indicates the level is unfair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.Hodoku.HodokuDifficultyLevel.Extreme">
+            <summary>
+            Indicates the level is extreme.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute">
+            <summary>
+            Represents program compatibility attribute type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute.Aliases">
+            <summary>
+            Represents the aliased names for the current technique defined in the current program.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute`1">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <typeparam name="TRating">
+            Indicates the type of the rating value. The value must be a number (e.g. a <see cref="T:System.Double"/> or an <see cref="T:System.Int32"/>).
+            </typeparam>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute`1.Rating">
+            <summary>
+            Indicates the type of the rating value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute`2">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <typeparam name="TRating"><inheritdoc/></typeparam>
+            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.ProgramMetadataAttribute`2.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerAttribute">
+            <summary>
+            Represents compatibility rules for Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal">
+            <summary>
+            Indicates the rating value that is defined in original program.
+            </summary>
+            <remarks>
+            The value of this property is an array of 1 or 2 elements.
+            If two, the first one is the minimal possible rating value of the technique;
+            and the second one is the maximum possible rating value.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerAttribute.RatingAdvanced">
+            <summary>
+            Indicates the rating value that is defined in advanced concept.
+            </summary>
+            <remarks><inheritdoc cref="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal" path="/remarks"/></remarks>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerAttribute.Technique">
+            <summary>
+            Indicates the defined technique enumeration field in Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerCompatibility">
+            <summary>
+            Represents some methods that are used for get the details supported and defined
+            by another program called
+            <see href="http://diuf.unifr.ch/pai/people/juillera/Sudoku/Sudoku.html">Sudoku Explainer</see> (Broken link).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets all possible aliased names that are defined by Sudoku Explainer.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The array of aliased names, or <see langword="null"/> if it is not defined by Sudoku Explainer.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerCompatibility.GetCorrespondingTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the corresponding technique defined by Sudoku Explainer.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerCompatibility.GetDifficultyRatingRange(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get difficulty rating of the specified technique.
+            </summary>
+            <param name="this">The technique.</param>
+            <returns>
+            <para>A <see cref="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRating"/> value defined by the project Sudoku Explainer.</para>
+            <para>If this technique is not supported by Sudoku Explainer, <see langword="null"/> will be returned.</para>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified value is not defined by the type <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRating">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRating.#ctor(System.Nullable{Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange},System.Nullable{Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange})">
+            <summary>
+            Defines a pair of <see cref="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange"/> instances indicating the result of difficulty rating
+            for the specified technique defined in application Sudoku Explainer.
+            </summary>
+            <param name="Original">The original difficulty rating of the technique.</param>
+            <param name="Advanced">The advanced difficulty rating of the technique.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRating.Original">
+            <summary>The original difficulty rating of the technique.</summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRating.Advanced">
+            <summary>The advanced difficulty rating of the technique.</summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange">
+            <summary>
+            Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
+            </summary>
+            <param name="min">Indicates the minimum possible value.</param>
+            <param name="max">Indicates the maximum possible value.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half,System.Half)">
+            <summary>
+            Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.
+            </summary>
+            <param name="min">Indicates the minimum possible value.</param>
+            <param name="max">Indicates the maximum possible value.</param>
+        </member>
+        <member name="M:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.#ctor(System.Half)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.
+            </summary>
+            <param name="min">The difficulty rating value.</param>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.IsRange">
+            <summary>
+            Indicates whether the current range is a real range, i.e. property <see cref="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.Max"/> holds different value
+            with <see cref="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.Min"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.Min">
+            <summary>
+            The generated property declaration for parameter <c>min</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerRatingRange.Max">
+            <summary>
+            The generated property declaration for parameter <c>max</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique">
+            <summary>
+            Represents an enumeration that describes for a technique usage designed by Sudoku Explainer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.Single">
+            <summary>
+            Represents single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.HiddenSingle">
+            <summary>
+            Represents hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.DirectPointing">
+            <summary>
+            Represents direct pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenPair">
+            <summary>
+            Represents direct hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NakedSingle">
+            <summary>
+            Represents naked single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.DirectHiddenTriplet">
+            <summary>
+            Represents direct hidden triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.Pointing">
+            <summary>
+            Represents pointing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.Claiming">
+            <summary>
+            Represents claiming.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NakedPair">
+            <summary>
+            Represents naked pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.XWing">
+            <summary>
+            Represents X-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.HiddenPair">
+            <summary>
+            Represents hidden pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NakedTriplet">
+            <summary>
+            Represent naked triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.Swordfish">
+            <summary>
+            Represent swordfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.HiddenTriplet">
+            <summary>
+            Represents hidden triplet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.TurbotFish">
+            <summary>
+            Represent turbot fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.XyWing">
+            <summary>
+            Represents XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.XyzWing">
+            <summary>
+            Represents XYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.WWing">
+            <summary>
+            Represents W-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.WXYZWing">
+            <summary>
+            Represents WXYZ-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.UniqueRectangle">
+            <summary>
+            Represents unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.AvoidableRectangle">
+            <summary>
+            Represents avoidable rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.UniqueLoop">
+            <summary>
+            Represents unique loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NakedQuad">
+            <summary>
+            Represents naked quad.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.Jellyfish">
+            <summary>
+            Represents jellyfish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.HiddenQuad">
+            <summary>
+            Represents hidden quad.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.RemotePair">
+            <summary>
+            Represents remote pair.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGrave">
+            <summary>
+            Represents bi-value universal grave.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.BivalueUniversalGravePlusN">
+            <summary>
+            Represents bi-value universal grave + n.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.AlignedPairExclusion">
+            <summary>
+            Represents aligned pair exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.AlsXz">
+            <summary>
+            Represents ALS-XZ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.AlsXyWing">
+            <summary>
+            Represents ALS-XY-Wing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.ForcingChainCycle">
+            <summary>
+            Represents forcing chains / cycles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.AlignedTripletExclusion">
+            <summary>
+            Represents aligned triplet exclusion.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NishioForcingChain">
+            <summary>
+            Represents nishio forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.MultipleForcingChain">
+            <summary>
+            Represents multiple forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChain">
+            <summary>
+            Represents dynamic forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.DynamicForcingChainPlus">
+            <summary>
+            Represents dynamic forcing chains (+).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.NestedForcingChain">
+            <summary>
+            Represents nested forcing chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.BruteForce">
+            <summary>
+            Represents brute force.
+            </summary>
         </member>
         <member name="T:Sudoku.Runtime.IttoryuServices.DisorderedIttoryuDigitPath">
             <summary>

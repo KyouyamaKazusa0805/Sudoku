@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.SudokuExplainer;
+namespace Sudoku.Runtime.InteropServices.SudokuExplainer;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined

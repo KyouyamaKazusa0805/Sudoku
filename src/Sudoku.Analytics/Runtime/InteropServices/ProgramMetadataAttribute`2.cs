@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility;
+namespace Sudoku.Runtime.InteropServices;
 
 /// <summary>
 /// <inheritdoc/>

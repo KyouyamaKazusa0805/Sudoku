@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.SudokuExplainer;
+namespace Sudoku.Runtime.InteropServices.SudokuExplainer;
 
 /// <summary>
 /// Defines a range of difficulty rating value that is applied to a technique implemented by Sudoku Explainer.

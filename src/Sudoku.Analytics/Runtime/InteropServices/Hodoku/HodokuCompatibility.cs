@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility.Hodoku;
+namespace Sudoku.Runtime.InteropServices.Hodoku;
 
 /// <summary>
 /// Represents some methods that are used for get the details supported and defined
