@@ -13,6 +13,6 @@ public static class ValueMatchExtensions
 	/// <param name="originalString">The original string.</param>
 	/// <returns>The target string.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlyCharSequence MatchString(this ValueMatch @this, string originalString)
-		=> originalString.AsSpan().Slice(@this.Index, @this.Length);
+	public static ReadOnlyCharSequence MatchString(this ValueMatch @this, ReadOnlyCharSequence originalString)
+		=> originalString.Slice(@this.Index, @this.Length);
 }

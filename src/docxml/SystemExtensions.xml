@@ -4137,7 +4137,7 @@
             </summary>
             <seealso cref="T:System.Text.RegularExpressions.ValueMatch"/>
         </member>
-        <member name="M:System.Text.RegularExpressions.ValueMatchExtensions.MatchString(System.Text.RegularExpressions.ValueMatch,System.String)">
+        <member name="M:System.Text.RegularExpressions.ValueMatchExtensions.MatchString(System.Text.RegularExpressions.ValueMatch,System.ReadOnlySpan{System.Char})">
             <summary>
             Try to get the target match string at the specified position the current instance specified.
             </summary>
