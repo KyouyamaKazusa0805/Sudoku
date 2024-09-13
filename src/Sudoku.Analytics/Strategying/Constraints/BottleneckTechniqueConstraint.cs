@@ -42,7 +42,9 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is BottleneckTechniqueConstraint comparer && Techniques == comparer.Techniques;
+		=> other is BottleneckTechniqueConstraint comparer
+		&& Techniques == comparer.Techniques
+		&& HashSet<BottleneckFilter>.CreateSetComparer().Equals([.. Filters], [.. comparer.Filters]);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)
@@ -52,7 +54,8 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 	}
 
 	/// <inheritdoc/>
-	public override BottleneckTechniqueConstraint Clone() => new() { IsNegated = IsNegated, Techniques = Techniques[..] };
+	public override BottleneckTechniqueConstraint Clone()
+		=> new() { IsNegated = IsNegated, Techniques = Techniques[..], Filters = Filters[..] };
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
