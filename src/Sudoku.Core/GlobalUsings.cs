@@ -31,7 +31,6 @@ global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
-global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Runtime.MinlexServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.SolvingServices.Bitwise;

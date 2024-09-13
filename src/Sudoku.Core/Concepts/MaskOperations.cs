@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MaskServices;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.

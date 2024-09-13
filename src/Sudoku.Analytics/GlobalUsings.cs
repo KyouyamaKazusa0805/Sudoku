@@ -42,7 +42,6 @@ global using Sudoku.Resources;
 global using Sudoku.Runtime;
 global using Sudoku.Runtime.ChainingServices;
 global using Sudoku.Runtime.ChainingServices.Rules;
-global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Runtime.MeasuringServices;
 global using Sudoku.Runtime.MeasuringServices.Factors;
 global using Sudoku.Runtime.MeasuringServices.Functions;

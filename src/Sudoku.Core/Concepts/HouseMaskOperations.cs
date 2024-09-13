@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MaskServices;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of methods handling with <see cref="HouseMask"/> instances.
