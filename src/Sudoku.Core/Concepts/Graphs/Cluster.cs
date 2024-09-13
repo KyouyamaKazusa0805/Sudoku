@@ -41,7 +41,13 @@ public readonly ref partial struct Cluster(
 			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
 			foreach (ref readonly var component in graph.Components)
 			{
-				ref readonly var firstParityPair = ref Parity.Create(in component)[0];
+				var parities = Parity.Create(in component);
+				if (parities.Length == 0)
+				{
+					continue;
+				}
+
+				ref readonly var firstParityPair = ref parities[0];
 				var parity1 = firstParityPair.On.Cells;
 				var parity2 = firstParityPair.Off.Cells;
 				for (var i = 0; i < 2; i++)
@@ -78,7 +84,13 @@ public readonly ref partial struct Cluster(
 			var graph = CellGraph.CreateFromConjugatePair(in _grid, Digit, in Map);
 			foreach (ref readonly var component in graph.Components)
 			{
-				ref readonly var firstParityPair = ref Parity.Create(in component)[0];
+				var parities = Parity.Create(in component);
+				if (parities.Length == 0)
+				{
+					continue;
+				}
+
+				ref readonly var firstParityPair = ref parities[0];
 				var parity1 = firstParityPair.On.Cells;
 				var parity2 = firstParityPair.Off.Cells;
 
