@@ -2846,4 +2846,31 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="BottleneckSettingPage_Description" xml:space="preserve">
     <value>This page can modify bottleneck concept, in order to change the searching rules to calculate bottlenecks.</value>
   </data>
+  <data name="SettingsPage_BottleneckDirectModeDescription" xml:space="preserve">
+    <value>Only contains Full Houses, Hidden Singles (Crosshatchings) and Naked Singles</value>
+  </data>
+  <data name="SettingsPage_BottleneckPartialMarkingModeDescription" xml:space="preserve">
+    <value>Contains some complex singles, like using Locked Candidates and Subsets</value>
+  </data>
+  <data name="SettingsPage_BottleneckFullMarkingModeDescription" xml:space="preserve">
+    <value>All the other techniques included</value>
+  </data>
+  <data name="BottleneckSettingPage_EliminationGroupDescription" xml:space="preserve">
+    <value> • Elimination group: If there's a list of steps before an assignment step, the last one will be considered as bottlenecks</value>
+  </data>
+  <data name="BottleneckSettingPage_HardestRatingDescription" xml:space="preserve">
+    <value> • Hardest rating: Choose one or more steps having the largest number of difficulty rating value, as bottlenecks</value>
+  </data>
+  <data name="BottleneckSettingPage_HardestLevelDescription" xml:space="preserve">
+    <value> • Hardest level: Choose one or more steps having the hardest difficulty level, as bottlenecks</value>
+  </data>
+  <data name="BottleneckSettingPage_SequentialInversionDescription" xml:space="preserve">
+    <value> • Sequential inversion: If there's a pair of adjacent steps, and former is harder (has a harder difficulty level), latter is easier (a easier difficulty level), then the former will be treated as bottleneck</value>
+  </data>
+  <data name="BottleneckSettingPage_SingleStepOnlyDescription" xml:space="preserve">
+    <value> • Unique conclusion: If there's a step, whose corresponding grid state only contains one available step, and the puzzle cannot continue unless the step should be applied, the step will be considered as bottlenecks</value>
+  </data>
+  <data name="BottleneckSettingPage_SingleStepSameLevelOnlyDescription" xml:space="preserve">
+    <value> • Unique conclusion same difficulty level: Same as Unique conclusion rule, but it will ignore higher difficulty rating rule if checking avilable steps</value>
+  </data>
 </root>

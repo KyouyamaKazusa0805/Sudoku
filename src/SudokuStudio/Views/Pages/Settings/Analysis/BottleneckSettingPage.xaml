@@ -11,16 +11,32 @@
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-			<TextBlock>
+			<TextBlock Foreground="#666" Margin="0,0,0,6">
 				<Run Text="{m:R Key=BottleneckSettingPage_Description}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_EliminationGroupDescription}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_HardestRatingDescription}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_HardestLevelDescription}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_SequentialInversionDescription}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_SingleStepOnlyDescription}" />
+				<LineBreak />
+				<Run Text="{m:R Key=BottleneckSettingPage_SingleStepSameLevelOnlyDescription}" />
 			</TextBlock>
-			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckDirectMode}">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_BottleneckDirectMode}"
+				Description="{m:R Key=SettingsPage_BottleneckDirectModeDescription}">
 				<w:Segmented x:Name="DirectModeChooser" SelectionChanged="DirectModeChooser_SelectionChanged">
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepOnly}" Tag="{m:BottleneckType Value=SingleStepOnly}" />
 				</w:Segmented>
 			</w:SettingsCard>
-			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckPartialMarkingMode}">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_BottleneckPartialMarkingMode}"
+				Description="{m:R Key=SettingsPage_BottleneckPartialMarkingModeDescription}">
 				<w:Segmented x:Name="PartialMarkingChooser" SelectionChanged="PartialMarkingChooser_SelectionChanged">
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
@@ -29,7 +45,9 @@
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepSameLevelOnly}" Tag="{m:BottleneckType Value=SingleStepSameLevelOnly}" />
 				</w:Segmented>
 			</w:SettingsCard>
-			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckFullMarkingMode}">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_BottleneckFullMarkingMode}"
+				Description="{m:R Key=SettingsPage_BottleneckFullMarkingModeDescription}">
 				<w:Segmented x:Name="FullMarkingChooser" SelectionChanged="FullMarkingChooser_SelectionChanged">
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_EliminatonGroup}" Tag="{m:BottleneckType Value=EliminationGroup}" />
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />

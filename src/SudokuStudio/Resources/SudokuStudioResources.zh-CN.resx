@@ -2826,15 +2826,42 @@
     <value>卡点</value>
   </data>
   <data name="SettingsPage_BottleneckDirectMode" xml:space="preserve">
-    <value>直观难度</value>
+    <value>直观难度（不使用标记）</value>
   </data>
   <data name="SettingsPage_BottleneckPartialMarkingMode" xml:space="preserve">
-    <value>局部标记候选数难度</value>
+    <value>局部标记候选数难度（局标）</value>
   </data>
   <data name="SettingsPage_BottleneckFullMarkingMode" xml:space="preserve">
-    <value>全盘标记候选数难度</value>
+    <value>全部标记候选数难度（全标）</value>
   </data>
   <data name="BottleneckSettingPage_Description" xml:space="preserve">
     <value>这个页面可以修改卡点的定义，以便你用于搜索关于卡点的相关内容时可以变动处理过程。</value>
+  </data>
+  <data name="SettingsPage_BottleneckDirectModeDescription" xml:space="preserve">
+    <value>只包含同区九缺一、排除和唯一余数技巧</value>
+  </data>
+  <data name="SettingsPage_BottleneckPartialMarkingModeDescription" xml:space="preserve">
+    <value>包含一些复杂的出数，例如使用区块和数组来出数</value>
+  </data>
+  <data name="SettingsPage_BottleneckFullMarkingModeDescription" xml:space="preserve">
+    <value>其他所有的技巧</value>
+  </data>
+  <data name="BottleneckSettingPage_EliminationGroupDescription" xml:space="preserve">
+    <value> • 删数步骤组：当有一组删数步骤后才迎来一个出数步骤，则删数步骤里的最后一个被视为卡点</value>
+  </data>
+  <data name="BottleneckSettingPage_HardestRatingDescription" xml:space="preserve">
+    <value> • 最难步骤难度分：选取整个题目解题步骤里具有最大难度分值的技巧，作为卡点</value>
+  </data>
+  <data name="BottleneckSettingPage_HardestLevelDescription" xml:space="preserve">
+    <value> • 最高难度级别：选取整个题目的解题步骤里的、和最难步骤齐平的难度级别的步骤，将它们都作为卡点</value>
+  </data>
+  <data name="BottleneckSettingPage_SequentialInversionDescription" xml:space="preserve">
+    <value> • 逆序难度步骤：当存在一对挨着的步骤里，前一步比后一步难度级别高的，则将前一步视为卡点</value>
+  </data>
+  <data name="BottleneckSettingPage_SingleStepOnlyDescription" xml:space="preserve">
+    <value> • 唯一的结论：当盘面某一个步骤对应的盘面状态，只存在这一个可用步骤，而且不用它步骤就没办法进行，那么这一步就会被视为卡点</value>
+  </data>
+  <data name="BottleneckSettingPage_SingleStepSameLevelOnlyDescription" xml:space="preserve">
+    <value> • 唯一同级别的结论：和“唯一的结论”相同，不检查更高级别难度的可用步骤</value>
   </data>
 </root>
