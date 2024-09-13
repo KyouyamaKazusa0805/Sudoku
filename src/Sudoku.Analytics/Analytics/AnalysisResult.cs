@@ -717,7 +717,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			}
 
 			// Find sequential-inverted steps.
-			case BottleneckType.SequentialInversion:
+			case BottleneckType.SequentialInversion when filterMode != PencilmarkVisibility.Direct:
 			{
 				var result = new List<Step>();
 				for (var i = 0; i < steps.Length - 1; i++)
@@ -746,7 +746,8 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			}
 
 			// Find the hardest level steps.
-			case BottleneckType.HardestLevel when steps.MaxBy(static step => (int)step.DifficultyLevel) is { } maxStep:
+			case BottleneckType.HardestLevel
+			when filterMode != PencilmarkVisibility.Direct && steps.MaxBy(static step => (int)step.DifficultyLevel) is { } maxStep:
 			{
 				var result = new List<Step>();
 				foreach (var element in steps)

@@ -16,9 +16,7 @@
 			</TextBlock>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckDirectMode}">
 				<w:Segmented x:Name="DirectModeChooser" SelectionChanged="DirectModeChooser_SelectionChanged">
-					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
-					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SequentialInversion}" Tag="{m:BottleneckType Value=SequentialInversion}" />
 					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepOnly}" Tag="{m:BottleneckType Value=SingleStepOnly}" />
 				</w:Segmented>
 			</w:SettingsCard>
