@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Graphs;
+namespace Sudoku.Concepts.Coloring;
 
 /// <summary>
 /// Represents a node that describes for a graph node inside a <see cref="CellGraph"/>, with depth from a node.

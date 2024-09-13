@@ -1298,6 +1298,392 @@
         <member name="M:Sudoku.Concepts.Chute.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Coloring.CellGraph">
+            <summary>
+            <para>Represents a list of cells that form a undirected graph.</para>
+            <para>
+            Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
+            to learn more information about concept Component.
+            </para>
+            </summary>
+            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.CellGraph.Empty">
+            <summary>
+            Indicates the default empty graph without any cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.CellGraph._cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.CellGraph._invalidCells">
+            <summary>
+            Indicates invalid cells. Such cells may not be covered from the grid.
+            <see cref="M:Sudoku.Concepts.Coloring.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Coloring.CellGraphDepth}@)"/> will ignore them.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.Coloring.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Coloring.CellGraphDepth}@)"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.CellGraph._directlyConnectedCellsDictionary">
+            <summary>
+            Indicates the directly-connected cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="invalidCells">
+            <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
+            <para>
+            In general, this argument is an empty collection of <see cref="T:Sudoku.Concepts.CellMap"/> (i.e. a <see cref="F:Sudoku.Concepts.CellMap.Empty"/> or <c>[]</c>),
+            but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.IsConnected">
+            <summary>
+            Indicates whether the graph is connected, i.e. all nodes in the graph is a part of the whole graph without being separated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.IsEmpty">
+            <summary>
+            Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.VerticesCount">
+            <summary>
+            Indicates the vertices count, i.e. the number of cells in the graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Map">
+            <summary>
+            Indicates the internal map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Components">
+            <summary>
+            Indicates all possible connected components of the graph.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Item(System.Int32)">
+            <summary>
+            Try to get all cells whose degree is the specified value.
+            </summary>
+            <param name="degree">The degree. The value must be between 0 and 3.</param>
+            <returns>All cells whose degree is equal to the specified value.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Equals(Sudoku.Concepts.Coloring.CellGraph)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetDegreeOf(System.Int32)">
+            <summary>
+            Try to get the degree of the specified cell.
+            </summary>
+            <param name="cell">The desired cell.</param>
+            <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetConnectedCells(System.Int32)">
+            <summary>
+            Try to get connected cells for the specified cell. 
+            </summary>
+            <param name="cell">Indicates the cell to be checked.</param>
+            <returns>All cells that connect the current cell.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetEnumerator">
+            <summary>
+            Creates an enumerator type that can iterate on each cell in the collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Coloring.CellGraphDepth}@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> that contains the specified cell.
+            </summary>
+            <param name="cell">The desired cell.</param>
+            <param name="depths">A list of <see cref="T:Sudoku.Concepts.Coloring.CellGraphDepth"/> values.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Contains(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Create(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance via the specified cells.
+            </summary>
+            <param name="cells">The cells.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Create(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.Coloring.CellGraph.Create(Sudoku.Concepts.CellMap@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.CreateFromConjugatePair(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance via a list of cells, checking conjugate pairs.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <param name="digit">The digit to be used.</param>
+            <param name="cells">The cells to be used.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Coloring.CellGraph.Enumerator">
+            <summary>
+            Represents an enumerator type that iterates on each cell offsets.
+            </summary>
+            <param name="_offset">Indicates the offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.#ctor(System.Int32[])">
+            <summary>
+            Represents an enumerator type that iterates on each cell offsets.
+            </summary>
+            <param name="_offset">Indicates the offsets.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.CellGraph.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraph.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Coloring.CellGraphDepth">
+            <summary>
+            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/>, with depth from a node.
+            </summary>
+            <param name="Depth">Indicates the depth.</param>
+            <param name="Cell">The cell.</param>
+            <seealso cref="T:Sudoku.Concepts.Coloring.CellGraph"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraphDepth.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Coloring.CellGraph"/>, with depth from a node.
+            </summary>
+            <param name="Depth">Indicates the depth.</param>
+            <param name="Cell">The cell.</param>
+            <seealso cref="T:Sudoku.Concepts.Coloring.CellGraph"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraphDepth.Depth">
+            <summary>Indicates the depth.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.CellGraphDepth.Cell">
+            <summary>The cell.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Concepts.Coloring.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="M:Sudoku.Concepts.Coloring.CellGraphDepth.ToString" />.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Concepts.Coloring.Cluster">
+            <summary>
+            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
+            <para>
+            This data structure will simplify the definition, only reserving for single-digit strong links (i.e. conjugate pairs),
+            in order to make the implementation behave well and easily on representing data.
+            </para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
+            </para>
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="map">Indicates the cells used.</param>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.#ctor(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
+            <para>
+            This data structure will simplify the definition, only reserving for single-digit strong links (i.e. conjugate pairs),
+            in order to make the implementation behave well and easily on representing data.
+            </para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
+            </para>
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="digit">Indicates the digit used.</param>
+            <param name="map">Indicates the cells used.</param>
+            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Cluster.Map">
+            <summary>
+            Indicates the internal map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Cluster.WrapContradictions">
+            <summary>
+            Represents a list of cells that will form wrap contradictions in the cluster.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Cluster.TrapContradictions">
+            <summary>
+            Represents a list of cells that will form trap contradictions in the cluster.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.Equals(Sudoku.Concepts.Coloring.Cluster)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Coloring.Cluster"/> instance via the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <param name="digit">Indicates the digits used.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Coloring.Cluster"/> instance.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.Cluster._grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coloring.Cluster._map">
+            <summary>
+            The generated field declaration for parameter <c>map</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Cluster.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.op_Equality(Sudoku.Concepts.Coloring.Cluster,Sudoku.Concepts.Coloring.Cluster)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.op_Inequality(Sudoku.Concepts.Coloring.Cluster,Sudoku.Concepts.Coloring.Cluster)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Coloring.Parity">
+            <summary>
+            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Coloring.Cluster"/>.</para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
+            to learn more information about this concept.
+            </para>
+            </summary>
+            <param name="ParityFlag">
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </param>
+            <param name="Cells">Indicates the cells used.</param>
+            <seealso cref="T:Sudoku.Concepts.Coloring.Cluster"/>
+            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Parity.#ctor(System.Boolean,Sudoku.Concepts.CellMap@)">
+            <summary>
+            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Coloring.Cluster"/>.</para>
+            <para>
+            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
+            to learn more information about this concept.
+            </para>
+            </summary>
+            <param name="ParityFlag">
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </param>
+            <param name="Cells">Indicates the cells used.</param>
+            <seealso cref="T:Sudoku.Concepts.Coloring.Cluster"/>
+            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Parity.ParityFlag">
+            <summary>
+            <para>Indicates which parity the current set belongs to.</para>
+            <para>
+            Due to limitation of this concept, there can only be 2 parities in one cluster.
+            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coloring.Parity.Cells">
+            <summary>Indicates the cells used.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Parity.Create(Sudoku.Concepts.Coloring.CellGraph@)">
+            <summary>
+            Try to get all pairs of parities of all components of the specified graph.
+            </summary>
+            <param name="graph">The graph.</param>
+            <returns>A list of pairs of parities of components of the specified graph.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Conclusion">
             <summary>
             Defines a type that can describe a candidate is the correct or wrong digit.
@@ -3327,392 +3713,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Graphs.CellGraph">
-            <summary>
-            <para>Represents a list of cells that form a undirected graph.</para>
-            <para>
-            Please visit <see href="https://en.wikipedia.org/wiki/Component_(graph_theory)">this link</see>
-            to learn more information about concept Component.
-            </para>
-            </summary>
-            <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.CellGraph.Empty">
-            <summary>
-            Indicates the default empty graph without any cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.CellGraph._cells">
-            <summary>
-            Indicates the cells used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.CellGraph._invalidCells">
-            <summary>
-            Indicates invalid cells. Such cells may not be covered from the grid.
-            <see cref="M:Sudoku.Concepts.Graphs.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.CellGraphDepth}@)"/> will ignore them.
-            </summary>
-            <seealso cref="M:Sudoku.Concepts.Graphs.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.CellGraphDepth}@)"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.CellGraph._directlyConnectedCellsDictionary">
-            <summary>
-            Indicates the directly-connected cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.
-            </summary>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="invalidCells">
-            <para>Indicates invalid cells. Such cells will interrupt the conjugate pair connection from a cell to a cell.</para>
-            <para>
-            In general, this argument is an empty collection of <see cref="T:Sudoku.Concepts.CellMap"/> (i.e. a <see cref="F:Sudoku.Concepts.CellMap.Empty"/> or <c>[]</c>),
-            but sometimes it can be useful for calculation of confliction on conjugate pair parity checks.
-            </para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.IsConnected">
-            <summary>
-            Indicates whether the graph is connected, i.e. all nodes in the graph is a part of the whole graph without being separated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.IsEmpty">
-            <summary>
-            Indicates whether the current graph is an empty graph, i.e. there's no cells inside the current graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.VerticesCount">
-            <summary>
-            Indicates the vertices count, i.e. the number of cells in the graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.Map">
-            <summary>
-            Indicates the internal map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.Components">
-            <summary>
-            Indicates all possible connected components of the graph.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.Item(System.Int32)">
-            <summary>
-            Try to get all cells whose degree is the specified value.
-            </summary>
-            <param name="degree">The degree. The value must be between 0 and 3.</param>
-            <returns>All cells whose degree is equal to the specified value.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Equals(Sudoku.Concepts.Graphs.CellGraph)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetDegreeOf(System.Int32)">
-            <summary>
-            Try to get the degree of the specified cell.
-            </summary>
-            <param name="cell">The desired cell.</param>
-            <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetConnectedCells(System.Int32)">
-            <summary>
-            Try to get connected cells for the specified cell. 
-            </summary>
-            <param name="cell">Indicates the cell to be checked.</param>
-            <returns>All cells that connect the current cell.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetEnumerator">
-            <summary>
-            Creates an enumerator type that can iterate on each cell in the collection.
-            </summary>
-            <returns>An enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetComponentOf(System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Graphs.CellGraphDepth}@)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> that contains the specified cell.
-            </summary>
-            <param name="cell">The desired cell.</param>
-            <param name="depths">A list of <see cref="T:Sudoku.Concepts.Graphs.CellGraphDepth"/> values.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Contains(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Create(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance via the specified cells.
-            </summary>
-            <param name="cells">The cells.</param>
-            <returns>An <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Create(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.Graphs.CellGraph.Create(Sudoku.Concepts.CellMap@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.CreateFromConjugatePair(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance via a list of cells, checking conjugate pairs.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <param name="digit">The digit to be used.</param>
-            <param name="cells">The cells to be used.</param>
-            <returns>An <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Graphs.CellGraph.Enumerator">
-            <summary>
-            Represents an enumerator type that iterates on each cell offsets.
-            </summary>
-            <param name="_offset">Indicates the offsets.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Enumerator.#ctor(System.Int32[])">
-            <summary>
-            Represents an enumerator type that iterates on each cell offsets.
-            </summary>
-            <param name="_offset">Indicates the offsets.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.CellGraph.Enumerator._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraph.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Graphs.CellGraphDepth">
-            <summary>
-            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/>, with depth from a node.
-            </summary>
-            <param name="Depth">Indicates the depth.</param>
-            <param name="Cell">The cell.</param>
-            <seealso cref="T:Sudoku.Concepts.Graphs.CellGraph"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraphDepth.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a node that describes for a graph node inside a <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/>, with depth from a node.
-            </summary>
-            <param name="Depth">Indicates the depth.</param>
-            <param name="Cell">The cell.</param>
-            <seealso cref="T:Sudoku.Concepts.Graphs.CellGraph"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraphDepth.Depth">
-            <summary>Indicates the depth.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.CellGraphDepth.Cell">
-            <summary>The cell.</summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Concepts.Graphs.CellGraphDepth.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Concepts.Graphs.CellGraphDepth.ToString" />.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Concepts.Graphs.Cluster">
-            <summary>
-            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
-            <para>
-            This data structure will simplify the definition, only reserving for single-digit strong links (i.e. conjugate pairs),
-            in order to make the implementation behave well and easily on representing data.
-            </para>
-            <para>
-            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
-            </para>
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="map">Indicates the cells used.</param>
-            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.#ctor(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            <para>Represents a cluster. A cluster is a group of candidates which are all connected with strong links.</para>
-            <para>
-            This data structure will simplify the definition, only reserving for single-digit strong links (i.e. conjugate pairs),
-            in order to make the implementation behave well and easily on representing data.
-            </para>
-            <para>
-            Please visit <see href="http://sudopedia.enjoysudoku.com/Cluster.html">this link</see> to learn more information.
-            </para>
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="map">Indicates the cells used.</param>
-            <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Cluster.Map">
-            <summary>
-            Indicates the internal map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Cluster.WrapContradictions">
-            <summary>
-            Represents a list of cells that will form wrap contradictions in the cluster.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Cluster.TrapContradictions">
-            <summary>
-            Represents a list of cells that will form trap contradictions in the cluster.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(Sudoku.Concepts.Graphs.Cluster)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance via the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <param name="digit">Indicates the digits used.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance.</returns>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.Cluster._grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Graphs.Cluster._map">
-            <summary>
-            The generated field declaration for parameter <c>map</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Cluster.Digit">
-            <summary>
-            The generated property declaration for parameter <c>digit</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Equality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Inequality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Graphs.Parity">
-            <summary>
-            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/>.</para>
-            <para>
-            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
-            to learn more information about this concept.
-            </para>
-            </summary>
-            <param name="ParityFlag">
-            <para>Indicates which parity the current set belongs to.</para>
-            <para>
-            Due to limitation of this concept, there can only be 2 parities in one cluster.
-            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
-            </para>
-            </param>
-            <param name="Cells">Indicates the cells used.</param>
-            <seealso cref="T:Sudoku.Concepts.Graphs.Cluster"/>
-            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Parity.#ctor(System.Boolean,Sudoku.Concepts.CellMap@)">
-            <summary>
-            <para>Represents one state of a candidate in a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/>.</para>
-            <para>
-            Please visit <see href="http://sudopedia.enjoysudoku.com/Parity.html">this link</see>
-            to learn more information about this concept.
-            </para>
-            </summary>
-            <param name="ParityFlag">
-            <para>Indicates which parity the current set belongs to.</para>
-            <para>
-            Due to limitation of this concept, there can only be 2 parities in one cluster.
-            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
-            </para>
-            </param>
-            <param name="Cells">Indicates the cells used.</param>
-            <seealso cref="T:Sudoku.Concepts.Graphs.Cluster"/>
-            <seealso href="http://sudopedia.enjoysudoku.com/Parity.html">Sudopedia Mirror - Parity</seealso>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Parity.ParityFlag">
-            <summary>
-            <para>Indicates which parity the current set belongs to.</para>
-            <para>
-            Due to limitation of this concept, there can only be 2 parities in one cluster.
-            Therefore, this value is a <see cref="T:System.Boolean"/> indicating "on" and "off" state - they are opposite to each other.
-            </para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Graphs.Parity.Cells">
-            <summary>Indicates the cells used.</summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Parity.Create(Sudoku.Concepts.Graphs.CellGraph@)">
-            <summary>
-            Try to get all pairs of parities of all components of the specified graph.
-            </summary>
-            <param name="graph">The graph.</param>
-            <returns>A list of pairs of parities of components of the specified graph.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>

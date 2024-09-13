@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Graphs;
+namespace Sudoku.Concepts.Coloring;
 
 using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 
