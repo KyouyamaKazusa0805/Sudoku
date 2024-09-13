@@ -1,4 +1,4 @@
-namespace Sudoku.Caching;
+namespace Sudoku.Analytics.Caching;
 
 /// <summary>
 /// Provides with an easy way to create <see cref="ChainingRule"/> instances.

@@ -1,4 +1,4 @@
-namespace Sudoku.Caching;
+namespace Sudoku.Analytics.Caching;
 
 /// <summary>
 /// Represents cached fields used by solving and analyzing for a sudoku puzzle, reducing repeated and redundant calculations.

@@ -1,4 +1,4 @@
-namespace Sudoku.Caching;
+namespace Sudoku.Analytics.Caching;
 
 /// <summary>
 /// Represents a list of cached chaining comparers <see cref="IEqualityComparer{T}"/> and <see cref="IComparer{T}"/>.
