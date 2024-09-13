@@ -210,6 +210,24 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = BabaGroupLetterCasing.Lower)]
 	public partial BabaGroupLetterCasing LetterCasing { get; set; }
 
+	/// <summary>
+	/// Indicates the bottleneck type defined in direct mode.
+	/// </summary>
+	[DependencyProperty(DefaultValue = BottleneckType.SingleStepOnly)]
+	public partial BottleneckType DirectModeBottleneckType { get; set; }
+
+	/// <summary>
+	/// Indicates the bottleneck type defined in partial-marking moded.
+	/// </summary>
+	[DependencyProperty(DefaultValue = BottleneckType.HardestRating)]
+	public partial BottleneckType PartialMarkingModeBottleneckType { get; set; }
+
+	/// <summary>
+	/// Indicates the bottleneck type defined in full-marking mode.
+	/// </summary>
+	[DependencyProperty(DefaultValue = BottleneckType.EliminationGroup)]
+	public partial BottleneckType FullMarkingModeBottleneckType { get; set; }
+
 	/// <inheritdoc cref="StepGathererOptions.OverriddenLinkOptions"/>
 	[DependencyProperty]
 	public partial Dictionary<LinkType, LinkOption> OverriddenLinkOptions { get; set; }

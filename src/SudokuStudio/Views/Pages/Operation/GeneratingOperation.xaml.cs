@@ -217,6 +217,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			DisorderedIttoryuFinder finder
 		)
 		{
+			// Update generating configurations.
+			if (constraints.OfType<BottleneckTechniqueConstraint>() is { Length: not 0 } list)
+			{
+				var analysisPref = Application.Current.AsApp().Preference.AnalysisPreferences;
+				var filters = (BottleneckFilter[])[
+					new(PencilmarkVisibility.Direct, analysisPref.DirectModeBottleneckType),
+					new(PencilmarkVisibility.PartialMark, analysisPref.PartialMarkingModeBottleneckType),
+					new(PencilmarkVisibility.FullMark, analysisPref.FullMarkingModeBottleneckType)
+				];
+				foreach (var element in list)
+				{
+					element.Filters = filters;
+				}
+			}
+
 			var rng = Random.Shared;
 			var symmetries = (
 				(

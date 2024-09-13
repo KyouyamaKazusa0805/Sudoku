@@ -121,6 +121,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\Settings\Analysis\BottleneckSettingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\Settings\Analysis\ChainOrLoopSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

@@ -2807,4 +2807,43 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_ActiveCellColorPatternBasedGeneratorPage" xml:space="preserve">
     <value>Active cells in pattern-based generator page</value>
   </data>
+  <data name="SettingsPage_Bottleneck" xml:space="preserve">
+    <value>Bottleneck</value>
+  </data>
+  <data name="SettingsPage_BottleneckDescription" xml:space="preserve">
+    <value>Configurations on bottlenecks. Such settings will influence generating puzzles with bottleneck rules and some other places implicitly using bottleneck concept.</value>
+  </data>
+  <data name="_BottleneckType_EliminatonGroup" xml:space="preserve">
+    <value>Elimination group</value>
+  </data>
+  <data name="_BottleneckType_HardestRating" xml:space="preserve">
+    <value>Hardest rating</value>
+  </data>
+  <data name="_BottleneckType_HardestLevel" xml:space="preserve">
+    <value>Hardest difficulty level</value>
+  </data>
+  <data name="_BottleneckType_SequentialInversion" xml:space="preserve">
+    <value>Sequential inversion</value>
+  </data>
+  <data name="_BottleneckType_SingleStepOnly" xml:space="preserve">
+    <value>Unique conclusion</value>
+  </data>
+  <data name="_BottleneckType_SingleStepSameLevelOnly" xml:space="preserve">
+    <value>Unique conclusion (same difficulty level)</value>
+  </data>
+  <data name="MainWindow_BottleneckSettingPageTitle" xml:space="preserve">
+    <value>Bottleneck</value>
+  </data>
+  <data name="SettingsPage_BottleneckDirectMode" xml:space="preserve">
+    <value>Direct</value>
+  </data>
+  <data name="SettingsPage_BottleneckPartialMarkingMode" xml:space="preserve">
+    <value>Partial-marking</value>
+  </data>
+  <data name="SettingsPage_BottleneckFullMarkingMode" xml:space="preserve">
+    <value>Full-marking</value>
+  </data>
+  <data name="BottleneckSettingPage_Description" xml:space="preserve">
+    <value>This page can modify bottleneck concept, in order to change the searching rules to calculate bottlenecks.</value>
+  </data>
 </root>

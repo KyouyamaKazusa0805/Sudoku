@@ -1,4 +1,4 @@
-﻿namespace SudokuStudio.Markup;
+namespace SudokuStudio.Markup;
 
 /// <summary>
 /// Represents a markup extension to provide a <see cref="BabaGroupInitialLetter"/> value.

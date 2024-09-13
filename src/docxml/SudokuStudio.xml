@@ -1226,6 +1226,21 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing">
             <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectModeBottleneckType">
+            <summary>
+            Indicates the bottleneck type defined in direct mode.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.PartialMarkingModeBottleneckType">
+            <summary>
+            Indicates the bottleneck type defined in partial-marking moded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.FullMarkingModeBottleneckType">
+            <summary>
+            Indicates the bottleneck type defined in full-marking mode.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptions">
             <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.OverriddenLinkOptions"/>
         </member>
@@ -1495,6 +1510,24 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.LetterCasing"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectModeBottleneckTypeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectModeBottleneckType"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectModeBottleneckType"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.PartialMarkingModeBottleneckTypeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.PartialMarkingModeBottleneckType"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.PartialMarkingModeBottleneckType"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.FullMarkingModeBottleneckTypeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.FullMarkingModeBottleneckType"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.FullMarkingModeBottleneckType"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.OverriddenLinkOptionsProperty">
             <summary>
@@ -5460,6 +5493,20 @@
         <member name="M:SudokuStudio.Markup.BooleanExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.BottleneckTypeExtension">
+            <summary>
+            Represents a markup extension to provide a <see cref="T:Sudoku.Analytics.BottleneckType"/> value.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.BottleneckType"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.BottleneckTypeExtension.Value">
+            <summary>
+            The target value to be set.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.BottleneckTypeExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.ComparisonOperatorExtension">
             <summary>
             Represents comparison operator markup extension.
@@ -5732,6 +5779,36 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_EliminatonGroup">
+            <summary>
+              Looks up a localized string similar to Elimination group.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_HardestLevel">
+            <summary>
+              Looks up a localized string similar to Hardest difficulty level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_HardestRating">
+            <summary>
+              Looks up a localized string similar to Hardest rating.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_SequentialInversion">
+            <summary>
+              Looks up a localized string similar to Sequential inversion.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_SingleStepOnly">
+            <summary>
+              Looks up a localized string similar to Unique conclusion.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._BottleneckType_SingleStepSameLevelOnly">
+            <summary>
+              Looks up a localized string similar to Unique conclusion (same difficulty level).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_Equality">
@@ -6862,6 +6939,11 @@
               Looks up a localized string similar to Roman numerals (Ⅰ, Ⅱ, Ⅲ, ...).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_Description">
+            <summary>
+              Looks up a localized string similar to This page can modify bottleneck concept, in order to change the searching rules to calculate bottlenecks..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_ColumnLabel">
             <summary>
               Looks up a localized string similar to column {0}.
@@ -7062,11 +7144,6 @@
               Looks up a localized string similar to Bottleneck rating.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckRatingConstraint">
-            <summary>
-              Looks up a localized string similar to Bottleneck rating constraint.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1">
             <summary>
               Looks up a localized string similar to Bottleneck step rating should be between.
@@ -7190,16 +7267,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_IttoryuConstraint">
             <summary>
               Looks up a localized string similar to Ittoryu constraint.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_IttoryuLength">
-            <summary>
-              Looks up a localized string similar to Ittoryu length.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_IttoryuLengthConstraint">
-            <summary>
-              Looks up a localized string similar to Ittoryu length constraint.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting">
@@ -8007,6 +8074,11 @@
               Looks up a localized string similar to Program Basic Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BottleneckSettingPageTitle">
+            <summary>
+              Looks up a localized string similar to Bottleneck.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ChainOrLoopSettingPageTitle">
             <summary>
               Looks up a localized string similar to Chains &amp; Loops.
@@ -8462,6 +8534,11 @@
               Looks up a localized string similar to Chinese Simplified (简体中文).
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_ActiveCellColorPatternBasedGeneratorPage">
+            <summary>
+              Looks up a localized string similar to Active cells in pattern-based generator page.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_AlignedExclusionMaxSearchingSize">
             <summary>
               Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
@@ -8682,9 +8759,14 @@
               Looks up a localized string similar to Acrylic.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop_AcrylicThin">
+            <summary>
+              Looks up a localized string similar to Acrylic (Thin).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop_Default">
             <summary>
-              Looks up a localized string similar to Default (White background).
+              Looks up a localized string similar to Default.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop_Mica">
@@ -8694,7 +8776,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Backdrop_MicaDeep">
             <summary>
-              Looks up a localized string similar to Mica deep.
+              Looks up a localized string similar to Mica (Deeper).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BackgroundPicture">
@@ -8730,6 +8812,31 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BorderColor">
             <summary>
               Looks up a localized string similar to Border.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_Bottleneck">
+            <summary>
+              Looks up a localized string similar to Bottleneck.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckDescription">
+            <summary>
+              Looks up a localized string similar to Configurations on bottlenecks. Such settings will influence generating puzzles with bottleneck rules and some other places implicitly using bottleneck concept..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckDirectMode">
+            <summary>
+              Looks up a localized string similar to Direct.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckFullMarkingMode">
+            <summary>
+              Looks up a localized string similar to Full-marking.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckPartialMarkingMode">
+            <summary>
+              Looks up a localized string similar to Partial-marking.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_CandidateFontData">
@@ -15606,6 +15713,31 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BabaGroupingSettingPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage">
+            <summary>
+            Represents bottleneck setting page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

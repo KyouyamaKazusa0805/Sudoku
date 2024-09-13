@@ -1,0 +1,44 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Settings.Analysis.BottleneckSettingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:p="using:SudokuStudio.Views.Pages.Settings.Analysis"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:w="using:CommunityToolkit.WinUI.Controls"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:BottleneckSettingPage}"
+	Loaded="Page_Loaded">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
+			<TextBlock>
+				<Run Text="{m:R Key=BottleneckSettingPage_Description}" />
+			</TextBlock>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckDirectMode}">
+				<w:Segmented x:Name="DirectModeChooser" SelectionChanged="DirectModeChooser_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SequentialInversion}" Tag="{m:BottleneckType Value=SequentialInversion}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepOnly}" Tag="{m:BottleneckType Value=SingleStepOnly}" />
+				</w:Segmented>
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckPartialMarkingMode}">
+				<w:Segmented x:Name="PartialMarkingChooser" SelectionChanged="PartialMarkingChooser_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SequentialInversion}" Tag="{m:BottleneckType Value=SequentialInversion}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepOnly}" Tag="{m:BottleneckType Value=SingleStepOnly}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SingleStepSameLevelOnly}" Tag="{m:BottleneckType Value=SingleStepSameLevelOnly}" />
+				</w:Segmented>
+			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_BottleneckFullMarkingMode}">
+				<w:Segmented x:Name="FullMarkingChooser" SelectionChanged="FullMarkingChooser_SelectionChanged">
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_EliminatonGroup}" Tag="{m:BottleneckType Value=EliminationGroup}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestLevel}" Tag="{m:BottleneckType Value=HardestLevel}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_HardestRating}" Tag="{m:BottleneckType Value=HardestRating}" />
+					<w:SegmentedItem Content="{m:R Key=_BottleneckType_SequentialInversion}" Tag="{m:BottleneckType Value=SequentialInversion}" />
+				</w:Segmented>
+			</w:SettingsCard>
+		</StackPanel>
+	</ScrollViewer>
+</Page>

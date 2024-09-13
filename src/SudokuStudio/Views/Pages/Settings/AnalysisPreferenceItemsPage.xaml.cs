@@ -44,6 +44,9 @@ public sealed partial class AnalysisPreferenceItemsPage : Page
 	private void StepSearcherBehaviorSettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(StepSearcherBehaviorsSettingPage), true);
 
+	private void BottleneckSettingsCard_Click(object sender, RoutedEventArgs e)
+		=> App.GetMainWindow(this).NavigateToPage(typeof(BottleneckSettingPage), true);
+
 	private void CompatibilitySettingsCard_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage(typeof(CompatibilitySettingPage), true);
 

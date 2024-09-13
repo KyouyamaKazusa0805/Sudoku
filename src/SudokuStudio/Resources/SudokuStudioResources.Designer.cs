@@ -61,6 +61,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elimination group.
+        /// </summary>
+        internal static string _BottleneckType_EliminatonGroup {
+            get {
+                return ResourceManager.GetString("_BottleneckType_EliminatonGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardest difficulty level.
+        /// </summary>
+        internal static string _BottleneckType_HardestLevel {
+            get {
+                return ResourceManager.GetString("_BottleneckType_HardestLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardest rating.
+        /// </summary>
+        internal static string _BottleneckType_HardestRating {
+            get {
+                return ResourceManager.GetString("_BottleneckType_HardestRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential inversion.
+        /// </summary>
+        internal static string _BottleneckType_SequentialInversion {
+            get {
+                return ResourceManager.GetString("_BottleneckType_SequentialInversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique conclusion.
+        /// </summary>
+        internal static string _BottleneckType_SingleStepOnly {
+            get {
+                return ResourceManager.GetString("_BottleneckType_SingleStepOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique conclusion (same difficulty level).
+        /// </summary>
+        internal static string _BottleneckType_SingleStepSameLevelOnly {
+            get {
+                return ResourceManager.GetString("_BottleneckType_SingleStepSameLevelOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equals (==).
         /// </summary>
         internal static string _ComparisonOperator_Equality {
@@ -2089,6 +2143,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page can modify bottleneck concept, in order to change the searching rules to calculate bottlenecks..
+        /// </summary>
+        internal static string BottleneckSettingPage_Description {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to column {0}.
         /// </summary>
         internal static string CandidatePicker_ColumnLabel {
@@ -2449,15 +2512,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bottleneck rating constraint.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_BottleneckRatingConstraint {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckRatingConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bottleneck step rating should be between.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1 {
@@ -2679,24 +2733,6 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_IttoryuConstraint {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ittoryu length.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_IttoryuLength {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ittoryu length constraint.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_IttoryuLengthConstraint {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuLengthConstraint", resourceCulture);
             }
         }
         
@@ -4150,6 +4186,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottleneck.
+        /// </summary>
+        internal static string MainWindow_BottleneckSettingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_BottleneckSettingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chains &amp; Loops.
         /// </summary>
         internal static string MainWindow_ChainOrLoopSettingPageTitle {
@@ -4969,6 +5014,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active cells in pattern-based generator page.
+        /// </summary>
+        internal static string SettingsPage_ActiveCellColorPatternBasedGeneratorPage {
+            get {
+                return ResourceManager.GetString("SettingsPage_ActiveCellColorPatternBasedGeneratorPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum number of cell permutation in aligned exclusion.
         /// </summary>
         internal static string SettingsPage_AlignedExclusionMaxSearchingSize {
@@ -5365,7 +5419,16 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default (White background).
+        ///   Looks up a localized string similar to Acrylic (Thin).
+        /// </summary>
+        internal static string SettingsPage_Backdrop_AcrylicThin {
+            get {
+                return ResourceManager.GetString("SettingsPage_Backdrop_AcrylicThin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
         /// </summary>
         internal static string SettingsPage_Backdrop_Default {
             get {
@@ -5383,7 +5446,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mica deep.
+        ///   Looks up a localized string similar to Mica (Deeper).
         /// </summary>
         internal static string SettingsPage_Backdrop_MicaDeep {
             get {
@@ -5451,6 +5514,51 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_BorderColor {
             get {
                 return ResourceManager.GetString("SettingsPage_BorderColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck.
+        /// </summary>
+        internal static string SettingsPage_Bottleneck {
+            get {
+                return ResourceManager.GetString("SettingsPage_Bottleneck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configurations on bottlenecks. Such settings will influence generating puzzles with bottleneck rules and some other places implicitly using bottleneck concept..
+        /// </summary>
+        internal static string SettingsPage_BottleneckDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct.
+        /// </summary>
+        internal static string SettingsPage_BottleneckDirectMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckDirectMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full-marking.
+        /// </summary>
+        internal static string SettingsPage_BottleneckFullMarkingMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckFullMarkingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partial-marking.
+        /// </summary>
+        internal static string SettingsPage_BottleneckPartialMarkingMode {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckPartialMarkingMode", resourceCulture);
             }
         }
         

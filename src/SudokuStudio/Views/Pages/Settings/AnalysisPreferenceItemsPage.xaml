@@ -27,6 +27,9 @@
 			<TextBlock Text="{m:R Key=SettingsPage_GlobalSettingsGroup}" Style="{StaticResource SettingGroupTitleTextStyle}" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_Duality}" IsClickEnabled="True" Click="DualitySettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_StepSearcherBehaviors}" IsClickEnabled="True" Click="StepSearcherBehaviorSettingsCard_Click" />
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_Bottleneck}" Description="{m:R Key=SettingsPage_BottleneckDescription}" IsClickEnabled="True"
+				Click="BottleneckSettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=Settings_Compatibility}" IsClickEnabled="True" Click="CompatibilitySettingsCard_Click" />
 			<w:SettingsCard Header="{m:R Key=SettingsPage_MiscellaneousBehaviors}" IsClickEnabled="True" Click="MiscellaneousBehaviorsSettingsCard_Click" />
 		</StackPanel>

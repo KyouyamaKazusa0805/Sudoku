@@ -2798,4 +2798,43 @@
   <data name="SettingsPage_ActiveCellColorPatternBasedGeneratorPage" xml:space="preserve">
     <value>图形题出题页面的选中单元格</value>
   </data>
+  <data name="SettingsPage_Bottleneck" xml:space="preserve">
+    <value>卡点</value>
+  </data>
+  <data name="SettingsPage_BottleneckDescription" xml:space="preserve">
+    <value>跟卡点相关的配置。这些配置将会影响到出题时卡点的计算，或者一些其他比较隐晦地使用卡点定义的地方。</value>
+  </data>
+  <data name="_BottleneckType_EliminatonGroup" xml:space="preserve">
+    <value>删数步骤组</value>
+  </data>
+  <data name="_BottleneckType_HardestRating" xml:space="preserve">
+    <value>最难步骤难度分</value>
+  </data>
+  <data name="_BottleneckType_HardestLevel" xml:space="preserve">
+    <value>最难步骤级别</value>
+  </data>
+  <data name="_BottleneckType_SequentialInversion" xml:space="preserve">
+    <value>逆序难度步骤</value>
+  </data>
+  <data name="_BottleneckType_SingleStepOnly" xml:space="preserve">
+    <value>唯一的结论</value>
+  </data>
+  <data name="_BottleneckType_SingleStepSameLevelOnly" xml:space="preserve">
+    <value>唯一同等级的结论</value>
+  </data>
+  <data name="MainWindow_BottleneckSettingPageTitle" xml:space="preserve">
+    <value>卡点</value>
+  </data>
+  <data name="SettingsPage_BottleneckDirectMode" xml:space="preserve">
+    <value>直观难度</value>
+  </data>
+  <data name="SettingsPage_BottleneckPartialMarkingMode" xml:space="preserve">
+    <value>局部标记候选数难度</value>
+  </data>
+  <data name="SettingsPage_BottleneckFullMarkingMode" xml:space="preserve">
+    <value>全盘标记候选数难度</value>
+  </data>
+  <data name="BottleneckSettingPage_Description" xml:space="preserve">
+    <value>这个页面可以修改卡点的定义，以便你用于搜索关于卡点的相关内容时可以变动处理过程。</value>
+  </data>
 </root>
