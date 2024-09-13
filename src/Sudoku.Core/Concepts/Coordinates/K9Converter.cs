@@ -294,7 +294,7 @@ public sealed record K9Converter(
 		=> chutes =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
-			foreach (var (index, _, isRow, _) in chutes)
+			foreach (var (index, isRow, _) in chutes)
 			{
 				if (!megalines.TryAdd(isRow, (byte)(1 << index % 3)))
 				{

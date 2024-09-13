@@ -123,7 +123,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					// determining whether it can be used as a base.
 					for (var (i, timesOfI) = (isRow ? 3 : 0, 0); timesOfI < 3; i++, timesOfI++)
 					{
-						var (_, chuteCells, _, chuteHouses) = Chutes[i];
+						var (_, _, chuteHouses) = Chutes[i];
+						ref readonly var chuteCells = ref ChuteMaps[i];
 
 						// Now iterate by size of base cells. The minimum value is 1, e.g.:
 						//   ..64.....1....39.7.5.............3..2....1.89....59....4......83....2....126...7.
@@ -1171,7 +1172,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
 		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
 		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
-		foreach (var (_, chuteCells, _, _) in Chutes[isRow ? ..3 : 3..])
+		foreach (ref readonly var chuteCells in ChuteMaps[isRow ? ..3 : 3..].AsReadOnlySpan())
 		{
 			if (chuteCells & baseCells)
 			{
@@ -2038,7 +2039,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Now try to fetch the defining cells. First, try to get uncovered 4 blocks that the final cells should be located in.
 		var cellsDoNotCover = CellMap.Empty;
-		foreach (var (_, chuteCells, _, _) in Chutes)
+		foreach (ref readonly var chuteCells in ChuteMaps.AsReadOnlySpan())
 		{
 			if (chuteCells & baseCells)
 			{

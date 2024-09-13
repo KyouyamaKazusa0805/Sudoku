@@ -181,7 +181,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		=> chutes =>
 		{
 			var snippets = new List<string>(6);
-			foreach (var (index, _, isRow, _) in chutes)
+			foreach (var (index, isRow, _) in chutes)
 			{
 				snippets.Add(string.Format(SR.Get("MegaRowLabel", TargetCurrentCulture), index % 3 + 1));
 			}

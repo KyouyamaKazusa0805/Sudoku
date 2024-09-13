@@ -1231,30 +1231,30 @@
             Defines a chute.
             </summary>
             <param name="Index">Index of the chute. The value is between 0 and 6.</param>
-            <param name="Cells">The cells used.</param>
             <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
             <param name="HousesMask">Indicates the houses used.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Chute.#ctor(System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Concepts.Chute.#ctor(System.Int32,System.Boolean,System.Int32)">
             <summary>
             Defines a chute.
             </summary>
             <param name="Index">Index of the chute. The value is between 0 and 6.</param>
-            <param name="Cells">The cells used.</param>
             <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
             <param name="HousesMask">Indicates the houses used.</param>
         </member>
         <member name="P:Sudoku.Concepts.Chute.Index">
             <summary>Index of the chute. The value is between 0 and 6.</summary>
         </member>
-        <member name="P:Sudoku.Concepts.Chute.Cells">
-            <summary>The cells used.</summary>
-        </member>
         <member name="P:Sudoku.Concepts.Chute.IsRow">
             <summary>Indicates whether the chute is in a mega-row.</summary>
         </member>
         <member name="P:Sudoku.Concepts.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.Cells">
+            <summary>
+            Indicates the cells in this chute.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Chute.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
@@ -10939,6 +10939,11 @@
         <member name="F:Sudoku.SolutionFields.Chutes">
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionFields.ChuteMaps">
+            <summary>
+            Indicates the chute maps.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.ChuteHouses">

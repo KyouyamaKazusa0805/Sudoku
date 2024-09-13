@@ -77,6 +77,11 @@ public static class SolutionFields
 	public static readonly Chute[] Chutes;
 
 	/// <summary>
+	/// Indicates the chute maps.
+	/// </summary>
+	public static readonly CellMap[] ChuteMaps;
+
+	/// <summary>
 	/// Indicates the chute house triplets.
 	/// </summary>
 	public static readonly (House A, House B, House C)[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
@@ -219,6 +224,18 @@ public static class SolutionFields
 #endif
 
 		//
+		// ChuteMaps
+		//
+		{
+			ChuteMaps = new CellMap[6];
+			for (var chute = 0; chute < 3; chute++)
+			{
+				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
+				(ChuteMaps[chute], ChuteMaps[chute + 3]) = (HousesMap[r1] | HousesMap[r2] | HousesMap[r3], HousesMap[c1] | HousesMap[c2] | HousesMap[c3]);
+			}
+		}
+
+		//
 		// Chutes
 		//
 		{
@@ -227,8 +244,8 @@ public static class SolutionFields
 			{
 				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
 				(Chutes[chute], Chutes[chute + 3]) = (
-					new(chute, HousesMap[r1] | HousesMap[r2] | HousesMap[r3], true, 1 << r1 | 1 << r2 | 1 << r3),
-					new(chute + 3, HousesMap[c1] | HousesMap[c2] | HousesMap[c3], false, 1 << c1 | 1 << c2 | 1 << c3)
+					new(chute, true, 1 << r1 | 1 << r2 | 1 << r3),
+					new(chute + 3, false, 1 << c1 | 1 << c2 | 1 << c3)
 				);
 			}
 		}

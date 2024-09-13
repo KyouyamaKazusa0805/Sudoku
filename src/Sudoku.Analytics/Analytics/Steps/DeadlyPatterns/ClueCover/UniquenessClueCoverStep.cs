@@ -45,5 +45,5 @@ public sealed partial class UniquenessClueCoverStep(
 
 	private string ChuteString => Options.Converter.ChuteConverter([Chutes[ChuteIndex]]);
 
-	private string ChuteCellsString => Options.Converter.CellConverter(Chutes[ChuteIndex].Cells);
+	private string ChuteCellsString => Options.Converter.CellConverter(in Chutes[ChuteIndex].Cells);
 }

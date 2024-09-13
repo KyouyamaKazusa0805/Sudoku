@@ -51,7 +51,7 @@ public readonly record struct Miniline(ref readonly MinilineBase Base, ref reado
 			ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
 			currentMinilineGroup = [[], [], [], [], [], [], [], [], []];
 
-			var ((_, _, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
+			var ((_, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
 			foreach (var chuteHouse in chuteHouses)
 			{
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)

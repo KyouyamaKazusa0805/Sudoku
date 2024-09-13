@@ -33,8 +33,9 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var (chuteIndex, chute, isRow, _) in Chutes)
+		foreach (var (chuteIndex, isRow, _) in Chutes)
 		{
+			ref readonly var chute = ref ChuteMaps[chuteIndex];
 			if ((chute & ~EmptyCells) is not [var c1, var c2] valueCells)
 			{
 				// The number of the value cells must be 2 for this type.
