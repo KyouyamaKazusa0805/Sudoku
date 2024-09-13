@@ -42,7 +42,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 	/// <inheritdoc/>
 	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids))]
-	[MemberNotNullWhen(true, nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(PearlStep), nameof(DiamondStep))]
 	[MemberNotNullWhen(true, nameof(MemoryUsed))]
 	public required bool IsSolved { get; init; }
 
@@ -242,85 +242,6 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
 	public Step? WrongStep => (UnhandledException as WrongStepException)?.WrongStep;
-
-	/// <summary>
-	/// Indicates the bottleneck steps.
-	/// </summary>
-	/// <remarks>
-	/// <para>
-	/// The bottleneck steps will be considered as "hardest" ones,
-	/// checking their difficulty rating (i.e. property <see cref="Step.Difficulty"/>) and difficulty level
-	/// (i.e. <see cref="Step.DifficultyLevel"/>).
-	/// </para>
-	/// <para>
-	/// The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
-	/// they all will be considered as bottleneck steps.
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="Step.Difficulty"/>
-	/// <seealso cref="Step.DifficultyLevel"/>
-	public Step[]? BottleneckSteps
-	{
-		get
-		{
-			return this switch
-			{
-				{ IsSolved: true, DifficultyLevel: var difficultyLevel } => difficultyLevel switch
-				{
-					DifficultyLevel.Easy => bottleneckEasy(StepsSpan),
-					_ => bottleneckNotEasy(StepsSpan)
-				},
-				_ => null
-			};
-
-
-			static Step[] bottleneckEasy(ReadOnlySpan<Step> steps)
-			{
-				var maxStep = default(Step);
-				foreach (var step in steps)
-				{
-					// If the puzzle only contains hidden single and full house, we will consider this puzzle has no bottleneck.
-					// Otherwise, the hardest technique used is the bottleneck.
-					if (step.Difficulty >= (maxStep?.Difficulty ?? 0) && step is not (FullHouseStep or HiddenSingleStep))
-					{
-						maxStep = step;
-					}
-				}
-
-				// Checks whether 'maxStep' is null or not. If not null, a step that is neither full house nor hidden single.
-				if (maxStep is not null)
-				{
-					var result = new List<Step>();
-					foreach (var element in steps)
-					{
-						if (element.Code == maxStep.Code)
-						{
-							result.Add(element);
-						}
-					}
-					return [.. result];
-				}
-				return [];
-			}
-
-			static Step[] bottleneckNotEasy(ReadOnlySpan<Step> steps)
-			{
-				if (steps.MaxBy(static step => step.Difficulty) is { } maxStep)
-				{
-					var result = new List<Step>();
-					foreach (var element in steps)
-					{
-						if (element.Code == maxStep.Code)
-						{
-							result.Add(element);
-						}
-					}
-					return [.. result];
-				}
-				return [];
-			}
-		}
-	}
 
 	/// <summary>
 	/// Indicates the pearl step.
@@ -689,6 +610,162 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public AnonymousSpanEnumerator<Step> GetEnumerator() => new(StepsSpan);
+
+	/// <summary>
+	/// Try to get bottleneck steps under the specified rules.
+	/// </summary>
+	/// <param name="filters">The bottleneck filters.</param>
+	/// <returns>A list of bottleneck steps.</returns>
+	/// <exception cref="NotSupportedException">
+	/// Throws when the filter contains invalid configuration,
+	/// like <see cref="BottleneckType.SingleStepOnly"/> in full-marking mode.
+	/// </exception>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="BottleneckType"/> flag.
+	/// </exception>
+	public ReadOnlySpan<Step> GetBottlenecks(params ReadOnlySpan<BottleneckFilter> filters)
+	{
+		if (!IsSolved)
+		{
+			throw new InvalidOperationException(SR.ExceptionMessage("BottlenecksShouldBeAvailableInSolvedPuzzle"));
+		}
+
+		if (StepsSpan is not { Length: not 0 } steps)
+		{
+			return [];
+		}
+
+		var pencilmarkMode = steps.Aggregate(
+			PencilmarkVisibility.None,
+			static (interim, next) => interim | next switch
+			{
+				FullMarkStep => PencilmarkVisibility.FullMark,
+				PartialMarkStep => PencilmarkVisibility.PartialMark,
+				DirectStep => PencilmarkVisibility.Direct,
+				_ => PencilmarkVisibility.None
+			}
+		);
+		var filterMode = pencilmarkMode.HasFlag(PencilmarkVisibility.FullMark)
+			? PencilmarkVisibility.FullMark
+			: pencilmarkMode.HasFlag(PencilmarkVisibility.PartialMark)
+				? PencilmarkVisibility.PartialMark
+				: PencilmarkVisibility.Direct;
+		switch (filters.FirstRefOrNullRef((ref readonly BottleneckFilter f) => f.Visibility == filterMode).Type)
+		{
+			// Find single-only steps.
+			case BottleneckType.SingleStepOnly when filterMode is PencilmarkVisibility.Direct or PencilmarkVisibility.PartialMark:
+			{
+				var collector = GridSnyderExtensions.Collector;
+				var result = new List<Step>();
+				foreach (var (g, s) in StepMarshal.Combine(GridsSpan, StepsSpan))
+				{
+					if ((
+						from step in collector.Collect(in g)
+						select (SingleStep)step into step
+						select step.Cell * 9 + step.Digit
+					).AsCandidateMap().Count == 1)
+					{
+						result.Add(s);
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Find single-only steps on same difficulty level.
+			case BottleneckType.SingleStepSameLevelOnly when filterMode == PencilmarkVisibility.PartialMark:
+			{
+				var collector = GridSnyderExtensions.Collector;
+				var result = new List<Step>();
+				foreach (var (g, s) in StepMarshal.Combine(GridsSpan, StepsSpan))
+				{
+					var currentStepPencilmarkVisibility = s.PencilmarkType;
+					if ((
+						from step in collector.Collect(in g)
+						select ((SingleStep)step) into step
+						where step.PencilmarkType <= currentStepPencilmarkVisibility
+						select step.Cell * 9 + step.Digit
+					).AsCandidateMap().Count == 1)
+					{
+						result.Add(s);
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Find elimination group steps.
+			case BottleneckType.EliminationGroup when filterMode == PencilmarkVisibility.FullMark:
+			{
+				var result = new List<Step>();
+				for (var i = 0; i < steps.Length - 1; i++)
+				{
+					if (steps[i].IsAssignment is false)
+					{
+						for (var j = i + 1; j < steps.Length; j++)
+						{
+							if (steps[j].IsAssignment is not false)
+							{
+								// Okay. Now we have a group of steps that only produce eliminations.
+								// Set the outer loop pointer to skip elimination steps.
+								result.Add(steps[i = j]);
+								break;
+							}
+						}
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Find sequential-inverted steps.
+			case BottleneckType.SequentialInversion:
+			{
+				var result = new List<Step>();
+				for (var i = 0; i < steps.Length - 1; i++)
+				{
+					var (previous, next) = (steps[i], steps[i + 1]);
+					if (previous.DifficultyLevel > next.DifficultyLevel && next.DifficultyLevel != DifficultyLevel.Unknown)
+					{
+						result.Add(previous);
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Find the hardest steps.
+			case BottleneckType.HardestRating when steps.MaxBy(static step => step.Difficulty) is { } maxStep:
+			{
+				var result = new List<Step>();
+				foreach (var element in steps)
+				{
+					if (element.Code == maxStep.Code)
+					{
+						result.Add(element);
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Find the hardest level steps.
+			case BottleneckType.HardestLevel when steps.MaxBy(static step => (int)step.DifficultyLevel) is { } maxStep:
+			{
+				var result = new List<Step>();
+				foreach (var element in steps)
+				{
+					if (element.DifficultyLevel == maxStep.DifficultyLevel)
+					{
+						result.Add(element);
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
+
+			// Invalid configuration.
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(filters));
+			}
+		}
+	}
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<AnalysisResult, Step>.Any() => StepsSpan.Length != 0;

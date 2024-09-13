@@ -2947,9 +2947,6 @@
   <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
-    <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
-  </data>
   <data name="BottleneckTechniqueConstraint" xml:space="preserve">
     <value>卡点技巧：卡点必须是“{0}”里的其中一个</value>
   </data>
@@ -3431,9 +3428,6 @@
   </data>
   <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
     <value>在单元格 {0} 之中代入数字{1}和{2}，并得到矛盾</value>
-  </data>
-  <data name="ConstraintDescription_BottleneckStepRatingConstraint" xml:space="preserve">
-    <value>限制卡点步骤的难度</value>
   </data>
   <data name="ConstraintDescription_BottleneckTechniqueConstraint" xml:space="preserve">
     <value>限制卡点步骤的技巧</value>

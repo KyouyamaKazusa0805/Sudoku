@@ -8,6 +8,15 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class BottleneckTechniqueConstraint : Constraint
 {
 	/// <summary>
+	/// Indicates the filters to be used.
+	/// </summary>
+	public BottleneckFilter[] Filters { get; set; } = [
+		new(PencilmarkVisibility.Direct, BottleneckType.SingleStepOnly),
+		new(PencilmarkVisibility.PartialMark, BottleneckType.HardestRating),
+		new(PencilmarkVisibility.FullMark, BottleneckType.EliminationGroup)
+	];
+
+	/// <summary>
 	/// Indicates the techniques selected.
 	/// </summary>
 	[HashCodeMember]
@@ -15,6 +24,20 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 
 	[StringMember]
 	private string TechniquesString => Techniques.ToString();
+
+	[HashCodeMember]
+	private int FilterHashCode
+	{
+		get
+		{
+			var result = new HashCode();
+			foreach (var filter in Filters)
+			{
+				result.Add(filter);
+			}
+			return result.ToHashCode();
+		}
+	}
 
 
 	/// <inheritdoc/>
@@ -33,5 +56,5 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> !!(Techniques & [.. from step in context.AnalyzerResult.BottleneckSteps select step.Code]);
+		=> !!(Techniques & [.. from step in context.AnalyzerResult.GetBottlenecks(Filters) select step.Code]);
 }

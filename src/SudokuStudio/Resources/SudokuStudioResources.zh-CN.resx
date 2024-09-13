@@ -2402,9 +2402,6 @@
   <data name="GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2" xml:space="preserve">
     <value>和</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_BottleneckRatingConstraint" xml:space="preserve">
-    <value>卡点难度约束</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_BottleneckTechnique" xml:space="preserve">
     <value>卡点技巧</value>
   </data>

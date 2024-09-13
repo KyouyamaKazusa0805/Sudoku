@@ -226,24 +226,6 @@
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.Puzzle"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.BottleneckSteps">
-            <summary>
-            Indicates the bottleneck steps.
-            </summary>
-            <remarks>
-            <para>
-            The bottleneck steps will be considered as "hardest" ones,
-            checking their difficulty rating (i.e. property <see cref="P:Sudoku.Analytics.Step.Difficulty"/>) and difficulty level
-            (i.e. <see cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>).
-            </para>
-            <para>
-            The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
-            they all will be considered as bottleneck steps.
-            </para>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
-            <seealso cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>
-        </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.PearlStep">
             <summary>
             Indicates the pearl step.
@@ -383,6 +365,21 @@
             Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
             </summary>
             <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})">
+            <summary>
+            Try to get bottleneck steps under the specified rules.
+            </summary>
+            <param name="filters">The bottleneck filters.</param>
+            <returns>A list of bottleneck steps.</returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the filter contains invalid configuration,
+            like <see cref="F:Sudoku.Analytics.BottleneckType.SingleStepOnly"/> in full-marking mode.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.BottleneckType"/> flag.
+            </exception>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any">
             <inheritdoc/>
@@ -714,6 +711,90 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.BottleneckFilter">
+            <summary>
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
+            </summary>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.BottleneckFilter.#ctor(Sudoku.Analytics.PencilmarkVisibility,Sudoku.Analytics.BottleneckType)">
+            <summary>
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
+            </summary>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
+        </member>
+        <member name="P:Sudoku.Analytics.BottleneckFilter.Visibility">
+            <summary>Indicates a visibility type of pencilmark.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.BottleneckFilter.Type">
+            <summary>Indicates the bottleneck type.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.BottleneckType">
+            <summary>
+            Represents a type of bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.EliminationGroup">
+            <summary>
+            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.HardestRating">
+            <summary>
+            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.HardestLevel">
+            <summary>
+            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.SequentialInversion">
+            <summary>
+            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
+            <para>
+            For example, the first step is a chain (at "Fiendish" level),
+            and the second step is a locked candidates (at "Moderate" level).
+            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepSameLevelOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it;
+            and only checks for same-level techniques.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule;
+            if the current grid pattern containing complex singles that can have extra assignemnts,
+            but it will be ignored to be checked in this flag.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">
             <summary>
@@ -17768,8 +17849,11 @@
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PartialMarkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+        <member name="M:Sudoku.Analytics.Steps.PartialMarkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Represents a solving step that can be found without any candidates, except few of candidates marked.
             Logically, the technique can be treated as a single step with locked candidates or subset patterns.
@@ -17777,6 +17861,9 @@
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.PartialMarkStep.PencilmarkType">
             <inheritdoc/>
@@ -23353,11 +23440,6 @@
               Looks up a localized string similar to both side open.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.BottleneckStepRatingConstraint">
-            <summary>
-              Looks up a localized string similar to Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BottleneckTechniqueConstraint">
             <summary>
               Looks up a localized string similar to Bottleneck technique: Bottleneck must be any one of technique set {0}..
@@ -23536,11 +23618,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.ConclusionConstraint">
             <summary>
               Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_BottleneckStepRatingConstraint">
-            <summary>
-              Looks up a localized string similar to Catch a puzzle having specified rating of bottleneck.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_BottleneckTechniqueConstraint">
@@ -23786,6 +23863,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ArgumentMustBeSingle">
             <summary>
               Looks up a localized string similar to The argument must be a single..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle">
+            <summary>
+              Looks up a localized string similar to Only solved puzzles can contain bottleneck steps..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_CannotCastFinnedChain">
@@ -32294,45 +32376,14 @@
             Indicates whether the constraint can be negated by user.
             </summary>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">
-            <summary>
-            Represents a constraint that checks for difficulty rating of each step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Minimum">
-            <summary>
-            Indicates the minimal value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Maximum">
-            <summary>
-            Indicates the maximum value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.BetweenRule">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint">
             <summary>
             Represents a constraint that determines whether bottleneck step represents the specified technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Filters">
+            <summary>
+            Indicates the filters to be used.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Techniques">

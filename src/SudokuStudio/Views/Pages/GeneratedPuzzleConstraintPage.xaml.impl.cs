@@ -13,67 +13,6 @@ public partial class GeneratedPuzzleConstraintPage
 	private static readonly Thickness DefaultMargin = new(0, 6, 0, 6);
 
 
-	private partial SettingsCard? Create_BottleneckStepRating(BottleneckStepRatingConstraint constraint)
-	{
-		if (constraint is not { Minimum: var min, Maximum: var max, BetweenRule: var rule })
-		{
-			return null;
-		}
-
-		var scale = Application.Current.AsApp().Preference.TechniqueInfoPreferences.RatingScale;
-		var r = Application.Current.Resources;
-		var maximum = (int)r["MaximumRatingValue"]!;
-
-		//
-		// Rating control
-		//
-		var ratingMinControl = new IntegerBox { Width = 200, Minimum = 0, Maximum = maximum, Value = min };
-		var ratingMaxControl = new IntegerBox { Width = 200, Minimum = 0, Maximum = maximum, Value = max };
-		ratingMinControl.ValueChanged += (_, _) =>
-		{
-			constraint.Minimum = ratingMinControl.Value;
-			ratingMaxControl.Minimum = ratingMinControl.Value;
-		};
-		ratingMaxControl.ValueChanged += (_, _) =>
-		{
-			constraint.Maximum = ratingMinControl.Value;
-			ratingMinControl.Maximum = ratingMaxControl.Value;
-		};
-
-		//
-		// Text blocks
-		//
-		var textBlock1 = new TextBlock
-		{
-			Text = SR.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1", App.CurrentCulture),
-			VerticalAlignment = VerticalAlignment.Center
-		};
-		var textBlock2 = new TextBlock
-		{
-			Text = SR.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2", App.CurrentCulture),
-			VerticalAlignment = VerticalAlignment.Center
-		};
-
-		//
-		// Between rule
-		//
-		var betweenRuleControl = BetweenRuleControl(constraint, rule);
-
-		return new()
-		{
-			Header = SR.Get("GeneratedPuzzleConstraintPage_BottleneckRating", App.CurrentCulture),
-			Description = constraint.Description,
-			Margin = DefaultMargin,
-			Content = new StackPanel
-			{
-				Orientation = Orientation.Horizontal,
-				Spacing = DefaultSpacing,
-				Children = { textBlock1, ratingMinControl, textBlock2, ratingMaxControl, betweenRuleControl }
-			},
-			Tag = constraint
-		};
-	}
-
 	private partial SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })

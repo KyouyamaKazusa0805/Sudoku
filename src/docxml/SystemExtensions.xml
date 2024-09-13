@@ -3733,6 +3733,9 @@
         <member name="M:System.Linq.SpanEnumerable.FirstRef``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.FirstRefOrNullRef``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>

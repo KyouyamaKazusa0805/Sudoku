@@ -40,4 +40,4 @@ public abstract partial class ComplexSingleBaseStep(
 	SingleSubtype subtype,
 	[PrimaryConstructorParameter] Technique basedOn,
 	[PrimaryConstructorParameter] Technique[][] indirectTechniques
-) : SingleStep(conclusions, views, options, cell, digit, subtype);
+) : PartialMarkStep(conclusions, views, options, cell, digit, subtype);

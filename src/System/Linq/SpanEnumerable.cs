@@ -780,6 +780,19 @@ public static class SpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static ref readonly T FirstRefOrNullRef<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> predicate)
+	{
+		foreach (ref readonly var element in @this)
+		{
+			if (predicate(in element))
+			{
+				return ref element;
+			}
+		}
+		return ref Unsafe.NullRef<T>();
+	}
+
+	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T? FirstOrDefault<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this)

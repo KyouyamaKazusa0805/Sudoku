@@ -9,7 +9,7 @@ public static class GridSnyderExtensions
 	/// <summary>
 	/// Indicates the backing collector.
 	/// </summary>
-	private static readonly Collector Collector = new Collector()
+	internal static readonly Collector Collector = new Collector()
 		.WithStepSearchers(
 			new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true },
 			new DirectIntersectionStepSearcher { AllowDirectClaiming = true, AllowDirectPointing = true },

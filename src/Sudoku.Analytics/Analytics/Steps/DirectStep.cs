@@ -10,5 +10,5 @@ public abstract class DirectStep(Conclusion[] conclusions, View[]? views, StepGa
 	Step(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public sealed override PencilmarkVisibility PencilmarkType => PencilmarkVisibility.Direct;
+	public override PencilmarkVisibility PencilmarkType => PencilmarkVisibility.Direct;
 }

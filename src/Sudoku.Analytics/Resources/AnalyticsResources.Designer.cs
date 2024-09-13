@@ -799,15 +799,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}.
-        /// </summary>
-        public static string BottleneckStepRatingConstraint {
-            get {
-                return ResourceManager.GetString("BottleneckStepRatingConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bottleneck technique: Bottleneck must be any one of technique set {0}..
         /// </summary>
         public static string BottleneckTechniqueConstraint {
@@ -1128,15 +1119,6 @@ namespace Sudoku.Resources {
         public static string ConclusionConstraint {
             get {
                 return ResourceManager.GetString("ConclusionConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Catch a puzzle having specified rating of bottleneck.
-        /// </summary>
-        public static string ConstraintDescription_BottleneckStepRatingConstraint {
-            get {
-                return ResourceManager.GetString("ConstraintDescription_BottleneckStepRatingConstraint", resourceCulture);
             }
         }
         
@@ -1578,6 +1560,15 @@ namespace Sudoku.Resources {
         public static string ErrorInfo_ArgumentMustBeSingle {
             get {
                 return ResourceManager.GetString("ErrorInfo_ArgumentMustBeSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only solved puzzles can contain bottleneck steps..
+        /// </summary>
+        public static string ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle {
+            get {
+                return ResourceManager.GetString("ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle", resourceCulture);
             }
         }
         

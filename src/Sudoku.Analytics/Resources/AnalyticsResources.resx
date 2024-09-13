@@ -2832,9 +2832,6 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_TechniqueIsNotImplemented" xml:space="preserve">
     <value>The current technique is not implemented.</value>
   </data>
-  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
-    <value>Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}</value>
-  </data>
   <data name="BottleneckTechniqueConstraint" xml:space="preserve">
     <value>Bottleneck technique: Bottleneck must be any one of technique set {0}.</value>
   </data>
@@ -3312,9 +3309,6 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueFormat_RemotePairStep" xml:space="preserve">
     <value>Assign cells {0} with mark {1} and {2}, to make an confliction</value>
   </data>
-  <data name="ConstraintDescription_BottleneckStepRatingConstraint" xml:space="preserve">
-    <value>Catch a puzzle having specified rating of bottleneck</value>
-  </data>
   <data name="ConstraintDescription_BottleneckTechniqueConstraint" xml:space="preserve">
     <value>Catch a puzzle using specified technique in bottleneck</value>
   </data>
@@ -3368,5 +3362,8 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="Message_DisorderedIttoryuModuleAlreadyFinished" xml:space="preserve">
     <value>Disordered ittoryu module has already finished.</value>
+  </data>
+  <data name="ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle" xml:space="preserve">
+    <value>Only solved puzzles can contain bottleneck steps.</value>
   </data>
 </root>

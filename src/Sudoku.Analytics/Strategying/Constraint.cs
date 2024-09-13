@@ -4,7 +4,6 @@ namespace Sudoku.Strategying;
 /// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
 /// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$typeid", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
-[JsonDerivedType(typeof(BottleneckStepRatingConstraint), nameof(BottleneckStepRatingConstraint))]
 [JsonDerivedType(typeof(BottleneckTechniqueConstraint), nameof(BottleneckTechniqueConstraint))]
 [JsonDerivedType(typeof(ConclusionConstraint), nameof(ConclusionConstraint))]
 [JsonDerivedType(typeof(CountBetweenConstraint), nameof(CountBetweenConstraint))]

@@ -12,7 +12,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// </summary>
 	private static readonly Dictionary<Type, ConstraintControlCreator> ControlCreatorFactory = new(EqualityComparer<Type>.Create(static (a, b) => a == b, static v => v.GetHashCode()))
 	{
-		{ typeof(BottleneckStepRatingConstraint), static (@this, s) => @this.Create_BottleneckStepRating((BottleneckStepRatingConstraint) s) },
 		{ typeof(BottleneckTechniqueConstraint), static (@this, s) => @this.Create_BottleneckTechnique((BottleneckTechniqueConstraint) s) },
 		{ typeof(ConclusionConstraint), static (@this, s) => @this.Create_Conclusion((ConclusionConstraint)s) },
 		{ typeof(CountBetweenConstraint), static (@this, s) => @this.Create_CountBetween((CountBetweenConstraint)s) },
@@ -135,7 +134,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 	}
 
-	private partial SettingsCard? Create_BottleneckStepRating(BottleneckStepRatingConstraint constraint);
 	private partial SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint);
 	private partial SettingsCard? Create_DifficultyLevel(DifficultyLevelConstraint constraint);
 	private partial SettingsCard? Create_Symmetry(SymmetryConstraint constraint);
