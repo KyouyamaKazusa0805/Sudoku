@@ -1,4 +1,4 @@
-namespace Sudoku.Snyder;
+namespace Sudoku.Concepts.Snyder;
 
 /// <summary>
 /// Represents a type that supports excluders marking inside a direct technique.

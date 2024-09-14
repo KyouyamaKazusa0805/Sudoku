@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// Indicates a shape modifier that is used for a complex fish pattern.

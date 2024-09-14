@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// Represents a locked member. This type is only used by searching for exocets.

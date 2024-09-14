@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// The base overrides for double exocet steps.

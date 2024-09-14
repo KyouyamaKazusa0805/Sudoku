@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.

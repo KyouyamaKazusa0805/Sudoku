@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.IttoryuServices;
+namespace Sudoku.Concepts.Ittoryu;
 
 /// <summary>
 /// Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.

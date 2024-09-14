@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// Represents for a data set that describes the complete information about a unique loop technique.

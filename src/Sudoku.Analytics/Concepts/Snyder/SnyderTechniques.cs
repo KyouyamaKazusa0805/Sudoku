@@ -1,4 +1,4 @@
-namespace Sudoku.Snyder;
+namespace Sudoku.Concepts.Snyder;
 
 /// <summary>
 /// Provides with techniques that will be used in Snyder rule.

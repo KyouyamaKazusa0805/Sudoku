@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Analytics.Patterning.Patterns;
 
 /// <summary>
 /// Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:

@@ -1,4 +1,4 @@
-namespace Sudoku.Snyder;
+namespace Sudoku.Concepts.Snyder;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, calculating with Snyder checking.
