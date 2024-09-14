@@ -73,7 +73,8 @@
     * 规则 Wing（XY-Wing、XYZ-Wing 等）
     * 不规则 Wing
       * W-Wing
-      * M-Wing、S-Wing、H-Wing、L-Wing
+      * M-Wing
+      * 其他（S-Wing、H-Wing、L-Wing）
     * XYZ 环
   * 唯一性
     * 唯一矩形（UR）

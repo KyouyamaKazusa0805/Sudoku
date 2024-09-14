@@ -73,8 +73,9 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Wings
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing[^2]
-      * Woods-Wing (*W-Wing*)
-      * Medusa/Split/Hybrid/Local-Wing (*M/S/H/L-Wing*)
+      * Woods' Wing (*W-Wing*)
+      * Medusa Wing (*M-Wing*)
+      * Split/Hybrid/Local Wing (*S/H/L-Wing*)
     * XYZ-Loop
   * Deadly Patterns
     * Unique Rectangle (*UR*)
