@@ -6,7 +6,7 @@ namespace Sudoku.Bot.Commands;
 [Command("更新")]
 [CommandDescription("更新用户自己的配置信息。")]
 [CommandUsage("更新 昵称 <昵称>", IsSyntax = true)]
-[CommandUsage("更新 昵称 Sunnie")]
+[CommandUsage("更新 昵称 杏山和纱")]
 public sealed class ChangeInfoCommand : Command
 {
 	/// <inheritdoc/>

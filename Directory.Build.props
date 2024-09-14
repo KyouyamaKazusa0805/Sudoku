@@ -5,8 +5,8 @@
 	<!--Basic information-->
 	<PropertyGroup>
 		<!--Project configuration-->
-		<Authors>Sunnie</Authors>
-		<Copyright>Copyright (c) Sunnie 2019-2024</Copyright>
+		<Authors>Kyouyama Kazusa</Authors>
+		<Copyright>Copyright (c) KyouyamaKazusa 2019-2024</Copyright>
 		<Version>3.4.0</Version>
 
 		<!--Syntax configuration-->
