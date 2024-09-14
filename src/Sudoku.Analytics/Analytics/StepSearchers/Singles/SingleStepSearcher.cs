@@ -55,16 +55,10 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	[SettingItemName(SettingItemNames.HiddenSinglesInBlockFirst)]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <summary>
-	/// Indicates whether the solver uses ittoryu mode to solve a puzzle.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AnalyzerUseIttoryuMode)]
-	public bool UseIttoryuMode { get; set; }
-
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
-		=> UseIttoryuMode ? Collect_IttoryuMode(ref context) : Collect_NonIttoryuMode(ref context);
+		=> context.Options.UseIttoryuMode ? Collect_IttoryuMode(ref context) : Collect_NonIttoryuMode(ref context);
 
 	/// <summary>
 	/// Checks for single steps using ittoryu mode.

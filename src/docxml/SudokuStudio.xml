@@ -1098,7 +1098,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
@@ -10768,7 +10768,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+            <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>
         </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>

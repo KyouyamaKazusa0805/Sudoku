@@ -37,7 +37,7 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
+	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
 	[DependencyProperty]
 	public partial bool AnalyzerUseIttoryuMode { get; set; }
 

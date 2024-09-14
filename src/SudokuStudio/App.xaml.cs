@@ -340,6 +340,7 @@ public partial class App : Application
 					CurrentCulture
 				)
 			},
+			UseIttoryuMode = analysisPref.AnalyzerUseIttoryuMode,
 			IsDirectMode = uiPref.IsDirectMode,
 			BabaGroupInitialLetter = analysisPref.InitialLetter,
 			BabaGroupLetterCasing = analysisPref.LetterCasing,

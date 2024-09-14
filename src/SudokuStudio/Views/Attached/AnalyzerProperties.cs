@@ -57,7 +57,7 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
+	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
 	[DependencyProperty]
 	public static partial bool AnalyzerUseIttoryuMode { get; set; }
 

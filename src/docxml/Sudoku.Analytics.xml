@@ -5257,9 +5257,6 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
-        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -5413,6 +5410,11 @@
             </summary>
             <seealso cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>
         </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode">
+            <summary>
+            Indicates whether the searching module will use ittoryu mode to calculate steps.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle">
             <summary>
             Indicates the preferred single technique.
@@ -5477,6 +5479,7 @@
             <list type="bullet">
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see langword="new"/> <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>()</item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X"/></item>
@@ -10461,11 +10464,6 @@
         <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst">
             <summary>
             Indicates whether the solver checks for hidden single in block firstly.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode">
-            <summary>
-            Indicates whether the solver uses ittoryu mode to solve a puzzle.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">

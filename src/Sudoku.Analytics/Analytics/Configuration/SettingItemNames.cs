@@ -19,9 +19,6 @@ public static class SettingItemNames
 	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
 	public const string HiddenSinglesInBlockFirst = nameof(HiddenSinglesInBlockFirst);
 
-	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
-	public const string AnalyzerUseIttoryuMode = nameof(AnalyzerUseIttoryuMode);
-
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	public const string AllowDirectPointing = nameof(AllowDirectPointing);
 

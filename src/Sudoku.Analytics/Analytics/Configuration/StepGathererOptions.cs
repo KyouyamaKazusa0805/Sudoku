@@ -32,6 +32,11 @@ public sealed record StepGathererOptions
 	public bool PrimaryHiddenSingleAllowsLines { get; init; } = false;
 
 	/// <summary>
+	/// Indicates whether the searching module will use ittoryu mode to calculate steps.
+	/// </summary>
+	public bool UseIttoryuMode { get; init; } = false;
+
+	/// <summary>
 	/// Indicates the preferred single technique.
 	/// </summary>
 	/// <remarks>
@@ -99,6 +104,7 @@ public sealed record StepGathererOptions
 	/// <list type="bullet">
 	/// <item><see cref="Converter"/>: <see langword="new"/> <see cref="RxCyConverter"/>()</item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
+	/// <item><see cref="UseIttoryuMode"/>: <see langword="false"/></item>
 	/// <item><see cref="PrimarySingle"/>: <see cref="SingleTechniqueFlag.None"/></item>
 	/// <item><see cref="PrimaryHiddenSingleAllowsLines"/>: <see langword="false"/></item>
 	/// <item><see cref="BabaGroupInitialLetter"/>: <see cref="BabaGroupInitialLetter.EnglishLetter_X"/></item>

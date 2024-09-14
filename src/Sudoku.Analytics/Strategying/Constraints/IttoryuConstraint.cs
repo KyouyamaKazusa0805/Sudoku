@@ -69,11 +69,10 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 				{
 					EnableFullHouse = true,
 					EnableLastDigit = true,
-					HiddenSinglesInBlockFirst = true,
-					UseIttoryuMode = true
+					HiddenSinglesInBlockFirst = true
 				}
 			)
-			.WithUserDefinedOptions(new() { IsDirectMode = true });
+			.WithUserDefinedOptions(new() { IsDirectMode = true, UseIttoryuMode = true });
 		if (localAnalyzer.Analyze(in context.Grid) is not
 			{
 				IsSolved: true,
