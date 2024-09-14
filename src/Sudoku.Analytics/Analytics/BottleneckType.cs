@@ -62,5 +62,5 @@ public enum BottleneckType
 	/// </para>
 	/// </summary>
 	/// <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
-	SingleStepSameLevelOnly,
+	SingleStepSameLevelOnly
 }
