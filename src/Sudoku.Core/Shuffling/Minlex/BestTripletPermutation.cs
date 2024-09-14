@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinlexServices;
+namespace Sudoku.Shuffling.Minlex;
 
 /// <summary>
 /// Represents the permutation information for best triplet.

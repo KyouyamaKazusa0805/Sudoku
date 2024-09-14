@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.TransformingServices;
+namespace Sudoku.Shuffling.Transforming;
 
 /// <summary>
 /// Provides with extension methods for <see cref="Random"/>.

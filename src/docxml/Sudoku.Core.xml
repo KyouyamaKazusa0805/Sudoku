@@ -8522,336 +8522,35 @@
             <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.ModuleInitializer">
-            <target name="type">
-				<summary>
-					<para>
-						Provides with the type that contains a module initializer method, called automatically by the CLR
-						(Common Language Runtime) to initialize some values.
-					</para>
-					<para>
-						<i>
-							The type is called by the compiler and the CLR (Common Language Runtime),
-							which means you cannot use any members in this type manually.
-						</i>
-					</para>
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.ModuleInitializer.Initialize">
-            <target name="method">
-				<summary>
-					Called by the runtime automatically while booting on this solution to initialize the values,
-					data members or any other things that can or should be initialized here.
-				</summary>
-				<remarks>
-					The concept <b>module</b> is different with <b>assembly</b>.
-					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
-					However, due to the design of Visual Studio project file system, each assembly will only contain
-					one module by default.
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Resources.CoreResources">
+        <member name="T:Sudoku.Runtime.MingridServices.MingridExtensions">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
             </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="P:Sudoku.Resources.CoreResources.ResourceManager">
+        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
             <summary>
-              Returns the cached ResourceManager instance used by this class.
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
             </summary>
+            <param name="this">Indicates the current instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="P:Sudoku.Resources.CoreResources.Culture">
+        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
             <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
+            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
+            if arbitrary one given digit will be removed from the grid.
             </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
-            <summary>
-              Looks up a localized string similar to Block {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.BlockName">
-            <summary>
-              Looks up a localized string similar to Block.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
-            <summary>
-              Looks up a localized string similar to {0}, digit {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CellLabel">
-            <summary>
-              Looks up a localized string similar to row {0} column {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CellsLabel">
-            <summary>
-              Looks up a localized string similar to cells: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ColumnLabel">
-            <summary>
-              Looks up a localized string similar to Column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ColumnName">
-            <summary>
-              Looks up a localized string similar to Column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
-            <summary>
-              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.DigitName">
-            <summary>
-              Looks up a localized string similar to Digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Error_ArgExtensionShouldBeValid">
-            <summary>
-              Looks up a localized string similar to The argument should contains the prefix period token..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
-            <summary>
-              Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CannotAssignSuccessForFailureCases">
-            <summary>
-              Looks up a localized string similar to Cannot assign success field to describe such failure..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
-            <summary>
-              Looks up a localized string similar to Two cells must be in a same line (row or column)..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ComparableGridMustBeStandard">
-            <summary>
-              Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">
-            <summary>
-              Looks up a localized string similar to The string contains empty segment..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DifferentExistenceOfConfigAndLibraryFile">
-            <summary>
-              Looks up a localized string similar to Different existence of config file and library file..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DuplicatedValuesMayExistOrInvalid">
-            <summary>
-              Looks up a localized string similar to Duplicated or invalid values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_FileShouldBeInitializedFirst">
-            <summary>
-              Looks up a localized string similar to Related files should be initialized first..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalid">
-            <summary>
-              Looks up a localized string similar to The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalidCellState">
-            <summary>
-              Looks up a localized string similar to The grid cannot keep invalid cell state value..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridMultipleSolutions">
-            <summary>
-              Looks up a localized string similar to The grid contains multiple solutions..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridNoSolution">
-            <summary>
-              Looks up a localized string similar to The grid has no possible solution..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_InvalidStateOnParsing">
-            <summary>
-              Looks up a localized string similar to Invalid state on parsing values..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LengthMustBeMatched">
-            <summary>
-              Looks up a localized string similar to The length of the string must be {0}..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LibraryShouldBeInitialized">
-            <summary>
-              Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MinLexShouldBeUniqueAndNotSukaku">
-            <summary>
-              Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleChuteValuesFound">
-            <summary>
-              Looks up a localized string similar to Multiple chute values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleConjugatePairValuesFound">
-            <summary>
-              Looks up a localized string similar to Multiple conjuagte pair values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleFlagsExist">
-            <summary>
-              Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleSamePropertiesFound">
-            <summary>
-              Looks up a localized string similar to Multiple same properties are found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NoElementsInSequence">
-            <summary>
-              Looks up a localized string similar to No possible elements can be found in the current sequence..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotExist">
-            <summary>
-              Looks up a localized string similar to The file does not exist..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotSupportedForSukakuPuzzles">
-            <summary>
-              Looks up a localized string similar to This function does not support for Sukaku puzzles..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PlaceholderMustBeZeroOrDot">
-            <summary>
-              Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PointerCannotMove">
-            <summary>
-              Looks up a localized string similar to The pointer cannot move..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_StringValueInvalidToBeParsed">
-            <summary>
-              Looks up a localized string similar to The string value is invalid to be parsed..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_SubsetsExceeded">
-            <summary>
-              Looks up a localized string similar to Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
-            <summary>
-              Looks up a localized string similar to houses: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">
-            <summary>
-              Looks up a localized string similar to {0} {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaColumnLabel">
-            <summary>
-              Looks up a localized string similar to Mega column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaLinesLabel">
-            <summary>
-              Looks up a localized string similar to Mega lines: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaRowLabel">
-            <summary>
-              Looks up a localized string similar to Mega row {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Message_LibraryInitializedException">
-            <summary>
-              Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.RowLabel">
-            <summary>
-              Looks up a localized string similar to Row {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.RowName">
-            <summary>
-              Looks up a localized string similar to Row.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
-            <summary>
-              Looks up a localized string similar to All symmetry.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AntiDiagonal">
-            <summary>
-              Looks up a localized string similar to Anti-diagonal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AxisBoth">
-            <summary>
-              Looks up a localized string similar to Both axes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Central">
-            <summary>
-              Looks up a localized string similar to Central.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Diagonal">
-            <summary>
-              Looks up a localized string similar to Diagonal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_DiagonalBoth">
-            <summary>
-              Looks up a localized string similar to Both diagonals.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_None">
-            <summary>
-              Looks up a localized string similar to No symmetry.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_XAxis">
-            <summary>
-              Looks up a localized string similar to X axis.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_YAxis">
-            <summary>
-              Looks up a localized string similar to Y axis.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
-            <summary>
-            Represents a type that compares culture language names.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.IsCultureNameEqual(System.String,System.String)">
-            <summary>
-            Compares two <see cref="T:System.String"/> values, treated as culture name,
-            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
-            or <paramref name="this"/> includes <paramref name="otherName"/>.
-            </summary>
-            <param name="this">The culture.</param>
-            <param name="otherName">The other name to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">Indicates the current instance.</param>
+            <param name="firstCandidateMakePuzzleNotMinimal">
+            <para>
+            Indicates the first found candidate that can make the puzzle not minimal, which means
+            if we remove the digit in the cell, the puzzle will still keep unique.
+            </para>
+            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
         <member name="T:Sudoku.Runtime.IContext">
             <summary>
@@ -9540,37 +9239,338 @@
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Inequality(Sudoku.Runtime.LibraryServices.TextPointer,Sudoku.Runtime.LibraryServices.TextPointer)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Runtime.MingridServices.MingridExtensions">
-            <summary>
-            Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
         </member>
-        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
         </member>
-        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
+        <member name="T:Sudoku.Resources.CoreResources">
             <summary>
-            Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-            if arbitrary one given digit will be removed from the grid.
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="firstCandidateMakePuzzleNotMinimal">
-            <para>
-            Indicates the first found candidate that can make the puzzle not minimal, which means
-            if we remove the digit in the cell, the puzzle will still keep unique.
-            </para>
-            <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.BestTripletPermutation">
+        <member name="P:Sudoku.Resources.CoreResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
+            <summary>
+              Looks up a localized string similar to Block {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockName">
+            <summary>
+              Looks up a localized string similar to Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
+            <summary>
+              Looks up a localized string similar to {0}, digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellLabel">
+            <summary>
+              Looks up a localized string similar to row {0} column {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellsLabel">
+            <summary>
+              Looks up a localized string similar to cells: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnLabel">
+            <summary>
+              Looks up a localized string similar to Column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnName">
+            <summary>
+              Looks up a localized string similar to Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
+            <summary>
+              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.DigitName">
+            <summary>
+              Looks up a localized string similar to Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Error_ArgExtensionShouldBeValid">
+            <summary>
+              Looks up a localized string similar to The argument should contains the prefix period token..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
+            <summary>
+              Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CannotAssignSuccessForFailureCases">
+            <summary>
+              Looks up a localized string similar to Cannot assign success field to describe such failure..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
+            <summary>
+              Looks up a localized string similar to Two cells must be in a same line (row or column)..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ComparableGridMustBeStandard">
+            <summary>
+              Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">
+            <summary>
+              Looks up a localized string similar to The string contains empty segment..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DifferentExistenceOfConfigAndLibraryFile">
+            <summary>
+              Looks up a localized string similar to Different existence of config file and library file..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DuplicatedValuesMayExistOrInvalid">
+            <summary>
+              Looks up a localized string similar to Duplicated or invalid values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_FileShouldBeInitializedFirst">
+            <summary>
+              Looks up a localized string similar to Related files should be initialized first..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalid">
+            <summary>
+              Looks up a localized string similar to The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalidCellState">
+            <summary>
+              Looks up a localized string similar to The grid cannot keep invalid cell state value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridMultipleSolutions">
+            <summary>
+              Looks up a localized string similar to The grid contains multiple solutions..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridNoSolution">
+            <summary>
+              Looks up a localized string similar to The grid has no possible solution..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_InvalidStateOnParsing">
+            <summary>
+              Looks up a localized string similar to Invalid state on parsing values..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LengthMustBeMatched">
+            <summary>
+              Looks up a localized string similar to The length of the string must be {0}..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LibraryShouldBeInitialized">
+            <summary>
+              Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MinLexShouldBeUniqueAndNotSukaku">
+            <summary>
+              Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleChuteValuesFound">
+            <summary>
+              Looks up a localized string similar to Multiple chute values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleConjugatePairValuesFound">
+            <summary>
+              Looks up a localized string similar to Multiple conjuagte pair values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleFlagsExist">
+            <summary>
+              Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleSamePropertiesFound">
+            <summary>
+              Looks up a localized string similar to Multiple same properties are found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NoElementsInSequence">
+            <summary>
+              Looks up a localized string similar to No possible elements can be found in the current sequence..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotExist">
+            <summary>
+              Looks up a localized string similar to The file does not exist..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotSupportedForSukakuPuzzles">
+            <summary>
+              Looks up a localized string similar to This function does not support for Sukaku puzzles..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PlaceholderMustBeZeroOrDot">
+            <summary>
+              Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PointerCannotMove">
+            <summary>
+              Looks up a localized string similar to The pointer cannot move..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_StringValueInvalidToBeParsed">
+            <summary>
+              Looks up a localized string similar to The string value is invalid to be parsed..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_SubsetsExceeded">
+            <summary>
+              Looks up a localized string similar to Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
+            <summary>
+              Looks up a localized string similar to houses: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaColumnLabel">
+            <summary>
+              Looks up a localized string similar to Mega column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaLinesLabel">
+            <summary>
+              Looks up a localized string similar to Mega lines: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaRowLabel">
+            <summary>
+              Looks up a localized string similar to Mega row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_LibraryInitializedException">
+            <summary>
+              Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowLabel">
+            <summary>
+              Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowName">
+            <summary>
+              Looks up a localized string similar to Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
+            <summary>
+              Looks up a localized string similar to All symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AntiDiagonal">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AxisBoth">
+            <summary>
+              Looks up a localized string similar to Both axes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Central">
+            <summary>
+              Looks up a localized string similar to Central.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Diagonal">
+            <summary>
+              Looks up a localized string similar to Diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_DiagonalBoth">
+            <summary>
+              Looks up a localized string similar to Both diagonals.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_None">
+            <summary>
+              Looks up a localized string similar to No symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_XAxis">
+            <summary>
+              Looks up a localized string similar to X axis.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_YAxis">
+            <summary>
+              Looks up a localized string similar to Y axis.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
+            <summary>
+            Represents a type that compares culture language names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.IsCultureNameEqual(System.String,System.String)">
+            <summary>
+            Compares two <see cref="T:System.String"/> values, treated as culture name,
+            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
+            or <paramref name="this"/> includes <paramref name="otherName"/>.
+            </summary>
+            <param name="this">The culture.</param>
+            <param name="otherName">The other name to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.
             </summary>
@@ -9578,7 +9578,7 @@
             <param name="resultMask">Indicates the result mask.</param>
             <param name="resultNumberOfBits">Indicates the result number of bits.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Minlex.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Represents the permutation information for best triplet.
             </summary>
@@ -9586,38 +9586,38 @@
             <param name="resultMask">Indicates the result mask.</param>
             <param name="resultNumberOfBits">Indicates the result number of bits.</param>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.BestTripletPermutation.Perm">
+        <member name="F:Sudoku.Shuffling.Minlex.BestTripletPermutation.Perm">
             <summary>
             Indicates the permutation cases.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.BestTripletPermutation.BestTripletPermutations">
+        <member name="F:Sudoku.Shuffling.Minlex.BestTripletPermutation.BestTripletPermutations">
             <summary>
             Indicates all best triplet permutations.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.BestResult">
+        <member name="P:Sudoku.Shuffling.Minlex.BestTripletPermutation.BestResult">
             <summary>
             The generated property declaration for parameter <c>bestResult</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.ResultMask">
+        <member name="P:Sudoku.Shuffling.Minlex.BestTripletPermutation.ResultMask">
             <summary>
             The generated property declaration for parameter <c>resultMask</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Runtime.MinlexServices.BestTripletPermutation.ResultNumberOfBits">
+        <member name="P:Sudoku.Shuffling.Minlex.BestTripletPermutation.ResultNumberOfBits">
             <summary>
             The generated property declaration for parameter <c>resultNumberOfBits</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions">
+        <member name="T:Sudoku.Shuffling.Minlex.GridMinlexComparisonExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexComparisonExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
             <summary>
             Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
             by using the specified comparison type.
@@ -9628,7 +9628,7 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexComparisonExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
             <param name="this">Indicates the current instance.</param>
             <param name="comparisonType">
@@ -9638,7 +9638,7 @@
             Throws when the argument <paramref name="comparisonType"/> isn't defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexComparisonExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexComparisonExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
             <summary>
             Compares the current instance with another object of the same type and returns an integer
             that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
@@ -9650,12 +9650,12 @@
             <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.GridMinlexExtensions">
+        <member name="T:Sudoku.Shuffling.Minlex.GridMinlexExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, by checking min-lex-related properties.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
             <summary>
             Checks whether the current grid is the minimal lexicographical form, which means the corresponding string text code
             is the minimum value in all equivalent transforming cases in lexicographical order.
@@ -9663,182 +9663,182 @@
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.GetMinLexGrid(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.GetMinLexGrid(Sudoku.Concepts.Grid@)">
             <summary>
             Checks the minimal lexicographical grid form.
             </summary>
             <param name="this">The grid to be checked.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridMinlexExtensions.MakeMinLex(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.MakeMinLex(Sudoku.Concepts.Grid@)">
             <summary>
             Adjust the grid to minimal lexicographical form.
             </summary>
             <param name="this">The grid to be changed.</param>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.GridPattern">
+        <member name="T:Sudoku.Shuffling.Minlex.GridPattern">
             <summary>
             Represents a pattern for a sudoku grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.MinCanNineBits">
+        <member name="F:Sudoku.Shuffling.Minlex.GridPattern.MinCanNineBits">
             <summary>
             A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.Rows">
+        <member name="F:Sudoku.Shuffling.Minlex.GridPattern.Rows">
             <summary>
             Indicates the rows.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.GridPattern.Digits">
+        <member name="F:Sudoku.Shuffling.Minlex.GridPattern.Digits">
             <summary>
             Indicates the digit.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.ToString">
+        <member name="M:Sudoku.Shuffling.Minlex.GridPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.BestTopRowScore(Sudoku.Runtime.MinlexServices.GridPattern@)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridPattern.BestTopRowScore(Sudoku.Shuffling.Minlex.GridPattern@)">
             <summary>
-            Try to calculate the best top row score from the specified <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instance.
+            Try to calculate the best top row score from the specified <see cref="T:Sudoku.Shuffling.Minlex.GridPattern"/> instance.
             </summary>
             <param name="p">The grid pattern instance.</param>
             <returns>The score value calculated.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.GridPattern.FromString(System.String,System.ReadOnlySpan{Sudoku.Runtime.MinlexServices.GridPattern}@)">
+        <member name="M:Sudoku.Shuffling.Minlex.GridPattern.FromString(System.String,System.ReadOnlySpan{Sudoku.Shuffling.Minlex.GridPattern}@)">
             <summary>
-            Initializes for normal and transposed <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instances from a string grid code.
+            Initializes for normal and transposed <see cref="T:Sudoku.Shuffling.Minlex.GridPattern"/> instances from a string grid code.
             </summary>
             <param name="grid">Indicates the grid code to be used.</param>
-            <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instances for normal and transposed cases.</param>
+            <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.Shuffling.Minlex.GridPattern"/> instances for normal and transposed cases.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.Mapper">
+        <member name="T:Sudoku.Shuffling.Minlex.Mapper">
             <summary>
             Indicates a data structure that describes the cell and label handled.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.Mapper.Cell">
+        <member name="F:Sudoku.Shuffling.Minlex.Mapper.Cell">
             <summary>
             Indicates the cell <see cref="T:System.Byte"/> values.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.Mapper.Label">
+        <member name="F:Sudoku.Shuffling.Minlex.Mapper.Label">
             <summary>
             Indicates the label <see cref="T:System.Byte"/> values.
             </summary>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.MinlexCandidate">
+        <member name="T:Sudoku.Shuffling.Minlex.MinlexCandidate">
             <summary>
             Indicates a node representing the min-lexicographical candidate.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.IsTransposed">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexCandidate.IsTransposed">
             <summary>
             A flag field indicating whether the candidate is handled as transposed.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.MapRowsForward">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexCandidate.MapRowsForward">
             <summary>
             Indicates the map bits on forward rows.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.MapRowsBackward">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexCandidate.MapRowsBackward">
             <summary>
             Indicates the map bits on backward rows.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.StacksPermutation">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexCandidate.StacksPermutation">
             <summary>
             Indicates the stack permutation.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexCandidate.ColumnsPermutationMask">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexCandidate.ColumnsPermutationMask">
             <summary>
             Indicates mask bit values for column permutation.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.#ctor">
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexCandidate.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance.
+            Initializes a <see cref="T:Sudoku.Shuffling.Minlex.MinlexCandidate"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.#ctor(System.SByte,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexCandidate.#ctor(System.SByte,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance via the specified flag for transpose case and top row.
+            Initializes a <see cref="T:Sudoku.Shuffling.Minlex.MinlexCandidate"/> instance via the specified flag for transpose case and top row.
             </summary>
             <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
             <param name="topRow">The top row used.</param>
         </member>
-        <member name="P:Sudoku.Runtime.MinlexServices.MinlexCandidate.Empty">
+        <member name="P:Sudoku.Shuffling.Minlex.MinlexCandidate.Empty">
             <summary>
-            Represents an empty <see cref="T:Sudoku.Runtime.MinlexServices.MinlexCandidate"/> instance.
+            Represents an empty <see cref="T:Sudoku.Shuffling.Minlex.MinlexCandidate"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.ExpandStacks(System.ReadOnlySpan{Sudoku.Runtime.MinlexServices.GridPattern},System.Int32,System.Span{Sudoku.Runtime.MinlexServices.MinlexCandidate},System.Int32@)">
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexCandidate.ExpandStacks(System.ReadOnlySpan{Sudoku.Shuffling.Minlex.GridPattern},System.Int32,System.Span{Sudoku.Shuffling.Minlex.MinlexCandidate},System.Int32@)">
             <summary>
             To expand stacks.
             </summary>
-            <param name="pair">A pair of <see cref="T:Sudoku.Runtime.MinlexServices.GridPattern"/> instance.</param>
+            <param name="pair">A pair of <see cref="T:Sudoku.Shuffling.Minlex.GridPattern"/> instance.</param>
             <param name="topKey">Indicates the top key.</param>
             <param name="results">Indicates the results.</param>
             <param name="resultCount">The result count.</param>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexCandidate.ToString">
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexCandidate.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Runtime.MinlexServices.MinlexFinder">
+        <member name="T:Sudoku.Shuffling.Minlex.MinlexFinder">
             <summary>
             Represents a finder type.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexFinder.CandidateListTotal">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexFinder.CandidateListTotal">
             <summary>
             Indicates the total number of candidate list, which means the worst case.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.MinlexServices.MinlexFinder._mappers">
+        <member name="F:Sudoku.Shuffling.Minlex.MinlexFinder._mappers">
             <summary>
             Indicates the internal mappers.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(System.String)"/>
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
         </member>
-        <member name="M:Sudoku.Runtime.MinlexServices.MinlexFinder.Find(System.String)">
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)">
             <summary>
             Finds the minimal lexicographical form of the source grid code.
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.TransformingServices.GridTransformations">
+        <member name="T:Sudoku.Shuffling.Transforming.GridTransformations">
             <summary>
             Provides methods for <see cref="T:Sudoku.Concepts.Grid"/> instances on transformations.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.ClockwiseTable">
+        <member name="F:Sudoku.Shuffling.Transforming.GridTransformations.ClockwiseTable">
             <summary>
             The table of clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.CounterclockwiseTable">
+        <member name="F:Sudoku.Shuffling.Transforming.GridTransformations.CounterclockwiseTable">
             <summary>
             The table of counter-clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.PiRotateTable">
+        <member name="F:Sudoku.Shuffling.Transforming.GridTransformations.PiRotateTable">
             <summary>
             The table of pi-rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.GridTransformations.SwappableHouses">
+        <member name="F:Sudoku.Shuffling.Transforming.GridTransformations.SwappableHouses">
             <summary>
             Indicates the swappable pairs, which means the swappable houses.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.MirrorLeftRight(Sudoku.Concepts.Grid@)">
             <summary>
             Mirror left-right the grid.
             </summary>
@@ -9849,7 +9849,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.MirrorTopBottom(Sudoku.Concepts.Grid@)">
             <summary>
             Mirror top-bottom the grid.
             </summary>
@@ -9860,7 +9860,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.MirrorDiagonal(Sudoku.Concepts.Grid@)">
             <summary>
             Mirror diagonal the grid.
             </summary>
@@ -9871,7 +9871,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.Transpose(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.Transpose(Sudoku.Concepts.Grid@)">
             <summary>
             Transpose the grid.
             </summary>
@@ -9882,7 +9882,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.MirrorAntidiagonal(Sudoku.Concepts.Grid@)">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
@@ -9893,7 +9893,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotateClockwise(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.RotateClockwise(Sudoku.Concepts.Grid@)">
             <summary>
             Rotate the grid clockwise.
             </summary>
@@ -9904,7 +9904,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.RotateCounterclockwise(Sudoku.Concepts.Grid@)">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
@@ -9915,7 +9915,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.RotatePi(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.RotatePi(Sudoku.Concepts.Grid@)">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
@@ -9927,7 +9927,7 @@
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap two digits.
             </summary>
@@ -9937,7 +9937,7 @@
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap to houses.
             </summary>
@@ -9954,7 +9954,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformations.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformations.SwapChute(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap chutes (i.e. mega-rows or mega-columns).
             </summary>
@@ -9964,28 +9964,28 @@
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
         </member>
-        <member name="T:Sudoku.Runtime.TransformingServices.GridTransformingExtensions">
+        <member name="T:Sudoku.Shuffling.Transforming.GridTransformingExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Runtime.TransformingServices.TransformType)">
+        <member name="M:Sudoku.Shuffling.Transforming.GridTransformingExtensions.Transform(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.TransformType)">
             <summary>
             Transforms the grid by the specified type.
             </summary>
             <param name="grid">The grid to be transformed.</param>
             <param name="transformTypes">
-            The transform types can be applied. You can use <c><see cref="T:Sudoku.Runtime.TransformingServices.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
+            The transform types can be applied. You can use <c><see cref="T:Sudoku.Shuffling.Transforming.TransformType"/>.<see langword="operator"/> |</c> to combine flags.
             </param>
         </member>
-        <member name="T:Sudoku.Runtime.TransformingServices.RandomizationExtensions">
+        <member name="T:Sudoku.Shuffling.Transforming.RandomizationExtensions">
             <summary>
             Provides with extension methods for <see cref="T:System.Random"/>.
             </summary>
             <seealso cref="T:System.Random"/>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextDigit(System.Random)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.NextDigit(System.Random)">
             <summary>
             Returns a random integer that is within valid digit range (0..9).
             </summary>
@@ -9994,7 +9994,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextCell(System.Random)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.NextCell(System.Random)">
             <summary>
             Returns a random integer that is within valid cell range (0..81).
             </summary>
@@ -10003,7 +10003,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.NextHouse(System.Random)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.NextHouse(System.Random)">
             <summary>
             Returns a random integer that is within valid house range (0..27).
             </summary>
@@ -10012,7 +10012,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Randomly select the specified number of elements from the current collection.
             </summary>
@@ -10021,7 +10021,7 @@
             <param name="count">The desired number of elements.</param>
             <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
             <summary>
             Randomly select the specified number of elements from the current collection.
             </summary>
@@ -10030,7 +10030,7 @@
             <param name="count">The desired number of elements.</param>
             <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.CreateCellMap(System.Random,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.CreateCellMap(System.Random,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
             </summary>
@@ -10038,7 +10038,7 @@
             <param name="count">The desired number of elements.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.TransformingServices.RandomizationExtensions.CreateCandidateMap(System.Random,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.RandomizationExtensions.CreateCandidateMap(System.Random,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
             </summary>
@@ -10046,7 +10046,7 @@
             <param name="count">The desired number of elements.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.Runtime.TransformingServices.TransformType">
+        <member name="T:Sudoku.Shuffling.Transforming.TransformType">
             <summary>
             Represents a type of transformation.
             </summary>
@@ -10059,62 +10059,62 @@
 		</para>
 	</flags-attribute></remarks>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.None">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.None">
             <summary>
             The placeholder of this type.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.DigitSwap">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.DigitSwap">
             <summary>
             Indicates the transform type is to swap digits.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RowSwap">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RowSwap">
             <summary>
             Indicates the transform type is to swap rows.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.ColumnSwap">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.ColumnSwap">
             <summary>
             Indicates the transform type is to swap columns.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.BandSwap">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.BandSwap">
             <summary>
             Indicates the transform type is to swap bands.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.TowerSwap">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.TowerSwap">
             <summary>
             Indicates the transform type is to swap towers.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorLeftRight">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorLeftRight">
             <summary>
             Indicates the transform type is to mirror left and right.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorTopBottom">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorTopBottom">
             <summary>
             Indicates the transform type is to mirror top and bottom.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorDiagonal">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorDiagonal">
             <summary>
             Indicates the transform type is to mirror diagonal.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.MirrorAntidiagonal">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorAntidiagonal">
             <summary>
             Indicates the transform type is to mirror anti-diagonal.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RotateClockwise">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RotateClockwise">
             <summary>
             Indicates the transform type is to rotate clockwise.
             </summary>
         </member>
-        <member name="F:Sudoku.Runtime.TransformingServices.TransformType.RotateCounterclockwise">
+        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RotateCounterclockwise">
             <summary>
             Indicates the transform type is to ratate counter-clockwise.
             </summary>

@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.TransformingServices;
+namespace Sudoku.Shuffling.Transforming;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.

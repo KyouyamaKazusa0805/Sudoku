@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.MinlexServices;
+namespace Sudoku.Shuffling.Minlex;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/> for minlex.
