@@ -33,7 +33,7 @@ global using Sudoku.Runtime;
 global using Sudoku.Runtime.CosServices;
 global using Sudoku.Runtime.LogServices;
 global using Sudoku.Runtime.ScoreServices;
-global using Sudoku.Runtime.SolvingServices;
+global using Sudoku.Solving;
 global using static System.Math;
 global using static Sudoku.Bot.Localization.CommonStrings;
 global using static Sudoku.Runtime.LogServices.Console2;

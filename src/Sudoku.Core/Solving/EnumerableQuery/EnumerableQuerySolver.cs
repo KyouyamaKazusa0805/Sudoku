@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.SolvingServices.EnumerableQuery;
+namespace Sudoku.Solving.EnumerableQuery;
 
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.

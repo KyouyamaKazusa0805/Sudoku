@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.SolvingServices.Dlx;
+namespace Sudoku.Solving.Dlx;
 
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.

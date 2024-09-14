@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.SolvingServices.Dlx;
+namespace Sudoku.Solving.Dlx;
 
 /// <summary>
 /// Represents as a dancing link.
