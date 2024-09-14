@@ -3,6 +3,7 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a lasting constraint.
 /// </summary>
+[ConstraintOptions(AllowsMultiple = true)]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class LastingConstraint : Constraint, ILimitCountConstraint<int>, IComparisonOperatorConstraint
 {
@@ -24,7 +25,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>
-	static int ILimitCountConstraint<int>.Minimum => 1;
+	static int ILimitCountConstraint<int>.Minimum => 0;
 
 	/// <inheritdoc/>
 	static int ILimitCountConstraint<int>.Maximum => 8;
@@ -52,27 +53,33 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		var techniquesUsed = TechniqueSets.None;
-		foreach (var step in context.AnalyzerResult)
+		var desiredTechnique = TechniqueFlag switch
 		{
-			if (step is SingleStep { Subtype: var st, Code: var technique } and ILastingTrait { Lasting: var l }
-				&& (st.GetSingleTechnique() != TechniqueFlag || Operator.GetOperator<int>()(l, LimitCount)))
+			SingleTechniqueFlag.HiddenSingleRow => Technique.CrosshatchingRow,
+			SingleTechniqueFlag.HiddenSingleColumn => Technique.CrosshatchingColumn,
+			SingleTechniqueFlag.NakedSingle => Technique.NakedSingle
+		};
+		if (Operator == ComparisonOperator.Inequality && LimitCount == 0)
+		{
+			// Optimization: If a user sets 'lasting != 0' constraint, it'll degenerate to check existence of such technique.
+			foreach (var step in context.AnalyzerResult)
 			{
-				techniquesUsed.Add(technique);
-				continue;
+				if (step.Code == desiredTechnique)
+				{
+					return true;
+				}
 			}
-
 			return false;
 		}
 
-		return techniquesUsed.Contains(
-			TechniqueFlag switch
+		foreach (var step in context.AnalyzerResult)
+		{
+			if (step is not (SingleStep { Code: var technique } and ILastingTrait { Lasting: var factLasting })
+				|| desiredTechnique == technique && !Operator.GetOperator<int>()(factLasting, LimitCount))
 			{
-				SingleTechniqueFlag.HiddenSingleBlock => Technique.CrosshatchingBlock,
-				SingleTechniqueFlag.HiddenSingleRow => Technique.CrosshatchingRow,
-				SingleTechniqueFlag.HiddenSingleColumn => Technique.CrosshatchingColumn,
-				SingleTechniqueFlag.NakedSingle => Technique.NakedSingle
+				return false;
 			}
-		);
+		}
+		return true;
 	}
 }

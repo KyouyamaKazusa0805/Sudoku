@@ -267,11 +267,6 @@ public partial class GeneratedPuzzleConstraintPage
 			{
 				new SegmentedItem
 				{
-					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock", App.CurrentCulture),
-					Tag = SingleTechniqueFlag.HiddenSingleBlock
-				},
-				new SegmentedItem
-				{
 					Content = SR.Get("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleRow", App.CurrentCulture),
 					Tag = SingleTechniqueFlag.HiddenSingleRow
 				},
