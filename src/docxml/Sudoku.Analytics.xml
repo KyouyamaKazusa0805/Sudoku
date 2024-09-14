@@ -10475,15 +10475,11 @@
             <summary>
             Checks for single steps using ittoryu mode.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect_NonIttoryuMode(Sudoku.Analytics.StepAnalysisContext@)">
             <summary>
             Checks for single steps using non-ittoryu mode.
             </summary>
-            <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/param[@name='context']"/></param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)" path="/returns"/></returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>

@@ -69,8 +69,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for single steps using ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private Step? Collect_IttoryuMode(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
@@ -200,8 +198,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Checks for single steps using non-ittoryu mode.
 	/// </summary>
-	/// <param name="context"><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
-	/// <returns><inheritdoc cref="Collect(ref StepAnalysisContext)" path="/returns"/></returns>
 	private unsafe Step? Collect_NonIttoryuMode(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
@@ -406,13 +402,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// that only appears once indeed.
 	/// </para>
 	/// </remarks>
-	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
-		SingleStepSearcher @this,
-		ref readonly Grid grid,
-		ref StepAnalysisContext context,
-		Digit digit,
-		House house
-	)
+	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(SingleStepSearcher @this, ref readonly Grid grid, ref StepAnalysisContext context, Digit digit, House house)
 	{
 		var (count, resultCell, flag) = (0, -1, true);
 		foreach (var cell in HousesMap[house])
