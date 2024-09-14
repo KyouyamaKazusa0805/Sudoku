@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Generating.Qualified;
 
 /// <summary>
 /// Represents a generator that can generate a puzzle with a unique solution, and using the specified technique.

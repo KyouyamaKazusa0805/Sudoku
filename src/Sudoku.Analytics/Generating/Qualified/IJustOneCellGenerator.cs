@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Generating.Qualified;
 
 /// <summary>
 /// Represents a type that can generate puzzles that can only be solved for one cell.

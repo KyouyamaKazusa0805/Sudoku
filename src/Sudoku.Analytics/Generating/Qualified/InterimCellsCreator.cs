@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Generating.Qualified;
 
 /// <summary>
 /// Defines a type that creates a <see cref="CellMap"/> instance as interim cells used in generating operation.

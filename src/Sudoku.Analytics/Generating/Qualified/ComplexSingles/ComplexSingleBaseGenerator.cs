@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Generating.Qualified;
 
 /// <summary>
 /// Represents a generator type that can generate puzzles with complex single techniques.

@@ -1,4 +1,4 @@
-namespace Sudoku.Generating;
+namespace Sudoku.Generating.Qualified;
 
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Direct Subsets.
