@@ -1,4 +1,4 @@
-namespace Sudoku.Traits;
+namespace Sudoku.Analytics.Traits;
 
 /// <summary>
 /// Represents a direct trait.

@@ -1,4 +1,4 @@
-namespace Sudoku.Traits;
+namespace Sudoku.Analytics.Traits;
 
 /// <summary>
 /// Represents a trait that describes the cell list.

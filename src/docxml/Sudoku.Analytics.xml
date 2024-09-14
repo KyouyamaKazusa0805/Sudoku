@@ -11315,7 +11315,7 @@
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
@@ -11433,7 +11433,7 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Cells">
@@ -11490,7 +11490,7 @@
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -11555,7 +11555,7 @@
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -11623,7 +11623,7 @@
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Sudoku#Traits#IBranchTrait#BranchesCount">
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -12070,7 +12070,7 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Sudoku#Traits#ICandidateListTrait#CandidateSize">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Sudoku#Analytics#Traits#ICandidateListTrait#CandidateSize">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.GetName(System.IFormatProvider)">
@@ -12169,10 +12169,10 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Sudoku#Traits#ITrueCandidatesTrait#TrueCandidates">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Sudoku#Analytics#Traits#ITrueCandidatesTrait#TrueCandidates">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDigit">
@@ -12224,13 +12224,13 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetCells">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Size">
@@ -12508,10 +12508,10 @@
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetCells">
@@ -12607,7 +12607,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Sudoku#Traits#IExtraCellListTrait#ExtraCellSize">
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Sudoku#Analytics#Traits#IExtraCellListTrait#ExtraCellSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraCells">
@@ -12684,7 +12684,7 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
@@ -12805,10 +12805,10 @@
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetCells">
@@ -12973,7 +12973,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Equals(Sudoku.Analytics.Step)">
@@ -13115,10 +13115,10 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueLoopType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueLoopType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueLoopType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueLoopType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
@@ -13324,10 +13324,10 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetCells">
@@ -13768,10 +13768,10 @@
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetCells">
@@ -14103,16 +14103,16 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetDigitsMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetCells">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraCells">
@@ -14175,7 +14175,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.TechniqueResourceKeyInheritsFromBase">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.Sudoku#Traits#IConjugatePairTrait#ConjugatePairsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.Sudoku#Analytics#Traits#IConjugatePairTrait#ConjugatePairsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairExtraStep.ExtraCells">
@@ -14230,7 +14230,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairStep.Sudoku#Traits#IConjugatePairTrait#ConjugatePairsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairStep.Sudoku#Analytics#Traits#IConjugatePairTrait#ConjugatePairsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleConjugatePairStep.ConjugatePairs">
@@ -14282,7 +14282,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
@@ -14337,7 +14337,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.GuardianCells">
@@ -14391,7 +14391,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.GuardianCells">
@@ -14455,10 +14455,10 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleExternalType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleExternalType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleExternalType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleExternalType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.GuardianCells">
@@ -14581,7 +14581,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.GuardianCells">
@@ -14640,7 +14640,7 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.GuardianCells">
@@ -14874,10 +14874,10 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Sudoku#Traits#IIsolatedDigitTrait#ContainsIsolatedDigits">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Sudoku#Analytics#Traits#IIsolatedDigitTrait#ContainsIsolatedDigits">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Sudoku#Traits#IIsolatedDigitTrait#IsolatedDigitsCount">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Sudoku#Analytics#Traits#IIsolatedDigitTrait#IsolatedDigitsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep.Block">
@@ -15059,16 +15059,16 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetSize">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetDigitsMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetCells">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraCells">
@@ -15248,7 +15248,7 @@
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Equals(Sudoku.Analytics.Step)">
@@ -15840,7 +15840,7 @@
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Sudoku#Traits#IConjugatePairTrait#ConjugatePairsCount">
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Sudoku#Analytics#Traits#IConjugatePairTrait#ConjugatePairsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ConjugatePairs">
@@ -16169,13 +16169,13 @@
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#IsHidden">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#IsHidden">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetDigitsMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetCells">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraCells">
@@ -17062,7 +17062,7 @@
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Sudoku#Traits#ISizeTrait#Size">
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Sudoku#Analytics#Traits#ISizeTrait#Size">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
@@ -17279,7 +17279,7 @@
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
@@ -17427,10 +17427,10 @@
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Sudoku#Traits#IIsolatedDigitTrait#ContainsIsolatedDigits">
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Sudoku#Analytics#Traits#IIsolatedDigitTrait#ContainsIsolatedDigits">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Sudoku#Traits#IIsolatedDigitTrait#IsolatedDigitsCount">
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Sudoku#Analytics#Traits#IIsolatedDigitTrait#IsolatedDigitsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Block">
@@ -17522,7 +17522,7 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Equals(Sudoku.Analytics.Step)">
@@ -17625,7 +17625,7 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Sudoku#Traits#IExtraCellListTrait#ExtraCellSize">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Sudoku#Analytics#Traits#IExtraCellListTrait#ExtraCellSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraCells">
@@ -17811,13 +17811,13 @@
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Traits#IGuardianTrait#GuardianCellsCount">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCellsCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Traits#IGuardianTrait#GuardianCells">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Traits#IGuardianTrait#GuardianCells">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.GuardianStep.Equals(Sudoku.Analytics.Step)">
@@ -18321,7 +18321,7 @@
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Sudoku#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.Equals(Sudoku.Analytics.Step)">
@@ -18367,7 +18367,7 @@
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary" /></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -18379,7 +18379,7 @@
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary" /></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -18411,7 +18411,7 @@
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="excluderInfo">
             Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
@@ -18431,7 +18431,7 @@
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="excluderInfo">
             Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
@@ -18482,7 +18482,7 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -18494,7 +18494,7 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>
@@ -18506,7 +18506,7 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary" /></param>
             <param name="lastingHouseType">Indicates the lasting house type.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32,Sudoku.Concepts.HouseType)">
@@ -18519,7 +18519,7 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary" /></param>
             <param name="lastingHouseType">Indicates the lasting house type.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
@@ -19326,6 +19326,194 @@
         <member name="P:Sudoku.Analytics.Steps.XyzRingStep.IsSiamese">
             <summary>
             The generated property declaration for parameter <c>isSiamese</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IBranchTrait">
+            <summary>
+            Represents a trait that describes the branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IBranchTrait.BranchesCount">
+            <summary>
+            Indicates the number of branches.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ICandidateListTrait">
+            <summary>
+            Represents a trait that describes the candidate list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ICandidateListTrait.CandidateSize">
+            <summary>
+            Indicates the number of candidates.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ICellListTrait">
+            <summary>
+            Represents a trait that describes the cell list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ICellListTrait.CellSize">
+            <summary>
+            Indicates the number of cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IComplexChainLengthTrait">
+            <summary>
+            Represents a trait that describes the length of complex chain in all branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IComplexChainLengthTrait.ComplexLength">
+            <summary>
+            Indicates the length of complex chain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IConjugatePairTrait">
+            <summary>
+            Represents a trait that describes the conjugate pairs.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IConjugatePairTrait.ConjugatePairsCount">
+            <summary>
+            Indicates the number of conjugate pairs.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IDeadlyPatternTypeTrait">
+            <summary>
+            Represents a trait that describes the subtype used in a deadly pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IDeadlyPatternTypeTrait.Type">
+            <summary>
+            Indicates the subtype used in the pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IDirectTrait`1">
+            <summary>
+            Represents a direct trait.
+            </summary>
+            <typeparam name="TBase">The type of the base value.</typeparam>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IExtraCellListTrait">
+            <summary>
+            Represents a trait that describes the extra cell list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IExtraCellListTrait.ExtraCellSize">
+            <summary>
+            Indicates the number of extra cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IGuardianTrait">
+            <summary>
+            Represents a trait that describes the guardians.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IGuardianTrait.GuardianCellsCount">
+            <summary>
+            Indicates the number of guardian cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IGuardianTrait.GuardianCells">
+            <summary>
+            Indicates the guardians used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IIncompleteTrait">
+            <summary>
+            Represents a trait that can describe whether the pattern is incomplete or not.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IIncompleteTrait.IsIncomplete">
+            <summary>
+            Indicates whether the pattern is incomplete.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IIsolatedDigitTrait">
+            <summary>
+            Represents a trait that describes the isolated digits appeared in the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IIsolatedDigitTrait.ContainsIsolatedDigits">
+            <summary>
+            Indicates whether the pattern contains at least one isolated digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IIsolatedDigitTrait.IsolatedDigitsCount">
+            <summary>
+            Indicates the number of isolated digits.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ILastingTrait">
+            <summary>
+            Represents lasting trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting">
+            <summary>
+            Indicates the lasting of the single. The value describes the number of empty cells appeared in a house
+            containing the target conclusion from the single step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IPatternType3StepTrait`1">
+            <summary>
+            Represents a step of type <typeparamref name="TSelf" />, presenting the third subtype.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IPatternType3StepTrait`1.IsHidden">
+            <summary>
+            Indicates whether the subset is hidden.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IPatternType3StepTrait`1.SubsetSize">
+            <summary>
+            Indicates the size of the subset. The value may not be equal to the length of <see cref="P:Sudoku.Analytics.Traits.IPatternType3StepTrait`1.SubsetCells"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IPatternType3StepTrait`1.SubsetDigitsMask">
+            <summary>
+            Indicates the digits mask including all digits appeared in the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.IPatternType3StepTrait`1.SubsetCells">
+            <summary>
+            Indicates the subset cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISizeTrait">
+            <summary>
+            Represents a size trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ISizeTrait.Size">
+            <summary>
+            Indicates the size of the pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ITrait">
+            <summary>
+            Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ITrueCandidatesTrait">
+            <summary>
+            Represents a trait that describes the true candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ITrueCandidatesTrait.TrueCandidates">
+            <summary>
+            Indicates the true candidates used.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
@@ -32959,194 +33147,6 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Traits.IBranchTrait">
-            <summary>
-            Represents a trait that describes the branches.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IBranchTrait.BranchesCount">
-            <summary>
-            Indicates the number of branches.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.ICandidateListTrait">
-            <summary>
-            Represents a trait that describes the candidate list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.ICandidateListTrait.CandidateSize">
-            <summary>
-            Indicates the number of candidates.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.ICellListTrait">
-            <summary>
-            Represents a trait that describes the cell list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.ICellListTrait.CellSize">
-            <summary>
-            Indicates the number of cells.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IComplexChainLengthTrait">
-            <summary>
-            Represents a trait that describes the length of complex chain in all branches.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IComplexChainLengthTrait.ComplexLength">
-            <summary>
-            Indicates the length of complex chain.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IConjugatePairTrait">
-            <summary>
-            Represents a trait that describes the conjugate pairs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IConjugatePairTrait.ConjugatePairsCount">
-            <summary>
-            Indicates the number of conjugate pairs.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IDeadlyPatternTypeTrait">
-            <summary>
-            Represents a trait that describes the subtype used in a deadly pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IDeadlyPatternTypeTrait.Type">
-            <summary>
-            Indicates the subtype used in the pattern.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IDirectTrait`1">
-            <summary>
-            Represents a direct trait.
-            </summary>
-            <typeparam name="TBase">The type of the base value.</typeparam>
-        </member>
-        <member name="T:Sudoku.Traits.IExtraCellListTrait">
-            <summary>
-            Represents a trait that describes the extra cell list.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IExtraCellListTrait.ExtraCellSize">
-            <summary>
-            Indicates the number of extra cells.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IGuardianTrait">
-            <summary>
-            Represents a trait that describes the guardians.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IGuardianTrait.GuardianCellsCount">
-            <summary>
-            Indicates the number of guardian cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IGuardianTrait.GuardianCells">
-            <summary>
-            Indicates the guardians used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IIncompleteTrait">
-            <summary>
-            Represents a trait that can describe whether the pattern is incomplete or not.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IIncompleteTrait.IsIncomplete">
-            <summary>
-            Indicates whether the pattern is incomplete.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IIsolatedDigitTrait">
-            <summary>
-            Represents a trait that describes the isolated digits appeared in the pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IIsolatedDigitTrait.ContainsIsolatedDigits">
-            <summary>
-            Indicates whether the pattern contains at least one isolated digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IIsolatedDigitTrait.IsolatedDigitsCount">
-            <summary>
-            Indicates the number of isolated digits.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.ILastingTrait">
-            <summary>
-            Represents lasting trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.ILastingTrait.Lasting">
-            <summary>
-            Indicates the lasting of the single. The value describes the number of empty cells appeared in a house
-            containing the target conclusion from the single step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.IPatternType3StepTrait`1">
-            <summary>
-            Represents a step of type <typeparamref name="TSelf" />, presenting the third subtype.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-        </member>
-        <member name="P:Sudoku.Traits.IPatternType3StepTrait`1.IsHidden">
-            <summary>
-            Indicates whether the subset is hidden.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IPatternType3StepTrait`1.SubsetSize">
-            <summary>
-            Indicates the size of the subset. The value may not be equal to the length of <see cref="P:Sudoku.Traits.IPatternType3StepTrait`1.SubsetCells"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IPatternType3StepTrait`1.SubsetDigitsMask">
-            <summary>
-            Indicates the digits mask including all digits appeared in the subset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.IPatternType3StepTrait`1.SubsetCells">
-            <summary>
-            Indicates the subset cells.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.ISizeTrait">
-            <summary>
-            Represents a size trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.ISizeTrait.Size">
-            <summary>
-            Indicates the size of the pattern.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Traits.ITrait">
-            <summary>
-            Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="T:Sudoku.Traits.ITrueCandidatesTrait">
-            <summary>
-            Represents a trait that describes the true candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Traits.ITrueCandidatesTrait.TrueCandidates">
-            <summary>
-            Indicates the true candidates used.
-            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ChineseDigitsPattern method.</summary>
