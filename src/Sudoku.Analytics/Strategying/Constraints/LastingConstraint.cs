@@ -59,17 +59,19 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 			SingleTechniqueFlag.HiddenSingleColumn => Technique.CrosshatchingColumn,
 			SingleTechniqueFlag.NakedSingle => Technique.NakedSingle
 		};
-		if (Operator == ComparisonOperator.Inequality && LimitCount == 0)
+		if (Operator is ComparisonOperator.Inequality or ComparisonOperator.Equality && LimitCount == 0)
 		{
 			// Optimization: If a user sets 'lasting != 0' constraint, it'll degenerate to check existence of such technique.
+			// also, 'lasting == 0' can be handled here.
 			foreach (var step in context.AnalyzerResult)
 			{
 				if (step.Code == desiredTechnique)
 				{
-					return true;
+					// '!= 0' means it exists, and '== 0' means it not.
+					return Operator == ComparisonOperator.Inequality;
 				}
 			}
-			return false;
+			return Operator == ComparisonOperator.Equality;
 		}
 
 		foreach (var step in context.AnalyzerResult)
