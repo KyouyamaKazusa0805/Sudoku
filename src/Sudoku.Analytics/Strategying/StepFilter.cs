@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Strategying;
 
 /// <summary>
 /// Defines a type that checks whether a <see cref="Step"/> satisfies the specified condition.

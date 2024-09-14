@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Represents a progress used by <see cref="IGenerator{TResult}.Generate(IProgress{GeneratorProgress}?, CancellationToken)"/>.

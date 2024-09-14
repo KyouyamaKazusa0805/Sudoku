@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by <b>only</b> using Direct Single techniques.

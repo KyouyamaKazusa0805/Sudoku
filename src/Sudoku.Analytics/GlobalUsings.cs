@@ -50,6 +50,7 @@ global using Sudoku.Runtime.MingridServices;
 global using Sudoku.Runtime.SolvingServices;
 global using Sudoku.Runtime.TransformingServices;
 global using Sudoku.Snyder;
+global using Sudoku.Strategying;
 global using Sudoku.Strategying.Constraints;
 global using static Sudoku.Analytics.Caching.MemoryCachedData;
 global using static Sudoku.Concepts.ConclusionType;

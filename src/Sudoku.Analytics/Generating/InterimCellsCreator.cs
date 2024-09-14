@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Defines a type that creates a <see cref="CellMap"/> instance as interim cells used in generating operation.

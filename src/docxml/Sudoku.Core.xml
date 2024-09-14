@@ -7403,6 +7403,335 @@
             Indicates the fifth ALS recorded.
             </summary>
         </member>
+        <member name="T:Sudoku.Generating.FilteredGeneratorProgress">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Generating.GeneratorProgress"/>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Generating.GeneratorProgress"/>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Count">
+            <summary>The number of checked puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Succeeded">
+            <summary>The number of succeeded puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Percentage">
+            <summary>
+            Indicates the percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#FilteredGeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Generator">
+            <summary>
+            Represents a puzzle generator, implemented by HoDoKu.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.#ctor">
+            <summary>
+            Represents a puzzle generator, implemented by HoDoKu.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator.AutoClues">
+            <summary>
+            Indicates the auto clues count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._generateIndices">
+            <summary>
+            The order in which cells are set when generating a full grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._rng">
+            <summary>
+            A random generator for creating new puzzles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._solver">
+            <summary>
+            Indicates the internal fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._stack">
+            <summary>
+            The recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._newFullSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._newValidSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle randomly, or return <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.
+            </summary>
+            <param name="cluesCount">
+            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+            <para>
+            Please note that the target puzzle may not contain the same number of givens as this value.
+            If the number of givens from a puzzle is below this value but it also has a unique solution,
+            this puzzle will be still treated as valid one.
+            </para>
+            </param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result grid, or <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
+            or the argument <paramref name="cluesCount"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Generating.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            If a deletion produces a grid with more than one solution it is of course undone.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GenerateForFullGrid">
+            <summary>
+            Generate a solution grid.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.GeneratorProgress">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.#ctor(System.Int32)">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Generating.GeneratorProgress.Count">
+            <summary>The number of puzzles generated currently.</summary>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#GeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.GeneratorRecursionStackEntry">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorRecursionStackEntry.#ctor">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates">
+            <summary>
+            The candidates for cells <see cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell"/>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell">
+            <summary>
+            The index of the cell that's being tried.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.CandidateIndex">
+            <summary>
+            The index of the last tried candidate in <see cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.SudokuGrid">
+            <summary>
+            The current state of the sudoku.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
+            <summary>
+            Defines a puzzle generator that makes the given pattern as a hard one.
+            A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._rng">
+            <summary>
+            Indicates the shared <see cref="T:System.Random"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._solver">
+            <summary>
+            Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
+            of a puzzle being generated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
+            <summary>
+            Indicates the block factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+            <summary>
+            Indicates the swapping factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.HardPatternPuzzleGenerator.Rng">
+            <summary>
+            Indicates the backing random.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Span{System.Char},System.Span{System.Char})">
+            <summary>
+            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
+            </summary>
+            <param name="puzzleString">The pointer that points to the puzzle.</param>
+            <param name="solutionString">
+            The pointer that points to the solution. The result value will be changed here.
+            </param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Span{System.Int32})">
+            <summary>
+            Creates a start pattern based on a base pattern.
+            </summary>
+            <param name="pattern">The base pattern.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Span{System.Int32})">
+            <summary>
+            To re-create the pattern.
+            </summary>
+            <param name="pattern">The pointer that points to an array of the pattern values.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Span{System.Char},System.Int32)">
+            <summary>
+            Check whether the digit in its peer cells has duplicate ones.
+            </summary>
+            <param name="gridString">The pointer that points to a grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.IGenerator`1">
+            <summary>
+            Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
+            encapsulating the details of the result.
+            </summary>
+            <typeparam name="TResult">The type of the result. This type is generally <see cref="T:Sudoku.Concepts.Grid"/>.</typeparam>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
+            </summary>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result returned.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.IProgressDataProvider`1">
+            <summary>
+            Indicates the data provider type,
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+        </member>
+        <member name="P:Sudoku.Generating.IProgressDataProvider`1.Count">
+            <summary>
+            Indicates the number of puzzles having been generated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.IProgressDataProvider`1.ToDisplayString">
+            <summary>
+            Try to fetch display string for the current instance.
+            </summary>
+            <returns>The display string.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
+            <summary>
+            Try to create a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="count">The number of puzzles generated.</param>
+            <param name="succeeded">The number of puzzles has passed the checking.</param>
+            <returns>A <typeparamref name="TSelf"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.PatternBasedPuzzleGenerator">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="seedPattern">Indicates the predefind pattern used.</param>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
+            <param name="seedPattern">Indicates the predefind pattern used.</param>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GenerateCore(System.Int32[],Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32@,System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            The back method to generate a valid sudoku grid puzzle.
+            </summary>
+            <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
+            <param name="playground">The playground to be operated with.</param>
+            <param name="resultGrid">The result grid to be returned.</param>
+            <param name="i">The index that the current searching is on.</param>
+            <param name="count">The number of puzzles generated.</param>
+            <param name="progress">The progress instance.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.OrderCellsViaConnectionComplexity">
+            <summary>
+            Order the pattern cells via connection complexity.
+            </summary>
+            <returns>The cells ordered.</returns>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
+            <summary>
+            The generated field declaration for parameter <c>seedPattern</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Linq.CandidateMapEnumerable">
             <summary>
             Represents a list of LINQ methods that can operate with <see cref="T:Sudoku.Concepts.CandidateMap"/> instances.
@@ -8319,335 +8648,6 @@
             <param name="this">The culture.</param>
             <param name="otherName">The other name to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress">
-            <summary>
-            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Runtime.GeneratingServices.GeneratorProgress"/>, but with filtered data.
-            </summary>
-            <param name="Count">The number of checked puzzles.</param>
-            <param name="Succeeded">The number of succeeded puzzles.</param>
-            <seealso cref="T:Sudoku.Runtime.GeneratingServices.GeneratorProgress"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Runtime.GeneratingServices.GeneratorProgress"/>, but with filtered data.
-            </summary>
-            <param name="Count">The number of checked puzzles.</param>
-            <param name="Succeeded">The number of succeeded puzzles.</param>
-            <seealso cref="T:Sudoku.Runtime.GeneratingServices.GeneratorProgress"/>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.Count">
-            <summary>The number of checked puzzles.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.Succeeded">
-            <summary>The number of succeeded puzzles.</summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.Percentage">
-            <summary>
-            Indicates the percentage.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.Sudoku#Runtime#GeneratingServices#IProgressDataProvider{Sudoku#Runtime#GeneratingServices#FilteredGeneratorProgress}#ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.FilteredGeneratorProgress.Sudoku#Runtime#GeneratingServices#IProgressDataProvider{Sudoku#Runtime#GeneratingServices#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.Generator">
-            <summary>
-            Represents a puzzle generator, implemented by HoDoKu.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.#ctor">
-            <summary>
-            Represents a puzzle generator, implemented by HoDoKu.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator.AutoClues">
-            <summary>
-            Indicates the auto clues count.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._generateIndices">
-            <summary>
-            The order in which cells are set when generating a full grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._rng">
-            <summary>
-            A random generator for creating new puzzles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._solver">
-            <summary>
-            Indicates the internal fast solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._stack">
-            <summary>
-            The recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._newFullSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.Generator._newValidSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle randomly, or return <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.
-            </summary>
-            <param name="cluesCount">
-            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
-            <para>
-            Please note that the target puzzle may not contain the same number of givens as this value.
-            If the number of givens from a puzzle is below this value but it also has a unique solution,
-            this puzzle will be still treated as valid one.
-            </para>
-            </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The result grid, or <see cref="F:Sudoku.Concepts.Grid.Undefined"/> if a user cancelled the operation.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
-            or the argument <paramref name="cluesCount"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Takes a full sudoku from <see cref="F:Sudoku.Runtime.GeneratingServices.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
-            If a deletion produces a grid with more than one solution it is of course undone.
-            </summary>
-            <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.GenerateForFullGrid">
-            <summary>
-            Generate a solution grid.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.Generator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.GeneratorProgress">
-            <summary>
-            Represents a progress used by <see cref="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)"/>.
-            </summary>
-            <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.GeneratorProgress.#ctor(System.Int32)">
-            <summary>
-            Represents a progress used by <see cref="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)"/>.
-            </summary>
-            <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.GeneratorProgress.Count">
-            <summary>The number of puzzles generated currently.</summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.GeneratorProgress.Sudoku#Runtime#GeneratingServices#IProgressDataProvider{Sudoku#Runtime#GeneratingServices#GeneratorProgress}#ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.GeneratorProgress.Sudoku#Runtime#GeneratingServices#IProgressDataProvider{Sudoku#Runtime#GeneratingServices#GeneratorProgress}#Create(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry">
-            <summary>
-            One entry in recursion stack.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.#ctor">
-            <summary>
-            One entry in recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Candidates">
-            <summary>
-            The candidates for cells <see cref="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Cell"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Cell"/>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Cell">
-            <summary>
-            The index of the cell that's being tried.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.CandidateIndex">
-            <summary>
-            The index of the last tried candidate in <see cref="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Candidates"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.Candidates"/>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.GeneratorRecursionStackEntry.SudokuGrid">
-            <summary>
-            The current state of the sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator">
-            <summary>
-            Defines a puzzle generator that makes the given pattern as a hard one.
-            A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator._rng">
-            <summary>
-            Indicates the shared <see cref="T:System.Random"/> instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator._solver">
-            <summary>
-            Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
-            of a puzzle being generated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.BlockFactor">
-            <summary>
-            Indicates the block factor.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.SwappingFactor">
-            <summary>
-            Indicates the swapping factor.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.Rng">
-            <summary>
-            Indicates the backing random.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Span{System.Char},System.Span{System.Char})">
-            <summary>
-            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
-            </summary>
-            <param name="puzzleString">The pointer that points to the puzzle.</param>
-            <param name="solutionString">
-            The pointer that points to the solution. The result value will be changed here.
-            </param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.CreatePattern(System.Span{System.Int32})">
-            <summary>
-            Creates a start pattern based on a base pattern.
-            </summary>
-            <param name="pattern">The base pattern.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.RecreatePattern(System.Span{System.Int32})">
-            <summary>
-            To re-create the pattern.
-            </summary>
-            <param name="pattern">The pointer that points to an array of the pattern values.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.HardPatternPuzzleGenerator.CheckDuplicate(System.Span{System.Char},System.Int32)">
-            <summary>
-            Check whether the digit in its peer cells has duplicate ones.
-            </summary>
-            <param name="gridString">The pointer that points to a grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.IGenerator`1">
-            <summary>
-            Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
-            encapsulating the details of the result.
-            </summary>
-            <typeparam name="TResult">The type of the result. This type is generally <see cref="T:Sudoku.Concepts.Grid"/>.</typeparam>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
-            </summary>
-            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The result returned.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.IProgressDataProvider`1">
-            <summary>
-            Indicates the data provider type,
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-        </member>
-        <member name="P:Sudoku.Runtime.GeneratingServices.IProgressDataProvider`1.Count">
-            <summary>
-            Indicates the number of puzzles having been generated.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IProgressDataProvider`1.ToDisplayString">
-            <summary>
-            Try to fetch display string for the current instance.
-            </summary>
-            <returns>The display string.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
-            <summary>
-            Try to create a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="count">The number of puzzles generated.</param>
-            <param name="succeeded">The number of puzzles has passed the checking.</param>
-            <returns>A <typeparamref name="TSelf"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator">
-            <summary>
-            Represents a generator that is based on pattern.
-            </summary>
-            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
-            <param name="seedPattern">Indicates the predefind pattern used.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a generator that is based on pattern.
-            </summary>
-            <param name="_missingDigit">Indicates the missing digit that can be used.</param>
-            <param name="seedPattern">Indicates the predefind pattern used.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Runtime.GeneratingServices.IGenerator`1.Generate(System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.GenerateCore(System.Int32[],Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32@,System.IProgress{Sudoku.Runtime.GeneratingServices.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            The back method to generate a valid sudoku grid puzzle.
-            </summary>
-            <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
-            <param name="playground">The playground to be operated with.</param>
-            <param name="resultGrid">The result grid to be returned.</param>
-            <param name="i">The index that the current searching is on.</param>
-            <param name="count">The number of puzzles generated.</param>
-            <param name="progress">The progress instance.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-        </member>
-        <member name="M:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator.OrderCellsViaConnectionComplexity">
-            <summary>
-            Order the pattern cells via connection complexity.
-            </summary>
-            <returns>The cells ordered.</returns>
-        </member>
-        <member name="F:Sudoku.Runtime.GeneratingServices.PatternBasedPuzzleGenerator._seedPattern">
-            <summary>
-            The generated field declaration for parameter <c>seedPattern</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Runtime.IContext">
             <summary>

@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.

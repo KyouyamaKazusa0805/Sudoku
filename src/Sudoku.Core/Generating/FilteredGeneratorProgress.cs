@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.GeneratingServices;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Represents a progress data type that is nearly same as <see cref="GeneratorProgress"/>, but with filtered data.
