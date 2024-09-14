@@ -57,10 +57,6 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
-	[DependencyProperty]
-	public static partial bool AnalyzerUseIttoryuMode { get; set; }
-
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectPointing { get; set; }
@@ -188,6 +184,10 @@ public static partial class AnalyzerProperties
 	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
 	[DependencyProperty(DefaultValue = 64)]
 	public static partial int BowmanBingoMaxLength { get; set; }
+
+	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
+	[DependencyProperty]
+	public static partial bool AnalyzerUseIttoryuMode { get; set; }
 
 
 	/// <summary>

@@ -37,10 +37,6 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool HiddenSinglesInBlockFirst { get; set; }
 
-	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
-	[DependencyProperty]
-	public partial bool AnalyzerUseIttoryuMode { get; set; }
-
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool AllowDirectPointing { get; set; }
@@ -201,6 +197,10 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	/// <inheritdoc cref="Collector.DifficultyLevelMode"/>
 	[DependencyProperty(DefaultValue = 0)]
 	public partial int DifficultyLevelMode { get; set; }
+
+	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
+	[DependencyProperty]
+	public partial bool AnalyzerUseIttoryuMode { get; set; }
 
 	/// <inheritdoc cref="StepGathererOptions.BabaGroupInitialLetter"/>
 	[DependencyProperty(DefaultValue = BabaGroupInitialLetter.EnglishLetter_X)]
