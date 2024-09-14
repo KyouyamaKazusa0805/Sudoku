@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying;
+namespace Sudoku.Generating.Filtering;
 
 /// <summary>
 /// Provides with extension methods on <see cref="ComparisonOperator"/>.

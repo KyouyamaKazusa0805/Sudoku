@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying;
+namespace Sudoku.Generating.Filtering;
 
 /// <summary>
 /// Represent an operator to be used in comparison.

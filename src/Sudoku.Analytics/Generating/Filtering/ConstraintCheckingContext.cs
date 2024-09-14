@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying;
+namespace Sudoku.Generating.Filtering;
 
 /// <summary>
 /// Represents context that will be called by method <see cref="Constraint.Check(ConstraintCheckingContext)"/>.

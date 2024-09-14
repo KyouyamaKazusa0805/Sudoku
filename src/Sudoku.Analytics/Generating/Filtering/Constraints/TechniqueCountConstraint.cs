@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Generating.Filtering.Constraints;
 
 /// <summary>
 /// Represents a rule that checks whether the specified analyzer result after analyzed by a grid

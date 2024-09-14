@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Generating.Filtering.Constraints;
 
 /// <summary>
 /// Represents an elimination count constraint.

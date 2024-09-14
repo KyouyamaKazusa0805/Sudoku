@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying;
+namespace Sudoku.Generating.Filtering;
 
 /// <summary>
 /// Represents a between rule.

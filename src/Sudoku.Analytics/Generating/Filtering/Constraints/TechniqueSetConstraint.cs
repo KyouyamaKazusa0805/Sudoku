@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Generating.Filtering.Constraints;
 
 /// <summary>
 /// Represents a constraint that limits a puzzle that can only use such techniques to be finished.

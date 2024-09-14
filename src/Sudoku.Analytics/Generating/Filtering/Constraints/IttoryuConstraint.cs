@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Generating.Filtering.Constraints;
 
 /// <summary>
 /// Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.

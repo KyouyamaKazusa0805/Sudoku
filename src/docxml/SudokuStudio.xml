@@ -14957,7 +14957,7 @@
             Create controls via properties.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Strategying.Constraint,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Generating.Filtering.Constraint,System.Boolean)">
             <summary>
             Add a new control using the specified constraint.
             </summary>
@@ -14988,7 +14988,7 @@
             <param name="valueToCompare">The value to compare.</param>
             <param name="constraintCallback">The constraint callback method.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComparisonOperatorControl``1(Sudoku.Strategying.ComparisonOperator,``0)">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComparisonOperatorControl``1(Sudoku.Generating.Filtering.ComparisonOperator,``0)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> object for comparison operator displaying.
             </summary>
@@ -15006,7 +15006,7 @@
             <param name="constraint">The constraint.</param>
             <returns>An <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> instance.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.BetweenRuleControl``1(``0,Sudoku.Strategying.BetweenRule)">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.BetweenRuleControl``1(``0,Sudoku.Generating.Filtering.BetweenRule)">
             <summary>
             Creates a between rule control.
             </summary>

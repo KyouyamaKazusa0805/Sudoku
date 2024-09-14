@@ -22889,6 +22889,861 @@
             Indicates the conclusion cell must be <c>r5c5</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Generating.Filtering.BetweenRule">
+            <summary>
+            Represents a between rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.BetweenRule.BothOpen">
+            <summary>
+            Indicates both left and right are open (not included).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.BetweenRule.LeftOpen">
+            <summary>
+            Indicates only the left is open, and the right is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.BetweenRule.RightOpen">
+            <summary>
+            Indicates only the right is open, and the left is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.BetweenRule.BothClosed">
+            <summary>
+            Indicates both left and right are closed (included).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.ComparisonOperator">
+            <summary>
+            Represent an operator to be used in comparison.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.Equality">
+            <summary>
+            Indicates the comparison rule is to compare equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.Inequality">
+            <summary>
+            Indicates the comparison rule is to compare inequality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.GreaterThan">
+            <summary>
+            Indicates the comparison rule is to compare greater-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.GreaterThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare greater-than or equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.LessThan">
+            <summary>
+            Indicates the comparison rule is to compare less-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ComparisonOperator.LessThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare less-than or equality.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.ComparisonOperatorExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Generating.Filtering.ComparisonOperator"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Generating.Filtering.ComparisonOperator"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.GetOperatorString(Sudoku.Generating.Filtering.ComparisonOperator)">
+            <summary>
+            Gets the string representation of the operator.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Generating.Filtering.ComparisonOperator)">
+            <summary>
+            Creates a delegate method that executes the specified rule of comparison.
+            </summary>
+            <typeparam name="T">The type of the target.</typeparam>
+            <param name="this">The comparison.</param>
+            <returns>A delegate function.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraint">
+            <summary>
+            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraint.IsNegated">
+            <summary>
+            Indicates whether the constraint should be negated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraint.Description">
+            <summary>
+            Indicates the description to the constraint.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.Clone">
+            <summary>
+            Creates a new instance that contains same data with the current instance.
+            </summary>
+            <returns>A new instance that contains same data with the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.GetMetadata">
+            <summary>
+            Returns a <see cref="T:Sudoku.Generating.Filtering.ConstraintOptionsAttribute"/> instance that represents the metadata of the constraint configured.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Generating.Filtering.ConstraintOptionsAttribute"/> instance or <see langword="null"/> if not configured.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.op_Equality(Sudoku.Generating.Filtering.Constraint,Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraint.op_Inequality(Sudoku.Generating.Filtering.Constraint,Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.ConstraintCheckingContext">
+            <summary>
+            Represents context that will be called by method <see cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Represents context that will be called by method <see cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="M:Sudoku.Generating.Filtering.Constraint.Check(Sudoku.Generating.Filtering.ConstraintCheckingContext)"/>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.ConstraintCheckingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.ConstraintCheckingContext.AnalyzerResult">
+            <summary>
+            The generated property declaration for parameter <c>analyzerResult</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.ConstraintCollection">
+            <summary>
+            Represents a constraint collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.#ctor">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.#ctor(System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.#ctor(Sudoku.Generating.Filtering.ConstraintCollection)">
+            <summary>
+            Create a new instance and copy elements.
+            </summary>
+            <param name="other">The other collection.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.Has``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.IsValidFor(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <summary>
+            For a given <see cref="T:Sudoku.Generating.Filtering.ConstraintCheckingContext"/>,
+            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
+            </summary>
+            <param name="context">The context to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.FirstOrDefault(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.OfType``1">
+            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.Where(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean})">
+            <summary>
+            Filters the collection, only reserving constraints satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be satisfied.</param>
+            <returns>A new collection that only contains constraints satisfying the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.Select``1(System.Func{Sudoku.Generating.Filtering.Constraint,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#First(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#FirstOrDefault">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#FirstOrDefault(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#FirstOrDefault(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#FirstOrDefault(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean},Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IWhereMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#Where(System.Func{Sudoku.Generating.Filtering.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#ISliceMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#ISelectMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#Select``1(System.Func{Sudoku.Generating.Filtering.Constraint,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.System#Linq#Providers#IOfTypeMethod{Sudoku#Generating#Filtering#ConstraintCollection,Sudoku#Generating#Filtering#Constraint}#OfType``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.op_Addition(Sudoku.Generating.Filtering.ConstraintCollection,Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.ConstraintCollection.op_Subtraction(Sudoku.Generating.Filtering.ConstraintCollection,Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.ConstraintOptionsAttribute">
+            <summary>
+            Represents an attribute type that describes a constraint usage.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.ConstraintOptionsAttribute.AllowsMultiple">
+            <summary>
+            Indicates whether the constraint can support multiple items defined.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.ConstraintOptionsAttribute.AllowsNegation">
+            <summary>
+            Indicates whether the constraint can be negated by user.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint">
+            <summary>
+            Represents a constraint that determines whether bottleneck step represents the specified technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.Filters">
+            <summary>
+            Indicates the filters to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques selected.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.BottleneckTechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint">
+            <summary>
+            Represents a conclusion constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.ShouldAppear">
+            <summary>
+            Indicates whether the conclusion should be appeared.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.Conclusion">
+            <summary>
+            Indicates the conclusion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.ConclusionConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint">
+            <summary>
+            Represents a count between constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.Range">
+            <summary>
+            Indicates the range of the numbers set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.CellState">
+            <summary>
+            Indicates the cell state to be checked. The desired values should be
+            <see cref="F:Sudoku.Concepts.CellState.Given"/> or <see cref="F:Sudoku.Concepts.CellState.Empty"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.CellState.Given"/>
+            <seealso cref="F:Sudoku.Concepts.CellState.Empty"/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.BetweenRule">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.CountBetweenConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.DiamondConstraint">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DiamondConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DiamondConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint">
+            <summary>
+            Represents difficulty level constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
+            <summary>
+            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint">
+            <summary>
+            Represents an elimination count constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Sudoku#Generating#Filtering#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Sudoku#Generating#Filtering#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.EliminationCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.IBetweenRuleConstraint">
+            <summary>
+            Represents a constraint that contains between rule property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IBetweenRuleConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.IComparisonOperatorConstraint">
+            <summary>
+            Represents a type that supports for comparison operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IComparisonOperatorConstraint.Operator">
+            <summary>
+            Indicates the comparison operator used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.ILimitCountConstraint`1">
+            <summary>
+            Represents a type that supports limit number.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.ILimitCountConstraint`1.LimitCount">
+            <summary>
+            Indicates the limit number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.ILimitCountConstraint`1.Minimum">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.ILimitCountConstraint`1.Maximum">
+            <summary>
+            Indicates the maximum value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint">
+            <summary>
+            Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Rounds">
+            <summary>
+            Indicates the rounds used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.LimitedSingle">
+            <summary>
+            Indicates the single technique that can be used in the checking.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Sudoku#Generating#Filtering#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.LastingConstraint">
+            <summary>
+            Represents a lasting constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.LastingConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.LastingConstraint.TechniqueFlag">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.LastingConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.LastingConstraint.Sudoku#Generating#Filtering#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.LastingConstraint.Sudoku#Generating#Filtering#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.LastingConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.MinimalConstraint">
+            <summary>
+            Represents minimal constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.ShouldBeMinimal">
+            <summary>
+            Indicates whether the puzzle shsould be minimal.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.PearlConstraint">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.#ctor(System.Boolean)">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.ShouldBePearlOrDiamond">
+            <summary>
+            Indicates whether the puzzle should be pearl or diamond.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdocs/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.CheckPearl">
+            <summary>
+            The generated property declaration for parameter <c>checkPearl</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PearlOrDiamondConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint">
+            <summary>
+            Represents a primary single constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInLines">
+            <summary>
+            Indicates whether the constraint allows hidden singles on rows or columns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.Primary">
+            <summary>
+            Indicates which technique a user likes to finish a grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.PrimarySingleConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint">
+            <summary>
+            Represents symmetry constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.InvalidSymmetricType">
+            <summary>
+            Indicates an invalid value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.AllSymmetricTypes">
+            <summary>
+            Indicates all possible symmetric types are included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.SymmetricTypes">
+            <summary>
+            Indicates the supported symmetry types to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.SymmetryConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint">
+            <summary>
+            Represents a technique constraint. Different with <see cref="T:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint"/>,
+            this constraint only controls the appearing techniques, rather than the number of times appeared.
+            </summary>
+            <seealso cref="T:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint"/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques must appear.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint">
+            <summary>
+            Represents a constraint that limits a puzzle that can only use such techniques to be finished.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.Techniques">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.StepFilter">
+            <summary>
+            Defines a type that checks whether a <see cref="T:Sudoku.Analytics.Step"/> satisfies the specified condition.
+            </summary>
+            <param name="step">The step.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
         <member name="T:Sudoku.Generating.IJustOneCellGenerator">
             <summary>
             Represents a type that can generate puzzles that can only be solved for one cell.
@@ -32292,861 +33147,6 @@
             <summary>
             Represents Locked Hidden Triple rule.
             </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.BetweenRule">
-            <summary>
-            Represents a between rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.BetweenRule.BothOpen">
-            <summary>
-            Indicates both left and right are open (not included).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.BetweenRule.LeftOpen">
-            <summary>
-            Indicates only the left is open, and the right is closed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.BetweenRule.RightOpen">
-            <summary>
-            Indicates only the right is open, and the left is closed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.BetweenRule.BothClosed">
-            <summary>
-            Indicates both left and right are closed (included).
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.ComparisonOperator">
-            <summary>
-            Represent an operator to be used in comparison.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.Equality">
-            <summary>
-            Indicates the comparison rule is to compare equality.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.Inequality">
-            <summary>
-            Indicates the comparison rule is to compare inequality.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThan">
-            <summary>
-            Indicates the comparison rule is to compare greater-than.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThanOrEqual">
-            <summary>
-            Indicates the comparison rule is to compare greater-than or equality.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThan">
-            <summary>
-            Indicates the comparison rule is to compare less-than.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThanOrEqual">
-            <summary>
-            Indicates the comparison rule is to compare less-than or equality.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.ComparisonOperatorExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Strategying.ComparisonOperator"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Strategying.ComparisonOperator"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperatorString(Sudoku.Strategying.ComparisonOperator)">
-            <summary>
-            Gets the string representation of the operator.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>The string representation.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Strategying.ComparisonOperator)">
-            <summary>
-            Creates a delegate method that executes the specified rule of comparison.
-            </summary>
-            <typeparam name="T">The type of the target.</typeparam>
-            <param name="this">The comparison.</param>
-            <returns>A delegate function.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraint">
-            <summary>
-            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraint.IsNegated">
-            <summary>
-            Indicates whether the constraint should be negated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraint.Description">
-            <summary>
-            Indicates the description to the constraint.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <summary>
-            Determine whether the specified grid is passed the constraint.
-            </summary>
-            <param name="context">Indicates the context used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Clone">
-            <summary>
-            Creates a new instance that contains same data with the current instance.
-            </summary>
-            <returns>A new instance that contains same data with the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.GetMetadata">
-            <summary>
-            Returns a <see cref="T:Sudoku.Strategying.ConstraintOptionsAttribute"/> instance that represents the metadata of the constraint configured.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Strategying.ConstraintOptionsAttribute"/> instance or <see langword="null"/> if not configured.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.op_Equality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.op_Inequality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Strategying.ConstraintCheckingContext">
-            <summary>
-            Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
-            <summary>
-            Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
-        </member>
-        <member name="F:Sudoku.Strategying.ConstraintCheckingContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ConstraintCheckingContext.AnalyzerResult">
-            <summary>
-            The generated property declaration for parameter <c>analyzerResult</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.ConstraintCollection">
-            <summary>
-            Represents a constraint collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(Sudoku.Strategying.ConstraintCollection)">
-            <summary>
-            Create a new instance and copy elements.
-            </summary>
-            <param name="other">The other collection.</param>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.Has``1">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
-            <summary>
-            For a given <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>,
-            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
-            </summary>
-            <param name="context">The context to be used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.OfType``1">
-            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
-            <summary>
-            Filters the collection, only reserving constraints satisfying the specified condition.
-            </summary>
-            <param name="predicate">The condition to be satisfied.</param>
-            <returns>A new collection that only contains constraints satisfying the specified condition.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
-            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean},Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IWhereMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISliceMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISelectMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IOfTypeMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#OfType``1">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Addition(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Subtraction(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Strategying.ConstraintOptionsAttribute">
-            <summary>
-            Represents an attribute type that describes a constraint usage.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsMultiple">
-            <summary>
-            Indicates whether the constraint can support multiple items defined.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsNegation">
-            <summary>
-            Indicates whether the constraint can be negated by user.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint">
-            <summary>
-            Represents a constraint that determines whether bottleneck step represents the specified technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Filters">
-            <summary>
-            Indicates the filters to be used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Techniques">
-            <summary>
-            Indicates the techniques selected.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
-            <summary>
-            Represents a conclusion constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ShouldAppear">
-            <summary>
-            Indicates whether the conclusion should be appeared.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusion">
-            <summary>
-            Indicates the conclusion.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
-            <summary>
-            Represents a count between constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.Range">
-            <summary>
-            Indicates the range of the numbers set.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.CellState">
-            <summary>
-            Indicates the cell state to be checked. The desired values should be
-            <see cref="F:Sudoku.Concepts.CellState.Given"/> or <see cref="F:Sudoku.Concepts.CellState.Empty"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.CellState.Given"/>
-            <seealso cref="F:Sudoku.Concepts.CellState.Empty"/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.BetweenRule">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.DiamondConstraint">
-            <summary>
-            Represents a constraint that checks for diamond property.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.#ctor">
-            <summary>
-            Represents a constraint that checks for diamond property.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.DifficultyLevelConstraint">
-            <summary>
-            Represents difficulty level constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
-            <summary>
-            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.EliminationCountConstraint">
-            <summary>
-            Represents an elimination count constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.LimitCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Technique">
-            <summary>
-            Indicates the technique used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.IBetweenRuleConstraint">
-            <summary>
-            Represents a constraint that contains between rule property.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IBetweenRuleConstraint.BetweenRule">
-            <summary>
-            Indicates the between rule.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">
-            <summary>
-            Represents a type that supports for comparison operator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint.Operator">
-            <summary>
-            Indicates the comparison operator used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ILimitCountConstraint`1">
-            <summary>
-            Represents a type that supports limit number.
-            </summary>
-            <typeparam name="TNumber">The type of the number.</typeparam>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.LimitCount">
-            <summary>
-            Indicates the limit number.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Minimum">
-            <summary>
-            Indicates the minimum value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Maximum">
-            <summary>
-            Indicates the maximum value.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
-            <summary>
-            Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
-            <summary>
-            Indicates the rounds used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.LimitedSingle">
-            <summary>
-            Indicates the single technique that can be used in the checking.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.LastingConstraint">
-            <summary>
-            Represents a lasting constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.LimitCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.TechniqueFlag">
-            <summary>
-            Indicates the technique used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.MinimalConstraint">
-            <summary>
-            Represents minimal constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.ShouldBeMinimal">
-            <summary>
-            Indicates whether the puzzle shsould be minimal.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.PearlConstraint">
-            <summary>
-            Represents a constraint that checks for pearl property.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.#ctor">
-            <summary>
-            Represents a constraint that checks for pearl property.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint">
-            <summary>
-            Represents a constraint that checks for pearl or diamond property.
-            </summary>
-            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.#ctor(System.Boolean)">
-            <summary>
-            Represents a constraint that checks for pearl or diamond property.
-            </summary>
-            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ShouldBePearlOrDiamond">
-            <summary>
-            Indicates whether the puzzle should be pearl or diamond.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdocs/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">
-            <summary>
-            The generated property declaration for parameter <c>checkPearl</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.PrimarySingleConstraint">
-            <summary>
-            Represents a primary single constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInLines">
-            <summary>
-            Indicates whether the constraint allows hidden singles on rows or columns.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Primary">
-            <summary>
-            Indicates which technique a user likes to finish a grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
-            <summary>
-            Represents symmetry constraint.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.InvalidSymmetricType">
-            <summary>
-            Indicates an invalid value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.AllSymmetricTypes">
-            <summary>
-            Indicates all possible symmetric types are included.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.SymmetricTypes">
-            <summary>
-            Indicates the supported symmetry types to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
-            <summary>
-            Represents a technique constraint. Different with <see cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>,
-            this constraint only controls the appearing techniques, rather than the number of times appeared.
-            </summary>
-            <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
-            <summary>
-            Indicates the techniques must appear.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint">
-            <summary>
-            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
-            contains the specified techniques.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Technique">
-            <summary>
-            Indicates the technique used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.TechniqueSetConstraint">
-            <summary>
-            Represents a constraint that limits a puzzle that can only use such techniques to be finished.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Techniques">
-            <summary>
-            Indicates the technique used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.StepFilter">
-            <summary>
-            Defines a type that checks whether a <see cref="T:Sudoku.Analytics.Step"/> satisfies the specified condition.
-            </summary>
-            <param name="step">The step.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.ChineseDigitsPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ChineseDigitsPattern method.</summary>

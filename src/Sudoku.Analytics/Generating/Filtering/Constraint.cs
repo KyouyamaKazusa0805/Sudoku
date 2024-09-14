@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying;
+namespace Sudoku.Generating.Filtering;
 
 /// <summary>
 /// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.

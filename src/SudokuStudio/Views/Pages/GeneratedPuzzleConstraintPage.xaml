@@ -5,7 +5,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:categorization="using:Sudoku.Analytics.Categorization"
-	xmlns:con="using:Sudoku.Strategying.Constraints"
+	xmlns:con="using:Sudoku.Generating.Filtering.Constraints"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratedPuzzleConstraintPage}">
