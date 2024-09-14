@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Snyder;
+namespace Sudoku.Analytics.Patterning.Directs;
 
 /// <summary>
 /// Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,

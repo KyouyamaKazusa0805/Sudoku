@@ -1,11 +1,11 @@
-namespace Sudoku.Concepts.Snyder;
+namespace Sudoku.Analytics.Patterning.Directs;
 
 /// <summary>
-/// Provides with techniques that will be used in Snyder rule.
+/// Provides with techniques that will be used in partial-marking rule.
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-public enum SnyderTechniques
+public enum PartialMarkingTechniques
 {
 	/// <summary>
 	/// The placeholder of the current enumeration type.

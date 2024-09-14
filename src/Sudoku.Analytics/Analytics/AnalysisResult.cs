@@ -656,7 +656,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			// Find single-only steps.
 			case BottleneckType.SingleStepOnly when filterMode is PencilmarkVisibility.Direct or PencilmarkVisibility.PartialMark:
 			{
-				var collector = GridSnyderExtensions.Collector;
+				var collector = GridPartialMarkingExtensions.Collector;
 				var result = new List<Step>();
 				foreach (var (g, s) in StepMarshal.Combine(GridsSpan, StepsSpan))
 				{
@@ -675,7 +675,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			// Find single-only steps on same difficulty level.
 			case BottleneckType.SingleStepSameLevelOnly when filterMode == PencilmarkVisibility.PartialMark:
 			{
-				var collector = GridSnyderExtensions.Collector;
+				var collector = GridPartialMarkingExtensions.Collector;
 				var result = new List<Step>();
 				foreach (var (g, s) in StepMarshal.Combine(GridsSpan, StepsSpan))
 				{

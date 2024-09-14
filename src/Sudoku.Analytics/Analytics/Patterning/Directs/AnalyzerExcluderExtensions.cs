@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Snyder;
+namespace Sudoku.Analytics.Patterning.Directs;
 
 /// <summary>
 /// Provides with extension methods on <see cref="AnalysisResult"/> to check for excluders.
