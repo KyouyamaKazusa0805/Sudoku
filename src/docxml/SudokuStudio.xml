@@ -1097,6 +1097,9 @@
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableOrderingStepsByLastingValue">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -1264,6 +1267,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableOrderingStepsByLastingValueProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableOrderingStepsByLastingValue"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.EnableOrderingStepsByLastingValue"/>
         </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowDirectPointingProperty">
             <summary>
@@ -10767,6 +10776,9 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
+        </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -10942,6 +10954,12 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirst"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValueProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowDirectPointingProperty">
             <summary>
@@ -11252,6 +11270,22 @@
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetEnableOrderingStepsByLastingValue(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
+            <summary>
+            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/> with the specified value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <param name="value">The value to be set.</param>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetEnableOrderingStepsByLastingValue(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/> of its containing value.
+            </summary>
+            <param name="obj">The containing object of the property.</param>
+            <returns>The value returned.</returns>
+            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.EnableOrderingStepsByLastingValue"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowDirectPointing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

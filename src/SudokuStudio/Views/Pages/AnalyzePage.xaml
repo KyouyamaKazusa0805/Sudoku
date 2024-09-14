@@ -205,6 +205,7 @@
 							a:AnalyzerProperties.EnableFullHouse="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableFullHouse,Mode=OneWay}"
 							a:AnalyzerProperties.EnableLastDigit="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableLastDigit,Mode=OneWay}"
 							a:AnalyzerProperties.HiddenSinglesInBlockFirst="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=OneWay}"
+							a:AnalyzerProperties.EnableOrderingStepsByLastingValue="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableOrderingStepsByLastingValue,Mode=OneWay}"
 							a:AnalyzerProperties.AllowDirectPointing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectPointing,Mode=OneWay}"
 							a:AnalyzerProperties.AllowDirectClaiming="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectClaiming,Mode=OneWay}"
 							a:AnalyzerProperties.AllowDirectLockedSubset="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowDirectLockedSubset,Mode=OneWay}"

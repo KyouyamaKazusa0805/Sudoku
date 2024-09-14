@@ -2864,4 +2864,13 @@
   <data name="BottleneckSettingPage_SingleStepSameLevelOnlyDescription" xml:space="preserve">
     <value> • 唯一同级别的结论：和“唯一的结论”相同，不检查更高级别难度的可用步骤</value>
   </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValue" xml:space="preserve">
+    <value>优先以剩余数进行排序</value>
+  </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription" xml:space="preserve">
+    <value>替换出数技巧模块的步骤排序机制，使得以剩余数来作为衡量难度的指标。剩余数越大的技巧越难。例如说先找剩余数为2的同区九缺一、同数九缺一、排除和唯余，然后才是剩余3的、接着是剩余数4的情况，以此类推。</value>
+  </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription2" xml:space="preserve">
+    <value>一般情况下，搜索模块会严格按技巧来排序。如唯一余数比排除难，排除比同数九缺一难，同数九缺一又会比同区九缺一难。</value>
+  </data>
 </root>

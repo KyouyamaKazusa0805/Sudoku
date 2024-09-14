@@ -2873,4 +2873,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="BottleneckSettingPage_SingleStepSameLevelOnlyDescription" xml:space="preserve">
     <value> • Unique conclusion same difficulty level: Same as Unique conclusion rule, but it will ignore higher difficulty rating rule if checking avilable steps</value>
   </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValue" xml:space="preserve">
+    <value>Lasting value has priority</value>
+  </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription" xml:space="preserve">
+    <value>Substitute the step ordering rule, making steps with lower lasting value firstly being checked while ordering steps. For example, search steps with lasting value 2, and then lasting 3, and lasting 4, etc..</value>
+  </data>
+  <data name="SettingsPage_EnableOrderingStepsByLastingValueDescription2" xml:space="preserve">
+    <value>By default, searching module will strictly checks for technique used. For example, Naked Singles is harder than Hidden Single, and Hidden Single is harder than Last Digit, and Last Digit is harder than Full House.</value>
+  </data>
 </root>

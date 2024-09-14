@@ -37,6 +37,10 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool HiddenSinglesInBlockFirst { get; set; }
 
+	/// <inheritdoc cref="SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
+	[DependencyProperty(DefaultValue = true)]
+	public partial bool EnableOrderingStepsByLastingValue { get; set; }
+
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public partial bool AllowDirectPointing { get; set; }

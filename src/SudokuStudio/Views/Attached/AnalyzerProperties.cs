@@ -57,6 +57,10 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool HiddenSinglesInBlockFirst { get; set; }
 
+	/// <inheritdoc cref="SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
+	[DependencyProperty(DefaultValue = true)]
+	public static partial bool EnableOrderingStepsByLastingValue { get; set; }
+
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	[DependencyProperty(DefaultValue = true)]
 	public static partial bool AllowDirectPointing { get; set; }

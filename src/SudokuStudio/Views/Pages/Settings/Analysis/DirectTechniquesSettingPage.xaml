@@ -22,6 +22,17 @@
 			<w:SettingsCard Header="{m:R Key=SettingsPage_HiddenSinglesInBlockFirst}">
 				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSinglesInBlockFirst,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_EnableOrderingStepsByLastingValue}">
+				<w:SettingsCard.Description>
+					<TextBlock>
+						<Run Text="{m:R Key=SettingsPage_EnableOrderingStepsByLastingValueDescription}" />
+						<LineBreak />
+						<Run Text="{m:R Key=SettingsPage_EnableOrderingStepsByLastingValueDescription2}" />
+					</TextBlock>
+				</w:SettingsCard.Description>
+				<ToggleSwitch IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.EnableOrderingStepsByLastingValue,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsExpander
 				Header="{m:R Key=SettingsPage_AllowedDirectTechniques}"
 				Description="{m:R Key=SettingsPage_AllowedDirectTechniquesDescription}">
