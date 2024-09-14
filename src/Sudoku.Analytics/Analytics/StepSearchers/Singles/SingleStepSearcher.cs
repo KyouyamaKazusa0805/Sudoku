@@ -38,27 +38,123 @@ using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref Ste
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates whether the solver enables the technique full house.
+	/// Indicates whether the current searcher enables the technique full house.
 	/// </summary>
 	[SettingItemName(SettingItemNames.EnableFullHouse)]
 	public bool EnableFullHouse { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver enables the technique last digit.
+	/// Indicates whether the current searcher enables the technique last digit.
 	/// </summary>
 	[SettingItemName(SettingItemNames.EnableLastDigit)]
 	public bool EnableLastDigit { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver checks for hidden single in block firstly.
+	/// Indicates whether the current searcher checks for hidden single in block firstly.
 	/// </summary>
 	[SettingItemName(SettingItemNames.HiddenSinglesInBlockFirst)]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
+	/// <summary>
+	/// Indicates whether the current searcher will make lasting value have a higher priority,
+	/// ignoring which techniques used, to sort step and choose one.
+	/// </summary>
+	/// <remarks>
+	/// This option will work if <see cref="Analyzer.IsFullApplying"/> is <see langword="false"/>,
+	/// and <see cref="StepGathererOptions.IsDirectMode"/> is <see langword="true"/>.
+	/// </remarks>
+	/// <seealso cref="Analyzer.IsFullApplying"/>
+	/// <seealso cref="StepGathererOptions.IsDirectMode"/>
+	[SettingItemName(SettingItemNames.EnableOrderingStepsByLastingValue)]
+	public bool EnableOrderingStepsByLastingValue { get; set; }
+
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
-		=> context.Options.UseIttoryuMode ? Collect_IttoryuMode(ref context) : Collect_NonIttoryuMode(ref context);
+		=> (EnableOrderingStepsByLastingValue, context.Options) switch
+		{
+			(true, { UseIttoryuMode: var isIttoryuMode, IsDirectMode: true })
+				=> Collect_LastingValueHasPriority(ref context, isIttoryuMode),
+			(_, { UseIttoryuMode: true })
+				=> Collect_IttoryuMode(ref context),
+			_
+				=> Collect_NonIttoryuMode(ref context)
+		};
+
+	/// <summary>
+	/// Checks for single steps, making lasting value have a priority.
+	/// </summary>
+	private Step? Collect_LastingValueHasPriority(ref StepAnalysisContext context, bool isIttoryuMode)
+	{
+		var localContext = context with { OnlyFindOne = false, Accumulator = [] };
+		var a = Collect_IttoryuMode;
+		var b = Collect_NonIttoryuMode;
+		(isIttoryuMode ? a : b)(ref localContext);
+
+		Debug.Assert(!localContext.OnlyFindOne);
+		var accumulator = localContext.Accumulator;
+		if (accumulator.Count != 0)
+		{
+			accumulator.Sort(stepComparison);
+		}
+
+		if (context.OnlyFindOne && accumulator.Count != 0)
+		{
+			// Here we should choose one step from accumulator that should match user's configuration.
+			if (context.Options.UseIttoryuMode)
+			{
+				for (var delta = 0; delta < 9; delta++)
+				{
+					foreach (SingleStep step in accumulator)
+					{
+						var correctedDigit = step.Digit is var digit && digit < context.PreviousSetDigit ? digit + 9 : digit;
+						if (correctedDigit - context.PreviousSetDigit == delta)
+						{
+							context.PreviousSetDigit = step.Digit;
+							return step;
+						}
+					}
+				}
+			}
+
+			// Bottoming rule.
+			return accumulator[0];
+		}
+
+		if (!context.OnlyFindOne && accumulator.Count != 0)
+		{
+			context.Accumulator.AddRange(accumulator);
+		}
+		return null;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static int stepComparison(Step left, Step right)
+			=> ((SingleStep)left, (SingleStep)right) is var (l, r)
+			&& handleEasyTechnique(left.Code) is var leftEasyCode
+			&& handleEasyTechnique(right.Code) is var rightEasyCode
+			&& leftEasyCode.CompareTo(rightEasyCode) is var easyTechniqueComparisonResult and not 0
+				? easyTechniqueComparisonResult
+				: (((ILastingTrait)l).Lasting, ((ILastingTrait)r).Lasting) is var (ll, rl)
+				&& ll.CompareTo(rl) is var lastingComparisonResult and not 0
+					? lastingComparisonResult
+					: l.Code.CompareTo(r.Code) is var codeComparisonResult and not 0
+						? codeComparisonResult
+						: (l.Cell * 9 + l.Digit, r.Cell * 9 + r.Digit) is var (lc, rc)
+						&& lc.CompareTo(rc) is var candidateComparisonResult and not 0
+							? candidateComparisonResult
+							: 0;
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static int handleEasyTechnique(Technique technique)
+			=> technique switch
+			{
+				Technique.FullHouse => 0,
+				Technique.LastDigit => 1,
+				Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => 2,
+				_ => 3
+			};
+	}
 
 	/// <summary>
 	/// Checks for single steps using ittoryu mode.
@@ -174,7 +270,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					digit,
 					subtype,
 					SingleModule.GetLastingAllHouses(in grid, cell, out var lastingHouse),
-				lastingHouse.ToHouseType()
+					lastingHouse.ToHouseType()
 				);
 				if (context.OnlyFindOne)
 				{

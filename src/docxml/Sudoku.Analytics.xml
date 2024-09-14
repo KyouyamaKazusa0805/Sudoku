@@ -5257,6 +5257,9 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.HiddenSinglesInBlockFirst">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.EnableOrderingStepsByLastingValue">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -10453,21 +10456,38 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse">
             <summary>
-            Indicates whether the solver enables the technique full house.
+            Indicates whether the current searcher enables the technique full house.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit">
             <summary>
-            Indicates whether the solver enables the technique last digit.
+            Indicates whether the current searcher enables the technique last digit.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst">
             <summary>
-            Indicates whether the solver checks for hidden single in block firstly.
+            Indicates whether the current searcher checks for hidden single in block firstly.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableOrderingStepsByLastingValue">
+            <summary>
+            Indicates whether the current searcher will make lasting value have a higher priority,
+            ignoring which techniques used, to sort step and choose one.
+            </summary>
+            <remarks>
+            This option will work if <see cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/> is <see langword="false"/>,
+            and <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/> is <see langword="true"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+            <seealso cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect_LastingValueHasPriority(Sudoku.Analytics.StepAnalysisContext@,System.Boolean)">
+            <summary>
+            Checks for single steps, making lasting value have a priority.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect_IttoryuMode(Sudoku.Analytics.StepAnalysisContext@)">
             <summary>

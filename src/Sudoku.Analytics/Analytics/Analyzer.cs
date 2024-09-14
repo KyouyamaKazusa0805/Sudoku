@@ -107,7 +107,7 @@ public sealed partial class Analyzer : AnalyzerBase
 		=> Default
 			.WithIgnoreHighTimeComplexityStepSearchers(false)
 			.WithIgnoreHighSpaceComplexityStepSearchers(true)
-			.AddStepSearcherSetter<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; })
+			.AddStepSearcherSetter<SingleStepSearcher>(static s => { s.EnableFullHouse = true; s.EnableLastDigit = true; s.HiddenSinglesInBlockFirst = true; s.EnableOrderingStepsByLastingValue = false; })
 			.AddStepSearcherSetter<NormalFishStepSearcher>(static s => { s.DisableFinnedOrSashimiXWing = false; s.AllowSiamese = false; })
 			.AddStepSearcherSetter<UniqueRectangleStepSearcher>(static s => { s.AllowIncompleteUniqueRectangles = true; s.SearchForExtendedUniqueRectangles = true; })
 			.AddStepSearcherSetter<BivalueUniversalGraveStepSearcher>(static s => s.SearchExtendedTypes = true)
@@ -138,7 +138,7 @@ public sealed partial class Analyzer : AnalyzerBase
 	public static Analyzer SstsOnly
 		=> Default
 			.WithStepSearchers(
-				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true },
+				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, EnableOrderingStepsByLastingValue = false },
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher()
@@ -153,7 +153,7 @@ public sealed partial class Analyzer : AnalyzerBase
 			.WithIgnoreHighTimeComplexityStepSearchers(false)
 			.WithIgnoreHighSpaceComplexityStepSearchers(false)
 			.WithStepSearchers(
-				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true },
+				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, EnableOrderingStepsByLastingValue = false },
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher(),
