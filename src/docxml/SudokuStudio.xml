@@ -3905,7 +3905,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.ToString(Sudoku.Runtime.MeasuringServices.Factor,Sudoku.Analytics.Step,System.Decimal,System.IFormatProvider)">
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.ToString(Sudoku.Measuring.Factor,Sudoku.Analytics.Step,System.Decimal,System.IFormatProvider)">
             <summary>
             Calculates the rating from the specified <see cref="T:Sudoku.Analytics.Step"/> instance, and return the string representation
             of the rating text.
@@ -17344,19 +17344,19 @@
 				</summary>
 			</target>
         </member>
-        <member name="T:Sudoku.Runtime.MeasuringServices.FactorMarshal">
+        <member name="T:Sudoku.Measuring.FactorMarshal">
             <summary>
-            Represents some methods operating with <see cref="T:Sudoku.Runtime.MeasuringServices.Factor"/> instances.
+            Represents some methods operating with <see cref="T:Sudoku.Measuring.Factor"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Runtime.MeasuringServices.Factor"/>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
         </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.FactorMarshal.GetScaleUnitLength(System.Decimal)">
+        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleUnitLength(System.Decimal)">
             <summary>
             Try to get the scale unit length from the scale value.
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.MeasuringServices.FactorMarshal.GetScaleFormatString(System.Decimal)">
+        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleFormatString(System.Decimal)">
             <summary>
             Try to get the scale unit from the scale value.
             </summary>
