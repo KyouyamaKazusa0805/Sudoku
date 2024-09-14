@@ -259,7 +259,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 					//    2) If the first step is not a single, find for the first step that is a single,
 					//       and check the maximum difficulty rating of the span of steps
 					//       between the first step and the first single step.
-					: StepsSpan.FirstIndex(static s => !stepFilter(s)) is var a
+					: StepsSpan.FirstIndex(@delegate.Not<Step>(stepFilter).Invoke) is var a
 						? StepsSpan.FirstIndex(stepFilter) is var b and not 0
 							? StepsSpan[a..b].MaxBy(difficultySelector)
 							: StepsSpan[0]

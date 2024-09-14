@@ -56,7 +56,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 					result = Grid.Undefined;
 					return false;
 				}
-				case { IsSolved: true, StepsSpan: var steps } when steps.Any(step => StepFilter(step)):
+				case { IsSolved: true, StepsSpan: var steps } when steps.Any(StepFilter.Invoke):
 				{
 					result = puzzle;
 					return true;
