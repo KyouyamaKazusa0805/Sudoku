@@ -3,7 +3,7 @@ namespace Sudoku.Solving.Dlx;
 /// <summary>
 /// Defines a solver that uses the dancing links algorithm.
 /// </summary>
-public sealed class DancingLinksSolver : ISolver
+public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 {
 	/// <summary>
 	/// Indicates the stack that stores the raw data for the solutions.
@@ -22,6 +22,11 @@ public sealed class DancingLinksSolver : ISolver
 	private Grid _solution;
 
 	/// <summary>
+	/// Indicates the found solutions.
+	/// </summary>
+	private List<Grid>? _solutions;
+
+	/// <summary>
 	/// Indicates the root node of the full link map.
 	/// </summary>
 	private ColumnNode? _root;
@@ -32,12 +37,12 @@ public sealed class DancingLinksSolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(ref readonly Grid grid, out Grid result)
+	public unsafe bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		try
 		{
 			_root = DancingLink.Entry.CreateLinkedList(in grid);
-			Search();
+			Search(&guard, &recordSolution);
 			result = _solution;
 			return true;
 		}
@@ -46,21 +51,52 @@ public sealed class DancingLinksSolver : ISolver
 			result = Grid.Undefined;
 			return ex.Message.Contains("multiple") ? false : null;
 		}
+
+
+		[DoesNotReturn]
+		static void guard() => throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+			=> @this._solution = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
 	}
 
 	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
+	/// <inheritdoc/>
+	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
+	{
+		_root = DancingLink.Entry.CreateLinkedList(in grid);
+		Search(&@delegate.DoNothing, &recordSolution);
+		return _solutions is null ? [] : _solutions.AsReadOnlySpan();
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		{
+			@this._solutions ??= [];
+
+			var result = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
+			@this._solutions.AddRef(in result);
+		}
+	}
+
 	/// <summary>
 	/// Try to search the full dancing link map and get the possible solution.
 	/// </summary>
+	/// <param name="multipleSolutionGuard">A method that guards the case that multiple solutions (at least 2) are found.</param>
+	/// <param name="resultTargeting">A method that assigns or consume the result raw value.</param>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
-	private void Search()
+	private unsafe void Search(
+		delegate*<void> multipleSolutionGuard,
+		delegate*<DancingLinksSolver, Stack<DancingLinkNode>, void> resultTargeting
+	)
 	{
 		if (_solutionCount > 1)
 		{
-			throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
+			multipleSolutionGuard();
 		}
 
 		Debug.Assert(_root is not null);
@@ -68,7 +104,7 @@ public sealed class DancingLinksSolver : ISolver
 		{
 			// All columns were removed!
 			_solutionCount++;
-			RecordSolution(_answerNodesStack, out _solution);
+			resultTargeting(this, _answerNodesStack);
 		}
 		else
 		{
@@ -83,7 +119,7 @@ public sealed class DancingLinksSolver : ISolver
 					Cover(j.Column!);
 				}
 
-				Search();
+				Search(multipleSolutionGuard, resultTargeting);
 				r = _answerNodesStack.Pop();
 				c = r.Column!;
 
@@ -134,18 +170,6 @@ public sealed class DancingLinksSolver : ISolver
 		column.Right.Left = column;
 		column.Left.Right = column;
 	}
-
-	/// <summary>
-	/// Try to collect all possible solutions, and determine whether the puzzle is valid.
-	/// </summary>
-	/// <param name="answer">The answers found.</param>
-	/// <param name="result">The solution if the puzzle is unique.</param>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the puzzle has no possible solutions.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RecordSolution(Stack<DancingLinkNode> answer, out Grid result)
-		=> result = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
 
 	/// <summary>
 	/// Try to choose the next column node.

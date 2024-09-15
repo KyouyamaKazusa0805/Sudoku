@@ -10806,6 +10806,11 @@
             Indicates the found solution.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Dlx.DancingLinksSolver._solutions">
+            <summary>
+            Indicates the found solutions.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Dlx.DancingLinksSolver._root">
             <summary>
             Indicates the root node of the full link map.
@@ -10820,10 +10825,15 @@
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(System.Int32[],Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Search">
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Search(,)">
             <summary>
             Try to search the full dancing link map and get the possible solution.
             </summary>
+            <param name="multipleSolutionGuard">A method that guards the case that multiple solutions (at least 2) are found.</param>
+            <param name="resultTargeting">A method that assigns or consume the result raw value.</param>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Cover(Sudoku.Solving.Dlx.DancingLinkNode)">
@@ -10837,16 +10847,6 @@
             Uncover the nodes for the specified column.
             </summary>
             <param name="column">The column.</param>
-        </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Solving.Dlx.DancingLinkNode},Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible solutions, and determine whether the puzzle is valid.
-            </summary>
-            <param name="answer">The answers found.</param>
-            <param name="result">The solution if the puzzle is unique.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle has no possible solutions.
-            </exception>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.ChooseNextColumn">
             <summary>
@@ -10915,6 +10915,18 @@
             this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="T:Sudoku.Solving.IMultipleSolutionSolver">
+            <summary>
+            Represents a solver that can find all possible solutions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.IMultipleSolutionSolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find all possible solutions of the specified puzzle.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A sequence of solutions found.</returns>
         </member>
         <member name="T:Sudoku.Solving.ISolver">
             <summary>
