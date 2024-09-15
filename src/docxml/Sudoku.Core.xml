@@ -10726,15 +10726,6 @@
         <member name="M:Sudoku.Solving.Dlx.DancingLink.Create(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLink.Create(Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLink.FormLinks(Sudoku.Solving.Dlx.ColumnNode[],System.Int32,System.Int32,System.Int32)">
-            <summary>
-            To form the links via the specified columns, the cell index and the digit used.
-            </summary>
-            <param name="columns">The columns having been stored.</param>
-            <param name="x">The current row index.</param>
-            <param name="y">The current column index.</param>
-            <param name="d">The current digit.</param>
-        </member>
         <member name="T:Sudoku.Solving.Dlx.DancingLinkNode">
             <summary>
             Represents a dancing link node.

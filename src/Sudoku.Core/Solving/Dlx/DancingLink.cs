@@ -33,37 +33,26 @@ public sealed class DancingLink(ColumnNode _root)
 			var (x, y) = (cell / 9, cell % 9);
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				FormLinks(columns, x, y, digit);
+				formLinks(columns, x, y, digit);
 			}
 		}
 		return _root;
-	}
 
-	/// <inheritdoc cref="Create(ref readonly Grid)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ColumnNode Create(Digit[] grid) => Create(Grid.Create(grid));
 
-	/// <summary>
-	/// To form the links via the specified columns, the cell index and the digit used.
-	/// </summary>
-	/// <param name="columns">The columns having been stored.</param>
-	/// <param name="x">The current row index.</param>
-	/// <param name="y">The current column index.</param>
-	/// <param name="d">The current digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void FormLinks(ColumnNode[] columns, RowIndex x, ColumnIndex y, Digit d)
-	{
-		var cell = new DancingLinkNode(x * 81 + y * 9 + d, columns[x * 9 + y]);
-		var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
-		var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
-		var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
-		var matrixRow = new MatrixRow(cell, row, column, block);
-		linkRow(ref matrixRow);
-		linkRowToColumn(matrixRow.Cell);
-		linkRowToColumn(matrixRow.Row);
-		linkRowToColumn(matrixRow.Column);
-		linkRowToColumn(matrixRow.Block);
-
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void formLinks(ColumnNode[] columns, RowIndex x, ColumnIndex y, Digit d)
+		{
+			var cell = new DancingLinkNode(x * 81 + y * 9 + d, columns[x * 9 + y]);
+			var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
+			var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
+			var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
+			var matrixRow = new MatrixRow(cell, row, column, block);
+			linkRow(ref matrixRow);
+			linkRowToColumn(matrixRow.Cell);
+			linkRowToColumn(matrixRow.Row);
+			linkRowToColumn(matrixRow.Column);
+			linkRowToColumn(matrixRow.Block);
+		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void linkRow(ref MatrixRow d)
@@ -79,16 +68,20 @@ public sealed class DancingLink(ColumnNode _root)
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void linkRowToColumn(DancingLinkNode section)
+		static void linkRowToColumn(DancingLinkNode s)
 		{
-			if (section.Column is { } col)
+			if (s.Column is { } col)
 			{
 				col.Size++;
-				section.Down = col;
-				section.Up = col.Up;
-				col.Up.Down = section;
-				col.Up = section;
+				s.Down = col;
+				s.Up = col.Up;
+				col.Up.Down = s;
+				col.Up = s;
 			}
 		}
 	}
+
+	/// <inheritdoc cref="Create(ref readonly Grid)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ColumnNode Create(Digit[] grid) => Create(Grid.Create(grid));
 }
