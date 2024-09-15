@@ -36,7 +36,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		try
 		{
-			_root = DancingLink.Entry.CreateLinkedList(grid.ToDigitsArray());
+			_root = DancingLink.Entry.CreateLinkedList(in grid);
 			Search();
 			result = _solution;
 			return true;
@@ -47,6 +47,10 @@ public sealed class DancingLinksSolver : ISolver
 			return ex.Message.Contains("multiple") ? false : null;
 		}
 	}
+
+	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <summary>
 	/// Try to search the full dancing link map and get the possible solution.
