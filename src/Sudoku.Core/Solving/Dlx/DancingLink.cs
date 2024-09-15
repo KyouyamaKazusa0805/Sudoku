@@ -17,7 +17,7 @@ public sealed class DancingLink(ColumnNode _root)
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The column node for the root node.</returns>
-	public ColumnNode CreateLinkedList(ref readonly Grid grid)
+	public ColumnNode Create(ref readonly Grid grid)
 	{
 		var columns = new ColumnNode[324];
 		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
@@ -39,9 +39,9 @@ public sealed class DancingLink(ColumnNode _root)
 		return _root;
 	}
 
-	/// <inheritdoc cref="CreateLinkedList(ref readonly Grid)"/>
+	/// <inheritdoc cref="Create(ref readonly Grid)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ColumnNode CreateLinkedList(Digit[] grid) => CreateLinkedList(Grid.Create(grid));
+	public ColumnNode Create(Digit[] grid) => Create(Grid.Create(grid));
 
 	/// <summary>
 	/// To form the links via the specified columns, the cell index and the digit used.

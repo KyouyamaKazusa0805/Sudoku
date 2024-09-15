@@ -10716,15 +10716,15 @@
             Indicates the entry instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLink.CreateLinkedList(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.Dlx.DancingLink.Create(Sudoku.Concepts.Grid@)">
             <summary>
             Creates the links.
             </summary>
             <param name="grid">The grid.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLink.CreateLinkedList(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLink.CreateLinkedList(Sudoku.Concepts.Grid@)"/>
+        <member name="M:Sudoku.Solving.Dlx.DancingLink.Create(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLink.Create(Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLink.FormLinks(Sudoku.Solving.Dlx.ColumnNode[],System.Int32,System.Int32,System.Int32)">
             <summary>

@@ -41,7 +41,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	{
 		try
 		{
-			_root = DancingLink.Entry.CreateLinkedList(in grid);
+			_root = DancingLink.Entry.Create(in grid);
 			Search(&guard, &recordSolution);
 			result = _solution;
 			return true;
@@ -68,7 +68,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// <inheritdoc/>
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
-		_root = DancingLink.Entry.CreateLinkedList(in grid);
+		_root = DancingLink.Entry.Create(in grid);
 		Search(&@delegate.DoNothing, &recordSolution);
 		return _solutions is null ? [] : _solutions.AsReadOnlySpan();
 
