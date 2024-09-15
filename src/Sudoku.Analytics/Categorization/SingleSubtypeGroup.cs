@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Categorization;
 
 /// <summary>
 /// Represents a group of <see cref="SingleSubtype"/> instances.

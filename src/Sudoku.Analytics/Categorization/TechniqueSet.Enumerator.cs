@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Categorization;
 
 public partial class TechniqueSet
 {

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Categorization;
 
 /// <summary>
 /// Predefined <see cref="TechniqueSet"/> instances.

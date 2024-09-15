@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:analytics="using:Sudoku.Analytics"
 	xmlns:c="using:SudokuStudio.Views.Controls"
-	xmlns:categorization="using:Sudoku.Analytics.Categorization"
+	xmlns:categorization="using:Sudoku.Categorization"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"

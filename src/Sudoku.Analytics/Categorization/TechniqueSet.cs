@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Categorization;
 
 /// <summary>
 /// Represents a set of <see cref="Technique"/> fields.

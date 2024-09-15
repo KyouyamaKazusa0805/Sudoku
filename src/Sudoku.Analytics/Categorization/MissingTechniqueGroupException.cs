@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Categorization;
 
 /// <summary>
 /// Represents an exception thrown when a field in <see cref="Technique"/> is missing for technique group attribute.

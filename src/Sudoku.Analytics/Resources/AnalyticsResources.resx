@@ -2656,7 +2656,7 @@
     <value>The group of indirect technique field is neither locked candidates nor subset, which is not supported today. In future, the field might be expanded to wider, and this value might be available.</value>
   </data>
   <data name="ErrorInfo_TechniqueLevelCannotBeDetermined" xml:space="preserve">
-    <value>The target level is unknown. If you see this exception thrown, please append 'Sudoku.Analytics.Categorization.DifficultyLevelAttribute' to the target technique code field defined in type 'Sudoku.Analytics.Categorization.Technique'.</value>
+    <value>The target level is unknown. If you see this exception thrown, please append 'Sudoku.Categorization.DifficultyLevelAttribute' to the target technique code field defined in type 'Sudoku.Categorization.Technique'.</value>
   </data>
   <data name="ErrorInfo_GridIsInvalidOrSolved" xml:space="preserve">
     <value>The value is invalid or solved.</value>

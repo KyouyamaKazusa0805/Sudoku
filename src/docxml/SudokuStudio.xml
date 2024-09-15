@@ -610,17 +610,17 @@
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueViewBindableSource">
             <summary>
-            Represents a bindable source for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            Represents a bindable source for a <see cref="T:Sudoku.Categorization.Technique"/>.
             </summary>
             <param name="techniqueField">Indicates the technique field.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Categorization.Technique"/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.TechniqueViewBindableSource.#ctor(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.BindableSource.TechniqueViewBindableSource.#ctor(Sudoku.Categorization.Technique)">
             <summary>
-            Represents a bindable source for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            Represents a bindable source for a <see cref="T:Sudoku.Categorization.Technique"/>.
             </summary>
             <param name="techniqueField">Indicates the technique field.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Categorization.Technique"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.TechniqueName">
             <summary>
@@ -639,9 +639,9 @@
         </member>
         <member name="T:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource">
             <summary>
-            Represents a bindable source for a group of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
+            Represents a bindable source for a group of <see cref="T:Sudoku.Categorization.Technique"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Categorization.Technique"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton">
             <summary>
@@ -1860,28 +1860,28 @@
             Indicates the customized technique Data.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateRating(Sudoku.Analytics.Categorization.Technique,System.Int32)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateRating(Sudoku.Categorization.Technique,System.Int32)">
             <summary>
             Add or update rating value.
             </summary>
             <param name="technique">The technique.</param>
             <param name="value">The rating value to be set.</param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDirectRating(Sudoku.Analytics.Categorization.Technique,System.Int32)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDirectRating(Sudoku.Categorization.Technique,System.Int32)">
             <summary>
             Add or update direct rating value.
             </summary>
             <param name="technique">The technique.</param>
             <param name="value">The rating value to be set.</param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDifficultyLevel(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.DifficultyLevel)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDifficultyLevel(Sudoku.Categorization.Technique,Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Add or update difficulty level.
             </summary>
             <param name="technique">The technique.</param>
             <param name="value">The difficulty level to be set.</param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateValue``1(Sudoku.Analytics.Categorization.Technique,``0,,)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateValue``1(Sudoku.Categorization.Technique,``0,,)">
             <summary>
             Append or update value.
             </summary>
@@ -1891,20 +1891,20 @@
             <param name="dataCreator">The data creator method that will be called when the collection doesn't contain the technique.</param>
             <param name="dataModifier">The data modifier method that will be called when the collection contains the technique.</param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRating(Sudoku.Analytics.Categorization.Technique)">
-            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Analytics.Categorization.Technique)"/>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRating(Sudoku.Categorization.Technique)">
+            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Categorization.Technique)"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Categorization.Technique)">
             <summary>
             Try to get the rating value for the specified technique.
             </summary>
             <param name="technique">The technique.</param>
             <returns>The rating value.</returns>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
-            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Analytics.Categorization.Technique)"/>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevel(Sudoku.Categorization.Technique)">
+            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Categorization.Technique)"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Categorization.Technique)">
             <summary>
             Try to get the difficulty level for the specified technique.
             </summary>
@@ -5061,7 +5061,7 @@
             <param name="isSelected">Indicates whether the field is selected.</param>
             <seealso cref="T:SudokuStudio.Interaction.TechniqueViewCurrentSelectedTechniqueChangedEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.TechniqueViewCurrentSelectedTechniqueChangedEventArgs.#ctor(Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+        <member name="M:SudokuStudio.Interaction.TechniqueViewCurrentSelectedTechniqueChangedEventArgs.#ctor(Sudoku.Categorization.Technique,System.Boolean)">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueViewCurrentSelectedTechniqueChangedEventHandler"/>.
             </summary>
@@ -5094,7 +5094,7 @@
             <param name="techniqueSet">The technique set to be assigned.</param>
             <seealso cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>
         </member>
-        <member name="M:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventArgs.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+        <member name="M:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventArgs.#ctor(Sudoku.Categorization.TechniqueSet)">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.TechniqueViewSelectedTechniquesChangedEventHandler"/>.
             </summary>
@@ -5286,10 +5286,10 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> supported by <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/> instances
+            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Categorization.Technique"/> supported by <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/> instances
             into a <see cref="T:System.Boolean"/> control determining whether the corresponding control is set as "on" value.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -11207,7 +11207,7 @@
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerIgnoresHighAllocationAlgorithms"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetIttoryuSupportedTechniques(Microsoft.UI.Xaml.DependencyObject,System.Collections.Generic.List{Sudoku.Analytics.Categorization.Technique})">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetIttoryuSupportedTechniques(Microsoft.UI.Xaml.DependencyObject,System.Collections.Generic.List{Sudoku.Categorization.Technique})">
             <summary>
             Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.IttoryuSupportedTechniques"/> with the specified value.
             </summary>
@@ -13678,7 +13678,7 @@
             Indicates the event triggered when the current selected technique is changed.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueView.UpdateSelection(Sudoku.Analytics.Categorization.TechniqueSet)">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.UpdateSelection(Sudoku.Categorization.TechniqueSet)">
             <summary>
             Try to update all token items via selection state.
             </summary>
@@ -13689,7 +13689,7 @@
             </summary>
             <param name="mode">The show mode.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.TechniqueView.GetVisibility(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.GetVisibility(Sudoku.Categorization.Technique)">
             <summary>
             Gets the visibility.
             </summary>
@@ -15036,7 +15036,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Extensions.GetTechniqueString(Sudoku.Analytics.Categorization.TechniqueSet)">
+        <member name="M:SudokuStudio.Views.Pages.Extensions.GetTechniqueString(Sudoku.Categorization.TechniqueSet)">
             <summary>
             Try to fetch the string representation of the techniques chosen in UI.
             </summary>
