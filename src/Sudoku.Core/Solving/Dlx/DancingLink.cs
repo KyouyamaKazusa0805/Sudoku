@@ -40,12 +40,12 @@ public sealed class DancingLink(ColumnNode _root)
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void formLinks(ColumnNode[] columns, RowIndex x, ColumnIndex y, Digit d)
+		static void formLinks(ColumnNode[] cols, RowIndex r, ColumnIndex c, Digit d)
 		{
-			var cell = new DancingLinkNode(x * 81 + y * 9 + d, columns[x * 9 + y]);
-			var row = new DancingLinkNode(x * 81 + y * 9 + d, columns[81 + x * 9 + d]);
-			var column = new DancingLinkNode(x * 81 + y * 9 + d, columns[162 + y * 9 + d]);
-			var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
+			var cell = new DancingLinkNode(r * 81 + c * 9 + d, cols[r * 9 + c]);
+			var row = new DancingLinkNode(r * 81 + c * 9 + d, cols[81 + r * 9 + d]);
+			var column = new DancingLinkNode(r * 81 + c * 9 + d, cols[162 + c * 9 + d]);
+			var block = new DancingLinkNode(r * 81 + c * 9 + d, cols[243 + (3 * (r / 3) + c / 3) * 9 + d]);
 			var matrixRow = new MatrixRow(cell, row, column, block);
 			linkRow(ref matrixRow);
 			linkRowToColumn(matrixRow.Cell);
