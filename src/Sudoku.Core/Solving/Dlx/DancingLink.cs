@@ -13,10 +13,12 @@ public sealed class DancingLink(ColumnNode _root)
 
 
 	/// <summary>
-	/// Creates the links.
+	/// Try to create a <see cref="ColumnNode"/> instance, including connection
+	/// with all candidates from the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The column node for the root node.</returns>
+	/// <seealso cref="ColumnNode"/>
 	public ColumnNode Create(ref readonly Grid grid)
 	{
 		var columns = new ColumnNode[324];
