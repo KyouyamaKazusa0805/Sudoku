@@ -12,7 +12,7 @@ namespace Sudoku.Solving.Bitwise;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
 /// </remarks>
-public sealed unsafe class BitwiseSolver : ISolver
+public sealed unsafe class BitwiseSolver : ISolver, IMultipleSolutionSolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.
@@ -335,6 +335,12 @@ public sealed unsafe class BitwiseSolver : ISolver
 	private readonly BitwiseSolverState[] _stack = new BitwiseSolverState[50];
 
 	/// <summary>
+	/// Indicates the solutions.
+	/// </summary>
+	private readonly SortedSet<string> _solutions = [];
+
+
+	/// <summary>
 	/// Nasty global flag telling if <see cref="ApplySingleOrEmptyCells"/> found anything.
 	/// </summary>
 	/// <seealso cref="ApplySingleOrEmptyCells"/>
@@ -346,16 +352,15 @@ public sealed unsafe class BitwiseSolver : ISolver
 	private char* _solution;
 
 	/// <summary>
-	/// The number of solutions found so far.
+	/// Indicates the number of solutions found so far.
 	/// </summary>
 	private long _numSolutions;
 
 	/// <summary>
-	/// The max number of solution we're looking for.
+	/// Indicates the number of solutions you want to search.
+	/// Assign <see cref="int.MaxValue"/> if you want to find all possible solutions,
+	/// and assign 2 if you only want to check validity of the puzzle (if 2 solutions found, the puzzle will become invalid).
 	/// </summary>
-	/// <remarks>
-	/// For the consideration on the performance, I have refused to use auto-implemented property instead.
-	/// </remarks>
 	private long _limitSolutions;
 
 	/// <summary>
@@ -507,12 +512,24 @@ public sealed unsafe class BitwiseSolver : ISolver
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Grid Solve(ref readonly Grid puzzle) => Solve(in puzzle, out var result) is true ? result : Grid.Undefined;
 
+	/// <inheritdoc/>
+	public ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
+	{
+		SolveString(grid.ToString("0"), null, int.MaxValue);
+		return from element in _solutions.ToArray() select Grid.Parse(element);
+	}
+
 	/// <summary>
-	/// To clear the field <see cref="_stack"/>.
+	/// To clear the field <see cref="_stack"/>, and clear original solution collection <see cref="_solutions"/>.
 	/// </summary>
 	/// <seealso cref="_stack"/>
+	/// <seealso cref="_solutions"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void ClearStack() => Array.Clear(_stack);
+	private void ClearStack()
+	{
+		Array.Clear(_stack);
+		_solutions.Clear();
+	}
 
 	/// <summary>
 	/// Set a cell as solved - used in <see cref="InitSudoku"/>.
@@ -1085,22 +1102,38 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// </param>
 	private void ExtractSolution(char* solution)
 	{
-		for (var cell = 0; cell < 81; cell++)
+		if (_limitSolutions == int.MaxValue)
 		{
-			var mask = Cell2Mask[cell];
-			var offset = (int)Cell2Floor[cell];
-			for (var digit = 0; digit < 9; digit++)
-			{
-				if ((_g->Bands[offset] & mask) != 0)
-				{
-					solution[cell] = (char)('1' + digit);
-					break;
-				}
-				offset += 3;
-			}
+			var solutionPtr = (stackalloc char[BufferLength]);
+			f(solutionPtr);
+			_solutions.Add(solutionPtr.ToString());
+			return;
 		}
 
-		solution[81] = '\0';
+		if (_solution != null && _numSolutions == 0)
+		{
+			f(new(solution, BufferLength));
+		}
+
+
+		void f(CharSequence span)
+		{
+			for (var cell = 0; cell < 81; cell++)
+			{
+				var mask = Cell2Mask[cell];
+				var offset = (int)Cell2Floor[cell];
+				for (var digit = 0; digit < 9; digit++)
+				{
+					if ((_g->Bands[offset] & mask) != 0)
+					{
+						span[cell] = (char)('1' + digit);
+						break;
+					}
+					offset += 3;
+				}
+			}
+			span[81] = '\0';
+		}
 	}
 
 	/// <summary>
@@ -1201,14 +1234,9 @@ public sealed unsafe class BitwiseSolver : ISolver
 		if ((_g->UnsolvedRows[0] | _g->UnsolvedRows[1] | _g->UnsolvedRows[2]) == 0)
 		{
 			// Already solved.
-			if (_solution != null && _numSolutions == 0)
-			{
-				// Store the first solution.
-				ExtractSolution(_solution);
-			}
+			ExtractSolution(_solution);
 
 			_numSolutions++;
-
 			return;
 		}
 

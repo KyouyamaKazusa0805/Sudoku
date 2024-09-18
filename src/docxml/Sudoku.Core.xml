@@ -10316,6 +10316,11 @@
             Stack to store current and previous states.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions">
+            <summary>
+            Indicates the solutions.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._singleApplied">
             <summary>
             Nasty global flag telling if <see cref="M:Sudoku.Solving.Bitwise.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
@@ -10329,16 +10334,15 @@
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._numSolutions">
             <summary>
-            The number of solutions found so far.
+            Indicates the number of solutions found so far.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._limitSolutions">
             <summary>
-            The max number of solution we're looking for.
+            Indicates the number of solutions you want to search.
+            Assign <see cref="F:System.Int32.MaxValue"/> if you want to find all possible solutions,
+            and assign 2 if you only want to check validity of the puzzle (if 2 solutions found, the puzzle will become invalid).
             </summary>
-            <remarks>
-            For the consideration on the performance, I have refused to use auto-implemented property instead.
-            </remarks>
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._g">
             <summary>
@@ -10400,11 +10404,15 @@
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.ClearStack">
             <summary>
-            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>.
+            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>, and clear original solution collection <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>.
             </summary>
             <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>
+            <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
