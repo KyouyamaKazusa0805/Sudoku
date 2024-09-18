@@ -4,28 +4,31 @@ namespace Sudoku.Solving.Dlx;
 /// Represents a dancing link node.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
-public class DancingLinkNode
+[TypeImpl(TypeImplFlag.Object_ToString)]
+public partial class DancingLinkNode : IFormattable
 {
 	/// <summary>
 	/// Initializes a <see cref="DancingLinkNode"/> instance via the specified ID value and the column node.
 	/// </summary>
-	/// <param name="id">The ID value.</param>
+	/// <param name="candidate">The candidate.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DancingLinkNode(int id) => (Id, Column, Left, Right, Up, Down) = (id, null, this, this, this, this);
+	public DancingLinkNode(Candidate candidate)
+		=> (Candidate, Column, Left, Right, Up, Down) = (candidate, null, this, this, this, this);
 
 	/// <summary>
 	/// Initializes a <see cref="DancingLinkNode"/> instance via the specified ID value and the column node.
 	/// </summary>
-	/// <param name="id">The ID value.</param>
+	/// <param name="candidate">The candidate.</param>
 	/// <param name="column">The column node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DancingLinkNode(int id, ColumnNode? column) => (Id, Column, Left, Right, Up, Down) = (id, column, this, this, this, this);
+	public DancingLinkNode(Candidate candidate, ColumnNode? column)
+		=> (Candidate, Column, Left, Right, Up, Down) = (candidate, column, this, this, this, this);
 
 
 	/// <summary>
-	/// Indicates the ID of the node.
+	/// Indicates the candidate of the node.
 	/// </summary>
-	public int Id { get; set; }
+	public Candidate Candidate { get; set; }
 
 	/// <summary>
 	/// Indicates the current column node.
@@ -53,7 +56,13 @@ public class DancingLinkNode
 	public DancingLinkNode Down { get; set; }
 
 
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider)
+	{
+		var map = Candidate.AsCandidateMap();
+		return $"{nameof(Candidate)} = {map.ToString(formatProvider)}, {nameof(Up)} = {Up.Candidate}, {nameof(Down)} = {Down.Candidate}, {nameof(Left)} = {Left.Candidate}, {nameof(Right)} = {Right.Candidate}";
+	}
+
 	/// <inheritdoc/>
-	public override string ToString()
-		=> $"{nameof(Id)} = {Id}, {nameof(Up)} = {Up.Id}, {nameof(Down)} = {Down.Id}, {nameof(Left)} = {Left.Id}, {nameof(Right)} = {Right.Id}";
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

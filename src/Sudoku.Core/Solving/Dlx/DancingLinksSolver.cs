@@ -58,7 +58,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
-			=> @this._solution = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
+			=> @this._solution = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
 	}
 
 	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
@@ -66,6 +66,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
 		_root = DancingLink.Entry.Create(in grid);
@@ -78,7 +79,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		{
 			@this._solutions ??= [];
 
-			var result = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
+			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
 			@this._solutions.AddRef(in result);
 		}
 	}
@@ -105,32 +106,30 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 			// All columns were removed!
 			_solutionCount++;
 			resultTargeting(this, _answerNodesStack);
+			return;
 		}
-		else
+
+		var c = ChooseNextColumn();
+		Cover(c);
+
+		for (var r = c.Down; !ReferenceEquals(r, c); r = r.Down)
 		{
-			var c = ChooseNextColumn();
-			Cover(c);
-
-			for (var r = c.Down; !ReferenceEquals(r, c); r = r.Down)
+			_answerNodesStack.Push(r);
+			for (var j = r.Right; !ReferenceEquals(j, r); j = j.Right)
 			{
-				_answerNodesStack.Push(r);
-				for (var j = r.Right; !ReferenceEquals(j, r); j = j.Right)
-				{
-					Cover(j.Column!);
-				}
-
-				Search(multipleSolutionGuard, resultTargeting);
-				r = _answerNodesStack.Pop();
-				c = r.Column!;
-
-				for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
-				{
-					Uncover(j.Column!);
-				}
+				Cover(j.Column!);
 			}
 
-			Uncover(c);
+			Search(multipleSolutionGuard, resultTargeting);
+			r = _answerNodesStack.Pop();
+			c = r.Column;
+
+			for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
+			{
+				Uncover(j.Column!);
+			}
 		}
+		Uncover(c);
 	}
 
 	/// <summary>
@@ -179,18 +178,15 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	private ColumnNode ChooseNextColumn()
 	{
 		Debug.Assert(_root is not null);
-
-		var size = int.MaxValue;
-		var nextColumn = new ColumnNode(-1);
-		var j = _root.Right.Column;
+		var (size, nextColumn, j) = (int.MaxValue, new ColumnNode(-1), _root.Right.Column);
 		while (!ReferenceEquals(j, _root))
 		{
-			if (j!.Size < size)
+			Debug.Assert(j is not null);
+			if (j.Size < size)
 			{
 				nextColumn = j;
 				size = j.Size;
 			}
-
 			j = j.Right.Column;
 		}
 		return nextColumn;

@@ -10711,6 +10711,11 @@
             </summary>
             <param name="_root">The root node.</param>
         </member>
+        <member name="F:Sudoku.Solving.Dlx.DancingLink.NodesCount">
+            <summary>
+            Indicates the number of nodes created in the data model.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Dlx.DancingLink.Entry">
             <summary>
             Indicates the entry instance.
@@ -10737,18 +10742,18 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> instance via the specified ID value and the column node.
             </summary>
-            <param name="id">The ID value.</param>
+            <param name="candidate">The candidate.</param>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.#ctor(System.Int32,Sudoku.Solving.Dlx.ColumnNode)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> instance via the specified ID value and the column node.
             </summary>
-            <param name="id">The ID value.</param>
+            <param name="candidate">The candidate.</param>
             <param name="column">The column node.</param>
         </member>
-        <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Id">
+        <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Candidate">
             <summary>
-            Indicates the ID of the node.
+            Indicates the candidate of the node.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Column">
@@ -10776,8 +10781,14 @@
             Indicates the pointer that points to the down node.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString">
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Dlx.DancingLinksSolver">
             <summary>
