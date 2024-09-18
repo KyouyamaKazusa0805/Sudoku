@@ -13,6 +13,26 @@ public sealed class DancingLink(ColumnNode _root)
 
 
 	/// <summary>
+	/// Indicates the raw columns.
+	/// </summary>
+	private ColumnNode[] RawColumns
+	{
+		get
+		{
+			var columns = new ColumnNode[NodesCount];
+			for (var columnIndex = 0; columnIndex < NodesCount; columnIndex++)
+			{
+				var col = new ColumnNode(columnIndex) { Right = _root, Left = _root.Left };
+				_root.Left.Right = col;
+				_root.Left = col;
+				columns[columnIndex] = col;
+			}
+			return columns;
+		}
+	}
+
+
+	/// <summary>
 	/// Indicates the entry instance. Use this propeprty to create links:
 	/// <code><![CDATA[
 	/// var grid = ...;
@@ -22,30 +42,29 @@ public sealed class DancingLink(ColumnNode _root)
 	public static DancingLink Entry => new(new(-1));
 
 
+	/// <inheritdoc cref="Create(ref readonly Grid, ref readonly CellMap, CellAssertion)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ColumnNode Create(ref readonly Grid grid) => Create(in grid, in CellMap.Full, default);
+
 	/// <summary>
 	/// Try to create a <see cref="ColumnNode"/> instance, including connection
 	/// with all candidates from the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="limitedCells">Indicates the limited cells.</param>
+	/// <param name="assertion">Indicates the cell assertion.</param>
 	/// <returns>The column node for the root node.</returns>
 	/// <seealso cref="ColumnNode"/>
-	public ColumnNode Create(ref readonly Grid grid)
+	public ColumnNode Create(ref readonly Grid grid, ref readonly CellMap limitedCells, CellAssertion assertion = default)
 	{
-		var columns = new ColumnNode[NodesCount];
-		for (var columnIndex = 0; columnIndex < NodesCount; columnIndex++)
-		{
-			var col = new ColumnNode(columnIndex) { Right = _root, Left = _root.Left };
-			_root.Left.Right = col;
-			_root.Left = col;
-			columns[columnIndex] = col;
-		}
-
+		var columns = RawColumns;
 		for (var cell = 0; cell < 81; cell++)
 		{
-			var (x, y) = (cell / 9, cell % 9);
-			foreach (var digit in grid.GetCandidates(cell))
+			var (r, c) = (cell / 9, cell % 9);
+			var m = grid.GetCandidates(cell);
+			foreach (var d in m)
 			{
-				formLinks(columns, x, y, digit);
+				formLinks(columns, r, c, d);
 			}
 		}
 		return _root;

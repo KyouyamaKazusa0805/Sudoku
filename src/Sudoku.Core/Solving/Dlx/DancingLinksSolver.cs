@@ -17,6 +17,11 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	private int _solutionCount;
 
 	/// <summary>
+	/// Indicates the limited cells.
+	/// </summary>
+	private CellMap _limitedCells;
+
+	/// <summary>
 	/// Indicates the found solution.
 	/// </summary>
 	private Grid _solution;
@@ -24,7 +29,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// <summary>
 	/// Indicates the found solutions.
 	/// </summary>
-	private List<Grid>? _solutions;
+	private SortedSet<Grid>? _solutions;
 
 	/// <summary>
 	/// Indicates the root node of the full link map.
@@ -42,6 +47,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		try
 		{
 			_root = DancingLink.Entry.Create(in grid);
+			_limitedCells = CellMap.Full;
 			Search(&guard, &recordSolution);
 			result = _solution;
 			return true;
@@ -57,8 +63,11 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		static void guard() => throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
-			=> @this._solution = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
+		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		{
+			@this._solution = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
+			return true;
+		}
 	}
 
 	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
@@ -70,17 +79,53 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
 		_root = DancingLink.Entry.Create(in grid);
+		_limitedCells = CellMap.Full;
 		Search(&@delegate.DoNothing, &recordSolution);
-		return _solutions is null ? [] : _solutions.AsReadOnlySpan();
+		return _solutions?.ToArray() ?? [];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
 		{
 			@this._solutions ??= [];
 
 			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
-			@this._solutions.AddRef(in result);
+			return @this._solutions.Add(result);
+		}
+	}
+
+	/// <summary>
+	/// Find all possible solutions to the specified grid, only checking for the specified cells.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="limitedCells">The cells.</param>
+	/// <param name="assertion">Indicates the assertion.</param>
+	/// <returns>All solutions to the grid.</returns>
+	public unsafe ReadOnlySpan<Grid> SolveAll(
+		ref readonly Grid grid,
+		ref readonly CellMap limitedCells,
+		CellAssertion assertion = default
+	)
+	{
+		_root = DancingLink.Entry.Create(in grid, in limitedCells, assertion);
+		_limitedCells = limitedCells;
+		Search(&@delegate.DoNothing, &recordSolution);
+		return _solutions?.ToArray() ?? [];
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		{
+			@this._solutions ??= [];
+
+			// Erase unused cells.
+			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9)
+				.UnfixedGrid;
+			foreach (var cell in ~@this._limitedCells)
+			{
+				result.SetDigit(cell, -1);
+			}
+			return @this._solutions.Add(result.FixedGrid);
 		}
 	}
 
@@ -92,7 +137,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
 	private unsafe void Search(
 		delegate*<void> multipleSolutionGuard,
-		delegate*<DancingLinksSolver, Stack<DancingLinkNode>, void> resultTargeting
+		delegate*<DancingLinksSolver, Stack<DancingLinkNode>, bool> resultTargeting
 	)
 	{
 		if (_solutionCount > 1)
@@ -104,8 +149,10 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		if (ReferenceEquals(_root.Right, _root))
 		{
 			// All columns were removed!
-			_solutionCount++;
-			resultTargeting(this, _answerNodesStack);
+			if (resultTargeting(this, _answerNodesStack))
+			{
+				_solutionCount++;
+			}
 			return;
 		}
 
@@ -121,14 +168,15 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 			}
 
 			Search(multipleSolutionGuard, resultTargeting);
+
 			r = _answerNodesStack.Pop();
 			c = r.Column;
-
 			for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
 			{
 				Uncover(j.Column!);
 			}
 		}
+
 		Uncover(c);
 	}
 
@@ -181,8 +229,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		var (size, nextColumn, j) = (int.MaxValue, new ColumnNode(-1), _root.Right.Column);
 		while (!ReferenceEquals(j, _root))
 		{
-			Debug.Assert(j is not null);
-			if (j.Size < size)
+			if (j!.Size < size)
 			{
 				nextColumn = j;
 				size = j.Size;

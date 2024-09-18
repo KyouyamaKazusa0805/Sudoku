@@ -59,8 +59,14 @@ public partial class DancingLinkNode : IFormattable
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		var map = Candidate.AsCandidateMap();
-		return $"{nameof(Candidate)} = {map.ToString(formatProvider)}, {nameof(Up)} = {Up.Candidate}, {nameof(Down)} = {Down.Candidate}, {nameof(Left)} = {Left.Candidate}, {nameof(Right)} = {Right.Candidate}";
+		return $"{nameof(Candidate)} = {f(Candidate)}, {nameof(Up)} = {f(Up.Candidate)}, {nameof(Down)} = {f(Down.Candidate)}, {nameof(Left)} = {f(Left.Candidate)}, {nameof(Right)} = {f(Right.Candidate)}";
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		string f(Candidate candidate)
+			=> candidate == -1
+				? "<invalid>"
+				: candidate.AsCandidateMap() switch { var map => map.ToString(formatProvider) };
 	}
 
 	/// <inheritdoc/>
