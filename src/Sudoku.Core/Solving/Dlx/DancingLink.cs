@@ -13,7 +13,11 @@ public sealed class DancingLink(ColumnNode _root)
 
 
 	/// <summary>
-	/// Indicates the entry instance.
+	/// Indicates the entry instance. Use this propeprty to create links:
+	/// <code><![CDATA[
+	/// var grid = ...;
+	/// DancingLink.Entry.Create(in grid);
+	/// ]]></code>
 	/// </summary>
 	public static DancingLink Entry => new(new(-1));
 

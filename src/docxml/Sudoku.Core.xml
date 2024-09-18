@@ -10720,7 +10720,11 @@
         </member>
         <member name="P:Sudoku.Solving.Dlx.DancingLink.Entry">
             <summary>
-            Indicates the entry instance.
+            Indicates the entry instance. Use this propeprty to create links:
+            <code><![CDATA[
+            var grid = ...;
+            DancingLink.Entry.Create(in grid);
+            ]]></code>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLink.Create(Sudoku.Concepts.Grid@)">
