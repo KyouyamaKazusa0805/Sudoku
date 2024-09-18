@@ -59,14 +59,33 @@ public partial class DancingLinkNode : IFormattable
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
-		return $"{nameof(Candidate)} = {f(Candidate)}, {nameof(Up)} = {f(Up.Candidate)}, {nameof(Down)} = {f(Down.Candidate)}, {nameof(Left)} = {f(Left.Candidate)}, {nameof(Right)} = {f(Right.Candidate)}";
+		var sb = new StringBuilder();
+		sb.Append($"{nameof(DancingLinkNode)} {{ ");
+		sb.Append($"{nameof(Candidate)} = {f(Candidate)}, ");
+		sb.Append($"{nameof(Up)} = {f(Up.Candidate)}, ");
+		sb.Append($"{nameof(Down)} = {f(Down.Candidate)}, ");
+		sb.Append($"{nameof(Left)} = {f(Left.Candidate)}, ");
+		sb.Append($"{nameof(Right)} = {f(Right.Candidate)} }}");
+		return sb.ToString();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		string f(Candidate candidate)
-			=> candidate == -1
+		{
+			var converter = CoordinateConverter.GetInstance(formatProvider);
+			return candidate == -1
 				? "<invalid>"
-				: candidate.AsCandidateMap() switch { var map => map.ToString(formatProvider) };
+				: candidate switch
+				{
+					< 81 when candidate.AsCellMap() is var map => map.ToString(converter),
+					< 162 when ((candidate - 81) / 9, candidate % 9) is var (row, digit)
+						=> $"{converter.HouseConverter(1 << row + 9)}({digit + 1})",
+					< 243 when ((candidate - 162) / 9, candidate % 9) is var (column, digit)
+						=> $"{converter.HouseConverter(1 << column + 18)}({digit + 1})",
+					_ when ((candidate - 243) / 9, candidate % 9) is var (block, digit)
+						=> $"{converter.HouseConverter(1 << block)}({digit + 1})"
+				};
+		}
 	}
 
 	/// <inheritdoc/>
