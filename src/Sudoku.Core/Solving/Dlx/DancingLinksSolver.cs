@@ -222,7 +222,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// Try to choose the next column node.
 	/// </summary>
 	/// <returns>The chosen next column node.</returns>
-	[MemberNotNull(nameof(_root))]
 	private ColumnNode ChooseNextColumn()
 	{
 		Debug.Assert(_root is not null);

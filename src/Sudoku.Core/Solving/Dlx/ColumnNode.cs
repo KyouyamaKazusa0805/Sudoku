@@ -20,5 +20,5 @@ public sealed class ColumnNode : DancingLinkNode
 
 
 	/// <inheritdoc/>
-	public override string ToString() => $"{base.ToString()}, {nameof(Size)} = {Size}";
+	public override string ToString() => $"{nameof(ColumnNode)} {{ $Base = {base.ToString()}, {nameof(Size)} = {Size} }}";
 }
