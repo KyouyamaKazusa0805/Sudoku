@@ -59,7 +59,7 @@ public sealed class BacktrackingSolver : ISolver
 		try
 		{
 			var solutionsCount = 0;
-			var gridArray = grid.ToDigitsArray();
+			var gridArray = grid.ToDigitsArray(); // Implicit plus one operation.
 			solve(ref solutionsCount, ref resultArray, gridArray, 0);
 
 			if (resultArray is null)
@@ -107,7 +107,7 @@ public sealed class BacktrackingSolver : ISolver
 				var c = finishedCellsCount % 9;
 				for (var i = 0; i < 9; i++)
 				{
-					gridValues[finishedCellsCount]++; // Only use value increment operator.
+					gridValues[finishedCellsCount]++;
 					if (isValid(gridValues, r, c))
 					{
 						solve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
