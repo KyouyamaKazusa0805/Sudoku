@@ -17,11 +17,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	private int _solutionCount;
 
 	/// <summary>
-	/// Indicates the limited cells.
-	/// </summary>
-	private CellMap _limitedCells;
-
-	/// <summary>
 	/// Indicates the found solution.
 	/// </summary>
 	private Grid _solution;
@@ -47,7 +42,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		try
 		{
 			_root = DancingLink.Entry.Create(in grid);
-			_limitedCells = CellMap.Full;
 			Search(&guard, &recordSolution);
 			result = _solution;
 			return true;
@@ -79,7 +73,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
 		_root = DancingLink.Entry.Create(in grid);
-		_limitedCells = CellMap.Full;
 		Search(&@delegate.DoNothing, &recordSolution);
 		return _solutions?.ToArray() ?? [];
 
@@ -91,41 +84,6 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 
 			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
 			return @this._solutions.Add(result);
-		}
-	}
-
-	/// <summary>
-	/// Find all possible solutions to the specified grid, only checking for the specified cells.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="limitedCells">The cells.</param>
-	/// <param name="assertion">Indicates the assertion.</param>
-	/// <returns>All solutions to the grid.</returns>
-	public unsafe ReadOnlySpan<Grid> SolveAll(
-		ref readonly Grid grid,
-		ref readonly CellMap limitedCells,
-		CellAssertion assertion = default
-	)
-	{
-		_root = DancingLink.Entry.Create(in grid, in limitedCells, assertion);
-		_limitedCells = limitedCells;
-		Search(&@delegate.DoNothing, &recordSolution);
-		return _solutions?.ToArray() ?? [];
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
-		{
-			@this._solutions ??= [];
-
-			// Erase unused cells.
-			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9)
-				.UnfixedGrid;
-			foreach (var cell in ~@this._limitedCells)
-			{
-				result.SetDigit(cell, -1);
-			}
-			return @this._solutions.Add(result.FixedGrid);
 		}
 	}
 

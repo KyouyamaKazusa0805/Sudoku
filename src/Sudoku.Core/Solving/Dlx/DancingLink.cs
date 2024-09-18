@@ -42,20 +42,14 @@ public sealed class DancingLink(ColumnNode _root)
 	public static DancingLink Entry => new(new(-1));
 
 
-	/// <inheritdoc cref="Create(ref readonly Grid, ref readonly CellMap, CellAssertion)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ColumnNode Create(ref readonly Grid grid) => Create(in grid, in CellMap.Full, default);
-
 	/// <summary>
 	/// Try to create a <see cref="ColumnNode"/> instance, including connection
 	/// with all candidates from the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="limitedCells">Indicates the limited cells.</param>
-	/// <param name="assertion">Indicates the cell assertion.</param>
 	/// <returns>The column node for the root node.</returns>
 	/// <seealso cref="ColumnNode"/>
-	public ColumnNode Create(ref readonly Grid grid, ref readonly CellMap limitedCells, CellAssertion assertion = default)
+	public ColumnNode Create(ref readonly Grid grid)
 	{
 		var columns = RawColumns;
 		for (var cell = 0; cell < 81; cell++)
