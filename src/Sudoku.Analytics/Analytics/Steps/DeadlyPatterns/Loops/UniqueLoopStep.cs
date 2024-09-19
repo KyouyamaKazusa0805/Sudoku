@@ -36,7 +36,15 @@ public abstract partial class UniqueLoopStep(
 	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new UniqueLoopLengthFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_UniqueLoopLengthFactor",
+				[nameof(ICellListTrait.CellSize)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!) - 3
+			)
+		];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Loop.Count;

@@ -38,7 +38,20 @@ public sealed partial class BivalueUniversalGraveType3Step(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new BivalueUniversalGraveSubsetSizeFactor(), new BivalueUniversalGraveSubsetIsHiddenFactor()];
+		=> [
+			Factor.Create(
+				"Factor_BivalueUniversalGraveSubsetSizeFactor",
+				[nameof(IPatternType3StepTrait<BivalueUniversalGraveType3Step>.SubsetSize)],
+				GetType(),
+				static args => (int)args![0]!
+			),
+			Factor.Create(
+				"Factor_BivalueUniversalGraveSubsetIsHiddenFactor",
+				[nameof(IPatternType3StepTrait<BivalueUniversalGraveType3Step>.IsHidden)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<BivalueUniversalGraveType3Step>.IsHidden => !IsNaked;

@@ -34,7 +34,15 @@ public sealed partial class MultisectorLockedSetsStep(
 		=> [new(SR.EnglishLanguage, [CellsCountStr, CellsStr]), new(SR.ChineseLanguage, [CellsCountStr, CellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new MultisectorLockedSetsSizeFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_MultisectorLockedSetsSizeFactor",
+				[nameof(ICellListTrait.CellSize)],
+				GetType(),
+				static args => OeisSequences.A002024((int)args![0]!)
+			)
+		];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

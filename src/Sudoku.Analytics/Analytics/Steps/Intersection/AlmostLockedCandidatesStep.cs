@@ -46,7 +46,20 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new AlmostLockedCandidatesSizeFactor(), new AlmostLockedCandidatesValueCellExistenceFactor()];
+		=> [
+			Factor.Create(
+				"Factor_AlmostLockedCandidatesSizeFactor",
+				[nameof(Size)],
+				GetType(),
+				static args => (int)args![0]! switch { 2 => 0, 3 => 7, 4 => 12 }
+			),
+			Factor.Create(
+				"Factor_AlmostLockedCandidatesValueCellExistenceFactor",
+				[nameof(HasValueCell), nameof(Size)],
+				GetType(),
+				static args => (bool)args![0]! ? (int)args![1]! switch { 2 or 3 => 1, 4 => 2 } : 0
+			)
+		];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

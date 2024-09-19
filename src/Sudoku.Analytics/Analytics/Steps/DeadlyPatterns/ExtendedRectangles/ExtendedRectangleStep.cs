@@ -32,7 +32,15 @@ public abstract partial class ExtendedRectangleStep(
 	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new ExtendedRectangleSizeFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_ExtendedRectangleSizeFactor",
+				[nameof(ICellListTrait.CellSize)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!) - 2
+			)
+		];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

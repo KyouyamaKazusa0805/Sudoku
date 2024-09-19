@@ -1,5 +1,7 @@
 namespace Sudoku.Measuring;
 
+using Formula = Func<ReadOnlySpan<object?>, int>;
+
 /// <summary>
 /// Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
 /// </summary>
@@ -50,9 +52,14 @@ public abstract class Factor
 	}
 
 	/// <summary>
-	/// Provides with a formula that calculates for the result, unscaled.
+	/// Provides with a formula that calculates for the result.
 	/// </summary>
-	public abstract Func<ReadOnlySpan<object?>, int> Formula { get; }
+	public abstract Formula Formula { get; }
+
+	/// <summary>
+	/// Indicates the factor resource key.
+	/// </summary>
+	protected virtual string FactorResourceKey => $"Factor_{GetType().Name}";
 
 
 	/// <summary>
@@ -60,5 +67,40 @@ public abstract class Factor
 	/// </summary>
 	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The name of the factor.</returns>
-	public string GetName(IFormatProvider? formatProvider) => SR.Get($"Factor_{GetType().Name}", formatProvider as CultureInfo);
+	public string GetName(IFormatProvider? formatProvider) => SR.Get(FactorResourceKey, formatProvider as CultureInfo);
+
+
+	/// <summary>
+	/// Creates a <see cref="Factor"/> instance that assigns predefined values.
+	/// </summary>
+	/// <param name="resourceKey"><inheritdoc cref="FactorResourceKey" path="/summary"/></param>
+	/// <param name="parameterNames"><inheritdoc cref="ParameterNames" path="/summary"/></param>
+	/// <param name="reflectedStepType"><inheritdoc cref="ReflectedStepType" path="/summary"/></param>
+	/// <param name="formula"><inheritdoc cref="Formula" path="/summary"/></param>
+	/// <returns>A <see cref="Factor"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Factor Create(string resourceKey, string[] parameterNames, Type reflectedStepType, Formula formula)
+		=> new AnonymousFactor(resourceKey, parameterNames, reflectedStepType, formula);
+}
+
+/// <summary>
+/// Defines an anonymous factor.
+/// </summary>
+/// <param name="resourceKey"><inheritdoc cref="FactorResourceKey" path="/summary"/></param>
+/// <param name="parameterNames"><inheritdoc cref="ParameterNames" path="/summary"/></param>
+/// <param name="reflectedStepType"><inheritdoc cref="ReflectedStepType" path="/summary"/></param>
+/// <param name="formula"><inheritdoc cref="Formula" path="/summary"/></param>
+file sealed class AnonymousFactor(string resourceKey, string[] parameterNames, Type reflectedStepType, Formula formula) : Factor
+{
+	/// <inheritdoc/>
+	public override string[] ParameterNames => parameterNames;
+
+	/// <inheritdoc/>
+	public override Formula Formula => formula;
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => reflectedStepType;
+
+	/// <inheritdoc/>
+	protected override string FactorResourceKey => resourceKey;
 }

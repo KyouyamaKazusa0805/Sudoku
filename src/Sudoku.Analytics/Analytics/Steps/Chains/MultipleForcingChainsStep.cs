@@ -47,9 +47,44 @@ public sealed partial class MultipleForcingChainsStep(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new MultipleForcingChainsGroupedFactor(),
-			new MultipleForcingChainsGroupedNodeFactor(),
-			new MultipleForcingChainsLengthFactor()
+			Factor.Create(
+				"Factor_MultipleForcingChainsGroupedFactor",
+				[nameof(IsGrouped)],
+				GetType(),
+				static args => (bool)args![0]! ? 2 : 0
+			),
+			Factor.Create(
+				"Factor_MultipleForcingChainsGroupedNodeFactor",
+				[nameof(Pattern)],
+				GetType(),
+				static args =>
+				{
+					var result = 0;
+					foreach (var branch in ((MultipleForcingChains)args![0]!).Values)
+					{
+						foreach (var link in branch.Links)
+						{
+							result += link.GroupedLinkPattern switch
+							{
+								AlmostLockedSet => 2,
+								AlmostHiddenSet => 3,
+								UniqueRectangle => 4,
+								Fish => 6,
+								XyzWing => 8,
+								null when link.FirstNode.IsGroupedNode || link.SecondNode.IsGroupedNode => 1,
+								_ => 0
+							};
+						}
+					}
+					return result;
+				}
+			),
+			Factor.Create(
+				"Factor_MultipleForcingChainsLengthFactor",
+				[nameof(Complexity)],
+				GetType(),
+				static args => ChainingLength.GetLengthDifficulty((int)args![0]!)
+			)
 		];
 
 	private string ChainsStr => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));

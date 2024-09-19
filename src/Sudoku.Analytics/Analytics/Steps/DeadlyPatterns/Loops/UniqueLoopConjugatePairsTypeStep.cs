@@ -56,7 +56,16 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [.. base.Factors, new UniqueLoopConjugatePairsCountFactor()];
+	public override FactorArray Factors
+		=> [
+			.. base.Factors,
+			Factor.Create(
+				"Factor_UniqueLoopConjugatePairsCountFactor",
+				[nameof(ConjugatePairsCount)],
+				GetType(),
+				static args => (int)args![0]!
+			)
+		];
 
 	private string ConjugatePairsStr(string cultureName)
 	{

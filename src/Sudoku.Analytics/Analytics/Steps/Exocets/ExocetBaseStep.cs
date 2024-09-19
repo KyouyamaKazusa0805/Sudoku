@@ -42,7 +42,15 @@ public sealed partial class ExocetBaseStep(
 	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | MaskOperations.Create(from c in ConjugatePairs select c.Digit));
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new ExocetConjugatePairsCountFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_ExocetConjugatePairsCountFactor",
+				[nameof(IConjugatePairTrait.ConjugatePairsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			)
+		];
 
 	/// <inheritdoc/>
 	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;

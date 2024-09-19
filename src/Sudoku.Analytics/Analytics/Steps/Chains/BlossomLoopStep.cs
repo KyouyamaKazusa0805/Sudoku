@@ -43,7 +43,46 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new BlossomLoopGroupedFactor(), new BlossomLoopGroupedNodeFactor(), new BlossomLoopLengthFactor()];
+		=> [
+			Factor.Create(
+				"Factor_BlossomLoopGroupedFactor",
+				[nameof(IsGrouped)],
+				GetType(),
+				static args => (bool)args![0]! ? 2 : 0
+			),
+			Factor.Create(
+				"Factor_BlossomLoopGroupedNodeFactor",
+				[nameof(Pattern)],
+				GetType(),
+				static args =>
+				{
+					var result = 0;
+					foreach (var branch in ((BlossomLoop)args![0]!).Values)
+					{
+						foreach (var link in branch.Links)
+						{
+							result += link.GroupedLinkPattern switch
+							{
+								AlmostLockedSet => 2,
+								AlmostHiddenSet => 3,
+								UniqueRectangle => 4,
+								Fish => 6,
+								XyzWing => 8,
+								null when link.FirstNode.IsGroupedNode || link.SecondNode.IsGroupedNode => 1,
+								_ => 0
+							};
+						}
+					}
+					return result;
+				}
+			),
+			Factor.Create(
+				"Factor_BlossomLoopLengthFactor",
+				[nameof(Complexity)],
+				GetType(),
+				static args => ChainingLength.GetLengthDifficulty((int)args![0]!)
+			)
+		];
 
 	private string BurredLoopStr => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
 

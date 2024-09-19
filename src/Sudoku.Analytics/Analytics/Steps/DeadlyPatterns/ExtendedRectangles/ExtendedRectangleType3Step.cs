@@ -42,7 +42,21 @@ public sealed partial class ExtendedRectangleType3Step(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(), new ExtendedRectangleCannibalismFactor()];
+		=> [
+			.. base.Factors,
+			Factor.Create(
+				"Factor_ExtendedRectangleSubsetSizeFactor",
+				[nameof(IPatternType3StepTrait<ExtendedRectangleType3Step>.SubsetSize)],
+				GetType(),
+				static args => (int)args![0]!
+			),
+			Factor.Create(
+				"Factor_ExtendedRectangleCannibalismFactor",
+				[nameof(IsCannibalism)],
+				GetType(),
+				static args => (bool)args![0]! ? 2 : 0
+			)
+		];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<ExtendedRectangleType3Step>.IsHidden => false;

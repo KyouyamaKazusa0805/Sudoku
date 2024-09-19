@@ -38,7 +38,15 @@ public sealed partial class UniquenessClueCoverStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new UniquenessClueCoverExtraCellsFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_UniquenessClueCoverExtraCellsFactor",
+				[nameof(IExtraCellListTrait.ExtraCellSize)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			)
+		];
 
 	/// <inheritdoc/>
 	int IExtraCellListTrait.ExtraCellSize => ExtraCells.Count;

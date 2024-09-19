@@ -35,7 +35,15 @@ public sealed partial class GuardianStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new GuardianFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_GuardianFactor",
+				[nameof(ICellListTrait.CellSize), nameof(IGuardianTrait.GuardianCellsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]! + OeisSequences.A004526((int)args![1]!))
+			)
+		];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => LoopCells.Count;

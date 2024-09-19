@@ -20,5 +20,13 @@ public abstract class IrregularWingStep(Conclusion[] conclusions, View[]? views,
 	public abstract bool IsGrouped { get; }
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new IrregularWingIsGroupedFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_IrregularWingIsGroupedFactor",
+				[nameof(IsGrouped)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 }
