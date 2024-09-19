@@ -24345,7 +24345,7 @@
         </member>
         <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
             <summary>
-            Indicates all possible <see cref="!:Analytics.DifficultyLevel"/> values. 
+            Indicates all possible <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/> values. 
             </summary>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">

@@ -77,8 +77,7 @@ public abstract class Factor
 					throw new InvalidOperationException();
 				}
 			}
-
-			return matchPropertyInfoList.ToArray();
+			return matchPropertyInfoList.AsReadOnlySpan();
 
 
 			// Here a property may be explicitly implemented, the name may starts with interface name.

@@ -93,7 +93,7 @@ public sealed partial class ComplexFishStep(
 				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20, 5 => 33, 6 => 45, 7 => 56, _ => 66 }
 			),
 			Factor.Create(
-				"ComplexFishIsSashimiFactor",
+				"Factor_ComplexFishIsSashimiFactor",
 				[nameof(IsSashimi), nameof(Size)],
 				GetType(),
 				static args => (bool?)args![0]! switch
