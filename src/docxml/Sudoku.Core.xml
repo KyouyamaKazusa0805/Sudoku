@@ -10874,6 +10874,13 @@
             </summary>
             <returns>The chosen next column node.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.ToGrid(System.Collections.Generic.Stack{Sudoku.Solving.Dlx.DancingLinkNode})">
+            <summary>
+            Converts a list of <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> as solution.
+            </summary>
+            <param name="answer">The solution nodes.</param>
+            <returns>A grid converted.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Dlx.MatrixRow">
             <summary>
             Represents a type describing for a matrix row.

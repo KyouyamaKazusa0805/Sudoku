@@ -42,7 +42,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		try
 		{
 			_root = DancingLink.Entry.Create(in grid);
-			Search(&guard, &recordSolution);
+			Search(&g, &r);
 
 			(result, var @return) = _solutionCount == 0 ? (Grid.Undefined, (bool?)null) : (_solution, true);
 			return @return;
@@ -55,12 +55,12 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 
 
 		[DoesNotReturn]
-		static void guard() => throw new MultipleSolutionException();
+		static void g() => throw new MultipleSolutionException();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		static bool r(DancingLinksSolver @this, Stack<DancingLinkNode> resultNodes)
 		{
-			@this._solution = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
+			@this._solution = ToGrid(resultNodes);
 			return true;
 		}
 	}
@@ -74,17 +74,15 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
 		_root = DancingLink.Entry.Create(in grid);
-		Search(&@delegate.DoNothing, &recordSolution);
+		Search(&@delegate.DoNothing, &r);
 		return _solutions?.ToArray() ?? [];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		static bool r(DancingLinksSolver @this, Stack<DancingLinkNode> resultNodes)
 		{
 			@this._solutions ??= [];
-
-			var result = Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
-			return @this._solutions.Add(result);
+			return @this._solutions.Add(ToGrid(resultNodes));
 		}
 	}
 
@@ -196,4 +194,14 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		}
 		return nextColumn;
 	}
+
+
+	/// <summary>
+	/// Converts a list of <see cref="DancingLinkNode"/> as solution.
+	/// </summary>
+	/// <param name="answer">The solution nodes.</param>
+	/// <returns>A grid converted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Grid ToGrid(Stack<DancingLinkNode> answer)
+		=> Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
 }
