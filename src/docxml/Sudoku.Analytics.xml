@@ -25205,14 +25205,22 @@
             </summary>
             <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
+            <param name="failedCases">
+            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
+            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
+            </param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
-        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Concepts.Grid})">
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
             <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
+            <param name="failedCases">
+            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
+            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
+            </param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
@@ -25228,6 +25236,11 @@
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.IsDeadlyPattern">
             <summary>
             The generated property declaration for parameter <c>isDeadlyPattern</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.FailedCases">
+            <summary>
+            The generated property declaration for parameter <c>failedCases</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.Equals(System.Object)">
