@@ -43,18 +43,19 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		{
 			_root = DancingLink.Entry.Create(in grid);
 			Search(&guard, &recordSolution);
-			result = _solution;
-			return true;
+
+			(result, var @return) = _solutionCount == 0 ? (Grid.Undefined, (bool?)null) : (_solution, true);
+			return @return;
 		}
-		catch (InvalidOperationException ex)
+		catch (MultipleSolutionException)
 		{
 			result = Grid.Undefined;
-			return ex.Message.Contains("multiple") ? false : null;
+			return false;
 		}
 
 
 		[DoesNotReturn]
-		static void guard() => throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
+		static void guard() => throw new MultipleSolutionException();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)

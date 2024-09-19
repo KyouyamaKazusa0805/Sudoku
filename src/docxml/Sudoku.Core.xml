@@ -9494,6 +9494,11 @@
               Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_MultipleSolutionException">
+            <summary>
+              Looks up a localized string similar to The puzzle has multiple solutions..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.RowLabel">
             <summary>
               Looks up a localized string similar to Row {0}.
@@ -10895,6 +10900,16 @@
         <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveCore(System.String)">
+            <summary>
+            The core method to solve puzzles.
+            </summary>
+            <param name="puzzle">Indicates the puzzles.</param>
+            <returns>A list of puzzles found.</returns>
+        </member>
         <member name="T:Sudoku.Solving.GridSolvingExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
@@ -10989,6 +11004,15 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.MultipleSolutionException">
+            <summary>
+            Represents an exception type that will be thrown if a puzzle has multiple solutions,
+            which is an unexpected case in operation handling.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Uniqueness">
             <summary>
