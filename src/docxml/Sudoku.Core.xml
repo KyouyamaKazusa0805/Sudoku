@@ -1681,11 +1681,6 @@
             if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Conclusion.Parsers">
-            <summary>
-            The internal parsers.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.

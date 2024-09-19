@@ -35,13 +35,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	IParsable<Conclusion>
 {
 	/// <summary>
-	/// The internal parsers.
-	/// </summary>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	private static readonly CoordinateParser[] Parsers = [new RxCyParser(), new K9Parser()];
-
-
-	/// <summary>
 	/// Initializes an instance with a conclusion type and a candidate offset.
 	/// </summary>
 	/// <param name="type">The conclusion type.</param>
@@ -173,17 +166,16 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	{
 		switch (provider)
 		{
-			default:
 			case null:
 			{
-				foreach (var parser in Parsers)
+				foreach (var parser in (ReadOnlySpan<CoordinateParser>)[new RxCyParser(), new K9Parser()])
 				{
 					if (parser.ConclusionParser(s) is [var result])
 					{
 						return result;
 					}
 				}
-				throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
+				goto default;
 			}
 			case CultureInfo c:
 			{
@@ -192,6 +184,10 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 			case CoordinateParser c:
 			{
 				return c.ConclusionParser(s)[0];
+			}
+			default:
+			{
+				throw new FormatException(SR.ExceptionMessage("StringValueInvalidToBeParsed"));
 			}
 		}
 	}
