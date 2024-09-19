@@ -101,7 +101,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		return false;
 
 
-		static void dfs(ref Grid grid, in CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfs(ref Grid grid, ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
