@@ -44,11 +44,11 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.IsPartiallySolved">
             <summary>
-            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>.
+            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp"/>.
             If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/> and <see cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
             won't be empty.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
         </member>
@@ -168,7 +168,7 @@
         <member name="P:Sudoku.Analytics.AnalysisResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.Solution">
@@ -247,11 +247,11 @@
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
-            is <see cref="F:Sudoku.Analytics.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.FailedReason.WrongStep"/>.
+            is <see cref="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep"/>.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.ExceptionThrown"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.WrongStep"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.InterimGrids">
             <summary>
@@ -366,7 +366,7 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})">
+        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})">
             <summary>
             Try to get bottleneck steps under the specified rules.
             </summary>
@@ -374,11 +374,11 @@
             <returns>A list of bottleneck steps.</returns>
             <exception cref="T:System.NotSupportedException">
             Throws when the filter contains invalid configuration,
-            like <see cref="F:Sudoku.Analytics.BottleneckType.SingleStepOnly"/> in full-marking mode.
+            like <see cref="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepOnly"/> in full-marking mode.
             </exception>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.BottleneckType"/> flag.
+            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.Primitives.BottleneckType"/> flag.
             </exception>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any">
@@ -557,7 +557,7 @@
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.DifficultyLevel)">
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.Primitives.DifficultyLevel)">
             <summary>
             Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
             </summary>
@@ -711,92 +711,6 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckFilter">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.BottleneckFilter.#ctor(Sudoku.Analytics.PencilmarkVisibility,Sudoku.Analytics.BottleneckType)">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Visibility">
-            <summary>Indicates a visibility type of pencilmark.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Type">
-            <summary>Indicates the bottleneck type.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckType">
-            <summary>
-            Represents a type of bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.EliminationGroup">
-            <summary>
-            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestRating">
-            <summary>
-            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestLevel">
-            <summary>
-            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SequentialInversion">
-            <summary>
-            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
-            <para>
-            For example, the first step is a chain (at "Fiendish" level),
-            and the second step is a locked candidates (at "Moderate" level).
-            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepSameLevelOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it;
-            and only checks for same-level techniques.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule;
-            if the current grid pattern containing complex singles that can have extra assignemnts,
-            but it will be ignored to be checked in this flag.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">
             <summary>
@@ -1539,183 +1453,6 @@
             </item>
             </list>
             </remarks>
-        </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevel">
-            <summary>
-            Provides a difficulty kind for a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-            <completionlist cref="T:Sudoku.Analytics.DifficultyLevels" />
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Unknown">
-            <summary>
-            Indicates the difficulty level is unknown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Easy">
-            <summary>
-            Indicates the difficulty is easy.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Moderate">
-            <summary>
-            Indicates the difficulty is moderate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Hard">
-            <summary>
-            Indicates the difficulty is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Fiendish">
-            <summary>
-            Indicates the difficulty is fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Nightmare">
-            <summary>
-            Indicates the difficulty is nightmare.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.LastResort">
-            <summary>
-            Indicates the puzzle can't be solved unless using last resort methods.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevelExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
-        </member>
-        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.IFormatProvider)">
-            <summary>
-            Gets the name of the current value, with specified culture.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="formatProvider">The culture.</param>
-            <returns>The string value.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevels">
-            <summary>
-            Represents a list of difficulty levels.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevels.AllValid">
-            <summary>
-            Indicates all valid difficulty levels.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevels.All">
-            <summary>
-            Indicates all difficulty levels.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.FailedReason">
-            <summary>
-            Defines a reason why the puzzle is failed to be analyzed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.Nothing">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleIsInvalid">
-            <summary>
-            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
-            <para>
-            Different with <see cref="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution"/>,
-            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
-            before solving, we should use this field.
-            </para>
-            </summary>
-            <remarks>
-            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.PuzzleInvalidException"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions"/>
-            <seealso cref="T:Sudoku.Analytics.PuzzleInvalidException"/>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions">
-            <summary>
-            Indicates the failed reason is that the puzzle contains multiple valid solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.UserCancelled">
-            <summary>
-            Indicates the failed reason is that the user has canceled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.NotImplemented">
-            <summary>
-            Indicates the failed reason is that the solver or some searching module isn't implemented.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.ExceptionThrown">
-            <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve
-            that will cause an exception thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.WrongStep">
-            <summary>
-            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp">
-            <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.GridAnalysisExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
-            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house and hidden single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="allowHiddenSingleInLine">
-            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only naked single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Patterning.Chaining.Chain">
             <summary>
@@ -5697,31 +5434,95 @@
         <member name="M:Sudoku.Analytics.Patterning.Searching.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.PencilmarkVisibilities">
+        <member name="T:Sudoku.Analytics.Primitives.BottleneckFilter">
             <summary>
-            Represents a list of constants of <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/>.
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.PencilmarkVisibility"/>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>
         </member>
-        <member name="M:Sudoku.Analytics.PencilmarkVisibilities.#ctor">
+        <member name="M:Sudoku.Analytics.Primitives.BottleneckFilter.#ctor(Sudoku.Analytics.Primitives.PencilmarkVisibility,Sudoku.Analytics.Primitives.BottleneckType)">
             <summary>
-            Represents a list of constants of <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/>.
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.PencilmarkVisibility"/>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibilities.All">
+        <member name="P:Sudoku.Analytics.Primitives.BottleneckFilter.Visibility">
+            <summary>Indicates a visibility type of pencilmark.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.BottleneckFilter.Type">
+            <summary>Indicates the bottleneck type.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.BottleneckType">
             <summary>
-            Indicates all visibilities.
+            Represents a type of bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibilities.Marks">
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.EliminationGroup">
             <summary>
-            Indicates only for marks.
+            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.HardestRating">
+            <summary>
+            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.PencilmarkVisibility">
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.HardestLevel">
             <summary>
-            Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
+            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SequentialInversion">
+            <summary>
+            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
+            <para>
+            For example, the first step is a chain (at "Fiendish" level),
+            and the second step is a locked candidates (at "Moderate" level).
+            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepSameLevelOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it;
+            and only checks for same-level techniques.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule;
+            if the current grid pattern containing complex singles that can have extra assignemnts,
+            but it will be ignored to be checked in this flag.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
             </summary>
             <remarks><flags-attribute>
 		<para>
@@ -5731,27 +5532,170 @@
 			</i>
 		</para>
 	</flags-attribute></remarks>
-            <completionlist cref="T:Sudoku.Analytics.PencilmarkVisibilities" />
+            <completionlist cref="T:Sudoku.Analytics.Primitives.DifficultyLevels" />
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.None">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown">
             <summary>
-            Indicates placeholder.
+            Indicates the difficulty level is unknown.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.Direct">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Easy">
             <summary>
-            Indicates the technique can be applied to direct mode.
+            Indicates the difficulty is easy.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.PartialMark">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Moderate">
             <summary>
-            Indicates the technique can be applied to partial-marking mode.
+            Indicates the difficulty is moderate.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.FullMark">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Hard">
             <summary>
-            Indicates the technique can be applied to full-marking mode.
+            Indicates the difficulty is hard.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Primitives.DifficultyLevel,System.IFormatProvider)">
+            <summary>
+            Gets the name of the current value, with specified culture.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="formatProvider">The culture.</param>
+            <returns>The string value.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevels">
+            <summary>
+            Represents a list of difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevels.AllValid">
+            <summary>
+            Indicates all valid difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevels.All">
+            <summary>
+            Indicates all difficulty levels.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.FailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleIsInvalid">
+            <summary>
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
+            Different with <see cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </para>
+            </summary>
+            <remarks>
+            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.Primitives.PuzzleInvalidException"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PuzzleInvalidException"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.GridAnalysisExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
+            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house and hidden single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="allowHiddenSingleInLine">
+            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only naked single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Primitives.IAnalysisResult`3">
             <summary>
@@ -5949,7 +5893,63 @@
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.PuzzleInvalidException">
+        <member name="T:Sudoku.Analytics.Primitives.PencilmarkVisibilities">
+            <summary>
+            Represents a list of constants of <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.PencilmarkVisibilities.#ctor">
+            <summary>
+            Represents a list of constants of <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibilities.All">
+            <summary>
+            Indicates all visibilities.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibilities.Marks">
+            <summary>
+            Indicates only for marks.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.PencilmarkVisibility">
+            <summary>
+            Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <completionlist cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibilities" />
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.None">
+            <summary>
+            Indicates placeholder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct">
+            <summary>
+            Indicates the technique can be applied to direct mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.PartialMark">
+            <summary>
+            Indicates the technique can be applied to partial-marking mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark">
+            <summary>
+            Indicates the technique can be applied to full-marking mode.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.PuzzleInvalidException">
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
@@ -5958,11 +5958,11 @@
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
             but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            <see cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+            <seealso cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/>
         </member>
-        <member name="M:Sudoku.Analytics.PuzzleInvalidException.#ctor(Sudoku.Concepts.Grid@,System.Type)">
+        <member name="M:Sudoku.Analytics.Primitives.PuzzleInvalidException.#ctor(Sudoku.Concepts.Grid@,System.Type)">
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
@@ -5971,38 +5971,60 @@
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
             but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            <see cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+            <seealso cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/>
         </member>
-        <member name="P:Sudoku.Analytics.PuzzleInvalidException.Message">
+        <member name="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType">
+        <member name="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType">
             <summary>
             The generated property declaration for parameter <c>stepSearcherType</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.RuntimeAnalysisException">
+        <member name="T:Sudoku.Analytics.Primitives.RuntimeAnalysisException">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
         </member>
-        <member name="M:Sudoku.Analytics.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Primitives.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.Message">
+        <member name="P:Sudoku.Analytics.Primitives.RuntimeAnalysisException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.InvalidGrid">
+        <member name="P:Sudoku.Analytics.Primitives.RuntimeAnalysisException.InvalidGrid">
             <summary>
             The generated property declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+            <param name="grid"><inheritdoc/></param>
+            <param name="wrongStep">Indicates the wrong step.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+            <param name="grid"><inheritdoc/></param>
+            <param name="wrongStep">Indicates the wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.WrongStepException.WrongStep">
+            <summary>
+            The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
@@ -6098,7 +6120,7 @@
             during generating puzzles.
             </remarks>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
+            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>.
             </exception>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -10686,7 +10708,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.DifficultyLevelRange">
             <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            Indicates the <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.SupportedTechniques">
@@ -19519,28 +19541,6 @@
             Indicates the true candidates used.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.WrongStepException">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-            <param name="grid"><inheritdoc/></param>
-            <param name="wrongStep">Indicates the wrong step.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-            <param name="grid"><inheritdoc/></param>
-            <param name="wrongStep">Indicates the wrong step.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.WrongStepException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.WrongStepException.WrongStep">
-            <summary>
-            The generated property declaration for parameter <c>wrongStep</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.__AnalyzerFactoryMethods_Add">
             <summary>
             Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
@@ -19590,7 +19590,7 @@
             ]]></code>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Primitives.DifficultyLevel)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
             </summary>
@@ -19736,7 +19736,7 @@
             </summary>
             <param name="_memberName">The field name.</param>
             <seealso cref="T:Sudoku.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Categorization.TechniqueMetadataAttribute"/>
         </member>
         <member name="M:Sudoku.Categorization.MissingDifficultyLevelException.#ctor(System.String)">
@@ -19745,7 +19745,7 @@
             </summary>
             <param name="_memberName">The field name.</param>
             <seealso cref="T:Sudoku.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Categorization.TechniqueMetadataAttribute"/>
         </member>
         <member name="P:Sudoku.Categorization.MissingDifficultyLevelException.Message">
@@ -22780,7 +22780,7 @@
             <param name="this">The <see cref="T:Sudoku.Categorization.Technique"/> instance.</param>
             <returns>
             The difficulty level that the current technique belongs to.
-            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/> will be returned.
+            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/> will be returned.
             </returns>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueExtensions.GetSingleTechnique(Sudoku.Categorization.Technique)">
@@ -22804,7 +22804,7 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Categorization.Technique"/> instance.</param>
             <returns>
-            <para>A <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/> value indicating the supported modes.</para>
+            <para>A <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/> value indicating the supported modes.</para>
             <para>
             The result will be merged via flag values. Use <see cref="M:System.Enum.HasFlag(System.Enum)"/> to determine what flag you want to check.
             </para>
@@ -23224,10 +23224,10 @@
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.PencilmarkVisibility">
             <summary>
             Indicates the mode that the current technique can be used by solving a puzzle.
-            By default the value is both <see cref="F:Sudoku.Analytics.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.PencilmarkVisibility.FullMark"/>.
+            By default the value is both <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.PencilmarkVisibility.Direct"/>
-            <seealso cref="F:Sudoku.Analytics.PencilmarkVisibility.FullMark"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.RelatedTechnique">
             <summary>
@@ -23369,7 +23369,7 @@
             Indicates the range of difficulty that the current collection contains.
             </summary>
             <remarks>
-            This property returns a list of <see cref="T:Sudoku.Analytics.DifficultyLevel"/> flags, merged into one instance.
+            This property returns a list of <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/> flags, merged into one instance.
             If you want to get the internal fields of flags the return value contains, use <see langword="foreach"/> loop to iterate them,
             or use method <see cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>.
             </remarks>
@@ -24345,7 +24345,7 @@
         </member>
         <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
             <summary>
-            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
+            Indicates all possible <see cref="!:Analytics.DifficultyLevel"/> values. 
             </summary>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">

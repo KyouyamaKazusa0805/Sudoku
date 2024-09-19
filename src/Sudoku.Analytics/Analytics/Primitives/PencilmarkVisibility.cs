@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
 /// Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.

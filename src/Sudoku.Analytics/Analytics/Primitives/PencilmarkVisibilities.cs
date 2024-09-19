@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
 /// Represents a list of constants of <see cref="PencilmarkVisibility"/>.

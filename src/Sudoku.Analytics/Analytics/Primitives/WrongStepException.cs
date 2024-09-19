@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
 /// Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
 /// Represents an exception type that will be thrown by an <see cref="IAnalyzer{TSelf, TContext, TResult}"/> instance.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.Primitives;
 
 /// <summary>
 /// Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
