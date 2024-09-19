@@ -10572,7 +10572,7 @@
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="nameKey">Indicates the key in resource dictionary.</param>
-            <param name="supportedTechniques">All supported techniques.</param>
+            <param name="techniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.#ctor(System.String,Sudoku.Categorization.Technique[])">
@@ -10580,7 +10580,7 @@
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="nameKey">Indicates the key in resource dictionary.</param>
-            <param name="supportedTechniques">All supported techniques.</param>
+            <param name="techniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.IsCachingSafe">
@@ -10646,7 +10646,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportedTechniques">
             <summary>
-            <inheritdoc cref="T:Sudoku.Analytics.StepSearchers.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+            <inheritdoc cref="T:Sudoku.Analytics.StepSearchers.StepSearcherAttribute" path="/param[@name='techniques']"/>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.NameKey">
