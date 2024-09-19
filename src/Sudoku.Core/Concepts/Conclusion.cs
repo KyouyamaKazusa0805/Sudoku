@@ -15,14 +15,15 @@ namespace Sudoku.Concepts;
 ///                          (2)                   (1)
 /// </code>
 /// Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-/// Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-/// <see cref="ConclusionType"/> uses <see cref="byte"/> as its underlying numeric type because C# cannot set "A bit"
-/// to be the underlying type. The narrowest type is <see cref="byte"/>.
+/// Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),
+/// but the real type <see cref="ConclusionType"/> uses <see cref="byte"/> as its underlying numeric type
+/// because C# cannot set "A bit" to be the underlying type. The narrowest type is <see cref="byte"/>.
 /// </param>
 /// <remarks>
 /// Two <see cref="Mask"/> values can be compared with each other. If one of those two is an elimination
 /// (i.e. holds the value <see cref="Elimination"/> as the type), the instance will be greater;
-/// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
+/// if those two hold same conclusion type,
+/// but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
