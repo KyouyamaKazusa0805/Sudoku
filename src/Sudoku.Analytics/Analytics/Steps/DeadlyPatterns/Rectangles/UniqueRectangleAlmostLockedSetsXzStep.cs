@@ -62,7 +62,20 @@ public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new RectangleIsAvoidableFactor(), new UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor()];
+		=> [
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	private string AlsStr => AlmostLockedSet.ToString(Options.Converter);
 }

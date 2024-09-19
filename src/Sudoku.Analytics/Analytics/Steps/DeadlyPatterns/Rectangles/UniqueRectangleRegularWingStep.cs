@@ -42,7 +42,25 @@ public sealed partial class UniqueRectangleRegularWingStep(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new RectangleIsAvoidableFactor(), new UniqueRectangleWingSizeFactor()];
+		=> [
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleWingSizeFactor",
+				[nameof(Code)],
+				GetType(),
+				static args => (Technique)args![0]! switch
+				{
+					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => 2,
+					Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => 3,
+					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => 5
+				}
+			)
+		];
 
 	private string BranchesStr => Options.Converter.CellConverter(Branches);
 

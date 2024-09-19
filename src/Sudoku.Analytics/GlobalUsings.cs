@@ -43,7 +43,6 @@ global using Sudoku.Generating.Filtering.Constraints;
 global using Sudoku.Inferring;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
-global using Sudoku.Measuring.Factors;
 global using Sudoku.Measuring.Functions;
 global using Sudoku.Resources;
 global using Sudoku.Runtime;

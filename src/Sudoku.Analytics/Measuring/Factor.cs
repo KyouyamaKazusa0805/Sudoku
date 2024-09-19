@@ -35,19 +35,55 @@ public abstract class Factor
 	{
 		get
 		{
-			var result = (
-				from propertyInfo in ReflectedStepType.GetProperties(PropertyFlags)
-				let indexOfMatch = Array.FindIndex(ParameterNames, name => compareString(propertyInfo.Name, name))
-				where indexOfMatch != -1
-				orderby indexOfMatch
-				select propertyInfo
-			).ToArray();
-			return result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
+			var propertyInfoDictionary = new Dictionary<Type, PropertyInfo[]>();
+			for (var type = ReflectedStepType; type?.IsAssignableTo(typeof(Step)) ?? false; type = type.BaseType)
+			{
+				propertyInfoDictionary.Add(type, type.GetProperties(PropertyFlags));
+			}
+
+			var matchPropertyInfoList = new List<PropertyInfo>();
+			foreach (var parameterName in ParameterNames)
+			{
+				var found = false;
+				foreach (var propertyInfoList in propertyInfoDictionary.Values)
+				{
+					switch (Array.FindAll(propertyInfoList, p => nameMatcher(p.Name, parameterName)))
+					{
+						case [var match]:
+						{
+							matchPropertyInfoList.Add(match);
+							found = true;
+							goto NextMatch;
+						}
+						case [var firstMatch, .. { Length: not 0 }] matches:
+						{
+							// If multiple values matched, we should select the best one.
+							// The best-match property is a property without any prefixes
+							// that can only produced in explicitly interface implementation.
+							matchPropertyInfoList.Add(
+								Array.FindIndex(matches, static match => !match.Name.Contains('.')) is var index and not -1
+									? matches[index]
+									: firstMatch // The arbitary one in matched set will be selected.
+							);
+							found = true;
+							goto NextMatch;
+						}
+					}
+				}
+
+			NextMatch:
+				if (!found)
+				{
+					throw new InvalidOperationException();
+				}
+			}
+
+			return matchPropertyInfoList.ToArray();
 
 
 			// Here a property may be explicitly implemented, the name may starts with interface name.
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool compareString(string a, string b) => a == b || a.Contains('.') && a[(a.LastIndexOf('.') + 1)..] == b;
+			static bool nameMatcher(string a, string b) => a == b || a.Contains('.') && a[(a.LastIndexOf('.') + 1)..] == b;
 		}
 	}
 

@@ -55,7 +55,20 @@ public sealed partial class UniqueRectangleExternalType4Step(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new RectangleIsAvoidableFactor(), new UniqueRectangleExternalType4IsIncompleteFactor()];
+		=> [
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalType4IsIncompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	private string ConjugatePairStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

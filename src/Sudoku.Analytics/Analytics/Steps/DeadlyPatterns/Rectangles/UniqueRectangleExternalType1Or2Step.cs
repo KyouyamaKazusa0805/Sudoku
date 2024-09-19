@@ -60,9 +60,24 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new UniqueRectangleExternalType1Or2GuardianFactor(),
-			new RectangleIsAvoidableFactor(),
-			new UniqueRectangleExternalType1Or2IsIncompleteFactor()
+			Factor.Create(
+				"Factor_UniqueRectangleExternalType1Or2GuardianFactor",
+				[nameof(IGuardianTrait.GuardianCellsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			),
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
 		];
 
 	/// <inheritdoc/>

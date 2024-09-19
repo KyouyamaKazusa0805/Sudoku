@@ -44,7 +44,20 @@ public partial class UniqueRectangleConjugatePairStep(
 
 	/// <inheritdoc/>
 	public sealed override FactorArray Factors
-		=> [new RectangleConjugatePairsCountFactor(), new RectangleIsAvoidableFactor()];
+		=> [
+			Factor.Create(
+				"Factor_RectangleConjugatePairsCountFactor",
+				[nameof(IConjugatePairTrait.ConjugatePairsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]! + 2)
+			),
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	/// <inheritdoc/>
 	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;

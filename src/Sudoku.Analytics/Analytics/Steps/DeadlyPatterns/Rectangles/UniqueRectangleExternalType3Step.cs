@@ -59,9 +59,24 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new RectangleIsAvoidableFactor(),
-			new UniqueRectangleExternalSubsetSizeFactor(),
-			new UniqueRectangleExternalType3IsIncompleteFactor()
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalSubsetSizeFactor",
+				[nameof(IPatternType3StepTrait<UniqueRectangleExternalType3Step>.SubsetSize)],
+				GetType(),
+				static args => (int)args![0]!
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalType3IsIncompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
 		];
 
 	/// <inheritdoc/>

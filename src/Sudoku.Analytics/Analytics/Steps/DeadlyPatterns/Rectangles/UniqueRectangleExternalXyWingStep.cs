@@ -54,9 +54,24 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new UniqueRectangleExternalXyWingGuardianFactor(),
-			new RectangleIsAvoidableFactor(),
-			new UniqueRectangleExternalXyWingIsCompleteFactor()
+			Factor.Create(
+				"Factor_UniqueRectangleExternalXyWingGuardianFactor",
+				[nameof(IGuardianTrait.GuardianCellsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			),
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalXyWingIsCompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
 		];
 
 	/// <inheritdoc/>

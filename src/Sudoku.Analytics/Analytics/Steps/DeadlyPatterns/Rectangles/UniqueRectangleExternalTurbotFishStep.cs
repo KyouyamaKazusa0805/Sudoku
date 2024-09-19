@@ -40,8 +40,18 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new UniqueRectangleExternalTurbotFishGuardianFactor(),
-			new UniqueRectangleExternalTurbotFishIsIncompleteFactor()
+			Factor.Create(
+				"Factor_UniqueRectangleExternalTurbotFishGuardianFactor",
+				[nameof(IGuardianTrait.GuardianCellsCount)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor",
+				[nameof(IsIncomplete)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
 		];
 
 	/// <inheritdoc/>

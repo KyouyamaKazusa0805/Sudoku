@@ -73,9 +73,24 @@ public sealed partial class UniqueRectangleSueDeCoqStep(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new RectangleSueDeCoqIsolatedFactor(),
-			new RectangleSueDeCoqCannibalismFactor(),
-			new RectangleIsAvoidableFactor()
+			Factor.Create(
+				"Factor_RectangleSueDeCoqIsolatedFactor",
+				[nameof(IsCannibalistic), nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)],
+				GetType(),
+				static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_RectangleSueDeCoqCannibalismFactor",
+				[nameof(IsCannibalistic)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_RectangleIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
 		];
 
 	/// <inheritdoc/>

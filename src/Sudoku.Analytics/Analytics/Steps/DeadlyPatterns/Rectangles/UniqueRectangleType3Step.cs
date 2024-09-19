@@ -65,7 +65,20 @@ public sealed partial class UniqueRectangleType3Step(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new UniqueRectangleSubsetIsHiddenFactor(), new UniqueRectangleSubsetSizeFactor()];
+		=> [
+			Factor.Create(
+				"Factor_UniqueRectangleSubsetIsHiddenFactor",
+				[nameof(IPatternType3StepTrait<UniqueRectangleType3Step>.IsHidden)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			),
+			Factor.Create(
+				"Factor_UniqueRectangleSubsetSizeFactor",
+				[nameof(IPatternType3StepTrait<UniqueRectangleType3Step>.SubsetSize)],
+				GetType(),
+				static args => (int)args![0]!
+			)
+		];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<UniqueRectangleType3Step>.IsHidden => !IsNaked;
