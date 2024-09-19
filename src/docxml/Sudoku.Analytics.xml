@@ -2828,6 +2828,11 @@
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.IsCellMultiple"/>
         </member>
+        <member name="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.IsGrouped">
+            <summary>
+            Indicates whether at least one branch contains grouped links or nodes.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.Complexity">
             <summary>
             Indicates the complexity of the whole pattern.

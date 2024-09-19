@@ -1,3 +1,5 @@
+#define EXAUSTIVE_SEARCH_FINNED_CHAINS
+
 namespace Sudoku.Analytics.StepSearcherModules;
 
 /// <summary>
@@ -88,7 +90,15 @@ internal static class ChainModule
 		);
 
 		var cachedAlsIndex = 0;
-		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
+		foreach (var chain in ChainingDriver.CollectMultipleChains(
+			in context.Grid
+			,
+#if EXAUSTIVE_SEARCH_FINNED_CHAINS
+			false
+#else
+			context.OnlyFindOne
+#endif
+		))
 		{
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
