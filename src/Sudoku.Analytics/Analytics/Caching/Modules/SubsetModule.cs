@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Caching.Modules;
 
 using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref StepAnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
 

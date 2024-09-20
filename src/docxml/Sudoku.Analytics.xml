@@ -880,6 +880,277 @@
             <param name="options">The options used by step searchers.</param>
             <param name="rules">The <see cref="T:Sudoku.Analytics.Patterning.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
         </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule">
+            <summary>
+            Represents for the module that will be used for searching for almost hidden sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule.CollectAlmostHiddenSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible AHSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of AHSes.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule">
+            <summary>
+            Represents for the module that will be used for searching for almost locked sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of ALSes.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.GetColor(System.Int32)">
+            <summary>
+            Try to fetch the ALS color.
+            </summary>
+            <param name="index">The index of the target ALS.</param>
+            <returns>The color identifier.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectConjugatePairs">
+            <summary>
+            Collect possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.ChainModule">
+            <summary>
+            Represents a chain module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by multiple forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
+            <summary>
+            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.FishModule">
+            <summary>
+            Represents a fish module.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Caching.Modules.FishModule.NotationConverter">
+            <summary>
+            The backing field that will be used for formatting notations, especially for conclusions,
+            in order to check equality of two set of conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.IntersectionModule">
+            <summary>
+            Represents an intersection module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+            <summary>
+            Indicates whether the pattern is a locked candidates.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
+            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
+            <param name="c">Indicates the intersection 3 cells.</param>
+            <param name="emptyCells">The empty cells in the pattern.</param>
+            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.SingleModule">
+            <summary>
+            Represents single module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Gets the lasting value of the full house in the target house.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
+            <summary>
+            Gets the lasting value of the naked single in the target direction.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Get subtype of the hidden single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">Indicates the house.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>The subtype of the hidden single.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Get subtype of the naked single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The subtype of the naked single.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.SubsetModule">
+            <summary>
+            Represents a subset module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
+            <summary>
+            The internal method to create subset steps.
+            </summary>
+            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+            <param name="context">The context.</param>
+            <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule">
+            <summary>
+            Represents a step searcher module for unique rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.PossiblePatterns">
+            <summary>
+            The table of all possible pattern cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+            </summary>
+            <param name="cells">Indicates the cells to be checked.</param>
+            <param name="comparer">Digits used in pattern.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
+            <remarks>
+            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+            <para>
+            Suppose the pattern:
+            <code><![CDATA[
+            ab  | abc
+            abd | ab
+            ]]></code>
+            The two cases are:
+            <code><![CDATA[
+            .--------------------------------.     .--------------------------------.
+            |          Missing  (c)          |     |          Missing  (d)          |
+            |-----------.----------.---------|     |-----------.----------.---------|
+            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
+            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            '-----------'----------'---------'     '-----------'----------'---------'
+            ]]></code>
+            Therefore, the elimination intersection will be:
+            <code><![CDATA[
+            .-----------.----------.---------.
+            | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |
+            | .   .  .  | .   .  . | .  .  . |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
+            Such cells can remove both digits <c>a</c> and <c>b</c>.
+            </para>
+            <para>
+            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.XyzRingModule">
+            <summary>
+            Represents XYZ-Ring module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
@@ -6658,277 +6929,6 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost hidden sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule.CollectAlmostHiddenSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible AHSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of AHSes.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost locked sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of ALSes.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.GetColor(System.Int32)">
-            <summary>
-            Try to fetch the ALS color.
-            </summary>
-            <param name="index">The index of the target ALS.</param>
-            <returns>The color identifier.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectConjugatePairs">
-            <summary>
-            Collect possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.ChainModule">
-            <summary>
-            Represents a chain module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
-            <summary>
-            The collect method called by chain step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by multiple forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
-            <summary>
-            The collect method called by blossom loop step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
-            <summary>
-            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
-            </summary>
-            <param name="this">The chain to be checked.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
-            <summary>
-            Represents a fish module.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcherModules.FishModule.NotationConverter">
-            <summary>
-            The backing field that will be used for formatting notations, especially for conclusions,
-            in order to check equality of two set of conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.IntersectionModule">
-            <summary>
-            Represents an intersection module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
-            <summary>
-            Indicates whether the pattern is a locked candidates.
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
-            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
-            <param name="c">Indicates the intersection 3 cells.</param>
-            <param name="emptyCells">The empty cells in the pattern.</param>
-            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.SingleModule">
-            <summary>
-            Represents single module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Gets the lasting value of the full house in the target house.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
-            <summary>
-            Gets the lasting value of the naked single in the target direction.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Get subtype of the hidden single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">Indicates the house.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>The subtype of the hidden single.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
-            <summary>
-            Get subtype of the naked single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>The subtype of the naked single.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
-            <summary>
-            Represents a subset module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
-            <summary>
-            The internal method to create subset steps.
-            </summary>
-            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
-            <param name="context">The context.</param>
-            <returns>The collected steps.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for hidden subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for naked subsets.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule">
-            <summary>
-            Represents a step searcher module for unique rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.PossiblePatterns">
-            <summary>
-            The table of all possible pattern cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
-            </summary>
-            <param name="cells">Indicates the cells to be checked.</param>
-            <param name="comparer">Digits used in pattern.</param>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
-            <remarks>
-            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
-            <para>
-            Suppose the pattern:
-            <code><![CDATA[
-            ab  | abc
-            abd | ab
-            ]]></code>
-            The two cases are:
-            <code><![CDATA[
-            .--------------------------------.     .--------------------------------.
-            |          Missing  (c)          |     |          Missing  (d)          |
-            |-----------.----------.---------|     |-----------.----------.---------|
-            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
-            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            '-----------'----------'---------'     '-----------'----------'---------'
-            ]]></code>
-            Therefore, the elimination intersection will be:
-            <code><![CDATA[
-            .-----------.----------.---------.
-            | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |
-            | .   .  .  | .   .  . | .  .  . |
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            ]]></code>
-            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
-            Such cells can remove both digits <c>a</c> and <c>b</c>.
-            </para>
-            <para>
-            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
-            </para>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.XyzRingModule">
-            <summary>
-            Represents XYZ-Ring module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>

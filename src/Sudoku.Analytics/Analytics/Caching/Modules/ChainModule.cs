@@ -1,6 +1,6 @@
 #define EXAUSTIVE_SEARCH_FINNED_CHAINS
 
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Caching.Modules;
 
 /// <summary>
 /// Represents a chain module.

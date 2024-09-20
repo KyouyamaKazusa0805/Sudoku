@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Caching.Modules;
 
 /// <summary>
 /// Represents XYZ-Ring module.

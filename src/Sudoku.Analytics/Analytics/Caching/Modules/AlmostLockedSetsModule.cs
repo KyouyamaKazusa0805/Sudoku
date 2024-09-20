@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.StepSearcherModules;
+namespace Sudoku.Analytics.Caching.Modules;
 
 /// <summary>
 /// Represents for the module that will be used for searching for almost locked sets.
