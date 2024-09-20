@@ -10283,6 +10283,18 @@
             </list>
             </returns>
         </member>
+        <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Determine whether the specified grid has confliction with the specified row and column.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="r">The row index.</param>
+            <param name="c">The column index.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
+        </member>
         <member name="T:Sudoku.Solving.Bitwise.BitwiseSolver">
             <summary>
             Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.

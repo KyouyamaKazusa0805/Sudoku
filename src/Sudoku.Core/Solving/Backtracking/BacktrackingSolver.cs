@@ -108,7 +108,7 @@ public sealed class BacktrackingSolver : ISolver
 				for (var i = 0; i < 9; i++)
 				{
 					gridValues[finishedCellsCount]++;
-					if (isValid(gridValues, r, c))
+					if (IsValid(gridValues, r, c))
 					{
 						solve(ref solutionsCount, ref result, gridValues, finishedCellsCount + 1);
 					}
@@ -118,36 +118,61 @@ public sealed class BacktrackingSolver : ISolver
 				// Backtracking the cell...
 				gridValues[finishedCellsCount] = 0;
 			}
+		}
+	}
 
 
-			static bool isValid(Digit[] gridValues, RowIndex r, ColumnIndex c)
+	/// <summary>
+	/// Determine whether the specified grid has confliction with the specified row and column.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="r">The row index.</param>
+	/// <param name="c">The column index.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool IsValid(ref readonly Grid grid, RowIndex r, ColumnIndex c)
+	{
+		var number = grid.GetDigit(r * 9 + c);
+		for (var i = 0; i < 9; i++)
+		{
+			if (i != r && grid.GetDigit(i * 9 + c) == number || i != c && grid.GetDigit(r * 9 + i) == number)
 			{
-				var number = gridValues[r * 9 + c];
-
-				// Check lines.
-				for (var i = 0; i < 9; i++)
-				{
-					if (i != r && gridValues[i * 9 + c] == number || i != c && gridValues[r * 9 + i] == number)
-					{
-						return false;
-					}
-				}
-
-				// Check blocks.
-				for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
-				{
-					for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
-					{
-						if ((i != r || j != c) && gridValues[i * 9 + j] == number)
-						{
-							return false;
-						}
-					}
-				}
-
-				// All houses are checked and passed, return true.
-				return true;
+				return false;
 			}
 		}
+		for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+		{
+			for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+			{
+				if ((i != r || j != c) && grid.GetDigit(i * 9 + j) == number)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	/// <inheritdoc cref="IsValid(ref readonly Grid, RowIndex, ColumnIndex)"/>
+	public static bool IsValid(Digit[] grid, RowIndex r, ColumnIndex c)
+	{
+		var number = grid[r * 9 + c];
+		for (var i = 0; i < 9; i++)
+		{
+			if (i != r && grid[i * 9 + c] == number || i != c && grid[r * 9 + i] == number)
+			{
+				return false;
+			}
+		}
+		for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
+		{
+			for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
+			{
+				if ((i != r || j != c) && grid[i * 9 + j] == number)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

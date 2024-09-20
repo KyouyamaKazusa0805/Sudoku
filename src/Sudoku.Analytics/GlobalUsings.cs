@@ -52,6 +52,7 @@ global using Sudoku.Runtime.InteropServices.SudokuExplainer;
 global using Sudoku.Runtime.MingridServices;
 global using Sudoku.Shuffling.Transforming;
 global using Sudoku.Solving;
+global using Sudoku.Solving.Backtracking;
 global using static Sudoku.Analytics.Caching.MemoryCachedData;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;

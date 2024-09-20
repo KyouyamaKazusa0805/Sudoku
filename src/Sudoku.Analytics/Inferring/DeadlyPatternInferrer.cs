@@ -121,36 +121,12 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | 1 << digit);
-					if (isValid(in grid, r, c))
+					if (BacktrackingSolver.IsValid(in grid, r, c))
 					{
 						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
 					}
 				}
 				grid[currentCell] = (Mask)(Grid.EmptyMask | digits);
-			}
-
-
-			static bool isValid(ref readonly Grid grid, RowIndex r, ColumnIndex c)
-			{
-				var number = grid.GetDigit(r * 9 + c);
-				for (var i = 0; i < 9; i++)
-				{
-					if (i != r && grid.GetDigit(i * 9 + c) == number || i != c && grid.GetDigit(r * 9 + i) == number)
-					{
-						return false;
-					}
-				}
-				for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
-				{
-					for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
-					{
-						if ((i != r || j != c) && grid.GetDigit(i * 9 + j) == number)
-						{
-							return false;
-						}
-					}
-				}
-				return true;
 			}
 		}
 	}
