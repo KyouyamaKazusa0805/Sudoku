@@ -7855,36 +7855,6 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Patterns">
-            <summary>
-            Indicates the patterns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.ChuteIteratorValues">
-            <summary>
-            Indicates the iterator values for split chutes.
-            </summary>
-            <remarks>
-            <requires-static-constructor-invocation>
-		<i>
-			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
-		</i>
-	</requires-static-constructor-invocation>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -7998,22 +7968,22 @@
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType3(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType4(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 4.
             </summary>
