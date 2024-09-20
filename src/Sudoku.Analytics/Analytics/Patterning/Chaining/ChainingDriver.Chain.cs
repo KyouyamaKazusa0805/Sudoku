@@ -131,6 +131,11 @@ internal partial class ChainingDriver
 						if (nodeSupposedOff == ~startNode)
 						{
 							var chain = new Chain(nextNode);
+							if (chain.IsImplicitLoop)
+							{
+								goto Next;
+							}
+
 							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;
@@ -174,6 +179,11 @@ internal partial class ChainingDriver
 						if (nodeSupposedOn == ~startNode)
 						{
 							var chain = new Chain(nextNode);
+							if (chain.IsImplicitLoop)
+							{
+								goto Next;
+							}
+
 							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;

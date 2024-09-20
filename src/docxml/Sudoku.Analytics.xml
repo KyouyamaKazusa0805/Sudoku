@@ -1777,6 +1777,12 @@
             A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Patterning.Chaining.Chain.IsImplicitLoop">
+            <summary>
+            Indicates whether the chain is an implicit loop,
+            which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Patterning.Chaining.Chain.Complexity">
             <inheritdoc/>
         </member>
