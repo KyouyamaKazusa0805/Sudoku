@@ -1,7 +1,7 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unconditional Deadly Pattern</b> technique.
+/// Provides with a step that is an <b>Unconditional Deadly Pattern</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>

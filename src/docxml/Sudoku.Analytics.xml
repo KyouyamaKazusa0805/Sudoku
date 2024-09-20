@@ -12127,7 +12127,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep">
             <summary>
-            Provides with a step that is a <b>Unconditional Deadly Pattern</b> technique.
+            Provides with a step that is an <b>Unconditional Deadly Pattern</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12135,7 +12135,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
-            Provides with a step that is a <b>Unconditional Deadly Pattern</b> technique.
+            Provides with a step that is an <b>Unconditional Deadly Pattern</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
