@@ -117,9 +117,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			}
 			else
 			{
-				var r = currentCell / 9;
-				var c = currentCell % 9;
-				var digits = grid.GetCandidates(currentCell);
+				var (r, c, digits) = (currentCell / 9, currentCell % 9, grid.GetCandidates(currentCell));
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | 1 << digit);
@@ -128,7 +126,6 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
 					}
 				}
-
 				grid[currentCell] = (Mask)(Grid.EmptyMask | digits);
 			}
 
