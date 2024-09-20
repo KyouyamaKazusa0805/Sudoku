@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
-	DeadlyPatternStep(conclusions, views, options),
+	UnconditionalDeadlyPatternStep(conclusions, views, options),
 	IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>

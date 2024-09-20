@@ -4987,6 +4987,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rotating Deadly Pattern.
+        /// </summary>
+        public static string RotatingDeadlyPattern {
+            get {
+                return ResourceManager.GetString("RotatingDeadlyPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RSTUVWXYZ-Wing.
         /// </summary>
         public static string RstuvwxyzWing {
@@ -6027,6 +6036,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_ReverseBivalueUniversalGraveStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ReverseBivalueUniversalGraveStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Deadly Pattern.
+        /// </summary>
+        public static string StepSearcherName_RotatingDeadlyPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_RotatingDeadlyPatternStepSearcher", resourceCulture);
             }
         }
         
@@ -8317,6 +8335,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}({1}).
+        /// </summary>
+        public static string TechniqueFormat_RotatingDeadlyPatternStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_RotatingDeadlyPatternStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cells {0}, digits {1}.
         /// </summary>
         public static string TechniqueFormat_RwDeadlyPatternStep {
@@ -8808,6 +8835,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_ComplexSingle {
             get {
                 return ResourceManager.GetString("TechniqueGroup_ComplexSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conditional Deadly Patterns.
+        /// </summary>
+        public static string TechniqueGroup_ConditionalDeadlyPattern {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_ConditionalDeadlyPattern", resourceCulture);
             }
         }
         

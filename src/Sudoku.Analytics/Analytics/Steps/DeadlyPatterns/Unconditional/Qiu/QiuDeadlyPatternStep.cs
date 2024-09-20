@@ -24,7 +24,7 @@ public abstract partial class QiuDeadlyPatternStep(
 	[PrimaryConstructorParameter] HouseMask houses,
 	[PrimaryConstructorParameter] Cell? corner1,
 	[PrimaryConstructorParameter] Cell? corner2
-) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
+) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;

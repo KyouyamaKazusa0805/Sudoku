@@ -32,7 +32,7 @@ public abstract partial class UniqueRectangleStep(
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] int absoluteOffset
-) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
+) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;

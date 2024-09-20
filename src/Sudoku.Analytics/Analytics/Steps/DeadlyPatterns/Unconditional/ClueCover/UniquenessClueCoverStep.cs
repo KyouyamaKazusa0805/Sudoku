@@ -16,7 +16,7 @@ public sealed partial class UniquenessClueCoverStep(
 	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigits,
 	[PrimaryConstructorParameter] int chuteIndex
-) : DeadlyPatternStep(conclusions, views, options), IExtraCellListTrait
+) : UnconditionalDeadlyPatternStep(conclusions, views, options), IExtraCellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;

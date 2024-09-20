@@ -39,7 +39,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	static UniqueMatrixStepSearcher()
 	{
 		var result = new CellMap[162];
-		var length = ChuteIteratorValues.Length / 3;
+		var length = ChuteIteratorValues.Length;
 		var n = 0;
 		for (var i = 0; i < 3; i++)
 		{
@@ -102,7 +102,6 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				return type4Step;
 			}
 		}
-
 		return null;
 	}
 

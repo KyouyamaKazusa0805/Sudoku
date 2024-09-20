@@ -7846,6 +7846,48 @@
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Patterning.Patterns.UniqueLoop.IsValid``1(``0)"/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher">
+            <summary>
+            Provides with a <b>Rotating Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Rotating Deadly Pattern</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.ChuteIteratorValues">
+            <summary>
+            Indicates the iterator values for split chutes.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
             Provides with a <b>Unique Loop</b> step searcher.
@@ -12023,6 +12065,115 @@
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Conditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Conditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep.IsUnconditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.OnlyUseBivalueCells">
+            <summary>
+            Indicates whether the deadly pattern only uses bi-value cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.IsUnconditional">
+            <summary>
+            Indicates whether the pattern is unconditional.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Unconditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Unconditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep.IsUnconditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
@@ -12653,27 +12804,6 @@
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ChuteIndex">
             <summary>
             The generated property declaration for parameter <c>chuteIndex</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.OnlyUseBivalueCells">
-            <summary>
-            Indicates whether the deadly pattern only uses bi-value cells.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
@@ -21985,6 +22115,11 @@
             Indicates unique matrix type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPattern">
+            <summary>
+            Indicates rotating deadly pattern.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.SueDeCoq">
             <summary>
             Indicates sue de coq.
@@ -23020,6 +23155,11 @@
         <member name="F:Sudoku.Categorization.TechniqueGroup.UniqueMatrix">
             <summary>
             Indicates the unique matrix technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.TechniqueGroup.ConditionalDeadlyPattern">
+            <summary>
+            Indicates the conditional deadly pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.ReverseBivalueUniversalGrave">
@@ -28620,6 +28760,11 @@
               Looks up a localized string similar to only right open.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPattern">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.RstuvwxyzWing">
             <summary>
               Looks up a localized string similar to RSTUVWXYZ-Wing.
@@ -29198,6 +29343,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ReverseBivalueUniversalGraveStepSearcher">
             <summary>
               Looks up a localized string similar to Reverse Bivalue Universal Grave.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RotatingDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RwDeadlyPatternStepSearcher">
@@ -30470,6 +30620,11 @@
               Looks up a localized string similar to Cells {0} of digits {1}, with an extra digit {2}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RotatingDeadlyPatternStep">
+            <summary>
+              Looks up a localized string similar to {0}({1}).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RwDeadlyPatternStep">
             <summary>
               Looks up a localized string similar to Cells {0}, digits {1}.
@@ -30743,6 +30898,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ComplexSingle">
             <summary>
               Looks up a localized string similar to Complex Single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ConditionalDeadlyPattern">
+            <summary>
+              Looks up a localized string similar to Conditional Deadly Patterns.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_DeathBlossom">

@@ -18,7 +18,7 @@ public abstract partial class UniqueLoopStep(
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] loopPath
-) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
+) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;
