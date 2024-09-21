@@ -19,10 +19,10 @@ public ref partial struct AnonymousSpanEnumerator<T>([PrimaryConstructorParamete
 	public readonly ref readonly T Current => ref _elements[_index];
 
 	/// <inheritdoc/>
-	readonly object IEnumerator.Current { get; }
+	readonly object? IEnumerator.Current => Current;
 
 	/// <inheritdoc/>
-	readonly T IEnumerator<T>.Current { get; }
+	readonly T IEnumerator<T>.Current => Current;
 
 
 	/// <inheritdoc/>
