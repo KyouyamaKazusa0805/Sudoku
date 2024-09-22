@@ -20,7 +20,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns.
 	/// </summary>
-	private static readonly CellMap[] Patterns;
+	internal static readonly CellMap[] Patterns;
 
 	/// <summary>
 	/// Indicates the iterator values for split chutes.
@@ -28,7 +28,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] ChuteIteratorValues = [
+	private static readonly Digit[][] ChuteIteratorValues = [
 		[0, 3, 6], [0, 3, 7], [0, 3, 8], [0, 4, 6], [0, 4, 7], [0, 4, 8], [0, 5, 6], [0, 5, 7], [0, 5, 8],
 		[1, 3, 6], [1, 3, 7], [1, 3, 8], [1, 4, 6], [1, 4, 7], [1, 4, 8], [1, 5, 6], [1, 5, 7], [1, 5, 8],
 		[2, 3, 6], [2, 3, 7], [2, 3, 8], [2, 4, 6], [2, 4, 7], [2, 4, 8], [2, 5, 6], [2, 5, 7], [2, 5, 8]
@@ -39,11 +39,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	static UniqueMatrixStepSearcher()
 	{
 		var result = new CellMap[162];
-		var length = ChuteIteratorValues.Length / 3;
 		var n = 0;
 		for (var i = 0; i < 3; i++)
 		{
-			for (var j = 0; j < length; j++)
+			for (var j = 0; j < ChuteIteratorValues.Length; j++)
 			{
 				var a = ChuteIteratorValues[j][0] + i * 27;
 				var b = ChuteIteratorValues[j][1] + i * 27;
@@ -51,22 +50,20 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				result[n++] = [a, b, c, a + 9, b + 9, c + 9, a + 18, b + 18, c + 18];
 			}
 		}
-
 		for (var i = 0; i < 3; i++)
 		{
-			for (var j = 0; j < length; j++)
+			for (var j = 0; j < ChuteIteratorValues.Length; j++)
 			{
 				var a = ChuteIteratorValues[j][0] * 9;
 				var b = ChuteIteratorValues[j][1] * 9;
 				var c = ChuteIteratorValues[j][2] * 9;
 				result[n++] = [
-					a + 3 * i, b + 3 * i, c + 3 * i,
-					a + 1 + 3 * i, b + 1 + 3 * i, c + 1 + 3 * i,
-					a + 2 + 3 * i, b + 2 + 3 * i, c + 2 + 3 * i
+					a + i * 3, b + i * 3, c + i * 3,
+					a + 1 + i * 3, b + 1 + i * 3, c + 1 + i * 3,
+					a + 2 + i * 3, b + 2 + i * 3, c + 2 + i * 3
 				];
 			}
 		}
-
 		Patterns = result;
 	}
 
@@ -75,8 +72,6 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var accumulator = context.Accumulator!;
-		var onlyFindOne = context.OnlyFindOne;
 		foreach (var pattern in Patterns)
 		{
 			if ((EmptyCells & pattern) != pattern)
@@ -85,38 +80,30 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var mask = grid[in pattern];
-			if (CheckType1(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type1Step)
+			if (CheckType1(in grid, ref context, in pattern, mask) is { } type1Step)
 			{
 				return type1Step;
 			}
-			if (CheckType2(accumulator, onlyFindOne, ref context, in pattern, mask) is { } type2Step)
+			if (CheckType2(ref context, in pattern, mask) is { } type2Step)
 			{
 				return type2Step;
 			}
-			if (CheckType3(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type3Step)
+			if (CheckType3(in grid, ref context, in pattern, mask) is { } type3Step)
 			{
 				return type3Step;
 			}
-			if (CheckType4(accumulator, in grid, ref context, onlyFindOne, in pattern, mask) is { } type4Step)
+			if (CheckType4(in grid, ref context, in pattern, mask) is { } type4Step)
 			{
 				return type4Step;
 			}
 		}
-
 		return null;
 	}
 
 	/// <summary>
 	/// Searches for type 1.
 	/// </summary>
-	private UniqueMatrixType1Step? CheckType1(
-		List<Step> accumulator,
-		ref readonly Grid grid,
-		ref StepAnalysisContext context,
-		bool onlyFindOne,
-		ref readonly CellMap pattern,
-		Mask mask
-	)
+	private UniqueMatrixType1Step? CheckType1(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
 	{
 		if (Mask.PopCount(mask) != 5)
 		{
@@ -156,12 +143,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var step = new UniqueMatrixType1Step([.. conclusions], [[.. candidateOffsets]], context.Options, in pattern, digitsMask, elimCell * 9 + extraDigit);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 	ReturnNull:
@@ -171,13 +158,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 2.
 	/// </summary>
-	private UniqueMatrixType2Step? CheckType2(
-		List<Step> accumulator,
-		bool onlyFindOne,
-		ref StepAnalysisContext context,
-		ref readonly CellMap pattern,
-		Mask mask
-	)
+	private UniqueMatrixType2Step? CheckType2(ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
 	{
 		if (Mask.PopCount(mask) != 5)
 		{
@@ -213,12 +194,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var step = new UniqueMatrixType2Step([.. conclusions], [[.. candidateOffsets]], context.Options, in pattern, digitsMask, extraDigit);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 	ReturnNull:
@@ -228,14 +209,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 3.
 	/// </summary>
-	private UniqueMatrixType3Step? CheckType3(
-		List<Step> accumulator,
-		ref readonly Grid grid,
-		ref StepAnalysisContext context,
-		bool onlyFindOne,
-		ref readonly CellMap pattern,
-		Mask mask
-	)
+	private UniqueMatrixType3Step? CheckType3(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -307,12 +281,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 							in cells,
 							extraDigitsMask
 						);
-						if (onlyFindOne)
+						if (context.OnlyFindOne)
 						{
 							return step;
 						}
 
-						accumulator.Add(step);
+						context.Accumulator.Add(step);
 					}
 				}
 			}
@@ -324,14 +298,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Searches for type 4.
 	/// </summary>
-	private UniqueMatrixType4Step? CheckType4(
-		List<Step> accumulator,
-		ref readonly Grid grid,
-		ref StepAnalysisContext context,
-		bool onlyFindOne,
-		ref readonly CellMap pattern,
-		Mask mask
-	)
+	private UniqueMatrixType4Step? CheckType4(ref readonly Grid grid, ref StepAnalysisContext context, ref readonly CellMap pattern, Mask mask)
 	{
 		foreach (var digits in mask.GetAllSets().GetSubsets(4))
 		{
@@ -411,12 +378,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				d2,
 				in conjugateMap
 			);
-			if (onlyFindOne)
+			if (context.OnlyFindOne)
 			{
 				return step;
 			}
 
-			accumulator.Add(step);
+			context.Accumulator.Add(step);
 		}
 
 		return null;

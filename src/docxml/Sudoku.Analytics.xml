@@ -44,11 +44,11 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.IsPartiallySolved">
             <summary>
-            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>.
+            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp"/>.
             If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/> and <see cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
             won't be empty.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.GridsSpan"/>
         </member>
@@ -168,7 +168,7 @@
         <member name="P:Sudoku.Analytics.AnalysisResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.Solution">
@@ -247,11 +247,11 @@
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
-            is <see cref="F:Sudoku.Analytics.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.FailedReason.WrongStep"/>.
+            is <see cref="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep"/>.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.ExceptionThrown"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.WrongStep"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.InterimGrids">
             <summary>
@@ -366,7 +366,7 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})">
+        <member name="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})">
             <summary>
             Try to get bottleneck steps under the specified rules.
             </summary>
@@ -374,11 +374,11 @@
             <returns>A list of bottleneck steps.</returns>
             <exception cref="T:System.NotSupportedException">
             Throws when the filter contains invalid configuration,
-            like <see cref="F:Sudoku.Analytics.BottleneckType.SingleStepOnly"/> in full-marking mode.
+            like <see cref="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepOnly"/> in full-marking mode.
             </exception>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is not fully solved.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.BottleneckType"/> flag.
+            Throws when argument <paramref name="filters"/> contains one filter holding an undefined <see cref="T:Sudoku.Analytics.Primitives.BottleneckType"/> flag.
             </exception>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any">
@@ -557,7 +557,7 @@
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.DifficultyLevel)">
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.Primitives.DifficultyLevel)">
             <summary>
             Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
             </summary>
@@ -711,92 +711,6 @@
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckFilter">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.BottleneckFilter.#ctor(Sudoku.Analytics.PencilmarkVisibility,Sudoku.Analytics.BottleneckType)">
-            <summary>
-            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>.
-            </summary>
-            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
-            <param name="Type">Indicates the bottleneck type.</param>
-            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.BottleneckFilter})"/>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Visibility">
-            <summary>Indicates a visibility type of pencilmark.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.BottleneckFilter.Type">
-            <summary>Indicates the bottleneck type.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.BottleneckType">
-            <summary>
-            Represents a type of bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.EliminationGroup">
-            <summary>
-            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestRating">
-            <summary>
-            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.HardestLevel">
-            <summary>
-            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SequentialInversion">
-            <summary>
-            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
-            <para>
-            For example, the first step is a chain (at "Fiendish" level),
-            and the second step is a locked candidates (at "Moderate" level).
-            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.BottleneckType.SingleStepSameLevelOnly">
-            <summary>
-            <para>
-            Indicates the bottleneck step is a step
-            whose corresponding grid pattern only contains one step can makes such conclusion with it;
-            and only checks for same-level techniques.
-            </para>
-            <para>
-            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
-            If you don't apply it to puzzle, solving this puzzle cannot continue.
-            Therefore, the step will be considered as a bottleneck under this rule;
-            if the current grid pattern containing complex singles that can have extra assignemnts,
-            but it will be ignored to be checked in this flag.
-            </para>
-            </summary>
-            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">
             <summary>
@@ -965,6 +879,277 @@
             <param name="linkTypes">The link types to be checked.</param>
             <param name="options">The options used by step searchers.</param>
             <param name="rules">The <see cref="T:Sudoku.Analytics.Patterning.Chaining.ChainingRule"/> instance that collects with strong and weak links if worth.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule">
+            <summary>
+            Represents for the module that will be used for searching for almost hidden sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostHiddenSetsModule.CollectAlmostHiddenSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible AHSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of AHSes.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule">
+            <summary>
+            Represents for the module that will be used for searching for almost locked sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to collect all possible ALSes in the specified grid.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of ALSes.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.GetColor(System.Int32)">
+            <summary>
+            Try to fetch the ALS color.
+            </summary>
+            <param name="index">The index of the target ALS.</param>
+            <returns>The color identifier.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.AlmostLockedSetsModule.CollectConjugatePairs">
+            <summary>
+            Collect possible conjugate pairs grouped by digit.
+            </summary>
+            <returns>The conjugate pairs found, grouped by digit.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.ChainModule">
+            <summary>
+            Represents a chain module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+            <summary>
+            The collect method called by multiple forcing chains step searcher.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
+            <summary>
+            The collect method called by blossom loop step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The instance that temporarily records for chain steps.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
+            <summary>
+            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
+            </summary>
+            <param name="this">The chain to be checked.</param>
+            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.FishModule">
+            <summary>
+            Represents a fish module.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Caching.Modules.FishModule.NotationConverter">
+            <summary>
+            The backing field that will be used for formatting notations, especially for conclusions,
+            in order to check equality of two set of conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.IntersectionModule">
+            <summary>
+            Represents an intersection module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+            <summary>
+            Indicates whether the pattern is a locked candidates.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
+            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
+            <param name="c">Indicates the intersection 3 cells.</param>
+            <param name="emptyCells">The empty cells in the pattern.</param>
+            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.SingleModule">
+            <summary>
+            Represents single module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Gets the lasting value of the full house in the target house.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
+            <summary>
+            Gets the lasting value of the naked single in the target direction.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Get subtype of the hidden single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">Indicates the house.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <returns>The subtype of the hidden single.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Get subtype of the naked single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The subtype of the naked single.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.SubsetModule">
+            <summary>
+            Represents a subset module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
+            <summary>
+            The internal method to create subset steps.
+            </summary>
+            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
+            <param name="context">The context.</param>
+            <returns>The collected steps.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for hidden subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.SubsetModule.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
+            <summary>
+            Search for naked subsets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule">
+            <summary>
+            Represents a step searcher module for unique rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.PossiblePatterns">
+            <summary>
+            The table of all possible pattern cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+            </summary>
+            <param name="cells">Indicates the cells to be checked.</param>
+            <param name="comparer">Digits used in pattern.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
+            <remarks>
+            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+            <para>
+            Suppose the pattern:
+            <code><![CDATA[
+            ab  | abc
+            abd | ab
+            ]]></code>
+            The two cases are:
+            <code><![CDATA[
+            .--------------------------------.     .--------------------------------.
+            |          Missing  (c)          |     |          Missing  (d)          |
+            |-----------.----------.---------|     |-----------.----------.---------|
+            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
+            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            '-----------'----------'---------'     '-----------'----------'---------'
+            ]]></code>
+            Therefore, the elimination intersection will be:
+            <code><![CDATA[
+            .-----------.----------.---------.
+            | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |
+            | .   .  .  | .   .  . | .  .  . |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
+            Such cells can remove both digits <c>a</c> and <c>b</c>.
+            </para>
+            <para>
+            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Caching.Modules.XyzRingModule">
+            <summary>
+            Represents XYZ-Ring module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Caching.Modules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
@@ -1540,183 +1725,6 @@
             </list>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevel">
-            <summary>
-            Provides a difficulty kind for a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-            <completionlist cref="T:Sudoku.Analytics.DifficultyLevels" />
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Unknown">
-            <summary>
-            Indicates the difficulty level is unknown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Easy">
-            <summary>
-            Indicates the difficulty is easy.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Moderate">
-            <summary>
-            Indicates the difficulty is moderate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Hard">
-            <summary>
-            Indicates the difficulty is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Fiendish">
-            <summary>
-            Indicates the difficulty is fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.Nightmare">
-            <summary>
-            Indicates the difficulty is nightmare.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevel.LastResort">
-            <summary>
-            Indicates the puzzle can't be solved unless using last resort methods.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevelExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
-        </member>
-        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.IFormatProvider)">
-            <summary>
-            Gets the name of the current value, with specified culture.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="formatProvider">The culture.</param>
-            <returns>The string value.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.DifficultyLevels">
-            <summary>
-            Represents a list of difficulty levels.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevels.AllValid">
-            <summary>
-            Indicates all valid difficulty levels.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.DifficultyLevels.All">
-            <summary>
-            Indicates all difficulty levels.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.FailedReason">
-            <summary>
-            Defines a reason why the puzzle is failed to be analyzed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.Nothing">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleIsInvalid">
-            <summary>
-            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
-            <para>
-            Different with <see cref="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution"/>,
-            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
-            before solving, we should use this field.
-            </para>
-            </summary>
-            <remarks>
-            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.PuzzleInvalidException"/>.
-            </remarks>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution"/>
-            <seealso cref="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions"/>
-            <seealso cref="T:Sudoku.Analytics.PuzzleInvalidException"/>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleHasNoSolution">
-            <summary>
-            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.PuzzleHasMultipleSolutions">
-            <summary>
-            Indicates the failed reason is that the puzzle contains multiple valid solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.UserCancelled">
-            <summary>
-            Indicates the failed reason is that the user has canceled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.NotImplemented">
-            <summary>
-            Indicates the failed reason is that the solver or some searching module isn't implemented.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.ExceptionThrown">
-            <summary>
-            Indicates the failed reason is that the solver has encountered an error and couldn't solve
-            that will cause an exception thrown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.WrongStep">
-            <summary>
-            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.FailedReason.AnalyzerGiveUp">
-            <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.GridAnalysisExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
-            </summary>
-            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
-            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Checks whether the puzzle can be solved using only full house and hidden single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="allowHiddenSingleInLine">
-            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks whether the puzzle can be solved using only naked single.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Patterning.Chaining.Chain">
             <summary>
             Represents a chain.
@@ -1768,6 +1776,12 @@
             <remarks>
             A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
             </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterning.Chaining.Chain.IsImplicitLoop">
+            <summary>
+            Indicates whether the chain is an implicit loop,
+            which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Patterning.Chaining.Chain.Complexity">
             <inheritdoc/>
@@ -3090,6 +3104,11 @@
             the property <see cref="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.IsCellMultiple"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.IsGrouped">
+            <summary>
+            Indicates whether at least one branch contains grouped links or nodes.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Patterning.Chaining.MultipleForcingChains.Complexity">
             <summary>
@@ -5697,31 +5716,95 @@
         <member name="M:Sudoku.Analytics.Patterning.Searching.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.PencilmarkVisibilities">
+        <member name="T:Sudoku.Analytics.Primitives.BottleneckFilter">
             <summary>
-            Represents a list of constants of <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/>.
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.PencilmarkVisibility"/>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>
         </member>
-        <member name="M:Sudoku.Analytics.PencilmarkVisibilities.#ctor">
+        <member name="M:Sudoku.Analytics.Primitives.BottleneckFilter.#ctor(Sudoku.Analytics.Primitives.PencilmarkVisibility,Sudoku.Analytics.Primitives.BottleneckType)">
             <summary>
-            Represents a list of constants of <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/>.
+            Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.PencilmarkVisibility"/>
+            <param name="Visibility">Indicates a visibility type of pencilmark.</param>
+            <param name="Type">Indicates the bottleneck type.</param>
+            <seealso cref="M:Sudoku.Analytics.AnalysisResult.GetBottlenecks(System.ReadOnlySpan{Sudoku.Analytics.Primitives.BottleneckFilter})"/>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibilities.All">
+        <member name="P:Sudoku.Analytics.Primitives.BottleneckFilter.Visibility">
+            <summary>Indicates a visibility type of pencilmark.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.BottleneckFilter.Type">
+            <summary>Indicates the bottleneck type.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.BottleneckType">
             <summary>
-            Indicates all visibilities.
+            Represents a type of bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibilities.Marks">
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.EliminationGroup">
             <summary>
-            Indicates only for marks.
+            Indicates the bottleneck is the last step in a list of steps that only produces eliminations.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.HardestRating">
+            <summary>
+            Indicates the bottleneck is for a hardest step or a list of steps having a same hardest difficulty found in analyzer.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.PencilmarkVisibility">
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.HardestLevel">
             <summary>
-            Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
+            Indicates the bottleneck is for a step or a list of steps that hold the hardest difficulty level.
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SequentialInversion">
+            <summary>
+            <para>Indicates the bottleneck for a step that makes the next step has a easier difficulty level than it.</para>
+            <para>
+            For example, the first step is a chain (at "Fiendish" level),
+            and the second step is a locked candidates (at "Moderate" level).
+            In this case, the first step makes the second step to be easy, so it will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle containing partial-marking and full-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct or partial-marking steps.</b></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.BottleneckType.SingleStepSameLevelOnly">
+            <summary>
+            <para>
+            Indicates the bottleneck step is a step
+            whose corresponding grid pattern only contains one step can makes such conclusion with it;
+            and only checks for same-level techniques.
+            </para>
+            <para>
+            For example, the step is a hidden single. However, hidden single is the only step that the current grid can be found.
+            If you don't apply it to puzzle, solving this puzzle cannot continue.
+            Therefore, the step will be considered as a bottleneck under this rule;
+            if the current grid pattern containing complex singles that can have extra assignemnts,
+            but it will be ignored to be checked in this flag.
+            </para>
+            </summary>
+            <remarks><b>This field can only be used by checking a puzzle only containing direct and partial-marking steps.</b></remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
             </summary>
             <remarks><flags-attribute>
 		<para>
@@ -5731,27 +5814,170 @@
 			</i>
 		</para>
 	</flags-attribute></remarks>
-            <completionlist cref="T:Sudoku.Analytics.PencilmarkVisibilities" />
+            <completionlist cref="T:Sudoku.Analytics.Primitives.DifficultyLevels" />
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.None">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown">
             <summary>
-            Indicates placeholder.
+            Indicates the difficulty level is unknown.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.Direct">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Easy">
             <summary>
-            Indicates the technique can be applied to direct mode.
+            Indicates the difficulty is easy.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.PartialMark">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Moderate">
             <summary>
-            Indicates the technique can be applied to partial-marking mode.
+            Indicates the difficulty is moderate.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.PencilmarkVisibility.FullMark">
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Hard">
             <summary>
-            Indicates the technique can be applied to full-marking mode.
+            Indicates the difficulty is hard.
             </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved unless using last resort methods.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Primitives.DifficultyLevel,System.IFormatProvider)">
+            <summary>
+            Gets the name of the current value, with specified culture.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="formatProvider">The culture.</param>
+            <returns>The string value.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.DifficultyLevels">
+            <summary>
+            Represents a list of difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevels.AllValid">
+            <summary>
+            Indicates all valid difficulty levels.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.DifficultyLevels.All">
+            <summary>
+            Indicates all difficulty levels.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.FailedReason">
+            <summary>
+            Defines a reason why the puzzle is failed to be analyzed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.Nothing">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleIsInvalid">
+            <summary>
+            <para>Indicates the failed reason is that the puzzle doesn't contain a valid unique solution.</para>
+            <para>
+            Different with <see cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions"/> and <see cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution"/>,
+            this field will include more generic cases. If the puzzle doesn't pass the pre-process operation
+            before solving, we should use this field.
+            </para>
+            </summary>
+            <remarks>
+            This field can also be used for false-positive on analyzing a puzzle, raising <see cref="T:Sudoku.Analytics.Primitives.PuzzleInvalidException"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PuzzleInvalidException"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasNoSolution">
+            <summary>
+            Indicates the failed reason is that the puzzle doesn't contain a valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.PuzzleHasMultipleSolutions">
+            <summary>
+            Indicates the failed reason is that the puzzle contains multiple valid solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.UserCancelled">
+            <summary>
+            Indicates the failed reason is that the user has canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.NotImplemented">
+            <summary>
+            Indicates the failed reason is that the solver or some searching module isn't implemented.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.ExceptionThrown">
+            <summary>
+            Indicates the failed reason is that the solver has encountered an error and couldn't solve
+            that will cause an exception thrown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.WrongStep">
+            <summary>
+            Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.FailedReason.AnalyzerGiveUp">
+            <summary>
+            Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.GridAnalysisExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
+            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house and hidden single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="allowHiddenSingleInLine">
+            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only naked single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Primitives.IAnalysisResult`3">
             <summary>
@@ -5949,7 +6175,63 @@
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.PuzzleInvalidException">
+        <member name="T:Sudoku.Analytics.Primitives.PencilmarkVisibilities">
+            <summary>
+            Represents a list of constants of <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.PencilmarkVisibilities.#ctor">
+            <summary>
+            Represents a list of constants of <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibilities.All">
+            <summary>
+            Indicates all visibilities.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibilities.Marks">
+            <summary>
+            Indicates only for marks.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.PencilmarkVisibility">
+            <summary>
+            Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <completionlist cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibilities" />
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.None">
+            <summary>
+            Indicates placeholder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct">
+            <summary>
+            Indicates the technique can be applied to direct mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.PartialMark">
+            <summary>
+            Indicates the technique can be applied to partial-marking mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark">
+            <summary>
+            Indicates the technique can be applied to full-marking mode.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.PuzzleInvalidException">
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
@@ -5958,11 +6240,11 @@
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
             but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            <see cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+            <seealso cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/>
         </member>
-        <member name="M:Sudoku.Analytics.PuzzleInvalidException.#ctor(Sudoku.Concepts.Grid@,System.Type)">
+        <member name="M:Sudoku.Analytics.Primitives.PuzzleInvalidException.#ctor(Sudoku.Concepts.Grid@,System.Type)">
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
@@ -5971,38 +6253,60 @@
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
             but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            <see cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/> to learn more information.
             </remarks>
-            <seealso cref="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType"/>
+            <seealso cref="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType"/>
         </member>
-        <member name="P:Sudoku.Analytics.PuzzleInvalidException.Message">
+        <member name="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType">
+        <member name="P:Sudoku.Analytics.Primitives.PuzzleInvalidException.StepSearcherType">
             <summary>
             The generated property declaration for parameter <c>stepSearcherType</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.RuntimeAnalysisException">
+        <member name="T:Sudoku.Analytics.Primitives.RuntimeAnalysisException">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
         </member>
-        <member name="M:Sudoku.Analytics.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Primitives.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Analytics.Primitives.IAnalyzer`3"/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.Message">
+        <member name="P:Sudoku.Analytics.Primitives.RuntimeAnalysisException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.InvalidGrid">
+        <member name="P:Sudoku.Analytics.Primitives.RuntimeAnalysisException.InvalidGrid">
             <summary>
             The generated property declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Primitives.WrongStepException">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+            <param name="grid"><inheritdoc/></param>
+            <param name="wrongStep">Indicates the wrong step.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Primitives.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
+            </summary>
+            <param name="grid"><inheritdoc/></param>
+            <param name="wrongStep">Indicates the wrong step.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.WrongStepException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Primitives.WrongStepException.WrongStep">
+            <summary>
+            The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
@@ -6098,7 +6402,7 @@
             during generating puzzles.
             </remarks>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
+            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/>.
             </exception>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -6631,277 +6935,6 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost hidden sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostHiddenSetsModule.CollectAlmostHiddenSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible AHSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of AHSes.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule">
-            <summary>
-            Represents for the module that will be used for searching for almost locked sets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectAlmostLockedSets(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to collect all possible ALSes in the specified grid.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of ALSes.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.GetColor(System.Int32)">
-            <summary>
-            Try to fetch the ALS color.
-            </summary>
-            <param name="index">The index of the target ALS.</param>
-            <returns>The color identifier.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.AlmostLockedSetsModule.CollectConjugatePairs">
-            <summary>
-            Collect possible conjugate pairs grouped by digit.
-            </summary>
-            <returns>The conjugate pairs found, grouped by digit.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.ChainModule">
-            <summary>
-            Represents a chain module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.NormalChainStep},System.Boolean)">
-            <summary>
-            The collect method called by chain step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
-            <summary>
-            The collect method called by multiple forcing chains step searcher.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
-            <summary>
-            The collect method called by blossom loop step searchers.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="accumulator">The instance that temporarily records for chain steps.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.Extensions.IsAdvancedAllowed(Sudoku.Analytics.Steps.ChainStep,System.Boolean)">
-            <summary>
-            Determine whether a <see cref="T:Sudoku.Analytics.Steps.ChainStep"/> instance is allowed to contain advanced links.
-            </summary>
-            <param name="this">The chain to be checked.</param>
-            <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
-            <summary>
-            Represents a fish module.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcherModules.FishModule.NotationConverter">
-            <summary>
-            The backing field that will be used for formatting notations, especially for conclusions,
-            in order to check equality of two set of conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.IntersectionModule">
-            <summary>
-            Represents an intersection module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
-            <summary>
-            Indicates whether the pattern is a locked candidates.
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
-            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
-            <param name="c">Indicates the intersection 3 cells.</param>
-            <param name="emptyCells">The empty cells in the pattern.</param>
-            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.SingleModule">
-            <summary>
-            Represents single module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Gets the lasting value of the full house in the target house.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
-            <summary>
-            Gets the lasting value of the naked single in the target direction.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">The house.</param>
-            <returns>The lasting value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Get subtype of the hidden single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="house">Indicates the house.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <returns>The subtype of the hidden single.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
-            <summary>
-            Get subtype of the naked single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>The subtype of the naked single.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
-            <summary>
-            Represents a subset module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.StepAnalysisContext@)">
-            <summary>
-            The internal method to create subset steps.
-            </summary>
-            <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
-            <param name="context">The context.</param>
-            <returns>The collected steps.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for hidden subsets.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
-            <summary>
-            Search for naked subsets.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule">
-            <summary>
-            Represents a step searcher module for unique rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.PossiblePatterns">
-            <summary>
-            The table of all possible pattern cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
-            </summary>
-            <param name="cells">Indicates the cells to be checked.</param>
-            <param name="comparer">Digits used in pattern.</param>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
-            <remarks>
-            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
-            <para>
-            Suppose the pattern:
-            <code><![CDATA[
-            ab  | abc
-            abd | ab
-            ]]></code>
-            The two cases are:
-            <code><![CDATA[
-            .--------------------------------.     .--------------------------------.
-            |          Missing  (c)          |     |          Missing  (d)          |
-            |-----------.----------.---------|     |-----------.----------.---------|
-            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
-            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            '-----------'----------'---------'     '-----------'----------'---------'
-            ]]></code>
-            Therefore, the elimination intersection will be:
-            <code><![CDATA[
-            .-----------.----------.---------.
-            | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |
-            | .   .  .  | .   .  . | .  .  . |
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            ]]></code>
-            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
-            Such cells can remove both digits <c>a</c> and <c>b</c>.
-            </para>
-            <para>
-            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
-            </para>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearcherModules.XyzRingModule">
-            <summary>
-            Represents XYZ-Ring module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherPool">
             <summary>
@@ -7819,6 +7852,18 @@
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Patterning.Patterns.UniqueLoop.IsValid``1(``0)"/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher">
+            <summary>
+            Provides with a <b>Rotating Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Rotating Deadly Pattern</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
             Provides with a <b>Unique Loop</b> step searcher.
@@ -7929,22 +7974,22 @@
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType1(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType2(System.Collections.Generic.List{Sudoku.Analytics.Step},System.Boolean,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType3(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType3(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType4(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Boolean,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueMatrixStepSearcher.CheckType4(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Searches for type 4.
             </summary>
@@ -10545,7 +10590,7 @@
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="nameKey">Indicates the key in resource dictionary.</param>
-            <param name="supportedTechniques">All supported techniques.</param>
+            <param name="techniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.#ctor(System.String,Sudoku.Categorization.Technique[])">
@@ -10553,7 +10598,7 @@
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="nameKey">Indicates the key in resource dictionary.</param>
-            <param name="supportedTechniques">All supported techniques.</param>
+            <param name="techniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.IsCachingSafe">
@@ -10619,7 +10664,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportedTechniques">
             <summary>
-            <inheritdoc cref="T:Sudoku.Analytics.StepSearchers.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+            <inheritdoc cref="T:Sudoku.Analytics.StepSearchers.StepSearcherAttribute" path="/param[@name='techniques']"/>
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.NameKey">
@@ -10686,7 +10731,7 @@
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.DifficultyLevelRange">
             <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            Indicates the <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.SupportedTechniques">
@@ -11996,6 +12041,115 @@
             The generated property declaration for parameter <c>digitsMask</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Conditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Conditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep.IsUnconditional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is a <b>Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.OnlyUseBivalueCells">
+            <summary>
+            Indicates whether the deadly pattern only uses bi-value cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.IsUnconditional">
+            <summary>
+            Indicates whether the pattern is unconditional.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep">
+            <summary>
+            Provides with a step that is an <b>Unconditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+            <summary>
+            Provides with a step that is an <b>Unconditional Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UnconditionalDeadlyPatternStep.IsUnconditional">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
@@ -12626,27 +12780,6 @@
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ChuteIndex">
             <summary>
             The generated property declaration for parameter <c>chuteIndex</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Provides with a step that is a <b>Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeadlyPatternStep.OnlyUseBivalueCells">
-            <summary>
-            Indicates whether the deadly pattern only uses bi-value cells.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleStep">
@@ -19519,28 +19652,6 @@
             Indicates the true candidates used.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.WrongStepException">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-            <param name="grid"><inheritdoc/></param>
-            <param name="wrongStep">Indicates the wrong step.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.WrongStepException.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
-            </summary>
-            <param name="grid"><inheritdoc/></param>
-            <param name="wrongStep">Indicates the wrong step.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.WrongStepException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.WrongStepException.WrongStep">
-            <summary>
-            The generated property declaration for parameter <c>wrongStep</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.__AnalyzerFactoryMethods_Add">
             <summary>
             Provides with a list of methods that are used as factory methods on modifying properties with multiple method invocations:
@@ -19590,7 +19701,7 @@
             ]]></code>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
+        <member name="M:Sudoku.Analytics.__AnalyzerFactoryMethods_With.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Primitives.DifficultyLevel)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
             </summary>
@@ -19736,7 +19847,7 @@
             </summary>
             <param name="_memberName">The field name.</param>
             <seealso cref="T:Sudoku.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Categorization.TechniqueMetadataAttribute"/>
         </member>
         <member name="M:Sudoku.Categorization.MissingDifficultyLevelException.#ctor(System.String)">
@@ -19745,7 +19856,7 @@
             </summary>
             <param name="_memberName">The field name.</param>
             <seealso cref="T:Sudoku.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Categorization.TechniqueMetadataAttribute"/>
         </member>
         <member name="P:Sudoku.Categorization.MissingDifficultyLevelException.Message">
@@ -21980,6 +22091,11 @@
             Indicates unique matrix type 4.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPattern">
+            <summary>
+            Indicates rotating deadly pattern.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.SueDeCoq">
             <summary>
             Indicates sue de coq.
@@ -22780,7 +22896,7 @@
             <param name="this">The <see cref="T:Sudoku.Categorization.Technique"/> instance.</param>
             <returns>
             The difficulty level that the current technique belongs to.
-            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/> will be returned.
+            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Primitives.DifficultyLevel.Unknown"/> will be returned.
             </returns>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueExtensions.GetSingleTechnique(Sudoku.Categorization.Technique)">
@@ -22804,7 +22920,7 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Categorization.Technique"/> instance.</param>
             <returns>
-            <para>A <see cref="T:Sudoku.Analytics.PencilmarkVisibility"/> value indicating the supported modes.</para>
+            <para>A <see cref="T:Sudoku.Analytics.Primitives.PencilmarkVisibility"/> value indicating the supported modes.</para>
             <para>
             The result will be merged via flag values. Use <see cref="M:System.Enum.HasFlag(System.Enum)"/> to determine what flag you want to check.
             </para>
@@ -23017,6 +23133,11 @@
             Indicates the unique matrix technique.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.TechniqueGroup.ConditionalDeadlyPattern">
+            <summary>
+            Indicates the conditional deadly pattern.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.ReverseBivalueUniversalGrave">
             <summary>
             Indicates the reverse bi-value universal grave (Reverse BUG) technique.
@@ -23224,10 +23345,10 @@
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.PencilmarkVisibility">
             <summary>
             Indicates the mode that the current technique can be used by solving a puzzle.
-            By default the value is both <see cref="F:Sudoku.Analytics.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.PencilmarkVisibility.FullMark"/>.
+            By default the value is both <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.PencilmarkVisibility.Direct"/>
-            <seealso cref="F:Sudoku.Analytics.PencilmarkVisibility.FullMark"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.RelatedTechnique">
             <summary>
@@ -23369,7 +23490,7 @@
             Indicates the range of difficulty that the current collection contains.
             </summary>
             <remarks>
-            This property returns a list of <see cref="T:Sudoku.Analytics.DifficultyLevel"/> flags, merged into one instance.
+            This property returns a list of <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/> flags, merged into one instance.
             If you want to get the internal fields of flags the return value contains, use <see langword="foreach"/> loop to iterate them,
             or use method <see cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>.
             </remarks>
@@ -24345,7 +24466,7 @@
         </member>
         <member name="P:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
             <summary>
-            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
+            Indicates all possible <see cref="T:Sudoku.Analytics.Primitives.DifficultyLevel"/> values. 
             </summary>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
@@ -25200,14 +25321,22 @@
             </summary>
             <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
+            <param name="failedCases">
+            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
+            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
+            </param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
-        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Concepts.Grid})">
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
             <param name="grid"><inheritdoc cref="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid" path="/summary"/></param>
             <param name="isDeadlyPattern">Indicates the pattern is a real deadly pattern.</param>
+            <param name="failedCases">
+            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
+            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
+            </param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
@@ -25223,6 +25352,11 @@
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.IsDeadlyPattern">
             <summary>
             The generated property declaration for parameter <c>isDeadlyPattern</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.FailedCases">
+            <summary>
+            The generated property declaration for parameter <c>failedCases</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.Equals(System.Object)">
@@ -25569,7 +25703,12 @@
         </member>
         <member name="P:Sudoku.Measuring.Factor.Formula">
             <summary>
-            Provides with a formula that calculates for the result, unscaled.
+            Provides with a formula that calculates for the result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.FactorResourceKey">
+            <summary>
+            Indicates the factor resource key.
             </summary>
         </member>
         <member name="M:Sudoku.Measuring.Factor.GetName(System.IFormatProvider)">
@@ -25578,6 +25717,46 @@
             </summary>
             <param name="formatProvider">The culture information.</param>
             <returns>The name of the factor.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.Create(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Measuring.Factor"/> instance that assigns predefined values.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.Factor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.Factor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.Factor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.Factor.Formula" path="/summary"/></param>
+            <returns>A <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.AnonymousFactor">
+            <summary>
+            Defines an anonymous factor.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.AnonymousFactor.#ctor(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+            <summary>
+            Defines an anonymous factor.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.FactorArray">
             <summary>
@@ -25709,1170 +25888,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
-            <summary>
-            Represents a factor that measures size property for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor">
-            <summary>
-            Represents a factor that measures value cell existence for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor">
-            <summary>
-            Represents a factor that measures length of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor">
-            <summary>
-            Represents a factor that measures subset size of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor">
-            <summary>
-            Represents a factor that describes the true candidates appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor">
-            <summary>
-            Represents a factor that describes whether the subset appeare in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/> is hidden.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor">
-            <summary>
-            Represents a factor that describes the true candidates appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor">
-            <summary>
-            Represents a factor that describes the grouped logic in a blossom loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor">
-            <summary>
-            Represents a factor that describes grouped nodes in a blossom loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopGroupedNodeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
-            <summary>
-            Represents a factor that describes the length of a blossom loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BowmanBingoLengthFactor">
-            <summary>
-            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ChainGroupedFactor">
-            <summary>
-            Represents a factor that describes the grouped logic in a chain or a loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ChainGroupedNodeFactor">
-            <summary>
-            Represents a factor that describes grouped nodes in a chain or a loop.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainGroupedNodeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ChainLengthFactor">
-            <summary>
-            Represents a factor that describes the length of a <see cref="T:Sudoku.Analytics.Patterning.Chaining.ChainOrLoop"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
-            <summary>
-            Represents a factor that describes whether the <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is cannibalism.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor">
-            <summary>
-            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is a Sashimi fish.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ComplexFishShapeFactor">
-            <summary>
-            Represents a factor that describes the shape of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ComplexFishSizeFactor">
-            <summary>
-            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ComplexSingleFactor">
-            <summary>
-            Represents a factor that describes the factor for <see cref="T:Sudoku.Analytics.Steps.ComplexSingleStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ComplexSingleStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor">
-            <summary>
-            Represents a factor that describes whether the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/> is locked.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.DirectSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of almost hidden set appeared in <see cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor">
-            <summary>
-            Represents a factor that describes the number of conjugate pairs appeared in <see cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor">
-            <summary>
-            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor">
-            <summary>
-            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor">
-            <summary>
-            Represents a factor that measures the size of the pattern appeared in a <see cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.GuardianFactor">
-            <summary>
-            Represents a factor that describes the guardian in <see cref="T:Sudoku.Analytics.Steps.GuardianStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.GuardianStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
-            <summary>
-            Represents a factor that describes which locked case a hidden subset is.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor">
-            <summary>
-            Represents the size factor used in hidden subsets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor">
-            <summary>
-            Represents a factor that describes the grouped logic in a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor">
-            <summary>
-            Represents a factor that describes grouped nodes in a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsGroupedNodeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor">
-            <summary>
-            Represents a factor that describes the length of a multiple forcing chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultipleForcingChainsLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the pattern from <see cref="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
-            <summary>
-            Represents a factor that describes which locked case a naked subset is.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.NakedSubsetSizeFactor">
-            <summary>
-            Represents the size factor used in naked subsets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor">
-            <summary>
-            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/> is a Sashimi fish.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.NormalFishSizeFactor">
-            <summary>
-            Represents a factor that describes the size of a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the pattern for <see cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor">
-            <summary>
-            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor">
-            <summary>
-            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor">
-            <summary>
-            Represents a factor that describes the number of conjugate pairs used in a <see cref="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopConjugatePairsTypeStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopConjugatePairsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueLoopLengthFactor">
-            <summary>
-            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the subset size appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor">
-            <summary>
-            Represents a factor that describes the extra cells used in <see cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor">
-            <summary>
-            Represents a factor that describes the number of conjugate pairs (strong links) appeared in a rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor">
-            <summary>
-            Represents a factor that describes the factor 
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor">
-            <summary>
-            Represents a factor that describes whether the rectangle is an avoidable rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor">
-            <summary>
-            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor">
-            <summary>
-            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleSueDeCoqStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether the unique rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor">
-            <summary>
-            Represents a type that describes the size of subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor">
-            <summary>
-            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether a rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor">
-            <summary>
-            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether the rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor">
-            <summary>
-            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether the external unique rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether the external unique rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor">
-            <summary>
-            Represents a factor that describes whether the external unique rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor">
-            <summary>
-            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor">
-            <summary>
-            Represents a factor that describes whether the rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor">
-            <summary>
-            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor">
-            <summary>
-            Represents a factor that describes whether the rectangle is incomplete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor">
-            <summary>
-            Represents a factor that describes whether a subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/> is hidden.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor">
-            <summary>
-            Represents a factor that describes the size of the wing appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleRegularWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleRegularWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor">
-            <summary>
-            Represents a factor that describes whether an <see cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/> is grouped.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor">
-            <summary>
-            Represents a factor that describes the number of branches appeared in a <see cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor">
-            <summary>
-            Represents a factor that describes incompleteness of <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.RegularWingSizeFactor">
-            <summary>
-            Represents a factor that describes the size of regular wing comes from <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Functions.ChainingLength">
@@ -29721,6 +28736,11 @@
               Looks up a localized string similar to only right open.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPattern">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.RstuvwxyzWing">
             <summary>
               Looks up a localized string similar to RSTUVWXYZ-Wing.
@@ -30299,6 +29319,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ReverseBivalueUniversalGraveStepSearcher">
             <summary>
               Looks up a localized string similar to Reverse Bivalue Universal Grave.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RotatingDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_RwDeadlyPatternStepSearcher">
@@ -31571,6 +30596,11 @@
               Looks up a localized string similar to Cells {0} of digits {1}, with an extra digit {2}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RotatingDeadlyPatternStep">
+            <summary>
+              Looks up a localized string similar to {0}({1}).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_RwDeadlyPatternStep">
             <summary>
               Looks up a localized string similar to Cells {0}, digits {1}.
@@ -31844,6 +30874,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ComplexSingle">
             <summary>
               Looks up a localized string similar to Complex Single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ConditionalDeadlyPattern">
+            <summary>
+              Looks up a localized string similar to Conditional Deadly Patterns.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_DeathBlossom">

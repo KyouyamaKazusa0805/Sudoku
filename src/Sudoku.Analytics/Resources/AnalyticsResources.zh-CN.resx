@@ -3480,4 +3480,17 @@
   <data name="DirectSingleLastSuffix" xml:space="preserve">
     <value>{0}余{1}</value>
   </data>
+  <data name="RotatingDeadlyPattern" xml:space="preserve">
+    <value>旋转致命结构</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueGroup_ConditionalDeadlyPattern" xml:space="preserve">
+    <value>条件致命结构</value>
+  </data>
+  <data name="StepSearcherName_RotatingDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>旋转致命结构</value>
+  </data>
+  <data name="TechniqueFormat_RotatingDeadlyPatternStep" xml:space="preserve">
+    <value>{0}({1})</value>
+  </data>
 </root>

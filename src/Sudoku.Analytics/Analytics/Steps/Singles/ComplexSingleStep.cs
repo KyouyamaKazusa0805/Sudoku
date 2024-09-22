@@ -52,7 +52,15 @@ public sealed class ComplexSingleStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new ComplexSingleFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_ComplexSingleFactor",
+				[nameof(IndirectTechniques)],
+				GetType(),
+				static args => ComplexTechniqueUsages.GetComplexityDifficulty((Technique[][])args![0]!)
+			)
+		];
 
 
 	/// <inheritdoc/>

@@ -33,7 +33,15 @@ public abstract partial class BivalueOddagonStep(
 	public override Mask DigitsUsed => (Mask)(1 << Digit1 | 1 << Digit2);
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new BivalueOddagonLengthFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_BivalueOddagonLengthFactor",
+				[nameof(ICellListTrait.CellSize)],
+				GetType(),
+				static args => OeisSequences.A004526((int)args![0]!)
+			)
+		];
 
 	private protected string LoopStr => Options.Converter.CellConverter(LoopCells);
 

@@ -504,6 +504,31 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
 	/// <summary>
+	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+	/// </summary>
+	/// <param name="base">The base map.</param>
+	/// <param name="template">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
+	/// <remarks>
+	/// <para>
+	/// The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
+	/// </para>
+	/// <para>
+	/// For example, if we should check the eliminations
+	/// of digit <c>d</c>, we may use the expression
+	/// <code><![CDATA[
+	/// (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
+	/// ]]></code>
+	/// to express the eliminations are the peer intersection of cells of digit <c>d</c>
+	/// appeared in <c>urCells</c>. This expression can be simplified to
+	/// <code><![CDATA[
+	/// urCells % grid.CandidatesMap[d]
+	/// ]]></code>
+	/// </para>
+	/// </remarks>
+	public static virtual TSelf operator %(in TSelf @base, in TSelf template) => (@base & template).PeerIntersection & template;
+
+	/// <summary>
 	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
 	/// </summary>
 	/// <param name="map">The instance to check for subsets.</param>
@@ -577,7 +602,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	static TSelf ISubtractionOperators<TSelf, TElement, TSelf>.operator -(TSelf left, TElement right) => left - right;
 
 	/// <inheritdoc/>
-	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => (left & right).PeerIntersection & right;
+	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => left % right;
 
 	/// <inheritdoc/>
 	static TSelf IBitwiseOperators<TSelf, TSelf, TSelf>.operator ~(TSelf value) => ~value;

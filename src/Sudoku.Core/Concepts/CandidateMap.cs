@@ -720,12 +720,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		return result;
 	}
 
-	/// <summary>
-	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="template">The template map that the base map to check and cover.</param>
-	/// <returns>The result map.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;

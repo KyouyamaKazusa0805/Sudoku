@@ -41,7 +41,15 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | ExtraDigitsMask);
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new ExocetAlmostHiddenSetSizeFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_ExocetAlmostHiddenSetSizeFactor",
+				[nameof(SubsetSize)],
+				GetType(),
+				static args => OeisSequences.A002024((int)args![0]!)
+			)
+		];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>.IsHidden => true;

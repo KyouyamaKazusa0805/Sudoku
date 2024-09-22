@@ -878,33 +878,7 @@ public partial struct CellMap : CellMapBase
 		return result;
 	}
 
-	/// <summary>
-	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/summary"/>
-	/// </summary>
-	/// <param name="base">
-	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/param[@name='base']"/>
-	/// </param>
-	/// <param name="template">
-	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/param[@name='template']"/>
-	/// </param>
-	/// <returns><inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/returns"/></returns>
-	/// <remarks>
-	/// <para>
-	/// The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
-	/// </para>
-	/// <para>
-	/// For example, if we should check the eliminations
-	/// of digit <c>d</c>, we may use the expression
-	/// <code><![CDATA[
-	/// (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
-	/// ]]></code>
-	/// to express the eliminations are the peer intersection of cells of digit <c>d</c>
-	/// appeared in <c>urCells</c>. This expression can be simplified to
-	/// <code><![CDATA[
-	/// urCells % grid.CandidatesMap[d]
-	/// ]]></code>
-	/// </para>
-	/// </remarks>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
 

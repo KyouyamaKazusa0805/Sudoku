@@ -78,15 +78,18 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Split/Hybrid/Local Wing (*S/H/L-Wing*)
     * XYZ-Loop
   * Deadly Patterns
-    * Unique Rectangle (*UR*)
-    * Unique Loop (*UL*)
-    * Extended Rectangle (*XR*)
-    * Borescoper's Deadly Pattern
-    * Qiu's Deadly Pattern
-    * Unique Matrix (*UM*)
-    * Bi-value Universal Grave (*BUG*)
-    * Reverse Bi-value Universal Grave (*Reverse BUG*)
-    * Uniqueness Clue Cover (*UCC*)
+    * Unconditional Deadly Patterns
+      * Unique Rectangle (*UR*)
+      * Unique Loop (*UL*)
+      * Extended Rectangle (*XR*)
+      * Borescoper's Deadly Pattern
+      * Qiu's Deadly Pattern
+      * Unique Matrix (*UM*)
+      * Bi-value Universal Grave (*BUG*)
+      * Reverse Bi-value Universal Grave (*Reverse BUG*)
+      * Uniqueness Clue Cover (*UCC*)
+    * Conditional Deadly Patterns
+      * Rotating Deadly Pattern (Only for standard type)
   * Coloring (**Only in API**)
     * Simple Coloring
       * Simple Coloring Wrap

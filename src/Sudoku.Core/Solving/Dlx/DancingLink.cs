@@ -7,7 +7,37 @@ namespace Sudoku.Solving.Dlx;
 public sealed class DancingLink(ColumnNode _root)
 {
 	/// <summary>
-	/// Indicates the entry instance.
+	/// Indicates the number of nodes created in the data model.
+	/// </summary>
+	private const int NodesCount = 81 << 2;
+
+
+	/// <summary>
+	/// Indicates the raw columns.
+	/// </summary>
+	private ColumnNode[] RawColumns
+	{
+		get
+		{
+			var columns = new ColumnNode[NodesCount];
+			for (var columnIndex = 0; columnIndex < NodesCount; columnIndex++)
+			{
+				var col = new ColumnNode(columnIndex) { Right = _root, Left = _root.Left };
+				_root.Left.Right = col;
+				_root.Left = col;
+				columns[columnIndex] = col;
+			}
+			return columns;
+		}
+	}
+
+
+	/// <summary>
+	/// Indicates the entry instance. Use this propeprty to create links:
+	/// <code><![CDATA[
+	/// var grid = ...;
+	/// DancingLink.Entry.Create(in grid);
+	/// ]]></code>
 	/// </summary>
 	public static DancingLink Entry => new(new(-1));
 
@@ -21,21 +51,14 @@ public sealed class DancingLink(ColumnNode _root)
 	/// <seealso cref="ColumnNode"/>
 	public ColumnNode Create(ref readonly Grid grid)
 	{
-		var columns = new ColumnNode[324];
-		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
-		{
-			var col = new ColumnNode(columnIndex) { Right = _root, Left = _root.Left };
-			_root.Left.Right = col;
-			_root.Left = col;
-			columns[columnIndex] = col;
-		}
-
+		var columns = RawColumns;
 		for (var cell = 0; cell < 81; cell++)
 		{
-			var (x, y) = (cell / 9, cell % 9);
-			foreach (var digit in grid.GetCandidates(cell))
+			var (r, c) = (cell / 9, cell % 9);
+			var m = grid.GetCandidates(cell);
+			foreach (var d in m)
 			{
-				formLinks(columns, x, y, digit);
+				formLinks(columns, r, c, d);
 			}
 		}
 		return _root;
@@ -44,10 +67,11 @@ public sealed class DancingLink(ColumnNode _root)
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void formLinks(ColumnNode[] cols, RowIndex r, ColumnIndex c, Digit d)
 		{
-			var cell = new DancingLinkNode(r * 81 + c * 9 + d, cols[r * 9 + c]);
-			var row = new DancingLinkNode(r * 81 + c * 9 + d, cols[81 + r * 9 + d]);
-			var column = new DancingLinkNode(r * 81 + c * 9 + d, cols[162 + c * 9 + d]);
-			var block = new DancingLinkNode(r * 81 + c * 9 + d, cols[243 + (3 * (r / 3) + c / 3) * 9 + d]);
+			var candidate = r * 81 + c * 9 + d;
+			var cell = new DancingLinkNode(candidate, cols[r * 9 + c]);
+			var row = new DancingLinkNode(candidate, cols[81 + r * 9 + d]);
+			var column = new DancingLinkNode(candidate, cols[162 + c * 9 + d]);
+			var block = new DancingLinkNode(candidate, cols[243 + (r / 3 * 3 + c / 3) * 9 + d]);
 			var matrixRow = new MatrixRow(cell, row, column, block);
 			linkRow(ref matrixRow);
 			linkRowToColumn(matrixRow.Cell);

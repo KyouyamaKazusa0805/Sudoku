@@ -39,7 +39,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		{
 			if ((HousesMap[house] & cellsUsed).Count == 1)
 			{
-				result = new(in grid, false);
+				result = new(in grid, false, []);
 				return true;
 			}
 		}
@@ -53,13 +53,14 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			goto FastFail;
 		}
 
+		var failedCases = new List<Grid>();
 		foreach (ref readonly var solution in solutions.AsReadOnlySpan())
 		{
 			// Step 2: Iterate on all the other solutions,
 			// and find whether each solution contains at least one possible corresponding solution
 			// whose digits used in *all* houses are completely same.
 			var tempSolutions = new List<Grid>();
-			foreach (var tempGrid in solutions.AsReadOnlySpan()[..])
+			foreach (ref readonly var tempGrid in solutions.AsReadOnlySpan()[..])
 			{
 				if (tempGrid == solution)
 				{
@@ -85,15 +86,16 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			}
 
 			// Step 3: Check for the validity on this case.
+			// If failed to check, we should collect the case into the result, as an item in failed cases set.
 			if (tempSolutions.Count == 0)
 			{
-				result = new(in grid, false);
-				return true;
+				failedCases.AddRef(in solution);
 			}
 		}
 
-		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern.
-		result = new(in grid, true);
+		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern;
+		// otherwise, not a deadly pattern.
+		result = new(in grid, failedCases.Count == 0, failedCases.AsReadOnlySpan());
 		return true;
 
 	FastFail:
@@ -101,7 +103,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		return false;
 
 
-		static void dfs(ref Grid grid, in CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfs(ref Grid grid, ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
@@ -115,43 +117,16 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			}
 			else
 			{
-				var r = currentCell / 9;
-				var c = currentCell % 9;
-				var digits = grid.GetCandidates(currentCell);
+				var (r, c, digits) = (currentCell / 9, currentCell % 9, grid.GetCandidates(currentCell));
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | 1 << digit);
-					if (isValid(in grid, r, c))
+					if (BacktrackingSolver.IsValid(in grid, r, c))
 					{
 						dfs(ref grid, in cellsRange, solutions, currentCell + 1);
 					}
 				}
-
 				grid[currentCell] = (Mask)(Grid.EmptyMask | digits);
-			}
-
-
-			static bool isValid(ref readonly Grid grid, RowIndex r, ColumnIndex c)
-			{
-				var number = grid.GetDigit(r * 9 + c);
-				for (var i = 0; i < 9; i++)
-				{
-					if (i != r && grid.GetDigit(i * 9 + c) == number || i != c && grid.GetDigit(r * 9 + i) == number)
-					{
-						return false;
-					}
-				}
-				for (RowIndex ii = r / 3 * 3, i = ii; i < ii + 3; i++)
-				{
-					for (ColumnIndex jj = c / 3 * 3, j = jj; j < jj + 3; j++)
-					{
-						if ((i != r || j != c) && grid.GetDigit(i * 9 + j) == number)
-						{
-							return false;
-						}
-					}
-				}
-				return true;
 			}
 		}
 	}

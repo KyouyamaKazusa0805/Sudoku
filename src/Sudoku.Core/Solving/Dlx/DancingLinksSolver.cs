@@ -24,7 +24,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// <summary>
 	/// Indicates the found solutions.
 	/// </summary>
-	private List<Grid>? _solutions;
+	private SortedSet<Grid>? _solutions;
 
 	/// <summary>
 	/// Indicates the root node of the full link map.
@@ -42,23 +42,27 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		try
 		{
 			_root = DancingLink.Entry.Create(in grid);
-			Search(&guard, &recordSolution);
-			result = _solution;
-			return true;
+			Search(&g, &r);
+
+			(result, var @return) = _solutionCount == 0 ? (Grid.Undefined, (bool?)null) : (_solution, true);
+			return @return;
 		}
-		catch (InvalidOperationException ex)
+		catch (MultipleSolutionException)
 		{
 			result = Grid.Undefined;
-			return ex.Message.Contains("multiple") ? false : null;
+			return false;
 		}
 
 
 		[DoesNotReturn]
-		static void guard() => throw new InvalidOperationException(SR.ExceptionMessage("GridMultipleSolutions"));
+		static void g() => throw new MultipleSolutionException();
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
-			=> @this._solution = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
+		static bool r(DancingLinksSolver @this, Stack<DancingLinkNode> resultNodes)
+		{
+			@this._solution = ToGrid(resultNodes);
+			return true;
+		}
 	}
 
 	/// <inheritdoc cref="Solve(ref readonly Grid, out Grid)"/>
@@ -66,20 +70,19 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe ReadOnlySpan<Grid> SolveAll(ref readonly Grid grid)
 	{
 		_root = DancingLink.Entry.Create(in grid);
-		Search(&@delegate.DoNothing, &recordSolution);
-		return _solutions is null ? [] : _solutions.AsReadOnlySpan();
+		Search(&@delegate.DoNothing, &r);
+		return _solutions?.ToArray() ?? [];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void recordSolution(DancingLinksSolver @this, Stack<DancingLinkNode> answer)
+		static bool r(DancingLinksSolver @this, Stack<DancingLinkNode> resultNodes)
 		{
 			@this._solutions ??= [];
-
-			var result = Grid.Create(from id in (from k in answer orderby k.Id select k.Id).ToArray() select id % 9);
-			@this._solutions.AddRef(in result);
+			return @this._solutions.Add(ToGrid(resultNodes));
 		}
 	}
 
@@ -91,7 +94,7 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
 	private unsafe void Search(
 		delegate*<void> multipleSolutionGuard,
-		delegate*<DancingLinksSolver, Stack<DancingLinkNode>, void> resultTargeting
+		delegate*<DancingLinksSolver, Stack<DancingLinkNode>, bool> resultTargeting
 	)
 	{
 		if (_solutionCount > 1)
@@ -103,34 +106,35 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 		if (ReferenceEquals(_root.Right, _root))
 		{
 			// All columns were removed!
-			_solutionCount++;
-			resultTargeting(this, _answerNodesStack);
-		}
-		else
-		{
-			var c = ChooseNextColumn();
-			Cover(c);
-
-			for (var r = c.Down; !ReferenceEquals(r, c); r = r.Down)
+			if (resultTargeting(this, _answerNodesStack))
 			{
-				_answerNodesStack.Push(r);
-				for (var j = r.Right; !ReferenceEquals(j, r); j = j.Right)
-				{
-					Cover(j.Column!);
-				}
+				_solutionCount++;
+			}
+			return;
+		}
 
-				Search(multipleSolutionGuard, resultTargeting);
-				r = _answerNodesStack.Pop();
-				c = r.Column!;
+		var c = ChooseNextColumn();
+		Cover(c);
 
-				for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
-				{
-					Uncover(j.Column!);
-				}
+		for (var r = c.Down; !ReferenceEquals(r, c); r = r.Down)
+		{
+			_answerNodesStack.Push(r);
+			for (var j = r.Right; !ReferenceEquals(j, r); j = j.Right)
+			{
+				Cover(j.Column!);
 			}
 
-			Uncover(c);
+			Search(multipleSolutionGuard, resultTargeting);
+
+			r = _answerNodesStack.Pop();
+			c = r.Column;
+			for (var j = r.Left; !ReferenceEquals(j, r); j = j.Left)
+			{
+				Uncover(j.Column!);
+			}
 		}
+
+		Uncover(c);
 	}
 
 	/// <summary>
@@ -175,14 +179,10 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 	/// Try to choose the next column node.
 	/// </summary>
 	/// <returns>The chosen next column node.</returns>
-	[MemberNotNull(nameof(_root))]
 	private ColumnNode ChooseNextColumn()
 	{
 		Debug.Assert(_root is not null);
-
-		var size = int.MaxValue;
-		var nextColumn = new ColumnNode(-1);
-		var j = _root.Right.Column;
+		var (size, nextColumn, j) = (int.MaxValue, new ColumnNode(-1), _root.Right.Column);
 		while (!ReferenceEquals(j, _root))
 		{
 			if (j!.Size < size)
@@ -190,9 +190,18 @@ public sealed class DancingLinksSolver : ISolver, IMultipleSolutionSolver
 				nextColumn = j;
 				size = j.Size;
 			}
-
 			j = j.Right.Column;
 		}
 		return nextColumn;
 	}
+
+
+	/// <summary>
+	/// Converts a list of <see cref="DancingLinkNode"/> as solution.
+	/// </summary>
+	/// <param name="answer">The solution nodes.</param>
+	/// <returns>A grid converted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Grid ToGrid(Stack<DancingLinkNode> answer)
+		=> Grid.Create(from id in (from k in answer orderby k.Candidate select k.Candidate).ToArray() select id % 9);
 }

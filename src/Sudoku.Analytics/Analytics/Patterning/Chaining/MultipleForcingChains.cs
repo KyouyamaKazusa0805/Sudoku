@@ -60,6 +60,11 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	public bool IsHouseMultiple => Mask.IsPow2(Candidates.Digits);
 
 	/// <summary>
+	/// Indicates whether at least one branch contains grouped links or nodes.
+	/// </summary>
+	public bool IsGrouped => Values.Any(static v => v.IsGrouped);
+
+	/// <summary>
 	/// Indicates the complexity of the whole pattern.
 	/// </summary>
 	public int Complexity => BranchedComplexity.Sum();
@@ -86,7 +91,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	/// <summary>
 	/// Indicates the complexity of each branch.
 	/// </summary>
-	public ReadOnlySpan<int> BranchedComplexity => (from kvp in Values select kvp.Length).ToArray();
+	public ReadOnlySpan<int> BranchedComplexity => (from v in Values select v.Length).ToArray();
 
 	/// <summary>
 	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
@@ -281,9 +286,8 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 				throw new InvalidOperationException();
 			}
 
-			var isOn = conclusion.ConclusionType == Elimination;
-			var currentNode = new Node(in nodes[i].Map, isOn, nodes[i].IsAdvanced);
-			(var lastNode, i, isOn) = (currentNode, (i + 1) % nodes.Length, !isOn);
+			var currentNode = new Node(in nodes[i].Map, false, nodes[i].IsAdvanced);
+			(i, var (lastNode, isOn)) = ((i + 1) % nodes.Length, (currentNode, true));
 			for (var x = 0; x < nodes.Length; i = (i + 1) % nodes.Length, x++)
 			{
 				currentNode.Parent = new(in nodes[i].Map, isOn, nodes[i].IsAdvanced);

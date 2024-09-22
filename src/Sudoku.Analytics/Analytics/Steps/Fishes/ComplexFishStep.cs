@@ -86,10 +86,37 @@ public sealed partial class ComplexFishStep(
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
-			new ComplexFishSizeFactor(),
-			new ComplexFishIsSashimiFactor(),
-			new ComplexFishShapeFactor(),
-			new ComplexFishCannibalismFactor()
+			Factor.Create(
+				"Factor_ComplexFishSizeFactor",
+				[nameof(Size)],
+				GetType(),
+				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20, 5 => 33, 6 => 45, 7 => 56, _ => 66 }
+			),
+			Factor.Create(
+				"Factor_ComplexFishIsSashimiFactor",
+				[nameof(IsSashimi), nameof(Size)],
+				GetType(),
+				static args => (bool?)args![0]! switch
+				{
+					false => (int)args[1]! switch { 2 or 3 or 4 => 2, 5 or 6 or 7 => 3, _ => 4 },
+					true => (int)args[1]! switch { 2 or 3 => 3, 4 or 5 => 4, 6 => 5, 7 => 6, _ => 7 },
+					_ => 0
+				}
+			),
+			Factor.Create(
+				"Factor_ComplexFishShapeFactor",
+				[nameof(IsFranken), nameof(Size)],
+				GetType(),
+				static args => (bool)args![0]!
+					? (int)args[1]! switch { 2 => 0, 3 or 4 => 11, 5 or 6 or 7 => 12, _ => 13 }
+					: (int)args[1]! switch { 2 => 0, 3 or 4 => 14, 5 or 6 => 16, 7 => 17, _ => 20 }
+			),
+			Factor.Create(
+				"Factor_ComplexFishCannibalismFactor",
+				[nameof(IsCannibalism)],
+				GetType(),
+				static args => (bool)args![0]! ? 3 : 0
+			)
 		];
 
 

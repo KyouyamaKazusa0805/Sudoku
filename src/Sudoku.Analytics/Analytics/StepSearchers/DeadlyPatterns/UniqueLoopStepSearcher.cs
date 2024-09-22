@@ -1,17 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<
-	SortedSet<UniqueLoopStep>,
-	ref readonly Grid,
-	ref StepAnalysisContext,
-	Digit,
-	Digit,
-	ref readonly CellMap,
-	ref readonly CellMap,
-	Mask,
-	Cell[],
-	UniqueLoopStep?
->;
+using unsafe SearcherSubtypeCheckerFuncPtr = delegate*<SortedSet<UniqueLoopStep>, ref readonly Grid, ref StepAnalysisContext, Digit, Digit, ref readonly CellMap, ref readonly CellMap, Mask, Cell[], UniqueLoopStep?>;
 
 /// <summary>
 /// Provides with a <b>Unique Loop</b> step searcher.

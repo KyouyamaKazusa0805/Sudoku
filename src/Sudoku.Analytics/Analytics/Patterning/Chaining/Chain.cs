@@ -61,6 +61,14 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 			|| m1 == m2 && m1 == m3 && m4 == m5 && m1 != m4 && m1 != m6 && m4 != m6
 		);
 
+	/// <summary>
+	/// Indicates whether the chain is an implicit loop,
+	/// which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+	/// </summary>
+	public bool IsImplicitLoop
+		=> WeakStart && ValidNodes is [{ Map: [var first] }, .., { Map: [var last] }]
+		&& (first / 9 == last / 9 || first % 9 == last % 9 && ((first / 9).AsCellMap() + last / 9).InOneHouse(out _));
+
 	/// <inheritdoc/>
 	public override int Complexity => _nodes.Length;
 

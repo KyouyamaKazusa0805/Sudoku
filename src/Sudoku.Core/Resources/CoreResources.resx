@@ -279,4 +279,7 @@
   <data name="BlockName" xml:space="preserve">
     <value>Block</value>
   </data>
+  <data name="Message_MultipleSolutionException" xml:space="preserve">
+    <value>The puzzle has multiple solutions.</value>
+  </data>
 </root>

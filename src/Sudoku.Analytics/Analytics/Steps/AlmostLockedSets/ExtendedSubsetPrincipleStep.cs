@@ -32,7 +32,15 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 		=> [new(SR.EnglishLanguage, [EspDigitStr, CellsStr]), new(SR.ChineseLanguage, [EspDigitStr, CellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new ExtendedSubsetPrincipleSizeFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_ExtendedSubsetPrincipleSizeFactor",
+				[nameof(ICellListTrait.CellSize)],
+				GetType(),
+				static args => (int)args![0]! switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 }
+			)
+		];
 
 	/// <inheritdoc/>
 	int ICellListTrait.CellSize => Cells.Count;

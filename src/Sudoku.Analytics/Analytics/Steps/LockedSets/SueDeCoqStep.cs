@@ -57,7 +57,21 @@ public sealed partial class SueDeCoqStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new SueDeCoqIsolatedFactor(), new SueDeCoqCannibalismFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_SueDeCoqIsolatedFactor",
+				[nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)],
+				GetType(),
+				static args => (bool)args![0]! ? 2 : 0
+			),
+			Factor.Create(
+				"Factor_SueDeCoqCannibalismFactor",
+				[nameof(IsCannibalistic)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	/// <inheritdoc/>
 	bool IIsolatedDigitTrait.ContainsIsolatedDigits => IsolatedDigitsMask != 0;

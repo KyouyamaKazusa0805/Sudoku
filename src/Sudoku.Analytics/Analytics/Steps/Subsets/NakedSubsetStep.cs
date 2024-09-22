@@ -55,7 +55,27 @@ public sealed partial class NakedSubsetStep(
 		=> [new(SR.EnglishLanguage, [DigitsStr, HouseStr]), new(SR.ChineseLanguage, [DigitsStr, HouseStr, SubsetName(SR.ChineseLanguage)])];
 
 	/// <inheritdoc/>
-	public override FactorArray Factors => [new NakedSubsetSizeFactor(), new NakedSubsetIsLockedFactor()];
+	public override FactorArray Factors
+		=> [
+			Factor.Create(
+				"Factor_NakedSubsetSizeFactor",
+				[nameof(Size)],
+				GetType(),
+				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 }
+			),
+			Factor.Create(
+				"Factor_NakedSubsetIsLockedFactor",
+				[nameof(IsLocked), nameof(Size)],
+				GetType(),
+				static args => ((bool?)args![0]!, (int)args![1]!) switch
+				{
+					(true, 2) => -10,
+					(true, 3) => -11,
+					(false, _) => 1,
+					_ => 0
+				}
+			)
+		];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

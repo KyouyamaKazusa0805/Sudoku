@@ -390,12 +390,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
@@ -946,33 +941,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/summary"/>
-            </summary>
-            <param name="base">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/param[@name='base']"/>
-            </param>
-            <param name="template">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/param[@name='template']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/returns"/></returns>
-            <remarks>
-            <para>
-            The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
-            </para>
-            <para>
-            For example, if we should check the eliminations
-            of digit <c>d</c>, we may use the expression
-            <code><![CDATA[
-            (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
-            ]]></code>
-            to express the eliminations are the peer intersection of cells of digit <c>d</c>
-            appeared in <c>urCells</c>. This expression can be simplified to
-            <code><![CDATA[
-            urCells % grid.CandidatesMap[d]
-            ]]></code>
-            </para>
-            </remarks>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -1676,14 +1645,15 @@
                                      (2)                   (1)
             </code>
             Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-            <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
-            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),
+            but the real type <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type
+            because C# cannot set "A bit" to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
             </param>
             <remarks>
             Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/> as the type), the instance will be greater;
-            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
+            if those two hold same conclusion type,
+            but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(System.Int16)">
@@ -1702,20 +1672,16 @@
                                      (2)                   (1)
             </code>
             Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-            <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
-            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),
+            but the real type <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type
+            because C# cannot set "A bit" to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
             </param>
             <remarks>
             Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
             (i.e. holds the value <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/> as the type), the instance will be greater;
-            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
+            if those two hold same conclusion type,
+            but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Conclusion.Parsers">
-            <summary>
-            The internal parsers.
-            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32)">
             <summary>
@@ -5080,6 +5046,31 @@
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.op_Modulus(`0@,`0@)">
+            <summary>
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
+            <remarks>
+            <para>
+            The operator is commonly used for checking eliminations, especially in type 2 of deadly patterns. 
+            </para>
+            <para>
+            For example, if we should check the eliminations
+            of digit <c>d</c>, we may use the expression
+            <code><![CDATA[
+            (urCells & grid.CandidatesMap[d]).PeerIntersection & grid.CandidatesMap[d]
+            ]]></code>
+            to express the eliminations are the peer intersection of cells of digit <c>d</c>
+            appeared in <c>urCells</c>. This expression can be simplified to
+            <code><![CDATA[
+            urCells % grid.CandidatesMap[d]
+            ]]></code>
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.op_BitwiseAnd(`0@,System.Int32)">
             <summary>
@@ -9500,6 +9491,11 @@
               Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_MultipleSolutionException">
+            <summary>
+              Looks up a localized string similar to The puzzle has multiple solutions..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.RowLabel">
             <summary>
               Looks up a localized string similar to Row {0}.
@@ -10287,6 +10283,18 @@
             </list>
             </returns>
         </member>
+        <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Determine whether the specified grid has confliction with the specified row and column.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="r">The row index.</param>
+            <param name="c">The column index.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(System.Int32[],System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Solving.Backtracking.BacktrackingSolver.IsValid(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
+        </member>
         <member name="T:Sudoku.Solving.Bitwise.BitwiseSolver">
             <summary>
             Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
@@ -10316,6 +10324,11 @@
             Stack to store current and previous states.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions">
+            <summary>
+            Indicates the solutions.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._singleApplied">
             <summary>
             Nasty global flag telling if <see cref="M:Sudoku.Solving.Bitwise.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
@@ -10329,16 +10342,15 @@
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._numSolutions">
             <summary>
-            The number of solutions found so far.
+            Indicates the number of solutions found so far.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._limitSolutions">
             <summary>
-            The max number of solution we're looking for.
+            Indicates the number of solutions you want to search.
+            Assign <see cref="F:System.Int32.MaxValue"/> if you want to find all possible solutions,
+            and assign 2 if you only want to check validity of the puzzle (if 2 solutions found, the puzzle will become invalid).
             </summary>
-            <remarks>
-            For the consideration on the performance, I have refused to use auto-implemented property instead.
-            </remarks>
         </member>
         <member name="F:Sudoku.Solving.Bitwise.BitwiseSolver._g">
             <summary>
@@ -10400,11 +10412,15 @@
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.ClearStack">
             <summary>
-            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>.
+            To clear the field <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>, and clear original solution collection <see cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>.
             </summary>
             <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._stack"/>
+            <seealso cref="F:Sudoku.Solving.Bitwise.BitwiseSolver._solutions"/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
             <summary>
@@ -10689,7 +10705,7 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Dlx.ColumnNode"/> instance via the specified ID value.
             </summary>
-            <param name="id">The ID value.</param>
+            <param name="candidate">The candidate.</param>
         </member>
         <member name="P:Sudoku.Solving.Dlx.ColumnNode.Size">
             <summary>
@@ -10711,9 +10727,23 @@
             </summary>
             <param name="_root">The root node.</param>
         </member>
+        <member name="F:Sudoku.Solving.Dlx.DancingLink.NodesCount">
+            <summary>
+            Indicates the number of nodes created in the data model.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Dlx.DancingLink.RawColumns">
+            <summary>
+            Indicates the raw columns.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.Dlx.DancingLink.Entry">
             <summary>
-            Indicates the entry instance.
+            Indicates the entry instance. Use this propeprty to create links:
+            <code><![CDATA[
+            var grid = ...;
+            DancingLink.Entry.Create(in grid);
+            ]]></code>
             </summary>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLink.Create(Sudoku.Concepts.Grid@)">
@@ -10737,18 +10767,18 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> instance via the specified ID value and the column node.
             </summary>
-            <param name="id">The ID value.</param>
+            <param name="candidate">The candidate.</param>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.#ctor(System.Int32,Sudoku.Solving.Dlx.ColumnNode)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> instance via the specified ID value and the column node.
             </summary>
-            <param name="id">The ID value.</param>
+            <param name="candidate">The candidate.</param>
             <param name="column">The column node.</param>
         </member>
-        <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Id">
+        <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Candidate">
             <summary>
-            Indicates the ID of the node.
+            Indicates the candidate of the node.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.Dlx.DancingLinkNode.Column">
@@ -10776,8 +10806,14 @@
             Indicates the pointer that points to the down node.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString">
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinkNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Solving.Dlx.DancingLinksSolver">
             <summary>
@@ -10847,6 +10883,13 @@
             </summary>
             <returns>The chosen next column node.</returns>
         </member>
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.ToGrid(System.Collections.Generic.Stack{Sudoku.Solving.Dlx.DancingLinkNode})">
+            <summary>
+            Converts a list of <see cref="T:Sudoku.Solving.Dlx.DancingLinkNode"/> as solution.
+            </summary>
+            <param name="answer">The solution nodes.</param>
+            <returns>A grid converted.</returns>
+        </member>
         <member name="T:Sudoku.Solving.Dlx.MatrixRow">
             <summary>
             Represents a type describing for a matrix row.
@@ -10872,6 +10915,16 @@
         </member>
         <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveAll(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.EnumerableQuery.EnumerableQuerySolver.SolveCore(System.String)">
+            <summary>
+            The core method to solve puzzles.
+            </summary>
+            <param name="puzzle">Indicates the puzzles.</param>
+            <returns>A list of puzzles found.</returns>
         </member>
         <member name="T:Sudoku.Solving.GridSolvingExtensions">
             <summary>
@@ -10967,6 +11020,15 @@
             </item>
             </list>
             </returns>
+        </member>
+        <member name="T:Sudoku.Solving.MultipleSolutionException">
+            <summary>
+            Represents an exception type that will be thrown if a puzzle has multiple solutions,
+            which is an unexpected case in operation handling.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.Uniqueness">
             <summary>

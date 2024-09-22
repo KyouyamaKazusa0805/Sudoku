@@ -41,7 +41,20 @@ public sealed partial class RectangleDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
-		=> [new RectangleDeathBlossomPetalsCountFactor(), new RectangleDeathBlossomIsAvoidableFactor()];
+		=> [
+			Factor.Create(
+				"Factor_RectangleDeathBlossomPetalsCountFactor",
+				[nameof(IBranchTrait.BranchesCount)],
+				GetType(),
+				static args => OeisSequences.A002024((int)args![0]!)
+			),
+			Factor.Create(
+				"Factor_RectangleDeathBlossomIsAvoidableFactor",
+				[nameof(IsAvoidable)],
+				GetType(),
+				static args => (bool)args![0]! ? 1 : 0
+			)
+		];
 
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;

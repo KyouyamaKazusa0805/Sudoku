@@ -165,6 +165,11 @@ public enum TechniqueGroup
 	UniqueMatrix,
 
 	/// <summary>
+	/// Indicates the conditional deadly pattern.
+	/// </summary>
+	ConditionalDeadlyPattern,
+
+	/// <summary>
 	/// Indicates the reverse bi-value universal grave (Reverse BUG) technique.
 	/// </summary>
 	ReverseBivalueUniversalGrave,

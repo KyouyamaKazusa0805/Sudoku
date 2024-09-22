@@ -60,7 +60,44 @@ public partial class NormalChainStep(
 
 	/// <inheritdoc/>
 	public sealed override FactorArray Factors
-		=> [new ChainLengthFactor(), new ChainGroupedFactor(), new ChainGroupedNodeFactor()];
+		=> [
+			Factor.Create(
+				"Factor_ChainLengthFactor",
+				[nameof(Complexity)],
+				GetType(),
+				static args => ChainingLength.GetLengthDifficulty((int)args![0]!)
+			),
+			Factor.Create(
+				"Factor_ChainGroupedFactor",
+				[nameof(IsGrouped)],
+				GetType(),
+				static args => (bool)args![0]! ? 2 : 0
+			),
+			Factor.Create(
+				"Factor_ChainGroupedNodeFactor",
+				[nameof(Pattern)],
+				GetType(),
+				static args =>
+				{
+					var result = 0;
+					var p = (ChainOrLoop)args![0]!;
+					foreach (var link in p.Links)
+					{
+						result += link.GroupedLinkPattern switch
+						{
+							AlmostLockedSet => 2,
+							AlmostHiddenSet => 3,
+							UniqueRectangle => 4,
+							Fish => 6,
+							XyzWing => 8,
+							null when link.FirstNode.IsGroupedNode || link.SecondNode.IsGroupedNode => 1,
+							_ => 0
+						};
+					}
+					return result;
+				}
+			)
+		];
 
 	private protected string ChainString => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
 

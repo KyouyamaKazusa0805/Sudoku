@@ -4,10 +4,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Indicates a type marked this attribute is a runnable <see cref="StepSearcher"/>.
 /// </summary>
 /// <param name="nameKey">Indicates the key in resource dictionary.</param>
-/// <param name="supportedTechniques">All supported techniques.</param>
+/// <param name="techniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] supportedTechniques) : Attribute
+public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] techniques) : Attribute
 {
 	/// <summary>
 	/// <para>
@@ -71,7 +71,7 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	public SudokuType SupportedSudokuTypes { get; init; } = SudokuType.Standard | SudokuType.Sukaku | SudokuType.JustOneCell;
 
 	/// <summary>
-	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='techniques']"/>
 	/// </summary>
-	public TechniqueSet SupportedTechniques { get; } = [.. supportedTechniques];
+	public TechniqueSet SupportedTechniques { get; } = [.. techniques];
 }

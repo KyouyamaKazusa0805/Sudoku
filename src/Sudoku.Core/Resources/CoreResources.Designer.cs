@@ -448,6 +448,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle has multiple solutions..
+        /// </summary>
+        internal static string Message_MultipleSolutionException {
+            get {
+                return ResourceManager.GetString("Message_MultipleSolutionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row {0}.
         /// </summary>
         internal static string RowLabel {

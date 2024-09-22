@@ -4501,6 +4501,22 @@ public enum Technique
 	#endregion
 
 	//
+	// Rotating Deadly Pattern
+	//
+	#region Rotating Deadly Pattern
+	/// <summary>
+	/// Indicates rotating deadly pattern.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 58,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(RotatingDeadlyPatternStep),
+		StepSearcherType = typeof(RotatingDeadlyPatternStepSearcher))]
+	RotatingDeadlyPattern,
+	#endregion
+
+	//
 	// Sue de Coq
 	//
 	#region Sue de Coq

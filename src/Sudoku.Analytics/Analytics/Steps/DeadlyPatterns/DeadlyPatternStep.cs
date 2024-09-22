@@ -13,4 +13,9 @@ public abstract class DeadlyPatternStep(Conclusion[] conclusions, View[]? views,
 	/// Indicates whether the deadly pattern only uses bi-value cells.
 	/// </summary>
 	public abstract bool OnlyUseBivalueCells { get; }
+
+	/// <summary>
+	/// Indicates whether the pattern is unconditional.
+	/// </summary>
+	public abstract bool IsUnconditional { get; }
 }

@@ -3366,4 +3366,16 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle" xml:space="preserve">
     <value>Only solved puzzles can contain bottleneck steps.</value>
   </data>
+  <data name="RotatingDeadlyPattern" xml:space="preserve">
+    <value>Rotating Deadly Pattern</value>
+  </data>
+  <data name="TechniqueGroup_ConditionalDeadlyPattern" xml:space="preserve">
+    <value>Conditional Deadly Patterns</value>
+  </data>
+  <data name="StepSearcherName_RotatingDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>Rotating Deadly Pattern</value>
+  </data>
+  <data name="TechniqueFormat_RotatingDeadlyPatternStep" xml:space="preserve">
+    <value>{0}({1})</value>
+  </data>
 </root>
