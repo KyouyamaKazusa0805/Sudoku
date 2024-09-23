@@ -640,21 +640,21 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			PencilmarkVisibility.None,
 			static (interim, next) => interim | next switch
 			{
-				FullMarkStep => PencilmarkVisibility.FullMark,
-				PartialMarkStep => PencilmarkVisibility.PartialMark,
+				FullPencilmarkingStep => PencilmarkVisibility.FullMarking,
+				PartialPencilmarkingStep => PencilmarkVisibility.PartialMarking,
 				DirectStep => PencilmarkVisibility.Direct,
 				_ => PencilmarkVisibility.None
 			}
 		);
-		var filterMode = pencilmarkMode.HasFlag(PencilmarkVisibility.FullMark)
-			? PencilmarkVisibility.FullMark
-			: pencilmarkMode.HasFlag(PencilmarkVisibility.PartialMark)
-				? PencilmarkVisibility.PartialMark
+		var filterMode = pencilmarkMode.HasFlag(PencilmarkVisibility.FullMarking)
+			? PencilmarkVisibility.FullMarking
+			: pencilmarkMode.HasFlag(PencilmarkVisibility.PartialMarking)
+				? PencilmarkVisibility.PartialMarking
 				: PencilmarkVisibility.Direct;
 		switch (filters.FirstRefOrNullRef((ref readonly BottleneckFilter f) => f.Visibility == filterMode).Type)
 		{
 			// Find single-only steps.
-			case BottleneckType.SingleStepOnly when filterMode is PencilmarkVisibility.Direct or PencilmarkVisibility.PartialMark:
+			case BottleneckType.SingleStepOnly when filterMode is PencilmarkVisibility.Direct or PencilmarkVisibility.PartialMarking:
 			{
 				var collector = GridPartialMarkingExtensions.Collector;
 				var result = new List<Step>();
@@ -673,7 +673,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			}
 
 			// Find single-only steps on same difficulty level.
-			case BottleneckType.SingleStepSameLevelOnly when filterMode == PencilmarkVisibility.PartialMark:
+			case BottleneckType.SingleStepSameLevelOnly when filterMode == PencilmarkVisibility.PartialMarking:
 			{
 				var collector = GridPartialMarkingExtensions.Collector;
 				var result = new List<Step>();
@@ -694,7 +694,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 			}
 
 			// Find elimination group steps.
-			case BottleneckType.EliminationGroup when filterMode == PencilmarkVisibility.FullMark:
+			case BottleneckType.EliminationGroup when filterMode == PencilmarkVisibility.FullMarking:
 			{
 				var result = new List<Step>();
 				for (var i = 0; i < steps.Length - 1; i++)

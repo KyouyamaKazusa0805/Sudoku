@@ -7,4 +7,4 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
 public abstract class PermutationStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
-	FullMarkStep(conclusions, views, options);
+	FullPencilmarkingStep(conclusions, views, options);

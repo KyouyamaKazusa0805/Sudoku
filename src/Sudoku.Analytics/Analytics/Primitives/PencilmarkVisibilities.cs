@@ -10,7 +10,7 @@ public readonly struct PencilmarkVisibilities()
 	/// <summary>
 	/// Indicates all visibilities.
 	/// </summary>
-	public const PencilmarkVisibility All = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark | PencilmarkVisibility.FullMark;
+	public const PencilmarkVisibility All = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking | PencilmarkVisibility.FullMarking;
 
 	/// <summary>
 	/// Indicates only for marks.

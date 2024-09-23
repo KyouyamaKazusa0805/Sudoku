@@ -223,8 +223,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				var analysisPref = Application.Current.AsApp().Preference.AnalysisPreferences;
 				var filters = (BottleneckFilter[])[
 					new(PencilmarkVisibility.Direct, analysisPref.DirectModeBottleneckType),
-					new(PencilmarkVisibility.PartialMark, analysisPref.PartialMarkingModeBottleneckType),
-					new(PencilmarkVisibility.FullMark, analysisPref.FullMarkingModeBottleneckType)
+					new(PencilmarkVisibility.PartialMarking, analysisPref.PartialMarkingModeBottleneckType),
+					new(PencilmarkVisibility.FullMarking, analysisPref.FullMarkingModeBottleneckType)
 				];
 				foreach (var element in list)
 				{

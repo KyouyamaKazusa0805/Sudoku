@@ -21,10 +21,10 @@ public enum PencilmarkVisibility
 	/// <summary>
 	/// Indicates the technique can be applied to partial-marking mode.
 	/// </summary>
-	PartialMark = 1 << 1,
+	PartialMarking = 1 << 1,
 
 	/// <summary>
 	/// Indicates the technique can be applied to full-marking mode.
 	/// </summary>
-	FullMark = 1 << 2
+	FullMarking = 1 << 2
 }

@@ -58,7 +58,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.FullMark,
+		PencilmarkVisibility = PencilmarkVisibility.FullMarking,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleBlock,
 
@@ -73,7 +73,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.FullMark,
+		PencilmarkVisibility = PencilmarkVisibility.FullMarking,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleRow,
 
@@ -88,7 +88,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.FullMark,
+		PencilmarkVisibility = PencilmarkVisibility.FullMarking,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleColumn,
 
@@ -167,7 +167,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	PointingFullHouse,
 
@@ -180,7 +180,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ClaimingFullHouse,
 
@@ -193,7 +193,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairFullHouse,
 
@@ -206,7 +206,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairPlusFullHouse,
 
@@ -219,7 +219,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenPairFullHouse,
 
@@ -232,7 +232,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedPairFullHouse,
 
@@ -245,7 +245,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenPairFullHouse,
 
@@ -258,7 +258,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTripleFullHouse,
 
@@ -271,7 +271,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTriplePlusFullHouse,
 
@@ -284,7 +284,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenTripleFullHouse,
 
@@ -297,7 +297,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedTripleFullHouse,
 
@@ -310,7 +310,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenTripleFullHouse,
 
@@ -323,7 +323,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadrupleFullHouse,
 
@@ -336,7 +336,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadruplePlusFullHouse,
 
@@ -349,7 +349,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleFullHouse,
 
@@ -362,7 +362,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	PointingCrosshatchingBlock,
 
@@ -375,7 +375,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ClaimingCrosshatchingBlock,
 
@@ -388,7 +388,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairCrosshatchingBlock,
 
@@ -401,7 +401,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairPlusCrosshatchingBlock,
 
@@ -414,7 +414,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenPairCrosshatchingBlock,
 
@@ -427,7 +427,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedPairCrosshatchingBlock,
 
@@ -440,7 +440,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenPairCrosshatchingBlock,
 
@@ -453,7 +453,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTripleCrosshatchingBlock,
 
@@ -466,7 +466,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTriplePlusCrosshatchingBlock,
 
@@ -479,7 +479,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenTripleCrosshatchingBlock,
 
@@ -492,7 +492,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedTripleCrosshatchingBlock,
 
@@ -505,7 +505,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenTripleCrosshatchingBlock,
 
@@ -518,7 +518,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadrupleCrosshatchingBlock,
 
@@ -531,7 +531,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadruplePlusCrosshatchingBlock,
 
@@ -544,7 +544,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleCrosshatchingBlock,
 
@@ -557,7 +557,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	PointingCrosshatchingRow,
 
@@ -570,7 +570,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ClaimingCrosshatchingRow,
 
@@ -583,7 +583,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairCrosshatchingRow,
 
@@ -596,7 +596,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairPlusCrosshatchingRow,
 
@@ -609,7 +609,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenPairCrosshatchingRow,
 
@@ -622,7 +622,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedPairCrosshatchingRow,
 
@@ -635,7 +635,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenPairCrosshatchingRow,
 
@@ -648,7 +648,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTripleCrosshatchingRow,
 
@@ -661,7 +661,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTriplePlusCrosshatchingRow,
 
@@ -674,7 +674,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenTripleCrosshatchingRow,
 
@@ -687,7 +687,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedTripleCrosshatchingRow,
 
@@ -700,7 +700,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenTripleCrosshatchingRow,
 
@@ -713,7 +713,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadrupleCrosshatchingRow,
 
@@ -726,7 +726,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadruplePlusCrosshatchingRow,
 
@@ -739,7 +739,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleCrosshatchingRow,
 
@@ -752,7 +752,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	PointingCrosshatchingColumn,
 
@@ -765,7 +765,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ClaimingCrosshatchingColumn,
 
@@ -778,7 +778,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairCrosshatchingColumn,
 
@@ -791,7 +791,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairPlusCrosshatchingColumn,
 
@@ -804,7 +804,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenPairCrosshatchingColumn,
 
@@ -817,7 +817,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedPairCrosshatchingColumn,
 
@@ -830,7 +830,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenPairCrosshatchingColumn,
 
@@ -843,7 +843,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTripleCrosshatchingColumn,
 
@@ -856,7 +856,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTriplePlusCrosshatchingColumn,
 
@@ -869,7 +869,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenTripleCrosshatchingColumn,
 
@@ -882,7 +882,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedTripleCrosshatchingColumn,
 
@@ -895,7 +895,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenTripleCrosshatchingColumn,
 
@@ -908,7 +908,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadrupleCrosshatchingColumn,
 
@@ -921,7 +921,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadruplePlusCrosshatchingColumn,
 
@@ -934,7 +934,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleCrosshatchingColumn,
 
@@ -947,7 +947,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	PointingNakedSingle,
 
@@ -960,7 +960,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ClaimingNakedSingle,
 
@@ -973,7 +973,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairNakedSingle,
 
@@ -986,7 +986,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedPairPlusNakedSingle,
 
@@ -999,7 +999,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenPairNakedSingle,
 
@@ -1012,7 +1012,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedPairNakedSingle,
 
@@ -1025,7 +1025,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenPairNakedSingle,
 
@@ -1038,7 +1038,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTripleNakedSingle,
 
@@ -1051,7 +1051,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedTriplePlusNakedSingle,
 
@@ -1064,7 +1064,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenTripleNakedSingle,
 
@@ -1077,7 +1077,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedTripleNakedSingle,
 
@@ -1090,7 +1090,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	LockedHiddenTripleNakedSingle,
 
@@ -1103,7 +1103,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadrupleNakedSingle,
 
@@ -1116,7 +1116,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	NakedQuadruplePlusNakedSingle,
 
@@ -1129,7 +1129,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleNakedSingle,
 
@@ -1142,7 +1142,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(ComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ComplexFullHouse,
 
@@ -1155,7 +1155,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(ComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ComplexCrosshatchingBlock,
 
@@ -1168,7 +1168,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(ComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ComplexCrosshatchingRow,
 
@@ -1181,7 +1181,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(ComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ComplexCrosshatchingColumn,
 
@@ -1194,7 +1194,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexSingle,
 		StepType = typeof(ComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
-		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMark,
+		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
 	ComplexNakedSingle,
 	#endregion

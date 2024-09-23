@@ -196,7 +196,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			var supportedModes = technique.GetSupportedPencilmarkVisibilityModes();
 			var ratingControl = default(IntegerBox);
-			var hasIndirectRating = supportedModes.HasFlag(PencilmarkVisibility.FullMark);
+			var hasIndirectRating = supportedModes.HasFlag(PencilmarkVisibility.FullMarking);
 			if (hasIndirectRating)
 			{
 				ratingControl = new IntegerBox
@@ -221,7 +221,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			var directRatingControl = default(IntegerBox);
 			var hasDirectRating = supportedModes.HasFlag(PencilmarkVisibility.Direct)
-				| supportedModes.HasFlag(PencilmarkVisibility.PartialMark);
+				| supportedModes.HasFlag(PencilmarkVisibility.PartialMarking);
 			if (hasDirectRating)
 			{
 				directRatingControl = new()

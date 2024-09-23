@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
-public abstract class PartialMarkStep(
+public abstract class PartialPencilmarkingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
@@ -20,5 +20,5 @@ public abstract class PartialMarkStep(
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>
-	public sealed override PencilmarkVisibility PencilmarkType => PencilmarkVisibility.PartialMark;
+	public sealed override PencilmarkVisibility PencilmarkType => PencilmarkVisibility.PartialMarking;
 }

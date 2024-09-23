@@ -6224,12 +6224,12 @@
             Indicates the technique can be applied to direct mode.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.PartialMark">
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.PartialMarking">
             <summary>
             Indicates the technique can be applied to partial-marking mode.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark">
+        <member name="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMarking">
             <summary>
             Indicates the technique can be applied to full-marking mode.
             </summary>
@@ -16972,7 +16972,7 @@
             Indicates the internal name.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.FullMarkStep">
+        <member name="T:Sudoku.Analytics.Steps.FullPencilmarkingStep">
             <summary>
             Represents a solving step that cannot be found by using given and modifiable digits only.
             </summary>
@@ -16980,7 +16980,7 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullMarkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
+        <member name="M:Sudoku.Analytics.Steps.FullPencilmarkingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
             Represents a solving step that cannot be found by using given and modifiable digits only.
             </summary>
@@ -16988,7 +16988,7 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FullMarkStep.PencilmarkType">
+        <member name="P:Sudoku.Analytics.Steps.FullPencilmarkingStep.PencilmarkType">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
@@ -17996,7 +17996,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.PartialMarkStep">
+        <member name="T:Sudoku.Analytics.Steps.PartialPencilmarkingStep">
             <summary>
             Represents a solving step that can be found without any candidates, except few of candidates marked.
             Logically, the technique can be treated as a single step with locked candidates or subset patterns.
@@ -18008,7 +18008,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PartialMarkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.PartialPencilmarkingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Categorization.SingleSubtype)">
             <summary>
             Represents a solving step that can be found without any candidates, except few of candidates marked.
             Logically, the technique can be treated as a single step with locked candidates or subset patterns.
@@ -18020,7 +18020,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.PartialMarkStep.PencilmarkType">
+        <member name="P:Sudoku.Analytics.Steps.PartialPencilmarkingStep.PencilmarkType">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlignedExclusionStep">
@@ -23348,10 +23348,10 @@
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.PencilmarkVisibility">
             <summary>
             Indicates the mode that the current technique can be used by solving a puzzle.
-            By default the value is both <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>.
+            By default the value is both <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMarking"/>.
             </summary>
             <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.Direct"/>
-            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMark"/>
+            <seealso cref="F:Sudoku.Analytics.Primitives.PencilmarkVisibility.FullMarking"/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueMetadataAttribute.RelatedTechnique">
             <summary>
