@@ -3582,6 +3582,9 @@
         <member name="M:Sudoku.Analytics.Patterning.Chaining.Rules.CachedLockedCandidatesChainingRule.GetLinks(Sudoku.Analytics.Patterning.Chaining.ChainingRuleLinkContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Patterning.Chaining.Rules.CachedLockedCandidatesChainingRule.GetLoopConclusions(Sudoku.Analytics.Patterning.Chaining.ChainingRuleLoopConclusionContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Patterning.Chaining.Rules.CachedXChainingRule">
             <summary>
             Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Analytics.Configuration.LinkType.SingleDigit"/>).

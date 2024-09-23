@@ -69,4 +69,27 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	public override void GetLoopConclusions(ref ChainingRuleLoopConclusionContext context)
+	{
+		ref readonly var grid = ref context.Grid;
+		var result = ConclusionSet.Empty;
+		foreach (var element in context.Links)
+		{
+			if (element is
+				{
+					FirstNode.Map: { Digits: var digitsMask1, Cells: var cells1 },
+					SecondNode.Map: { Digits: var digitsMask2, Cells: var cells2 },
+					GroupedLinkPattern: null
+				}
+				&& digitsMask1 == digitsMask2 && Mask.IsPow2(digitsMask1) && Mask.IsPow2(digitsMask2)
+				&& Mask.Log2(digitsMask1) is var digit
+				&& (cells1 & cells2 & CandidatesMap[digit]) is { Count: not 0 } intersection)
+			{
+				result.AddRange(from cell in intersection select new Conclusion(Elimination, cell, digit));
+			}
+		}
+		context.Conclusions = result;
+	}
 }
