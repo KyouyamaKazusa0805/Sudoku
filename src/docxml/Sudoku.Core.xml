@@ -9611,6 +9611,11 @@
               Looks up a localized string similar to Row.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.SettingsPage_GridSizeDescription2">
+            <summary>
+              Looks up a localized string similar to Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915)..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
             <summary>
               Looks up a localized string similar to All symmetry.

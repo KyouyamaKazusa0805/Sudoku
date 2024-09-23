@@ -484,6 +484,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915)..
+        /// </summary>
+        internal static string SettingsPage_GridSizeDescription2 {
+            get {
+                return ResourceManager.GetString("SettingsPage_GridSizeDescription2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All symmetry.
         /// </summary>
         internal static string SymmetricType_All {

@@ -285,4 +285,7 @@
   <data name="ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions" xml:space="preserve">
     <value>All cells must be connected with adjacent positions. For example, r1c1 and r1c2 is a valid pair, but r1c1 and r2c2 is not.</value>
   </data>
+  <data name="SettingsPage_GridSizeDescription2" xml:space="preserve">
+    <value>Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915).</value>
+  </data>
 </root>

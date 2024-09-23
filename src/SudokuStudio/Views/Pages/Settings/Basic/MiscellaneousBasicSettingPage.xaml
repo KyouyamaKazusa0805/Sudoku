@@ -16,7 +16,15 @@
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">
-			<w:SettingsCard Header="{m:R Key=SettingsPage_GridSize}" Description="{m:R Key=SettingsPage_GridSizeDescription}">
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_GridSize}">
+				<w:SettingsCard.Description>
+					<TextBlock>
+						<Run Text="{m:R Key=SettingsPage_GridSizeDescription}" />
+						<LineBreak />
+						<Run Text="{m:R Key=SettingsPage_GridSizeDescription2}" />
+					</TextBlock>
+				</w:SettingsCard.Description>
 				<c:IntegerBox
 					x:Name="GridSizeChanger" Minimum="360" Maximum="800" SmallChange="5" LargeChange="50"
 					ValueChanged="GridSizeChanger_ValueChanged" />

@@ -192,4 +192,7 @@
   <data name="BlockName" xml:space="preserve">
     <value>宫</value>
   </data>
+  <data name="SettingsPage_GridSizeDescription2" xml:space="preserve">
+    <value>另外，尺寸因为以像素点计数，所以会随你的电脑配置而发生变化。例如电脑设定150%缩放比时，610像素的盘面显示出来则是915像素（610 * 1.5 = 915）。</value>
+  </data>
 </root>
