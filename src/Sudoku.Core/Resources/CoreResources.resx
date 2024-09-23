@@ -282,4 +282,7 @@
   <data name="Message_MultipleSolutionException" xml:space="preserve">
     <value>The puzzle has multiple solutions.</value>
   </data>
+  <data name="ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions" xml:space="preserve">
+    <value>All cells must be connected with adjacent positions. For example, r1c1 and r1c2 is a valid pair, but r1c1 and r2c2 is not.</value>
+  </data>
 </root>

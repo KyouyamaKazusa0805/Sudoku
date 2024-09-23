@@ -160,6 +160,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All cells must be connected with adjacent positions. For example, r1c1 and r1c2 is a valid pair, but r1c1 and r2c2 is not..
+        /// </summary>
+        internal static string ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions {
+            get {
+                return ResourceManager.GetString("ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot assign success field to describe such failure..
         /// </summary>
         internal static string ErrorInfo_CannotAssignSuccessForFailureCases {
