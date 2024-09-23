@@ -3450,6 +3450,20 @@
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Node.op_LeftShift(Sudoku.Analytics.Construction.Chaining.Node,Sudoku.Analytics.Construction.Chaining.Node)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Chaining.Node"/> instance with parent node.
+            </summary>
+            <param name="parent">The parent node.</param>
+            <param name="current">The current node.</param>
+            <returns>The new node created.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Node.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Chaining#Node,Sudoku#Analytics#Construction#Chaining#Node,Sudoku#Analytics#Construction#Chaining#Node}#op_LeftShift(Sudoku.Analytics.Construction.Chaining.Node,Sudoku.Analytics.Construction.Chaining.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Chaining.Node.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Chaining#Node,Sudoku#Analytics#Construction#Chaining#Node,Sudoku#Analytics#Construction#Chaining#Node}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Chaining.Node,Sudoku.Analytics.Construction.Chaining.Node)">
+            <inheritdoc/>
+        </member>
         <member name="F:Sudoku.Analytics.Construction.Chaining.Node._map">
             <summary>
             The generated field declaration for parameter <c>map</c>.

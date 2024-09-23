@@ -27,7 +27,8 @@ public sealed partial class Node(
 	IComparisonOperators<Node, Node, bool>,
 	IEquatable<Node>,
 	IEqualityOperators<Node, Node, bool>,
-	IFormattable
+	IFormattable,
+	IShiftOperators<Node, Node, Node>
 {
 	/// <summary>
 	/// Indicates the map format string.
@@ -237,4 +238,19 @@ public sealed partial class Node(
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, current.IsAdvanced, parent);
+
+	/// <summary>
+	/// Creates a <see cref="Node"/> instance with parent node.
+	/// </summary>
+	/// <param name="parent">The parent node.</param>
+	/// <param name="current">The current node.</param>
+	/// <returns>The new node created.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Node operator <<(Node? parent, Node current) => current >> parent;
+
+	/// <inheritdoc/>
+	static Node IShiftOperators<Node, Node, Node>.operator <<(Node value, Node shiftAmount) => shiftAmount >> value;
+
+	/// <inheritdoc/>
+	static Node IShiftOperators<Node, Node, Node>.operator >>>(Node value, Node shiftAmount) => value >> shiftAmount;
 }
