@@ -1203,21 +1203,3 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		static bool maskMatcher(Mask element) => element >> GridBase.CellCandidatesCount is 0 or 1 or 2 or 4;
 	}
 }
-
-/// <summary>
-/// Indicates the JSON converter of the current type.
-/// </summary>
-file sealed class Converter : JsonConverter<Grid>
-{
-	/// <inheritdoc/>
-	public override bool HandleNull => true;
-
-
-	/// <inheritdoc/>
-	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
-
-	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString("#"));
-}

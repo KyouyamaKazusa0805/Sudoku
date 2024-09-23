@@ -203,22 +203,3 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conclusion operator ~(Conclusion self) => new((ConclusionType)(1 & (byte)~self.ConclusionType), self.Candidate);
 }
-
-/// <summary>
-/// Represents a JSON converter for type <see cref="Conclusion"/>.
-/// </summary>
-/// <seealso cref="Conclusion"/>
-file sealed class Converter : JsonConverter<Conclusion>
-{
-	/// <inheritdoc/>
-	public override bool HandleNull => false;
-
-
-	/// <inheritdoc/>
-	public override Conclusion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Conclusion.Parse(reader.GetString() ?? string.Empty);
-
-	/// <inheritdoc/>
-	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString());
-}

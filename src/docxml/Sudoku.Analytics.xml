@@ -23435,6 +23435,17 @@
             <seealso cref="T:System.Collections.BitArray"/>
             <completionlist cref="T:Sudoku.Categorization.TechniqueSets"/>
         </member>
+        <member name="T:Sudoku.Categorization.TechniqueSet.Converter">
+            <summary>
+            Defines a JSON converter for the current type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Categorization.TechniqueSet,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.#ctor">
             <summary>
             Represents a set of <see cref="T:Sudoku.Categorization.Technique"/> fields.
@@ -23764,17 +23775,6 @@
             <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Categorization#TechniqueSet}#op_LogicalNot(Sudoku.Categorization.TechniqueSet)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Categorization.Converter">
-            <summary>
-            Defines a JSON converter for the current type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Categorization.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Categorization.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Categorization.TechniqueSet,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Categorization.TechniqueSetExtensions">
