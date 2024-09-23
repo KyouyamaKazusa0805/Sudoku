@@ -143,8 +143,10 @@
 					-->
 					<Viewbox x:Name="SudokuPaneOutsideViewBox" Stretch="Uniform" StretchDirection="Both" Margin="0,0,40,0">
 						<c:SudokuPane
-							x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" SelectedCell="-1"
-							HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}"
+							x:Name="SudokuPane" x:FieldModifier="internal"
+							Width="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+							Height="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+							HorizontalAlignment="Left" VerticalAlignment="Top" ViewUnit="{x:Null}" SelectedCell="-1"
 							CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 							EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=TwoWay}"
 							TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=TwoWay}"

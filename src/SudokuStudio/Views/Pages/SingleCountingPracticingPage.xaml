@@ -19,7 +19,10 @@
 			<Grid ColumnDefinitions="Auto,*">
 				<!--Sudoku pane-->
 				<c:SudokuPane
-					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,0,40,0"
+					x:Name="SudokuPane" x:FieldModifier="internal"
+					Width="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+					Height="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuGridSize,Converter={StaticResource Decimal2DoubleConverter},Mode=OneWay}"
+					Margin="0,0,40,0"
 					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
 					EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=OneWay}"
 					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"

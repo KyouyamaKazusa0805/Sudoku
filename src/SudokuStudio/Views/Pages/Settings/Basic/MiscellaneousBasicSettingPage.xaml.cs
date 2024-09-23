@@ -18,4 +18,10 @@ public sealed partial class MiscellaneousBasicSettingPage : Page
 			Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter = ch;
 		}
 	}
+
+	private void Page_Loaded(object sender, RoutedEventArgs e)
+		=> GridSizeChanger.Value = (int)Application.Current.AsApp().Preference.UIPreferences.SudokuGridSize;
+
+	private void GridSizeChanger_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+		=> Application.Current.AsApp().Preference.UIPreferences.SudokuGridSize = GridSizeChanger.Value;
 }

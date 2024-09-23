@@ -5221,6 +5221,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size of grid.
+        /// </summary>
+        public static string SettingsPage_GridSize {
+            get {
+                return ResourceManager.GetString("SettingsPage_GridSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes with the size of the grid displayed in most of pages, in pixels. However, this option doesn&apos;t change some sudoku panes displayed in modal windows (a kind of window that is suddenly appears when the program wants to tell you some messages which are usually warnings or errors). Min value is 360, max value is 800, and default value is 610..
+        /// </summary>
+        public static string SettingsPage_GridSizeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_GridSizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Siamese Finned Franken Jellyfish.
         /// </summary>
         public static string SiameseFinnedFrankenJellyfish {

@@ -3493,4 +3493,10 @@
   <data name="TechniqueFormat_RotatingDeadlyPatternStep" xml:space="preserve">
     <value>{0}({1})</value>
   </data>
+  <data name="SettingsPage_GridSize" xml:space="preserve">
+    <value>盘面尺寸</value>
+  </data>
+  <data name="SettingsPage_GridSizeDescription" xml:space="preserve">
+    <value>改变大部分页面上盘面的大小，以像素为单位。不过，在模态窗口里的盘面大小不会发生变动（模态窗口就是那种突然弹出来的窗口，并且一般都暗含一些警告或错误信息的信息想要告诉你的弹窗）。最小值 360，最大值 800。默认为 610。</value>
+  </data>
 </root>

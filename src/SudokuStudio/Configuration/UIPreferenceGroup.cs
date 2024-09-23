@@ -34,6 +34,9 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly decimal CoordinateLabelFontScaleDefaultValue = .4M;
 
 	[Default]
+	private static readonly decimal SudokuGridSizeDefaultValue = 610M;
+
+	[Default]
 	private static readonly Color GivenFontColorDefaultValue = Colors.Black;
 
 	[Default]
@@ -439,6 +442,12 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	/// </summary>
 	[DependencyProperty]
 	public partial decimal CoordinateLabelFontScale { get; set; }
+
+	/// <summary>
+	/// Indicates the sudoku grid size (width and height). In pixels.
+	/// </summary>
+	[DependencyProperty]
+	public partial decimal SudokuGridSize { get; set; }
 
 	/// <inheritdoc cref="SudokuPane.CoordinateLabelDisplayMode"/>
 	[DependencyProperty(DefaultValue = (int)CoordinateLabelDisplay.FourDirection)]

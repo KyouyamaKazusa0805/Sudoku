@@ -1,3 +1,5 @@
+#undef INTRINSIC_POSITION_OFFSET
+
 namespace SudokuStudio.Input;
 
 /// <summary>
@@ -121,12 +123,16 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 	/// <seealso cref="Position"/>
 	public Point GetPosition(Candidate candidate, Position position = Position.Center)
 	{
+#if INTRINSIC_POSITION_OFFSET
 		const double offset = 1;
+#endif
 		var (cw, ch) = CandidateSize;
 		var (cell, digit) = (candidate / 9, candidate % 9);
 		var @base = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
+#if INTRINSIC_POSITION_OFFSET
 		var extraWidth = candidate / 9 % 9 / 3 * offset;
 		var extraHeight = candidate / 9 / 9 / 3 * offset;
+#endif
 		var result = position switch
 		{
 			Position.TopLeft => @base,
@@ -137,9 +143,11 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 			_ => throw new ArgumentOutOfRangeException(nameof(position))
 		};
 
+#if INTRINSIC_POSITION_OFFSET
 		// Fix the extra border stroke thickness.
 		result.X += extraWidth;
 		result.Y += extraHeight;
+#endif
 		return result;
 	}
 

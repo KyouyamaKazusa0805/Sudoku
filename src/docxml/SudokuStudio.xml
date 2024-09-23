@@ -2060,6 +2060,11 @@
             Indicates the coordinate label font scale.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuGridSize">
+            <summary>
+            Indicates the sudoku grid size (width and height). In pixels.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayMode">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CoordinateLabelDisplayMode"/>
         </member>
@@ -2587,6 +2592,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.SudokuGridSizeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuGridSize"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.SudokuGridSize"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CoordinateLabelDisplayModeProperty">
             <summary>
