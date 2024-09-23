@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Configuration;
+namespace Sudoku.Analytics.Patterning.Chaining;
 
 /// <summary>
 /// Represents an option that controls the link collecting rules.
