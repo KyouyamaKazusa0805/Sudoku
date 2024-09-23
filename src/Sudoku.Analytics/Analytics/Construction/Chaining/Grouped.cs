@@ -16,12 +16,10 @@ public static class Grouped
 	public static bool IsGroupedStrongLink(ref readonly CellMap cells, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
 	{
 		// The link must be one of the cases in:
-		//
 		//   1) If non-grouped, two cell maps must contain 2 cells.
 		//   2) If grouped, two cell maps must be the case either:
 		//     a. The house type is block - the number of spanned rows or columns must be 2.
 		//     b. The house type is row or column - the number of spanned blocks must be 2.
-		//
 		// Otherwise, invalid.
 		switch (house.ToHouseType())
 		{
