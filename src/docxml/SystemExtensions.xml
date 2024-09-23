@@ -255,7 +255,7 @@
             <param name="this">The current <see cref="T:System.Collections.Generic.KeyValuePair`2"/> instance.</param>
             <returns>The reference to value.</returns>
         </member>
-        <member name="T:System.Collections.Generic.KeyValuePairFieldEntry`2">
+        <member name="T:System.Collections.Generic.Entry`2">
             <summary>
             Represents an entry to call internal fields on <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.
             </summary>
@@ -263,7 +263,7 @@
             <typeparam name="TValue">The value type of each element in <see cref="T:System.Collections.Generic.KeyValuePair`2"/>.</typeparam>
             <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
         </member>
-        <member name="M:System.Collections.Generic.KeyValuePairFieldEntry`2.GetKey(System.Collections.Generic.KeyValuePair{`0,`1}@)">
+        <member name="M:System.Collections.Generic.Entry`2.GetKey(System.Collections.Generic.KeyValuePair{`0,`1}@)">
             <summary>
             Try to fetch the internal field <c>key</c> in type <see cref="T:System.Collections.Generic.KeyValuePair`2" />.
             </summary>
@@ -296,7 +296,7 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.KeyValuePairFieldEntry`2.GetValue(System.Collections.Generic.KeyValuePair{`0,`1}@)">
+        <member name="M:System.Collections.Generic.Entry`2.GetValue(System.Collections.Generic.KeyValuePair{`0,`1}@)">
             <summary>
             Try to fetch the internal field <c>value</c> in type <see cref="T:System.Collections.Generic.KeyValuePair`2" />.
             </summary>
@@ -525,14 +525,14 @@
 				</target>
             </remarks>
         </member>
-        <member name="T:System.Collections.Generic.ListFieldEntry`1">
+        <member name="T:System.Collections.Generic.Entry`1">
             <summary>
             Represents an entry to call internal fields on <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
             <typeparam name="T">The type of each element in <see cref="T:System.Collections.Generic.List`1"/>.</typeparam>
             <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
-        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetSize(System.Collections.Generic.List{`0})">
+        <member name="M:System.Collections.Generic.Entry`1.GetSize(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal field <c>_size</c> in type <see cref="T:System.Collections.Generic.List`1" />.
             </summary>
@@ -557,7 +557,7 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetVersion(System.Collections.Generic.List{`0})">
+        <member name="M:System.Collections.Generic.Entry`1.GetVersion(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal field <c>_version</c> in type <see cref="T:System.Collections.Generic.List`1" />.
             </summary>
@@ -582,7 +582,7 @@
 				</target>
             </remarks>
         </member>
-        <member name="M:System.Collections.Generic.ListFieldEntry`1.GetItems(System.Collections.Generic.List{`0})">
+        <member name="M:System.Collections.Generic.Entry`1.GetItems(System.Collections.Generic.List{`0})">
             <summary>
             Try to fetch the internal reference to the first <typeparamref name="T" /> in a <see cref="T:System.Collections.Generic.List`1" />.
             </summary>

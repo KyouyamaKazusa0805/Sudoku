@@ -28,12 +28,12 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddRef<T>(this List<T> @this, ref readonly T item)
 	{
-		ListFieldEntry<T>.GetVersion(@this)++;
-		var array = ListFieldEntry<T>.GetItems(@this).AsSpan();
-		var size = ListFieldEntry<T>.GetSize(@this);
+		Entry<T>.GetVersion(@this)++;
+		var array = Entry<T>.GetItems(@this).AsSpan();
+		var size = Entry<T>.GetSize(@this);
 		if ((uint)size < (uint)array.Length)
 		{
-			ListFieldEntry<T>.GetSize(@this)++;
+			Entry<T>.GetSize(@this)++;
 			array[size] = item;
 		}
 		else
@@ -138,11 +138,11 @@ public static class ListExtensions
 	/// </remarks>
 	private static void AddWithResize<T>(this List<T> @this, ref readonly T item)
 	{
-		Debug.Assert(ListFieldEntry<T>.GetSize(@this) == ListFieldEntry<T>.GetItems(@this).Length);
-		var size = ListFieldEntry<T>.GetSize(@this);
+		Debug.Assert(Entry<T>.GetSize(@this) == Entry<T>.GetItems(@this).Length);
+		var size = Entry<T>.GetSize(@this);
 		@this.Capacity = @this.GetNewCapacity(size + 1);
-		ListFieldEntry<T>.GetSize(@this) = size + 1;
-		ListFieldEntry<T>.GetItems(@this)[size] = item;
+		Entry<T>.GetSize(@this) = size + 1;
+		Entry<T>.GetItems(@this)[size] = item;
 	}
 
 	/// <summary>
@@ -160,8 +160,8 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static int GetNewCapacity<T>(this List<T> @this, int capacity)
 	{
-		Debug.Assert(ListFieldEntry<T>.GetItems(@this).Length < capacity);
-		return ListFieldEntry<T>.GetItems(@this).Length == 0 ? 4 : ListFieldEntry<T>.GetItems(@this).Length << 1;
+		Debug.Assert(Entry<T>.GetItems(@this).Length < capacity);
+		return Entry<T>.GetItems(@this).Length == 0 ? 4 : Entry<T>.GetItems(@this).Length << 1;
 	}
 }
 
@@ -170,7 +170,7 @@ public static class ListExtensions
 /// </summary>
 /// <typeparam name="T">The type of each element in <see cref="List{T}"/>.</typeparam>
 /// <seealso cref="List{T}"/>
-file sealed class ListFieldEntry<T>
+file sealed class Entry<T>
 {
 	/// <summary>
 	/// Try to fetch the internal field <c>_size</c> in type <see cref="List{T}"/>.

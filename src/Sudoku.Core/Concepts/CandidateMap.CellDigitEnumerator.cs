@@ -15,7 +15,7 @@ public partial struct CandidateMap
 		private int _index = -1;
 
 
-		/// <inheritdoc cref="IEnumerator.Current"/>
+		/// <inheritdoc/>
 		public readonly (Candidate Candidate, Cell Cell, Digit Digit) Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -37,7 +37,7 @@ public partial struct CandidateMap
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public readonly CellDigitEnumerator GetEnumerator() => this;
 
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
+		/// <inheritdoc/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool MoveNext() => ++_index < _candidates.Length;
 

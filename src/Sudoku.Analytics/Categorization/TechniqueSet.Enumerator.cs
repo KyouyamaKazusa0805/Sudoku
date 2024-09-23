@@ -14,14 +14,14 @@ public partial class TechniqueSet
 		private int _currentIndex = -1;
 
 
-		/// <inheritdoc cref="IEnumerator{T}.Current"/>
+		/// <inheritdoc/>
 		public readonly Technique Current => TechniqueProjectionBack(_currentIndex);
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;
 
 
-		/// <inheritdoc cref="IEnumerator.MoveNext"/>
+		/// <inheritdoc/>
 		public bool MoveNext()
 		{
 			for (_currentIndex++; _currentIndex < _bits.Length; _currentIndex++)

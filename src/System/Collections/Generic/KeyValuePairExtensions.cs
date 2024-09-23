@@ -25,7 +25,7 @@ public static class KeyValuePairExtensions
 	/// <returns>The reference to key.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly TKey KeyRef<TKey, TValue>(this ref readonly KeyValuePair<TKey, TValue> @this)
-		=> ref KeyValuePairFieldEntry<TKey, TValue>.GetKey(in @this);
+		=> ref Entry<TKey, TValue>.GetKey(in @this);
 
 	/// <summary>
 	/// Get reference to value.
@@ -36,7 +36,7 @@ public static class KeyValuePairExtensions
 	/// <returns>The reference to value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly TValue ValueRef<TKey, TValue>(this ref readonly KeyValuePair<TKey, TValue> @this)
-		=> ref KeyValuePairFieldEntry<TKey, TValue>.GetValue(in @this);
+		=> ref Entry<TKey, TValue>.GetValue(in @this);
 }
 
 /// <summary>
@@ -45,7 +45,7 @@ public static class KeyValuePairExtensions
 /// <typeparam name="TKey">The key type of each element in <see cref="KeyValuePair{TKey, TValue}"/>.</typeparam>
 /// <typeparam name="TValue">The value type of each element in <see cref="KeyValuePair{TKey, TValue}"/>.</typeparam>
 /// <seealso cref="KeyValuePair{TKey, TValue}"/>
-file sealed class KeyValuePairFieldEntry<TKey, TValue>
+file sealed class Entry<TKey, TValue>
 {
 	/// <summary>
 	/// Try to fetch the internal field <c>key</c> in type <see cref="KeyValuePair{TKey, TValue}"/>.

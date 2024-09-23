@@ -74,7 +74,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
@@ -86,7 +86,7 @@
             <returns>The enumerator itself.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.System#IDisposable#Dispose">
             <inheritdoc/>
@@ -112,7 +112,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.CellEnumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.CellEnumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
@@ -124,7 +124,7 @@
             <returns>The enumerator itself.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.System#IDisposable#Dispose">
             <inheritdoc/>

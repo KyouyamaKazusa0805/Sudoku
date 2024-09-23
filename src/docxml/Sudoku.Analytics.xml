@@ -23736,13 +23736,13 @@
             </summary>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueSet.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueSet.Enumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.Enumerator.System#IDisposable#Dispose">
             <inheritdoc/>
