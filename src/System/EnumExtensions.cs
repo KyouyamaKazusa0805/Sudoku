@@ -13,13 +13,25 @@ public static class EnumExtensions
 	/// <param name="this">The current field to check.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe bool IsFlag<T>(this T @this) where T : unmanaged, Enum
-		=> sizeof(T) switch
+	public static bool IsFlag<T>(this T @this) where T : unmanaged, Enum
+	{
+		return new Dictionary<Type, Func<bool>>
 		{
-			1 or 2 or 4 when Unsafe.As<T, int>(ref @this) is var l => (l & l - 1) == 0,
-			8 when Unsafe.As<T, long>(ref @this) is var l => (l & l - 1) == 0,
-			_ => false
-		};
+			{ typeof(sbyte), f<sbyte> },
+			{ typeof(byte), f<byte> },
+			{ typeof(short), f<short> },
+			{ typeof(ushort), f<ushort> },
+			{ typeof(int), f<int> },
+			{ typeof(uint), f<uint> },
+			{ typeof(long), f<long> },
+			{ typeof(ulong), f<ulong> },
+		}.TryGetValue(Enum.GetUnderlyingType(typeof(T)), out var func) && func();
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		bool f<TInteger>() where TInteger : IBinaryInteger<TInteger>
+			=> Unsafe.As<T, TInteger>(ref @this) is var integer && (integer == TInteger.Zero || TInteger.IsPow2(integer));
+	}
 
 	/// <summary>
 	/// To get all possible flags from a specified enumeration instance.
