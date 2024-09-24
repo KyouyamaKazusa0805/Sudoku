@@ -10,28 +10,20 @@ public static class CoordinateSimplifier
 	/// </summary>
 	/// <param name="cells">The cells to be simplified.</param>
 	/// <returns>A list of parts grouped by rows and its matched columns.</returns>
-	public static ReadOnlySpan<(RowIndex[] Rows, ColumnIndex[] Columns)> Simplify(ref readonly CellMap cells)
+	public static ReadOnlySpan<CoordinateSplit> Simplify(ref readonly CellMap cells)
 	{
-		var list = new List<(RowIndex, ColumnIndex)>(cells.Count);
-		foreach (var cell in cells)
-		{
-			list.Add((cell / 9, cell % 9));
-		}
-
-		var rawResult = simplifyCoordinates(list);
-		var result = new List<(RowIndex[], ColumnIndex[])>();
-		foreach (var (rows, columns) in rawResult)
-		{
-			result.Add(
-				rows switch
-				{
-					RowIndex r => ([r], [.. columns]),
-					SortedSet<RowIndex> r => ([.. r], [.. columns]),
-					_ => throw new InvalidOperationException()
-				}
-			);
-		}
-		return result.AsReadOnlySpan();
+		return (CoordinateSplit[])[
+			..
+			from pair in simplifyCoordinates([.. from cell in cells select (cell / 9, cell % 9)])
+			let rows = pair.Item1
+			let columns = pair.Item2
+			select rows switch
+			{
+				RowIndex r => new CoordinateSplit([r], [.. columns]),
+				SortedSet<RowIndex> r => new CoordinateSplit([.. r], [.. columns]),
+				_ => throw new InvalidOperationException()
+			}
+		];
 
 
 		static List<(object, SortedSet<ColumnIndex>)> simplifyCoordinates(List<(RowIndex, ColumnIndex)> coordinates)
@@ -99,7 +91,7 @@ public static class CoordinateSimplifier
 				from kvp in finalDict.ToArray()
 				let keySet = kvp.Key
 				let valueSet = kvp.Value
-				select (keySet.Count > 1 ? ((object)keySet, valueSet) : (keySet.Min, valueSet))
+				select (keySet.Count > 1 ? (keySet, valueSet) : ((object)keySet.Min, valueSet))
 			];
 		}
 	}

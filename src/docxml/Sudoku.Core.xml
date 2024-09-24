@@ -2554,6 +2554,26 @@
             <param name="cells">The cells to be simplified.</param>
             <returns>A list of parts grouped by rows and its matched columns.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CoordinateSplit">
+            <summary>
+            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
+            </summary>
+            <param name="Rows">Indicates row indices.</param>
+            <param name="Columns">Indicates column indices.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateSplit.#ctor(System.Int32[],System.Int32[])">
+            <summary>
+            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
+            </summary>
+            <param name="Rows">Indicates row indices.</param>
+            <param name="Columns">Indicates column indices.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateSplit.Rows">
+            <summary>Indicates row indices.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateSplit.Columns">
+            <summary>Indicates column indices.</summary>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">
             <summary>
             Represents a type of notation to describe a coordinate in sudoku.
