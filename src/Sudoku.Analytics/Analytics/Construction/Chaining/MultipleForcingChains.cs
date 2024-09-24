@@ -235,10 +235,31 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 			goto ReturnFalse;
 		}
 
+		// Determine whether at least two branches contain one same link.
+		var branches = Values.ToArray();
+		for (var i = 0; i < branches.Length - 1; i++)
+		{
+			var left = branches[i];
+			for (var j = i + 1; j < branches.Length; j++)
+			{
+				var right = branches[j];
+				foreach (var leftLink in left.Links)
+				{
+					foreach (var rightLink in right.Links)
+					{
+						if (leftLink.Equals(rightLink, LinkComparison.Undirected))
+						{
+							goto ReturnFalse;
+						}
+					}
+				}
+			}
+		}
+
 		// Iterate on each branch, to get whether they can directly points to conclusion.
 		var finsFound = CandidateMap.Empty;
 		var krakenBranches = new List<ChainOrLoop>(2);
-		foreach (var branch in Values)
+		foreach (var branch in branches)
 		{
 			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(elimination))
 			{
