@@ -2542,6 +2542,18 @@
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetInstance(System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CoordinateSimplifier">
+            <summary>
+            Represents a simplifier type that can simplify the coordinates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateSimplifier.Simplify(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to simplify parts of cells, by combining same rows and columns.
+            </summary>
+            <param name="cells">The cells to be simplified.</param>
+            <returns>A list of parts grouped by rows and its matched columns.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">
             <summary>
             Represents a type of notation to describe a coordinate in sudoku.

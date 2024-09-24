@@ -33,58 +33,24 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-			[] => string.Empty,
-			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
-				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase ? $"R{p / 9 + 1}C{p % 9 + 1}" : $"r{p / 9 + 1}c{p % 9 + 1}",
+				_ => r(in cells)
 			};
 
 
 			string r(ref readonly CellMap cells)
 			{
-				var sbRow = new StringBuilder(50);
-				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
-				foreach (var cell in cells)
+				var sb = new StringBuilder(50);
+				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
 				{
-					if (!dic.ContainsKey(cell / 9))
-					{
-						dic.Add(cell / 9, new(9));
-					}
-
-					dic[cell / 9].Add(cell % 9);
+					sb.Append(MakeLettersUpperCase ? 'R' : 'r');
+					sb.AppendRange<int>(d => DigitConverter(MaskOperations.Create(d)), elements: rows);
+					sb.Append(MakeLettersUpperCase ? 'C' : 'c');
+					sb.AppendRange<int>(d => DigitConverter(MaskOperations.Create(d)), elements: columns);
+					sb.Append(DefaultSeparator);
 				}
-				foreach (var row in dic.Keys)
-				{
-					sbRow.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sbRow.Append(row + 1);
-					sbRow.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sbRow.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[row].AsReadOnlySpan());
-					sbRow.Append(DefaultSeparator);
-				}
-				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
-			}
-
-			string c(ref readonly CellMap cells)
-			{
-				var dic = new Dictionary<Digit, List<RowIndex>>(9);
-				var sbColumn = new StringBuilder(50);
-				foreach (var cell in cells)
-				{
-					if (!dic.ContainsKey(cell % 9))
-					{
-						dic.Add(cell % 9, new(9));
-					}
-
-					dic[cell % 9].Add(cell / 9);
-				}
-				foreach (var column in dic.Keys)
-				{
-					sbColumn.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sbColumn.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[column].AsReadOnlySpan());
-					sbColumn.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sbColumn.Append(column + 1);
-					sbColumn.Append(DefaultSeparator);
-				}
-				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
+				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 		};
 
@@ -187,8 +153,8 @@ public sealed record RxCyConverter(
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
