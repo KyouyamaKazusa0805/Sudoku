@@ -104,7 +104,7 @@ public static class CoordinateSimplifier
 				}
 				else
 				{
-					finalResult.Add((kvp.Key.First(), kvp.Value));
+					finalResult.Add((kvp.Key.Min, kvp.Value));
 				}
 			}
 			return finalResult;
