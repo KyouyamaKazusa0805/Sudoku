@@ -42,63 +42,27 @@ public sealed record K9Converter(
 						: (char)((MakeLettersUpperCase ? 'A' : 'a') + row);
 					return $"{rowCharacter}{DigitConverter((Mask)(1 << column))}";
 				}
-				default: { return r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b; }
+				default: { return r(in cells); }
 			}
 
 
 			string r(ref readonly CellMap cells)
 			{
-				var sbRow = new StringBuilder(18);
-				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
-				foreach (var cell in cells)
+				var sb = new StringBuilder(18);
+				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
 				{
-					if (!dic.ContainsKey(cell / 9))
-					{
-						dic.Add(cell / 9, new(9));
-					}
-
-					dic[cell / 9].Add(cell % 9);
-				}
-				foreach (var row in dic.Keys)
-				{
-					sbRow.Append(
-						row == 8
-							? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
-							: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
-					);
-					sbRow.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[row].AsReadOnlySpan());
-					sbRow.Append(DefaultSeparator);
-				}
-				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
-			}
-
-			string c(ref readonly CellMap cells)
-			{
-				var dic = new Dictionary<Digit, List<RowIndex>>(9);
-				var sbColumn = new StringBuilder(18);
-				foreach (var cell in cells)
-				{
-					if (!dic.ContainsKey(cell % 9))
-					{
-						dic.Add(cell % 9, new(9));
-					}
-
-					dic[cell % 9].Add(cell / 9);
-				}
-				foreach (var column in dic.Keys)
-				{
-					foreach (var row in dic[column])
-					{
-						sbColumn.Append(
-							row == 8
+					sb.AppendRange<int>(
+						d => (
+							d == 8
 								? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
-								: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
-						);
-					}
-
-					sbColumn.Append(column + 1).Append(DefaultSeparator);
+								: (char)((MakeLettersUpperCase ? 'A' : 'a') + d)
+						).ToString(),
+						elements: rows
+					);
+					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: columns);
+					sb.Append(DefaultSeparator);
 				}
-				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
+				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 		};
 

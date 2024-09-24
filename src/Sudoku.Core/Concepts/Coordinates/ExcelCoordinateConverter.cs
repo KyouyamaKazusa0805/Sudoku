@@ -31,55 +31,20 @@ public sealed record ExcelCoordinateConverter(
 					var columnCharacter = (char)((MakeLettersUpperCase ? 'A' : 'a') + column);
 					return $"{DigitConverter((Mask)(1 << row))}{columnCharacter}";
 				}
-				default: { return r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b; }
+				default: { return r(in cells); }
 			}
 
 
 			string r(ref readonly CellMap cells)
 			{
-				var sbRow = new StringBuilder(18);
-				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
-				foreach (var cell in cells)
+				var sb = new StringBuilder(18);
+				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
 				{
-					if (!dic.ContainsKey(cell / 9))
-					{
-						dic.Add(cell / 9, new(9));
-					}
-
-					dic[cell / 9].Add(cell % 9);
+					sb.AppendRange<int>(d => ((char)((MakeLettersUpperCase ? 'A' : 'a') + d)).ToString(), elements: columns);
+					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
+					sb.Append(DefaultSeparator);
 				}
-				foreach (var row in dic.Keys)
-				{
-					sbRow.AppendRange(
-						column => ((MakeLettersUpperCase ? 'A' : 'a') + column).ToString(),
-						elements: dic[row].AsReadOnlySpan()
-					);
-					sbRow.Append(row + 1);
-					sbRow.Append(DefaultSeparator);
-				}
-				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
-			}
-
-			string c(ref readonly CellMap cells)
-			{
-				var dic = new Dictionary<Digit, List<RowIndex>>(9);
-				var sbColumn = new StringBuilder(18);
-				foreach (var cell in cells)
-				{
-					if (!dic.ContainsKey(cell % 9))
-					{
-						dic.Add(cell % 9, new(9));
-					}
-
-					dic[cell % 9].Add(cell / 9);
-				}
-				foreach (var column in dic.Keys)
-				{
-					sbColumn.Append((char)((MakeLettersUpperCase ? 'A' : 'a') + column));
-					sbColumn.AppendRange(static row => (row + 1).ToString(), elements: dic[column].AsReadOnlySpan());
-					sbColumn.Append(DefaultSeparator);
-				}
-				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
+				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 		};
 
@@ -112,8 +77,8 @@ public sealed record ExcelCoordinateConverter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

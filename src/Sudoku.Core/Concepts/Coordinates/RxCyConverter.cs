@@ -45,9 +45,9 @@ public sealed record RxCyConverter(
 				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
 				{
 					sb.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sb.AppendRange<int>(d => DigitConverter(MaskOperations.Create(d)), elements: rows);
+					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
 					sb.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sb.AppendRange<int>(d => DigitConverter(MaskOperations.Create(d)), elements: columns);
+					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: columns);
 					sb.Append(DefaultSeparator);
 				}
 				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
