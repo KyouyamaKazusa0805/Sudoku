@@ -27,7 +27,14 @@ public static class HodokuCompatibility
 	{
 		if (step is null)
 		{
-			return grid.ToString(new SusserGridFormatInfo { IsCompatibleMode = true });
+			return grid.ToString(
+				new SusserGridFormatInfo
+				{
+					IsCompatibleMode = true,
+					WithModifiables = true,
+					WithCandidates = true
+				}
+			);
 		}
 
 		var conclusionConverter = new HodokuTripletCandidateMapFormatInfo();
@@ -41,12 +48,12 @@ public static class HodokuCompatibility
 		var conclusions = from conclusion in step.Conclusions group conclusion by conclusion.ConclusionType;
 		var eliminationsString = (from g in conclusions where g.Key == Elimination select g.AsReadOnlySpan().ToArray()) switch
 		{
-			[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
+		[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
 			_ => string.Empty
 		};
 		var assignmentsString = (from g in conclusions where g.Key == Assignment select g.AsReadOnlySpan().ToArray()) switch
 		{
-			[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
+		[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
 			_ => string.Empty
 		};
 		var extraString = step is NormalChainStep { Pattern: { Length: var nodesLength } pattern }
