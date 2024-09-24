@@ -43,7 +43,7 @@ public static class CoordinateSimplifier
 			}
 
 			var (simplifiedRows, simplifiedCols) = (rowGroups.ToDictionary(), colGroups.ToDictionary());
-			var finalSimplified = new List<(object, object)>();
+			var finalSimplified = new List<(object RowOrRows, object ColumnOrColumns)>();
 			foreach (var (x, yList) in simplifiedRows)
 			{
 				foreach (var y in yList)
@@ -67,21 +67,21 @@ public static class CoordinateSimplifier
 			}
 
 			var finalDict = new Dictionary<SortedSet<RowIndex>, SortedSet<ColumnIndex>>(SortedSet<RowIndex>.CreateSetComparer());
-			foreach (var item in finalSimplified)
+			foreach (var (rowOrRows, columnOrColumns) in finalSimplified)
 			{
-				if (item.Item1 is SortedSet<RowIndex> xList)
+				if (rowOrRows is SortedSet<RowIndex> xList)
 				{
-					if (!finalDict.TryAdd(xList, [(ColumnIndex)item.Item2]))
+					if (!finalDict.TryAdd(xList, [(ColumnIndex)columnOrColumns]))
 					{
-						finalDict[xList].Add((ColumnIndex)item.Item2);
+						finalDict[xList].Add((ColumnIndex)columnOrColumns);
 					}
 				}
 				else
 				{
-					var key = new SortedSet<RowIndex> { (RowIndex)item.Item1 };
-					if (!finalDict.TryAdd(key, [(ColumnIndex)item.Item2]))
+					var key = (SortedSet<RowIndex>)[(RowIndex)rowOrRows];
+					if (!finalDict.TryAdd(key, [(ColumnIndex)columnOrColumns]))
 					{
-						finalDict[key].Add((ColumnIndex)item.Item2);
+						finalDict[key].Add((ColumnIndex)columnOrColumns);
 					}
 				}
 			}
