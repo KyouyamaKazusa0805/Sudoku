@@ -50,8 +50,7 @@ public static class CoordinateSimplifier
 				}
 			}
 
-			var simplifiedRows = rowGroups.ToDictionary();
-			var simplifiedCols = colGroups.ToDictionary();
+			var (simplifiedRows, simplifiedCols) = (rowGroups.ToDictionary(), colGroups.ToDictionary());
 			var finalSimplified = new List<(object, object)>();
 			foreach (var (x, yList) in simplifiedRows)
 			{
@@ -95,19 +94,13 @@ public static class CoordinateSimplifier
 				}
 			}
 
-			var finalResult = new List<(object, SortedSet<ColumnIndex>)>();
-			foreach (var kvp in finalDict)
-			{
-				if (kvp.Key.Count > 1)
-				{
-					finalResult.Add((kvp.Key, kvp.Value));
-				}
-				else
-				{
-					finalResult.Add((kvp.Key.Min, kvp.Value));
-				}
-			}
-			return finalResult;
+			return [
+				..
+				from kvp in finalDict.ToArray()
+				let keySet = kvp.Key
+				let valueSet = kvp.Value
+				select (keySet.Count > 1 ? ((object)keySet, valueSet) : (keySet.Min, valueSet))
+			];
 		}
 	}
 }
