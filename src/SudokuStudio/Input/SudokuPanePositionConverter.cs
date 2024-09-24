@@ -1,4 +1,4 @@
-#undef INTRINSIC_POSITION_OFFSET
+#define INTRINSIC_POSITION_OFFSET
 
 namespace SudokuStudio.Input;
 
@@ -124,7 +124,7 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 	public Point GetPosition(Candidate candidate, Position position = Position.Center)
 	{
 #if INTRINSIC_POSITION_OFFSET
-		const double offset = 1;
+		var offset = .8D;
 #endif
 		var (cw, ch) = CandidateSize;
 		var (cell, digit) = (candidate / 9, candidate % 9);
