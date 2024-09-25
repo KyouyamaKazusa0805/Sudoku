@@ -48,21 +48,11 @@ public static class CoordinateSimplifier
 			{
 				foreach (var y in yList)
 				{
-					if (simplifiedCols.TryGetValue(y, out var xList))
-					{
-						if (xList.SequenceEqual([x]))
-						{
-							finalSimplified.Add((x, y));
-						}
-						else
-						{
-							finalSimplified.Add((xList, y));
-						}
-					}
-					else
-					{
-						finalSimplified.Add((x, y));
-					}
+					finalSimplified.Add(
+						simplifiedCols.TryGetValue(y, out var xList)
+							? xList.SequenceEqual([x]) ? (x, y) : (xList, y)
+							: (x, y)
+					);
 				}
 			}
 
