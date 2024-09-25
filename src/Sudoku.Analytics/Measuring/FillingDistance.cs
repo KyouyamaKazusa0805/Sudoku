@@ -1,7 +1,5 @@
 namespace Sudoku.Measuring;
 
-using StepInfo = (Step Step, Grid Grid);
-
 /// <summary>
 /// Represents a type that can calculate filling distance of a puzzle.
 /// </summary>
@@ -15,10 +13,10 @@ public static class FillingDistance
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="steps">The steps and corresponding grid states.</param>
 	/// <returns>A list of block distances.</returns>
-	public static ReadOnlySpan<int> GetBlockDistanceArray(this Collector @this, ref readonly Grid grid, out ReadOnlySpan<StepInfo> steps)
+	public static ReadOnlySpan<int> GetBlockDistanceArray(this Collector @this, ref readonly Grid grid, out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps)
 	{
 		var (playground, solution, result) = (grid, grid.GetSolutionGrid(), (List<int>)[]);
-		var (tempSteps, lastStep) = ((List<StepInfo>)[], default(SingleStep)!);
+		var (tempSteps, lastStep) = ((List<KeyValuePair<SingleStep, Grid>>)[], default(SingleStep)!);
 		while (!playground.IsSolved)
 		{
 			var (z, s) = findNearestStep(
@@ -31,7 +29,7 @@ public static class FillingDistance
 				select stepGroup
 			);
 			result.Add(s);
-			tempSteps.Add((lastStep = z, playground));
+			tempSteps.Add(KeyValuePair.Create(lastStep = z, playground));
 			playground.Apply(new(Assignment, lastStep.Cell, solution.GetDigit(lastStep.Cell)));
 		}
 
@@ -179,10 +177,10 @@ public static class FillingDistance
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="steps">The steps and corresponding grid states.</param>
 	/// <returns>A list of block distances.</returns>
-	public static ReadOnlySpan<int> GetDigitDistanceArray(this Collector @this, ref readonly Grid grid, out ReadOnlySpan<StepInfo> steps)
+	public static ReadOnlySpan<int> GetDigitDistanceArray(this Collector @this, ref readonly Grid grid, out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps)
 	{
 		var (playground, solution, result) = (grid, grid.GetSolutionGrid(), (List<int>)[]);
-		var (tempSteps, lastStep) = ((List<StepInfo>)[], default(SingleStep)!);
+		var (tempSteps, lastStep) = ((List<KeyValuePair<SingleStep, Grid>>)[], default(SingleStep)!);
 		while (!playground.IsSolved)
 		{
 			var (z, s) = findNearestStep(
@@ -195,7 +193,7 @@ public static class FillingDistance
 				select stepGroup
 			);
 			result.Add(s);
-			tempSteps.Add((lastStep = z, playground));
+			tempSteps.Add(KeyValuePair.Create(lastStep = z, playground));
 			playground.Apply(new(Assignment, lastStep.Cell, solution.GetDigit(lastStep.Cell)));
 		}
 

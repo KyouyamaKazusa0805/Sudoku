@@ -33,7 +33,7 @@ public static class StepMarshal
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the length of arguments <paramref name="interimGrids"/> and <paramref name="interimSteps"/> aren't same.
 	/// </exception>
-	public static ReadOnlySpan<(Grid CurrentGrid, Step CurrentStep)> Combine(ReadOnlySpan<Grid> interimGrids, ReadOnlySpan<Step> interimSteps)
+	public static ReadOnlySpan<KeyValuePair<Grid, Step>> Combine(ReadOnlySpan<Grid> interimGrids, ReadOnlySpan<Step> interimSteps)
 	{
 		if (interimGrids.Length != interimSteps.Length)
 		{
@@ -41,10 +41,13 @@ public static class StepMarshal
 			throw new InvalidOperationException(message);
 		}
 
-		var result = new List<(Grid, Step)>(interimGrids.Length);
+		var result = new List<KeyValuePair<Grid, Step>>(interimGrids.Length);
 		for (var i = 0; i < interimGrids.Length; i++)
 		{
-			result.AddRef((interimGrids[i], interimSteps[i]));
+			var kvp = new KeyValuePair<Grid, Step>();
+			kvp.KeyRef() = interimGrids[i];
+			kvp.ValueRef() = interimSteps[i];
+			result.AddRef(in kvp);
 		}
 		return result.AsReadOnlySpan();
 	}

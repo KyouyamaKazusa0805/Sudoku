@@ -6,7 +6,12 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
-	/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
+	/// <summary>
+	/// Returns a new <see cref="ReadOnlySpan{T}"/> instance that contains each element with its corresponding index.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The object to be iterated.</param>
+	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance.</returns>
 	public static ReadOnlySpan<(int Index, T Value)> Index<T>(this ReadOnlySpan<T> @this)
 	{
 		var result = new (int, T)[@this.Length];

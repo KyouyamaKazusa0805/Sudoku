@@ -5,7 +5,7 @@ public partial record AnalysisResult
 	/// <summary>
 	/// A span of values.
 	/// </summary>
-	private ReadOnlySpan<(Grid CurrentGrid, Step CurrentStep)> Span => StepMarshal.Combine(GridsSpan, StepsSpan);
+	private ReadOnlySpan<KeyValuePair<Grid, Step>> Span => StepMarshal.Combine(GridsSpan, StepsSpan);
 
 
 	/// <summary>
@@ -45,7 +45,7 @@ public partial record AnalysisResult
 	/// </summary>
 	/// <param name="techniqueName">Technique name.</param>
 	/// <returns>The first found step.</returns>
-	public (Grid CurrentGrid, Step CurrentStep)? this[string techniqueName]
+	public KeyValuePair<Grid, Step>? this[string techniqueName]
 	{
 		get
 		{

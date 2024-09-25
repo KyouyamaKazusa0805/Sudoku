@@ -25912,7 +25912,7 @@
             Represents a type that can calculate filling distance of a puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.FillingDistance.GetBlockDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.ValueTuple{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
+        <member name="M:Sudoku.Measuring.FillingDistance.GetBlockDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
             <summary>
             Try to return a list of integers representing the logical filling distance between two adjacent steps,
             by using block-first filling rule.
@@ -25922,7 +25922,7 @@
             <param name="steps">The steps and corresponding grid states.</param>
             <returns>A list of block distances.</returns>
         </member>
-        <member name="M:Sudoku.Measuring.FillingDistance.GetDigitDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.ValueTuple{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
+        <member name="M:Sudoku.Measuring.FillingDistance.GetDigitDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
             <summary>
             Try to return a list of integers representing the logical filling distance between two adjacent steps,
             by using digit-first filling rule.

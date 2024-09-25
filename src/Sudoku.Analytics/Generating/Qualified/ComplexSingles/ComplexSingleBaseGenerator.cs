@@ -94,8 +94,7 @@ public abstract class ComplexSingleBaseGenerator : TechniqueGenerator, IJustOneC
 				}
 				case { IsSolved: true, StepsSpan: var steps, GridsSpan: var grids }:
 				{
-					var solvingSteps = StepMarshal.Combine(grids, steps);
-					foreach (var (g, s) in solvingSteps)
+					foreach (var (g, s) in StepMarshal.Combine(grids, steps))
 					{
 						if (StepFilter(s))
 						{
