@@ -19858,6 +19858,564 @@
             <param name="options">The value to be set or updated.</param>
             <returns>The value same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
+        <member name="T:Sudoku.Behaviors.BlockFirst">
+            <summary>
+            Represents a way to finish puzzle with block-first rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.BlockFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
+            <summary>
+            Try to return a list of integers representing the logical filling distance between two adjacent steps,
+            by using block-first filling rule.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="steps">The steps and corresponding grid states.</param>
+            <returns>A list of block distances.</returns>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.Digits">
+            <summary>The digits path.</summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.IsComplete">
+            <summary>
+            Indicates whether the pattern is complete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
+            <summary>
+            Indicates hte digits string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.Equals(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.ToString"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath"/> instance via collection expression.
+            </summary>
+            <param name="digits">A list of digits to be initialized.</param>
+            <returns>A <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath"/>.
+            </summary>
+            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Categorization.TechniqueSet)">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Categorization.Technique})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            </summary>
+            <param name="techniques">A list of techniques.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
+            <summary>
+            The generated property declaration for parameter <c>supportedTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuModuleAlreadyFinishedException">
+            <summary>
+            The internal exception type that reports "Already finished" information, breaking the recursion.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuModuleAlreadyFinishedException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.GridIttoryuExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.GridIttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath)">
+            <summary>
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/>.
+            </summary>
+            <param name="this">The grid to be adjusted.</param>
+            <param name="ittoryuPath">
+            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
+            <seealso cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Categorization.TechniqueSet,System.Nullable{Sudoku.Behaviors.Ittoryu.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
+            with checking using the specified techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">
+            <para>The techniques supported.</para>
+            <para>
+            The value is a <see cref="T:Sudoku.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Categorization.Technique.FullHouse"/> (Full House)</item>
+            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
+            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
+            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
+            <item><see cref="F:Sudoku.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
+            </list>
+            </para>
+            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
+            </param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.IttoryuPathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Behaviors.Ittoryu.IttoryuPathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Behaviors.Ittoryu.TechniqueIttoryuSets">
+            <summary>
+            Represents ittoryu-related technique sets instances.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.TechniqueIttoryuSets.IttoryuTechniques">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use.
+            </summary>
+            <seealso cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.TechniqueIttoryuSets.IttoryuNakedSingleNotIncluded">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
+            </summary>
+            <seealso cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="P:Sudoku.Behaviors.Ittoryu.TechniqueIttoryuSets.IttoryuBlockHiddenSingle">
+            <summary>
+            Indicates the techniques that ittroyu path finder will use,
+            only containing <see cref="F:Sudoku.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="F:Sudoku.Categorization.Technique.FullHouse"/>
+            <seealso cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/>
+        </member>
+        <member name="T:Sudoku.Measuring.DigitFirst">
+            <summary>
+            Represents a way to finish puzzle with digit-first rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.DigitFirst.GetDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
+            <summary>
+            Try to return a list of integers representing the logical filling distance between two adjacent steps,
+            by using digit-first filling rule.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="steps">The steps and corresponding grid states.</param>
+            <returns>A list of block distances.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.Factor">
+            <summary>
+            Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.Factor.PropertyFlags">
+            <summary>
+            Default property flags, including properties that are explicitly interface implemented.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ParameterNames">
+            <summary>
+            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
+            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
+            with the current factor and can be calculated its rating.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ReflectedStepType">
+            <summary>
+            Indicates the relied <see cref="T:System.Type"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Parameters">
+            <summary>
+            Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that creates from property <see cref="P:Sudoku.Measuring.Factor.ParameterNames"/>.
+            </summary>
+            <exception cref="T:System.Reflection.AmbiguousMatchException">Throws when property names is invalid.</exception>
+            <seealso cref="P:Sudoku.Measuring.Factor.ParameterNames"/>
+            <seealso cref="T:System.Reflection.PropertyInfo"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Formula">
+            <summary>
+            Provides with a formula that calculates for the result.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.FactorResourceKey">
+            <summary>
+            Indicates the factor resource key.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.GetName(System.IFormatProvider)">
+            <summary>
+            Try to fetch the name stored in resource dictionary.
+            </summary>
+            <param name="formatProvider">The culture information.</param>
+            <returns>The name of the factor.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.Create(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Measuring.Factor"/> instance that assigns predefined values.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.Factor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.Factor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.Factor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.Factor.Formula" path="/summary"/></param>
+            <returns>A <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.AnonymousFactor">
+            <summary>
+            Defines an anonymous factor.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.AnonymousFactor.#ctor(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+            <summary>
+            Defines an anonymous factor.
+            </summary>
+            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
+            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
+            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorArray">
+            <summary>
+            Represents a read-only array of <see cref="T:Sudoku.Measuring.Factor"/> values.
+            </summary>
+            <param name="_values">Indicates the values.</param>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.#ctor(System.ReadOnlyMemory{Sudoku.Measuring.Factor})">
+            <summary>
+            Represents a read-only array of <see cref="T:Sudoku.Measuring.Factor"/> values.
+            </summary>
+            <param name="_values">Indicates the values.</param>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.Length">
+            <summary>
+            Indicates the length of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.Span">
+            <summary>
+            Indicates the sequence of <see cref="T:Sudoku.Measuring.Factor"/> instances stored in the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.System#Collections#Generic#IReadOnlyCollection{Sudoku#Measuring#Factor}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Measuring.Factor"/> instance at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.FirstOrDefault(System.Func{Sudoku.Measuring.Factor,System.Boolean})">
+            <summary>
+            Checks for all elements in this collection, finding for the first element satisfying the specified condition;
+            return <see langword="null"/> if no such elements in this collection.
+            </summary>
+            <param name="match">The condition to be checked.</param>
+            <returns>The first found <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.ForEach(System.Action{Sudoku.Measuring.Factor})">
+            <summary>
+            Iterates on each element, executing the specified action.
+            </summary>
+            <param name="action">The action to be executed and applied to each element.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Sum(Sudoku.Analytics.Step)">
+            <summary>
+            Calculates sum of difficulty of the current step.
+            </summary>
+            <param name="step">The step.</param>
+            <returns>The sum value.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection via the specified index as the start, and the number of elements to be sliced.
+            </summary>
+            <param name="start">The index of the start element.</param>
+            <param name="length">The number of elements to be sliced.</param>
+            <returns>A <see cref="T:Sudoku.Measuring.FactorArray"/> instance sliced.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.System#Collections#Generic#IEnumerable{Sudoku#Measuring#Factor}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.System#Linq#Providers#ISliceMethod{Sudoku#Measuring#FactorArray,Sudoku#Measuring#Factor}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Create(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Measuring.FactorArray" /> instance.
+            </summary>
+            <param name="factors">
+            <para>The factors to be used as initial values.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>A <see cref="T:Sudoku.Measuring.FactorArray" /> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorArray.Enumerator">
+            <summary>
+            The back enumerator of this type.
+            </summary>
+            <param name="factors">Indicates the back factors to be iterated.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.#ctor(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
+            <summary>
+            The back enumerator of this type.
+            </summary>
+            <param name="factors">Indicates the back factors to be iterated.</param>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorArray.Enumerator._factors">
+            <summary>
+            Indicates the field of factors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorArray.Enumerator._index">
+            <summary>
+            Indicates the currently-iterated index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.ChainingLength">
+            <summary>
+            Represents a function that calculates for length on chaining rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.ChainingLength.GetLengthDifficulty(System.Int32)">
+            <summary>
+            Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
+            </summary>
+            <param name="length">The length of the pattern.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.ComplexTechniqueUsages">
+            <summary>
+            Represents a function that calculates for complex technique rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.ComplexTechniqueUsages.GetComplexityDifficulty(Sudoku.Categorization.Technique[][])">
+            <summary>
+            Gets the complexity difficulty for complex single techniques usages.
+            </summary>
+            <param name="techniques">The techniques used.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.IFunctionProvider">
+            <summary>
+            Represents a type that provides with functions. This type will only be used in reflection.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.OeisSequences">
+            <summary>
+            Represents a list of methods that calculates for values in OEIS sequences.
+            </summary>
+            <shared-comments>
+            <para>The index of the sequence. The index is 0-based.</para>
+            <para>The index of the sequence. The index is 1-based.</para>
+            </shared-comments>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A000217(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
+            (0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A002024(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A002024">A002024</see>
+            (1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[2]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A004526(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A004526">A004526</see>
+            (0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
         <member name="T:Sudoku.Categorization.MissingDifficultyLevelException">
             <summary>
             Represents an exception that describes for a field in <see cref="T:Sudoku.Categorization.Technique"/> is missing for difficulty level attribute.
@@ -23824,253 +24382,6 @@
             Indicates all assignment techniques.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.Digits">
-            <summary>The digits path.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.IsComplete">
-            <summary>
-            Indicates whether the pattern is complete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
-            <summary>
-            Indicates hte digits string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.Equals(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath"/> instance via collection expression.
-            </summary>
-            <param name="digits">A list of digits to be initialized.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath">
-            <summary>
-            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath"/>.
-            </summary>
-            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder">
-            <summary>
-            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
-            complex singles won't be supported for now.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Categorization.TechniqueSet)">
-            <summary>
-            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
-            complex singles won't be supported for now.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Categorization.Technique})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
-            </summary>
-            <param name="techniques">A list of techniques.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Find a suitable ittoryu path.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>
-            The target digit path. If none found, a longest path will be returned.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
-            <summary>
-            The generated property declaration for parameter <c>supportedTechniques</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuModuleAlreadyFinishedException">
-            <summary>
-            The internal exception type that reports "Already finished" information, breaking the recursion.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.DisorderedIttoryuModuleAlreadyFinishedException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.GridIttoryuExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.GridIttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath)">
-            <summary>
-            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>.
-            </summary>
-            <param name="this">The grid to be adjusted.</param>
-            <param name="ittoryuPath">
-            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
-            </param>
-            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-            <seealso cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.GridIttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Categorization.TechniqueSet,System.Nullable{Sudoku.Concepts.Ittoryu.DisorderedIttoryuDigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
-            with checking using the specified techniques.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="techniques">
-            <para>The techniques supported.</para>
-            <para>
-            The value is a <see cref="T:Sudoku.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Categorization.Technique.FullHouse"/> (Full House)</item>
-            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
-            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
-            <item><see cref="F:Sudoku.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
-            <item><see cref="F:Sudoku.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
-            </list>
-            </para>
-            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
-            </param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.IttoryuPathNode">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.IttoryuPathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.IttoryuPathNode.Grid">
-            <summary>Indicates the currently-used grid.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.IttoryuPathNode.House">
-            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.IttoryuPathNode.Candidate">
-            <summary>Indicates the target candidate.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.IttoryuPathNode.Digit">
-            <summary>
-            Indicates the target digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.IttoryuPathNode.Cell">
-            <summary>
-            Indicates the target cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.IttoryuPathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.IttoryuPathNode.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Ittoryu.IttoryuPathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Ittoryu.TechniqueIttoryuSets">
-            <summary>
-            Represents ittoryu-related technique sets instances.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.TechniqueIttoryuSets.IttoryuTechniques">
-            <summary>
-            Indicates the techniques that ittoryu path finder will use.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.TechniqueIttoryuSets.IttoryuNakedSingleNotIncluded">
-            <summary>
-            Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Ittoryu.TechniqueIttoryuSets.IttoryuBlockHiddenSingle">
-            <summary>
-            Indicates the techniques that ittroyu path finder will use,
-            only containing <see cref="F:Sudoku.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Ittoryu.DisorderedIttoryuFinder"/>
-            <seealso cref="F:Sudoku.Categorization.Technique.FullHouse"/>
-            <seealso cref="F:Sudoku.Categorization.Technique.HiddenSingleBlock"/>
-        </member>
         <member name="T:Sudoku.Generating.Filtering.BetweenRule">
             <summary>
             Represents a between rule.
@@ -25687,312 +25998,6 @@
         </member>
         <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Where(Sudoku.Categorization.TechniqueSet,System.Func{Sudoku.Categorization.Technique,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="T:Sudoku.Measuring.Factor">
-            <summary>
-            Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Measuring.Factor.PropertyFlags">
-            <summary>
-            Default property flags, including properties that are explicitly interface implemented.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ParameterNames">
-            <summary>
-            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
-            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
-            with the current factor and can be calculated its rating.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ReflectedStepType">
-            <summary>
-            Indicates the relied <see cref="T:System.Type"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.Parameters">
-            <summary>
-            Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that creates from property <see cref="P:Sudoku.Measuring.Factor.ParameterNames"/>.
-            </summary>
-            <exception cref="T:System.Reflection.AmbiguousMatchException">Throws when property names is invalid.</exception>
-            <seealso cref="P:Sudoku.Measuring.Factor.ParameterNames"/>
-            <seealso cref="T:System.Reflection.PropertyInfo"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.Formula">
-            <summary>
-            Provides with a formula that calculates for the result.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.FactorResourceKey">
-            <summary>
-            Indicates the factor resource key.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.Factor.GetName(System.IFormatProvider)">
-            <summary>
-            Try to fetch the name stored in resource dictionary.
-            </summary>
-            <param name="formatProvider">The culture information.</param>
-            <returns>The name of the factor.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.Factor.Create(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Measuring.Factor"/> instance that assigns predefined values.
-            </summary>
-            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.Factor.FactorResourceKey" path="/summary"/></param>
-            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.Factor.ParameterNames" path="/summary"/></param>
-            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.Factor.ReflectedStepType" path="/summary"/></param>
-            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.Factor.Formula" path="/summary"/></param>
-            <returns>A <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Measuring.AnonymousFactor">
-            <summary>
-            Defines an anonymous factor.
-            </summary>
-            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
-            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
-            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
-            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Measuring.AnonymousFactor.#ctor(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
-            <summary>
-            Defines an anonymous factor.
-            </summary>
-            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
-            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
-            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
-            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.FactorArray">
-            <summary>
-            Represents a read-only array of <see cref="T:Sudoku.Measuring.Factor"/> values.
-            </summary>
-            <param name="_values">Indicates the values.</param>
-            <seealso cref="T:Sudoku.Measuring.Factor"/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.#ctor(System.ReadOnlyMemory{Sudoku.Measuring.Factor})">
-            <summary>
-            Represents a read-only array of <see cref="T:Sudoku.Measuring.Factor"/> values.
-            </summary>
-            <param name="_values">Indicates the values.</param>
-            <seealso cref="T:Sudoku.Measuring.Factor"/>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.Length">
-            <summary>
-            Indicates the length of elements stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.Span">
-            <summary>
-            Indicates the sequence of <see cref="T:Sudoku.Measuring.Factor"/> instances stored in the current collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.System#Collections#Generic#IReadOnlyCollection{Sudoku#Measuring#Factor}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.Item(System.Int32)">
-            <summary>
-            Gets the element at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The <see cref="T:Sudoku.Measuring.Factor"/> instance at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.FirstOrDefault(System.Func{Sudoku.Measuring.Factor,System.Boolean})">
-            <summary>
-            Checks for all elements in this collection, finding for the first element satisfying the specified condition;
-            return <see langword="null"/> if no such elements in this collection.
-            </summary>
-            <param name="match">The condition to be checked.</param>
-            <returns>The first found <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.ForEach(System.Action{Sudoku.Measuring.Factor})">
-            <summary>
-            Iterates on each element, executing the specified action.
-            </summary>
-            <param name="action">The action to be executed and applied to each element.</param>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Sum(Sudoku.Analytics.Step)">
-            <summary>
-            Calculates sum of difficulty of the current step.
-            </summary>
-            <param name="step">The step.</param>
-            <returns>The sum value.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the collection via the specified index as the start, and the number of elements to be sliced.
-            </summary>
-            <param name="start">The index of the start element.</param>
-            <param name="length">The number of elements to be sliced.</param>
-            <returns>A <see cref="T:Sudoku.Measuring.FactorArray"/> instance sliced.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.ToArray">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.System#Collections#Generic#IEnumerable{Sudoku#Measuring#Factor}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.System#Linq#Providers#ISliceMethod{Sudoku#Measuring#FactorArray,Sudoku#Measuring#Factor}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Create(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Measuring.FactorArray" /> instance.
-            </summary>
-            <param name="factors">
-            <para>The factors to be used as initial values.</para>
-            <feature name="scoped-keyword">
-			<para>
-				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
-				This means you cannot use this variable and argument outside the scope,
-				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
-				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
-			</para>
-		</feature>
-            </param>
-            <returns>A <see cref="T:Sudoku.Measuring.FactorArray" /> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Measuring.FactorArray.Enumerator">
-            <summary>
-            The back enumerator of this type.
-            </summary>
-            <param name="factors">Indicates the back factors to be iterated.</param>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.#ctor(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
-            <summary>
-            The back enumerator of this type.
-            </summary>
-            <param name="factors">Indicates the back factors to be iterated.</param>
-        </member>
-        <member name="F:Sudoku.Measuring.FactorArray.Enumerator._factors">
-            <summary>
-            Indicates the field of factors.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Measuring.FactorArray.Enumerator._index">
-            <summary>
-            Indicates the currently-iterated index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.FillingDistance">
-            <summary>
-            Represents a type that can calculate filling distance of a puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.FillingDistance.GetBlockDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
-            <summary>
-            Try to return a list of integers representing the logical filling distance between two adjacent steps,
-            by using block-first filling rule.
-            </summary>
-            <param name="this">The collector instance.</param>
-            <param name="grid">The grid to be checked.</param>
-            <param name="steps">The steps and corresponding grid states.</param>
-            <returns>A list of block distances.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.FillingDistance.GetDigitDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{Sudoku.Analytics.Steps.SingleStep,Sudoku.Concepts.Grid}}@)">
-            <summary>
-            Try to return a list of integers representing the logical filling distance between two adjacent steps,
-            by using digit-first filling rule.
-            </summary>
-            <param name="this">The collector instance.</param>
-            <param name="grid">The grid to be checked.</param>
-            <param name="steps">The steps and corresponding grid states.</param>
-            <returns>A list of block distances.</returns>
-        </member>
-        <member name="T:Sudoku.Measuring.Functions.ChainingLength">
-            <summary>
-            Represents a function that calculates for length on chaining rules.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.ChainingLength.GetLengthDifficulty(System.Int32)">
-            <summary>
-            Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
-            </summary>
-            <param name="length">The length of the pattern.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Measuring.Functions.ComplexTechniqueUsages">
-            <summary>
-            Represents a function that calculates for complex technique rules.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.ComplexTechniqueUsages.GetComplexityDifficulty(Sudoku.Categorization.Technique[][])">
-            <summary>
-            Gets the complexity difficulty for complex single techniques usages.
-            </summary>
-            <param name="techniques">The techniques used.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="T:Sudoku.Measuring.Functions.IFunctionProvider">
-            <summary>
-            Represents a type that provides with functions. This type will only be used in reflection.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Measuring.Functions.OeisSequences">
-            <summary>
-            Represents a list of methods that calculates for values in OEIS sequences.
-            </summary>
-            <shared-comments>
-            <para>The index of the sequence. The index is 0-based.</para>
-            <para>The index of the sequence. The index is 1-based.</para>
-            </shared-comments>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A000217(System.Int32)">
-            <summary>
-            Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
-            (0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ..).
-            </summary>
-            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
-            <returns>The result value at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A002024(System.Int32)">
-            <summary>
-            Gets the value at the specified index in the sequence <see href="https://oeis.org/A002024">A002024</see>
-            (1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, ..).
-            </summary>
-            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[2]"/></param>
-            <returns>The result value at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A004526(System.Int32)">
-            <summary>
-            Gets the value at the specified index in the sequence <see href="https://oeis.org/A004526">A004526</see>
-            (0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, ..).
-            </summary>
-            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
-            <returns>The result value at the specified index.</returns>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
