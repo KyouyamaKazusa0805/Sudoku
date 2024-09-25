@@ -6,6 +6,17 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class SpanEnumerable
 {
+	/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
+	public static ReadOnlySpan<(int Index, T Value)> Index<T>(this ReadOnlySpan<T> @this)
+	{
+		var result = new (int, T)[@this.Length];
+		for (var i = 0; i < @this.Length; i++)
+		{
+			result[i] = (i, @this[i]);
+		}
+		return result;
+	}
+
 	/// <summary>
 	/// Finds the first element satisfying the specified condition, and return its corresponding index.
 	/// </summary>

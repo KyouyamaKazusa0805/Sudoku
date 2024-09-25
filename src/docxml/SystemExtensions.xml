@@ -3335,6 +3335,9 @@
             </summary>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Index``1(System.ReadOnlySpan{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.FirstIndex``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>
             Finds the first element satisfying the specified condition, and return its corresponding index.
