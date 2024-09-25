@@ -1212,6 +1212,7 @@ public enum Technique
 		Prefix = "0100",
 		Aliases = ["Locked Candidates Type 1"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.Pointing, RatingOriginal = [2.6])]
+	[Npg(Rating = 20)]
 	[TechniqueMetadata(
 		Rating = 26,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1231,6 +1232,7 @@ public enum Technique
 		Prefix = "0101",
 		Aliases = ["Locked Candidates Type 2"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.Claiming, RatingOriginal = [2.8])]
+	[Npg(Rating = 20)]
 	[TechniqueMetadata(
 		Rating = 28,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1266,6 +1268,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 60, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0200")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedPair, RatingOriginal = [3.0])]
+	[Npg(Rating = 30)]
 	[TechniqueMetadata(
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1311,6 +1314,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 70, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0210")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenPair, RatingOriginal = [3.4])]
+	[Npg(Rating = 30)]
 	[TechniqueMetadata(
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1339,6 +1343,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 80, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0201")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedTriplet, RatingOriginal = [3.6], Aliases = ["Naked Triplet"])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1384,6 +1389,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0211")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenTriplet, RatingOriginal = [4.0], Aliases = ["Hidden Triplet"])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1412,6 +1418,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0202")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedQuad, RatingOriginal = [5.0], Aliases = ["Naked Quad"])]
+	[Npg(Rating = 150)]
 	[TechniqueMetadata(
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1440,6 +1447,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0212")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenQuad, RatingOriginal = [5.4], Aliases = ["Hidden Quad"])]
+	[Npg(Rating = 150)]
 	[TechniqueMetadata(
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1460,6 +1468,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 140, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0300")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.XWing, RatingOriginal = [3.2])]
+	[Npg(Rating = 80)]
 	[TechniqueMetadata(
 		Rating = 32,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1534,6 +1543,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0301")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.Swordfish, RatingOriginal = [3.8])]
+	[Npg(Rating = 200)]
 	[TechniqueMetadata(
 		Rating = 32,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1609,6 +1619,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0302")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.Jellyfish, RatingOriginal = [5.2])]
+	[Npg(Rating = 300)]
 	[TechniqueMetadata(
 		Rating = 32,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -2602,6 +2613,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0800")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.XyWing, RatingOriginal = [4.2])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 42,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3013,6 +3025,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0600", Aliases = ["Uniqueness Test 1"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3032,6 +3045,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0601", Aliases = ["Uniqueness Test 2"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5], RatingAdvanced = [4.6])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3051,6 +3065,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0602", Aliases = ["Uniqueness Test 3"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5, 4.8], RatingAdvanced = [4.6, 4.9])]
+	[Npg(Rating = 150)]
 	[TechniqueMetadata(
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3070,6 +3085,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0603", Aliases = ["Uniqueness Test 4"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5], RatingAdvanced = [4.6])]
+	[Npg(Rating = 150)]
 	[TechniqueMetadata(
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3089,6 +3105,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0604", Aliases = ["Uniqueness Test 5"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingAdvanced = [4.6])]
+	[Npg(Rating = 100)]
 	[TechniqueMetadata(
 		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3107,6 +3124,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0605", Aliases = ["Uniqueness Test 6"])]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingAdvanced = [4.6])]
+	[Npg(Rating = 150)]
 	[TechniqueMetadata(
 		Rating = 44,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4727,6 +4745,7 @@ public enum Technique
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.TurbotFish, RatingOriginal = [6.6], Aliases = ["Turbot Fish"])]
 #endif
+	[Npg(Rating = 50)]
 	[TechniqueMetadata(
 		Rating = 40,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4743,6 +4762,7 @@ public enum Technique
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Rating = 66, TechniqueDefined = SudokuExplainerTechnique.TurbotFish, Aliases = ["Turbot Fish"])]
 #endif
+	[Npg(Rating = 50)]
 	[TechniqueMetadata(
 		Rating = 41,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4757,6 +4777,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0403")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.TurbotFish, RatingOriginal = [6.6])]
+	[Npg(Rating = 50)]
 	[TechniqueMetadata(
 		Rating = 42,
 		DifficultyLevel = DifficultyLevel.Hard,

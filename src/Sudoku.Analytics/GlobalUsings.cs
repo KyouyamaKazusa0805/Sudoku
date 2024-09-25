@@ -48,6 +48,7 @@ global using Sudoku.Resources;
 global using Sudoku.Runtime;
 global using Sudoku.Runtime.InteropServices;
 global using Sudoku.Runtime.InteropServices.Hodoku;
+global using Sudoku.Runtime.InteropServices.Npg;
 global using Sudoku.Runtime.InteropServices.SudokuExplainer;
 global using Sudoku.Runtime.MingridServices;
 global using Sudoku.Shuffling.Transforming;
