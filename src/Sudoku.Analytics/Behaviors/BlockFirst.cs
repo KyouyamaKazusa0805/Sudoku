@@ -3,17 +3,14 @@ namespace Sudoku.Behaviors;
 /// <summary>
 /// Represents a way to finish puzzle with block-first rule.
 /// </summary>
-public static class BlockFirst
+public sealed class BlockFirst : IBehaviorMetric
 {
-	/// <summary>
-	/// Try to return a list of integers representing the logical filling distance between two adjacent steps,
-	/// by using block-first filling rule.
-	/// </summary>
-	/// <param name="this">The collector instance.</param>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="steps">The steps and corresponding grid states.</param>
-	/// <returns>A list of block distances.</returns>
-	public static ReadOnlySpan<int> GetDistanceArray(this Collector @this, ref readonly Grid grid, out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps)
+	/// <inheritdoc/>
+	public static UserBehavior MeasurableBehavior => UserBehavior.BlockFirst;
+
+
+	/// <inheritdoc/>
+	public static ReadOnlySpan<int> GetDistanceArray(Collector collector, ref readonly Grid grid, out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps)
 	{
 		var (playground, solution, result) = (grid, grid.GetSolutionGrid(), (List<int>)[]);
 		var (tempSteps, lastStep) = ((List<KeyValuePair<SingleStep, Grid>>)[], default(SingleStep)!);
@@ -23,7 +20,7 @@ public static class BlockFirst
 				in grid,
 				in playground,
 				lastStep,
-				from step in @this.Collect(in playground).Cast<Step, SingleStep>()
+				from step in collector.Collect(in playground).Cast<Step, SingleStep>()
 				group step by step.Code into stepGroup
 				orderby stepGroup.Key
 				select stepGroup
