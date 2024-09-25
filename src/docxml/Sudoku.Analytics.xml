@@ -25907,6 +25907,31 @@
         <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.FillingDistance">
+            <summary>
+            Represents a type that can calculate filling distance of a puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.FillingDistance.GetBlockDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.ValueTuple{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
+            <summary>
+            Try to return a list of integers representing the logical filling distance between two adjacent steps,
+            by using block-first filling rule.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="steps">The steps and corresponding grid states.</param>
+            <returns>A list of block distances.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FillingDistance.GetDigitDistanceArray(Sudoku.Analytics.Collector,Sudoku.Concepts.Grid@,System.ReadOnlySpan{System.ValueTuple{Sudoku.Analytics.Step,Sudoku.Concepts.Grid}}@)">
+            <summary>
+            Try to return a list of integers representing the logical filling distance between two adjacent steps,
+            by using digit-first filling rule.
+            </summary>
+            <param name="this">The collector instance.</param>
+            <param name="grid">The grid to be checked.</param>
+            <param name="steps">The steps and corresponding grid states.</param>
+            <returns>A list of block distances.</returns>
+        </member>
         <member name="T:Sudoku.Measuring.Functions.ChainingLength">
             <summary>
             Represents a function that calculates for length on chaining rules.
