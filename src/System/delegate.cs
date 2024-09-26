@@ -106,22 +106,17 @@ public static class @delegate
 	public static T Self<T>(T value) where T : allows ref struct => value;
 
 	/// <summary>
-	/// Represents Y-Combinator. This method can allow you create recursive lambdas.
+	/// (Easter egg) Represents Y-Combinator. This method can allow you create recursive lambdas:
+	/// <code><![CDATA[
+	/// var factorial = YCombinator(static (Func<int, int> lambda) => value => value == 0 ? 1 : value * lambda(value - 1));
+	/// int result = factorial(5); // 120
+	/// Console.WriteLine(result);
+	/// ]]></code>
 	/// </summary>
 	/// <typeparam name="T">The type of the argument to be passed.</typeparam>
 	/// <typeparam name="TResult">The type of the result.</typeparam>
 	/// <param name="f">The recursion logic.</param>
 	/// <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
-	/// <remarks>
-	/// You can use this to create customized recursive lambda:
-	/// <code><![CDATA[
-	/// //                           T TResult
-	/// var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
-	/// //                          ~~~  ~~~
-	/// int result = factorial(5); // T -> TResult
-	/// Console.WriteLine(result);
-	/// ]]></code>
-	/// </remarks>
 	public static Func<T, TResult> YCombinator<T, TResult>(Func<Func<T, TResult>, Func<T, TResult>> f)
 		where T : allows ref struct
 		where TResult : allows ref struct
