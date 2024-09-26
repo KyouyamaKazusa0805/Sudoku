@@ -68,10 +68,7 @@ public static class SpanEnumerable
 	/// Try to get the minimal value appeared in the collection.
 	/// </summary>
 	/// <typeparam name="TNumber">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <returns>The minimal value.</returns>
 	public static TNumber Min<TNumber>(this ReadOnlySpan<TNumber> @this) where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
@@ -107,10 +104,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
 	/// <typeparam name="TKey">The type of key to compare elements by.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the minimum key in the sequence.</returns>
 	public static TSource? MinBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
@@ -146,10 +140,7 @@ public static class SpanEnumerable
 	/// Try to get the minimal value appeared in the collection.
 	/// </summary>
 	/// <typeparam name="TNumber">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <returns>The minimal value.</returns>
 	public static TNumber Max<TNumber>(this ReadOnlySpan<TNumber> @this) where TNumber : INumber<TNumber>, IMinMaxValue<TNumber>
 	{
@@ -185,10 +176,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
 	/// <typeparam name="TKey">The type of key to compare elements by.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the maximum key in the sequence.</returns>
 	public static TSource? MaxBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
@@ -220,7 +208,7 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.Max{T, TInterim}(T[], Func{T, TInterim})"/>
+	/// <inheritdoc cref="Max{TSource, TInterim}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TInterim})"/>
 	public static unsafe TInterim MaxUnsafe<T, TInterim>(this ReadOnlySpan<T> @this, delegate*<T, TInterim> selector)
 		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
 	{
@@ -240,10 +228,7 @@ public static class SpanEnumerable
 	/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements of source.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
 	public static T Sum<T>(this ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>?, IAdditionOperators<T, T, T>?
 	{
@@ -260,10 +245,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
 	/// <typeparam name="TKey">The type of key to add up.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="keySelector">A function to extract the key for each element.</param>
 	/// <returns>The value with the sum key in the sequence.</returns>
 	public static TKey Sum<TSource, TKey>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
@@ -277,7 +259,7 @@ public static class SpanEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="ArrayEnumerable.Sum{T, TResult}(T[], Func{T, TResult})"/>
+	/// <inheritdoc cref="Sum{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static unsafe TResult SumUnsafe<T, TResult>(this ReadOnlySpan<T> source, delegate*<T, TResult> selector)
 		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 	{
@@ -293,10 +275,7 @@ public static class SpanEnumerable
 	/// Totals up how many elements stored in the specified sequence satisfy the specified condition.
 	/// </summary>
 	/// <typeparam name="TSource">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="condition">The condition.</param>
 	/// <returns>The number of elements satisfying the specified condition.</returns>
 	public static int Count<TSource>(this ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, bool> condition)
@@ -329,10 +308,7 @@ public static class SpanEnumerable
 	/// Checks whether at least one element are satisfied the specified condition.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool Any<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
@@ -364,10 +340,7 @@ public static class SpanEnumerable
 	/// Checks whether all elements are satisfied the specified condition.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool All<T>(this ReadOnlySpan<T> @this, FuncRefReadOnly<T, bool> match)
@@ -387,10 +360,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TBase">The type of each element.</typeparam>
 	/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool AllAre<TBase, TDerived>(this ReadOnlySpan<TBase> @this) where TDerived : class?, TBase?
 	{
@@ -409,10 +379,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TBase">The type of base elements.</typeparam>
 	/// <typeparam name="TDerived">The type derived from <typeparamref name="TBase"/> to be checked.</typeparam>
-	/// <param name="this">
-	/// <para>The source elements.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The source elements.</param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
 	public static ReadOnlySpan<TDerived> OfType<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
 		where TBase : class?
@@ -436,10 +403,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="TBase">The type of each element.</typeparam>
 	/// <typeparam name="TDerived">The type of target elements.</typeparam>
-	/// <param name="this">
-	/// <para>The source elements.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The source elements.</param>
 	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
 	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
 		where TBase : class?
@@ -458,10 +422,7 @@ public static class SpanEnumerable
 	/// Skips the specified number of elements, make a new <see cref="ReadOnlySpan{T}"/> instance points to it.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="count">The number of elements to skip.</param>
 	/// <returns>
 	/// The new instance that points to the first element that has already skipped the specified number of elements.
@@ -487,10 +448,7 @@ public static class SpanEnumerable
 	/// Retrieves all the elements that match the conditions defined by the specified predicate.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements of the span.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="match">The <see cref="FuncRefReadOnly{T, TResult}"/> that defines the conditions of the elements to search for.</param>
 	/// <returns>
 	/// A <see cref="ReadOnlySpan{T}"/> containing all the elements that match the conditions defined
@@ -515,10 +473,7 @@ public static class SpanEnumerable
 	/// </summary>
 	/// <typeparam name="T">The type of each elements in the span.</typeparam>
 	/// <typeparam name="TResult">The type of target value.</typeparam>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
+	/// <param name="this">The collection to be used and checked.</param>
 	/// <param name="selector">The selector.</param>
 	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
 	public static ReadOnlySpan<TResult> Select<T, TResult>(this ReadOnlySpan<T> @this, Func<T, TResult> selector)
@@ -564,17 +519,7 @@ public static class SpanEnumerable
 		return result.ToArray();
 	}
 
-	/// <summary>
-	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/summary"/>
-	/// </summary>
-	/// <param name="this">
-	/// <para>The collection to be used and checked.</para>
-	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
-	/// </param>
-	/// <param name="predicate">
-	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})" path="/param[@name='predicate']"/>
-	/// </param>
-	/// <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
+	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static ReadOnlySpan<T> Where<T>(this ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		var result = new T[@this.Length];
