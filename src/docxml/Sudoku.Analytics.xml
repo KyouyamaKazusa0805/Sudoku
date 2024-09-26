@@ -25483,6 +25483,20 @@
         <member name="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Inferring.DeadlyPatternInferredResult@)">
+            <inheritdoc cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
+            <exception cref="T:Sudoku.Inferring.DeadlyPatternInferrerLimitReachedException">
+            Throws when the pattern contains more than 10000 solutions.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Inferring.DeadlyPatternInferrerLimitReachedException">
+            <summary>
+            Represents an exception that will be thrown if more than 10000 solutions found in a possible deadly pattern to be verified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Inferring.DeadlyPatternInferrerLimitReachedException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Inferring.IInferrable`1">
             <summary>
             Represents an inferrable object.
@@ -28316,6 +28330,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.MergedRegionForcingChains">
             <summary>
               Looks up a localized string similar to Merged Region Forcing Chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_DeadlyPatternInferrerLimitReachedException">
+            <summary>
+              Looks up a localized string similar to More than 10000 solutions are found in the module, which will produce large memory on checking for the pattern. Currently the module disallows checking for such patterns. Please reduce such patterns and try again..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Message_DisorderedIttoryuModuleAlreadyFinished">

@@ -16,6 +16,13 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 
 	/// <inheritdoc/>
 	public static bool TryInfer(ref readonly Grid grid, out DeadlyPatternInferredResult result)
+		=> TryInfer(in grid, in Unsafe.NullRef<CellMap>(), out result);
+
+	/// <inheritdoc cref="TryInfer(ref readonly Grid, out DeadlyPatternInferredResult)"/>
+	/// <exception cref="DeadlyPatternInferrerLimitReachedException">
+	/// Throws when the pattern contains more than 10000 solutions.
+	/// </exception>
+	public static bool TryInfer(ref readonly Grid grid, [AllowNull] ref readonly CellMap cells, out DeadlyPatternInferredResult result)
 	{
 		if (grid.GetIsValid() || grid.EmptiesCount != 81 || grid.PuzzleType != SudokuType.Standard)
 		{
@@ -24,13 +31,21 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		}
 
 		// Collect all used cells. This value may not be necessary but will make program be a little bit faster if cached.
-		var cellsUsed = CellMap.Empty;
-		for (var cell = 0; cell < 81; cell++)
+		CellMap cellsUsed;
+		if (Unsafe.IsNullRef(in cells))
 		{
-			if (grid.GetCandidates(cell) != Grid.MaxCandidatesMask)
+			cellsUsed = CellMap.Empty;
+			for (var cell = 0; cell < 81; cell++)
 			{
-				cellsUsed.Add(cell);
+				if (grid.GetCandidates(cell) != Grid.MaxCandidatesMask)
+				{
+					cellsUsed.Add(cell);
+				}
 			}
+		}
+		else
+		{
+			cellsUsed = cells;
 		}
 
 		// Step 0: Determine whether at least one house the pattern spanned only hold one cell used.
@@ -107,6 +122,11 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		{
 			if (currentCell == 81)
 			{
+				if (solutions.Count >= 9999)
+				{
+					throw new DeadlyPatternInferrerLimitReachedException();
+				}
+
 				solutions.AddRef(in grid);
 				return;
 			}

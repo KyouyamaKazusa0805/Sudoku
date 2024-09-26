@@ -3384,4 +3384,7 @@ Error grid: '{0:#}'</value>
   <data name="SettingsPage_GridSizeDescription" xml:space="preserve">
     <value>Changes with the size of the grid displayed in most of pages, in pixels. However, this option doesn't change some sudoku panes displayed in modal windows (a kind of window that is suddenly appears when the program wants to tell you some messages which are usually warnings or errors). Min value is 360, max value is 800, and default value is 610.</value>
   </data>
+  <data name="Message_DeadlyPatternInferrerLimitReachedException" xml:space="preserve">
+    <value>More than 10000 solutions are found in the module, which will produce large memory on checking for the pattern. Currently the module disallows checking for such patterns. Please reduce such patterns and try again.</value>
+  </data>
 </root>

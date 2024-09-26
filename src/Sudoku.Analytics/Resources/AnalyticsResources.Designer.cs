@@ -4057,6 +4057,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More than 10000 solutions are found in the module, which will produce large memory on checking for the pattern. Currently the module disallows checking for such patterns. Please reduce such patterns and try again..
+        /// </summary>
+        public static string Message_DeadlyPatternInferrerLimitReachedException {
+            get {
+                return ResourceManager.GetString("Message_DeadlyPatternInferrerLimitReachedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disordered ittoryu module has already finished..
         /// </summary>
         public static string Message_DisorderedIttoryuModuleAlreadyFinished {
