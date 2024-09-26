@@ -434,16 +434,12 @@ internal static class TypeImplHandler
 			0 => (isRefStruct, referencedMembers) switch
 			{
 				(true, _) => ToStringBehavior.Throw,
-				_ when hasImpledFormattable(type) is var p and not null => p switch
-				{
-					true => ToStringBehavior.CallOverloadImplicit,
-					_ => ToStringBehavior.CallOverloadExplicit
-				},
+				_ when hasImpledFormattable(type) => ToStringBehavior.CallOverload,
 				(_, []) => ToStringBehavior.RecordLike,
 				(_, { Length: 1 }) => ToStringBehavior.Specified,
 				_ => ToStringBehavior.RecordLike
 			},
-			1 => ToStringBehavior.CallOverloadExplicit,
+			1 => ToStringBehavior.CallOverload,
 			2 when referencedMembers.Length == 1 => ToStringBehavior.Specified,
 			3 when referencedMembers.Length != 0 => ToStringBehavior.RecordLike,
 			4 => ToStringBehavior.Throw,
@@ -481,20 +477,50 @@ internal static class TypeImplHandler
 		}
 		else
 		{
+			var typeMethods = type.GetMembers().OfType<IMethodSymbol>().ToArray();
 			var expression = behavior switch
 			{
+				ToStringBehavior.CallOverload when typeMethods.Any(
+					method => method is
+					{
+						Name: "System.IFormattable.ToString",
+						IsImplicitlyDeclared: false,
+						ExplicitInterfaceImplementations: not [],
+						TypeParameters: [],
+						Parameters: [{ Type.SpecialType: System_String, NullableAnnotation: Annotated }, { Type: var t, NullableAnnotation: Annotated }],
+						ReturnType.SpecialType: System_String
+					} && SymbolEqualityComparer.Default.Equals(t, formatProviderSymbol)
+				) => "((global::System.IFormattable)this).ToString(null, null)",
+				ToStringBehavior.CallOverload when typeMethods.Any(
+					static method => method is
+					{
+						Name: "ToString",
+						IsImplicitlyDeclared: false,
+						TypeParameters: [],
+						Parameters: [{ Type.SpecialType: System_String, NullableAnnotation: Annotated }],
+						ReturnType.SpecialType: System_String
+					}
+				) => "ToString(default(string))",
+				ToStringBehavior.CallOverload when typeMethods.Any(
+					method => method is
+					{
+						Name: "ToString",
+						IsImplicitlyDeclared: false,
+						TypeParameters: [],
+						Parameters: [{ Type: var t, NullableAnnotation: Annotated }],
+						ReturnType.SpecialType: System_String
+					} && SymbolEqualityComparer.Default.Equals(t, formatProviderSymbol)
+				) => "ToString(default(global::System.IFormatProvider))",
+				ToStringBehavior.CallOverload => "ToString(default(string), default(global::System.IFormatProvider))",
 				ToStringBehavior.ReturnTypeName => fullTypeNameString,
-				ToStringBehavior.CallOverloadImplicit => "ToString(default(string), default(global::System.IFormatProvider))",
-				ToStringBehavior.CallOverloadExplicit => "((global::System.IFormattable)this).ToString(null, null)",
 				ToStringBehavior.Specified => referencedMembers[0].Name,
 				ToStringBehavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 				ToStringBehavior.RecordLike
 					=> $$$"""
-					$"{{{typeName}}} {{ {{{string.Join(", ", f(referencedMembers))}}} }}"
-					""",
+						$"{{{typeName}}} {{ {{{string.Join(", ", f(referencedMembers))}}} }}"
+						""",
 				_ => throw new InvalidOperationException("Invalid state.")
 			};
-
 			var attributesMarked = isRefStruct && behavior is ToStringBehavior.Throw or ToStringBehavior.ReturnTypeName
 				? behavior == ToStringBehavior.ReturnTypeName
 					? """
@@ -537,36 +563,8 @@ internal static class TypeImplHandler
 			let name = referencedMember.Name
 			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
 
-		bool? hasImpledFormattable(INamedTypeSymbol type)
-		{
-			if (type.Interfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default))
-			{
-				// Extra check: check whether the method is explicitly-implemented. If so, we should return 'false'.
-#pragma warning disable format
-				return type.GetMembers().OfType<IMethodSymbol>().Any(
-					method => method is
-					{
-						Name: "ToString",
-						IsImplicitlyDeclared: false,
-						ExplicitInterfaceImplementations: not [],
-						TypeParameters: [],
-						Parameters: [
-							{
-								Type.SpecialType: System_String,
-								NullableAnnotation: not NotAnnotated
-							},
-							{
-								Type: var formatProviderType
-							}
-						],
-						ReturnType.SpecialType: System_String
-					} && SymbolEqualityComparer.IncludeNullability.Equals(formatProviderType, formatProviderSymbol)
-				);
-#pragma warning restore format
-			}
-
-			return type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default) ? false : null;
-		}
+		bool hasImpledFormattable(INamedTypeSymbol type)
+			=> type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default);
 
 		bool stringMemberAttributeMatcher(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
@@ -1205,8 +1203,7 @@ file enum ToStringBehavior
 {
 	Throw,
 	ReturnTypeName,
-	CallOverloadExplicit,
-	CallOverloadImplicit,
+	CallOverload,
 	Specified,
 	RecordLike,
 	MakeAbstract
