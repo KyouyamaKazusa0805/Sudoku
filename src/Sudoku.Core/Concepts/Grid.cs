@@ -75,8 +75,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// </exception>
 	private Grid(ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		@ref.ThrowIfNullRef(in firstElement);
-
 		// Firstly we should initialize the inner values.
 		this = Empty;
 
