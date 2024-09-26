@@ -310,15 +310,15 @@ public partial class TokenView : ListViewBase
 
 	private void TokenView_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
 	{
-		var action = (Action)(e.Key switch
-		{
-			VirtualKey.Left => () => e.Handled = moveFocus(MoveDirection.Previous),
-			VirtualKey.Right => () => e.Handled = moveFocus(MoveDirection.Next),
-			VirtualKey.Back or VirtualKey.Delete => () => e.Handled = removeItem(),
-			_ => @delegate.DoNothing
-		});
-
-		action();
+		(
+			e.Key switch
+			{
+				VirtualKey.Left => () => e.Handled = moveFocus(MoveDirection.Previous),
+				VirtualKey.Right => () => e.Handled = moveFocus(MoveDirection.Next),
+				VirtualKey.Back or VirtualKey.Delete => () => e.Handled = removeItem(),
+				_ => new Action(@delegate.DoNothing)
+			}
+		)();
 
 
 		bool moveFocus(MoveDirection direction)

@@ -757,7 +757,9 @@ public sealed partial class AnalyzePage : Page
 	{
 		if (VisualUnit is { Views.Length: not 0 })
 		{
-			((Action)(e.IsClockwise ? SetNextView : SetPreviousView))();
+			var a = SetNextView;
+			var b = SetPreviousView;
+			(e.IsClockwise ? a : b)();
 		}
 	}
 

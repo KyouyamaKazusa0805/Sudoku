@@ -31,7 +31,7 @@ internal sealed class IttoryuSupportedTechniquesValueConverter : IValueConverter
 			throw new InvalidOperationException(error_Parameter);
 		}
 
-		((Action<Technique>)(isOn ? result.Add : t => result.Remove(t)))(technique);
+		(isOn ? new Action<Technique>(result.Add) : t => result.Remove(t))(technique);
 		return result;
 	}
 }
