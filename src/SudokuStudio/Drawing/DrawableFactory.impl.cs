@@ -331,8 +331,36 @@ internal partial class DrawableFactory
 			return;
 		}
 
-		var pathCreator = new PathCreator(sudokuPane, new(gridControl), candidateNodes.ToArray(), conclusions);
-		foreach (var control in pathCreator.CreateLinks(linkNodes))
+		foreach (var control in new PathCreator(sudokuPane, new(gridControl), candidateNodes.ToArray(), conclusions).CreateShapes(linkNodes))
+		{
+			GridLayout.SetRow(control, 2);
+			GridLayout.SetColumn(control, 2);
+			GridLayout.SetRowSpan(control, 9);
+			GridLayout.SetColumnSpan(control, 9);
+			Canvas.SetZIndex(control, -1);
+
+			if (sudokuPane.EnableAnimationFeedback)
+			{
+				control.OpacityTransition = new();
+			}
+			animatedResults.Add((() => gridControl.Children.Add(control), () => control.Opacity = 1));
+		}
+	}
+
+	/// <summary>
+	/// Create <see cref="FrameworkElement"/>s that displays for grouped node instances.
+	/// </summary>
+	/// <param name="context">Indicates the drawing context.</param>
+	/// <param name="nodes">Indicates the nodes to be drawn.</param>
+	private static partial void ForGroupedNodes(DrawingContext context, ReadOnlySpan<GroupedNodeInfo> nodes)
+	{
+		var (sudokuPane, animatedResults) = context;
+		if (sudokuPane.MainGrid is not { } gridControl)
+		{
+			return;
+		}
+
+		foreach (var control in new GroupedNodeCreator(sudokuPane, new(gridControl)).CreateShapes(nodes))
 		{
 			GridLayout.SetRow(control, 2);
 			GridLayout.SetColumn(control, 2);

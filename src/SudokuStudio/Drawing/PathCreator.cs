@@ -9,35 +9,19 @@ namespace SudokuStudio.Drawing;
 /// <param name="conclusions">Indicates the conclusions of the whole chain.</param>
 /// <seealso cref="Path"/>
 internal sealed partial class PathCreator(
-	[PrimaryConstructorParameter] SudokuPane pane,
-	[PrimaryConstructorParameter] SudokuPanePositionConverter converter,
+	SudokuPane pane,
+	SudokuPanePositionConverter converter,
 	[PrimaryConstructorParameter] ReadOnlyMemory<CandidateViewNode> candidateNodes,
 	[PrimaryConstructorParameter] ReadOnlyMemory<Conclusion> conclusions
-)
+) : CreatorBase<ILinkViewNode, Shape>(pane, converter)
 {
-	/// <summary>
-	/// Indicates the rotate angle (45 degrees).
-	/// </summary>
-	private const double RotateAngle = PI / 4;
-
-	/// <summary>
-	/// Indicates the square root of 2.
-	/// </summary>
-	private const double SqrtOf2 = 1.4142135623730951;
-
-
-	/// <summary>
-	/// Creates a list of <see cref="Shape"/> instances via the specified link view nodes.
-	/// </summary>
-	/// <param name="nodes">The link view nodes.</param>
-	/// <returns>A <see cref="Shape"/> instance.</returns>
-	public ReadOnlySpan<Shape> CreateLinks(ReadOnlySpan<ILinkViewNode> nodes)
+	/// <inheritdoc/>
+	public override ReadOnlySpan<Shape> CreateShapes(ReadOnlySpan<ILinkViewNode> nodes)
 	{
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		var ((ow, oh), _) = Converter;
 		var ((cellSize, _), _, _, _) = Converter;
 		var points = getPoints(nodes);
-		var drawnGroupedNodes = new List<CandidateMap>();
 		var result = new List<Shape>();
 		foreach (var node in nodes)
 		{
@@ -85,7 +69,7 @@ internal sealed partial class PathCreator(
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 			if (distance <= cellSize * SqrtOf2 || distance <= cellSize * SqrtOf2)
 			{
-				goto DrawGroupNodeOutlines;
+				continue;
 			}
 
 			var (deltaX, deltaY) = (pt2.X - pt1.X, pt2.Y - pt1.Y);
@@ -207,23 +191,6 @@ internal sealed partial class PathCreator(
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						}
 					);
-				}
-			}
-
-		DrawGroupNodeOutlines:
-			if (node.Shape == LinkShape.Chain)
-			{
-				// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
-				var (s, e) = ((CandidateMap)start, (CandidateMap)end);
-				if (s.Count != 1 && !drawnGroupedNodes.Contains(s))
-				{
-					drawnGroupedNodes.AddRef(in s);
-					result.Add(drawRectangle(in s));
-				}
-				if (e.Count != 1 && !drawnGroupedNodes.Contains(e))
-				{
-					drawnGroupedNodes.AddRef(in e);
-					result.Add(drawRectangle(in e));
 				}
 			}
 
@@ -375,67 +342,6 @@ internal sealed partial class PathCreator(
 				points.Add(Converter.GetPosition(candidate));
 			}
 			return points;
-		}
-
-		Rectangle drawRectangle(ref readonly CandidateMap nodeCandidates)
-		{
-			var fill = new SolidColorBrush(Pane.GroupedNodeBackgroundColor);
-			var stroke = new SolidColorBrush(Pane.GroupedNodeStrokeColor);
-			var result = new Rectangle
-			{
-				Stroke = stroke,
-				StrokeThickness = 1.5,
-				Fill = fill,
-				RadiusX = 10,
-				RadiusY = 10,
-				HorizontalAlignment = HorizontalAlignment.Left,
-				VerticalAlignment = VerticalAlignment.Top,
-				Tag = nodeCandidates,
-				Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-			};
-
-			// Try to arrange rectangle position.
-			// A simple way is to record all rows and columns spanned for the candidate list,
-			// in order to find four data:
-			//   1) The minimal row
-			//   2) The maximal row
-			//   3) The minimal column
-			//   4) The maximal column
-			// and then find a minimal rectangle that can cover all of those candidates by those four data.
-			const int logicalMaxValue = 100;
-			var (minRow, minColumn, maxRow, maxColumn) = (Candidate.MaxValue, Candidate.MaxValue, Candidate.MinValue, Candidate.MinValue);
-			var (minRowValue, minColumnValue, maxRowValue, maxColumnValue) = (logicalMaxValue, logicalMaxValue, -1, -1);
-			foreach (var candidate in nodeCandidates)
-			{
-				var cell = candidate / 9;
-				var digit = candidate % 9;
-				var rowValue = cell / 9 * 3 + digit / 3;
-				var columnValue = cell % 9 * 3 + digit % 3;
-				if (rowValue <= minRowValue)
-				{
-					(minRowValue, minRow) = (rowValue, candidate);
-				}
-				if (rowValue >= maxRowValue)
-				{
-					(maxRowValue, maxRow) = (rowValue, candidate);
-				}
-				if (columnValue <= minColumnValue)
-				{
-					(minColumnValue, minColumn) = (columnValue, candidate);
-				}
-				if (columnValue >= maxColumnValue)
-				{
-					(maxColumnValue, maxColumn) = (columnValue, candidate);
-				}
-			}
-
-			var topLeftY = Converter.GetPosition(minRow, Position.TopLeft).Y;
-			var topLeftX = Converter.GetPosition(minColumn, Position.TopLeft).X;
-			var bottomRightY = Converter.GetPosition(maxRow, Position.BottomRight).Y;
-			var bottomRightX = Converter.GetPosition(maxColumn, Position.BottomRight).X;
-			var rectanglePositionTopLeft = new Thickness(topLeftX - ow, topLeftY - ow, 0, 0);
-			(result.Width, result.Height, result.Margin) = (bottomRightX - topLeftX, bottomRightY - topLeftY, rectanglePositionTopLeft);
-			return result;
 		}
 	}
 

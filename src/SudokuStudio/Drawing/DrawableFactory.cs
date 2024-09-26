@@ -35,7 +35,8 @@ internal static partial class DrawableFactory
 				switch (z.Tag)
 				{
 					case ViewNode v when negatives.Any(n => n is ViewNode p && p == v): { child.Remove(z); break; }
-					case CandidateMap: { child.Remove(z); break; }
+					case GroupedNodeInfo g when negatives.Any(n => n is GroupedNodeInfo p && p == g): { child.Remove(z); break; }
+					case CandidateMap c when negatives.Any(n => n is CandidateMap p && p == c): { child.Remove(z); break; }
 					case Conclusion c when negatives.Any(n => n is Conclusion p && p == c): { child.Remove(z); break; }
 				}
 			}
@@ -48,7 +49,8 @@ internal static partial class DrawableFactory
 			{
 				Conclusions = [.. from p in positives where p is Conclusion select (Conclusion)p],
 				View = [.. from p in positives where p is ViewNode select (ViewNode)p]
-			}
+			},
+			from p in positives where p is GroupedNodeInfo select (GroupedNodeInfo)p
 		);
 	}
 
@@ -59,9 +61,23 @@ internal static partial class DrawableFactory
 	public static void UpdateViewUnitControls(SudokuPane pane)
 	{
 		RemoveViewUnitControls(pane);
-		if (pane.ViewUnit is not null)
+		if (pane.ViewUnit is { View: var view })
 		{
-			AddViewUnitControls(pane, pane.ViewUnit);
+			// All grouped nodes will be updated.
+			var groupedNodes = new HashSet<GroupedNodeInfo>();
+			foreach (var node in view.OfType<ChainLinkViewNode>())
+			{
+				if (node.Start is { Count: > 1 } s)
+				{
+					groupedNodes.Add(new(in s));
+				}
+				if (node.End is { Count: > 1 } e)
+				{
+					groupedNodes.Add(new(in e));
+				}
+			}
+
+			AddViewUnitControls(pane, pane.ViewUnit, groupedNodes.ToArray());
 		}
 	}
 
@@ -83,9 +99,10 @@ internal static partial class DrawableFactory
 	/// </summary>
 	/// <param name="pane">The target pane.</param>
 	/// <param name="viewUnit">The view unit that you want to display.</param>
+	/// <param name="groupedNodes">Grouped nodes.</param>
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
-	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
+	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit, ReadOnlySpan<GroupedNodeInfo> groupedNodes)
 	{
 		// Check whether the data can be deconstructed.
 		if (viewUnit is not { View: var view, Conclusions: var conclusions })
@@ -138,6 +155,7 @@ internal static partial class DrawableFactory
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
 		ForLinkNodes(context, links.AsReadOnlySpan(), view.OfType<CandidateViewNode>(), conclusions);
+		ForGroupedNodes(context, groupedNodes);
 		controlAddingActions.ForEach(static p => (p.Animating + p.Adding)());
 	}
 
@@ -159,6 +177,7 @@ internal static partial class DrawableFactory
 	private static partial void ForChuteNode(DrawingContext context, ChuteViewNode chuteNode);
 	private static partial void ForBabaGroupNode(DrawingContext context, BabaGroupViewNode babaGroupNode);
 	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, Conclusion[] conclusions);
+	private static partial void ForGroupedNodes(DrawingContext context, ReadOnlySpan<GroupedNodeInfo> nodes);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
@@ -183,7 +202,7 @@ file static class Extensions
 	public static IEnumerable<FrameworkElement> FindDrawableControls(this UIElementCollection collection)
 		=> (
 			from child in collection.OfType<FrameworkElement>()
-			where child.Tag is IDrawableItem and (ViewNode or CandidateMap or Conclusion)
+			where child.Tag is IDrawableItem and (ViewNode or GroupedNodeInfo or CandidateMap or Conclusion)
 			select child
 		).ToArray();
 }

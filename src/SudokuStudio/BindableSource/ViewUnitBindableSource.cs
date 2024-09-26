@@ -85,16 +85,42 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 
 
 		static ReadOnlySpan<IDrawableItem> f(ViewUnitBindableSource value)
-			=> (IDrawableItem[])[.. value.Conclusions, .. value.View];
+		{
+			var result = new List<IDrawableItem>();
+			result.AddRange(from conclusion in value.Conclusions select (IDrawableItem)conclusion);
+			result.AddRange(value.View);
+
+			foreach (var node in value.View.OfType<ChainLinkViewNode>())
+			{
+				if (node.Start is { Count: > 1 } s)
+				{
+					result.Add(new GroupedNodeInfo(in s));
+				}
+				if (node.End is { Count: > 1 } e)
+				{
+					result.Add(new GroupedNodeInfo(in e));
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
 
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
 		{
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
-			getDeltaConclusions(left, right, out var negativeConclusions, out var positiveConclusions);
+			getDeltaConclusions(
+				left,
+				right,
+				out var negativeConclusions,
+				out var positiveConclusions,
+				out var negativeGroupedNodes,
+				out var positiveGroupedNodes
+			);
 			negatives.AddRange(negativeConclusions);
 			positives.AddRange(positiveConclusions);
 			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
 			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
+			negatives.AddRange(from node in negativeGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
+			positives.AddRange(from node in positiveGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
 			return new() { Negatives = negatives.AsReadOnlySpan(), Positives = positives.AsReadOnlySpan() };
 		}
 
@@ -102,13 +128,14 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			ViewUnitBindableSource left,
 			ViewUnitBindableSource right,
 			out ReadOnlySpan<IDrawableItem> negativeConclusions,
-			out ReadOnlySpan<IDrawableItem> positiveConclusions
+			out ReadOnlySpan<IDrawableItem> positiveConclusions,
+			out ReadOnlySpan<CandidateMap> negativeGroupedNodes,
+			out ReadOnlySpan<CandidateMap> positiveGroupedNodes
 		)
 		{
 			// To distinct conclusions, we should split into two steps:
 			//   1) Find conclusions that will be used in both old and new collection (it won't be removed).
 			//   2) Check the state on conclusion overlapping cases.
-			//
 			// If and only if the conclusion will be appeared in both collections, and its state has been changed,
 			// it will be updated from both negatives and positives; otherwise, don't change anything.
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
@@ -150,6 +177,31 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 				}
 			}
 
+			var (leftInfo, rightInfo) = (new HashSet<CandidateMap>(), new HashSet<CandidateMap>());
+			foreach (var leftLink in left.View.OfType<ChainLinkViewNode>())
+			{
+				if (leftLink.Start.Count >= 2)
+				{
+					leftInfo.Add(leftLink.Start);
+				}
+				if (leftLink.End.Count >= 2)
+				{
+					leftInfo.Add(leftLink.End);
+				}
+			}
+			foreach (var rightLink in right.View.OfType<ChainLinkViewNode>())
+			{
+				if (rightLink.Start.Count >= 2)
+				{
+					rightInfo.Add(rightLink.Start);
+				}
+				if (rightLink.End.Count >= 2)
+				{
+					rightInfo.Add(rightLink.End);
+				}
+			}
+			negativeGroupedNodes = leftInfo.Except(rightInfo).ToArray();
+			positiveGroupedNodes = rightInfo.Except(leftInfo).ToArray();
 			negativeConclusions = negatives.AsReadOnlySpan();
 			positiveConclusions = positives.AsReadOnlySpan();
 		}

@@ -250,6 +250,21 @@
             The generated property declaration for parameter <c>description</c>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.GroupedNodeInfo">
+            <summary>
+            Indicates the information that describes a grouped node.
+            </summary>
+            <param name="Map">Indicates the map.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.GroupedNodeInfo.#ctor(Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Indicates the information that describes a grouped node.
+            </summary>
+            <param name="Map">Indicates the map.</param>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.GroupedNodeInfo.Map">
+            <summary>Indicates the map.</summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.LibraryBindableSource">
             <summary>
             Represents a library bindable source. This type is different with <see cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
@@ -3152,6 +3167,53 @@
             Indicates the mode that displays for coordinate labels at four directions.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Drawing.CreatorBase`2">
+            <summary>
+            Extracted type that creates <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>-related instances.
+            </summary>
+            <typeparam name="TInput">The type of input values.</typeparam>
+            <typeparam name="T">The type of output values.</typeparam>
+            <param name="pane">Indicates the sudoku pane control.</param>
+            <param name="converter">Indicates the position converter.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.CreatorBase`2.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter)">
+            <summary>
+            Extracted type that creates <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>-related instances.
+            </summary>
+            <typeparam name="TInput">The type of input values.</typeparam>
+            <typeparam name="T">The type of output values.</typeparam>
+            <param name="pane">Indicates the sudoku pane control.</param>
+            <param name="converter">Indicates the position converter.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CreatorBase`2.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CreatorBase`2.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.CreatorBase`2.CreateShapes(System.ReadOnlySpan{`0})">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances representing grouped nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="P:SudokuStudio.Drawing.CreatorBase`2.Pane">
+            <summary>
+            The generated property declaration for parameter <c>pane</c>.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Drawing.CreatorBase`2.Converter">
+            <summary>
+            The generated property declaration for parameter <c>converter</c>.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Drawing.DrawableFactory">
             <summary>
             Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
@@ -3184,12 +3246,13 @@
             <param name="pane">The target pane.</param>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource,System.ReadOnlySpan{SudokuStudio.BindableSource.GroupedNodeInfo})">
             <summary>
             Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
             <param name="pane">The target pane.</param>
             <param name="viewUnit">The view unit that you want to display.</param>
+            <param name="groupedNodes">Grouped nodes.</param>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
@@ -3277,6 +3340,13 @@
             <remarks>
             This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ILinkViewNode"/> instances together.
             </remarks>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForGroupedNodes(SudokuStudio.Drawing.DrawingContext,System.ReadOnlySpan{SudokuStudio.BindableSource.GroupedNodeInfo})">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for grouped node instances.
+            </summary>
+            <param name="context">Indicates the drawing context.</param>
+            <param name="nodes">Indicates the nodes to be drawn.</param>
         </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,Sudoku.Drawing.Nodes.CandidateViewNode,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -3439,6 +3509,23 @@
             Indicates the display mode is to draw a backslash.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Drawing.GroupedNodeCreator">
+            <summary>
+            Extracted type that creates the capsule instances.
+            </summary>
+            <param name="pane">Indicates the sudoku pane control.</param>
+            <param name="converter">Indicates the position converter.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.GroupedNodeCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter)">
+            <summary>
+            Extracted type that creates the capsule instances.
+            </summary>
+            <param name="pane">Indicates the sudoku pane control.</param>
+            <param name="converter">Indicates the position converter.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.GroupedNodeCreator.CreateShapes(System.ReadOnlySpan{SudokuStudio.BindableSource.GroupedNodeInfo})">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Drawing.PathCreator">
             <summary>
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
@@ -3459,22 +3546,8 @@
             <param name="conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
-        <member name="F:SudokuStudio.Drawing.PathCreator.RotateAngle">
-            <summary>
-            Indicates the rotate angle (45 degrees).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.PathCreator.SqrtOf2">
-            <summary>
-            Indicates the square root of 2.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode})">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
-            </summary>
-            <param name="nodes">The link view nodes.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateShapes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode})">
+            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Drawing.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
             <summary>
@@ -3484,16 +3557,6 @@
             <param name="pt1">The start point.</param>
             <param name="pt2">The end point.</param>
             <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
-        </member>
-        <member name="P:SudokuStudio.Drawing.PathCreator.Pane">
-            <summary>
-            The generated property declaration for parameter <c>pane</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Drawing.PathCreator.Converter">
-            <summary>
-            The generated property declaration for parameter <c>converter</c>.
-            </summary>
         </member>
         <member name="P:SudokuStudio.Drawing.PathCreator.CandidateNodes">
             <summary>
