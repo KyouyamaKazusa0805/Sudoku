@@ -4,7 +4,7 @@ namespace System;
 /// Represents a list of methods that can check for the concept "References" defined in C#.
 /// </summary>
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-public static class @ref
+public static unsafe class @ref
 {
 	/// <summary>
 	/// Swaps for two elements.
@@ -20,35 +20,6 @@ public static class @ref
 			var temp = left;
 			left = right;
 			right = temp;
-		}
-	}
-
-	/// <summary>
-	/// Throws an <see cref="ArgumentNullException"/> if the argument points to <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the referenced element.</typeparam>
-	/// <param name="reference">
-	/// <para>The reference to the target element, or maybe a <see langword="null"/> reference.</para>
-	/// <para><i>
-	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
-	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
-	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
-	/// where the only argument is passed by <see langword="ref"/>.
-	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
-	/// </i></para>
-	/// </param>
-	/// <param name="paramName">
-	/// <para>The parameter name.</para>
-	/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
-	/// </param>
-	/// <exception cref="ArgumentNullException">Throws if the argument is a <see langword="null"/> reference.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(ref readonly T reference, [CallerArgumentExpression(nameof(reference))] string paramName = null!)
-		where T : allows ref struct
-	{
-		if (Unsafe.IsNullRef(in reference))
-		{
-			throw new ArgumentNullException(nameof(reference));
 		}
 	}
 
@@ -91,7 +62,7 @@ public static class @ref
 	/// <param name="length">The length.</param>
 	/// <returns>A <see cref="Span{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe Span<T> AsSpan<T>(ref T firstElementReference, int length)
+	public static Span<T> AsSpan<T>(ref T firstElementReference, int length)
 		=> new(Unsafe.AsPointer(ref firstElementReference), length);
 
 	/// <summary>
@@ -102,7 +73,7 @@ public static class @ref
 	/// <param name="length">The length.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe ReadOnlySpan<T> AsReadOnlySpan<T>(ref readonly T firstElementReference, int length)
+	public static ReadOnlySpan<T> AsReadOnlySpan<T>(ref readonly T firstElementReference, int length)
 		=> new(Unsafe.AsPointer(ref Unsafe.AsRef(in firstElementReference)), length);
 
 	/// <summary>
@@ -118,8 +89,6 @@ public static class @ref
 	/// </exception>
 	public static ReadOnlySpan<T> Slice<T>(ref readonly T memorySpan, int start, int count)
 	{
-		ThrowIfNullRef(in memorySpan);
-
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{

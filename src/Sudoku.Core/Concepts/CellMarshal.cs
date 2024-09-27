@@ -22,8 +22,6 @@ public static class CellMarshal
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void CopyHouseInfo(this Cell @this, ref House reference)
 	{
-		@ref.ThrowIfNullRef(in reference);
-
 		reference = BlockTable[@this];
 		Unsafe.Add(ref reference, 1) = RowTable[@this];
 		Unsafe.Add(ref reference, 2) = ColumnTable[@this];
