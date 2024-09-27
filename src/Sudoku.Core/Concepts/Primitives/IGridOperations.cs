@@ -73,6 +73,13 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : un
 	public abstract void SetState(Cell cell, CellState state);
 
 	/// <summary>
+	/// Set the specified cell with specified candidates.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <param name="mask">The mask that holds a list of desired digits.</param>
+	public abstract void SetCandidates(Cell cell, Mask mask);
+
+	/// <summary>
 	/// Set the specified cell to the specified mask.
 	/// </summary>
 	/// <param name="cell">The cell.</param>

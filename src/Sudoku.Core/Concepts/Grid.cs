@@ -697,8 +697,16 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	{
 		ref var mask = ref this[cell];
 		var copied = mask;
-		mask = (Mask)((int)GetHeaderBits(cell) | (int)state << GridBase.CellCandidatesCount | mask & MaxCandidatesMask);
+		mask = (Mask)(GetHeaderBits(cell) | (Mask)((int)state << GridBase.CellCandidatesCount) | mask & MaxCandidatesMask);
 		OnValueChanged(ref this, cell, copied, mask, -1);
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void SetCandidates(Cell cell, Mask mask)
+	{
+		var r = (Mask)(GetHeaderBits(cell) | (Mask)((int)GetState(cell) << GridBase.CellCandidatesCount) | mask & MaxCandidatesMask);
+		SetMask(cell, r);
 	}
 
 	/// <inheritdoc/>

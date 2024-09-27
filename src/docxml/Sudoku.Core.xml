@@ -4089,6 +4089,9 @@
         <member name="M:Sudoku.Concepts.Grid.SetState(System.Int32,Sudoku.Concepts.CellState)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
         </member>
@@ -5685,6 +5688,13 @@
             </summary>
             <param name="cell">The cell.</param>
             <param name="state">The state.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.IGridOperations`1.SetCandidates(System.Int32,System.Int16)">
+            <summary>
+            Set the specified cell with specified candidates.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="mask">The mask that holds a list of desired digits.</param>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGridOperations`1.SetMask(System.Int32,System.Int16)">
             <summary>
