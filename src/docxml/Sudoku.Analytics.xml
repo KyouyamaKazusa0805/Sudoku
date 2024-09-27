@@ -6148,16 +6148,16 @@
             <summary>
             <para>
             Indicates the custom <see cref="T:Sudoku.Analytics.StepSearcher"/>s you defined to solve a puzzle.
-            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
+            By default, the solver will use <see cref="P:Sudoku.Analytics.StepSearcherFactory.StepSearchers"/> to solve a puzzle.
             If you assign a new array of <see cref="T:Sudoku.Analytics.StepSearcher"/>s into this property
-            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/> to solve a puzzle.
+            the step searchers will use this property instead of <see cref="P:Sudoku.Analytics.StepSearcherFactory.StepSearchers"/> to solve a puzzle.
             </para>
             <para>
             Please note that the property will keep the <see langword="null"/> value if you don't assign any values into it;
             however, if you want to use the customized collection to solve a puzzle, assign a non-<see langword="null"/> array into it.
             </para>
             </summary>
-            <seealso cref="P:Sudoku.Analytics.StepSearcherPool.StepSearchers"/>
+            <seealso cref="P:Sudoku.Analytics.StepSearcherFactory.StepSearchers"/>
         </member>
         <member name="P:Sudoku.Analytics.Primitives.IStepGatherer`3.ResultStepSearchers">
             <summary>
@@ -6953,33 +6953,33 @@
         <member name="M:Sudoku.Analytics.StepSearcher.op_LessThanOrEqual(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearcherPool">
+        <member name="T:Sudoku.Analytics.StepSearcherFactory">
             <summary>
-            Represents a provider type that can find built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
+            Represents a provider type that can create built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearcherPool.ThisAssembly">
+        <member name="F:Sudoku.Analytics.StepSearcherFactory.ThisAssembly">
             <summary>
             Indicates the current assembly.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearcherPool.StepSearchers">
+        <member name="P:Sudoku.Analytics.StepSearcherFactory.StepSearchers">
             <summary>
             Indicates built-in step searchers defined.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.String)">
+        <member name="M:Sudoku.Analytics.StepSearcherFactory.GetStepSearcher(System.String)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherFactory.GetStepSearcher(System.Type)" path="/summary"/>
             </summary>
             <param name="typeName">The raw type name. Please note that the string text shouldn't contain its containing namespace.</param>
-            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)" path="/returns"/></returns>
+            <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearcherFactory.GetStepSearcher(System.Type)" path="/returns"/></returns>
             <exception cref="T:System.InvalidOperationException">
             Throws when the corresponding <see cref="T:System.Type"/> reflection result is not found.
             </exception>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherPool.GetStepSearcher(System.Type)">
+        <member name="M:Sudoku.Analytics.StepSearcherFactory.GetStepSearcher(System.Type)">
             <summary>
             The internal method to get all <see cref="T:Sudoku.Analytics.StepSearcher"/> instances derived from <paramref name="type"/> defined in this assembly.
             </summary>

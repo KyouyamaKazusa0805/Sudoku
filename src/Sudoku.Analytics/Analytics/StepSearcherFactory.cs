@@ -1,15 +1,15 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents a provider type that can find built-in <see cref="StepSearcher"/> instances.
+/// Represents a provider type that can create built-in <see cref="StepSearcher"/> instances.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-public static class StepSearcherPool
+public static class StepSearcherFactory
 {
 	/// <summary>
 	/// Indicates the current assembly.
 	/// </summary>
-	private static readonly Assembly ThisAssembly = typeof(StepSearcherPool).Assembly;
+	private static readonly Assembly ThisAssembly = typeof(StepSearcherFactory).Assembly;
 
 
 	/// <summary>

@@ -29,7 +29,7 @@ public sealed partial class Collector : CollectorBase
 
 	/// <inheritdoc/>
 	public ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; internal set; } =
-		from searcher in StepSearcherPool.StepSearchers
+		from searcher in StepSearcherFactory.StepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Collecting)
 		select searcher;
 

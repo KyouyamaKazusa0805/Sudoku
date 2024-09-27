@@ -64,7 +64,7 @@ public sealed partial class Analyzer : AnalyzerBase
 
 	/// <inheritdoc/>
 	public ReadOnlyMemory<StepSearcher> ResultStepSearchers { get; internal set; } =
-		from searcher in StepSearcherPool.StepSearchers
+		from searcher in StepSearcherFactory.StepSearchers
 		where searcher.RunningArea.HasFlag(StepSearcherRunningArea.Searching)
 		select searcher;
 
