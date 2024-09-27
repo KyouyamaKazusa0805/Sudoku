@@ -12,9 +12,8 @@ public static class CoordinateSimplifier
 	/// <returns>A list of parts grouped by rows and its matched columns.</returns>
 	public static ReadOnlySpan<CoordinateSplit> Simplify(ref readonly CellMap cells)
 	{
-		return (CoordinateSplit[])[
-			..
-			from pair in simplifyCoordinates([.. from cell in cells select (cell / 9, cell % 9)])
+		return
+			from pair in simplifyCoordinates(from cell in cells select (cell / 9, cell % 9))
 			let rows = pair.Item1
 			let columns = pair.Item2
 			select rows switch
@@ -22,11 +21,10 @@ public static class CoordinateSimplifier
 				RowIndex r => new CoordinateSplit([r], [.. columns]),
 				SortedSet<RowIndex> r => new CoordinateSplit([.. r], [.. columns]),
 				_ => throw new InvalidOperationException()
-			}
-		];
+			};
 
 
-		static List<(object, SortedSet<ColumnIndex>)> simplifyCoordinates(List<(RowIndex, ColumnIndex)> coordinates)
+		static ReadOnlySpan<(object, SortedSet<ColumnIndex>)> simplifyCoordinates(ReadOnlySpan<(RowIndex, ColumnIndex)> coordinates)
 		{
 			var rowGroups = new Dictionary<RowIndex, SortedSet<ColumnIndex>>();
 			var colGroups = new Dictionary<ColumnIndex, SortedSet<RowIndex>>();
@@ -42,47 +40,46 @@ public static class CoordinateSimplifier
 				}
 			}
 
-			var (simplifiedRows, simplifiedCols) = (rowGroups.ToDictionary(), colGroups.ToDictionary());
-			var finalSimplified = new List<(object RowOrRows, object ColumnOrColumns)>();
+			var (simplifiedRows, simplifiedColumns) = (rowGroups.ToDictionary(), colGroups.ToDictionary());
+			var final = new List<(object RowOrRows, object ColumnOrColumns)>();
 			foreach (var (x, yList) in simplifiedRows)
 			{
 				foreach (var y in yList)
 				{
-					finalSimplified.Add(
-						simplifiedCols.TryGetValue(y, out var xList)
-							? xList.SequenceEqual([x]) ? (x, y) : (xList, y)
-							: (x, y)
-					);
+					final.Add(simplifiedColumns.TryGetValue(y, out var xList) && !xList.SequenceEqual([x]) ? (xList, y) : (x, y));
 				}
 			}
 
-			var finalDict = new Dictionary<SortedSet<RowIndex>, SortedSet<ColumnIndex>>(SortedSet<RowIndex>.CreateSetComparer());
-			foreach (var (rowOrRows, columnOrColumns) in finalSimplified)
+			var finalDic = new Dictionary<SortedSet<RowIndex>, SortedSet<ColumnIndex>>(SortedSet<RowIndex>.CreateSetComparer());
+			foreach (var (rowOrRows, columnOrColumns) in final)
 			{
-				if (rowOrRows is SortedSet<RowIndex> xList)
+				switch (rowOrRows)
 				{
-					if (!finalDict.TryAdd(xList, [(ColumnIndex)columnOrColumns]))
+					case SortedSet<RowIndex> xList:
 					{
-						finalDict[xList].Add((ColumnIndex)columnOrColumns);
+						if (!finalDic.TryAdd(xList, [(ColumnIndex)columnOrColumns]))
+						{
+							finalDic[xList].Add((ColumnIndex)columnOrColumns);
+						}
+						break;
 					}
-				}
-				else
-				{
-					var key = (SortedSet<RowIndex>)[(RowIndex)rowOrRows];
-					if (!finalDict.TryAdd(key, [(ColumnIndex)columnOrColumns]))
+					default:
 					{
-						finalDict[key].Add((ColumnIndex)columnOrColumns);
+						var key = (SortedSet<RowIndex>)[(RowIndex)rowOrRows];
+						if (!finalDic.TryAdd(key, [(ColumnIndex)columnOrColumns]))
+						{
+							finalDic[key].Add((ColumnIndex)columnOrColumns);
+						}
+						break;
 					}
 				}
 			}
 
-			return [
-				..
-				from kvp in finalDict.ToArray()
+			return
+				from kvp in finalDic.ToArray()
 				let keySet = kvp.Key
 				let valueSet = kvp.Value
-				select (keySet.Count > 1 ? (keySet, valueSet) : ((object)keySet.Min, valueSet))
-			];
+				select (keySet.Count > 1 ? (keySet, valueSet) : ((object)keySet.Min, valueSet));
 		}
 	}
 }
