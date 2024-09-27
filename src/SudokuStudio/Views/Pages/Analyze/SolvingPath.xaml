@@ -52,7 +52,7 @@
 											HorizontalTextAlignment="Center"
 											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_HodokuRatingText(ShowHodokuDifficulty)}"
 											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_HodokuRating(ShowHodokuDifficulty)}"
-											Text="HR" Foreground="{ThemeResource SolvingStepItemForeground}" />
+											Text="HR" Foreground="{ThemeResource SolvingStepItemForeground}" Opacity=".1" />
 										<TextBlock
 											Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											HorizontalTextAlignment="Center"
@@ -67,8 +67,7 @@
 											HorizontalTextAlignment="Center"
 											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_SudokuExplainerText(ShowSudokuExplainerDifficulty)}"
 											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_SudokuExplainerRating(ShowSudokuExplainerDifficulty)}"
-											Text="SER"
-											Foreground="{ThemeResource SolvingStepItemForeground}" />
+											Text="SER" Foreground="{ThemeResource SolvingStepItemForeground}" Opacity=".1" />
 										<TextBlock
 											Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											HorizontalTextAlignment="Center"
