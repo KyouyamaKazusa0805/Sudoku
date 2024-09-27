@@ -1138,10 +1138,6 @@
     <value>唯一矩形・融合待定数组</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="UniqueRectangleBabaGrouping" xml:space="preserve">
-    <value>唯一矩形・代数</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="UniqueRectangleExternalType2" xml:space="preserve">
     <value>唯一矩形・外部类型 2</value>
     <comment>Technique Name</comment>

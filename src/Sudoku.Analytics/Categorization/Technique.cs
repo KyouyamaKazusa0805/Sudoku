@@ -3532,21 +3532,6 @@ public enum Technique
 	UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
 
 	/// <summary>
-	/// Indicates unique rectangle baba grouping.
-	/// </summary>
-	[TechniqueMetadata(
-		Rating = 49,
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		StepType = typeof(UniqueRectangleWithBabaGroupingStep),
-		StepSearcherType = typeof(UniqueRectangleStepSearcher),
-		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
-			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
-		])]
-	UniqueRectangleBabaGrouping,
-
-	/// <summary>
 	/// Indicates unique rectangle external type 1.
 	/// </summary>
 	[TechniqueMetadata(

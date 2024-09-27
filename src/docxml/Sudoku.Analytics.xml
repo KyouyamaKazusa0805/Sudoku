@@ -8905,31 +8905,6 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBabaGroupingUnique(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Int16,System.Int32,System.Int32,System.Int32)">
-             <summary>
-             Check UR + baba grouping.
-             </summary>
-             <param name="accumulator">The technique accumulator.</param>
-             <param name="grid">The grid.</param>
-             <param name="context">The context.</param>
-             <param name="urCells">All UR cells.</param>
-             <param name="comparer">The comparer.</param>
-             <param name="d1">The digit 1.</param>
-             <param name="d2">The digit 2.</param>
-             <param name="index">The index.</param>
-             <remarks>
-             The pattern:
-             <code><![CDATA[
-                  ↓urCellInSameBlock
-             ab  abc      abc  ←anotherCell
-            
-                 abcx-----abcy ←resultCell
-                       c
-                  ↑targetCell
-             ]]></code>
-             Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
-             </remarks>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check AR + Hidden single.
@@ -15242,53 +15217,6 @@
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.IsNaked">
             <summary>
             The generated property declaration for parameter <c>isNaked</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Baba Grouping</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="targetCell">Indicates the target cell.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-            <param name="absoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Unique Rectangle with Baba Grouping</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit1"><inheritdoc/></param>
-            <param name="digit2"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="targetCell">Indicates the target cell.</param>
-            <param name="extraDigit">Indicates the extra digit used.</param>
-            <param name="absoluteOffset"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.TargetCell">
-            <summary>
-            The generated property declaration for parameter <c>targetCell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.ExtraDigit">
-            <summary>
-            The generated property declaration for parameter <c>extraDigit</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleWWingStep">
@@ -22076,11 +22004,6 @@
         <member name="F:Sudoku.Categorization.Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz">
             <summary>
             Indicates unique rectangle doubly-linked almost locked sets XZ.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.UniqueRectangleBabaGrouping">
-            <summary>
-            Indicates unique rectangle baba grouping.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.UniqueRectangleExternalType1">
@@ -31333,11 +31256,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangle4X3">
             <summary>
               Looks up a localized string similar to Unique Rectangle + 4X/3SL.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBabaGrouping">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle Baba Grouping.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBurredSubset">

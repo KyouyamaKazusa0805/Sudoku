@@ -9460,15 +9460,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle Baba Grouping.
-        /// </summary>
-        public static string UniqueRectangleBabaGrouping {
-            get {
-                return ResourceManager.GetString("UniqueRectangleBabaGrouping", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle Burred Subset.
         /// </summary>
         public static string UniqueRectangleBurredSubset {

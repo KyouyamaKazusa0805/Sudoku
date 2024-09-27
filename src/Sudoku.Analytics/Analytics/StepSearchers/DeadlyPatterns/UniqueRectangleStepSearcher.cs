@@ -76,7 +76,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangleBurredSubset,
 
 	// Pattern-based types
-	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
+	Technique.UniqueRectangleSueDeCoq,
 	Technique.UniqueRectangleSinglyLinkedAlmostLockedSetsXz, Technique.UniqueRectangleDoublyLinkedAlmostLockedSetsXz,
 	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
 	Technique.UniqueRectangleWWing,
@@ -251,7 +251,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					if (SearchForExtendedUniqueRectangles)
 					{
-						CheckBabaGroupingUnique(collected, in grid, ref context, urCells, comparer, d1, d2, index);
 						CheckAlmostLockedSetsXz(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, alses, index);
 						CheckExternalType1Or2(collected, in grid, ref context, urCells, d1, d2, index, arMode);
 						CheckExternalType3(collected, in grid, ref context, urCells, comparer, d1, d2, index, arMode);
@@ -546,7 +545,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	private partial void CheckRegularWing(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned);
 	private partial void CheckSueDeCoq(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSet> alses, int index);
-	private partial void CheckBabaGroupingUnique(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
 	private partial void CheckHiddenSingleAvoidable(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 
 	//
