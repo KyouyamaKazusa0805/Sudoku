@@ -249,45 +249,41 @@ file static class Extensions
 	/// <returns>A <see cref="bool"/> result indicating whether the element has already been added.</returns>
 	public static bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
 	{
-		if (!allowsAdvancedLinks)
+		switch (@this)
 		{
-			// Check whether the chain contains grouped links.
-			switch (@this)
+			case NormalChainStep { Pattern.Links: var links }:
 			{
-				case NormalChainStep { Pattern.Links: var links }:
-				{
-					if (links.Any(static link => link.GroupedLinkPattern is not null))
-					{
-						return false;
-					}
-					break;
-				}
-				case MultipleForcingChainsStep { Pattern: var pattern }:
-				{
-					foreach (var (_, branch) in pattern)
-					{
-						if (branch.Links.Any(static link => link.GroupedLinkPattern is not null))
-						{
-							return false;
-						}
-					}
-					break;
-				}
-				case BlossomLoopStep { Pattern: var pattern }:
-				{
-					foreach (var (_, branch) in pattern)
-					{
-						if (branch.Links.Any(static link => link.GroupedLinkPattern is not null))
-						{
-							return false;
-						}
-					}
-					break;
-				}
-				default:
+				if (allowsAdvancedLinks ^ links.Any(static link => link.GroupedLinkPattern is not null))
 				{
 					return false;
 				}
+				break;
+			}
+			case MultipleForcingChainsStep { Pattern: var pattern }:
+			{
+				foreach (var (_, branch) in pattern)
+				{
+					if (allowsAdvancedLinks ^ branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+					{
+						return false;
+					}
+				}
+				break;
+			}
+			case BlossomLoopStep { Pattern: var pattern }:
+			{
+				foreach (var (_, branch) in pattern)
+				{
+					if (allowsAdvancedLinks ^ branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+					{
+						return false;
+					}
+				}
+				break;
+			}
+			default:
+			{
+				return false;
 			}
 		}
 		return true;
