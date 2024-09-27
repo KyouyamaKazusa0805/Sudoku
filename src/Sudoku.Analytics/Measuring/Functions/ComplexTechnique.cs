@@ -14,7 +14,10 @@ public sealed class ComplexTechniqueUsages : IFunctionProvider
 	{
 		var result = 0;
 		var p = 1;
-		foreach (var technique in from techniqueGroup in techniques from technique in techniqueGroup select technique)
+		foreach (var technique in
+			from techniqueGroup in techniques
+			from technique in techniqueGroup.AsReadOnlySpan()
+			select technique)
 		{
 			technique.GetDefaultRating(out var directRatingValue);
 			result += (int)(directRatingValue / (double)p);
