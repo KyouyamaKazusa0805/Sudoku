@@ -143,10 +143,11 @@ internal static class PrimaryConstructorMemberHandler
 				?? string.Empty;
 
 			static string getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
-				=> parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) is var r
-				&& parameterType.TypeKind != TypeKind.Struct && nullableAnnotation == Annotated
-					? $"{r}? "
-					: $"{r} ";
+			{
+				var formatOptions = SymbolDisplayFormat.FullyQualifiedFormat
+					.AddMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
+				return $"{parameterType.ToDisplayString(formatOptions)} ";
+			}
 
 			static string getAssigningExpression(string refModifiers, string parameterName)
 				=> refModifiers switch { not "" => $"ref {parameterName}", _ => parameterName };

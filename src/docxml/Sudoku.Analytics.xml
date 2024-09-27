@@ -25715,22 +25715,31 @@
             <summary>
             Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
             </summary>
+            <param name="resourceKey">Indicates the factor resource key.</param>
+            <param name="parameterNames">
+            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
+            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
+            with the current factor and can be calculated its rating.
+            </param>
+            <param name="reflectedStepType">Indicates the relied <see cref="T:System.Type"/> instance.</param>
+            <param name="formula">Provides with a formula that calculates for the result.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.#ctor(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+            <summary>
+            Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
+            </summary>
+            <param name="resourceKey">Indicates the factor resource key.</param>
+            <param name="parameterNames">
+            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
+            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
+            with the current factor and can be calculated its rating.
+            </param>
+            <param name="reflectedStepType">Indicates the relied <see cref="T:System.Type"/> instance.</param>
+            <param name="formula">Provides with a formula that calculates for the result.</param>
         </member>
         <member name="F:Sudoku.Measuring.Factor.PropertyFlags">
             <summary>
             Default property flags, including properties that are explicitly interface implemented.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ParameterNames">
-            <summary>
-            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
-            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
-            with the current factor and can be calculated its rating.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ReflectedStepType">
-            <summary>
-            Indicates the relied <see cref="T:System.Type"/> instance.
             </summary>
         </member>
         <member name="P:Sudoku.Measuring.Factor.Parameters">
@@ -25740,16 +25749,6 @@
             <exception cref="T:System.Reflection.AmbiguousMatchException">Throws when property names is invalid.</exception>
             <seealso cref="P:Sudoku.Measuring.Factor.ParameterNames"/>
             <seealso cref="T:System.Reflection.PropertyInfo"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.Formula">
-            <summary>
-            Provides with a formula that calculates for the result.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.FactorResourceKey">
-            <summary>
-            Indicates the factor resource key.
-            </summary>
         </member>
         <member name="M:Sudoku.Measuring.Factor.GetName(System.IFormatProvider)">
             <summary>
@@ -25768,35 +25767,25 @@
             <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.Factor.Formula" path="/summary"/></param>
             <returns>A <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.Measuring.AnonymousFactor">
+        <member name="P:Sudoku.Measuring.Factor.FactorResourceKey">
             <summary>
-            Defines an anonymous factor.
+            The generated property declaration for parameter <c>resourceKey</c>.
             </summary>
-            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
-            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
-            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
-            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Measuring.AnonymousFactor.#ctor(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
+        <member name="P:Sudoku.Measuring.Factor.ParameterNames">
             <summary>
-            Defines an anonymous factor.
+            The generated property declaration for parameter <c>parameterNames</c>.
             </summary>
-            <param name="resourceKey"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey" path="/summary"/></param>
-            <param name="parameterNames"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ParameterNames" path="/summary"/></param>
-            <param name="reflectedStepType"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType" path="/summary"/></param>
-            <param name="formula"><inheritdoc cref="P:Sudoku.Measuring.AnonymousFactor.Formula" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.ParameterNames">
-            <inheritdoc/>
+        <member name="P:Sudoku.Measuring.Factor.ReflectedStepType">
+            <summary>
+            The generated property declaration for parameter <c>reflectedStepType</c>.
+            </summary>
         </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.AnonymousFactor.FactorResourceKey">
-            <inheritdoc/>
+        <member name="P:Sudoku.Measuring.Factor.Formula">
+            <summary>
+            The generated property declaration for parameter <c>formula</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Measuring.FactorArray">
             <summary>
