@@ -3384,4 +3384,7 @@ Error grid: '{0:#}'</value>
   <data name="Message_DeadlyPatternInferrerLimitReachedException" xml:space="preserve">
     <value>More than 10000 solutions are found in the module, which will produce large memory on checking for the pattern. Currently the module disallows checking for such patterns. Please reduce such patterns and try again.</value>
   </data>
+  <data name="Message_FactorResourceMismatchedException" xml:space="preserve">
+    <value>Factor resource mismatched.</value>
+  </data>
 </root>

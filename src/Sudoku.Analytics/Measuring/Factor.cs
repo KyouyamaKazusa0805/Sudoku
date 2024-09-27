@@ -28,7 +28,7 @@ public readonly partial struct Factor(
 	/// <summary>
 	/// Indicates a <see cref="PropertyInfo"/> instance that creates from property <see cref="ParameterNames"/>.
 	/// </summary>
-	/// <exception cref="AmbiguousMatchException">Throws when property names is invalid.</exception>
+	/// <exception cref="FactorResourceMismatchedException">Throws when resource is mismatched.</exception>
 	/// <seealso cref="ParameterNames"/>
 	/// <seealso cref="PropertyInfo"/>
 	public ReadOnlySpan<PropertyInfo> Parameters
@@ -74,7 +74,7 @@ public readonly partial struct Factor(
 			NextMatch:
 				if (!found)
 				{
-					throw new InvalidOperationException();
+					throw new FactorResourceMismatchedException();
 				}
 			}
 			return matchPropertyInfoList.AsReadOnlySpan();

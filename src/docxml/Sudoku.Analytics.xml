@@ -25746,7 +25746,7 @@
             <summary>
             Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that creates from property <see cref="P:Sudoku.Measuring.Factor.ParameterNames"/>.
             </summary>
-            <exception cref="T:System.Reflection.AmbiguousMatchException">Throws when property names is invalid.</exception>
+            <exception cref="T:Sudoku.Measuring.FactorResourceMismatchedException">Throws when resource is mismatched.</exception>
             <seealso cref="P:Sudoku.Measuring.Factor.ParameterNames"/>
             <seealso cref="T:System.Reflection.PropertyInfo"/>
         </member>
@@ -25917,6 +25917,14 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Measuring.FactorArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorResourceMismatchedException">
+            <summary>
+            Represents an exception type that will be thrown if factor resource is mismatched.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorResourceMismatchedException.Message">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Functions.ChainingLength">
