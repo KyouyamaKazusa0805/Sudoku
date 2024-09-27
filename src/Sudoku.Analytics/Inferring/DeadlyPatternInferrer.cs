@@ -15,6 +15,9 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 
 
 	/// <inheritdoc/>
+	/// <exception cref="DeadlyPatternInferrerLimitReachedException">
+	/// Throws when the pattern contains more than 10000 solutions.
+	/// </exception>
 	public static bool TryInfer(ref readonly Grid grid, out DeadlyPatternInferredResult result)
 		=> TryInfer(in grid, in Unsafe.NullRef<CellMap>(), out result);
 

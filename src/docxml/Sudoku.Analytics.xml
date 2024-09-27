@@ -25405,6 +25405,9 @@
         </member>
         <member name="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)">
             <inheritdoc/>
+            <exception cref="T:Sudoku.Inferring.DeadlyPatternInferrerLimitReachedException">
+            Throws when the pattern contains more than 10000 solutions.
+            </exception>
         </member>
         <member name="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Inferring.DeadlyPatternInferredResult@)">
             <inheritdoc cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
