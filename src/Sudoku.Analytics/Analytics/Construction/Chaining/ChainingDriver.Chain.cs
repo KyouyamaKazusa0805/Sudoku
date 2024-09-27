@@ -1,3 +1,5 @@
+#define ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+
 namespace Sudoku.Analytics.Construction.Chaining;
 
 internal partial class ChainingDriver
@@ -122,6 +124,9 @@ internal partial class ChainingDriver
 							}
 
 							result.Add(loop);
+#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+							return null;
+#endif
 						Next:;
 						}
 
@@ -131,12 +136,7 @@ internal partial class ChainingDriver
 						if (nodeSupposedOff == ~startNode)
 						{
 							var chain = new Chain(nextNode);
-							if (chain.IsImplicitLoop)
-							{
-								goto Next;
-							}
-
-							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
+							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;
 							}
@@ -145,7 +145,11 @@ internal partial class ChainingDriver
 							{
 								return chain;
 							}
+
 							result.Add(chain);
+#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+							return null;
+#endif
 						Next:;
 						}
 
@@ -179,12 +183,7 @@ internal partial class ChainingDriver
 						if (nodeSupposedOn == ~startNode)
 						{
 							var chain = new Chain(nextNode);
-							if (chain.IsImplicitLoop)
-							{
-								goto Next;
-							}
-
-							if (!chain.GetConclusions(in grid).IsWorthFor(in grid))
+							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;
 							}
@@ -193,7 +192,11 @@ internal partial class ChainingDriver
 							{
 								return chain;
 							}
+
 							result.Add(chain);
+#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+							return null;
+#endif
 						Next:;
 						}
 
