@@ -73,12 +73,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 		=> (EnableOrderingStepsByLastingValue, context.Options) switch
 		{
-			(true, { UseIttoryuMode: var isIttoryuMode, IsDirectMode: true })
-				=> Collect_LastingValueHasPriority(ref context, isIttoryuMode),
-			(_, { UseIttoryuMode: true })
-				=> Collect_IttoryuMode(ref context),
-			_
-				=> Collect_NonIttoryuMode(ref context)
+			(true, { UseIttoryuMode: var ittoryu, IsDirectMode: true }) => Collect_LastingValueHasPriority(ref context, ittoryu),
+			(_, { UseIttoryuMode: true }) => Collect_IttoryuMode(ref context),
+			_ => Collect_NonIttoryuMode(ref context)
 		};
 
 	/// <summary>
