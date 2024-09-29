@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining.Rules;
+namespace Sudoku.Analytics.Caching.ChainingRules;
 
 internal partial class CachedAlmostUniqueRectangleChainingRule
 {

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.PatternSearchers;
+namespace Sudoku.Analytics.Caching.PatternSearchers;
 
 /// <summary>
 /// Represents a pattern searcher on XYZ-Wings.

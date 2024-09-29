@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining.Rules;
+namespace Sudoku.Analytics.Caching.ChainingRules;
 
 /// <summary>
 /// Represents a chaining rule on Y rule (i.e. <see cref="LinkType.SingleCell"/>).

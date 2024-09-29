@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.PatternSearchers;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Represents a pattern searcher type.
