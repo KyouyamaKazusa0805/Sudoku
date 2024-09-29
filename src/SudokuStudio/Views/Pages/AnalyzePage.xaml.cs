@@ -1036,7 +1036,11 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
-		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+	{
+		var app = Application.Current.AsApp();
+		app.CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
+		app.MainSudokuPane = SudokuPane;
+	}
 
 	private void SudokuPane_ActualThemeChanged(FrameworkElement sender, object args)
 		=> Application.Current.AsApp().CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);

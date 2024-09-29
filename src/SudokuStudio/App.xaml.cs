@@ -38,6 +38,11 @@ public partial class App : Application
 	public Collector Collector { get; } = new();
 
 	/// <summary>
+	/// Indicates the main sudoku pane.
+	/// </summary>
+	internal SudokuPane? MainSudokuPane { get; set; }
+
+	/// <summary>
 	/// Indicates a <see cref="GridInfo"/> instance that will be initialized when opening the application via extension-binding files.
 	/// </summary>
 	internal GridInfo? AppStartingGridInfo { get; set; }

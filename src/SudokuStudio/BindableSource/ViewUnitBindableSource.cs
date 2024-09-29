@@ -139,71 +139,98 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			// If and only if the conclusion will be appeared in both collections, and its state has been changed,
 			// it will be updated from both negatives and positives; otherwise, don't change anything.
 			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
-			(ConclusionSet l, ConclusionSet r) = ([.. left.Conclusions], [.. right.Conclusions]);
-			foreach (var c in l & ~r)
-			{
-				negatives.Add(c);
-			}
-			foreach (var c in r & ~l)
-			{
-				positives.Add(c);
-			}
-
-			foreach (var conclusion in l & r)
-			{
-				var leftCase = new ConclusionInfo(conclusion, false);
-				var rightCase = new ConclusionInfo(conclusion, false);
-				foreach (var node in left.View.OfType<CandidateViewNode>())
-				{
-					if (node.Candidate == conclusion.Candidate)
-					{
-						leftCase = leftCase with { IsOverlapped = true };
-						break;
-					}
-				}
-				foreach (var node in right.View.OfType<CandidateViewNode>())
-				{
-					if (node.Candidate == conclusion.Candidate)
-					{
-						rightCase = rightCase with { IsOverlapped = true };
-						break;
-					}
-				}
-
-				if (leftCase != rightCase)
-				{
-					negatives.Add(conclusion);
-					positives.Add(conclusion);
-				}
-			}
-
-			var (leftInfo, rightInfo) = (new HashSet<CandidateMap>(), new HashSet<CandidateMap>());
-			foreach (var leftLink in left.View.OfType<ChainLinkViewNode>())
-			{
-				if (leftLink.Start.Count >= 2)
-				{
-					leftInfo.Add(leftLink.Start);
-				}
-				if (leftLink.End.Count >= 2)
-				{
-					leftInfo.Add(leftLink.End);
-				}
-			}
-			foreach (var rightLink in right.View.OfType<ChainLinkViewNode>())
-			{
-				if (rightLink.Start.Count >= 2)
-				{
-					rightInfo.Add(rightLink.Start);
-				}
-				if (rightLink.End.Count >= 2)
-				{
-					rightInfo.Add(rightLink.End);
-				}
-			}
-			negativeGroupedNodes = leftInfo.Except(rightInfo).ToArray();
-			positiveGroupedNodes = rightInfo.Except(leftInfo).ToArray();
+			handleConclusions();
+			handlePassedThroughDiffers();
+			handleGroupedNodes(out negativeGroupedNodes, out positiveGroupedNodes);
 			negativeConclusions = negatives.AsReadOnlySpan();
 			positiveConclusions = positives.AsReadOnlySpan();
+
+
+			void handleConclusions()
+			{
+				(ConclusionSet l, ConclusionSet r) = ([.. left.Conclusions], [.. right.Conclusions]);
+				foreach (var c in l & ~r)
+				{
+					negatives.Add(c);
+				}
+				foreach (var c in r & ~l)
+				{
+					positives.Add(c);
+				}
+
+				foreach (var conclusion in l & r)
+				{
+					var leftCase = new ConclusionInfo(conclusion, false);
+					var rightCase = new ConclusionInfo(conclusion, false);
+					foreach (var node in left.View.OfType<CandidateViewNode>())
+					{
+						if (node.Candidate == conclusion.Candidate)
+						{
+							leftCase = leftCase with { IsOverlapped = true };
+							break;
+						}
+					}
+					foreach (var node in right.View.OfType<CandidateViewNode>())
+					{
+						if (node.Candidate == conclusion.Candidate)
+						{
+							rightCase = rightCase with { IsOverlapped = true };
+							break;
+						}
+					}
+
+					if (leftCase != rightCase)
+					{
+						negatives.Add(conclusion);
+						positives.Add(conclusion);
+					}
+				}
+			}
+
+			void handlePassedThroughDiffers()
+			{
+				var g = Application.Current.AsApp().MainSudokuPane?.MainGrid ?? throw new InvalidOperationException();
+				var leftChainNodes = ReadOnlySpan<ILinkViewNode>.CastUp(left.View.OfType<ChainLinkViewNode>());
+				var rightChainNodes = ReadOnlySpan<ILinkViewNode>.CastUp(right.View.OfType<ChainLinkViewNode>());
+				foreach (var link in (left.View & right.View).OfType<ChainLinkViewNode>())
+				{
+					if (link.IsPassedThrough(leftChainNodes, left.View.OfType<CandidateViewNode>(), left.Conclusions, g)
+						^ link.IsPassedThrough(rightChainNodes, right.View.OfType<CandidateViewNode>(), right.Conclusions, g))
+					{
+						negatives.Add(link);
+						positives.Add(link);
+					}
+				}
+			}
+
+			void handleGroupedNodes(out ReadOnlySpan<CandidateMap> negativeGroupedNodes, out ReadOnlySpan<CandidateMap> positiveGroupedNodes)
+			{
+				var (leftInfo, rightInfo) = (new HashSet<CandidateMap>(), new HashSet<CandidateMap>());
+				foreach (var leftLink in left.View.OfType<ChainLinkViewNode>())
+				{
+					if (leftLink.Start.Count >= 2)
+					{
+						leftInfo.Add(leftLink.Start);
+					}
+					if (leftLink.End.Count >= 2)
+					{
+						leftInfo.Add(leftLink.End);
+					}
+				}
+				foreach (var rightLink in right.View.OfType<ChainLinkViewNode>())
+				{
+					if (rightLink.Start.Count >= 2)
+					{
+						rightInfo.Add(rightLink.Start);
+					}
+					if (rightLink.End.Count >= 2)
+					{
+						rightInfo.Add(rightLink.End);
+					}
+				}
+				negativeGroupedNodes = leftInfo.Except(rightInfo).ToArray();
+				positiveGroupedNodes = rightInfo.Except(leftInfo).ToArray();
+			}
 		}
 	}
 }
@@ -214,3 +241,9 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 /// <param name="Conclusion">Indicates the conclusion to be used.</param>
 /// <param name="IsOverlapped">Indicates whether the conclusion is overlapped.</param>
 file readonly record struct ConclusionInfo(Conclusion Conclusion, bool IsOverlapped);
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+
+}

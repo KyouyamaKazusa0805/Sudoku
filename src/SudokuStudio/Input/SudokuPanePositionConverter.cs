@@ -151,6 +151,54 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		return result;
 	}
 
+	/// <summary>
+	/// Try to get a list of <see cref="Point"/> values indicating the drawing points for nodes.
+	/// </summary>
+	/// <param name="nodes">The nodes.</param>
+	/// <param name="candidateNodes">The candidate view nodes.</param>
+	/// <param name="conclusions">The conclusions.</param>
+	/// <returns>A list of <see cref="Point"/> values.</returns>
+	public ReadOnlySpan<Point> GetPoints(ReadOnlySpan<ILinkViewNode> nodes, ReadOnlySpan<CandidateViewNode> candidateNodes, ReadOnlySpan<Conclusion> conclusions)
+	{
+		var points = new HashSet<Point>();
+		foreach (var node in nodes)
+		{
+			var (_, start, end) = node;
+			switch (node.Shape)
+			{
+				case LinkShape.Chain or LinkShape.ConjugatePair:
+				{
+					var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
+					foreach (var startCandidate in startCandidates)
+					{
+						points.Add(GetPosition(startCandidate));
+					}
+					foreach (var endCandidate in endCandidates)
+					{
+						points.Add(GetPosition(endCandidate));
+					}
+					break;
+				}
+				case LinkShape.Cell:
+				{
+					points.Add(GetPosition((Cell)start * 9 + 4));
+					points.Add(GetPosition((Cell)end * 9 + 4));
+					break;
+				}
+			}
+		}
+		foreach (var (_, candidate) in conclusions)
+		{
+			points.Add(GetPosition(candidate));
+		}
+		foreach (var (_, candidate) in candidateNodes)
+		{
+			points.Add(GetPosition(candidate));
+		}
+		return points.ToArray();
+	}
+
 	/// <include
 	///     file="../../global-doc-comments.xml"
 	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>

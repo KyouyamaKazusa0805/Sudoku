@@ -21,7 +21,6 @@ internal sealed partial class PathCreator(
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		var ((ow, oh), _) = Converter;
 		var ((cellSize, _), _, _, _) = Converter;
-		var points = getPoints(nodes);
 		var result = new List<Shape>();
 		foreach (var node in nodes)
 		{
@@ -74,35 +73,12 @@ internal sealed partial class PathCreator(
 
 			var (deltaX, deltaY) = (pt2.X - pt1.X, pt2.Y - pt1.Y);
 			var alpha = Atan2(deltaY, deltaX);
-			adjust(pt1, pt2, out var p1, out _, alpha, cellSize);
-
-			// Check whether the link will pass through a candidate used in pattern.
-			var linkPassesThroughUsedCandidates = false;
-			if (node.Shape == LinkShape.Chain)
-			{
-				var (dx1, dy1) = (deltaX, deltaY);
-				foreach (var point in points)
-				{
-					if (point == pt1 || point == pt2)
-					{
-						// Skip itself.
-						continue;
-					}
-
-					var (dx2, dy2) = (point.X - p1.X, point.Y - p1.Y);
-					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
-					{
-						linkPassesThroughUsedCandidates = true;
-						break;
-					}
-				}
-			}
+			var linkPassesThroughUsedCandidates = (node as ChainLinkViewNode)?.IsPassedThrough(nodes, CandidateNodes.Span, Conclusions.Span, Pane.MainGrid) ?? false;
 
 			// Now cut the link.
 			cut(ref pt1, ref pt2, cellSize);
 
+			// Check whether the link will pass through a candidate used in pattern.
 			if (linkPassesThroughUsedCandidates)
 			{
 				// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
@@ -195,25 +171,6 @@ internal sealed partial class PathCreator(
 			}
 
 
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void adjust(Point pt1, Point pt2, out Point p1, out Point p2, double alpha, double cs)
-			{
-				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
-				{
-					(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
-					var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
-					p1.X += px;
-					p1.Y += py;
-					p2.X -= px;
-					p2.Y -= py;
-				}
-				else
-				{
-					(p1, p2) = (pt1, pt2);
-				}
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void cut(ref Point pt1, ref Point pt2, double cs)
 			{
 				if (node.Shape is LinkShape.Chain or LinkShape.ConjugatePair)
@@ -275,7 +232,6 @@ internal sealed partial class PathCreator(
 		return result.AsReadOnlySpan();
 
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void rotate(Point pt1, ref Point pt2, double angle)
 		{
 			// Translate 'pt2' to (0, 0).
@@ -290,7 +246,6 @@ internal sealed partial class PathCreator(
 			pt2.Y += pt1.Y;
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void correctOffsetOfPoint(ref Point point, double ow, double oh)
 		{
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
@@ -298,51 +253,9 @@ internal sealed partial class PathCreator(
 			point.Y -= oh;
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static void correctOffsetOfDouble(ref double value, double offset)
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			=> value -= offset;
-
-		HashSet<Point> getPoints(ReadOnlySpan<ILinkViewNode> nodes)
-		{
-			var points = new HashSet<Point>();
-			foreach (var node in nodes)
-			{
-				var (_, start, end) = node;
-				switch (node.Shape)
-				{
-					case LinkShape.Chain or LinkShape.ConjugatePair:
-					{
-						var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-						var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
-						foreach (var startCandidate in startCandidates)
-						{
-							points.Add(Converter.GetPosition(startCandidate));
-						}
-						foreach (var endCandidate in endCandidates)
-						{
-							points.Add(Converter.GetPosition(endCandidate));
-						}
-						break;
-					}
-					case LinkShape.Cell:
-					{
-						points.Add(Converter.GetPosition((Cell)start * 9 + 4));
-						points.Add(Converter.GetPosition((Cell)end * 9 + 4));
-						break;
-					}
-				}
-			}
-			foreach (var (_, candidate) in Conclusions)
-			{
-				points.Add(Converter.GetPosition(candidate));
-			}
-			foreach (var (_, candidate) in CandidateNodes)
-			{
-				points.Add(Converter.GetPosition(candidate));
-			}
-			return points;
-		}
 	}
 
 

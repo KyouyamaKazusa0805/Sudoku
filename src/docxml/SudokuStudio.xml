@@ -40,6 +40,11 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Collector"/>
         </member>
+        <member name="P:SudokuStudio.App.MainSudokuPane">
+            <summary>
+            Indicates the main sudoku pane.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AppStartingGridInfo">
             <summary>
             Indicates a <see cref="T:SudokuStudio.Configuration.GridInfo"/> instance that will be initialized when opening the application via extension-binding files.
@@ -788,6 +793,13 @@
         </member>
         <member name="P:SudokuStudio.BindableSource.ConclusionInfo.IsOverlapped">
             <summary>Indicates whether the conclusion is overlapped.</summary>
+        </member>
+        <member name="T:SudokuStudio.BindableSource.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
         </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff">
             <summary>
@@ -3172,7 +3184,7 @@
             Extracted type that creates <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>-related instances.
             </summary>
             <typeparam name="TInput">The type of input values.</typeparam>
-            <typeparam name="T">The type of output values.</typeparam>
+            <typeparam name="TOutput">The type of output values.</typeparam>
             <param name="pane">Indicates the sudoku pane control.</param>
             <param name="converter">Indicates the position converter.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
@@ -3182,7 +3194,7 @@
             Extracted type that creates <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>-related instances.
             </summary>
             <typeparam name="TInput">The type of input values.</typeparam>
-            <typeparam name="T">The type of output values.</typeparam>
+            <typeparam name="TOutput">The type of output values.</typeparam>
             <param name="pane">Indicates the sudoku pane control.</param>
             <param name="converter">Indicates the position converter.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Shape"/>
@@ -3814,6 +3826,15 @@
             </exception>
             <seealso cref="T:Windows.Foundation.Point"/>
             <seealso cref="T:SudokuStudio.Input.Position"/>
+        </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetPoints(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <summary>
+            Try to get a list of <see cref="T:Windows.Foundation.Point"/> values indicating the drawing points for nodes.
+            </summary>
+            <param name="nodes">The nodes.</param>
+            <param name="candidateNodes">The candidate view nodes.</param>
+            <param name="conclusions">The conclusions.</param>
+            <returns>A list of <see cref="T:Windows.Foundation.Point"/> values.</returns>
         </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.PrintMembers(System.Text.StringBuilder)">
             <target name="method" cref="M:SudokuStudio.Input.SudokuPanePositionConverter.PrintMembers(System.Text.StringBuilder)">
@@ -17417,6 +17438,23 @@
 					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
 			</target>
+        </member>
+        <member name="T:Sudoku.Drawing.Nodes.ChainLinkViewNodeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNodeExtensions.IsPassedThrough(Sudoku.Drawing.Nodes.ChainLinkViewNode,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion},Microsoft.UI.Xaml.Controls.Grid)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/> instance has already passed through the specified nodes.
+            </summary>
+            <param name="link">The link to be checked.</param>
+            <param name="nodes">The nodes to be checked.</param>
+            <param name="candidateNodes">The candidate view nodes.</param>
+            <param name="conclusions">The conclusions.</param>
+            <param name="grid">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance represented by creating point calculator instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Measuring.FactorMarshal">
             <summary>
