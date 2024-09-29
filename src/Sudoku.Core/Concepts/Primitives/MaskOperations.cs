@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitives;
 
 /// <summary>
 /// Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.

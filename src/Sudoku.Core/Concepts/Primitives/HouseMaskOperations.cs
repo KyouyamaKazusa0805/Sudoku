@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitives;
 
 /// <summary>
 /// Represents a list of methods handling with <see cref="HouseMask"/> instances.
