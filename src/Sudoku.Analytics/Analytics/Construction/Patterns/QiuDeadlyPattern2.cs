@@ -25,7 +25,11 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Lines1">The first pair of lines.</param>
 /// <param name="Lines2">The second pair of lines.</param>
-public readonly record struct QiuDeadlyPattern2(HouseMask Lines1, HouseMask Lines2)
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+public sealed partial class QiuDeadlyPattern2(
+	[PrimaryConstructorParameter] HouseMask Lines1,
+	[PrimaryConstructorParameter] HouseMask Lines2
+) : IEquatable<QiuDeadlyPattern2>, IEqualityOperators<QiuDeadlyPattern2, QiuDeadlyPattern2, bool>
 {
 	/// <summary>
 	/// Indicates the crossline cells.
@@ -46,4 +50,9 @@ public readonly record struct QiuDeadlyPattern2(HouseMask Lines1, HouseMask Line
 			return result;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	public bool Equals([NotNullWhen(true)] QiuDeadlyPattern2? other)
+		=> other is not null && Lines1 == other.Lines1 && Lines2 == other.Lines2;
 }

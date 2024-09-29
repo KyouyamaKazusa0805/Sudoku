@@ -48,7 +48,10 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// Due to the drawing API, you have to check this file rather than the tip window.
 /// </para>
 /// </param>
-public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field)] long mask)
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+public sealed partial class BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] long mask) :
+	IEquatable<BorescoperDeadlyPattern>,
+	IEqualityOperators<BorescoperDeadlyPattern, BorescoperDeadlyPattern, bool>
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
@@ -99,6 +102,10 @@ public readonly partial struct BorescoperDeadlyPattern([PrimaryConstructorParame
 	private (Cell A, Cell B, Cell C, Cell D) CenterCells
 		=> ((Cell)(_mask >> 49 & 127), (Cell)(_mask >> 42 & 127), (Cell)(_mask >> 35 & 127), (Cell)(_mask >> 28 & 127));
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] BorescoperDeadlyPattern? other) => other is not null && _mask == other._mask;
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

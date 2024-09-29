@@ -3,9 +3,11 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <summary>
 /// Represents a domino loop pattern.
 /// </summary>
-/// <param name="Cells">Indicates the cells used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
-public readonly partial record struct DominoLoop(Cell[] Cells)
+/// <param name="cells">Indicates the cells used.</param>
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+public sealed partial class DominoLoop([PrimaryConstructorParameter] Cell[] cells) :
+	IEquatable<DominoLoop>,
+	IEqualityOperators<DominoLoop, DominoLoop, bool>
 {
 	/// <summary>
 	/// Indicates the cells used.
@@ -13,16 +15,10 @@ public readonly partial record struct DominoLoop(Cell[] Cells)
 	[HashCodeMember]
 	public CellMap Map => [.. Cells];
 
+	[StringMember(nameof(Map))]
+	private string MapString => Map.ToString();
+
 
 	/// <inheritdoc/>
-	public bool Equals(DominoLoop other) => Map == other.Map;
-
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
-	private bool PrintMembers(StringBuilder builder)
-	{
-		builder.Append($"{nameof(Map)} = [{Map}]");
-		return true;
-	}
+	public bool Equals([NotNullWhen(true)] DominoLoop? other) => other is not null && Map == other.Map;
 }

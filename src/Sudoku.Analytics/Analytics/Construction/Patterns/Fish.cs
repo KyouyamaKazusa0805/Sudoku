@@ -8,9 +8,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="coverSets">Indicates the cover sets.</param>
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
-[StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
-public readonly partial struct Fish(
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+public sealed partial class Fish(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask baseSets,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask coverSets,
@@ -56,9 +55,10 @@ public readonly partial struct Fish(
 
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly Fish other)
-		=> (Digit, BaseSets, CoverSets, Exofins, Endofins) == (other.Digit, other.BaseSets, other.CoverSets, other.Exofins, other.Endofins);
+	public bool Equals([NotNullWhen(true)] Fish? other)
+		=> other is not null
+		&& (Digit, BaseSets, CoverSets) == (other.Digit, other.BaseSets, other.CoverSets)
+		&& (Exofins, Endofins) == (other.Exofins, other.Endofins);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -128,9 +128,6 @@ public readonly partial struct Fish(
 		}
 		return FishFinKind.Finned;
 	}
-
-	/// <inheritdoc/>
-	bool IEquatable<Fish>.Equals(Fish other) => Equals(in other);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

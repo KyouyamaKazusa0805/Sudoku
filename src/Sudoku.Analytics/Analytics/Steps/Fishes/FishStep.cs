@@ -43,12 +43,6 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] bool isSiamese = false
 ) : FullPencilmarkingStep(conclusions, views, options), ISizeTrait
 {
-	/// <summary>
-	/// Indicates the pattern to be used.
-	/// </summary>
-	private Fish? _pattern;
-
-
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The name of the corresponding names are:
@@ -70,24 +64,18 @@ public abstract partial class FishStep(
 	/// <summary>
 	/// Creates a <see cref="Fish"/> instance via the current data.
 	/// </summary>
-	internal ref readonly Fish Pattern
-	{
-		get
-		{
-			_pattern ??= new(
-				Digit,
-				BaseSetsMask,
-				CoverSetsMask,
-				in this is NormalFishStep { Fins: var f }
-					? ref f
-					: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref CellMap.Empty,
-				in this is NormalFishStep
-					? ref CellMap.Empty
-					: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref CellMap.Empty
-			);
-			return ref Nullable.GetValueRefOrDefaultRef(in _pattern);
-		}
-	}
+	internal Fish Pattern
+		=> new(
+			Digit,
+			BaseSetsMask,
+			CoverSetsMask,
+			in this is NormalFishStep { Fins: var f }
+				? ref f
+				: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref CellMap.Empty,
+			in this is NormalFishStep
+				? ref CellMap.Empty
+				: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref CellMap.Empty
+		);
 
 	/// <summary>
 	/// The internal notation.

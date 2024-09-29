@@ -48,9 +48,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		// making it the start point to execute the recursion.
 		ref readonly var grid = ref context.Grid;
 		var tempAccumulator = new SortedSet<UniqueLoopStep>();
-		foreach (ref readonly var pattern in FindLoops(in grid))
+		foreach (var (loop, path, comparer) in FindLoops(in grid))
 		{
-			var (loop, path, comparer) = pattern;
 			if ((loop & ~BivalueCells) is not (var extraCellsMap and not []))
 			{
 				// The current puzzle has multiple solutions.

@@ -4326,32 +4326,55 @@
             <summary>
             Defines a temporary type that records a pair of data for a bi-value oddagon.
             </summary>
-            <param name="LoopCells">Indicates the cells of the whole loop.</param>
-            <param name="ExtraCells">Indicates the extra cells.</param>
-            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
+            <param name="loopCells">Indicates the cells of the whole loop.</param>
+            <param name="extraCells">Indicates the extra cells.</param>
+            <param name="digitsMask">Indicates the mask of digits that the loop used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Defines a temporary type that records a pair of data for a bi-value oddagon.
             </summary>
-            <param name="LoopCells">Indicates the cells of the whole loop.</param>
-            <param name="ExtraCells">Indicates the extra cells.</param>
-            <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
+            <param name="loopCells">Indicates the cells of the whole loop.</param>
+            <param name="extraCells">Indicates the extra cells.</param>
+            <param name="digitsMask">Indicates the mask of digits that the loop used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.LoopCells">
-            <summary>Indicates the cells of the whole loop.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.ExtraCells">
-            <summary>Indicates the extra cells.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.DigitsMask">
-            <summary>Indicates the mask of digits that the loop used.</summary>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.Equals(Sudoku.Analytics.Construction.Patterns.BivalueOddagon)">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.LoopCells">
+            <summary>
+            The generated property declaration for parameter <c>loopCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.ExtraCells">
+            <summary>
+            The generated property declaration for parameter <c>extraCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.op_Equality(Sudoku.Analytics.Construction.Patterns.BivalueOddagon,Sudoku.Analytics.Construction.Patterns.BivalueOddagon)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagon.op_Inequality(Sudoku.Analytics.Construction.Patterns.BivalueOddagon,Sudoku.Analytics.Construction.Patterns.BivalueOddagon)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.BlossomLoop">
             <summary>
@@ -4619,6 +4642,9 @@
             <b>If and only if</b> the fourth value in the returned quadruple is available.
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.Equals(Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.Deconstruct(System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32}@,System.ValueTuple{System.Int32,System.Int32,System.Int32,System.Int32}@)">
             <target name="method">
 				<summary>
@@ -4632,35 +4658,83 @@
             The generated field declaration for parameter <c>mask</c>.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.op_Equality(Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern,Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern.op_Inequality(Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern,Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.ChromaticPattern">
             <summary>
             Represents a chromatic pattern.
             </summary>
-            <param name="Block1Cells">Indicates the cells used in first block.</param>
-            <param name="Block2Cells">Indicates the cells used in second block.</param>
-            <param name="Block3Cells">Indicates the cells used in third block.</param>
-            <param name="Block4Cells">Indicates the cells used in fourth block.</param>
+            <param name="block1Cells">Indicates the cells used in first block.</param>
+            <param name="block2Cells">Indicates the cells used in second block.</param>
+            <param name="block3Cells">Indicates the cells used in third block.</param>
+            <param name="block4Cells">Indicates the cells used in fourth block.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.#ctor(System.Int32[],System.Int32[],System.Int32[],System.Int32[])">
             <summary>
             Represents a chromatic pattern.
             </summary>
-            <param name="Block1Cells">Indicates the cells used in first block.</param>
-            <param name="Block2Cells">Indicates the cells used in second block.</param>
-            <param name="Block3Cells">Indicates the cells used in third block.</param>
-            <param name="Block4Cells">Indicates the cells used in fourth block.</param>
+            <param name="block1Cells">Indicates the cells used in first block.</param>
+            <param name="block2Cells">Indicates the cells used in second block.</param>
+            <param name="block3Cells">Indicates the cells used in third block.</param>
+            <param name="block4Cells">Indicates the cells used in fourth block.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Map">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Deconstruct(System.Int32[]@,System.Int32[]@,System.Int32[]@,System.Int32[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Equals(Sudoku.Analytics.Construction.Patterns.ChromaticPattern)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Block1Cells">
-            <summary>Indicates the cells used in first block.</summary>
+            <summary>
+            The generated property declaration for parameter <c>block1Cells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Block2Cells">
-            <summary>Indicates the cells used in second block.</summary>
+            <summary>
+            The generated property declaration for parameter <c>block2Cells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Block3Cells">
-            <summary>Indicates the cells used in third block.</summary>
+            <summary>
+            The generated property declaration for parameter <c>block3Cells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Block4Cells">
-            <summary>Indicates the cells used in fourth block.</summary>
+            <summary>
+            The generated property declaration for parameter <c>block4Cells</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.op_Equality(Sudoku.Analytics.Construction.Patterns.ChromaticPattern,Sudoku.Analytics.Construction.Patterns.ChromaticPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPattern.op_Inequality(Sudoku.Analytics.Construction.Patterns.ChromaticPattern,Sudoku.Analytics.Construction.Patterns.ChromaticPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2">
             <summary>
@@ -4699,16 +4773,13 @@
             <summary>
             Represents a domino loop pattern.
             </summary>
-            <param name="Cells">Indicates the cells used.</param>
+            <param name="cells">Indicates the cells used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.#ctor(System.Int32[])">
             <summary>
             Represents a domino loop pattern.
             </summary>
-            <param name="Cells">Indicates the cells used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoop.Cells">
-            <summary>Indicates the cells used.</summary>
+            <param name="cells">Indicates the cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoop.Map">
             <summary>
@@ -4718,47 +4789,25 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.Equals(Sudoku.Analytics.Construction.Patterns.DominoLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.ToString" />.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoop.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.op_Equality(Sudoku.Analytics.Construction.Patterns.DominoLoop,Sudoku.Analytics.Construction.Patterns.DominoLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.DominoLoop.op_Inequality(Sudoku.Analytics.Construction.Patterns.DominoLoop,Sudoku.Analytics.Construction.Patterns.DominoLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.ExocetShapeKind">
             <summary>
@@ -4804,37 +4853,62 @@
             <summary>
             Represents an extended rectangle pattern.
             </summary>
-            <param name="IsFat">Indicates whether the pattern is fat.</param>
-            <param name="PatternCells">Indicates the cells used.</param>
-            <param name="PairCells">Indicates a list of pairs of cells used.</param>
-            <param name="Size">Indicates the size of the pattern.</param>
+            <param name="isFat">Indicates whether the pattern is fat.</param>
+            <param name="patternCells">Indicates the cells used.</param>
+            <param name="pairCells">Indicates a list of pairs of cells used.</param>
+            <param name="size">Indicates the size of the pattern.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.#ctor(System.Boolean,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32,System.Int32}[],System.Int32)">
             <summary>
             Represents an extended rectangle pattern.
             </summary>
-            <param name="IsFat">Indicates whether the pattern is fat.</param>
-            <param name="PatternCells">Indicates the cells used.</param>
-            <param name="PairCells">Indicates a list of pairs of cells used.</param>
-            <param name="Size">Indicates the size of the pattern.</param>
+            <param name="isFat">Indicates whether the pattern is fat.</param>
+            <param name="patternCells">Indicates the cells used.</param>
+            <param name="pairCells">Indicates a list of pairs of cells used.</param>
+            <param name="size">Indicates the size of the pattern.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.Deconstruct(System.Boolean@,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32,System.Int32}[]@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.Equals(Sudoku.Analytics.Construction.Patterns.ExtendedRectangle)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.IsFat">
-            <summary>Indicates whether the pattern is fat.</summary>
+            <summary>
+            The generated property declaration for parameter <c>isFat</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.PatternCells">
-            <summary>Indicates the cells used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>patternCells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.PairCells">
-            <summary>Indicates a list of pairs of cells used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>pairCells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.Size">
-            <summary>Indicates the size of the pattern.</summary>
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
+            </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.Equals(Sudoku.Analytics.Construction.Patterns.ExtendedRectangle@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.op_Equality(Sudoku.Analytics.Construction.Patterns.ExtendedRectangle,Sudoku.Analytics.Construction.Patterns.ExtendedRectangle)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectangle.op_Inequality(Sudoku.Analytics.Construction.Patterns.ExtendedRectangle,Sudoku.Analytics.Construction.Patterns.ExtendedRectangle)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.Firework">
             <summary>
@@ -4855,8 +4929,8 @@
             '-------'-------'-------'
             ]]></code>
             </summary>
-            <param name="Map">Indicates the full map of all cells used.</param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+            <param name="map">Indicates the full map of all cells used.</param>
+            <param name="pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.#ctor(Sudoku.Concepts.CellMap@,System.Nullable{System.Int32})">
             <summary>
@@ -4877,14 +4951,33 @@
             '-------'-------'-------'
             ]]></code>
             </summary>
-            <param name="Map">Indicates the full map of all cells used.</param>
-            <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+            <param name="map">Indicates the full map of all cells used.</param>
+            <param name="pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.Equals(Sudoku.Analytics.Construction.Patterns.Firework)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.Firework.Map">
-            <summary>Indicates the full map of all cells used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>map</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.Firework.Pivot">
-            <summary>The pivot cell. This property can be <see langword="null"/> if four cells are used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.op_Equality(Sudoku.Analytics.Construction.Patterns.Firework,Sudoku.Analytics.Construction.Patterns.Firework)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Firework.op_Inequality(Sudoku.Analytics.Construction.Patterns.Firework,Sudoku.Analytics.Construction.Patterns.Firework)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.Fish">
             <summary>
@@ -4921,7 +5014,7 @@
             Indicates the shape kind of the current fish.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.Equals(Sudoku.Analytics.Construction.Patterns.Fish@)">
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.Equals(Sudoku.Analytics.Construction.Patterns.Fish)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.ToString(System.IFormatProvider)">
@@ -4933,9 +5026,6 @@
             </summary>
             <param name="grid">The grid to be used.</param>
             <returns>The fin kind.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.System#IEquatable{Sudoku#Analytics#Construction#Patterns#Fish}#Equals(Sudoku.Analytics.Construction.Patterns.Fish)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -4974,17 +5064,11 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.op_Equality(Sudoku.Analytics.Construction.Patterns.Fish@,Sudoku.Analytics.Construction.Patterns.Fish@)">
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.op_Equality(Sudoku.Analytics.Construction.Patterns.Fish,Sudoku.Analytics.Construction.Patterns.Fish)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.op_Inequality(Sudoku.Analytics.Construction.Patterns.Fish@,Sudoku.Analytics.Construction.Patterns.Fish@)">
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.op_Inequality(Sudoku.Analytics.Construction.Patterns.Fish,Sudoku.Analytics.Construction.Patterns.Fish)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.System#Numerics#IEqualityOperators{Sudoku#Analytics#Construction#Patterns#Fish,Sudoku#Analytics#Construction#Patterns#Fish,System#Boolean}#op_Equality(Sudoku.Analytics.Construction.Patterns.Fish,Sudoku.Analytics.Construction.Patterns.Fish)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.Fish.System#Numerics#IEqualityOperators{Sudoku#Analytics#Construction#Patterns#Fish,Sudoku#Analytics#Construction#Patterns#Fish,System#Boolean}#op_Inequality(Sudoku.Analytics.Construction.Patterns.Fish,Sudoku.Analytics.Construction.Patterns.Fish)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.FishFinKind">
             <summary>
@@ -5087,26 +5171,55 @@
             <summary>
             Represents for a data set that describes the complete information about a guardian technique.
             </summary>
-            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="Digit">Indicates the digit used.</param>
+            <param name="loopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="digit">Indicates the digit used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Represents for a data set that describes the complete information about a guardian technique.
             </summary>
-            <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
-            <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
-            <param name="Digit">Indicates the digit used.</param>
+            <param name="loopCells">Indicates the cells used in this whole guardian loop.</param>
+            <param name="guardians">Indicates the extra cells that is used as guardians.</param>
+            <param name="digit">Indicates the digit used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.Equals(Sudoku.Analytics.Construction.Patterns.Guardian)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.Guardian.LoopCells">
-            <summary>Indicates the cells used in this whole guardian loop.</summary>
+            <summary>
+            The generated property declaration for parameter <c>loopCells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.Guardian.Guardians">
-            <summary>Indicates the extra cells that is used as guardians.</summary>
+            <summary>
+            The generated property declaration for parameter <c>guardians</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.Guardian.Digit">
-            <summary>Indicates the digit used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.op_Equality(Sudoku.Analytics.Construction.Patterns.Guardian,Sudoku.Analytics.Construction.Patterns.Guardian)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.Guardian.op_Inequality(Sudoku.Analytics.Construction.Patterns.Guardian,Sudoku.Analytics.Construction.Patterns.Guardian)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection">
             <summary>
@@ -5193,46 +5306,102 @@
             <summary>
             Represents a locked member. This type is only used by searching for exocets.
             </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
+            <param name="lockedCells">Indicates the locked cells.</param>
+            <param name="lockedBlock">Indicates the locked block.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Represents a locked member. This type is only used by searching for exocets.
             </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
+            <param name="lockedCells">Indicates the locked cells.</param>
+            <param name="lockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Equals(Sudoku.Analytics.Construction.Patterns.LockedMember)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.LockedMember.LockedCells">
-            <summary>Indicates the locked cells.</summary>
+            <summary>
+            The generated property declaration for parameter <c>lockedCells</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.LockedMember.LockedBlock">
-            <summary>Indicates the locked block.</summary>
+            <summary>
+            The generated property declaration for parameter <c>lockedBlock</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.op_Equality(Sudoku.Analytics.Construction.Patterns.LockedMember,Sudoku.Analytics.Construction.Patterns.LockedMember)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Patterns.LockedMember,Sudoku.Analytics.Construction.Patterns.LockedMember)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet">
             <summary>
             Represents a pattern for multi-sector locked sets.
             </summary>
-            <param name="Map">The map of cells used.</param>
-            <param name="RowCount">The number of rows used.</param>
-            <param name="ColumnCount">The number of columns used.</param>
+            <param name="map">The map of cells used.</param>
+            <param name="rowCount">The number of rows used.</param>
+            <param name="columnCount">The number of columns used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.#ctor(Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Represents a pattern for multi-sector locked sets.
             </summary>
-            <param name="Map">The map of cells used.</param>
-            <param name="RowCount">The number of rows used.</param>
-            <param name="ColumnCount">The number of columns used.</param>
+            <param name="map">The map of cells used.</param>
+            <param name="rowCount">The number of rows used.</param>
+            <param name="columnCount">The number of columns used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.Equals(Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.Map">
-            <summary>The map of cells used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>map</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.RowCount">
-            <summary>The number of rows used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>rowCount</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.ColumnCount">
-            <summary>The number of columns used.</summary>
+            <summary>
+            The generated property declaration for parameter <c>columnCount</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.op_Equality(Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet,Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet.op_Inequality(Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet,Sudoku.Analytics.Construction.Patterns.MultisectorLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection">
             <summary>
@@ -5330,12 +5499,6 @@
             <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
             <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Corner">
-            <summary>The corner cells that is <c>P</c> in that sketch.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Lines">
-            <summary>The base-line cells that is <c>B</c> in that sketch.</summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Crossline">
             <summary>
             Indicates the crossline cells.
@@ -5345,6 +5508,31 @@
             <summary>
             Indicates the mirror cells.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Equals(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Corner">
+            <summary>
+            The generated property declaration for parameter <c>Corner</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Lines">
+            <summary>
+            The generated property declaration for parameter <c>Lines</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.op_Equality(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1.op_Inequality(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2">
             <summary>
@@ -5400,16 +5588,35 @@
             <param name="Lines1">The first pair of lines.</param>
             <param name="Lines2">The second pair of lines.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Lines1">
-            <summary>The first pair of lines.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Lines2">
-            <summary>The second pair of lines.</summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Crossline">
             <summary>
             Indicates the crossline cells.
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Equals(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Lines1">
+            <summary>
+            The generated property declaration for parameter <c>Lines1</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Lines2">
+            <summary>
+            The generated property declaration for parameter <c>Lines2</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.op_Equality(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2.op_Inequality(Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2,Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection">
             <summary>
@@ -5449,68 +5656,28 @@
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
-            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-            <param name="Path">Indicates the detail path of the loop.</param>
-            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+            <param name="loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="path">Indicates the detail path of the loop.</param>
+            <param name="digitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.#ctor(Sudoku.Concepts.CellMap@,System.Int32[],System.Int16)">
             <summary>
             Represents for a data set that describes the complete information about a unique loop technique.
             </summary>
-            <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-            <param name="Path">Indicates the detail path of the loop.</param>
-            <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
+            <param name="loop">Indicates the cells used in this whole unique loop.</param>
+            <param name="path">Indicates the detail path of the loop.</param>
+            <param name="digitsMask">Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Loop">
-            <summary>Indicates the cells used in this whole unique loop.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Path">
-            <summary>Indicates the detail path of the loop.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.DigitsMask">
-            <summary>Indicates the digits used, represented as a mask of type <see cref="T:System.Int16"/>.</summary>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@,System.Int16@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Equals(Sudoku.Analytics.Construction.Patterns.UniqueLoop)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.ToString" />.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.IsValid``1(``0)">
             <summary>
@@ -5536,8 +5703,35 @@
             </para>
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Loop">
+            <summary>
+            The generated property declaration for parameter <c>loop</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Path">
+            <summary>
+            The generated property declaration for parameter <c>path</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoop.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.op_Equality(Sudoku.Analytics.Construction.Patterns.UniqueLoop,Sudoku.Analytics.Construction.Patterns.UniqueLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoop.op_Inequality(Sudoku.Analytics.Construction.Patterns.UniqueLoop,Sudoku.Analytics.Construction.Patterns.UniqueLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.UniqueRectangle">
             <summary>
@@ -16802,11 +16996,6 @@
             </para>
             </param>
             <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.FishStep._pattern">
-            <summary>
-            Indicates the pattern to be used.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
             <inheritdoc/>

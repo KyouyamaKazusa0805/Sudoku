@@ -3,39 +3,51 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <summary>
 /// Represents for a data set that describes the complete information about a unique loop technique.
 /// </summary>
-/// <param name="Loop">Indicates the cells used in this whole unique loop.</param>
-/// <param name="Path">Indicates the detail path of the loop.</param>
-/// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
-public readonly partial record struct UniqueLoop(ref readonly CellMap Loop, Cell[] Path, Mask DigitsMask)
+/// <param name="loop">Indicates the cells used in this whole unique loop.</param>
+/// <param name="path">Indicates the detail path of the loop.</param>
+/// <param name="digitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+public sealed partial class UniqueLoop(
+	[PrimaryConstructorParameter] ref readonly CellMap loop,
+	[PrimaryConstructorParameter] Cell[] path,
+	[PrimaryConstructorParameter] Mask digitsMask
+) : IEquatable<UniqueLoop>, IEqualityOperators<UniqueLoop, UniqueLoop, bool>
 {
 	[HashCodeMember]
 	private int LoopHashCode => Loop.GetHashCode();
 
+	[StringMember]
+	private string PatternString
+	{
+		get
+		{
+			var sb = new StringBuilder();
+			sb.Append($$"""{{nameof(UniqueLoop)}} {""");
+			sb.Append($"{nameof(Loop)} = {Loop}");
+			sb.Append(", ");
+			sb.Append($"{nameof(Path)} = [");
+			for (var i = 0; i < Path.Length; i++)
+			{
+				sb.Append(Path[i]);
+				if (i != Path.Length - 1)
+				{
+					sb.Append(", ");
+				}
+			}
+			sb.Append("], ");
+			sb.Append($$"""{{nameof(DigitsMask)}} = {{DigitsMask}} ({{MaskOperations.ToBinaryString(DigitsMask)}}) }""");
+			return sb.ToString();
+		}
+	}
+
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Deconstruct(out CellMap loop, out Cell[] path, out Mask digitsMask)
+		=> (loop, path, digitsMask) = (Loop, Path, DigitsMask);
 
 	/// <inheritdoc/>
-	public bool Equals(UniqueLoop other) => Loop == other.Loop;
-
-	/// <include
-	///     file="../../global-doc-comments.xml"
-	///     path="/g/csharp9/feature[@name='records']/target[@name='method' and @cref='PrintMembers']"/>
-	private bool PrintMembers(StringBuilder builder)
-	{
-		builder.Append($"{nameof(Loop)} = {Loop}");
-		builder.Append(", ");
-		builder.Append($"{nameof(Path)} = [");
-		for (var i = 0; i < Path.Length; i++)
-		{
-			builder.Append(Path[i]);
-			if (i != Path.Length - 1)
-			{
-				builder.Append(", ");
-			}
-		}
-		builder.Append("], ");
-		builder.Append($"{nameof(DigitsMask)} = {DigitsMask} ({MaskOperations.ToBinaryString(DigitsMask)})");
-		return true;
-	}
+	public bool Equals([NotNullWhen(true)] UniqueLoop? other) => other is not null && Loop == other.Loop;
 
 
 	/// <summary>

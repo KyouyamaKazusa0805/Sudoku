@@ -26,7 +26,11 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
 /// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
-public readonly record struct QiuDeadlyPattern1(ref readonly CellMap Corner, HouseMask Lines)
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+public sealed partial class QiuDeadlyPattern1(
+	[PrimaryConstructorParameter] ref readonly CellMap Corner,
+	[PrimaryConstructorParameter] HouseMask Lines
+) : IEquatable<QiuDeadlyPattern1>, IEqualityOperators<QiuDeadlyPattern1, QiuDeadlyPattern1, bool>
 {
 	/// <summary>
 	/// Indicates the crossline cells.
@@ -54,4 +58,9 @@ public readonly record struct QiuDeadlyPattern1(ref readonly CellMap Corner, Hou
 			return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);
 		}
 	}
+
+
+	/// <inheritdoc/>
+	public bool Equals([NotNullWhen(true)] QiuDeadlyPattern1? other)
+		=> other is not null && Crossline == other.Crossline && Lines == other.Lines;
 }

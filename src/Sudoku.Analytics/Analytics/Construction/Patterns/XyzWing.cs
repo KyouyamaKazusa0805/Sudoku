@@ -19,10 +19,7 @@ public sealed partial class XyzWing(
 	[PrimaryConstructorParameter, HashCodeMember] House house2,
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter] Digit zDigit
-) :
-	IEquatable<XyzWing>,
-	IEqualityOperators<XyzWing, XyzWing, bool>,
-	IFormattable
+) : IEquatable<XyzWing>, IEqualityOperators<XyzWing, XyzWing, bool>, IFormattable
 {
 	/// <summary>
 	/// Indicates the full pattern of cells.
