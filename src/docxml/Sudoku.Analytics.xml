@@ -3792,6 +3792,36 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/> to check for excluders.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.SubtypeTextPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match the string "Row".<br/>
+                    ○ Match the string "Column".<br/>
+            ○ Match the string "HiddenSingle".<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.HasBlockExcluders(Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Determine whether the solving steps contains at least one <see cref="T:Sudoku.Analytics.Step"/> using hidden singles in line, with block excluders.
+            </summary>
+            <param name="this">The instance to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.BlossomLoop">
             <summary>
             Represents a blossom loop.
@@ -3948,6 +3978,101 @@
         <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.Excluder">
+            <summary>
+            Represents a type that supports excluders marking inside a direct technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Components.ExcluderInfo@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <param name="excluderInfo">The excluder information.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetLockedCandidatesExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetSubsetExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ExcluderInfo">
+            <summary>
+            Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,
+            and exclude which cells.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,
+            and exclude which cells.
+            </summary>
+            <param name="BaseCells">The base cells to be used.</param>
+            <param name="EmptyCells">The empty cells in the final.</param>
+            <param name="ExcludedCells">The excluded cells to be used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.BaseCells">
+            <summary>The base cells to be used.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.EmptyCells">
+            <summary>The empty cells in the final.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.ExcludedCells">
+            <summary>The excluded cells to be used.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
+            with the specified digit in the specified grid.
+            </summary>
+            <param name="grid">The puzzle relying on.</param>
+            <param name="digit">The digit to be checked.</param>
+            <param name="house">The house to be checked.</param>
+            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
+            <returns>The result pair.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection">
             <summary>
             Represents for a house blossom branch collection.
@@ -4074,247 +4199,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Directs.AnalysisResultExcluderExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/> to check for excluders.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Directs.AnalysisResultExcluderExtensions.SubtypeTextPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match the string "Row".<br/>
-                    ○ Match the string "Column".<br/>
-            ○ Match the string "HiddenSingle".<br/>
-            ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.AnalysisResultExcluderExtensions.HasBlockExcluders(Sudoku.Analytics.AnalysisResult)">
-            <summary>
-            Determine whether the solving steps contains at least one <see cref="T:Sudoku.Analytics.Step"/> using hidden singles in line, with block excluders.
-            </summary>
-            <param name="this">The instance to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Directs.Excluder">
-            <summary>
-            Represents a type that supports excluders marking inside a direct technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.Excluder.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Directs.ExcluderInfo@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cell">The cell.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <param name="excluderInfo">The excluder information.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.Excluder.GetLockedCandidatesExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.Excluder.GetSubsetExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Directs.ExcluderInfo">
-            <summary>
-            Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,
-            and exclude which cells.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.ExcluderInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,
-            and exclude which cells.
-            </summary>
-            <param name="BaseCells">The base cells to be used.</param>
-            <param name="EmptyCells">The empty cells in the final.</param>
-            <param name="ExcludedCells">The excluded cells to be used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Directs.ExcluderInfo.BaseCells">
-            <summary>The base cells to be used.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Directs.ExcluderInfo.EmptyCells">
-            <summary>The empty cells in the final.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Directs.ExcluderInfo.ExcludedCells">
-            <summary>The excluded cells to be used.</summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.ExcluderInfo.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
-            with the specified digit in the specified grid.
-            </summary>
-            <param name="grid">The puzzle relying on.</param>
-            <param name="digit">The digit to be checked.</param>
-            <param name="house">The house to be checked.</param>
-            <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
-            <returns>The result pair.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Directs.GridPartialMarkingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, calculating with partial-marking rules checking.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.GridPartialMarkingExtensions.Collector">
-            <summary>
-            Indicates the backing collector.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Directs.GridPartialMarkingExtensions.IsMissingCandidates(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques)">
-            <summary>
-            Determine whether the grid lacks some candidates that are included in a grid,
-            through basic elimination rule (Naked Single checking) and specified partial-marking techniques.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="techniques">A list of techniques to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="techniques"/> is greater than the maximum value of enumeration field defined.
-            </exception>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques">
-            <summary>
-            Provides with techniques that will be used in partial-marking rule.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.None">
-            <summary>
-            The placeholder of the current enumeration type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.Pointing">
-            <summary>
-            Represents Pointing rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.Claiming">
-            <summary>
-            Represents Claiming rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedPair">
-            <summary>
-            Represents Naked Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedTriple">
-            <summary>
-            Represents Naked Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedQuadruple">
-            <summary>
-            Represents Naked Quadruple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedPairPlus">
-            <summary>
-            Represents Naked Pair (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedTriplePlus">
-            <summary>
-            Represents Naked Triple (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.NakedQuadruplePlus">
-            <summary>
-            Represents Naked Quadruple (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.HiddenPair">
-            <summary>
-            Represents Hidden Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.HiddenTriple">
-            <summary>
-            Represents Hidden Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.HiddenQuadruple">
-            <summary>
-            Represents Hidden Quadruple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.LockedPair">
-            <summary>
-            Represents Locked Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.LockedTriple">
-            <summary>
-            Represents Locked Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.LockedHiddenPair">
-            <summary>
-            Represents Locked Hidden Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Directs.PartialMarkingTechniques.LockedHiddenTriple">
-            <summary>
-            Represents Locked Hidden Triple rule.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Pattern">
             <summary>
@@ -18682,7 +18566,7 @@
             Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Analytics.Construction.Directs.ExcluderInfo)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Analytics.Construction.Components.ExcluderInfo)">
             <summary>
             Represents a data structure that describes for a technique of <b>Hidden Single</b>.
             </summary>
@@ -20300,6 +20184,29 @@
             Indicates all possible behaviors.
             </summary>
         </member>
+        <member name="T:Sudoku.Categorization.GridPartialMarkingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, calculating with partial-marking rules checking.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Categorization.GridPartialMarkingExtensions.Collector">
+            <summary>
+            Indicates the backing collector.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Categorization.GridPartialMarkingExtensions.IsMissingCandidates(Sudoku.Concepts.Grid@,Sudoku.Categorization.PartialMarkingTechniques)">
+            <summary>
+            Determine whether the grid lacks some candidates that are included in a grid,
+            through basic elimination rule (Naked Single checking) and specified partial-marking techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">A list of techniques to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="techniques"/> is greater than the maximum value of enumeration field defined.
+            </exception>
+        </member>
         <member name="T:Sudoku.Categorization.MissingDifficultyLevelException">
             <summary>
             Represents an exception that describes for a field in <see cref="T:Sudoku.Categorization.Technique"/> is missing for difficulty level attribute.
@@ -20341,6 +20248,99 @@
         </member>
         <member name="P:Sudoku.Categorization.MissingTechniqueGroupException.Message">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Categorization.PartialMarkingTechniques">
+            <summary>
+            Provides with techniques that will be used in partial-marking rule.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.None">
+            <summary>
+            The placeholder of the current enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.Pointing">
+            <summary>
+            Represents Pointing rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.Claiming">
+            <summary>
+            Represents Claiming rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedPair">
+            <summary>
+            Represents Naked Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedTriple">
+            <summary>
+            Represents Naked Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedQuadruple">
+            <summary>
+            Represents Naked Quadruple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedPairPlus">
+            <summary>
+            Represents Naked Pair (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedTriplePlus">
+            <summary>
+            Represents Naked Triple (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.NakedQuadruplePlus">
+            <summary>
+            Represents Naked Quadruple (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.HiddenPair">
+            <summary>
+            Represents Hidden Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.HiddenTriple">
+            <summary>
+            Represents Hidden Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.HiddenQuadruple">
+            <summary>
+            Represents Hidden Quadruple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.LockedPair">
+            <summary>
+            Represents Locked Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.LockedTriple">
+            <summary>
+            Represents Locked Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.LockedHiddenPair">
+            <summary>
+            Represents Locked Hidden Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.PartialMarkingTechniques.LockedHiddenTriple">
+            <summary>
+            Represents Locked Hidden Triple rule.
+            </summary>
         </member>
         <member name="T:Sudoku.Categorization.SingleSubtype">
             <summary>

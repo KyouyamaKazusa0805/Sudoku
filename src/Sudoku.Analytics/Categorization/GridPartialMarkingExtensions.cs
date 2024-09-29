@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Directs;
+namespace Sudoku.Categorization;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, calculating with partial-marking rules checking.

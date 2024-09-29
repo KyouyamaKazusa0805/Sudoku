@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Directs;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a type that supports excluders marking inside a direct technique.
