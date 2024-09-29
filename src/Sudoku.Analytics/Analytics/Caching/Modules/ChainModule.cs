@@ -16,14 +16,9 @@ internal static class ChainModule
 	/// <returns>The first found step.</returns>
 	public static Step? CollectCore(ref StepAnalysisContext context, SortedSet<NormalChainStep> accumulator, bool allowsAdvancedLinks)
 	{
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
-				.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
-		);
+		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		var cachedAlsIndex = 0;
 		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
@@ -80,8 +75,8 @@ internal static class ChainModule
 		bool onlyFindFinnedChain
 	)
 	{
-		ref readonly var grid = ref context.Grid;
 		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
+		ref readonly var grid = ref context.Grid;
 		InitializeLinks(
 			in grid,
 			linkTypes.Aggregate(@delegate.EnumFlagMerger),
@@ -168,14 +163,9 @@ internal static class ChainModule
 	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
 	{
 		const bool allowsAdvancedLinks = true;
+		LinkType[] linkTypes = [.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []];
 		ref readonly var grid = ref context.Grid;
-		InitializeLinks(
-			in grid,
-			((LinkType[])[.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []])
-				.Aggregate(@delegate.EnumFlagMerger),
-			context.Options,
-			out var supportedRules
-		);
+		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		foreach (var blossomLoop in ChainingDriver.CollectBlossomLoops(in context.Grid, context.OnlyFindOne, supportedRules))
 		{
@@ -253,7 +243,7 @@ file static class Extensions
 		{
 			case NormalChainStep { Pattern.Links: var links }:
 			{
-				if (allowsAdvancedLinks ^ links.Any(static link => link.GroupedLinkPattern is not null))
+				if (allowsAdvancedLinks ^ links.Any(linkPredicate))
 				{
 					return false;
 				}
@@ -263,7 +253,7 @@ file static class Extensions
 			{
 				foreach (var (_, branch) in pattern)
 				{
-					if (allowsAdvancedLinks ^ branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+					if (allowsAdvancedLinks ^ branch.Links.Any(linkPredicate))
 					{
 						return false;
 					}
@@ -274,7 +264,7 @@ file static class Extensions
 			{
 				foreach (var (_, branch) in pattern)
 				{
-					if (allowsAdvancedLinks ^ branch.Links.Any(static link => link.GroupedLinkPattern is not null))
+					if (allowsAdvancedLinks ^ branch.Links.Any(linkPredicate))
 					{
 						return false;
 					}
@@ -287,5 +277,8 @@ file static class Extensions
 			}
 		}
 		return true;
+
+
+		static bool linkPredicate(Link link) => link.GroupedLinkPattern is not null;
 	}
 }
