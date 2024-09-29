@@ -6807,6 +6807,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Equals(Sudoku.Drawing.ViewNode)">
             <inheritdoc/>
+            <remarks><b>Chain links may not check for color identifiers by design.</b></remarks>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Clone">
             <inheritdoc/>

@@ -32,9 +32,10 @@ public sealed partial class ChainLinkViewNode(
 		=> (identifier, start, end, isStrongLink) = (Identifier, Start, End, IsStrongLink);
 
 	/// <inheritdoc/>
+	/// <remarks><b>Chain links may not check for color identifiers by design.</b></remarks>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
-		// Chain links may not check for color identifiers by design.
-		=> /*base.Equals(other) && */other is ChainLinkViewNode comparer && Start == comparer.Start && End == comparer.End;
+		=> other is ChainLinkViewNode comparer && Start == comparer.Start && End == comparer.End
+		&& IsStrongLink == comparer.IsStrongLink;
 
 	/// <inheritdoc/>
 	public override ChainLinkViewNode Clone() => new(Identifier, Start, End, IsStrongLink);
