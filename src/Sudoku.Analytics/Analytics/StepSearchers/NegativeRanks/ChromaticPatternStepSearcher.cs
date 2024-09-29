@@ -36,7 +36,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// The possible pattern offsets.
 	/// </summary>
-	private static readonly ChromaticPattern[] Patterns;
+	private static readonly ChromaticPatternPattern[] Patterns;
 
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
@@ -67,7 +67,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ChromaticPatternStepSearcher()
 	{
-		var patternOffsetsList = new List<ChromaticPattern>();
+		var patternOffsetsList = new List<ChromaticPatternPattern>();
 		foreach (var (aCase, bCase, cCase, dCase) in (
 			(true, false, false, false),
 			(false, true, false, false),

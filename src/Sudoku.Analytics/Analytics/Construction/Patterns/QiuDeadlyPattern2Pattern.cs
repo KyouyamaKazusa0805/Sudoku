@@ -25,12 +25,13 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Lines1">The first pair of lines.</param>
 /// <param name="Lines2">The second pair of lines.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public sealed partial class QiuDeadlyPattern2(
-	[PrimaryConstructorParameter] HouseMask Lines1,
-	[PrimaryConstructorParameter] HouseMask Lines2
-) : IEquatable<QiuDeadlyPattern2>, IEqualityOperators<QiuDeadlyPattern2, QiuDeadlyPattern2, bool>
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+public sealed partial class QiuDeadlyPattern2Pattern([PrimaryConstructorParameter] HouseMask Lines1, [PrimaryConstructorParameter] HouseMask Lines2) :
+	Pattern
 {
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => false;
+
 	/// <summary>
 	/// Indicates the crossline cells.
 	/// </summary>
@@ -53,6 +54,9 @@ public sealed partial class QiuDeadlyPattern2(
 
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] QiuDeadlyPattern2? other)
-		=> other is not null && Lines1 == other.Lines1 && Lines2 == other.Lines2;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is QiuDeadlyPattern2Pattern comparer && Lines1 == comparer.Lines1 && Lines2 == comparer.Lines2;
+
+	/// <inheritdoc/>
+	public override QiuDeadlyPattern2Pattern Clone() => new(Lines1, Lines2);
 }

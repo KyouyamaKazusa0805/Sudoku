@@ -24,7 +24,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// <remarks>
 	/// Please note that all possible heptagons and octagons are in here.
 	/// </remarks>
-	private static readonly BorescoperDeadlyPattern[] Patterns;
+	private static readonly BorescoperDeadlyPatternPattern[] Patterns;
 
 	/// <summary>
 	/// Indicates the quadruple list that describes the chosen cells in the target block.
@@ -43,7 +43,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	static BorescoperDeadlyPatternStepSearcher()
 	{
 		var count = 0;
-		Patterns = new BorescoperDeadlyPattern[14580];
+		Patterns = new BorescoperDeadlyPatternPattern[14580];
 		for (var block = 0; block < 9; block++)
 		{
 			for (var i = 0; i < 9; i++) // 9 cases.
@@ -247,7 +247,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		List<Step> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
-		BorescoperDeadlyPattern pattern,
+		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
@@ -316,7 +316,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		List<Step> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
-		BorescoperDeadlyPattern pattern,
+		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
@@ -378,7 +378,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		List<Step> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
-		BorescoperDeadlyPattern pattern,
+		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
@@ -490,7 +490,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		List<Step> accumulator,
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
-		BorescoperDeadlyPattern pattern,
+		BorescoperDeadlyPatternPattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,

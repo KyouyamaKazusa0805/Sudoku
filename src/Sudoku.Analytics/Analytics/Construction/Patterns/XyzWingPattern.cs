@@ -10,8 +10,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="house2">Indicates the house 2.</param>
 /// <param name="digitsMask">Indicates all digits.</param>
 /// <param name="zDigit">Indicates the digit Z.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public sealed partial class XyzWing(
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+public sealed partial class XyzWingPattern(
 	[PrimaryConstructorParameter, HashCodeMember] Cell pivot,
 	[PrimaryConstructorParameter, HashCodeMember] Cell leafCell1,
 	[PrimaryConstructorParameter, HashCodeMember] Cell leafCell2,
@@ -19,8 +19,13 @@ public sealed partial class XyzWing(
 	[PrimaryConstructorParameter, HashCodeMember] House house2,
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter] Digit zDigit
-) : IEquatable<XyzWing>, IEqualityOperators<XyzWing, XyzWing, bool>, IFormattable
+) :
+	Pattern,
+	IFormattable
 {
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => true;
+
 	/// <summary>
 	/// Indicates the full pattern of cells.
 	/// </summary>
@@ -38,19 +43,20 @@ public sealed partial class XyzWing(
 		=> (pivot, leafCell1, leafCell2, house1, house2, (_, digitsMask, zDigit)) = (Pivot, LeafCell1, LeafCell2, House1, House2, this);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] XyzWing? other)
-		=> other is not null && Cells == other.Cells && DigitsMask == other.DigitsMask
-		&& House1 == other.House1 && House2 == other.House2;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is XyzWingPattern comparer && Cells == comparer.Cells && DigitsMask == comparer.DigitsMask
+		&& House1 == comparer.House1 && House2 == comparer.House2;
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var zDigitStr = converter.DigitConverter((Mask)(1 << ZDigit));
 		return $@"{converter.CellConverter(Pivot.AsCellMap() + LeafCell1 + LeafCell2)}({DigitsMask}, {zDigitStr})";
 	}
+
+	/// <inheritdoc/>
+	public override XyzWingPattern Clone() => new(Pivot, LeafCell1, LeafCell2, House1, House2, DigitsMask, ZDigit);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

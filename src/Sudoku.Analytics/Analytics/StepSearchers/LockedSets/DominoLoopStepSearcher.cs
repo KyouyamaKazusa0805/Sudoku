@@ -13,13 +13,13 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicateds all possible patterns.
 	/// </summary>
-	private static readonly DominoLoop[] Patterns;
+	private static readonly DominoLoopPattern[] Patterns;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static DominoLoopStepSearcher()
 	{
-		Patterns = new DominoLoop[729];
+		Patterns = new DominoLoopPattern[729];
 
 		var s = (stackalloc int[4]);
 		for (var (a, n) = (9, 0); a < 18; a++)

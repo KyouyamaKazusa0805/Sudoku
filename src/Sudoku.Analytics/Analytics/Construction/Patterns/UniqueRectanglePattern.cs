@@ -6,13 +6,17 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="cells">The cells.</param>
 /// <param name="digitsMask">The digits mask.</param>
 /// <param name="otherDigitsMask">The other digits mask.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public sealed partial class UniqueRectangle(
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+public sealed partial class UniqueRectanglePattern(
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] Mask otherDigitsMask
-) : IEquatable<UniqueRectangle>, IEqualityOperators<UniqueRectangle, UniqueRectangle, bool>
+) : Pattern
 {
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => true;
+
+
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out CellMap cells, out Mask digitsMask) => (cells, digitsMask) = (Cells, DigitsMask);
@@ -23,9 +27,9 @@ public sealed partial class UniqueRectangle(
 		=> ((cells, digitsMask), otherDigitsMask) = (this, OtherDigitsMask);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] UniqueRectangle? other)
-		=> other is not null && Cells == other.Cells && DigitsMask == other.DigitsMask && OtherDigitsMask == other.OtherDigitsMask;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is UniqueRectanglePattern comparer
+		&& Cells == comparer.Cells && DigitsMask == comparer.DigitsMask && OtherDigitsMask == comparer.OtherDigitsMask;
 
 	/// <summary>
 	/// Try to get all candidates used in the pattern.
@@ -44,4 +48,7 @@ public sealed partial class UniqueRectangle(
 		}
 		return result;
 	}
+
+	/// <inheritdoc/>
+	public override UniqueRectanglePattern Clone() => new(Cells, DigitsMask, OtherDigitsMask);
 }

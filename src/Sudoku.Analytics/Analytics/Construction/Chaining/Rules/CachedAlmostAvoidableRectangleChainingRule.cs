@@ -65,7 +65,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 
 				var node1 = new Node(cells1 * digit1, true, true);
 				var node2 = new Node(cells2 * digit2, false, true);
-				var ar = new AvoidableRectangle(in urCells, digitsMask, in modifiableCellsInPattern);
+				var ar = new AvoidableRectanglePattern(in urCells, digitsMask, in modifiableCellsInPattern);
 				context.WeakLinks.AddEntry(node1, node2, false, ar);
 			}
 			else if (digit1 == digit2)
@@ -88,7 +88,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 				{
 					var node1 = new Node((emptyCellsInPattern[0] * 9 + digit).AsCandidateMap(), true, true);
 					var node2 = new Node((emptyCellsInPattern[1] * 9 + digit).AsCandidateMap(), false, true);
-					var ar = new AvoidableRectangle(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
+					var ar = new AvoidableRectanglePattern(in urCells, (Mask)(1 << digit1 | 1 << digit), urCells & ~emptyCellsInPattern);
 					context.WeakLinks.AddEntry(node1, node2, false, ar);
 				}
 			}
@@ -104,7 +104,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is not AvoidableRectangle { Cells: var urCells })
+			if (link.GroupedLinkPattern is not AvoidableRectanglePattern { Cells: var urCells })
 			{
 				continue;
 			}

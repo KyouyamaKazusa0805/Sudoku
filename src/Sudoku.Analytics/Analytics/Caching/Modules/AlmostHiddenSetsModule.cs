@@ -10,9 +10,9 @@ internal static class AlmostHiddenSetsModule
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of AHSes.</returns>
-	public static ReadOnlySpan<AlmostHiddenSet> CollectAlmostHiddenSets(ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostHiddenSetPattern> CollectAlmostHiddenSets(ref readonly Grid grid)
 	{
-		var result = new List<AlmostHiddenSet>();
+		var result = new List<AlmostHiddenSetPattern>();
 		var tempPosMask = (stackalloc Mask[9]);
 		for (var house = 0; house < 27; house++)
 		{

@@ -2,7 +2,7 @@ namespace Sudoku.Analytics.Construction.Chaining.Rules;
 
 internal partial class CachedAlmostUniqueRectangleChainingRule
 {
-	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
+	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		var otherOnlyDigit = Mask.Log2(otherDigitsMask);
 		var cellsContainingThisDigit = CandidatesMap[otherOnlyDigit] & urCells;
@@ -39,7 +39,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
+	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		var theOtherDigit1 = Mask.TrailingZeroCount(otherDigitsMask);
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
@@ -54,7 +54,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
+	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		foreach (var otherDigit in otherDigitsMask)
 		{
@@ -115,7 +115,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption)
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption)
 	{
 		var urCellsContainingOtherDigits = CellMap.Empty;
 		foreach (var cell in urCells)

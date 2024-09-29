@@ -60,7 +60,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 			{
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
-				var ur = new UniqueRectangle(in urCells, urDigitsMask, otherDigitsMask);
+				var ur = new UniqueRectanglePattern(in urCells, urDigitsMask, otherDigitsMask);
 				switch (Mask.PopCount(otherDigitsMask))
 				{
 					case 1:
@@ -94,7 +94,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is UniqueRectangle { Cells: var cells, DigitsMask: var digitsMask })
+			if (link.GroupedLinkPattern is UniqueRectanglePattern { Cells: var cells, DigitsMask: var digitsMask })
 			{
 				// If the cell has already been colorized, we should change the color into UR-categorized one.
 				foreach (var cell in cells)
@@ -157,8 +157,8 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 		base.GetLoopConclusions(ref context);
 	}
 
-	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
-	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
-	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
-	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption);
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectanglePattern ur, LinkDictionary linkDictionary, LinkOption linkOption);
 }

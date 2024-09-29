@@ -35,12 +35,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns for case 1.
 	/// </summary>
-	private static readonly QiuDeadlyPattern1[] PatternsForCase1;
+	private static readonly QiuDeadlyPattern1Pattern[] PatternsForCase1;
 
 	/// <summary>
 	/// Indicates the patterns for case 2.
 	/// </summary>
-	private static readonly QiuDeadlyPattern2[] PatternsForCase2;
+	private static readonly QiuDeadlyPattern2Pattern[] PatternsForCase2;
 
 	/// <summary>
 	/// Indicates the line offsets of the patterns.
@@ -59,7 +59,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	static QiuDeadlyPatternStepSearcher()
 	{
 		// Case 1: 2 lines + 2 cells.
-		var patternsForCase1 = new List<QiuDeadlyPattern1>();
+		var patternsForCase1 = new List<QiuDeadlyPattern1Pattern>();
 		foreach (var isRow in (true, false))
 		{
 			var (@base, fullHousesMask) = isRow ? (9, HouseMaskOperations.AllRowsMask) : (18, HouseMaskOperations.AllColumnsMask);
@@ -79,7 +79,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		PatternsForCase1 = [.. patternsForCase1];
 
 		// Case 2: 2 rows + 2 columns.
-		var patternsForCase2 = new List<QiuDeadlyPattern2>();
+		var patternsForCase2 = new List<QiuDeadlyPattern2Pattern>();
 		var rows = HouseMaskOperations.AllRowsMask.GetAllSets();
 		var columns = HouseMaskOperations.AllColumnsMask.GetAllSets();
 		foreach (var lineOffsetPairRow in LineOffsets)
@@ -125,7 +125,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern1 pattern)
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern1Pattern pattern)
 	{
 		ref readonly var grid = ref context.Grid;
 
@@ -163,7 +163,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="context"><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/param[@name='context']"/></param>
 	/// <param name="pattern">The target pattern.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref StepAnalysisContext)" path="/returns"/></returns>
-	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern2 pattern)
+	private QiuDeadlyPatternStep? Collect(ref StepAnalysisContext context, ref readonly QiuDeadlyPattern2Pattern pattern)
 	{
 		// TODO: Re-implement later.
 		return null;
@@ -175,7 +175,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	private QiuDeadlyPatternStep? CheckForBaseType(
 		ref StepAnalysisContext context,
 		ref readonly Grid grid,
-		ref readonly QiuDeadlyPattern1 pattern,
+		ref readonly QiuDeadlyPattern1Pattern pattern,
 		ref readonly CellMap valueCellsInBothLines,
 		bool isRow
 	)

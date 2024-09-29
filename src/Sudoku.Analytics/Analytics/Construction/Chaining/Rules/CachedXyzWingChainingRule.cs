@@ -91,7 +91,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is not XyzWing { Cells: var cells })
+			if (link.GroupedLinkPattern is not XyzWingPattern { Cells: var cells })
 			{
 				continue;
 			}

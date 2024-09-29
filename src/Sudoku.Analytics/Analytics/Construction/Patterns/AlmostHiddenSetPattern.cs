@@ -12,29 +12,30 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
 /// </remarks>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllEqualityComparisonOperators)]
-public sealed partial class AlmostHiddenSet(
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.ComparisonOperators)]
+public sealed partial class AlmostHiddenSetPattern(
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
 	[PrimaryConstructorParameter, HashCodeMember] House house,
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter, HashCodeMember] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CandidateMap candidatesCanFormWeakLink
 ) :
-	IComparable<AlmostHiddenSet>,
-	IComparisonOperators<AlmostHiddenSet, AlmostHiddenSet, bool>,
-	IEquatable<AlmostHiddenSet>,
-	IEqualityOperators<AlmostHiddenSet, AlmostHiddenSet, bool>
+	Pattern,
+	IComparable<AlmostHiddenSetPattern>,
+	IComparisonOperators<AlmostHiddenSetPattern, AlmostHiddenSetPattern, bool>
 {
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AlmostHiddenSet? other)
-		=> other is not null
-		&& Cells == other.Cells && House == other.House
-		&& DigitsMask == other.DigitsMask && SubsetDigitsMask == other.SubsetDigitsMask;
+	public override bool IsChainingCompatible => true;
+
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(AlmostHiddenSet? other)
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is AlmostHiddenSetPattern comparer
+		&& Cells == comparer.Cells && House == comparer.House
+		&& DigitsMask == comparer.DigitsMask && SubsetDigitsMask == comparer.SubsetDigitsMask;
+
+	/// <inheritdoc/>
+	public int CompareTo(AlmostHiddenSetPattern? other)
 		=> other is null
 			? 1
 			: Cells.CompareTo(other.Cells) is var r1 and not 0
@@ -42,4 +43,16 @@ public sealed partial class AlmostHiddenSet(
 				: DigitsMask.CompareTo(other.DigitsMask) is var r2 and not 0
 					? r2
 					: SubsetDigitsMask.CompareTo(other.SubsetDigitsMask) is var r3 and not 0 ? r3 : 0;
+
+	/// <inheritdoc/>
+	public override AlmostHiddenSetPattern Clone() => new(Cells, House, DigitsMask, SubsetDigitsMask, CandidatesCanFormWeakLink);
+
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<AlmostHiddenSetPattern, AlmostHiddenSetPattern, bool>.operator ==(AlmostHiddenSetPattern? left, AlmostHiddenSetPattern? right)
+		=> left == right;
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<AlmostHiddenSetPattern, AlmostHiddenSetPattern, bool>.operator !=(AlmostHiddenSetPattern? left, AlmostHiddenSetPattern? right)
+		=> left != right;
 }

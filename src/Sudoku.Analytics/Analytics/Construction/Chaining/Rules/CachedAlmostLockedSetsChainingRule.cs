@@ -118,7 +118,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells })
+			if (link.GroupedLinkPattern is not AlmostLockedSetPattern { Cells: var cells })
 			{
 				continue;
 			}
@@ -164,7 +164,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 					IsStrong: true,
 					FirstNode.Map.Digits: var digitsMask1,
 					SecondNode.Map.Digits: var digitsMask2,
-					GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells)
+					GroupedLinkPattern: AlmostLockedSetPattern(var digitsMask, var alsCells)
 				})
 			{
 				var elimDigitsMask = (Mask)(digitsMask & ~(digitsMask1 | digitsMask2));

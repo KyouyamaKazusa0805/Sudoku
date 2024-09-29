@@ -3,10 +3,10 @@ namespace Sudoku.Analytics.Construction.Searching;
 /// <summary>
 /// Represents a pattern searcher on XYZ-Wings.
 /// </summary>
-internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWing>
+internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWingPattern>
 {
 	/// <inheritdoc/>
-	public static ReadOnlySpan<XyzWing> Search(ref readonly Grid grid)
+	public static ReadOnlySpan<XyzWingPattern> Search(ref readonly Grid grid)
 	{
 		// Collect for tri-value cells.
 		var trivalueCells = CellMap.Empty;
@@ -19,7 +19,7 @@ internal sealed class XyzWingPatternSearcher : IPatternSearcher<XyzWing>
 		}
 
 		// Iterate on each pivot cell to get all possible results.
-		var result = new List<XyzWing>();
+		var result = new List<XyzWingPattern>();
 		foreach (var pivot in trivalueCells)
 		{
 			var digitsMaskPivot = grid.GetCandidates(pivot);

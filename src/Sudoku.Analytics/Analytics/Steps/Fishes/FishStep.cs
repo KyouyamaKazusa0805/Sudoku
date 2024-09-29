@@ -62,9 +62,9 @@ public abstract partial class FishStep(
 	public sealed override Mask DigitsUsed => (Mask)(1 << Digit);
 
 	/// <summary>
-	/// Creates a <see cref="Fish"/> instance via the current data.
+	/// Creates a <see cref="FishPattern"/> instance via the current data.
 	/// </summary>
-	internal Fish Pattern
+	internal FishPattern Pattern
 		=> new(
 			Digit,
 			BaseSetsMask,

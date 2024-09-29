@@ -15,19 +15,18 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators)]
-public sealed partial class AlmostLockedSet(
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.ComparisonOperators)]
+public sealed partial class AlmostLockedSetPattern(
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] ref readonly CellMap possibleEliminationMap,
 	[PrimaryConstructorParameter] CellMap[] eliminationMap
 ) :
-	IComparable<AlmostLockedSet>,
-	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
-	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
+	Pattern,
+	IComparable<AlmostLockedSetPattern>,
+	IComparisonOperators<AlmostLockedSetPattern, AlmostLockedSetPattern, bool>,
 	IFormattable,
-	IParsable<AlmostLockedSet>
+	IParsable<AlmostLockedSetPattern>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -45,6 +44,9 @@ public sealed partial class AlmostLockedSet(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => Cells.Count == 1;
 	}
+
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => true;
 
 	/// <summary>
 	/// Indicates the house used.
@@ -96,20 +98,17 @@ public sealed partial class AlmostLockedSet(
 		=> ((digitsMask, cells, possibleEliminationMap), eliminationMap) = (this, EliminationMap);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AlmostLockedSet? other)
-		=> other is not null && DigitsMask == other.DigitsMask && Cells == other.Cells;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is AlmostLockedSetPattern comparer && DigitsMask == comparer.DigitsMask && Cells == comparer.Cells;
 
 	/// <inheritdoc/>
 	/// <exception cref="ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(AlmostLockedSet? other)
+	public int CompareTo(AlmostLockedSetPattern? other)
 		=> other is null
 			? throw new ArgumentNullException(nameof(other))
 			: Cells.Count.CompareTo(other.Cells.Count) is var p and not 0 ? p : Cells.CompareTo(other.Cells);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
@@ -122,15 +121,17 @@ public sealed partial class AlmostLockedSet(
 	}
 
 	/// <inheritdoc/>
+	public override AlmostLockedSetPattern Clone() => new(DigitsMask, Cells, PossibleEliminationMap, EliminationMap);
+
+	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string s, [NotNullWhen(true)] out AlmostLockedSet? result) => TryParse(s, null, out result);
+	public static bool TryParse(string s, [NotNullWhen(true)] out AlmostLockedSetPattern? result) => TryParse(s, null, out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [NotNullWhen(true)] out AlmostLockedSet? result)
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [NotNullWhen(true)] out AlmostLockedSetPattern? result)
 	{
 		try
 		{
@@ -150,16 +151,16 @@ public sealed partial class AlmostLockedSet(
 	}
 
 	/// <summary>
-	/// Collects all possible <see cref="AlmostLockedSet"/>s in the specified grid.
+	/// Collects all possible <see cref="AlmostLockedSetPattern"/>s in the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
-	public static ReadOnlySpan<AlmostLockedSet> Collect(ref readonly Grid grid)
+	/// <returns>All possible found <see cref="AlmostLockedSetPattern"/> instances.</returns>
+	public static ReadOnlySpan<AlmostLockedSetPattern> Collect(ref readonly Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
 
 		// Get all bi-value-cell ALSes.
-		var result = new List<AlmostLockedSet>();
+		var result = new List<AlmostLockedSetPattern>();
 		foreach (var cell in bivalueMap)
 		{
 			var eliminationMap = new CellMap[9];
@@ -218,16 +219,14 @@ public sealed partial class AlmostLockedSet(
 				}
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static AlmostLockedSet Parse(string s) => Parse(s, null);
+	public static AlmostLockedSetPattern Parse(string s) => Parse(s, null);
 
 	/// <inheritdoc/>
-	public static AlmostLockedSet Parse(string s, IFormatProvider? provider)
+	public static AlmostLockedSetPattern Parse(string s, IFormatProvider? provider)
 	{
 		var parser = CoordinateParser.GetInstance(provider);
 		return s.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
@@ -236,4 +235,13 @@ public sealed partial class AlmostLockedSet(
 				: throw new FormatException(SR.ExceptionMessage("AlsMissingCellsInTargetHouse"))
 			: throw new FormatException(SR.ExceptionMessage("AlsMissingSlash"));
 	}
+
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<AlmostLockedSetPattern, AlmostLockedSetPattern, bool>.operator ==(AlmostLockedSetPattern? left, AlmostLockedSetPattern? right)
+		=> left == right;
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<AlmostLockedSetPattern, AlmostLockedSetPattern, bool>.operator !=(AlmostLockedSetPattern? left, AlmostLockedSetPattern? right)
+		=> left != right;
 }

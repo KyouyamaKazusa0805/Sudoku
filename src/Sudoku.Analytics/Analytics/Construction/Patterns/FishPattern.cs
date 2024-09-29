@@ -8,19 +8,24 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="coverSets">Indicates the cover sets.</param>
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public sealed partial class Fish(
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+public sealed partial class FishPattern(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask baseSets,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask coverSets,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap exofins,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap endofins
-) : IEquatable<Fish>, IEqualityOperators<Fish, Fish, bool>, IFormattable
+) :
+	Pattern,
+	IFormattable
 {
 	/// <summary>
 	/// Indicates whether the pattern is complex fish.
 	/// </summary>
 	public bool IsComplex => Endofins is not [];
+
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => true;
 
 	/// <summary>
 	/// Indicates all fins.
@@ -54,14 +59,13 @@ public sealed partial class Fish(
 	}
 
 
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public bool Equals([NotNullWhen(true)] Fish? other)
-		=> other is not null
-		&& (Digit, BaseSets, CoverSets) == (other.Digit, other.BaseSets, other.CoverSets)
-		&& (Exofins, Endofins) == (other.Exofins, other.Endofins);
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is FishPattern comparer
+		&& (Digit, BaseSets, CoverSets) == (comparer.Digit, comparer.BaseSets, comparer.CoverSets)
+		&& (Exofins, Endofins) == (comparer.Exofins, comparer.Endofins);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		switch (CoordinateConverter.GetInstance(formatProvider))
@@ -128,6 +132,9 @@ public sealed partial class Fish(
 		}
 		return FishFinKind.Finned;
 	}
+
+	/// <inheritdoc/>
+	public override FishPattern Clone() => new(Digit, BaseSets, CoverSets, Exofins, Endofins);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

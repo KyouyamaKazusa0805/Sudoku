@@ -39,7 +39,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly ExtendedRectangle[] Patterns;
+	private static readonly ExtendedRectanglePattern[] Patterns;
 
 	/// <summary>
 	/// Indicates all possible combinations of houses.
@@ -87,7 +87,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		var result = new List<ExtendedRectangle>();
+		var result = new List<ExtendedRectanglePattern>();
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)

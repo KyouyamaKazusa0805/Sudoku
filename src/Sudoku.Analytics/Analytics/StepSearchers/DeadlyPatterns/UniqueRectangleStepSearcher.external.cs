@@ -1176,7 +1176,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="d2">The digit 2 used in UR.</param>
 	/// <param name="index">The mask index.</param>
 	/// <param name="arMode"></param>
-	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
+	private partial void CheckExternalAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
 		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))

@@ -48,15 +48,16 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// Due to the drawing API, you have to check this file rather than the tip window.
 /// </para>
 /// </param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public sealed partial class BorescoperDeadlyPattern([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] long mask) :
-	IEquatable<BorescoperDeadlyPattern>,
-	IEqualityOperators<BorescoperDeadlyPattern, BorescoperDeadlyPattern, bool>
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+public sealed partial class BorescoperDeadlyPatternPattern([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] long mask) : Pattern
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.
 	/// </summary>
 	public bool IsHeptagon => (_mask >> 28 & 127) == 127;
+
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => false;
 
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
@@ -104,8 +105,11 @@ public sealed partial class BorescoperDeadlyPattern([PrimaryConstructorParameter
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] BorescoperDeadlyPattern? other) => other is not null && _mask == other._mask;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is BorescoperDeadlyPatternPattern comparer && _mask == comparer._mask;
+
+	/// <inheritdoc/>
+	public override BorescoperDeadlyPatternPattern Clone() => new(_mask);
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

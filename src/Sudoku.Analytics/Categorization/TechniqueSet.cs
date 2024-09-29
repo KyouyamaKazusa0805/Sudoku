@@ -140,6 +140,11 @@ public sealed partial class TechniqueSet() :
 		}
 	}
 
+	/// <summary>
+	/// Indicates the groups the current collection covered.
+	/// </summary>
+	public ReadOnlyMemory<TechniqueGroup> TechniqueGroups => (from technique in this select technique.GetGroup()).ToArray();
+
 	/// <inheritdoc/>
 	bool ICollection<Technique>.IsReadOnly => false;
 

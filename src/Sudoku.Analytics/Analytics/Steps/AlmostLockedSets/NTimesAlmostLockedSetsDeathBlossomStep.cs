@@ -111,7 +111,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 		return 0;
 
 
-		static int alsCellsCountSelector(AlmostLockedSet s) => s.Cells.Count;
+		static int alsCellsCountSelector(AlmostLockedSetPattern s) => s.Cells.Count;
 	}
 
 	private string BranchesStr(string cultureName)

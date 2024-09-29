@@ -24,7 +24,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
 		// Gather all RCCs.
-		var rccList = new List<(AlmostLockedSet Left, AlmostLockedSet Right, Mask Mask)>();
+		var rccList = new List<(AlmostLockedSetPattern Left, AlmostLockedSetPattern Right, Mask Mask)>();
 		for (var (i, length) = (0, alses.Length); i < length - 1; i++)
 		{
 			var als1 = alses[i];

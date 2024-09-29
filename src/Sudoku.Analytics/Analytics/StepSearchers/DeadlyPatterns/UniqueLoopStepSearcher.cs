@@ -91,10 +91,10 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// Try to find all possible loops appeared in a grid.
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
-	/// <returns>A list of <see cref="UniqueLoop"/> instances.</returns>
-	private ReadOnlySpan<UniqueLoop> FindLoops(ref readonly Grid grid)
+	/// <returns>A list of <see cref="UniqueLoopPattern"/> instances.</returns>
+	private ReadOnlySpan<UniqueLoopPattern> FindLoops(ref readonly Grid grid)
 	{
-		var result = new HashSet<UniqueLoop>();
+		var result = new HashSet<UniqueLoopPattern>();
 		foreach (var cell in BivalueCells)
 		{
 			var queue = LinkedList.Singleton(LinkedList.Singleton(cell));
@@ -112,7 +112,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				{
 					// Determine whether the current cell iterated is the first node.
 					// If so, check whether the loop is of length greater than 6, and validity of the loop.
-					if (currentCell == cell && currentBranch.Count is 6 or 8 or 10 or 12 or 14 && UniqueLoop.IsValid(currentBranch))
+					if (currentCell == cell && currentBranch.Count is 6 or 8 or 10 or 12 or 14 && UniqueLoopPattern.IsValid(currentBranch))
 					{
 						result.Add(new(currentBranch.AsCellMap(), [.. currentBranch], comparer));
 						break;
@@ -127,7 +127,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 			}
 		}
-		return (UniqueLoop[])[.. result];
+		return (UniqueLoopPattern[])[.. result];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

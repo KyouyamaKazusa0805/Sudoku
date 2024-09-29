@@ -549,7 +549,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <para>
 	/// <i>
 	/// However, this method contains a little bug for checking loops, leading to returning <see langword="true"/> for this method,
-	/// and returning <see langword="false"/> for the method <see cref="UniqueLoop.IsValid{T}(T)"/>
+	/// and returning <see langword="false"/> for the method <see cref="UniqueLoopPattern.IsValid{T}(T)"/>
 	/// above this.
 	/// If a pattern is like:
 	/// </i>
@@ -578,9 +578,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// ~~~~~~~~~~~~~~~~~~~~~~~~~
 	/// ]]></code>
 	/// </para>
-	/// <para><inheritdoc cref="UniqueLoop.IsValid{T}(T)" path="//remarks/para[2]"/></para>
+	/// <para><inheritdoc cref="UniqueLoopPattern.IsValid{T}(T)" path="//remarks/para[2]"/></para>
 	/// </remarks>
-	/// <seealso cref="UniqueLoop.IsValid{T}(T)"/>
+	/// <seealso cref="UniqueLoopPattern.IsValid{T}(T)"/>
 	private static bool IsGeneralizedUniqueLoop(ref readonly CellMap loop)
 	{
 		// The length of the loop pattern must be at least 4, and an even.

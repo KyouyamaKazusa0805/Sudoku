@@ -63,11 +63,11 @@ public sealed partial class BlossomLoopStep(
 						{
 							result += link.GroupedLinkPattern switch
 							{
-								AlmostLockedSet => 2,
-								AlmostHiddenSet => 3,
-								UniqueRectangle => 4,
-								Fish => 6,
-								XyzWing => 8,
+								AlmostLockedSetPattern => 2,
+								AlmostHiddenSetPattern => 3,
+								UniqueRectanglePattern => 4,
+								FishPattern => 6,
+								XyzWingPattern => 8,
 								null when link.FirstNode.IsGroupedNode || link.SecondNode.IsGroupedNode => 1,
 								_ => 0
 							};

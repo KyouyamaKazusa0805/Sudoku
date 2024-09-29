@@ -26,12 +26,13 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
 /// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-public sealed partial class QiuDeadlyPattern1(
-	[PrimaryConstructorParameter] ref readonly CellMap Corner,
-	[PrimaryConstructorParameter] HouseMask Lines
-) : IEquatable<QiuDeadlyPattern1>, IEqualityOperators<QiuDeadlyPattern1, QiuDeadlyPattern1, bool>
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+public sealed partial class QiuDeadlyPattern1Pattern([PrimaryConstructorParameter] ref readonly CellMap Corner, [PrimaryConstructorParameter] HouseMask Lines) :
+	Pattern
 {
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => false;
+
 	/// <summary>
 	/// Indicates the crossline cells.
 	/// </summary>
@@ -61,6 +62,9 @@ public sealed partial class QiuDeadlyPattern1(
 
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] QiuDeadlyPattern1? other)
-		=> other is not null && Crossline == other.Crossline && Lines == other.Lines;
+	public override bool Equals([NotNullWhen(true)] Pattern? other)
+		=> other is QiuDeadlyPattern1Pattern comparer && Crossline == comparer.Crossline && Lines == comparer.Lines;
+
+	/// <inheritdoc/>
+	public override QiuDeadlyPattern1Pattern Clone() => new(Corner, Lines);
 }

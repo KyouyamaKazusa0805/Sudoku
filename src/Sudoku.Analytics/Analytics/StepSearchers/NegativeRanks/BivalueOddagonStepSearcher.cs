@@ -89,9 +89,9 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		return null;
 
 
-		static HashSet<BivalueOddagon> collect(ref readonly Grid grid)
+		static HashSet<BivalueOddagonPattern> collect(ref readonly Grid grid)
 		{
-			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagon>(MaximumCount));
+			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagonPattern>(MaximumCount));
 			for (var d1 = 0; d1 < 8; d1++)
 			{
 				for (var d2 = d1 + 1; d2 < 9; d2++)
@@ -127,7 +127,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			ref readonly CellMap cellsContainingBothDigits,
 			ref readonly CellMap loop,
 			ref readonly CellMap extraCells,
-			HashSet<BivalueOddagon> result,
+			HashSet<BivalueOddagonPattern> result,
 			ref int loopsCount,
 			Mask comparer,
 			Mask extraDigitsMask

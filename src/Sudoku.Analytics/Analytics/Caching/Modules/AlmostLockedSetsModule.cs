@@ -10,10 +10,10 @@ internal static class AlmostLockedSetsModule
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of ALSes.</returns>
-	public static ReadOnlySpan<AlmostLockedSet> CollectAlmostLockedSets(ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostLockedSetPattern> CollectAlmostLockedSets(ref readonly Grid grid)
 	{
 		// Get all bi-value-cell ALSes.
-		var result = new List<AlmostLockedSet>();
+		var result = new List<AlmostLockedSetPattern>();
 		foreach (var cell in BivalueCells)
 		{
 			var eliminationMap = new CellMap[9];

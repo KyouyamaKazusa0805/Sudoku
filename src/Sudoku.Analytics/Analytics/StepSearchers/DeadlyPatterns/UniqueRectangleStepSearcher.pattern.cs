@@ -910,7 +910,7 @@ public partial class UniqueRectangleStepSearcher
 	/// In addition, this pattern will cover all possible cases of UR + 2D and UR + 3X.
 	/// </para>
 	/// </remarks>
-	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSet> alses, int index)
+	private partial void CheckAlmostLockedSetsXz(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, scoped ReadOnlySpan<AlmostLockedSetPattern> alses, int index)
 	{
 		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))

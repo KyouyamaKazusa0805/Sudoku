@@ -91,7 +91,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					}
 
 					var coverSetsMask = HouseMaskOperations.Create(cs);
-					var fish = new Fish(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
+					var fish = new FishPattern(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
 					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection
 						|| linkOption == LinkOption.House && !fins.InOneHouse(out _))
 					{
@@ -159,7 +159,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 		var result = new List<ViewNode>();
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is not Fish { Digit: var digit, BaseSets: var baseSets, Exofins: var fins })
+			if (link.GroupedLinkPattern is not FishPattern { Digit: var digit, BaseSets: var baseSets, Exofins: var fins })
 			{
 				continue;
 			}
@@ -196,7 +196,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				{
 					FirstNode.Map.Cells: var firstCells,
 					SecondNode.Map.Cells: var secondCells,
-					GroupedLinkPattern: Fish { Digit: var digit, BaseSets: var baseSets, CoverSets: var coverSets }
+					GroupedLinkPattern: FishPattern { Digit: var digit, BaseSets: var baseSets, CoverSets: var coverSets }
 				})
 			{
 				continue;

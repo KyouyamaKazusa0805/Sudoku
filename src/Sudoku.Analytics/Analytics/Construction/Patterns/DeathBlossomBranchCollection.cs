@@ -7,9 +7,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode, GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
 public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
-	Dictionary<TKey, AlmostLockedSet>,
+	Dictionary<TKey, AlmostLockedSetPattern>,
 	IEquatable<TSelf>,
-	ISelectMethod<TSelf, KeyValuePair<TKey, AlmostLockedSet>>
+	ISelectMethod<TSelf, KeyValuePair<TKey, AlmostLockedSetPattern>>
 	where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
 	where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 {
@@ -34,6 +34,6 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);
 
 	/// <inheritdoc/>
-	IEnumerable<TResult> ISelectMethod<TSelf, KeyValuePair<TKey, AlmostLockedSet>>.Select<TResult>(Func<KeyValuePair<TKey, AlmostLockedSet>, TResult> selector)
+	IEnumerable<TResult> ISelectMethod<TSelf, KeyValuePair<TKey, AlmostLockedSetPattern>>.Select<TResult>(Func<KeyValuePair<TKey, AlmostLockedSetPattern>, TResult> selector)
 		=> this.Select(selector).ToArray();
 }

@@ -22,8 +22,8 @@ public sealed partial class AlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSet als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSet als2,
+	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSetPattern als1,
+	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSetPattern als2,
 	[PrimaryConstructorParameter] Mask xDigitsMask,
 	[PrimaryConstructorParameter] Mask zDigitsMask,
 	[PrimaryConstructorParameter] bool isDoublyLinked

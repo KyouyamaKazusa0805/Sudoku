@@ -13,7 +13,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.
 	/// </summary>
-	private static readonly MultisectorLockedSet[] Patterns;
+	private static readonly MultisectorLockedSetPattern[] Patterns;
 
 	/// <summary>
 	/// Indicates the possible size (the number of rows and columns) in an MSLS.
@@ -28,7 +28,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	static MultisectorLockedSetsStepSearcher()
 	{
 		const HouseMask a = ~7, b = ~56, c = ~448;
-		var result = new MultisectorLockedSet[74601];
+		var result = new MultisectorLockedSetPattern[74601];
 		var i = 0;
 		for (var sizeLength = 0; sizeLength < PossibleSizes.Length; sizeLength++)
 		{

@@ -308,7 +308,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		Cell pivot,
 		scoped Span<int> alsReferenceTable,
-		ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSetPattern> alses,
 		Mask[] playgroundCached,
 		List<DeathBlossomStep> accumulator
 	)
@@ -436,7 +436,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		House house,
 		Mask disappearedDigitsMask,
 		scoped Span<int> alsReferenceTable,
-		ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSetPattern> alses,
 		Mask[] playgroundCached,
 		HashSet<HouseDeathBlossomStep> accumulator
 	)
@@ -566,7 +566,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	private NTimesAlmostLockedSetsDeathBlossomStep? CreateStep_NTimesAlsType(
 		ref StepAnalysisContext context,
 		ref readonly Grid grid,
-		ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSetPattern> alses,
 		scoped Span<CellMap> alsesUsed,
 		scoped Span<Cell> usedIndex,
 		scoped Span<Cell> selectedAlsEntryCell,

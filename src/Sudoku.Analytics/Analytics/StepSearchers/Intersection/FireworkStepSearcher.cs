@@ -26,7 +26,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns used.
 	/// </summary>
-	private static readonly Firework[] Patterns;
+	private static readonly FireworkPattern[] Patterns;
 
 	/// <summary>
 	/// Indicates the house combinations.
@@ -44,7 +44,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static FireworkStepSearcher()
 	{
-		Patterns = new Firework[3645];
+		Patterns = new FireworkPattern[3645];
 
 		var i = 0;
 		foreach (var houseQuad in HouseCombinations)
@@ -155,7 +155,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
-		ref readonly Firework pattern,
+		ref readonly FireworkPattern pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -268,7 +268,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref StepAnalysisContext context,
 		bool onlyFindOne,
-		ref readonly Firework pattern
+		ref readonly FireworkPattern pattern
 	)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })

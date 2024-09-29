@@ -5,14 +5,17 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="loop">Indicates the cells used in this whole unique loop.</param>
 /// <param name="path">Indicates the detail path of the loop.</param>
-/// <param name="digitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public sealed partial class UniqueLoop(
+/// <param name="digitsMask">Indicates the digits used, represented as a mask.</param>
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+public sealed partial class UniqueLoopPattern(
 	[PrimaryConstructorParameter] ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] path,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : IEquatable<UniqueLoop>, IEqualityOperators<UniqueLoop, UniqueLoop, bool>
+) : Pattern
 {
+	/// <inheritdoc/>
+	public override bool IsChainingCompatible => false;
+
 	[HashCodeMember]
 	private int LoopHashCode => Loop.GetHashCode();
 
@@ -22,7 +25,7 @@ public sealed partial class UniqueLoop(
 		get
 		{
 			var sb = new StringBuilder();
-			sb.Append($$"""{{nameof(UniqueLoop)}} {""");
+			sb.Append($$"""{{nameof(UniqueLoopPattern)}} {""");
 			sb.Append($"{nameof(Loop)} = {Loop}");
 			sb.Append(", ");
 			sb.Append($"{nameof(Path)} = [");
@@ -47,7 +50,10 @@ public sealed partial class UniqueLoop(
 		=> (loop, path, digitsMask) = (Loop, Path, DigitsMask);
 
 	/// <inheritdoc/>
-	public bool Equals([NotNullWhen(true)] UniqueLoop? other) => other is not null && Loop == other.Loop;
+	public override bool Equals([NotNullWhen(true)] Pattern? other) => other is UniqueLoopPattern comparer && Loop == comparer.Loop;
+
+	/// <inheritdoc/>
+	public override UniqueLoopPattern Clone() => new(Loop, Path, DigitsMask);
 
 
 	/// <summary>

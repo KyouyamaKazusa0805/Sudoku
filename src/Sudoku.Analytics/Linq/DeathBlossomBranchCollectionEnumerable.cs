@@ -17,7 +17,7 @@ public static class DeathBlossomBranchCollectionEnumerable
 	/// <param name="this">The current collection.</param>
 	/// <param name="selector">The selector to transform elements.</param>
 	/// <returns>The results.</returns>
-	public static ReadOnlySpan<TResult> Select<TSelf, TKey, TResult>(this DeathBlossomBranchCollection<TSelf, TKey> @this, Func<KeyValuePair<TKey, AlmostLockedSet>, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TSelf, TKey, TResult>(this DeathBlossomBranchCollection<TSelf, TKey> @this, Func<KeyValuePair<TKey, AlmostLockedSetPattern>, TResult> selector)
 		where TSelf : DeathBlossomBranchCollection<TSelf, TKey>, IEquatable<TSelf>, IEqualityOperators<TSelf, TSelf, bool>, new()
 		where TKey : notnull, IAdditiveIdentity<TKey, TKey>, IEquatable<TKey>, IEqualityOperators<TKey, TKey, bool>, new()
 	{

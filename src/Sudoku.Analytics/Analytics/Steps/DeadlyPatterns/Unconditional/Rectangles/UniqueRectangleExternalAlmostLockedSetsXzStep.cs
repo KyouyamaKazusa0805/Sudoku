@@ -22,7 +22,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	Digit digit2,
 	ref readonly CellMap cells,
 	[PrimaryConstructorParameter] ref readonly CellMap guardianCells,
-	[PrimaryConstructorParameter] AlmostLockedSet almostLockedSet,
+	[PrimaryConstructorParameter] AlmostLockedSetPattern almostLockedSet,
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
