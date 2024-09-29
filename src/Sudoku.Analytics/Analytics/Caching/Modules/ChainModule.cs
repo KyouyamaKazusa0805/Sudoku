@@ -237,48 +237,19 @@ file static class Extensions
 	/// <param name="this">The chain to be checked.</param>
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the element has already been added.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
 	{
-		switch (@this)
+		return @this switch
 		{
-			case NormalChainStep { Pattern.Links: var links }:
-			{
-				if (allowsAdvancedLinks ^ links.Any(linkPredicate))
-				{
-					return false;
-				}
-				break;
-			}
-			case MultipleForcingChainsStep { Pattern: var pattern }:
-			{
-				foreach (var (_, branch) in pattern)
-				{
-					if (allowsAdvancedLinks ^ branch.Links.Any(linkPredicate))
-					{
-						return false;
-					}
-				}
-				break;
-			}
-			case BlossomLoopStep { Pattern: var pattern }:
-			{
-				foreach (var (_, branch) in pattern)
-				{
-					if (allowsAdvancedLinks ^ branch.Links.Any(linkPredicate))
-					{
-						return false;
-					}
-				}
-				break;
-			}
-			default:
-			{
-				return false;
-			}
-		}
-		return true;
+			NormalChainStep { Pattern.Links: var l } when allowsAdvancedLinks ^ l.Any(lp) => false,
+			MultipleForcingChainsStep { Pattern: var p } when p.AnyValue(b => allowsAdvancedLinks ^ b.Links.Any(lp)) => false,
+			BlossomLoopStep { Pattern: var p } when p.AnyValue(b => allowsAdvancedLinks ^ b.Links.Any(lp)) => false,
+			NormalChainStep or MultipleForcingChainsStep or BlossomLoopStep => true,
+			_ => false
+		};
 
 
-		static bool linkPredicate(Link link) => link.GroupedLinkPattern is not null;
+		static bool lp(Link link) => link.GroupedLinkPattern is not null;
 	}
 }

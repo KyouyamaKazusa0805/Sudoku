@@ -2214,6 +2214,46 @@
             <returns>An instance of type <typeparamref name="TValue"/> as minimal-valued one.</returns>
             <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
         </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AllKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+            <summary>
+            Determine whether all keys in the dictionary satisfy the specified condition.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary to be checked.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AllValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+            <summary>
+            Determine whether all values in the dictionary satisfy the specified condition.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary to be checked.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AnyKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+            <summary>
+            Determine whether at least one key in the dictionary satisfies the specified condition.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary to be checked.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AnyValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+            <summary>
+            Determine whether at least one value in the dictionary satisfies the specified condition.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary to be checked.</param>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>
             Provides with some extension methods for enumeration types.

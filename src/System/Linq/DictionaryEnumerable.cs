@@ -51,4 +51,88 @@ public static class DictionaryEnumerable
 		}
 		return result;
 	}
+
+	/// <summary>
+	/// Determine whether all keys in the dictionary satisfy the specified condition.
+	/// </summary>
+	/// <typeparam name="TKey">The type of each key.</typeparam>
+	/// <typeparam name="TValue">The type of each value.</typeparam>
+	/// <param name="this">The dictionary to be checked.</param>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool AllKey<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> @this, Func<TKey, bool> predicate)
+		where TKey : notnull
+	{
+		foreach (var key in @this.Keys)
+		{
+			if (!predicate(key))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// Determine whether all values in the dictionary satisfy the specified condition.
+	/// </summary>
+	/// <typeparam name="TKey">The type of each key.</typeparam>
+	/// <typeparam name="TValue">The type of each value.</typeparam>
+	/// <param name="this">The dictionary to be checked.</param>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool AllValue<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> @this, Func<TValue, bool> predicate)
+		where TKey : notnull
+	{
+		foreach (var value in @this.Values)
+		{
+			if (!predicate(value))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
+	/// Determine whether at least one key in the dictionary satisfies the specified condition.
+	/// </summary>
+	/// <typeparam name="TKey">The type of each key.</typeparam>
+	/// <typeparam name="TValue">The type of each value.</typeparam>
+	/// <param name="this">The dictionary to be checked.</param>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool AnyKey<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> @this, Func<TKey, bool> predicate)
+		where TKey : notnull
+	{
+		foreach (var key in @this.Keys)
+		{
+			if (predicate(key))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Determine whether at least one value in the dictionary satisfies the specified condition.
+	/// </summary>
+	/// <typeparam name="TKey">The type of each key.</typeparam>
+	/// <typeparam name="TValue">The type of each value.</typeparam>
+	/// <param name="this">The dictionary to be checked.</param>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool AnyValue<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> @this, Func<TValue, bool> predicate)
+		where TKey : notnull
+	{
+		foreach (var value in @this.Values)
+		{
+			if (predicate(value))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
