@@ -18,7 +18,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 		var linkOption = context.GetLinkOption(LinkType.XyzWing);
 
 		// Iterate on each XYZ-Wing pattern, to get strong links.
-		foreach (var pattern in XyzWingPatternSearcher.Search(in grid))
+		foreach (var pattern in new CachedXyzWingPatternSearcher().Search(in grid))
 		{
 			var (pivot, leafCell1, leafCell2, _, _, _, zDigit) = pattern;
 			var patternCells = pivot.AsCellMap() + leafCell1 + leafCell2;

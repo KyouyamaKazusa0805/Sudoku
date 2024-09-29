@@ -5901,26 +5901,26 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Searching.IPatternSearcher`1">
-            <summary>
-            Represents a pattern searcher type.
-            </summary>
-            <typeparam name="T">The type of the found data.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Searching.IPatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to search patterns, and return the found data.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>The found data.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Searching.XyzWingPatternSearcher">
+        <member name="T:Sudoku.Analytics.PatternSearchers.CachedXyzWingPatternSearcher">
             <summary>
             Represents a pattern searcher on XYZ-Wings.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Searching.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.PatternSearchers.CachedXyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.PatternSearchers.PatternSearcher`1">
+            <summary>
+            Represents a pattern searcher type.
+            </summary>
+            <typeparam name="TPattern">The type of pattern.</typeparam>
+        </member>
+        <member name="M:Sudoku.Analytics.PatternSearchers.PatternSearcher`1.Search(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to search patterns and return them.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>The found patterns.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Primitives.BottleneckFilter">
             <summary>
