@@ -3792,6 +3792,289 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.BlossomLoop">
+            <summary>
+            Represents a blossom loop.
+            </summary>
+            <param name="conclusions">Indicates the conclusions used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.#ctor(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Represents a blossom loop.
+            </summary>
+            <param name="conclusions">Indicates the conclusions used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.EntryIsCellType">
+            <summary>
+            Indicates whether the loop entry is cell type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.ExitIsCellType">
+            <summary>
+            Indicates whether the loop exit is cell type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Complexity">
+            <summary>
+            Indicates the complexity of the whole pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.DigitsMask">
+            <summary>
+            Indicates the digits used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Entries">
+            <summary>
+            Indicates the entry candidates that start each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Exits">
+            <summary>
+            Indicates the exit candidates that end each branch.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.BranchedComplexity">
+            <summary>
+            Indicates the complexity of each branch.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Exists(System.Func{Sudoku.Analytics.Construction.Chaining.ChainOrLoop,System.Boolean})">
+            <summary>
+            Determines whether at least one branch contains at least one element satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Chaining.NodeComparison,Sudoku.Analytics.Construction.Chaining.ChainOrLoopComparison)">
+            <summary>
+            Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.BlossomLoop"/> are considered equal.
+            </summary>
+            <param name="other">The other instance to be checked.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.CompareTo(Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.CompareTo(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Chaining.NodeComparison)">
+            <summary>
+            Compares the value with the other one, to get which one is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.GetHashCode(Sudoku.Analytics.Construction.Chaining.NodeComparison,Sudoku.Analytics.Construction.Chaining.ChainOrLoopComparison)">
+            <summary>
+            Calculates a hash code value used for comparison.
+            </summary>
+            <param name="nodeComparison">The node comparison rule.</param>
+            <param name="patternComparison">The chain comparison rule.</param>
+            <returns>Hash code value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Conclusions">
+            <summary>
+            The generated property declaration for parameter <c>conclusions</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_Equality(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_Inequality(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_GreaterThan(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_LessThan(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_GreaterThanOrEqual(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_LessThanOrEqual(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2">
+            <summary>
+            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey" />.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.DigitsMask">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.System#Linq#Providers#ISelectMethod{TSelf,System#Collections#Generic#KeyValuePair{TKey,Sudoku#Analytics#Construction#Patterns#AlmostLockedSetPattern}}#Select``1(System.Func{System.Collections.Generic.KeyValuePair{`1,Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection">
+            <summary>
+            Represents for a house blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.LockedMember">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="lockedCells">Indicates the locked cells.</param>
+            <param name="lockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="lockedCells">Indicates the locked cells.</param>
+            <param name="lockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Equals(Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.LockedCells">
+            <summary>
+            The generated property declaration for parameter <c>lockedCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.LockedMember.LockedBlock">
+            <summary>
+            The generated property declaration for parameter <c>lockedBlock</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Equality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection">
+            <summary>
+            Represents for a normal blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection">
+            <summary>
+            Represents for a n-times ALS blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection">
+            <summary>
+            Represents for a rectangle blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Directs.AnalysisResultExcluderExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/> to check for excluders.
@@ -4410,129 +4693,6 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagonPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.BlossomLoop">
-            <summary>
-            Represents a blossom loop.
-            </summary>
-            <param name="conclusions">Indicates the conclusions used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.#ctor(Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Represents a blossom loop.
-            </summary>
-            <param name="conclusions">Indicates the conclusions used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.EntryIsCellType">
-            <summary>
-            Indicates whether the loop entry is cell type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.ExitIsCellType">
-            <summary>
-            Indicates whether the loop exit is cell type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Complexity">
-            <summary>
-            Indicates the complexity of the whole pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.DigitsMask">
-            <summary>
-            Indicates the digits used in this pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Entries">
-            <summary>
-            Indicates the entry candidates that start each branch.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Exits">
-            <summary>
-            Indicates the exit candidates that end each branch.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.BranchedComplexity">
-            <summary>
-            Indicates the complexity of each branch.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Exists(System.Func{Sudoku.Analytics.Construction.Chaining.ChainOrLoop,System.Boolean})">
-            <summary>
-            Determines whether at least one branch contains at least one element satisfying the specified condition.
-            </summary>
-            <param name="predicate">The condition to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Equals(Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Equals(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Chaining.NodeComparison,Sudoku.Analytics.Construction.Chaining.ChainOrLoopComparison)">
-            <summary>
-            Determines whether two <see cref="T:Sudoku.Analytics.Construction.Patterns.BlossomLoop"/> are considered equal.
-            </summary>
-            <param name="other">The other instance to be checked.</param>
-            <param name="nodeComparison">The node comparison rule.</param>
-            <param name="patternComparison">The chain comparison rule.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.CompareTo(Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.CompareTo(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Chaining.NodeComparison)">
-            <summary>
-            Compares the value with the other one, to get which one is greater.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The node comparison rule.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.GetHashCode(Sudoku.Analytics.Construction.Chaining.NodeComparison,Sudoku.Analytics.Construction.Chaining.ChainOrLoopComparison)">
-            <summary>
-            Calculates a hash code value used for comparison.
-            </summary>
-            <param name="nodeComparison">The node comparison rule.</param>
-            <param name="patternComparison">The chain comparison rule.</param>
-            <returns>Hash code value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Conclusions">
-            <summary>
-            The generated property declaration for parameter <c>conclusions</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_Equality(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_Inequality(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_GreaterThan(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_LessThan(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_GreaterThanOrEqual(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.BlossomLoop.op_LessThanOrEqual(Sudoku.Analytics.Construction.Patterns.BlossomLoop,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPatternPattern">
             <summary>
             Defines a pattern that is a Borescoper's Deadly Pattern technique pattern in theory. The sketch is like:
@@ -4762,39 +4922,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.ChromaticPatternPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2">
-            <summary>
-            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey" />.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-            <typeparam name="TKey">The type of the distinction key.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2.DigitsMask">
-            <summary>
-            Indicates all digits used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2.Equals(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2.System#Linq#Providers#ISelectMethod{TSelf,System#Collections#Generic#KeyValuePair{TKey,Sudoku#Analytics#Construction#Patterns#AlmostLockedSetPattern}}#Select``1(System.Func{System.Collections.Generic.KeyValuePair{`1,Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},``0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.DominoLoopPattern">
@@ -5234,26 +5361,6 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.GuardianPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection">
-            <summary>
-            Represents for a house blossom branch collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.IComplexSeniorExocet">
             <summary>
             The base overrides for complex senior exocet steps.
@@ -5315,53 +5422,6 @@
             A list of cells as the other pair of target cells.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.LockedMember">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="lockedCells">Indicates the locked cells.</param>
-            <param name="lockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="lockedCells">Indicates the locked cells.</param>
-            <param name="lockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Equals(Sudoku.Analytics.Construction.Patterns.LockedMember)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.LockedMember.LockedCells">
-            <summary>
-            The generated property declaration for parameter <c>lockedCells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.LockedMember.LockedBlock">
-            <summary>
-            The generated property declaration for parameter <c>lockedBlock</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.op_Equality(Sudoku.Analytics.Construction.Patterns.LockedMember,Sudoku.Analytics.Construction.Patterns.LockedMember)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Patterns.LockedMember,Sudoku.Analytics.Construction.Patterns.LockedMember)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSetPattern">
             <summary>
             Represents a pattern for multi-sector locked sets.
@@ -5412,46 +5472,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSetPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection">
-            <summary>
-            Represents for a normal blossom branch collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection">
-            <summary>
-            Represents for a n-times ALS blossom branch collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern">
             <summary>
@@ -5621,26 +5641,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection">
-            <summary>
-            Represents for a rectangle blossom branch collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection,Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.TrueCandidate">
             <summary>
@@ -9428,7 +9428,7 @@
             <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
             <returns>A valid <see cref="T:Sudoku.Analytics.Steps.ExocetStep"/> instance calculated and found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Analytics.Construction.Patterns.LockedMember}@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Analytics.Construction.Components.LockedMember}@,System.Int16@)">
             <summary>
             Try to fetch locked members in the pattern, and verify validity of the pattern.
             </summary>
@@ -11521,7 +11521,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Analytics.Construction.Patterns.NormalBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -11692,7 +11692,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Construction.Patterns.HouseBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
             </summary>
@@ -11757,7 +11757,7 @@
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Patterns.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetsDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
@@ -11825,7 +11825,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Analytics.Construction.Patterns.RectangleBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Analytics.Construction.Components.RectangleBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (Rectangle Blooming)</b> technique.
             </summary>
@@ -11887,7 +11887,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="pattern">Indicates the backing pattern.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Patterns.BlossomLoop)">
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.BlossomLoop)">
             <summary>
             Provides with a step that is a <b>Blossom Loop</b> technique.
             </summary>
@@ -25862,11 +25862,11 @@
         </member>
         <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
             <summary>
-            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2"/>.
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2"/>
         </member>
-        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``1,Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},``2})">
+        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``1,Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},``2})">
             <summary>
             Transforms the current collection into another representation, using the specified function to transform.
             </summary>
@@ -25881,7 +25881,7 @@
 		</para>
 	</self-type-constraint></typeparam>
             <typeparam name="TKey">
-            <inheritdoc cref="T:Sudoku.Analytics.Construction.Patterns.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']" />
+            <inheritdoc cref="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']" />
             </typeparam>
             <typeparam name="TResult">The type of the results.</typeparam>
             <param name="this">The current collection.</param>

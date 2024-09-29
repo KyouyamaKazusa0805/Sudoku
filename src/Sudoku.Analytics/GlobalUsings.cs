@@ -24,6 +24,7 @@ global using Sudoku.Analytics.Caching.Modules;
 global using Sudoku.Analytics.Configuration;
 global using Sudoku.Analytics.Construction.Chaining;
 global using Sudoku.Analytics.Construction.Chaining.Rules;
+global using Sudoku.Analytics.Construction.Components;
 global using Sudoku.Analytics.Construction.Directs;
 global using Sudoku.Analytics.Construction.Patterns;
 global using Sudoku.Analytics.Construction.Searching;
