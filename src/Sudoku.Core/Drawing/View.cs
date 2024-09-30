@@ -38,6 +38,7 @@ public sealed partial class View :
 	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
 	/// </summary>
+	/// <typeparam name="TViewNode">The type of each element.</typeparam>
 	/// <param name="nodes">A list of <see cref="ViewNode"/> instance.</param>
 	public void AddRange<TViewNode>(ReadOnlySpan<TViewNode> nodes) where TViewNode : ViewNode
 	{

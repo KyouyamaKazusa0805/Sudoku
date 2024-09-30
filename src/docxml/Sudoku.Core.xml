@@ -7234,6 +7234,7 @@
             <summary>
             Adds a list of <see cref="T:Sudoku.Drawing.ViewNode"/>s into the collection.
             </summary>
+            <typeparam name="TViewNode">The type of each element.</typeparam>
             <param name="nodes">A list of <see cref="T:Sudoku.Drawing.ViewNode"/> instance.</param>
         </member>
         <member name="M:Sudoku.Drawing.View.FindCell(System.Int32)">
