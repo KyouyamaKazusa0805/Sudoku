@@ -123,7 +123,7 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : un
 
 	/// <inheritdoc cref="Exists(Cell, Digit)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual bool? Exists(Candidate candidate) => Exists(candidate / CellCandidatesCount, candidate % CellCandidatesCount);
+	public virtual bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.

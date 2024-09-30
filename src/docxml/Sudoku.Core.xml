@@ -5444,16 +5444,6 @@
 		</para>
 	</self-type-constraint></typeparam>
         </member>
-        <member name="F:Sudoku.Concepts.Primitives.IGridConstants`1.CellsCount">
-            <summary>
-            Indicates the number of cells of a sudoku grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitives.IGridConstants`1.CellCandidatesCount">
-            <summary>
-            Indicates the number of digits can be appeared inside a cell.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Primitives.IGridConstants`1.IsEmpty">
             <summary>
             Indicates whether the grid is <see cref="P:Sudoku.Concepts.Primitives.IGridConstants`1.Empty"/>, which means the grid holds totally same value with <see cref="P:Sudoku.Concepts.Primitives.IGridConstants`1.Empty"/>.

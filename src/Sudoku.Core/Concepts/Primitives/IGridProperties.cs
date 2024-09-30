@@ -156,7 +156,7 @@ public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : un
 	protected static unsafe CellMap GetMap(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
-		for (var cell = 0; cell < CellsCount; cell++)
+		for (var cell = 0; cell < 81; cell++)
 		{
 			if (predicate(in @this, cell))
 			{
@@ -177,11 +177,11 @@ public interface IGridProperties<TSelf> : IGridConstants<TSelf> where TSelf : un
 	/// <seealso cref="ValuesMap"/>
 	protected static unsafe CellMap[] GetMaps(ref readonly TSelf @this, delegate*<ref readonly TSelf, Cell, Digit, bool> predicate)
 	{
-		var result = new CellMap[CellCandidatesCount];
-		for (var digit = 0; digit < CellCandidatesCount; digit++)
+		var result = new CellMap[9];
+		for (var digit = 0; digit < 9; digit++)
 		{
 			ref var map = ref result[digit];
-			for (var cell = 0; cell < CellsCount; cell++)
+			for (var cell = 0; cell < 81; cell++)
 			{
 				if (predicate(in @this, cell, digit))
 				{

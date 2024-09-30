@@ -7,17 +7,6 @@ namespace Sudoku.Concepts.Primitives;
 public interface IGridConstants<TSelf> : IEqualityOperators<TSelf, TSelf, bool> where TSelf : unmanaged, IGridConstants<TSelf>
 {
 	/// <summary>
-	/// Indicates the number of cells of a sudoku grid.
-	/// </summary>
-	public const Cell CellsCount = 81;
-
-	/// <summary>
-	/// Indicates the number of digits can be appeared inside a cell.
-	/// </summary>
-	public const Digit CellCandidatesCount = 9;
-
-
-	/// <summary>
 	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid holds totally same value with <see cref="Empty"/>.
 	/// </summary>
 	/// <seealso cref="Empty"/>
