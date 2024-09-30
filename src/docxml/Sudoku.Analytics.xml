@@ -2279,16 +2279,6 @@
             Indicates the nodes to be initialized.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainOrLoop._strongGroupedLinkPool">
-            <summary>
-            Indicates the strong grouped link pool.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Chaining.ChainOrLoop._weakGroupedLinkPool">
-            <summary>
-            Indicates the weak grouped link pool.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Chaining.Node,System.Boolean,System.Boolean)">
             <summary>
             Initializes <see cref="T:Sudoku.Analytics.Construction.Chaining.ChainOrLoop"/> data.

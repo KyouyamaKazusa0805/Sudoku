@@ -28,16 +28,6 @@ public abstract partial class ChainOrLoop :
 	/// </summary>
 	protected readonly Node[] _nodes;
 
-	/// <summary>
-	/// Indicates the strong grouped link pool.
-	/// </summary>
-	protected readonly FrozenDictionary<Link, object> _strongGroupedLinkPool;
-
-	/// <summary>
-	/// Indicates the weak grouped link pool.
-	/// </summary>
-	protected readonly FrozenDictionary<Link, object> _weakGroupedLinkPool;
-
 
 	/// <summary>
 	/// Initializes <see cref="ChainOrLoop"/> data.
@@ -56,8 +46,6 @@ public abstract partial class ChainOrLoop :
 	/// </param>
 	protected ChainOrLoop(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
 	{
-		_strongGroupedLinkPool = StrongLinkDictionary.GroupedLinkPool;
-		_weakGroupedLinkPool = WeakLinkDictionary.GroupedLinkPool;
 		var nodes = (List<Node>)[lastNode];
 		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{
@@ -190,7 +178,7 @@ public abstract partial class ChainOrLoop :
 			for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
 			{
 				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
-				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
+				var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
 				pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
 				result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
 			}
