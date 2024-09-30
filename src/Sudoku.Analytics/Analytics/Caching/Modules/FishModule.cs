@@ -6,13 +6,6 @@ namespace Sudoku.Analytics.Caching.Modules;
 internal static class FishModule
 {
 	/// <summary>
-	/// The backing field that will be used for formatting notations, especially for conclusions,
-	/// in order to check equality of two set of conclusions.
-	/// </summary>
-	private static readonly RxCyConverter NotationConverter = new();
-
-
-	/// <summary>
 	/// Check whether the fish is sashimi.
 	/// </summary>
 	/// <param name="baseSets">The base sets.</param>
@@ -95,7 +88,9 @@ internal static class FishModule
 				goto ReturnFalse;
 			}
 
-			if (NotationConverter.ConclusionConverter(fish1.Conclusions) == NotationConverter.ConclusionConverter(fish2.Conclusions))
+			var set1Conclusions = fish1.Conclusions.AsSet();
+			var set2Conclusions = fish2.Conclusions.AsSet();
+			if (set1Conclusions == set2Conclusions)
 			{
 				// Two fish cannot contain total same conclusions.
 				goto ReturnFalse;
@@ -106,7 +101,7 @@ internal static class FishModule
 			var mergedFins = fish1.Fins | fish2.Fins;
 			var coveredSetsMask = fish1.CoverSetsMask | fish2.CoverSetsMask;
 			var siameseCoverSetsMask = fish1.CoverSetsMask ^ fish2.CoverSetsMask;
-			var conclusions = (fish1.Conclusions.AsSet() | fish2.Conclusions.AsSet()).ToArray();
+			var conclusions = (set1Conclusions | set2Conclusions).ToArray();
 			var isSashimi = (fish1.IsSashimi, fish2.IsSashimi) switch
 			{
 				(true, not null) or (not null, true) => true,

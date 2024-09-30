@@ -1068,12 +1068,6 @@
             Represents a fish module.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Caching.Modules.FishModule.NotationConverter">
-            <summary>
-            The backing field that will be used for formatting notations, especially for conclusions,
-            in order to check equality of two set of conclusions.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check whether the fish is sashimi.
