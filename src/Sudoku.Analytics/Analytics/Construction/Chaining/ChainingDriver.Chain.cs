@@ -12,7 +12,7 @@ internal partial class ChainingDriver
 	/// <returns>All possible <see cref="ChainOrLoop"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// A valid chain can only belong to the following three cases:
+	/// A valid chain can only be categorized by the following three cases:
 	/// <list type="number">
 	/// <item>
 	/// <para><b>Discontinuous Nice Loop</b></para>
