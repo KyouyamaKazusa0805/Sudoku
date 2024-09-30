@@ -429,16 +429,16 @@
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
     <value>Digits {0} and {1} in cells {2} with conjugate pair {3}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType1Step" xml:space="preserve">
     <value>{0} in cells {1}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType2Step" xml:space="preserve">
     <value>{0} in cells {1} with the extra digit {2}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType3Step" xml:space="preserve">
     <value>{0} in cells {1} with the digits {2} in cells {3}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType4Step" xml:space="preserve">
     <value>{0} in cells {1} with the conjugate house {2} of the extra digits {3}</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
@@ -3401,5 +3401,20 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="AnonymousDeadlyPatternType4" xml:space="preserve">
     <value>Anonymous Deadly Pattern Type 4</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType1Step" xml:space="preserve">
+    <value>{0} in cells {1}</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType2Step" xml:space="preserve">
+    <value>{0} in cells {1} with the extra digit {2}</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType3Step" xml:space="preserve">
+    <value>{0} in cells {1} with the digits {2} in cells {3}</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType4Step" xml:space="preserve">
+    <value>{0} in cells {1} with the conjugate house {2} of the extra digits {3}</value>
+  </data>
+  <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size of anonymous deadly pattern</value>
   </data>
 </root>

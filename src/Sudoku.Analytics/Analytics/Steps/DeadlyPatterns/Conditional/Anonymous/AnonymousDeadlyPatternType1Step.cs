@@ -22,4 +22,8 @@ public sealed partial class AnonymousDeadlyPatternType1Step(
 {
 	/// <inheritdoc/>
 	public override int Type => 1;
+
+	/// <inheritdoc/>
+	public override InterpolationArray Interpolations
+		=> [new(SR.EnglishLanguage, [DigitsStr, CellsStr]), new(SR.ChineseLanguage, [DigitsStr, CellsStr])];
 }

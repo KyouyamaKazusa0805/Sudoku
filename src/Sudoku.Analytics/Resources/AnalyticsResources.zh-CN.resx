@@ -429,16 +429,16 @@
   <data name="TechniqueFormat_UniqueLoopType4Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于单元格 {2}，带有共轭对 {3}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType1Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType2Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType2Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，带有一个额外数字 {2}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType3Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType3Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，在单元格 {2} 里带有额外数字 {3}</value>
   </data>
-  <data name="TechniqueFormat_UniquePolygonType4Step" xml:space="preserve">
+  <data name="TechniqueFormat_BorescoperDeadlyPatternType4Step" xml:space="preserve">
     <value>数字 {0} 位于单元格 {1} 里，带有一个关于数字 {2} 的共轭区域，位于单元格 {3} 里</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangle2DOr3XStep" xml:space="preserve">
@@ -3514,5 +3514,20 @@
   <data name="AnonymousDeadlyPatternType4" xml:space="preserve">
     <value>其他致命结构类型 4</value>
     <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType1Step" xml:space="preserve">
+    <value>数字 {0} 位于单元格 {1} 里</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType2Step" xml:space="preserve">
+    <value>数字 {0} 位于单元格 {1} 里，带有一个额外数字 {2}</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType3Step" xml:space="preserve">
+    <value>数字 {0} 位于单元格 {1} 里，在单元格 {2} 里带有额外数字 {3}</value>
+  </data>
+  <data name="TechniqueFormat_AnonymousDeadlyPatternType4Step" xml:space="preserve">
+    <value>数字 {0} 位于单元格 {1} 里，带有一个关于数字 {2} 的共轭区域，位于单元格 {3} 里</value>
+  </data>
+  <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>致命结构里的数组规格</value>
   </data>
 </root>

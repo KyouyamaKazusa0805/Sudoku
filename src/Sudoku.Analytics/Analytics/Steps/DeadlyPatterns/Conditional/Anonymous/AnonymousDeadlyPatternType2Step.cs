@@ -23,4 +23,16 @@ public sealed partial class AnonymousDeadlyPatternType2Step(
 
 	/// <inheritdoc/>
 	public override int Type => 2;
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => (Mask)(base.DigitsUsed | (Mask)(1 << ExtraDigit));
+
+	/// <inheritdoc/>
+	public override InterpolationArray Interpolations
+		=> [
+			new(SR.EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr]),
+			new(SR.ChineseLanguage, [DigitsStr, CellsStr, ExtraDigitStr])
+		];
+
+	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

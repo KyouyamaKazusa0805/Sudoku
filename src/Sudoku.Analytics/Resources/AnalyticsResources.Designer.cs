@@ -1996,6 +1996,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subset size of anonymous deadly pattern.
+        /// </summary>
+        public static string Factor_AnonymousDeadlyPatternSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_AnonymousDeadlyPatternSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length in chains.
         /// </summary>
         public static string Factor_BasicChainLengthFactor {
@@ -7696,6 +7705,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_AnonymousDeadlyPatternType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AnonymousDeadlyPatternType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
+        /// </summary>
+        public static string TechniqueFormat_AnonymousDeadlyPatternType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AnonymousDeadlyPatternType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
+        /// </summary>
+        public static string TechniqueFormat_AnonymousDeadlyPatternType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AnonymousDeadlyPatternType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
+        /// </summary>
+        public static string TechniqueFormat_AnonymousDeadlyPatternType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_AnonymousDeadlyPatternType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}.
         /// </summary>
         public static string TechniqueFormat_AntiGurthSymmetricalPlacementStep {
@@ -7818,6 +7863,42 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BlossomLoopStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BlossomLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_BorescoperDeadlyPatternType1Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BorescoperDeadlyPatternType1Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
+        /// </summary>
+        public static string TechniqueFormat_BorescoperDeadlyPatternType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BorescoperDeadlyPatternType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
+        /// </summary>
+        public static string TechniqueFormat_BorescoperDeadlyPatternType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BorescoperDeadlyPatternType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
+        /// </summary>
+        public static string TechniqueFormat_BorescoperDeadlyPatternType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BorescoperDeadlyPatternType4Step", resourceCulture);
             }
         }
         
@@ -8565,42 +8646,6 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_UniquenessClueCoverStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_UniquenessClueCoverStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} in cells {1}.
-        /// </summary>
-        public static string TechniqueFormat_UniquePolygonType1Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniquePolygonType1Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
-        /// </summary>
-        public static string TechniqueFormat_UniquePolygonType2Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniquePolygonType2Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
-        /// </summary>
-        public static string TechniqueFormat_UniquePolygonType3Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniquePolygonType3Step", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
-        /// </summary>
-        public static string TechniqueFormat_UniquePolygonType4Step {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_UniquePolygonType4Step", resourceCulture);
             }
         }
         

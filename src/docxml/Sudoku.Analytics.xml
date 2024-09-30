@@ -7358,6 +7358,63 @@
         <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect_8Cells(Sudoku.Analytics.StepAnalysisContext@)">
+             <remarks>
+             There're 2 patterns:
+             <code><![CDATA[
+             (1) UL + XR, 3 digits
+             12 .  .  |  23 .  .  |  31 .  .
+             .  21 .  |  32 .  .  |  13 .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             --------- ----------- ---------
+             21 12 .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+            
+             (2) XR + UR, 3 digits
+             12 23 .  |  31 .  .  |  .  .  .
+             .  .  31 |  13 .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             --------- ----------- ---------
+             21 32 13 |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             ]]></code>
+             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect_9Cells(Sudoku.Analytics.StepAnalysisContext@)">
+             <remarks>
+             There're 3 patterns:
+             <code><![CDATA[
+             (1) 2ULs, 3 digits
+             12 .  .  |  21 .  .  |  .  .  .
+             .  23 .  |  32 .  .  |  .  .  .
+             .  .  31 |  13 .  .  |  .  .  .
+             --------- ----------- ---------
+             21 32 13 |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+            
+             (2) XR + UL, 4 digits
+             12 24 .  |  41 .  .  |  .  .  .
+             31 .  43 |  14 .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             --------- ----------- ---------
+             23 42 34 |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+            
+             (3) UR + UL, 3 digits
+             12 .  .  |  21 .  .  |  .  .  .
+             23 .  .  |  .  .  .  |  32 .  .
+             .  31 .  |  12 .  .  |  23 .  .
+             --------- ----------- ---------
+             31 13 .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             .  .  .  |  .  .  .  |  .  .  .
+             ]]></code>
+             </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
             Provides with a <b>Bi-value Universal Grave</b> step searcher.
@@ -12209,6 +12266,9 @@
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.Interpolations">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.PatternCandidates">
             <summary>
             The generated property declaration for parameter <c>patternCandidates</c>.
@@ -12252,6 +12312,12 @@
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.Interpolations">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.PatternCandidates">
             <summary>
             The generated property declaration for parameter <c>patternCandidates</c>.
@@ -12276,9 +12342,10 @@
             <param name="options"><inheritdoc/></param>
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="targetCells">Indicates the target cells.</param>
-            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="subsetCells">Indicates the subset cells.</param>
+            <param name="subsetDigitsMask">Indicates the extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 3</b> technique.
             </summary>
@@ -12287,12 +12354,28 @@
             <param name="options"><inheritdoc/></param>
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="targetCells">Indicates the target cells.</param>
-            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="subsetCells">Indicates the subset cells.</param>
+            <param name="subsetDigitsMask">Indicates the extra digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#AnonymousDeadlyPatternType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#AnonymousDeadlyPatternType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.PatternCandidates">
@@ -12305,9 +12388,14 @@
             The generated property declaration for parameter <c>targetCells</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.ExtraDigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.SubsetCells">
             <summary>
-            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            The generated property declaration for parameter <c>subsetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step">
@@ -12318,7 +12406,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="patternCandidates"><inheritdoc/></param>
-            <param name="targetHouse">Indicates the target house.</param>
+            <param name="conjugateHouse">Indicates the target house.</param>
             <param name="extraDigitsMask">Indicates the extra digits used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16)">
@@ -12329,7 +12417,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="patternCandidates"><inheritdoc/></param>
-            <param name="targetHouse">Indicates the target house.</param>
+            <param name="conjugateHouse">Indicates the target house.</param>
             <param name="extraDigitsMask">Indicates the extra digits used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.BaseDifficulty">
@@ -12338,14 +12426,17 @@
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.Interpolations">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.PatternCandidates">
             <summary>
             The generated property declaration for parameter <c>patternCandidates</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.TargetHouse">
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.ConjugateHouse">
             <summary>
-            The generated property declaration for parameter <c>targetHouse</c>.
+            The generated property declaration for parameter <c>conjugateHouse</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.ExtraDigitsMask">
@@ -27566,6 +27657,11 @@
               Looks up a localized string similar to Value cell existence in almost locked candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_AnonymousDeadlyPatternSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size of anonymous deadly pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BasicChainLengthFactor">
             <summary>
               Looks up a localized string similar to Length in chains.
@@ -30734,6 +30830,26 @@
               Looks up a localized string similar to {Name}: Chain {ChainStr} =&gt; {ElimStr}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AnonymousDeadlyPatternType1Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AnonymousDeadlyPatternType2Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AnonymousDeadlyPatternType3Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AnonymousDeadlyPatternType4Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_AntiGurthSymmetricalPlacementStep">
             <summary>
               Looks up a localized string similar to Due to being an asymmetrical grid pattern, initial grid will also be asymmetrical. Symmetry type: {0}, mapping relations: {1}.
@@ -30802,6 +30918,26 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BlossomLoopStep">
             <summary>
               Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BorescoperDeadlyPatternType1Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BorescoperDeadlyPatternType2Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BorescoperDeadlyPatternType3Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BorescoperDeadlyPatternType4Step">
+            <summary>
+              Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BowmanBingoStep">
@@ -31217,26 +31353,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniquenessClueCoverStep">
             <summary>
               Looks up a localized string similar to Enumerates all possible cases filling the chute {0} (i.e. houses {1}), we can find two digits that cannot cover.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniquePolygonType1Step">
-            <summary>
-              Looks up a localized string similar to {0} in cells {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniquePolygonType2Step">
-            <summary>
-              Looks up a localized string similar to {0} in cells {1} with the extra digit {2}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniquePolygonType3Step">
-            <summary>
-              Looks up a localized string similar to {0} in cells {1} with the digits {2} in cells {3}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniquePolygonType4Step">
-            <summary>
-              Looks up a localized string similar to {0} in cells {1} with the conjugate house {2} of the extra digits {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangle2DOr3XStep">

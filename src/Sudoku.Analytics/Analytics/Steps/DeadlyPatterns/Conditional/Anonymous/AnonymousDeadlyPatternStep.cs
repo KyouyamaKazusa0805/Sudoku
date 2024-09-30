@@ -29,5 +29,9 @@ public abstract partial class AnonymousDeadlyPatternStep(
 	public sealed override Technique Code => Technique.AnonymousDeadlyPatternType1 + Type - 1;
 
 	/// <inheritdoc/>
-	public sealed override Mask DigitsUsed => DigitsMask;
+	public override Mask DigitsUsed => DigitsMask;
+
+	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
+
+	private protected string CellsStr => Options.Converter.CellConverter(Cells);
 }
