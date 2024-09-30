@@ -86,7 +86,7 @@ internal partial class ChainingDriver
 			// Collect on eliminations from weak links.
 			foreach (var link in patternLinks)
 			{
-				foreach (var conclusion in ChainOrLoop.GetConclusions(in grid, link))
+				foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(in grid, link.FirstNode, link.SecondNode))
 				{
 					result.Add(conclusion);
 				}

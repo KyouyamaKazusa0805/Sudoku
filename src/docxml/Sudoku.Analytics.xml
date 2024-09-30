@@ -1187,56 +1187,6 @@
             The table of all possible pattern cells.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
-            </summary>
-            <param name="cells">Indicates the cells to be checked.</param>
-            <param name="comparer">Digits used in pattern.</param>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
-            <remarks>
-            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
-            <para>
-            Suppose the pattern:
-            <code><![CDATA[
-            ab  | abc
-            abd | ab
-            ]]></code>
-            The two cases are:
-            <code><![CDATA[
-            .--------------------------------.     .--------------------------------.
-            |          Missing  (c)          |     |          Missing  (d)          |
-            |-----------.----------.---------|     |-----------.----------.---------|
-            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
-            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            |-----------+----------+---------|     |-----------+----------+---------|
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
-            '-----------'----------'---------'     '-----------'----------'---------'
-            ]]></code>
-            Therefore, the elimination intersection will be:
-            <code><![CDATA[
-            .-----------.----------.---------.
-            | ab  /  /  | abc .  . | .  .  . |
-            | abd .  .  | ab  /  / | .  .  . |
-            | .   .  .  | .   .  . | .  .  . |
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            ]]></code>
-            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
-            Such cells can remove both digits <c>a</c> and <c>b</c>.
-            </para>
-            <para>
-            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
-            </para>
-            </remarks>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.Modules.XyzRingModule">
             <summary>
             Represents XYZ-Ring module.
@@ -1753,7 +1703,7 @@
             Provides a driver that can generate normal chains and forcing chains.
             </summary>
             <remarks>
-            Please check separated files to get chaining algorithm.
+            This file is a hub. Please check separated files to get chaining algorithm.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectBlossomLoops(Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection)">
@@ -2658,19 +2608,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Link)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
-            <summary>
-            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="node1">The first node.</param>
-            <param name="node2">The second node.</param>
-            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator">
             <summary>
             Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> inside the collection.
@@ -2744,28 +2681,6 @@
             Indicates the comparison will also check on direction.
             For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoopExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoopExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoopExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="conclusions">The conclusions.</param>
-            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2">
             <summary>
@@ -3916,6 +3831,28 @@
             </summary>
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance. By default the method returns an empty conclusion set.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.NamedChainExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.NamedChain"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NamedChainExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="this">The pattern to be checked.</param>
+            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NamedChainExtensions.GetTechnique(Sudoku.Analytics.Construction.Components.NamedChain,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="this">The pattern to be checked.</param>
+            <param name="conclusions">The conclusions.</param>
+            <returns>The <see cref="T:Sudoku.Categorization.Technique"/> field categorized.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Node">
             <summary>
@@ -5782,6 +5719,84 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.EliminationCalculator">
+            <summary>
+            Represents a type that calculates eliminations.
+            </summary>
+            <remarks>
+            This file is a hub. Please check separated files to get detailed rules.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.EliminationCalculator.Chain">
+            <summary>
+            Provides with chain elimination rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.EliminationCalculator.Chain.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="node1">The first node.</param>
+            <param name="node2">The second node.</param>
+            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="T:Sudoku.Analytics.EliminationCalculator.UniqueRectangle">
+            <summary>
+            Provides with unique rectangle rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.EliminationCalculator.UniqueRectangle.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+            </summary>
+            <param name="cells">Indicates the cells to be checked.</param>
+            <param name="comparer">Digits used in pattern.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
+            <remarks>
+            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+            <para>
+            Suppose the pattern:
+            <code><![CDATA[
+            ab  | abc
+            abd | ab
+            ]]></code>
+            The two cases are:
+            <code><![CDATA[
+            .--------------------------------.     .--------------------------------.
+            |          Missing  (c)          |     |          Missing  (d)          |
+            |-----------.----------.---------|     |-----------.----------.---------|
+            | ab  /  /  | ab  /  / | /  /  / |     | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |     | ab  /  /  | ab  /  / | /  /  / |
+            | .   .  .  | /   /  / | .  .  . |     | /   /  /  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |  &  | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            |-----------+----------+---------|     |-----------+----------+---------|
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
+            '-----------'----------'---------'     '-----------'----------'---------'
+            ]]></code>
+            Therefore, the elimination intersection will be:
+            <code><![CDATA[
+            .-----------.----------.---------.
+            | ab  /  /  | abc .  . | .  .  . |
+            | abd .  .  | ab  /  / | .  .  . |
+            | .   .  .  | .   .  . | .  .  . |
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            ]]></code>
+            Which is intersection cells of cells <c>(abc)</c> and <c>(abd)</c>.
+            Such cells can remove both digits <c>a</c> and <c>b</c>.
+            </para>
+            <para>
+            All the other cases can be handled by supposing positions of digits <c>a</c> and <c>b</c>.
+            </para>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>

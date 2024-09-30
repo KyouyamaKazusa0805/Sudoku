@@ -1,10 +1,10 @@
 namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
-/// Provides with extension methods on <see cref="ChainOrLoop"/> instances.
+/// Provides with extension methods on <see cref="NamedChain"/> instances.
 /// </summary>
-/// <seealso cref="ChainOrLoop"/>
-public static class ChainOrLoopExtensions
+/// <seealso cref="NamedChain"/>
+public static class NamedChainExtensions
 {
 	/// <summary>
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.

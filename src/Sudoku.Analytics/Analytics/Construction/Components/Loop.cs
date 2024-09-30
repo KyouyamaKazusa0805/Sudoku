@@ -252,7 +252,7 @@ public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 		var result = new ConclusionSet();
 		for (var i = 0; i < Length; i += 2)
 		{
-			foreach (var conclusion in GetConclusions(in grid, _nodes[i], _nodes[(i + 1) % Length]))
+			foreach (var conclusion in EliminationCalculator.Chain.GetConclusions(in grid, _nodes[i], _nodes[(i + 1) % Length]))
 			{
 				result.Add(conclusion);
 			}

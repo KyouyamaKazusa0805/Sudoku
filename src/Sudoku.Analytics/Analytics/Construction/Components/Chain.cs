@@ -294,5 +294,6 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet GetConclusions(ref readonly Grid grid) => [.. GetConclusions(in grid, First, Last)];
+	public override ConclusionSet GetConclusions(ref readonly Grid grid)
+		=> [.. EliminationCalculator.Chain.GetConclusions(in grid, First, Last)];
 }

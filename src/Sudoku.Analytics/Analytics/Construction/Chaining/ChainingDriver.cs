@@ -4,6 +4,6 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// Provides a driver that can generate normal chains and forcing chains.
 /// </summary>
 /// <remarks>
-/// Please check separated files to get chaining algorithm.
+/// This file is a hub. Please check separated files to get chaining algorithm.
 /// </remarks>
 internal static partial class ChainingDriver;

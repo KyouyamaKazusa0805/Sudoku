@@ -1086,7 +1086,7 @@ public partial class UniqueRectangleStepSearcher
 					..
 					from elimCell in (cells1 | alsCells1).PeerIntersection & CandidatesMap[digit1]
 					select new Conclusion(Elimination, elimCell, digit1),
-					.. UniqueRectangleModule.GetConclusions(in cells, comparer, in grid)
+					.. EliminationCalculator.UniqueRectangle.GetConclusions(in cells, comparer, in grid)
 				];
 				foreach (var cell in HousesMap[als.House] & ~alsCells)
 				{
