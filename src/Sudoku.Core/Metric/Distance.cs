@@ -1,4 +1,4 @@
-namespace Sudoku.Measuring;
+namespace Sudoku.Metric;
 
 /// <summary>
 /// Represents the methods that calculates for distance.

@@ -8452,7 +8452,7 @@
         <member name="M:Sudoku.Linq.ViewEnumerable.SelectMany(Sudoku.Drawing.View[],System.Func{Sudoku.Drawing.View,Sudoku.Drawing.View},System.Func{Sudoku.Drawing.View,Sudoku.Drawing.ViewNode,Sudoku.Drawing.ViewNode})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})"/>
         </member>
-        <member name="T:Sudoku.Measuring.Distance">
+        <member name="T:Sudoku.Metric.Distance">
             <summary>
             Represents the methods that calculates for distance.
             </summary>
@@ -8463,7 +8463,7 @@
             This type is implemented via irrational numbers logic that only takes a square root.
             </remarks>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Metric.Distance.#ctor(System.Int32,System.Int32)">
             <summary>
             Represents the methods that calculates for distance.
             </summary>
@@ -8474,76 +8474,76 @@
             This type is implemented via irrational numbers logic that only takes a square root.
             </remarks>
         </member>
-        <member name="F:Sudoku.Measuring.Distance.RootPartSpecifier">
+        <member name="F:Sudoku.Metric.Distance.RootPartSpecifier">
             <summary>
             Indicates the default root part specifier.
             </summary>
         </member>
-        <member name="F:Sudoku.Measuring.Distance.LatexRootPartSpecifier">
+        <member name="F:Sudoku.Metric.Distance.LatexRootPartSpecifier">
             <summary>
             Indicates the LaTeX root part specifier.
             </summary>
         </member>
-        <member name="F:Sudoku.Measuring.Distance.DistanceTable">
+        <member name="F:Sudoku.Metric.Distance.DistanceTable">
             <summary>
             The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
             </summary>
             <remarks>
             <para>
             The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
-            <c><see cref="F:Sudoku.Measuring.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
+            <c><see cref="F:Sudoku.Metric.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
             If the cell is inside the house, the value will be <see langword="null"/>.
             </para>
             <para>
-            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)"/>.
+            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Metric.Distance.GetDistance(System.Int32,System.Int32)"/>.
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)"/>
+            <seealso cref="M:Sudoku.Metric.Distance.GetDistance(System.Int32,System.Int32)"/>
         </member>
-        <member name="F:Sudoku.Measuring.Distance._p">
+        <member name="F:Sudoku.Metric.Distance._p">
             <summary>
             The root value of P.
             </summary>
         </member>
-        <member name="F:Sudoku.Measuring.Distance._q">
+        <member name="F:Sudoku.Metric.Distance._q">
             <summary>
             The root value of Q.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.#ctor">
+        <member name="M:Sudoku.Metric.Distance.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Measuring.Distance"/> instance via both values 1.
+            Initializes a <see cref="T:Sudoku.Metric.Distance"/> instance via both values 1.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.#ctor(System.Int32)">
+        <member name="M:Sudoku.Metric.Distance.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Measuring.Distance"/> instance via the root part, with the default integer part 1.
+            Initializes a <see cref="T:Sudoku.Metric.Distance"/> instance via the root part, with the default integer part 1.
             <i>This value will automatically simplify the root expression, e.g. sqrt(18) -> 3sqrt(2).</i>
             </summary>
             <param name="q">The root value.</param>
         </member>
-        <member name="P:Sudoku.Measuring.Distance.RawValue">
+        <member name="P:Sudoku.Metric.Distance.RawValue">
             <summary>
             The raw value of the distance. The value will be output as a <see cref="T:System.Double"/> value.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.Equals(Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.Equals(Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.CompareTo(Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.CompareTo(Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.ToString">
+        <member name="M:Sudoku.Metric.Distance.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
             <remarks>
             The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
             For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.ToLatexString">
+        <member name="M:Sudoku.Metric.Distance.ToLatexString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Metric.Distance.GetDistance(System.Int32,System.Int32)">
             <summary>
             Try to fetch the distance for the two cells.
             </summary>
@@ -8551,14 +8551,14 @@
             <param name="cell2">The second cell to be compared.</param>
             <returns>The distance result.</returns>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Metric.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
             <summary>
             Try to fetch the distance for two cells stored in a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
             <returns>The distance result.</returns>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.GetDistanceTo(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Metric.Distance.GetDistanceTo(System.Int32,System.Int32)">
             <summary>
             Try to get the minimal and maximal distance to the specified house from the specified cell.
             </summary>
@@ -8566,7 +8566,7 @@
             <param name="house">The house.</param>
             <returns>The minimal and maximal distance value.</returns>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.GetIntermediateCells(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Metric.Distance.GetIntermediateCells(System.Int32,System.Int32)">
             <summary>
             Try to get the intermediate cells that are between <paramref name="cell1"/> and <paramref name="cell2"/> in logical position
             for sudoku grid.
@@ -8578,63 +8578,63 @@
             Throws when cells <paramref name="cell1"/> and <paramref name="cell2"/> are not in a same line (row or column).
             </exception>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.SimplifyRootPart(System.Int32@)">
+        <member name="M:Sudoku.Metric.Distance.SimplifyRootPart(System.Int32@)">
             <summary>
             Simplifies for root part.
             </summary>
             <param name="base">The root value.</param>
             <returns>The P value.</returns>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.Equals(System.Object)">
+        <member name="M:Sudoku.Metric.Distance.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.GetHashCode">
+        <member name="M:Sudoku.Metric.Distance.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_Equality(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_Equality(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_Inequality(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_Inequality(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_GreaterThan(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_GreaterThan(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_LessThan(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_LessThan(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_GreaterThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_GreaterThanOrEqual(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Measuring.Distance.op_LessThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+        <member name="M:Sudoku.Metric.Distance.op_LessThanOrEqual(Sudoku.Metric.Distance,Sudoku.Metric.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Measuring.EmptyArea">
+        <member name="T:Sudoku.Metric.EmptyArea">
             <summary>
             Provides a way to calculate empty area of a <see cref="T:Sudoku.Concepts.Grid"/> or a <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get the maximum empty area exists in the specified grid.
             </summary>
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
-            <inheritdoc cref="M:Sudoku.Measuring.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
             </remarks>
         </member>
-        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get the maximum empty square area exists in the specified grid.
             </summary>
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Int32"/> value indicating the result.</returns>
             <remarks>
-            <inheritdoc cref="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
+            <inheritdoc cref="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
             </remarks>
         </member>
-        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get the maximum empty area exists in the specified cells.
             </summary>
@@ -8645,7 +8645,7 @@
             <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
             </remarks>
         </member>
-        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Metric.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get the maximum empty square area exists in the specified cells.
             </summary>
@@ -8656,13 +8656,13 @@
             <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
         </member>
-        <member name="T:Sudoku.Runtime.MingridServices.MingridExtensions">
+        <member name="T:Sudoku.Metric.Minimal">
             <summary>
             Represents extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minimal.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.GetIsMinimal(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Metric.Minimal.GetIsMinimal(Sudoku.Concepts.Grid@)">
             <summary>
             Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
             if arbitrary one given digit will be removed from the grid.
@@ -8670,7 +8670,7 @@
             <param name="this">Indicates the current instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:Sudoku.Runtime.MingridServices.MingridExtensions.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
+        <member name="M:Sudoku.Metric.Minimal.CheckMinimal(Sudoku.Concepts.Grid@,System.Int32@)">
             <summary>
             Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
             if arbitrary one given digit will be removed from the grid.
@@ -8685,6 +8685,352 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
+        </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Resources.CoreResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
+            <summary>
+              Looks up a localized string similar to Block {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.BlockName">
+            <summary>
+              Looks up a localized string similar to Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
+            <summary>
+              Looks up a localized string similar to {0}, digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellLabel">
+            <summary>
+              Looks up a localized string similar to row {0} column {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.CellsLabel">
+            <summary>
+              Looks up a localized string similar to cells: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnLabel">
+            <summary>
+              Looks up a localized string similar to Column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnName">
+            <summary>
+              Looks up a localized string similar to Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
+            <summary>
+              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.DigitName">
+            <summary>
+              Looks up a localized string similar to Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Error_ArgExtensionShouldBeValid">
+            <summary>
+              Looks up a localized string similar to The argument should contains the prefix period token..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
+            <summary>
+              Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions">
+            <summary>
+              Looks up a localized string similar to All cells must be connected with adjacent positions. For example, r1c1 and r1c2 is a valid pair, but r1c1 and r2c2 is not..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CannotAssignSuccessForFailureCases">
+            <summary>
+              Looks up a localized string similar to Cannot assign success field to describe such failure..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
+            <summary>
+              Looks up a localized string similar to Two cells must be in a same line (row or column)..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ComparableGridMustBeStandard">
+            <summary>
+              Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">
+            <summary>
+              Looks up a localized string similar to The string contains empty segment..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DifferentExistenceOfConfigAndLibraryFile">
+            <summary>
+              Looks up a localized string similar to Different existence of config file and library file..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DuplicatedValuesMayExistOrInvalid">
+            <summary>
+              Looks up a localized string similar to Duplicated or invalid values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_FileShouldBeInitializedFirst">
+            <summary>
+              Looks up a localized string similar to Related files should be initialized first..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalid">
+            <summary>
+              Looks up a localized string similar to The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalidCellState">
+            <summary>
+              Looks up a localized string similar to The grid cannot keep invalid cell state value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridMultipleSolutions">
+            <summary>
+              Looks up a localized string similar to The grid contains multiple solutions..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridNoSolution">
+            <summary>
+              Looks up a localized string similar to The grid has no possible solution..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_InvalidStateOnParsing">
+            <summary>
+              Looks up a localized string similar to Invalid state on parsing values..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LengthMustBeMatched">
+            <summary>
+              Looks up a localized string similar to The length of the string must be {0}..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LibraryShouldBeInitialized">
+            <summary>
+              Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MinLexShouldBeUniqueAndNotSukaku">
+            <summary>
+              Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleChuteValuesFound">
+            <summary>
+              Looks up a localized string similar to Multiple chute values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleConjugatePairValuesFound">
+            <summary>
+              Looks up a localized string similar to Multiple conjuagte pair values found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleFlagsExist">
+            <summary>
+              Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleSamePropertiesFound">
+            <summary>
+              Looks up a localized string similar to Multiple same properties are found..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NoElementsInSequence">
+            <summary>
+              Looks up a localized string similar to No possible elements can be found in the current sequence..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotExist">
+            <summary>
+              Looks up a localized string similar to The file does not exist..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotSupportedForSukakuPuzzles">
+            <summary>
+              Looks up a localized string similar to This function does not support for Sukaku puzzles..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PlaceholderMustBeZeroOrDot">
+            <summary>
+              Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PointerCannotMove">
+            <summary>
+              Looks up a localized string similar to The pointer cannot move..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_StringValueInvalidToBeParsed">
+            <summary>
+              Looks up a localized string similar to The string value is invalid to be parsed..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_SubsetsExceeded">
+            <summary>
+              Looks up a localized string similar to Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
+            <summary>
+              Looks up a localized string similar to houses: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaColumnLabel">
+            <summary>
+              Looks up a localized string similar to Mega column {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaLinesLabel">
+            <summary>
+              Looks up a localized string similar to Mega lines: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.MegaRowLabel">
+            <summary>
+              Looks up a localized string similar to Mega row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_LibraryInitializedException">
+            <summary>
+              Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_MultipleSolutionException">
+            <summary>
+              Looks up a localized string similar to The puzzle has multiple solutions..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowLabel">
+            <summary>
+              Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowName">
+            <summary>
+              Looks up a localized string similar to Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SettingsPage_GridSizeDescription2">
+            <summary>
+              Looks up a localized string similar to Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915)..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
+            <summary>
+              Looks up a localized string similar to All symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AntiDiagonal">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AxisBoth">
+            <summary>
+              Looks up a localized string similar to Both axes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Central">
+            <summary>
+              Looks up a localized string similar to Central.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Diagonal">
+            <summary>
+              Looks up a localized string similar to Diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_DiagonalBoth">
+            <summary>
+              Looks up a localized string similar to Both diagonals.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_None">
+            <summary>
+              Looks up a localized string similar to No symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_XAxis">
+            <summary>
+              Looks up a localized string similar to X axis.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_YAxis">
+            <summary>
+              Looks up a localized string similar to Y axis.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
+            <summary>
+            Represents a type that compares culture language names.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.IsCultureNameEqual(System.String,System.String)">
+            <summary>
+            Compares two <see cref="T:System.String"/> values, treated as culture name,
+            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
+            or <paramref name="this"/> includes <paramref name="otherName"/>.
+            </summary>
+            <param name="this">The culture.</param>
+            <param name="otherName">The other name to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Runtime.IContext">
             <summary>
@@ -9372,352 +9718,6 @@
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Inequality(Sudoku.Runtime.LibraryServices.TextPointer,Sudoku.Runtime.LibraryServices.TextPointer)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.ModuleInitializer">
-            <target name="type">
-				<summary>
-					<para>
-						Provides with the type that contains a module initializer method, called automatically by the CLR
-						(Common Language Runtime) to initialize some values.
-					</para>
-					<para>
-						<i>
-							The type is called by the compiler and the CLR (Common Language Runtime),
-							which means you cannot use any members in this type manually.
-						</i>
-					</para>
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.ModuleInitializer.Initialize">
-            <target name="method">
-				<summary>
-					Called by the runtime automatically while booting on this solution to initialize the values,
-					data members or any other things that can or should be initialized here.
-				</summary>
-				<remarks>
-					The concept <b>module</b> is different with <b>assembly</b>.
-					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
-					However, due to the design of Visual Studio project file system, each assembly will only contain
-					one module by default.
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Resources.CoreResources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.BlockLabel">
-            <summary>
-              Looks up a localized string similar to Block {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.BlockName">
-            <summary>
-              Looks up a localized string similar to Block.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CandidateLabel">
-            <summary>
-              Looks up a localized string similar to {0}, digit {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CellLabel">
-            <summary>
-              Looks up a localized string similar to row {0} column {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.CellsLabel">
-            <summary>
-              Looks up a localized string similar to cells: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ColumnLabel">
-            <summary>
-              Looks up a localized string similar to Column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ColumnName">
-            <summary>
-              Looks up a localized string similar to Column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
-            <summary>
-              Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.DigitName">
-            <summary>
-              Looks up a localized string similar to Digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Error_ArgExtensionShouldBeValid">
-            <summary>
-              Looks up a localized string similar to The argument should contains the prefix period token..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
-            <summary>
-              Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_AllCellsMustBeConnectedWithAdjacentPositions">
-            <summary>
-              Looks up a localized string similar to All cells must be connected with adjacent positions. For example, r1c1 and r1c2 is a valid pair, but r1c1 and r2c2 is not..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CannotAssignSuccessForFailureCases">
-            <summary>
-              Looks up a localized string similar to Cannot assign success field to describe such failure..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
-            <summary>
-              Looks up a localized string similar to Two cells must be in a same line (row or column)..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ComparableGridMustBeStandard">
-            <summary>
-              Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">
-            <summary>
-              Looks up a localized string similar to The string contains empty segment..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DifferentExistenceOfConfigAndLibraryFile">
-            <summary>
-              Looks up a localized string similar to Different existence of config file and library file..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_DuplicatedValuesMayExistOrInvalid">
-            <summary>
-              Looks up a localized string similar to Duplicated or invalid values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_FileShouldBeInitializedFirst">
-            <summary>
-              Looks up a localized string similar to Related files should be initialized first..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalid">
-            <summary>
-              Looks up a localized string similar to The grid is invalid - it may contain invalid internal data, or it is invalid as an argument to the method..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridInvalidCellState">
-            <summary>
-              Looks up a localized string similar to The grid cannot keep invalid cell state value..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridMultipleSolutions">
-            <summary>
-              Looks up a localized string similar to The grid contains multiple solutions..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_GridNoSolution">
-            <summary>
-              Looks up a localized string similar to The grid has no possible solution..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_InvalidStateOnParsing">
-            <summary>
-              Looks up a localized string similar to Invalid state on parsing values..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LengthMustBeMatched">
-            <summary>
-              Looks up a localized string similar to The length of the string must be {0}..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LibraryShouldBeInitialized">
-            <summary>
-              Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MinLexShouldBeUniqueAndNotSukaku">
-            <summary>
-              Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleChuteValuesFound">
-            <summary>
-              Looks up a localized string similar to Multiple chute values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleConjugatePairValuesFound">
-            <summary>
-              Looks up a localized string similar to Multiple conjuagte pair values found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleFlagsExist">
-            <summary>
-              Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleSamePropertiesFound">
-            <summary>
-              Looks up a localized string similar to Multiple same properties are found..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NoElementsInSequence">
-            <summary>
-              Looks up a localized string similar to No possible elements can be found in the current sequence..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotExist">
-            <summary>
-              Looks up a localized string similar to The file does not exist..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotSupportedForSukakuPuzzles">
-            <summary>
-              Looks up a localized string similar to This function does not support for Sukaku puzzles..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PlaceholderMustBeZeroOrDot">
-            <summary>
-              Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PointerCannotMove">
-            <summary>
-              Looks up a localized string similar to The pointer cannot move..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_StringValueInvalidToBeParsed">
-            <summary>
-              Looks up a localized string similar to The string value is invalid to be parsed..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_SubsetsExceeded">
-            <summary>
-              Looks up a localized string similar to Both cells count and subset size is too large, which may cause potential out of memory exception. This operator will throw this exception to calculate the result, in order to prevent any possible exceptions thrown..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
-            <summary>
-              Looks up a localized string similar to houses: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">
-            <summary>
-              Looks up a localized string similar to {0} {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaColumnLabel">
-            <summary>
-              Looks up a localized string similar to Mega column {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaLinesLabel">
-            <summary>
-              Looks up a localized string similar to Mega lines: {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.MegaRowLabel">
-            <summary>
-              Looks up a localized string similar to Mega row {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Message_LibraryInitializedException">
-            <summary>
-              Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.Message_MultipleSolutionException">
-            <summary>
-              Looks up a localized string similar to The puzzle has multiple solutions..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.RowLabel">
-            <summary>
-              Looks up a localized string similar to Row {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.RowName">
-            <summary>
-              Looks up a localized string similar to Row.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SettingsPage_GridSizeDescription2">
-            <summary>
-              Looks up a localized string similar to Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915)..
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
-            <summary>
-              Looks up a localized string similar to All symmetry.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AntiDiagonal">
-            <summary>
-              Looks up a localized string similar to Anti-diagonal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AxisBoth">
-            <summary>
-              Looks up a localized string similar to Both axes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Central">
-            <summary>
-              Looks up a localized string similar to Central.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Diagonal">
-            <summary>
-              Looks up a localized string similar to Diagonal.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_DiagonalBoth">
-            <summary>
-              Looks up a localized string similar to Both diagonals.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_None">
-            <summary>
-              Looks up a localized string similar to No symmetry.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_XAxis">
-            <summary>
-              Looks up a localized string similar to X axis.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_YAxis">
-            <summary>
-              Looks up a localized string similar to Y axis.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
-            <summary>
-            Represents a type that compares culture language names.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.IsCultureNameEqual(System.String,System.String)">
-            <summary>
-            Compares two <see cref="T:System.String"/> values, treated as culture name,
-            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
-            or <paramref name="this"/> includes <paramref name="otherName"/>.
-            </summary>
-            <param name="this">The culture.</param>
-            <param name="otherName">The other name to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>

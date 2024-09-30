@@ -1,10 +1,10 @@
-namespace Sudoku.Runtime.MingridServices;
+namespace Sudoku.Metric;
 
 /// <summary>
 /// Represents extension methods on <see cref="Grid"/> for minimal.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class MingridExtensions
+public static class Minimal
 {
 	/// <summary>
 	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution

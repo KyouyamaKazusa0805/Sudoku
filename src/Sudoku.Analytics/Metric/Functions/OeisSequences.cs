@@ -1,4 +1,4 @@
-namespace Sudoku.Measuring.Functions;
+namespace Sudoku.Metric.Functions;
 
 /// <summary>
 /// Represents a list of methods that calculates for values in OEIS sequences.
