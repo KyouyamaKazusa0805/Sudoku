@@ -4520,6 +4520,55 @@ public enum Technique
 	#endregion
 
 	//
+	// Anonymous Deadly Pattern
+	//
+	#region Anonymous Deadly Pattern
+	/// <summary>
+	/// Indicates anonymous deadly pattern type 1.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 50,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType1Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	AnonymousDeadlyPatternType1,
+
+	/// <summary>
+	/// Indicates anonymous deadly pattern type 2.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 51,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType2Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	AnonymousDeadlyPatternType2,
+
+	/// <summary>
+	/// Indicates anonymous deadly pattern type 3.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 52,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType3Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	AnonymousDeadlyPatternType3,
+
+	/// <summary>
+	/// Indicates anonymous deadly pattern type 4.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 51,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType4Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	AnonymousDeadlyPatternType4,
+	#endregion
+
+	//
 	// Sue de Coq
 	//
 	#region Sue de Coq

@@ -7343,6 +7343,21 @@
         <member name="M:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher">
+            <summary>
+            Provides with an <b>Anonymous Deadly Pattern</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Anonymous Deadly Pattern Type 1</item>
+            <item>Anonymous Deadly Pattern Type 2</item>
+            <item>Anonymous Deadly Pattern Type 3</item>
+            <item>Anonymous Deadly Pattern Type 4</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
             Provides with a <b>Bi-value Universal Grave</b> step searcher.
@@ -12119,6 +12134,224 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep.IsUnconditional">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask">Indicates the digits used.</param>
+            <param name="cells">Indicates cells used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.OnlyUseBivalueCells">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 1</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCell">Indicates the target cell used.</param>
+            <param name="targetDigitsMask">
+            Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 1</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCell">Indicates the target cell used.</param>
+            <param name="targetDigitsMask">
+            Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.PatternCandidates">
+            <summary>
+            The generated property declaration for parameter <c>patternCandidates</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.TargetCell">
+            <summary>
+            The generated property declaration for parameter <c>targetCell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.TargetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>targetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="extraDigit">Indicates the extra digit.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 2</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="extraDigit">Indicates the extra digit.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.PatternCandidates">
+            <summary>
+            The generated property declaration for parameter <c>patternCandidates</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.TargetCells">
+            <summary>
+            The generated property declaration for parameter <c>targetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.ExtraDigit">
+            <summary>
+            The generated property declaration for parameter <c>extraDigit</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetCells">Indicates the target cells.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.PatternCandidates">
+            <summary>
+            The generated property declaration for parameter <c>patternCandidates</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.TargetCells">
+            <summary>
+            The generated property declaration for parameter <c>targetCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetHouse">Indicates the target house.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16)">
+            <summary>
+            Provides with a step that is an <b>Anonymous Deadly Pattern Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="patternCandidates"><inheritdoc/></param>
+            <param name="targetHouse">Indicates the target house.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.PatternCandidates">
+            <summary>
+            The generated property declaration for parameter <c>patternCandidates</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.TargetHouse">
+            <summary>
+            The generated property declaration for parameter <c>targetHouse</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep">
             <summary>
@@ -22545,6 +22778,26 @@
             Indicates rotating deadly pattern.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.AnonymousDeadlyPatternType1">
+            <summary>
+            Indicates anonymous deadly pattern type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.AnonymousDeadlyPatternType2">
+            <summary>
+            Indicates anonymous deadly pattern type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.AnonymousDeadlyPatternType3">
+            <summary>
+            Indicates anonymous deadly pattern type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.AnonymousDeadlyPatternType4">
+            <summary>
+            Indicates anonymous deadly pattern type 4.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.SueDeCoq">
             <summary>
             Indicates sue de coq.
@@ -26409,6 +26662,26 @@
               Looks up a localized string similar to total.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnonymousDeadlyPatternType1">
+            <summary>
+              Looks up a localized string similar to Anonymous Deadly Pattern Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnonymousDeadlyPatternType2">
+            <summary>
+              Looks up a localized string similar to Anonymous Deadly Pattern Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnonymousDeadlyPatternType3">
+            <summary>
+              Looks up a localized string similar to Anonymous Deadly Pattern Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.AnonymousDeadlyPatternType4">
+            <summary>
+              Looks up a localized string similar to Anonymous Deadly Pattern Type 4.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AntiDiagonalSymmetry">
             <summary>
               Looks up a localized string similar to Anti-diagonal.
@@ -28449,6 +28722,11 @@
               Looks up a localized string similar to Disordered ittoryu module has already finished..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_FactorResourceMismatchedException">
+            <summary>
+              Looks up a localized string similar to Factor resource mismatched..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Message_MissingDifficultyLevelException">
             <summary>
               Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
@@ -29360,6 +29638,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_AlmostLockedSetsXzStepSearcher">
             <summary>
               Looks up a localized string similar to Almost Locked Sets XZ.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_AnonymousDeadlyPatternStepSearcher">
+            <summary>
+              Looks up a localized string similar to Anonymous Deadly Patterns.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher">

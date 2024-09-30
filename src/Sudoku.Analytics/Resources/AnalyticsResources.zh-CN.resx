@@ -3495,4 +3495,24 @@
   <data name="SettingsPage_GridSizeDescription" xml:space="preserve">
     <value>改变大部分页面上盘面的大小，以像素为单位。不过，在模态窗口里的盘面大小不会发生变动（模态窗口就是那种突然弹出来的窗口，并且一般都暗含一些警告或错误信息的信息想要告诉你的弹窗）。最小值 360，最大值 800。默认为 610。</value>
   </data>
+  <data name="StepSearcherName_AnonymousDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>其他致命结构</value>
+    <comment>Step Searcher Name</comment>
+  </data>
+  <data name="AnonymousDeadlyPatternType1" xml:space="preserve">
+    <value>其他致命结构类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AnonymousDeadlyPatternType2" xml:space="preserve">
+    <value>其他致命结构类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AnonymousDeadlyPatternType3" xml:space="preserve">
+    <value>其他致命结构类型 3</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="AnonymousDeadlyPatternType4" xml:space="preserve">
+    <value>其他致命结构类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

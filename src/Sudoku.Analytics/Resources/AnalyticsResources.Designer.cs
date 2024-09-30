@@ -403,6 +403,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anonymous Deadly Pattern Type 1.
+        /// </summary>
+        public static string AnonymousDeadlyPatternType1 {
+            get {
+                return ResourceManager.GetString("AnonymousDeadlyPatternType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous Deadly Pattern Type 2.
+        /// </summary>
+        public static string AnonymousDeadlyPatternType2 {
+            get {
+                return ResourceManager.GetString("AnonymousDeadlyPatternType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous Deadly Pattern Type 3.
+        /// </summary>
+        public static string AnonymousDeadlyPatternType3 {
+            get {
+                return ResourceManager.GetString("AnonymousDeadlyPatternType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous Deadly Pattern Type 4.
+        /// </summary>
+        public static string AnonymousDeadlyPatternType4 {
+            get {
+                return ResourceManager.GetString("AnonymousDeadlyPatternType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anti-diagonal.
         /// </summary>
         public static string AntiDiagonalSymmetry {
@@ -4075,6 +4111,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Factor resource mismatched..
+        /// </summary>
+        public static string Message_FactorResourceMismatchedException {
+            get {
+                return ResourceManager.GetString("Message_FactorResourceMismatchedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
         /// </summary>
         public static string Message_MissingDifficultyLevelException {
@@ -5712,6 +5757,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_AlmostLockedSetsXzStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_AlmostLockedSetsXzStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anonymous Deadly Patterns.
+        /// </summary>
+        public static string StepSearcherName_AnonymousDeadlyPatternStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_AnonymousDeadlyPatternStepSearcher", resourceCulture);
             }
         }
         

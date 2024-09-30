@@ -3387,4 +3387,19 @@ Error grid: '{0:#}'</value>
   <data name="Message_FactorResourceMismatchedException" xml:space="preserve">
     <value>Factor resource mismatched.</value>
   </data>
+  <data name="StepSearcherName_AnonymousDeadlyPatternStepSearcher" xml:space="preserve">
+    <value>Anonymous Deadly Patterns</value>
+  </data>
+  <data name="AnonymousDeadlyPatternType1" xml:space="preserve">
+    <value>Anonymous Deadly Pattern Type 1</value>
+  </data>
+  <data name="AnonymousDeadlyPatternType2" xml:space="preserve">
+    <value>Anonymous Deadly Pattern Type 2</value>
+  </data>
+  <data name="AnonymousDeadlyPatternType3" xml:space="preserve">
+    <value>Anonymous Deadly Pattern Type 3</value>
+  </data>
+  <data name="AnonymousDeadlyPatternType4" xml:space="preserve">
+    <value>Anonymous Deadly Pattern Type 4</value>
+  </data>
 </root>
