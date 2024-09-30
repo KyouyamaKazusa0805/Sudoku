@@ -40,6 +40,7 @@ public partial class EliminationCalculator
 		/// | .   .  .  | /   .  . | .  .  . |     | /   .  .  | .   .  . | .  .  . |
 		/// '-----------'----------'---------'     '-----------'----------'---------'
 		/// ]]></code>
+		/// where slashes <c>/</c> means they are in the elimination range of subsets <c>ab</c>.
 		/// Therefore, the elimination intersection will be:
 		/// <code><![CDATA[
 		/// .-----------.----------.---------.
