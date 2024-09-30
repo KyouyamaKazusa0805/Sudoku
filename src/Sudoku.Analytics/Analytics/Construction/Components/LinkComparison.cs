@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a comparison rule to be used on comparing with two <see cref="Link"/> instances.

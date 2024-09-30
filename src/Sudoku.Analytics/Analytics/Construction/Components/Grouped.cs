@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a list of methods that operates with concept "Grouped Node".

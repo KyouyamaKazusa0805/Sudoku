@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a list of <see cref="Node"/> relations on strong or weak links.

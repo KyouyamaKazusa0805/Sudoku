@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).

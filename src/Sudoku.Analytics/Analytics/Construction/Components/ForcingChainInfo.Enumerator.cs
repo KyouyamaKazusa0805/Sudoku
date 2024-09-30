@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 public partial record struct ForcingChainInfo
 {

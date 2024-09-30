@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Patterns;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Defines a searcher that searches for the true candidates of the current sudoku grid.

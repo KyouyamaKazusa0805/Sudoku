@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// <para>Represents a link that describes a relation between two <see cref="Node"/> instances.</para>

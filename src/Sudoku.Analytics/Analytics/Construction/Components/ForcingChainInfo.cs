@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Chaining;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Represents a pair of data on a certain <see cref="Node"/>, describing all possible <see cref="Node"/> instances

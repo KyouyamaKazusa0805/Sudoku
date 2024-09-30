@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Patterns;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Indicates a fin modifier that is used for a complex fish pattern.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Patterns;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// Provides with extension methods around enumeration type <see cref="ExocetShapeKind"/>.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Construction.Patterns;
+namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
 /// The base overrides for complex senior exocet steps.
