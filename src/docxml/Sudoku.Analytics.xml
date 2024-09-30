@@ -1177,16 +1177,6 @@
             Search for naked subsets.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule">
-            <summary>
-            Represents a step searcher module for unique rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.Modules.UniqueRectangleModule.PossiblePatterns">
-            <summary>
-            The table of all possible pattern cells.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.Modules.XyzRingModule">
             <summary>
             Represents XYZ-Ring module.
@@ -5568,6 +5558,11 @@
             <param name="cells">The cells.</param>
             <param name="digitsMask">The digits mask.</param>
             <param name="otherDigitsMask">The other digits mask.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.AllPatterns">
+            <summary>
+            The table of all possible pattern cells.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.IsChainingCompatible">
             <inheritdoc/>

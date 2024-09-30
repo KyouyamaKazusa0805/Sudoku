@@ -21,7 +21,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 		}
 
 		// Weak.
-		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
+		foreach (CellMap urCells in UniqueRectanglePattern.AllPatterns)
 		{
 			var (modifiableCellsInPattern, emptyCellsInPattern, isValid) = (CellMap.Empty, CellMap.Empty, true);
 			foreach (var cell in urCells)

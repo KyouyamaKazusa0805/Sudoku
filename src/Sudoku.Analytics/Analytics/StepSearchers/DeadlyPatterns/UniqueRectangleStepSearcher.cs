@@ -211,9 +211,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
 		// Iterate on each possible UR pattern.
-		for (var index = 0; index < UniqueRectangleModule.PossiblePatterns.Length; index++)
+		for (var index = 0; index < UniqueRectanglePattern.AllPatterns.Length; index++)
 		{
-			var urCells = UniqueRectangleModule.PossiblePatterns[index];
+			var urCells = UniqueRectanglePattern.AllPatterns[index];
 
 			// Check preconditions.
 			if (!CheckPreconditions(in grid, urCells, arMode))

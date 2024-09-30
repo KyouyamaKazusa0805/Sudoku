@@ -22,7 +22,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 
 		var strongLinks = context.StrongLinks;
 		var linkOption = context.GetLinkOption(LinkType.AlmostUniqueRectangle);
-		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
+		foreach (CellMap urCells in UniqueRectanglePattern.AllPatterns)
 		{
 			if ((EmptyCells & urCells) != urCells)
 			{
