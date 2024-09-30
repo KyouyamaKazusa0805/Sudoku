@@ -1,7 +1,5 @@
 namespace Sudoku.Shuffling.Transforming;
 
-using unsafe GridRandomizedSufflerFuncPtr = delegate*<Random, ref Grid, void>;
-
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
@@ -39,7 +37,7 @@ public static class GridTransformingExtensions
 					TransformType.MirrorAntidiagonal => &mirrorAntidiagonal,
 					TransformType.RotateClockwise => &rotateClockwise,
 					TransformType.RotateCounterclockwise => &rotateCounterclockwise,
-					_ => default(GridRandomizedSufflerFuncPtr)
+					_ => default(delegate*<Random, ref Grid, void>)
 				}
 			)(rng, ref grid);
 		}
