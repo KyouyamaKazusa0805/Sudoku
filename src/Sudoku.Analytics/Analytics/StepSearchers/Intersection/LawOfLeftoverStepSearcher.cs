@@ -94,7 +94,8 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 				line,
 				block,
 				in a,
-				in b
+				in b,
+				mergedDigitsMask
 			);
 			if (context.OnlyFindOne)
 			{

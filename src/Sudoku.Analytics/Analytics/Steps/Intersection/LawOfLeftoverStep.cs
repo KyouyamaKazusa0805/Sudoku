@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="set2House">Indicates the house of <see cref="Set2"/>.</param>
 /// <param name="set1">Indicates the first set to be used.</param>
 /// <param name="set2">Indicates the second set to be used.</param>
+/// <param name="digitsMask">Indicates all 6 digits used.</param>
 public sealed partial class LawOfLeftoverStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -17,7 +18,8 @@ public sealed partial class LawOfLeftoverStep(
 	[PrimaryConstructorParameter] House set1House,
 	[PrimaryConstructorParameter] House set2House,
 	[PrimaryConstructorParameter] ref readonly CellMap set1,
-	[PrimaryConstructorParameter] ref readonly CellMap set2
+	[PrimaryConstructorParameter] ref readonly CellMap set2,
+	[PrimaryConstructorParameter] Mask digitsMask
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
@@ -25,6 +27,9 @@ public sealed partial class LawOfLeftoverStep(
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.LawOfLeftover;
+
+	/// <inheritdoc/>
+	public override Mask DigitsUsed => DigitsMask;
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations

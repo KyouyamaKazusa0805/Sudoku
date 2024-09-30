@@ -21,6 +21,9 @@ public sealed partial class BowmanBingoStep(
 	public override Technique Code => Technique.BowmanBingo;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => MaskOperations.Create(from link in ContradictionLinks select link.Digit);
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [ContradictionSeriesStr]), new(SR.ChineseLanguage, [ContradictionSeriesStr])];
 

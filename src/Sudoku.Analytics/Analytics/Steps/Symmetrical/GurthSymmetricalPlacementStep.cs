@@ -38,6 +38,9 @@ public partial class GurthSymmetricalPlacementStep(
 	public override Technique Code => Technique.GurthSymmetricalPlacement;
 
 	/// <inheritdoc/>
+	public override Mask DigitsUsed => 0;
+
+	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [
 			new(SR.EnglishLanguage, [SymmetryTypeStr(SR.EnglishLanguage), MappingStr(SR.EnglishLanguage)]),
