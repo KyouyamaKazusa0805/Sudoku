@@ -60,7 +60,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <remarks>
 	/// There're 3 patterns:
 	/// <code><![CDATA[
-	/// (1) 2ULs, 3 digits
+	/// (1) 2URs + XR, 3 digits
 	/// 12 .  .  |  21 .  .  |  .  .  .
 	/// .  23 .  |  32 .  .  |  .  .  .
 	/// .  .  31 |  13 .  .  |  .  .  .
@@ -69,7 +69,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	///
-	/// (2) XR + UL, 4 digits
+	/// (2) 2XRs, 4 digits
 	/// 12 24 .  |  41 .  .  |  .  .  .
 	/// 31 .  43 |  14 .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
@@ -78,7 +78,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	///
-	/// (3) UR + UL, 3 digits
+	/// (3) BDP + UR, 3 digits
 	/// 12 .  .  |  21 .  .  |  .  .  .
 	/// 23 .  .  |  .  .  .  |  32 .  .
 	/// .  31 .  |  12 .  .  |  23 .  .
