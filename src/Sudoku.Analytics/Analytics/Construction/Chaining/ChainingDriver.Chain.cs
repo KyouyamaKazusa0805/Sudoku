@@ -1,4 +1,4 @@
-#define ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+#define ONLY_FIND_ONE_CHAIN_FOR_ONE_START
 
 namespace Sudoku.Analytics.Construction.Chaining;
 
@@ -122,7 +122,7 @@ internal partial class ChainingDriver
 							}
 
 							result.Add(loop);
-#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+#if ONLY_FIND_ONE_CHAIN_FOR_ONE_START
 							return null;
 #endif
 						Next:;
@@ -145,7 +145,7 @@ internal partial class ChainingDriver
 							}
 
 							result.Add(chain);
-#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+#if ONLY_FIND_ONE_CHAIN_FOR_ONE_START
 							return null;
 #endif
 						Next:;
@@ -192,7 +192,7 @@ internal partial class ChainingDriver
 							}
 
 							result.Add(chain);
-#if ONLY_FIND_ONE_CHAIN_PATH_FOR_START
+#if ONLY_FIND_ONE_CHAIN_FOR_ONE_START
 							return null;
 #endif
 						Next:;
