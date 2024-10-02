@@ -8,7 +8,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="MyBot" Version="1.8.0.14" />
-		<PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.39" />
+		<PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.40" />
 	</ItemGroup>
 
 	<ItemGroup>
