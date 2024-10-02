@@ -499,17 +499,18 @@ public readonly partial struct LibraryInfo(
 			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
-		var textSet = new HashSet<string>();
+		var textSet = new HashSet<ReadOnlyMemory<char>>(ReadOnlyMemoryOfCharComparer.Instance);
+		var altLookup = textSet.GetAlternateLookup<ReadOnlyCharSequence>();
 		await foreach (var grid in EnumerateTextAsync(cancellationToken))
 		{
-			textSet.Add(grid);
+			altLookup.Add(grid);
 		}
 
 		await using var sw = new StreamWriter(LibraryFilePath, false);
 		var sb = new StringBuilder();
 		foreach (var text in textSet)
 		{
-			sb.AppendLine(text);
+			sb.Append(text).AppendLine();
 		}
 
 		await sw.WriteAsync(sb, cancellationToken);
