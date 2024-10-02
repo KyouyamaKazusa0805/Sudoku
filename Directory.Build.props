@@ -64,6 +64,10 @@
 		<Using Include="System.ReadOnlySpan&lt;System.Char&gt;" Alias="ReadOnlyCharSequence" />
 		<Using Include="System.Span&lt;System.Byte&gt;" Alias="Utf8CharSequence" />
 		<Using Include="System.Span&lt;System.Char&gt;" Alias="CharSequence" />
+		<Using Include="System.ReadOnlyMemory&lt;System.Byte&gt;" Alias="ReadOnlyUtf8CharMemorySequence" />
+		<Using Include="System.ReadOnlyMemory&lt;System.Char&gt;" Alias="ReadOnlyCharMemorySequence" />
+		<Using Include="System.Memory&lt;System.Byte&gt;" Alias="Utf8CharMemorySequence" />
+		<Using Include="System.Memory&lt;System.Char&gt;" Alias="CharMemorySequence" />
 	</ItemGroup>
 
 	<!--

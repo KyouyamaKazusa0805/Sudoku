@@ -499,7 +499,7 @@ public readonly partial struct LibraryInfo(
 			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
-		var textSet = new HashSet<ReadOnlyMemory<char>>(ReadOnlyMemoryOfCharComparer.Instance);
+		var textSet = new HashSet<ReadOnlyCharMemorySequence>(ReadOnlyMemoryOfCharComparer.Instance);
 		var altLookup = textSet.GetAlternateLookup<ReadOnlyCharSequence>();
 		await foreach (var grid in EnumerateTextAsync(cancellationToken))
 		{

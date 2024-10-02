@@ -7,8 +7,8 @@ namespace System;
 /// </summary>
 /// <seealso cref="HashSet{T}.AlternateLookup{TAlternate}"/>
 public sealed class ReadOnlyMemoryOfCharComparer :
-	IEqualityComparer<ReadOnlyMemory<char>>,
-	IAlternateEqualityComparer<ReadOnlyCharSequence, ReadOnlyMemory<char>>
+	IEqualityComparer<ReadOnlyCharMemorySequence>,
+	IAlternateEqualityComparer<ReadOnlyCharSequence, ReadOnlyCharMemorySequence>
 {
 	/// <summary>
 	/// Indicates the singleton object of this type.
@@ -25,13 +25,13 @@ public sealed class ReadOnlyMemoryOfCharComparer :
 
 
 	/// <inheritdoc/>
-	public bool Equals(ReadOnlyMemory<char> x, ReadOnlyMemory<char> y) => x.Span.SequenceEqual(y.Span);
+	public bool Equals(ReadOnlyCharMemorySequence x, ReadOnlyCharMemorySequence y) => x.Span.SequenceEqual(y.Span);
 
 	/// <inheritdoc/>
-	public bool Equals(ReadOnlyCharSequence alternate, ReadOnlyMemory<char> other) => alternate.SequenceEqual(other.Span);
+	public bool Equals(ReadOnlyCharSequence alternate, ReadOnlyCharMemorySequence other) => alternate.SequenceEqual(other.Span);
 
 	/// <inheritdoc/>
-	public int GetHashCode(ReadOnlyMemory<char> obj) => GetHashCode(obj.Span);
+	public int GetHashCode(ReadOnlyCharMemorySequence obj) => GetHashCode(obj.Span);
 
 	/// <inheritdoc/>
 	public int GetHashCode(ReadOnlyCharSequence alternate)
@@ -42,5 +42,5 @@ public sealed class ReadOnlyMemoryOfCharComparer :
 	}
 
 	/// <inheritdoc/>
-	public ReadOnlyMemory<char> Create(ReadOnlyCharSequence alternate) => alternate.ToArray();
+	public ReadOnlyCharMemorySequence Create(ReadOnlyCharSequence alternate) => alternate.ToArray();
 }
