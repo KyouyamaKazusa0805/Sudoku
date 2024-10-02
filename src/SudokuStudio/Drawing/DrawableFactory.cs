@@ -77,7 +77,7 @@ internal static partial class DrawableFactory
 				}
 			}
 
-			AddViewUnitControls(pane, pane.ViewUnit, groupedNodes.ToArray());
+			AddViewUnitControls(pane, pane.ViewUnit, groupedNodes.AsReadOnlySpan());
 		}
 	}
 

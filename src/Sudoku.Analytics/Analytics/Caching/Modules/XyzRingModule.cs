@@ -14,7 +14,7 @@ internal static class XyzRingModule
 	public static ReadOnlySpan<XyzRingStep> GetSiamese(HashSet<XyzRingStep> accumulator, ref readonly Grid grid)
 	{
 		var result = new List<XyzRingStep>();
-		var stepsSpan = accumulator.ToArray().AsReadOnlySpan();
+		var stepsSpan = accumulator.AsReadOnlySpan();
 		for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
 		{
 			var xyz1 = stepsSpan[index1];

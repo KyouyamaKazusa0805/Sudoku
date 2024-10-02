@@ -196,7 +196,7 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 		{
 			points.Add(GetPosition(candidate));
 		}
-		return points.ToArray();
+		return points.AsReadOnlySpan();
 	}
 
 	/// <include

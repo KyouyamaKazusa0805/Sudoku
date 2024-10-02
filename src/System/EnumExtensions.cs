@@ -48,7 +48,7 @@ public static class EnumExtensions
 		{
 			set.Add(flag);
 		}
-		return (T[])[.. set];
+		return set.AsReadOnlySpan();
 	}
 
 	/// <summary>
