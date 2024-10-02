@@ -17,22 +17,13 @@ public static class Console2
 	/// <param name="severity">严重程度。</param>
 	/// <param name="s">字符串。</param>
 	public static void WriteLog(LogSeverity severity, string s)
-	{
-		if (severity != LogSeverity.None)
+		=> Console.WriteLine($"{severity switch
 		{
-			Console.ForegroundColor = severity switch
-			{
-				LogSeverity.Info => ConsoleColor.Green,
-				LogSeverity.Warning => ConsoleColor.DarkYellow,
-				_ => ConsoleColor.Red
-			};
-		}
-		Console.WriteLine($@"[{DateTime.Now:yyyy/MM/dd HH\:mm\:ss}] {s}");
-		if (severity != LogSeverity.None)
-		{
-			Console.ResetColor();
-		}
-	}
+			LogSeverity.Info => "\e[38;2;19;161;14m\e",
+			LogSeverity.Warning => "\e[38;2;193;156;0m\e",
+			LogSeverity.Error => "\e[38;2;197;15;31m\e",
+			_ => string.Empty
+		}}[{DateTime.Now:yyyy/MM/dd HH\\:mm\\:ss}] {s}\e[0m");
 
 	/// <summary>
 	/// 阻塞控制台，避免控制台在执行异步函数的时候，主线程继续执行后续内容。
