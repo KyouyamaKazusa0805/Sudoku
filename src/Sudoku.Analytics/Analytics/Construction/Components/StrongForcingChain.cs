@@ -160,7 +160,7 @@ public sealed partial class StrongForcingChain(Node lastNode) : UnnamedChain(las
 				var nodesSorted = span.ToArray();
 				Array.Sort(nodesSorted, (left, right) => left.CompareTo(right, nodeComparison));
 
-				var hashCode = new HashCode();
+				var hashCode = default(HashCode);
 				foreach (var node in nodesSorted)
 				{
 					hashCode.Add(node.GetHashCode(nodeComparison));
@@ -169,7 +169,7 @@ public sealed partial class StrongForcingChain(Node lastNode) : UnnamedChain(las
 			}
 			case ChainOrLoopComparison.Directed:
 			{
-				var result = new HashCode();
+				var result = default(HashCode);
 				foreach (var element in span)
 				{
 					result.Add(element.GetHashCode(nodeComparison));

@@ -286,7 +286,7 @@ public sealed partial class ConclusionSet :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		var (result, i) = (new HashCode(), 0);
+		var (result, i) = (default(HashCode), 0);
 		foreach (bool element in _bitArray)
 		{
 			if (element)

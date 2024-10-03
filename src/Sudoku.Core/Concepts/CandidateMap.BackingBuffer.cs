@@ -35,7 +35,7 @@ public partial struct CandidateMap
 		/// <inheritdoc/>
 		public override readonly int GetHashCode()
 		{
-			var hashCode = new HashCode();
+			var hashCode = default(HashCode);
 			for (var i = 0; i < Length; i++)
 			{
 				hashCode.Add(this[i]);

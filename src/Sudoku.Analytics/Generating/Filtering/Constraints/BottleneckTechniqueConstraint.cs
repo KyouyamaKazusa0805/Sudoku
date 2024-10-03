@@ -30,7 +30,7 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 	{
 		get
 		{
-			var result = new HashCode();
+			var result = default(HashCode);
 			foreach (var filter in Filters)
 			{
 				result.Add(filter);

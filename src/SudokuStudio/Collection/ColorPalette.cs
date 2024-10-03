@@ -39,7 +39,7 @@ public sealed partial class ColorPalette :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		var result = new HashCode();
+		var result = default(HashCode);
 		foreach (var element in this)
 		{
 			result.Add(element);

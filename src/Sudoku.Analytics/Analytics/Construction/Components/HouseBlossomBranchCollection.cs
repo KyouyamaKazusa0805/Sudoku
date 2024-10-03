@@ -39,7 +39,7 @@ public sealed partial class HouseBlossomBranchCollection :
 	/// <inheritdoc/>
 	public override int GetHashCode()
 	{
-		var result = new HashCode();
+		var result = default(HashCode);
 		foreach (var (key, value) in this)
 		{
 			result.Add(key << 17 | 135792468);

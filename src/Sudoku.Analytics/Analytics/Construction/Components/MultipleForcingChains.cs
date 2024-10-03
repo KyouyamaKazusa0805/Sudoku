@@ -330,7 +330,7 @@ public sealed partial class MultipleForcingChains([PrimaryConstructorParameter(S
 	/// <returns>Hash code value.</returns>
 	public int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
-		var hashCode = new HashCode();
+		var hashCode = default(HashCode);
 		foreach (var (candidate, chain) in this)
 		{
 			hashCode.Add(candidate);

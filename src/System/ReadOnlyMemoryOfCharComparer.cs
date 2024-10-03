@@ -36,7 +36,7 @@ public sealed class ReadOnlyMemoryOfCharComparer :
 	/// <inheritdoc/>
 	public int GetHashCode(ReadOnlyCharSequence alternate)
 	{
-		var hc = new HashCode();
+		var hc = default(HashCode);
 		hc.AddBytes(MemoryMarshal.Cast<char, byte>(alternate));
 		return hc.ToHashCode();
 	}

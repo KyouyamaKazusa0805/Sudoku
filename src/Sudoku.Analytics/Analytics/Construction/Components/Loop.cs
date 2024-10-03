@@ -141,7 +141,7 @@ public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 				var nodesSorted = _nodes[..];
 				Array.Sort(nodesSorted, (left, right) => left.CompareTo(right, nodeComparison));
 
-				var hashCode = new HashCode();
+				var hashCode = default(HashCode);
 				foreach (var node in nodesSorted)
 				{
 					hashCode.Add(node.GetHashCode(nodeComparison));
@@ -150,7 +150,7 @@ public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 			}
 			case ChainOrLoopComparison.Directed:
 			{
-				var result = new HashCode();
+				var result = default(HashCode);
 				foreach (var element in _nodes)
 				{
 					result.Add(element.GetHashCode(nodeComparison));

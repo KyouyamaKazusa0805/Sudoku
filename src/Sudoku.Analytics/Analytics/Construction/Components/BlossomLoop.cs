@@ -179,7 +179,7 @@ public sealed partial class BlossomLoop([PrimaryConstructorParameter] params Con
 	/// <returns>Hash code value.</returns>
 	public int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
 	{
-		var hashCode = new HashCode();
+		var hashCode = default(HashCode);
 		foreach (var (branchStartNode, forcingChain) in this)
 		{
 			hashCode.Add(branchStartNode);

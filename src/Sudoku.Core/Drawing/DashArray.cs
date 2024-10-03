@@ -49,7 +49,7 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode()
 	{
-		var result = new HashCode();
+		var result = default(HashCode);
 		foreach (var element in _doubles)
 		{
 			result.Add(element);
