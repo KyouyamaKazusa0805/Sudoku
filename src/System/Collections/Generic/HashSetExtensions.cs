@@ -61,6 +61,9 @@ file static class Entry<T>
 		/// <include
 		///     file="../../global-doc-comments.xml"
 		///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@name='field-related-method']"/>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="//g/dotnet/version[@value='8']/feature[@name='unsafe-accessor']/target[@type='struct']"/>
 		/// </remarks>
 		[UnsafeAccessor(UnsafeAccessorKind.Field, Name = LibraryIdentifiers.Enumerator_Current)]
 		public static extern ref T GetCurrentFieldRef(ref HashSet<T>.Enumerator @this);

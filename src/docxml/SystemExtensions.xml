@@ -206,6 +206,14 @@
 						</b>
 					</para>
 				</target>
+            <target type="struct">
+					<para>
+						<b>
+							In addition, if the target type is a <see langword="struct" />, it requires a <see langword="ref" /> keyword;
+							otherwise, <see cref="T:System.BadImageFormatException" /> will be thrown.
+						</b>
+					</para>
+				</target>
             </remarks>
         </member>
         <member name="T:System.Collections.Generic.ICollectionExtensions">
