@@ -25,8 +25,8 @@ A sudoku handling SDK using brute forces and logical techniques. Now this soluti
 This repository is created for the following users:
 
 * **who likes sudoku algorithms**: If you like to study for sudoku techniques and its backing implementation and running mechanism, you can find answer in this repository.
-* **who wants to learn about C#-related features**: This repository uses some C# newer features and .NET-related features such as Windows UI, which can help you learn more about it as practicing.
-* **myself**: The codes are very important for me to learn sudoku and algorithms.
+* **who wants to learn about C#-related features**: This repository uses some C# newer features, which can help you learn about it.
+* **myself**: The codes are very important for me to learn sudoku and related algorithm.
 
 ## Prefaces
 
