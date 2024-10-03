@@ -19,7 +19,7 @@ public static class HashSetExtensions
 		var i = 0;
 		while (enumerator.MoveNext())
 		{
-			var currentRef = HashSetEntry<T>.EnumeratorEntry.GetCurrentFieldRef(ref enumerator);
+			var currentRef = Entry<T>.EnumeratorEntry.GetCurrentFieldRef(ref enumerator);
 			result[i++] = currentRef;
 		}
 		return result;
@@ -41,7 +41,7 @@ public static class HashSetExtensions
 /// </summary>
 /// <typeparam name="T">The type of each element in <see cref="HashSet{T}"/>.</typeparam>
 /// <seealso cref="HashSet{T}"/>
-file static class HashSetEntry<T>
+file static class Entry<T>
 {
 	/// <summary>
 	/// Represents an entry to call internal fields on <see cref="HashSet{T}.Enumerator"/>.
