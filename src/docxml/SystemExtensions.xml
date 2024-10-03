@@ -890,6 +890,56 @@
             <param name="f">The recursion logic.</param>
             <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
         </member>
+        <member name="T:System.DelegateEnumerator`1">
+            <summary>
+            Represents an enumerator type that can iterate on each function or action on a complex delegate object
+            of type <typeparamref name="TDelegate"/>.
+            </summary>
+            <typeparam name="TDelegate">The type of each function or action.</typeparam>
+            <param name="value">The complex delegate object to be iterated.</param>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.#ctor(`0)">
+            <summary>
+            Represents an enumerator type that can iterate on each function or action on a complex delegate object
+            of type <typeparamref name="TDelegate"/>.
+            </summary>
+            <typeparam name="TDelegate">The type of each function or action.</typeparam>
+            <param name="value">The complex delegate object to be iterated.</param>
+        </member>
+        <member name="F:System.DelegateEnumerator`1._enumerator">
+            <summary>
+            Indicates the backing enumerator.
+            </summary>
+        </member>
+        <member name="P:System.DelegateEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.DelegateEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.DelegateEnumerator`1.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.DelegateEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:System.DelegateExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Delegate"/>.
@@ -903,6 +953,9 @@
             <typeparam name="TDelegate">The type of the delegate.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of delegates representing the invocation list of the current delegate.</returns>
+        </member>
+        <member name="M:System.DelegateExtensions.GetEnumerator``1(``0)">
+            <inheritdoc cref="M:System.Delegate.EnumerateInvocationList``1(``0)"/>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AddPropertyAttribute">
             <summary>

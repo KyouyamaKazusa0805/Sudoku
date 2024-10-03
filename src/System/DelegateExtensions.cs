@@ -15,4 +15,9 @@ public static class DelegateExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TDelegate[] GetInvocations<TDelegate>(this TDelegate @this) where TDelegate : Delegate
 		=> from TDelegate element in @this.GetInvocationList() select element;
+
+	/// <inheritdoc cref="Delegate.EnumerateInvocationList{TDelegate}(TDelegate)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static DelegateEnumerator<TDelegate> GetEnumerator<TDelegate>(this TDelegate? @this) where TDelegate : Delegate
+		=> new(@this);
 }
