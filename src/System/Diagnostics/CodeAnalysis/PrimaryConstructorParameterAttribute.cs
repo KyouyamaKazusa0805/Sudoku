@@ -49,8 +49,7 @@ public sealed partial class PrimaryConstructorParameterAttribute([PrimaryConstru
 	/// <list type="number">
 	/// <item>
 	/// The type is a <see langword="struct"/>, <see langword="record struct"/>,
-	/// <see langword="implicit extension"/> (will be included in future C# version)
-	/// or <see langword="explicit extension"/> (will be included in future C# version)
+	/// <see langword="extension"/> or <see langword="role"/> (will be included in future C# version)
 	/// </item>
 	/// <item>The type is not marked with keyword <see langword="readonly"/></item>
 	/// </list>
