@@ -1,3 +1,5 @@
+#define TEMP
+
 namespace Sudoku.Runtime.LibraryServices;
 
 /// <summary>
@@ -499,6 +501,20 @@ public readonly partial struct LibraryInfo(
 			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 		}
 
+#if TEMP
+		var textSet = new HashSet<string>();
+		await foreach (var grid in EnumerateTextAsync(cancellationToken))
+		{
+			textSet.Add(grid);
+		}
+
+		await using var sw = new StreamWriter(LibraryFilePath, false);
+		var sb = new StringBuilder();
+		foreach (var text in textSet)
+		{
+			sb.AppendLine(text);
+		}
+#else
 		var textSet = new HashSet<ReadOnlyCharMemorySequence>(ReadOnlyMemoryOfCharComparer.Instance);
 		var altLookup = textSet.GetAlternateLookup<ReadOnlyCharSequence>();
 		await foreach (var grid in EnumerateTextAsync(cancellationToken))
@@ -512,6 +528,7 @@ public readonly partial struct LibraryInfo(
 		{
 			sb.Append(text).AppendLine();
 		}
+#endif
 
 		await sw.WriteAsync(sb, cancellationToken);
 	}
