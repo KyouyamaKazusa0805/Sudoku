@@ -38,6 +38,6 @@ public abstract partial class ComplexSingleBaseStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	[PrimaryConstructorParameter] Technique basedOn,
-	[PrimaryConstructorParameter] Technique[][] indirectTechniques
+	[Property] Technique basedOn,
+	[Property] Technique[][] indirectTechniques
 ) : PartialPencilmarkingStep(conclusions, views, options, cell, digit, subtype);

@@ -11,8 +11,8 @@ namespace SudokuStudio.Drawing;
 internal sealed partial class PathCreator(
 	SudokuPane pane,
 	SudokuPanePositionConverter converter,
-	[PrimaryConstructorParameter] ReadOnlyMemory<CandidateViewNode> candidateNodes,
-	[PrimaryConstructorParameter] ReadOnlyMemory<Conclusion> conclusions
+	[Property] ReadOnlyMemory<CandidateViewNode> candidateNodes,
+	[Property] ReadOnlyMemory<Conclusion> conclusions
 ) : CreatorBase<ILinkViewNode, Shape>(pane, converter)
 {
 	/// <inheritdoc/>

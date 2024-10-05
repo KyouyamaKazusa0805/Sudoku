@@ -11,10 +11,7 @@ namespace System.Linq;
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource[] elements,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) :
+public readonly partial struct SpanGrouping<TSource, TKey>([Field] TSource[] elements, [Property, HashCodeMember, StringMember] TKey key) :
 	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull
 {
@@ -24,7 +21,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	public int Length => _elements.Length;
 
 	[HashCodeMember]
-	private nint ElementsRawPointerValue => (nint)Unsafe.AsPointer(ref _elements[0]);
+	private unsafe nint ElementsRawPointerValue => (nint)Unsafe.AsPointer(ref _elements[0]);
 
 	[StringMember]
 	private string FirstElementString => _elements[0]!.ToString()!;

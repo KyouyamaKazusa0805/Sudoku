@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="house">Indicates the house highlighted.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class HouseViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] House house) :
+public sealed partial class HouseViewNode(ColorIdentifier identifier, [Property, HashCodeMember, StringMember] House house) :
 	BasicViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

@@ -16,8 +16,8 @@ public sealed partial class UniqueMatrixType3Step(
 	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<UniqueMatrixType3Step>
 {
 	/// <inheritdoc/>

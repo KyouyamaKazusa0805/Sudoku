@@ -21,9 +21,9 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	Digit digit2,
 	ref readonly CellMap cells,
 	int absoluteOffset,
-	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
-	[PrimaryConstructorParameter] Cell subsetIncludedCorner,
-	[PrimaryConstructorParameter] Mask extraDigitsMask
+	[Property] ref readonly CellMap extraCells,
+	[Property] Cell subsetIncludedCorner,
+	[Property] Mask extraDigitsMask
 ) :
 	UniqueRectangleBurredStep(
 		conclusions,

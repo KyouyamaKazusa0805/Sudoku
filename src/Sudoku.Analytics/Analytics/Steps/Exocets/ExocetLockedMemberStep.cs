@@ -17,7 +17,7 @@ public sealed partial class ExocetLockedMemberStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Mask lockedMemberDigitsMask,
+	[Property] Mask lockedMemberDigitsMask,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,
 	ref readonly CellMap endoTargetCells,

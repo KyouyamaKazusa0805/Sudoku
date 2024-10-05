@@ -18,8 +18,8 @@ public sealed partial class NakedSingleStep(
 	Cell cell,
 	Digit digit,
 	SingleSubtype subtype,
-	[PrimaryConstructorParameter] int lasting,
-	[PrimaryConstructorParameter] HouseType lastingHouseType
+	[Property] int lasting,
+	[Property] HouseType lastingHouseType
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>

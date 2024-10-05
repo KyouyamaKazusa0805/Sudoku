@@ -11,9 +11,9 @@ namespace Sudoku.Drawing.Nodes;
 [method: JsonConstructor]
 public sealed partial class BabaGroupViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember] Cell cell,
-	[PrimaryConstructorParameter, StringMember] char unknownValueChar,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property, HashCodeMember] Cell cell,
+	[Property, StringMember] char unknownValueChar,
+	[Property] Mask digitsMask
 ) : BasicViewNode(identifier)
 {
 	/// <summary>

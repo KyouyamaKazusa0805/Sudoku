@@ -2,6 +2,16 @@ namespace Sudoku.SourceGeneration.Handlers;
 
 internal static class TypeImplHandler
 {
+	private const string ParameterTargetAttributeTypeName = "System.Diagnostics.CodeAnalysis.ParameterTargetAttribute";
+
+	private const string HashCodeMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute";
+
+	private const string StringMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.StringMemberAttribute";
+
+	private const string FormattableTypeName = "System.IFormattable";
+
+	private const string FormatProviderTypeName = "System.IFormatProvider";
+
 	private const string IsLargeStructurePropertyName = "IsLargeStructure";
 
 	private const string OtherModifiersOnEqualsPropertyName = "OtherModifiersOnEquals";
@@ -211,15 +221,13 @@ internal static class TypeImplHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
 
-		const string dataMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute";
-		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
-		if (dataMemberAttributeTypeNameSymbol is null)
+		var paramTargetAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(ParameterTargetAttributeTypeName);
+		if (paramTargetAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
 
-		const string hashCodeMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute";
-		var hashCodeMemberAttributeSymbol = compilation.GetTypeByMetadataName(hashCodeMemberAttributeTypeName);
+		var hashCodeMemberAttributeSymbol = compilation.GetTypeByMetadataName(HashCodeMemberAttributeTypeName);
 		if (hashCodeMemberAttributeSymbol is null)
 		{
 			return null;
@@ -229,7 +237,7 @@ internal static class TypeImplHandler
 			type,
 			semanticModel,
 			parameterList,
-			dataMemberAttributeTypeNameSymbol,
+			paramTargetAttributeTypeNameSymbol,
 			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, hashCodeMemberAttributeSymbol),
 			static symbol => symbol switch
 			{
@@ -392,28 +400,24 @@ internal static class TypeImplHandler
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
 		var typeNameString = $"{typeName}{typeParametersString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
-		const string formattableTypeName = "System.IFormattable";
-		if (compilation.GetTypeByMetadataName(formattableTypeName) is not { } formattableTypeSymbol)
+		if (compilation.GetTypeByMetadataName(FormattableTypeName) is not { } formattableTypeSymbol)
 		{
 			return null;
 		}
 
-		const string dataMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute";
-		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
-		if (dataMemberAttributeTypeNameSymbol is null)
+		var paramTargetAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(ParameterTargetAttributeTypeName);
+		if (paramTargetAttributeTypeNameSymbol is null)
 		{
 			return null;
 		}
 
-		const string stringMemberAttributeName = "System.Diagnostics.CodeAnalysis.StringMemberAttribute";
-		var stringMemberAttributeSymbol = compilation.GetTypeByMetadataName(stringMemberAttributeName);
+		var stringMemberAttributeSymbol = compilation.GetTypeByMetadataName(StringMemberAttributeTypeName);
 		if (stringMemberAttributeSymbol is null)
 		{
 			return null;
 		}
 
-		const string formatProviderTypeName = "System.IFormatProvider";
-		var formatProviderSymbol = compilation.GetTypeByMetadataName(formatProviderTypeName);
+		var formatProviderSymbol = compilation.GetTypeByMetadataName(FormatProviderTypeName);
 		if (formatProviderSymbol is null)
 		{
 			return null;
@@ -423,7 +427,7 @@ internal static class TypeImplHandler
 			type,
 			semanticModel,
 			parameterList,
-			dataMemberAttributeTypeNameSymbol,
+			paramTargetAttributeTypeNameSymbol,
 			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol),
 			symbol => (string?)symbol.GetAttributes().First(stringMemberAttributeMatcher).ConstructorArguments[0].Value ?? symbol.Name,
 			cancellationToken
@@ -1231,4 +1235,88 @@ file enum ComparisonOperatorsBehavior
 	DefaultButDeprecated,
 	WithScopedIn,
 	WithScopedInButDeprecated,
+}
+
+/// <summary>
+/// Provides with primary constructor operations.
+/// </summary>
+file static class PrimaryConstructor
+{
+	/// <summary>
+	/// Try to get corresponding member names.
+	/// </summary>
+	/// <typeparam name="TExtraData">The type of projected result after argument <paramref name="extraDataSelector"/> handled.</typeparam>
+	/// <param name="this">The type symbol.</param>
+	/// <param name="model">The semantic model instance.</param>
+	/// <param name="parameterList">The parameter list.</param>
+	/// <param name="targetAttributeSymbol">The primary constructor parameter type symbol.</param>
+	/// <param name="attributeMatcher">Indicates the primary constructor attribute matcher.</param>
+	/// <param name="extraDataSelector">Extra data selector.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>A list of values (member names and extra data).</returns>
+	public static (string Name, TExtraData ExtraData)[] GetCorrespondingMemberNames<TExtraData>(
+		this INamedTypeSymbol @this,
+		SemanticModel model,
+		ParameterListSyntax? parameterList,
+		INamedTypeSymbol targetAttributeSymbol,
+		Func<AttributeData, bool> attributeMatcher,
+		Func<ISymbol, TExtraData> extraDataSelector,
+		CancellationToken cancellationToken
+	)
+	{
+		const string Property = nameof(Property), Field = nameof(Field);
+		var members = (ISymbol[])[.. @this.GetAllMembers()];
+		var baseMembers =
+			from member in members
+			where member is IFieldSymbol or IPropertySymbol && member.GetAttributes().Any(attributeMatcher)
+			select (member.Name, extraDataSelector(member));
+		return parameterList is null
+			? [.. baseMembers]
+			: [
+				..
+				from parameter in parameterList.Parameters
+				select model.GetDeclaredSymbol(parameter, cancellationToken) into parameterSymbol
+				where !parameterSymbol.Type.IsRefLikeType // Ref structs cannot participate in the hashing.
+				let attributesData = parameterSymbol.GetAttributes()
+				where attributesData.Any(attributeMatcher)
+				let targetAttributeData = attributesData.FirstOrDefault(m)
+				let name = targetAttributeData.AttributeClass?.Name
+				let parameterKind = name switch { $"{Field}Attribute" => Field, $"{Property}Attribute" => Property, _ => null }
+				where parameterKind is Property or Field
+				let memberConversion = parameterKind switch { Property => ">@", _ => "_<@" }
+				let namedArguments = targetAttributeData.NamedArguments
+				let parameterName = parameterSymbol.Name
+				let referencedMemberName = getTargetMemberName(namedArguments, parameterName, memberConversion)
+				select (referencedMemberName, extraDataSelector(parameterSymbol)),
+				.. baseMembers
+			];
+
+
+		bool m(AttributeData a) => SymbolEqualityComparer.Default.Equals(a.AttributeClass?.BaseType, targetAttributeSymbol);
+
+
+		static string getTargetMemberName(NamedArgs namedArgs, string parameterName, string defaultPattern)
+			=> namedArgs.TryGetValueOrDefault<string>("GeneratedMemberName", out var customizedFieldName)
+			&& customizedFieldName is not null
+				? customizedFieldName
+				: namedArgs.TryGetValueOrDefault<string>("NamingRule", out var namingRule) && namingRule is not null
+					? namingRule.InternalHandle(parameterName)
+					: defaultPattern.InternalHandle(parameterName);
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Internal handle the naming rule, converting it into a valid identifier via specified parameter name.
+	/// </summary>
+	/// <param name="this">The naming rule.</param>
+	/// <param name="parameterName">The parameter name.</param>
+	/// <returns>The final identifier.</returns>
+	public static string InternalHandle(this string @this, string parameterName)
+		=> @this
+			.Replace("<@", parameterName.ToCamelCasing())
+			.Replace(">@", parameterName.ToPascalCasing())
+			.Replace("@", parameterName);
 }

@@ -20,8 +20,8 @@ public sealed partial class DoubleExocetGeneralizedFishStep(
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,
 	ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] ref readonly CellMap baseCellsTheOther,
-	[PrimaryConstructorParameter] ref readonly CellMap targetCellsTheOther
+	[Property] ref readonly CellMap baseCellsTheOther,
+	[Property] ref readonly CellMap targetCellsTheOther
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocet
 {
 	/// <inheritdoc/>

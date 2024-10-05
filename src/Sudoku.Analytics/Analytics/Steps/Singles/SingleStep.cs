@@ -13,9 +13,9 @@ public abstract partial class SingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Cell cell,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] SingleSubtype subtype
+	[Property] Cell cell,
+	[Property] Digit digit,
+	[Property] SingleSubtype subtype
 ) : DirectStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

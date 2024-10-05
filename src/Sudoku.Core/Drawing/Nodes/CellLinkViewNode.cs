@@ -10,8 +10,8 @@ namespace Sudoku.Drawing.Nodes;
 [method: JsonConstructor]
 public sealed partial class CellLinkViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell start,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell end
+	[Property, HashCodeMember, StringMember] Cell start,
+	[Property, HashCodeMember, StringMember] Cell end
 ) : BasicViewNode(identifier), ILinkViewNode
 {
 	/// <inheritdoc/>

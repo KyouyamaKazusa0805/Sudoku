@@ -6,8 +6,8 @@ namespace Sudoku.Runtime.InteropServices.SudokuExplainer;
 /// <param name="min">Indicates the minimum possible value.</param>
 /// <param name="max">Indicates the maximum possible value.</param>
 public readonly partial struct SudokuExplainerRatingRange(
-	[PrimaryConstructorParameter] Half min,
-	[PrimaryConstructorParameter] Half max
+	[Property] Half min,
+	[Property] Half max
 )
 {
 	/// <summary>

@@ -13,9 +13,9 @@ public abstract partial class SubsetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] House house,
+	[Property] ref readonly CellMap cells,
+	[Property] Mask digitsMask
 ) : FullPencilmarkingStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>

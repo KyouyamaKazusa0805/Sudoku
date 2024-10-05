@@ -6,8 +6,7 @@ namespace System;
 /// <typeparam name="T">The type of each element to be iterated.</typeparam>
 /// <param name="sequence">The sequence value.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) :
-	IEnumerator<(T First, T Second)>
+public ref partial struct PairEnumerator<T>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(T First, T Second)>
 	where T : notnull
 {
 	/// <summary>

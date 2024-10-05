@@ -14,10 +14,10 @@ public sealed partial class RectangleDeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap pattern,
-	[PrimaryConstructorParameter] bool isAvoidable,
-	[PrimaryConstructorParameter] RectangleBlossomBranchCollection branches,
-	[PrimaryConstructorParameter] Mask zDigitsMask
+	[Property] ref readonly CellMap pattern,
+	[Property] bool isAvoidable,
+	[Property] RectangleBlossomBranchCollection branches,
+	[Property] Mask zDigitsMask
 ) :
 	DeathBlossomBaseStep(conclusions, views, options),
 	IBranchTrait,

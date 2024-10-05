@@ -13,10 +13,10 @@ namespace Sudoku.Metric;
 /// <param name="formula">Provides with a formula that calculates for the result.</param>
 [method: SetsRequiredMembers]
 public readonly partial struct Factor(
-	[PrimaryConstructorParameter(Accessibility = "public required", NamingRule = "Factor>@", SetterExpression = "init")] string resourceKey,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "init")] string[] parameterNames,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "init")] Type reflectedStepType,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "init")] Func<ReadOnlySpan<object?>, int> formula
+	[Property(Accessibility = "public required", NamingRule = "Factor>@", Setter = "init")] string resourceKey,
+	[Property(Accessibility = "public required", Setter = "init")] string[] parameterNames,
+	[Property(Accessibility = "public required", Setter = "init")] Type reflectedStepType,
+	[Property(Accessibility = "public required", Setter = "init")] Func<ReadOnlySpan<object?>, int> formula
 )
 {
 	/// <summary>

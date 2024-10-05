@@ -15,11 +15,11 @@ public abstract partial class ExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap baseCells,
-	[PrimaryConstructorParameter] ref readonly CellMap targetCells,
-	[PrimaryConstructorParameter] ref readonly CellMap endoTargetCells,
-	[PrimaryConstructorParameter] ref readonly CellMap crosslineCells
+	[Property] Mask digitsMask,
+	[Property] ref readonly CellMap baseCells,
+	[Property] ref readonly CellMap targetCells,
+	[Property] ref readonly CellMap endoTargetCells,
+	[Property] ref readonly CellMap crosslineCells
 ) : FullPencilmarkingStep(conclusions, views, options)
 {
 	/// <summary>

@@ -16,7 +16,7 @@ public sealed partial class JuniorExocetTargetPairStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Mask targetPairMask,
+	[Property] Mask targetPairMask,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,
 	ref readonly CellMap crosslineCells

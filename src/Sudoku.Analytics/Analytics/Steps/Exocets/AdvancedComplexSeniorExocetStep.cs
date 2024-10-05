@@ -23,9 +23,9 @@ public sealed partial class AdvancedComplexSeniorExocetStep(
 	ref readonly CellMap targetCells,
 	ref readonly CellMap endoTargetCells,
 	ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] HouseMask crosslineHousesMask,
-	[PrimaryConstructorParameter] HouseMask extraHousesMask,
-	[PrimaryConstructorParameter] Mask almostHiddenSetMask
+	[Property] HouseMask crosslineHousesMask,
+	[Property] HouseMask extraHousesMask,
+	[Property] Mask almostHiddenSetMask
 ) :
 	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
 	IComplexSeniorExocet

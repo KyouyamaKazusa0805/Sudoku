@@ -999,6 +999,23 @@
             <seealso cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.EmitPropertyStyle">
+            <summary>
+            Represents a style of emit property.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.EmitPropertyStyle.AssignToProperty">
+            <summary>
+            Indicates the behavior is to generate an assignment to property:
+            <code><![CDATA[public int Property { get; } = value;]]></code>
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.EmitPropertyStyle.ReturnParameter">
+            <summary>
+            Indicates the behavior is to generate a return statement that directly returns parameter:
+            <code><![CDATA[public int Property => value;]]></code>
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -1055,6 +1072,55 @@
             Indicates the parameter type to be created.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.FieldAttribute">
+            <summary>
+            Indicates the backing generated member of this primary constructor is a field.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FieldAttribute.IsReadOnlyByDefault">
+            <summary>
+            Indicates whether the generated field or property is implicitly read-only.
+            If the property is <see langword="true"/>, the generated data member (auto-impl'ed propertys or fields) will be modified
+            by keyword <see langword="readonly"/> if all following conditions are true:
+            <list type="number">
+            <item>
+            The type is a <see langword="struct"/>, <see langword="record struct"/>,
+            <see langword="extension"/> or <see langword="role"/> (will be included in future C# version)
+            </item>
+            <item>The type is not marked with keyword <see langword="readonly"/></item>
+            </list>
+            However, sometimes we should use non-<see langword="readonly"/> <see langword="struct"/> member as fields or auto-impl'ed properties,
+            but we cannot modify it. By setting the property with <see langword="false"/> value,
+            to avoid the source generator marking the generated member as <see langword="readonly"/>.
+            </summary>
+            <remarks>This property is <see langword="true"/> by default.</remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.FieldAttribute.RefKind">
+            <summary>
+            <para>Indicates the ref modifiers kind.</para>
+            <para>
+            The value will be as follows by default:
+            <list type="table">
+            <listheader>
+            <term>Case</term>
+            <description>Applied ref kind</description>
+            </listheader>
+            <item>
+            <term><see langword="ref"/> parameters in <see langword="ref struct"/></term>
+            <description><c>"ref"</c></description>
+            </item>
+            <item>
+            <term><see langword="ref readonly"/> / <see langword="in"/> parameters in <see langword="ref struct"/></term>
+            <description><c>"ref readonly"</c></description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>No ref kind applied</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
@@ -1107,21 +1173,6 @@
             The value is <see langword="true"/> by default.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.MemberKinds">
-            <summary>
-            Indicates a data member kind.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.MemberKinds.Field">
-            <summary>
-            Indicates the member kind is field.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.MemberKinds.Property">
-            <summary>
-            Indicates the member kind is property.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.NullabilityPrefer">
             <summary>
             Represents an enumeration type that tells source generators which case of nullability should be preferred.
@@ -1143,117 +1194,31 @@
             Indicates the source generator will prefer including <see langword="null"/>.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute">
+        <member name="T:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute">
             <summary>
-            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
-            telling the source generator that it should generate a property that references this parameter.
+            Represents the base type of attribute target.
             </summary>
-            <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.Diagnostics.CodeAnalysis.MemberKinds"/>.
-            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute.Accessibility">
+            <summary>
+            Indicates the accessibility of the generated member.
+            </summary>
             <remarks>
             <para>
-            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
-            However, the parameter defined will be expanded as a real parameter in its containing constructor.
-            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
-            </para>
-            <para>
-            The original way to declare a type with primary constructor is like:
+            This property controls the case when you want to customize the accessibility of generated member.
+            For example, the value is <c>"private"</c>, the generated member will automatically insert the accessibility modifier
+            into property declaration:
             <code><![CDATA[
-            public readonly struct Color(byte a, byte r, byte g, byte b)
-            {
-                public byte A { get; } = a;
-                public byte R { get; } = r;
-                public byte G { get; } = g;
-                public byte B { get; } = b;
-            }
+            private int Parameter { get; } = parameter;
             ]]></code>
             </para>
             <para>
-            Via this attribute type, we can simplify the code:
-            <code><![CDATA[
-            public readonly partial struct Color(
-                [PrimaryConstructorParameter] byte a,
-                [PrimaryConstructorParameter] byte r,
-                [PrimaryConstructorParameter] byte g,
-                [PrimaryConstructorParameter] byte b
-            );
-            ]]></code>
-            Such code is equivalent to the original one.
+            Also, you can append not only 1 word. For example, the combination <c>"protected internal readonly unsafe"</c> is also acceptable.
             </para>
-            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
+            <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
             </remarks>
         </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.#ctor(System.String)">
-            <summary>
-            Indicates the attribute type that can be marked for a parameter, indicating the parameter is a <see langword="record"/>-like one,
-            telling the source generator that it should generate a property that references this parameter.
-            </summary>
-            <param name="memberKind">
-            Indicates the member kind to be generated. You can reference the target value via type <see cref="T:System.Diagnostics.CodeAnalysis.MemberKinds"/>.
-            </param>
-            <remarks>
-            <para>
-            Begin with C# 12, we can define primary constructors for non-<see langword="record"/> types.
-            However, the parameter defined will be expanded as a real parameter in its containing constructor.
-            The compiler won't create a binding field or property. We should define it manually. This attribute will solve this problem.
-            </para>
-            <para>
-            The original way to declare a type with primary constructor is like:
-            <code><![CDATA[
-            public readonly struct Color(byte a, byte r, byte g, byte b)
-            {
-                public byte A { get; } = a;
-                public byte R { get; } = r;
-                public byte G { get; } = g;
-                public byte B { get; } = b;
-            }
-            ]]></code>
-            </para>
-            <para>
-            Via this attribute type, we can simplify the code:
-            <code><![CDATA[
-            public readonly partial struct Color(
-                [PrimaryConstructorParameter] byte a,
-                [PrimaryConstructorParameter] byte r,
-                [PrimaryConstructorParameter] byte g,
-                [PrimaryConstructorParameter] byte b
-            );
-            ]]></code>
-            Such code is equivalent to the original one.
-            </para>
-            <para>If you want to learn more information about this attribute type, please visit the metadata of the type.</para>
-            </remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.IsImplicitlyReadOnly">
-            <summary>
-            Indicates whether the generated field or property is implicitly read-only.
-            If the property is <see langword="true"/>, the generated data member (auto-impl'ed propertys or fields) will be modified
-            by keyword <see langword="readonly"/> if all following conditions are true:
-            <list type="number">
-            <item>
-            The type is a <see langword="struct"/>, <see langword="record struct"/>,
-            <see langword="extension"/> or <see langword="role"/> (will be included in future C# version)
-            </item>
-            <item>The type is not marked with keyword <see langword="readonly"/></item>
-            </list>
-            However, sometimes we should use non-<see langword="readonly"/> <see langword="struct"/> member as fields or auto-impl'ed properties,
-            but we cannot modify it. By setting the property with <see langword="false"/> value,
-            to avoid the source generator marking the generated member as <see langword="readonly"/>.
-            </summary>
-            <remarks>This property is <see langword="true"/> by default.</remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.SetterExpression">
-            <summary>
-            <para>Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.</para>
-            <para>
-            For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
-            the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
-            which means the target property does not contain a setter.
-            </para>
-            </summary>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.NamingRule">
+        <member name="P:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute.NamingRule">
             <summary>
             Indicates the naming rule of the generated member name.
             </summary>
@@ -1289,86 +1254,24 @@
             </para>
             </remarks>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.MembersNotNull">
+        <member name="T:System.Diagnostics.CodeAnalysis.PropertyAttribute">
             <summary>
-            Indicates the member names becoming not <see langword="null"/>
-            when this generated member is <see langword="true"/> or <see langword="false"/>.
-            </summary>
-            <remarks>
-            The syntax of this property can be described as two parts:
-            <list type="number">
-            <item>Boolean value literal</item>
-            <item>Member or parameter names</item>
-            </list>
-            The complete expression is <c>"(1): (2)"</c>. For example: <c>"<see langword="false"/>: property1, property2"</c>.
-            The generated member will be:
-            <code><![CDATA[
-            [MemberNotNullWhen(false, nameof(Property1), nameof(Property2))]
-            public bool Parameter { get; } = parameter;
-            ]]></code>
-            where <c>property1</c> and <c>property2</c> are supposed to be two parameters marked this attribute.
-            </remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.GeneratedMemberName">
-            <summary>
-            Indicates the name of the generated member.
+            Indicates the backing generated member of this primary constructor is a property.
             </summary>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.Accessibility">
+        <member name="P:System.Diagnostics.CodeAnalysis.PropertyAttribute.Setter">
             <summary>
-            Indicates the accessibility of the generated member.
+            <para>Indicates the extra setter expression. The expression is same declaration as auto-implemented properties.</para>
+            <para>
+            For example, if the property is declared as <c>public object? Property { get; private set; }</c>,
+            the setter expression will be "<c>private set</c>". By default, this value will be <see langword="null"/>,
+            which means the target property does not contain a setter.
+            </para>
             </summary>
-            <remarks>
-            <para>
-            This property controls the case when you want to customize the accessibility of generated member.
-            For example, the value is <c>"private"</c>, the generated member will automatically insert the accessibility modifier
-            into property declaration:
-            <code><![CDATA[
-            private int Parameter { get; } = parameter;
-            ]]></code>
-            </para>
-            <para>
-            Also, you can append not only 1 word. For example, the combination <c>"protected internal readonly unsafe"</c> is also acceptable.
-            </para>
-            <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
-            </remarks>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.RefKind">
+        <member name="P:System.Diagnostics.CodeAnalysis.PropertyAttribute.EmitPropertyStyle">
             <summary>
-            Indicates the <see langword="ref"/> kind of the generated member.
-            </summary>
-            <remarks>
-            <para>
-            This property controls the case when you want to customize the reference kind of return value of the field or property.
-            For example, the value is <c>"ref readonly"</c>, the generated member will automatically insert the <see langword="ref"/> modifiers
-            into declaration:
-            <code><![CDATA[
-            private ref readonly int _parameter = ref parameter;
-            ]]></code>
-            </para>
-            <para>
-            By default, the <see langword="ref"/> kind should be suitable with parameter's declaration.
-            If the parameter is defined without any <see langword="ref"/> modifiers:
-            <list type="bullet">
-            <item><see langword="ref"/></item>
-            <item><see langword="ref readonly"/> (Supported in C# 12)</item>
-            <item><see langword="in"/></item>
-            <item><see langword="scoped ref"/></item>
-            <item><see langword="scoped ref readonly"/> (Supported in C# 12)</item>
-            <item><see langword="scoped in"/></item>
-            <item><see langword="ref scoped"/> (Not supported in C# 12)</item>
-            <item><see langword="ref readonly scoped"/> (Not supported in C# 12)</item>
-            <item><see langword="in scoped"/> (Not supported in C# 12)</item>
-            </list>
-            the generated member will automatically include a <see langword="ref"/> modifier if the modifiers don't include <see langword="scoped"/>;
-            otherwise, no <see langword="ref"/> modifiers.
-            If you want to set <see langword="ref readonly"/>, you should manually set this property with value <c>"ref readonly"</c> value.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute.MemberKind">
-            <summary>
-            The generated property declaration for parameter <c>memberKind</c>.
+            Indicates the target emit property style. By default the value is <see cref="F:System.Diagnostics.CodeAnalysis.EmitPropertyStyle.AssignToProperty"/>.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringMemberAttribute">

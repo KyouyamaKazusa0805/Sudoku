@@ -10,10 +10,10 @@ namespace Sudoku.Drawing;
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class ColorColorIdentifier(
-	[PrimaryConstructorParameter, StringMember] byte alpha,
-	[PrimaryConstructorParameter, StringMember] byte red,
-	[PrimaryConstructorParameter, StringMember] byte green,
-	[PrimaryConstructorParameter, StringMember] byte blue
+	[Property, StringMember] byte alpha,
+	[Property, StringMember] byte red,
+	[Property, StringMember] byte green,
+	[Property, StringMember] byte blue
 ) : ColorIdentifier
 {
 	[HashCodeMember]

@@ -27,7 +27,7 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
+public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
 	IDrawableItem,
 	IEqualityOperators<Conclusion, Conclusion, bool>,

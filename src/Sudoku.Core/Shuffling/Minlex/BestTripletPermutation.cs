@@ -7,9 +7,9 @@ namespace Sudoku.Shuffling.Minlex;
 /// <param name="resultMask">Indicates the result mask.</param>
 /// <param name="resultNumberOfBits">Indicates the result number of bits.</param>
 public partial struct BestTripletPermutation(
-	[PrimaryConstructorParameter(SetterExpression = "set")] int bestResult,
-	[PrimaryConstructorParameter(SetterExpression = "set")] int resultMask,
-	[PrimaryConstructorParameter(SetterExpression = "set")] int resultNumberOfBits
+	[Property(Setter = "set")] int bestResult,
+	[Property(Setter = "set")] int resultMask,
+	[Property(Setter = "set")] int resultNumberOfBits
 )
 {
 	/// <summary>

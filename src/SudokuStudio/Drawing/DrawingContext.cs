@@ -7,8 +7,8 @@ namespace SudokuStudio.Drawing;
 /// <param name="controlAddingActions">Indicates the control adding actions. The collection can be used by playing animation.</param>
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 internal readonly ref partial struct DrawingContext(
-	[PrimaryConstructorParameter] SudokuPane sudokuPane,
-	[PrimaryConstructorParameter] AnimatedResultCollection controlAddingActions
+	[Property] SudokuPane sudokuPane,
+	[Property] AnimatedResultCollection controlAddingActions
 )
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

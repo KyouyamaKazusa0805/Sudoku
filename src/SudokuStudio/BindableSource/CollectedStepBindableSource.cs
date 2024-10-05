@@ -9,8 +9,8 @@ namespace SudokuStudio.BindableSource;
 /// <param name="description">Indicates the description.</param>
 [method: SetsRequiredMembers]
 internal sealed partial class CollectedStepBindableSource(
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set")] string title,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set")] Step? step,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set")] IEnumerable<CollectedStepBindableSource>? children,
-	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set")] IEnumerable<Inline>? description
+	[Property(Accessibility = "public required", Setter = "set")] string title,
+	[Property(Accessibility = "public required", Setter = "set")] Step? step,
+	[Property(Accessibility = "public required", Setter = "set")] IEnumerable<CollectedStepBindableSource>? children,
+	[Property(Accessibility = "public required", Setter = "set")] IEnumerable<Inline>? description
 );

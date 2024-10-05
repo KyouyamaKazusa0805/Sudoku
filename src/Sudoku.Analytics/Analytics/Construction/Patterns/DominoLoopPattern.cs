@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="cells">Indicates the cells used.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
-public sealed partial class DominoLoopPattern([PrimaryConstructorParameter] Cell[] cells) : Pattern
+public sealed partial class DominoLoopPattern([Property] Cell[] cells) : Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;

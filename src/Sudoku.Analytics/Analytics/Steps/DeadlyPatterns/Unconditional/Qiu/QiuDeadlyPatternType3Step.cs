@@ -21,9 +21,9 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	HouseMask houses,
 	Cell? corner1,
 	Cell? corner2,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] bool isNaked
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask,
+	[Property] bool isNaked
 ) :
 	QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2),
 	IPatternType3StepTrait<QiuDeadlyPatternType3Step>

@@ -17,10 +17,10 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class Link(
-	[PrimaryConstructorParameter] Node firstNode,
-	[PrimaryConstructorParameter] Node secondNode,
-	[PrimaryConstructorParameter] bool isStrong,
-	[PrimaryConstructorParameter] object? groupedLinkPattern = null
+	[Property] Node firstNode,
+	[Property] Node secondNode,
+	[Property] bool isStrong,
+	[Property] object? groupedLinkPattern = null
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
 	/// <inheritdoc/>

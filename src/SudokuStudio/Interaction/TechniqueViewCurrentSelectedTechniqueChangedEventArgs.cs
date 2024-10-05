@@ -6,4 +6,4 @@ namespace SudokuStudio.Interaction;
 /// <param name="technique">The technique to be assigned.</param>
 /// <param name="isSelected">Indicates whether the field is selected.</param>
 /// <seealso cref="TechniqueViewCurrentSelectedTechniqueChangedEventHandler"/>
-public sealed partial class TechniqueViewCurrentSelectedTechniqueChangedEventArgs([PrimaryConstructorParameter] Technique technique, [PrimaryConstructorParameter] bool isSelected) : EventArgs;
+public sealed partial class TechniqueViewCurrentSelectedTechniqueChangedEventArgs([Property] Technique technique, [Property] bool isSelected) : EventArgs;

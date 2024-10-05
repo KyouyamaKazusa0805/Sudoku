@@ -6,7 +6,7 @@ namespace Sudoku.Drawing;
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
+public sealed partial class WellKnownColorIdentifier([Property, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
 	ColorIdentifier
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

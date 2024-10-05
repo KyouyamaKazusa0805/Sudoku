@@ -8,8 +8,8 @@ namespace System.Resources;
 /// <param name="culture">The culture information.</param>
 public sealed partial class ResourceNotFoundException(
 	Assembly? assembly,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private readonly")] string resourceKey,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private readonly")] CultureInfo? culture
+	[Field(Accessibility = "private readonly")] string resourceKey,
+	[Field(Accessibility = "private readonly")] CultureInfo? culture
 ) : ResourceException(assembly)
 {
 	/// <summary>

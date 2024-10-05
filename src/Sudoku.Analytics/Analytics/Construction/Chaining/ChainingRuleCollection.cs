@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// <param name="rules">A list of rules.</param>
 [CollectionBuilder(typeof(ChainingRuleCollection), nameof(Create))]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public readonly ref partial struct ChainingRuleCollection([PrimaryConstructorParameter] ReadOnlySpan<ChainingRule> rules) :
+public readonly ref partial struct ChainingRuleCollection([Property] ReadOnlySpan<ChainingRule> rules) :
 	IEnumerable<ChainingRule>,
 	IToArrayMethod<ChainingRuleCollection, ChainingRule>
 {

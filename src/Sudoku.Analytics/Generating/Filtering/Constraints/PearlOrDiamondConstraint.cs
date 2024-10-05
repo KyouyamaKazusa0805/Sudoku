@@ -5,8 +5,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// </summary>
 /// <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
-public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember, StringMember] bool checkPearl) :
-	Constraint
+public abstract partial class PearlOrDiamondConstraint([Property, HashCodeMember, StringMember] bool checkPearl) : Constraint
 {
 	/// <summary>
 	/// Indicates whether the puzzle should be pearl or diamond.

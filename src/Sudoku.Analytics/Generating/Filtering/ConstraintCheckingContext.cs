@@ -7,6 +7,6 @@ namespace Sudoku.Generating.Filtering;
 /// <param name="analyzerResult">Indicates the analyzer result.</param>
 /// <seealso cref="Constraint.Check(ConstraintCheckingContext)"/>
 public readonly ref partial struct ConstraintCheckingContext(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
-	[PrimaryConstructorParameter] AnalysisResult analyzerResult
+	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
+	[Property] AnalysisResult analyzerResult
 );

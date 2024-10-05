@@ -15,11 +15,11 @@ public sealed partial class LawOfLeftoverStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] House set1House,
-	[PrimaryConstructorParameter] House set2House,
-	[PrimaryConstructorParameter] ref readonly CellMap set1,
-	[PrimaryConstructorParameter] ref readonly CellMap set2,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] House set1House,
+	[Property] House set2House,
+	[Property] ref readonly CellMap set1,
+	[Property] ref readonly CellMap set2,
+	[Property] Mask digitsMask
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

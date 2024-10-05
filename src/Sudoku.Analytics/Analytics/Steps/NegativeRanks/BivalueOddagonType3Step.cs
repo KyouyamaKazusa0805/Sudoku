@@ -18,8 +18,8 @@ public sealed partial class BivalueOddagonType3Step(
 	ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
-	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
-	[PrimaryConstructorParameter] Mask extraDigitsMask
+	[Property] ref readonly CellMap extraCells,
+	[Property] Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2), IExtraCellListTrait
 {
 	/// <inheritdoc/>

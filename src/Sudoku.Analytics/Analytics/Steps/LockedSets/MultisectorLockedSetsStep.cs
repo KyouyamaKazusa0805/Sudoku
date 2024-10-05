@@ -14,10 +14,10 @@ public sealed partial class MultisectorLockedSetsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] int rowsCount,
-	[PrimaryConstructorParameter] int columnsCount,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] ref readonly CellMap cells,
+	[Property] int rowsCount,
+	[Property] int columnsCount,
+	[Property] Mask digitsMask
 ) : LockedSetStep(conclusions, views, options), ICellListTrait
 {
 	/// <inheritdoc/>

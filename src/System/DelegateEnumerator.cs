@@ -10,7 +10,7 @@ using static Delegate;
 /// <param name="value">The complex delegate object to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct DelegateEnumerator<TDelegate>([PrimaryConstructorParameter] TDelegate? value) : IEnumerator<TDelegate>
+public ref partial struct DelegateEnumerator<TDelegate>([Property] TDelegate? value) : IEnumerator<TDelegate>
 	where TDelegate : Delegate
 {
 	/// <summary>

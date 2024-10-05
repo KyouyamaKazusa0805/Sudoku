@@ -8,8 +8,8 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 public ref partial struct ChainingRuleLoopConclusionContext(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")] ReadOnlySpan<Link> links
+	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = ">@")] ReadOnlySpan<Link> links
 ) : IContext
 {
 	/// <summary>

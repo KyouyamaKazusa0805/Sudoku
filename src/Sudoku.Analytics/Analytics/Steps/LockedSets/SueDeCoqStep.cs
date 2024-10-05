@@ -22,16 +22,16 @@ public sealed partial class SueDeCoqStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] House block,
-	[PrimaryConstructorParameter] House line,
-	[PrimaryConstructorParameter] Mask blockMask,
-	[PrimaryConstructorParameter] Mask lineMask,
-	[PrimaryConstructorParameter] Mask intersectionMask,
-	[PrimaryConstructorParameter] bool isCannibalistic,
-	[PrimaryConstructorParameter] Mask isolatedDigitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap blockCells,
-	[PrimaryConstructorParameter] ref readonly CellMap lineCells,
-	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells
+	[Property] House block,
+	[Property] House line,
+	[Property] Mask blockMask,
+	[Property] Mask lineMask,
+	[Property] Mask intersectionMask,
+	[Property] bool isCannibalistic,
+	[Property] Mask isolatedDigitsMask,
+	[Property] ref readonly CellMap blockCells,
+	[Property] ref readonly CellMap lineCells,
+	[Property] ref readonly CellMap intersectionCells
 ) : LockedSetStep(conclusions, views, options), IIsolatedDigitTrait
 {
 	/// <inheritdoc/>

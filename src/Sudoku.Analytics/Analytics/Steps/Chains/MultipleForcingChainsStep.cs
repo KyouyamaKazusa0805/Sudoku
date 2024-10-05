@@ -11,7 +11,7 @@ public sealed partial class MultipleForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] MultipleForcingChains pattern
+	[Property] MultipleForcingChains pattern
 ) : ChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

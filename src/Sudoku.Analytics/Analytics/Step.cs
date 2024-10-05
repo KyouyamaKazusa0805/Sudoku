@@ -15,9 +15,9 @@ namespace Sudoku.Analytics;
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnToString = "sealed")]
 public abstract partial class Step(
-	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
-	[PrimaryConstructorParameter] View[]? views,
-	[PrimaryConstructorParameter] StepGathererOptions options
+	[Property(Setter = "internal set")] Conclusion[] conclusions,
+	[Property] View[]? views,
+	[Property] StepGathererOptions options
 ) :
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,

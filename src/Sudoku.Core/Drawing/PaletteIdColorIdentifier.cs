@@ -6,7 +6,7 @@ namespace Sudoku.Drawing;
 /// <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
 [method: JsonConstructor]
-public sealed partial class PaletteIdColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] int value) : ColorIdentifier
+public sealed partial class PaletteIdColorIdentifier([Property, HashCodeMember, StringMember] int value) : ColorIdentifier
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

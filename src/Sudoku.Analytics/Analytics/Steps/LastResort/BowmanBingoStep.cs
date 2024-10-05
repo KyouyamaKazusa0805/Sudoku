@@ -11,7 +11,7 @@ public sealed partial class BowmanBingoStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Conclusion[] contradictionLinks
+	[Property] Conclusion[] contradictionLinks
 ) : LastResortStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>

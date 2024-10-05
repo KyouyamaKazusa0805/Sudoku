@@ -9,8 +9,8 @@ namespace SudokuStudio.Drawing;
 /// <param name="converter">Indicates the position converter.</param>
 /// <seealso cref="Shape"/>
 internal abstract partial class CreatorBase<TInput, TOutput>(
-	[PrimaryConstructorParameter] SudokuPane pane,
-	[PrimaryConstructorParameter] SudokuPanePositionConverter converter
+	[Property] SudokuPane pane,
+	[Property] SudokuPanePositionConverter converter
 )
 {
 	/// <summary>

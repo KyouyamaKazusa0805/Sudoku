@@ -5,4 +5,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <seealso cref="DigitSetSelectedDigitChangedEventHandler"/>
 /// <param name="newDigit">Indicates the new digit selected.</param>
-public sealed partial class DigitSetSelectedDigitChangedEventArgs([PrimaryConstructorParameter] Digit newDigit) : EventArgs;
+public sealed partial class DigitSetSelectedDigitChangedEventArgs([Property] Digit newDigit) : EventArgs;

@@ -9,10 +9,10 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="block4Cells">Indicates the cells used in fourth block.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class ChromaticPatternPattern(
-	[PrimaryConstructorParameter] Cell[] block1Cells,
-	[PrimaryConstructorParameter] Cell[] block2Cells,
-	[PrimaryConstructorParameter] Cell[] block3Cells,
-	[PrimaryConstructorParameter] Cell[] block4Cells
+	[Property] Cell[] block1Cells,
+	[Property] Cell[] block2Cells,
+	[Property] Cell[] block3Cells,
+	[Property] Cell[] block4Cells
 ) : Pattern
 {
 	/// <inheritdoc/>

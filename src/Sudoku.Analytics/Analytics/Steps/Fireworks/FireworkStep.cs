@@ -12,8 +12,8 @@ public abstract partial class FireworkStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] ref readonly CellMap cells,
+	[Property] Mask digitsMask
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

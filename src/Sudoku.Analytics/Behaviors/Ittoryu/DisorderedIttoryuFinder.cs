@@ -6,7 +6,7 @@ namespace Sudoku.Behaviors.Ittoryu;
 /// complex singles won't be supported for now.
 /// </summary>
 /// <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter] params TechniqueSet supportedTechniques)
+public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueSet supportedTechniques)
 {
 	/// <summary>
 	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance.

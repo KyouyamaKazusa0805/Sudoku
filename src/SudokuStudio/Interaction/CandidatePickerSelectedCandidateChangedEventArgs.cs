@@ -5,4 +5,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <seealso cref="CandidatePickerSelectedCandidateChangedEventHandler"/>
 /// <param name="newValue">The new value.</param>
-public sealed partial class CandidatePickerSelectedCandidateChangedEventArgs([PrimaryConstructorParameter] Candidate newValue) : EventArgs;
+public sealed partial class CandidatePickerSelectedCandidateChangedEventArgs([Property] Candidate newValue) : EventArgs;

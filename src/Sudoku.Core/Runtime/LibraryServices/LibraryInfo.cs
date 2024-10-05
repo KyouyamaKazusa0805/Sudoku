@@ -16,8 +16,8 @@ namespace Sudoku.Runtime.LibraryServices;
 [SupportedOSPlatform(PlatformNames.Windows)]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public readonly partial struct LibraryInfo(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "internal"), HashCodeMember, StringMember] string directory,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] string fileId
+	[Field(Accessibility = "internal"), HashCodeMember, StringMember] string directory,
+	[Property, HashCodeMember, StringMember] string fileId
 ) :
 	IAsyncEnumerable<Grid>,
 	IEqualityOperators<LibraryInfo, LibraryInfo, bool>,

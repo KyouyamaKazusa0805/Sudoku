@@ -14,8 +14,8 @@ namespace System.Linq;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 public readonly ref partial struct SpanOrderedEnumerable<T>(
-	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
-	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
+	[Field] ReadOnlySpan<T> values,
+	[Field, UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
 ) :
 	IEnumerable<T>,
 	IGroupByMethod<SpanOrderedEnumerable<T>, T>,

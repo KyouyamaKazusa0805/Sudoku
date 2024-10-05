@@ -35,12 +35,12 @@ public abstract partial class FishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] HouseMask baseSetsMask,
-	[PrimaryConstructorParameter] HouseMask coverSetsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap fins,
-	[PrimaryConstructorParameter] bool? isSashimi,
-	[PrimaryConstructorParameter] bool isSiamese = false
+	[Property] Digit digit,
+	[Property] HouseMask baseSetsMask,
+	[Property] HouseMask coverSetsMask,
+	[Property] ref readonly CellMap fins,
+	[Property] bool? isSashimi,
+	[Property] bool isSiamese = false
 ) : FullPencilmarkingStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>

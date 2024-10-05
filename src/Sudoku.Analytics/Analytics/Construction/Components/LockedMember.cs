@@ -7,8 +7,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="lockedBlock">Indicates the locked block.</param>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
 public sealed partial class LockedMember(
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap lockedCells,
-	[PrimaryConstructorParameter, HashCodeMember] House lockedBlock
+	[Property, HashCodeMember] ref readonly CellMap lockedCells,
+	[Property, HashCodeMember] House lockedBlock
 ) : IEquatable<LockedMember>, IEqualityOperators<LockedMember, LockedMember, bool>
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

@@ -20,8 +20,8 @@ public sealed partial class UniqueLoopConjugatePairsTypeStep(
 	Digit digit2,
 	ref readonly CellMap loop,
 	Cell[] loopPath,
-	[PrimaryConstructorParameter] int extraDigitsCellsCount,
-	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
+	[Property] int extraDigitsCellsCount,
+	[Property] Conjugate[] conjugatePairs
 ) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath)
 {
 	/// <inheritdoc/>

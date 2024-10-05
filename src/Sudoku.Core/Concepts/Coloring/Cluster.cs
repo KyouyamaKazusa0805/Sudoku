@@ -19,9 +19,9 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators, ToStringBehavior = ToStringBehavior.RecordLike)]
 public readonly ref partial struct Cluster(
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] ref readonly Grid grid,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Digit digit,
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember, StringMember] scoped ref readonly CellMap map
+	[Field, HashCodeMember, StringMember] ref readonly Grid grid,
+	[Property, HashCodeMember, StringMember] Digit digit,
+	[Field(RefKind = null), HashCodeMember, StringMember] scoped ref readonly CellMap map
 ) : IEquatable<Cluster>
 {
 	/// <summary>

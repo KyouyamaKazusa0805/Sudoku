@@ -6,10 +6,10 @@ namespace System;
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 [method: JsonConstructor]
 public readonly partial struct VariantColor(
-	[PrimaryConstructorParameter, StringMember] byte a,
-	[PrimaryConstructorParameter, StringMember] byte r,
-	[PrimaryConstructorParameter, StringMember] byte g,
-	[PrimaryConstructorParameter, StringMember] byte b
+	[Property, StringMember] byte a,
+	[Property, StringMember] byte r,
+	[Property, StringMember] byte g,
+	[Property, StringMember] byte b
 ) :
 	IEquatable<VariantColor>,
 	IEqualityOperators<VariantColor, VariantColor, bool>,

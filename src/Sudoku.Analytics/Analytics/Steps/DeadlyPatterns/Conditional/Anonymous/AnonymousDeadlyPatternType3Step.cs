@@ -14,10 +14,10 @@ public sealed partial class AnonymousDeadlyPatternType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CandidateMap patternCandidates,
-	[PrimaryConstructorParameter] ref readonly CellMap targetCells,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask
+	[Property] ref readonly CandidateMap patternCandidates,
+	[Property] ref readonly CellMap targetCells,
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask
 ) :
 	AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells),
 	IPatternType3StepTrait<AnonymousDeadlyPatternType3Step>

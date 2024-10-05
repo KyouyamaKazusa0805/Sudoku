@@ -11,7 +11,7 @@ public partial class NormalChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] NamedChain pattern
+	[Property] NamedChain pattern
 ) : ChainStep(conclusions, views, options)
 {
 	/// <summary>

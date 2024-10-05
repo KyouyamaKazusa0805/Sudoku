@@ -214,6 +214,13 @@
             <param name="this">The string.</param>
             <returns>The converted string value.</returns>
         </member>
+        <member name="M:Microsoft.CodeAnalysis.StringExtensions.ToPascalCase(System.String)">
+            <summary>
+            Converts the specified string value as the pascal-casing.
+            </summary>
+            <param name="this">The string.</param>
+            <returns>The converted string value.</returns>
+        </member>
         <member name="M:Microsoft.CodeAnalysis.StringExtensions.IsKeyword(System.String)">
             <inheritdoc cref="M:Microsoft.CodeAnalysis.CSharp.SyntaxFacts.IsKeywordKind(Microsoft.CodeAnalysis.CSharp.SyntaxKind)"/>
             <param name="this">The string.</param>

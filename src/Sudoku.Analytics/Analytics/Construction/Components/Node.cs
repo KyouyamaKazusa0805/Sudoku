@@ -18,10 +18,10 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </shared-comments>
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class Node(
-	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map,
-	[PrimaryConstructorParameter, HashCodeMember] bool isOn,
-	[PrimaryConstructorParameter] bool isAdvanced,
-	[PrimaryConstructorParameter(SetterExpression = "set")] Node? parent = null
+	[Field, HashCodeMember] ref readonly CandidateMap map,
+	[Property, HashCodeMember] bool isOn,
+	[Property] bool isAdvanced,
+	[Property(Setter = "set")] Node? parent = null
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,

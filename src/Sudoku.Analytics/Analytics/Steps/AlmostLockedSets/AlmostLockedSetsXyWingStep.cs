@@ -16,12 +16,12 @@ public sealed partial class AlmostLockedSetsXyWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSetPattern als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSetPattern als2,
-	[PrimaryConstructorParameter(GeneratedMemberName = "BridgeAls")] AlmostLockedSetPattern bridge,
-	[PrimaryConstructorParameter] Mask xDigitsMask,
-	[PrimaryConstructorParameter] Mask yDigitsMask,
-	[PrimaryConstructorParameter] Mask zDigitsMask
+	[Property(NamingRule = "FirstAls")] AlmostLockedSetPattern als1,
+	[Property(NamingRule = "SecondAls")] AlmostLockedSetPattern als2,
+	[Property(NamingRule = "BridgeAls")] AlmostLockedSetPattern bridge,
+	[Property] Mask xDigitsMask,
+	[Property] Mask yDigitsMask,
+	[Property] Mask zDigitsMask
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

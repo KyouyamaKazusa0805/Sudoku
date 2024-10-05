@@ -18,10 +18,10 @@ public sealed partial class ExtendedRectangleType3Step(
 	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] bool isCannibalism
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask,
+	[Property] House house,
+	[Property] bool isCannibalism
 ) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<ExtendedRectangleType3Step>
 {
 	/// <inheritdoc/>

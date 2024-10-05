@@ -11,9 +11,9 @@ namespace Sudoku.Drawing.Nodes;
 [method: JsonConstructor]
 public sealed partial class ConjugateLinkViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell start,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Cell end,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] Digit digit
+	[Property, HashCodeMember, StringMember] Cell start,
+	[Property, HashCodeMember, StringMember] Cell end,
+	[Property, HashCodeMember, StringMember] Digit digit
 ) : ViewNode(identifier), ILinkViewNode
 {
 	/// <summary>

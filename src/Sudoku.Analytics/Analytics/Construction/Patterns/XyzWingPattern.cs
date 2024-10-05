@@ -12,13 +12,13 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="zDigit">Indicates the digit Z.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class XyzWingPattern(
-	[PrimaryConstructorParameter, HashCodeMember] Cell pivot,
-	[PrimaryConstructorParameter, HashCodeMember] Cell leafCell1,
-	[PrimaryConstructorParameter, HashCodeMember] Cell leafCell2,
-	[PrimaryConstructorParameter, HashCodeMember] House house1,
-	[PrimaryConstructorParameter, HashCodeMember] House house2,
-	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
-	[PrimaryConstructorParameter] Digit zDigit
+	[Property, HashCodeMember] Cell pivot,
+	[Property, HashCodeMember] Cell leafCell1,
+	[Property, HashCodeMember] Cell leafCell2,
+	[Property, HashCodeMember] House house1,
+	[Property, HashCodeMember] House house2,
+	[Property, HashCodeMember] Mask digitsMask,
+	[Property] Digit zDigit
 ) :
 	Pattern,
 	IFormattable

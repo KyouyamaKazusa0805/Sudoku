@@ -8,4 +8,4 @@ namespace SudokuStudio.Interaction;
 /// Initializes a <see cref="ReceivedDroppedFileFailedEventArgs"/> instance via the specified reason.
 /// </remarks>
 /// <seealso cref="ReceivedDroppedFileFailedEventHandler"/>
-public sealed partial class ReceivedDroppedFileFailedEventArgs([PrimaryConstructorParameter] ReceivedDroppedFileFailedReason reason) : EventArgs;
+public sealed partial class ReceivedDroppedFileFailedEventArgs([Property] ReceivedDroppedFileFailedReason reason) : EventArgs;

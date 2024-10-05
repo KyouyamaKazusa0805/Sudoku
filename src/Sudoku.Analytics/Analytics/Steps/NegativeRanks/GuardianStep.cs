@@ -13,9 +13,9 @@ public sealed partial class GuardianStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
-	[PrimaryConstructorParameter] ref readonly CellMap guardians
+	[Property] Digit digit,
+	[Property] ref readonly CellMap loopCells,
+	[Property] ref readonly CellMap guardians
 ) : NegativeRankStep(conclusions, views, options), ICellListTrait, IGuardianTrait
 {
 	/// <inheritdoc/>

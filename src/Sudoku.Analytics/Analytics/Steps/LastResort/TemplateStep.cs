@@ -11,7 +11,7 @@ public sealed partial class TemplateStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] bool isTemplateDeletion
+	[Property] bool isTemplateDeletion
 ) : LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

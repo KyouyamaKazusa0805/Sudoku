@@ -5,7 +5,7 @@ namespace System;
 /// <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
 /// <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) : IEnumerator<(TFirst First, TSecond Second)>
+public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(TFirst First, TSecond Second)>
 	where T : notnull
 	where TFirst : T
 	where TSecond : T

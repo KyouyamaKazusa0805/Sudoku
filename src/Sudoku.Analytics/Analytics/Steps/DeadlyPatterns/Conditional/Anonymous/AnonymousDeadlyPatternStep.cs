@@ -12,8 +12,8 @@ public abstract partial class AnonymousDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap cells
+	[Property] Mask digitsMask,
+	[Property] ref readonly CellMap cells
 ) : ConditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>

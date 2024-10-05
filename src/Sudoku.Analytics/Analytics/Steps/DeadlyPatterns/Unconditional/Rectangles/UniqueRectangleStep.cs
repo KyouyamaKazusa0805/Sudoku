@@ -26,12 +26,12 @@ public abstract partial class UniqueRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter(Accessibility = "public sealed override")] Technique code,
-	[PrimaryConstructorParameter] Digit digit1,
-	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] bool isAvoidable,
-	[PrimaryConstructorParameter] int absoluteOffset
+	[Property(Accessibility = "public sealed override")] Technique code,
+	[Property] Digit digit1,
+	[Property] Digit digit2,
+	[Property] ref readonly CellMap cells,
+	[Property] bool isAvoidable,
+	[Property] int absoluteOffset
 ) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>

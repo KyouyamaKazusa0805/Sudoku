@@ -15,7 +15,7 @@ public sealed partial class ExtendedRectangleType2Step(
 	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[Property] Digit extraDigit
 ) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

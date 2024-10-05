@@ -36,9 +36,9 @@ namespace Sudoku.Analytics;
 	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed")]
 public abstract partial class StepSearcher(
-	[PrimaryConstructorParameter, HashCodeMember] int priority,
-	[PrimaryConstructorParameter] int level,
-	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
+	[Property, HashCodeMember] int priority,
+	[Property] int level,
+	[Property] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
 ) :
 	IComparable<StepSearcher>,
 	IComparisonOperators<StepSearcher, StepSearcher, bool>,

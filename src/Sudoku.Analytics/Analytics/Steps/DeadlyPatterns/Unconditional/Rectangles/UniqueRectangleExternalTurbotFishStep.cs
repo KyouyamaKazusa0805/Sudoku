@@ -19,8 +19,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	Digit digit1,
 	Digit digit2,
 	ref readonly CellMap cells,
-	[PrimaryConstructorParameter] ref readonly CellMap guardianCells,
-	[PrimaryConstructorParameter] bool isIncomplete,
+	[Property] ref readonly CellMap guardianCells,
+	[Property] bool isIncomplete,
 	int absoluteOffset
 ) :
 	UniqueRectangleStep(conclusions, views, options, Technique.UniqueRectangleExternalTurbotFish, digit1, digit2, in cells, false, absoluteOffset),

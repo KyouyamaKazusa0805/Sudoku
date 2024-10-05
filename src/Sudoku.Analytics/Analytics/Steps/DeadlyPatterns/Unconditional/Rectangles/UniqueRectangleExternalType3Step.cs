@@ -22,10 +22,10 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	Digit digit1,
 	Digit digit2,
 	ref readonly CellMap cells,
-	[PrimaryConstructorParameter] ref readonly CellMap guardianCells,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] bool isIncomplete,
+	[Property] ref readonly CellMap guardianCells,
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask,
+	[Property] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) :

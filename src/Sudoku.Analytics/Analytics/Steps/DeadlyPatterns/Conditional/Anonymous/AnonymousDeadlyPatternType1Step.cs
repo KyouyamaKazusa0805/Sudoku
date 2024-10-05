@@ -15,9 +15,9 @@ public sealed partial class AnonymousDeadlyPatternType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CandidateMap patternCandidates,
-	[PrimaryConstructorParameter] Cell targetCell,
-	[PrimaryConstructorParameter] Mask targetDigitsMask
+	[Property] ref readonly CandidateMap patternCandidates,
+	[Property] Cell targetCell,
+	[Property] Mask targetDigitsMask
 ) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells)
 {
 	/// <inheritdoc/>

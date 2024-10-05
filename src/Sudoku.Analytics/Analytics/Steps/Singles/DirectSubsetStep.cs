@@ -22,14 +22,14 @@ public sealed partial class DirectSubsetStep(
 	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] House subsetHouse,
-	[PrimaryConstructorParameter] ref readonly CellMap interim,
-	[PrimaryConstructorParameter] Mask interimDigitsMask,
+	[Property] ref readonly CellMap subsetCells,
+	[Property] Mask subsetDigitsMask,
+	[Property] House subsetHouse,
+	[Property] ref readonly CellMap interim,
+	[Property] Mask interimDigitsMask,
 	SingleSubtype subtype,
 	Technique basedOn,
-	[PrimaryConstructorParameter] Technique subsetTechnique
+	[Property] Technique subsetTechnique
 ) :
 	ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]),
 	ISizeTrait,

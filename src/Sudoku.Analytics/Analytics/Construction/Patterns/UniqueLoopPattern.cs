@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="digitsMask">Indicates the digits used, represented as a mask.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class UniqueLoopPattern(
-	[PrimaryConstructorParameter] ref readonly CellMap loop,
-	[PrimaryConstructorParameter] Cell[] path,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] ref readonly CellMap loop,
+	[Property] Cell[] path,
+	[Property] Mask digitsMask
 ) : Pattern
 {
 	/// <inheritdoc/>

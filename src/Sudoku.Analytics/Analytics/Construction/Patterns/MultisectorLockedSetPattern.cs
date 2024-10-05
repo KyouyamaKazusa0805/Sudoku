@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="columnCount">The number of columns used.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class MultisectorLockedSetPattern(
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap map,
-	[PrimaryConstructorParameter] int rowCount,
-	[PrimaryConstructorParameter] int columnCount
+	[Property, HashCodeMember] ref readonly CellMap map,
+	[Property] int rowCount,
+	[Property] int columnCount
 ) : Pattern
 {
 	/// <inheritdoc/>

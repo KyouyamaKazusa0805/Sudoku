@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// The value can be 0, 1, 2, 3 and 4.
 /// </param>
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true, Inherited = false)]
-public sealed partial class AssemblyStepSearcherAttribute<TStepSearcher>([PrimaryConstructorParameter] int level) : Attribute
+public sealed partial class AssemblyStepSearcherAttribute<TStepSearcher>([Property] int level) : Attribute
 	where TStepSearcher : StepSearcher
 {
 	/// <summary>

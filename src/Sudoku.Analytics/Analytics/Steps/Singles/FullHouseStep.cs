@@ -14,10 +14,10 @@ public sealed partial class FullHouseStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] House house,
+	[Property] House house,
 	Cell cell,
 	Digit digit,
-	[PrimaryConstructorParameter] int lasting
+	[Property] int lasting
 ) :
 	SingleStep(
 		conclusions,

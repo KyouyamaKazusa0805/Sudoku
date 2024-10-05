@@ -17,8 +17,8 @@ public sealed partial class WeakExocetStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Cell stabilityBalancer,
-	[PrimaryConstructorParameter] Cell missingValueCell,
+	[Property] Cell stabilityBalancer,
+	[Property] Cell missingValueCell,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,
 	ref readonly CellMap crosslineCells

@@ -10,11 +10,11 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="endofins">Indicates the endo-fins.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class FishPattern(
-	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
-	[PrimaryConstructorParameter, HashCodeMember] HouseMask baseSets,
-	[PrimaryConstructorParameter, HashCodeMember] HouseMask coverSets,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap exofins,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap endofins
+	[Property, HashCodeMember] Digit digit,
+	[Property, HashCodeMember] HouseMask baseSets,
+	[Property, HashCodeMember] HouseMask coverSets,
+	[Property, HashCodeMember] ref readonly CellMap exofins,
+	[Property, HashCodeMember] ref readonly CellMap endofins
 ) :
 	Pattern,
 	IFormattable

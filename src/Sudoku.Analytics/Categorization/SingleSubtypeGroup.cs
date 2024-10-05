@@ -6,7 +6,7 @@ namespace Sudoku.Categorization;
 /// <param name="values">Indicates the array to be initialized.</param>
 /// <seealso cref="SingleSubtype"/>
 [CollectionBuilder(typeof(SingleSubtypeGroup), nameof(Create))]
-public readonly partial struct SingleSubtypeGroup([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlyMemory<SingleSubtype> values) :
+public readonly partial struct SingleSubtypeGroup([Field] ReadOnlyMemory<SingleSubtype> values) :
 	IEnumerable<SingleSubtype>,
 	IReadOnlyCollection<SingleSubtype>,
 	ISliceMethod<SingleSubtypeGroup, SingleSubtype>,

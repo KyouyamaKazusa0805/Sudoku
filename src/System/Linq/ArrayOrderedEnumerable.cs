@@ -10,10 +10,7 @@ namespace System.Linq;
 /// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 /// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 /// </param>
-public sealed partial class ArrayOrderedEnumerable<T>(
-	[PrimaryConstructorParameter(MemberKinds.Field)] T[] values,
-	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
-) :
+public sealed partial class ArrayOrderedEnumerable<T>([Field] T[] values, [Field] params Func<T, T, int>[] selectors) :
 	IAggregateMethod<ArrayOrderedEnumerable<T>, T>,
 	IEnumerable<T>,
 	IGroupByMethod<ArrayOrderedEnumerable<T>, T>,

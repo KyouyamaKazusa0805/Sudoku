@@ -5,4 +5,4 @@ namespace Sudoku.Bot.Annotations;
 /// </summary>
 /// <param name="commandName">表示长指令的名称。</param>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class AnonymousCommandAttribute([PrimaryConstructorParameter] string commandName) : CommandBaseAttribute;
+public sealed partial class AnonymousCommandAttribute([Property] string commandName) : CommandBaseAttribute;

@@ -9,10 +9,10 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="size">Indicates the size of the pattern.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class ExtendedRectanglePattern(
-	[PrimaryConstructorParameter] bool isFat,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap patternCells,
-	[PrimaryConstructorParameter] (Cell Left, Cell Right)[] pairCells,
-	[PrimaryConstructorParameter] int size
+	[Property] bool isFat,
+	[Property, HashCodeMember] ref readonly CellMap patternCells,
+	[Property] (Cell Left, Cell Right)[] pairCells,
+	[Property] int size
 ) : Pattern
 {
 	/// <inheritdoc/>

@@ -10,4 +10,4 @@ namespace Sudoku.Analytics.Configuration;
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="SettingItemNames"/>
 [AttributeUsage(AttributeTargets.Property, Inherited = false)]
-public sealed partial class SettingItemNameAttribute([PrimaryConstructorParameter] string identifier) : Attribute;
+public sealed partial class SettingItemNameAttribute([Property] string identifier) : Attribute;

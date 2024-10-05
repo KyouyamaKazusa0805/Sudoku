@@ -7,7 +7,7 @@ namespace System;
 /// <param name="elements">Indicates the elements.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public ref partial struct AnonymousSpanEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> elements) : IEnumerator<T>
+public ref partial struct AnonymousSpanEnumerator<T>([Field] ReadOnlySpan<T> elements) : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the index.

@@ -22,8 +22,8 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class FireworkPattern(
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap map,
-	[PrimaryConstructorParameter, HashCodeMember] Cell? pivot
+	[Property, HashCodeMember] ref readonly CellMap map,
+	[Property, HashCodeMember] Cell? pivot
 ) : Pattern
 {
 	/// <inheritdoc/>

@@ -24,11 +24,11 @@ public partial class HiddenSingleStep(
 	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
-	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
-	[PrimaryConstructorParameter] Cell lasting,
+	[Property] House house,
+	[Property] bool enableAndIsLastDigit,
+	[Property] Cell lasting,
 	SingleSubtype subtype,
-	[PrimaryConstructorParameter] ExcluderInfo? excluderInfo
+	[Property] ExcluderInfo? excluderInfo
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>

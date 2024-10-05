@@ -10,10 +10,7 @@ namespace System.Linq;
 /// <param name="key">Indicates the key that can compare each element.</param>
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
-public sealed partial class ArrayGrouping<TSource, TKey>(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private")] TSource[] elements,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) :
+public sealed partial class ArrayGrouping<TSource, TKey>([Field] TSource[] elements, [Property, HashCodeMember, StringMember] TKey key) :
 	IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull
 {

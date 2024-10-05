@@ -19,15 +19,15 @@ public sealed partial class XyzRingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Digit intersectDigit,
-	[PrimaryConstructorParameter] Cell pivot,
-	[PrimaryConstructorParameter] Cell leafCell1,
-	[PrimaryConstructorParameter] Cell leafCell2,
-	[PrimaryConstructorParameter] Mask xyzDigitsMask,
-	[PrimaryConstructorParameter] HouseMask conjugateHousesMask,
-	[PrimaryConstructorParameter] bool isNice,
-	[PrimaryConstructorParameter] bool isGrouped,
-	[PrimaryConstructorParameter] bool isSiamese = false
+	[Property] Digit intersectDigit,
+	[Property] Cell pivot,
+	[Property] Cell leafCell1,
+	[Property] Cell leafCell2,
+	[Property] Mask xyzDigitsMask,
+	[Property] HouseMask conjugateHousesMask,
+	[Property] bool isNice,
+	[Property] bool isGrouped,
+	[Property] bool isSiamese = false
 ) : WingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

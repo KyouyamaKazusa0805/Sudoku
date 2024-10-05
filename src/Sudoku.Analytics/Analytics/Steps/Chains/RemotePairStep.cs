@@ -13,9 +13,9 @@ public sealed partial class RemotePairStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] bool isComplex,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] ref readonly CellMap cells,
+	[Property] bool isComplex,
+	[Property] Mask digitsMask
 ) : ChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

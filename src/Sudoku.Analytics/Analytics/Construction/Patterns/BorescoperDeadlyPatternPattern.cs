@@ -49,7 +49,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </para>
 /// </param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
-public sealed partial class BorescoperDeadlyPatternPattern([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] long mask) : Pattern
+public sealed partial class BorescoperDeadlyPatternPattern([Field, HashCodeMember] long mask) : Pattern
 {
 	/// <summary>
 	/// Indicates whether the specified pattern is a heptagon.

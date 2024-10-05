@@ -20,10 +20,10 @@ public abstract partial class QiuDeadlyPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] bool is2LinesWith2Cells,
-	[PrimaryConstructorParameter] HouseMask houses,
-	[PrimaryConstructorParameter] Cell? corner1,
-	[PrimaryConstructorParameter] Cell? corner2
+	[Property] bool is2LinesWith2Cells,
+	[Property] HouseMask houses,
+	[Property] Cell? corner1,
+	[Property] Cell? corner2
 ) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>

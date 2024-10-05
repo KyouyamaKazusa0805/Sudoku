@@ -14,10 +14,10 @@ public abstract partial class UniqueLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Digit digit1,
-	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter] ref readonly CellMap loop,
-	[PrimaryConstructorParameter] Cell[] loopPath
+	[Property] Digit digit1,
+	[Property] Digit digit2,
+	[Property] ref readonly CellMap loop,
+	[Property] Cell[] loopPath
 ) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
 {
 	/// <inheritdoc/>

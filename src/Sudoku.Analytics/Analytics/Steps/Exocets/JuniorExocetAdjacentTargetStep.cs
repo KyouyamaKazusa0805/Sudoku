@@ -21,7 +21,7 @@ public sealed partial class JuniorExocetAdjacentTargetStep(
 	ref readonly CellMap targetCells,
 	ref readonly CellMap endoTargetCells,
 	ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] ref readonly CellMap singleMirrors
+	[Property] ref readonly CellMap singleMirrors
 ) : ExocetStep(
 	conclusions,
 	views,

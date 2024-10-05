@@ -8,7 +8,7 @@ namespace System;
 /// </typeparam>
 /// <param name="baseField">Indicates the base field.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T baseField) : IEnumerator<T>
+public ref partial struct EnumFlagsEnumerator<T>([Field] T baseField) : IEnumerator<T>
 	where T : unmanaged, Enum
 {
 	/// <summary>

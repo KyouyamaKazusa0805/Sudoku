@@ -5,4 +5,4 @@ namespace Sudoku.Bot.Annotations;
 /// </summary>
 /// <param name="description">描述内容。</param>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class CommandDescriptionAttribute([PrimaryConstructorParameter] string description) : AnnotationAttribute;
+public sealed partial class CommandDescriptionAttribute([Property] string description) : AnnotationAttribute;

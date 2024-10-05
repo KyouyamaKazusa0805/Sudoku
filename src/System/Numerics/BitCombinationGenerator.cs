@@ -8,10 +8,7 @@ namespace System.Numerics;
 /// <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
-public readonly ref partial struct BitCombinationGenerator<TInteger>(
-	[PrimaryConstructorParameter(MemberKinds.Field)] int bitCount,
-	[PrimaryConstructorParameter(MemberKinds.Field)] int oneCount
-)
+public readonly ref partial struct BitCombinationGenerator<TInteger>([Field] int bitCount, [Field] int oneCount)
 #if NUMERIC_GENERIC_TYPE
 	where TInteger : IBinaryInteger<TInteger>
 #else

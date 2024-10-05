@@ -22,7 +22,7 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	Technique code,
 	ref readonly CellMap cells,
 	bool isAvoidable,
-	[PrimaryConstructorParameter] Digit extraDigit,
+	[Property] Digit extraDigit,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

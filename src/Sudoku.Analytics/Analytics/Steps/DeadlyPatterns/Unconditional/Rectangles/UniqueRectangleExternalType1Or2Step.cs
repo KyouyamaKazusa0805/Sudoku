@@ -21,9 +21,9 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	Digit digit1,
 	Digit digit2,
 	ref readonly CellMap cells,
-	[PrimaryConstructorParameter] ref readonly CellMap guardianCells,
-	[PrimaryConstructorParameter] Digit guardianDigit,
-	[PrimaryConstructorParameter] bool isIncomplete,
+	[Property] ref readonly CellMap guardianCells,
+	[Property] Digit guardianDigit,
+	[Property] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
 ) :

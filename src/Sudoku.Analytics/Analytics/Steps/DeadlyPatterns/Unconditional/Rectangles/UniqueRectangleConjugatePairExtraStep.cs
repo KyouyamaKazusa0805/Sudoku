@@ -26,8 +26,8 @@ public sealed partial class UniqueRectangleConjugatePairExtraStep(
 	ref readonly CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
-	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
-	[PrimaryConstructorParameter] Mask extraDigitsMask,
+	[Property] ref readonly CellMap extraCells,
+	[Property] Mask extraDigitsMask,
 	int absoluteOffset
 ) :
 	UniqueRectangleConjugatePairStep(

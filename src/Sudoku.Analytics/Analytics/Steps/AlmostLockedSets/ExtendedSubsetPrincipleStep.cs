@@ -13,9 +13,9 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[Property] ref readonly CellMap cells,
+	[Property] Mask digitsMask,
+	[Property] Digit extraDigit
 ) : AlmostLockedSetsStep(conclusions, views, options), ICellListTrait
 {
 	/// <inheritdoc/>

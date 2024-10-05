@@ -11,7 +11,7 @@ public sealed partial class BlossomLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] BlossomLoop pattern
+	[Property] BlossomLoop pattern
 ) : ChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

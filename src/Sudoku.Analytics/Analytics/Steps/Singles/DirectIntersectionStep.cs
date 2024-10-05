@@ -21,13 +21,13 @@ public sealed partial class DirectIntersectionStep(
 	StepGathererOptions options,
 	Cell cell,
 	Digit digit,
-	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells,
-	[PrimaryConstructorParameter] House intersectionHouse,
-	[PrimaryConstructorParameter] ref readonly CellMap interim,
-	[PrimaryConstructorParameter] Digit interimDigit,
+	[Property] ref readonly CellMap intersectionCells,
+	[Property] House intersectionHouse,
+	[Property] ref readonly CellMap interim,
+	[Property] Digit interimDigit,
 	SingleSubtype subtype,
 	Technique basedOn,
-	[PrimaryConstructorParameter] bool isPointing
+	[Property] bool isPointing
 ) : ComplexSingleBaseStep(
 	conclusions,
 	views,

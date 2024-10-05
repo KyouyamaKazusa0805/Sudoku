@@ -6,7 +6,7 @@ namespace System;
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="sequence">The internal sequence to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) : IEnumerator<T>
+public ref partial struct ReverseEnumerator<T>([Field] ReadOnlySpan<T> sequence) : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the current index.

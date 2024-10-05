@@ -5,245 +5,284 @@ namespace Sudoku.SourceGeneration.Handlers;
 /// </summary>
 internal static class PrimaryConstructorMemberHandler
 {
+	private const string FieldAttributeTypeName = "System.Diagnostics.CodeAnalysis.FieldAttribute";
+
+	private const string PropertyAttributeTypeName = "System.Diagnostics.CodeAnalysis.PropertyAttribute";
+
+	private const string IsReadOnlyByDefaultPropertyName = "IsReadOnlyByDefault";
+
+	private const string RefKindPropertyName = "RefKind";
+
+	private const string NamingRulePropertyName = "NamingRule";
+
+	private const string AccessibilityPropertyName = "Accessibility";
+
+	private const string EmitPropertyStylePropertyName = "EmitPropertyStyle";
+
+	private const string SetterPropertyName = "Setter";
+
+
 	/// <inheritdoc/>
-	public static void Output(SourceProductionContext spc, ImmutableArray<CollectedResult> values)
-	{
-		var types = new List<string>();
-		foreach (var valuesGrouped in
-			from tuple in values
-			group tuple by $"{tuple.Namesapce}.{tuple.Type}" into @group
-			select (CollectedResult[])[.. @group])
-		{
-			var (namespaceName, fieldDeclarations, propertyDeclarations) = (valuesGrouped[0].Namesapce, new List<string>(), new List<string>());
-			foreach (
-				var (
-					parameterName, typeKind, refKind, scopedKind, nullableAnnotation, parameterType, typeSymbol, isReadOnly,
-					_, _, _, attributesData, comment
-				) in valuesGrouped
-			)
-			{
-				switch (attributesData)
-				{
-					case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Field }], NamedArguments: var namedArgs }]:
-					{
-						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, "_<@");
-						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "private ");
-						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true, true);
-						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, true);
-						var docComments = getDocComments(comment);
-						var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
-						var assigning = getAssigningExpression(refModifiers, parameterName);
-						fieldDeclarations.Add(
-							$"""
-							/// <summary>
-									{docComments ?? $"/// The generated field declaration for parameter <c>{parameterName}</c>."}
-									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(PrimaryConstructorMemberHandler).FullName}", "{Value}")]
-									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-									{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};
-							"""
-						);
-
-						break;
-					}
-					case [{ ConstructorArguments: [{ Value: LocalMemberKinds.Property }], NamedArguments: var namedArgs }]:
-					{
-						var targetMemberName = PrimaryConstructor.GetTargetMemberName(namedArgs, parameterName, ">@");
-						var accessibilityModifiers = getAccessibilityModifiers(namedArgs, "public ");
-						var setter = namedArgs.TryGetValueOrDefault<string>("SetterExpression", out var setterExpression)
-							? $" {setterExpression};"
-							: string.Empty;
-						var readonlyModifier = getReadOnlyModifier(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false, setter is []);
-						var refModifiers = getRefModifiers(namedArgs, scopedKind, refKind, typeKind, typeSymbol.IsRefLikeType, isReadOnly, false);
-						var docComments = getDocComments(comment);
-						var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
-						var assigning = getAssigningExpression(refModifiers, parameterName);
-						var memberNotNullAttribute = namedArgs.TryGetValueOrDefault<string>("MembersNotNull", out var memberNotNullExpr)
-							&& (memberNotNullExpr?.Contains(':') ?? false)
-							&& memberNotNullExpr.Split(':') is [var booleanExpr, var memberNamesExpr]
-							&& booleanExpr.Trim().ToCamelCasing() is var finalBooleanStringValue and ("true" or "false")
-							&& (string[])[.. from memberName in memberNamesExpr.Split(',') select memberName.Trim()] is var memberNamesArray and not []
-							&& (from memberName in memberNamesArray select $"nameof({memberName})") is var nameOfExpressionList
-							&& string.Join(", ", nameOfExpressionList) is var nameOfExpressions
-							? $"""
-							[global::System.Diagnostics.CodeAnalysis.MemberNotNullWhenAttribute({finalBooleanStringValue}, {nameOfExpressions})]
-									
-							"""
-							: string.Empty;
-
-						propertyDeclarations.Add(
-							$$"""
-							/// <summary>
-									{{docComments ?? $"/// The generated property declaration for parameter <c>{parameterName}</c>."}}
-									/// </summary>
-									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorMemberHandler).FullName}}", "{{Value}}")]
-									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-									{{memberNotNullAttribute}}{{accessibilityModifiers}}{{readonlyModifier}}{{refModifiers}}{{parameterTypeName}}{{targetMemberName}} { get;{{setter}} } = {{assigning}};
-							"""
-						);
-
-						break;
-					}
-				}
-			}
-
-			var typeKindString = valuesGrouped[0].TypeSymbol.GetTypeKindModifier();
-			var genericTypeParameters = valuesGrouped[0].TypeSymbol switch
-			{
-				{ IsGenericType: true, TypeParameters: var typeParameters }
-					=> $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>",
-				_ => string.Empty
-			};
-
-			types.Add(
-				$$"""
-				namespace {{namespaceName}}
-				{
-				#line 1 "{{valuesGrouped[0].Type}}"
-					partial {{typeKindString}} {{valuesGrouped[0].Type}}{{genericTypeParameters}}
-					{
-						{{(fieldDeclarations.Count == 0 ? "// No field members." : string.Join("\r\n\r\n\t\t", fieldDeclarations))}}
-				
-				
-						{{(propertyDeclarations.Count == 0 ? "// No property members." : string.Join("\r\n\r\n\t\t", propertyDeclarations))}}
-					}
-				#line default
-				}
-				"""
-			);
-
-
-			static string getAccessibilityModifiers(NamedArgs namedArgs, string @default)
-				=> namedArgs.TryGetValueOrDefault<string>("Accessibility", out var a) && a is not null ? $"{a.Trim().ToLower()} " : @default;
-
-			static string getReadOnlyModifier(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField, bool setterIsEmpty)
-				=> (!namedArgs.TryGetValueOrDefault<bool>("IsImplicitlyReadOnly", out var a) || a) switch
-				{
-					true => (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField, setterIsEmpty) switch
-					{
-						(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _, true) => "readonly ",
-						(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _, true) => "readonly ",
-						(_, _, TypeKind.Struct, _, _, true, true) => "readonly ",
-						(_, _, TypeKind.Struct, false, _, _, true) => "readonly ",
-						_ => string.Empty
-					},
-					_ => string.Empty
-				};
-
-			static string getRefModifiers(NamedArgs namedArgs, ScopedKind scopedKind, RefKind refKind, TypeKind typeKind, bool isRefStruct, bool isReadOnly, bool isField)
-				=> (namedArgs.TryGetValueOrDefault<string>("RefKind", out var l) && l is not null ? $"{l} " : null)
-				?? (scopedKind, refKind, typeKind, isReadOnly, isRefStruct, isField) switch
-				{
-					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, false, true, _) => "ref readonly ",
-					(0, RefKind.In or RefKind.RefReadOnlyParameter, TypeKind.Struct, true, true, _) => "ref readonly ",
-					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, false, true, _) => "ref ",
-					(0, RefKind.Ref or RefKind.RefReadOnly, TypeKind.Struct, true, true, _) => "ref ",
-					_ => null
-				}
-				?? string.Empty;
-
-			static string getParameterType(ITypeSymbol parameterType, NullableAnnotation nullableAnnotation)
-			{
-				var formatOptions = SymbolDisplayFormat.FullyQualifiedFormat
-					.AddMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier);
-				return $"{parameterType.ToDisplayString(formatOptions)} ";
-			}
-
-			static string getAssigningExpression(string refModifiers, string parameterName)
-				=> refModifiers switch { not "" => $"ref {parameterName}", _ => parameterName };
-
-			static string? getDocComments(string? comment)
-				=> comment switch
-				{
-					null or "" => null,
-					_ => string.Join(
-						"\r\n",
-						from line in comment.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
-					)
-				};
-		}
-
-		spc.AddSource(
+	public static void Output(SourceProductionContext spc, ImmutableArray<string> values)
+		=> spc.AddSource(
 			"PrimaryConstructorParameters.g.cs",
 			$$"""
 			{{Banner.AutoGenerated}}
 
 			#nullable enable
 
-			#pragma warning disable CS8500
-
-			{{string.Join("\r\n\r\n", types)}}
+			{{string.Join("\r\n\r\n", values)}}
 			"""
 		);
-	}
 
 	/// <inheritdoc/>
-	public static CollectedResult? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
-		=> gasc switch
+	public static string? Transform(GeneratorSyntaxContext context, CancellationToken cancellationToken)
+	{
+		// Deconstruct members.
+		if (context is not { Node: TypeDeclarationSyntax node, SemanticModel: { Compilation: var compilation } semanticModel })
 		{
-			{
-				TargetNode: ParameterSyntax { Parent.Parent: TypeDeclarationSyntax { Modifiers: var typeModifiers and not [] } },
-				TargetSymbol: IParameterSymbol
-				{
-					Name: var parameterName,
-					RefKind: var refKind,
-					ScopedKind: var scopedKind,
-					NullableAnnotation: var nullableAnnotation,
-					Type: var parameterType,
-					ContainingSymbol: IMethodSymbol
-					{
-						ContainingType:
-						{
-							ContainingNamespace: var @namespace,
-							IsReadOnly: var isReadOnly,
-							Name: var typeName,
-							IsRecord: var isRecord,
-							TypeKind: var typeKind
-						} typeSymbol
-					}
-				} parameterSymbol,
-				Attributes: { Length: 1 or 2 } attributesData
-			}
-			when typeModifiers.Any(SyntaxKind.PartialKeyword)
-				=> new(
-					parameterName,
-					typeKind,
-					refKind,
-					scopedKind,
-					nullableAnnotation,
-					parameterType,
-					typeSymbol,
-					isReadOnly,
-					@namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..],
-					typeName,
-					isRecord,
-					[.. attributesData],
-					// Gets the documentation comments.
-					// Please note that Roslyn may contain a bug that primary constructor parameters don't contain any documentation comments,
-					// so the result value of this variable may be string.Empty ("").
-					parameterSymbol.GetDocumentationCommentXml(cancellationToken: cancellationToken)
-				),
-			_ => null
-		};
+			return null;
+		}
 
+		if (semanticModel.GetDeclaredSymbol(node, cancellationToken) is not INamedTypeSymbol
+			{
+				ContainingType: null,
+				DeclaredAccessibility: var accessibility,
+				TypeKind: var typeKind and (TypeKind.Class or TypeKind.Struct),
+				IsRecord: var isRecord,
+				IsReadOnly: var isReadOnlyStruct,
+				IsRefLikeType: var isRefStruct,
+				TypeParameters: var typeParameters,
+				InstanceConstructors: var instanceCtors,
+				Name: var typeName,
+				ContainingNamespace: { } namespaceSymbol
+			})
+		{
+			return null;
+		}
+
+		if (instanceCtors.FirstOrDefault(primaryConstructorPredicate) is null)
+		{
+			return null;
+		}
+
+		// Get parameters.
+		var firstParameterNode = node.DescendantNodes().OfType<ParameterSyntax>().FirstOrDefault();
+		var firstParameterSymbol = semanticModel.GetDeclaredSymbol(firstParameterNode, cancellationToken);
+		if (firstParameterSymbol is not { ContainingSymbol: IMethodSymbol { Parameters: var parameters, MethodKind: MethodKind.Constructor } })
+		{
+			return null;
+		}
+
+		// Check existence of necessary APIs.
+		var fieldAttribute = compilation.GetTypeByMetadataName(FieldAttributeTypeName);
+		var propertyAttribute = compilation.GetTypeByMetadataName(PropertyAttributeTypeName);
+		if ((fieldAttribute, propertyAttribute) is not (not null, not null))
+		{
+			return null;
+		}
+
+		// Retrieve all parameters that has already marked [Field] or [Property].
+		var parametersMarked = new List<ParameterLocalData>();
+		foreach (var parameter in parameters)
+		{
+			var p = parameter.GetAttributes().ToArray();
+			var fieldAttributeData = p.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, fieldAttribute));
+			var propertyAttributeData = p.FirstOrDefault(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, propertyAttribute));
+			if ((fieldAttributeData, propertyAttributeData) is not (null, null))
+			{
+				parametersMarked.Add(new(parameter, fieldAttributeData, propertyAttributeData));
+			}
+		}
+
+		// Try to create source code here.
+		var fields = new List<string>();
+		foreach (var parameterData in parametersMarked)
+		{
+#pragma warning disable format
+			if (parameterData is not (
+				{
+					Type: var parameterType,
+					NullableAnnotation: var nullableAnnotation,
+					RefKind: var parameterRefKind,
+					Name: var parameterName
+				},
+				{ NamedArguments: var n },
+				_
+			))
+#pragma warning restore format
+			{
+				continue;
+			}
+
+			var isReadOnly = n.TryGetValueOrDefault<bool>(IsReadOnlyByDefaultPropertyName, out var isReadOnlyLocal)
+				? isReadOnlyLocal
+				: typeKind == TypeKind.Struct && !isReadOnlyStruct || typeKind != TypeKind.Struct;
+			var readOnlyModifier = typeKind == TypeKind.Struct ? "readonly " : string.Empty;
+			var refKind = n.TryGetValueOrDefault<string?>(RefKindPropertyName, out var refKindLocal)
+				? refKindLocal is not null
+					? (refKindLocal.EndsWith(" ") ? refKindLocal : $"{refKindLocal} ").ToLower()
+					: string.Empty
+				: (isRefStruct, parameterRefKind) switch
+				{
+					(true, RefKind.Ref) => "ref ",
+					(true, RefKind.RefReadOnlyParameter) => "ref readonly ",
+					(true, RefKind.In) => "ref readonly ",
+					_ => string.Empty
+				};
+			var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			var nullableToken = nullableAnnotation == Annotated ? "?" : string.Empty;
+			var namingRule = n.TryGetValueOrDefault<string>(NamingRulePropertyName, out var namingRuleLocal)
+				? namingRuleLocal!
+				: "_<@";
+			var fieldName = namingRule
+				.Replace(">@", parameterName.ToPascalCase())
+				.Replace("<@", parameterName.ToCamelCase())
+				.Replace("@", parameterName);
+			var refAssignmentKindString = string.IsNullOrWhiteSpace(refKind) ? string.Empty : "ref ";
+			var fieldAccessibility = n.TryGetValueOrDefault<string>(AccessibilityPropertyName, out var accessibilityLocal)
+				? (accessibilityLocal!.EndsWith(" ") ? accessibilityLocal : $"{accessibilityLocal} ").ToLower()
+				: "private ";
+			fields.Add(
+				$$"""
+				/// <summary>
+						/// The generated field declaration for parameter <c>{{parameterName}}</c>.
+						/// </summary>
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorMemberHandler).FullName}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						{{fieldAccessibility}}{{readOnlyModifier}}{{refKind}}{{parameterTypeString}}{{nullableToken}} {{fieldName}} = {{refAssignmentKindString}}{{parameterName}};
+				"""
+			);
+		}
+
+		var properties = new List<string>();
+		foreach (var parameterData in parametersMarked)
+		{
+#pragma warning disable format
+			if (parameterData is not (
+				{
+					Type: var parameterType,
+					NullableAnnotation: var nullableAnnotation,
+					RefKind: var parameterRefKind,
+					Name: var parameterName
+				},
+				_,
+				{ NamedArguments: var n }
+			))
+#pragma warning restore format
+			{
+				continue;
+			}
+
+			var propertyAccessibility = n.TryGetValueOrDefault<string>(AccessibilityPropertyName, out var accessibilityLocal)
+				? (accessibilityLocal!.EndsWith(" ") ? accessibilityLocal : $"{accessibilityLocal} ").ToLower()
+				: "public ";
+			var refKind = n.TryGetValueOrDefault<string?>(RefKindPropertyName, out var refKindLocal)
+				? refKindLocal is not null
+					? (refKindLocal.EndsWith(" ") ? refKindLocal : $"{refKindLocal} ").ToLower()
+					: string.Empty
+				: (isRefStruct, parameterRefKind) switch
+				{
+					(true, RefKind.Ref) => "ref ",
+					(true, RefKind.RefReadOnlyParameter) => "ref readonly ",
+					(true, RefKind.In) => "ref readonly ",
+					_ => string.Empty
+				};
+			var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+			var nullableToken = nullableAnnotation == Annotated ? "?" : string.Empty;
+			var namingRule = n.TryGetValueOrDefault<string>(NamingRulePropertyName, out var namingRuleLocal)
+				? namingRuleLocal!
+				: ">@";
+			var propertyName = namingRule
+				.Replace(">@", parameterName.ToPascalCase())
+				.Replace("<@", parameterName.ToCamelCase())
+				.Replace("@", parameterName);
+			var emitPropertyStyle = n.TryGetValueOrDefault<int>(EmitPropertyStylePropertyName, out var emitPropertyStyleLocal)
+				? emitPropertyStyleLocal
+				: default;
+			var setter = n.TryGetValueOrDefault<string>(SetterPropertyName, out var setterLocal)
+				? setterLocal!
+				: string.Empty;
+			var assignment = emitPropertyStyle switch
+			{
+				(int)LocalEmitPropertyStyle.AssignToProperty
+					=> $$"""{ get;{{(string.IsNullOrEmpty(setter) ? string.Empty : $" {setter};")}} } = {{parameterName}}""",
+				(int)LocalEmitPropertyStyle.ReturnParameter
+					=> $$"""=> {{parameterName}}""",
+				_
+					=> null
+			};
+			var readOnlyModifier = !isReadOnlyStruct // 1) It is inside a non-read-only struct (filters read-only structs).
+				&& typeKind == TypeKind.Struct // 2) It must be a struct (filters classes).
+				&& (string.IsNullOrEmpty(setter) || setter.Contains("init")) // 3) Setters must be none, or only init accessor.
+				? "readonly "
+				: string.Empty;
+			properties.Add(
+				$$"""
+				/// <summary>
+						/// The generated property declaration for parameter <c>{{parameterName}}</c>.
+						/// </summary>
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorMemberHandler).FullName}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						{{propertyAccessibility}}{{readOnlyModifier}}{{refKind}}{{parameterTypeString}}{{nullableToken}} {{propertyName}} {{assignment}};
+				"""
+			);
+		}
+
+		var namespaceFullName = namespaceSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var typeKindString = (typeKind, isRecord) switch
+		{
+			(TypeKind.Class, true) => "record ",
+			(TypeKind.Class, _) => "class ",
+			(TypeKind.Struct, true) => "record struct ",
+			(TypeKind.Struct, _) => "struct "
+		};
+		var typeParametersString = typeParameters.Length == 0
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+
+		// Return result.
+		return $$"""
+			namespace {{namespaceFullName}}
+			{
+				partial {{typeKindString}}{{typeName}}{{typeParametersString}}
+				{
+					{{(fields.Count == 0 ? "// No fields generated." : string.Join("\r\n\r\n\t\t", fields))}}
+
+					{{(properties.Count == 0 ? "// No properties generated." : string.Join("\r\n\r\n\t\t", properties))}}
+				}
+			}
+			""";
+
+
+		bool primaryConstructorPredicate(IMethodSymbol element)
+			=> element is { MethodKind: MethodKind.Constructor, DeclaringSyntaxReferences: [var syntaxRef, ..] }
+			&& syntaxRef.GetSyntax(cancellationToken) is TypeDeclarationSyntax;
+	}
+}
+
+/// <summary>
+/// Represents a local emit property style.
+/// </summary>
+file enum LocalEmitPropertyStyle
+{
+	/// <summary>
+	/// Indicates the behavior is to generate an assignment to property:
+	/// <code><![CDATA[public int Property { get; } = value;]]></code>
+	/// </summary>
+	AssignToProperty,
 
 	/// <summary>
-	/// Indicates the data collected via <see cref="PrimaryConstructorMemberHandler"/>.
+	/// Indicates the behavior is to generate a return statement that directly returns parameter:
+	/// <code><![CDATA[public int Property => value;]]></code>
 	/// </summary>
-	/// <seealso cref="PrimaryConstructorMemberHandler"/>
-	internal sealed record CollectedResult(
-		string ParameterName,
-		TypeKind TypeKind,
-		RefKind RefKind,
-		ScopedKind ScopedKind,
-		NullableAnnotation NullableAnnotation,
-		ITypeSymbol ParameterType,
-		INamedTypeSymbol TypeSymbol,
-		bool IsReadOnly,
-		string Namesapce,
-		string Type,
-		bool IsRecord,
-		AttributeData[] AttributesData,
-		string? Comment
-	);
+	ReturnParameter
 }
+
+/// <summary>
+/// Represents local data of parameter symbol.
+/// </summary>
+/// <param name="Symbol">Indicates the symbol itself.</param>
+/// <param name="FieldPart">Indicates the field part.</param>
+/// <param name="PropertyPart">Indicates the property part.</param>
+file sealed record ParameterLocalData(IParameterSymbol Symbol, AttributeData? FieldPart, AttributeData? PropertyPart);

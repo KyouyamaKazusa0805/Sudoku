@@ -22,11 +22,11 @@ public sealed partial class AlmostLockedSetsXzStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter(GeneratedMemberName = "FirstAls")] AlmostLockedSetPattern als1,
-	[PrimaryConstructorParameter(GeneratedMemberName = "SecondAls")] AlmostLockedSetPattern als2,
-	[PrimaryConstructorParameter] Mask xDigitsMask,
-	[PrimaryConstructorParameter] Mask zDigitsMask,
-	[PrimaryConstructorParameter] bool isDoublyLinked
+	[Property(NamingRule = "FirstAls")] AlmostLockedSetPattern als1,
+	[Property(NamingRule = "SecondAls")] AlmostLockedSetPattern als2,
+	[Property] Mask xDigitsMask,
+	[Property] Mask zDigitsMask,
+	[Property] bool isDoublyLinked
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

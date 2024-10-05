@@ -9,9 +9,9 @@ namespace Sudoku.Inferring;
 /// <seealso cref="SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/>
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 public readonly ref partial struct SymmetryInferredResult(
-	[PrimaryConstructorParameter] SymmetricType symmetricType,
-	[PrimaryConstructorParameter] ReadOnlySpan<Digit?> mappingDigits,
-	[PrimaryConstructorParameter] Mask selfPairedDigitsMask
+	[Property] SymmetricType symmetricType,
+	[Property] ReadOnlySpan<Digit?> mappingDigits,
+	[Property] Mask selfPairedDigitsMask
 )
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

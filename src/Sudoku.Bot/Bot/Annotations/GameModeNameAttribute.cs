@@ -4,4 +4,4 @@ namespace Sudoku.Bot.Annotations;
 /// 表示一种游戏玩法的名称。
 /// </summary>
 /// <param name="name">名称。</param>
-public sealed partial class GameModeNameAttribute([PrimaryConstructorParameter] string name) : GameModeAnnotationAttribute;
+public sealed partial class GameModeNameAttribute([Property] string name) : GameModeAnnotationAttribute;

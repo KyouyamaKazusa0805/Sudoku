@@ -21,9 +21,8 @@ public sealed class Generator : IIncrementalGenerator
 	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(
 			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeAnalysis.PrimaryConstructorParameterAttribute",
-					SyntaxNodeTypePredicate<ParameterSyntax>,
+				.CreateSyntaxProvider(
+					static (n, _) => n is TypeDeclarationSyntax { Modifiers: var m and not [] } && m.Any(SyntaxKind.PartialKeyword),
 					PrimaryConstructorMemberHandler.Transform
 				)
 				.Where(NotNullPredicate)

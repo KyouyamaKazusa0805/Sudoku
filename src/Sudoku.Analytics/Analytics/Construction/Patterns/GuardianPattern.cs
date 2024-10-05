@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="digit">Indicates the digit used.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class GuardianPattern(
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap loopCells,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap guardians,
-	[PrimaryConstructorParameter, HashCodeMember] Digit digit
+	[Property, HashCodeMember] ref readonly CellMap loopCells,
+	[Property, HashCodeMember] ref readonly CellMap guardians,
+	[Property, HashCodeMember] Digit digit
 ) : Pattern
 {
 	/// <inheritdoc/>

@@ -24,12 +24,12 @@ public sealed partial class UniqueRectangleType3Step(
 	Digit digit1,
 	Digit digit2,
 	ref readonly CellMap cells,
-	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
-	[PrimaryConstructorParameter] Mask extraDigitsMask,
-	[PrimaryConstructorParameter] House house,
+	[Property] ref readonly CellMap extraCells,
+	[Property] Mask extraDigitsMask,
+	[Property] House house,
 	bool isAvoidable,
 	int absoluteOffset,
-	[PrimaryConstructorParameter] bool isNaked = true
+	[Property] bool isNaked = true
 ) :
 	UniqueRectangleStep(
 		conclusions,

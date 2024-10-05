@@ -5,7 +5,7 @@ namespace SudokuStudio.BindableSource;
 /// </summary>
 /// <param name="techniqueField">Indicates the technique field.</param>
 /// <seealso cref="Technique"/>
-public sealed partial class TechniqueViewBindableSource([PrimaryConstructorParameter(SetterExpression = "init")] Technique techniqueField)
+public sealed partial class TechniqueViewBindableSource([Property(Setter = "init")] Technique techniqueField)
 {
 	/// <summary>
 	/// Indicates the name of the technique.

@@ -17,10 +17,10 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </remarks>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.ComparisonOperators)]
 public sealed partial class AlmostLockedSetPattern(
-	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
-	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] ref readonly CellMap possibleEliminationMap,
-	[PrimaryConstructorParameter] CellMap[] eliminationMap
+	[Property, HashCodeMember] Mask digitsMask,
+	[Property, HashCodeMember] ref readonly CellMap cells,
+	[Property] ref readonly CellMap possibleEliminationMap,
+	[Property] CellMap[] eliminationMap
 ) :
 	Pattern,
 	IComparable<AlmostLockedSetPattern>,

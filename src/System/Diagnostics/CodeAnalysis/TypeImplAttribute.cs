@@ -6,7 +6,7 @@ namespace System.Diagnostics.CodeAnalysis;
 /// </summary>
 /// <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] TypeImplFlag flags) : Attribute
+public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : Attribute
 {
 	/// <summary>
 	/// Indicates whether source generators will generate source code with modifiers <see langword="ref readonly"/>

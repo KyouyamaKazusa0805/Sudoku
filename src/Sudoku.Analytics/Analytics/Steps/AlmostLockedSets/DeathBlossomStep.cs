@@ -13,9 +13,9 @@ public sealed partial class DeathBlossomStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Cell pivot,
-	[PrimaryConstructorParameter] NormalBlossomBranchCollection branches,
-	[PrimaryConstructorParameter] Mask zDigitsMask
+	[Property] Cell pivot,
+	[Property] NormalBlossomBranchCollection branches,
+	[Property] Mask zDigitsMask
 ) : DeathBlossomBaseStep(conclusions, views, options), IBranchTrait, IDeathBlossomCollection<NormalBlossomBranchCollection, Digit>
 {
 	/// <inheritdoc/>

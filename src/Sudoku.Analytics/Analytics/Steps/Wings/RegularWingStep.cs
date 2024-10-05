@@ -14,10 +14,10 @@ public sealed partial class RegularWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Cell pivot,
-	[PrimaryConstructorParameter] int pivotCandidatesCount,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap petals
+	[Property] Cell pivot,
+	[Property] int pivotCandidatesCount,
+	[Property] Mask digitsMask,
+	[Property] ref readonly CellMap petals
 ) : WingStep(conclusions, views, options), ISizeTrait
 {
 	/// <summary>

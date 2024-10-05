@@ -6,10 +6,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <param name="stepSearcher">The step searcher instance.</param>
 /// <param name="backAttribute">The bound step searcher attribute.</param>
 /// <seealso cref="StepSearcher"/>
-public sealed partial class StepSearcherMetadataInfo(
-	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcher stepSearcher,
-	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcherAttribute backAttribute
-)
+public sealed partial class StepSearcherMetadataInfo([Field] StepSearcher stepSearcher, [Field] StepSearcherAttribute backAttribute)
 {
 	/// <inheritdoc cref="StepSearcherAttribute.IsCachingSafe"/>
 	public bool IsCachingSafe => _backAttribute.IsCachingSafe;

@@ -21,7 +21,7 @@ public sealed partial class ExocetMirrorConjugatePairStep(
 	ref readonly CellMap targetCells,
 	ref readonly CellMap endoTargetCells,
 	ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
+	[Property] Conjugate[] conjugatePairs
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>

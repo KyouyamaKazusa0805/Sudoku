@@ -14,10 +14,10 @@ public sealed partial class WWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Cell startCell,
-	[PrimaryConstructorParameter] Cell endCell,
-	[PrimaryConstructorParameter] ref readonly CellMap bridge,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] Cell startCell,
+	[Property] Cell endCell,
+	[Property] ref readonly CellMap bridge,
+	[Property] Mask digitsMask
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

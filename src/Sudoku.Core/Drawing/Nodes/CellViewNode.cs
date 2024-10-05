@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="cell">Indicates the cell highlighted.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember] Cell cell) : BasicViewNode(identifier)
+public sealed partial class CellViewNode(ColorIdentifier identifier, [Property, HashCodeMember] Cell cell) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell string.

@@ -8,9 +8,9 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="otherDigitsMask">The other digits mask.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public sealed partial class UniqueRectanglePattern(
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] Mask otherDigitsMask
+	[Property] ref readonly CellMap cells,
+	[Property] Mask digitsMask,
+	[Property] Mask otherDigitsMask
 ) : Pattern
 {
 	/// <summary>

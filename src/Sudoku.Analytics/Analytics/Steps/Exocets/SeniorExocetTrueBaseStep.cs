@@ -17,7 +17,7 @@ public sealed partial class SeniorExocetTrueBaseStep(
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit trueBaseDigit,
+	[Property] Digit trueBaseDigit,
 	ref readonly CellMap baseCells,
 	ref readonly CellMap targetCells,
 	ref readonly CellMap endoTargetCells,

@@ -4,7 +4,7 @@ namespace Sudoku.Bot.Annotations;
 /// 表示一个指令的具体用法的特性。
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public sealed partial class CommandUsageAttribute([PrimaryConstructorParameter] string exampleUsage) : AnnotationAttribute
+public sealed partial class CommandUsageAttribute([Property] string exampleUsage) : AnnotationAttribute
 {
 	/// <summary>
 	/// 表示该陈列的用法是否是语法表现。

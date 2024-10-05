@@ -11,7 +11,7 @@ public abstract partial class SingleDigitPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] Digit digit
+	[Property] Digit digit
 ) : FullPencilmarkingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

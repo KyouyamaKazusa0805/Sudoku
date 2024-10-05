@@ -13,9 +13,9 @@ public abstract partial class ChromaticPatternStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] House[] blocks,
-	[PrimaryConstructorParameter] ref readonly CellMap pattern,
-	[PrimaryConstructorParameter] Mask digitsMask
+	[Property] House[] blocks,
+	[Property] ref readonly CellMap pattern,
+	[Property] Mask digitsMask
 ) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

@@ -15,7 +15,7 @@ public sealed partial class UniqueMatrixType2Step(
 	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[Property] Digit extraDigit
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

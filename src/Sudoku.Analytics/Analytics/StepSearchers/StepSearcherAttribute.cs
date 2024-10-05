@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <param name="techniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] techniques) : Attribute
+public sealed partial class StepSearcherAttribute([Property] string nameKey, params Technique[] techniques) : Attribute
 {
 	/// <summary>
 	/// <para>

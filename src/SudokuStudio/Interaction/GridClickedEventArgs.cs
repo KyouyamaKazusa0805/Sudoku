@@ -6,7 +6,7 @@ namespace SudokuStudio.Interaction;
 /// <param name="mouseButton">Indicates the mouse button clicked.</param>
 /// <param name="candidate">The candidate clicked.</param>
 /// <seealso cref="GridUpdatedEventHandler"/>
-public sealed partial class GridClickedEventArgs([PrimaryConstructorParameter] MouseButton mouseButton, [PrimaryConstructorParameter] Candidate candidate) : EventArgs
+public sealed partial class GridClickedEventArgs([Property] MouseButton mouseButton, [Property] Candidate candidate) : EventArgs
 {
 	/// <summary>
 	/// Indicates the clicked cell.

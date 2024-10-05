@@ -13,9 +13,9 @@ public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[PrimaryConstructorParameter] ref readonly CellMap cells,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
+	[Property] ref readonly CellMap cells,
+	[Property] Mask digitsMask,
+	[Property] (Digit[], Cell)[] lockedCombinations
 ) : PermutationStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>

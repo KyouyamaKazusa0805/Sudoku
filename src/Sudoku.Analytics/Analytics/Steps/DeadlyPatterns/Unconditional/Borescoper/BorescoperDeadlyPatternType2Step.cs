@@ -15,7 +15,7 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	StepGathererOptions options,
 	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] Digit extraDigit
+	[Property] Digit extraDigit
 ) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

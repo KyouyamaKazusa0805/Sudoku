@@ -5,4 +5,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <param name="selectedSearcherInfo">The selected searcher's information.</param>
 /// <seealso cref="TechniqueGroupViewStepAppliedEventHandler"/>
-public sealed partial class StepSearcherListViewItemSelectedEventArgs([PrimaryConstructorParameter] StepSearcherInfo selectedSearcherInfo) : EventArgs;
+public sealed partial class StepSearcherListViewItemSelectedEventArgs([Property] StepSearcherInfo selectedSearcherInfo) : EventArgs;
