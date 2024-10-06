@@ -185,10 +185,6 @@
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（文章）](https://t.sudoku-studio.wiki)
 
-二维码
-
-![](miscellaneous/pic/qrcode.png)
-
 ## 作者
 
 一个热爱开发的非开发人员。
