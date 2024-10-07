@@ -53,7 +53,7 @@ internal static class PrimaryConstructorMemberHandler
 				IsReadOnly: var isReadOnlyStruct,
 				IsRefLikeType: var isRefStruct,
 				TypeParameters: var typeParameters,
-				InstanceConstructors: var instanceCtors,
+				InstanceConstructors: var instanceConstructors,
 				Name: var typeName,
 				ContainingNamespace: { } namespaceSymbol
 			})
@@ -61,7 +61,7 @@ internal static class PrimaryConstructorMemberHandler
 			return null;
 		}
 
-		if (instanceCtors.FirstOrDefault(primaryConstructorPredicate) is null)
+		if (instanceConstructors.FirstOrDefault(primaryConstructorPredicate) is null)
 		{
 			return null;
 		}
