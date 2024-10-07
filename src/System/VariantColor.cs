@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// Represents a variant color type.
 /// </summary>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 [method: JsonConstructor]
 public readonly partial struct VariantColor(
 	[Property, StringMember] byte a,
@@ -43,12 +43,9 @@ public readonly partial struct VariantColor(
 
 
 	[HashCodeMember]
+	[EquatableMember]
 	private int ArgbValue => A << 24 | R << 16 | G << 8 | B;
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(VariantColor other) => ArgbValue == other.ArgbValue;
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	/// <exception cref="FormatException">Throws when the format is invalid.</exception>

@@ -60,6 +60,12 @@ public enum TypeImplFlag
 	LogicalNotOperator = 1 << 6,
 
 	/// <summary>
+	/// Indicates method <see cref="IEquatable{T}.Equals(T)"/>.
+	/// </summary>
+	/// <seealso cref="IEquatable{T}.Equals(T)"/>
+	Equatable = 1 << 7,
+
+	/// <summary>
 	/// Indicates all the methods
 	/// <see cref="object.Equals(object?)"/>, <see cref="object.GetHashCode"/> and <see cref="object.ToString"/>
 	/// will be generated.

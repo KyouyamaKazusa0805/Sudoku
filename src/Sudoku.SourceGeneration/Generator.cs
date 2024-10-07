@@ -81,8 +81,6 @@ public sealed class Generator : IIncrementalGenerator
 					IsPartialTypePredicate,
 					TypeImplHandler.Transform
 				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
 				.Collect(),
 			TypeImplHandler.Output
 		);

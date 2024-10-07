@@ -1042,6 +1042,12 @@
             Indicates the method will be made <see langword="abstract"/>.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.EquatableMemberAttribute">
+            <summary>
+            Indicates the marked member will participate equality comparison operation, especially for <see cref="M:System.IEquatable`1.Equals(`0)"/>.
+            </summary>
+            <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.FactoryPropertyAttribute">
             <summary>
             Represents a factory property attribute.
@@ -1375,6 +1381,11 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.ToString"/> method.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnEquatableEquals">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.IEquatable`1.Equals(`0)"/> method.
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -1467,6 +1478,12 @@
             Indicates operator <see cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/> will be generated.
             </summary>
             <seealso cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Equatable">
+            <summary>
+            Indicates method <see cref="M:System.IEquatable`1.Equals(`0)"/>.
+            </summary>
+            <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
             <summary>
@@ -6345,9 +6362,6 @@
             </summary>
             <param name="argb">An integer that includes all A, R, G, B values.</param>
         </member>
-        <member name="M:System.VariantColor.Equals(System.VariantColor)">
-            <inheritdoc/>
-        </member>
         <member name="M:System.VariantColor.ToString(System.String)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
             <exception cref="T:System.FormatException">Throws when the format is invalid.</exception>
@@ -6404,6 +6418,9 @@
         </member>
         <member name="M:System.VariantColor.op_Inequality(System.VariantColor,System.VariantColor)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:System.VariantColor.Equals(System.VariantColor)">
+            <inheritdoc/>
         </member>
         <member name="T:System.ActionRef`1">
             <summary>

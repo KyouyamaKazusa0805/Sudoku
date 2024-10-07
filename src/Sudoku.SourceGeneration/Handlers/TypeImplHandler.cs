@@ -8,9 +8,15 @@ internal static class TypeImplHandler
 
 	private const string StringMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.StringMemberAttribute";
 
+	private const string EquatableMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.EquatableMemberAttribute";
+
+	private const string EquatableTypeName = "System.IEquatable`1";
+
 	private const string FormattableTypeName = "System.IFormattable";
 
 	private const string FormatProviderTypeName = "System.IFormatProvider";
+
+	private const string EqualityOperatorsTypeName = "System.Numerics.IEqualityOperators`3";
 
 	private const string IsLargeStructurePropertyName = "IsLargeStructure";
 
@@ -26,6 +32,8 @@ internal static class TypeImplHandler
 
 	private const string OperandNullabilityPreferPropertyName = "OperandNullabilityPrefer";
 
+	private const string OtherModifiersOnEquatableEqualsPropertyName = "OtherModifiersOnEquatableEquals";
+
 
 	private static readonly Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[] Methods = [
 		Object_Equals,
@@ -34,24 +42,19 @@ internal static class TypeImplHandler
 		EqualityOperators,
 		ComparisonOperators,
 		TrueAndFalseOperators,
-		LogicalNotOperator
+		LogicalNotOperator,
+		Equatable
 	];
 
 
-	public static List<string>? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
-	{
-		var typeSources = new List<string>();
-		foreach (var method in Methods)
-		{
-			if (method(gasc, cancellationToken) is { } source)
-			{
-				typeSources.Add(source);
-			}
-		}
-		return typeSources;
-	}
+	public static IEnumerable<string> Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+		=>
+		from method in Methods
+		let source = method(gasc, cancellationToken)
+		where source is not null
+		select source;
 
-	public static void Output(SourceProductionContext spc, ImmutableArray<List<string>> value)
+	public static void Output(SourceProductionContext spc, ImmutableArray<IEnumerable<string>> value)
 		=> spc.AddSource(
 			"TypeImpl.g.cs",
 			$"""
@@ -1141,6 +1144,177 @@ internal static class TypeImplHandler
 		static bool propertyPredicate(IPropertySymbol m, string propertyName)
 			=> m is { Name: var p, Type.SpecialType: System_Int32, IsIndexer: false } && p == propertyName;
 	}
+
+	private static string? Equatable(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					TypeKind: var kind and (TypeKind.Struct or TypeKind.Class),
+					Name: var typeName,
+					IsRecord: var isRecord,
+					IsReadOnly: var isReadOnly,
+					IsRefLikeType: var isRefStruct,
+					TypeParameters: var typeParameters,
+					ContainingNamespace: var @namespace,
+					ContainingType: null, // Must be top-level type.
+					AllInterfaces: var allInterfaces
+				} type,
+				TargetNode: TypeDeclarationSyntax { ParameterList: var parameterList }
+					and (RecordDeclarationSyntax or ClassDeclarationSyntax or StructDeclarationSyntax),
+				SemanticModel: { Compilation: var compilation } semanticModel
+			})
+		{
+			return null;
+		}
+
+		var paramTargetAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(ParameterTargetAttributeTypeName);
+		if (paramTargetAttributeTypeNameSymbol is null)
+		{
+			return null;
+		}
+
+		var equatableMemberAttributeSymbol = compilation.GetTypeByMetadataName(EquatableMemberAttributeTypeName);
+		if (equatableMemberAttributeSymbol is null)
+		{
+			return null;
+		}
+
+		if (!((TypeImplFlag)ctorArg).HasFlag(TypeImplFlag.Equatable))
+		{
+			return null;
+		}
+
+		var unboundEquatableInterfaceType = compilation.GetTypeByMetadataName(EquatableTypeName)!;
+		var equalityOperatorsInterfaceType = compilation.GetTypeByMetadataName(EqualityOperatorsTypeName)!;
+		var equatableInterfaceType = unboundEquatableInterfaceType.Construct(type);
+		if (!allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, equatableInterfaceType)))
+		{
+			return null;
+		}
+
+		var isLargeStructure = attribute.GetNamedArgument(IsLargeStructurePropertyName, false);
+		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var otherModifiers = attribute.GetNamedArgument<string>(OtherModifiersOnEquatableEqualsPropertyName) switch
+		{
+			{ } str => str.Split([' '], StringSplitOptions.RemoveEmptyEntries),
+			_ => []
+		};
+		var typeArgumentsString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+		var typeNameString = $"{typeName}{typeArgumentsString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		var typeKindString = (kind, isRecord) switch
+		{
+			(TypeKind.Class, true) => "record",
+			(TypeKind.Class, _) => "class",
+			(TypeKind.Struct, true) => "record struct",
+			(TypeKind.Struct, _) => "struct",
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
+
+		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+			type,
+			semanticModel,
+			parameterList,
+			paramTargetAttributeTypeNameSymbol,
+			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, equatableMemberAttributeSymbol),
+			symbol =>
+			{
+				return symbol switch
+				{
+					IFieldSymbol { Name: var name, Type: var fieldType } => getComparisonString(fieldType, name),
+					IPropertySymbol { Name: var name, Type: var propertyType } => getComparisonString(propertyType, name),
+					_ => null
+				};
+
+
+				string getComparisonString(ITypeSymbol type, string name)
+				{
+					var p = equalityOperatorsInterfaceType.Construct(type, type, compilation.GetSpecialType(System_Boolean));
+					var q = unboundEquatableInterfaceType.Construct(type);
+					switch (type)
+					{
+						case { SpecialType: System_Object }:
+						{
+							return $"ReferenceEquals({name}, other.{name})";
+						}
+						case { AllInterfaces: var allInterfaces }:
+						{
+							if (allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, p)))
+							{
+								return $"{name} == other.{name}";
+							}
+							else if (allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, q)))
+							{
+								return $"({name}?.Equals(other.{name}) ?? false)";
+							}
+							else
+							{
+								goto default;
+							}
+						}
+						default:
+						{
+							var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+							return $"global::System.EqualityComparer<{fullName}>.Default.Equals({name}, other.{name})";
+						}
+					}
+				}
+			},
+			cancellationToken
+		);
+
+		var expressionString = string.Join(
+			" && ",
+			from pair in referencedMembers
+			where pair.ExtraData is not null
+			select pair.ExtraData
+		);
+		var nullableToken = kind == TypeKind.Struct ? string.Empty : "?";
+		var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
+		var paramMarkup = string.IsNullOrEmpty(nullableToken) ? string.Empty : "[global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] ";
+		return string.IsNullOrEmpty(inKeyword)
+			? $$"""
+			namespace {{namespaceString}}
+			{
+			#line 1 "TypeImpl.{{typeNameString}}_EquatableEquals.g.cs"
+				partial {{typeKindString}} {{typeNameString}}
+				{
+					/// <inheritdoc/>
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					public {{otherModifiersString}}{{readOnlyModifier}}bool Equals({{paramMarkup}}{{fullTypeNameString}}{{nullableToken}} other)
+						=> {{expressionString}};
+				}
+			#line default
+			}
+			"""
+			: $$"""
+			namespace {{namespaceString}}
+			{
+			#line 1 "TypeImpl.{{typeNameString}}_EquatableEquals.g.cs"
+				partial {{typeKindString}} {{typeNameString}}
+				{
+					/// <inheritdoc cref="global::System.IEquatable{T}.Equals(T)"/>
+					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+					public {{otherModifiersString}}{{readOnlyModifier}}bool Equals({{fullTypeNameString}}{{nullableToken}} other)
+						=> {{expressionString}};
+
+					/// <inheritdoc/>
+					{{readOnlyModifier}}bool global::System.IEquatable<{{fullTypeNameString}}>.Equals({{paramMarkup}}{{fullTypeNameString}}{{nullableToken}} other)
+						=> Equals(in other);
+				}
+			#line default
+			}
+			""";
+	}
 }
 
 /// <summary>
@@ -1155,7 +1329,8 @@ file enum TypeImplFlag
 	EqualityOperators = 1 << 3,
 	ComparisonOperators = 1 << 4,
 	TrueAndFalseOperators = 1 << 5,
-	LogicalNotOperator = 1 << 6
+	LogicalNotOperator = 1 << 6,
+	Equatable = 1 << 7
 }
 
 /// <summary>

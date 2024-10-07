@@ -33,6 +33,11 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public string? OtherModifiersOnToString { get; init; }
 
 	/// <summary>
+	/// Indicates the extra modifiers can be applied to <see cref="IEquatable{T}.Equals(T)"/> method.
+	/// </summary>
+	public string? OtherModifiersOnEquatableEquals { get; init; }
+
+	/// <summary>
 	/// Defines a behavior by source generator on generating <see cref="object.Equals(object?)"/> overridden methods.
 	/// </summary>
 	/// <remarks>
