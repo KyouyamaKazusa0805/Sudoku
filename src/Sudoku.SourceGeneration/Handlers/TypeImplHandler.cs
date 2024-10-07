@@ -1228,13 +1228,15 @@ internal static class TypeImplHandler
 			{
 				return symbol switch
 				{
-					IFieldSymbol { Name: var name, Type: var fieldType } => getComparisonString(fieldType, name),
-					IPropertySymbol { Name: var name, Type: var propertyType } => getComparisonString(propertyType, name),
+					IFieldSymbol { Name: var name, NullableAnnotation: var nullableAnnotation, Type: var fieldType }
+						=> getComparisonString(fieldType, name, nullableAnnotation),
+					IPropertySymbol { Name: var name, NullableAnnotation: var nullableAnnotation, Type: var propertyType }
+						=> getComparisonString(propertyType, name, nullableAnnotation),
 					_ => null
 				};
 
 
-				string getComparisonString(ITypeSymbol type, string name)
+				string getComparisonString(ITypeSymbol type, string name, NullableAnnotation nullableAnnotation)
 				{
 					var p = equalityOperatorsInterfaceType.Construct(type, type, compilation.GetSpecialType(System_Boolean));
 					var q = unboundEquatableInterfaceType.Construct(type);
@@ -1244,20 +1246,24 @@ internal static class TypeImplHandler
 						{
 							return $"ReferenceEquals({name}, other.{name})";
 						}
-						case { AllInterfaces: var allInterfaces }:
+						case { SpecialType: >= System_Enum and <= System_UIntPtr and not (System_ValueType or System_Void) }:
+						case { TypeKind: TypeKind.Pointer or TypeKind.FunctionPointer }:
+						case { AllInterfaces: var allInterfaces } when allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, p)):
 						{
-							if (allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, p)))
-							{
-								return $"{name} == other.{name}";
-							}
-							else if (allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, q)))
-							{
-								return $"({name}?.Equals(other.{name}) ?? false)";
-							}
-							else
-							{
-								goto default;
-							}
+							return $"{name} == other.{name}";
+						}
+						case { AllInterfaces: var allInterfaces } when allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, q)):
+						{
+							return nullableAnnotation != NotAnnotated
+								? $"{name}.Equals(other.{name})"
+								: $$"""
+								({{name}}, other.{{name}}) switch 
+								{
+									(null, null) => true,
+									(not null, not null) => {{name}}.Equals(other.{{name}}),
+									_ => false
+								}
+								""";
 						}
 						default:
 						{
