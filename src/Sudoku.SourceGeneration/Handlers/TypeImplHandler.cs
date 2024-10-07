@@ -130,7 +130,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_Equals.g.cs"
+				#line 1 "{{typeNameString}}_Equals.g.cs"
 					partial {{typeKindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.Equals(object?)"/>
@@ -170,7 +170,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_Equals.g.cs"
+				#line 1 "{{typeNameString}}_Equals.g.cs"
 				{{suppress0809}}partial {{typeKindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.Equals(object?)"/>
@@ -291,7 +291,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_GetHashCode.g.cs"
+				#line 1 "{{typeNameString}}_GetHashCode.g.cs"
 					partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.GetHashCode"/>
@@ -349,7 +349,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_GetHashCode.g.cs"
+				#line 1 "{{typeNameString}}_GetHashCode.g.cs"
 				{{suppress0809}}partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.GetHashCode"/>
@@ -469,7 +469,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_ToString.g.cs"
+				#line 1 "{{typeNameString}}_ToString.g.cs"
 					partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.ToString"/>
@@ -544,7 +544,7 @@ internal static class TypeImplHandler
 			return $$"""
 				namespace {{namespaceString}}
 				{
-				#line 1 "TypeImpl.{{typeNameString}}_ToString.g.cs"
+				#line 1 "{{typeNameString}}_ToString.g.cs"
 				{{suppress0809}}partial {{kindString}} {{typeNameString}}
 					{
 						/// <inheritdoc cref="object.ToString"/>
@@ -747,7 +747,7 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_EqualityOperators.g.cs"
+			#line 1 "{{typeNameString}}_EqualityOperators.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					{{operatorDeclaration}}
@@ -940,7 +940,7 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_ComparisonOperators.g.cs"
+			#line 1 "{{typeNameString}}_ComparisonOperators.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					{{operatorDeclaration}}
@@ -1026,7 +1026,7 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_TrueAndFalseOperators.g.cs"
+			#line 1 "{{typeNameString}}_TrueAndFalseOperators.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					/// <inheritdoc cref="global::System.ILogicalOperators{TSelf}.op_True(TSelf)"/>
@@ -1124,7 +1124,7 @@ internal static class TypeImplHandler
 		return $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_LogicalNotOperator.g.cs"
+			#line 1 "{{typeNameString}}_LogicalNotOperator.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					/// <inheritdoc cref="global::System.ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
@@ -1289,7 +1289,7 @@ internal static class TypeImplHandler
 			? $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_EquatableEquals.g.cs"
+			#line 1 "{{typeNameString}}_EquatableEquals.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					/// <inheritdoc/>
@@ -1304,7 +1304,7 @@ internal static class TypeImplHandler
 			: $$"""
 			namespace {{namespaceString}}
 			{
-			#line 1 "TypeImpl.{{typeNameString}}_EquatableEquals.g.cs"
+			#line 1 "{{typeNameString}}_EquatableEquals.g.cs"
 				partial {{typeKindString}} {{typeNameString}}
 				{
 					/// <inheritdoc cref="global::System.IEquatable{T}.Equals(T)"/>
