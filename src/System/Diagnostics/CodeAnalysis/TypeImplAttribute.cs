@@ -1,10 +1,46 @@
 namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
-/// Represents an attribute type that describes source generators can generate extra source code into the target type,
-/// with the specified generation mode.
+/// Represents an attribute type that can help developers declare types more simple and easier,
+/// through generating particular code, like automatically implementing <see cref="IEquatable{T}"/>
+/// by using source generator.
 /// </summary>
 /// <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
+/// <remarks>
+/// For example, we have defined a record-like type <c>MyColor</c> declared like this:
+/// <code><![CDATA[
+/// public readonly struct MyColor(byte a, byte r, byte g, byte b) : IEquatable<MyColor>
+/// {
+///     public byte A { get; } = a;
+///     public byte R { get; } = r;
+///     public byte G { get; } = g;
+///     public byte B { get; } = b;
+///     private int RawValue => A << 24 | R << 16 | G << 8 | B;
+/// 
+///     public override bool Equals([NotNullWhen(true)] object? other)
+///         => other is MyColor comparer && Equals(comparer);
+/// 
+///     public bool Equals(MyColor other) => RawValue == other.RawValue;
+/// 
+///     public override int GetHashCode() => RawValue;
+/// }
+/// ]]></code>
+/// By using <see cref="TypeImplAttribute"/>, the code can be simplified to this:
+/// <code><![CDATA[
+/// [TypeImpl(TypeImplFlag.Equals | TypeImplFlag.GetHashCode | TypeImplFlag.Equatable)]
+/// public readonly partial struct MyColor(
+///     [Property] byte a,
+///     [Property] byte r,
+///     [Property] byte g,
+///     [Property] byte b
+/// ) : IEquatable<MyColor>
+/// {
+///     [HashCodeMember]
+///     [EquatableMember]
+///     private int RawValue => A << 24 | R << 16 | G << 8 | B;
+/// }
+/// ]]></code>
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
 public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : Attribute
 {
