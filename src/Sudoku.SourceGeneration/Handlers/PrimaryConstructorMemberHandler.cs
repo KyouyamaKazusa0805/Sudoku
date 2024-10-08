@@ -39,7 +39,12 @@ internal static class PrimaryConstructorMemberHandler
 	public static string? Transform(GeneratorSyntaxContext context, CancellationToken cancellationToken)
 	{
 		// Deconstruct members.
-		if (context is not { Node: TypeDeclarationSyntax node, SemanticModel: { Compilation: var compilation } semanticModel })
+		if (context is not
+			{
+				Node: TypeDeclarationSyntax { ParameterList.Parameters: [var firstParameterNode, ..] } node
+					and (ClassDeclarationSyntax or StructDeclarationSyntax),
+				SemanticModel: { Compilation: var compilation } semanticModel
+			})
 		{
 			return null;
 		}
@@ -49,7 +54,7 @@ internal static class PrimaryConstructorMemberHandler
 				ContainingType: null,
 				DeclaredAccessibility: var accessibility,
 				TypeKind: var typeKind and (TypeKind.Class or TypeKind.Struct),
-				IsRecord: var isRecord,
+				IsRecord: false,
 				IsReadOnly: var isReadOnlyStruct,
 				IsRefLikeType: var isRefStruct,
 				TypeParameters: var typeParameters,
@@ -66,8 +71,6 @@ internal static class PrimaryConstructorMemberHandler
 			return null;
 		}
 
-		// Get parameters.
-		var firstParameterNode = node.DescendantNodes().OfType<ParameterSyntax>().FirstOrDefault();
 		var firstParameterSymbol = semanticModel.GetDeclaredSymbol(firstParameterNode, cancellationToken);
 		if (firstParameterSymbol is not { ContainingSymbol: IMethodSymbol { Parameters: var parameters, MethodKind: MethodKind.Constructor } })
 		{
@@ -160,12 +163,7 @@ internal static class PrimaryConstructorMemberHandler
 		{
 #pragma warning disable format
 			if (parameterData is not (
-				{
-					Type: var parameterType,
-					NullableAnnotation: var nullableAnnotation,
-					RefKind: var parameterRefKind,
-					Name: var parameterName
-				},
+				{ Type: var parameterType, RefKind: var parameterRefKind, Name: var parameterName },
 				_,
 				{ NamedArguments: var n }
 			))
@@ -188,8 +186,10 @@ internal static class PrimaryConstructorMemberHandler
 					(true, RefKind.In) => "ref readonly ",
 					_ => string.Empty
 				};
-			var parameterTypeString = parameterType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-			var nullableToken = nullableAnnotation == Annotated ? "?" : string.Empty;
+			var parameterTypeString = parameterType.ToDisplayString(
+				SymbolDisplayFormat.FullyQualifiedFormat
+					.AddMiscellaneousOptions(SymbolDisplayMiscellaneousOptions.IncludeNullableReferenceTypeModifier)
+			);
 			var namingRule = n.TryGetValueOrDefault<string>(NamingRulePropertyName, out var namingRuleLocal)
 				? namingRuleLocal!
 				: ">@";
@@ -224,19 +224,13 @@ internal static class PrimaryConstructorMemberHandler
 						/// </summary>
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(PrimaryConstructorMemberHandler).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						{{propertyAccessibility}}{{readOnlyModifier}}{{refKind}}{{parameterTypeString}}{{nullableToken}} {{propertyName}} {{assignment}};
+						{{propertyAccessibility}}{{readOnlyModifier}}{{refKind}}{{parameterTypeString}} {{propertyName}} {{assignment}};
 				"""
 			);
 		}
 
 		var namespaceFullName = namespaceSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
-		var typeKindString = (typeKind, isRecord) switch
-		{
-			(TypeKind.Class, true) => "record ",
-			(TypeKind.Class, _) => "class ",
-			(TypeKind.Struct, true) => "record struct ",
-			(TypeKind.Struct, _) => "struct "
-		};
+		var typeKindString = typeKind switch { TypeKind.Class => "class ", TypeKind.Struct => "struct " };
 		var typeParametersString = typeParameters.Length == 0
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
