@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
 /// <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
-public sealed partial class DoubleExocetBaseStep(
+public sealed partial class NormalDoubleExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,

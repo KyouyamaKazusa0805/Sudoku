@@ -63,7 +63,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var selectedAlsEntryCell = (stackalloc Cell[9]);
 		var alsReferenceTable = (stackalloc Candidate[729]);
 		alsReferenceTable.Fill(-1);
-		var accumulatorNormal = new List<DeathBlossomStep>();
+		var accumulatorNormal = new List<NormalDeathBlossomStep>();
 		var accumulatorHouse = new HashSet<HouseDeathBlossomStep>();
 		var accumulatorNTimesAls = new SortedSet<NTimesAlmostLockedSetsDeathBlossomStep>();
 
@@ -301,16 +301,16 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Create a <see cref="DeathBlossomStep"/> instance and add it into the accumulator.
+	/// Create a <see cref="NormalDeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
-	private DeathBlossomStep? CreateStep_NormalType(
+	private NormalDeathBlossomStep? CreateStep_NormalType(
 		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		Cell pivot,
 		scoped Span<int> alsReferenceTable,
 		ReadOnlySpan<AlmostLockedSetPattern> alses,
 		Mask[] playgroundCached,
-		List<DeathBlossomStep> accumulator
+		List<NormalDeathBlossomStep> accumulator
 	)
 	{
 		// A normal death blossom is found. Now check for eliminations.
@@ -410,7 +410,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			indexOfAls++;
 		}
 
-		var step = new DeathBlossomStep(
+		var step = new NormalDeathBlossomStep(
 			[.. conclusions],
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
 			context.Options,

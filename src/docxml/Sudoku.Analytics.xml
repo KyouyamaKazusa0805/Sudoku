@@ -7146,9 +7146,9 @@
             </para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NormalType(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.DeathBlossomStep})">
+        <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_NormalType(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},System.Int16[],System.Collections.Generic.List{Sudoku.Analytics.Steps.NormalDeathBlossomStep})">
             <summary>
-            Create a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/> instance and add it into the accumulator.
+            Create a <see cref="T:Sudoku.Analytics.Steps.NormalDeathBlossomStep"/> instance and add it into the accumulator.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.CreateStep_HouseType(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Span{System.Int32},System.ReadOnlySpan{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern},System.Int16[],System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.HouseDeathBlossomStep})">
@@ -11422,25 +11422,6 @@
             The generated property declaration for parameter <c>isDoublyLinked</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.DeathBlossomBaseStep">
-            <summary>
-            Provides with a step that is a <b>Death Blossom</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Provides with a step that is a <b>Death Blossom</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomBaseStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.DeathBlossomStep">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
@@ -11448,50 +11429,17 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pivot">Indicates the pivot cell.</param>
-            <param name="branches">Indicates the branches.</param>
-            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pivot">Indicates the pivot cell.</param>
-            <param name="branches">Indicates the branches.</param>
-            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
-            <summary>
-            The generated property declaration for parameter <c>pivot</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Branches">
-            <summary>
-            The generated property declaration for parameter <c>branches</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.ZDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>zDigitsMask</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep">
             <summary>
@@ -11672,6 +11620,58 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ZDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>zDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalDeathBlossomStep">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Death Blossom</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pivot">Indicates the pivot cell.</param>
+            <param name="branches">Indicates the branches.</param>
+            <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Sudoku#Analytics#Traits#IBranchTrait#BranchesCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Pivot">
+            <summary>
+            The generated property declaration for parameter <c>pivot</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.Branches">
+            <summary>
+            The generated property declaration for parameter <c>branches</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDeathBlossomStep.ZDigitsMask">
             <summary>
             The generated property declaration for parameter <c>zDigitsMask</c>.
             </summary>
@@ -15971,52 +15971,6 @@
             The generated property declaration for parameter <c>almostHiddenSetMask</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexExocetBaseStep">
-            <summary>
-            Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
-            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
-            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetBaseStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetBaseStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetBaseStep.CrosslineHousesMask">
-            <summary>
-            The generated property declaration for parameter <c>crosslineHousesMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetBaseStep.ExtraHousesMask">
-            <summary>
-            The generated property declaration for parameter <c>extraHousesMask</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet (Locked Member)</b> or <b>Complex Senior Exocet (Locked Member)</b> technique.
@@ -16168,47 +16122,6 @@
             The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.DoubleExocetBaseStep">
-            <summary>
-            Provides with a step that is a <b>Double Exocet (Base)</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
-            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DoubleExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Double Exocet (Base)</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
-            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetBaseStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetBaseStep.BaseCellsTheOther">
-            <summary>
-            The generated property declaration for parameter <c>baseCellsTheOther</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetBaseStep.TargetCellsTheOther">
-            <summary>
-            The generated property declaration for parameter <c>targetCellsTheOther</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep">
             <summary>
             Provides with a step that is a <b>Double Exocet (Fish)</b> technique.
@@ -16251,54 +16164,6 @@
         <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.TargetCellsTheOther">
             <summary>
             The generated property declaration for parameter <c>targetCellsTheOther</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetBaseStep">
-            <summary>
-            Provides with a step that is an <b>Exocet (Base)</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
-            <summary>
-            Provides with a step that is an <b>Exocet (Base)</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="baseCells"><inheritdoc/></param>
-            <param name="targetCells"><inheritdoc/></param>
-            <param name="endoTargetCells"><inheritdoc/></param>
-            <param name="crosslineCells"><inheritdoc/></param>
-            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Sudoku#Analytics#Traits#IConjugatePairTrait#ConjugatePairsCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ConjugatePairs">
-            <summary>
-            The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExocetLockedMemberStep">
@@ -16706,6 +16571,141 @@
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.TargetPairMask">
             <summary>
             The generated property declaration for parameter <c>targetPairMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalComplexExocetStep">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalComplexExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
+            <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexExocetStep.CrosslineHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>crosslineHousesMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexExocetStep.ExtraHousesMask">
+            <summary>
+            The generated property declaration for parameter <c>extraHousesMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalDoubleExocetStep">
+            <summary>
+            Provides with a step that is a <b>Double Exocet (Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalDoubleExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Provides with a step that is a <b>Double Exocet (Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
+            <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDoubleExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDoubleExocetStep.BaseCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>baseCellsTheOther</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalDoubleExocetStep.TargetCellsTheOther">
+            <summary>
+            The generated property declaration for parameter <c>targetCellsTheOther</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalExocetStep">
+            <summary>
+            Provides with a step that is an <b>Exocet (Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
+            <summary>
+            Provides with a step that is an <b>Exocet (Base)</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digitsMask"><inheritdoc/></param>
+            <param name="baseCells"><inheritdoc/></param>
+            <param name="targetCells"><inheritdoc/></param>
+            <param name="endoTargetCells"><inheritdoc/></param>
+            <param name="crosslineCells"><inheritdoc/></param>
+            <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.Sudoku#Analytics#Traits#IConjugatePairTrait#ConjugatePairsCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalExocetStep.ConjugatePairs">
+            <summary>
+            The generated property declaration for parameter <c>conjugatePairs</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep">
@@ -18534,82 +18534,6 @@
             The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexSingleBaseStep">
-            <summary>
-            Represents a data structure that describes for a technique of <b>Complex Single</b>.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
-            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn">Indicates the single technique that is based on.</param>
-            <param name="indirectTechniques">
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
-            This value is an array of array of <see cref="T:Sudoku.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Categorization.Technique,Sudoku.Categorization.Technique[][])">
-            <summary>
-            Represents a data structure that describes for a technique of <b>Complex Single</b>.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
-            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn">Indicates the single technique that is based on.</param>
-            <param name="indirectTechniques">
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
-            This value is an array of array of <see cref="T:Sudoku.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn">
-            <summary>
-            The generated property declaration for parameter <c>basedOn</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques">
-            <summary>
-            The generated property declaration for parameter <c>indirectTechniques</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
             <summary>
             Represents a data structure that describes for a technique of <b>Complex Single</b>.
@@ -18620,8 +18544,28 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
-            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <param name="basedOn">Indicates the single technique that is based on.</param>
+            <param name="indirectTechniques">
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Categorization.Technique"/> instances,
+            describing the detail usage on the complex combination of indirect technique usages. For example:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
+            </param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Categorization.Technique,Sudoku.Categorization.Technique[][])">
             <summary>
@@ -18633,26 +18577,38 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
-            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <param name="basedOn">Indicates the single technique that is based on.</param>
+            <param name="indirectTechniques">
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Categorization.Technique"/> instances,
+            describing the detail usage on the complex combination of indirect technique usages. For example:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Categorization.Technique.Claiming"/>]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
+            </param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BaseDifficulty">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn">
+            <summary>
+            The generated property declaration for parameter <c>basedOn</c>.
+            </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.IFormatProvider)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques">
+            <summary>
+            The generated property declaration for parameter <c>indirectTechniques</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
             <summary>
@@ -18668,7 +18624,7 @@
             <param name="interim">Indicates the interim cells.</param>
             <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Categorization.Technique,System.Boolean)">
@@ -18685,7 +18641,7 @@
             <param name="interim">Indicates the interim cells.</param>
             <param name="interimDigit">Indicates the interim digit.</param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
@@ -18737,7 +18693,7 @@
             <param name="interim">Indicates the interim cells used.</param>
             <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="subsetTechnique">Indicates the subset technique used.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Categorization.SingleSubtype,Sudoku.Categorization.Technique,Sudoku.Categorization.Technique)">
@@ -18755,7 +18711,7 @@
             <param name="interim">Indicates the interim cells used.</param>
             <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
-            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="subsetTechnique">Indicates the subset technique used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.IsNaked">
@@ -19007,6 +18963,50 @@
             <summary>
             The generated property declaration for parameter <c>lastingHouseType</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalComplexSingleStep">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Categorization.SingleSubtype,Sudoku.Categorization.Technique,Sudoku.Categorization.Technique[][])">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexSingleStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexSingleStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexSingleStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalComplexSingleStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalComplexSingleStep.GetName(System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>
@@ -25459,36 +25459,36 @@
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="T:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator">
+        <member name="T:Sudoku.Generating.Qualified.ComplexSingleGenerator">
             <summary>
             Represents a generator type that can generate puzzles with complex single techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.Analyzer">
+        <member name="F:Sudoku.Generating.Qualified.ComplexSingleGenerator.Analyzer">
             <summary>
             Indicates the backing analyzer.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.InterimCellsCreator">
+        <member name="P:Sudoku.Generating.Qualified.ComplexSingleGenerator.InterimCellsCreator">
             <summary>
             Indicates the creator instance that creates a list of cells indicating pattern interim cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.StepFilter">
+        <member name="P:Sudoku.Generating.Qualified.ComplexSingleGenerator.StepFilter">
             <summary>
             Indicates the local step filter.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Qualified.ComplexSingleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Qualified.ComplexSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Qualified.ComplexSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Qualified.ComplexSingleBaseGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Qualified.ComplexSingleGenerator.TryGenerateJustOneCell(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.Qualified.DirectIntersectionGenerator">
@@ -30955,11 +30955,6 @@
               Looks up a localized string similar to {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ComplexSingleStep">
-            <summary>
-              Looks up a localized string similar to {0}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ContinuousNiceLoopStep">
             <summary>
               Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
@@ -30968,11 +30963,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ContradictionForcingChainsStep">
             <summary>
               Looks up a localized string similar to It is proved that the candidate {0} is {1}, both true and false states of candidate {2} can be found, leading to a contradiction.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DeathBlossomStep">
-            <summary>
-              Looks up a localized string similar to Pivot: {0}, Branches: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_DirectIntersectionStep">
@@ -31148,6 +31138,16 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalChainStep">
             <summary>
               Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalComplexSingleStep">
+            <summary>
+              Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalDeathBlossomStep">
+            <summary>
+              Looks up a localized string similar to Pivot: {0}, Branches: {1}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalFishStep">

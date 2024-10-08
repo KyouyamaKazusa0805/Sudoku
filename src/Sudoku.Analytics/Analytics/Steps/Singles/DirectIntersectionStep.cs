@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="interim">Indicates the interim cells.</param>
 /// <param name="interimDigit">Indicates the interim digit.</param>
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
-/// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+/// <param name="basedOn"><inheritdoc cref="ComplexSingleStep.BasedOn" path="/summary"/></param>
 /// <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
 public sealed partial class DirectIntersectionStep(
 	Conclusion[] conclusions,
@@ -28,7 +28,7 @@ public sealed partial class DirectIntersectionStep(
 	SingleSubtype subtype,
 	Technique basedOn,
 	[Property] bool isPointing
-) : ComplexSingleBaseStep(
+) : ComplexSingleStep(
 	conclusions,
 	views,
 	options,

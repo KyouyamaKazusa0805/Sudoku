@@ -1140,7 +1140,7 @@ public enum Technique
 		Rating = 15,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ComplexSingle,
-		StepType = typeof(ComplexSingleStep),
+		StepType = typeof(NormalComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -1153,7 +1153,7 @@ public enum Technique
 		Rating = 17,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ComplexSingle,
-		StepType = typeof(ComplexSingleStep),
+		StepType = typeof(NormalComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -1166,7 +1166,7 @@ public enum Technique
 		Rating = 20,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ComplexSingle,
-		StepType = typeof(ComplexSingleStep),
+		StepType = typeof(NormalComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -1179,7 +1179,7 @@ public enum Technique
 		Rating = 20,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ComplexSingle,
-		StepType = typeof(ComplexSingleStep),
+		StepType = typeof(NormalComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -1192,7 +1192,7 @@ public enum Technique
 		Rating = 28,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ComplexSingle,
-		StepType = typeof(ComplexSingleStep),
+		StepType = typeof(NormalComplexSingleStep),
 		StepSearcherType = typeof(ComplexSingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct | PencilmarkVisibility.PartialMarking,
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -5606,7 +5606,7 @@ public enum Technique
 		Rating = 82,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
-		StepType = typeof(DeathBlossomStep),
+		StepType = typeof(NormalDeathBlossomStep),
 		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		Abbreviation = "DB",
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
@@ -5701,7 +5701,7 @@ public enum Technique
 		Rating = 94,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ExocetBaseStep),
+		StepType = typeof(NormalExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Abbreviation = "JE",
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
@@ -5714,7 +5714,7 @@ public enum Technique
 		Rating = 94,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ExocetBaseStep),
+		StepType = typeof(NormalExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetConjugatePair,
@@ -5822,7 +5822,7 @@ public enum Technique
 		Rating = 96,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ExocetBaseStep),
+		StepType = typeof(NormalExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Abbreviation = "SE",
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
@@ -5932,7 +5932,7 @@ public enum Technique
 		Rating = 98,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ComplexExocetBaseStep),
+		StepType = typeof(NormalComplexExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocet,
@@ -5980,7 +5980,7 @@ public enum Technique
 		Rating = 100,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ComplexExocetBaseStep),
+		StepType = typeof(NormalComplexExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocet,
@@ -6028,7 +6028,7 @@ public enum Technique
 		Rating = 100,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ComplexExocetBaseStep),
+		StepType = typeof(NormalComplexExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenSeniorExocet,
@@ -6064,7 +6064,7 @@ public enum Technique
 		Rating = 102,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(ComplexExocetBaseStep),
+		StepType = typeof(NormalComplexExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantSeniorExocet,
@@ -6100,7 +6100,7 @@ public enum Technique
 		Rating = 94,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
-		StepType = typeof(DoubleExocetBaseStep),
+		StepType = typeof(NormalDoubleExocetStep),
 		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	DoubleExocet,

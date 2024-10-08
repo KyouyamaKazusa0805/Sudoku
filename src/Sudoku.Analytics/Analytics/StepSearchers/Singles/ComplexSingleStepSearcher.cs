@@ -76,7 +76,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		// Recursively searching for all possible steps.
-		var accumulator = new SortedSet<ComplexSingleStep>();
+		var accumulator = new SortedSet<NormalComplexSingleStep>();
 		dfs(ref context, accumulator, in context.Grid, [], []);
 
 		// Remove steps that don't satisfy the size limit.
@@ -116,7 +116,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 		void dfs(
 			ref StepAnalysisContext context,
-			SortedSet<ComplexSingleStep> accumulator,
+			SortedSet<NormalComplexSingleStep> accumulator,
 			ref readonly Grid grid,
 			LinkedList<Step[]> interimSteps,
 			List<Step> previousIndirectFoundSteps
@@ -201,7 +201,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					if (directStepsFound.Count != 0)
 					{
 						// Good! We have already found a step available! Iterate on each step to create the result value.
-						foreach (ComplexSingleBaseStep directStep in directStepsFound)
+						foreach (ComplexSingleStep directStep in directStepsFound)
 						{
 							var (views, tempConclusions) = (new List<View>(), new List<Conclusion>());
 							foreach (var interimStepGroup in interimSteps)
@@ -277,7 +277,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			}
 		}
 
-		SortedSet<Step> filterStepsBySize(SortedSet<ComplexSingleStep> accumulator)
+		SortedSet<Step> filterStepsBySize(SortedSet<NormalComplexSingleStep> accumulator)
 		{
 			var stepsSatisfied = new SortedSet<Step>();
 			foreach (var step in accumulator)

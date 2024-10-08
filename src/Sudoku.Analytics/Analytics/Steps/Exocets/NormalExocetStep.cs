@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="endoTargetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
-public sealed partial class ExocetBaseStep(
+public sealed partial class NormalExocetStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepGathererOptions options,

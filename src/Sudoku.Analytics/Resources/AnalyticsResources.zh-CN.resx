@@ -2440,7 +2440,7 @@
     <value>伪数组</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_NormalDeathBlossomStep" xml:space="preserve">
     <value>拐点 {0}，每个分支：{1}</value>
   </data>
   <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
@@ -3200,7 +3200,7 @@
   <data name="Concept_Subset" xml:space="preserve">
     <value>数组</value>
   </data>
-  <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
+  <data name="TechniqueFormat_NormalComplexSingleStep" xml:space="preserve">
     <value>{0}</value>
   </data>
   <data name="TechniqueSetConstraint" xml:space="preserve">

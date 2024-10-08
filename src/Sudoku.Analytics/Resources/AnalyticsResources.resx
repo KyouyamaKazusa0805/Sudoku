@@ -2346,7 +2346,7 @@
   <data name="ExtendedSubsetPrinciple" xml:space="preserve">
     <value>Extended Subset Principle</value>
   </data>
-  <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
+  <data name="TechniqueFormat_NormalDeathBlossomStep" xml:space="preserve">
     <value>Pivot: {0}, Branches: {1}</value>
   </data>
   <data name="StepSearcherName_LawOfLeftoverStepSearcher" xml:space="preserve">
@@ -3093,7 +3093,7 @@ Error grid: '{0:#}'</value>
   <data name="Concept_Subset" xml:space="preserve">
     <value>Subset</value>
   </data>
-  <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
+  <data name="TechniqueFormat_NormalComplexSingleStep" xml:space="preserve">
     <value>{0}</value>
   </data>
   <data name="TechniqueSetConstraint" xml:space="preserve">

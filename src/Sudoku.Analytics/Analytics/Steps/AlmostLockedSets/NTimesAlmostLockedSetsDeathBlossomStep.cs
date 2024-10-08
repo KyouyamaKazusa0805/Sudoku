@@ -19,7 +19,7 @@ public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
 	[Property] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[Property] int freedomDegree
 ) :
-	DeathBlossomBaseStep(conclusions, views, options),
+	DeathBlossomStep(conclusions, views, options),
 	IBranchTrait,
 	IDeathBlossomCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>
 {

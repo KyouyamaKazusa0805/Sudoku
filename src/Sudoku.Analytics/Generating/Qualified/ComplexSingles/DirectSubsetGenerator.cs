@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Qualified;
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Direct Subsets.
 /// </summary>
-public sealed class DirectSubsetGenerator : ComplexSingleBaseGenerator
+public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques

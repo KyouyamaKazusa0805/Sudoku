@@ -7966,15 +7966,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}.
-        /// </summary>
-        public static string TechniqueFormat_ComplexSingleStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_ComplexSingleStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
         /// </summary>
         public static string TechniqueFormat_ContinuousNiceLoopStep {
@@ -7989,15 +7980,6 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_ContradictionForcingChainsStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_ContradictionForcingChainsStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pivot: {0}, Branches: {1}.
-        /// </summary>
-        public static string TechniqueFormat_DeathBlossomStep {
-            get {
-                return ResourceManager.GetString("TechniqueFormat_DeathBlossomStep", resourceCulture);
             }
         }
         
@@ -8313,6 +8295,24 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_NormalChainStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NormalChainStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_NormalComplexSingleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NormalComplexSingleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pivot: {0}, Branches: {1}.
+        /// </summary>
+        public static string TechniqueFormat_NormalDeathBlossomStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NormalDeathBlossomStep", resourceCulture);
             }
         }
         

@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Qualified;
 /// <summary>
 /// Represents a generator that supports generating for puzzles that can be solved by only using Direct Intersections.
 /// </summary>
-public sealed class DirectIntersectionGenerator : ComplexSingleBaseGenerator
+public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques

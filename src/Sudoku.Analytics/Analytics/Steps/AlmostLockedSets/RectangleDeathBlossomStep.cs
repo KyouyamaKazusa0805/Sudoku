@@ -19,7 +19,7 @@ public sealed partial class RectangleDeathBlossomStep(
 	[Property] RectangleBlossomBranchCollection branches,
 	[Property] Mask zDigitsMask
 ) :
-	DeathBlossomBaseStep(conclusions, views, options),
+	DeathBlossomStep(conclusions, views, options),
 	IBranchTrait,
 	IDeathBlossomCollection<RectangleBlossomBranchCollection, Candidate>
 {

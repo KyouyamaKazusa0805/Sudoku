@@ -18,7 +18,7 @@ public sealed partial class HouseDeathBlossomStep(
 	[Property] Digit digit,
 	[Property] HouseBlossomBranchCollection branches,
 	[Property] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options), IBranchTrait, IDeathBlossomCollection<HouseBlossomBranchCollection, House>
+) : DeathBlossomStep(conclusions, views, options), IBranchTrait, IDeathBlossomCollection<HouseBlossomBranchCollection, House>
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;

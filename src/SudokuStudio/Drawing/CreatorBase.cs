@@ -8,10 +8,7 @@ namespace SudokuStudio.Drawing;
 /// <param name="pane">Indicates the sudoku pane control.</param>
 /// <param name="converter">Indicates the position converter.</param>
 /// <seealso cref="Shape"/>
-internal abstract partial class CreatorBase<TInput, TOutput>(
-	[Property] SudokuPane pane,
-	[Property] SudokuPanePositionConverter converter
-)
+internal abstract partial class CreatorBase<TInput, TOutput>([Property] SudokuPane pane, [Property] SudokuPanePositionConverter converter)
 {
 	/// <summary>
 	/// Indicates the square root of 2.

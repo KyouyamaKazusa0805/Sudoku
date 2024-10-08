@@ -1481,7 +1481,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if JUNIOR_EXOCET || SENIOR_EXOCET
-	private static ExocetBaseStep? CheckJuniorOrSeniorBase(
+	private static NormalExocetStep? CheckJuniorOrSeniorBase(
 		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
@@ -1632,7 +1632,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var crosslineFinal = endoTargetCell == -1 ? crossline : crosslineIncludingTarget;
-		var step = new ExocetBaseStep(
+		var step = new NormalExocetStep(
 			[.. conclusions],
 			[
 				[
@@ -3422,7 +3422,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if DOUBLE_EXOCET
-	private static DoubleExocetBaseStep? CheckDoubleBase(
+	private static NormalDoubleExocetStep? CheckDoubleBase(
 		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
@@ -3455,7 +3455,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new DoubleExocetBaseStep(
+		var step = new NormalDoubleExocetStep(
 			[.. conclusions],
 			[
 				[
@@ -4069,7 +4069,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if COMPLEX_JUNIOR_EXOCET
-	private static ComplexExocetBaseStep? CheckComplexJuniorBase(
+	private static NormalComplexExocetStep? CheckComplexJuniorBase(
 		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
@@ -4111,7 +4111,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ComplexExocetBaseStep(
+		var step = new NormalComplexExocetStep(
 			[.. conclusions],
 			[
 				[
@@ -4154,7 +4154,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if COMPLEX_SENIOR_EXOCET
-	private static ComplexExocetBaseStep? CheckComplexSeniorBase(
+	private static NormalComplexExocetStep? CheckComplexSeniorBase(
 		ref StepAnalysisContext context,
 		Grid grid,
 		ref readonly CellMap baseCells,
@@ -4197,7 +4197,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new ComplexExocetBaseStep(
+		var step = new NormalComplexExocetStep(
 			[.. conclusions],
 			[
 				[

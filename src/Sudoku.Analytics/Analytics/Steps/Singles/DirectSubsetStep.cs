@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="interim">Indicates the interim cells used.</param>
 /// <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
-/// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+/// <param name="basedOn"><inheritdoc cref="ComplexSingleStep.BasedOn" path="/summary"/></param>
 /// <param name="subsetTechnique">Indicates the subset technique used.</param>
 public sealed partial class DirectSubsetStep(
 	Conclusion[] conclusions,
@@ -31,7 +31,7 @@ public sealed partial class DirectSubsetStep(
 	Technique basedOn,
 	[Property] Technique subsetTechnique
 ) :
-	ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]),
+	ComplexSingleStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]),
 	ISizeTrait,
 	ICellListTrait
 {
