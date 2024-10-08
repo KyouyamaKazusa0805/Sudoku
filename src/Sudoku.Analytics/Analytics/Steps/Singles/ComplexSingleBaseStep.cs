@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="indirectTechniques">
 /// <para>Indicates the indirect techniques used in this pattern.</para>
 /// <para>
-/// This value is an array of array of <see cref="Technique" /> instances,
+/// This value is an array of array of <see cref="Technique"/> instances,
 /// describing the detail usage on the complex combination of indirect technique usages. For example:
 /// <list type="table">
 /// <listheader>
@@ -21,11 +21,11 @@ namespace Sudoku.Analytics.Steps;
 /// <description>Meaning</description>
 /// </listheader>
 /// <item>
-/// <term>[[<see cref="Technique.Pointing" />, <see cref="Technique.Claiming" />]]</term>
+/// <term>[[<see cref="Technique.Pointing"/>, <see cref="Technique.Claiming"/>]]</term>
 /// <description>The naked single will use a pointing and a claiming technique in one step</description>
 /// </item>
 /// <item>
-/// <term>[[<see cref="Technique.Pointing" />], [<see cref="Technique.Claiming" />]]</term>
+/// <term>[[<see cref="Technique.Pointing"/>], [<see cref="Technique.Claiming"/>]]</term>
 /// <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
 /// </item>
 /// </list>
