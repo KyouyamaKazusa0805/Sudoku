@@ -15,7 +15,7 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 [DebuggerStepThrough]
 [TypeImpl(
 	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator,
+		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable,
 	IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
@@ -90,6 +90,7 @@ public partial struct CellMap : CellMapBase
 	/// </list>
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	private long _high, _low;
 
 
@@ -508,10 +509,6 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Contains(Cell item) => ((item < Shifting ? _low : _high) >> item % Shifting & 1) != 0;
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
-
 	/// <inheritdoc cref="ISpanFormattable.TryFormat(CharSequence, out int, ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool TryFormat(CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
@@ -672,9 +669,6 @@ public partial struct CellMap : CellMapBase
 	/// <seealso cref="Count"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = Empty;
-
-	/// <inheritdoc/>
-	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(in other);
 
 	/// <inheritdoc/>
 	readonly bool IAnyAllMethod<CellMap, Cell>.Any() => Count != 0;

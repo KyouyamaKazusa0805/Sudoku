@@ -74,6 +74,18 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public string? OtherModifiersOnEquatableEquals { get; init; }
 
 	/// <summary>
+	/// <para>
+	/// Indicates the modifier that will be applied to implement <c>Equals</c>, as the parameter modifier,
+	/// if the corresponding type (containing type) is a large structure.
+	/// </para>
+	/// <para>
+	/// By default, the modifier is <see langword="ref readonly"/>.
+	/// Supported values can be <see langword="ref"/>, <see langword="ref readonly"/> or <see langword="in"/>.
+	/// </para>
+	/// </summary>
+	public string EquatableLargeStructModifier { get; init; } = "ref readonly";
+
+	/// <summary>
 	/// Defines a behavior by source generator on generating <see cref="object.Equals(object?)"/> overridden methods.
 	/// </summary>
 	/// <remarks>

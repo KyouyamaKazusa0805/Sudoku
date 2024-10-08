@@ -12,7 +12,6 @@ public partial struct CandidateMap
 		/// Indicates the first element of the whole buffer.
 		/// </summary>
 		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private long _firstElement;
 
 

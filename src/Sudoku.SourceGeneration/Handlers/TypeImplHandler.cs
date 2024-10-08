@@ -34,6 +34,8 @@ internal static class TypeImplHandler
 
 	private const string OtherModifiersOnEquatableEqualsPropertyName = "OtherModifiersOnEquatableEquals";
 
+	private const string EquatableLargeStructModifierPropertyName = "EquatableLargeStructModifier";
+
 
 	private static readonly Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[] Methods = [
 		Object_Equals,
@@ -1190,9 +1192,26 @@ internal static class TypeImplHandler
 		var unboundEquatableInterfaceType = compilation.GetTypeByMetadataName(EquatableTypeName)!;
 		var equalityOperatorsInterfaceType = compilation.GetTypeByMetadataName(EqualityOperatorsTypeName)!;
 		var equatableInterfaceType = unboundEquatableInterfaceType.Construct(type);
+		var inlineArrayAttributeType = compilation.GetTypeByMetadataName("System.Runtime.CompilerServices.InlineArrayAttribute");
+		var baseType = default(INamedTypeSymbol);
 		if (!allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, equatableInterfaceType)))
 		{
-			return null;
+			if (kind == TypeKind.Class)
+			{
+				for (var currentType = type.BaseType; currentType is not null; currentType = currentType.BaseType)
+				{
+					var equatableInterfaceTypeCurrent = unboundEquatableInterfaceType.Construct(currentType);
+					if (currentType.AllInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, equatableInterfaceTypeCurrent)))
+					{
+						baseType = currentType;
+						break;
+					}
+				}
+			}
+			if (baseType is null)
+			{
+				return null;
+			}
 		}
 
 		var isLargeStructure = attribute.GetNamedArgument(IsLargeStructurePropertyName, false);
@@ -1228,18 +1247,17 @@ internal static class TypeImplHandler
 			{
 				return symbol switch
 				{
-					IFieldSymbol { Name: var name, NullableAnnotation: var nullableAnnotation, Type: var fieldType }
-						=> getComparisonString(fieldType, name, nullableAnnotation),
-					IPropertySymbol { Name: var name, NullableAnnotation: var nullableAnnotation, Type: var propertyType }
-						=> getComparisonString(propertyType, name, nullableAnnotation),
+					IFieldSymbol { Name: var name, Type: var fieldType } => getComparisonString(fieldType, name),
+					IPropertySymbol { Name: var name, Type: var propertyType } => getComparisonString(propertyType, name),
 					_ => null
 				};
 
 
-				string getComparisonString(ITypeSymbol type, string name, NullableAnnotation nullableAnnotation)
+				string getComparisonString(ITypeSymbol type, string name)
 				{
 					var p = equalityOperatorsInterfaceType.Construct(type, type, compilation.GetSpecialType(System_Boolean));
 					var q = unboundEquatableInterfaceType.Construct(type);
+					var r = compilation.GetTypeByMetadataName("System.Collections.BitArray");
 					switch (type)
 					{
 						case { SpecialType: System_Object }:
@@ -1248,43 +1266,52 @@ internal static class TypeImplHandler
 						}
 						case { SpecialType: >= System_Enum and <= System_UIntPtr and not (System_ValueType or System_Void) }:
 						case { TypeKind: TypeKind.Pointer or TypeKind.FunctionPointer }:
-						case { AllInterfaces: var allInterfaces } when allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, p)):
+						case { AllInterfaces: var allInterfaces } when implsEqualityOperators(allInterfaces):
 						{
 							return $"{name} == other.{name}";
 						}
-						case { AllInterfaces: var allInterfaces } when allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, q)):
+						case { AllInterfaces: var allInterfaces } when implsEquatable(allInterfaces):
 						{
-							return nullableAnnotation != NotAnnotated
-								? $"{name}.Equals(other.{name})"
-								: $$"""
-								({{name}}, other.{{name}}) switch 
-								{
-									(null, null) => true,
-									(not null, not null) => {{name}}.Equals(other.{{name}}),
-									_ => false
-								}
-								""";
+							return $"{name}.Equals(other.{name})";
+						}
+						case var _ when isInlineArray():
+						{
+							return $"{name}[..].SequenceEqual(other.{name}[..])";
+						}
+						case var _ when isBitArray():
+						{
+							return $"{name}.SequenceEqual(other.{name})";
 						}
 						default:
 						{
 							var fullName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
-							return $"global::System.EqualityComparer<{fullName}>.Default.Equals({name}, other.{name})";
+							return $"global::System.Collections.Generic.EqualityComparer<{fullName}>.Default.Equals({name}, other.{name})";
 						}
 					}
+
+
+					bool implsEqualityOperators(ImmutableArray<INamedTypeSymbol> allInterfaces)
+						=> allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, p));
+
+					bool implsEquatable(ImmutableArray<INamedTypeSymbol> allInterfaces)
+						=> allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, q));
+
+					bool isInlineArray() => type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, inlineArrayAttributeType));
+
+					bool isBitArray() => SymbolEqualityComparer.Default.Equals(type, r);
 				}
 			},
 			cancellationToken
 		);
 
-		var expressionString = string.Join(
-			" && ",
-			from pair in referencedMembers
-			where pair.ExtraData is not null
-			select pair.ExtraData
-		);
 		var nullableToken = kind == TypeKind.Struct ? string.Empty : "?";
+		var otherIsNullCheckString = string.IsNullOrEmpty(nullableToken) ? string.Empty : "other is not null && ";
+		var expressionString = type.GetAttributes().Any(a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, inlineArrayAttributeType))
+			? "this[..].SequenceEqual(other[..])"
+			: string.Join(" && ", from pair in referencedMembers where pair.ExtraData is not null select pair.ExtraData);
 		var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
 		var paramMarkup = string.IsNullOrEmpty(nullableToken) ? string.Empty : "[global::System.Diagnostics.CodeAnalysis.NotNullWhenAttribute(true)] ";
+		var largeStructModifier = attribute.GetNamedArgument(EquatableLargeStructModifierPropertyName, "ref readonly");
 		return string.IsNullOrEmpty(inKeyword)
 			? $$"""
 			namespace {{namespaceString}}
@@ -1296,7 +1323,7 @@ internal static class TypeImplHandler
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 					public {{otherModifiersString}}{{readOnlyModifier}}bool Equals({{paramMarkup}}{{fullTypeNameString}}{{nullableToken}} other)
-						=> {{expressionString}};
+						=> {{otherIsNullCheckString}}{{expressionString}};
 				}
 			#line default
 			}
@@ -1310,7 +1337,7 @@ internal static class TypeImplHandler
 					/// <inheritdoc cref="global::System.IEquatable{T}.Equals(T)"/>
 					[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
 					[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-					public {{otherModifiersString}}{{readOnlyModifier}}bool Equals({{fullTypeNameString}}{{nullableToken}} other)
+					public {{otherModifiersString}}{{readOnlyModifier}}bool Equals({{largeStructModifier}} {{fullTypeNameString}} other)
 						=> {{expressionString}};
 
 					/// <inheritdoc/>

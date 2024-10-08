@@ -17,7 +17,9 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 /// <param name="map">Indicates the cells used.</param>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators, ToStringBehavior = ToStringBehavior.RecordLike)]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
+	ToStringBehavior = ToStringBehavior.RecordLike)]
 public readonly ref partial struct Cluster(
 	[Field, HashCodeMember, StringMember] ref readonly Grid grid,
 	[Property, HashCodeMember, StringMember] Digit digit,
@@ -28,6 +30,7 @@ public readonly ref partial struct Cluster(
 	/// Indicates the internal map.
 	/// </summary>
 	[UnscopedRef]
+	[EquatableMember]
 	public ref readonly CellMap Map => ref _map;
 
 	/// <summary>
@@ -115,11 +118,6 @@ public readonly ref partial struct Cluster(
 			return result;
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Cluster other) => Map == other.Map;
 
 
 	/// <summary>

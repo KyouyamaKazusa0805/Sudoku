@@ -15,7 +15,7 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, Candida
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
 		| TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator,
+		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable,
 	IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 {
@@ -37,6 +37,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// Indicates the internal field that provides the visit entry for fixed-sized buffer type <see cref="BackingBuffer"/>.
 	/// </summary>
 	/// <seealso cref="BackingBuffer"/>
+	[EquatableMember]
 	private BackingBuffer _bits;
 
 
@@ -303,10 +304,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(ref readonly CandidateMap other) => _bits == other._bits;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool TryFormat(CharSequence destination, out int charsWritten, ReadOnlyCharSequence format, IFormatProvider? provider)
 	{
 		var targetString = ToString(provider);
@@ -534,9 +531,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <seealso cref="Count"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = Empty;
-
-	/// <inheritdoc/>
-	readonly bool IEquatable<CandidateMap>.Equals(CandidateMap other) => Equals(in other);
 
 	/// <inheritdoc/>
 	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any() => Count != 0;

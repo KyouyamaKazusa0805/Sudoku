@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a graph that displays a list of <see cref="Cell"/> instances connected with rows and columns of adjacent positions.
 /// </summary>
 /// <seealso cref="Cell"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 public readonly ref partial struct AdjacentCellGraph :
 	IEquatable<AdjacentCellGraph>,
 	//IEqualityOperators<AdjacentCellGraph, AdjacentCellGraph, bool>,
@@ -13,7 +13,12 @@ public readonly ref partial struct AdjacentCellGraph :
 	/// <summary>
 	/// Indicates the backing field of cells.
 	/// </summary>
+	[EquatableMember]
 	public readonly ref readonly CellMap Cells;
+
+
+	[HashCodeMember]
+	private int HashCode => Cells.GetHashCode();
 
 
 	/// <summary>
@@ -91,10 +96,6 @@ public readonly ref partial struct AdjacentCellGraph :
 		}
 	}
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(AdjacentCellGraph other) => Cells == other.Cells;
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => Cells.GetHashCode();

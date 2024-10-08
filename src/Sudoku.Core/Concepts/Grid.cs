@@ -15,7 +15,9 @@ using GridBase = IGrid<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllEqualityComparisonOperators, IsLargeStructure = true)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.Equatable,
+	IsLargeStructure = true)]
 public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
 	/// <inheritdoc cref="IGridConstants{TSelf}.DefaultMask"/>
@@ -456,10 +458,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		digitsMap = DigitsMap;
 		valuesMap = ValuesMap;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(ref readonly Grid other) => this[..].SequenceEqual(other[..]);
 
 	/// <inheritdoc/>
 	public readonly bool ConflictWith(Cell cell, Digit digit)

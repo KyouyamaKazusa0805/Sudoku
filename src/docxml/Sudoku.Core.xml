@@ -80,9 +80,6 @@
             Try to get a list of cells and its corresponding directions that inner border lines will be created.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.Equals(Sudoku.Concepts.AdjacentCellGraph)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.AdjacentCellGraph.GetHashCode">
             <inheritdoc/>
         </member>
@@ -103,6 +100,9 @@
         </member>
         <member name="M:Sudoku.Concepts.AdjacentCellGraph.op_Inequality(Sudoku.Concepts.AdjacentCellGraph,Sudoku.Concepts.AdjacentCellGraph)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AdjacentCellGraph.Equals(Sudoku.Concepts.AdjacentCellGraph)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
@@ -347,9 +347,6 @@
             <param name="item">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Equals(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -433,9 +430,6 @@
             Remove all elements stored in the current collection, and set the property <see cref="P:Sudoku.Concepts.CandidateMap.Count"/> to zero.
             </summary>
             <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CandidateMap,System#Int32}#Any">
             <inheritdoc/>
@@ -622,6 +616,12 @@
             <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_LogicalNot(Sudoku.Concepts.CandidateMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Equals(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMarshal">
@@ -901,9 +901,6 @@
             <param name="item">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc cref="M:System.ISpanFormattable.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
         </member>
@@ -956,9 +953,6 @@
             Remove all elements stored in the current collection, and set the property <see cref="P:Sudoku.Concepts.CellMap.Count"/> to zero.
             </summary>
             <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CellMap,System#Int32}#Any">
             <inheritdoc/>
@@ -1188,6 +1182,12 @@
             <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_LogicalNot(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CellMarshal">
@@ -1423,18 +1423,12 @@
             <param name="degree">The degree. The value must be between 0 and 3.</param>
             <returns>All cells whose degree is equal to the specified value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Equals(Sudoku.Concepts.Coloring.CellGraph)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.GetDegreeOf(System.Int32)">
             <summary>
             Try to get the degree of the specified cell.
             </summary>
             <param name="cell">The desired cell.</param>
             <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Coloring.CellGraph.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
@@ -1521,6 +1515,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coloring.CellGraph.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.CellGraph.Equals(Sudoku.Concepts.Coloring.CellGraph)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coloring.CellGraphDepth">
@@ -1631,9 +1628,6 @@
             Represents a list of cells that will form trap contradictions in the cluster.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Coloring.Cluster.Equals(Sudoku.Concepts.Coloring.Cluster)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Coloring.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Coloring.Cluster"/> instance via the specified grid.
@@ -1671,6 +1665,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Coloring.Cluster.op_Inequality(Sudoku.Concepts.Coloring.Cluster,Sudoku.Concepts.Coloring.Cluster)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coloring.Cluster.Equals(Sudoku.Concepts.Coloring.Cluster)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coloring.Parity">
             <summary>
@@ -1851,9 +1848,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.Equals(Sudoku.Concepts.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.CompareTo(Sudoku.Concepts.Conclusion)">
             <inheritdoc/>
         </member>
@@ -1914,6 +1908,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_Inequality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Equals(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionExtensions">
             <summary>
@@ -2018,9 +2015,6 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.CopyTo(System.Span{Sudoku.Concepts.Conclusion})">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Equals(Sudoku.Concepts.ConclusionSet)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Contains(Sudoku.Concepts.Conclusion)">
             <inheritdoc/>
@@ -2207,6 +2201,9 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.System#ILogicalOperators{Sudoku#Concepts#ConclusionSet}#op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Equals(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.ConclusionType">
             <summary>
             Provides a conclusion type.
@@ -2312,9 +2309,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Concepts.Conjugate.Equals(Sudoku.Concepts.Conjugate)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Conjugate.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
@@ -2347,6 +2341,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conjugate.Equals(Sudoku.Concepts.Conjugate)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateConverter">
             <summary>
@@ -4010,9 +4007,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.ConflictWith(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -4287,6 +4281,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridComparison">
@@ -7384,9 +7384,6 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.ViewNode"/>
         </member>
-        <member name="M:Sudoku.Drawing.ViewNode.Equals(Sudoku.Drawing.ViewNode)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.ViewNode.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
@@ -7407,6 +7404,9 @@
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.op_Inequality(Sudoku.Drawing.ViewNode,Sudoku.Drawing.ViewNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Drawing.ViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.WellKnownColorIdentifier">
             <summary>
@@ -9262,9 +9262,6 @@
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the library isn't initialized.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Equals(Sudoku.Runtime.LibraryServices.LibraryInfo)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Any">
             <summary>
             Determines whether the library contains at least one puzzle.
@@ -9444,6 +9441,9 @@
         <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.op_Inequality(Sudoku.Runtime.LibraryServices.LibraryInfo,Sudoku.Runtime.LibraryServices.LibraryInfo)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.LibraryInfo.Equals(Sudoku.Runtime.LibraryServices.LibraryInfo)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Runtime.LibraryServices.LibraryInitializationException">
             <summary>
             Represents an exception type that will be thrown if a library instance has already been initialized, but a user still calls
@@ -9557,9 +9557,6 @@
             <summary>
             Sets the pointer to the end position, the length of the stream.
             </summary>
-        </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(Sudoku.Runtime.LibraryServices.TextPointer)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.TryReadNextPuzzle(System.String@)">
             <summary>
@@ -9709,6 +9706,9 @@
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.op_Inequality(Sudoku.Runtime.LibraryServices.TextPointer,Sudoku.Runtime.LibraryServices.TextPointer)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>

@@ -8,7 +8,7 @@ namespace Sudoku.Concepts;
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="_mask">Indicates the target mask.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 public readonly partial struct Conjugate(ConjugateMask _mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>,
@@ -52,6 +52,7 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// Indicates the digit used.
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	public Digit Digit => _mask >> 20 & 15;
 
 	/// <summary>
@@ -68,16 +69,13 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// Indicates the cells (the "from" cell and "to" cell).
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	public CellMap Map => [From, To];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (From * 9 + Digit, To * 9 + Digit);
-
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

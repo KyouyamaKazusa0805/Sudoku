@@ -26,7 +26,7 @@ namespace Sudoku.Concepts;
 /// but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
 	IDrawableItem,
@@ -95,6 +95,9 @@ public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 		get => (ConclusionType)(_mask / 729);
 	}
 
+	[EquatableMember]
+	private Mask MaskEntry => _mask;
+
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -105,10 +108,6 @@ public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit)
 		=> ((conclusionType, _), cell, digit) = (this, Cell, Digit);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Conclusion other) => _mask == other._mask;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
 		| TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator)]
+		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
@@ -51,6 +51,7 @@ public sealed partial class ConclusionSet :
 	/// <summary>
 	/// The internal bit array.
 	/// </summary>
+	[EquatableMember]
 	private readonly BitArray _bitArray = new(BitsCount);
 
 
@@ -214,10 +215,6 @@ public sealed partial class ConclusionSet :
 			span[i++] = conclusion;
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] ConclusionSet? other) => other is not null && _bitArray.SequenceEqual(other._bitArray);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

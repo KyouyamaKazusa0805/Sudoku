@@ -8,7 +8,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 /// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 public sealed partial class TextPointer(LibraryInfo library) :
 	IAdditionOperators<TextPointer, int, TextPointer>,
 	IAsyncDisposable,
@@ -136,6 +136,7 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
+	[EquatableMember]
 	public LibraryInfo Library { get; } = library;
 
 	/// <inheritdoc/>
@@ -148,6 +149,7 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	/// Indicates the position of the pointer.
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	private long PositionOfPointer => _stream.Position;
 
 
@@ -166,11 +168,6 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetEnd() => _stream.Position = _stream.Length;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] TextPointer? other)
-		=> other is not null && Library == other.Library && _stream.Position == other._stream.Position;
 
 	/// <summary>
 	/// Try to read the next puzzle beginning with the current text pointer position.

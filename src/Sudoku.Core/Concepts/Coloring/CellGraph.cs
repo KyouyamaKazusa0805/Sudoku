@@ -9,7 +9,8 @@ namespace Sudoku.Concepts.Coloring;
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
-public readonly partial struct CellGraph : IFormattable, IReadOnlyCollection<Cell>
+[TypeImpl(TypeImplFlag.Equatable)]
+public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
 	/// Indicates the default empty graph without any cells.
@@ -20,6 +21,7 @@ public readonly partial struct CellGraph : IFormattable, IReadOnlyCollection<Cel
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
+	[EquatableMember]
 	private readonly CellMap _cells;
 
 	/// <summary>
@@ -145,10 +147,6 @@ public readonly partial struct CellGraph : IFormattable, IReadOnlyCollection<Cel
 	}
 
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(CellGraph other) => _cells == other._cells;
-
 	/// <summary>
 	/// Try to get the degree of the specified cell.
 	/// </summary>
@@ -156,9 +154,6 @@ public readonly partial struct CellGraph : IFormattable, IReadOnlyCollection<Cel
 	/// <returns>An <see cref="int"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int GetDegreeOf(Cell cell) => _cells.Contains(cell) ? _directlyConnectedCellsDictionary[cell].Count : -1;
-
-	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

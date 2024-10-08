@@ -21,9 +21,10 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(SquareViewNode), 15)]
 [JsonDerivedType(typeof(HeartViewNode), 16)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
-	ToStringBehavior = ToStringBehavior.MakeAbstract)]
+	ToStringBehavior = ToStringBehavior.MakeAbstract,
+	OtherModifiersOnEquatableEquals = "virtual")]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	ICloneable,
 	IDrawableItem,
@@ -39,6 +40,7 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	/// because it's in primary constructor declaration by a base type.
 	/// </b></remarks>
 	[StringMember]
+	[EquatableMember]
 	public ColorIdentifier Identifier { get; } = identifier;
 
 	/// <summary>
@@ -49,9 +51,6 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	[StringMember("EqualityContract")]
 	protected string TypeIdentifier => GetType().Name;
 
-
-	/// <inheritdoc/>
-	public virtual bool Equals([NotNullWhen(true)] ViewNode? other) => Identifier == other?.Identifier;
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	public abstract ViewNode Clone();

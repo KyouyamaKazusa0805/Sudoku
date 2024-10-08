@@ -14,7 +14,7 @@ namespace Sudoku.Runtime.LibraryServices;
 [DebuggerStepThrough]
 [StructLayout(LayoutKind.Auto)]
 [SupportedOSPlatform(PlatformNames.Windows)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
 public readonly partial struct LibraryInfo(
 	[Field(Accessibility = "internal"), HashCodeMember, StringMember] string directory,
 	[Property, HashCodeMember, StringMember] string fileId
@@ -61,6 +61,7 @@ public readonly partial struct LibraryInfo(
 	/// If you want to check for details of the configuration, use <see cref="ConfigFilePath"/> instead.
 	/// </summary>
 	/// <seealso cref="ConfigFilePath"/>
+	[EquatableMember]
 	public string LibraryFilePath => $@"{_directory}\{FileId}";
 
 	/// <summary>
@@ -296,10 +297,6 @@ public readonly partial struct LibraryInfo(
 
 		throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(LibraryInfo other) => LibraryFilePath == other.LibraryFilePath;
 
 	/// <summary>
 	/// Determines whether the library contains at least one puzzle.

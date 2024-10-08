@@ -1458,6 +1458,18 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.IEquatable`1.Equals(`0)"/> method.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EquatableLargeStructModifier">
+            <summary>
+            <para>
+            Indicates the modifier that will be applied to implement <c>Equals</c>, as the parameter modifier,
+            if the corresponding type (containing type) is a large structure.
+            </para>
+            <para>
+            By default, the modifier is <see langword="ref readonly"/>.
+            Supported values can be <see langword="ref"/>, <see langword="ref readonly"/> or <see langword="in"/>.
+            </para>
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
