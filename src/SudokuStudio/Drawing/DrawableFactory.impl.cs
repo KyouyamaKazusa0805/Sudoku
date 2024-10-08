@@ -141,7 +141,7 @@ internal partial class DrawableFactory
 	/// what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
 	/// </param>
 	/// <seealso cref="CandidateViewNode"/>
-	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped)
+	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, ReadOnlyMemory<Conclusion> conclusions, out Conclusion? overlapped)
 	{
 		var (sudokuPane, animatedResults) = context;
 		(overlapped, var (id, candidate)) = (null, candidateNode);
@@ -323,7 +323,7 @@ internal partial class DrawableFactory
 	/// <remarks>
 	/// This method is special: We should handle all <see cref="ILinkViewNode"/> instances together.
 	/// </remarks>
-	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, Conclusion[] conclusions)
+	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, ReadOnlyMemory<Conclusion> conclusions)
 	{
 		var (sudokuPane, animatedResults) = context;
 		if (sudokuPane.MainGrid is not { } gridControl)
@@ -377,7 +377,7 @@ internal partial class DrawableFactory
 	}
 
 	/// <summary>
-	/// The core method called by <see cref="ForCandidateNode(DrawingContext, CandidateViewNode, Conclusion[], out Conclusion?)"/>.
+	/// The core method called by <see cref="ForCandidateNode(DrawingContext, CandidateViewNode, ReadOnlyMemory{Conclusion}, out Conclusion?)"/>.
 	/// </summary>
 	/// <param name="id">The color identifier.</param>
 	/// <param name="color">The color to be used on rendering.</param>
@@ -588,7 +588,7 @@ file static class Extensions
 	/// <param name="candidate">The candidate to be determined.</param>
 	/// <param name="conclusion">The overlapped result.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool ConflictWith(this Conclusion[] conclusions, Candidate candidate, [NotNullWhen(true)] out Conclusion? conclusion)
+	public static bool ConflictWith(this ReadOnlyMemory<Conclusion> conclusions, Candidate candidate, [NotNullWhen(true)] out Conclusion? conclusion)
 	{
 		foreach (var current in conclusions)
 		{

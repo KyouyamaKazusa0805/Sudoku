@@ -108,7 +108,7 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 
 						// A grouped two-strong link is found.
 						var step = new TwoStrongLinksStep(
-							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
+							(from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray(),
 							[
 								[
 									.. from cell in headCells select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),

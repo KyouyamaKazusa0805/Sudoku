@@ -243,7 +243,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
-				[.. conclusions],
+				conclusions.AsReadOnlyMemory(),
 				[
 					[
 						.. valueCellNodes,

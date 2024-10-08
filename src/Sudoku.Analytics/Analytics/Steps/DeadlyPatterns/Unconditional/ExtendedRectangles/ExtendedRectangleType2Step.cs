@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 public sealed partial class ExtendedRectangleType2Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

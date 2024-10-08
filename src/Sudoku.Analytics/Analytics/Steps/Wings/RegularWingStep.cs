@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates a mask that contains all digits used.</param>
 /// <param name="petals">Indicates the petals used.</param>
 public sealed partial class RegularWingStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Cell pivot,

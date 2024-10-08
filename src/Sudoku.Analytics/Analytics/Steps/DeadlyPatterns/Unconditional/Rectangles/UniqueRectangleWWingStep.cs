@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="endCells">Indicates the end cells.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleWWingStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Technique code,

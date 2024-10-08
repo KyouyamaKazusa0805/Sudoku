@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="candidate">Indicates the true candidate.</param>
 public sealed partial class UniqueMatrixType1Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

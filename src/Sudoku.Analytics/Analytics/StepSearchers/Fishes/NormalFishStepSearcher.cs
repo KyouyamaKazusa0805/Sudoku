@@ -263,7 +263,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 					accumulator.Add(
 						new NormalFishStep(
-							[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
+							(from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray(),
 							[
 								[
 									..

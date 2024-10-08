@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
 /// </param>
 public abstract partial class QiuDeadlyPatternStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] bool is2LinesWith2Cells,

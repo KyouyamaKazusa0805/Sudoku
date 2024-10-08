@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class EmptyRectangleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit,

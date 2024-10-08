@@ -8,7 +8,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 	/// <summary>
 	/// Initializes a <see cref="ViewUnitBindableSource"/> instance.
 	/// </summary>
-	public ViewUnitBindableSource() : this([], [])
+	public ViewUnitBindableSource() : this(ReadOnlyMemory<Conclusion>.Empty, [])
 	{
 	}
 
@@ -17,23 +17,20 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 	/// </summary>
 	/// <param name="conclusions">The conclusions.</param>
 	/// <param name="view">The view.</param>
-	public ViewUnitBindableSource(Conclusion[] conclusions, View view) => (Conclusions, View) = (conclusions, view);
+	public ViewUnitBindableSource(ReadOnlyMemory<Conclusion> conclusions, View view) => (Conclusions, View) = (conclusions, view);
 
 
 	/// <summary>
 	/// Indicates the candidates as conclusions in a single <see cref="Step"/>.
 	/// </summary>
 	[DependencyProperty]
-	public partial Conclusion[] Conclusions { get; set; }
+	public partial ReadOnlyMemory<Conclusion> Conclusions { get; set; }
 
 	/// <summary>
 	/// Indicates a view of highlight elements.
 	/// </summary>
 	[DependencyProperty]
 	public partial View View { get; set; }
-
-	/// <inheritdoc/>
-	ReadOnlyMemory<Conclusion> IDrawable.Conclusions => Conclusions;
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<View> IDrawable.Views => (View[])[View];
@@ -87,7 +84,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 		static ReadOnlySpan<IDrawableItem> f(ViewUnitBindableSource value)
 		{
 			var result = new List<IDrawableItem>();
-			result.AddRange(from conclusion in value.Conclusions select (IDrawableItem)conclusion);
+			result.AddRange(from conclusion in value.Conclusions.Span select (IDrawableItem)conclusion);
 			result.AddRange(value.View);
 
 			foreach (var node in value.View.OfType<ChainLinkViewNode>())
@@ -194,8 +191,8 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 				var rightChainNodes = ReadOnlySpan<ILinkViewNode>.CastUp(right.View.OfType<ChainLinkViewNode>());
 				foreach (var link in (left.View & right.View).OfType<ChainLinkViewNode>())
 				{
-					if (link.IsPassedThrough(leftChainNodes, left.View.OfType<CandidateViewNode>(), left.Conclusions, g)
-						^ link.IsPassedThrough(rightChainNodes, right.View.OfType<CandidateViewNode>(), right.Conclusions, g))
+					if (link.IsPassedThrough(leftChainNodes, left.View.OfType<CandidateViewNode>(), left.Conclusions.Span, g)
+						^ link.IsPassedThrough(rightChainNodes, right.View.OfType<CandidateViewNode>(), right.Conclusions.Span, g))
 					{
 						negatives.Add(link);
 						positives.Add(link);

@@ -627,8 +627,7 @@ public sealed partial class Analyzer : AnalyzerBase
 							newConclusions.Add(newConclusion);
 						}
 					}
-
-					step.Conclusions = [.. originalConclusions, .. newConclusions];
+					step.UpdateConclusionsUnsafe([.. originalConclusions, .. newConclusions]);
 				}
 
 				var atLeastOneConclusionIsWorth = false;

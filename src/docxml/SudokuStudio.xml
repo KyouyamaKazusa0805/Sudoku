@@ -721,7 +721,7 @@
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View)">
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View)">
             <summary>
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance via the specified values.
             </summary>
@@ -737,9 +737,6 @@
             <summary>
             Indicates a view of highlight elements.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Sudoku#Drawing#IDrawable#Conclusions">
-            <inheritdoc/>
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Sudoku#Drawing#IDrawable#Views">
             <inheritdoc/>
@@ -3298,7 +3295,7 @@
             <param name="iconNode">The node to be displayed.</param>
             <seealso cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},System.Nullable{Sudoku.Concepts.Conclusion}@)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>.
             </summary>
@@ -3341,7 +3338,7 @@
             <param name="babaGroupNode">Indicates the baba grouping view nodes.</param>
             <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Drawing.DrawingContext,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.Conclusion[])">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Drawing.DrawingContext,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlyMemory{Sudoku.Concepts.Conclusion})">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ILinkViewNode"/> instances.
             </summary>
@@ -3362,7 +3359,7 @@
         </member>
         <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,Sudoku.Drawing.Nodes.CandidateViewNode,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@)"/>.
+            The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Drawing.DrawingContext,Sudoku.Drawing.Nodes.CandidateViewNode,System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},System.Nullable{Sudoku.Concepts.Conclusion}@)"/>.
             </summary>
             <param name="id">The color identifier.</param>
             <param name="color">The color to be used on rendering.</param>
@@ -3400,7 +3397,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Drawing.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
+        <member name="M:SudokuStudio.Drawing.Extensions.ConflictWith(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
             <para>This method is used for checking cannibalism.</para>

@@ -59,7 +59,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				{
 					tempAccumulator.Add(
 						new(
-							[new(Elimination, startCandidate)],
+							(Conclusion[])[new(Elimination, startCandidate)],
 							[
 								[
 									.. from p in _tempConclusions select new CandidateViewNode(ColorIdentifier.Normal, p.Candidate),
@@ -106,7 +106,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	)
 	{
 		var context2 = new StepAnalysisContext(in grid) { OnlyFindOne = true, Options = context.Options };
-		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions: [{ Cell: var c, Digit: var d } conclusion, ..] })
+		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions.Span: [{ Cell: var c, Digit: var d } conclusion, ..] })
 		{
 			// Two cases we don't need to go on.
 			// Case 1: The variable 'length' is 0.
@@ -140,7 +140,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			}
 
 			var step = new BowmanBingoStep(
-				[new(Elimination, startCand)],
+				(Conclusion[])[new(Elimination, startCand)],
 				[[.. candidateOffsets, .. GetLinks()]],
 				context.Options,
 				[.. _tempConclusions]

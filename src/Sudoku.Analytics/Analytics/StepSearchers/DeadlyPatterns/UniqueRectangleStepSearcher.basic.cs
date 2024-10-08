@@ -71,7 +71,7 @@ public partial class UniqueRectangleStepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType1Step(
-				[.. conclusions],
+				conclusions.AsReadOnlyMemory(),
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
 				context.Options,
 				d1,
@@ -162,7 +162,7 @@ public partial class UniqueRectangleStepSearcher
 		var isType5 = !(corner1.AsCellMap() + corner2).InOneHouse(out _);
 		accumulator.Add(
 			new UniqueRectangleType2Or5Step(
-				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+				(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				context.Options,
 				d1,
@@ -304,7 +304,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
-							[.. conclusions],
+							conclusions.AsReadOnlyMemory(),
 							[[.. arMode ? cellOffsets : [], .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 							context.Options,
 							d1,
@@ -406,7 +406,7 @@ public partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleConjugatePairStep(
-					[.. conclusions],
+					conclusions.ToArray(),
 					[
 						[
 							.. candidateOffsets,
@@ -507,7 +507,7 @@ public partial class UniqueRectangleStepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType2Or5Step(
-				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+				(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				context.Options,
 				d1,
@@ -621,7 +621,7 @@ public partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new UniqueRectangleConjugatePairStep(
-					[.. conclusions],
+					conclusions.ToArray(),
 					[
 						[
 							.. candidateOffsets,
@@ -739,7 +739,7 @@ public partial class UniqueRectangleStepSearcher
 
 			accumulator.Add(
 				new HiddenUniqueRectangleStep(
-					[new(Elimination, abzCell, elimDigit)],
+					(Conclusion[])[new(Elimination, abzCell, elimDigit)],
 					[
 						[
 							.. arMode ? GetHighlightCells(urCells) : [],

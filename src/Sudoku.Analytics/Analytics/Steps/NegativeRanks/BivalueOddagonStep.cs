@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 public abstract partial class BivalueOddagonStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap loopCells,

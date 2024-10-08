@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="lockedCombinations">Indicates all locked combinations.</param>
 public sealed partial class AlignedExclusionStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,
@@ -49,7 +49,7 @@ public sealed partial class AlignedExclusionStep(
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 
-	private string ConclusionNegatedStr => Options.Converter.ConclusionConverter(from c in Conclusions select ~c);
+	private string ConclusionNegatedStr => Options.Converter.ConclusionConverter(from c in Conclusions.Span select ~c);
 
 
 	/// <inheritdoc/>

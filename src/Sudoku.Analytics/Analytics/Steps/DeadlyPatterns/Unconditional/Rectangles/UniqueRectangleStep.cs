@@ -23,7 +23,7 @@ namespace Sudoku.Analytics.Steps;
 /// </para>
 /// </param>
 public abstract partial class UniqueRectangleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(Accessibility = "public sealed override")] Technique code,
@@ -68,8 +68,8 @@ public abstract partial class UniqueRectangleStep(
 			return false;
 		}
 
-		var l = (from conclusion in Conclusions select conclusion.Candidate).AsCandidateMap();
-		var r = (from conclusion in comparer.Conclusions select conclusion.Candidate).AsCandidateMap();
+		var l = (from conclusion in Conclusions.ToArray() select conclusion.Candidate).AsCandidateMap();
+		var r = (from conclusion in comparer.Conclusions.ToArray() select conclusion.Candidate).AsCandidateMap();
 		return l == r;
 	}
 

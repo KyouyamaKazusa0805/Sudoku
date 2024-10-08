@@ -23,7 +23,7 @@ internal static class AnalyzeConversion
 
 	public static double GetWidth_SudokuExplainerText(bool showing) => showing ? 60 : 0;
 
-	public static string GetEliminationString(Step step) => step.Options.Converter.ConclusionConverter(step.Conclusions);
+	public static string GetEliminationString(Step step) => step.Options.Converter.ConclusionConverter(step.Conclusions.Span);
 
 	public static string GetDifficultyRatingText(Step step)
 	{

@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="wDigitsMask">Indicates the mask of W digits used.</param>
 /// <param name="xDigit">Indicates the digit X.</param>
 public sealed partial class AlmostLockedSetsWWingStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(NamingRule = "FirstAls")] AlmostLockedSetPattern als1,

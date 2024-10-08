@@ -94,7 +94,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleExternalType1Or2Step(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)],
+						(from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)).ToArray(),
 						[
 							[
 								.. cellOffsets,
@@ -260,7 +260,7 @@ public partial class UniqueRectangleStepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalType3Step(
-									[.. conclusions],
+									conclusions.AsReadOnlyMemory(),
 									[
 										[
 											.. cellOffsets,
@@ -426,7 +426,7 @@ public partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleExternalType4Step(
-								[.. conclusions],
+								conclusions.AsReadOnlyMemory(),
 								[
 									[
 										.. cellOffsets,
@@ -605,7 +605,7 @@ public partial class UniqueRectangleStepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalTurbotFishStep(
-									[.. from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)],
+									(from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)).ToArray(),
 									[
 										[
 											.. candidateOffsets,
@@ -812,7 +812,7 @@ public partial class UniqueRectangleStepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalWWingStep(
-									[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
+									(from cell in elimMap select new Conclusion(Elimination, cell, wDigit)).ToArray(),
 									[
 										[
 											.. candidateOffsets,
@@ -1019,7 +1019,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleExternalXyWingStep(
-							[new(Elimination, cell1, elimDigit)],
+							(Conclusion[])[new(Elimination, cell1, elimDigit)],
 							[[.. cellOffsets, .. candidateOffsets]],
 							context.Options,
 							d1,
@@ -1139,7 +1139,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleExternalXyWingStep(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+						(from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)).ToArray(),
 						[
 							[
 								.. cellOffsets,
@@ -1308,7 +1308,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
-							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
+							(from cell in elimMap select new Conclusion(Elimination, cell, zDigit)).ToArray(),
 							[
 								[
 									.. candidateOffsets,

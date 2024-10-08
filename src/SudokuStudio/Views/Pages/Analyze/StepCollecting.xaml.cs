@@ -62,7 +62,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			..
 			from step in collection
 			let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
-			let conclusions = new HashSet<Conclusion>(step.Conclusions) // step.Conclusions make contain duplicate items
+			let conclusions = new HashSet<Conclusion>(step.Conclusions.ToArray()) // step.Conclusions make contain duplicate items
 			let conclusionsCount = conclusions.Count
 			orderby sortKey, conclusionsCount descending
 			group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
@@ -79,7 +79,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		_nodesSortedByCell = [
 			..
 			from step in collection
-			let cells = from conclusion in step.Conclusions select conclusion.Cell
+			let cells = from conclusion in step.Conclusions.Span select conclusion.Cell
 			from cell in cells
 			orderby cell
 			group step by cell into stepsGroupedByCell

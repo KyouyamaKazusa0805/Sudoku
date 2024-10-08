@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house"><inheritdoc cref="HiddenSingleStep.House" path="/summary"/></param>
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
 public sealed partial class LastDigitStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Cell cell,

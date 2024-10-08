@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="corner1"><inheritdoc/></param>
 /// <param name="corner2"><inheritdoc/></param>
 public abstract class QiuDeadlyPatternExternalTypeStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleType2Or5Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

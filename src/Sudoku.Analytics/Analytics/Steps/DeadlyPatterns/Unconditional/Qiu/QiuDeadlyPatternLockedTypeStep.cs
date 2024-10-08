@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="corner2"><inheritdoc/></param>
 /// <param name="candidates">Indicates the candidates used as locked one.</param>
 public sealed partial class QiuDeadlyPatternLockedTypeStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

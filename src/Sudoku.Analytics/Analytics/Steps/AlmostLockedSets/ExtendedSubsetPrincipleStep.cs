@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 public sealed partial class ExtendedSubsetPrincipleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

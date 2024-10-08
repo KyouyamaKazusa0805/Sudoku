@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pattern">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the mask of digits.</param>
 public abstract partial class ChromaticPatternStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] House[] blocks,

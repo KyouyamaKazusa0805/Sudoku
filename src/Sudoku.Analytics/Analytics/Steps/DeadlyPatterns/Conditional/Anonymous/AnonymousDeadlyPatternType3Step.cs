@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetCells">Indicates the subset cells.</param>
 /// <param name="subsetDigitsMask">Indicates the extra digits used.</param>
 public sealed partial class AnonymousDeadlyPatternType3Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

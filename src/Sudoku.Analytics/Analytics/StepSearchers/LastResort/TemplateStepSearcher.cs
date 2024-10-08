@@ -50,7 +50,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 					candidateOffsets[z++] = new(ColorIdentifier.Normal, candidate);
 				}
 
-				var templateSetStep = new TemplateStep([.. templateSetConclusions], [[.. candidateOffsets]], context.Options, false);
+				var templateSetStep = new TemplateStep(templateSetConclusions.ToArray(), [[.. candidateOffsets]], context.Options, false);
 				if (context.OnlyFindOne)
 				{
 					return templateSetStep;
@@ -66,7 +66,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 			}
 
 			var templateDeleteStep = new TemplateStep(
-				[.. from cell in templateDelete select new Conclusion(Elimination, cell, digit)],
+				(from cell in templateDelete select new Conclusion(Elimination, cell, digit)).ToArray(),
 				null,
 				context.Options,
 				true

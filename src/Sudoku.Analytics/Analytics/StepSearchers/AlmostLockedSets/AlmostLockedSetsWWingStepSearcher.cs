@@ -165,7 +165,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 							}
 
 							var step = new AlmostLockedSetsWWingStep(
-								[.. conclusions],
+								conclusions.AsReadOnlyMemory(),
 								[
 									[
 										new CandidateViewNode(ColorIdentifier.Normal, cpMap[0] * 9 + x),

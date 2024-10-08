@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit2">Indicates the second digit used in the conjugate.</param>
 /// <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
 public sealed partial class UniqueMatrixType4Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="cells">Indicates cells used.</param>
 public abstract partial class AnonymousDeadlyPatternStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,

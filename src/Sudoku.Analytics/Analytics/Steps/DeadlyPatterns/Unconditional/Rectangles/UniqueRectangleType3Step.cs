@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
 /// </param>
 public sealed partial class UniqueRectangleType3Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

@@ -138,7 +138,7 @@ public partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleBurredSubsetStep(
-								[new(Elimination, elimCorner, elimDigit)],
+								(Conclusion[])[new(Elimination, elimCorner, elimDigit)],
 								[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 								context.Options,
 								d1,
@@ -358,7 +358,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleRegularWingStep(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)],
+						(from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)).ToArray(),
 						[[.. candidateOffsets, .. cellOffsets]],
 						context.Options,
 						(arMode, pivotDigit, combination.Count) switch
@@ -521,7 +521,7 @@ public partial class UniqueRectangleStepSearcher
 				var isAvoidable = arMode && (EmptyCells & cells).Count != 4;
 				accumulator.Add(
 					new UniqueRectangleWWingStep(
-						[.. from cell in elimMap select new Conclusion(Elimination, cell, wDigit)],
+						(from cell in elimMap select new Conclusion(Elimination, cell, wDigit)).ToArray(),
 						[[.. candidateOffsets]],
 						context.Options,
 						isAvoidable ? Technique.AvoidableRectangleWWing : Technique.UniqueRectangleWWing,
@@ -824,7 +824,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleSueDeCoqStep(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
@@ -1051,7 +1051,7 @@ public partial class UniqueRectangleStepSearcher
 				{
 					accumulator.Add(
 						new UniqueRectangleAlmostLockedSetsXzStep(
-							[.. eliminations],
+							eliminations.ToArray(),
 							[[.. cellOffsets, .. candidateOffsets]],
 							context.Options,
 							d1,
@@ -1122,7 +1122,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleAlmostLockedSetsXzStep(
-						[.. doublyLinkedEliminations],
+						doublyLinkedEliminations.ToArray(),
 						[[.. cellOffsets, .. candidateOffsets]],
 						context.Options,
 						d1,
@@ -1219,7 +1219,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new AvoidableRectangleHiddenSingleStep(
-							[new(Elimination, baseCell, otherDigit)],
+							(Conclusion[])[new(Elimination, baseCell, otherDigit)],
 							[
 								[
 									.. from cell in urCells select new CellViewNode(ColorIdentifier.Normal, cell),

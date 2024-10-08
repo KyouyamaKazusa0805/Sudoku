@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
 public sealed class JuniorExocetMirrorSyncStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

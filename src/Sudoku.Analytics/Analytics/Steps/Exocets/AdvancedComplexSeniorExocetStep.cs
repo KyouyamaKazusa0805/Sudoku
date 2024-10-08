@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
 /// <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
 public sealed partial class AdvancedComplexSeniorExocetStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

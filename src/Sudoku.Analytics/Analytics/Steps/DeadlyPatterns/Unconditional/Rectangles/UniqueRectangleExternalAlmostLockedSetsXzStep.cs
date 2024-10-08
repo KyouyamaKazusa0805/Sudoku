@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

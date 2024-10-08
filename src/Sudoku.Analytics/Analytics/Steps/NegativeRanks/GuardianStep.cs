@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="loopCells">Indicates the cells of the loop used.</param>
 /// <param name="guardians">Indicates the guardian cells.</param>
 public sealed partial class GuardianStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Digit digit,

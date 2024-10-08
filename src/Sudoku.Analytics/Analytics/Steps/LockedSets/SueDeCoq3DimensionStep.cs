@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
 /// <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
 public sealed partial class SueDeCoq3DimensionStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask rowDigitsMask,

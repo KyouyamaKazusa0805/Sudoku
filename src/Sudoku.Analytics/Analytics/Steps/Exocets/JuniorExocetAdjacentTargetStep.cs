@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
 public sealed partial class JuniorExocetAdjacentTargetStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

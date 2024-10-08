@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="emptyCells"><inheritdoc/></param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class ReverseBivalueUniversalGraveType4Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

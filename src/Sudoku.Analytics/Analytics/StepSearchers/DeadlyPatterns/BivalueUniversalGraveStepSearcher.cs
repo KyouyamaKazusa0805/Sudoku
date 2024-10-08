@@ -76,7 +76,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			{
 				// BUG + 1 found.
 				var step = new BivalueUniversalGraveType1Step(
-					[new(Assignment, trueCandidate)],
+					(Conclusion[])[new(Assignment, trueCandidate)],
 					[[new CandidateViewNode(ColorIdentifier.Normal, trueCandidate)]],
 					context.Options
 				);
@@ -177,7 +177,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
-					[new(Elimination, cell, digit)],
+					(Conclusion[])[new(Elimination, cell, digit)],
 					[[.. from multiValueCell in multivalueCells select new CellViewNode(ColorIdentifier.Normal, multiValueCell)]],
 					context.Options,
 					cell * 9 + digit
@@ -249,7 +249,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		// BUG type 2.
 		var step = new BivalueUniversalGraveType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray(),
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
 			context.Options,
 			digit,
@@ -338,7 +338,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 
 				var step = new BivalueUniversalGraveType3Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					in trueCandidates,
@@ -443,7 +443,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 				// BUG type 4.
 				var step = new BivalueUniversalGraveType4Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[
 						[
 							.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate),
@@ -532,7 +532,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		// BUG + n.
 		var step = new BivalueUniversalGraveMultipleStep(
-			[.. conclusions],
+			conclusions.AsReadOnlyMemory(),
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
 			context.Options,
 			in trueCandidates
@@ -584,7 +584,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			}
 
 			var step = new BivalueUniversalGraveXzStep(
-				[.. conclusions],
+				conclusions.AsReadOnlyMemory(),
 				[
 					[
 						new CellViewNode(ColorIdentifier.Normal, cell),

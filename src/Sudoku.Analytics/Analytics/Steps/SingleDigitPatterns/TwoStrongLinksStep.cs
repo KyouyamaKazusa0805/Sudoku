@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetHouse">Indicates the target house used.</param>
 /// <param name="isGrouped">Indicates whether the links is grouped.</param>
 public sealed partial class TwoStrongLinksStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit,

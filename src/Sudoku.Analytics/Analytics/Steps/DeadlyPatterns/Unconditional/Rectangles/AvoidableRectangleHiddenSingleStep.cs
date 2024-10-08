@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">Indicates the house where the pattern lies.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class AvoidableRectangleHiddenSingleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

@@ -250,7 +250,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		}
 
 		var step = new BivalueOddagonType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[[.. candidateOffsets]],
 			context.Options,
 			in loop,
@@ -369,7 +369,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					}
 
 					var step = new BivalueOddagonType3Step(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.Options,
 						in loop,

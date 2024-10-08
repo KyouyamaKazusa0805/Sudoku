@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, StepGathererOptions options) :
+public sealed class BruteForceStep(ReadOnlyMemory<Conclusion> conclusions, View[]? views, StepGathererOptions options) :
 	LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
@@ -16,11 +16,11 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 	public override Technique Code => Technique.BruteForce;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => (Mask)(1 << Conclusions[0].Digit);
+	public override Mask DigitsUsed => (Mask)(1 << Conclusions.Span[0].Digit);
 
 	/// <inheritdoc/>
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [AssignmentStr]), new(SR.ChineseLanguage, [AssignmentStr])];
 
-	private string AssignmentStr => Options.Converter.ConclusionConverter(Conclusions);
+	private string AssignmentStr => Options.Converter.ConclusionConverter(Conclusions.Span);
 }

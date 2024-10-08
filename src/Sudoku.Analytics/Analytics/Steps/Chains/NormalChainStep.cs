@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="pattern">Indicates the chain or loop pattern.</param>
 public partial class NormalChainStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] NamedChain pattern

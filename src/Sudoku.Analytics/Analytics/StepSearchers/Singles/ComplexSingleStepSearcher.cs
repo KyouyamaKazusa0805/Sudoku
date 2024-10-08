@@ -208,7 +208,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 							{
 								foreach (var interimStep in interimStepGroup)
 								{
-									tempConclusions.AddRange(interimStep.Conclusions.AsReadOnlySpan());
+									tempConclusions.AddRange(interimStep.Conclusions.Span);
 									views.Add(
 										[
 											.. interimStep.Views![0],
@@ -231,7 +231,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 							// Add step into accumulator or return step.
 							accumulator.Add(
 								new(
-									directStep.Conclusions,
+									directStep.Conclusions.ToArray(),
 									[.. views],
 									context.Options,
 									directStep.Cell,

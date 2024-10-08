@@ -44,7 +44,7 @@ public partial class UniqueLoopStepSearcher
 		}
 
 		var step = new UniqueLoopType1Step(
-			[.. conclusions],
+			conclusions.AsReadOnlyMemory(),
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			context.Options,
 			d1,
@@ -101,7 +101,7 @@ public partial class UniqueLoopStepSearcher
 		}
 
 		var step = new UniqueLoopType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			context.Options,
 			d1,
@@ -229,7 +229,7 @@ public partial class UniqueLoopStepSearcher
 						}
 
 						var step = new UniqueLoopType3Step(
-							[.. conclusions],
+							conclusions.AsReadOnlyMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 							context.Options,
 							d1,
@@ -309,7 +309,7 @@ public partial class UniqueLoopStepSearcher
 				}
 
 				var step = new UniqueLoopType3Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[[.. candidateOffsets, .. GetLoopLinks(path)]],
 					context.Options,
 					d1,
@@ -389,7 +389,7 @@ public partial class UniqueLoopStepSearcher
 				}
 
 				var step = new UniqueLoopType4Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[
 						[
 							.. candidateOffsets,
@@ -548,7 +548,7 @@ public partial class UniqueLoopStepSearcher
 					}
 
 					var step = new UniqueLoopConjugatePairsTypeStep(
-						[new(Elimination, cell, digit)],
+						(Conclusion[])[new(Elimination, cell, digit)],
 						[
 							[
 								.. candidateOffsets,

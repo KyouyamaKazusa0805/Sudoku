@@ -182,7 +182,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleConjugatePairExtraStep(
-						[new(Elimination, targetCell, elimDigit)],
+						(Conclusion[])[new(Elimination, targetCell, elimDigit)],
 						[
 							[
 								.. candidateOffsets,
@@ -388,7 +388,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleConjugatePairExtraStep(
-						[new(Elimination, targetCell, elimDigit)],
+						(Conclusion[])[new(Elimination, targetCell, elimDigit)],
 						[
 							[
 								.. candidateOffsets,
@@ -598,7 +598,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleConjugatePairExtraStep(
-							[new(Elimination, targetCell, elimDigit)],
+							(Conclusion[])[new(Elimination, targetCell, elimDigit)],
 							[
 								[
 									.. candidateOffsets,

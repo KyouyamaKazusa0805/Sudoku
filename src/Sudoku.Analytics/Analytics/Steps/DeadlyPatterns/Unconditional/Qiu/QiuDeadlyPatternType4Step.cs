@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="corner2"><inheritdoc/></param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class QiuDeadlyPatternType4Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

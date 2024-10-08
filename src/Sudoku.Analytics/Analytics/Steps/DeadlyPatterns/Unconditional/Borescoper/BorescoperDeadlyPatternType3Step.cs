@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetCells">Indicates the cells that the subset used.</param>
 /// <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
 public sealed partial class BorescoperDeadlyPatternType3Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

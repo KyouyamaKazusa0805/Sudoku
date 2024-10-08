@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit2"><inheritdoc/></param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 public sealed partial class BivalueOddagonType2Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap loopCells,

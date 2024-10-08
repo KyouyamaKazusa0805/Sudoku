@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="corner2"><inheritdoc/></param>
 /// <param name="targetDigit">Indicates the target digit.</param>
 public sealed partial class QiuDeadlyPatternType2Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

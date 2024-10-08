@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
 /// <param name="isSiamese">Indicates whether the XYZ-loop is a Siamese one.</param>
 public sealed partial class XyzRingStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Digit intersectDigit,

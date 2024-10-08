@@ -160,7 +160,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 						// Now W-Wing found. Store it into the accumulator.
 						var step = new WWingStep(
-							[.. from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)],
+							(from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)).ToArray(),
 							[
 								[
 									new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + anotherDigit),
@@ -283,7 +283,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								}
 
 								var step = new MultiBranchWWingStep(
-									[.. conclusions],
+									conclusions.AsReadOnlyMemory(),
 									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
 									context.Options,
 									in cells,
@@ -454,7 +454,10 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 														}
 
 														var step = new MWingStep(
-															[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+															(
+																from cell in elimMap
+																select new Conclusion(Elimination, cell, elimDigit)
+															).ToArray(),
 															[
 																[
 																	..

@@ -321,7 +321,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 
 		var step = new ExtendedRectangleType1Step(
-			[.. conclusions],
+			conclusions.AsReadOnlyMemory(),
 			[[.. candidateOffsets]],
 			context.Options,
 			in patternCells,
@@ -376,7 +376,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 
 		var step = new ExtendedRectangleType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[[.. candidateOffsets]],
 			context.Options,
 			in patternCells,
@@ -478,7 +478,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
 
 							var step = new ExtendedRectangleType3Step(
-								[.. conclusions],
+								conclusions.AsReadOnlyMemory(),
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
 								context.Options,
 								in patternCells,
@@ -535,7 +535,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
 
 							var step = new ExtendedRectangleType3Step(
-								[.. from cell in elimMap select new Conclusion(Elimination, cell * 9 + intersectedDigit)],
+								(from cell in elimMap select new Conclusion(Elimination, cell * 9 + intersectedDigit)).ToArray(),
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
 								context.Options,
 								in patternCells,
@@ -656,7 +656,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				}
 
 				var step = new ExtendedRectangleType1Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
 					in patternCells,
@@ -719,7 +719,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 
 					var step = new ExtendedRectangleType4Step(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[
 							[
 								.. candidateOffsets,

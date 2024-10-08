@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells">Indicates the target cells.</param>
 /// <param name="extraDigit">Indicates the extra digit.</param>
 public sealed partial class AnonymousDeadlyPatternType2Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

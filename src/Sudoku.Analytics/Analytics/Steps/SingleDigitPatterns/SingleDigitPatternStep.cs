@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="digit">Indicates the digit used in this pattern.</param>
 public abstract partial class SingleDigitPatternStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Digit digit

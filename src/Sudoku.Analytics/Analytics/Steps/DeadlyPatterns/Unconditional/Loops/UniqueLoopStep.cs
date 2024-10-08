@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="loop">Indicates the whole loop of cells used.</param>
 /// <param name="loopPath">Indicates the loop path.</param>
 public abstract partial class UniqueLoopStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Digit digit1,

@@ -201,7 +201,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									}
 
 									var step = new SueDeCoqStep(
-										[.. conclusions],
+										conclusions.AsReadOnlyMemory(),
 										[
 											[
 												.. candidateOffsets,

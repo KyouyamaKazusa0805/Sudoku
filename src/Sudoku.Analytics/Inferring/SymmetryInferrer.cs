@@ -547,7 +547,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		return conclusions.Count == 0
 			? null
 			: new(
-				[.. conclusions],
+				conclusions.AsReadOnlyMemory(),
 				[[.. cellOffsets, .. candidateOffsets]],
 				options,
 				SymmetricType.Diagonal,
@@ -626,7 +626,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 
 		return conclusions.Count == 0
 			? null
-			: new([.. conclusions], [[.. cellOffsets, .. candidateOffsets]], options, SymmetricType.AntiDiagonal, [.. mapping]);
+			: new(conclusions.AsReadOnlyMemory(), [[.. cellOffsets, .. candidateOffsets]], options, SymmetricType.AntiDiagonal, [.. mapping]);
 	}
 
 	/// <summary>
@@ -669,7 +669,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			[.. from digit in nonselfPairedDigitsMask select new Conclusion(Elimination, 40, digit)],
+			(from digit in nonselfPairedDigitsMask select new Conclusion(Elimination, 40, digit)).ToArray(),
 			[[.. cellOffsets]],
 			options,
 			SymmetricType.Central,

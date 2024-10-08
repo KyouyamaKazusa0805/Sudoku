@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
 public sealed partial class ComplexJuniorExocetMirrorConjugatePairStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

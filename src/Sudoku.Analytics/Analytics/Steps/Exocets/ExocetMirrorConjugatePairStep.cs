@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineCells"><inheritdoc/></param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
 public sealed partial class ExocetMirrorConjugatePairStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

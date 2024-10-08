@@ -193,7 +193,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 
 				accumulator.Add(
 					new(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[
 							[
 								..

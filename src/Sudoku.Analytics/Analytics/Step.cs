@@ -16,7 +16,7 @@ namespace Sudoku.Analytics;
 	OtherModifiersOnToString = "sealed",
 	OtherModifiersOnEquatableEquals = "virtual")]
 public abstract partial class Step(
-	[Property(Setter = "internal set")] Conclusion[] conclusions,
+	[Property(Setter = "private set")] ReadOnlyMemory<Conclusion> conclusions,
 	[Property] View[]? views,
 	[Property] StepGathererOptions options
 ) :
@@ -98,7 +98,7 @@ public abstract partial class Step(
 	/// </summary>
 	[HashCodeMember]
 	[EquatableMember]
-	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
+	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions.Span);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -166,9 +166,6 @@ public abstract partial class Step(
 	protected string FormatTypeIdentifier => (TechniqueResourceKeyInheritsFromBase ? GetType().BaseType! : GetType()).Name;
 
 	/// <inheritdoc/>
-	ReadOnlyMemory<Conclusion> IDrawable.Conclusions => Conclusions;
-
-	/// <inheritdoc/>
 	ReadOnlyMemory<View> IDrawable.Views => Views;
 
 	/// <summary>
@@ -232,6 +229,13 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(IFormatProvider? formatProvider) => $"{GetName(formatProvider)} => {ConclusionText}";
+
+	/// <summary>
+	/// Replace conclusions with new values.
+	/// </summary>
+	/// <param name="conclusions">Conclusions to be updated.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal void UpdateConclusionsUnsafe(Conclusion[] conclusions) => Conclusions = conclusions;
 
 	/// <summary>
 	/// Compares the real name of the step to the specified one. This method is to distinct names on displaying in UI.

@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
 public sealed partial class TemplateStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] bool isTemplateDeletion
@@ -23,7 +23,7 @@ public sealed partial class TemplateStep(
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public Digit Digit => Conclusions[0].Digit;
+	public Digit Digit => Conclusions.Span[0].Digit;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => (Mask)(1 << Digit);

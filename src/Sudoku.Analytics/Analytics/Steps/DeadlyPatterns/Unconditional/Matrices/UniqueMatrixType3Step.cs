@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetDigitsMask">Indicates the mask that describes the extra digits used in the subset.</param>
 /// <param name="subsetCells">Indicates the cells that the subset used.</param>
 public sealed partial class UniqueMatrixType3Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

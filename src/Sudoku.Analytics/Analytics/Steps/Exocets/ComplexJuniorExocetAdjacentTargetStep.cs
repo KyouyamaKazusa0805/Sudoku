@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
 /// <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
 public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

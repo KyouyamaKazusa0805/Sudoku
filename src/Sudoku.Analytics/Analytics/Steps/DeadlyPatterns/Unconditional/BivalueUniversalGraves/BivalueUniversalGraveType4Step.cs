@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class BivalueUniversalGraveType4Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,

@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed class PatternOverlayStep(Conclusion[] conclusions, StepGathererOptions options) :
+public sealed class PatternOverlayStep(ReadOnlyMemory<Conclusion> conclusions, StepGathererOptions options) :
 	LastResortStep(conclusions, null, options)
 {
 	/// <inheritdoc/>
@@ -17,7 +17,7 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions, StepGathererOpt
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public Digit Digit => Conclusions[0].Digit;
+	public Digit Digit => Conclusions.Span[0].Digit;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => (Mask)(1 << Digit);

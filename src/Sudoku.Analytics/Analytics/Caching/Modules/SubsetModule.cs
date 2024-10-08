@@ -133,7 +133,7 @@ internal static class SubsetModule
 					}
 
 					var step = new HiddenSubsetStep(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. cellOffsets]],
 						context.Options,
 						house,
@@ -225,7 +225,7 @@ internal static class SubsetModule
 				}
 
 				var step = new NakedSubsetStep(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					house,

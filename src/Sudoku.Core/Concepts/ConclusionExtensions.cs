@@ -13,4 +13,12 @@ public static class ConclusionExtensions
 	/// <returns>A <see cref="ConclusionSet"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet AsSet(this Conclusion[] @this) => [.. @this];
+
+	/// <inheritdoc cref="AsSet(Conclusion[])"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ConclusionSet AsSet(this ReadOnlyMemory<Conclusion> @this) => [.. @this.Span];
+
+	/// <inheritdoc cref="AsSet(Conclusion[])"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ConclusionSet AsSet(this ReadOnlySpan<Conclusion> @this) => [.. @this];
 }

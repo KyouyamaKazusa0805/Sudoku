@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 public sealed partial class FireworkQuadrupleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

@@ -436,7 +436,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new QiuDeadlyPatternType1Step(
-			[.. from digit in elimDigitsMask select new Conclusion(Elimination, targetCell, digit)],
+			(from digit in elimDigitsMask select new Conclusion(Elimination, targetCell, digit)).ToArray(),
 			[
 				[
 					.. candidateOffsets,
@@ -522,7 +522,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new QiuDeadlyPatternType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),
 			[
 				[
 					.. candidateOffsets,
@@ -653,7 +653,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				}
 
 				var step = new QiuDeadlyPatternType3Step(
-					[.. conclusions],
+					conclusions.AsReadOnlyMemory(),
 					[
 						[
 							.. candidateOffsets,
@@ -743,7 +743,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var step = new QiuDeadlyPatternType4Step(
-						[.. conclusions],
+						conclusions.AsReadOnlyMemory(),
 						[
 							[
 								.. candidateOffsets,
@@ -853,7 +853,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new QiuDeadlyPatternLockedTypeStep(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)).ToArray(),
 			[
 				[
 					.. candidateOffsets,
@@ -944,7 +944,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new QiuDeadlyPatternExternalType1Step(
-			[.. from digit in elimDigits select new Conclusion(Elimination, targetCell, digit)],
+			(from digit in elimDigits select new Conclusion(Elimination, targetCell, digit)).ToArray(),
 			[
 				[
 					.. candidateOffsets,
@@ -1059,7 +1059,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new QiuDeadlyPatternExternalType2Step(
-			[.. from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)],
+			(from cell in elimMap select new Conclusion(Elimination, cell, elimDigit)).ToArray(),
 			[
 				[
 					.. candidateOffsets,

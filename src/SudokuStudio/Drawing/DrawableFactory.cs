@@ -47,7 +47,7 @@ internal static partial class DrawableFactory
 			pane,
 			new()
 			{
-				Conclusions = [.. from p in positives where p is Conclusion select (Conclusion)p],
+				Conclusions = (from p in positives where p is Conclusion select (Conclusion)p).ToArray(),
 				View = [.. from p in positives where p is ViewNode select (ViewNode)p]
 			},
 			from p in positives where p is GroupedNodeInfo select (GroupedNodeInfo)p
@@ -172,11 +172,11 @@ internal static partial class DrawableFactory
 	private static partial void ForConclusion(DrawingContext context, Conclusion conclusion, List<Conclusion> overlapped);
 	private static partial void ForCellNode(DrawingContext context, CellViewNode cellNode);
 	private static partial void ForIconNode(DrawingContext context, IconViewNode iconNode);
-	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, Conclusion[] conclusions, out Conclusion? overlapped);
+	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, ReadOnlyMemory<Conclusion> conclusions, out Conclusion? overlapped);
 	private static partial void ForHouseNode(DrawingContext context, HouseViewNode houseNode);
 	private static partial void ForChuteNode(DrawingContext context, ChuteViewNode chuteNode);
 	private static partial void ForBabaGroupNode(DrawingContext context, BabaGroupViewNode babaGroupNode);
-	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, Conclusion[] conclusions);
+	private static partial void ForLinkNodes(DrawingContext context, ReadOnlySpan<ILinkViewNode> linkNodes, ReadOnlySpan<CandidateViewNode> candidateNodes, ReadOnlyMemory<Conclusion> conclusions);
 	private static partial void ForGroupedNodes(DrawingContext context, ReadOnlySpan<GroupedNodeInfo> nodes);
 }
 

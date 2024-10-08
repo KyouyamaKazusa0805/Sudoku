@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">Indicates the house that all cells in <see cref="Root"/> lie in.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class MultiBranchWWingStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap leaves,

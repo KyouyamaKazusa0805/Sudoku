@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigits">Indicates the extra digits.</param>
 /// <param name="chuteIndex">Indicates the chute index.</param>
 public sealed partial class UniquenessClueCoverStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap extraCells,

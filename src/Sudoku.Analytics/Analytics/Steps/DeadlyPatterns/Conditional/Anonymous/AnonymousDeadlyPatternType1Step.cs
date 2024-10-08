@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
 /// </param>
 public sealed partial class AnonymousDeadlyPatternType1Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

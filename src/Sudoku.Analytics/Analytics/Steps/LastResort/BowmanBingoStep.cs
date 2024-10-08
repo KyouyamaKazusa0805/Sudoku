@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="contradictionLinks">Indicates the list of contradiction links.</param>
 public sealed partial class BowmanBingoStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Conclusion[] contradictionLinks

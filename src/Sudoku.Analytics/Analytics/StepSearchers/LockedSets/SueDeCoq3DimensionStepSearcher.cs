@@ -186,7 +186,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												}
 
 												var step = new SueDeCoq3DimensionStep(
-													[.. conclusions],
+													conclusions.AsReadOnlyMemory(),
 													[
 														[
 															.. candidateOffsets,

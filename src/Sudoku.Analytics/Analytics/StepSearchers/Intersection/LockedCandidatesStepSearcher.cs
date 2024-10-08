@@ -79,7 +79,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 				}
 
 				var step = new LockedCandidatesStep(
-					[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
+					(from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray(),
 					[
 						[
 							.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),

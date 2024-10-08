@@ -126,6 +126,16 @@ public static class ListExtensions
 	public static ReadOnlySpan<T> AsReadOnlySpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 
 	/// <summary>
+	/// Try to create a <see cref="ReadOnlyMemory{T}"/> with values from the current <see cref="List{T}"/> object,
+	/// without any copy operation.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list to create.</param>
+	/// <returns>The created <see cref="ReadOnlyMemory{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this List<T> @this) => new(Entry<T>.GetItems(@this), 0, @this.Count);
+
+	/// <summary>
 	/// Add an item and resize the <see cref="List{T}"/> of <typeparamref name="T"/>.
 	/// </summary>
 	/// <typeparam name="T">The type of the target value to be added.</typeparam>

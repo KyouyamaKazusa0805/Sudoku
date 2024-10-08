@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conjugatePairs"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed class HiddenUniqueRectangleStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

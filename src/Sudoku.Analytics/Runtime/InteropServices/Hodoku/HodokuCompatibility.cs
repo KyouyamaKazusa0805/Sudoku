@@ -45,15 +45,15 @@ public static class HodokuCompatibility
 			? DefaultLibraryFormatDigitPlaceholder
 			: coordinateConverter.DigitConverter(step.DigitsUsed);
 		var gridString = grid.ToString("#");
-		var conclusions = from conclusion in step.Conclusions group conclusion by conclusion.ConclusionType;
-		var eliminationsString = (from g in conclusions where g.Key == Elimination select g.AsReadOnlySpan().ToArray()) switch
+		var conclusions = from conclusion in step.Conclusions.Span group conclusion by conclusion.ConclusionType;
+		var eliminationsString = (from g in conclusions where g.Key == Elimination select g) switch
 		{
-		[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
+			[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
 			_ => string.Empty
 		};
-		var assignmentsString = (from g in conclusions where g.Key == Assignment select g.AsReadOnlySpan().ToArray()) switch
+		var assignmentsString = (from g in conclusions where g.Key == Assignment select g) switch
 		{
-		[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
+			[var g, ..] => (from c in g select c.Candidate).AsCandidateMap().ToString(conclusionConverter),
 			_ => string.Empty
 		};
 		var extraString = step is NormalChainStep { Pattern: { Length: var nodesLength } pattern }

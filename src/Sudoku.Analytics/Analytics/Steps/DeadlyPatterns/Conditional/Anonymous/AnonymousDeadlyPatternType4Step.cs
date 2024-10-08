@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conjugateHouse">Indicates the target house.</param>
 /// <param name="extraDigitsMask">Indicates the extra digits used.</param>
 public sealed partial class AnonymousDeadlyPatternType4Step(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

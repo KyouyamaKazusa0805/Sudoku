@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleExternalTurbotFishStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

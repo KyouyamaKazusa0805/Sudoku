@@ -438,7 +438,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								// Add into the 'accumulator'.
 								accumulator.Add(
 									new ComplexFishStep(
-										[.. from elimCell in elimMap select new Conclusion(Elimination, elimCell, digit)],
+										(from elimCell in elimMap select new Conclusion(Elimination, elimCell, digit)).ToArray(),
 										[
 											[
 												..
@@ -494,7 +494,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		foreach (PatternOverlayStep step in tempList)
 		{
 			ref var current = ref result[step.Digit];
-			current |= from conclusion in step.Conclusions.AsReadOnlySpan() select conclusion.Cell;
+			current |= from conclusion in step.Conclusions.Span select conclusion.Cell;
 		}
 		return result;
 	}

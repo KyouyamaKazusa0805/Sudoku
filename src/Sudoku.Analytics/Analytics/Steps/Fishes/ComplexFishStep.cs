@@ -23,7 +23,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
 /// <param name="isSiamese"><inheritdoc/></param>
 public sealed partial class ComplexFishStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit,

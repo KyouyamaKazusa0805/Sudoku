@@ -78,11 +78,10 @@ public sealed partial class RotatingDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var step = new RotatingDeadlyPatternStep(
-						[
-							..
+						(
 							from digit in (Mask)(grid.GetCandidates(targetCell) & digitsMask)
 							select new Conclusion(Elimination, targetCell, digit)
-						],
+						).ToArray(),
 						[[.. candidateOffsets]],
 						context.Options,
 						digitsMask,

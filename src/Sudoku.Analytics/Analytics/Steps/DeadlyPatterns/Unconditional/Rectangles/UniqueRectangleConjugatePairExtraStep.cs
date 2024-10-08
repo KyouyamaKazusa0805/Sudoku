@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigitsMask">Indicates the extra digits used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleConjugatePairExtraStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Technique code,

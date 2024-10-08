@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public partial class UniqueRectangleConjugatePairStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Technique code,

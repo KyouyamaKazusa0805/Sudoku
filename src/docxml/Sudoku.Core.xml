@@ -1925,6 +1925,12 @@
             <param name="this">The conclusion array.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion})">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])"/>
+        </member>
         <member name="T:Sudoku.Concepts.ConclusionSet">
             <summary>
             Represents a list of conclusions.

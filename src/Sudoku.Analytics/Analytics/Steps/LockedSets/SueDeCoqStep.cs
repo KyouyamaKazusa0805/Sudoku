@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates the cells that the current pattern used in an intersection of <see cref="BlockCells"/> and <see cref="LineCells"/>.
 /// </param>
 public sealed partial class SueDeCoqStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] House block,

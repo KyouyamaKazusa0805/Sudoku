@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigitsCellsCount">Indicates the number cells containing extra digits.</param>
 /// <param name="conjugatePairs">Indicates the conjugate pairs.</param>
 public sealed partial class UniqueLoopConjugatePairsTypeStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

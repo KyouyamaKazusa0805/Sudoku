@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="xzCell">Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.</param>
 public sealed partial class BivalueUniversalGraveXzStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,

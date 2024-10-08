@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="columnsCount">Indicates the number of columns used.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class MultisectorLockedSetsStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

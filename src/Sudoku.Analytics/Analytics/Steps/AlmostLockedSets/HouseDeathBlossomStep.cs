@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="branches">Indicates the branches.</param>
 /// <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
 public sealed partial class HouseDeathBlossomStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] House house,

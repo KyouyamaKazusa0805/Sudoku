@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class DominoLoopStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

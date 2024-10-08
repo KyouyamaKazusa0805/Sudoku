@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="branches">Indicates the detail branches.</param>
 /// <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
 public sealed partial class NTimesAlmostLockedSetsDeathBlossomStep(
-	Conclusion[] conclusions,
+	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask nTimesAlmostLockedSetsDigitsMask,
