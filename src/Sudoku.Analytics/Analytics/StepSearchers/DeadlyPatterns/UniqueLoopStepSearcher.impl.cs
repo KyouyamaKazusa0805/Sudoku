@@ -548,7 +548,7 @@ public partial class UniqueLoopStepSearcher
 					}
 
 					var step = new UniqueLoopConjugatePairsTypeStep(
-						(Conclusion[])[new(Elimination, cell, digit)],
+						new SingletonArray<Conclusion>(new(Elimination, cell, digit)),
 						[
 							[
 								.. candidateOffsets,

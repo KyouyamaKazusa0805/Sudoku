@@ -6036,6 +6036,64 @@
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:System.SingletonArray`1">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value">Indicates the value.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.#ctor(`0)">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value">Indicates the value.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.Unpin">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.GetSpan">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.Pin(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.Dispose(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.Span{`0}">
+            <summary>
+            Creates a <see cref="T:System.Span`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlySpan{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlySpan`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.Memory{`0}">
+            <summary>
+            Creates a <see cref="T:System.Memory`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlyMemory{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlyMemory`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="F:System.SingletonArray`1._value">
+            <summary>
+            The generated field declaration for parameter <c>value</c>.
+            </summary>
+        </member>
         <member name="T:System.StringExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.String"/>.

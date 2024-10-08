@@ -218,7 +218,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
-			(Conclusion[])[new(Elimination, extraCell, Mask.TrailingZeroCount(elimDigitsMask))],
+			new SingletonArray<Conclusion>(new(Elimination, extraCell, Mask.TrailingZeroCount(elimDigitsMask))),
 			[[.. cellOffsets]],
 			context.Options,
 			d1,
@@ -494,7 +494,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			}
 
 			var step = new ReverseBivalueUniversalGraveType4Step(
-				(Conclusion[])[new(Elimination, anotherCell, selectedDigit)],
+				new SingletonArray<Conclusion>(new(Elimination, anotherCell, selectedDigit)),
 				[
 					[
 						.. cellOffsets,

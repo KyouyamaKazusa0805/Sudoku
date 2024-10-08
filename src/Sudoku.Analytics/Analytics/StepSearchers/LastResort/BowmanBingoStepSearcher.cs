@@ -59,7 +59,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 				{
 					tempAccumulator.Add(
 						new(
-							(Conclusion[])[new(Elimination, startCandidate)],
+							new SingletonArray<Conclusion>(new(Elimination, startCandidate)),
 							[
 								[
 									.. from p in _tempConclusions select new CandidateViewNode(ColorIdentifier.Normal, p.Candidate),
@@ -140,7 +140,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			}
 
 			var step = new BowmanBingoStep(
-				(Conclusion[])[new(Elimination, startCand)],
+				new SingletonArray<Conclusion>(new(Elimination, startCand)),
 				[[.. candidateOffsets, .. GetLinks()]],
 				context.Options,
 				[.. _tempConclusions]

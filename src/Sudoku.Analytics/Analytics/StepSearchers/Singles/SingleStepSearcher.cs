@@ -201,7 +201,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				}
 
 				var step = new FullHouseStep(
-					(Conclusion[])[new(Assignment, resultCell, digit)],
+					new SingletonArray<Conclusion>(new(Assignment, resultCell, digit)),
 					[[new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					house,
@@ -260,7 +260,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				}
 
 				var step = new NakedSingleStep(
-					(Conclusion[])[new(Assignment, cell, digit)],
+					new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
 					[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
 					context.Options,
 					cell,
@@ -341,7 +341,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 			var digit = Mask.TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
-				(Conclusion[])[new(Assignment, resultCell, digit)],
+				new SingletonArray<Conclusion>(new(Assignment, resultCell, digit)),
 				[[new HouseViewNode(ColorIdentifier.Normal, house)]],
 				context.Options,
 				house,
@@ -452,7 +452,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 			var digit = Mask.TrailingZeroCount(mask);
 			var step = new NakedSingleStep(
-				(Conclusion[])[new(Assignment, cell, digit)],
+				new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
 				[[.. Excluder.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
 				context.Options,
 				cell,
@@ -534,7 +534,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		{
 			(true, >= 9) => null,
 			(true, _) => new LastDigitStep(
-				(Conclusion[])[new(Assignment, resultCell, digit)],
+				new SingletonArray<Conclusion>(new(Assignment, resultCell, digit)),
 				[[.. cellOffsets]],
 				context.Options,
 				resultCell,
@@ -548,7 +548,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				{
 					var subtype when subtype.IsUnnecessary() && grid.PuzzleType != SudokuType.Sukaku => null,
 					var subtype => new HiddenSingleStep(
-						(Conclusion[])[new(Assignment, resultCell, digit)],
+						new SingletonArray<Conclusion>(new(Assignment, resultCell, digit)),
 						[[.. cellOffsets2, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.Options,
 						resultCell,

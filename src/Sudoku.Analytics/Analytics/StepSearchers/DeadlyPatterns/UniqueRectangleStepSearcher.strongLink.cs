@@ -544,7 +544,7 @@ public partial class UniqueRectangleStepSearcher
 				var conjugatePairs = (Conjugate[])[new(cornerCell, begin, a), new(begin, abzCell, b)];
 				accumulator.Add(
 					new UniqueRectangleConjugatePairStep(
-						(Conclusion[])[new(Elimination, end, a)],
+						new SingletonArray<Conclusion>(new(Elimination, end, a)),
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
@@ -658,7 +658,7 @@ public partial class UniqueRectangleStepSearcher
 				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, b)];
 				accumulator.Add(
 					new UniqueRectangleConjugatePairStep(
-						(Conclusion[])[new(Elimination, begin, a)],
+						new SingletonArray<Conclusion>(new(Elimination, begin, a)),
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
@@ -772,7 +772,7 @@ public partial class UniqueRectangleStepSearcher
 				var conjugatePairs = (Conjugate[])[new(cornerCell, end, a), new(begin, abzCell, a)];
 				accumulator.Add(
 					new UniqueRectangleConjugatePairStep(
-						(Conclusion[])[new(Elimination, abzCell, b)],
+						new SingletonArray<Conclusion>(new(Elimination, abzCell, b)),
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],
@@ -1042,7 +1042,7 @@ public partial class UniqueRectangleStepSearcher
 					var conjugatePairs = (Conjugate[])[new(abx, aby, a), new(aby, abw, a), new(linkMap[0], linkMap[1], b)];
 					accumulator.Add(
 						new UniqueRectangleConjugatePairStep(
-							(Conclusion[])[new(Elimination, aby, b)],
+							new SingletonArray<Conclusion>(new(Elimination, aby, b)),
 							[
 								[
 									.. arMode ? GetHighlightCells(urCells) : [],

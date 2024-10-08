@@ -82,7 +82,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 					}
 
 					var step = new EmptyRectangleStep(
-						(Conclusion[])[new(Elimination, elimCell, digit)],
+						new SingletonArray<Conclusion>(new(Elimination, elimCell, digit)),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, block)]],
 						context.Options,
 						digit,

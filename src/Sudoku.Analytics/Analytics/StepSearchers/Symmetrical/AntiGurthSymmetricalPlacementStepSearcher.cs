@@ -217,7 +217,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			(Conclusion[])[new(Elimination, elimCell, elimDigit)],
+			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.Options,
 			SymmetricType.Diagonal,
@@ -349,7 +349,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			(Conclusion[])[new(Elimination, elimCell, elimDigit)],
+			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.Options,
 			SymmetricType.AntiDiagonal,
@@ -452,7 +452,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			(Conclusion[])[new(Elimination, elimCell, elimDigit)],
+			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.Options,
 			SymmetricType.XAxis,
@@ -554,7 +554,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			(Conclusion[])[new(Elimination, elimCell, elimDigit)],
+			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.Options,
 			SymmetricType.YAxis,
@@ -672,7 +672,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		GetHighlightCells(in grid, cellOffsets, mapping);
 
 		return new(
-			(Conclusion[])[new(Elimination, elimCell, elimDigit)],
+			new SingletonArray<Conclusion>(new(Elimination, elimCell, elimDigit)),
 			[[.. cellOffsets, .. candidateOffsets]],
 			context.Options,
 			SymmetricType.Central,
