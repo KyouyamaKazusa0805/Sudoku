@@ -20,7 +20,7 @@ public sealed partial class Link(
 	[Property] Node firstNode,
 	[Property] Node secondNode,
 	[Property] bool isStrong,
-	[Property] object? groupedLinkPattern = null
+	[Property] Pattern? groupedLinkPattern = null
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
 	/// <inheritdoc/>

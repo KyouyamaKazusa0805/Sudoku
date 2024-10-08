@@ -3206,7 +3206,7 @@
             </param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Link.#ctor(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Object)">
+        <member name="M:Sudoku.Analytics.Construction.Components.Link.#ctor(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node,System.Boolean,Sudoku.Analytics.Construction.Pattern)">
             <summary>
             <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.</para>
             <para><b>
@@ -3324,7 +3324,7 @@
             </summary>
             <param name="other">The other dictionary.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.LinkDictionary.AddEntry(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Object)">
+        <member name="M:Sudoku.Analytics.Construction.Components.LinkDictionary.AddEntry(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node,System.Boolean,Sudoku.Analytics.Construction.Pattern)">
             <summary>
             Add a link to the current collection with both entries on nodes of the link used.
             </summary>

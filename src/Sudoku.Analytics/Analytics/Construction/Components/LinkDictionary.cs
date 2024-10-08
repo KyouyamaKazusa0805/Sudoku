@@ -9,7 +9,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	/// <summary>
 	/// The backing pool storing link and patterns.
 	/// </summary>
-	private readonly Dictionary<Link, object> _groupedLinkPool = new(
+	private readonly Dictionary<Link, Pattern> _groupedLinkPool = new(
 		EqualityComparer<Link>.Create(
 			static (left, right) => (left, right) switch
 			{
@@ -25,7 +25,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	/// <summary>
 	/// Indicates the pool of grouped links and its corresponding pattern.
 	/// </summary>
-	public FrozenDictionary<Link, object> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
+	public FrozenDictionary<Link, Pattern> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
 
 
 	/// <summary>
@@ -65,7 +65,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	/// <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
 	/// <param name="pattern">The advanced pattern to be used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddEntry(Node node1, Node node2, bool isStrong = false, object? pattern = null)
+	public void AddEntry(Node node1, Node node2, bool isStrong = false, Pattern? pattern = null)
 	{
 		if (!TryAdd(node1, [node2]))
 		{
