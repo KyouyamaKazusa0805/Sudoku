@@ -11,7 +11,9 @@ namespace Sudoku.Linq;
 /// <param name="values">Indicates the candidates.</param>
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
+	IsLargeStructure = true)]
 public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[Property] TKey key,
 	[Property, HashCodeMember] ref readonly TMap values
@@ -33,6 +35,9 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEn
 	/// <seealso cref="Values"/>
 	public int Count => Values.Count;
 
+	[EquatableMember]
+	private TMap ValuesEntry => Values;
+
 
 	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement, TEnumerator}.this[TElement]"/>
 	public TElement this[TElement index] => Values[index];
@@ -41,10 +46,6 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEn
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out TKey key, out TMap values) => (key, values) = (Key, Values);
-
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
@@ -68,9 +69,6 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEn
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	bool IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>>.Equals(CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Equals(in other);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => Values.AsEnumerable().GetEnumerator();

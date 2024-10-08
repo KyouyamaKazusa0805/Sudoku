@@ -8098,9 +8098,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.Equals(Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3}@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
         <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through a collection.
@@ -8114,9 +8111,6 @@
             </summary>
             <param name="groups">The groups.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.System#IEquatable{Sudoku#Linq#CellMapOrCandidateMapGrouping{TMap,TElement,TEnumerator,TKey}}#Equals(Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3})">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -8156,6 +8150,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.System#Numerics#IEqualityOperators{Sudoku#Linq#CellMapOrCandidateMapGrouping{TMap,TElement,TEnumerator,TKey},Sudoku#Linq#CellMapOrCandidateMapGrouping{TMap,TElement,TEnumerator,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3},Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.Equals(Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3}@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Linq.CellMapOrCandidateMapGrouping`4.System#IEquatable{Sudoku#Linq#CellMapOrCandidateMapGrouping{TMap,TElement,TEnumerator,TKey}}#Equals(Sudoku.Linq.CellMapOrCandidateMapGrouping{`0,`1,`2,`3})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.CellMapOrCandidateMapGroupingEnumerable">

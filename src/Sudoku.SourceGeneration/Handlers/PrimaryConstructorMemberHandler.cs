@@ -229,6 +229,12 @@ internal static class PrimaryConstructorMemberHandler
 			);
 		}
 
+		// Ignore types that cannot output any fields and properties.
+		if (fields.Count == 0 && properties.Count == 0)
+		{
+			return null;
+		}
+
 		var namespaceFullName = namespaceSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
 		var typeKindString = typeKind switch { TypeKind.Class => "class ", TypeKind.Struct => "struct " };
 		var typeParametersString = typeParameters.Length == 0

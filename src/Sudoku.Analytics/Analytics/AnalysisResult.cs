@@ -4,7 +4,8 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TContext, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
+[TypeImpl(TypeImplFlag.Equatable)]
+public sealed partial record AnalysisResult([property: EquatableMember] ref readonly Grid Puzzle) :
 	IAnalysisResult<AnalysisResult, Analyzer, AnalyzerContext>,
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
@@ -308,15 +309,6 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// <seealso cref="InterimGrids"/>
 	internal Step[]? InterimSteps { get; init; }
 
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// <b>This method only checks for initial grid puzzle.</b>
-	/// This is by design: We only check for grids between two <see cref="AnalysisResult"/> instances,
-	/// because the target value will be same if the base grid are same.
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AnalysisResult? other) => other is not null && Puzzle == other.Puzzle;
 
 	/// <summary>
 	/// Determine whether the analyzer result instance contains any step with specified technique.

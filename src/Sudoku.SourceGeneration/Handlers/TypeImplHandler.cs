@@ -1264,7 +1264,8 @@ internal static class TypeImplHandler
 						{
 							return $"ReferenceEquals({name}, other.{name})";
 						}
-						case { SpecialType: >= System_Enum and <= System_UIntPtr and not (System_ValueType or System_Void) }:
+						case { TypeKind: TypeKind.Enum }:
+						case { SpecialType: > System_Enum and <= System_UIntPtr }:
 						case { TypeKind: TypeKind.Pointer or TypeKind.FunctionPointer }:
 						case { AllInterfaces: var allInterfaces } when implsEqualityOperators(allInterfaces):
 						{

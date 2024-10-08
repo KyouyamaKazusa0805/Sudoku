@@ -11,9 +11,10 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.Equatable,
 	OtherModifiersOnEquals = "sealed",
-	OtherModifiersOnToString = "sealed")]
+	OtherModifiersOnToString = "sealed",
+	OtherModifiersOnEquatableEquals = "virtual")]
 public abstract partial class Step(
 	[Property(Setter = "internal set")] Conclusion[] conclusions,
 	[Property] View[]? views,
@@ -96,12 +97,14 @@ public abstract partial class Step(
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
 	[HashCodeMember]
+	[EquatableMember]
 	public abstract Technique Code { get; }
 
 	/// <summary>
@@ -173,25 +176,6 @@ public abstract partial class Step(
 	/// </summary>
 	private string TechniqueResourceKey => $"TechniqueFormat_{FormatTypeIdentifier}";
 
-
-	/// <summary>
-	/// Determine whether the current <see cref="Step"/> instance has same data or same meaning with the specified one.
-	/// </summary>
-	/// <param name="other">The other instance to be compared.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether they are same.</returns>
-	/// <remarks>
-	/// <para>
-	/// This method is used for filtering duplicate <see cref="Step"/> instances,
-	/// and you can customize the checking rule to compare instances by overriding this method.
-	/// By default, the method only checks technique used (i.e. property <see cref="Code"/>)
-	/// and conclusions used (i.e. property <see cref="Conclusions"/>). If both are same, they will be treated as same one.
-	/// </para>
-	/// <para>By overriding this method, the comparison rule will be updated.</para>
-	/// </remarks>
-	/// <seealso cref="Code"/>
-	/// <seealso cref="Conclusions"/>
-	public virtual bool Equals([NotNullWhen(true)] Step? other)
-		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
 
 	/// <summary>
 	/// Compares two <see cref="Step"/> instances, determining which one is greater.

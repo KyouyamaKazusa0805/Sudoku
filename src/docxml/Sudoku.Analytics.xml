@@ -265,14 +265,6 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.Equals(Sudoku.Analytics.AnalysisResult)">
-            <inheritdoc/>
-            <remarks>
-            <b>This method only checks for initial grid puzzle.</b>
-            This is by design: We only check for grids between two <see cref="T:Sudoku.Analytics.AnalysisResult"/> instances,
-            because the target value will be same if the base grid are same.
-            </remarks>
-        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.HasTechnique(Sudoku.Categorization.Technique)">
             <summary>
             Determine whether the analyzer result instance contains any step with specified technique.
@@ -566,6 +558,9 @@
             <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.Equals(Sudoku.Analytics.AnalysisResult)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>
@@ -6543,24 +6538,6 @@
             Indicates the resource key that can access description to the current instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
-            <summary>
-            Determine whether the current <see cref="T:Sudoku.Analytics.Step"/> instance has same data or same meaning with the specified one.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are same.</returns>
-            <remarks>
-            <para>
-            This method is used for filtering duplicate <see cref="T:Sudoku.Analytics.Step"/> instances,
-            and you can customize the checking rule to compare instances by overriding this method.
-            By default, the method only checks technique used (i.e. property <see cref="P:Sudoku.Analytics.Step.Code"/>)
-            and conclusions used (i.e. property <see cref="P:Sudoku.Analytics.Step.Conclusions"/>). If both are same, they will be treated as same one.
-            </para>
-            <para>By overriding this method, the comparison rule will be updated.</para>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Step.Code"/>
-            <seealso cref="P:Sudoku.Analytics.Step.Conclusions"/>
-        </member>
         <member name="M:Sudoku.Analytics.Step.CompareTo(Sudoku.Analytics.Step)">
             <summary>
             Compares two <see cref="T:Sudoku.Analytics.Step"/> instances, determining which one is greater.
@@ -6696,6 +6673,9 @@
         </member>
         <member name="M:Sudoku.Analytics.Step.op_LessThanOrEqual(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepAnalysisContext">
             <summary>
