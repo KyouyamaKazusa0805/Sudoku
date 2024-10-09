@@ -1,4 +1,4 @@
-#define EXAUSTIVE_SEARCH_FINNED_CHAINS
+#undef EXAUSTIVE_SEARCH_FINNED_CHAINS
 
 namespace Sudoku.Analytics.Caching.Modules;
 
