@@ -27,6 +27,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 	/// </exception>
 	public static bool TryInfer(ref readonly Grid grid, [AllowNull] ref readonly CellMap cells, out DeadlyPatternInferredResult result)
 	{
+		var patternCandidates = CandidateMap.Empty;
 		if (grid.GetIsValid() || grid.EmptiesCount != 81 || grid.PuzzleType != SudokuType.Standard)
 		{
 			// Invalid values to be checked.
@@ -51,14 +52,28 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 			cellsUsed = cells;
 		}
 
+		// Verify whether at least one cell in pattern hold nothing.
+		foreach (var cell in cellsUsed)
+		{
+			var mask = grid.GetCandidates(cell);
+			if (mask == 0)
+			{
+				goto FastFail;
+			}
+
+			foreach (var digit in mask)
+			{
+				patternCandidates.Add(cell * 9 + digit);
+			}
+		}
+
 		// Step 0: Determine whether at least one house the pattern spanned only hold one cell used.
 		// A valid deadly pattern must hold at least 2 cells for all spanned houses.
 		foreach (var house in cellsUsed.Houses)
 		{
 			if ((HousesMap[house] & cellsUsed).Count == 1)
 			{
-				result = new(in grid, false, []);
-				return true;
+				goto FastFail;
 			}
 		}
 
@@ -113,12 +128,12 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 
 		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern;
 		// otherwise, not a deadly pattern.
-		result = new(in grid, failedCases.Count == 0, failedCases.AsReadOnlySpan());
+		result = new(in grid, failedCases.Count == 0, failedCases.AsReadOnlySpan(), in patternCandidates);
 		return true;
 
 	FastFail:
-		result = default;
-		return false;
+		result = new(in grid, false, [], in patternCandidates);
+		return true;
 
 
 		static void dfs(ref Grid grid, ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)

@@ -965,32 +965,6 @@
             </summary>
             <remarks>This property is <see langword="true"/> by default.</remarks>
         </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.FieldAttribute.RefKind">
-            <summary>
-            <para>Indicates the ref modifiers kind.</para>
-            <para>
-            The value will be as follows by default:
-            <list type="table">
-            <listheader>
-            <term>Case</term>
-            <description>Applied ref kind</description>
-            </listheader>
-            <item>
-            <term><see langword="ref"/> parameters in <see langword="ref struct"/></term>
-            <description><c>"ref"</c></description>
-            </item>
-            <item>
-            <term><see langword="ref readonly"/> / <see langword="in"/> parameters in <see langword="ref struct"/></term>
-            <description><c>"ref readonly"</c></description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>No ref kind applied</description>
-            </item>
-            </list>
-            </para>
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.GetHashCodeBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
@@ -1067,6 +1041,32 @@
         <member name="T:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute">
             <summary>
             Represents the base type of attribute target.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute.RefKind">
+            <summary>
+            <para>Indicates the ref modifiers kind.</para>
+            <para>
+            The value will be as follows by default:
+            <list type="table">
+            <listheader>
+            <term>Case</term>
+            <description>Applied ref kind</description>
+            </listheader>
+            <item>
+            <term><see langword="ref"/> parameters in <see langword="ref struct"/></term>
+            <description><c>"ref"</c></description>
+            </item>
+            <item>
+            <term><see langword="ref readonly"/> / <see langword="in"/> parameters in <see langword="ref struct"/></term>
+            <description><c>"ref readonly"</c></description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>No ref kind applied</description>
+            </item>
+            </list>
+            </para>
             </summary>
         </member>
         <member name="P:System.Diagnostics.CodeAnalysis.ParameterTargetAttribute.Accessibility">

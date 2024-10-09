@@ -4989,6 +4989,78 @@
             <param name="pairCells">Indicates a list of pairs of cells used.</param>
             <param name="size">Indicates the size of the pattern.</param>
         </member>
+        <member name="F:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.AllPatterns">
+            <summary>
+            Indicates all possible extended rectangle pattern combinations.
+            </summary>
+            <remarks>
+            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
+            <para>
+            Fit type (2 blocks spanned):
+            <code><![CDATA[
+            ab | ab
+            bc | bc
+            ac | ac
+            ]]></code>
+            </para>
+            <para>
+            Fat type (3 blocks spanned):
+            <code><![CDATA[
+            ab | ac | bc
+            ab | ac | bc
+            ]]></code>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.HouseCombinations">
+            <summary>
+            Indicates all possible combinations of houses.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.FitTableRow">
+            <summary>
+            Indicates the row combinations for rows.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.FitTableColumn">
+            <summary>
+            Indicates the column combinations of columns.
+            </summary>
+            <remarks>
+            <requires-static-constructor-invocation>
+		<i>
+			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
+		</i>
+	</requires-static-constructor-invocation>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
@@ -7338,6 +7410,24 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.EightCellPatterns">
+            <summary>
+            Indicates all eight-cell patterns.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -7346,20 +7436,20 @@
              There're 2 patterns:
              <code><![CDATA[
              (1) UL + XR, 3 digits
-             12 .  .  |  23 .  .  |  31 .  .
-             .  21 .  |  32 .  .  |  13 .  .
+             12 .  .  |  23 .  .  |  13 .  .
+             .  12 .  |  23 .  .  |  13 .  .
              .  .  .  |  .  .  .  |  .  .  .
              ---------+-----------+---------
-             21 12 .  |  .  .  .  |  .  .  .
+             12 12 .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
             
              (2) XR + UR, 3 digits
-             12 23 .  |  31 .  .  |  .  .  .
-             .  .  31 |  13 .  .  |  .  .  .
+             12 23 .  |  13 .  .  |  .  .  .
+             .  .  13 |  13 .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              ---------+-----------+---------
-             21 32 13 |  .  .  .  |  .  .  .
+             21 23 13 |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              ]]></code>
@@ -7371,32 +7461,65 @@
              <code><![CDATA[
              (1) 2URs + XR, 3 digits
              12 .  .  |  21 .  .  |  .  .  .
-             .  23 .  |  32 .  .  |  .  .  .
-             .  .  31 |  13 .  .  |  .  .  .
+             .  23 .  |  23 .  .  |  .  .  .
+             .  .  13 |  13 .  .  |  .  .  .
              ---------+-----------+---------
-             21 32 13 |  .  .  .  |  .  .  .
+             21 23 13 |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
             
              (2) 2XRs, 4 digits
-             12 24 .  |  41 .  .  |  .  .  .
-             31 .  43 |  14 .  .  |  .  .  .
+             12 24 .  |  14 .  .  |  .  .  .
+             13 .  34 |  14 .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              ---------+-----------+---------
-             23 42 34 |  .  .  .  |  .  .  .
+             23 24 34 |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
             
              (3) BDP + UR, 3 digits
-             12 .  .  |  21 .  .  |  .  .  .
-             23 .  .  |  .  .  .  |  32 .  .
-             .  31 .  |  12 .  .  |  23 .  .
+             12 .  .  |  12 .  .  |  .  .  .
+             23 .  .  |  .  .  .  |  23 .  .
+             .  13 .  |  12 .  .  |  23 .  .
              ---------+-----------+---------
-             31 13 .  |  .  .  .  |  .  .  .
+             13 13 .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              .  .  .  |  .  .  .  |  .  .  .
              ]]></code>
              </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+            <summary>
+            Check for type 1 and 2.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="digitsMask">The digits used.</param>
+            <param name="targetDigit">The target digit.</param>
+            <returns>The found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType4(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Check for type 4.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="digitsMask">The digits used.</param>
+            <param name="extraDigitsMask">The extra digits.</param>
+            <param name="extraCells">Indicates the extra cells used.</param>
+            <returns>The found step.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.VerifyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Try to verify whether a pattern is a deadly pattern without the specified digits from a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="pattern">The pattern.</param>
+            <param name="digits">The digits.</param>
+            <param name="c">Indicates all candidates used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
@@ -7550,78 +7673,6 @@
             <item>Extended Rectangle Type 4</item>
             </list>
             </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.Patterns">
-            <summary>
-            Indicates all possible extended rectangle pattern combinations.
-            </summary>
-            <remarks>
-            <para>The list contains two types of <b>Extended Rectangle</b>s:</para>
-            <para>
-            Fit type (2 blocks spanned):
-            <code><![CDATA[
-            ab | ab
-            bc | bc
-            ac | ac
-            ]]></code>
-            </para>
-            <para>
-            Fat type (3 blocks spanned):
-            <code><![CDATA[
-            ab | ac | bc
-            ab | ac | bc
-            ]]></code>
-            </para>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.HouseCombinations">
-            <summary>
-            Indicates all possible combinations of houses.
-            </summary>
-            <remarks>
-            <requires-static-constructor-invocation>
-		<i>
-			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
-		</i>
-	</requires-static-constructor-invocation>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.FitTableRow">
-            <summary>
-            Indicates the row combinations for rows.
-            </summary>
-            <remarks>
-            <requires-static-constructor-invocation>
-		<i>
-			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
-		</i>
-	</requires-static-constructor-invocation>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.FitTableColumn">
-            <summary>
-            Indicates the column combinations of columns.
-            </summary>
-            <remarks>
-            <requires-static-constructor-invocation>
-		<i>
-			This field will only be used in the static constructor of this type. Please don't use this field in the user code.
-		</i>
-	</requires-static-constructor-invocation>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
@@ -25878,9 +25929,10 @@
             Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
             or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
             </param>
+            <param name="patternCandidates">Indicates the candidates the pattern used.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
         </member>
-        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Concepts.Grid})">
+        <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.#ctor(Sudoku.Concepts.Grid@,System.Boolean,System.ReadOnlySpan{Sudoku.Concepts.Grid},Sudoku.Concepts.CandidateMap@)">
             <summary>
             Indicates the result value after <see cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/> called.
             </summary>
@@ -25890,12 +25942,8 @@
             Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
             or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
             </param>
+            <param name="patternCandidates">Indicates the candidates the pattern used.</param>
             <seealso cref="M:Sudoku.Inferring.DeadlyPatternInferrer.TryInfer(Sudoku.Concepts.Grid@,Sudoku.Inferring.DeadlyPatternInferredResult@)"/>
-        </member>
-        <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
-            <summary>
-            Indicates the candidates the pattern used.
-            </summary>
         </member>
         <member name="F:Sudoku.Inferring.DeadlyPatternInferredResult.Grid">
             <summary>
@@ -25910,6 +25958,11 @@
         <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.FailedCases">
             <summary>
             The generated property declaration for parameter <c>failedCases</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Inferring.DeadlyPatternInferredResult.PatternCandidates">
+            <summary>
+            The generated property declaration for parameter <c>patternCandidates</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Inferring.DeadlyPatternInferredResult.Equals(System.Object)">

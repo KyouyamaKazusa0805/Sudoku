@@ -33,5 +33,5 @@ public sealed partial class AnonymousDeadlyPatternType4Step(
 
 	private string ExtraCombStr => Options.Converter.DigitConverter(ExtraDigitsMask);
 
-	private string ConjHouseStr => Options.Converter.HouseConverter(ConjugateHouse);
+	private string ConjHouseStr => Options.Converter.HouseConverter(1 << ConjugateHouse);
 }

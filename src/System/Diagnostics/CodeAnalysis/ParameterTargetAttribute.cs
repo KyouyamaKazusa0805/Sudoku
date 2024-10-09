@@ -1,10 +1,36 @@
-﻿namespace System.Diagnostics.CodeAnalysis;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Represents the base type of attribute target.
 /// </summary>
 public abstract class ParameterTargetAttribute : Attribute
 {
+	/// <summary>
+	/// <para>Indicates the ref modifiers kind.</para>
+	/// <para>
+	/// The value will be as follows by default:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Case</term>
+	/// <description>Applied ref kind</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="ref"/> parameters in <see langword="ref struct"/></term>
+	/// <description><c>"ref"</c></description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="ref readonly"/> / <see langword="in"/> parameters in <see langword="ref struct"/></term>
+	/// <description><c>"ref readonly"</c></description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>No ref kind applied</description>
+	/// </item>
+	/// </list>
+	/// </para>
+	/// </summary>
+	public string? RefKind { get; init; }
+
 	/// <summary>
 	/// Indicates the accessibility of the generated member.
 	/// </summary>
