@@ -4342,9 +4342,6 @@
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Pattern.GetHashCode">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
@@ -4353,6 +4350,9 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Pattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.op_Equality(Sudoku.Analytics.Construction.Pattern,Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

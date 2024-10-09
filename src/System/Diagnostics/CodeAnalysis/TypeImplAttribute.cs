@@ -1,7 +1,7 @@
 namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
-/// Represents an attribute type that can help developers declare types more simple and easier,
+/// Represents an attribute type that can help developers declare types simpler and easier,
 /// through generating particular code, like automatically implementing <see cref="IEquatable{T}"/>
 /// by using source generator.
 /// </summary>

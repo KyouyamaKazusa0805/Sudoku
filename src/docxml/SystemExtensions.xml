@@ -1354,7 +1354,7 @@
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.TypeImplAttribute">
             <summary>
-            Represents an attribute type that can help developers declare types more simple and easier,
+            Represents an attribute type that can help developers declare types simpler and easier,
             through generating particular code, like automatically implementing <see cref="T:System.IEquatable`1"/>
             by using source generator.
             </summary>
@@ -1397,7 +1397,7 @@
         </member>
         <member name="M:System.Diagnostics.CodeAnalysis.TypeImplAttribute.#ctor(System.Diagnostics.CodeAnalysis.TypeImplFlag)">
             <summary>
-            Represents an attribute type that can help developers declare types more simple and easier,
+            Represents an attribute type that can help developers declare types simpler and easier,
             through generating particular code, like automatically implementing <see cref="T:System.IEquatable`1"/>
             by using source generator.
             </summary>
