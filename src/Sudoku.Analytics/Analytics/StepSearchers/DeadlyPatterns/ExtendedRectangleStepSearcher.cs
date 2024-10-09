@@ -100,7 +100,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
 				var c23 = c21 + 18;
-				result.AddRef(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 		for (var j = 0; j < 3; j++)
@@ -113,7 +113,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
 				var c23 = c21 + 2;
-				result.AddRef(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add(new(false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 
@@ -139,7 +139,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));
 					}
-					result.AddRef(new(true, in map, [.. pairs], size));
+					result.Add(new(true, in map, [.. pairs], size));
 				}
 			}
 		}

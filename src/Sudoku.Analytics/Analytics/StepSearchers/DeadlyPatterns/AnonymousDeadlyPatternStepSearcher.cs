@@ -54,6 +54,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// </remarks>
 	private AnonymousDeadlyPatternStep? Collect_8Cells(ref StepAnalysisContext context)
 	{
+		// We can unify two patterns into one by using extended rectangles.
+		// Enumerate all possible XR patterns with 6 cells, and enumerate all cells.
+		// For each cell, we will remove it and insert a unique rectangle pattern that covers the current cell.
+
+
 		return null;
 	}
 
