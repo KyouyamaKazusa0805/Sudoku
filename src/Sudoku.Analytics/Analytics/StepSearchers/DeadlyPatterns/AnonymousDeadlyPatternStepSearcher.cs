@@ -248,6 +248,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	{
 		// Test examples:
 		// 17..9..83389......6..38..7..931287..8.1673...72695431891...2.37.3....29.26..39.51
+		// +6+4+7...+2+89+2+914+687+35+5382+7+9..+1+726+8+9...+3..+31.79+2+6.+1..+2..783..+7....+2.72...+3.4+16+49+3285+7:564 466 566 575 176 576 678 586
 
 		ref readonly var grid = ref context.Grid;
 
