@@ -181,6 +181,12 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
+				if (!VerifyPattern(in grid, in pattern, extraDigitsMask, out var p))
+				{
+					// The pattern cannot be passed to be verified.
+					continue;
+				}
+
 				switch (Mask.PopCount(extraDigitsMask))
 				{
 					case 0:
@@ -189,18 +195,15 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						foreach (var targetDigit in digitsMask)
+						if (CheckType1Or2(ref context, in grid, in pattern, digitsMask, Mask.Log2(extraDigitsMask), in p) is { } type1Or2Step)
 						{
-							if (CheckType1Or2(ref context, in grid, in pattern, digitsMask, targetDigit) is { } type1Or2Step)
-							{
-								return type1Or2Step;
-							}
+							return type1Or2Step;
 						}
 						continue;
 					}
 					case 2:
 					{
-						if (CheckType3(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells) is { } type3Step)
+						if (CheckType3(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells, in p) is { } type3Step)
 						{
 							return type3Step;
 						}
@@ -208,7 +211,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					default:
 					{
-						if (CheckType4(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells) is { } type4Step)
+						if (CheckType4(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells, in p) is { } type4Step)
 						{
 							return type4Step;
 						}
@@ -264,21 +267,17 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="pattern">The pattern.</param>
 	/// <param name="digitsMask">The digits used.</param>
 	/// <param name="targetDigit">The target digit.</param>
+	/// <param name="p">All candidates used.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternStep? CheckType1Or2(
 		ref StepAnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CellMap pattern,
 		Mask digitsMask,
-		Digit targetDigit
+		Digit targetDigit,
+		ref readonly CandidateMap p
 	)
 	{
-		// Verify deadly pattern.
-		if (!VerifyPattern(in grid, in pattern, (Mask)(1 << targetDigit), out var p))
-		{
-			return null;
-		}
-
 		// Congratulations, you have found a deadly pattern with 8 cells without any names!
 		// Now check eliminations.
 		var extraCells = CandidatesMap[targetDigit] & pattern;
@@ -357,6 +356,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMask">The digits used.</param>
 	/// <param name="extraDigitsMask">The extra digits.</param>
 	/// <param name="extraCells">Indicates the extra cells used.</param>
+	/// <param name="p">All candidates used.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType3Step? CheckType3(
 		ref StepAnalysisContext context,
@@ -364,7 +364,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap pattern,
 		Mask digitsMask,
 		Mask extraDigitsMask,
-		ref readonly CellMap extraCells
+		ref readonly CellMap extraCells,
+		ref readonly CandidateMap p
 	)
 	{
 		return null;
@@ -379,6 +380,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMask">The digits used.</param>
 	/// <param name="extraDigitsMask">The extra digits.</param>
 	/// <param name="extraCells">Indicates the extra cells used.</param>
+	/// <param name="p">All candidates used.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType4Step? CheckType4(
 		ref StepAnalysisContext context,
@@ -386,7 +388,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap pattern,
 		Mask digitsMask,
 		Mask extraDigitsMask,
-		ref readonly CellMap extraCells
+		ref readonly CellMap extraCells,
+		ref readonly CandidateMap p
 	)
 	{
 		// Test examples:
@@ -394,12 +397,6 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		// 6+147+5+3.+8.+39+7.+2.+1652+5+8+9+61+4+7+37..6..8..+8....9.....1.8..4..+7.2...3..2+6..579..8+3+1...+24:149 557 657 159 259 567 667 269 969 571 971 679
 		// 7..6..3+41.46....9.2...4.+68...+74.3..8..4.6.1..5.+28+17....2..8...3.7....81.4.8..9..6:321 124 224 724 225 226 526 729 134 334 641 947 248 959 962 176 576 577 777 286 586 289 589 294 794 295 798
 		// ..5..+73+6..3+78+6...26.9.3...7+89..54+1+7.+3+746..5+2.+5+1.7...4.2+6+3.4.785+9+4+8+5+762+3+1+751...6+9+4:214 126 234 136 956 865 869 969
-
-		// Verify deadly pattern.
-		if (!VerifyPattern(in grid, in pattern, extraDigitsMask, out var p))
-		{
-			return null;
-		}
 
 		var house = extraCells.FirstSharedHouse;
 		var cells = HousesMap[house] & pattern;
