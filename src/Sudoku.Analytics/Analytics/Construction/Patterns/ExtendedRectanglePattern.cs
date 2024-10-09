@@ -140,7 +140,6 @@ public sealed partial class ExtendedRectanglePattern(
 				}
 			}
 		}
-
 		AllPatterns = result.AsReadOnlyMemory();
 	}
 
