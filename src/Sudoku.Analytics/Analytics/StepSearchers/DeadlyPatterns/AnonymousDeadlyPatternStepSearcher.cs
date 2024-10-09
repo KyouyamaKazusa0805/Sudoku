@@ -13,7 +13,10 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_AnonymousDeadlyPatternStepSearcher",
 	Technique.AnonymousDeadlyPatternType1, Technique.AnonymousDeadlyPatternType2,
-	Technique.AnonymousDeadlyPatternType3, Technique.AnonymousDeadlyPatternType4)]
+	Technique.AnonymousDeadlyPatternType3, Technique.AnonymousDeadlyPatternType4,
+	RuntimeFlags = StepSearcherRuntimeFlags.TimeComplexity,
+	SupportedSudokuTypes = SudokuType.Standard,
+	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -180,13 +183,10 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 
 				switch (Mask.PopCount(extraDigitsMask))
 				{
-					// Invalid.
 					case 0:
 					{
-						continue;
+						throw new PuzzleInvalidException(in grid, typeof(AnonymousDeadlyPatternStep));
 					}
-
-					// Type 1 or 2.
 					case 1:
 					{
 						foreach (var targetDigit in digitsMask)
@@ -198,14 +198,14 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						}
 						continue;
 					}
-
-					// Type 3.
 					case 2:
 					{
+						if (CheckType3(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells) is { } type3Step)
+						{
+							return type3Step;
+						}
 						goto default;
 					}
-
-					// Type 4.
 					default:
 					{
 						if (CheckType4(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells) is { } type4Step)
@@ -345,6 +345,28 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			}
 			context.Accumulator.Add(step);
 		}
+		return null;
+	}
+
+	/// <summary>
+	/// Check for type 3.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="pattern">The pattern.</param>
+	/// <param name="digitsMask">The digits used.</param>
+	/// <param name="extraDigitsMask">The extra digits.</param>
+	/// <param name="extraCells">Indicates the extra cells used.</param>
+	/// <returns>The found step.</returns>
+	private AnonymousDeadlyPatternType3Step? CheckType3(
+		ref StepAnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CellMap pattern,
+		Mask digitsMask,
+		Mask extraDigitsMask,
+		ref readonly CellMap extraCells
+	)
+	{
 		return null;
 	}
 
