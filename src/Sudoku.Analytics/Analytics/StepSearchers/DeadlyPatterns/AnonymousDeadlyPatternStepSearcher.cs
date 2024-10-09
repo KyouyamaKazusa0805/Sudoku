@@ -42,7 +42,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				var rowCells = patternCells & HousesMap[row];
 				var columnCells = patternCells & HousesMap[column];
 				var isRow = rowCells.Count > columnCells.Count;
-				var targetHouse = isRow ? column : row;
+				var targetHouse = pattern.IsFat ? isRow ? column : row : isRow ? row : column;
 				var chute = default(Chute);
 				foreach (ref readonly var chuteP in Chutes.AsReadOnlySpan())
 				{
