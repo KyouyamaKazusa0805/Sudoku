@@ -90,7 +90,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Uniqueness Clue Cover (*UCC*)
     * Conditional Deadly Patterns
       * Rotating Deadly Pattern (Only for standard type)
-      * Anonymous Deadly Pattern (Type 1, 2, 4, with size < 10)
+      * Anonymous Deadly Pattern (Size < 10)
   * Coloring (**Only in API**)
     * Simple Coloring
       * Simple Coloring Wrap

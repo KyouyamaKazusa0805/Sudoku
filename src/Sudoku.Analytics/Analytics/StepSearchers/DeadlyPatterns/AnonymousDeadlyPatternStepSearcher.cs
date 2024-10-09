@@ -368,6 +368,82 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CandidateMap p
 	)
 	{
+		// Test examples:
+		// 8 cells
+		// ..5..+73+6..3+78+6...26.9.3...7+89..54+1+7.+3+746..5+2.+5+1.7...4.2+6+3.4.785+9+4+8+5+762+3+1+751...6+9+4:214 126 234 136 956 865 869 969
+
+		// Iterate on each shared house, to find a subset.
+		foreach (var house in extraCells.SharedHouses)
+		{
+			var availableCells = HousesMap[house] & EmptyCells & ~pattern;
+			if (availableCells.Count <= 2)
+			{
+				continue;
+			}
+
+			// Iterate each combination.
+			foreach (ref readonly var subsetCells in availableCells | availableCells.Count - 1)
+			{
+				var subsetDigitsMask = (Mask)(grid[in subsetCells] | extraDigitsMask);
+				if (Mask.PopCount(subsetDigitsMask) != subsetCells.Count + 1)
+				{
+					// The (n) digits should be inside (n - 1) cells.
+					continue;
+				}
+
+				var eliminations = new List<Conclusion>();
+				foreach (var cell in availableCells & ~subsetCells)
+				{
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & subsetDigitsMask))
+					{
+						eliminations.Add(new(Elimination, cell, digit));
+					}
+				}
+				if (eliminations.Count == 0)
+				{
+					// No eliminations found.
+					continue;
+				}
+
+				var candidateOffsets = new List<CandidateViewNode>();
+				foreach (var cell in pattern)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(
+							new(
+								HousesMap[house].Contains(cell) && (subsetDigitsMask >> digit & 1) != 0
+									? ColorIdentifier.Auxiliary1
+									: ColorIdentifier.Normal,
+								cell * 9 + digit
+							)
+						);
+					}
+				}
+				foreach (var cell in subsetCells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
+				var step = new AnonymousDeadlyPatternType3Step(
+					eliminations.AsReadOnlyMemory(),
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+					context.Options,
+					in p,
+					in pattern,
+					in subsetCells,
+					subsetDigitsMask
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+				context.Accumulator.Add(step);
+			}
+		}
 		return null;
 	}
 
