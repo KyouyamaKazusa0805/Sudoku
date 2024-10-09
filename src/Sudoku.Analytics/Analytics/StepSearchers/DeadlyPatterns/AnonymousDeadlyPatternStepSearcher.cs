@@ -30,14 +30,9 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		// Enumerate all possible XR patterns with 6 cells, and enumerate all cells.
 		// For each cell, we will remove it and insert a unique rectangle pattern that covers the current cell.
 		var eightCellPatterns = new HashSet<CellMap>();
-		foreach (var pattern in ExtendedRectanglePattern.AllPatterns)
+		foreach (var pattern in ExtendedRectanglePattern.AllPatterns[..1620]) // [0..1620] -> XR size 6
 		{
 			var patternCells = pattern.PatternCells;
-			if (patternCells.Count != 6)
-			{
-				continue;
-			}
-
 			foreach (var missingCell in patternCells)
 			{
 				// Determine which side has more cells (row or column).
