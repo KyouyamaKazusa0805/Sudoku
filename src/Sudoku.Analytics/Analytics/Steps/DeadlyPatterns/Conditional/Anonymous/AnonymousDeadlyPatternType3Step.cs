@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells">Indicates the target cells.</param>
 /// <param name="subsetCells">Indicates the subset cells.</param>
 /// <param name="subsetDigitsMask">Indicates the extra digits used.</param>
+/// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType3Step(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
@@ -17,9 +18,10 @@ public sealed partial class AnonymousDeadlyPatternType3Step(
 	[Property] ref readonly CandidateMap patternCandidates,
 	[Property] ref readonly CellMap targetCells,
 	[Property] ref readonly CellMap subsetCells,
-	[Property] Mask subsetDigitsMask
+	[Property] Mask subsetDigitsMask,
+	Technique technique
 ) :
-	AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells),
+	AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells, technique),
 	IPatternType3StepTrait<AnonymousDeadlyPatternType3Step>
 {
 	/// <inheritdoc/>

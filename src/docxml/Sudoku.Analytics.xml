@@ -7455,6 +7455,16 @@
              ]]></code>
              </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect_8Cells_Rotating(Sudoku.Analytics.StepAnalysisContext@)">
+            <remarks>
+            There's only 1 pattern:
+            <code><![CDATA[
+            12 .  .  |  24 .  .  |  14 .  .
+            23 .  .  |  23 .  .  |  .  .  .
+            13 .  .  |  34 .  .  |  14 .  .
+            ]]></code>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.Collect_9Cells(Sudoku.Analytics.StepAnalysisContext@)">
              <remarks>
              There're 3 patterns:
@@ -7488,7 +7498,7 @@
              ]]></code>
              </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CandidateMap@,Sudoku.Categorization.Technique)">
             <summary>
             Check for type 1 and 2.
             </summary>
@@ -7498,9 +7508,10 @@
             <param name="digitsMask">The digits used.</param>
             <param name="targetDigit">The target digit.</param>
             <param name="p">All candidates used.</param>
+            <param name="technique">The technique.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType3(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType3(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@,Sudoku.Categorization.Technique)">
             <summary>
             Check for type 3.
             </summary>
@@ -7511,9 +7522,10 @@
             <param name="extraDigitsMask">The extra digits.</param>
             <param name="extraCells">Indicates the extra cells used.</param>
             <param name="p">All candidates used.</param>
+            <param name="technique">The technique.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType4(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.CheckType4(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@,Sudoku.Categorization.Technique)">
             <summary>
             Check for type 4.
             </summary>
@@ -7524,6 +7536,7 @@
             <param name="extraDigitsMask">The extra digits.</param>
             <param name="extraCells">Indicates the extra cells used.</param>
             <param name="p">All candidates used.</param>
+            <param name="technique">The technique.</param>
             <returns>The found step.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher.VerifyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CandidateMap@)">
@@ -8057,18 +8070,6 @@
             <para><inheritdoc cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.IsValid``1(``0)" path="//remarks/para[2]"/></para>
             </remarks>
             <seealso cref="M:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.IsValid``1(``0)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher">
-            <summary>
-            Provides with a <b>Rotating Deadly Pattern</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Rotating Deadly Pattern</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.RotatingDeadlyPatternStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher">
             <summary>
@@ -12250,8 +12251,9 @@
             <param name="options"><inheritdoc/></param>
             <param name="digitsMask">Indicates the digits used.</param>
             <param name="cells">Indicates cells used.</param>
+            <param name="technique"><inheritdoc cref="P:Sudoku.Analytics.Step.Code" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern</b> technique.
             </summary>
@@ -12260,6 +12262,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="digitsMask">Indicates the digits used.</param>
             <param name="cells">Indicates cells used.</param>
+            <param name="technique"><inheritdoc cref="P:Sudoku.Analytics.Step.Code" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.BaseDifficulty">
             <inheritdoc/>
@@ -12268,9 +12271,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.OnlyUseBivalueCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.DigitsUsed">
@@ -12286,6 +12286,11 @@
             The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternStep.Code">
+            <summary>
+            The generated property declaration for parameter <c>technique</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 1</b> technique.
@@ -12298,8 +12303,9 @@
             <param name="targetDigitsMask">
             Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
             </param>
+            <param name="technique"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 1</b> technique.
             </summary>
@@ -12311,6 +12317,7 @@
             <param name="targetDigitsMask">
             Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
             </param>
+            <param name="technique"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType1Step.Type">
             <inheritdoc/>
@@ -12343,8 +12350,9 @@
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="targetCells">Indicates the target cells.</param>
             <param name="extraDigit">Indicates the extra digit.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 2</b> technique.
             </summary>
@@ -12354,6 +12362,7 @@
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="targetCells">Indicates the target cells.</param>
             <param name="extraDigit">Indicates the extra digit.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType2Step.BaseDifficulty">
             <inheritdoc/>
@@ -12393,8 +12402,9 @@
             <param name="targetCells">Indicates the target cells.</param>
             <param name="subsetCells">Indicates the subset cells.</param>
             <param name="subsetDigitsMask">Indicates the extra digits used.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 3</b> technique.
             </summary>
@@ -12405,6 +12415,7 @@
             <param name="targetCells">Indicates the target cells.</param>
             <param name="subsetCells">Indicates the subset cells.</param>
             <param name="subsetDigitsMask">Indicates the extra digits used.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType3Step.BaseDifficulty">
             <inheritdoc/>
@@ -12457,8 +12468,9 @@
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="conjugateHouse">Indicates the target house.</param>
             <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int32,System.Int16,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is an <b>Anonymous Deadly Pattern Type 4</b> technique.
             </summary>
@@ -12468,6 +12480,7 @@
             <param name="patternCandidates"><inheritdoc/></param>
             <param name="conjugateHouse">Indicates the target house.</param>
             <param name="extraDigitsMask">Indicates the extra digits used.</param>
+            <param name="technique"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.BaseDifficulty">
             <inheritdoc/>
@@ -12491,51 +12504,6 @@
         <member name="P:Sudoku.Analytics.Steps.AnonymousDeadlyPatternType4Step.ExtraDigitsMask">
             <summary>
             The generated property declaration for parameter <c>extraDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep">
-            <summary>
-            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="cells">Indicates cells used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Rotating Deadly Pattern</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the digits used.</param>
-            <param name="cells">Indicates cells used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.OnlyUseBivalueCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.RotatingDeadlyPatternStep.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DeadlyPatternStep">
@@ -22932,9 +22900,24 @@
             Indicates unique matrix type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPattern">
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPatternType1">
             <summary>
-            Indicates rotating deadly pattern.
+            Indicates rotating deadly pattern type 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPatternType2">
+            <summary>
+            Indicates rotating deadly pattern type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPatternType3">
+            <summary>
+            Indicates rotating deadly pattern type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.RotatingDeadlyPatternType4">
+            <summary>
+            Indicates rotating deadly pattern type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.AnonymousDeadlyPatternType1">
@@ -29406,9 +29389,24 @@
               Looks up a localized string similar to only right open.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPattern">
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPatternType1">
             <summary>
-              Looks up a localized string similar to Rotating Deadly Pattern.
+              Looks up a localized string similar to Rotating Deadly Pattern Type 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPatternType2">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern Type 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPatternType3">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern Type 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.RotatingDeadlyPatternType4">
+            <summary>
+              Looks up a localized string similar to Rotating Deadly Pattern Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.RstuvwxyzWing">

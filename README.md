@@ -89,7 +89,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Reverse Bi-value Universal Grave (*Reverse BUG*)
       * Uniqueness Clue Cover (*UCC*)
     * Conditional Deadly Patterns
-      * Rotating Deadly Pattern (Only for standard type)
+      * Rotating Deadly Pattern
       * Anonymous Deadly Pattern (Size < 10)
   * Coloring (**Only in API**)
     * Simple Coloring

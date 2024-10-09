@@ -93,6 +93,10 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		{
 			return eightCellsStep;
 		}
+		if (Collect_8Cells_Rotating(ref context) is { } eightCells2Step)
+		{
+			return eightCells2Step;
+		}
 		if (Collect_9Cells(ref context) is { } nineCellsStep)
 		{
 			return nineCellsStep;
@@ -195,7 +199,12 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						if (CheckType1Or2(ref context, in grid, in pattern, digitsMask, Mask.Log2(extraDigitsMask), in p) is { } type1Or2Step)
+						var extraDigit = Mask.Log2(extraDigitsMask);
+						if (CheckType1Or2(
+							ref context, in grid, in pattern, digitsMask, extraDigit, in p,
+							(pattern & CandidatesMap[extraDigit]).Count == 1
+								? Technique.AnonymousDeadlyPatternType1
+								: Technique.AnonymousDeadlyPatternType2) is { } type1Or2Step)
 						{
 							return type1Or2Step;
 						}
@@ -203,7 +212,9 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					case 2:
 					{
-						if (CheckType3(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells, in p) is { } type3Step)
+						if (CheckType3(
+							ref context, in grid, in pattern, digitsMask,
+							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType3) is { } type3Step)
 						{
 							return type3Step;
 						}
@@ -211,11 +222,131 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					default:
 					{
-						if (CheckType4(ref context, in grid, in pattern, digitsMask, extraDigitsMask, in extraCells, in p) is { } type4Step)
+						if (CheckType4(
+							ref context, in grid, in pattern, digitsMask,
+							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType4) is { } type4Step)
 						{
 							return type4Step;
 						}
 						break;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/// <remarks>
+	/// There's only 1 pattern:
+	/// <code><![CDATA[
+	/// 12 .  .  |  24 .  .  |  14 .  .
+	/// 23 .  .  |  23 .  .  |  .  .  .
+	/// 13 .  .  |  34 .  .  |  14 .  .
+	/// ]]></code>
+	/// </remarks>
+	private AnonymousDeadlyPatternStep? Collect_8Cells_Rotating(ref StepAnalysisContext context)
+	{
+		// Test examples:
+		// 17..9..83389......6..38..7..931287..8.1673...72695431891...2.37.3....29.26..39.51
+
+		ref readonly var grid = ref context.Grid;
+
+		// Iterate on each pattern. Here the pattern cells is same as patterns used in Unique Matrix pattern.
+		// We should remove one cell from the pattern, to make the pattern become a possible Rotating Deadly Pattern.
+		foreach (ref readonly var cells in UniqueMatrixStepSearcher.Patterns.AsReadOnlySpan())
+		{
+			// Iterate on each cell as missing cell.
+			foreach (var missingCell in cells)
+			{
+				// Check whether all last 8 cells are empty cells.
+				var pattern = cells - missingCell;
+				if ((EmptyCells & pattern) != pattern)
+				{
+					// The pattern may contain non-empty cells. Skip it.
+					continue;
+				}
+
+				// Check the number of digits appeared in the pattern, and determine which type it would be.
+				var digitsMask = grid[in pattern];
+
+				// Adds an filter nearly same as anonymous deadly pattern, but with 4 different digits.
+				var possiblePatternDigitsMask = (Mask)0;
+				foreach (var digit in digitsMask)
+				{
+					if ((pattern & CandidatesMap[digit]).Count >= 4)
+					{
+						possiblePatternDigitsMask |= (Mask)(1 << digit);
+					}
+				}
+				if (Mask.PopCount(possiblePatternDigitsMask) < 4)
+				{
+					continue;
+				}
+
+				// Iterate on each combination.
+				foreach (var combination in possiblePatternDigitsMask.GetAllSets().GetSubsets(4))
+				{
+					// Try to get all cells that holds extra digits.
+					var extraDigitsMask = (Mask)(digitsMask & ~MaskOperations.Create(combination));
+					var extraCells = CellMap.Empty;
+					foreach (var cell in pattern)
+					{
+						if ((grid.GetCandidates(cell) & extraDigitsMask) != 0)
+						{
+							extraCells.Add(cell);
+						}
+					}
+					if (extraCells.Count >= 2 && !extraCells.InOneHouse(out _))
+					{
+						// All extra cells must share with a same house.
+						continue;
+					}
+
+					if (!VerifyPattern(in grid, in pattern, extraDigitsMask, out var p))
+					{
+						// The pattern cannot be passed to be verified.
+						continue;
+					}
+
+					switch (Mask.PopCount(extraDigitsMask))
+					{
+						case 0:
+						{
+							throw new PuzzleInvalidException(in grid, typeof(AnonymousDeadlyPatternStep));
+						}
+						case 1:
+						{
+							var extraDigit = Mask.Log2(extraDigitsMask);
+							if (CheckType1Or2(
+								ref context, in grid, in pattern, digitsMask, extraDigit, in p,
+								(pattern & CandidatesMap[extraDigit]).Count == 1
+									? Technique.RotatingDeadlyPatternType1
+									: Technique.RotatingDeadlyPatternType2) is { } type1Or2Step)
+							{
+								return type1Or2Step;
+							}
+							continue;
+						}
+						case 2:
+						{
+							if (CheckType3(
+								ref context, in grid, in pattern, digitsMask,
+								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType3) is { } type3Step)
+							{
+								return type3Step;
+							}
+							goto default;
+						}
+						default:
+						{
+							if (CheckType4(
+								ref context, in grid, in pattern, digitsMask,
+								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType4) is { } type4Step)
+							{
+								return type4Step;
+							}
+							break;
+						}
 					}
 				}
 			}
@@ -268,6 +399,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="digitsMask">The digits used.</param>
 	/// <param name="targetDigit">The target digit.</param>
 	/// <param name="p">All candidates used.</param>
+	/// <param name="technique">The technique.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternStep? CheckType1Or2(
 		ref StepAnalysisContext context,
@@ -275,14 +407,17 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		ref readonly CellMap pattern,
 		Mask digitsMask,
 		Digit targetDigit,
-		ref readonly CandidateMap p
+		ref readonly CandidateMap p,
+		Technique technique
 	)
 	{
 		// Congratulations, you have found a deadly pattern with 8 cells without any names!
 		// Now check eliminations.
 		var extraCells = CandidatesMap[targetDigit] & pattern;
 		var eliminations = extraCells is [var extraCell]
-			? from digit in grid.GetCandidates(extraCell) select new Conclusion(Elimination, extraCell, digit)
+			?
+			from digit in (Mask)(grid.GetCandidates(extraCell) & ~(1 << targetDigit))
+			select new Conclusion(Elimination, extraCell, digit)
 			: from cell in extraCells % CandidatesMap[targetDigit] select new Conclusion(Elimination, cell, targetDigit);
 		if (eliminations.Length == 0)
 		{
@@ -306,7 +441,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				context.Options,
 				in p,
 				extraCells[0],
-				digitsMask
+				digitsMask,
+				technique
 			);
 			if (context.OnlyFindOne)
 			{
@@ -336,7 +472,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				context.Options,
 				in p,
 				in extraCells,
-				targetDigit
+				targetDigit,
+				technique
 			);
 			if (context.OnlyFindOne)
 			{
@@ -357,6 +494,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="extraDigitsMask">The extra digits.</param>
 	/// <param name="extraCells">Indicates the extra cells used.</param>
 	/// <param name="p">All candidates used.</param>
+	/// <param name="technique">The technique.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType3Step? CheckType3(
 		ref StepAnalysisContext context,
@@ -365,7 +503,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		Mask digitsMask,
 		Mask extraDigitsMask,
 		ref readonly CellMap extraCells,
-		ref readonly CandidateMap p
+		ref readonly CandidateMap p,
+		Technique technique
 	)
 	{
 		// Test examples:
@@ -435,7 +574,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					in p,
 					in pattern,
 					in subsetCells,
-					subsetDigitsMask
+					subsetDigitsMask,
+					technique
 				);
 				if (context.OnlyFindOne)
 				{
@@ -457,6 +597,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="extraDigitsMask">The extra digits.</param>
 	/// <param name="extraCells">Indicates the extra cells used.</param>
 	/// <param name="p">All candidates used.</param>
+	/// <param name="technique">The technique.</param>
 	/// <returns>The found step.</returns>
 	private AnonymousDeadlyPatternType4Step? CheckType4(
 		ref StepAnalysisContext context,
@@ -465,7 +606,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		Mask digitsMask,
 		Mask extraDigitsMask,
 		ref readonly CellMap extraCells,
-		ref readonly CandidateMap p
+		ref readonly CandidateMap p,
+		Technique technique
 	)
 	{
 		// Test examples:
@@ -525,7 +667,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					context.Options,
 					in p,
 					house,
-					(Mask)(1 << conjugatePairDigit | 1 << eliminationDigit)
+					(Mask)(1 << conjugatePairDigit | 1 << eliminationDigit),
+					technique
 				);
 				if (context.OnlyFindOne)
 				{

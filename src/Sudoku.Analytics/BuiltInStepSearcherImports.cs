@@ -22,7 +22,6 @@
 [assembly: AssemblyStepSearcher<EmptyRectangleStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<BorescoperDeadlyPatternStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<UniqueMatrixStepSearcher>(1)]
-[assembly: AssemblyStepSearcher<RotatingDeadlyPatternStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<AnonymousDeadlyPatternStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<BivalueUniversalGraveStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<QiuDeadlyPatternStepSearcher>(1)]

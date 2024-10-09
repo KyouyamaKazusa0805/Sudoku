@@ -4508,15 +4508,48 @@ public enum Technique
 	//
 	#region Rotating Deadly Pattern
 	/// <summary>
-	/// Indicates rotating deadly pattern.
+	/// Indicates rotating deadly pattern type 1.
 	/// </summary>
 	[TechniqueMetadata(
 		Rating = 58,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
-		StepType = typeof(RotatingDeadlyPatternStep),
-		StepSearcherType = typeof(RotatingDeadlyPatternStepSearcher))]
-	RotatingDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType1Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	RotatingDeadlyPatternType1,
+
+	/// <summary>
+	/// Indicates rotating deadly pattern type 2.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 59,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType2Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	RotatingDeadlyPatternType2,
+
+	/// <summary>
+	/// Indicates rotating deadly pattern type 3.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 60,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType3Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	RotatingDeadlyPatternType3,
+
+	/// <summary>
+	/// Indicates rotating deadly pattern type 4.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 59,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.ConditionalDeadlyPattern,
+		StepType = typeof(AnonymousDeadlyPatternType4Step),
+		StepSearcherType = typeof(AnonymousDeadlyPatternStepSearcher))]
+	RotatingDeadlyPatternType4,
 	#endregion
 
 	//

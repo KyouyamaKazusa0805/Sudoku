@@ -9,14 +9,16 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="patternCandidates"><inheritdoc/></param>
 /// <param name="targetCells">Indicates the target cells.</param>
 /// <param name="extraDigit">Indicates the extra digit.</param>
+/// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType2Step(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,
 	[Property] ref readonly CellMap targetCells,
-	[Property] Digit extraDigit
-) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells)
+	[Property] Digit extraDigit,
+	Technique technique
+) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells, technique)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;

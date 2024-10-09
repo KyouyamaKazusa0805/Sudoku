@@ -11,14 +11,16 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetDigitsMask">
 /// Indicates the target digits that the pattern will be formed if the target cell only holds such digits.
 /// </param>
+/// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType1Step(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,
 	[Property] Cell targetCell,
-	[Property] Mask targetDigitsMask
-) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells)
+	[Property] Mask targetDigitsMask,
+	Technique technique
+) : AnonymousDeadlyPatternStep(conclusions, views, options, patternCandidates.Digits, patternCandidates.Cells, technique)
 {
 	/// <inheritdoc/>
 	public override int Type => 1;

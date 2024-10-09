@@ -3363,8 +3363,17 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_BottlenecksShouldBeAvailableInSolvedPuzzle" xml:space="preserve">
     <value>Only solved puzzles can contain bottleneck steps.</value>
   </data>
-  <data name="RotatingDeadlyPattern" xml:space="preserve">
-    <value>Rotating Deadly Pattern</value>
+  <data name="RotatingDeadlyPatternType1" xml:space="preserve">
+    <value>Rotating Deadly Pattern Type 1</value>
+  </data>
+  <data name="RotatingDeadlyPatternType2" xml:space="preserve">
+    <value>Rotating Deadly Pattern Type 2</value>
+  </data>
+  <data name="RotatingDeadlyPatternType3" xml:space="preserve">
+    <value>Rotating Deadly Pattern Type 3</value>
+  </data>
+  <data name="RotatingDeadlyPatternType4" xml:space="preserve">
+    <value>Rotating Deadly Pattern Type 4</value>
   </data>
   <data name="TechniqueGroup_ConditionalDeadlyPattern" xml:space="preserve">
     <value>Conditional Deadly Patterns</value>

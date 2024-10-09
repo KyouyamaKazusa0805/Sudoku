@@ -5050,11 +5050,38 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rotating Deadly Pattern.
+        ///   Looks up a localized string similar to Rotating Deadly Pattern Type 1.
         /// </summary>
-        public static string RotatingDeadlyPattern {
+        public static string RotatingDeadlyPatternType1 {
             get {
-                return ResourceManager.GetString("RotatingDeadlyPattern", resourceCulture);
+                return ResourceManager.GetString("RotatingDeadlyPatternType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Deadly Pattern Type 2.
+        /// </summary>
+        public static string RotatingDeadlyPatternType2 {
+            get {
+                return ResourceManager.GetString("RotatingDeadlyPatternType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Deadly Pattern Type 3.
+        /// </summary>
+        public static string RotatingDeadlyPatternType3 {
+            get {
+                return ResourceManager.GetString("RotatingDeadlyPatternType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotating Deadly Pattern Type 4.
+        /// </summary>
+        public static string RotatingDeadlyPatternType4 {
+            get {
+                return ResourceManager.GetString("RotatingDeadlyPatternType4", resourceCulture);
             }
         }
         
