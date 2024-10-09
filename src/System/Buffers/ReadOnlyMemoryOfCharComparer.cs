@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Buffers;
 
 /// <summary>
 /// Represents an equality comparer of <see cref="ReadOnlySpan{T}"/> of <see cref="char"/> object,

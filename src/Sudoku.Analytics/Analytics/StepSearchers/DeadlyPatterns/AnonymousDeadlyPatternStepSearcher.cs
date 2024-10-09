@@ -117,7 +117,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// .  .  13 |  13 .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// ---------+-----------+---------
-	/// 21 23 13 |  .  .  .  |  .  .  .
+	/// 12 23 13 |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// ]]></code>
@@ -227,11 +227,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	/// There're 3 patterns:
 	/// <code><![CDATA[
 	/// (1) 2URs + XR, 3 digits
-	/// 12 .  .  |  21 .  .  |  .  .  .
+	/// 12 .  .  |  12 .  .  |  .  .  .
 	/// .  23 .  |  23 .  .  |  .  .  .
 	/// .  .  13 |  13 .  .  |  .  .  .
 	/// ---------+-----------+---------
-	/// 21 23 13 |  .  .  .  |  .  .  .
+	/// 12 23 13 |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	/// .  .  .  |  .  .  .  |  .  .  .
 	///

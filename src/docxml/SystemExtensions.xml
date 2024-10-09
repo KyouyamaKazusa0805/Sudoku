@@ -26,6 +26,97 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="value">The value to be initialized.</param>
         </member>
+        <member name="T:System.Buffers.ReadOnlyMemoryOfCharComparer">
+            <summary>
+            Represents an equality comparer of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Char"/> object,
+            but it can also be created by comparing <see cref="T:System.String"/> values as an efficient way in variant collection types
+            like <see cref="T:System.Collections.Generic.HashSet`1.AlternateLookup`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.HashSet`1.AlternateLookup`1"/>
+        </member>
+        <member name="F:System.Buffers.ReadOnlyMemoryOfCharComparer.Instance">
+            <summary>
+            Indicates the singleton object of this type.
+            </summary>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.#ctor">
+            <summary>
+            Initializes a <see cref="T:System.Buffers.ReadOnlyMemoryOfCharComparer"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.Equals(System.ReadOnlyMemory{System.Char},System.ReadOnlyMemory{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.Equals(System.ReadOnlySpan{System.Char},System.ReadOnlyMemory{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.GetHashCode(System.ReadOnlyMemory{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.GetHashCode(System.ReadOnlySpan{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.Create(System.ReadOnlySpan{System.Char})">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Buffers.SingletonArray`1">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value">Indicates the value.</param>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.#ctor(`0)">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value">Indicates the value.</param>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.Unpin">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.GetSpan">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.Pin(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.Dispose(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.Span{`0}">
+            <summary>
+            Creates a <see cref="T:System.Span`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.ReadOnlySpan{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlySpan`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.Memory{`0}">
+            <summary>
+            Creates a <see cref="T:System.Memory`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.ReadOnlyMemory{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlyMemory`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="F:System.Buffers.SingletonArray`1._value">
+            <summary>
+            The generated field declaration for parameter <c>value</c>.
+            </summary>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.BitArray"/>.
@@ -5381,39 +5472,6 @@
             <param name="this">The sequence of <see cref="T:System.ReadOnlyMemory`1"/> instance.</param>
             <returns>A <see cref="T:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1"/> instance.</returns>
         </member>
-        <member name="T:System.ReadOnlyMemoryOfCharComparer">
-            <summary>
-            Represents an equality comparer of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Char"/> object,
-            but it can also be created by comparing <see cref="T:System.String"/> values as an efficient way in variant collection types
-            like <see cref="T:System.Collections.Generic.HashSet`1.AlternateLookup`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.HashSet`1.AlternateLookup`1"/>
-        </member>
-        <member name="F:System.ReadOnlyMemoryOfCharComparer.Instance">
-            <summary>
-            Indicates the singleton object of this type.
-            </summary>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.#ctor">
-            <summary>
-            Initializes a <see cref="T:System.ReadOnlyMemoryOfCharComparer"/> instance.
-            </summary>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.Equals(System.ReadOnlyMemory{System.Char},System.ReadOnlyMemory{System.Char})">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.Equals(System.ReadOnlySpan{System.Char},System.ReadOnlyMemory{System.Char})">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.GetHashCode(System.ReadOnlyMemory{System.Char})">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.GetHashCode(System.ReadOnlySpan{System.Char})">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryOfCharComparer.Create(System.ReadOnlySpan{System.Char})">
-            <inheritdoc/>
-        </member>
         <member name="T:System.ReadOnlySpanExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Span`1"/> and <see cref="T:System.ReadOnlySpan`1"/>.
@@ -6110,64 +6168,6 @@
             <param name="other">The other value to compare.</param>
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:System.SingletonArray`1">
-            <summary>
-            Represents an array with only one element.
-            </summary>
-            <typeparam name="T">The type of the only element of array.</typeparam>
-            <param name="value">Indicates the value.</param>
-        </member>
-        <member name="M:System.SingletonArray`1.#ctor(`0)">
-            <summary>
-            Represents an array with only one element.
-            </summary>
-            <typeparam name="T">The type of the only element of array.</typeparam>
-            <param name="value">Indicates the value.</param>
-        </member>
-        <member name="M:System.SingletonArray`1.Unpin">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SingletonArray`1.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SingletonArray`1.GetSpan">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SingletonArray`1.Pin(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SingletonArray`1.Dispose(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.Span{`0}">
-            <summary>
-            Creates a <see cref="T:System.Span`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlySpan{`0}">
-            <summary>
-            Creates a <see cref="T:System.ReadOnlySpan`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.Memory{`0}">
-            <summary>
-            Creates a <see cref="T:System.Memory`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlyMemory{`0}">
-            <summary>
-            Creates a <see cref="T:System.ReadOnlyMemory`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="F:System.SingletonArray`1._value">
-            <summary>
-            The generated field declaration for parameter <c>value</c>.
-            </summary>
         </member>
         <member name="T:System.StringExtensions">
             <summary>

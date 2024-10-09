@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Buffers;
 
 /// <summary>
 /// Represents an array with only one element.
