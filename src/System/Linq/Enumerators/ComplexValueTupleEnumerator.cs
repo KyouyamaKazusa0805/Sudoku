@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Defines a complex value tuple enumerator.

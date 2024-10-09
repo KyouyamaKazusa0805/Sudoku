@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Represents a reverse enumerator.

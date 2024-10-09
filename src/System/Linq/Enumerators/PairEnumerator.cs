@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Represents an enumerator that can iterate on elements, paired.

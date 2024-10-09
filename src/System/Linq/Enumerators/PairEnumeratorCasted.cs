@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <inheritdoc cref="PairEnumerator{T}"/>
 /// <typeparam name="T">The type of each element to be iterated.</typeparam>

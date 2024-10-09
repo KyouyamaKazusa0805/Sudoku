@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.

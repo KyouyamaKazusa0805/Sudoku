@@ -4,57 +4,6 @@
         <name>SystemExtensions</name>
     </assembly>
     <members>
-        <member name="T:System.AnonymousSpanEnumerator`1">
-            <summary>
-            Represents an enumerator that can be used in anonymous span iteration cases.
-            </summary>
-            <typeparam name="T">The type of elements.</typeparam>
-            <param name="elements">Indicates the elements.</param>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
-            <summary>
-            Represents an enumerator that can be used in anonymous span iteration cases.
-            </summary>
-            <typeparam name="T">The type of elements.</typeparam>
-            <param name="elements">Indicates the elements.</param>
-        </member>
-        <member name="F:System.AnonymousSpanEnumerator`1._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.AnonymousSpanEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:System.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.AnonymousSpanEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="F:System.AnonymousSpanEnumerator`1._elements">
-            <summary>
-            The generated field declaration for parameter <c>elements</c>.
-            </summary>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.AnonymousSpanEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:System.ArrayExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Array"/>, especially for one-dimensional array.
@@ -762,50 +711,6 @@
         <member name="M:System.Collections.ObjectModel.CollectionExtensions.RemoveAt``1(System.Collections.ObjectModel.Collection{``0},System.Index)">
             <inheritdoc cref="M:System.Collections.ObjectModel.Collection`1.RemoveAt(System.Int32)"/>
         </member>
-        <member name="T:System.ComplexValueTupleEnumerator`2">
-            <summary>
-            Defines a complex value tuple enumerator.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
-            <param name="tuple">The tuple.</param>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0,`1})">
-            <summary>
-            Defines a complex value tuple enumerator.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
-            <param name="tuple">The tuple.</param>
-        </member>
-        <member name="F:System.ComplexValueTupleEnumerator`2._values">
-            <summary>
-            Indicates the internal values to be iterated.
-            </summary>
-        </member>
-        <member name="F:System.ComplexValueTupleEnumerator`2._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.ComplexValueTupleEnumerator`2.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:System.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.ComplexValueTupleEnumerator`2.System#Collections#Generic#IEnumerator{T}#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
         <member name="T:System.delegate">
             <summary>
             Represents a set of method groups that can be used as delegate-typed arguments, in easy ways.
@@ -906,56 +811,6 @@
             <typeparam name="TResult">The type of the result.</typeparam>
             <param name="f">The recursion logic.</param>
             <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
-        </member>
-        <member name="T:System.DelegateEnumerator`1">
-            <summary>
-            Represents an enumerator type that can iterate on each function or action on a complex delegate object
-            of type <typeparamref name="TDelegate"/>.
-            </summary>
-            <typeparam name="TDelegate">The type of each function or action.</typeparam>
-            <param name="value">The complex delegate object to be iterated.</param>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.#ctor(`0)">
-            <summary>
-            Represents an enumerator type that can iterate on each function or action on a complex delegate object
-            of type <typeparamref name="TDelegate"/>.
-            </summary>
-            <typeparam name="TDelegate">The type of each function or action.</typeparam>
-            <param name="value">The complex delegate object to be iterated.</param>
-        </member>
-        <member name="F:System.DelegateEnumerator`1._enumerator">
-            <summary>
-            Indicates the backing enumerator.
-            </summary>
-        </member>
-        <member name="P:System.DelegateEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:System.DelegateEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.DelegateEnumerator`1.Value">
-            <summary>
-            The generated property declaration for parameter <c>value</c>.
-            </summary>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.DelegateEnumerator`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.DelegateExtensions">
             <summary>
@@ -1679,59 +1534,6 @@
             Throws when the type isn't applied the attribute <see cref="T:System.FlagsAttribute"/>.
             </exception>
         </member>
-        <member name="T:System.EnumFlagsEnumerator`1">
-            <summary>
-            Defines an enumerator that iterates the possible fields of an enumeration type.
-            </summary>
-            <typeparam name="T">
-            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
-            </typeparam>
-            <param name="baseField">Indicates the base field.</param>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.#ctor(`0)">
-            <summary>
-            Defines an enumerator that iterates the possible fields of an enumeration type.
-            </summary>
-            <typeparam name="T">
-            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
-            </typeparam>
-            <param name="baseField">Indicates the base field.</param>
-        </member>
-        <member name="F:System.EnumFlagsEnumerator`1._fields">
-            <summary>
-            Indicates the fields of the type to iterate.
-            </summary>
-        </member>
-        <member name="F:System.EnumFlagsEnumerator`1._index">
-            <summary>
-            Indicates the current index being iterated.
-            </summary>
-        </member>
-        <member name="P:System.EnumFlagsEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.EnumFlagsEnumerator`1.SizeOfT">
-            <summary>
-            Indicates the size of <typeparamref name="T"/>.
-            </summary>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.EnumFlagsEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="F:System.EnumFlagsEnumerator`1._baseField">
-            <summary>
-            The generated field declaration for parameter <c>baseField</c>.
-            </summary>
-        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf" />.
@@ -2393,6 +2195,471 @@
             <param name="this">The dictionary to be checked.</param>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Linq.Enumerators.AnonymousSpanEnumerator`1">
+            <summary>
+            Represents an enumerator that can be used in anonymous span iteration cases.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents an enumerator that can be used in anonymous span iteration cases.
+            </summary>
+            <typeparam name="T">The type of elements.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.AnonymousSpanEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.AnonymousSpanEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.Enumerators.AnonymousSpanEnumerator`1._elements">
+            <summary>
+            The generated field declaration for parameter <c>elements</c>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.Linq.Enumerators.ComplexValueTupleEnumerator`2">
+            <summary>
+            Defines a complex value tuple enumerator.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
+            <param name="tuple">The tuple.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0,`1})">
+            <summary>
+            Defines a complex value tuple enumerator.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
+            <param name="tuple">The tuple.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.ComplexValueTupleEnumerator`2._values">
+            <summary>
+            Indicates the internal values to be iterated.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Enumerators.ComplexValueTupleEnumerator`2._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Enumerators.DelegateEnumerator`1">
+            <summary>
+            Represents an enumerator type that can iterate on each function or action on a complex delegate object
+            of type <typeparamref name="TDelegate"/>.
+            </summary>
+            <typeparam name="TDelegate">The type of each function or action.</typeparam>
+            <param name="value">The complex delegate object to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.#ctor(`0)">
+            <summary>
+            Represents an enumerator type that can iterate on each function or action on a complex delegate object
+            of type <typeparamref name="TDelegate"/>.
+            </summary>
+            <typeparam name="TDelegate">The type of each function or action.</typeparam>
+            <param name="value">The complex delegate object to be iterated.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.DelegateEnumerator`1._enumerator">
+            <summary>
+            Indicates the backing enumerator.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.DelegateEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.DelegateEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.DelegateEnumerator`1.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.Linq.Enumerators.EnumFlagsEnumerator`1">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.#ctor(`0)">
+            <summary>
+            Defines an enumerator that iterates the possible fields of an enumeration type.
+            </summary>
+            <typeparam name="T">
+            The type of the enumeration type, that is marked the attribute <see cref="T:System.FlagsAttribute"/>.
+            </typeparam>
+            <param name="baseField">Indicates the base field.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.EnumFlagsEnumerator`1._fields">
+            <summary>
+            Indicates the fields of the type to iterate.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Enumerators.EnumFlagsEnumerator`1._index">
+            <summary>
+            Indicates the current index being iterated.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.EnumFlagsEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.EnumFlagsEnumerator`1.SizeOfT">
+            <summary>
+            Indicates the size of <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.Enumerators.EnumFlagsEnumerator`1._baseField">
+            <summary>
+            The generated field declaration for parameter <c>baseField</c>.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Enumerators.PairEnumerator`1">
+            <summary>
+            Represents an enumerator that can iterate on elements, paired.
+            </summary>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <param name="sequence">The sequence value.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents an enumerator that can iterate on elements, paired.
+            </summary>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <param name="sequence">The sequence value.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.PairEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.PairEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.PairEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.GetEnumerator">
+            <inheritdoc cref="M:System.Linq.Enumerators.ReverseEnumerator`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.Cast``2">
+            <summary>
+            Creates a <see cref="T:System.Linq.Enumerators.PairEnumeratorCasted`3"/> instance that supports down-casting
+            for paired elements.
+            </summary>
+            <typeparam name="TFirst">
+            <inheritdoc cref="T:System.Linq.Enumerators.PairEnumeratorCasted`3" path="/typeparam[@name='TFirst']"/>
+            </typeparam>
+            <typeparam name="TSecond">
+            <inheritdoc cref="T:System.Linq.Enumerators.PairEnumeratorCasted`3" path="/typeparam[@name='TSecond']"/>
+            </typeparam>
+            <returns>A <see cref="T:System.Linq.Enumerators.PairEnumeratorCasted`3"/> instance.</returns>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.Enumerators.PairEnumerator`1._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Enumerators.PairEnumeratorCasted`3">
+            <inheritdoc cref="T:System.Linq.Enumerators.PairEnumerator`1"/>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
+            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.#ctor(System.ReadOnlySpan{`0})">
+            <inheritdoc cref="T:System.Linq.Enumerators.PairEnumerator`1"/>
+            <typeparam name="T">The type of each element to be iterated.</typeparam>
+            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
+            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
+        </member>
+        <member name="F:System.Linq.Enumerators.PairEnumeratorCasted`3._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.PairEnumeratorCasted`3.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.PairEnumeratorCasted`3.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.GetEnumerator">
+            <inheritdoc cref="M:System.Linq.Enumerators.ReverseEnumerator`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.Enumerators.PairEnumeratorCasted`3._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1">
+            <summary>
+            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.#ctor(System.ReadOnlyMemory{`0})">
+            <summary>
+            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="F:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1._span">
+            <summary>
+            Indicates the span to the memory.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1._index">
+            <summary>
+            Indicates the index that is currently iterated.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.Current">
+            <summary>
+            Indicates the current instance.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Enumerators.ReverseEnumerator`1">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="sequence">The internal sequence to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
+            <summary>
+            Represents a reverse enumerator.
+            </summary>
+            <typeparam name="T">The type of the element.</typeparam>
+            <param name="sequence">The internal sequence to be iterated.</param>
+        </member>
+        <member name="F:System.Linq.Enumerators.ReverseEnumerator`1._index">
+            <summary>
+            Indicates the current index.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReverseEnumerator`1.Length">
+            <summary>
+            Indicates the length to the sequence.
+            </summary>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReverseEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReverseEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ReverseEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.GetEnumerator">
+            <summary>
+            Provides the basic iteration rule that iterates on each element using the current enumerator.
+            </summary>
+            <returns>The current enumerator.</returns>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.Enumerators.ReverseEnumerator`1._sequence">
+            <summary>
+            The generated field declaration for parameter <c>sequence</c>.
+            </summary>
+        </member>
+        <member name="T:System.Linq.Enumerators.ValueTupleEnumerator`1">
+            <summary>
+            Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The uniform type of a pair of instances.</typeparam>
+        </member>
+        <member name="F:System.Linq.Enumerators.ValueTupleEnumerator`1._limit">
+            <summary>
+            Indicates the maximum number of values to be iterated.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Enumerators.ValueTupleEnumerator`1._innerTuple">
+            <summary>
+            Indicates the internal tuple.
+            </summary>
+        </member>
+        <member name="F:System.Linq.Enumerators.ValueTupleEnumerator`1._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`2"/> instance.
+            </summary>
+            <param name="pair">A pair instance to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`3"/> instance.
+            </summary>
+            <param name="triple">A triple instance to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`4"/> instance.
+            </summary>
+            <param name="quadruple">A quadruple instance to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`5"/> instance.
+            </summary>
+            <param name="quintuple">A quintuple instance to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`6"/> instance.
+            </summary>
+            <param name="sextuple">A sextuple instance to be iterated.</param>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0})">
+            <summary>
+            Initializes a <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`7"/> instance.
+            </summary>
+            <param name="septuple">A septuple instance to be iterated.</param>
+        </member>
+        <member name="P:System.Linq.Enumerators.ValueTupleEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ValueTupleEnumerator`1.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Enumerators.ValueTupleEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
         </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>
@@ -4991,101 +5258,6 @@
         <member name="M:System.Numerics.NativeIntegerEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="T:System.PairEnumerator`1">
-            <summary>
-            Represents an enumerator that can iterate on elements, paired.
-            </summary>
-            <typeparam name="T">The type of each element to be iterated.</typeparam>
-            <param name="sequence">The sequence value.</param>
-        </member>
-        <member name="M:System.PairEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
-            <summary>
-            Represents an enumerator that can iterate on elements, paired.
-            </summary>
-            <typeparam name="T">The type of each element to be iterated.</typeparam>
-            <param name="sequence">The sequence value.</param>
-        </member>
-        <member name="F:System.PairEnumerator`1._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.PairEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.PairEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PairEnumerator`1.GetEnumerator">
-            <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.PairEnumerator`1.Cast``2">
-            <summary>
-            Creates a <see cref="T:System.PairEnumeratorCasted`3"/> instance that supports down-casting
-            for paired elements.
-            </summary>
-            <typeparam name="TFirst">
-            <inheritdoc cref="T:System.PairEnumeratorCasted`3" path="/typeparam[@name='TFirst']"/>
-            </typeparam>
-            <typeparam name="TSecond">
-            <inheritdoc cref="T:System.PairEnumeratorCasted`3" path="/typeparam[@name='TSecond']"/>
-            </typeparam>
-            <returns>A <see cref="T:System.PairEnumeratorCasted`3"/> instance.</returns>
-        </member>
-        <member name="M:System.PairEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.PairEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PairEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="F:System.PairEnumerator`1._sequence">
-            <summary>
-            The generated field declaration for parameter <c>sequence</c>.
-            </summary>
-        </member>
-        <member name="T:System.PairEnumeratorCasted`3">
-            <inheritdoc cref="T:System.PairEnumerator`1"/>
-            <typeparam name="T">The type of each element to be iterated.</typeparam>
-            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
-            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.#ctor(System.ReadOnlySpan{`0})">
-            <inheritdoc cref="T:System.PairEnumerator`1"/>
-            <typeparam name="T">The type of each element to be iterated.</typeparam>
-            <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
-            <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
-        </member>
-        <member name="F:System.PairEnumeratorCasted`3._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="P:System.PairEnumeratorCasted`3.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.PairEnumeratorCasted`3.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.GetEnumerator">
-            <inheritdoc cref="M:System.ReverseEnumerator`1.GetEnumerator"/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.PairEnumeratorCasted`3.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="F:System.PairEnumeratorCasted`3._sequence">
-            <summary>
-            The generated field declaration for parameter <c>sequence</c>.
-            </summary>
-        </member>
         <member name="T:System.Predicate">
             <summary>
             Provides a type that supports predicate combinations.
@@ -5183,50 +5355,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="T:System.ReadOnlyMemoryEnumerator`1">
-            <summary>
-            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <seealso cref="T:System.ReadOnlyMemory`1"/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.#ctor(System.ReadOnlyMemory{`0})">
-            <summary>
-            Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="T:System.ReadOnlyMemory`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <seealso cref="T:System.ReadOnlyMemory`1"/>
-        </member>
-        <member name="F:System.ReadOnlyMemoryEnumerator`1._span">
-            <summary>
-            Indicates the span to the memory.
-            </summary>
-        </member>
-        <member name="F:System.ReadOnlyMemoryEnumerator`1._index">
-            <summary>
-            Indicates the index that is currently iterated.
-            </summary>
-        </member>
-        <member name="P:System.ReadOnlyMemoryEnumerator`1.Current">
-            <summary>
-            Indicates the current instance.
-            </summary>
-        </member>
-        <member name="P:System.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.ReadOnlyMemoryEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
         <member name="T:System.ReadOnlyMemoryExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.ReadOnlyMemory`1"/>.
@@ -5247,11 +5375,11 @@
         </member>
         <member name="M:System.ReadOnlyMemoryExtensions.GetEnumerator``1(System.ReadOnlyMemory{``0})">
             <summary>
-            Creates a <see cref="T:System.ReadOnlyMemoryEnumerator`1"/> instance that can be consumed by a <see langword="foreach"/> loop.
+            Creates a <see cref="T:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1"/> instance that can be consumed by a <see langword="foreach"/> loop.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The sequence of <see cref="T:System.ReadOnlyMemory`1"/> instance.</param>
-            <returns>A <see cref="T:System.ReadOnlyMemoryEnumerator`1"/> instance.</returns>
+            <returns>A <see cref="T:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1"/> instance.</returns>
         </member>
         <member name="T:System.ReadOnlyMemoryOfCharComparer">
             <summary>
@@ -5336,7 +5464,7 @@
         </member>
         <member name="M:System.ReadOnlySpanExtensions.EnumeratePaired``1(System.ReadOnlySpan{``0})">
             <summary>
-            Creates a <see cref="T:System.PairEnumerator`1"/> instance that iterates on each element of pair elements.
+            Creates a <see cref="T:System.Linq.Enumerators.PairEnumerator`1"/> instance that iterates on each element of pair elements.
             </summary>
             <typeparam name="T">The type of the array elements.</typeparam>
             <param name="this">The array.</param>
@@ -5798,59 +5926,6 @@
              * Resource key: &apos;{0}&apos;,
              * Assembly: &apos;{1}&apos;,
              * Culture: &apos;{2}&apos;.
-            </summary>
-        </member>
-        <member name="T:System.ReverseEnumerator`1">
-            <summary>
-            Represents a reverse enumerator.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="sequence">The internal sequence to be iterated.</param>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.#ctor(System.ReadOnlySpan{`0})">
-            <summary>
-            Represents a reverse enumerator.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="sequence">The internal sequence to be iterated.</param>
-        </member>
-        <member name="F:System.ReverseEnumerator`1._index">
-            <summary>
-            Indicates the current index.
-            </summary>
-        </member>
-        <member name="P:System.ReverseEnumerator`1.Length">
-            <summary>
-            Indicates the length to the sequence.
-            </summary>
-        </member>
-        <member name="P:System.ReverseEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:System.ReverseEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.ReverseEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.GetEnumerator">
-            <summary>
-            Provides the basic iteration rule that iterates on each element using the current enumerator.
-            </summary>
-            <returns>The current enumerator.</returns>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ReverseEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="F:System.ReverseEnumerator`1._sequence">
-            <summary>
-            The generated field declaration for parameter <c>sequence</c>.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
@@ -6340,81 +6415,6 @@
         <member name="M:System.Threading.Tasks.TimeSpanAwaiter.OnCompleted(System.Action)">
             <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.OnCompleted(System.Action)"/>
         </member>
-        <member name="T:System.ValueTupleEnumerator`1">
-            <summary>
-            Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The uniform type of a pair of instances.</typeparam>
-        </member>
-        <member name="F:System.ValueTupleEnumerator`1._limit">
-            <summary>
-            Indicates the maximum number of values to be iterated.
-            </summary>
-        </member>
-        <member name="F:System.ValueTupleEnumerator`1._innerTuple">
-            <summary>
-            Indicates the internal tuple.
-            </summary>
-        </member>
-        <member name="F:System.ValueTupleEnumerator`1._index">
-            <summary>
-            Indicates the index.
-            </summary>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`2"/> instance.
-            </summary>
-            <param name="pair">A pair instance to be iterated.</param>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`3"/> instance.
-            </summary>
-            <param name="triple">A triple instance to be iterated.</param>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`4"/> instance.
-            </summary>
-            <param name="quadruple">A quadruple instance to be iterated.</param>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`5"/> instance.
-            </summary>
-            <param name="quintuple">A quintuple instance to be iterated.</param>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`6"/> instance.
-            </summary>
-            <param name="sextuple">A sextuple instance to be iterated.</param>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.#ctor(System.ValueTuple{`0,`0,`0,`0,`0,`0,`0})">
-            <summary>
-            Initializes a <see cref="T:System.ValueTupleEnumerator`1"/> instance via a <see cref="T:System.ValueTuple`7"/> instance.
-            </summary>
-            <param name="septuple">A septuple instance to be iterated.</param>
-        </member>
-        <member name="P:System.ValueTupleEnumerator`1.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:System.ValueTupleEnumerator`1.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:System.ValueTupleEnumerator`1.System#Collections#Generic#IEnumerator{T}#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ValueTupleEnumerator`1.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
         <member name="T:System.ValueTupleExtensions">
             <summary>
             Represents with extension methods for value tuple type set.
@@ -6422,7 +6422,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0})">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`2"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6431,7 +6431,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`3"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6440,7 +6440,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`4"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6449,7 +6449,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`5"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6458,7 +6458,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`6"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6467,7 +6467,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``1(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`7"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>
@@ -6476,7 +6476,7 @@
         </member>
         <member name="M:System.ValueTupleExtensions.GetEnumerator``2(System.ValueTuple{``0,``0,``0,``0,``0,``0,``0,``1}@)">
             <summary>
-            Gets an <see cref="T:System.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
+            Gets an <see cref="T:System.Linq.Enumerators.ValueTupleEnumerator`1"/> instance that can iterate for a pair of values
             via a value tuple <see cref="T:System.ValueTuple`8"/> of a uniform type <typeparamref name="T"/>.
             </summary>
             <typeparam name="T">The uniform type that two instances defined in pair are.</typeparam>

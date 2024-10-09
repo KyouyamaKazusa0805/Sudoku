@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Defines an enumerator that iterates the possible fields of an enumeration type.

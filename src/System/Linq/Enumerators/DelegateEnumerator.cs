@@ -1,6 +1,4 @@
-namespace System;
-
-using static Delegate;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Represents an enumerator type that can iterate on each function or action on a complex delegate object
@@ -16,7 +14,7 @@ public ref partial struct DelegateEnumerator<TDelegate>([Property] TDelegate? va
 	/// <summary>
 	/// Indicates the backing enumerator.
 	/// </summary>
-	private InvocationListEnumerator<TDelegate> _enumerator = EnumerateInvocationList(value);
+	private Delegate.InvocationListEnumerator<TDelegate> _enumerator = Delegate.EnumerateInvocationList(value);
 
 
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>

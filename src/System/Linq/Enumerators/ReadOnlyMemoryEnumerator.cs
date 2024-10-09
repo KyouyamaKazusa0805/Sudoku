@@ -1,4 +1,4 @@
-namespace System;
+namespace System.Linq.Enumerators;
 
 /// <summary>
 /// Represents an enumerator that iterates on each element of type <typeparamref name="T"/> inside a <see cref="ReadOnlyMemory{T}"/>.
