@@ -53,10 +53,9 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 						continue;
 					}
 
-					var lastCellsMap = cells & ~cells1;
-					foreach (ref readonly var cells2 in lastCellsMap | 3)
+					foreach (ref readonly var cells2 in cells & ~cells1 | 3)
 					{
-						if (cells1.Count == 1 && cells2.Count == 1 || !cells2.IsInIntersection)
+						if (!cells2.IsInIntersection || cells1.Count * cells2.Count == 1)
 						{
 							continue;
 						}

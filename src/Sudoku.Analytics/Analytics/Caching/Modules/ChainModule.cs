@@ -240,14 +240,34 @@ file static class Extensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsAdvancedAllowed(this ChainStep @this, bool allowsAdvancedLinks)
 	{
-		return @this switch
+		switch (@this)
 		{
-			NormalChainStep { Pattern.Links: var l } when allowsAdvancedLinks ^ l.Any(lp) => false,
-			MultipleForcingChainsStep { Pattern: var p } when p.AnyValue(b => allowsAdvancedLinks ^ b.Links.Any(lp)) => false,
-			BlossomLoopStep { Pattern: var p } when p.AnyValue(b => allowsAdvancedLinks ^ b.Links.Any(lp)) => false,
-			NormalChainStep or MultipleForcingChainsStep or BlossomLoopStep => true,
-			_ => false
-		};
+			case NormalChainStep { IsGrouped: var g, Pattern.Links: var l }
+				when allowsAdvancedLinks ^ (g || l.Any(lp)):
+			{
+				goto default;
+			}
+			case MultipleForcingChainsStep { IsGrouped: var g, Pattern: var p }
+				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
+			{
+				goto default;
+			}
+			case BlossomLoopStep { IsGrouped: var g, Pattern: var p }
+				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
+			{
+				goto default;
+			}
+			case NormalChainStep:
+			case MultipleForcingChainsStep:
+			case BlossomLoopStep:
+			{
+				return true;
+			}
+			default:
+			{
+				return false;
+			}
+		}
 
 
 		static bool lp(Link link) => link.GroupedLinkPattern is not null;
