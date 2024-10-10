@@ -4273,6 +4273,59 @@ public enum Technique
 	#endregion
 
 	//
+	// Hidden Bivalue Universal Grave
+	//
+	#region Hidden Bivalue Universal Grave
+	/// <summary>
+	/// Indicates hidden bi-value universal grave (bi-local universal grave) type 1.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 60,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.HiddenBivalueUniversalGrave,
+		StepType = typeof(HiddenBivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(HiddenBivalueUniversalGraveStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-hidden-bug-t3866.html"])]
+	HiddenBivalueUniversalGraveType1,
+
+	/// <summary>
+	/// Indicates hidden bi-value universal grave (bi-local universal grave) type 2.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 61,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.HiddenBivalueUniversalGrave,
+		StepType = typeof(HiddenBivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(HiddenBivalueUniversalGraveStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-hidden-bug-t3866.html"])]
+	HiddenBivalueUniversalGraveType2,
+
+	/// <summary>
+	/// Indicates hidden bi-value universal grave (bi-local universal grave) type 3.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 62,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.HiddenBivalueUniversalGrave,
+		StepType = typeof(HiddenBivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(HiddenBivalueUniversalGraveStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-hidden-bug-t3866.html"])]
+	HiddenBivalueUniversalGraveType3,
+
+	/// <summary>
+	/// Indicates hidden bi-value universal grave (bi-local universal grave) type 4.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 61,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.HiddenBivalueUniversalGrave,
+		StepType = typeof(HiddenBivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(HiddenBivalueUniversalGraveStepSearcher),
+		Links = ["http://forum.enjoysudoku.com/the-hidden-bug-t3866.html"])]
+	HiddenBivalueUniversalGraveType4,
+	#endregion
+
+	//
 	// Uniqueness Clue Cover
 	//
 	#region Uniqueness Clue Cover

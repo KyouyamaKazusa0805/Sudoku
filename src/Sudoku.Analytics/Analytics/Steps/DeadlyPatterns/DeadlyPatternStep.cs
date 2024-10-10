@@ -17,5 +17,5 @@ public abstract class DeadlyPatternStep(ReadOnlyMemory<Conclusion> conclusions, 
 	/// <summary>
 	/// Indicates whether the pattern is unconditional.
 	/// </summary>
-	public abstract bool IsUnconditional { get; }
+	public abstract bool? IsUnconditional { get; }
 }

@@ -3542,4 +3542,41 @@
   <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
     <value>致命结构里的数组规格</value>
   </data>
+  <data name="TechniqueGroup_HiddenBivalueUniversalGrave" xml:space="preserve">
+    <value>全双位区致死解法</value>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType1" xml:space="preserve">
+    <value>双位区致死解法类型 1</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType2" xml:space="preserve">
+    <value>双位区致死解法类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType3" xml:space="preserve">
+    <value>双位区致死解法类型 3</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType4" xml:space="preserve">
+    <value>双位区致死解法类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
+    <value>全双位区致死解法里的真数数量</value>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveSubsetSizeFactor" xml:space="preserve">
+    <value>全双位区致死解法里的数组规格</value>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveSubsetIsHiddenFactor" xml:space="preserve">
+    <value>全双位区致死解法里的数组是否是隐性数组</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType2Step" xml:space="preserve">
+    <value>单元格 {0} 里包含额外数字 {1}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType3Step" xml:space="preserve">
+    <value>真数 {0}，伴有{1}{2}于单元格 {3} 里，涉及数字 {4}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType4Step" xml:space="preserve">
+    <value>位于单元格 {0} 里的数字 {1}，带有一个共轭对 {2}</value>
+  </data>
 </root>

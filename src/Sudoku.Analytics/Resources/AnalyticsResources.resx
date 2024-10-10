@@ -3426,4 +3426,37 @@ Error grid: '{0:#}'</value>
   <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
     <value>Subset size of anonymous deadly pattern</value>
   </data>
+  <data name="TechniqueGroup_HiddenBivalueUniversalGrave" xml:space="preserve">
+    <value>Bi-local Universal Grave</value>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType1" xml:space="preserve">
+    <value>Bi-local Universal Grave Type 1</value>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType2" xml:space="preserve">
+    <value>Bi-local Universal Grave Type 2</value>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType3" xml:space="preserve">
+    <value>Bi-local Universal Grave Type 3</value>
+  </data>
+  <data name="HiddenBivalueUniversalGraveType4" xml:space="preserve">
+    <value>Bi-local Universal Grave Type 4</value>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
+    <value>Number of true candidates</value>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size of bi-value universal grave</value>
+  </data>
+  <data name="Factor_HiddenBivalueUniversalGraveSubsetIsHiddenFactor" xml:space="preserve">
+    <value>Subset in Bi-value universal grave is hidden</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType2Step" xml:space="preserve">
+    <value>{0} with cells {1}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType3Step" xml:space="preserve">
+    <value>True candidates {0} with {1} {2} {3} in cells {4}</value>
+  </data>
+  <data name="TechniqueFormat_HiddenBivalueUniversalGraveType4Step" xml:space="preserve">
+    <value>{0} in cells {1} with conjugate pair {2}</value>
+  </data>
 </root>

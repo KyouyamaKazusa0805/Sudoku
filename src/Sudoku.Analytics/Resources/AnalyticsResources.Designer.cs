@@ -2284,6 +2284,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subset in Bi-value universal grave is hidden.
+        /// </summary>
+        public static string Factor_HiddenBivalueUniversalGraveSubsetIsHiddenFactor {
+            get {
+                return ResourceManager.GetString("Factor_HiddenBivalueUniversalGraveSubsetIsHiddenFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size of bi-value universal grave.
+        /// </summary>
+        public static string Factor_HiddenBivalueUniversalGraveSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_HiddenBivalueUniversalGraveSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of true candidates.
+        /// </summary>
+        public static string Factor_HiddenBivalueUniversalGraveType2TrueCandidateFactor {
+            get {
+                return ResourceManager.GetString("Factor_HiddenBivalueUniversalGraveType2TrueCandidateFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in hidden subset.
         /// </summary>
         public static string Factor_HiddenSubsetIsLockedFactor {
@@ -3342,6 +3369,42 @@ namespace Sudoku.Resources {
         public static string HiddenAvoidableRectangle {
             get {
                 return ResourceManager.GetString("HiddenAvoidableRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave Type 1.
+        /// </summary>
+        public static string HiddenBivalueUniversalGraveType1 {
+            get {
+                return ResourceManager.GetString("HiddenBivalueUniversalGraveType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave Type 2.
+        /// </summary>
+        public static string HiddenBivalueUniversalGraveType2 {
+            get {
+                return ResourceManager.GetString("HiddenBivalueUniversalGraveType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave Type 3.
+        /// </summary>
+        public static string HiddenBivalueUniversalGraveType3 {
+            get {
+                return ResourceManager.GetString("HiddenBivalueUniversalGraveType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave Type 4.
+        /// </summary>
+        public static string HiddenBivalueUniversalGraveType4 {
+            get {
+                return ResourceManager.GetString("HiddenBivalueUniversalGraveType4", resourceCulture);
             }
         }
         
@@ -8191,6 +8254,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} with cells {1}.
+        /// </summary>
+        public static string TechniqueFormat_HiddenBivalueUniversalGraveType2Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HiddenBivalueUniversalGraveType2Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True candidates {0} with {1} {2} {3} in cells {4}.
+        /// </summary>
+        public static string TechniqueFormat_HiddenBivalueUniversalGraveType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HiddenBivalueUniversalGraveType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} in cells {1} with conjugate pair {2}.
+        /// </summary>
+        public static string TechniqueFormat_HiddenBivalueUniversalGraveType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_HiddenBivalueUniversalGraveType4Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In {0}.
         /// </summary>
         public static string TechniqueFormat_HiddenSingle {
@@ -9078,6 +9168,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_ForcingChains {
             get {
                 return ResourceManager.GetString("TechniqueGroup_ForcingChains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave.
+        /// </summary>
+        public static string TechniqueGroup_HiddenBivalueUniversalGrave {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_HiddenBivalueUniversalGrave", resourceCulture);
             }
         }
         

@@ -10,5 +10,5 @@ public abstract class UnconditionalDeadlyPatternStep(ReadOnlyMemory<Conclusion> 
 	DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public sealed override bool IsUnconditional => true;
+	public sealed override bool? IsUnconditional => true;
 }
