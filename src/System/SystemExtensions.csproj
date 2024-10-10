@@ -7,7 +7,6 @@
 		<RootNamespace>System</RootNamespace>
 		<DocumentationFile>..\docxml\SystemExtensions.xml</DocumentationFile>
 		<DefineConstants>
-			<!--VIRTUAL_GENERIC_METHOD_UNSAFE_ACCESSOR-->
 			<!--NUMERIC_GENERIC_TYPE-->
 		</DefineConstants>
 	</PropertyGroup>
