@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019-2022 SunnieShine (Qitian Zhang)
+Copyright (c) 2019-2024 Kyouyama Kazusa (Kazusa)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

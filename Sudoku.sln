@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
+# 17
 VisualStudioVersion = 17.12.35309.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyPrivateWorks", "src\ConsoleTest\MyPrivateWorks.csproj", "{E8127E49-BF53-FAFC-AC94-67A8210857C4}"
@@ -29,8 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global Items", "Global Item
 		CONTACTS.md = CONTACTS.md
 		Directory.Build.props = Directory.Build.props
 		global-doc-comments.xml = global-doc-comments.xml
-		LICENSE = LICENSE
 		misspelling-exclusion.dic = misspelling-exclusion.dic
+		LICENSE.md = LICENSE.md
 		NuGet.config = NuGet.config
 		README-zh-cn.md = README-zh-cn.md
 		README.md = README.md
