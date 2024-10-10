@@ -254,7 +254,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 
 		// Iterate on each pattern. Here the pattern cells is same as patterns used in Unique Matrix pattern.
 		// We should remove one cell from the pattern, to make the pattern become a possible Rotating Deadly Pattern.
-		foreach (ref readonly var cells in UniqueMatrixStepSearcher.Patterns.AsReadOnlySpan())
+		foreach (ref readonly var cells in UniqueMatrixStepSearcher.Patterns)
 		{
 			// Iterate on each cell as missing cell.
 			foreach (var missingCell in cells)

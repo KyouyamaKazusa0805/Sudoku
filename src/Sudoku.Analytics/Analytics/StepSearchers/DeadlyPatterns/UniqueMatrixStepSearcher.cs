@@ -20,7 +20,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the patterns.
 	/// </summary>
-	internal static readonly CellMap[] Patterns;
+	internal static readonly ReadOnlyMemory<CellMap> Patterns;
 
 	/// <summary>
 	/// Indicates the iterator values for split chutes.
