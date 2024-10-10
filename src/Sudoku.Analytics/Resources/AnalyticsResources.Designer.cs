@@ -6103,6 +6103,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bi-local Universal Grave.
+        /// </summary>
+        public static string StepSearcherName_HiddenBivalueUniversalGraveStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_HiddenBivalueUniversalGraveStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Irregular Wing.
         /// </summary>
         public static string StepSearcherName_IrregularWingStepSearcher {

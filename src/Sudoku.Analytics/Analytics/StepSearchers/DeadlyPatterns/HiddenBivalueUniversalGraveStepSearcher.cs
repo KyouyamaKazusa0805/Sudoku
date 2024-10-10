@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
-	"StepSearcherName_BivalueUniversalGraveStepSearcher",
+	"StepSearcherName_HiddenBivalueUniversalGraveStepSearcher",
 	Technique.HiddenBivalueUniversalGraveType1, Technique.HiddenBivalueUniversalGraveType2,
 	Technique.HiddenBivalueUniversalGraveType3, Technique.HiddenBivalueUniversalGraveType4,
 	SupportedSudokuTypes = SudokuType.Standard,

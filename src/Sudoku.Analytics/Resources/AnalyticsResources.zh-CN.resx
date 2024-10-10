@@ -3579,4 +3579,8 @@
   <data name="TechniqueFormat_HiddenBivalueUniversalGraveType4Step" xml:space="preserve">
     <value>位于单元格 {0} 里的数字 {1}，带有一个共轭对 {2}</value>
   </data>
+  <data name="StepSearcherName_HiddenBivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>全双位区致死解法</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

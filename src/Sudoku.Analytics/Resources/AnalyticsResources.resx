@@ -3459,4 +3459,7 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueFormat_HiddenBivalueUniversalGraveType4Step" xml:space="preserve">
     <value>{0} in cells {1} with conjugate pair {2}</value>
   </data>
+  <data name="StepSearcherName_HiddenBivalueUniversalGraveStepSearcher" xml:space="preserve">
+    <value>Bi-local Universal Grave</value>
+  </data>
 </root>

@@ -30268,6 +30268,11 @@
               Looks up a localized string similar to Guardian.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_HiddenBivalueUniversalGraveStepSearcher">
+            <summary>
+              Looks up a localized string similar to Bi-local Universal Grave.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_IrregularWingStepSearcher">
             <summary>
               Looks up a localized string similar to Irregular Wing.
