@@ -99,7 +99,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Non-grouped Chains
       * Alternating Inference Chains (*AIC*)
       * Continuous Nice Loops (*CNL*)
-    * Wellknown Chains
+    * Well-known Chains
       * Remote Pair
         * Standard Remote Pair
         * Complex Remote Pair
