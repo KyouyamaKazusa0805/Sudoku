@@ -96,7 +96,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		delegate*<ref readonly TechniqueData, T, TechniqueData> dataModifier
 	) where T : allows ref struct
 	{
-		ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
+		ref var data = ref CustomizedTechniqueData.GetValueRef(technique);
 		var isNullRef = Unsafe.IsNullRef(in data);
 		var a = valueUpdaterWhenNullRef;
 		var b = valueUpdaterWhenNotNullRef;
