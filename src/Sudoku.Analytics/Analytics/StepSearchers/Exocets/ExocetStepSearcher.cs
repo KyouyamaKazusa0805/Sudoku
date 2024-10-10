@@ -1507,7 +1507,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case ({ Count: 1 }, { Count: 2 }, -1):
 			{
-				var digitsMask = (Mask)(grid[in targetCells, false, '&'] & ~baseCellsDigitsMask);
+				var digitsMask = (Mask)(grid[in targetCells, false, MaskAggregator.And] & ~baseCellsDigitsMask);
 				if (digitsMask == 0)
 				{
 					break;
@@ -1578,7 +1578,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						case 2:
 						{
-							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, '&'] & ~baseCellsDigitsMask);
+							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, MaskAggregator.And] & ~baseCellsDigitsMask);
 							if (digitsMask == 0)
 							{
 								break;

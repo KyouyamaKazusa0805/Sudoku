@@ -37,11 +37,11 @@ public interface IGridOperations<TSelf> : IGridConstants<TSelf> where TSelf : un
 	/// <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
 	/// <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
 	/// </list>
-	/// By default, the value is <c>'<![CDATA[|]]>'</c>.
+	/// By default, the value is <c>'<![CDATA[|]]>'</c>. You can reference <see cref="MaskAggregator"/> constants to set values.
 	/// </param>
 	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public abstract Mask this[ref readonly CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = '|'] { get; }
+	public abstract Mask this[ref readonly CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = MaskAggregator.Or] { get; }
 
 
 	/// <summary>

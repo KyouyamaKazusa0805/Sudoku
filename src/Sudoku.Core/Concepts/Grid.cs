@@ -393,21 +393,25 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	}
 
 	/// <inheritdoc/>
-	public readonly unsafe Mask this[ref readonly CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = '|']
+	public readonly unsafe Mask this[
+		ref readonly CellMap cells,
+		bool withValueCells,
+		[ConstantExpected] char mergingMethod = MaskAggregator.Or
+	]
 	{
 		get
 		{
 			var result = mergingMethod switch
 			{
-				'~' or '&' => MaxCandidatesMask,
-				'|' => (Mask)0,
+				MaskAggregator.AndNot or MaskAggregator.And => MaxCandidatesMask,
+				MaskAggregator.Or => (Mask)0,
 				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
 			};
 			var mergingFunctionPtr = mergingMethod switch
 			{
-				'~' => &andNot,
-				'&' => &and,
-				'|' => &or,
+				MaskAggregator.AndNot => &andNot,
+				MaskAggregator.And => &and,
+				MaskAggregator.Or => &or,
 				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
 			};
 			foreach (var cell in cells)

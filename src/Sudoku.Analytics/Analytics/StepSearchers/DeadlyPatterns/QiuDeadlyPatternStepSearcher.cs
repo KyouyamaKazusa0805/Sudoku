@@ -261,7 +261,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// This is necessary because we should guarantee the target eliminations should cover at least one digit.
 		// For example, digits [1, 2, 3] and [1, 4] intersect with digit [1]. If the cross-line locks the digit [1, 2],
 		// then we can conclude that if 1 is set in [1, 4] and 2 is set in [1, 2, 3], the target pattern will form a deadly pattern.
-		var cornerDigitsMaskIntersected = grid[in corner, false, '&'];
+		var cornerDigitsMaskIntersected = grid[in corner, false, MaskAggregator.And];
 		if (cornerDigitsMaskIntersected == 0)
 		{
 			return null;

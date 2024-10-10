@@ -4501,6 +4501,26 @@
             <param name="this">A linked list to be used.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance created.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.MaskAggregator">
+            <summary>
+            Represents an aggregator of mask merging.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.MaskAggregator.Or">
+            <summary>
+            Indicates the method is "or".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.MaskAggregator.And">
+            <summary>
+            Indicates the method is "and".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.MaskAggregator.AndNot">
+            <summary>
+            Indicates the method is "and not".
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Miniline">
             <summary>
             Represents a miniline (mini-row or mini-column).
@@ -5558,7 +5578,7 @@
             <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
             <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
             </list>
-            By default, the value is <c>'<![CDATA[|]]>'</c>.
+            By default, the value is <c>'<![CDATA[|]]>'</c>. You can reference <see cref="T:Sudoku.Concepts.MaskAggregator"/> constants to set values.
             </param>
             <returns><inheritdoc cref="P:Sudoku.Concepts.Primitives.IGridOperations`1.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>

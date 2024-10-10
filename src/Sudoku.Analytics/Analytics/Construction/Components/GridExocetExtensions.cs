@@ -46,7 +46,7 @@ public static class GridExocetExtensions
 		// Why is 2? Because the target cells should be filled two different digits appeared from base cells.
 		{ Count: 2 } when (
 			(Mask)(@this[in targetCellsToBeChecked] & baseCellsDigitsMask),
-			(Mask)(@this[in targetCellsToBeChecked, false, '&'] & baseCellsDigitsMask)
+			(Mask)(@this[in targetCellsToBeChecked, false, MaskAggregator.And] & baseCellsDigitsMask)
 		) is var (u, i) => u == baseCellsDigitsMask && i != 0,
 
 		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
