@@ -7,8 +7,8 @@ namespace System.Buffers;
 /// </summary>
 /// <seealso cref="HashSet{T}.AlternateLookup{TAlternate}"/>
 public sealed class ReadOnlyMemoryOfCharComparer :
-	IEqualityComparer<ReadOnlyCharMemorySequence>,
-	IAlternateEqualityComparer<ReadOnlyCharSequence, ReadOnlyCharMemorySequence>
+	IAlternateEqualityComparer<ReadOnlyCharSequence, ReadOnlyCharMemorySequence>,
+	IEqualityComparer<ReadOnlyCharMemorySequence>
 {
 	/// <summary>
 	/// Indicates the singleton object of this type.
