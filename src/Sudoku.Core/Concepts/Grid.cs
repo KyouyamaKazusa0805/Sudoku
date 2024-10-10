@@ -499,8 +499,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool? Exists(Candidate candidate)
-		=> Exists(candidate / 9, candidate % 9);
+	public readonly bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -702,10 +701,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void SetCandidates(Cell cell, Mask mask)
-	{
-		var r = (Mask)(GetHeaderBits(cell) | (Mask)((int)GetState(cell) << 9) | mask & MaxCandidatesMask);
-		SetMask(cell, r);
-	}
+		=> SetMask(cell, (Mask)(GetHeaderBits(cell) | (Mask)((int)GetState(cell) << 9) | mask & MaxCandidatesMask));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
