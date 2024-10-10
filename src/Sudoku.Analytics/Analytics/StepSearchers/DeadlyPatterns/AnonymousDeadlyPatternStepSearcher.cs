@@ -47,11 +47,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				var isRow = rowCells.Count > columnCells.Count;
 				var targetHouse = pattern.IsFat ? isRow ? column : row : isRow ? row : column;
 				var chute = default(Chute);
-				foreach (ref readonly var chuteP in Chutes.AsReadOnlySpan())
+				foreach (ref readonly var c in Chutes.AsReadOnlySpan())
 				{
-					if ((chuteP.HousesMask >> targetHouse & 1) != 0)
+					if ((c.HousesMask >> targetHouse & 1) != 0)
 					{
-						chute = chuteP;
+						chute = c;
 						break;
 					}
 				}
