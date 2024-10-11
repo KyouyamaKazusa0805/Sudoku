@@ -84,7 +84,7 @@ public sealed partial class BlossomLoopStep(
 			)
 		];
 
-	private string BurredLoopStr => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
+	private string BurredLoopStr => Pattern.ToString(new ChainOrLoopFormatInfo(Options.Converter));
 
 
 	/// <inheritdoc/>

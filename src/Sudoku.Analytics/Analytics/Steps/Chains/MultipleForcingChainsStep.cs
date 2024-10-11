@@ -87,7 +87,7 @@ public sealed partial class MultipleForcingChainsStep(
 			)
 		];
 
-	private string ChainsStr => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
+	private string ChainsStr => Pattern.ToString(new ChainOrLoopFormatInfo(Options.Converter));
 
 
 	/// <inheritdoc/>

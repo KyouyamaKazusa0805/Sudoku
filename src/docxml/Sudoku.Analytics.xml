@@ -24979,6 +24979,17 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
         </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.#ctor(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Copies converter options into the current instance.
+            </summary>
+            <param name="baseConverter">The base converter.</param>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.MakeDigitBeforeCell">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell"/>
         </member>

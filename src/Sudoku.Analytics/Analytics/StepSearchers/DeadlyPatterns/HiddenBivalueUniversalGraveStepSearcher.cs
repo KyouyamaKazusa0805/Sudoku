@@ -164,8 +164,8 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 
 		if (extraCells.Count == 1)
 		{
-			var step = new HiddenBivalueUniversalGraveType1Step
-				(eliminations.ToArray(),
+			var step = new HiddenBivalueUniversalGraveType1Step(
+				eliminations.ToArray(),
 				[[.. cellOffsets, .. candidateOffsets]],
 				context.Options
 			);

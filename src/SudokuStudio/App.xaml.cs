@@ -321,7 +321,6 @@ public partial class App : Application
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
-					NotationBracket.None,
 					CurrentCulture
 				),
 				CoordinateType.RxCy => new RxCyConverter(
@@ -330,6 +329,7 @@ public partial class App : Application
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					NotationBracket.None,
 					CurrentCulture
 				),

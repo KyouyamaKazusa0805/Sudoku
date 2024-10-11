@@ -6,6 +6,72 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// <seealso cref="ChainOrLoop"/>
 public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 {
+	/// <summary>
+	/// Initializes a <see cref="ChainOrLoopFormatInfo"/> instance.
+	/// </summary>
+	public ChainOrLoopFormatInfo()
+	{
+	}
+
+	/// <summary>
+	/// Copies converter options into the current instance.
+	/// </summary>
+	/// <param name="baseConverter">The base converter.</param>
+	public ChainOrLoopFormatInfo(CoordinateConverter baseConverter)
+		=> _ = baseConverter switch
+		{
+			RxCyConverter
+			{
+				MakeDigitBeforeCell: var makeDigitBeforeCell,
+				MakeLettersUpperCase: var makeLettersUpperCase,
+				DefaultSeparator: var defaultSeparator,
+				NotationBracket: var notationBracket,
+				DigitBracketInCandidateGroups: var digitBracketInCandidateGroups
+			} => (
+				NodeFormatType = CoordinateType.RxCy,
+				MakeDigitBeforeCell = makeDigitBeforeCell,
+				MakeLettersUpperCase = makeLettersUpperCase,
+				DefaultSeparator = defaultSeparator,
+				NotationBracket = notationBracket,
+				DigitBracketInCandidateGroups = digitBracketInCandidateGroups
+			),
+			K9Converter
+			{
+				MakeLettersUpperCase: var makeLettersUpperCase,
+				FinalRowLetter: var finalRowLetter,
+				DefaultSeparator: var defaultSeparator,
+				NotationBracket: var notationBracket
+			} => (
+				NodeFormatType = CoordinateType.K9,
+				MakeLettersUpperCase = makeLettersUpperCase,
+				FinalRowLetter = finalRowLetter,
+				DefaultSeparator = defaultSeparator,
+				NotationBracket = notationBracket
+			),
+			ExcelCoordinateConverter
+			{
+				MakeLettersUpperCase: var makeLettersUpperCase,
+				DefaultSeparator: var defaultSeparator,
+				NotationBracket: var notationBracket
+			} => (
+				MakeLettersUpperCase = makeLettersUpperCase,
+				NodeFormatType = CoordinateType.Excel,
+				DefaultSeparator = defaultSeparator,
+				NotationBracket = notationBracket
+			),
+			LiteralCoordinateConverter
+			{
+				DefaultSeparator: var defaultSeparator,
+				NotationBracket: var notationBracket
+			} => (
+				NodeFormatType = CoordinateType.Literal,
+				DefaultSeparator = defaultSeparator,
+				NotationBracket = notationBracket
+			),
+			_ => default(object?)
+		};
+
+
 	/// <inheritdoc cref="RxCyConverter.MakeDigitBeforeCell"/>
 	public bool MakeDigitBeforeCell { get; init; } = false;
 

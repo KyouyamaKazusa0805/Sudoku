@@ -99,7 +99,7 @@ public partial class NormalChainStep(
 			)
 		];
 
-	private protected string ChainString => Pattern.ToString("m", CoordinateConverter.GetInstance(Options.Converter));
+	private protected string ChainString => Pattern.ToString(new ChainOrLoopFormatInfo(Options.Converter));
 
 
 	/// <inheritdoc/>
