@@ -85,12 +85,14 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Borescoper's Deadly Pattern
       * Qiu's Deadly Pattern
       * Unique Matrix (*UM*)
-      * Bi-value Universal Grave (*BUG*)
-      * Reverse Bi-value Universal Grave (*Reverse BUG*)
       * Uniqueness Clue Cover (*UCC*)
     * Conditional Deadly Patterns
       * Rotating Deadly Pattern
       * Anonymous Deadly Pattern (Size = 8)
+    * Miscellaneous
+      * Bi-value Universal Grave (*BUG*)
+      * Reverse Bi-value Universal Grave (*Reverse BUG*)
+      * Hidden Bi-value Universal Grave (*HBUG*, Type 1 and 2)
   * Coloring (**Only in API**)
     * Simple Coloring
       * Simple Coloring Wrap

@@ -7776,6 +7776,18 @@
         <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode})">
+            <summary>
+            Check type 1 and 2.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid to be used.</param>
+            <param name="targetDigit">The target digit.</param>
+            <param name="singlePositions">The single positions.</param>
+            <param name="cellOffsets">The cell view nodes.</param>
+            <param name="candidateOffsets">The candidate view nodes.</param>
+            <returns>The found step.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher">
             <summary>
             Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
