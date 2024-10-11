@@ -18,7 +18,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	[Property] Digit digit2,
 	[Property(NamingRule = "Complete>@")] ref readonly CellMap pattern,
 	[Property] ref readonly CellMap emptyCells
-) : UnconditionalDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
+) : MiscellaneousDeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
