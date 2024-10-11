@@ -21,9 +21,6 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
-		// Test examples:
-		// +3+1+5+9+64+782+279+38+1+54+6.6.7+25.9...........312......8.43...7...6....5.4.8...7...3...9..:541 243 643 545 147 247 148 548 149 349 268 668 273 976 177 277 377 681 286 187 387 591 595 199
-
 		ref readonly var grid = ref context.Grid;
 
 		// Collect for number of givens. If the number of a digit is greater than 7, it cannot be used as target value.
@@ -135,6 +132,13 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 		List<CandidateViewNode> candidateOffsets
 	)
 	{
+		// Test examples:
+		// Type 1
+		// 1+73+5849+62+6...3+2+7...+2..+6+75.+386+42.+1+3+7..+3+7+4.+6+1+2+82+1.8734.+6+39+67182..7+82+3+4+5+6....+1+62+983+7
+		//
+		// Type 2
+		// +3+1+5+9+64+782+279+38+1+54+6.6.7+25.9...........312......8.43...7...6....5.4.8...7...3...9..:541 243 643 545 147 247 148 548 149 349 268 668 273 976 177 277 377 681 286 187 387 591 595 199
+
 		// Congratulations, you have found a deadly pattern with 8 cells without any names!
 		// Now check eliminations.
 		var extraCells = CandidatesMap[targetDigit] & singlePositions;
