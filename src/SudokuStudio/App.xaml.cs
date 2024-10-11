@@ -321,6 +321,7 @@ public partial class App : Application
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					CurrentCulture
 				),
 				CoordinateType.RxCy => new RxCyConverter(
@@ -329,6 +330,7 @@ public partial class App : Application
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					CurrentCulture
 				),
 				CoordinateType.K9 => new K9Converter(
@@ -336,12 +338,14 @@ public partial class App : Application
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					CurrentCulture
 				),
 				CoordinateType.Excel => new ExcelCoordinateConverter(
 					uiPref.MakeLettersUpperCaseInExcelNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					CurrentCulture
 				)
 			},

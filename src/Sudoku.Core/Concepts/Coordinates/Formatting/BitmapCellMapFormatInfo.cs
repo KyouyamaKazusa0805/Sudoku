@@ -13,14 +13,14 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 	public override BitmapCellMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly CellMap map)
+	protected internal override string FormatCore(ref readonly CellMap obj)
 	{
 		var result = (stackalloc char[81]);
 		result.Fill('0');
 
 		for (var cell = 0; cell < 81; cell++)
 		{
-			if (map.Contains(cell))
+			if (obj.Contains(cell))
 			{
 				result[cell] = '1';
 			}

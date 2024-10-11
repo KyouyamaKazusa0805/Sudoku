@@ -11,6 +11,10 @@ namespace Sudoku.Concepts.Coordinates;
 /// <para>Indicates the digits separator.</para>
 /// <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
 /// </param>
+/// <param name="NotationBracket">
+/// <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
+/// <para>The value is <see cref="NotationBracket.None"/> by default.</para>
+/// </param>
 /// <param name="CurrentCulture">
 /// <para>Indicates the current culture.</para>
 /// <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
@@ -27,6 +31,7 @@ namespace Sudoku.Concepts.Coordinates;
 public abstract record CoordinateConverter(
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
+	NotationBracket NotationBracket = NotationBracket.None,
 	CultureInfo? CurrentCulture = null
 ) : ICoordinateProvider<CoordinateConverter>
 {

@@ -10,8 +10,8 @@ public abstract class UnnamedChain(Node lastNode) : ChainOrLoop(lastNode, false,
 	public sealed override bool IsNamed => false;
 
 	/// <inheritdoc/>
-	protected sealed override int LoopIdentity => 1;
+	protected internal sealed override ReadOnlySpan<Node> ValidNodes => _nodes;
 
 	/// <inheritdoc/>
-	protected sealed override ReadOnlySpan<Node> ValidNodes => _nodes;
+	protected sealed override int LoopIdentity => 1;
 }

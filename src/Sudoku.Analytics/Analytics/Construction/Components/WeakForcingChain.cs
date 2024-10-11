@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Components;
 public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastNode)
 {
 	/// <inheritdoc/>
-	protected override int WeakStartIdentity => 1;
+	protected internal override int WeakStartIdentity => 1;
 
 
 	/// <summary>

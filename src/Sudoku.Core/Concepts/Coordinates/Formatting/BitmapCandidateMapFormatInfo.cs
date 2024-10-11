@@ -13,14 +13,14 @@ public sealed partial class BitmapCandidateMapFormatInfo : CandidateMapFormatInf
 	public override BitmapCandidateMapFormatInfo Clone() => new();
 
 	/// <inheritdoc/>
-	protected internal override string FormatCore(ref readonly CandidateMap map)
+	protected internal override string FormatCore(ref readonly CandidateMap obj)
 	{
 		var result = (stackalloc char[729]);
 		result.Fill('0');
 
 		for (var cell = 0; cell < 729; cell++)
 		{
-			if (map.Contains(cell))
+			if (obj.Contains(cell))
 			{
 				result[cell] = '1';
 			}

@@ -20,7 +20,7 @@ public abstract partial class ChainOrLoop :
 	/// <summary>
 	/// Indicates the possible inferences to be used.
 	/// </summary>
-	protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
+	protected internal static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
 
 
 	/// <summary>
@@ -237,17 +237,17 @@ public abstract partial class ChainOrLoop :
 	/// <summary>
 	/// Indicates the value as the start index of the chain link is from whether strong and weak.
 	/// </summary>
-	protected abstract int WeakStartIdentity { get; }
+	protected internal abstract int WeakStartIdentity { get; }
+
+	/// <summary>
+	/// Indicates the valid nodes to be used.
+	/// </summary>
+	protected internal abstract ReadOnlySpan<Node> ValidNodes { get; }
 
 	/// <summary>
 	/// Indicates the value on loop checking for link construction usages.
 	/// </summary>
 	protected abstract int LoopIdentity { get; }
-
-	/// <summary>
-	/// Indicates the valid nodes to be used.
-	/// </summary>
-	protected abstract ReadOnlySpan<Node> ValidNodes { get; }
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Node>.Count => Length;
@@ -379,9 +379,24 @@ public abstract partial class ChainOrLoop :
 	/// <inheritdoc/>
 	public abstract int CompareTo(ChainOrLoop? other);
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
+	/// <summary>
+	/// Formats the current object, converting it into equivalent string representation,
+	/// with the specified format provider object that can specify customized formatting rules on nodes.
+	/// </summary>
+	/// <param name="formatProvider">
+	/// Indicates the format provider object. The value should be derived from <see cref="ChainOrLoopFormatInfo"/>
+	/// to output chain nodes more efficiently. If not, the argument will be treated as candidate coordinate converter object
+	/// to be used by outputting a group of candidates in nodes, calling <see cref="ToString(string?, IFormatProvider?)"/>.
+	/// </param>
+	/// <returns>An equivalent string representation of the current object.</returns>
+	/// <seealso cref="ChainOrLoopFormatInfo"/>
+	/// <seealso cref="ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			ChainOrLoopFormatInfo f => ChainOrLoopFormatInfo.FormatCoreUnsafeAccessor(f, this),
+			_ => ToString(null, formatProvider)
+		};
 
 	/// <inheritdoc/>
 	public string ToString(string? format, IFormatProvider? formatProvider)

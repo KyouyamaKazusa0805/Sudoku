@@ -17,6 +17,11 @@ namespace Sudoku.Concepts.Coordinates;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="NotationBracket"><inheritdoc/></param>
+/// <param name="DigitBracketInCandidateGroups">
+/// <para>Indicates the bracket surrounding digits in candidate output notation.</para>
+/// <para>The value is <see cref="NotationBracket.None"/> by default.</para>
+/// </param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record RxCyConverter(
 	bool MakeLettersUpperCase = false,
@@ -24,8 +29,10 @@ public sealed record RxCyConverter(
 	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
+	NotationBracket NotationBracket = NotationBracket.None,
+	NotationBracket DigitBracketInCandidateGroups = NotationBracket.None,
 	CultureInfo? CurrentCulture = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
@@ -42,7 +49,13 @@ public sealed record RxCyConverter(
 			string r(ref readonly CellMap cells)
 			{
 				var sb = new StringBuilder(50);
-				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
+				var output = CoordinateSimplifier.Simplify(in cells);
+				var needAddingBrackets = output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
+				if (needAddingBrackets)
+				{
+					sb.Append(NotationBracket.GetOpenBracket());
+				}
+				foreach (var (rows, columns) in output)
 				{
 					sb.Append(MakeLettersUpperCase ? 'R' : 'r');
 					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
@@ -50,7 +63,12 @@ public sealed record RxCyConverter(
 					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: columns);
 					sb.Append(DefaultSeparator);
 				}
-				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
+				sb.RemoveFrom(^DefaultSeparator.Length);
+				if (needAddingBrackets)
+				{
+					sb.Append(NotationBracket.GetClosedBracket());
+				}
+				return sb.ToString();
 			}
 		};
 
@@ -63,6 +81,7 @@ public sealed record RxCyConverter(
 				return string.Empty;
 			}
 
+			var needAddingBrackets = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
 				from candidate in candidates
@@ -73,15 +92,24 @@ public sealed record RxCyConverter(
 				CellMap cells = [.. from candidate in digitGroup select candidate / 9];
 				if (MakeDigitBeforeCell)
 				{
+					if (needAddingBrackets)
+					{
+						sb.Append(DigitBracketInCandidateGroups.GetOpenBracket());
+					}
 					sb.Append(digitGroup.Key + 1);
+					if (needAddingBrackets)
+					{
+						sb.Append(DigitBracketInCandidateGroups.GetClosedBracket());
+					}
+
 					sb.Append(CellConverter(in cells));
 				}
 				else
 				{
 					sb.Append(CellConverter(in cells));
-					sb.Append('(');
+					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
 					sb.Append(digitGroup.Key + 1);
-					sb.Append(')');
+					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
 				}
 
 				sb.Append(DefaultSeparator);
@@ -153,8 +181,8 @@ public sealed record RxCyConverter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 

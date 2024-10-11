@@ -8,13 +8,13 @@ namespace Sudoku.Analytics.Construction.Components;
 public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 {
 	/// <inheritdoc/>
-	protected override int WeakStartIdentity => 1;
+	protected internal override int WeakStartIdentity => 1;
+
+	/// <inheritdoc/>
+	protected internal override ReadOnlySpan<Node> ValidNodes => _nodes;
 
 	/// <inheritdoc/>
 	protected override int LoopIdentity => 0;
-
-	/// <inheritdoc/>
-	protected override ReadOnlySpan<Node> ValidNodes => _nodes;
 
 
 	/// <inheritdoc/>

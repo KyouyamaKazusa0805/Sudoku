@@ -6,8 +6,11 @@ namespace Sudoku.Concepts.Coordinates;
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
-public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", string? DigitsSeparator = null, CultureInfo? CurrentCulture = null) :
-	CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
+public sealed record LiteralCoordinateConverter(
+	string DefaultSeparator = ", ",
+	string? DigitsSeparator = null,
+	CultureInfo? CurrentCulture = null
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, NotationBracket.None, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter

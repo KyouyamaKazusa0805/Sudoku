@@ -2271,10 +2271,10 @@
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStartIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.LoopIdentity">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ValidNodes">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ValidNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.LoopIdentity">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStart">
@@ -2460,14 +2460,14 @@
             Indicates the value as the start index of the chain link is from whether strong and weak.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.LoopIdentity">
-            <summary>
-            Indicates the value on loop checking for link construction usages.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.ValidNodes">
             <summary>
             Indicates the valid nodes to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.LoopIdentity">
+            <summary>
+            Indicates the value on loop checking for link construction usages.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
@@ -2556,7 +2556,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <summary>
+            Formats the current object, converting it into equivalent string representation,
+            with the specified format provider object that can specify customized formatting rules on nodes.
+            </summary>
+            <param name="formatProvider">
+            Indicates the format provider object. The value should be derived from <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/>
+            to output chain nodes more efficiently. If not, the argument will be treated as candidate coordinate converter object
+            to be used by outputting a group of candidates in nodes, calling <see cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)"/>.
+            </param>
+            <returns>An equivalent string representation of the current object.</returns>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/>
+            <seealso cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -3479,10 +3490,10 @@
         <member name="P:Sudoku.Analytics.Construction.Components.Loop.WeakStartIdentity">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Loop.LoopIdentity">
+        <member name="P:Sudoku.Analytics.Construction.Components.Loop.ValidNodes">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Loop.ValidNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.Loop.LoopIdentity">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Loop.Reverse">
@@ -4249,10 +4260,10 @@
         <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.IsNamed">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.LoopIdentity">
+        <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.ValidNodes">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.ValidNodes">
+        <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.LoopIdentity">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.WeakForcingChain">
@@ -24961,6 +24972,79 @@
             <summary>
             Indicates all assignment techniques.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo">
+            <summary>
+            Represents a type that can format a <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.MakeDigitBeforeCell">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.MakeLettersUpperCase">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeLettersUpperCase"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FoldLinksInCell">
+            <summary>
+            Indicates whether strong and weak links inside a cell will be folded. By default it's <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FinalRowLetter">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DefaultSeparator">
+            <summary>
+            Indicates the default separator. By default it's a comma <c>", "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.StrongLinkConnector">
+            <summary>
+            Indicates the connector text for strong links. By default it's a double equal sign <c>" == "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.WeakLinkConnector">
+            <summary>
+            Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NotationBracket">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DigitBracketInCandidateGroups">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NodeFormatType">
+            <summary>
+            Indicates a type that formats each node (a group of candidates) in the chain pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Standard">
+            <summary>
+            Indicates the standard format.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Eureka">
+            <summary>
+            Indicates Eureka chain format.
+            Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
+            about Eureka Notation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.ChainOrLoop@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.ParseCore(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo,Sudoku.Analytics.Construction.Components.ChainOrLoop@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.ChainOrLoop@)"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.BetweenRule">
             <summary>

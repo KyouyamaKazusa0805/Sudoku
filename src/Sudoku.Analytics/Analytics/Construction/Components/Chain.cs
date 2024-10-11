@@ -73,13 +73,13 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	public override int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
-	protected override int WeakStartIdentity => 0;
+	protected internal override int WeakStartIdentity => 0;
+
+	/// <inheritdoc/>
+	protected internal override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[WeakStart ? 1..^1 : ..];
 
 	/// <inheritdoc/>
 	protected override int LoopIdentity => 1;
-
-	/// <inheritdoc/>
-	protected override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[WeakStart ? 1..^1 : ..];
 
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.

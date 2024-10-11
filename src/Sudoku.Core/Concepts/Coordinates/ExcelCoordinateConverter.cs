@@ -9,13 +9,15 @@ namespace Sudoku.Concepts.Coordinates;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="NotationBracket"><inheritdoc/></param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record ExcelCoordinateConverter(
 	bool MakeLettersUpperCase = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
+	NotationBracket NotationBracket = NotationBracket.None,
 	CultureInfo? CurrentCulture = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator, CurrentCulture)
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
@@ -38,13 +40,24 @@ public sealed record ExcelCoordinateConverter(
 			string r(ref readonly CellMap cells)
 			{
 				var sb = new StringBuilder(18);
-				foreach (var (rows, columns) in CoordinateSimplifier.Simplify(in cells))
+				var output = CoordinateSimplifier.Simplify(in cells);
+				var needAddingBrackets = output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
+				if (needAddingBrackets)
+				{
+					sb.Append(NotationBracket.GetOpenBracket());
+				}
+				foreach (var (rows, columns) in output)
 				{
 					sb.AppendRange<int>(d => ((char)((MakeLettersUpperCase ? 'A' : 'a') + d)).ToString(), elements: columns);
 					sb.AppendRange<int>(d => DigitConverter((Mask)(1 << d)), elements: rows);
 					sb.Append(DefaultSeparator);
 				}
-				return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
+				sb.RemoveFrom(^DefaultSeparator.Length);
+				if (needAddingBrackets)
+				{
+					sb.Append(NotationBracket.GetClosedBracket());
+				}
+				return sb.ToString();
 			}
 		};
 

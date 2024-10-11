@@ -17,11 +17,11 @@ public abstract class FormatInfo<T> : IFormatProvider where T : allows ref struc
 	public abstract FormatInfo<T> Clone();
 
 	/// <summary>
-	/// Try to format the current grid into a valid string result.
+	/// Try to format the current object into a valid string result.
 	/// </summary>
-	/// <param name="grid">The grid to be formatted.</param>
-	/// <returns>The <see cref="string"/> representation of the argument <paramref name="grid"/>.</returns>
-	protected internal abstract string FormatCore(ref readonly T grid);
+	/// <param name="obj">An object to be formatted.</param>
+	/// <returns>The <see cref="string"/> representation of the argument <paramref name="obj"/>.</returns>
+	protected internal abstract string FormatCore(ref readonly T obj);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> instance into a valid instance of type <typeparamref name="T"/>.
