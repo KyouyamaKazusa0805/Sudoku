@@ -1,7 +1,7 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> (Bilocal Universal Grave Type 3) technique.
+/// Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>

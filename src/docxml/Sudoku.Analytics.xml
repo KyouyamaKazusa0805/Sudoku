@@ -7763,13 +7763,13 @@
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher">
             <summary>
-            Provides with a <b>Hidden Bi-value Universal Grave</b> (Bi-local Universal Grave) step searcher.
+            Provides with a <b>Hidden Bi-value Universal Grave</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Bi-local Universal Grave Type 1</item>
-            <item>Bi-local Universal Grave Type 2</item>
-            <item>Bi-local Universal Grave Type 3</item>
-            <item>Bi-local Universal Grave Type 4</item>
+            <item>Hidden Bi-value Universal Grave Type 1</item>
+            <item>Hidden Bi-value Universal Grave Type 2</item>
+            <item>Hidden Bi-value Universal Grave Type 3</item>
+            <item>Hidden Bi-value Universal Grave Type 4</item>
             </list>
             </summary>
         </member>
@@ -12580,7 +12580,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> (Bilocal Universal Grave) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12588,7 +12588,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> (Bilocal Universal Grave) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12608,7 +12608,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> (Bilocal Universal Grave Type 1) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12616,7 +12616,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> (Bilocal Universal Grave Type 1) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12633,7 +12633,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> (Bilocal Universal Grave Type 2) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12643,7 +12643,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> (Bilocal Universal Grave Type 2) technique.
+            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12687,7 +12687,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step">
             <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> (Bilocal Universal Grave Type 3) technique.
+            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12699,7 +12699,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> (Bilocal Universal Grave Type 3) technique.
+            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12763,7 +12763,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step">
             <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> (Bilocal Universal Grave Type 4) technique.
+            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12774,7 +12774,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> (Bilocal Universal Grave Type 4) technique.
+            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -28764,22 +28764,22 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType1">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave Type 1.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 1.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType2">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave Type 2.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 2.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType3">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave Type 3.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 3.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType4">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave Type 4.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenKeyword">
@@ -30282,7 +30282,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_HiddenBivalueUniversalGraveStepSearcher">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_IrregularWingStepSearcher">
@@ -31992,7 +31992,7 @@
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_HiddenBivalueUniversalGrave">
             <summary>
-              Looks up a localized string similar to Bi-local Universal Grave.
+              Looks up a localized string similar to Hidden Bi-value Universal Grave.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_IrregularWing">

@@ -3373,7 +3373,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave Type 1.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave Type 1.
         /// </summary>
         public static string HiddenBivalueUniversalGraveType1 {
             get {
@@ -3382,7 +3382,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave Type 2.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave Type 2.
         /// </summary>
         public static string HiddenBivalueUniversalGraveType2 {
             get {
@@ -3391,7 +3391,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave Type 3.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave Type 3.
         /// </summary>
         public static string HiddenBivalueUniversalGraveType3 {
             get {
@@ -3400,7 +3400,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave Type 4.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave Type 4.
         /// </summary>
         public static string HiddenBivalueUniversalGraveType4 {
             get {
@@ -6103,7 +6103,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave.
         /// </summary>
         public static string StepSearcherName_HiddenBivalueUniversalGraveStepSearcher {
             get {
@@ -9181,7 +9181,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bi-local Universal Grave.
+        ///   Looks up a localized string similar to Hidden Bi-value Universal Grave.
         /// </summary>
         public static string TechniqueGroup_HiddenBivalueUniversalGrave {
             get {
