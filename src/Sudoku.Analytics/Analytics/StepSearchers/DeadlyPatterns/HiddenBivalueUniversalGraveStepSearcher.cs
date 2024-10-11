@@ -161,6 +161,10 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 		{
 			candidateOffsets.Remove(node);
 		}
+		foreach (var cell in extraCells)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + targetDigit));
+		}
 
 		if (extraCells.Count == 1)
 		{
@@ -177,11 +181,6 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 		}
 		else
 		{
-			foreach (var cell in extraCells)
-			{
-				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + targetDigit));
-			}
-
 			var step = new HiddenBivalueUniversalGraveType2Step(
 				eliminations.ToArray(),
 				[[.. cellOffsets, .. candidateOffsets]],
