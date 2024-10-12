@@ -25058,6 +25058,9 @@
             <summary>
             Indicates the standard format.
             </summary>
+            <remarks>
+            Example output:<br/><c><![CDATA[r4c4(6) == r4c1(6) -- r4c1(8) == r4c9(8) -- r9c9(8) == r9c4(8)]]></c>
+            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Eureka">
             <summary>
@@ -25065,6 +25068,9 @@
             Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
             about Eureka Notation.
             </summary>
+            <remarks>
+            Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1-(8)r4c9=(8)r9c9-(8)r9c4]]></c>
+            </remarks>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.BivalueBilocationPlot">
             <summary>
@@ -25072,6 +25078,9 @@
             Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
             to learn more information about this notation.
             </summary>
+            <remarks>
+            Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.GetFormat(System.Type)">
             <inheritdoc/>
