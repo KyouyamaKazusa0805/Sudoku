@@ -64,7 +64,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var cell in HousesMap[house])
 					{
-						if ((missingCell.AsCellMap() + cell).InOneHouse(out _))
+						if ((missingCell.AsCellMap() + cell).FirstSharedHouse != 32)
 						{
 							continue;
 						}
@@ -206,7 +206,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						extraCells.Add(cell);
 					}
 				}
-				if (extraCells.Count >= 2 && !extraCells.InOneHouse(out _))
+				if (extraCells.Count >= 2 && extraCells.FirstSharedHouse == 32)
 				{
 					// All extra cells must share with a same house.
 					continue;
@@ -334,7 +334,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 							extraCells.Add(cell);
 						}
 					}
-					if (extraCells.Count >= 2 && !extraCells.InOneHouse(out _))
+					if (extraCells.Count >= 2 && extraCells.FirstSharedHouse == 32)
 					{
 						// All extra cells must share with a same house.
 						continue;

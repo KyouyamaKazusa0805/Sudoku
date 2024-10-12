@@ -67,7 +67,7 @@ public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
 	/// </summary>
 	public bool IsImplicitLoop
 		=> WeakStart && ValidNodes is [{ Map: [var first] }, .., { Map: [var last] }]
-		&& (first / 9 == last / 9 || first % 9 == last % 9 && ((first / 9).AsCellMap() + last / 9).InOneHouse(out _));
+		&& (first / 9 == last / 9 || first % 9 == last % 9 && ((first / 9).AsCellMap() + last / 9).FirstSharedHouse != 32);
 
 	/// <inheritdoc/>
 	public override int Complexity => _nodes.Length;

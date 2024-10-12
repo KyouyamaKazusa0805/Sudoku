@@ -240,7 +240,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		// Check whether the number of locked digits appeared in cross-line is at least 2.
-		crossline.InOneHouse(out var block);
+		var block = crossline.FirstSharedHouse;
 		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] & ~crossline];
 		var allDigitsMaskAppearedInCrossline = grid[in crossline];
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
@@ -836,7 +836,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		crossline.InOneHouse(out var house);
+		var house = crossline.FirstSharedHouse;
 		var lockedMap = CandidateMap.Empty;
 		foreach (var digit in currentDigitsMask)
 		{

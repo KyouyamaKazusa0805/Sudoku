@@ -325,7 +325,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		if (!cellsChosen.InOneHouse(out _))
+		if (cellsChosen.FirstSharedHouse == 32)
 		{
 			return null;
 		}
@@ -450,7 +450,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		if (cellsChosen.InOneHouse(out _))
+		if (cellsChosen.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -482,7 +482,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			var conjugatePairCellOuterPattern = (possibleConjugatePairCells & ~cellsChosen)[0];
 			var conjugatePairCellInnerPattern = (possibleConjugatePairCells - conjugatePairCellOuterPattern)[0];
 			var anotherCell = (cellsChosen - conjugatePairCellInnerPattern)[0];
-			if (!(anotherCell.AsCellMap() + conjugatePairCellOuterPattern).InOneHouse(out _))
+			if ((anotherCell.AsCellMap() + conjugatePairCellOuterPattern).FirstSharedHouse == 32)
 			{
 				continue;
 			}

@@ -54,11 +54,7 @@ public sealed partial class AlmostLockedSetPattern(
 	public House House
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			Cells.InOneHouse(out var houseIndex);
-			return houseIndex;
-		}
+		get => Cells.FirstSharedHouse;
 	}
 
 	/// <summary>

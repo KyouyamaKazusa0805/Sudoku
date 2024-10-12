@@ -93,7 +93,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					var coverSetsMask = HouseMaskOperations.Create(cs);
 					var fish = new FishPattern(digit, baseSetsMask, coverSetsMask, in fins, in CellMap.Empty);
 					if (linkOption == LinkOption.Intersection && !fins.IsInIntersection
-						|| linkOption == LinkOption.House && !fins.InOneHouse(out _))
+						|| linkOption == LinkOption.House && fins.FirstSharedHouse == 32)
 					{
 						continue;
 					}
@@ -136,7 +136,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 					foreach (ref readonly var cells4 in elimMap | limit)
 					{
 						if (linkOption == LinkOption.Intersection && !cells4.IsInIntersection
-							|| linkOption == LinkOption.House && !cells4.InOneHouse(out _))
+							|| linkOption == LinkOption.House && cells4.FirstSharedHouse == 32)
 						{
 							continue;
 						}

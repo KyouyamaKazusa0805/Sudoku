@@ -704,7 +704,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			}
 
 			// Use this to check whether the pattern is rank-0 for the current digit.
-			//((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).InOneHouse(out _)
+			//((cellsAllAlsesUsed | temp) & CandidatesMap[digit]).FirstSharedHouse != 32
 
 			foreach (var cell in elimMap % CandidatesMap[digit])
 			{

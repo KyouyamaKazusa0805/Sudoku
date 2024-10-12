@@ -83,14 +83,14 @@ public partial class EliminationCalculator
 			var template = candidatesMap[urDigit1] | candidatesMap[urDigit2];
 			foreach (ref readonly var pair in cells & ~cells1 & 2)
 			{
-				if (pair.InOneHouse(out _))
+				if (pair.FirstSharedHouse != 32)
 				{
 					nakedPairElims1 |= pair.PeerIntersection & template;
 				}
 			}
 			foreach (ref readonly var pair in cells & ~cells2 & 2)
 			{
-				if (pair.InOneHouse(out _))
+				if (pair.FirstSharedHouse != 32)
 				{
 					nakedPairElims2 |= pair.PeerIntersection & template;
 				}

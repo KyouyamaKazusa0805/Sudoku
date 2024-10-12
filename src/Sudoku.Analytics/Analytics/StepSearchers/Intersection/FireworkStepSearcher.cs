@@ -58,19 +58,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var c in HousesMap[triple[2]])
 						{
-							if ((a.AsCellMap() + b).InOneHouse(out _) && (a.AsCellMap() + c).InOneHouse(out _))
+							if ((a.AsCellMap() + b).FirstSharedHouse != 32 && (a.AsCellMap() + c).FirstSharedHouse != 32)
 							{
 								Patterns[i++] = new([a, b, c], a);
 								continue;
 							}
 
-							if ((a.AsCellMap() + b).InOneHouse(out _) && (b.AsCellMap() + c).InOneHouse(out _))
+							if ((a.AsCellMap() + b).FirstSharedHouse != 32 && (b.AsCellMap() + c).FirstSharedHouse != 32)
 							{
 								Patterns[i++] = new([a, b, c], b);
 								continue;
 							}
 
-							if ((a.AsCellMap() + c).InOneHouse(out _) && (b.AsCellMap() + c).InOneHouse(out _))
+							if ((a.AsCellMap() + c).FirstSharedHouse != 32 && (b.AsCellMap() + c).FirstSharedHouse != 32)
 							{
 								Patterns[i++] = new([a, b, c], c);
 							}
@@ -88,8 +88,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var d in HousesMap[houseQuad[3]])
 						{
-							if (!(a.AsCellMap() + b).InOneHouse(out _) || !(a.AsCellMap() + c).InOneHouse(out _)
-								|| !(b.AsCellMap() + d).InOneHouse(out _) || !(c.AsCellMap() + d).InOneHouse(out _))
+							if ((a.AsCellMap() + b).FirstSharedHouse == 32 || (a.AsCellMap() + c).FirstSharedHouse == 32
+								|| (b.AsCellMap() + d).FirstSharedHouse == 32 || (c.AsCellMap() + d).FirstSharedHouse == 32)
 							{
 								continue;
 							}

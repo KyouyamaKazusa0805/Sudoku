@@ -220,7 +220,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			{
 				tempMap |= CandidatesMap[digit];
 			}
-			if (tempMap.InOneHouse(out _))
+			if (tempMap.FirstSharedHouse != 32)
 			{
 				continue;
 			}

@@ -1787,7 +1787,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// Mirror conjugate pair cannot be used for same-side target cells.
-		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
+		if (targetCells.Count != 2 || targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -1907,7 +1907,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// Adjacent target cannot be used for same-side target cells.
-		if (targetCells.InOneHouse(out _))
+		if (targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -2439,7 +2439,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// AHS cannot be used on same-side target cells.
-		if (targetCells.InOneHouse(out _))
+		if (targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -2581,7 +2581,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	{
 		// Same-side target cells cannot be used in this case, because locked member will check for mirror cells,
 		// invalid for mirror checking on same-side cells.
-		if (targetCells.InOneHouse(out _))
+		if (targetCells.FirstSharedHouse != 32)
 		{
 			(inferredLastTargetDigitsMask, lockedDigitsMask) = (0, 0);
 			return null;
@@ -2754,7 +2754,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
+		if (targetCells.Count != 2 || targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -4339,7 +4339,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// Adjacent target cannot be used for same-side target cells.
-		if (targetCells.InOneHouse(out _))
+		if (targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}
@@ -4462,7 +4462,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		// Mirror conjugate pair cannot be used for same-side target cells.
-		if (targetCells.Count != 2 || targetCells.InOneHouse(out _))
+		if (targetCells.Count != 2 || targetCells.FirstSharedHouse != 32)
 		{
 			return null;
 		}

@@ -117,7 +117,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 				}
 
-				if (!extraCellsMap.InOneHouse(out _))
+				if (extraCellsMap.FirstSharedHouse == 32)
 				{
 					continue;
 				}

@@ -53,7 +53,7 @@ public sealed partial class QiuDeadlyPattern1Pattern([Property] ref readonly Cel
 	{
 		get
 		{
-			Crossline.InOneHouse(out var block);
+			var block = Crossline.FirstSharedHouse;
 			var l1 = HouseMask.TrailingZeroCount(Lines);
 			var l2 = Lines.GetNextSet(l1);
 			return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);

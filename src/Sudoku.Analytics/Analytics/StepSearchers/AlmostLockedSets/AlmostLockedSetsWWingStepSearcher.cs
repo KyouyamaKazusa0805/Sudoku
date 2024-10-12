@@ -47,7 +47,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				if ((map1 | map2).InOneHouse(out _))
+				if ((map1 | map2).FirstSharedHouse != 32)
 				{
 					continue;
 				}

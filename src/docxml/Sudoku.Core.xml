@@ -884,16 +884,6 @@
         <member name="M:Sudoku.Concepts.CellMap.ForEach(System.Action{System.Int32})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.InOneHouse(System.Int32@)">
-            <summary>
-            Indicates whether all cells in this instance are in one house.
-            </summary>
-            <param name="houseIndex">
-            The house index whose corresponding house covered.
-            If the return value is <see langword="false"/>, this value will be the constant -1.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.Contains(System.Int32)">
             <summary>
             Determine whether the map contains the specified offset.

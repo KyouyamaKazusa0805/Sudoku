@@ -32,7 +32,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				var cells1 = pair;
 				var cells2 = patternCells & ~pair;
 				if (linkOption == LinkOption.Intersection && !(cells1.IsInIntersection && cells2.IsInIntersection)
-					|| linkOption == LinkOption.House && !(cells1.InOneHouse(out _) && cells2.InOneHouse(out _)))
+					|| linkOption == LinkOption.House && !(cells1.FirstSharedHouse != 32 && cells2.FirstSharedHouse != 32))
 				{
 					goto CollectWeak;
 				}
@@ -58,7 +58,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				foreach (ref readonly var cells in possibleCells1 | limit1)
 				{
 					if (linkOption == LinkOption.Intersection && !cells.IsInIntersection
-						|| linkOption == LinkOption.House && !cells.InOneHouse(out _))
+						|| linkOption == LinkOption.House && cells.FirstSharedHouse == 32)
 					{
 						continue;
 					}
@@ -70,7 +70,7 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				foreach (ref readonly var cells in possibleCells2 | limit2)
 				{
 					if (linkOption == LinkOption.Intersection && !cells.IsInIntersection
-						|| linkOption == LinkOption.House && !cells.InOneHouse(out _))
+						|| linkOption == LinkOption.House && cells.FirstSharedHouse == 32)
 					{
 						continue;
 					}

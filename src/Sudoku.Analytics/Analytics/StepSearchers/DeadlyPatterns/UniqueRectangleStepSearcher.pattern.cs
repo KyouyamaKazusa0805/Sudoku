@@ -466,7 +466,7 @@ public partial class UniqueRectangleStepSearcher
 			foreach (var endCell2 in (PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
 			{
 				// Check whether two cells are same, or in a same house. If so, the pattern will be degenerated to a normal type 3.
-				if ((endCell1.AsCellMap() + endCell2).InOneHouse(out _))
+				if ((endCell1.AsCellMap() + endCell2).FirstSharedHouse != 32)
 				{
 					continue;
 				}
@@ -1047,7 +1047,7 @@ public partial class UniqueRectangleStepSearcher
 						multivalueCellsCount++;
 					}
 				}
-				if (!digit2UnionMap.InOneHouse(out _))
+				if (digit2UnionMap.FirstSharedHouse == 32)
 				{
 					accumulator.Add(
 						new UniqueRectangleAlmostLockedSetsXzStep(

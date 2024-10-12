@@ -1247,7 +1247,7 @@ public partial class UniqueRectangleStepSearcher
 					}
 
 					var xDigitMap = (alsMap | xDigitGuardianCells) & CandidatesMap[xDigit];
-					if (!xDigitMap.InOneHouse(out _))
+					if (xDigitMap.FirstSharedHouse == 32)
 					{
 						// The X digit must be connected.
 						continue;

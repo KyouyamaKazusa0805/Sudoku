@@ -42,7 +42,7 @@ internal sealed class CachedXyzWingPatternSearcher : PatternSearcher<XyzWingPatt
 					foreach (var leafCell2 in bivalueCellsFromHouse2)
 					{
 						var pattern = pivot.AsCellMap() + leafCell1 + leafCell2;
-						if (pattern.InOneHouse(out _))
+						if (pattern.FirstSharedHouse != 32)
 						{
 							continue;
 						}

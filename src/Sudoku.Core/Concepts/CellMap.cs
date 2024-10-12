@@ -131,12 +131,12 @@ public partial struct CellMap : CellMapBase
 			switch (Count)
 			{
 				case 0 or 1: { return false; }
-				case 2: { return InOneHouse(out _); }
+				case 2: { return FirstSharedHouse != 32; }
 				default:
 				{
 					foreach (ref readonly var pair in this & 2)
 					{
-						if (pair.InOneHouse(out _))
+						if (pair.FirstSharedHouse != 32)
 						{
 							return true;
 						}
@@ -474,31 +474,6 @@ public partial struct CellMap : CellMapBase
 		{
 			action(element);
 		}
-	}
-
-	/// <summary>
-	/// Indicates whether all cells in this instance are in one house.
-	/// </summary>
-	/// <param name="houseIndex">
-	/// The house index whose corresponding house covered.
-	/// If the return value is <see langword="false"/>, this value will be the constant -1.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public readonly bool InOneHouse(out House houseIndex)
-	{
-		var tempSpan = SharedHouseConstants.Span;
-		var bits = Vector128.Create(_low, _high);
-		for (var i = 0; i < 27; i++)
-		{
-			if ((bits & tempSpan[i]) == Vector128<long>.Zero)
-			{
-				houseIndex = i;
-				return true;
-			}
-		}
-
-		houseIndex = -1;
-		return false;
 	}
 
 	/// <summary>

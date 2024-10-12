@@ -159,7 +159,7 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var isType5 = !(corner1.AsCellMap() + corner2).InOneHouse(out _);
+		var isType5 = (corner1.AsCellMap() + corner2).FirstSharedHouse == 32;
 		accumulator.Add(
 			new UniqueRectangleType2Or5Step(
 				(from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)).ToArray(),

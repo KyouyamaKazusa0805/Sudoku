@@ -118,8 +118,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						{
 #pragma warning disable format
 							[var a, var b]
-								when (c1.AsCellMap() + a).InOneHouse(out _) && (c2.AsCellMap() + b).InOneHouse(out _)
-								|| (c1.AsCellMap() + b).InOneHouse(out _) && (c2.AsCellMap() + a).InOneHouse(out _)
+								when (c1.AsCellMap() + a).FirstSharedHouse != 32 && (c2.AsCellMap() + b).FirstSharedHouse != 32
+								|| (c1.AsCellMap() + b).FirstSharedHouse != 32 && (c2.AsCellMap() + a).FirstSharedHouse != 32
 								=> true,
 #pragma warning restore format
 							{ Count: > 2 and <= 6, BlockMask: var blocks } => Mask.PopCount(blocks) switch

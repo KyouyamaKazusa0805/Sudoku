@@ -80,7 +80,7 @@ public static class Excluder
 		{
 			var tempDigit = grid.GetDigit(tempCell);
 			result[i] = new CircleViewNode(ColorIdentifier.Normal, tempCell);
-			(cell.AsCellMap() + tempCell).InOneHouse(out Unsafe.AsRef(in excluderHouses[i]));
+			Unsafe.AsRef(in excluderHouses[i]) = (cell.AsCellMap() + tempCell).FirstSharedHouse;
 			i++;
 			lastDigitsMask &= (Mask)~(1 << tempDigit);
 		}
@@ -91,7 +91,7 @@ public static class Excluder
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i] = new CircleViewNode(ColorIdentifier.Normal, otherCell);
-					(cell.AsCellMap() + otherCell).InOneHouse(out Unsafe.AsRef(in excluderHouses[i]));
+					Unsafe.AsRef(in excluderHouses[i]) = (cell.AsCellMap() + otherCell).FirstSharedHouse;
 					i++;
 					break;
 				}

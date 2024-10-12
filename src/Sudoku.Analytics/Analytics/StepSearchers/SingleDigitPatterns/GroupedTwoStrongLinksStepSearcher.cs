@@ -87,7 +87,7 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 					))
 					{
 						// Check whether they are in a same house.
-						if (!(cells1 | cells2).InOneHouse(out var weakLinkHouse) || !!(cells1 & cells2))
+						if ((cells1 | cells2).FirstSharedHouse is not (var weakLinkHouse and not 32) || !!(cells1 & cells2))
 						{
 							continue;
 						}
