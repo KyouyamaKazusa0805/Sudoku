@@ -83,6 +83,11 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// </summary>
 	public bool FoldLinksInCell { get; init; } = false;
 
+	/// <summary>
+	/// Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
+	/// </summary>
+	public bool InlineDigitsInLink { get; init; } = false;
+
 	/// <inheritdoc cref="K9Converter.FinalRowLetter"/>
 	public char FinalRowLetter { get; init; } = 'I';
 
@@ -100,6 +105,11 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
 	/// </summary>
 	public string WeakLinkConnector { get; init; } = " -- ";
+
+	/// <summary>
+	/// Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
+	/// </summary>
+	public string InlinedDigitsSeparator { get; init; } = "|";
 
 	/// <inheritdoc cref="CoordinateConverter.NotationBracket"/>
 	public NotationBracket NotationBracket { get; init; } = NotationBracket.None;
@@ -134,6 +144,22 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 			DigitBracketInCandidateGroups = NotationBracket.Round
 		};
 
+	/// <summary>
+	/// Indicates B/B plot (Bilocation/Bivalue Plot) notation format.
+	/// Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
+	/// to learn more information about this notation.
+	/// </summary>
+	public static IFormatProvider BivalueBilocationPlot
+		=> new ChainOrLoopFormatInfo
+		{
+			InlineDigitsInLink = true,
+			DefaultSeparator = "|",
+			InlinedDigitsSeparator = "|",
+			StrongLinkConnector = "=",
+			WeakLinkConnector = "-",
+			NotationBracket = NotationBracket.Square
+		};
+
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
@@ -146,6 +172,8 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 			MakeDigitBeforeCell = MakeDigitBeforeCell,
 			MakeLettersUpperCase = MakeLettersUpperCase,
 			FoldLinksInCell = FoldLinksInCell,
+			InlineDigitsInLink = InlineDigitsInLink,
+			InlinedDigitsSeparator = InlinedDigitsSeparator,
 			FinalRowLetter = FinalRowLetter,
 			DefaultSeparator = DefaultSeparator,
 			StrongLinkConnector = StrongLinkConnector,
@@ -171,65 +199,82 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 			ExcelCoordinateConverter c => c with { MakeLettersUpperCase = MakeLettersUpperCase },
 			{ } tempConverter => tempConverter,
 			_ => throw new InvalidOperationException()
-		};
-		candidateConverter = candidateConverter with { DefaultSeparator = DefaultSeparator, NotationBracket = NotationBracket };
+#pragma warning disable format
+		} with { DefaultSeparator = DefaultSeparator, NotationBracket = NotationBracket };
+#pragma warning restore format
 
-		var needAddingBrackets = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
+		var needAddingBrackets_Digits = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
+		var needAddingBrackets_Cells = Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 		var span = obj.ValidNodes;
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (obj.WeakStartIdentity, 0); i < span.Length; linkIndex++, i++)
 		{
 			var inference = ChainOrLoop.Inferences[linkIndex & 1];
 			ref readonly var nodeCandidates = ref span[i].Map;
-			if (FoldLinksInCell)
+			var nodeCells = nodeCandidates.Cells;
+			var nodeDigits = nodeCandidates.Digits;
+			ref readonly var nextNodeCandidates = ref i + 1 >= span.Length ? ref CandidateMap.Empty : ref span[i + 1].Map;
+			var nextNodeCells = nextNodeCandidates.Cells;
+			var nextNodeDigits = nextNodeCandidates.Digits;
+
+			if (FoldLinksInCell && i != span.Length - 1)
 			{
 				// (1)a=(2)a-(2)b=(3)b => (1=2)a-(2=3)b
-				var nodeCells = nodeCandidates.Cells;
-				var nodeDigits = nodeCandidates.Digits;
-
-				if (i != span.Length - 1)
+				if (nodeCells == nextNodeCells)
 				{
-					// Check for the next node, determining whether two nodes use a same group of cells.
-					ref readonly var nextNodeCandidates = ref span[i + 1].Map;
-					var nextNodeCells = nextNodeCandidates.Cells;
-					var nextNodeDigits = nextNodeCandidates.Digits;
-					if (nodeCells == nextNodeCells)
+					if (MakeDigitBeforeCell)
 					{
-						if (MakeDigitBeforeCell)
-						{
-							if (needAddingBrackets)
-							{
-								sb.Append(DigitBracketInCandidateGroups.GetOpenBracket());
-							}
-							sb.Append(candidateConverter.DigitConverter(nodeDigits));
-							sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
-							sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
-							if (needAddingBrackets)
-							{
-								sb.Append(DigitBracketInCandidateGroups.GetClosedBracket());
-							}
-							sb.Append(nodeCells.ToString(candidateConverter));
-						}
-						else
-						{
-							sb.Append(nodeCells.ToString(candidateConverter));
-							sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
-							sb.Append(candidateConverter.DigitConverter(nodeDigits));
-							sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
-							sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
-							sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
-						}
-						goto AppendNextLinkToken;
+						_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetOpenBracket()) : sb;
+						sb.Append(candidateConverter.DigitConverter(nodeDigits));
+						sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+						sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
+						_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetClosedBracket()) : sb;
+						sb.Append(nodeCells.ToString(candidateConverter));
+						i++;
 					}
+					else
+					{
+						sb.Append(nodeCells.ToString(candidateConverter));
+						sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
+						sb.Append(candidateConverter.DigitConverter(nodeDigits));
+						sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+						sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
+						sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
+					}
+					goto AppendNextLinkToken;
 				}
 			}
 
-			sb.Append(nodeCandidates.ToString(candidateConverter));
+			if (InlineDigitsInLink)
+			{
+				// (1)a=(2)b => [a]=1|2=[b]
+				_ = needAddingBrackets_Cells ? sb.Append(NotationBracket.GetOpenBracket()) : sb;
+				sb.Append(nodeCells.ToString(candidateConverter));
+				_ = needAddingBrackets_Cells ? sb.Append(NotationBracket.GetClosedBracket()) : sb;
+			}
+			else
+			{
+				sb.Append(nodeCandidates.ToString(candidateConverter));
+			}
 
 		AppendNextLinkToken:
 			if (i != span.Length - 1)
 			{
-				sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+				if (InlineDigitsInLink)
+				{
+					sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+					_ = nodeDigits == nextNodeDigits
+						? sb.Append(candidateConverter.DigitConverter(nodeDigits))
+						: sb
+							.Append(candidateConverter.DigitConverter(nodeDigits))
+							.Append(InlinedDigitsSeparator)
+							.Append(candidateConverter.DigitConverter(nextNodeDigits));
+					sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+				}
+				else
+				{
+					sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+				}
 			}
 		}
 		return sb.ToString();

@@ -25015,6 +25015,11 @@
             Indicates whether strong and weak links inside a cell will be folded. By default it's <see langword="false"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlineDigitsInLink">
+            <summary>
+            Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FinalRowLetter">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
         </member>
@@ -25031,6 +25036,11 @@
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.WeakLinkConnector">
             <summary>
             Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlinedDigitsSeparator">
+            <summary>
+            Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NotationBracket">
@@ -25054,6 +25064,13 @@
             Indicates Eureka chain format.
             Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
             about Eureka Notation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.BivalueBilocationPlot">
+            <summary>
+            Indicates B/B plot (Bilocation/Bivalue Plot) notation format.
+            Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
+            to learn more information about this notation.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.GetFormat(System.Type)">
