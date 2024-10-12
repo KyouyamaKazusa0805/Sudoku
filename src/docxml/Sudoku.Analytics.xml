@@ -7785,7 +7785,21 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
-            <inheritdoc/>
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>This pattern is very hard to be searched (but it can exist in random puzzles indeed).</para>
+            <para>
+            This pattern relies on candidate positions of a whole grid, with only a few cells holding only single digit used in pattern.
+            However, it is sensitive with candidates eliminated from the previous steps.
+            All candidates should be brought back to grid while searching for this in a grid
+            with missing candidates having been eliminated before.
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode})">
             <summary>

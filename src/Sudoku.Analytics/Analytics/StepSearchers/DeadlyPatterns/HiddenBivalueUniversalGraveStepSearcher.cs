@@ -19,6 +19,16 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
+	/// <para>This pattern is very hard to be searched (but it can exist in random puzzles indeed).</para>
+	/// <para>
+	/// This pattern relies on candidate positions of a whole grid, with only a few cells holding only single digit used in pattern.
+	/// However, it is sensitive with candidates eliminated from the previous steps.
+	/// All candidates should be brought back to grid while searching for this in a grid
+	/// with missing candidates having been eliminated before.
+	/// </para>
+	/// </remarks>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
