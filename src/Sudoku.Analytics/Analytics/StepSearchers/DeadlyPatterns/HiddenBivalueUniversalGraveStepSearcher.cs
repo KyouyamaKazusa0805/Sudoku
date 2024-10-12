@@ -22,6 +22,8 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
+		var candidatesResetGrid = grid.ResetCandidatesGrid;
+		var resetCandidatesMap = candidatesResetGrid.CandidatesMap;
 
 		// Collect for number of givens. If the number of a digit is greater than 7, it cannot be used as target value.
 		var mask = (Mask)0;
@@ -41,7 +43,7 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 
 		// Iterate on 2-4 digits of values.
 		var singlePositions = new Dictionary<Cell, Mask>(81);
-		for (var size = 2; size <= 4; size++)
+		for (var size = 2; size <= Math.Min(4, (int)Mask.PopCount(mask)); size++)
 		{
 			// Iterate on each combination of digits of number 'size'.
 			foreach (var combination in availableDigits.GetSubsets(size))
@@ -50,7 +52,7 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 				var mergedMap = CellMap.Empty;
 				foreach (var digit in combination)
 				{
-					mergedMap |= CandidatesMap[digit];
+					mergedMap |= resetCandidatesMap[digit];
 				}
 
 				// If one of the merged map contains 3 or more candidates in the current combination, the pattern will be invalid.
@@ -58,7 +60,7 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 				singlePositions.Clear();
 				foreach (var cell in mergedMap)
 				{
-					var currentDigitsMask = (Mask)(grid.GetCandidates(cell) & digitsMask);
+					var currentDigitsMask = (Mask)(candidatesResetGrid.GetCandidates(cell) & digitsMask);
 					var numberOfDigits = Mask.PopCount(currentDigitsMask);
 					if (numberOfDigits > 2)
 					{
@@ -96,7 +98,7 @@ public sealed partial class HiddenBivalueUniversalGraveStepSearcher : StepSearch
 					// Type 1 or 2.
 					var targetDigit = Mask.Log2(singlePositionDigitsMask);
 					if (CheckType1Or2(
-						ref context, in grid, targetDigit, [.. singlePositions.Keys],
+						ref context, in candidatesResetGrid, targetDigit, [.. singlePositions.Keys],
 						cellOffsets, candidateOffsets) is { } type1Or2Step)
 					{
 						return type1Or2Step;
