@@ -19,13 +19,7 @@ public sealed partial class SingletonArray<T>([Field] T value) : MemoryManager<T
 	public override Span<T> GetSpan() => new(ref _value);
 
 	/// <inheritdoc/>
-	public override unsafe MemoryHandle Pin(int elementIndex = 0)
-	{
-		fixed (T* pValue = &_value)
-		{
-			return new(pValue + elementIndex);
-		}
-	}
+	public override unsafe MemoryHandle Pin(int elementIndex = 0) => new((T*)Unsafe.AsPointer(ref _value) + elementIndex);
 
 	/// <inheritdoc/>
 	protected override void Dispose(bool disposing)
