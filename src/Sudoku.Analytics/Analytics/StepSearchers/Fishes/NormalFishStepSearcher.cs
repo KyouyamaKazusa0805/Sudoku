@@ -130,7 +130,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
+		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
@@ -282,7 +282,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							HouseMaskOperations.Create(bs),
 							HouseMaskOperations.Create(cs),
 							in fins,
-							FishModule.IsSashimi(bs, in fins, digit)
+							Sashimi.IsSashimi(bs, in fins, digit)
 						)
 					);
 				}

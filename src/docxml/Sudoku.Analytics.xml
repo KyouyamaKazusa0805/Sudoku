@@ -1058,50 +1058,6 @@
             <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the element has already been added.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.FishModule">
-            <summary>
-            Represents a fish module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.IntersectionModule">
-            <summary>
-            Represents an intersection module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
-            <summary>
-            Indicates whether the pattern is a locked candidates.
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
-            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
-            <param name="c">Indicates the intersection 3 cells.</param>
-            <param name="emptyCells">The empty cells in the pattern.</param>
-            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Caching.Modules.SingleModule">
             <summary>
             Represents single module.
@@ -1165,19 +1121,6 @@
             <summary>
             Search for naked subsets.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Caching.Modules.XyzRingModule">
-            <summary>
-            Represents XYZ-Ring module.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Caching.Modules.XyzRingModule.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Caching.PatternSearchers.CachedXyzWingPatternSearcher">
             <summary>
@@ -5866,6 +5809,23 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.LockedCandidates">
+            <summary>
+            Provides a way to calculate whether a pattern is a locked candidates or not.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.LockedCandidates.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+            <summary>
+            Indicates whether the pattern is a locked candidates.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <param name="a">Indicates the 6 cells in the line, but not intersects with block.</param>
+            <param name="b">Indicates the 6 cells in the block, but not intersects with line.</param>
+            <param name="c">Indicates the intersection 3 cells.</param>
+            <param name="emptyCells">The empty cells in the pattern.</param>
+            <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
             Represents a pattern searcher type.
@@ -6471,6 +6431,59 @@
             <summary>
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Sashimi">
+            <summary>
+            Provides a way to determine whether a fish pattern is Sashimi or not.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Sashimi.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Siamese">
+            <summary>
+            Provides a way to construct Siamese patterns.
+            </summary>
+            <remarks>
+            This file is a hub. Please check separated files to get detailed rules.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Siamese.Fish">
+            <summary>
+            Provides a way to construct Siamese fishes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Siamese.Fish.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Siamese.XyzRing">
+            <summary>
+            Provides a way to construct Siamese XYZ-Rings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Siamese.XyzRing.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>

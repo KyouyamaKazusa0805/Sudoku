@@ -59,7 +59,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 		}
 
 		// Check for Siamese XYZ-Rings.
-		var siameses = AllowSiamese ? XyzRingModule.GetSiamese(accumulator, in grid) : [];
+		var siameses = AllowSiamese ? Siamese.XyzRing.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;

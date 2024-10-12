@@ -94,7 +94,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		var accumulator = tempList.ToList();
-		var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
+		var siameses = AllowSiamese ? Siamese.Fish.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;
@@ -460,7 +460,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 										in exofins,
 										in endofins,
 										!checkMutant,
-										FishModule.IsSashimi(baseSets, in fins, digit),
+										Sashimi.IsSashimi(baseSets, in fins, digit),
 										cannibal
 									)
 								);

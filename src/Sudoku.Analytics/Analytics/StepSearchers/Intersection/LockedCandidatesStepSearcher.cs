@@ -52,7 +52,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		var candidatesMapForGrid = grid.CandidatesMap;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in Miniline.Map)
 		{
-			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, in emptyCellsForGrid, out var m))
+			if (!LockedCandidates.IsLockedCandidates(in grid, in a, in b, in c, in emptyCellsForGrid, out var m))
 			{
 				continue;
 			}

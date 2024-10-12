@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.Caching.Modules;
+namespace Sudoku.Analytics;
 
 /// <summary>
-/// Represents an intersection module.
+/// Provides a way to calculate whether a pattern is a locked candidates or not.
 /// </summary>
-internal static class IntersectionModule
+public static class LockedCandidates
 {
 	/// <summary>
 	/// Indicates whether the pattern is a locked candidates.
@@ -16,7 +16,7 @@ internal static class IntersectionModule
 	/// <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static bool IsLockedCandidates(
+	public static bool IsLockedCandidates(
 		ref readonly Grid grid,
 		ref readonly CellMap a,
 		ref readonly CellMap b,
@@ -24,6 +24,14 @@ internal static class IntersectionModule
 		ref readonly CellMap emptyCells,
 		out Mask digitsMask
 	)
-		=> (digitsMask = 0, emptyCells & c, (grid[in a], grid[in b], grid[in c])) is (_, not [], var (maskA, maskB, maskC))
-		&& (digitsMask = (Mask)(maskC & (maskA ^ maskB))) != 0;
+	{
+		if (!(emptyCells & c))
+		{
+			digitsMask = 0;
+			return false;
+		}
+
+		var (maskA, maskB, maskC) = (grid[in a], grid[in b], grid[in c]);
+		return (digitsMask = (Mask)(maskC & (maskA ^ maskB))) != 0;
+	}
 }
