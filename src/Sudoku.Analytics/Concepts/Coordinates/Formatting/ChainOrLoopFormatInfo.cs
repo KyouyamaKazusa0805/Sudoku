@@ -216,33 +216,29 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 			ref readonly var nextNodeCandidates = ref i + 1 >= span.Length ? ref CandidateMap.Empty : ref span[i + 1].Map;
 			var nextNodeCells = nextNodeCandidates.Cells;
 			var nextNodeDigits = nextNodeCandidates.Digits;
-
-			if (FoldLinksInCell && i != span.Length - 1)
+			if (FoldLinksInCell && i != span.Length - 1 && nodeCells == nextNodeCells)
 			{
 				// (1)a=(2)a-(2)b=(3)b => (1=2)a-(2=3)b
-				if (nodeCells == nextNodeCells)
+				if (MakeDigitBeforeCell)
 				{
-					if (MakeDigitBeforeCell)
-					{
-						_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetOpenBracket()) : sb;
-						sb.Append(candidateConverter.DigitConverter(nodeDigits));
-						sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
-						sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
-						_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetClosedBracket()) : sb;
-						sb.Append(nodeCells.ToString(candidateConverter));
-						i++;
-					}
-					else
-					{
-						sb.Append(nodeCells.ToString(candidateConverter));
-						sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
-						sb.Append(candidateConverter.DigitConverter(nodeDigits));
-						sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
-						sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
-						sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
-					}
-					goto AppendNextLinkToken;
+					_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetOpenBracket()) : sb;
+					sb.Append(candidateConverter.DigitConverter(nodeDigits));
+					sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+					sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
+					_ = needAddingBrackets_Digits ? sb.Append(DigitBracketInCandidateGroups.GetClosedBracket()) : sb;
+					sb.Append(nodeCells.ToString(candidateConverter));
+					i++;
 				}
+				else
+				{
+					sb.Append(nodeCells.ToString(candidateConverter));
+					sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
+					sb.Append(candidateConverter.DigitConverter(nodeDigits));
+					sb.Append(inference == Inference.Strong ? StrongLinkConnector : WeakLinkConnector);
+					sb.Append(candidateConverter.DigitConverter(nextNodeDigits));
+					sb.Append(needAddingBrackets_Digits ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
+				}
+				goto AppendNextLinkToken;
 			}
 
 			if (InlineDigitsInLink)
