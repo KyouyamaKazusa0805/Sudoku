@@ -126,6 +126,9 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// <summary>
 	/// Indicates the standard format.
 	/// </summary>
+	/// <remarks>
+	/// Example output:<br/><c><![CDATA[r4c4(6) == r4c1(6) -- r4c1(8) == r4c9(8) -- r9c9(8) == r9c4(8)]]></c>
+	/// </remarks>
 	public static IFormatProvider Standard => new ChainOrLoopFormatInfo();
 
 	/// <summary>
@@ -133,6 +136,9 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
 	/// about Eureka Notation.
 	/// </summary>
+	/// <remarks>
+	/// Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1-(8)r4c9=(8)r9c9-(8)r9c4]]></c>
+	/// </remarks>
 	public static IFormatProvider Eureka
 		=> new ChainOrLoopFormatInfo
 		{
@@ -149,6 +155,9 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
 	/// to learn more information about this notation.
 	/// </summary>
+	/// <remarks>
+	/// Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
+	/// </remarks>
 	public static IFormatProvider BivalueBilocationPlot
 		=> new ChainOrLoopFormatInfo
 		{
