@@ -198,7 +198,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			foreach (var combination in possiblePatternDigitsMask.GetAllSets().GetSubsets(3))
 			{
 				// Try to get all cells that holds extra digits.
-				var extraDigitsMask = (Mask)(digitsMask & ~MaskOperations.Create(combination));
+				var currentCombinationDigitsMask = MaskOperations.Create(combination);
+				var extraDigitsMask = (Mask)(digitsMask & ~currentCombinationDigitsMask);
 				var extraCells = CellMap.Empty;
 				foreach (var cell in pattern)
 				{
@@ -229,7 +230,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					{
 						var extraDigit = Mask.Log2(extraDigitsMask);
 						if (CheckType1Or2(
-							ref context, in grid, in pattern, digitsMask, extraDigit, in p,
+							ref context, in grid, in pattern, currentCombinationDigitsMask, extraDigit, in p,
 							(pattern & CandidatesMap[extraDigit]).Count == 1
 								? Technique.AnonymousDeadlyPatternType1
 								: Technique.AnonymousDeadlyPatternType2) is { } type1Or2Step)
@@ -241,7 +242,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					case 2:
 					{
 						if (CheckType3(
-							ref context, in grid, in pattern, digitsMask,
+							ref context, in grid, in pattern, currentCombinationDigitsMask,
 							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType3) is { } type3Step)
 						{
 							return type3Step;
@@ -251,7 +252,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					default:
 					{
 						if (CheckType4(
-							ref context, in grid, in pattern, digitsMask,
+							ref context, in grid, in pattern, currentCombinationDigitsMask,
 							extraDigitsMask, in extraCells, in p, Technique.AnonymousDeadlyPatternType4) is { } type4Step)
 						{
 							return type4Step;
@@ -651,6 +652,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		Technique technique
 	)
 	{
+		if (extraCells.Count is 0 or 1)
+		{
+			return null;
+		}
+
 		var house = extraCells.FirstSharedHouse;
 
 		// Check whether at least one digit hold a conjugate pair inside the extra cells.
