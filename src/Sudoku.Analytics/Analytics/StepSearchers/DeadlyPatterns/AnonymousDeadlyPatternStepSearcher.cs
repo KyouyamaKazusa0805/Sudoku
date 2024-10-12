@@ -142,6 +142,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		// 4.+28.+7.+31+7.3..+2+8.4.68...+72+52.....+4.......61......9.37..+8.+3452+1+7+5+24+7+81..337+1..+9+548:542 648 948 552 958 562
 		// 41.+62...+526+3+958+4+1+7.5..+416+2.+6+2+4.+9517..+8.4.+2.96.3..7+6.+4+2+172+5+6+4...+3+452+8+97618+9+6...+254:817 379 394
 		// 75+9.8.6..2+3.7+9+651...+6+5+23....2.64+9...6..31+5...+9.3+8+72.5+687.+9..2+6..9..+67.85.+6...+8+791:418 419 432 437 439 839 453 459 859 483
+		// +6+17+438..+9.2.....4+7.9.7..3....+9+3.5.+81..128..+93.+38.7.6.+4..659...21.....97+595...+7...:521 124 625 126 527 531 635 636 238 538 871 493 694 695 197
 		// 
 		// Type 3
 		// ..5..+73+6..3+78+6...26.9.3...7+89..54+1+7.+3+746..5+2.+5+1.7...4.2+6+3.4.785+9+4+8+5+762+3+1+751...6+9+4:214 126 234 136 956 865 869 969
@@ -286,6 +287,9 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		//
 		// Type 2
 		// ..9+62+7+8+54+546+1+3+897+228+7.5....+9+5+4+763+21+87.+82..6+9..+6+28+9..47.9.3..+7...2..+7.4...+7..8...9:171 176 576 678 181 381 586 191 391 593 196 596
+		//
+		// Type 3
+		// ...+92743+5+7+925+34..+14+5+31+8+6..............12....637+5+861+2+49.3+4+6....856......+4...49....:841 745 346 347 747 748 387 396
 
 		ref readonly var grid = ref context.Grid;
 
@@ -325,7 +329,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				foreach (var combination in possiblePatternDigitsMask.GetAllSets().GetSubsets(4))
 				{
 					// Try to get all cells that holds extra digits.
-					var extraDigitsMask = (Mask)(digitsMask & ~MaskOperations.Create(combination));
+					var currentCombinationDigitsMask = MaskOperations.Create(combination);
+					var extraDigitsMask = (Mask)(digitsMask & ~currentCombinationDigitsMask);
 					var extraCells = CellMap.Empty;
 					foreach (var cell in pattern)
 					{
@@ -356,7 +361,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						{
 							var extraDigit = Mask.Log2(extraDigitsMask);
 							if (CheckType1Or2(
-								ref context, in grid, in pattern, digitsMask, extraDigit, in p,
+								ref context, in grid, in pattern, currentCombinationDigitsMask, extraDigit, in p,
 								(pattern & CandidatesMap[extraDigit]).Count == 1
 									? Technique.RotatingDeadlyPatternType1
 									: Technique.RotatingDeadlyPatternType2) is { } type1Or2Step)
@@ -368,7 +373,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						case 2:
 						{
 							if (CheckType3(
-								ref context, in grid, in pattern, digitsMask,
+								ref context, in grid, in pattern, currentCombinationDigitsMask,
 								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType3) is { } type3Step)
 							{
 								return type3Step;
@@ -378,7 +383,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						default:
 						{
 							if (CheckType4(
-								ref context, in grid, in pattern, digitsMask,
+								ref context, in grid, in pattern, currentCombinationDigitsMask,
 								extraDigitsMask, in extraCells, in p, Technique.RotatingDeadlyPatternType4) is { } type4Step)
 							{
 								return type4Step;
@@ -644,66 +649,70 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var house = extraCells.FirstSharedHouse;
-		var cells = HousesMap[house] & pattern;
-		if (cells is [var firstCell, var secondCell])
+
+		// Check whether at least one digit hold a conjugate pair inside the extra cells.
+		var (conclusions, conjugatePairDigitsMask) = (new List<Conclusion>(), (Mask)0);
+		foreach (var digit in (Mask)(grid[in extraCells] & digitsMask))
 		{
-			// Today we only allow for 2 cells.
-			// Check the number of digits appeared in pattern. The number of digits should be 2.
-			var digits = (Mask)((grid.GetCandidates(firstCell) | grid.GetCandidates(secondCell)) & digitsMask & ~extraDigitsMask);
-			if (Mask.PopCount(digits) != 2)
+			var conjugatePairCells = extraCells & CandidatesMap[digit];
+			if (conjugatePairCells == (CandidatesMap[digit] & HousesMap[house]))
 			{
-				return null;
-			}
-
-			var firstDigit = (Digit)Mask.TrailingZeroCount(digits);
-			var secondDigit = digits.GetNextSet(firstDigit);
-			foreach (var (conjugatePairDigit, eliminationDigit) in ((firstDigit, secondDigit), (secondDigit, firstDigit)))
-			{
-				// Determine whether the digit is a conjugate in such house.
-				if ((HousesMap[house] & CandidatesMap[conjugatePairDigit]) != cells)
-				{
-					continue;
-				}
-
-				// The other digit can be eliminated.
-				var conclusions = (
-					from cell in cells & CandidatesMap[eliminationDigit]
-					select new Conclusion(Elimination, cell, eliminationDigit)
-				).ToArray();
-				if (conclusions.Length == 0)
-				{
-					continue;
-				}
-
-				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in pattern & ~cells)
-				{
-					foreach (var digit in grid.GetCandidates(cell))
-					{
-						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
-					}
-				}
-				foreach (var cell in cells)
-				{
-					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + conjugatePairDigit));
-				}
-
-				var step = new AnonymousDeadlyPatternType4Step(
-					conclusions,
-					[[.. candidateOffsets, new ConjugateLinkViewNode(ColorIdentifier.Normal, firstCell, secondCell, conjugatePairDigit)]],
-					context.Options,
-					in p,
-					house,
-					(Mask)(1 << conjugatePairDigit | 1 << eliminationDigit),
-					technique
-				);
-				if (context.OnlyFindOne)
-				{
-					return step;
-				}
-				context.Accumulator.Add(step);
+				conjugatePairDigitsMask |= (Mask)(1 << digit);
 			}
 		}
+		if (Mask.PopCount(conjugatePairDigitsMask) != extraCells.Count - 1)
+		{
+			// The number of conjugate pairs must be less than the number of extra cells of 1.
+			return null;
+		}
+
+		foreach (var digit in (Mask)(digitsMask & ~conjugatePairDigitsMask))
+		{
+			foreach (var cell in extraCells & CandidatesMap[digit])
+			{
+				conclusions.Add(new(Elimination, cell, digit));
+			}
+		}
+		if (conclusions.Count == 0)
+		{
+			// No conclusions found.
+			return null;
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>();
+		var conjugatePairs = new List<ConjugateLinkViewNode>();
+		foreach (var cell in pattern & ~extraCells)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+			}
+		}
+		foreach (var digit in conjugatePairDigitsMask)
+		{
+			var map = extraCells & CandidatesMap[digit];
+			foreach (var cell in map)
+			{
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+			}
+
+			conjugatePairs.Add(new(ColorIdentifier.Normal, map[0], map[1], digit));
+		}
+
+		var step = new AnonymousDeadlyPatternType4Step(
+			conclusions.AsReadOnlyMemory(),
+			[[.. candidateOffsets, .. conjugatePairs]],
+			context.Options,
+			in p,
+			house,
+			conjugatePairDigitsMask,
+			technique
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+		context.Accumulator.Add(step);
 		return null;
 	}
 
