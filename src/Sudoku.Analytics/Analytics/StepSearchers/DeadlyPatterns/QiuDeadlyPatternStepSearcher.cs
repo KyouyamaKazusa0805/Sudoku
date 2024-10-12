@@ -48,11 +48,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] LineOffsets = [
-		[0, 1, 2], [0, 2, 1], [1, 2, 0],
-		[3, 4, 5], [3, 5, 4], [4, 5, 3],
-		[6, 7, 8], [6, 8, 7], [7, 8, 6]
-	];
+	private static readonly RowIndex[][] LineOffsets = [[0, 1, 2], [0, 2, 1], [1, 2, 0], [3, 4, 5], [3, 5, 4], [4, 5, 3], [6, 7, 8], [6, 8, 7], [7, 8, 6]];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -115,7 +111,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				return step;
 			}
 		}
-
 		return null;
 	}
 
@@ -153,7 +148,6 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			return type1Step;
 		}
-
 		return null;
 	}
 

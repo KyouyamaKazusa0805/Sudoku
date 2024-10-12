@@ -15,7 +15,7 @@ public partial struct BestTripletPermutation(
 	/// <summary>
 	/// Indicates the permutation cases.
 	/// </summary>
-	public static readonly int[][] Perm = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
+	public static readonly Digit[][] Perm = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
 
 #pragma warning disable format
 	/// <summary>

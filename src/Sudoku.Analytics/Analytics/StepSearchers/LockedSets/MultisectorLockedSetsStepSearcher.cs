@@ -21,7 +21,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] PossibleSizes = [[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
+	private static readonly BlockIndex[][] PossibleSizes = [[3, 3], [3, 4], [4, 3], [4, 4], [4, 5], [5, 4]];
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

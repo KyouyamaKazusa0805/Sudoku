@@ -8,7 +8,7 @@ public unsafe struct GridPattern
 	/// <summary>
 	/// A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
 	/// </summary>
-	internal static readonly int[] MinCanNineBits = [
+	internal static readonly Mask[] MinCanNineBits = [
 		0, 1, 1, 3, 1, 3, 3, 7, 1, 9, 9, 11, 9, 11, 11, 15, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11,
 		27, 27, 31, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11, 27, 27, 31, 3, 11, 11, 27, 11, 27, 27,
 		31, 7, 15, 15, 31, 15, 31, 31, 63, 1, 9, 9, 11, 9, 11, 11, 15, 9, 73, 73, 75, 73, 75, 75, 79, 9,
@@ -67,7 +67,7 @@ public unsafe struct GridPattern
 	public static int BestTopRowScore(ref readonly GridPattern p)
 	{
 		// Returns the smallest row after canonicalization of each row independently.
-		int x;
+		Mask x;
 		var amin = MinCanNineBits[p.Rows[0]];
 		if (amin > (x = MinCanNineBits[p.Rows[1]])) { amin = x; }
 		if (amin > (x = MinCanNineBits[p.Rows[2]])) { amin = x; }

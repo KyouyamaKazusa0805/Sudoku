@@ -34,7 +34,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/requires-static-constructor-invocation" />
 	/// </remarks>
-	private static readonly int[][] HouseCombinations = [
+	private static readonly BlockIndex[][] HouseCombinations = [
 		[0, 1, 3, 4], [0, 2, 3, 5], [1, 2, 4, 5],
 		[0, 1, 6, 7], [0, 2, 6, 8], [1, 2, 7, 8],
 		[3, 4, 6, 7], [3, 5, 6, 8], [4, 5, 7, 8]
