@@ -570,13 +570,6 @@
             <seealso cref="T:System.ReadOnlySpan`1" />
             <seealso cref="T:System.Collections.Generic.IEnumerable`1" />
         </member>
-        <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list to be modified.</param>
-        </member>
         <member name="M:System.Collections.Generic.ListExtensions.RemoveAt``1(System.Collections.Generic.List{``0},System.Index)">
             <inheritdoc cref="M:System.Collections.Generic.List`1.RemoveAt(System.Int32)"/>
         </member>
