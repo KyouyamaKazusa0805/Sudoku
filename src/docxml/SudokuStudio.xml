@@ -6039,7 +6039,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_AuthorName">
             <summary>
-              Looks up a localized string similar to SunnieShine (Qitian Zhang).
+              Looks up a localized string similar to Kyouyama Kazusa (Kazusa).
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_Bilibili">
@@ -7045,6 +7045,36 @@
               Looks up a localized string similar to This page can modify bottleneck concept, in order to change the searching rules to calculate bottlenecks..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_EliminationGroupDescription">
+            <summary>
+              Looks up a localized string similar to  • Elimination group: If there&apos;s a list of steps before an assignment step, the last one will be considered as bottlenecks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_HardestLevelDescription">
+            <summary>
+              Looks up a localized string similar to  • Hardest level: Choose one or more steps having the hardest difficulty level, as bottlenecks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_HardestRatingDescription">
+            <summary>
+              Looks up a localized string similar to  • Hardest rating: Choose one or more steps having the largest number of difficulty rating value, as bottlenecks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_SequentialInversionDescription">
+            <summary>
+              Looks up a localized string similar to  • Sequential inversion: If there&apos;s a pair of adjacent steps, and former is harder (has a harder difficulty level), latter is easier (a easier difficulty level), then the former will be treated as bottleneck.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_SingleStepOnlyDescription">
+            <summary>
+              Looks up a localized string similar to  • Unique conclusion: If there&apos;s a step, whose corresponding grid state only contains one available step, and the puzzle cannot continue unless the step should be applied, the step will be considered as bottlenecks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.BottleneckSettingPage_SingleStepSameLevelOnlyDescription">
+            <summary>
+              Looks up a localized string similar to  • Unique conclusion same difficulty level: Same as Unique conclusion rule, but it will ignore higher difficulty rating rule if checking avilable steps.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_ColumnLabel">
             <summary>
               Looks up a localized string similar to column {0}.
@@ -7373,11 +7403,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting">
             <summary>
               Looks up a localized string similar to Lasting.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock">
-            <summary>
-              Looks up a localized string similar to Crosshatching Block.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn">
@@ -8930,14 +8955,29 @@
               Looks up a localized string similar to Direct.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckDirectModeDescription">
+            <summary>
+              Looks up a localized string similar to Only contains Full Houses, Hidden Singles (Crosshatchings) and Naked Singles.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckFullMarkingMode">
             <summary>
               Looks up a localized string similar to Full-marking.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckFullMarkingModeDescription">
+            <summary>
+              Looks up a localized string similar to All the other techniques included.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckPartialMarkingMode">
             <summary>
               Looks up a localized string similar to Partial-marking.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_BottleneckPartialMarkingModeDescription">
+            <summary>
+              Looks up a localized string similar to Contains some complex singles, like using Locked Candidates and Subsets.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_CandidateFontData">
@@ -9264,6 +9304,21 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableLastDigit">
             <summary>
               Looks up a localized string similar to Enable technique &quot;Last Digit&quot;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableOrderingStepsByLastingValue">
+            <summary>
+              Looks up a localized string similar to Lasting value has priority.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableOrderingStepsByLastingValueDescription">
+            <summary>
+              Looks up a localized string similar to Substitute the step ordering rule, making steps with lower lasting value firstly being checked while ordering steps. For example, search steps with lasting value 2, and then lasting 3, and lasting 4, etc...
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableOrderingStepsByLastingValueDescription2">
+            <summary>
+              Looks up a localized string similar to By default, searching module will strictly checks for technique used. For example, Naked Singles is harder than Hidden Single, and Hidden Single is harder than Last Digit, and Last Digit is harder than Full House..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_EnableRightTapRemovingForSudokuPane">

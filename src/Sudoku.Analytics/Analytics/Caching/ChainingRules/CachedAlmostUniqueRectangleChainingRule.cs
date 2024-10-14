@@ -22,8 +22,9 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 
 		var strongLinks = context.StrongLinks;
 		var linkOption = context.GetLinkOption(LinkType.AlmostUniqueRectangle);
-		foreach (CellMap urCells in UniqueRectanglePattern.AllPatterns)
+		foreach (var pattern in UniqueRectanglePattern.AllPatterns)
 		{
+			var urCells = pattern.AsCellMap();
 			if ((EmptyCells & urCells) != urCells)
 			{
 				// Four cells must be empty.
@@ -152,8 +153,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 		// to make a contradiction.
 		// This will be implemented in the future.
 		//
-		// Binds with issue #680:
-		//    https://github.com/SunnieShine/Sudoku/issues/680
+		// Binds with issue #680: https://github.com/KyouyamaKazusa0805/Sudoku/issues/680
 		base.GetLoopConclusions(ref context);
 	}
 

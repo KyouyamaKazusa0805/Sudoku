@@ -278,8 +278,9 @@ public partial class UniqueRectangleStepSearcher
 
 			// Extract one element for each cells group.
 			var finalPivotDigit = pivotDigit;
-			foreach (CellMap combination in cellsGroups.GetExtractedCombinations())
+			foreach (var patternCombination in cellsGroups.GetExtractedCombinations())
 			{
+				var combination = patternCombination.AsCellMap();
 				if (cellsGroups.Length != combination.Count)
 				{
 					// The selected items cannot duplicate with others.

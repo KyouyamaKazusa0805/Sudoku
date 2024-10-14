@@ -665,7 +665,6 @@
 		</b>
 	</large-structure>
             </remarks>
-            <seealso href="https://github.com/SunnieShine/Sudoku/discussions/699">Numeric <c>CellMap</c></seealso>
         </member>
         <member name="T:Sudoku.Concepts.CellMap.Converter">
             <summary>

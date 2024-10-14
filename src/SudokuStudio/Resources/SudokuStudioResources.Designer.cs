@@ -340,7 +340,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SunnieShine (Qitian Zhang).
+        ///   Looks up a localized string similar to Kyouyama Kazusa (Kazusa).
         /// </summary>
         internal static string AboutPage_AuthorName {
             get {
@@ -2152,6 +2152,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  • Elimination group: If there&apos;s a list of steps before an assignment step, the last one will be considered as bottlenecks.
+        /// </summary>
+        internal static string BottleneckSettingPage_EliminationGroupDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_EliminationGroupDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  • Hardest level: Choose one or more steps having the hardest difficulty level, as bottlenecks.
+        /// </summary>
+        internal static string BottleneckSettingPage_HardestLevelDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_HardestLevelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  • Hardest rating: Choose one or more steps having the largest number of difficulty rating value, as bottlenecks.
+        /// </summary>
+        internal static string BottleneckSettingPage_HardestRatingDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_HardestRatingDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  • Sequential inversion: If there&apos;s a pair of adjacent steps, and former is harder (has a harder difficulty level), latter is easier (a easier difficulty level), then the former will be treated as bottleneck.
+        /// </summary>
+        internal static string BottleneckSettingPage_SequentialInversionDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_SequentialInversionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  • Unique conclusion: If there&apos;s a step, whose corresponding grid state only contains one available step, and the puzzle cannot continue unless the step should be applied, the step will be considered as bottlenecks.
+        /// </summary>
+        internal static string BottleneckSettingPage_SingleStepOnlyDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_SingleStepOnlyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  • Unique conclusion same difficulty level: Same as Unique conclusion rule, but it will ignore higher difficulty rating rule if checking avilable steps.
+        /// </summary>
+        internal static string BottleneckSettingPage_SingleStepSameLevelOnlyDescription {
+            get {
+                return ResourceManager.GetString("BottleneckSettingPage_SingleStepSameLevelOnlyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to column {0}.
         /// </summary>
         internal static string CandidatePicker_ColumnLabel {
@@ -2742,15 +2796,6 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_Lasting {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Crosshatching Block.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting_HiddenSingleBlock", resourceCulture);
             }
         }
         
@@ -5545,6 +5590,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only contains Full Houses, Hidden Singles (Crosshatchings) and Naked Singles.
+        /// </summary>
+        internal static string SettingsPage_BottleneckDirectModeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckDirectModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full-marking.
         /// </summary>
         internal static string SettingsPage_BottleneckFullMarkingMode {
@@ -5554,11 +5608,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All the other techniques included.
+        /// </summary>
+        internal static string SettingsPage_BottleneckFullMarkingModeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckFullMarkingModeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Partial-marking.
         /// </summary>
         internal static string SettingsPage_BottleneckPartialMarkingMode {
             get {
                 return ResourceManager.GetString("SettingsPage_BottleneckPartialMarkingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contains some complex singles, like using Locked Candidates and Subsets.
+        /// </summary>
+        internal static string SettingsPage_BottleneckPartialMarkingModeDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_BottleneckPartialMarkingModeDescription", resourceCulture);
             }
         }
         
@@ -6145,6 +6217,33 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_EnableLastDigit {
             get {
                 return ResourceManager.GetString("SettingsPage_EnableLastDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasting value has priority.
+        /// </summary>
+        internal static string SettingsPage_EnableOrderingStepsByLastingValue {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableOrderingStepsByLastingValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Substitute the step ordering rule, making steps with lower lasting value firstly being checked while ordering steps. For example, search steps with lasting value 2, and then lasting 3, and lasting 4, etc...
+        /// </summary>
+        internal static string SettingsPage_EnableOrderingStepsByLastingValueDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableOrderingStepsByLastingValueDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By default, searching module will strictly checks for technique used. For example, Naked Singles is harder than Hidden Single, and Hidden Single is harder than Last Digit, and Last Digit is harder than Full House..
+        /// </summary>
+        internal static string SettingsPage_EnableOrderingStepsByLastingValueDescription2 {
+            get {
+                return ResourceManager.GetString("SettingsPage_EnableOrderingStepsByLastingValueDescription2", resourceCulture);
             }
         }
         
