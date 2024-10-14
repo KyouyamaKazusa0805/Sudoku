@@ -127,16 +127,9 @@ internal static class MemoryCachedData
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
-		CandidatesCount = g.CandidatesCount;
-		StrongLinkTypesEntried = LinkType.Unknown;
-		WeakLinkTypesEntried = LinkType.Unknown;
-
-		_cachedEmptyCells = g.EmptyCells;
-		_cachedBivalueCells = g.BivalueCells;
-		_cachedSolution = s;
-		_cachedCandidatesMap = [.. g.CandidatesMap];
-		_cachedDigitsMap = [.. g.DigitsMap];
-		_cachedValuesMap = [.. g.ValuesMap];
+		(CandidatesCount, StrongLinkTypesEntried, WeakLinkTypesEntried) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);
+		(_cachedEmptyCells, _cachedBivalueCells, _cachedSolution) = (g.EmptyCells, g.BivalueCells, s);
+		(_cachedCandidatesMap, _cachedDigitsMap, _cachedValuesMap) = ([.. g.CandidatesMap], [.. g.DigitsMap], [.. g.ValuesMap]);
 
 		StrongLinkDictionary.Clear();
 		WeakLinkDictionary.Clear();
