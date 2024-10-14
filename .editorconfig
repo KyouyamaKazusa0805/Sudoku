@@ -342,9 +342,6 @@ dotnet_naming_style.start_with__t_.capitalization = pascal_case
 # Diagnostic results
 #
 
-# CS0078: The 'l' suffix is easily confused with the digit '1'
-dotnet_diagnostic.CS0078.severity = none
-
 # CS0184: 'is' expression's given expression is never of the provided type
 dotnet_diagnostic.CS0184.severity = error
 
@@ -383,9 +380,6 @@ dotnet_diagnostic.CS8907.severity = error
 
 # CS9084: Struct member returns 'this' or other instance members by reference
 dotnet_diagnostic.CS9084.severity = error
-
-# CS9099: The default parameter value does not match in the target delegate type.
-dotnet_diagnostic.CS9099.severity = silent
 
 # CS9193: Argument should be a variable because it is passed to a 'ref readonly' parameter
 dotnet_diagnostic.CS9193.severity = silent
