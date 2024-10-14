@@ -18,7 +18,17 @@ public static class StreamReaderExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[SupportedOSPlatform(PlatformNames.Windows)]
 	public static bool EndsWithNewLine(this StreamReader @this)
-		=> @this.BaseStream.Length >= 2
-		&& @this.BaseStream.Seek(-2, SeekOrigin.End) is var _
-		&& (ReadOnlySpan<char>)[(char)@this.Read(), (char)@this.Read()] is "\r\n";
+	{
+		// If the length are not enough to get two characters, just return false.
+		if (@this.BaseStream.Length < 2)
+		{
+			return false;
+		}
+
+		// Move pointer to the last position, and revert 2 characters to check what the last two characters are.
+		@this.BaseStream.Seek(-2, SeekOrigin.End);
+
+		// Check for the two.
+		return ((char)@this.Read(), (char)@this.Read()) is ('\r', '\n');
+	}
 }
