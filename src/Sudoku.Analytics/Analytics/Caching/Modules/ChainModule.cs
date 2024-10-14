@@ -1,5 +1,3 @@
-#undef EXAUSTIVE_SEARCH_FINNED_CHAINS
-
 namespace Sudoku.Analytics.Caching.Modules;
 
 /// <summary>
@@ -84,17 +82,9 @@ internal static class ChainModule
 			out var supportedRules
 		);
 
-		var cachedAlsIndex = 0;
-		foreach (var chain in ChainingDriver.CollectMultipleChains(
-			in context.Grid
-			,
-#if EXAUSTIVE_SEARCH_FINNED_CHAINS
-			false
-#else
-			context.OnlyFindOne
-#endif
-		))
+		foreach (var chain in ChainingDriver.CollectMultipleChains(in context.Grid, context.OnlyFindOne))
 		{
+			var cachedAlsIndex = 0;
 			if (onlyFindFinnedChain && chain.TryCastToFinnedChain(out var finnedChain, out var f))
 			{
 				ref readonly var fins = ref Nullable.GetValueRefOrDefaultRef(in f);
