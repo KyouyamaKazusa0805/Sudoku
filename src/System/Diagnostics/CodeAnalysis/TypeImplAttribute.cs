@@ -54,7 +54,7 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public bool IsLargeStructure { get; init; } = false;
 
 	/// <summary>
-	/// Indicates whether the source generator will emit <c>(Interface)this</c> on implementation,
+	/// Indicates whether the source generator will emit <c>(Interface)<see langword="this"/></c> on implementation,
 	/// especially for cases on calling overloads.
 	/// </summary>
 	/// <remarks>
