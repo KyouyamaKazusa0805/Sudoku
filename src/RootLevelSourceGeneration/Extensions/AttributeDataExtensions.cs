@@ -14,6 +14,7 @@ internal static class AttributeDataExtensions
 	/// <param name="namedArgumentName">The named argument name.</param>
 	/// <param name="defaultValue">Indicates the default value of the current named argument.</param>
 	/// <returns>The found value.</returns>
+	[return: NotNullIfNotNull(nameof(defaultValue))]
 	public static T? GetNamedArgument<T>(this AttributeData @this, string namedArgumentName, T? defaultValue = default)
 	{
 		if (@this.NamedArguments is not (var namedArgs and not []))

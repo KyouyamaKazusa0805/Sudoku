@@ -14,13 +14,17 @@ internal static class ImmutableArrayExtensions
 	/// <param name="name">The name to be compared.</param>
 	/// <param name="resultValue">The final found result value.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether we can use the argument <paramref name="resultValue"/>.</returns>
-	public static bool TryGetValueOrDefault<T>(this ImmutableArray<KeyValuePair<string, TypedConstant>> @this, string name, out T? resultValue)
+	public static bool TryGetValueOrDefault<T>(
+		this ImmutableArray<KeyValuePair<string, TypedConstant>> @this,
+		string name,
+		[NotNullWhen(true)] out T? resultValue
+	)
 	{
 		foreach (var (key, value) in @this)
 		{
 			if (key == name)
 			{
-				resultValue = (T?)value.Value;
+				resultValue = (T)value.Value!;
 				return true;
 			}
 		}
