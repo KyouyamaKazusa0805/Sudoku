@@ -1,10 +1,10 @@
 namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
-/// Provides with a comparison rule on <see cref="ChainOrLoop"/> instances.
+/// Provides with a comparison rule on <see cref="Chain"/> instances.
 /// </summary>
-/// <seealso cref="ChainOrLoop"/>
-public enum ChainOrLoopComparison
+/// <seealso cref="Chain"/>
+public enum ChainComparison
 {
 	/// <summary>
 	/// Indicates the comparison will ignore direction on chains.

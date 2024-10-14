@@ -8205,7 +8205,7 @@
               Looks up a localized string similar to Bottleneck.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ChainOrLoopSettingPageTitle">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ChainSettingPageTitle">
             <summary>
               Looks up a localized string similar to Chains &amp; Loops.
             </summary>
@@ -15923,41 +15923,41 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage">
+        <member name="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage">
             <summary>
-            Represents chain or loop setting page.
+            Represents chain setting page.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.#ctor">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.#ctor">
             <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage"/> instance.
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.GetSegmentedItemIndex(Sudoku.Analytics.Construction.Components.LinkType)">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.GetSegmentedItemIndex(Sudoku.Analytics.Construction.Components.LinkType)">
             <summary>
             Sets and updates the segmented item index.
             </summary>
             <param name="linkType">The link type.</param>
             <returns>The index.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.SetSegmentedItemIndex(Sudoku.Analytics.Construction.Components.LinkType,System.Int32)">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.SetSegmentedItemIndex(Sudoku.Analytics.Construction.Components.LinkType,System.Int32)">
             <summary>
             Sets and updates overridden link type value.
             </summary>
             <param name="linkType">The link type.</param>
             <param name="index">The index.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.InitializeComponent">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.InitializeComponent">
             <summary>
             InitializeComponent()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.Connect(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.Connect(System.Int32,System.Object)">
             <summary>
             Connect()
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage.GetBindingConnector(System.Int32,System.Object)">
+        <member name="M:SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

@@ -1,15 +1,15 @@
 namespace Sudoku.Concepts.Coordinates.Formatting;
 
 /// <summary>
-/// Represents a type that can format a <see cref="ChainOrLoop"/> instance.
+/// Represents a type that can format a <see cref="Chain"/> instance.
 /// </summary>
-/// <seealso cref="ChainOrLoop"/>
-public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
+/// <seealso cref="Chain"/>
+public sealed class ChainFormatInfo : FormatInfo<Chain>
 {
 	/// <summary>
-	/// Initializes a <see cref="ChainOrLoopFormatInfo"/> instance.
+	/// Initializes a <see cref="ChainFormatInfo"/> instance.
 	/// </summary>
-	public ChainOrLoopFormatInfo()
+	public ChainFormatInfo()
 	{
 	}
 
@@ -17,7 +17,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Copies converter options into the current instance.
 	/// </summary>
 	/// <param name="baseConverter">The base converter.</param>
-	public ChainOrLoopFormatInfo(CoordinateConverter baseConverter)
+	public ChainFormatInfo(CoordinateConverter baseConverter)
 		=> _ = baseConverter switch
 		{
 			RxCyConverter
@@ -152,7 +152,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// <remarks>
 	/// Example output:<br/><c><![CDATA[r4c4(6) == r4c1(6) -- r4c1(8) == r4c9(8) -- r9c9(8) == r9c4(8)]]></c>
 	/// </remarks>
-	public static IFormatProvider Standard => new ChainOrLoopFormatInfo();
+	public static IFormatProvider Standard => new ChainFormatInfo();
 
 	/// <summary>
 	/// Indicates Eureka chain format.
@@ -163,7 +163,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1-(8)r4c9=(8)r9c9-(8)r9c4]]></c>
 	/// </remarks>
 	public static IFormatProvider Eureka
-		=> new ChainOrLoopFormatInfo
+		=> new ChainFormatInfo
 		{
 			MakeDigitBeforeCell = true,
 			FoldLinksInCell = true,
@@ -182,7 +182,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
 	/// </remarks>
 	public static IFormatProvider BivalueBilocationPlot
-		=> new ChainOrLoopFormatInfo
+		=> new ChainFormatInfo
 		{
 			InlineDigitsInLink = true,
 			DefaultSeparator = "|",
@@ -201,7 +201,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 	/// Example output:<br/><c><![CDATA[+6[D4]-6[D1]+8[D1]-8[D9]+8[I9]-8[I4]]]></c>
 	/// </remarks>
 	public static IFormatProvider OnOffPlot
-		=> new ChainOrLoopFormatInfo
+		=> new ChainFormatInfo
 		{
 			MakeLettersUpperCase = true,
 			MakeDigitBeforeCell = true,
@@ -219,10 +219,10 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(ChainOrLoopFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(ChainFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
-	public override ChainOrLoopFormatInfo Clone()
+	public override ChainFormatInfo Clone()
 		=> new()
 		{
 			MakeDigitBeforeCell = MakeDigitBeforeCell,
@@ -244,7 +244,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 
 
 	/// <inheritdoc/>
-	protected override string FormatCore(ref readonly ChainOrLoop obj)
+	protected override string FormatCore(ref readonly Chain obj)
 	{
 		var candidateConverter = NodeFormatType.GetConverter() switch
 		{
@@ -276,7 +276,7 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (obj.WeakStartIdentity, 0); i < span.Length; linkIndex++, i++)
 		{
-			var inference = ChainOrLoop.Inferences[linkIndex & 1];
+			var inference = Chain.Inferences[linkIndex & 1];
 			ref readonly var nodeCandidates = ref span[i].Map;
 			var nodeCells = nodeCandidates.Cells;
 			var nodeDigits = nodeCandidates.Digits;
@@ -357,10 +357,10 @@ public sealed class ChainOrLoopFormatInfo : FormatInfo<ChainOrLoop>
 
 	/// <inheritdoc/>
 	[DoesNotReturn]
-	protected override ChainOrLoop ParseCore(string str) => throw new NotSupportedException();
+	protected override Chain ParseCore(string str) => throw new NotSupportedException();
 
 
-	/// <inheritdoc cref="FormatCore(ref readonly ChainOrLoop)"/>
+	/// <inheritdoc cref="FormatCore(ref readonly Chain)"/>
 	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = nameof(FormatCore))]
-	internal static extern string FormatCoreUnsafeAccessor(ChainOrLoopFormatInfo @this, ref readonly ChainOrLoop obj);
+	internal static extern string FormatCoreUnsafeAccessor(ChainFormatInfo @this, ref readonly Chain obj);
 }

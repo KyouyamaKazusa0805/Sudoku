@@ -2759,7 +2759,7 @@
   <data name="SettingsPage_AllowedChainLinkTypeWarning" xml:space="preserve">
     <value>如果你选择允许的链类型越丰富，搜索需要的内存就会越大。如果你的电脑并不是大内存的的话，强烈不建议你把节点类型全部打开成“全部”。</value>
   </data>
-  <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
+  <data name="MainWindow_ChainSettingPageTitle" xml:space="preserve">
     <value>链和环</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn" xml:space="preserve">

@@ -31,8 +31,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators)]
 public sealed partial class MultipleForcingChains([Property(Setter = "internal set")] params Conclusion[] conclusions) :
-	SortedDictionary<Candidate, ChainOrLoop>,
-	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>,
+	SortedDictionary<Candidate, Chain>,
+	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>,
 	IComparable<MultipleForcingChains>,
 	IComparisonOperators<MultipleForcingChains, MultipleForcingChains, bool>,
 	IEquatable<MultipleForcingChains>,
@@ -104,7 +104,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Func<ChainOrLoop, bool> predicate)
+	public bool Exists(Func<Chain, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -121,7 +121,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool TrueForAll(Func<ChainOrLoop, bool> predicate)
+	public bool TrueForAll(Func<Chain, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -181,7 +181,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] MultipleForcingChains? other)
-		=> Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
 
 	/// <summary>
 	/// Determines whether two <see cref="MultipleForcingChains"/> are considered equal.
@@ -190,7 +190,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <param name="patternComparison">The chain comparison rule.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Equals([NotNullWhen(true)] MultipleForcingChains? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public bool Equals([NotNullWhen(true)] MultipleForcingChains? other, NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -258,7 +258,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 
 		// Iterate on each branch, to get whether they can directly points to conclusion.
 		var finsFound = CandidateMap.Empty;
-		var krakenBranches = new List<ChainOrLoop>(2);
+		var krakenBranches = new List<Chain>(2);
 		foreach (var branch in branches)
 		{
 			if (branch is [.. { Length: 1 }, { Map: { PeerIntersection: var p } lastMap }] && p.Contains(elimination))
@@ -291,7 +291,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 		return false;
 
 
-		static Chain c(ReadOnlySpan<Node> nodes, Conclusion conclusion)
+		static AlternatingInferenceChain c(ReadOnlySpan<Node> nodes, Conclusion conclusion)
 		{
 			// Find the node at the specified position in nodes.
 			var i = 0;
@@ -320,7 +320,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	}
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
+	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
 
 	/// <summary>
 	/// Calculates a hash code value used for comparison.
@@ -328,7 +328,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <param name="patternComparison">The chain comparison rule.</param>
 	/// <returns>Hash code value.</returns>
-	public int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public int GetHashCode(NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		var hashCode = default(HashCode);
 		foreach (var (candidate, chain) in this)
@@ -361,7 +361,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	/// <returns>The pattern converted.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the current instance cannot be converted.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ChainOrLoop CastToFinnedChain(out CandidateMap fins)
+	public Chain CastToFinnedChain(out CandidateMap fins)
 	{
 		if (TryCastToFinnedChain(out var result, out var f))
 		{
@@ -455,10 +455,10 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.Any() => Count != 0;
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.Any(Func<KeyValuePair<int, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.Any(Func<KeyValuePair<int, Chain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{
@@ -471,7 +471,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 	}
 
 	/// <inheritdoc/>
-	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, ChainOrLoop>>.All(Func<KeyValuePair<int, ChainOrLoop>, bool> predicate)
+	bool IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>.All(Func<KeyValuePair<int, Chain>, bool> predicate)
 	{
 		foreach (var kvp in this)
 		{

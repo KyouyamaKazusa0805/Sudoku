@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="pattern">Indicates the chain or loop pattern.</param>
+/// <param name="pattern">Indicates the pattern.</param>
 public partial class NormalChainStep(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
@@ -40,7 +40,7 @@ public partial class NormalChainStep(
 	/// <summary>
 	/// Indicates whether the chain pattern forms a Continuous Nice Loop or Grouped Continuous Nice Loop.
 	/// </summary>
-	public bool IsLoop => Pattern is Loop;
+	public bool IsLoop => Pattern is ContinuousNiceLoop;
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 60;
@@ -80,7 +80,7 @@ public partial class NormalChainStep(
 				static args =>
 				{
 					var result = 0;
-					var p = (ChainOrLoop)args![0]!;
+					var p = (Chain)args![0]!;
 					foreach (var link in p.Links)
 					{
 						result += link.GroupedLinkPattern switch
@@ -99,7 +99,7 @@ public partial class NormalChainStep(
 			)
 		];
 
-	private protected string ChainString => Pattern.ToString(new ChainOrLoopFormatInfo(Options.Converter));
+	private protected string ChainString => Pattern.ToString(new ChainFormatInfo(Options.Converter));
 
 
 	/// <inheritdoc/>

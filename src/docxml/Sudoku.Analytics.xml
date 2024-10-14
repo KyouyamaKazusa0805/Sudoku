@@ -731,7 +731,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Caching.ChainingComparers.ChainComparer">
             <summary>
-            Creates an instance of type <see cref="T:System.Collections.Generic.Comparer`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> on comparison.
+            Creates an instance of type <see cref="T:System.Collections.Generic.Comparer`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> on comparison.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Caching.ChainingComparers.MultipleForcingChainsComparer">
@@ -1675,7 +1675,7 @@
             </summary>
             <param name="grid">The grid.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
-            <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop" /> instances.</returns>
+            <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.Chain" /> instances.</returns>
             <remarks>
             <developer-notes>
 		<para>
@@ -1984,7 +1984,7 @@
             <param name="pattern">The pattern.</param>
             <param name="view">The view.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Drawing.View)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Chain,Sudoku.Drawing.View)">
             <summary>
             Represents the properties used while chaining.
             </summary>
@@ -2027,6 +2027,145 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingRuleViewNodeContext.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
+            <summary>
+            Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
+            </summary>
+            <param name="lastNode"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
+            </summary>
+            <param name="lastNode"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsWoodsWing">
+            <summary>
+            Indicates whether the chain is formed a W-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsMedusaWing">
+            <summary>
+            Indicates whether the chain is formed a M-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsSplitWing">
+            <summary>
+            Indicates whether the chain is formed a S-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsLocalWing">
+            <summary>
+            Indicates whether the chain is formed a L-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsHybridWing">
+            <summary>
+            Indicates whether the chain is formed a H-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsImplicitLoop">
+            <summary>
+            Indicates whether the chain is an implicit loop,
+            which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.WeakStartIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.LoopIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.WeakStart">
+            <summary>
+            Indicates whether the chain starts with weak link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.SplitMask">
+            <summary>
+            Split mask for 6 nodes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Equals(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Equals(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            <list type="number">
+            <item>If so, it will be treated as "less than" the other one.</item>
+            <item>
+            Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            </item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain,Sudoku.Analytics.Construction.Components.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions">
@@ -2106,7 +2245,7 @@
             Indicates the complexity of each branch.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Exists(System.Func{Sudoku.Analytics.Construction.Components.ChainOrLoop,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Exists(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
             <summary>
             Determines whether at least one branch contains at least one element satisfying the specified condition.
             </summary>
@@ -2116,7 +2255,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(Sudoku.Analytics.Construction.Components.BlossomLoop)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.Equals(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <summary>
             Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.BlossomLoop"/> are considered equal.
             </summary>
@@ -2139,7 +2278,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <summary>
             Calculates a hash code value used for comparison.
             </summary>
@@ -2184,102 +2323,389 @@
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Chain">
             <summary>
-            Represents a chain.
+            Represents a node-based chain pattern,
+            and such pattern contains a list of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances indicating interim passing nodes.
             </summary>
-            <param name="lastNode"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain.StrongLinkConnector">
             <summary>
-            Represents a chain.
+            Indicates the strong link connector.
             </summary>
-            <param name="lastNode"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsWoodsWing">
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain.WeakLinkConnector">
             <summary>
-            Indicates whether the chain is formed a W-Wing.
+            Indicates the weak link connector.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain.Inferences">
+            <summary>
+            Indicates the possible inferences to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain._nodes">
+            <summary>
+            The backing field of nodes stored. Such nodes may contain ones that are also be treated as conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> data.
+            </summary>
+            <param name="lastNode">The last node.</param>
+            <param name="isLoop">Indicates whether is for loop initialization.</param>
+            <param name="autoReversingOnComparison">
+            <para>
+            Indicates whether the constructor will automatically reverse the chain
+            if the first node is greater than the last node, in order to make a good look.
+            </para>
+            <para>
+            The default value is <see langword="true"/>. You can also set the value with <see langword="false"/>
+            if you don't want to make the constructor reverse the whole chain.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsNamed">
+            <summary>
+            Indicates whether the current pattern is bound with a technique (i.e. having a technique name).
             </summary>
             <remarks>
-            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+            Due to design of this type, the derived types may not be consumed by showing a pattern.
+            It may be a "segment" of a whole pattern (for example, a branch inside a multiple forcing chains).
+            In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsMedusaWing">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsGrouped">
             <summary>
-            Indicates whether the chain is formed a M-Wing.
+            Indicates whether the chain pattern uses grouped logic.
             </summary>
-            <remarks>
-            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
-            </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsSplitWing">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.SatisfyXRule">
             <summary>
-            Indicates whether the chain is formed a S-Wing.
+            Indicates whether the pattern only uses same digits.
             </summary>
-            <remarks>
-            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-            </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsLocalWing">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.SatisfyYRule">
             <summary>
-            Indicates whether the chain is formed a L-Wing.
+            Indicates whether the pattern only uses cell strong links.
             </summary>
-            <remarks>
-            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
-            </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsHybridWing">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ContainsOverlappedNodes">
             <summary>
-            Indicates whether the chain is formed a H-Wing.
+            Indicates whether at least one node in the whole pattern overlaps with a node.
             </summary>
-            <remarks>
-            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
-            </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsImplicitLoop">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Length">
             <summary>
-            Indicates whether the chain is an implicit loop,
-            which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+            Indicates the length of the pattern.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.Complexity">
-            <inheritdoc/>
+            <summary>
+            Indicates the complexity of the pattern.
+            </summary>
+            <remarks>
+            The value is different with <see cref="P:Sudoku.Analytics.Construction.Components.Chain.Length"/> on a chain starting and ending with itself,
+            both are by strong links;
+            however it sometimes is equal to <see cref="P:Sudoku.Analytics.Construction.Components.Chain.Length"/>. It depends on the kind of the chain rule obeys.
+            For example, a loop has a same complexity and length.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.Chain.Length"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.DigitsMask">
+            <summary>
+            Indicates all digits used in this pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Links">
+            <summary>
+            Indicates the links used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.StrongLinks">
+            <summary>
+            Indicates the strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakLinks">
+            <summary>
+            Indicates the weak links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.First">
+            <summary>
+            Indicates the head node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Last">
+            <summary>
+            Indicates the tail node.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStartIdentity">
-            <inheritdoc/>
+            <summary>
+            Indicates the value as the start index of the chain link is from whether strong and weak.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.ValidNodes">
-            <inheritdoc/>
+            <summary>
+            Indicates the valid nodes to be used.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.LoopIdentity">
+            <summary>
+            Indicates the value on loop checking for link construction usages.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStart">
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Item(System.Int32)">
             <summary>
-            Indicates whether the chain starts with weak link.
+            Gets a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance at the specified index.
             </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.SplitMask">
-            <summary>
-            Split mask for 6 nodes.
-            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.Reverse">
-            <inheritdoc/>
+            <summary>
+            Try to reverse the pattern, making all nodes negated its direction connected.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/> or <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="patternComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.OverlapsWithConclusions(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Determines whether the current pattern (nodes) overlap with a list of conclusions,
+            meaning at least one conclusion is used by a node appeared in the pattern.
+            If so, the pattern will become a cannibalistic one.
+            </summary>
+            <param name="conclusions">The conclusions to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Contains(System.Int32)">
+            <summary>
+            Determines whether the pattern has already used the specified candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            This method directly calls <see cref="M:Sudoku.Analytics.Construction.Components.Chain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)"/>
+            with values <see cref="F:Sudoku.Analytics.Construction.Components.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Analytics.Construction.Components.ChainComparison.Undirected"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Construction.Components.Chain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)"/>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.NodeComparison.IgnoreIsOn"/>
+            <seealso cref="F:Sudoku.Analytics.Construction.Components.ChainComparison.Undirected"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <summary>
+            Computes hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.FindIndex(System.Predicate{Sudoku.Analytics.Construction.Components.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.FindLastIndex(System.Predicate{Sudoku.Analytics.Construction.Components.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Slice(System.Int32,System.Int32)">
             <summary>
-            Determine which <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance is greater.
+            Slices the collection with the specified start node and its length.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The number of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances to slice.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances returned.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
+            <summary>
+            Collect views for the current chain.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="supportedRules">The supported rules.</param>
+            <param name="alsIndex">Indicates the currently operated ALS index.</param>
+            <returns>The views.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.Chain.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> inside the collection.
+            </summary>
+            <param name="_nodes">The <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Enumerator.#ctor(Sudoku.Analytics.Construction.Components.Chain)">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> inside the collection.
+            </summary>
+            <param name="_nodes">The <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.Chain.Enumerator._index">
+            <summary>
+            Indicates the current index iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_Equality(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_Inequality(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_GreaterThan(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_LessThan(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_GreaterThanOrEqual(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_LessThanOrEqual(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ChainComparison">
+            <summary>
+            Provides with a comparison rule on <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.ChainComparison.Undirected">
+            <summary>
+            Indicates the comparison will ignore direction on chains.
+            For example, <c>A == B -- C == D</c> is equal to <c>D == C -- B == A</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.ChainComparison.Directed">
+            <summary>
+            Indicates the comparison will also check on direction.
+            For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop">
+            <summary>
+            Represents a loop pattern that has no start node (all nodes can be start nodes), forming a closed loop,
+            with eliminations from all weak links.
+            </summary>
+            <param name="lastNode"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.#ctor(Sudoku.Analytics.Construction.Components.Node)">
+            <summary>
+            Represents a loop pattern that has no start node (all nodes can be start nodes), forming a closed loop,
+            with eliminations from all weak links.
+            </summary>
+            <param name="lastNode"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.WeakStartIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.LoopIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.Equals(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.Equals(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="chainComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="chainComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <summary>
+            Creates a hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/> instance is greater.
             </summary>
             <param name="other">The other instance to be compared.</param>
             <returns>An <see cref="T:System.Int32"/> result.</returns>
@@ -2295,356 +2721,30 @@
             or -1 when <paramref name="other"/> is longer.
             </item>
             <item>
-            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
-            <list type="number">
-            <item>If so, it will be treated as "less than" the other one.</item>
-            <item>
-            Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
+            Determines the loop nodes used one by one. If a node is greater, the chain will be greater;
             otherwise, they are same, 0 will be returned.
-            </item>
-            </list>
+            <b>
+            This operation will adjust the checking node index on the other loop <paramref name="other"/>.
+            Two loops with same nodes will be considered as equal no matter what order they will be.
+            For example, <c><![CDATA[A == B -- C == D -- A]]></c> is equal to <c><![CDATA[C == D -- A == B -- C]]></c>.
+            </b>
             </item>
             </list>
             </item>
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.CompareTo(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop,Sudoku.Analytics.Construction.Components.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.CompareTo(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.CompareTo(Sudoku.Analytics.Construction.Components.Chain)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString">
+        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoop">
-            <summary>
-            Represents a chain or a loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.StrongLinkConnector">
-            <summary>
-            Indicates the strong link connector.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.WeakLinkConnector">
-            <summary>
-            Indicates the weak link connector.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.Inferences">
-            <summary>
-            Indicates the possible inferences to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop._nodes">
-            <summary>
-            Indicates the nodes to be initialized.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> data.
-            </summary>
-            <param name="lastNode">The last node.</param>
-            <param name="isLoop">Indicates whether is for loop initialization.</param>
-            <param name="autoReversingOnComparison">
-            <para>
-            Indicates whether the constructor will automatically reverse the chain
-            if the first node is greater than the last node, in order to make a good look.
-            </para>
-            <para>
-            The default value is <see langword="true"/>. You can also set the value with <see langword="false"/>
-            if you don't want to make the constructor reverse the whole chain.
-            </para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.IsNamed">
-            <summary>
-            Indicates whether the current pattern is bound with a technique (i.e. having a technique name).
-            </summary>
-            <remarks>
-            Due to design of this type, the derived types may not be consumed by showing a pattern.
-            It may be a "segment" of a whole pattern (for example, a branch inside a multiple forcing chains).
-            In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.IsGrouped">
-            <summary>
-            Indicates whether the chain pattern uses grouped logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.SatisfyXRule">
-            <summary>
-            Indicates whether the pattern only uses same digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.SatisfyYRule">
-            <summary>
-            Indicates whether the pattern only uses cell strong links.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.ContainsOverlappedNodes">
-            <summary>
-            Indicates whether at least one node in the whole pattern overlaps with a node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Length">
-            <summary>
-            Indicates the length of the pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Complexity">
-            <summary>
-            Indicates the complexity of the pattern.
-            </summary>
-            <remarks>
-            The value is different with <see cref="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Length"/> on a chain starting and ending with itself,
-            both are by strong links;
-            however it sometimes is equal to <see cref="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Length"/>. It depends on the kind of the chain rule obeys.
-            For example, a loop has a same complexity and length.
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Length"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.DigitsMask">
-            <summary>
-            Indicates all digits used in this pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Links">
-            <summary>
-            Indicates the links used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.StrongLinks">
-            <summary>
-            Indicates the strong links.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.WeakLinks">
-            <summary>
-            Indicates the weak links.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.First">
-            <summary>
-            Indicates the head node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Last">
-            <summary>
-            Indicates the tail node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.WeakStartIdentity">
-            <summary>
-            Indicates the value as the start index of the chain link is from whether strong and weak.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.ValidNodes">
-            <summary>
-            Indicates the valid nodes to be used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.LoopIdentity">
-            <summary>
-            Indicates the value on loop checking for link construction usages.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance.</returns>
-            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Reverse">
-            <summary>
-            Try to reverse the pattern, making all nodes negated its direction connected.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> or <see cref="T:Sudoku.Analytics.Construction.Components.Loop"/> instances are same, by using the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The comparison rule on nodes.</param>
-            <param name="patternComparison">The comparison rule on the whole chain.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.OverlapsWithConclusions(Sudoku.Concepts.ConclusionSet)">
-            <summary>
-            Determines whether the current pattern (nodes) overlap with a list of conclusions,
-            meaning at least one conclusion is used by a node appeared in the pattern.
-            If so, the chain or loop will become a cannibalistic one.
-            </summary>
-            <param name="conclusions">The conclusions to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Contains(System.Int32)">
-            <summary>
-            Determines whether the pattern has already used the specified candidate.
-            </summary>
-            <param name="candidate">The candidate.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>
-            This method directly calls <see cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)"/>
-            with values <see cref="F:Sudoku.Analytics.Construction.Components.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Analytics.Construction.Components.ChainOrLoopComparison.Undirected"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)"/>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.NodeComparison.IgnoreIsOn"/>
-            <seealso cref="F:Sudoku.Analytics.Construction.Components.ChainOrLoopComparison.Undirected"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <summary>
-            Computes hash code based on the current instance.
-            </summary>
-            <param name="nodeComparison">The node comparison.</param>
-            <param name="patternComparison">The pattern comparison.</param>
-            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.FindIndex(System.Predicate{Sudoku.Analytics.Construction.Components.Node})">
-            <summary>
-            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
-            </summary>
-            <param name="predicate">The condition that a node should satisfy.</param>
-            <returns>The index of the node satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.FindLastIndex(System.Predicate{Sudoku.Analytics.Construction.Components.Node})">
-            <summary>
-            Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
-            </summary>
-            <param name="predicate">The condition that a node should satisfy.</param>
-            <returns>The index of the node satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.CompareTo(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the collection with the specified start node and its length.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="length">The number of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances to slice.</param>
-            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances returned.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.GetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Chaining.ChainingRuleCollection,System.Int32@)">
-            <summary>
-            Collect views for the current chain.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="supportedRules">The supported rules.</param>
-            <param name="alsIndex">Indicates the currently operated ALS index.</param>
-            <returns>The views.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator">
-            <summary>
-            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> inside the collection.
-            </summary>
-            <param name="_nodes">The <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instance.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.#ctor(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <summary>
-            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> inside the collection.
-            </summary>
-            <param name="_nodes">The <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instance.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator._index">
-            <summary>
-            Indicates the current index iterated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_Equality(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_Inequality(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_GreaterThan(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_LessThan(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_GreaterThanOrEqual(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.op_LessThanOrEqual(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoopComparison">
-            <summary>
-            Provides with a comparison rule on <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoopComparison.Undirected">
-            <summary>
-            Indicates the comparison will ignore direction on chains.
-            For example, <c>A == B -- C == D</c> is equal to <c>D == C -- B == A</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoopComparison.Directed">
-            <summary>
-            Indicates the comparison will also check on direction.
-            For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2">
             <summary>
@@ -3449,102 +3549,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.Loop">
-            <summary>
-            Represents a loop.
-            </summary>
-            <param name="lastNode"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.#ctor(Sudoku.Analytics.Construction.Components.Node)">
-            <summary>
-            Represents a loop.
-            </summary>
-            <param name="lastNode"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Loop.WeakStartIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Loop.ValidNodes">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Loop.LoopIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.Reverse">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.Equals(Sudoku.Analytics.Construction.Components.Loop)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.Equals(Sudoku.Analytics.Construction.Components.Loop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Analytics.Construction.Components.Loop"/> instances are same, by using the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The comparison rule on nodes.</param>
-            <param name="chainComparison">The comparison rule on the whole chain.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="chainComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <summary>
-            Creates a hash code based on the current instance.
-            </summary>
-            <param name="nodeComparison">The node comparison.</param>
-            <param name="patternComparison">The pattern comparison.</param>
-            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.CompareTo(Sudoku.Analytics.Construction.Components.Loop)">
-            <summary>
-            Determine which <see cref="T:Sudoku.Analytics.Construction.Components.Loop"/> instance is greater.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> result.</returns>
-            <remarks>
-            Order rule:
-            <list type="number">
-            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
-            <item>
-            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
-            <list type="number">
-            <item>
-            If length is not same, return 1 when <see langword="this"/> is longer
-            or -1 when <paramref name="other"/> is longer.
-            </item>
-            <item>
-            Determines the loop nodes used one by one. If a node is greater, the chain will be greater;
-            otherwise, they are same, 0 will be returned.
-            <b>
-            This operation will adjust the checking node index on the other loop <paramref name="other"/>.
-            Two loops with same nodes will be considered as equal no matter what order they will be.
-            For example, <c><![CDATA[A == B -- C == D -- A]]></c> is equal to <c><![CDATA[C == D -- A == B -- C]]></c>.
-            </b>
-            </item>
-            </list>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.CompareTo(Sudoku.Analytics.Construction.Components.Loop,Sudoku.Analytics.Construction.Components.NodeComparison)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Loop.CompareTo(Sudoku.Analytics.Construction.Components.Loop)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.CompareTo(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Loop.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.MultipleForcingChains">
             <summary>
             Represents an instance that describes for cell forcing chains or region forcing chains (i.e. house forcing chains).
@@ -3652,14 +3656,14 @@
             Returns a <see cref="T:Sudoku.Concepts.CandidateMap"/> indicating all candidates used in this pattern, as the start.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.ChainOrLoop,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Exists(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
             <summary>
             Determines whether the collection contains at least one element satisfying the specified condition.
             </summary>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Analytics.Construction.Components.ChainOrLoop,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.TrueForAll(System.Func{Sudoku.Analytics.Construction.Components.Chain,System.Boolean})">
             <summary>
             Determines whether all elements in this collection satisfy the specified condition.
             </summary>
@@ -3680,7 +3684,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Equals(Sudoku.Analytics.Construction.Components.MultipleForcingChains)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Equals(Sudoku.Analytics.Construction.Components.MultipleForcingChains,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Equals(Sudoku.Analytics.Construction.Components.MultipleForcingChains,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <summary>
             Determines whether two <see cref="T:Sudoku.Analytics.Construction.Components.MultipleForcingChains"/> are considered equal.
             </summary>
@@ -3702,7 +3706,7 @@
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <summary>
             Calculates a hash code value used for comparison.
             </summary>
@@ -3731,13 +3735,13 @@
             <param name="supportedRules">The supported rules.</param>
             <returns>The views.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#ChainOrLoop}}#Any">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#ChainOrLoop}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#Any(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.Chain},System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.ChainOrLoop},System.Boolean})">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#Chain}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.Chain},System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
@@ -3774,17 +3778,29 @@
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.NamedChain">
             <summary>
-            Represents a normal chain or loop.
+            Represents named chain patterns:
+            <list type="bullet">
+            <item>Alternating inference chain (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>)</item>
+            <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
+            </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)">
             <summary>
-            Represents a normal chain or loop.
+            Represents named chain patterns:
+            <list type="bullet">
+            <item>Alternating inference chain (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>)</item>
+            <item>Continuous nice loop (corresponds to type <see cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>)</item>
+            </list>
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
-            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="isLoop"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='isLoop']"/></param>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop"/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.NamedChain.IsNamed">
             <inheritdoc/>
@@ -4179,7 +4195,7 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.StrongForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison)">
@@ -4190,13 +4206,13 @@
             <param name="nodeComparison">The node comparison rule.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.Equals(Sudoku.Analytics.Construction.Components.StrongForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.Equals(Sudoku.Analytics.Construction.Components.StrongForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.Reverse">
@@ -4223,13 +4239,13 @@
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.UnnamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
             <summary>
             Represents a forcing chain branch.
             </summary>
-            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean,System.Boolean)" path="/param[@name='lastNode']"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.UnnamedChain.IsNamed">
             <inheritdoc/>
@@ -4285,7 +4301,7 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.ChainOrLoop)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.CompareTo(Sudoku.Analytics.Construction.Components.WeakForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison)">
@@ -4296,13 +4312,13 @@
             <param name="nodeComparison">The node comparison rule.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating which instance is better.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.Equals(Sudoku.Analytics.Construction.Components.WeakForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.Equals(Sudoku.Analytics.Construction.Components.WeakForcingChain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.Equals(Sudoku.Analytics.Construction.Components.ChainOrLoop,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.Equals(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainOrLoopComparison)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.Reverse">
@@ -4318,10 +4334,10 @@
         </member>
         <member name="P:Sudoku.Analytics.Construction.Pattern.IsChainingCompatible">
             <summary>
-            Indicates whether the current pattern can be used as a node inside a chain pattern <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>,
+            Indicates whether the current pattern can be used as a node inside a chain pattern <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/>,
             represented as a relation in a link, stored in <see cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(Sudoku.Analytics.Construction.Pattern)">
@@ -12130,7 +12146,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the chain or loop pattern.</param>
+            <param name="pattern">Indicates the pattern.</param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Components.NamedChain)">
             <summary>
@@ -12139,7 +12155,7 @@
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
-            <param name="pattern">Indicates the chain or loop pattern.</param>
+            <param name="pattern">Indicates the pattern.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalChainStep.SortKey">
             <summary>
@@ -24725,89 +24741,89 @@
             Indicates all assignment techniques.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo">
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo">
             <summary>
-            Represents a type that can format a <see cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/> instance.
+            Represents a type that can format a <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.ChainOrLoop"/>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.#ctor">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.#ctor">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/> instance.
+            Initializes a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.#ctor(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.#ctor(Sudoku.Concepts.Coordinates.CoordinateConverter)">
             <summary>
             Copies converter options into the current instance.
             </summary>
             <param name="baseConverter">The base converter.</param>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.MakeDigitBeforeCell">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.MakeDigitBeforeCell">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.MakeLettersUpperCase">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.MakeLettersUpperCase">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeLettersUpperCase"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FoldLinksInCell">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FoldLinksInCell">
             <summary>
             Indicates whether strong and weak links inside a cell will be folded. By default it's <see langword="false"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlineDigitsInLink">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.InlineDigitsInLink">
             <summary>
             Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.AlwaysOutputBracket">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.AlwaysOutputBracket">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.AlwaysOutputBracket"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FinalRowLetter">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FinalRowLetter">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DefaultSeparator">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.DefaultSeparator">
             <summary>
             Indicates the default separator. By default it's a comma <c>", "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlinedDigitsSeparator">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.InlinedDigitsSeparator">
             <summary>
             Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.StrongLinkConnector">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.StrongLinkConnector">
             <summary>
             Indicates the connector text for strong links. By default it's a double equal sign <c>" == "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.WeakLinkConnector">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.WeakLinkConnector">
             <summary>
             Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffStateFixes">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffStateFixes">
             <summary>
             Represents a pair of fixes that describes on or off state of a chain node respectively.
             By default it's <see langword="null"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NotationBracket">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.NotationBracket">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DigitBracketInCandidateGroups">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.DigitBracketInCandidateGroups">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups"/>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffNotationFix">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffNotationFix">
             <summary>
             Indicates the prefix or suffix style to describe on/off state of each chain node.
             By default it's <see cref="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NodeFormatType">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.NodeFormatType">
             <summary>
             Indicates a type that formats each node (a group of candidates) in the chain pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Standard">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Standard">
             <summary>
             Indicates the standard format.
             </summary>
@@ -24815,7 +24831,7 @@
             Example output:<br/><c><![CDATA[r4c4(6) == r4c1(6) -- r4c1(8) == r4c9(8) -- r9c9(8) == r9c4(8)]]></c>
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Eureka">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Eureka">
             <summary>
             Indicates Eureka chain format.
             Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
@@ -24825,7 +24841,7 @@
             Example output:<br/><c><![CDATA[(6)r4c4=(6-8)r4c1-(8)r4c9=(8)r9c9-(8)r9c4]]></c>
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.BivalueBilocationPlot">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.BivalueBilocationPlot">
             <summary>
             Indicates B/B plot (Bilocation/Bivalue Plot) notation format.
             Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
@@ -24835,7 +24851,7 @@
             Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffPlot">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffPlot">
             <summary>
             Indicates On/Off plot notation format.
             I may miss the main page of introduction about this notation,
@@ -24845,20 +24861,20 @@
             Example output:<br/><c><![CDATA[+6[D4]-6[D1]+8[D1]-8[D9]+8[I9]-8[I4]]]></c>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.GetFormat(System.Type)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.Clone">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.ChainOrLoop@)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.Chain@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.ParseCore(System.String)">
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseCore(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo,Sudoku.Analytics.Construction.Components.ChainOrLoop@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.ChainOrLoop@)"/>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.Chain@)"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.BetweenRule">
             <summary>

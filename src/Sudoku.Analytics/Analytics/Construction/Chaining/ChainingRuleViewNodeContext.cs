@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [TypeImpl(TypeImplFlag.AllObjectMethods)]
 public ref partial struct ChainingRuleViewNodeContext(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
-	[Field(Accessibility = "public", NamingRule = ">@")] ChainOrLoop pattern,
+	[Field(Accessibility = "public", NamingRule = ">@")] Chain pattern,
 	[Field(Accessibility = "public", NamingRule = ">@")] View view
 ) : IContext
 {

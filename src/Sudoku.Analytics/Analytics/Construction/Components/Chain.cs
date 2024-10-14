@@ -1,299 +1,467 @@
 namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
-/// Represents a chain.
+/// Represents a node-based chain pattern,
+/// and such pattern contains a list of <see cref="Node"/> instances indicating interim passing nodes.
 /// </summary>
-/// <param name="lastNode"><inheritdoc/></param>
-[TypeImpl(TypeImplFlag.Object_ToString, EmitThisCastToInterface = true)]
-public sealed partial class Chain(Node lastNode) : NamedChain(lastNode, false)
+/// <seealso cref="Node"/>
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators,
+	OtherModifiersOnEquals = "sealed",
+	ToStringBehavior = ToStringBehavior.MakeAbstract)]
+public abstract partial class Chain :
+	IComparable<Chain>,
+	IComparisonOperators<Chain, Chain, bool>,
+	IEnumerable<Node>,
+	IEquatable<Chain>,
+	IEqualityOperators<Chain, Chain, bool>,
+	IFormattable,
+	IReadOnlyList<Node>,
+	IReadOnlyCollection<Node>
 {
 	/// <summary>
-	/// Indicates whether the chain is formed a W-Wing.
+	/// Indicates the strong link connector.
 	/// </summary>
-	/// <remarks>
-	/// A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
-	/// </remarks>
-	public bool IsWoodsWing
-		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
-		&& m2 == m3 && m2 == m4 && m2 == m5 && m1 == m6 && m1 != m2;
+	public const string StrongLinkConnector = " == ";
 
 	/// <summary>
-	/// Indicates whether the chain is formed a M-Wing.
+	/// Indicates the weak link connector.
 	/// </summary>
-	/// <remarks>
-	/// A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
-	/// </remarks>
-	public bool IsMedusaWing
-		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6) && (
-			m1 == m5 && m1 == m6 && m2 == m3 && m2 == m4 && m1 != m2
-			|| m1 == m2 && m1 == m6 && m3 == m4 && m3 == m5 && m2 != m3
-		);
+	public const string WeakLinkConnector = " -- ";
+
 
 	/// <summary>
-	/// Indicates whether the chain is formed a S-Wing.
+	/// Indicates the possible inferences to be used.
 	/// </summary>
-	/// <remarks>
-	/// A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-	/// </remarks>
-	public bool IsSplitWing
-		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
-		&& m1 == m2 && m1 == m3 && m4 == m5 && m4 == m6 && m1 != m4;
+	protected internal static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
+
 
 	/// <summary>
-	/// Indicates whether the chain is formed a L-Wing.
+	/// The backing field of nodes stored. Such nodes may contain ones that are also be treated as conclusions.
 	/// </summary>
-	/// <remarks>
-	/// A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
-	/// </remarks>
-	public bool IsLocalWing
-		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
-		&& m1 == m2 && m3 == m4 && m5 == m6 && m1 != m3 && m1 != m5 && m1 != m5;
+	protected readonly Node[] _nodes;
+
 
 	/// <summary>
-	/// Indicates whether the chain is formed a H-Wing.
+	/// Initializes <see cref="Chain"/> data.
 	/// </summary>
-	/// <remarks>
-	/// A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
-	/// </remarks>
-	public bool IsHybridWing
-		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6) && (
-			m2 == m3 && m4 == m5 && m4 == m6 && m1 != m2 && m2 != m4 && m2 != m4
-			|| m1 == m2 && m1 == m3 && m4 == m5 && m1 != m4 && m1 != m6 && m4 != m6
-		);
-
-	/// <summary>
-	/// Indicates whether the chain is an implicit loop,
-	/// which means the start and end nodes are in a same house, of a same digit; or in a same cell.
-	/// </summary>
-	public bool IsImplicitLoop
-		=> WeakStart && ValidNodes is [{ Map: [var first] }, .., { Map: [var last] }]
-		&& (first / 9 == last / 9 || first % 9 == last % 9 && ((first / 9).AsCellMap() + last / 9).FirstSharedHouse != 32);
-
-	/// <inheritdoc/>
-	public override int Complexity => _nodes.Length;
-
-	/// <inheritdoc/>
-	protected internal override int WeakStartIdentity => 0;
-
-	/// <inheritdoc/>
-	protected internal override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[WeakStart ? 1..^1 : ..];
-
-	/// <inheritdoc/>
-	protected override int LoopIdentity => 1;
-
-	/// <summary>
-	/// Indicates whether the chain starts with weak link.
-	/// </summary>
-	private bool WeakStart => _nodes[^1].IsOn;
-
-	/// <summary>
-	/// Split mask for 6 nodes.
-	/// </summary>
-	private (bool, Mask, Mask, Mask, Mask, Mask, Mask)? SplitMask
-#pragma warning disable format
-		=> this switch
-		{
-			[
-				{ Map.Digits: var m1 },
-				{ Map.Digits: var m2 },
-				{ Map.Digits: var m3 },
-				{ Map.Digits: var m4 },
-				{ Map.Digits: var m5 },
-				{ Map.Digits: var m6 }
-			] => Mask.IsPow2(m1) && Mask.IsPow2(m2) && Mask.IsPow2(m3) && Mask.IsPow2(m4) && Mask.IsPow2(m5) && Mask.IsPow2(m6)
-				? (true, m1, m2, m3, m4, m5, m6)
-				: (false, m1, m2, m3, m4, m5, m6),
-			_ => null
-		};
-#pragma warning restore format
-
-
-	/// <inheritdoc/>
-	public override void Reverse()
+	/// <param name="lastNode">The last node.</param>
+	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
+	/// <param name="autoReversingOnComparison">
+	/// <para>
+	/// Indicates whether the constructor will automatically reverse the chain
+	/// if the first node is greater than the last node, in order to make a good look.
+	/// </para>
+	/// <para>
+	/// The default value is <see langword="true"/>. You can also set the value with <see langword="false"/>
+	/// if you don't want to make the constructor reverse the whole chain.
+	/// </para>
+	/// </param>
+	protected Chain(Node lastNode, bool isLoop, bool autoReversingOnComparison = true)
 	{
-		var newNodes = new Node[_nodes.Length];
-		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
+		var nodes = (List<Node>)[lastNode];
+		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{
-			// Reverse and negate its "IsOn" property to keep the chain starting with same "IsOn" property value.
-			newNodes[i] = ~_nodes[pos];
+			nodes.Add(node >> null);
 		}
-		Array.Copy(newNodes, _nodes, _nodes.Length);
+		_nodes = [.. nodes];
+
+		// Now reverse the chain if worth.
+		// If the last node is supposed 'on', it will be a normal elimination-typed chain, and can be reversed.
+		// Now we should reverse the whole chain if the first node is greater than the last node in logic.
+		if (autoReversingOnComparison && _nodes[^1].IsOn && nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+		{
+			Reverse();
+		}
 	}
 
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Chain? other)
-		=> Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
 
-	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainOrLoopComparison)"/>
-	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	/// <summary>
+	/// Indicates whether the current pattern is bound with a technique (i.e. having a technique name).
+	/// </summary>
+	/// <remarks>
+	/// Due to design of this type, the derived types may not be consumed by showing a pattern.
+	/// It may be a "segment" of a whole pattern (for example, a branch inside a multiple forcing chains).
+	/// In such cases, this property will return <see langword="false"/>, indicating there's no name corresponding to the pattern.
+	/// </remarks>
+	public abstract bool IsNamed { get; }
+
+	/// <summary>
+	/// Indicates whether the chain pattern uses grouped logic.
+	/// </summary>
+	public bool IsGrouped => ValidNodes.Any(static node => node.IsAdvanced || node.IsGroupedNode);
+
+	/// <summary>
+	/// Indicates whether the pattern only uses same digits.
+	/// </summary>
+	public bool SatisfyXRule
 	{
-		if (other is null)
+		get
 		{
-			return false;
-		}
-
-		if (Length != other.Length)
-		{
-			return false;
-		}
-
-		var span1 = ValidNodes;
-		var span2 = other.ValidNodes;
-		switch (patternComparison)
-		{
-			case ChainOrLoopComparison.Undirected:
+			var digitsMask = (Mask)0;
+			foreach (var node in ValidNodes)
 			{
-				if (span1[0].Equals(span2[0], nodeComparison))
+				digitsMask |= node.Map.Digits;
+			}
+			return Mask.IsPow2(digitsMask);
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the pattern only uses cell strong links.
+	/// </summary>
+	public bool SatisfyYRule
+	{
+		get
+		{
+			foreach (var link in StrongLinks)
+			{
+				if (link is { FirstNode.Map.Digits: var digits1, SecondNode.Map.Digits: var digits2 } && digits1 == digits2)
 				{
-					for (var i = 0; i < Length; i++)
-					{
-						if (!span1[i].Equals(span2[i], nodeComparison))
-						{
-							return false;
-						}
-					}
-					return true;
+					return false;
 				}
-				else
+			}
+			return First.Map.Digits == Last.Map.Digits;
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether at least one node in the whole pattern overlaps with a node.
+	/// </summary>
+	public bool ContainsOverlappedNodes
+	{
+		get
+		{
+			foreach (var nodePair in (from node in ValidNodes select node.Map).GetSubsets(2))
+			{
+				ref readonly var map1 = ref nodePair[0];
+				ref readonly var map2 = ref nodePair[1];
+				if (map1 & map2)
 				{
-					for (var (i, j) = (0, Length - 1); i < Length; i++, j--)
-					{
-						if (!span1[i].Equals(span2[j], nodeComparison))
-						{
-							return false;
-						}
-					}
 					return true;
 				}
 			}
-			case ChainOrLoopComparison.Directed:
-			{
-				for (var i = 0; i < Length; i++)
-				{
-					if (!span1[i].Equals(span2[i], nodeComparison))
-					{
-						return false;
-					}
-				}
-				return true;
-			}
-			default:
-			{
-				throw new ArgumentOutOfRangeException(nameof(patternComparison));
-			}
-		}
-	}
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
-		=> Equals(other as Chain, nodeComparison, patternComparison);
-
-	/// <inheritdoc/>
-	public override int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
-	{
-		var span = ValidNodes;
-		switch (patternComparison)
-		{
-			case ChainOrLoopComparison.Undirected:
-			{
-				// To guarantee the final hash code is same on different direction, we should sort all nodes,
-				// in order to make same nodes are in the same position.
-				var nodesSorted = span.ToArray();
-				Array.Sort(nodesSorted, (left, right) => left.CompareTo(right, nodeComparison));
-
-				var hashCode = default(HashCode);
-				foreach (var node in nodesSorted)
-				{
-					hashCode.Add(node.GetHashCode(nodeComparison));
-				}
-				return hashCode.ToHashCode();
-			}
-			case ChainOrLoopComparison.Directed:
-			{
-				var result = default(HashCode);
-				foreach (var element in span)
-				{
-					result.Add(element.GetHashCode(nodeComparison));
-				}
-				return result.ToHashCode();
-			}
-			default:
-			{
-				throw new ArgumentOutOfRangeException(nameof(patternComparison));
-			}
+			return false;
 		}
 	}
 
 	/// <summary>
-	/// Determine which <see cref="Chain"/> instance is greater.
+	/// Indicates the length of the pattern.
+	/// </summary>
+	public int Length => ValidNodes.Length;
+
+	/// <summary>
+	/// Indicates the complexity of the pattern.
+	/// </summary>
+	/// <remarks>
+	/// The value is different with <see cref="Length"/> on a chain starting and ending with itself,
+	/// both are by strong links;
+	/// however it sometimes is equal to <see cref="Length"/>. It depends on the kind of the chain rule obeys.
+	/// For example, a loop has a same complexity and length.
+	/// </remarks>
+	/// <seealso cref="Length"/>
+	public virtual int Complexity => Length;
+
+	/// <summary>
+	/// Indicates all digits used in this pattern.
+	/// </summary>
+	public Mask DigitsMask
+	{
+		get
+		{
+			var result = (Mask)0;
+			foreach (var node in this)
+			{
+				result |= node.Map.Digits;
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the links used.
+	/// </summary>
+	public ReadOnlySpan<Link> Links
+	{
+		get
+		{
+			var span = ValidNodes;
+			var resultLength = Length - LoopIdentity;
+			var result = new Link[resultLength];
+			for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
+			{
+				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+				var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
+				pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
+				result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the strong links.
+	/// </summary>
+	public ReadOnlySpan<Link> StrongLinks
+	{
+		get
+		{
+			var result = new List<Link>(ValidNodes.Length >> 1);
+			foreach (var link in Links)
+			{
+				if (link.IsStrong)
+				{
+					result.Add(link);
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the weak links.
+	/// </summary>
+	public ReadOnlySpan<Link> WeakLinks
+	{
+		get
+		{
+			var result = new List<Link>(Links.Length >> 1);
+			foreach (var link in Links)
+			{
+				if (!link.IsStrong)
+				{
+					result.Add(link);
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the head node.
+	/// </summary>
+	public Node First => ValidNodes[0];
+
+	/// <summary>
+	/// Indicates the tail node.
+	/// </summary>
+	public Node Last => ValidNodes[^1];
+
+	/// <summary>
+	/// Indicates the value as the start index of the chain link is from whether strong and weak.
+	/// </summary>
+	protected internal abstract int WeakStartIdentity { get; }
+
+	/// <summary>
+	/// Indicates the valid nodes to be used.
+	/// </summary>
+	protected internal abstract ReadOnlySpan<Node> ValidNodes { get; }
+
+	/// <summary>
+	/// Indicates the value on loop checking for link construction usages.
+	/// </summary>
+	protected abstract int LoopIdentity { get; }
+
+	/// <inheritdoc/>
+	int IReadOnlyCollection<Node>.Count => Length;
+
+
+	/// <summary>
+	/// Gets a <see cref="Node"/> instance at the specified index.
+	/// </summary>
+	/// <param name="index">The desired index.</param>
+	/// <returns>The <see cref="Node"/> instance.</returns>
+	/// <exception cref="IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+	public Node this[int index] => ValidNodes[index];
+
+
+	/// <summary>
+	/// Try to reverse the pattern, making all nodes negated its direction connected.
+	/// </summary>
+	public abstract void Reverse();
+
+	/// <inheritdoc/>
+	public bool Equals(Chain? other) => Equals(other, NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
+
+	/// <summary>
+	/// Determine whether two <see cref="AlternatingInferenceChain"/> or <see cref="ContinuousNiceLoop"/> instances are same, by using the specified comparison rule.
 	/// </summary>
 	/// <param name="other">The other instance to be compared.</param>
-	/// <returns>An <see cref="int"/> result.</returns>
-	/// <remarks>
-	/// Order rule:
-	/// <list type="number">
-	/// <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return -1.</item>
-	/// <item>
-	/// If <paramref name="other"/> is not <see langword="null"/>, checks on length:
-	/// <list type="number">
-	/// <item>
-	/// If length is not same, return 1 when <see langword="this"/> is longer
-	/// or -1 when <paramref name="other"/> is longer.
-	/// </item>
-	/// <item>
-	/// Determine whether one of two has "self constraint" (i.e. false -> true confliction).
-	/// <list type="number">
-	/// <item>If so, it will be treated as "less than" the other one.</item>
-	/// <item>
-	/// Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
-	/// otherwise, they are same, 0 will be returned.
-	/// </item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// </remarks>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
+	/// <param name="nodeComparison">The comparison rule on nodes.</param>
+	/// <param name="patternComparison">The comparison rule on the whole chain.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public abstract bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainComparison patternComparison);
 
-	/// <inheritdoc/>
-	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as Chain);
-
-	/// <inheritdoc cref="CompareTo(Chain?)"/>
-	public int CompareTo(Chain? other, NodeComparison nodeComparison)
+	/// <summary>
+	/// Determines whether the current pattern (nodes) overlap with a list of conclusions,
+	/// meaning at least one conclusion is used by a node appeared in the pattern.
+	/// If so, the pattern will become a cannibalistic one.
+	/// </summary>
+	/// <param name="conclusions">The conclusions to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool OverlapsWithConclusions(ConclusionSet conclusions)
 	{
-		if (other is null)
+		foreach (var conclusion in conclusions)
 		{
-			return -1;
-		}
-
-		if (Length.CompareTo(other.Length) is var lengthResult and not 0)
-		{
-			return lengthResult;
-		}
-
-		var thisHasSelfConstraint = First == ~Last;
-		var otherHasSelfConstraint = other.First == ~other.Last;
-		if (thisHasSelfConstraint ^ otherHasSelfConstraint)
-		{
-			// If a chain has a self constraint (false -> true contradiction), it should be treated as "less than" the other.
-			return thisHasSelfConstraint ? -1 : 1;
-		}
-
-		for (var i = 0; i < Length; i++)
-		{
-			var (left, right) = (this[i], other[i]);
-			if (left.CompareTo(right, nodeComparison) is var nodeResult and not 0)
+			foreach (var node in ValidNodes)
 			{
-				return nodeResult;
+				if (node.Map.Contains(conclusion.Candidate))
+				{
+					return true;
+				}
 			}
 		}
-		return 0;
+		return false;
+	}
+
+	/// <summary>
+	/// Determines whether the pattern has already used the specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Contains(Candidate candidate)
+	{
+		foreach (var node in this)
+		{
+			if (node.Map.Contains(candidate))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	/// <remarks>
+	/// This method directly calls <see cref="GetHashCode(NodeComparison, ChainComparison)"/>
+	/// with values <see cref="NodeComparison.IgnoreIsOn"/> and <see cref="ChainComparison.Undirected"/>.
+	/// </remarks>
+	/// <seealso cref="GetHashCode(NodeComparison, ChainComparison)"/>
+	/// <seealso cref="NodeComparison.IgnoreIsOn"/>
+	/// <seealso cref="ChainComparison.Undirected"/>
+	public sealed override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
+
+	/// <summary>
+	/// Computes hash code based on the current instance.
+	/// </summary>
+	/// <param name="nodeComparison">The node comparison.</param>
+	/// <param name="patternComparison">The pattern comparison.</param>
+	/// <returns>An <see cref="int"/> as the result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public abstract int GetHashCode(NodeComparison nodeComparison, ChainComparison patternComparison);
+
+	/// <summary>
+	/// Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+	/// </summary>
+	/// <param name="predicate">The condition that a node should satisfy.</param>
+	/// <returns>The index of the node satisfied the condition.</returns>
+	public int FindIndex(Predicate<Node> predicate)
+	{
+		for (var i = 0; i < Length; i++)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
+	/// </summary>
+	/// <param name="predicate">The condition that a node should satisfy.</param>
+	/// <returns>The index of the node satisfied the condition.</returns>
+	public int FindLastIndex(Predicate<Node> predicate)
+	{
+		for (var i = Length - 1; i >= 0; i--)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/// <inheritdoc/>
-	public override ConclusionSet GetConclusions(ref readonly Grid grid)
-		=> [.. EliminationCalculator.Chain.GetConclusions(in grid, First, Last)];
+	public abstract int CompareTo(Chain? other);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			ChainFormatInfo f => ChainFormatInfo.FormatCoreUnsafeAccessor(f, this),
+			_ => ToString(ChainFormatInfo.Standard)
+		};
+
+	/// <summary>
+	/// Slices the collection with the specified start node and its length.
+	/// </summary>
+	/// <param name="start">The start index.</param>
+	/// <param name="length">The number of <see cref="Node"/> instances to slice.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="Node"/> instances returned.</returns>
+	public ReadOnlySpan<Node> Slice(int start, int length) => ValidNodes[start..(start + length)];
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Enumerator GetEnumerator() => new(this);
+
+	/// <summary>
+	/// Collect views for the current chain.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="supportedRules">The supported rules.</param>
+	/// <param name="alsIndex">Indicates the currently operated ALS index.</param>
+	/// <returns>The views.</returns>
+	public View[] GetViews(ref readonly Grid grid, ChainingRuleCollection supportedRules, ref int alsIndex)
+	{
+		var result = (View[])[
+			[
+				.. v(),
+				..
+				from link in Links
+				let node1 = link.FirstNode
+				let node2 = link.SecondNode
+				select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
+			]
+		];
+
+		foreach (var supportedRule in supportedRules)
+		{
+			var context = new ChainingRuleViewNodeContext(in grid, this, result[0]) { CurrentAlmostLockedSetIndex = alsIndex };
+			supportedRule.GetViewNodes(ref context);
+			alsIndex = context.CurrentAlmostLockedSetIndex;
+		}
+		return result;
+
+
+		ReadOnlySpan<CandidateViewNode> v()
+		{
+			var result = new List<CandidateViewNode>();
+			for (var i = 0; i < Length; i++)
+			{
+				var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+				foreach (var candidate in this[i].Map)
+				{
+					result.Add(new(id, candidate));
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => _nodes.AsEnumerable().GetEnumerator();
 }

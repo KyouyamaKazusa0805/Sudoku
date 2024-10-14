@@ -124,7 +124,7 @@
 		<Page Update="Views\Pages\Settings\Analysis\BottleneckSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\Settings\Analysis\ChainOrLoopSettingPage.xaml">
+		<Page Update="Views\Pages\Settings\Analysis\ChainSettingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Settings\Analysis\BabaGroupingSettingPage.xaml">

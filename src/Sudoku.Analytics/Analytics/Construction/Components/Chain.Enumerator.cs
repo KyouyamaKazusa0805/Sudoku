@@ -1,12 +1,12 @@
 namespace Sudoku.Analytics.Construction.Components;
 
-public partial class ChainOrLoop
+public partial class Chain
 {
 	/// <summary>
 	/// Represents an enumerator type that can iterate on each <see cref="Node"/> inside the collection.
 	/// </summary>
-	/// <param name="_nodes">The <see cref="ChainOrLoop"/> instance.</param>
-	public ref struct Enumerator(ChainOrLoop _nodes) : IEnumerator<Node>
+	/// <param name="_nodes">The <see cref="Chain"/> instance.</param>
+	public ref struct Enumerator(Chain _nodes) : IEnumerator<Node>
 	{
 		/// <summary>
 		/// Indicates the current index iterated.

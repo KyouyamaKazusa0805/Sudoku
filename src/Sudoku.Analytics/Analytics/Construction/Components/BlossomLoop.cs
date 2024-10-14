@@ -68,7 +68,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Exists(Func<ChainOrLoop, bool> predicate)
+	public bool Exists(Func<Chain, bool> predicate)
 	{
 		foreach (var element in Values)
 		{
@@ -83,7 +83,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] BlossomLoop? other)
-		=> Equals(other, NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
 
 	/// <summary>
 	/// Determines whether two <see cref="BlossomLoop"/> are considered equal.
@@ -92,7 +92,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <param name="patternComparison">The chain comparison rule.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Equals([NotNullWhen(true)] BlossomLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public bool Equals([NotNullWhen(true)] BlossomLoop? other, NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -169,7 +169,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	}
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainOrLoopComparison.Undirected);
+	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainComparison.Undirected);
 
 	/// <summary>
 	/// Calculates a hash code value used for comparison.
@@ -177,7 +177,7 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 	/// <param name="nodeComparison">The node comparison rule.</param>
 	/// <param name="patternComparison">The chain comparison rule.</param>
 	/// <returns>Hash code value.</returns>
-	public int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public int GetHashCode(NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		var hashCode = default(HashCode);
 		foreach (var (branchStartNode, forcingChain) in this)

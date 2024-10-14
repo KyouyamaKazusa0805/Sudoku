@@ -9,7 +9,7 @@ internal partial class ChainingDriver
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
-	/// <returns>All possible <see cref="ChainOrLoop"/> instances.</returns>
+	/// <returns>All possible <see cref="Chain"/> instances.</returns>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// A valid chain can only be categorized by the following three cases:
@@ -110,7 +110,7 @@ internal partial class ChainingDriver
 						////////////////////////////////////////////
 						if (nodeSupposedOff == startNode && nextNode.AncestorsLength >= 4)
 						{
-							var loop = new Loop(nextNode);
+							var loop = new ContinuousNiceLoop(nextNode);
 							if (!loop.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;
@@ -133,7 +133,7 @@ internal partial class ChainingDriver
 						/////////////////////////////////////////////////
 						if (nodeSupposedOff == ~startNode)
 						{
-							var chain = new Chain(nextNode);
+							var chain = new AlternatingInferenceChain(nextNode);
 							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;
@@ -179,7 +179,7 @@ internal partial class ChainingDriver
 						/////////////////////////////////////////////
 						if (nodeSupposedOn == ~startNode)
 						{
-							var chain = new Chain(nextNode);
+							var chain = new AlternatingInferenceChain(nextNode);
 							if (chain.IsImplicitLoop || !chain.GetConclusions(in grid).IsWorthFor(in grid))
 							{
 								goto Next;

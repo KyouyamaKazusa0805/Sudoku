@@ -57,7 +57,7 @@ public static class HodokuCompatibility
 			_ => string.Empty
 		};
 		var extraString = step is NormalChainStep { Pattern: { Length: var nodesLength } pattern }
-			? (nodesLength - (pattern is Chain ? 1 : 0)).ToString()
+			? (nodesLength - (pattern is AlternatingInferenceChain ? 1 : 0)).ToString()
 			: string.Empty;
 		var gridStringColonTokenIfNecessary = gridString.Contains(':') ? string.Empty : ":";
 		return $":{codeString}:{digitsUsedString}:{gridString}{gridStringColonTokenIfNecessary}:{eliminationsString}:{assignmentsString}:{extraString}";

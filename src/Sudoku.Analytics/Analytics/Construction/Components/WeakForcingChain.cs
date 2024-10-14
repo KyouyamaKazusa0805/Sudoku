@@ -44,7 +44,7 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 	public int CompareTo(WeakForcingChain? other) => CompareTo(other, NodeComparison.IgnoreIsOn);
 
 	/// <inheritdoc/>
-	public override int CompareTo(ChainOrLoop? other) => CompareTo(other as WeakForcingChain);
+	public override int CompareTo(Chain? other) => CompareTo(other as WeakForcingChain);
 
 	/// <summary>
 	/// Compares the value with the other one, to get which one is greater.
@@ -83,8 +83,8 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 		return 0;
 	}
 
-	/// <inheritdoc cref="ChainOrLoop.Equals(ChainOrLoop?, NodeComparison, ChainOrLoopComparison)"/>
-	public bool Equals([NotNullWhen(true)] WeakForcingChain? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	/// <inheritdoc cref="Chain.Equals(Chain?, NodeComparison, ChainComparison)"/>
+	public bool Equals([NotNullWhen(true)] WeakForcingChain? other, NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -100,7 +100,7 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 		var span2 = other.ValidNodes;
 		switch (patternComparison)
 		{
-			case ChainOrLoopComparison.Undirected:
+			case ChainComparison.Undirected:
 			{
 				if (span1[0].Equals(span2[0], nodeComparison))
 				{
@@ -125,7 +125,7 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 					return true;
 				}
 			}
-			case ChainOrLoopComparison.Directed:
+			case ChainComparison.Directed:
 			{
 				for (var i = 0; i < Length; i++)
 				{
@@ -144,16 +144,16 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 	}
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] ChainOrLoop? other, NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainComparison patternComparison)
 		=> Equals(other as WeakForcingChain, nodeComparison, patternComparison);
 
 	/// <inheritdoc/>
-	public override int GetHashCode(NodeComparison nodeComparison, ChainOrLoopComparison patternComparison)
+	public override int GetHashCode(NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		var span = ValidNodes;
 		switch (patternComparison)
 		{
-			case ChainOrLoopComparison.Undirected:
+			case ChainComparison.Undirected:
 			{
 				// To guarantee the final hash code is same on different direction, we should sort all nodes,
 				// in order to make same nodes are in the same position.
@@ -167,7 +167,7 @@ public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastN
 				}
 				return hashCode.ToHashCode();
 			}
-			case ChainOrLoopComparison.Directed:
+			case ChainComparison.Directed:
 			{
 				var result = default(HashCode);
 				foreach (var element in span)

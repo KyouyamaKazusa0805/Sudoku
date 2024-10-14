@@ -45,7 +45,7 @@ internal static class ChainModule
 		static Conclusion[] c(NamedChain pattern, ref readonly Grid grid, ChainingRuleCollection rules)
 		{
 			var conclusions = pattern.GetConclusions(in grid);
-			if (pattern is Loop { Links: var links })
+			if (pattern is ContinuousNiceLoop { Links: var links })
 			{
 				var context = new ChainingRuleLoopConclusionContext(in grid, links);
 				foreach (var r in rules)

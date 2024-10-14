@@ -1,5 +1,5 @@
 <Page
-	x:Class="SudokuStudio.Views.Pages.Settings.Analysis.ChainOrLoopSettingPage"
+	x:Class="SudokuStudio.Views.Pages.Settings.Analysis.ChainSettingPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:ChainOrLoopSettingPage}"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:ChainSettingPage}"
 	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="6">

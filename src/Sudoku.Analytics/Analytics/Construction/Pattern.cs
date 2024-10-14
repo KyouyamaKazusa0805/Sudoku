@@ -10,10 +10,10 @@ namespace Sudoku.Analytics.Construction;
 public abstract partial class Pattern : ICloneable, IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern, bool>
 {
 	/// <summary>
-	/// Indicates whether the current pattern can be used as a node inside a chain pattern <see cref="ChainOrLoop"/>,
+	/// Indicates whether the current pattern can be used as a node inside a chain pattern <see cref="Chain"/>,
 	/// represented as a relation in a link, stored in <see cref="Link.GroupedLinkPattern"/>.
 	/// </summary>
-	/// <seealso cref="ChainOrLoop"/>
+	/// <seealso cref="Chain"/>
 	/// <seealso cref="Link.GroupedLinkPattern"/>
 	public abstract bool IsChainingCompatible { get; }
 

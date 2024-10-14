@@ -25,7 +25,7 @@ public static class NamedChainExtensions
 	public static Technique GetTechnique(this NamedChain @this, ConclusionSet conclusions)
 		=> @this switch
 		{
-			Chain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
+			AlternatingInferenceChain { SatisfyXRule: var isX, IsGrouped: var isGrouped, Links: var links } instance => instance switch
 			{
 				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
@@ -74,7 +74,7 @@ public static class NamedChainExtensions
 					}
 				}
 			},
-			Loop { SatisfyXRule: var isX, SatisfyYRule: var isY, IsGrouped: var isGrouped } => (isX, isY) switch
+			ContinuousNiceLoop { SatisfyXRule: var isX, SatisfyYRule: var isY, IsGrouped: var isGrouped } => (isX, isY) switch
 			{
 				(true, false) => isGrouped ? Technique.GroupedFishyCycle : Technique.FishyCycle,
 				(false, true) => isGrouped ? Technique.GroupedXyCycle : Technique.XyCycle,

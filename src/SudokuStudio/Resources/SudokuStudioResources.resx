@@ -2768,7 +2768,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_AllowedChainLinkTypeWarning" xml:space="preserve">
     <value>The more supported link types you choose, the more memory will use. If your computer doesn't have a large memory, DON'T enable all functions of the following values.</value>
   </data>
-  <data name="MainWindow_ChainOrLoopSettingPageTitle" xml:space="preserve">
+  <data name="MainWindow_ChainSettingPageTitle" xml:space="preserve">
     <value>Chains &amp; Loops</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_Lasting_HiddenSingleColumn" xml:space="preserve">

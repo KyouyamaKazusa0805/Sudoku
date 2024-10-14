@@ -4242,9 +4242,9 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Chains &amp; Loops.
         /// </summary>
-        internal static string MainWindow_ChainOrLoopSettingPageTitle {
+        internal static string MainWindow_ChainSettingPageTitle {
             get {
-                return ResourceManager.GetString("MainWindow_ChainOrLoopSettingPageTitle", resourceCulture);
+                return ResourceManager.GetString("MainWindow_ChainSettingPageTitle", resourceCulture);
             }
         }
         

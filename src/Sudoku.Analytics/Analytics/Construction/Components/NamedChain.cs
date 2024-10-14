@@ -1,11 +1,17 @@
 namespace Sudoku.Analytics.Construction.Components;
 
 /// <summary>
-/// Represents a normal chain or loop.
+/// Represents named chain patterns:
+/// <list type="bullet">
+/// <item>Alternating inference chain (corresponds to type <see cref="AlternatingInferenceChain"/>)</item>
+/// <item>Continuous nice loop (corresponds to type <see cref="ContinuousNiceLoop"/>)</item>
+/// </list>
 /// </summary>
-/// <param name="lastNode"><inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='lastNode']"/></param>
-/// <param name="isLoop"><inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='isLoop']"/></param>
-public abstract class NamedChain(Node lastNode, bool isLoop) : ChainOrLoop(lastNode, isLoop, true)
+/// <param name="lastNode"><inheritdoc cref="Chain(Node, bool, bool)" path="/param[@name='lastNode']"/></param>
+/// <param name="isLoop"><inheritdoc cref="Chain(Node, bool, bool)" path="/param[@name='isLoop']"/></param>
+/// <seealso cref="AlternatingInferenceChain"/>
+/// <seealso cref="ContinuousNiceLoop"/>
+public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, isLoop, true)
 {
 	/// <inheritdoc/>
 	public sealed override bool IsNamed => true;

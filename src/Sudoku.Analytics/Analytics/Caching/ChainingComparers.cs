@@ -10,7 +10,7 @@ internal static class ChainingComparers
 	/// <summary>
 	/// Indicates the backing field of chain pattern comparer instance.
 	/// </summary>
-	private static IComparer<ChainOrLoop>? _chainComparer;
+	private static IComparer<Chain>? _chainComparer;
 
 	/// <summary>
 	/// Indicates the backing field of multiple forcing chains comparer instance.
@@ -24,10 +24,10 @@ internal static class ChainingComparers
 
 
 	/// <summary>
-	/// Creates an instance of type <see cref="Comparer{T}"/> of <see cref="ChainOrLoop"/> on comparison.
+	/// Creates an instance of type <see cref="Comparer{T}"/> of <see cref="Chain"/> on comparison.
 	/// </summary>
-	public static IComparer<ChainOrLoop> ChainComparer
-		=> _chainComparer ??= Comparer<ChainOrLoop>.Create(static (l, r) => l.CompareTo(r));
+	public static IComparer<Chain> ChainComparer
+		=> _chainComparer ??= Comparer<Chain>.Create(static (l, r) => l.CompareTo(r));
 
 	/// <summary>
 	/// Creates an instance of type <see cref="Comparer{T}"/> of <see cref="MultipleForcingChains"/> on comparison.

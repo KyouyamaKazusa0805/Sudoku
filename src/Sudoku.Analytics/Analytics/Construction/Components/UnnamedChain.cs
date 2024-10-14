@@ -3,8 +3,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a forcing chain branch.
 /// </summary>
-/// <param name="lastNode"><inheritdoc cref="ChainOrLoop(Node, bool, bool)" path="/param[@name='lastNode']"/></param>
-public abstract class UnnamedChain(Node lastNode) : ChainOrLoop(lastNode, false, false)
+/// <param name="lastNode"><inheritdoc cref="Chain(Node, bool, bool)" path="/param[@name='lastNode']"/></param>
+public abstract class UnnamedChain(Node lastNode) : Chain(lastNode, false, false)
 {
 	/// <inheritdoc/>
 	public sealed override bool IsNamed => false;

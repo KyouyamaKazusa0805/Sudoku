@@ -1,14 +1,14 @@
 namespace SudokuStudio.Views.Pages.Settings.Analysis;
 
 /// <summary>
-/// Represents chain or loop setting page.
+/// Represents chain setting page.
 /// </summary>
-public sealed partial class ChainOrLoopSettingPage : Page
+public sealed partial class ChainSettingPage : Page
 {
 	/// <summary>
-	/// Initializes a <see cref="ChainOrLoopSettingPage"/> instance.
+	/// Initializes a <see cref="ChainSettingPage"/> instance.
 	/// </summary>
-	public ChainOrLoopSettingPage() => InitializeComponent();
+	public ChainSettingPage() => InitializeComponent();
 
 
 	/// <summary>
