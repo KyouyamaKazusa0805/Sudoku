@@ -384,9 +384,12 @@ public abstract partial class ChainOrLoop :
 	/// with the specified format provider object that can specify customized formatting rules on nodes.
 	/// </summary>
 	/// <param name="formatProvider">
-	/// Indicates the format provider object. The value should be derived from <see cref="ChainOrLoopFormatInfo"/>
+	/// <para>Indicates the format provider object.</para>
+	/// <para>
+	/// The value should be derived from <see cref="ChainOrLoopFormatInfo"/>
 	/// to output chain nodes more efficiently. If not, the argument will be treated as candidate coordinate converter object
 	/// to be used by outputting a group of candidates in nodes, calling <see cref="ToString(string?, IFormatProvider?)"/>.
+	/// </para>
 	/// </param>
 	/// <returns>An equivalent string representation of the current object.</returns>
 	/// <seealso cref="ChainOrLoopFormatInfo"/>
