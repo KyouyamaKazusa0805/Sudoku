@@ -5733,20 +5733,23 @@
         <member name="M:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.EliminationCalculator">
+        <member name="T:Sudoku.Analytics.Hub">
+            <summary>
+            The top-level type that stores <see langword="static class"/>es as nested ones,
+            to provide checking rules on some analysis-related concepts like Sashimi.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.EliminationCalculator">
             <summary>
             Represents a type that calculates eliminations.
             </summary>
-            <remarks>
-            This file is a hub. Please check separated files to get detailed rules.
-            </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.EliminationCalculator.Chain">
+        <member name="T:Sudoku.Analytics.Hub.EliminationCalculator.Chain">
             <summary>
             Provides with chain elimination rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.EliminationCalculator.Chain.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.Hub.EliminationCalculator.Chain.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
             <summary>
             Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.
             </summary>
@@ -5756,12 +5759,12 @@
             <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
-        <member name="T:Sudoku.Analytics.EliminationCalculator.UniqueRectangle">
+        <member name="T:Sudoku.Analytics.Hub.EliminationCalculator.UniqueRectangle">
             <summary>
             Provides with unique rectangle rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.EliminationCalculator.UniqueRectangle.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.Hub.EliminationCalculator.UniqueRectangle.GetConclusions(Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Grid@)">
             <summary>
             Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
             </summary>
@@ -5812,12 +5815,12 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.LockedCandidates">
+        <member name="T:Sudoku.Analytics.Hub.LockedCandidates">
             <summary>
             Provides a way to calculate whether a pattern is a locked candidates or not.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.LockedCandidates.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.Hub.LockedCandidates.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
             Indicates whether the pattern is a locked candidates.
             </summary>
@@ -5828,6 +5831,56 @@
             <param name="emptyCells">The empty cells in the pattern.</param>
             <param name="digitsMask">Indicates the mask of digits that are locked candidates in the pattern.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Sashimi">
+            <summary>
+            Provides a way to determine whether a fish pattern is Sashimi or not.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Sashimi.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check whether the fish is sashimi.
+            </summary>
+            <param name="baseSets">The base sets.</param>
+            <param name="fins">All fins.</param>
+            <param name="digit">The digit.</param>
+            <returns>
+            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
+            <para>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
+            </para>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Siamese">
+            <summary>
+            Provides a way to construct Siamese patterns.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Siamese.Fish">
+            <summary>
+            Provides a way to construct Siamese fishes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Siamese.Fish.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Siamese.XyzRing">
+            <summary>
+            Provides a way to construct Siamese XYZ-Rings.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Siamese.XyzRing.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
+            <summary>
+            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
+            </summary>
+            <param name="accumulator">The accumulator.</param>
+            <param name="grid">The grid.</param>
+            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.PatternSearcher`1">
             <summary>
@@ -6434,59 +6487,6 @@
             <summary>
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Sashimi">
-            <summary>
-            Provides a way to determine whether a fish pattern is Sashimi or not.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Sashimi.IsSashimi(System.Int32[],Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check whether the fish is sashimi.
-            </summary>
-            <param name="baseSets">The base sets.</param>
-            <param name="fins">All fins.</param>
-            <param name="digit">The digit.</param>
-            <returns>
-            <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
-            <para>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.FishStep.IsSashimi" path="/remarks"/>
-            </para>
-            </returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Siamese">
-            <summary>
-            Provides a way to construct Siamese patterns.
-            </summary>
-            <remarks>
-            This file is a hub. Please check separated files to get detailed rules.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Analytics.Siamese.Fish">
-            <summary>
-            Provides a way to construct Siamese fishes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Siamese.Fish.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Siamese.XyzRing">
-            <summary>
-            Provides a way to construct Siamese XYZ-Rings.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Siamese.XyzRing.GetSiamese(System.Collections.Generic.HashSet{Sudoku.Analytics.Steps.XyzRingStep},Sudoku.Concepts.Grid@)">
-            <summary>
-            Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/> for the specified accumulator.
-            </summary>
-            <param name="accumulator">The accumulator.</param>
-            <param name="grid">The grid.</param>
-            <returns>All Siamese steps of type <see cref="T:Sudoku.Analytics.Steps.XyzRingStep"/>.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>

@@ -326,6 +326,7 @@ public partial class App : Application
 				CoordinateType.RxCy => new RxCyConverter(
 					uiPref.MakeLettersUpperCaseInRxCyNotation,
 					uiPref.MakeDigitBeforeCellInRxCyNotation,
+					false,
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
@@ -335,9 +336,12 @@ public partial class App : Application
 				),
 				CoordinateType.K9 => new K9Converter(
 					uiPref.MakeLettersUpperCaseInK9Notation,
+					false,
+					false,
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					NotationBracket.None,
 					NotationBracket.None,
 					CurrentCulture
 				),
