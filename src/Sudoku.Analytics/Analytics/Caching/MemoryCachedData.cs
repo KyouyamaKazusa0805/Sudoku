@@ -66,7 +66,7 @@ internal static class MemoryCachedData
 	/// Indicates the solution.
 	/// </summary>
 	/// <remarks><b>
-	/// Please note that a puzzle may contain multiple solutions, which will make this field to be <see cref="Grid.Undefined"/>.
+	/// Please note that a puzzle may contain multiple solutions, leading to this field <see cref="Grid.Undefined"/>.
 	/// You must check validity of this field before using this field.
 	/// </b></remarks>
 	/// <seealso cref="Grid.Undefined"/>
