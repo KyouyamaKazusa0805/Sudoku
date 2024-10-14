@@ -17,19 +17,60 @@ internal static class MemoryCachedData
 
 
 	/// <summary>
+	/// Backing field of <see cref="EmptyCells"/>.
+	/// </summary>
+	private static CellMap _cachedEmptyCells;
+
+	/// <summary>
+	/// Backing field of <see cref="BivalueCells"/>.
+	/// </summary>
+	private static CellMap _cachedBivalueCells;
+
+	/// <summary>
+	/// Backing field of <see cref="CandidatesMap"/>.
+	/// </summary>
+	private static CellMap[] _cachedCandidatesMap = null!;
+
+	/// <summary>
+	/// Backing field of <see cref="DigitsMap"/>.
+	/// </summary>
+	private static CellMap[] _cachedDigitsMap = null!;
+
+	/// <summary>
+	/// Backing field of <see cref="ValuesMap"/>.
+	/// </summary>
+	private static CellMap[] _cachedValuesMap = null!;
+
+	/// <summary>
+	/// Backing field of <see cref="Solution"/>.
+	/// </summary>
+	private static Grid _cachedSolution;
+
+
+	/// <summary>
 	/// The backing field storing on strong links, grouped by link type.
 	/// </summary>
-	public static LinkType StrongLinkTypesEntried = LinkType.Unknown;
+	public static LinkType StrongLinkTypesEntried { get; private set; }
 
 	/// <summary>
 	/// The backing field storing on weak links, grouped by link type.
 	/// </summary>
-	public static LinkType WeakLinkTypesEntried = LinkType.Unknown;
+	public static LinkType WeakLinkTypesEntried { get; private set; }
 
 	/// <summary>
 	/// Indicates the number of candidates appeared in the puzzle.
 	/// </summary>
-	public static Candidate CandidatesCount;
+	public static Candidate CandidatesCount { get; private set; }
+
+	/// <summary>
+	/// Indicates the solution.
+	/// </summary>
+	/// <remarks><b>
+	/// Please note that a puzzle may contain multiple solutions, which will make this field to be <see cref="Grid.Undefined"/>.
+	/// You must check validity of this field before using this field.
+	/// </b></remarks>
+	/// <seealso cref="Grid.Undefined"/>
+	public static ref readonly Grid Solution => ref _cachedSolution;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.EmptyCells"/>
@@ -40,7 +81,7 @@ internal static class MemoryCachedData
 	/// </remarks>
 	/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
 	/// <seealso cref="StepSearcherAttribute.IsCachingSafe"/>
-	public static CellMap EmptyCells;
+	public static ref readonly CellMap EmptyCells => ref _cachedEmptyCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.BivalueCells"/>
@@ -48,7 +89,7 @@ internal static class MemoryCachedData
 	/// <remarks>
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
-	public static CellMap BivalueCells;
+	public static ref readonly CellMap BivalueCells => ref _cachedBivalueCells;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.CandidatesMap"/>
@@ -57,7 +98,7 @@ internal static class MemoryCachedData
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] CandidatesMap = null!;
+	public static ReadOnlySpan<CellMap> CandidatesMap => _cachedCandidatesMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.DigitsMap"/>
@@ -66,7 +107,7 @@ internal static class MemoryCachedData
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] DigitsMap = null!;
+	public static ReadOnlySpan<CellMap> DigitsMap => _cachedDigitsMap;
 
 	/// <summary>
 	/// <inheritdoc cref="Grid.ValuesMap"/>
@@ -75,17 +116,7 @@ internal static class MemoryCachedData
 	/// <inheritdoc cref="EmptyCells" path="/remarks"/>
 	/// </remarks>
 	/// <exception cref="NullReferenceException">Throws when not initialized.</exception>
-	public static CellMap[] ValuesMap = null!;
-
-	/// <summary>
-	/// Indicates the solution.
-	/// </summary>
-	/// <remarks><b>
-	/// Please note that a puzzle may contain multiple solutions, which will make this field to be <see cref="Grid.Undefined"/>.
-	/// You must check validity of this field before using this field.
-	/// </b></remarks>
-	/// <seealso cref="Grid.Undefined"/>
-	public static Grid Solution;
+	public static ReadOnlySpan<CellMap> ValuesMap => _cachedValuesMap;
 
 
 	/// <summary>
@@ -97,12 +128,12 @@ internal static class MemoryCachedData
 	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
 		CandidatesCount = g.CandidatesCount;
-		EmptyCells = g.EmptyCells;
-		BivalueCells = g.BivalueCells;
-		CandidatesMap = [.. g.CandidatesMap];
-		DigitsMap = [.. g.DigitsMap];
-		ValuesMap = [.. g.ValuesMap];
-		Solution = s;
+		_cachedEmptyCells = g.EmptyCells;
+		_cachedBivalueCells = g.BivalueCells;
+		_cachedSolution = s;
+		_cachedCandidatesMap = [.. g.CandidatesMap];
+		_cachedDigitsMap = [.. g.DigitsMap];
+		_cachedValuesMap = [.. g.ValuesMap];
 
 		// Chaining-related fields.
 		StrongLinkTypesEntried = LinkType.Unknown;
