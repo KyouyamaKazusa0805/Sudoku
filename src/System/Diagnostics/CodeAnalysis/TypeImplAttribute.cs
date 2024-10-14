@@ -28,12 +28,7 @@ namespace System.Diagnostics.CodeAnalysis;
 /// By using <see cref="TypeImplAttribute"/>, the code can be simplified to this:
 /// <code><![CDATA[
 /// [TypeImpl(TypeImplFlag.Equals | TypeImplFlag.GetHashCode | TypeImplFlag.Equatable)]
-/// public readonly partial struct MyColor(
-///     [Property] byte a,
-///     [Property] byte r,
-///     [Property] byte g,
-///     [Property] byte b
-/// ) : IEquatable<MyColor>
+/// public readonly partial struct MyColor([Property] byte a, [Property] byte r, [Property] byte g, [Property] byte b) : IEquatable<MyColor>
 /// {
 ///     [HashCodeMember]
 ///     [EquatableMember]
