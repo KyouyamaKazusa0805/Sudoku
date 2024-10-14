@@ -145,12 +145,6 @@ public enum TechniqueGroup
 	BivalueUniversalGrave,
 
 	/// <summary>
-	/// Indicates the hidden bi-value universal grave (HBUG) technique.
-	/// </summary>
-	[TechniqueMetadata(Abbreviation = "HBUG")]
-	HiddenBivalueUniversalGrave,
-
-	/// <summary>
 	/// Indicates the Borescoper's deadly pattern technique.
 	/// </summary>
 	BorescoperDeadlyPattern,

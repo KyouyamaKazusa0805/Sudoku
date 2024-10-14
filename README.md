@@ -92,7 +92,6 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Miscellaneous
       * Bi-value Universal Grave (*BUG*)
       * Reverse Bi-value Universal Grave (*Reverse BUG*)
-      * Hidden Bi-value Universal Grave (*HBUG*, Type 1 and 2)
   * Coloring (**Only in API**)
     * Simple Coloring
       * Simple Coloring Wrap

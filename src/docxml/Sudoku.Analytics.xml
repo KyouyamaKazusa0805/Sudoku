@@ -7785,47 +7785,6 @@
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher">
-            <summary>
-            Provides with a <b>Hidden Bi-value Universal Grave</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Hidden Bi-value Universal Grave Type 1</item>
-            <item>Hidden Bi-value Universal Grave Type 2</item>
-            <item>Hidden Bi-value Universal Grave Type 3</item>
-            <item>Hidden Bi-value Universal Grave Type 4</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
-            <inheritdoc />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            <para>This pattern is very hard to be searched (but it can exist in random puzzles indeed).</para>
-            <para>
-            This pattern relies on candidate positions of a whole grid, with only a few cells holding only single digit used in pattern.
-            However, it is sensitive with candidates eliminated from the previous steps.
-            All candidates should be brought back to grid while searching for this in a grid
-            with missing candidates having been eliminated before.
-            </para>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.HiddenBivalueUniversalGraveStepSearcher.CheckType1Or2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode})">
-            <summary>
-            Check type 1 and 2.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="grid">The grid to be used.</param>
-            <param name="targetDigit">The target digit.</param>
-            <param name="singlePositions">The single positions.</param>
-            <param name="cellOffsets">The cell view nodes.</param>
-            <param name="candidateOffsets">The candidate view nodes.</param>
-            <returns>The found step.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.QiuDeadlyPatternStepSearcher">
             <summary>
             Provides with a <b>Qiu's Deadly Pattern</b> step searcher.
@@ -12983,241 +12942,6 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.XzCell">
             <summary>
             The generated property declaration for parameter <c>xzCell</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.OnlyUseBivalueCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions)">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 1</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType1Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit">Indicates the extra digit.</param>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Hidden Bivalue Universal Grave Type 2</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit">Indicates the extra digit.</param>
-            <param name="cells">Indicates the cells used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Sudoku#Analytics#Traits#ITrueCandidatesTrait#TrueCandidates">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.ExtraDigit">
-            <summary>
-            The generated property declaration for parameter <c>digit</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType2Step.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step">
-            <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="trueCandidates">Indicates the true candidates used.</param>
-            <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
-            <param name="cells">Indicates the subset cells used.</param>
-            <param name="isNaked">Indicates whether the subset is naked.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 3</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="trueCandidates">Indicates the true candidates used.</param>
-            <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
-            <param name="cells">Indicates the subset cells used.</param>
-            <param name="isNaked">Indicates whether the subset is naked.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#IsHidden">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetSize">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Sudoku#Analytics#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetCells">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Size">
-            <summary>
-            Indicates the size of the subset.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.TrueCandidates">
-            <summary>
-            The generated property declaration for parameter <c>trueCandidates</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.SubsetDigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>subsetDigitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType3Step.IsNaked">
-            <summary>
-            The generated property declaration for parameter <c>isNaked</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step">
-            <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="conjugatePair">Indicates the conjugate pair used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
-            <summary>
-            Provides with a step that is a <b>Hidden Bi-value Universal Grave Type 4</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask of digits used.</param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="conjugatePair">Indicates the conjugate pair used.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.DigitsMask">
-            <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.Cells">
-            <summary>
-            The generated property declaration for parameter <c>cells</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenBivalueUniversalGraveType4Step.ConjugatePair">
-            <summary>
-            The generated property declaration for parameter <c>conjugatePair</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep">
@@ -23134,34 +22858,9 @@
             Indicates reverse bi-value universal grave type 4.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.HiddenBivalueUniversalGraveType1">
-            <summary>
-            Indicates hidden bi-value universal grave (bi-local universal grave) type 1.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.HiddenBivalueUniversalGraveType2">
-            <summary>
-            Indicates hidden bi-value universal grave (bi-local universal grave) type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.HiddenBivalueUniversalGraveType3">
-            <summary>
-            Indicates hidden bi-value universal grave (bi-local universal grave) type 3.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.HiddenBivalueUniversalGraveType4">
-            <summary>
-            Indicates hidden bi-value universal grave (bi-local universal grave) type 4.
-            </summary>
-        </member>
         <member name="F:Sudoku.Categorization.Technique.UniquenessClueCover">
             <summary>
             Indicates uniqueness clue cover.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.RwDeadlyPattern">
-            <summary>
-            Indicates RW's deadly pattern.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.BorescoperDeadlyPatternType1">
@@ -24294,11 +23993,6 @@
         <member name="F:Sudoku.Categorization.TechniqueGroup.BivalueUniversalGrave">
             <summary>
             Indicates the bi-value universal grave (BUG) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.TechniqueGroup.HiddenBivalueUniversalGrave">
-            <summary>
-            Indicates the hidden bi-value universal grave (HBUG) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.BorescoperDeadlyPattern">
@@ -28305,21 +27999,6 @@
               Looks up a localized string similar to Guardian.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenBivalueUniversalGraveSubsetIsHiddenFactor">
-            <summary>
-              Looks up a localized string similar to Subset in Bi-value universal grave is hidden.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenBivalueUniversalGraveSubsetSizeFactor">
-            <summary>
-              Looks up a localized string similar to Subset size of bi-value universal grave.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenBivalueUniversalGraveType2TrueCandidateFactor">
-            <summary>
-              Looks up a localized string similar to Number of true candidates.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetIsLockedFactor">
             <summary>
               Looks up a localized string similar to Locked type in hidden subset.
@@ -28908,26 +28587,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenAvoidableRectangle">
             <summary>
               Looks up a localized string similar to Hidden Avoidable Rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType1">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 1.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType2">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 2.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType3">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 3.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.HiddenBivalueUniversalGraveType4">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave Type 4.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenKeyword">
@@ -30428,11 +30087,6 @@
               Looks up a localized string similar to Guardian.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_HiddenBivalueUniversalGraveStepSearcher">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_IrregularWingStepSearcher">
             <summary>
               Looks up a localized string similar to Irregular Wing.
@@ -31628,21 +31282,6 @@
               Looks up a localized string similar to The grid must hold symmetrical placement; otherwise, no solution. Symmetry type: {0}, mapping relations: {1}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HiddenBivalueUniversalGraveType2Step">
-            <summary>
-              Looks up a localized string similar to {0} with cells {1}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HiddenBivalueUniversalGraveType3Step">
-            <summary>
-              Looks up a localized string similar to True candidates {0} with {1} {2} {3} in cells {4}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HiddenBivalueUniversalGraveType4Step">
-            <summary>
-              Looks up a localized string similar to {0} in cells {1} with conjugate pair {2}.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_HiddenSingle">
             <summary>
               Looks up a localized string similar to In {0}.
@@ -32136,11 +31775,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_ForcingChains">
             <summary>
               Looks up a localized string similar to Forcing Chains.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_HiddenBivalueUniversalGrave">
-            <summary>
-              Looks up a localized string similar to Hidden Bi-value Universal Grave.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_IrregularWing">

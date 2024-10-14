@@ -24,7 +24,6 @@
 [assembly: AssemblyStepSearcher<UniqueMatrixStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<AnonymousDeadlyPatternStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<BivalueUniversalGraveStepSearcher>(1)]
-[assembly: AssemblyStepSearcher<HiddenBivalueUniversalGraveStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<QiuDeadlyPatternStepSearcher>(1)]
 [assembly: AssemblyStepSearcher<BivalueOddagonStepSearcher>(2)]
 [assembly: AssemblyStepSearcher<ReverseBivalueUniversalGraveStepSearcher>(2)]
