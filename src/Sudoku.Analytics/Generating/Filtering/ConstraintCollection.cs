@@ -16,13 +16,11 @@ public sealed class ConstraintCollection :
 	IWhereMethod<ConstraintCollection, Constraint>
 {
 	/// <inheritdoc cref="List{T}()"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConstraintCollection() : base()
 	{
 	}
 
 	/// <inheritdoc cref="List{T}(int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConstraintCollection(int capacity) : base(capacity)
 	{
 	}
@@ -31,7 +29,6 @@ public sealed class ConstraintCollection :
 	/// Create a new instance and copy elements.
 	/// </summary>
 	/// <param name="other">The other collection.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConstraintCollection(ConstraintCollection other) : base(other)
 	{
 	}

@@ -26,7 +26,6 @@ public sealed class PointCalculator : IPointCalculator
 	/// </summary>
 	/// <param name="size">The size of the picture.</param>
 	/// <param name="padding">The padding.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public PointCalculator(float size, float padding = DefaultPadding) : this(new SizeF(size, size), padding)
 	{
 	}

@@ -36,7 +36,6 @@ public unsafe struct MinlexCandidate
 	/// <summary>
 	/// Initializes a <see cref="MinlexCandidate"/> instance.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public MinlexCandidate() => this = Empty;
 
 	/// <summary>
@@ -44,7 +43,6 @@ public unsafe struct MinlexCandidate
 	/// </summary>
 	/// <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
 	/// <param name="topRow">The top row used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public MinlexCandidate(sbyte transpose, int topRow) : this()
 	{
 		IsTransposed = transpose;

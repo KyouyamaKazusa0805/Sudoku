@@ -140,7 +140,6 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 	/// <summary>
 	/// Initializes a <see cref="Distance"/> instance via both values 1.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Distance() : this(1, 1)
 	{
 	}
@@ -150,7 +149,6 @@ public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 	/// <i>This value will automatically simplify the root expression, e.g. sqrt(18) -> 3sqrt(2).</i>
 	/// </summary>
 	/// <param name="q">The root value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Distance(int q) : this(1, q)
 	{
 	}

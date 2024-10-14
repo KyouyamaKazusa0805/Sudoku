@@ -18,7 +18,6 @@ public ref partial struct StepAnalysisContext(
 	/// Initializes an <see cref="StepAnalysisContext"/> instance via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public StepAnalysisContext(ref readonly Grid grid) : this(in grid, in Unsafe.NullRef<Grid>())
 	{
 	}

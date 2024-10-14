@@ -21,7 +21,6 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// <param name="from">The from cell.</param>
 	/// <param name="to">The to cell.</param>
 	/// <param name="digit">The digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conjugate(Cell from, Cell to, Digit digit) : this(digit << 20 | from << 10 | to)
 	{
 	}
@@ -32,7 +31,6 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// </summary>
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conjugate(ref readonly CellMap map, Digit digit) : this(map[0], map[1], digit)
 	{
 	}

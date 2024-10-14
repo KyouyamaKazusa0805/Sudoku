@@ -40,7 +40,6 @@ public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	/// </summary>
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="candidate">The candidate offset.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conclusion(ConclusionType type, Candidate candidate) : this((Mask)((int)type * 729 + candidate))
 	{
 	}
@@ -51,7 +50,6 @@ public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	/// <param name="type">The conclusion type.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conclusion(ConclusionType type, Cell cell, Digit digit) : this((Mask)((int)type * 729 + cell * 9 + digit))
 	{
 	}

@@ -11,7 +11,6 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 	/// <summary>
 	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DisorderedIttoryuFinder() : this(TechniqueIttoryuSets.IttoryuTechniques)
 	{
 	}
@@ -20,7 +19,6 @@ public sealed partial class DisorderedIttoryuFinder([Property] params TechniqueS
 	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance via the specified list of techniques.
 	/// </summary>
 	/// <param name="techniques">A list of techniques.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DisorderedIttoryuFinder(IEnumerable<Technique> techniques) : this([.. techniques])
 	{
 	}

@@ -22,7 +22,6 @@ public readonly partial struct SingleSubtypeGroup([Field] ReadOnlyMemory<SingleS
 	/// Initializes a <see cref="SingleSubtypeGroup"/> instance via an array of <see cref="SingleSubtype"/> instances.
 	/// </summary>
 	/// <param name="array">An array of <see cref="SingleSubtype"/> instances.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private SingleSubtypeGroup(SingleSubtype[] array) : this((ReadOnlyMemory<SingleSubtype>)array)
 	{
 	}

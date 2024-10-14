@@ -9,7 +9,6 @@ public sealed class ColumnNode : DancingLinkNode
 	/// Initializes a <see cref="ColumnNode"/> instance via the specified ID value.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ColumnNode(Candidate candidate) : base(candidate) => (Column, Size) = (this, 0);
 
 

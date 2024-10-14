@@ -27,7 +27,6 @@ public readonly partial struct VariantColor(
 	/// <param name="r">The red value.</param>
 	/// <param name="g">The green value.</param>
 	/// <param name="b">The blue value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public VariantColor(byte r, byte g, byte b) : this(255, r, g, b)
 	{
 	}
@@ -36,7 +35,6 @@ public readonly partial struct VariantColor(
 	/// Initializes a <see cref="VariantColor"/> instance via a whole value of A, R, G, B values.
 	/// </summary>
 	/// <param name="argb">An integer that includes all A, R, G, B values.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public VariantColor(int argb) : this((byte)(argb >> 24), (byte)(argb >> 16 & 255), (byte)(argb >> 8 & 255), (byte)(argb & 255))
 	{
 	}

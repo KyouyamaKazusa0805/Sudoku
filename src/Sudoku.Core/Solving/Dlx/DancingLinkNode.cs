@@ -11,7 +11,6 @@ public partial class DancingLinkNode : IFormattable
 	/// Initializes a <see cref="DancingLinkNode"/> instance via the specified ID value and the column node.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DancingLinkNode(Candidate candidate)
 		=> (Candidate, Column, Left, Right, Up, Down) = (candidate, null, this, this, this, this);
 
@@ -20,7 +19,6 @@ public partial class DancingLinkNode : IFormattable
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
 	/// <param name="column">The column node.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DancingLinkNode(Candidate candidate, ColumnNode? column)
 		=> (Candidate, Column, Left, Right, Up, Down) = (candidate, column, this, this, this, this);
 

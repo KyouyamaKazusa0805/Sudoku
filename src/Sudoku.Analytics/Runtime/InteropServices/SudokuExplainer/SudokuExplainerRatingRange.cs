@@ -14,7 +14,6 @@ public readonly partial struct SudokuExplainerRatingRange(
 	/// Initializes a <see cref="SudokuExplainerRatingRange"/> instance via the specified difficulty rating value.
 	/// </summary>
 	/// <param name="min">The difficulty rating value.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SudokuExplainerRatingRange(Half min) : this(min, min)
 	{
 	}
