@@ -4,106 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Concepts.AdjacentCellDirection">
-            <summary>
-            Represents a direction between two adjacent cells.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-            <seealso cref="T:System.FlagsAttribute" />
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirection.None">
-            <summary>
-            Indicates the default value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirection.Up">
-            <summary>
-            Indicates the direction is up.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirection.Down">
-            <summary>
-            Indicates the direction is down.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirection.Left">
-            <summary>
-            Indicates the direction is left.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirection.Right">
-            <summary>
-            Indicates the direction is right.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.AdjacentCellDirections">
-            <summary>
-            Represents constants of <see cref="T:Sudoku.Concepts.AdjacentCellDirection"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.AdjacentCellDirection"/>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellDirections.All">
-            <summary>
-            Indicates all directions.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.AdjacentCellGraph">
-            <summary>
-            Represents a graph that displays a list of <see cref="T:System.Int32"/> instances connected with rows and columns of adjacent positions.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="F:Sudoku.Concepts.AdjacentCellGraph.Cells">
-            <summary>
-            Indicates the backing field of cells.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.#ctor(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Creates an <see cref="T:Sudoku.Concepts.AdjacentCellGraph"/> instance via a list of cells connected by rows and columns.
-            </summary>
-            <param name="cells">A list of cells.</param>
-            <returns>An <see cref="T:Sudoku.Concepts.AdjacentCellGraph"/> instance created.</returns>
-            <exception cref="T:System.ArgumentException">
-            Throws when at least one cell is missing connection with all rows and columns of the other cells.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.AdjacentCellGraph.InnerBorderLines">
-            <summary>
-            Try to get a list of cells and its corresponding directions that inner border lines will be created.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.op_Equality(Sudoku.Concepts.AdjacentCellGraph,Sudoku.Concepts.AdjacentCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.op_Inequality(Sudoku.Concepts.AdjacentCellGraph,Sudoku.Concepts.AdjacentCellGraph)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.AdjacentCellGraph.Equals(Sudoku.Concepts.AdjacentCellGraph)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
@@ -6186,6 +6086,106 @@
             </summary>
             <param name="this">The mask instance to be split.</param>
             <returns>A triplet of values.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Specialized.AdjacentCellDirection">
+            <summary>
+            Represents a direction between two adjacent cells.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <seealso cref="T:System.FlagsAttribute" />
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirection.None">
+            <summary>
+            Indicates the default value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirection.Up">
+            <summary>
+            Indicates the direction is up.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirection.Down">
+            <summary>
+            Indicates the direction is down.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirection.Left">
+            <summary>
+            Indicates the direction is left.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirection.Right">
+            <summary>
+            Indicates the direction is right.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Specialized.AdjacentCellDirections">
+            <summary>
+            Represents constants of <see cref="T:Sudoku.Concepts.Specialized.AdjacentCellDirection"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Specialized.AdjacentCellDirection"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellDirections.All">
+            <summary>
+            Indicates all directions.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Specialized.AdjacentCellGraph">
+            <summary>
+            Represents a graph that displays a list of <see cref="T:System.Int32"/> instances connected with rows and columns of adjacent positions.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="F:Sudoku.Concepts.Specialized.AdjacentCellGraph.Cells">
+            <summary>
+            Indicates the backing field of cells.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.Specialized.AdjacentCellGraph"/> instance via a list of cells connected by rows and columns.
+            </summary>
+            <param name="cells">A list of cells.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.Specialized.AdjacentCellGraph"/> instance created.</returns>
+            <exception cref="T:System.ArgumentException">
+            Throws when at least one cell is missing connection with all rows and columns of the other cells.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.Specialized.AdjacentCellGraph.InnerBorderLines">
+            <summary>
+            Try to get a list of cells and its corresponding directions that inner border lines will be created.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.op_Equality(Sudoku.Concepts.Specialized.AdjacentCellGraph,Sudoku.Concepts.Specialized.AdjacentCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.op_Inequality(Sudoku.Concepts.Specialized.AdjacentCellGraph,Sudoku.Concepts.Specialized.AdjacentCellGraph)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.Equals(Sudoku.Concepts.Specialized.AdjacentCellGraph)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>

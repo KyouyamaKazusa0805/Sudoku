@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Specialized;
 
 /// <summary>
 /// Represents a direction between two adjacent cells.
