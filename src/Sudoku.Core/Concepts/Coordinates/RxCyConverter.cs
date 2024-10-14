@@ -11,6 +11,10 @@ namespace Sudoku.Concepts.Coordinates;
 /// <para>Indicates whether digits will be displayed before the cell coordinates.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
+/// <param name="AlwaysOutputBracket">
+/// <para>Indicates whether brackets will be always included in output text.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
 /// <param name="HouseNotationOnlyDisplayCapitals">
 /// <para>Indicates whether the houses will be displayed its capitals only.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
@@ -26,6 +30,7 @@ namespace Sudoku.Concepts.Coordinates;
 public sealed record RxCyConverter(
 	bool MakeLettersUpperCase = false,
 	bool MakeDigitBeforeCell = false,
+	bool AlwaysOutputBracket = false,
 	bool HouseNotationOnlyDisplayCapitals = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
@@ -40,8 +45,16 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-				[] => string.Empty,
-				[var p] => MakeLettersUpperCase ? $"R{p / 9 + 1}C{p % 9 + 1}" : $"r{p / 9 + 1}c{p % 9 + 1}",
+				[] => AlwaysOutputBracket switch
+				{
+					true => $"{NotationBracket.GetOpenBracket()}{NotationBracket.GetClosedBracket()}",
+					_ => string.Empty
+				},
+				[var p] when (MakeLettersUpperCase ? $"R{p / 9 + 1}C{p % 9 + 1}" : $"r{p / 9 + 1}c{p % 9 + 1}") is var result => AlwaysOutputBracket switch
+				{
+					true => $"{NotationBracket.GetOpenBracket()}{result}{NotationBracket.GetClosedBracket()}",
+					_ => result
+				},
 				_ => r(in cells)
 			};
 
@@ -50,7 +63,8 @@ public sealed record RxCyConverter(
 			{
 				var sb = new StringBuilder(50);
 				var output = CoordinateSimplifier.Simplify(in cells);
-				var needAddingBrackets = output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
+				var needAddingBrackets = AlwaysOutputBracket
+					|| output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 				if (needAddingBrackets)
 				{
 					sb.Append(NotationBracket.GetOpenBracket());

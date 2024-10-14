@@ -7,6 +7,14 @@ namespace Sudoku.Concepts.Coordinates;
 /// <para>Indicates whether we make the letters be upper-casing.</para>
 /// <para>The value is <see langword="false"/> by default.</para>
 /// </param>
+/// <param name="MakeDigitBeforeCell">
+/// <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
+/// <param name="AlwaysOutputBracket">
+/// <para>Indicates whether brackets will be always included in output text.</para>
+/// <para>The value is <see langword="false"/> by default.</para>
+/// </param>
 /// <param name="FinalRowLetter">
 /// <para>
 /// Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
@@ -18,13 +26,20 @@ namespace Sudoku.Concepts.Coordinates;
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
 /// <param name="NotationBracket"><inheritdoc/></param>
+/// <param name="DigitBracketInCandidateGroups">
+/// <para>Indicates the bracket surrounding digits in candidate output notation.</para>
+/// <para>The value is <see cref="NotationBracket.None"/> by default.</para>
+/// </param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record K9Converter(
 	bool MakeLettersUpperCase = false,
+	bool MakeDigitBeforeCell = false,
+	bool AlwaysOutputBracket = false,
 	char FinalRowLetter = 'I',
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
 	NotationBracket NotationBracket = NotationBracket.None,
+	NotationBracket DigitBracketInCandidateGroups = NotationBracket.None,
 	CultureInfo? CurrentCulture = null
 ) : CoordinateConverter(DefaultSeparator, DigitsSeparator, NotationBracket, CurrentCulture)
 {
@@ -34,7 +49,12 @@ public sealed record K9Converter(
 		{
 			switch (cells)
 			{
-				case []: { return string.Empty; }
+				case []:
+				{
+					return AlwaysOutputBracket
+						? $"{NotationBracket.GetOpenBracket()}{NotationBracket.GetClosedBracket()}"
+						: string.Empty;
+				}
 				case [var p]:
 				{
 					var row = p / 9;
@@ -42,7 +62,10 @@ public sealed record K9Converter(
 					var rowCharacter = row == 8
 						? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
 						: (char)((MakeLettersUpperCase ? 'A' : 'a') + row);
-					return $"{rowCharacter}{DigitConverter((Mask)(1 << column))}";
+					var result = $"{rowCharacter}{DigitConverter((Mask)(1 << column))}";
+					return AlwaysOutputBracket
+						? $"{NotationBracket.GetOpenBracket()}{result}{NotationBracket.GetClosedBracket()}"
+						: result;
 				}
 				default: { return r(in cells); }
 			}
@@ -52,7 +75,8 @@ public sealed record K9Converter(
 			{
 				var sb = new StringBuilder(18);
 				var output = CoordinateSimplifier.Simplify(in cells);
-				var needAddingBrackets = output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
+				var needAddingBrackets = AlwaysOutputBracket
+					|| output.Length != 1 && Enum.IsDefined(NotationBracket) && NotationBracket != NotationBracket.None;
 				if (needAddingBrackets)
 				{
 					sb.Append(NotationBracket.GetOpenBracket());
@@ -83,6 +107,7 @@ public sealed record K9Converter(
 	public override FuncRefReadOnly<CandidateMap, string> CandidateConverter
 		=> (ref readonly CandidateMap candidates) =>
 		{
+			var needAddingBrackets = Enum.IsDefined(DigitBracketInCandidateGroups) && DigitBracketInCandidateGroups != NotationBracket.None;
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
 				from candidate in candidates
@@ -90,9 +115,29 @@ public sealed record K9Converter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				sb.Append(CellConverter([.. from candidate in digitGroup select candidate / 9]));
-				sb.Append('.');
-				sb.Append(digitGroup.Key + 1);
+				CellMap cells = [.. from candidate in digitGroup select candidate / 9];
+				if (MakeDigitBeforeCell)
+				{
+					if (needAddingBrackets)
+					{
+						sb.Append(DigitBracketInCandidateGroups.GetOpenBracket());
+					}
+					sb.Append(digitGroup.Key + 1);
+					if (needAddingBrackets)
+					{
+						sb.Append(DigitBracketInCandidateGroups.GetClosedBracket());
+					}
+
+					sb.Append(CellConverter(in cells));
+				}
+				else
+				{
+					sb.Append(CellConverter(in cells));
+					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetOpenBracket() : "(");
+					sb.Append(digitGroup.Key + 1);
+					sb.Append(needAddingBrackets ? DigitBracketInCandidateGroups.GetClosedBracket() : ")");
+				}
+
 				sb.Append(DefaultSeparator);
 			}
 			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();

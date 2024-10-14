@@ -3102,6 +3102,26 @@
             <returns>The closed bracket token.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix">
+            <summary>
+            Represents a kind of fix that describes on/off state of a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None">
+            <summary>
+            Indicates no fix here to describe on/off state.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Prefix">
+            <summary>
+            Indicates the fix type is prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Suffix">
+            <summary>
+            Indicates the fix type is suffix.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.OpenSudokuGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> type that supports OpenSudoku formatting.
@@ -3344,25 +3364,12 @@
             <para>Indicates whether we make the letters be upper-casing.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
-            <param name="FinalRowLetter">
-            <para>
-            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
-            but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
-            This option will change the last row letter if you want to change it.
-            </para>
-            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
             </param>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <param name="NotationBracket"><inheritdoc/></param>
-            <param name="CurrentCulture"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Char,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
-            <summary>
-            Represents a coordinate converter using K9 notation.
-            </summary>
-            <param name="MakeLettersUpperCase">
-            <para>Indicates whether we make the letters be upper-casing.</para>
+            <param name="AlwaysOutputBracket">
+            <para>Indicates whether brackets will be always included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="FinalRowLetter">
@@ -3376,11 +3383,60 @@
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
+            <param name="DigitBracketInCandidateGroups">
+            <para>Indicates the bracket surrounding digits in candidate output notation.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            </param>
+            <param name="CurrentCulture"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Char,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+            <summary>
+            Represents a coordinate converter using K9 notation.
+            </summary>
+            <param name="MakeLettersUpperCase">
+            <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="MakeDigitBeforeCell">
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="AlwaysOutputBracket">
+            <para>Indicates whether brackets will be always included in output text.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="FinalRowLetter">
+            <para>
+            Indicates the character that displays for the last row. Generally it uses <c>'I'</c> to be the last row,
+            but sometimes it may produce much difficulty on distinct with digit 1 and i (They are nearly same by its shape).
+            This option will change the last row letter if you want to change it.
+            </para>
+            <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </param>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="NotationBracket"><inheritdoc/></param>
+            <param name="DigitBracketInCandidateGroups">
+            <para>Indicates the bracket surrounding digits in candidate output notation.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.MakeLettersUpperCase">
             <summary>
             <para>Indicates whether we make the letters be upper-casing.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.K9Converter.MakeDigitBeforeCell">
+            <summary>
+            <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.K9Converter.AlwaysOutputBracket">
+            <summary>
+            <para>Indicates whether brackets will be always included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>
@@ -3392,6 +3448,12 @@
             This option will change the last row letter if you want to change it.
             </para>
             <para>The value is <c>'I'</c> by default. You can set the value to <c>'J'</c> or <c>'K'</c>; other letters are not suggested.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.K9Converter.DigitBracketInCandidateGroups">
+            <summary>
+            <para>Indicates the bracket surrounding digits in candidate output notation.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.CellConverter">
@@ -3592,6 +3654,10 @@
             <para>Indicates whether digits will be displayed before the cell coordinates.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
+            <param name="AlwaysOutputBracket">
+            <para>Indicates whether brackets will be always included in output text.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
             <param name="HouseNotationOnlyDisplayCapitals">
             <para>Indicates whether the houses will be displayed its capitals only.</para>
             <para>The value is <see langword="false"/> by default.</para>
@@ -3605,7 +3671,7 @@
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using RxCy notation.
             </summary>
@@ -3615,6 +3681,10 @@
             </param>
             <param name="MakeDigitBeforeCell">
             <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </param>
+            <param name="AlwaysOutputBracket">
+            <para>Indicates whether brackets will be always included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </param>
             <param name="HouseNotationOnlyDisplayCapitals">
@@ -3639,6 +3709,12 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell">
             <summary>
             <para>Indicates whether digits will be displayed before the cell coordinates.</para>
+            <para>The value is <see langword="false"/> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.AlwaysOutputBracket">
+            <summary>
+            <para>Indicates whether brackets will be always included in output text.</para>
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>

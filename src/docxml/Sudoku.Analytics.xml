@@ -24727,12 +24727,20 @@
             Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.AlwaysOutputBracket">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.AlwaysOutputBracket"/>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.FinalRowLetter">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DefaultSeparator">
             <summary>
             Indicates the default separator. By default it's a comma <c>", "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlinedDigitsSeparator">
+            <summary>
+            Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.StrongLinkConnector">
@@ -24745,9 +24753,10 @@
             Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.InlinedDigitsSeparator">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffStateFixes">
             <summary>
-            Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
+            Represents a pair of fixes that describes on or off state of a chain node respectively.
+            By default it's <see langword="null"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NotationBracket">
@@ -24755,6 +24764,12 @@
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.DigitBracketInCandidateGroups">
             <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffNotationFix">
+            <summary>
+            Indicates the prefix or suffix style to describe on/off state of each chain node.
+            By default it's <see cref="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None"/>.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.NodeFormatType">
             <summary>
@@ -24787,6 +24802,16 @@
             </summary>
             <remarks>
             Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.OnOffPlot">
+            <summary>
+            Indicates On/Off plot notation format.
+            I may miss the main page of introduction about this notation,
+            but you can visit <see href="https://www.sudokuwiki.org/Alternating_Inference_Chains">this link</see> to see such usages.
+            </summary>
+            <remarks>
+            Example output:<br/><c><![CDATA[+6[D4]-6[D1]+8[D1]-8[D9]+8[I9]-8[I4]]]></c>
             </remarks>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo.GetFormat(System.Type)">
