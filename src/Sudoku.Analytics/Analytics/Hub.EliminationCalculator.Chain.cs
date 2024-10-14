@@ -27,7 +27,7 @@ public partial class Hub
 					var map = node1.Map / digit;
 					return node1.IsGroupedNode
 						? from cell in map.PeerIntersection & candidatesMap[digit] select new Conclusion(Elimination, cell, digit)
-						: (Conclusion[])[];
+						: [];
 				}
 
 				// Two nodes aren't same. Check for values.
