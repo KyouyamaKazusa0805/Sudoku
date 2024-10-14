@@ -1,17 +1,17 @@
 <center>语言切换：<a href="README-zh-cn.md">简体中文</a><br/><img src="miscellaneous/pic/icon.png" /></center>
 
-[![stars](https://img.shields.io/github/stars/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/stargazers)
-[![issues](https://img.shields.io/github/issues/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/issues)
-[![license](https://img.shields.io/github/license/SunnieShine/Sudoku?color=097abb)](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE)
+[![stars](https://img.shields.io/github/stars/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/stargazers)
+[![issues](https://img.shields.io/github/issues/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/issues)
+[![license](https://img.shields.io/github/license/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE)
 
 ![](https://img.shields.io/badge/Programming%20Language-C%23%2013-%23178600)
 ![](https://img.shields.io/badge/Framework-.NET%209-blueviolet)
 ![](https://img.shields.io/badge/Indenting-Tabs-lightgrey)
 ![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.12%20Preview%202.1-%23cf98fb?logo=Visual%20Studio)
 ![](https://img.shields.io/badge/Language-English%2C%20Simplified%20Chinese-success)
-[![](https://img.shields.io/badge/UI%20Project-SudokuStudio-%230d1117)](https://github.com/SunnieShine/Sudoku/tree/main/src/SudokuStudio/SudokuStudio)
+[![](https://img.shields.io/badge/UI%20Project-SudokuStudio-%230d1117)](https://github.com/KyouyamaKazusa0805/Sudoku/tree/main/src/SudokuStudio/SudokuStudio)
 
-[![](https://img.shields.io/badge/GitHub%20repo-Here!-%230d1117?logo=github)](https://github.com/SunnieShine/Sudoku)
+[![](https://img.shields.io/badge/GitHub%20repo-Here!-%230d1117?logo=github)](https://github.com/KyouyamaKazusa0805/Sudoku)
 [![](https://img.shields.io/badge/Gitee%20repo-Here!-%230d1117?logo=gitee)](https://gitee.com/KyouyamaKazusa/Sudoku)
 
 [![bilibili](https://img.shields.io/badge/dynamic/json?color=%23fb7299&label=bilibili&logo=bilibili&query=%24.data.follower&suffix=%20followers&url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D23736703)](https://space.bilibili.com/23736703)
@@ -158,7 +158,7 @@ Some other techniques will be implemented later, such as baba grouping and chain
 
 ## Forks & PRs (Pull Requests) for This Repo
 
-Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/SunnieShine/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
+Of course you can fork my repo and do whatever you want. You can do whatever you want to do under the [MIT license](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE). However, due to the copy of the GitHub repo, Gitee repo doesn't support any PRs. I'm sorry. But you can create the issue on both two platforms. Please visit the following part "Basic Information" for learning about more details.
 
 In addition, this repo may update **frequently** (At least 1 commit in a day).
 
