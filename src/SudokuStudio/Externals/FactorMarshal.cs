@@ -10,7 +10,6 @@ public static class FactorMarshal
 	/// Try to get the scale unit length from the scale value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the scale value is negative.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetScaleUnitLength(decimal scale)
 		=> scale switch
 		{
@@ -26,7 +25,6 @@ public static class FactorMarshal
 	/// <summary>
 	/// Try to get the scale unit from the scale value.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetScaleFormatString(decimal scale)
 		=> GetScaleUnitLength(scale) is var p and not 0 ? $"0.{new('0', p)}" : null;
 }

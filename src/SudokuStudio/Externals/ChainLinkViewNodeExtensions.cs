@@ -31,8 +31,7 @@ public static class ChainLinkViewNodeExtensions
 			return false;
 		}
 
-		var (pt1, pt2) = (default(Point), default(Point));
-		var distance = double.MaxValue;
+		var (pt1, pt2, distance) = (default(Point), default(Point), double.MaxValue);
 		var startCandidates = start switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
 		var endCandidates = end switch { CandidateMap c => c, Candidate c => c.AsCandidateMap() };
 		foreach (var s in startCandidates)
@@ -50,8 +49,7 @@ public static class ChainLinkViewNodeExtensions
 		}
 
 		var (deltaX, deltaY) = (pt2.X - pt1.X, pt2.Y - pt1.Y);
-		var alpha = Atan2(deltaY, deltaX);
-		adjust(pt1, pt2, alpha, cellSize, out var p1/*, out _*/);
+		adjust(pt1, pt2, Atan2(deltaY, deltaX), cellSize, out var newPoint);
 
 		var (dx1, dy1) = (deltaX, deltaY);
 		foreach (var point in points)
@@ -61,7 +59,7 @@ public static class ChainLinkViewNodeExtensions
 				continue;
 			}
 
-			if ((point.X - p1.X, point.Y - p1.Y) is var (dx2, dy2)
+			if ((point.X - newPoint.X, point.Y - newPoint.Y) is var (dx2, dy2)
 				&& Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 				&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 				&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
@@ -72,14 +70,12 @@ public static class ChainLinkViewNodeExtensions
 		return false;
 
 
-		static void adjust(Point pt1, Point pt2, double alpha, double cs, out Point p1/*, out Point p2*/)
+		static void adjust(Point pt1, Point pt2, double alpha, double cellSize, out Point newPoint)
 		{
-			(p1, /*p2, */var tempDelta) = (pt1, /*pt2, */cs / 2);
+			(newPoint, var tempDelta) = (pt1, cellSize / 2);
 			var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
-			p1.X += px;
-			p1.Y += py;
-			//p2.X -= px;
-			//p2.Y -= py;
+			newPoint.X += px;
+			newPoint.Y += py;
 		}
 	}
 }
