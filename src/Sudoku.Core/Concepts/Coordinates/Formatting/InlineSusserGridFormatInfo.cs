@@ -22,7 +22,7 @@ public sealed partial class InlineSusserGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override InlineSusserGridFormatInfo Clone() => new() { NegateEliminationsTripletRule = NegateEliminationsTripletRule };

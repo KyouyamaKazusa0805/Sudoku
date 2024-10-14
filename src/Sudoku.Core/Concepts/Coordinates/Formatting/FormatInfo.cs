@@ -6,9 +6,9 @@ namespace Sudoku.Concepts.Coordinates.Formatting;
 /// <typeparam name="T">The type of an object to be formatted.</typeparam>
 public abstract class FormatInfo<T> : IFormatProvider where T : allows ref struct
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormatProvider.GetFormat(Type?)"/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public abstract object? GetFormat(Type? formatType);
+	public abstract IFormatProvider? GetFormat(Type? formatType);
 
 	/// <summary>
 	/// Creates a copy of the current instance.
@@ -29,4 +29,8 @@ public abstract class FormatInfo<T> : IFormatProvider where T : allows ref struc
 	/// <param name="str">The string value to be parsed.</param>
 	/// <returns>An instance of type <typeparamref name="T"/>.</returns>
 	protected internal abstract T ParseCore(string str);
+
+	/// <inheritdoc/>
+	[return: NotNullIfNotNull(nameof(formatType))]
+	object? IFormatProvider.GetFormat(Type? formatType) => GetFormat(formatType);
 }

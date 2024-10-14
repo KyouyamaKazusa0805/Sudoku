@@ -17,7 +17,7 @@ public sealed class MaskGridFormatInfo : GridFormatInfo
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override MaskGridFormatInfo Clone() => new();

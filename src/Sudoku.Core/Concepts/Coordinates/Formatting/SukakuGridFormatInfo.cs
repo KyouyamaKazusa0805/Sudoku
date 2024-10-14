@@ -11,7 +11,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override SukakuGridFormatInfo Clone() => new() { Placeholder = Placeholder, Multiline = Multiline };

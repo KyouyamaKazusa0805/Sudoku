@@ -7,7 +7,7 @@ public sealed class HodokuTripletCandidateMapFormatInfo : CandidateMapFormatInfo
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CandidateMapFormatInfo) ? this : null;
+	public override IFormatProvider? GetFormat(Type? formatType) => formatType == typeof(CandidateMapFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override HodokuTripletCandidateMapFormatInfo Clone() => new();

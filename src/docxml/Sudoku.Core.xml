@@ -2759,7 +2759,7 @@
             <typeparam name="T">The type of an object to be formatted.</typeparam>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.GetFormat(System.Type)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormatProvider.GetFormat(System.Type)"/>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.Clone">
             <summary>
@@ -2780,6 +2780,9 @@
             </summary>
             <param name="str">The string value to be parsed.</param>
             <returns>An instance of type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.System#IFormatProvider#GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo">
             <summary>
