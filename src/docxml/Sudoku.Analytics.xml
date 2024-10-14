@@ -2148,9 +2148,9 @@
             <returns>Hash code value.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.String,System.IFormatProvider)"/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.BlossomLoop.Conclusions">
@@ -2324,6 +2324,16 @@
         <member name="T:Sudoku.Analytics.Construction.Components.ChainOrLoop">
             <summary>
             Represents a chain or a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.StrongLinkConnector">
+            <summary>
+            Indicates the strong link connector.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.WeakLinkConnector">
+            <summary>
+            Indicates the weak link connector.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Construction.Components.ChainOrLoop.Inferences">
@@ -2531,24 +2541,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.IFormatProvider)">
-            <summary>
-            Formats the current object, converting it into equivalent string representation,
-            with the specified format provider object that can specify customized formatting rules on nodes.
-            </summary>
-            <param name="formatProvider">
-            <para>Indicates the format provider object.</para>
-            <para>
-            The value should be derived from <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/>
-            to output chain nodes more efficiently. If not, the argument will be treated as candidate coordinate converter object
-            to be used by outputting a group of candidates in nodes, calling <see cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)"/>.
-            </para>
-            </param>
-            <returns>An equivalent string representation of the current object.</returns>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainOrLoopFormatInfo"/>
-            <seealso cref="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.Slice(System.Int32,System.Int32)">
             <summary>
@@ -2569,6 +2562,9 @@
             <param name="supportedRules">The supported rules.</param>
             <param name="alsIndex">Indicates the currently operated ALS index.</param>
             <returns>The views.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ChainOrLoop.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -3715,10 +3711,7 @@
             <returns>Hash code value.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.CastToFinnedChain(Sudoku.Concepts.CandidateMap@)">
             <summary>
@@ -3745,6 +3738,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Construction#Components#MultipleForcingChains,System#Collections#Generic#KeyValuePair{System#Int32,Sudoku#Analytics#Construction#Components#ChainOrLoop}}#All(System.Func{System.Collections.Generic.KeyValuePair{System.Int32,Sudoku.Analytics.Construction.Components.ChainOrLoop},System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.MultipleForcingChains.Conclusions">

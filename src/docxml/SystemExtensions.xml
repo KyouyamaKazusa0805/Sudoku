@@ -1386,6 +1386,15 @@
             The value is <see langword="false"/> by default.
             </remarks>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EmitThisCastToInterface">
+            <summary>
+            Indicates whether the source generator will emit <c>(Interface)this</c> on implementation,
+            especially for cases on calling overloads.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnEquals">
             <summary>
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.

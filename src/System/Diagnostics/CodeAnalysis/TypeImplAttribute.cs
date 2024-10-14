@@ -54,6 +54,15 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public bool IsLargeStructure { get; init; } = false;
 
 	/// <summary>
+	/// Indicates whether the source generator will emit <c>(Interface)this</c> on implementation,
+	/// especially for cases on calling overloads.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see langword="false"/> by default.
+	/// </remarks>
+	public bool EmitThisCastToInterface { get; init; } = false;
+
+	/// <summary>
 	/// Indicates the extra modifiers can be applied to <see cref="object.Equals(object?)"/> method.
 	/// </summary>
 	public string? OtherModifiersOnEquals { get; init; }

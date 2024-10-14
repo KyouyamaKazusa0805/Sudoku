@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a loop.
 /// </summary>
 /// <param name="lastNode"><inheritdoc/></param>
-[TypeImpl(TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_ToString, EmitThisCastToInterface = true)]
 public sealed partial class Loop(Node lastNode) : NamedChain(lastNode, true)
 {
 	/// <inheritdoc/>

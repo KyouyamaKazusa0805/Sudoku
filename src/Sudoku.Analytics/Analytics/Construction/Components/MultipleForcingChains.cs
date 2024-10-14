@@ -339,12 +339,9 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 		return hashCode.ToHashCode();
 	}
 
-	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider) => ToString(", ", formatProvider);
-
-	/// <inheritdoc/>
-	public string ToString(string? format, IFormatProvider? formatProvider)
+	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
 		return string.Join(
@@ -352,7 +349,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 			from kvp in this
 			let candidate = kvp.Key
 			let pattern = kvp.Value
-			select $"{converter.CandidateConverter([candidate])}: {pattern.ToString(format, converter)}"
+			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {pattern.ToString(converter)}"
 		);
 	}
 
@@ -485,4 +482,7 @@ public sealed partial class MultipleForcingChains([Property(Setter = "internal s
 		}
 		return true;
 	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

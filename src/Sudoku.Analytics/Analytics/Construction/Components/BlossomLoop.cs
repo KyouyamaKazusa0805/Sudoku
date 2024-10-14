@@ -188,13 +188,9 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 		return hashCode.ToHashCode();
 	}
 
-	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format, IFormatProvider? formatProvider)
+	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
 		return string.Join(
@@ -202,7 +198,10 @@ public sealed partial class BlossomLoop([Property] params ConclusionSet conclusi
 			from kvp in this
 			let candidate = kvp.Key
 			let chain = kvp.Value
-			select $"{converter.CandidateConverter([candidate])}: {chain.ToString(format, converter)}"
+			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {chain.ToString(converter)}"
 		);
 	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

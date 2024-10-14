@@ -4520,22 +4520,6 @@
             Indicates the inference is weak inference.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.InferenceExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Inference"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Inference"/>
-        </member>
-        <member name="M:Sudoku.Concepts.InferenceExtensions.ConnectingNotation(Sudoku.Concepts.Inference)">
-            <summary>
-            Gets connecting notation of the inference, with two spaces sandwiching the characters.
-            </summary>
-            <param name="this">The inference instance.</param>
-            <returns>The connecting notation of the inference.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in the enumeration type.
-            </exception>
-        </member>
         <member name="T:Sudoku.Concepts.LinkedListExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.

@@ -67,5 +67,5 @@ public sealed partial class Link(
 
 	/// <inheritdoc/>
 	public override string ToString()
-		=> $"{FirstNode}{(IsStrong ? Inference.Strong : Inference.Weak).ConnectingNotation()}{SecondNode}";
+		=> $"{FirstNode}{(IsStrong ? ChainOrLoop.StrongLinkConnector : ChainOrLoop.WeakLinkConnector)}{SecondNode}";
 }

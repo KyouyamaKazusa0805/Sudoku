@@ -24,6 +24,8 @@ internal static class TypeImplHandler
 
 	private const string OtherModifiersOnToStringPropertyName = "OtherModifiersOnToString";
 
+	private const string EmitThisCastToInterfacePropertyName = "EmitThisCastToInterface";
+
 	private const string EqualsBehaviorPropertyName = "EqualsBehavior";
 
 	private const string ToStringBehaviorPropertyName = "ToStringBehavior";
@@ -397,6 +399,7 @@ internal static class TypeImplHandler
 		}
 
 		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var needCastingToInterface = attribute.GetNamedArgument(EmitThisCastToInterfacePropertyName, false);
 		var typeParametersString = typeParameters is []
 			? string.Empty
 			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
@@ -487,17 +490,6 @@ internal static class TypeImplHandler
 			var expression = behavior switch
 			{
 				ToStringBehavior.CallOverload when typeMethods.Any(
-					method => method is
-					{
-						Name: "System.IFormattable.ToString",
-						IsImplicitlyDeclared: false,
-						ExplicitInterfaceImplementations: not [],
-						TypeParameters: [],
-						Parameters: [{ Type.SpecialType: System_String, NullableAnnotation: Annotated }, { Type: var t, NullableAnnotation: Annotated }],
-						ReturnType.SpecialType: System_String
-					} && SymbolEqualityComparer.Default.Equals(t, formatProviderSymbol)
-				) => "((global::System.IFormattable)this).ToString(null, null)",
-				ToStringBehavior.CallOverload when typeMethods.Any(
 					static method => method is
 					{
 						Name: "ToString",
@@ -517,7 +509,11 @@ internal static class TypeImplHandler
 						ReturnType.SpecialType: System_String
 					} && SymbolEqualityComparer.Default.Equals(t, formatProviderSymbol)
 				) => "ToString(default(global::System.IFormatProvider))",
-				ToStringBehavior.CallOverload => "ToString(default(string), default(global::System.IFormatProvider))",
+				ToStringBehavior.CallOverload => needCastingToInterface switch
+				{
+					true => "((global::System.IFormattable)this).ToString(null, null)",
+					_ => "ToString(default(string), default(global::System.IFormatProvider))"
+				},
 				ToStringBehavior.ReturnTypeName => fullTypeNameString,
 				ToStringBehavior.Specified => referencedMembers[0].Name,
 				ToStringBehavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
