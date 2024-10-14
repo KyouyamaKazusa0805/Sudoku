@@ -1008,7 +1008,7 @@
             <returns>The result instance created.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -1075,12 +1075,6 @@
             <param name="cells">The cells to be checked.</param>
             <param name="house">The house to be checked.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
-            <summary>
-            Explicit cast from a <see cref="T:System.Int32"/> array into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">An array of <see cref="T:System.Int32"/> values.</param>
         </member>
         <member name="T:Sudoku.Concepts.CellMap.Enumerator">
             <summary>

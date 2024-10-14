@@ -775,7 +775,7 @@ public partial struct CellMap : CellMapBase
 	public static CellMap CreateByBits(int high, int mid, int low)
 		=> CreateByBits((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CellMap Parse(string str)
 	{
 		foreach (var parser in
@@ -1000,12 +1000,4 @@ public partial struct CellMap : CellMapBase
 		}
 		return result;
 	}
-
-
-	/// <summary>
-	/// Explicit cast from a <see cref="Cell"/> array into a <see cref="CellMap"/> instance.
-	/// </summary>
-	/// <param name="cells">An array of <see cref="Cell"/> values.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(Cell[] cells) => cells.AsCellMap();
 }

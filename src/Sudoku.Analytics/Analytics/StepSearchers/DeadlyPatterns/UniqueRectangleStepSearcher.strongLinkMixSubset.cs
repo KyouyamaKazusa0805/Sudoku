@@ -63,7 +63,7 @@ public partial class UniqueRectangleStepSearcher
 		// Determine target cell, same-block cell (as corner) and the last cell.
 		Unsafe.SkipInit(out int targetCell);
 		Unsafe.SkipInit(out int sameBlockCell);
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		foreach (var cell in cells - cornerCell)
 		{
 			if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(cell))
@@ -273,7 +273,7 @@ public partial class UniqueRectangleStepSearcher
 		// 2.8.+7.+5+93+7.+593+28.+1+93.5....7.+5726..1....7.9..+5+69..514+7.5..+6.7.3.+3+76.95.+8.1.+9...7+56:412 435 436 638 452 852 453 257 277 279 494
 
 		// Determine target cell, same-block cell and the last cell.
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		var sameBlockCell = (cells - cornerCell & HousesMap[cornerCell.ToHouse(HouseType.Block)])[0];
 		Unsafe.SkipInit(out int targetCell);
 		foreach (var cell in cells - cornerCell - sameBlockCell)
@@ -484,7 +484,7 @@ public partial class UniqueRectangleStepSearcher
 		{
 			// Determine target cell, same-block cell (as corner) and the last cell.
 			Unsafe.SkipInit(out int sameBlockCell);
-			var cells = (CellMap)urCells;
+			var cells = urCells.AsCellMap();
 			foreach (var cell in cells - cornerCell)
 			{
 				if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(cell))
