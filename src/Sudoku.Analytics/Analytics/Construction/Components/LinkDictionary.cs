@@ -39,7 +39,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	}
 
 	/// <summary>
-	/// Try to append grouped links from the other dictionary.
+	/// Try to append grouped links from the other dictionary. This method will merge links without any distinctive checks.
 	/// </summary>
 	/// <param name="other">The other dictionary.</param>
 	public void Merge(LinkDictionary other)

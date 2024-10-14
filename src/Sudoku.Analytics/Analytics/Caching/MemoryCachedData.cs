@@ -128,6 +128,9 @@ internal static class MemoryCachedData
 	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
 		CandidatesCount = g.CandidatesCount;
+		StrongLinkTypesEntried = LinkType.Unknown;
+		WeakLinkTypesEntried = LinkType.Unknown;
+
 		_cachedEmptyCells = g.EmptyCells;
 		_cachedBivalueCells = g.BivalueCells;
 		_cachedSolution = s;
@@ -135,15 +138,14 @@ internal static class MemoryCachedData
 		_cachedDigitsMap = [.. g.DigitsMap];
 		_cachedValuesMap = [.. g.ValuesMap];
 
-		// Chaining-related fields.
-		StrongLinkTypesEntried = LinkType.Unknown;
-		WeakLinkTypesEntried = LinkType.Unknown;
 		StrongLinkDictionary.Clear();
 		WeakLinkDictionary.Clear();
 	}
 
 	/// <summary>
 	/// Try to collect strong and weak links appeared in a grid.
+	/// If all links are "up-to-date" (i.e. meaning there's no extra links to be checked), this method will do nothing,
+	/// in order to enhance performance.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="linkTypes">The link types to be checked.</param>
