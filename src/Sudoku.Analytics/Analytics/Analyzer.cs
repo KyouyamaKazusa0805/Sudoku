@@ -627,7 +627,8 @@ public sealed partial class Analyzer : AnalyzerBase
 							newConclusions.Add(newConclusion);
 						}
 					}
-					step.UpdateConclusionsUnsafe([.. originalConclusions, .. newConclusions]);
+
+					ConclusionBackingField(step) = (Conclusion[])[.. originalConclusions, .. newConclusions];
 				}
 
 				var atLeastOneConclusionIsWorth = false;
@@ -682,4 +683,11 @@ public sealed partial class Analyzer : AnalyzerBase
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="Step"/>.
+	/// </summary>
+	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "<Conclusions>k__BackingField")]
+	private static extern ref ReadOnlyMemory<Conclusion> ConclusionBackingField(Step step);
 }

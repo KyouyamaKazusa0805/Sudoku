@@ -660,6 +660,11 @@
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Analytics.AnalyzerContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Analyzer.ConclusionBackingField(Sudoku.Analytics.Step)">
+            <summary>
+            Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="T:Sudoku.Analytics.Step"/>.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
             <summary>
             Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
@@ -6720,12 +6725,6 @@
             </summary>
             <param name="formatProvider">The culture information.</param>
             <returns>The string value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.UpdateConclusionsUnsafe(Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Replace conclusions with new values.
-            </summary>
-            <param name="conclusions">Conclusions to be updated.</param>
         </member>
         <member name="M:Sudoku.Analytics.Step.NameCompareTo(Sudoku.Analytics.Step,System.IFormatProvider)">
             <summary>
