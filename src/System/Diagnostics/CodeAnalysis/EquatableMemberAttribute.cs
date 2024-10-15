@@ -5,4 +5,4 @@ namespace System.Diagnostics.CodeAnalysis;
 /// </summary>
 /// <seealso cref="IEquatable{T}.Equals(T)"/>
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = false)]
-public sealed class EquatableMemberAttribute : Attribute;
+public sealed class EquatableMemberAttribute : ComponentMemberAttribute;

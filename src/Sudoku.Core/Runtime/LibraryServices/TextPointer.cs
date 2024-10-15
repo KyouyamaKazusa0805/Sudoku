@@ -415,7 +415,7 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	}
 
 	/// <inheritdoc/>
-	public async ValueTask DisposeAsync() => await _stream.DisposeAsync();
+	public ValueTask DisposeAsync() => _stream.DisposeAsync();
 
 	/// <summary>
 	/// Returns itself. The method is consumed by <see langword="foreach"/> loops.

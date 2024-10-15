@@ -947,6 +947,12 @@
             <seealso cref="P:System.Diagnostics.CodeAnalysis.AddPropertyAttribute.AllowsMultipleAdding"/>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.ComponentMemberAttribute">
+            <summary>
+            Represents an attribute type that describes a data member is a component member,
+            used by source generator to generate unified source code.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.EmitPropertyStyle">
             <summary>
             Represents a style of emit property.
