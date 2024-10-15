@@ -1,7 +1,12 @@
 namespace Sudoku.SourceGeneration.Handlers;
 
+/// <summary>
+/// The hub file that generates modal source code on some commonly-used members.
+/// </summary>
 internal static class TypeImplHandler
 {
+	private const string ValueTaskFullTypeName = "global::System.Threading.Tasks.ValueTask";
+
 	private const string ParameterTargetAttributeTypeName = "System.Diagnostics.CodeAnalysis.ParameterTargetAttribute";
 
 	private const string HashCodeMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.HashCodeMemberAttribute";
@@ -10,6 +15,8 @@ internal static class TypeImplHandler
 
 	private const string EquatableMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.EquatableMemberAttribute";
 
+	private const string DisposableMemberAttributeTypeName = "System.Diagnostics.CodeAnalysis.DisposableMemberAttribute";
+
 	private const string EquatableTypeName = "System.IEquatable`1";
 
 	private const string FormattableTypeName = "System.IFormattable";
@@ -17,6 +24,10 @@ internal static class TypeImplHandler
 	private const string FormatProviderTypeName = "System.IFormatProvider";
 
 	private const string EqualityOperatorsTypeName = "System.Numerics.IEqualityOperators`3";
+
+	private const string DisposableTypeName = "System.IDisposable";
+
+	private const string AsyncDisposableTypeName = "System.IAsyncDisposable";
 
 	private const string IsLargeStructurePropertyName = "IsLargeStructure";
 
@@ -38,16 +49,21 @@ internal static class TypeImplHandler
 
 	private const string EquatableLargeStructModifierPropertyName = "EquatableLargeStructModifier";
 
+	private const string OtherModifiersOnDisposableDisposePropertyName = "OtherModifiersOnDisposableDispose";
+
+	private const string OtherModifiersOnAsyncDisposableDisposeAsyncPropertyName = "OtherModifiersOnAsyncDisposableDisposeAsync";
+
 
 	private static readonly Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[] Methods = [
-		Object_Equals,
-		Object_GetHashCode,
-		Object_ToString,
+		ObjectEquals,
+		ObjectGetHashCode,
+		ObjectToString,
 		EqualityOperators,
 		ComparisonOperators,
 		TrueAndFalseOperators,
 		LogicalNotOperator,
-		Equatable
+		Equatable,
+		DisposableAndAsyncDisposable
 	];
 
 
@@ -70,7 +86,7 @@ internal static class TypeImplHandler
 			"""
 		);
 
-	private static string? Object_Equals(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
+	private static string? ObjectEquals(GeneratorAttributeSyntaxContext gasc, CancellationToken _)
 	{
 		if (gasc is not
 			{
@@ -190,7 +206,7 @@ internal static class TypeImplHandler
 		}
 	}
 
-	private static string? Object_GetHashCode(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	private static string? ObjectGetHashCode(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -237,7 +253,7 @@ internal static class TypeImplHandler
 			return null;
 		}
 
-		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+		var referencedMembers = PrimaryConstructor.MapMemberNames(
 			type,
 			semanticModel,
 			parameterList,
@@ -369,7 +385,7 @@ internal static class TypeImplHandler
 		}
 	}
 
-	private static string? Object_ToString(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	private static string? ObjectToString(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
 	{
 		if (gasc is not
 			{
@@ -428,7 +444,7 @@ internal static class TypeImplHandler
 			return null;
 		}
 
-		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+		var referencedMembers = PrimaryConstructor.MapMemberNames(
 			type,
 			semanticModel,
 			parameterList,
@@ -1233,7 +1249,7 @@ internal static class TypeImplHandler
 		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
 		var inKeyword = isLargeStructure ? "in " : string.Empty;
 
-		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+		var referencedMembers = PrimaryConstructor.MapMemberNames(
 			type,
 			semanticModel,
 			parameterList,
@@ -1345,6 +1361,152 @@ internal static class TypeImplHandler
 			}
 			""";
 	}
+
+	private static string? DisposableAndAsyncDisposable(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					TypeKind: var kind and (TypeKind.Struct or TypeKind.Class),
+					Name: var typeName,
+					IsRecord: var isRecord,
+					TypeParameters: var typeParameters,
+					ContainingNamespace: var @namespace,
+					ContainingType: null, // Must be top-level type.
+					AllInterfaces: var allInterfaces
+				} type,
+				TargetNode: TypeDeclarationSyntax { ParameterList: var parameterList }
+					and (RecordDeclarationSyntax or ClassDeclarationSyntax or StructDeclarationSyntax),
+				SemanticModel: { Compilation: var compilation } semanticModel
+			})
+		{
+			return null;
+		}
+
+		var paramTargetAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(ParameterTargetAttributeTypeName);
+		if (paramTargetAttributeTypeNameSymbol is null)
+		{
+			return null;
+		}
+
+		var disposableMemberAttributeSymbol = compilation.GetTypeByMetadataName(DisposableMemberAttributeTypeName);
+		if (disposableMemberAttributeSymbol is null)
+		{
+			return null;
+		}
+
+		var d1 = o(
+			TypeImplFlag.Disposable,
+			compilation.GetTypeByMetadataName(DisposableTypeName)!,
+			OtherModifiersOnDisposableDisposePropertyName,
+			nameof(TypeImplFlag.Disposable),
+			"Dispose",
+			"void"
+		);
+		var d2 = o(
+			TypeImplFlag.AsyncDisposable,
+			compilation.GetTypeByMetadataName(AsyncDisposableTypeName)!,
+			OtherModifiersOnAsyncDisposableDisposeAsyncPropertyName,
+			nameof(TypeImplFlag.AsyncDisposable),
+			"DisposeAsync",
+			ValueTaskFullTypeName
+		);
+		return (d1, d2) switch
+		{
+			(not null, not null) => $"{d1}\r\n\r\n{d2}",
+			(not null, null) => d1,
+			(null, not null) => d2,
+			_ => null
+		};
+
+
+		string? o(
+			TypeImplFlag checkFlag,
+			INamedTypeSymbol disposableSymbol,
+			string otherModifiersPropertyName,
+			string lineDirectiveInterfaceDisplayName,
+			string outputMethodName,
+			string outputMethodReturnType
+		)
+		{
+			if (!((TypeImplFlag)ctorArg).HasFlag(checkFlag))
+			{
+				return null;
+			}
+
+			if (!allInterfaces.Any(a => SymbolEqualityComparer.Default.Equals(a, disposableSymbol)))
+			{
+				return null;
+			}
+
+			var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+			var otherModifiers = attribute.GetNamedArgument<string>(otherModifiersPropertyName) switch
+			{
+				{ } str => str.Split([' '], StringSplitOptions.RemoveEmptyEntries),
+				_ => []
+			};
+			var typeArgumentsString = typeParameters is []
+				? string.Empty
+				: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+			var typeNameString = $"{typeName}{typeArgumentsString}";
+			var typeKindString = (kind, isRecord) switch
+			{
+				(TypeKind.Class, true) => "record",
+				(TypeKind.Class, _) => "class",
+				(TypeKind.Struct, true) => "record struct",
+				(TypeKind.Struct, _) => "struct",
+				_ => throw new InvalidOperationException("Invalid state.")
+			};
+			var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
+			var referencedMembers = PrimaryConstructor.MapMemberNames(
+				type,
+				semanticModel,
+				parameterList,
+				paramTargetAttributeTypeNameSymbol,
+				a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, disposableMemberAttributeSymbol),
+				symbol =>
+				{
+					var awaitKeyword = outputMethodReturnType == ValueTaskFullTypeName ? "await " : string.Empty;
+					var questionMarkToken = symbol switch
+					{
+						IFieldSymbol { Type.NullableAnnotation: var a } => a,
+						IPropertySymbol { Type.NullableAnnotation: var a } => a,
+						_ => NotAnnotated
+					} == Annotated ? "?" : string.Empty;
+					return !string.IsNullOrEmpty(awaitKeyword) && questionMarkToken == "?"
+						? $$"""
+									if ({{symbol.Name}} is not null)
+									{
+										await {{symbol.Name}}.{{outputMethodName}}();
+									}
+						"""
+						: $"\t\t\t{awaitKeyword}{symbol.Name}{questionMarkToken}.{outputMethodName}();";
+				},
+				cancellationToken
+			);
+
+			var asyncKeyword = outputMethodReturnType == ValueTaskFullTypeName ? "async " : string.Empty;
+			return $$"""
+				namespace {{namespaceString}}
+				{
+				#line 1 "{{typeNameString}}_{{lineDirectiveInterfaceDisplayName}}.g.cs"
+					partial {{typeKindString}} {{typeNameString}}
+					{
+						/// <inheritdoc/>
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						public {{otherModifiersString}}{{asyncKeyword}}{{outputMethodReturnType}} {{outputMethodName}}()
+						{
+				{{string.Join("\r\n\t\t\t", from pair in referencedMembers select pair.ExtraData)}}
+						}
+					}
+				#line default
+				}
+				""";
+		}
+	}
 }
 
 /// <summary>
@@ -1360,7 +1522,9 @@ file enum TypeImplFlag
 	ComparisonOperators = 1 << 4,
 	TrueAndFalseOperators = 1 << 5,
 	LogicalNotOperator = 1 << 6,
-	Equatable = 1 << 7
+	Equatable = 1 << 7,
+	Disposable = 1 << 8,
+	AsyncDisposable = 1 << 9
 }
 
 /// <summary>
@@ -1445,7 +1609,7 @@ file enum ComparisonOperatorsBehavior
 file static class PrimaryConstructor
 {
 	/// <summary>
-	/// Try to get corresponding member names.
+	/// Try to map member names.
 	/// </summary>
 	/// <typeparam name="TExtraData">The type of projected result after argument <paramref name="extraDataSelector"/> handled.</typeparam>
 	/// <param name="this">The type symbol.</param>
@@ -1456,8 +1620,8 @@ file static class PrimaryConstructor
 	/// <param name="extraDataSelector">Extra data selector.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A list of values (member names and extra data).</returns>
-	public static (string Name, TExtraData ExtraData)[] GetCorrespondingMemberNames<TExtraData>(
-		this INamedTypeSymbol @this,
+	public static (string Name, TExtraData ExtraData)[] MapMemberNames<TExtraData>(
+		INamedTypeSymbol @this,
 		SemanticModel model,
 		ParameterListSyntax? parameterList,
 		INamedTypeSymbol targetAttributeSymbol,

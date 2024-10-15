@@ -75,9 +75,6 @@
             The image.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Recognize">
             <summary>
             Recognize.
@@ -110,6 +107,9 @@
             </summary>
             <param name="field">The field.</param>
             <returns>The image.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.Ocr.ImageHandler">
             <summary>
@@ -202,9 +202,6 @@
             Indicates whether the current recognizer has already initialized.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
             <summary>
             Recognizes digits.
@@ -236,6 +233,9 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
         </member>
+        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.Ocr.RecognitionServiceProvider">
             <summary>
             Define a sudoku recognition service provider.
@@ -256,9 +256,6 @@
             Indicates whether the OCR tool has already initialized.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap)">
             <summary>
             Recognize the image.
@@ -266,6 +263,9 @@
             <param name="image">The image.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">Throws when the tool has not initialized yet.</exception>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">
             <summary>

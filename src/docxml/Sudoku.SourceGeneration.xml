@@ -164,6 +164,11 @@
         <member name="P:Sudoku.SourceGeneration.Handlers.ParameterLocalData.PropertyPart">
             <summary>Indicates the property part.</summary>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.TypeImplHandler">
+            <summary>
+            The hub file that generates modal source code on some commonly-used members.
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.TypeImplFlag">
             <summary>
             Indicates the implementation flags.
@@ -207,9 +212,9 @@
             Provides with primary constructor operations.
             </summary>
         </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructor.GetCorrespondingMemberNames``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterListSyntax,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Func{Microsoft.CodeAnalysis.AttributeData,System.Boolean},System.Func{Microsoft.CodeAnalysis.ISymbol,``0},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructor.MapMemberNames``1(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.SemanticModel,Microsoft.CodeAnalysis.CSharp.Syntax.ParameterListSyntax,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Func{Microsoft.CodeAnalysis.AttributeData,System.Boolean},System.Func{Microsoft.CodeAnalysis.ISymbol,``0},System.Threading.CancellationToken)">
             <summary>
-            Try to get corresponding member names.
+            Try to map member names.
             </summary>
             <typeparam name="TExtraData">The type of projected result after argument <paramref name="extraDataSelector"/> handled.</typeparam>
             <param name="this">The type symbol.</param>

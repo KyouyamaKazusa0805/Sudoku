@@ -8,7 +8,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 /// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable | TypeImplFlag.AllDisposable)]
 public sealed partial class TextPointer(LibraryInfo library) :
 	IAdditionOperators<TextPointer, int, TextPointer>,
 	IAsyncDisposable,
@@ -31,6 +31,7 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	/// <summary>
 	/// Indicates the internal stream.
 	/// </summary>
+	[DisposableMember]
 	private readonly FileStream _stream = library switch
 	{
 		(var p, _) { IsInitialized: true } => File.OpenRead(p),
@@ -152,10 +153,6 @@ public sealed partial class TextPointer(LibraryInfo library) :
 	[EquatableMember]
 	private long PositionOfPointer => _stream.Position;
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Dispose() => _stream.Dispose();
 
 	/// <summary>
 	/// Sets the pointer to the start position, 0.
@@ -413,9 +410,6 @@ public sealed partial class TextPointer(LibraryInfo library) :
 		result = r;
 		return count;
 	}
-
-	/// <inheritdoc/>
-	public ValueTask DisposeAsync() => _stream.DisposeAsync();
 
 	/// <summary>
 	/// Returns itself. The method is consumed by <see langword="foreach"/> loops.

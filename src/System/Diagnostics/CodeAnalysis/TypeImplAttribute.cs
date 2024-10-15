@@ -78,6 +78,16 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public string? OtherModifiersOnEquatableEquals { get; init; }
 
 	/// <summary>
+	/// Indicates the extra modifiers can be applied to <see cref="IDisposable.Dispose"/> method.
+	/// </summary>
+	public string? OtherModifiersOnDisposableDispose { get; init; }
+
+	/// <summary>
+	/// Indicates the extra modifiers can be applied to <see cref="IAsyncDisposable.DisposeAsync"/> method.
+	/// </summary>
+	public string? OtherModifiersOnAsyncDisposableDisposeAsync { get; init; }
+
+	/// <summary>
 	/// <para>
 	/// Indicates the modifier that will be applied to implement <c>Equals</c>, as the parameter modifier,
 	/// if the corresponding type (containing type) is a large structure.

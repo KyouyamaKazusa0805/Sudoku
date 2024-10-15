@@ -6,7 +6,8 @@ namespace Sudoku.Drawing.Ocr;
 /// </summary>
 /// <param name="_photo">Indicates the photo to be assigned.</param>
 /// <seealso cref="InternalServiceProvider"/>
-internal sealed class GridRecognizer(Bitmap _photo) : IDisposable
+[TypeImpl(TypeImplFlag.Disposable)]
+internal sealed partial class GridRecognizer(Bitmap _photo) : IDisposable
 {
 	/// <summary>
 	/// Indicates the L2Gradient.
@@ -42,11 +43,9 @@ internal sealed class GridRecognizer(Bitmap _photo) : IDisposable
 	/// <summary>
 	/// The image.
 	/// </summary>
+	[DisposableMember]
 	private Image<Bgr, byte> _image = _photo.CorrectOrientation().ToImage<Bgr, byte>();
 
-
-	/// <inheritdoc/>
-	public void Dispose() => _image.Dispose();
 
 	/// <summary>
 	/// Recognize.

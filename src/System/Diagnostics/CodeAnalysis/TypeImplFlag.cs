@@ -66,6 +66,16 @@ public enum TypeImplFlag
 	Equatable = 1 << 7,
 
 	/// <summary>
+	/// Indicates method <see cref="IDisposable.Dispose"/>.
+	/// </summary>
+	Disposable = 1 << 8,
+
+	/// <summary>
+	/// Indicates method <see cref="IAsyncDisposable.DisposeAsync"/>.
+	/// </summary>
+	AsyncDisposable = 1 << 9,
+
+	/// <summary>
 	/// Indicates all the methods
 	/// <see cref="object.Equals(object?)"/>, <see cref="object.GetHashCode"/> and <see cref="object.ToString"/>
 	/// will be generated.
@@ -77,5 +87,11 @@ public enum TypeImplFlag
 	/// <see cref="IEqualityOperators{TSelf, TOther, TResult}"/> and <see cref="IComparisonOperators{TSelf, TOther, TResult}"/>
 	/// will be generated.
 	/// </summary>
-	AllEqualityComparisonOperators = EqualityOperators | ComparisonOperators
+	AllEqualityComparisonOperators = EqualityOperators | ComparisonOperators,
+
+	/// <summary>
+	/// Indicates all the dispose methods
+	/// <see cref="IDisposable.Dispose"/> and <see cref="IAsyncDisposable.DisposeAsync"/> will be generated.
+	/// </summary>
+	AllDisposable = Disposable | AsyncDisposable
 }

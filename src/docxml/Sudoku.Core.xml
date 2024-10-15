@@ -9703,9 +9703,6 @@
             Indicates the position of the pointer.
             </summary>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.SetStart">
             <summary>
             Sets the pointer to the start position, 0.
@@ -9761,9 +9758,6 @@
             <param name="count">The desired number of puzzles.</param>
             <param name="result">Indicates the puzzles fetched.</param>
             <returns>The number of puzzles fetched.</returns>
-        </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.GetEnumerator">
             <summary>
@@ -9866,6 +9860,12 @@
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(Sudoku.Runtime.LibraryServices.TextPointer)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">

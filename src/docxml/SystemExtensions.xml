@@ -953,6 +953,15 @@
             used by source generator to generate unified source code.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisposableMemberAttribute">
+            <summary>
+            Represents an attribute type that can be applied to a field or a property,
+            indicating the member can be used and called by methods
+            <see cref="M:System.IDisposable.Dispose"/> and <see cref="M:System.IAsyncDisposable.DisposeAsync"/>.
+            </summary>
+            <seealso cref="M:System.IDisposable.Dispose"/>
+            <seealso cref="M:System.IAsyncDisposable.DisposeAsync"/>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.EmitPropertyStyle">
             <summary>
             Represents a style of emit property.
@@ -1411,6 +1420,16 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.IEquatable`1.Equals(`0)"/> method.
             </summary>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnDisposableDispose">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.IDisposable.Dispose"/> method.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnAsyncDisposableDisposeAsync">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.IAsyncDisposable.DisposeAsync"/> method.
+            </summary>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.EquatableLargeStructModifier">
             <summary>
             <para>
@@ -1522,6 +1541,16 @@
             </summary>
             <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Disposable">
+            <summary>
+            Indicates method <see cref="M:System.IDisposable.Dispose"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AsyncDisposable">
+            <summary>
+            Indicates method <see cref="M:System.IAsyncDisposable.DisposeAsync"/>.
+            </summary>
+        </member>
         <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
             <summary>
             Indicates all the methods
@@ -1534,6 +1563,12 @@
             Indicates all the operators
             <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>
             will be generated.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllDisposable">
+            <summary>
+            Indicates all the dispose methods
+            <see cref="M:System.IDisposable.Dispose"/> and <see cref="M:System.IAsyncDisposable.DisposeAsync"/> will be generated.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.WithPropertyAttribute">
