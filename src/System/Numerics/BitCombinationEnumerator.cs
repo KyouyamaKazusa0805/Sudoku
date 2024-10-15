@@ -6,7 +6,11 @@ namespace System.Numerics;
 /// <typeparam name="TInteger">The type of the target integer value.</typeparam>
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
-public ref struct BitCombinationEnumerator<TInteger>(int bitCount, int oneCount) : IEnumerator<TInteger>
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct BitCombinationEnumerator<TInteger>(int bitCount, int oneCount) : IEnumerator<TInteger>
 #if NUMERIC_GENERIC_TYPE
 	where TInteger : IBinaryInteger<TInteger>
 #else
@@ -59,9 +63,6 @@ public ref struct BitCombinationEnumerator<TInteger>(int bitCount, int oneCount)
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	readonly void IEnumerator.Reset() => throw new NotImplementedException();
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <summary>
 	/// Changes the state of the fields, and check whether the bit has another available possibility to be iterated.

@@ -4,7 +4,11 @@ namespace System.Numerics;
 /// Represents an enumerator that iterates an <see cref="int"/> or <see cref="uint"/> value.
 /// </summary>
 /// <param name="_value">The value to be iterated.</param>
-public ref struct Int32Enumerator(uint _value) : IEnumerator<int>
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct Int32Enumerator(uint _value) : IEnumerator<int>
 {
 	/// <summary>
 	/// Indicates the population count of the value.
@@ -39,9 +43,6 @@ public ref struct Int32Enumerator(uint _value) : IEnumerator<int>
 		}
 		return false;
 	}
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

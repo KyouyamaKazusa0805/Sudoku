@@ -5,6 +5,10 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="TFirst">The type of the first element in a pair.</typeparam>
 /// <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
 [StructLayout(LayoutKind.Auto)]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
 public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(TFirst First, TSecond Second)>
 	where T : notnull
 	where TFirst : T
@@ -33,7 +37,4 @@ public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([Field] ReadO
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	readonly void IEnumerator.Reset() => throw new NotImplementedException();
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 }

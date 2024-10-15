@@ -6,7 +6,10 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="T">The type of elements.</typeparam>
 /// <param name="elements">Indicates the elements.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
 public ref partial struct AnonymousSpanEnumerator<T>([Field] ReadOnlySpan<T> elements) : IEnumerator<T>
 {
 	/// <summary>
@@ -28,9 +31,6 @@ public ref partial struct AnonymousSpanEnumerator<T>([Field] ReadOnlySpan<T> ele
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext() => ++_index < _elements.Length;
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

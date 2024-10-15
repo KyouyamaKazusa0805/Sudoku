@@ -6,7 +6,11 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <seealso cref="ReadOnlyMemory{T}"/>
 [StructLayout(LayoutKind.Auto)]
-public ref struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value) : IEnumerator<T>
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value) : IEnumerator<T>
 {
 	/// <summary>
 	/// Indicates the span to the memory.
@@ -33,9 +37,6 @@ public ref struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value) : IEnumer
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext() => ++_index < value.Length;
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

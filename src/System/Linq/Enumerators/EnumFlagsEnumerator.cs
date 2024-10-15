@@ -8,8 +8,11 @@ namespace System.Linq.Enumerators;
 /// </typeparam>
 /// <param name="baseField">Indicates the base field.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct EnumFlagsEnumerator<T>([Field] T baseField) : IEnumerator<T>
-	where T : unmanaged, Enum
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct EnumFlagsEnumerator<T>([Field] T baseField) : IEnumerator<T> where T : unmanaged, Enum
 {
 	/// <summary>
 	/// Indicates the fields of the type to iterate.
@@ -61,7 +64,4 @@ public ref partial struct EnumFlagsEnumerator<T>([Field] T baseField) : IEnumera
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	readonly void IEnumerator.Reset() => throw new NotImplementedException();
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 }

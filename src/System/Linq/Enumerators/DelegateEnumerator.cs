@@ -7,7 +7,10 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="TDelegate">The type of each function or action.</typeparam>
 /// <param name="value">The complex delegate object to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
 public ref partial struct DelegateEnumerator<TDelegate>([Property] TDelegate? value) : IEnumerator<TDelegate>
 	where TDelegate : Delegate
 {
@@ -26,9 +29,6 @@ public ref partial struct DelegateEnumerator<TDelegate>([Property] TDelegate? va
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	public bool MoveNext() => _enumerator.MoveNext();
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

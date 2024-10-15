@@ -6,6 +6,10 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="T">The type of each element to be iterated.</typeparam>
 /// <param name="sequence">The sequence value.</param>
 [StructLayout(LayoutKind.Auto)]
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
 public ref partial struct PairEnumerator<T>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(T First, T Second)>
 	where T : notnull
 {
@@ -47,7 +51,4 @@ public ref partial struct PairEnumerator<T>([Field] ReadOnlySpan<T> sequence) : 
 	/// <inheritdoc/>
 	[DoesNotReturn]
 	readonly void IEnumerator.Reset() => throw new NotImplementedException();
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 }

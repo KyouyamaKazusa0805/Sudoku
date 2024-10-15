@@ -6,7 +6,11 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
 /// <param name="tuple">The tuple.</param>
-public ref struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) : IEnumerator<T>
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) : IEnumerator<T>
 	where TRest : struct
 {
 	/// <summary>
@@ -33,9 +37,6 @@ public ref struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool MoveNext() => ++_index < _values.Length;
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

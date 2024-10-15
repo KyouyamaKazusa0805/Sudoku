@@ -6,7 +6,11 @@ namespace System.Numerics;
 /// <typeparam name="TInteger">The type of the integer that supports for iteration on bits.</typeparam>
 /// <param name="_value">The integer to be iterated.</param>
 /// <param name="_bitsCount">The integer of bits to be iterated.</param>
-public ref struct GenericIntegerEnumerator<TInteger>(TInteger _value, int _bitsCount) : IEnumerator<int>
+[TypeImpl(
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	OtherModifiersOnDisposableDispose = "readonly",
+	ExplicitlyImplsDisposable = true)]
+public ref partial struct GenericIntegerEnumerator<TInteger>(TInteger _value, int _bitsCount) : IEnumerator<int>
 #if NUMERIC_GENERIC_TYPE
 	where TInteger : IBitwiseOperators<TInteger, TInteger, TInteger>, INumber<TInteger>, IShiftOperators<TInteger, int, TInteger>
 #else
@@ -43,9 +47,6 @@ public ref struct GenericIntegerEnumerator<TInteger>(TInteger _value, int _bitsC
 		}
 		return false;
 	}
-
-	/// <inheritdoc/>
-	readonly void IDisposable.Dispose() { }
 
 	/// <inheritdoc/>
 	[DoesNotReturn]

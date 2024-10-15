@@ -58,6 +58,22 @@ public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : A
 	public bool EmitThisCastToInterface { get; init; } = false;
 
 	/// <summary>
+	/// Indicates whether the interface type <see cref="IDisposable"/> will be explicitly-implemented.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see langword="false"/> by default.
+	/// </remarks>
+	public bool ExplicitlyImplsDisposable { get; init; } = false;
+
+	/// <summary>
+	/// Indicates whether the interface type <see cref="IAsyncDisposable"/> will be explicitly-implemented.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see langword="false"/> by default.
+	/// </remarks>
+	public bool ExplicitlyImplsAsyncDisposable { get; init; } = false;
+
+	/// <summary>
 	/// Indicates the extra modifiers can be applied to <see cref="object.Equals(object?)"/> method.
 	/// </summary>
 	public string? OtherModifiersOnEquals { get; init; }

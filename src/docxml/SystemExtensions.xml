@@ -1400,6 +1400,22 @@
             The value is <see langword="false"/> by default.
             </remarks>
         </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.ExplicitlyImplsDisposable">
+            <summary>
+            Indicates whether the interface type <see cref="T:System.IDisposable"/> will be explicitly-implemented.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.ExplicitlyImplsAsyncDisposable">
+            <summary>
+            Indicates whether the interface type <see cref="T:System.IAsyncDisposable"/> will be explicitly-implemented.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
         <member name="P:System.Diagnostics.CodeAnalysis.TypeImplAttribute.OtherModifiersOnEquals">
             <summary>
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
@@ -2351,9 +2367,6 @@
         <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.MoveNext">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
@@ -2370,6 +2383,10 @@
         </member>
         <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.AnonymousSpanEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.ComplexValueTupleEnumerator`2">
             <summary>
@@ -2409,11 +2426,21 @@
         <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ComplexValueTupleEnumerator`2.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.DelegateEnumerator`1">
             <summary>
@@ -2445,9 +2472,6 @@
         <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
@@ -2464,6 +2488,10 @@
         </member>
         <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.DelegateEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.EnumFlagsEnumerator`1">
             <summary>
@@ -2510,13 +2538,23 @@
         <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="F:System.Linq.Enumerators.EnumFlagsEnumerator`1._baseField">
             <summary>
             The generated field declaration for parameter <c>baseField</c>.
             </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.PairEnumerator`1">
             <summary>
@@ -2565,13 +2603,23 @@
         <member name="M:System.Linq.Enumerators.PairEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Enumerators.PairEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="F:System.Linq.Enumerators.PairEnumerator`1._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.PairEnumeratorCasted`3">
             <inheritdoc cref="T:System.Linq.Enumerators.PairEnumerator`1"/>
@@ -2605,13 +2653,23 @@
         <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="F:System.Linq.Enumerators.PairEnumeratorCasted`3._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.PairEnumeratorCasted`3.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1">
             <summary>
@@ -2651,11 +2709,21 @@
         <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReadOnlyMemoryEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.ReverseEnumerator`1">
             <summary>
@@ -2702,13 +2770,23 @@
         <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="F:System.Linq.Enumerators.ReverseEnumerator`1._sequence">
             <summary>
             The generated field declaration for parameter <c>sequence</c>.
             </summary>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ReverseEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.Enumerators.ValueTupleEnumerator`1">
             <summary>
@@ -2779,11 +2857,21 @@
         <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.Enumerators.ValueTupleEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>
@@ -4830,14 +4918,24 @@
         <member name="M:System.Numerics.BitCombinationEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Numerics.BitCombinationEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.BitCombinationEnumerator`1.HasNext">
             <summary>
             Changes the state of the fields, and check whether the bit has another available possibility to be iterated.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.BitCombinationEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Numerics.BitCombinationGenerator`1">
             <summary>
@@ -5205,11 +5303,21 @@
         <member name="M:System.Numerics.GenericIntegerEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.GenericIntegerEnumerator`1.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.GenericIntegerEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.GenericIntegerEnumerator`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.GenericIntegerEnumerator`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.GenericIntegerEnumerator`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.GenericIntegerEnumerator`1.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Numerics.ILatexFormattable">
             <summary>
@@ -5256,11 +5364,21 @@
         <member name="M:System.Numerics.Int128Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.Int128Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.Int128Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Numerics.Int32Enumerator">
             <summary>
@@ -5296,11 +5414,21 @@
         <member name="M:System.Numerics.Int32Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.Int32Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.Int32Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.Int32Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Numerics.Int64Enumerator">
             <summary>
@@ -5336,11 +5464,21 @@
         <member name="M:System.Numerics.Int64Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.Int64Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.Int64Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.Int64Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Numerics.NativeIntegerEnumerator">
             <summary>
@@ -5376,11 +5514,21 @@
         <member name="M:System.Numerics.NativeIntegerEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.NativeIntegerEnumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Numerics.NativeIntegerEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Numerics.NativeIntegerEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Predicate">
             <summary>
@@ -6129,11 +6277,21 @@
         <member name="M:System.Runtime.CompilerServices.TupleEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
         <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:System.Runtime.CompilerServices.TupleExtensions">
             <summary>

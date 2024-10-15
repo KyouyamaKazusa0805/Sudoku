@@ -53,6 +53,10 @@ internal static class TypeImplHandler
 
 	private const string OtherModifiersOnAsyncDisposableDisposeAsyncPropertyName = "OtherModifiersOnAsyncDisposableDisposeAsync";
 
+	private const string ExplicitlyImplsDisposablePropertyName = "ExplicitlyImplsDisposable";
+
+	private const string ExplicitlyImplsAsyncDisposablePropertyName = "ExplicitlyImplsAsyncDisposable";
+
 
 	private static readonly Func<GeneratorAttributeSyntaxContext, CancellationToken, string?>[] Methods = [
 		ObjectEquals,
@@ -1405,6 +1409,7 @@ internal static class TypeImplHandler
 			nameof(TypeImplFlag.Disposable),
 			"Dispose",
 			"void",
+			ExplicitlyImplsDisposablePropertyName,
 			ref alreadyGeneratedIsDisposedField
 		);
 		var d2 = o(
@@ -1414,6 +1419,7 @@ internal static class TypeImplHandler
 			nameof(TypeImplFlag.AsyncDisposable),
 			"DisposeAsync",
 			ValueTaskFullTypeName,
+			ExplicitlyImplsAsyncDisposablePropertyName,
 			ref alreadyGeneratedIsDisposedField
 		);
 		return (d1, d2) switch
@@ -1432,6 +1438,7 @@ internal static class TypeImplHandler
 			string lineDirectiveInterfaceDisplayName,
 			string outputMethodName,
 			string outputMethodReturnType,
+			string explicitlyImplsDisposablePropertyName,
 			ref bool alreadyGeneratedIsDisposedField
 		)
 		{
@@ -1491,19 +1498,26 @@ internal static class TypeImplHandler
 				cancellationToken
 			);
 
-			var isDisposedField = alreadyGeneratedIsDisposedField
-				? "// Field '_isDisposed' has already been generated."
-				: """
-				/// <summary>
-						/// Indicates whether the object had already been disposed before <see cref="Dispose"/> method was called.
-						/// If this field holds <see langword="false"/> value, <see cref="Dispose"/> method will throw an
-						/// <see cref="global::System.ObjectDisposedException"/> to report the error.
-						/// </summary>
-						/// <seealso cref="Dispose"/>
-						/// <seealso cref="global::System.ObjectDisposedException"/>
-						private bool _isDisposed;
-				""";
+			var explicitlyImplsType = attribute.GetNamedArgument(explicitlyImplsDisposablePropertyName, false);
+			var isDisposedField = explicitlyImplsType
+				? "// Field '_isDisposed' won't be generated in explicitly interface implementation environment."
+				: alreadyGeneratedIsDisposedField
+					? "// Field '_isDisposed' has already been generated."
+					: """
+					/// <summary>
+							/// Indicates whether the object had already been disposed before <see cref="Dispose"/> method was called.
+							/// If this field holds <see langword="false"/> value, <see cref="Dispose"/> method will throw an
+							/// <see cref="global::System.ObjectDisposedException"/> to report the error.
+							/// </summary>
+							/// <seealso cref="Dispose"/>
+							/// <seealso cref="global::System.ObjectDisposedException"/>
+							private bool _isDisposed;
+					""";
 			var asyncKeyword = outputMethodReturnType == ValueTaskFullTypeName ? "async " : string.Empty;
+			var methodDeclarationLine = explicitlyImplsType
+				? $$"""{{otherModifiersString}}{{asyncKeyword}}{{outputMethodReturnType}} global::System.I{{lineDirectiveInterfaceDisplayName}}.{{outputMethodName}}()"""
+				: $$"""public {{otherModifiersString}}{{asyncKeyword}}{{outputMethodReturnType}} {{outputMethodName}}()""";
+			var extraComment = explicitlyImplsType ? "// " : string.Empty;
 			var result = $$"""
 				namespace {{namespaceString}}
 				{
@@ -1517,16 +1531,16 @@ internal static class TypeImplHandler
 						/// <exception cref="ObjectDisposedException">Throws when the object had already been disposed.</exception>
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-						public {{otherModifiersString}}{{asyncKeyword}}{{outputMethodReturnType}} {{outputMethodName}}()
+						{{methodDeclarationLine}}
 						{
 							// Check whether the object has already been disposed.
-							global::System.ObjectDisposedException.ThrowIf(_isDisposed, this);
+							{{extraComment}}global::System.ObjectDisposedException.ThrowIf(_isDisposed, this);
 
 							// Release related resources by calling 'Dispose' or 'DisposeAsync' methods.
 							{{string.Join("\r\n\t\t\t", from pair in referencedMembers select pair.ExtraData)}}
 
 							// Sets field '_isDiposed' to true in order to prevent further usages on duplicate disposal.
-							_isDisposed = true;
+							{{extraComment}}_isDisposed = true;
 						}
 					}
 				#line default
