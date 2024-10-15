@@ -9862,11 +9862,22 @@
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Equals(Sudoku.Runtime.LibraryServices.TextPointer)">
             <inheritdoc/>
         </member>
+        <member name="F:Sudoku.Runtime.LibraryServices.TextPointer._isDisposed">
+            <summary>
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> method was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/> method will throw an
+            <see cref="T:System.ObjectDisposedException"/> to report the error.
+            </summary>
+            <seealso cref="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose"/>
+            <seealso cref="T:System.ObjectDisposedException"/>
+        </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.Dispose">
             <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="M:Sudoku.Runtime.LibraryServices.TextPointer.DisposeAsync">
             <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>

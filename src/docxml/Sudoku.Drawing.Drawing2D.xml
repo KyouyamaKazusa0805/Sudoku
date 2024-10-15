@@ -46,31 +46,17 @@
             <see cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>,
             with centering the text with both horizontal aligning and vertical aligning.
             </summary>
-            <remarks><inheritdoc cref="F:Sudoku.Drawing.Drawing2D.GridCanvas._backingBitmap" path="/remarks"/></remarks>
             <seealso cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>
         </member>
         <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._backingBitmap">
             <summary>
             Indicates the backing bitmap to be used.
             </summary>
-            <remarks>
-            <b><i>This field should be released in <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>.</i></b>
-            </remarks>
         </member>
         <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._g">
             <summary>
             Indicates the backing <see cref="T:System.Drawing.Graphics"/> instance to draw elements.
             </summary>
-            <remarks><inheritdoc cref="F:Sudoku.Drawing.Drawing2D.GridCanvas._backingBitmap" path="/remarks"/></remarks>
-        </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.#ctor(System.Int32,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.String)">
             <summary>
@@ -85,10 +71,6 @@
             <summary>
             Indicates canvas settings to be used. The value can be changed if you want to change.
             </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.SavePictureTo(System.String)">
             <summary>
@@ -234,6 +216,19 @@
             Draw icon view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
+        </member>
+        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._isDisposed">
+            <summary>
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/> method will throw an
+            <see cref="T:System.ObjectDisposedException"/> to report the error.
+            </summary>
+            <seealso cref="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose"/>
+            <seealso cref="T:System.ObjectDisposedException"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:Sudoku.Drawing.Drawing2D.GridCanvasSettings">
             <summary>

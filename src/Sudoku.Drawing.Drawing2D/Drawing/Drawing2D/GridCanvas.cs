@@ -5,6 +5,7 @@ namespace Sudoku.Drawing.Drawing2D;
 /// </summary>
 [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 [SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
+[TypeImpl(TypeImplFlag.Disposable)]
 public sealed partial class GridCanvas : IDisposable
 {
 	/// <summary>
@@ -33,32 +34,21 @@ public sealed partial class GridCanvas : IDisposable
 	/// <see cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>,
 	/// with centering the text with both horizontal aligning and vertical aligning.
 	/// </summary>
-	/// <remarks><inheritdoc cref="_backingBitmap" path="/remarks"/></remarks>
 	/// <seealso cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>
+	[DisposableMember]
 	private readonly StringFormat _stringAligner = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 	/// <summary>
 	/// Indicates the backing bitmap to be used.
 	/// </summary>
-	/// <remarks>
-	/// <b><i>This field should be released in <see cref="Dispose"/>.</i></b>
-	/// </remarks>
+	[DisposableMember]
 	private readonly Bitmap _backingBitmap;
 
 	/// <summary>
 	/// Indicates the backing <see cref="Graphics"/> instance to draw elements.
 	/// </summary>
-	/// <remarks><inheritdoc cref="_backingBitmap" path="/remarks"/></remarks>
+	[DisposableMember]
 	private readonly Graphics _g;
-
-	/// <summary>
-	/// Indicates whether the object had already been disposed before <see cref="Dispose"/> method was called.
-	/// If this field holds <see langword="false"/> value, <see cref="Dispose"/> method will throw an
-	/// <see cref="ObjectDisposedException"/> to report the error.
-	/// </summary>
-	/// <seealso cref="Dispose"/>
-	/// <seealso cref="ObjectDisposedException"/>
-	private bool _isDisposed;
 
 
 	/// <summary>
@@ -82,21 +72,6 @@ public sealed partial class GridCanvas : IDisposable
 	/// </summary>
 	public GridCanvasSettings Settings { get; }
 
-
-	/// <inheritdoc/>
-	/// <exception cref="ObjectDisposedException">Throws when the object had already been disposed.</exception>
-	public void Dispose()
-	{
-		ObjectDisposedException.ThrowIf(_isDisposed, this);
-
-		// To release fields, by calling 'Dispose' method.
-		_stringAligner.Dispose();
-		_backingBitmap.Dispose();
-		_g.Dispose();
-
-		// Set the field with 'true'.
-		_isDisposed = true;
-	}
 
 	/// <summary>
 	/// Try to save the picture into the local path.

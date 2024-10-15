@@ -1397,13 +1397,15 @@ internal static class TypeImplHandler
 			return null;
 		}
 
+		var alreadyGeneratedIsDisposedField = false;
 		var d1 = o(
 			TypeImplFlag.Disposable,
 			compilation.GetTypeByMetadataName(DisposableTypeName)!,
 			OtherModifiersOnDisposableDisposePropertyName,
 			nameof(TypeImplFlag.Disposable),
 			"Dispose",
-			"void"
+			"void",
+			ref alreadyGeneratedIsDisposedField
 		);
 		var d2 = o(
 			TypeImplFlag.AsyncDisposable,
@@ -1411,7 +1413,8 @@ internal static class TypeImplHandler
 			OtherModifiersOnAsyncDisposableDisposeAsyncPropertyName,
 			nameof(TypeImplFlag.AsyncDisposable),
 			"DisposeAsync",
-			ValueTaskFullTypeName
+			ValueTaskFullTypeName,
+			ref alreadyGeneratedIsDisposedField
 		);
 		return (d1, d2) switch
 		{
@@ -1428,7 +1431,8 @@ internal static class TypeImplHandler
 			string otherModifiersPropertyName,
 			string lineDirectiveInterfaceDisplayName,
 			string outputMethodName,
-			string outputMethodReturnType
+			string outputMethodReturnType,
+			ref bool alreadyGeneratedIsDisposedField
 		)
 		{
 			if (!((TypeImplFlag)ctorArg).HasFlag(checkFlag))
@@ -1477,34 +1481,60 @@ internal static class TypeImplHandler
 					} == Annotated ? "?" : string.Empty;
 					return !string.IsNullOrEmpty(awaitKeyword) && questionMarkToken == "?"
 						? $$"""
-									if ({{symbol.Name}} is not null)
+						if ({{symbol.Name}} is not null)
 									{
 										await {{symbol.Name}}.{{outputMethodName}}();
 									}
 						"""
-						: $"\t\t\t{awaitKeyword}{symbol.Name}{questionMarkToken}.{outputMethodName}();";
+						: $"{awaitKeyword}{symbol.Name}{questionMarkToken}.{outputMethodName}();";
 				},
 				cancellationToken
 			);
 
+			var isDisposedField = alreadyGeneratedIsDisposedField
+				? "// Field '_isDisposed' has already been generated."
+				: """
+				/// <summary>
+						/// Indicates whether the object had already been disposed before <see cref="Dispose"/> method was called.
+						/// If this field holds <see langword="false"/> value, <see cref="Dispose"/> method will throw an
+						/// <see cref="global::System.ObjectDisposedException"/> to report the error.
+						/// </summary>
+						/// <seealso cref="Dispose"/>
+						/// <seealso cref="global::System.ObjectDisposedException"/>
+						private bool _isDisposed;
+				""";
 			var asyncKeyword = outputMethodReturnType == ValueTaskFullTypeName ? "async " : string.Empty;
-			return $$"""
+			var result = $$"""
 				namespace {{namespaceString}}
 				{
 				#line 1 "{{typeNameString}}_{{lineDirectiveInterfaceDisplayName}}.g.cs"
 					partial {{typeKindString}} {{typeNameString}}
 					{
+						{{isDisposedField}}
+
+
 						/// <inheritdoc/>
+						/// <exception cref="ObjectDisposedException">Throws when the object had already been disposed.</exception>
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public {{otherModifiersString}}{{asyncKeyword}}{{outputMethodReturnType}} {{outputMethodName}}()
 						{
-				{{string.Join("\r\n\t\t\t", from pair in referencedMembers select pair.ExtraData)}}
+							// Check whether the object has already been disposed.
+							global::System.ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+							// Release related resources by calling 'Dispose' or 'DisposeAsync' methods.
+							{{string.Join("\r\n\t\t\t", from pair in referencedMembers select pair.ExtraData)}}
+
+							// Sets field '_isDiposed' to true in order to prevent further usages on duplicate disposal.
+							_isDisposed = true;
 						}
 					}
 				#line default
 				}
 				""";
+
+			alreadyGeneratedIsDisposedField = true;
+			return result;
 		}
 	}
 }
