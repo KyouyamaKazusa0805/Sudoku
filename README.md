@@ -4,7 +4,7 @@
 [![issues](https://img.shields.io/github/issues/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/issues)
 [![license](https://img.shields.io/github/license/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE)
 
-![](https://img.shields.io/badge/Programming%20Language-C%23%2013-%23178600)
+![](https://img.shields.io/badge/Programming%20Language-C%23%2014-%23178600)
 ![](https://img.shields.io/badge/Framework-.NET%209-blueviolet)
 ![](https://img.shields.io/badge/Indenting-Tabs-lightgrey)
 ![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.12%20Preview%202.1-%23cf98fb?logo=Visual%20Studio)

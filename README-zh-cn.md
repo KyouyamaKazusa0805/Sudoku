@@ -4,7 +4,7 @@
 [![issues](https://img.shields.io/github/issues/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/issues)
 [![license](https://img.shields.io/github/license/KyouyamaKazusa0805/Sudoku?color=097abb)](https://github.com/KyouyamaKazusa0805/Sudoku/blob/main/LICENSE)
 
-![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2013-%23178600)
+![](https://img.shields.io/badge/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80-C%23%2014-%23178600)
 ![](https://img.shields.io/badge/%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6-.NET%209-blueviolet)
 ![](https://img.shields.io/badge/%E7%BC%A9%E8%BF%9B-Tab-lightgrey)
 ![](https://img.shields.io/badge/IDE-Visual%20Studio%202022%20v17.12%20%E9%A2%84%E8%A7%88%E7%89%88%202.1-%23cf98fb)
