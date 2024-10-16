@@ -100,14 +100,10 @@ internal partial class ChainingDriver
 	/// </param>
 	/// <returns>The first found <see cref="NamedChain"/> pattern.</returns>
 	/// <seealso cref="NamedChain"/>
-	private static
 #if STRICT_LENGTH_CHECKING
-		AlternatingInferenceChain
-#else
-		NamedChain
+	[SuppressMessage("Performance", "CA1859:Use concrete types when possible for improved performance", Justification = "<Pending>")]
 #endif
-		?
-		FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
+	private static NamedChain? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
