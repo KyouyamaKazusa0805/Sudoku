@@ -7409,14 +7409,6 @@
             <param name="candidate">The candidate to be found.</param>
             <returns>The found node; or <see langword="null"/> if none found.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.View.UnknownOverlaps(System.Int32)">
-            <summary>
-            Determines whether the specified <see cref="T:Sudoku.Drawing.View"/> stores several <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>s,
-            and at least one of it overlaps the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether being overlapped.</returns>
-        </member>
         <member name="M:Sudoku.Drawing.View.Equals(Sudoku.Drawing.View)">
             <inheritdoc/>
         </member>

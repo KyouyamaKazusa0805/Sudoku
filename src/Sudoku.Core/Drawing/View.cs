@@ -82,24 +82,6 @@ public sealed partial class View :
 		return null;
 	}
 
-	/// <summary>
-	/// Determines whether the specified <see cref="View"/> stores several <see cref="BabaGroupViewNode"/>s,
-	/// and at least one of it overlaps the specified cell.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <returns>A <see cref="bool"/> value indicating whether being overlapped.</returns>
-	public bool UnknownOverlaps(Cell cell)
-	{
-		foreach (var babaGroupNode in this.OfType<BabaGroupViewNode>())
-		{
-			if (babaGroupNode.Cell == cell)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] View? other) => SetComparer.Equals(this, other);
