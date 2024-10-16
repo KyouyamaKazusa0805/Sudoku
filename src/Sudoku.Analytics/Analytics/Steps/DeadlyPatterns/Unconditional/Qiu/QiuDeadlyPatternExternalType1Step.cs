@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCell">Indicates the target cell.</param>
 /// <param name="targetDigits">Indicates the target digits.</param>
 public sealed partial class QiuDeadlyPatternExternalType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

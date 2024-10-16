@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the subset cells used.</param>
 /// <param name="isNaked">Indicates whether the subset is naked.</param>
 public sealed partial class BivalueUniversalGraveType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap trueCandidates,

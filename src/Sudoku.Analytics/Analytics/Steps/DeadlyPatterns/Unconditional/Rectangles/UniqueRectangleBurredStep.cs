@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public abstract class UniqueRectangleBurredStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Technique code,

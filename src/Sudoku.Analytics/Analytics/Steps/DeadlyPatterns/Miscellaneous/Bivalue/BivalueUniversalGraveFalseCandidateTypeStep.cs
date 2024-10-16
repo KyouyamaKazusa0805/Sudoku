@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="options"><inheritdoc/></param>
 /// <param name="falseCandidate">Indicates the false candidate that will cause a BUG deadly pattern if it is true.</param>
 public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Candidate falseCandidate

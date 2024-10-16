@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="targetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
 public sealed partial class WeakExocetStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

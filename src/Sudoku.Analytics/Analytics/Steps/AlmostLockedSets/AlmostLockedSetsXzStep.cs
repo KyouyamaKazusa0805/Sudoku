@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 /// </para>
 /// </param>
 public sealed partial class AlmostLockedSetsXzStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(NamingRule = "FirstAls")] AlmostLockedSetPattern als1,

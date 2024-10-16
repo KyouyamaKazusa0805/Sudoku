@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
 /// <param name="lastingHouseType">Indicates the lasting house type.</param>
 public sealed partial class NakedSingleStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Cell cell,

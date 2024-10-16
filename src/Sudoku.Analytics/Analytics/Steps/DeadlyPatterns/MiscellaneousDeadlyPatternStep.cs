@@ -6,7 +6,7 @@
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public abstract class MiscellaneousDeadlyPatternStep(ReadOnlyMemory<Conclusion> conclusions, View[]? views, StepGathererOptions options) :
+public abstract class MiscellaneousDeadlyPatternStep(StepConclusions conclusions, View[]? views, StepGathererOptions options) :
 	DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

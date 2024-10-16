@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigit">Indicates the extra digit.</param>
 /// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType2Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

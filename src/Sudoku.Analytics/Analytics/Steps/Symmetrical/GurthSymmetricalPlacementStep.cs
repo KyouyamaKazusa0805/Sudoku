@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
 /// </param>
 public partial class GurthSymmetricalPlacementStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] SymmetricType symmetricType,

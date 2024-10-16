@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 /// <param name="loopPath"><inheritdoc/></param>
 public sealed partial class UniqueLoopType4Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

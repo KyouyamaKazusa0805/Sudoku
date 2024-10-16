@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetIncludedCorner">Indicates the subset-included corner cell.</param>
 /// <param name="extraDigitsMask">Indicates the extra digits used.</param>
 public sealed partial class UniqueRectangleBurredSubsetStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

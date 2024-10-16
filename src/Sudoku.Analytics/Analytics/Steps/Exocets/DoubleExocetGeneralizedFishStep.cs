@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
 /// <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
 public sealed partial class DoubleExocetGeneralizedFishStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

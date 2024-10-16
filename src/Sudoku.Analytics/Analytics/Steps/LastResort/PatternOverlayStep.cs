@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed class PatternOverlayStep(ReadOnlyMemory<Conclusion> conclusions, StepGathererOptions options) :
+public sealed class PatternOverlayStep(StepConclusions conclusions, StepGathererOptions options) :
 	LastResortStep(conclusions, null, options)
 {
 	/// <inheritdoc/>

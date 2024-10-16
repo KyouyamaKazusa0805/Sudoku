@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isComplex">Indicates whether the pattern is complex.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class RemotePairStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pattern"><inheritdoc/></param>
 /// <param name="emptyCells"><inheritdoc/></param>
 public sealed class ReverseBivalueUniversalGraveType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

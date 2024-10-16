@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pattern"><inheritdoc/></param>
 /// <param name="fins">Indicates the extra fins.</param>
 public sealed partial class FinnedChainStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	NamedChain pattern,

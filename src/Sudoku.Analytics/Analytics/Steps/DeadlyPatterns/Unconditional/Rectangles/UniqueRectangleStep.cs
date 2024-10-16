@@ -23,7 +23,7 @@ namespace Sudoku.Analytics.Steps;
 /// </para>
 /// </param>
 public abstract partial class UniqueRectangleStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(Accessibility = "public sealed override")] Technique code,

@@ -32,7 +32,7 @@ namespace Sudoku.Analytics.Steps;
 /// </para>
 /// </param>
 public abstract partial class ComplexSingleStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Cell cell,

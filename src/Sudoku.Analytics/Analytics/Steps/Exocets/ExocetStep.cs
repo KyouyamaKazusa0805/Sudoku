@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="endoTargetCells">Indicates the endo-target cells used.</param>
 /// <param name="crosslineCells">Indicates the cross-line cells used.</param>
 public abstract partial class ExocetStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,

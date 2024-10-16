@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="loop"><inheritdoc/></param>
 /// <param name="loopPath"><inheritdoc/></param>
 public sealed class UniqueLoopType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

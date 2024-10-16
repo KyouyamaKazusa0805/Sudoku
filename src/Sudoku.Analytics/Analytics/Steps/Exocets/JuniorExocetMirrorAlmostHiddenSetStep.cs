@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraCells">Indicates the cells that provides with the AHS rule.</param>
 /// <param name="extraDigitsMask">Indicates the mask that holds the digits used by the AHS.</param>
 public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

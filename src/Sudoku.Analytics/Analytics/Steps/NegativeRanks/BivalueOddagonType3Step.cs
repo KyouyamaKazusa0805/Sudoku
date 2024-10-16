@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraCells">Indicates the extra cells used.</param>
 /// <param name="extraDigitsMask">Indicates the mask that contains all extra digits used.</param>
 public sealed partial class BivalueOddagonType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap loopCells,

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used in this pattern.</param>
 /// <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
 public abstract partial class UniqueMatrixStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

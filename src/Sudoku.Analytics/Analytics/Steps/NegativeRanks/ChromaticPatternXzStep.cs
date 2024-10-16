@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="extraDigitsMask">Indicates the mask of extra digits.</param>
 public sealed partial class ChromaticPatternXzStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	House[] blocks,

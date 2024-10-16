@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="branches">Indicates the branches.</param>
 /// <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
 public sealed partial class NormalDeathBlossomStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Cell pivot,

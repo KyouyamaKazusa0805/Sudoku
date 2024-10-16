@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetDigitsMask">Indicates the extra digits used.</param>
 /// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

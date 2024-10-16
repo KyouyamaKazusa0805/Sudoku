@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="weakXyCell">Indicates the weak XY cell.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 public sealed partial class MWingStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap node1,

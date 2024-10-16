@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="multivalueCellsCount">Indicates the number of multi-value cells.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangleAlmostLockedSetsXzStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

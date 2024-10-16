@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="house">Indicates the house that subset formed.</param>
 /// <param name="isCannibalism">Indicates whether the pattern is cannibalism.</param>
 public sealed partial class ExtendedRectangleType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells"><inheritdoc/></param>
 /// <param name="digitsMask"><inheritdoc/></param>
 public sealed class ExtendedRectangleType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

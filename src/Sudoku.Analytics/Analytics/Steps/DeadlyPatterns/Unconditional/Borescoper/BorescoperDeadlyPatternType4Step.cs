@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conjugateHouse">Indicates the cells used as generalized conjugate.</param>
 /// <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
 public sealed partial class BorescoperDeadlyPatternType4Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

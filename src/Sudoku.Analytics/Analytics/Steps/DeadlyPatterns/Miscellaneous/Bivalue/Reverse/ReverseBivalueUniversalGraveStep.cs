@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="pattern">Indicates the pattern, all possible cells included.</param>
 /// <param name="emptyCells">Indicates the empty cells used. This cells have already included in <paramref name="pattern"/>.</param>
 public abstract partial class ReverseBivalueUniversalGraveStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Digit digit1,

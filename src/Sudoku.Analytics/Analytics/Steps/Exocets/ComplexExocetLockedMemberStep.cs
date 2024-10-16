@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
 /// <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
 public sealed partial class ComplexExocetLockedMemberStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Mask digitsMask,

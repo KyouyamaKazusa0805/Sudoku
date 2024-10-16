@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates the excluder information. The value can be <see langword="null"/> if the target step is a Last Digit.
 /// </param>
 public partial class HiddenSingleStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Cell cell,

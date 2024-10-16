@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraCell">Indicates the extra cell used.</param>
 /// <param name="digitsMask"><inheritdoc/></param>
 public sealed partial class ChromaticPatternType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	House[] blocks,

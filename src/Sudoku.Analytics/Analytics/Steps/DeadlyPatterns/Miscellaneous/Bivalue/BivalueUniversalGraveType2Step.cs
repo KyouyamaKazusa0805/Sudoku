@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit">Indicates the extra digit.</param>
 /// <param name="cells">Indicates the cells used.</param>
 public sealed partial class BivalueUniversalGraveType2Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(NamingRule = "Extra>@")] Digit digit,

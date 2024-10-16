@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates cells used.</param>
 /// <param name="technique"><inheritdoc cref="Step.Code" path="/summary"/></param>
 public abstract partial class AnonymousDeadlyPatternStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Mask digitsMask,

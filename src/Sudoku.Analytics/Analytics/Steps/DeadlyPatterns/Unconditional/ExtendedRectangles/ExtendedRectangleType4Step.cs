@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask"><inheritdoc/></param>
 /// <param name="conjugatePair">Indicates the conjugate pair used.</param>
 public sealed partial class ExtendedRectangleType4Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ref readonly CellMap cells,

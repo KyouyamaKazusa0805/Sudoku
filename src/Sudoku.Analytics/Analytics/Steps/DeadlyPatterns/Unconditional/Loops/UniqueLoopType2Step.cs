@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 /// <param name="loopPath"><inheritdoc/></param>
 public sealed partial class UniqueLoopType2Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

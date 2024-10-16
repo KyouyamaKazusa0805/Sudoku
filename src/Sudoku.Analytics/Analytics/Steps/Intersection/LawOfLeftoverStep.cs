@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="set2">Indicates the second set to be used.</param>
 /// <param name="digitsMask">Indicates all 6 digits used.</param>
 public sealed partial class LawOfLeftoverStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] House set1House,

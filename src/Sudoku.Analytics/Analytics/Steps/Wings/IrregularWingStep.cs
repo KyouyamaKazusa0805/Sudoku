@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public abstract class IrregularWingStep(ReadOnlyMemory<Conclusion> conclusions, View[]? views, StepGathererOptions options) :
+public abstract class IrregularWingStep(StepConclusions conclusions, View[]? views, StepGathererOptions options) :
 	WingStep(conclusions, views, options)
 {
 	/// <summary>

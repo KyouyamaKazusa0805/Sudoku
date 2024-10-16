@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed class BruteForceStep(ReadOnlyMemory<Conclusion> conclusions, View[]? views, StepGathererOptions options) :
+public sealed class BruteForceStep(StepConclusions conclusions, View[]? views, StepGathererOptions options) :
 	LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

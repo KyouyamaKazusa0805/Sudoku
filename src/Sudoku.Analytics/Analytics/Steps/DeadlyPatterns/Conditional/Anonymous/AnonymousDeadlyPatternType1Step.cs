@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// </param>
 /// <param name="technique"><inheritdoc/></param>
 public sealed partial class AnonymousDeadlyPatternType1Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CandidateMap patternCandidates,

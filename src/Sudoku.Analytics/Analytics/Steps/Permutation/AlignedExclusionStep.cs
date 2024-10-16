@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="lockedCombinations">Indicates all locked combinations.</param>
 public sealed partial class AlignedExclusionStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

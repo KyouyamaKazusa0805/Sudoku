@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// </param>
 /// <param name="mapping"><inheritdoc/></param>
 public sealed class AntiGurthSymmetricalPlacementStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	SymmetricType symmetricType,

@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="yDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
 /// <param name="zDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
 public sealed partial class AlmostLockedSetsXyWingStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property(NamingRule = "FirstAls")] AlmostLockedSetPattern als1,

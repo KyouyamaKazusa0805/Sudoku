@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
 /// <param name="loopPath"><inheritdoc/></param>
 public sealed partial class UniqueLoopType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Digit digit1,

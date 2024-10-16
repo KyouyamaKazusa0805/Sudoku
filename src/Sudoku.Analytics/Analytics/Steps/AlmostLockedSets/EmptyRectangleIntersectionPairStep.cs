@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="digit1">Indicates the first digit used.</param>
 /// <param name="digit2">Indicates the second digit used.</param>
 public sealed partial class EmptyRectangleIntersectionPairStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] Cell startCell,

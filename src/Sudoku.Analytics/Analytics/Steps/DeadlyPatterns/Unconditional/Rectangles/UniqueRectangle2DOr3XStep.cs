@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="xyCell">Indicates a bi-value cell that only contains digit X and Y.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
 public sealed partial class UniqueRectangle2DOr3XStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	Technique code,

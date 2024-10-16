@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">The map that contains the cells used for this technique.</param>
 /// <param name="digitsMask">Indicates the mask of used digits.</param>
 public abstract partial class BorescoperDeadlyPatternStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,

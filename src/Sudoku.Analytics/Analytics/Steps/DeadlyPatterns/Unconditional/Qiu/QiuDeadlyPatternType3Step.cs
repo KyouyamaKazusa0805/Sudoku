@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetCells">Indicates the subset cells used.</param>
 /// <param name="isNaked">Indicates whether the subset is naked one.</param>
 public sealed partial class QiuDeadlyPatternType3Step(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	bool is2LinesWith2Cells,

@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cells">Indicates the cells used in this pattern.</param>
 /// <param name="digitsMask">Indicates the mask of digits used.</param>
 public abstract partial class ExtendedRectangleStep(
-	ReadOnlyMemory<Conclusion> conclusions,
+	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	[Property] ref readonly CellMap cells,
