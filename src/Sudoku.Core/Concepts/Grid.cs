@@ -20,23 +20,23 @@ using GridBase = IGrid<Grid>;
 	IsLargeStructure = true)]
 public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {
-	/// <inheritdoc cref="IGridConstants{TSelf}.DefaultMask"/>
+	/// <inheritdoc cref="IGrid{TSelf}.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.MaxCandidatesMask"/>
+	/// <inheritdoc cref="IGrid{TSelf}.MaxCandidatesMask"/>
 	public const Mask MaxCandidatesMask = (1 << 9) - 1;
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyMask"/>
+	/// <inheritdoc cref="IGrid{TSelf}.EmptyMask"/>
 	public const Mask EmptyMask = (Mask)CellState.Empty << 9;
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.ModifiableMask"/>
+	/// <inheritdoc cref="IGrid{TSelf}.ModifiableMask"/>
 	public const Mask ModifiableMask = (Mask)CellState.Modifiable << 9;
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.GivenMask"/>
+	/// <inheritdoc cref="IGrid{TSelf}.GivenMask"/>
 	public const Mask GivenMask = (Mask)CellState.Given << 9;
 
 #if EMPTY_GRID_STRING_CONSTANT
-	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
+	/// <inheritdoc cref="IGrid{TSelf}.EmptyString"/>
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
 
@@ -52,14 +52,14 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
-	/// <inheritdoc cref="IGridConstants{TSelf}.EmptyString"/>
+	/// <inheritdoc cref="IGrid{TSelf}.EmptyString"/>
 	public static readonly string EmptyString = new('0', 81);
 #endif
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.Empty"/>
+	/// <inheritdoc cref="IGrid{TSelf}.Empty"/>
 	public static readonly Grid Empty = [DefaultMask];
 
-	/// <inheritdoc cref="IGridConstants{TSelf}.Undefined"/>
+	/// <inheritdoc cref="IGrid{TSelf}.Undefined"/>
 	public static readonly Grid Undefined;
 
 
@@ -354,28 +354,28 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 	/// <inheritdoc/>
-	static string IGridConstants<Grid>.EmptyString => EmptyString;
+	static string GridBase.EmptyString => EmptyString;
 
 	/// <inheritdoc/>
-	static Mask IGridConstants<Grid>.DefaultMask => DefaultMask;
+	static Mask GridBase.DefaultMask => DefaultMask;
 
 	/// <inheritdoc/>
-	static Mask IGridConstants<Grid>.MaxCandidatesMask => MaxCandidatesMask;
+	static Mask GridBase.MaxCandidatesMask => MaxCandidatesMask;
 
 	/// <inheritdoc/>
-	static Mask IGridConstants<Grid>.EmptyMask => EmptyMask;
+	static Mask GridBase.EmptyMask => EmptyMask;
 
 	/// <inheritdoc/>
-	static Mask IGridConstants<Grid>.ModifiableMask => ModifiableMask;
+	static Mask GridBase.ModifiableMask => ModifiableMask;
 
 	/// <inheritdoc/>
-	static Mask IGridConstants<Grid>.GivenMask => GivenMask;
+	static Mask GridBase.GivenMask => GivenMask;
 
 	/// <inheritdoc/>
-	static ref readonly Grid IGridConstants<Grid>.Empty => ref Empty;
+	static ref readonly Grid GridBase.Empty => ref Empty;
 
 	/// <inheritdoc/>
-	static ref readonly Grid IGridConstants<Grid>.Undefined => ref Undefined;
+	static ref readonly Grid GridBase.Undefined => ref Undefined;
 
 
 	/// <inheritdoc/>
@@ -434,7 +434,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask IGridOperations<Grid>.this[Cell cell] => ref this[cell];
+	ref Mask GridBase.this[Cell cell] => ref this[cell];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -1075,11 +1075,11 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(in b, comparison), obj => obj.GetHashCode(comparison));
 
 	/// <inheritdoc/>
-	static void IGridProperties<Grid>.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+	static void GridBase.OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 		=> OnValueChanged(ref @this, cell, oldMask, newMask, setValue);
 
 	/// <inheritdoc/>
-	static void IGridProperties<Grid>.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
+	static void GridBase.OnRefreshingCandidates(ref Grid @this) => OnRefreshingCandidates(ref @this);
 
 	/// <inheritdoc/>
 	static Grid GridBase.Create(ReadOnlySpan<Mask> values) => Create(values);
@@ -1127,7 +1127,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		}
 	}
 
-	/// <inheritdoc cref="IGridProperties{TSelf}.OnValueChanged(ref TSelf, Cell, Mask, Mask, Digit)"/>
+	/// <inheritdoc cref="IGrid{TSelf}.OnValueChanged(ref TSelf, Cell, Mask, Mask, Digit)"/>
 	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue == -1)
@@ -1145,7 +1145,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 		}
 	}
 
-	/// <inheritdoc cref="IGridProperties{TSelf}.OnRefreshingCandidates(ref TSelf)"/>
+	/// <inheritdoc cref="IGrid{TSelf}.OnRefreshingCandidates(ref TSelf)"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var cell = 0; cell < 81; cell++)
