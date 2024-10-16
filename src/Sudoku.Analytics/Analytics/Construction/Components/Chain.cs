@@ -146,7 +146,8 @@ public abstract partial class Chain :
 	}
 
 	/// <summary>
-	/// Indicates the length of the pattern.
+	/// Indicates the length of the pattern - the number of nodes used inside a chain.
+	/// Use minus-one operation if you want to check the number of links inside it.
 	/// </summary>
 	public int Length => ValidNodes.Length;
 

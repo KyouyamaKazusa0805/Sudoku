@@ -1,4 +1,10 @@
 #define ONLY_FIND_ONE_CHAIN_FOR_ONE_START
+#define STRICT_LENGTH_CHECKING
+#define STRICT_LENGTH_CHECKING_OPTIMIZATION
+#if !STRICT_LENGTH_CHECKING && STRICT_LENGTH_CHECKING_OPTIMIZATION
+#undef STRICT_LENGTH_CHECKING_OPTIMIZATION
+#warning 'STRICT_LENGTH_CHECKING_OPTIMIZATION' won't work if 'STRICT_LENGTH_CHECKING' is not configured.
+#endif
 
 namespace Sudoku.Analytics.Construction.Chaining;
 
@@ -8,6 +14,7 @@ internal partial class ChainingDriver
 	/// Collect all chains and loops appeared in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
 	/// <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
 	/// <returns>All possible <see cref="Chain"/> instances.</returns>
 	/// <remarks>
@@ -37,7 +44,7 @@ internal partial class ChainingDriver
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static ReadOnlySpan<NamedChain> CollectChains(ref readonly Grid grid, bool onlyFindOne)
+	public static ReadOnlySpan<NamedChain> CollectChains(ref readonly Grid grid, bool allowsAdvancedLinks, bool onlyFindOne)
 	{
 		var result = new SortedSet<NamedChain>(ChainingComparers.ChainComparer);
 		foreach (var cell in EmptyCells)
@@ -52,13 +59,45 @@ internal partial class ChainingDriver
 				// Therefore, we only need to check such incorrect digits.
 				if ((trueDigit != -1 && digit != trueDigit || trueDigit == -1) && FindChains(node, in grid, onlyFindOne, result) is { } chain1)
 				{
-					return (NamedChain[])[chain1];
+					return new SingletonArray<NamedChain>(chain1);
 				}
 
+#if STRICT_LENGTH_CHECKING && STRICT_LENGTH_CHECKING_OPTIMIZATION
+				if (onlyFindOne && result.Min is { Length: var possibleMinimalLength } lengthOptimizedChain1
+					&& possibleMinimalLength <= (allowsAdvancedLinks ? 4 : 6))
+				{
+					#region Description to this optimization
+					// This is an optimzation.
+					//
+					// Due to backing implementation of chaining rule, the first found chain may not be the minimal length
+					// of all possible found chains - the first found chain should hold the minimal index
+					// of conclusion candidate.
+					//
+					// If it is required that the length should be considered, we should sort for all possible found chains,
+					// and return one having the minimal length.
+					//
+					// Here we should append an extra rule for optimization: if we have already found a chain
+					// whose length is less than or equals to 6, it is already a shortest chain because we cannot find
+					// a chain with just one strong link (it can be replaced with some other techniques, called "type 2")
+					// and two strong links (replaced with X-Wing, skyscraper, two-string-kite and turbot fish).
+					//
+					// For further consideration, if we search for grouped cases, we should relax the value to 4
+					// in order making missing ALS-XZ's can be found here.
+					//
+					// In addition, here we only consider for elimination cases of chaining -
+					// there's no two-strong-link chains with assignment conclusions exist.
+					//
+					// Such optimization can make a quick return to avoid exaustive searching.
+					// However, this is an unsafe optmization, but we can guarantee that all chains
+					// with just one link cannot exist here.
+					#endregion
+					return new SingletonArray<NamedChain>(lengthOptimizedChain1);
+				}
+#endif
 				// Same reason as above - only correct digits can be formed a chain that makes an assignment.
 				if ((digit == trueDigit || trueDigit == -1) && FindChains(~node, in grid, onlyFindOne, result) is { } chain2)
 				{
-					return (NamedChain[])[chain2];
+					return new SingletonArray<NamedChain>(chain2);
 				}
 			}
 		}
@@ -84,7 +123,14 @@ internal partial class ChainingDriver
 	/// </param>
 	/// <returns>The first found <see cref="NamedChain"/> pattern.</returns>
 	/// <seealso cref="NamedChain"/>
-	private static NamedChain? FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
+	private static
+#if STRICT_LENGTH_CHECKING
+		AlternatingInferenceChain
+#else
+		NamedChain
+#endif
+		?
+		FindChains(Node startNode, ref readonly Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
 		var pendingNodesSupposedOn = new LinkedList<Node>();
 		var pendingNodesSupposedOff = new LinkedList<Node>();
@@ -106,7 +152,7 @@ internal partial class ChainingDriver
 						var nextNode = nodeSupposedOff >> currentNode;
 
 						////////////////////////////////////////////
-						// Continuous Nice Loop 3) Strong -> Weak //
+						// Continuous Nice Loop 3) Weak -> Strong //
 						////////////////////////////////////////////
 						if (nodeSupposedOff == startNode && nextNode.AncestorsLength >= 4)
 						{
@@ -116,10 +162,12 @@ internal partial class ChainingDriver
 								goto Next;
 							}
 
+#if !STRICT_LENGTH_CHECKING
 							if (onlyFindOne)
 							{
 								return loop;
 							}
+#endif
 
 							result.Add(loop);
 #if ONLY_FIND_ONE_CHAIN_FOR_ONE_START
@@ -128,9 +176,9 @@ internal partial class ChainingDriver
 						Next:;
 						}
 
-						/////////////////////////////////////////////////
-						// Discontinuous Nice Loop 2) Strong -> Strong //
-						/////////////////////////////////////////////////
+						/////////////////////////////////////////////
+						// Discontinuous Nice Loop 1) Weak -> Weak //
+						/////////////////////////////////////////////
 						if (nodeSupposedOff == ~startNode)
 						{
 							var chain = new AlternatingInferenceChain(nextNode);
@@ -139,10 +187,12 @@ internal partial class ChainingDriver
 								goto Next;
 							}
 
+#if !STRICT_LENGTH_CHECKING
 							if (onlyFindOne)
 							{
 								return chain;
 							}
+#endif
 
 							result.Add(chain);
 #if ONLY_FIND_ONE_CHAIN_FOR_ONE_START
@@ -174,9 +224,9 @@ internal partial class ChainingDriver
 					{
 						var nextNode = nodeSupposedOn >> currentNode;
 
-						/////////////////////////////////////////////
-						// Discontinuous Nice Loop 1) Weak -> Weak //
-						/////////////////////////////////////////////
+						/////////////////////////////////////////////////
+						// Discontinuous Nice Loop 2) Strong -> Strong //
+						/////////////////////////////////////////////////
 						if (nodeSupposedOn == ~startNode)
 						{
 							var chain = new AlternatingInferenceChain(nextNode);

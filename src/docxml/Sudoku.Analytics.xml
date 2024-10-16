@@ -1674,11 +1674,12 @@
             <param name="supportedRules">Indicates all supported rules to be used by checking eliminations.</param>
             <returns>All possible multiple forcing chain instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Construction.Chaining.ChainingDriver.CollectChains(Sudoku.Concepts.Grid@,System.Boolean,System.Boolean)">
             <summary>
             Collect all chains and loops appeared in a grid.
             </summary>
             <param name="grid">The grid.</param>
+            <param name="allowsAdvancedLinks">Indicates whether this method allows for advanced links.</param>
             <param name="onlyFindOne">Indicates whether the method only find one valid step.</param>
             <returns>All possible <see cref="T:Sudoku.Analytics.Construction.Components.Chain" /> instances.</returns>
             <remarks>
@@ -2402,7 +2403,8 @@
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.Length">
             <summary>
-            Indicates the length of the pattern.
+            Indicates the length of the pattern - the number of nodes used inside a chain.
+            Use minus-one operation if you want to check the number of links inside it.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.Complexity">

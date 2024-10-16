@@ -19,7 +19,7 @@ internal static class ChainModule
 		InitializeLinks(in grid, linkTypes.Aggregate(@delegate.EnumFlagMerger), context.Options, out var supportedRules);
 
 		var cachedAlsIndex = 0;
-		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, context.OnlyFindOne))
+		foreach (var chain in ChainingDriver.CollectChains(in context.Grid, allowsAdvancedLinks, context.OnlyFindOne))
 		{
 			var step = new NormalChainStep(
 				c(chain, in grid, supportedRules),
