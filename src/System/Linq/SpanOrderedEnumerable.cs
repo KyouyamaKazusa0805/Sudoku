@@ -12,7 +12,7 @@ namespace System.Linq;
 /// </param>
 [DebuggerStepThrough]
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[Field] ReadOnlySpan<T> values,
 	[Field, UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors

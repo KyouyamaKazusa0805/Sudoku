@@ -6,7 +6,7 @@ namespace SudokuStudio.Input;
 /// Defines a converter instance that calculates for cursor pointers.
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid) : IPointCalculator
 {
 	/// <summary>

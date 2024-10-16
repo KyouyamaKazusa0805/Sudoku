@@ -12,7 +12,7 @@ namespace Sudoku.Linq;
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
 public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[Property] TKey key,

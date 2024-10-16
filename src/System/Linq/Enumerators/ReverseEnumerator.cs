@@ -7,7 +7,7 @@ namespace System.Linq.Enumerators;
 /// <param name="sequence">The internal sequence to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct ReverseEnumerator<T>([Field] ReadOnlySpan<T> sequence) : IEnumerator<T>

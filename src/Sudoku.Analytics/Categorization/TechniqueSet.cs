@@ -17,8 +17,8 @@ namespace Sudoku.Categorization;
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator)]
+	TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators | TypeImplFlags.TrueAndFalseOperators
+		| TypeImplFlags.LogicalNotOperator)]
 public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,

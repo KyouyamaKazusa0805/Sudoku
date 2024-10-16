@@ -5,5 +5,5 @@ namespace Sudoku.Inferring;
 /// </summary>
 /// <param name="candidates">Indicates the found candidates.</param>
 /// <seealso cref="BackdoorInferrer.TryInfer(ref readonly Grid, out BackdoorInferredResult)"/>
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct BackdoorInferredResult([Property] ReadOnlySpan<Conclusion> candidates);

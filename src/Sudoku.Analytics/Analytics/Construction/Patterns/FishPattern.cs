@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="coverSets">Indicates the cover sets.</param>
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class FishPattern(
 	[Property, HashCodeMember] Digit digit,
 	[Property, HashCodeMember] HouseMask baseSets,

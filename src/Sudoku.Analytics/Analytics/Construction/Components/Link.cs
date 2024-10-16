@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// The default value is <see langword="null"/>.
 /// </param>
 /// <seealso cref="Node"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public sealed partial class Link(
 	[Property] Node firstNode,
 	[Property] Node secondNode,

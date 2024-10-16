@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="start">Indicates the start point.</param>
 /// <param name="end">Indicates the end point.</param>
 /// <param name="digit">Indicates the digit used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class ConjugateLinkViewNode(
 	ColorIdentifier identifier,

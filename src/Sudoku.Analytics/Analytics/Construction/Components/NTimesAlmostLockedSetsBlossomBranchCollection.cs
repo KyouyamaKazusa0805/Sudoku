@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents for a n-times ALS blossom branch collection.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public sealed partial class NTimesAlmostLockedSetsBlossomBranchCollection :
 	DeathBlossomBranchCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>,
 	IEqualityOperators<NTimesAlmostLockedSetsBlossomBranchCollection, NTimesAlmostLockedSetsBlossomBranchCollection, bool>

@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents an elimination count constraint.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>

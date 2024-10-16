@@ -13,8 +13,8 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell, CellMap.Enumerator>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators
+		| TypeImplFlags.LogicalNotOperator | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {

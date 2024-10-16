@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction;
 /// Represents a pattern that describes a technique, describing cells and digits used in a puzzle.
 /// </summary>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
 public abstract partial class Pattern : ICloneable, IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern, bool>

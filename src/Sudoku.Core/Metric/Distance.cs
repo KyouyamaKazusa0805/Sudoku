@@ -9,7 +9,7 @@ namespace Sudoku.Metric;
 /// <remarks>
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllEqualityComparisonOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.AllEqualityComparisonOperators)]
 public readonly ref partial struct Distance(int p, int q) : ILatexFormattable
 {
 	/// <summary>

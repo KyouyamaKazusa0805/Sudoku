@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TContext, TSolverResult}.Puzzle" path="/summary"/></param>
-[TypeImpl(TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlags.Equatable)]
 public sealed partial record AnalysisResult([property: EquatableMember] ref readonly Grid Puzzle) :
 	IAnalysisResult<AnalysisResult, Analyzer, AnalyzerContext>,
 	IAnyAllMethod<AnalysisResult, Step>,

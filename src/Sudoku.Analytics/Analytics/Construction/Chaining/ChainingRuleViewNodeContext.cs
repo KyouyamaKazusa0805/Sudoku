@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// <param name="pattern">The pattern.</param>
 /// <param name="view">The view.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct ChainingRuleViewNodeContext(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[Field(Accessibility = "public", NamingRule = ">@")] Chain pattern,

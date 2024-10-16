@@ -31,7 +31,7 @@ namespace Sudoku.Analytics;
 /// </param>
 /// <seealso cref="Step"/>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed")]

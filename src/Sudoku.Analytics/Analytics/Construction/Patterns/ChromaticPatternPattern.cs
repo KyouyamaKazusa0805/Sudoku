@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="block2Cells">Indicates the cells used in second block.</param>
 /// <param name="block3Cells">Indicates the cells used in third block.</param>
 /// <param name="block4Cells">Indicates the cells used in fourth block.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class ChromaticPatternPattern(
 	[Property] Cell[] block1Cells,
 	[Property] Cell[] block2Cells,

@@ -5,7 +5,7 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="_value">The value to be iterated.</param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct Int64Enumerator(ulong _value) : IEnumerator<int>

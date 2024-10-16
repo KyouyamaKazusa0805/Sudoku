@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loopCells">Indicates the cells of the whole loop.</param>
 /// <param name="extraCells">Indicates the extra cells.</param>
 /// <param name="digitsMask">Indicates the mask of digits that the loop used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class BivalueOddagonPattern(
 	[Property, HashCodeMember] ref readonly CellMap loopCells,
 	[Property] ref readonly CellMap extraCells,

@@ -21,7 +21,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(SquareViewNode), 15)]
 [JsonDerivedType(typeof(HeartViewNode), 16)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract,
 	OtherModifiersOnEquatableEquals = "virtual")]

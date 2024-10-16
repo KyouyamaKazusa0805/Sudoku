@@ -3,7 +3,7 @@ namespace Sudoku.Drawing.Ocr;
 /// <summary>
 /// Define a sudoku recognition service provider.
 /// </summary>
-[TypeImpl(TypeImplFlag.Disposable)]
+[TypeImpl(TypeImplFlags.Disposable)]
 public sealed partial class RecognitionServiceProvider : IDisposable
 {
 	/// <summary>

@@ -16,7 +16,7 @@ using GridBase = IGrid<Grid>;
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.Equatable,
+	TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
 public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
 {

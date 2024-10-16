@@ -6,7 +6,7 @@ namespace Sudoku.Runtime;
 /// <param name="userId"><inheritdoc cref="UserId" path="/summary"/></param>
 /// <param name="answerString"><inheritdoc cref="AnswerString" path="/summary"/></param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed")]

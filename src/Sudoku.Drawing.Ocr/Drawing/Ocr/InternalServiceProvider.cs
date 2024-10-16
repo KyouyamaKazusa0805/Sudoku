@@ -6,7 +6,7 @@ namespace Sudoku.Drawing.Ocr;
 /// <remarks>
 /// During the recognizing, the <b>field</b> indicates the whole outline of a grid.
 /// </remarks>
-[TypeImpl(TypeImplFlag.Disposable)]
+[TypeImpl(TypeImplFlags.Disposable)]
 internal sealed partial class InternalServiceProvider : IDisposable
 {
 	/// <summary>

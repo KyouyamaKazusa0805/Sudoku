@@ -18,7 +18,7 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
 	ToStringBehavior = ToStringBehavior.RecordLike)]
 public readonly ref partial struct Cluster(
 	[Field, HashCodeMember, StringMember] ref readonly Grid grid,

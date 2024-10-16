@@ -8,7 +8,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 /// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable | TypeImplFlag.AllDisposable)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable | TypeImplFlags.AllDisposable)]
 public sealed partial class TextPointer(LibraryInfo library) :
 	IAdditionOperators<TextPointer, int, TextPointer>,
 	IAsyncDisposable,

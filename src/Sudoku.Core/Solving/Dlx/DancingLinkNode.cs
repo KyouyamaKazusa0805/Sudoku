@@ -4,7 +4,7 @@ namespace Sudoku.Solving.Dlx;
 /// Represents a dancing link node.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
-[TypeImpl(TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_ToString)]
 public partial class DancingLinkNode : IFormattable
 {
 	/// <summary>

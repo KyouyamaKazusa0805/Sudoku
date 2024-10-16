@@ -8,7 +8,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Step"/>
 /// <seealso cref="Concepts.Grid"/>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlags.AllObjectMethods, IsLargeStructure = true)]
 public ref partial struct StepAnalysisContext(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid initialGrid

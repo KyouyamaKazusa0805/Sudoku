@@ -7,7 +7,7 @@ namespace System.Linq.Enumerators;
 /// <param name="sequence">The sequence value.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct PairEnumerator<T>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(T First, T Second)>

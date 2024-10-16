@@ -5,7 +5,7 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="candidate">Indicates the candidate highlighted.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class CandidateViewNode(ColorIdentifier identifier, [Property, HashCodeMember] Candidate candidate) :
 	BasicViewNode(identifier)

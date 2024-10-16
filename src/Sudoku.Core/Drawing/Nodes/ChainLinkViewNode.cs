@@ -7,7 +7,7 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="start">Indicates the start point.</param>
 /// <param name="end">Indicates the end point.</param>
 /// <param name="isStrongLink">Indicates whether the link is a strong link.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class ChainLinkViewNode(
 	ColorIdentifier identifier,

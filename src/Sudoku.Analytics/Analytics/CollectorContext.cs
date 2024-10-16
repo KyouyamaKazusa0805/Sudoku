@@ -6,7 +6,7 @@ namespace Sudoku.Analytics;
 /// <param name="puzzle">The puzzle to be analyzed.</param>
 /// <seealso cref="Collector"/>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct CollectorContext([Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid puzzle) : IContext
 {
 	/// <summary>

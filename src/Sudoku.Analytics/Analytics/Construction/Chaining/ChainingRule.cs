@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// </summary>
 /// <seealso cref="Node"/>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods,
+	TypeImplFlags.AllObjectMethods,
 	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
 	OtherModifiersOnEquals = "sealed",
 	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException,

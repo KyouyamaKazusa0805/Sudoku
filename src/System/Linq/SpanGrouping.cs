@@ -10,7 +10,7 @@ namespace System.Linq;
 /// <param name="key">Indicates the key that can compare each element.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators)]
 public readonly partial struct SpanGrouping<TSource, TKey>([Field] TSource[] elements, [Property, HashCodeMember, StringMember] TKey key) :
 	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull

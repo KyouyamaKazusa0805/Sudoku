@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents for a normal blossom branch collection.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public sealed partial class NormalBlossomBranchCollection :
 	DeathBlossomBranchCollection<NormalBlossomBranchCollection, Digit>,
 	IEqualityOperators<NormalBlossomBranchCollection, NormalBlossomBranchCollection, bool>

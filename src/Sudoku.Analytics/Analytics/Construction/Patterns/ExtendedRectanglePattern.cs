@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="patternCells">Indicates the cells used.</param>
 /// <param name="pairCells">Indicates a list of pairs of cells used.</param>
 /// <param name="size">Indicates the size of the pattern.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class ExtendedRectanglePattern(
 	[Property] bool isFat,
 	[Property, HashCodeMember] ref readonly CellMap patternCells,

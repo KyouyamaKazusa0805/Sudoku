@@ -48,7 +48,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// Due to the drawing API, you have to check this file rather than the tip window.
 /// </para>
 /// </param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class BorescoperDeadlyPatternPattern([Field, HashCodeMember] long mask) : Pattern
 {
 	/// <summary>

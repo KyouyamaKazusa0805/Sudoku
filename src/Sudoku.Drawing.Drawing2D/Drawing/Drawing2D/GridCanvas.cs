@@ -5,7 +5,7 @@ namespace Sudoku.Drawing.Drawing2D;
 /// </summary>
 [SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 [SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
-[TypeImpl(TypeImplFlag.Disposable)]
+[TypeImpl(TypeImplFlags.Disposable)]
 public sealed partial class GridCanvas : IDisposable
 {
 	/// <summary>

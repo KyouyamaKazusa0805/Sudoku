@@ -6,7 +6,7 @@ namespace Sudoku.Behaviors.Ittoryu;
 /// <param name="Digits">The digits path.</param>
 [CollectionBuilder(typeof(DisorderedIttoryuDigitPath), nameof(Create))]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.ComparisonOperators)]
+[TypeImpl(TypeImplFlags.ComparisonOperators)]
 public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
 	IComparable<DisorderedIttoryuDigitPath>,
 	IComparisonOperators<DisorderedIttoryuDigitPath, DisorderedIttoryuDigitPath, bool>,

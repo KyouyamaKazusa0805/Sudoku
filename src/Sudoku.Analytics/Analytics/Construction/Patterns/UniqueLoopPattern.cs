@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loop">Indicates the cells used in this whole unique loop.</param>
 /// <param name="path">Indicates the detail path of the loop.</param>
 /// <param name="digitsMask">Indicates the digits used, represented as a mask.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class UniqueLoopPattern(
 	[Property] ref readonly CellMap loop,
 	[Property] Cell[] path,

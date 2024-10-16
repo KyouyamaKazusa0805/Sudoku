@@ -12,7 +12,7 @@ namespace Sudoku.Inferring;
 /// <param name="patternCandidates">Indicates the candidates the pattern used.</param>
 /// <seealso cref="DeadlyPatternInferrer.TryInfer(ref readonly Grid, out DeadlyPatternInferredResult)"/>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct DeadlyPatternInferredResult(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[Property] bool isDeadlyPattern,

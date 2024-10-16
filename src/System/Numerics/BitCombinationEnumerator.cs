@@ -7,7 +7,7 @@ namespace System.Numerics;
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct BitCombinationEnumerator<TInteger>(int bitCount, int oneCount) : IEnumerator<TInteger>

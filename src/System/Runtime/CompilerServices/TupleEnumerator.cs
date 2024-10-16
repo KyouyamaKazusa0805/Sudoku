@@ -5,7 +5,7 @@ namespace System.Runtime.CompilerServices;
 /// </summary>
 /// <param name="_tuple">A tuple instance.</param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct TupleEnumerator(ITuple _tuple) : IEnumerator, IEnumerator<object?>

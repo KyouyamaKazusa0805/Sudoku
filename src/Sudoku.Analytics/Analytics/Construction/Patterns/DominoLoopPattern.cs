@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// Represents a domino loop pattern.
 /// </summary>
 /// <param name="cells">Indicates the cells used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class DominoLoopPattern([Property] Cell[] cells) : Pattern
 {
 	/// <inheritdoc/>

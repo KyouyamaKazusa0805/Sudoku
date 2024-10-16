@@ -7,7 +7,7 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
 /// <param name="tuple">The tuple.</param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) : IEnumerator<T>

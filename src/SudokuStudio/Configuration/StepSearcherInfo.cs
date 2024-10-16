@@ -3,7 +3,7 @@ namespace SudokuStudio.Configuration;
 /// <summary>
 /// Defines a serialization data of a step searcher.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_ToString)]
 public sealed partial class StepSearcherInfo : DependencyObject
 {
 	/// <summary>

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a blossom loop.
 /// </summary>
 /// <param name="conclusions">Indicates the conclusions used.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators)]
 public sealed partial class BlossomLoop([Property] params ConclusionSet conclusions) :
 	SortedDictionary<Candidate, StrongForcingChain>,
 	IComparable<BlossomLoop>,

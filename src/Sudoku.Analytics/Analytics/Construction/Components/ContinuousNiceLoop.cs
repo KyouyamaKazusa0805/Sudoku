@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// with eliminations from all weak links.
 /// </summary>
 /// <param name="lastNode"><inheritdoc/></param>
-[TypeImpl(TypeImplFlag.Object_ToString, EmitThisCastToInterface = true)]
+[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
 public sealed partial class ContinuousNiceLoop(Node lastNode) : NamedChain(lastNode, true)
 {
 	/// <inheritdoc/>

@@ -13,9 +13,9 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate, Candida
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
-		| TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString
+		| TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators
+		| TypeImplFlags.LogicalNotOperator | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 {

@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="house2">Indicates the house 2.</param>
 /// <param name="digitsMask">Indicates all digits.</param>
 /// <param name="zDigit">Indicates the digit Z.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class XyzWingPattern(
 	[Property, HashCodeMember] Cell pivot,
 	[Property, HashCodeMember] Cell leafCell1,

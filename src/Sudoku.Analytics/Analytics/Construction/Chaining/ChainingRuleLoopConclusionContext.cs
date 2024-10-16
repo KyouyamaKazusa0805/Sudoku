@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// <param name="grid">The grid to be checked.</param>
 /// <param name="links">The links inside the loop or loop-like pattern.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct ChainingRuleLoopConclusionContext(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
 	[Field(Accessibility = "public", NamingRule = ">@")] ReadOnlySpan<Link> links

@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// Represents a variant color type.
 /// </summary>
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 [method: JsonConstructor]
 public readonly partial struct VariantColor(
 	[Property, StringMember] byte a,

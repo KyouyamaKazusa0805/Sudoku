@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="map">The map of cells used.</param>
 /// <param name="rowCount">The number of rows used.</param>
 /// <param name="columnCount">The number of columns used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class MultisectorLockedSetPattern(
 	[Property, HashCodeMember] ref readonly CellMap map,
 	[Property] int rowCount,

@@ -5,7 +5,7 @@ namespace System.Linq.Enumerators;
 /// </summary>
 /// <typeparam name="T">The uniform type of a pair of instances.</typeparam>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct ValueTupleEnumerator<T> : IEnumerator<T>

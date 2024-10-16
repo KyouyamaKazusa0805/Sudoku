@@ -5,7 +5,7 @@ namespace SudokuStudio.Drawing;
 /// </summary>
 /// <param name="sudokuPane">Indicates the sudoku pane.</param>
 /// <param name="controlAddingActions">Indicates the control adding actions. The collection can be used by playing animation.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 internal readonly ref partial struct DrawingContext(
 	[Property] SudokuPane sudokuPane,
 	[Property] AnimatedResultCollection controlAddingActions

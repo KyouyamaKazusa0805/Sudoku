@@ -4,7 +4,7 @@ namespace Sudoku.Drawing;
 /// Defines a dash array of <see cref="double"/> values. The values can be used in UI as dash array of a double collection.
 /// </summary>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
 public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>

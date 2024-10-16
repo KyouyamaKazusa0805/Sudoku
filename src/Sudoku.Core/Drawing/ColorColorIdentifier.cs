@@ -7,7 +7,7 @@ namespace Sudoku.Drawing;
 /// <param name="red">Indicates the color red raw values to be assigned.</param>
 /// <param name="green">Indicates the color green raw values to be assigned.</param>
 /// <param name="blue">Indicates the color blue raw values to be assigned.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class ColorColorIdentifier(
 	[Property, StringMember] byte alpha,

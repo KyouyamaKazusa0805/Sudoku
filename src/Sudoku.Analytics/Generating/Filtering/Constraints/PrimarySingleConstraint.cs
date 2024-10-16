@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a primary single constraint.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
 public sealed partial class PrimarySingleConstraint : Constraint
 {
 	/// <summary>

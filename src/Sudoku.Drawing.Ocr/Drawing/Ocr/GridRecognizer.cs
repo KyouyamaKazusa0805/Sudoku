@@ -6,7 +6,7 @@ namespace Sudoku.Drawing.Ocr;
 /// </summary>
 /// <param name="_photo">Indicates the photo to be assigned.</param>
 /// <seealso cref="InternalServiceProvider"/>
-[TypeImpl(TypeImplFlag.Disposable)]
+[TypeImpl(TypeImplFlags.Disposable)]
 internal sealed partial class GridRecognizer(Bitmap _photo) : IDisposable
 {
 	/// <summary>

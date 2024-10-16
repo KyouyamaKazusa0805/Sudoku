@@ -9,7 +9,7 @@ namespace Sudoku.Concepts.Coloring;
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
-[TypeImpl(TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlags.Equatable)]
 public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>

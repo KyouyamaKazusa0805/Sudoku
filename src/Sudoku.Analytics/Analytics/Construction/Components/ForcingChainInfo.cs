@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="OffNodes">Indicates all possible nodes that can implicitly connect to node, supposed to "off".</param>
 /// <seealso cref="Node"/>
 /// <seealso cref="Node.IsOn"/>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public readonly partial record struct ForcingChainInfo(HashSet<Node> OnNodes, HashSet<Node> OffNodes) :
 	IEnumerable<Node>,
 	IReadOnlyCollection<Node>

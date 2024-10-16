@@ -25,7 +25,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Lines1">The first pair of lines.</param>
 /// <param name="Lines2">The second pair of lines.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class QiuDeadlyPattern2Pattern([Property] HouseMask Lines1, [Property] HouseMask Lines2) :
 	Pattern
 {

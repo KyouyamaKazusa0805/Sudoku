@@ -7,7 +7,7 @@ namespace System.Numerics;
 /// <param name="_value">The integer to be iterated.</param>
 /// <param name="_bitsCount">The integer of bits to be iterated.</param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct GenericIntegerEnumerator<TInteger>(TInteger _value, int _bitsCount) : IEnumerator<int>

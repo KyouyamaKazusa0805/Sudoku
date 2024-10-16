@@ -6,7 +6,7 @@ namespace System.Linq.Enumerators;
 /// <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([Field] ReadOnlySpan<T> sequence) : IEnumerator<(TFirst First, TSecond Second)>

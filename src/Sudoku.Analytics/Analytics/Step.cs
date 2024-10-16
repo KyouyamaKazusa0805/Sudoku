@@ -11,7 +11,7 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllEqualityComparisonOperators | TypeImplFlag.Equatable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnToString = "sealed",
 	OtherModifiersOnEquatableEquals = "virtual")]

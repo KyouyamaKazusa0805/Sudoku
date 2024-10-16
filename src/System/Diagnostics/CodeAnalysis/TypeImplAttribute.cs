@@ -37,7 +37,7 @@ namespace System.Diagnostics.CodeAnalysis;
 /// ]]></code>
 /// </remarks>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
-public sealed partial class TypeImplAttribute([Property] TypeImplFlag flags) : Attribute
+public sealed partial class TypeImplAttribute([Property] TypeImplFlags flags) : Attribute
 {
 	/// <summary>
 	/// Indicates whether source generators will generate source code with modifiers <see langword="ref readonly"/>

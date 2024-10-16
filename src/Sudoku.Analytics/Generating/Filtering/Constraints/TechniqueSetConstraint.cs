@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that limits a puzzle that can only use such techniques to be finished.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class TechniqueSetConstraint : Constraint
 {
 	/// <summary>

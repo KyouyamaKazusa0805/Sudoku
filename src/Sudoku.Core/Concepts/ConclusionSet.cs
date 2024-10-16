@@ -4,9 +4,9 @@ namespace Sudoku.Concepts;
 /// Represents a list of conclusions.
 /// </summary>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString
-		| TypeImplFlag.EqualityOperators | TypeImplFlag.TrueAndFalseOperators
-		| TypeImplFlag.LogicalNotOperator | TypeImplFlag.Equatable)]
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString
+		| TypeImplFlags.EqualityOperators | TypeImplFlags.TrueAndFalseOperators
+		| TypeImplFlags.LogicalNotOperator | TypeImplFlags.Equatable)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,

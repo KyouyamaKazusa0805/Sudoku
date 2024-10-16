@@ -26,7 +26,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="Corner">The corner cells that is <c>P</c> in that sketch.</param>
 /// <param name="Lines">The base-line cells that is <c>B</c> in that sketch.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class QiuDeadlyPattern1Pattern([Property] ref readonly CellMap Corner, [Property] HouseMask Lines) :
 	Pattern
 {

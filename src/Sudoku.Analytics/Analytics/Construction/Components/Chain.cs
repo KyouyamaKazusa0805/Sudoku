@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <seealso cref="Node"/>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllEqualityComparisonOperators,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class Chain :

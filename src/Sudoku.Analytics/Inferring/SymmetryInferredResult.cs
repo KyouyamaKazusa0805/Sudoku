@@ -7,7 +7,7 @@ namespace Sudoku.Inferring;
 /// <param name="mappingDigits">The mapping digits returned.</param>
 /// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
 /// <seealso cref="SymmetryInferrer.TryInfer(ref readonly Grid, out SymmetryInferredResult)"/>
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct SymmetryInferredResult(
 	[Property] SymmetricType symmetricType,
 	[Property] ReadOnlySpan<Digit?> mappingDigits,

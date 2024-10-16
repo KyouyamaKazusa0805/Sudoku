@@ -5,7 +5,7 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode(ColorIdentifier)"/></param>
 /// <param name="cell">The cell.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public abstract partial class IconViewNode(ColorIdentifier identifier, [Property, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

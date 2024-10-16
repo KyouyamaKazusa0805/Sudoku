@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loopCells">Indicates the cells used in this whole guardian loop.</param>
 /// <param name="guardians">Indicates the extra cells that is used as guardians.</param>
 /// <param name="digit">Indicates the digit used.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class GuardianPattern(
 	[Property, HashCodeMember] ref readonly CellMap loopCells,
 	[Property, HashCodeMember] ref readonly CellMap guardians,

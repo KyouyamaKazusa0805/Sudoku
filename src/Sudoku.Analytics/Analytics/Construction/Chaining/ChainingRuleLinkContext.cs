@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// <param name="strongLinks">The dictionary that stores a list of strong links.</param>
 /// <param name="weakLinks">The dictionary that stores a list of weak links.</param>
 /// <param name="options">Indicates the step searcher options to be used.</param>
-[TypeImpl(TypeImplFlag.AllObjectMethods)]
+[TypeImpl(TypeImplFlags.AllObjectMethods)]
 [SuppressMessage("Style", "IDE0250:Make struct 'readonly'", Justification = "<Pending>")]
 public ref partial struct ChainingRuleLinkContext(
 	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,

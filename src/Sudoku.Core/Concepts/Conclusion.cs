@@ -26,7 +26,7 @@ namespace Sudoku.Concepts;
 /// but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly partial struct Conclusion([Field, HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
 	IDrawableItem,

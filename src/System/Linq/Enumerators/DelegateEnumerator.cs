@@ -8,7 +8,7 @@ namespace System.Linq.Enumerators;
 /// <param name="value">The complex delegate object to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct DelegateEnumerator<TDelegate>([Property] TDelegate? value) : IEnumerator<TDelegate>

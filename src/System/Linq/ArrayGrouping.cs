@@ -9,7 +9,7 @@ namespace System.Linq;
 /// <param name="elements">Indicates the elements.</param>
 /// <param name="key">Indicates the key that can compare each element.</param>
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators)]
 public sealed partial class ArrayGrouping<TSource, TKey>([Field] TSource[] elements, [Property, HashCodeMember, StringMember] TKey key) :
 	IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>
 	where TKey : notnull

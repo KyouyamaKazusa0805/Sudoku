@@ -20,7 +20,7 @@ namespace Sudoku.Generating.Filtering;
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
 [JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]

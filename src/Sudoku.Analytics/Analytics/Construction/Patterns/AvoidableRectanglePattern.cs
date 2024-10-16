@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="cells">Indicates the cells used.</param>
 /// <param name="digitsMask">Indicates the digits used.</param>
 /// <param name="valuesMap">Indicates the value cells.</param>
-[TypeImpl(TypeImplFlag.Object_GetHashCode)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class AvoidableRectanglePattern(
 	[Property, HashCodeMember] ref readonly CellMap cells,
 	[Property, HashCodeMember] Mask digitsMask,

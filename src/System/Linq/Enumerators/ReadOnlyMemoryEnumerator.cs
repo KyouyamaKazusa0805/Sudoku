@@ -7,7 +7,7 @@ namespace System.Linq.Enumerators;
 /// <seealso cref="ReadOnlyMemory{T}"/>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value) : IEnumerator<T>

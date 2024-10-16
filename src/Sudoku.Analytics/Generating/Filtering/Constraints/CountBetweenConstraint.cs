@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a count between constraint.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
 {
 	/// <summary>

@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Specialized;
 /// Represents a graph that displays a list of <see cref="Cell"/> instances connected with rows and columns of adjacent positions.
 /// </summary>
 /// <seealso cref="Cell"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.Equatable)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly ref partial struct AdjacentCellGraph :
 	IEquatable<AdjacentCellGraph>,
 	//IEqualityOperators<AdjacentCellGraph, AdjacentCellGraph, bool>,

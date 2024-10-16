@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a chain segment (forcing chain) starting with weak link.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_ToString, EmitThisCastToInterface = true)]
+[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
 public sealed partial class WeakForcingChain(Node lastNode) : UnnamedChain(lastNode)
 {
 	/// <inheritdoc/>

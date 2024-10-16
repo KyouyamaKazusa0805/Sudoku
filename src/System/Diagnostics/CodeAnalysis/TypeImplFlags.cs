@@ -1,10 +1,10 @@
 namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
-/// Represents a flag that supports for auto implementation.
+/// Represents a list of flags indicating a member to be automatically implemented by source generator.
 /// </summary>
 [Flags]
-public enum TypeImplFlag
+public enum TypeImplFlags
 {
 	/// <summary>
 	/// Indicates no elements will be generated.

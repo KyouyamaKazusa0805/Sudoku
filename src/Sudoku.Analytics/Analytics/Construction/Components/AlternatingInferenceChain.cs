@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
 /// </summary>
 /// <param name="lastNode"><inheritdoc/></param>
-[TypeImpl(TypeImplFlag.Object_ToString, EmitThisCastToInterface = true)]
+[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
 public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNode, false)
 {
 	/// <summary>

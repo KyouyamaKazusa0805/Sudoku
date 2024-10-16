@@ -7,7 +7,7 @@ namespace System.Linq.Enumerators;
 /// <param name="elements">Indicates the elements.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.Disposable,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.Disposable,
 	OtherModifiersOnDisposableDispose = "readonly",
 	ExplicitlyImplsDisposable = true)]
 public ref partial struct AnonymousSpanEnumerator<T>([Field] ReadOnlySpan<T> elements) : IEnumerator<T>

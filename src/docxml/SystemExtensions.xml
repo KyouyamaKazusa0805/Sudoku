@@ -1344,7 +1344,7 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:System.Diagnostics.CodeAnalysis.TypeImplAttribute.#ctor(System.Diagnostics.CodeAnalysis.TypeImplFlag)">
+        <member name="M:System.Diagnostics.CodeAnalysis.TypeImplAttribute.#ctor(System.Diagnostics.CodeAnalysis.TypeImplFlags)">
             <summary>
             Represents an attribute type that can help developers declare types simpler and easier,
             through generating particular code, like automatically implementing <see cref="T:System.IEquatable`1"/>
@@ -1493,42 +1493,42 @@
             The generated property declaration for parameter <c>flags</c>.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.TypeImplFlag">
+        <member name="T:System.Diagnostics.CodeAnalysis.TypeImplFlags">
             <summary>
-            Represents a flag that supports for auto implementation.
+            Represents a list of flags indicating a member to be automatically implemented by source generator.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.None">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.None">
             <summary>
             Indicates no elements will be generated.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_Equals">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.Object_Equals">
             <summary>
             Indicates the method <see cref="M:System.Object.Equals(System.Object)"/> will be generated.
             </summary>
             <seealso cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_GetHashCode">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.Object_GetHashCode">
             <summary>
             Indicates the method <see cref="M:System.Object.GetHashCode"/> will be generated.
             </summary>
             <seealso cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Object_ToString">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.Object_ToString">
             <summary>
             Indicates the method <see cref="M:System.Object.ToString"/> will be generated.
             </summary>
             <seealso cref="M:System.Object.ToString"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.EqualityOperators">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.EqualityOperators">
             <summary>
             Indicates the equality operators defined in <see cref="T:System.Numerics.IEqualityOperators`3"/> will be generated.
             </summary>
             <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
             <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.ComparisonOperators">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.ComparisonOperators">
             <summary>
             Indicates the comparison operators defined in <see cref="T:System.Numerics.IComparisonOperators`3"/> will be generated.
             </summary>
@@ -1537,7 +1537,7 @@
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.TrueAndFalseOperators">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.TrueAndFalseOperators">
             <summary>
             Indicates operators <see cref="M:System.ILogicalOperators`1.op_True(`0)"/>
             and <see cref="M:System.ILogicalOperators`1.op_False(`0)"/> will be generated.
@@ -1545,43 +1545,43 @@
             <seealso cref="M:System.ILogicalOperators`1.op_True(`0)"/>
             <seealso cref="M:System.ILogicalOperators`1.op_False(`0)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.LogicalNotOperator">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.LogicalNotOperator">
             <summary>
             Indicates operator <see cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/> will be generated.
             </summary>
             <seealso cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Equatable">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.Equatable">
             <summary>
             Indicates method <see cref="M:System.IEquatable`1.Equals(`0)"/>.
             </summary>
             <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.Disposable">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.Disposable">
             <summary>
             Indicates method <see cref="M:System.IDisposable.Dispose"/>.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AsyncDisposable">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.AsyncDisposable">
             <summary>
             Indicates method <see cref="M:System.IAsyncDisposable.DisposeAsync"/>.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllObjectMethods">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.AllObjectMethods">
             <summary>
             Indicates all the methods
             <see cref="M:System.Object.Equals(System.Object)"/>, <see cref="M:System.Object.GetHashCode"/> and <see cref="M:System.Object.ToString"/>
             will be generated.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllEqualityComparisonOperators">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.AllEqualityComparisonOperators">
             <summary>
             Indicates all the operators
             <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>
             will be generated.
             </summary>
         </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlag.AllDisposable">
+        <member name="F:System.Diagnostics.CodeAnalysis.TypeImplFlags.AllDisposable">
             <summary>
             Indicates all the dispose methods
             <see cref="M:System.IDisposable.Dispose"/> and <see cref="M:System.IAsyncDisposable.DisposeAsync"/> will be generated.
