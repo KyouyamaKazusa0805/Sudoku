@@ -87,7 +87,27 @@ public sealed partial class ArrayOrderedEnumerable<T>([Field] T[] values, [Field
 		return [.. result];
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// <para>Same as <see cref="ThenBy{TKey}(Func{T, TKey})"/>.</para>
+	/// <para><inheritdoc cref="SpanOrderedEnumerable{T}.OrderBy{TKey}(Func{T, TKey})" path="/summary/para[2]"/></para>
+	/// </summary>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>A <see cref="ArrayOrderedEnumerable{T}"/> instance, with a new selector added in the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ArrayOrderedEnumerable<T> OrderBy<TKey>(Func<T, TKey> selector) where TKey : notnull => ThenBy(selector);
+
+	/// <summary>
+	/// <para>Same as <see cref="ThenByDescending{TKey}(Func{T, TKey})"/>.</para>
+	/// <para><inheritdoc cref="SpanOrderedEnumerable{T}.OrderBy{TKey}(Func{T, TKey})" path="/summary/para[2]"/></para>
+	/// </summary>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>A <see cref="ArrayOrderedEnumerable{T}"/> instance, with a new selector added in the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ArrayOrderedEnumerable<T> OrderByDescending<TKey>(Func<T, TKey> selector) where TKey : notnull => ThenByDescending(selector);
+
+	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ArrayOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 		=> new(
@@ -102,7 +122,7 @@ public sealed partial class ArrayOrderedEnumerable<T>([Field] T[] values, [Field
 			]
 		);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ArrayOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 		=> new(

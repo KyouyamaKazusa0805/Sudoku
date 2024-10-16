@@ -2185,11 +2185,29 @@
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.Where(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Boolean})"/>
         </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})">
+            <summary>
+            <para>Same as <see cref="M:System.Linq.ArrayOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})"/>.</para>
+            <para><inheritdoc cref="M:System.Linq.SpanOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})" path="/summary/para[2]"/></para>
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>A <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance, with a new selector added in the current instance.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.OrderByDescending``1(System.Func{`0,``0})">
+            <summary>
+            <para>Same as <see cref="M:System.Linq.ArrayOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})"/>.</para>
+            <para><inheritdoc cref="M:System.Linq.SpanOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})" path="/summary/para[2]"/></para>
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>A <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance, with a new selector added in the current instance.</returns>
+        </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``1(System.Func{`1,``0})"/>
@@ -4397,6 +4415,31 @@
             </summary>
             <param name="condition">The condition to be used.</param>
             <returns>A span of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})">
+            <summary>
+            <para>Same as <see cref="M:System.Linq.SpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})"/>.</para>
+            <para>
+            In query expression level, this method will be a little different with standard LINQ design -
+            two adjacent <see langword="orderby"/> clauses will be translated into two methods invocation:
+            methods <see cref="M:System.Linq.SpanOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})"/> and <see cref="M:System.Linq.SpanOrderedEnumerable`1.OrderByDescending``1(System.Func{`0,``0})"/>.
+            However, due to consideration of optimization on syntax, the second <see langword="orderby"/> clause
+            will be treated as <see cref="M:System.Linq.SpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})"/> or <see cref="M:System.Linq.SpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})"/>
+            invocation instead.
+            </para>
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>A <see cref="T:System.Linq.SpanOrderedEnumerable`1"/> instance, with a new selector added in the current instance.</returns>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.OrderByDescending``1(System.Func{`0,``0})">
+            <summary>
+            <para>Same as <see cref="M:System.Linq.SpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})"/>.</para>
+            <para><inheritdoc cref="M:System.Linq.SpanOrderedEnumerable`1.OrderBy``1(System.Func{`0,``0})" path="/summary/para[2]"/></para>
+            </summary>
+            <typeparam name="TKey">The type of key.</typeparam>
+            <param name="selector">The selector.</param>
+            <returns>A <see cref="T:System.Linq.SpanOrderedEnumerable`1"/> instance, with a new selector added in the current instance.</returns>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>

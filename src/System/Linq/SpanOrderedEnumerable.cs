@@ -105,6 +105,33 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		return result.AsReadOnlySpan();
 	}
 
+	/// <summary>
+	/// <para>Same as <see cref="ThenBy{TKey}(Func{T, TKey})"/>.</para>
+	/// <para>
+	/// In query expression level, this method will be a little different with standard LINQ design -
+	/// two adjacent <see langword="orderby"/> clauses will be translated into two methods invocation:
+	/// methods <see cref="OrderBy{TKey}(Func{T, TKey})"/> and <see cref="OrderByDescending{TKey}(Func{T, TKey})"/>.
+	/// However, due to consideration of optimization on syntax, the second <see langword="orderby"/> clause
+	/// will be treated as <see cref="ThenBy{TKey}(Func{T, TKey})"/> or <see cref="ThenByDescending{TKey}(Func{T, TKey})"/>
+	/// invocation instead.
+	/// </para>
+	/// </summary>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>A <see cref="SpanOrderedEnumerable{T}"/> instance, with a new selector added in the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public SpanOrderedEnumerable<T> OrderBy<TKey>(Func<T, TKey> selector) => ThenBy(selector);
+
+	/// <summary>
+	/// <para>Same as <see cref="ThenByDescending{TKey}(Func{T, TKey})"/>.</para>
+	/// <para><inheritdoc cref="OrderBy{TKey}(Func{T, TKey})" path="/summary/para[2]"/></para>
+	/// </summary>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>A <see cref="SpanOrderedEnumerable{T}"/> instance, with a new selector added in the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public SpanOrderedEnumerable<T> OrderByDescending<TKey>(Func<T, TKey> selector) => ThenByDescending(selector);
+
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
