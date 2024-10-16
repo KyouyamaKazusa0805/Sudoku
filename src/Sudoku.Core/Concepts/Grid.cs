@@ -1099,31 +1099,25 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <remarks><b><i>
 	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
 	/// </i></b></remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Grid Create(ReadOnlySpan<Mask> values)
 	{
-		switch (values.Length)
+		switch (values)
 		{
-			case 0:
+			case []:
 			{
 				return Undefined;
 			}
-			case 1:
+			case [var uniformValue]:
 			{
 				var result = Undefined;
-				var uniformValue = values[0];
-				for (var cell = 0; cell < 81; cell++)
-				{
-					result[cell] = uniformValue;
-				}
+				if (uniformValue == 0) { result[..].Clear(); } else { result[..].Fill(uniformValue); }
 				return result;
 			}
-			case 81:
+			case { Length: 81 }:
 			{
 				var result = Undefined;
-				for (var cell = 0; cell < 81; cell++)
-				{
-					result[cell] = values[cell];
-				}
+				values[..].CopyTo(result[..]);
 				return result;
 			}
 			default:
