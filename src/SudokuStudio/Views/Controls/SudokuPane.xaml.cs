@@ -75,9 +75,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
-	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = [];
-
-	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]

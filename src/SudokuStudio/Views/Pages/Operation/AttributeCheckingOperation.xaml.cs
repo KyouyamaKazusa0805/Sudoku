@@ -123,7 +123,7 @@ file sealed class BackdoorVisualUnit(View _view) : IDrawable
 	public ReadOnlyMemory<View> Views { get; } = (View[])[_view];
 
 	/// <inheritdoc/>
-	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];
+	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = ReadOnlyMemory<Conclusion>.Empty;
 }
 
 /// <summary>
@@ -136,5 +136,5 @@ file sealed class TrueCandidateVisualUnit(View _view) : IDrawable
 	public ReadOnlyMemory<View> Views { get; } = (View[])[_view];
 
 	/// <inheritdoc/>
-	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = (Conclusion[])[];
+	ReadOnlyMemory<Conclusion> IDrawable.Conclusions { get; } = ReadOnlyMemory<Conclusion>.Empty;
 }
