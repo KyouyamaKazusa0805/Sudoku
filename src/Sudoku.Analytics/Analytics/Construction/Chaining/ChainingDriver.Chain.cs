@@ -66,31 +66,8 @@ internal partial class ChainingDriver
 				if (onlyFindOne && result.Min is { Length: var possibleMinimalLength } lengthOptimizedChain1
 					&& possibleMinimalLength <= (allowsAdvancedLinks ? 4 : 6))
 				{
-					#region Description to this optimization
-					// This is an optimzation.
-					//
-					// Due to backing implementation of chaining rule, the first found chain may not be the minimal length
-					// of all possible found chains - the first found chain should hold the minimal index
-					// of conclusion candidate.
-					//
-					// If it is required that the length should be considered, we should sort for all possible found chains,
-					// and return one having the minimal length.
-					//
-					// Here we should append an extra rule for optimization: if we have already found a chain
-					// whose length is less than or equals to 6, it is already a shortest chain because we cannot find
-					// a chain with just one strong link (it can be replaced with some other techniques, called "type 2")
-					// and two strong links (replaced with X-Wing, skyscraper, two-string-kite and turbot fish).
-					//
-					// For further consideration, if we search for grouped cases, we should relax the value to 4
-					// in order making missing ALS-XZ's can be found here.
-					//
-					// In addition, here we only consider for elimination cases of chaining -
-					// there's no two-strong-link chains with assignment conclusions exist.
-					//
-					// Such optimization can make a quick return to avoid exaustive searching.
-					// However, this is an unsafe optmization, but we can guarantee that all chains
-					// with just one link cannot exist here.
-					#endregion
+					// Optimization: Directly returns the searching if we can assert the chain is already shortest,
+					// This binds with issue #730: https://github.com/KyouyamaKazusa0805/Sudoku/issues/730
 					return new SingletonArray<NamedChain>(lengthOptimizedChain1);
 				}
 #endif
