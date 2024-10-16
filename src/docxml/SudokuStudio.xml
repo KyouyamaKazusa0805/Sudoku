@@ -12705,6 +12705,11 @@
             Indicates the internal compositor.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
+            <summary>
+            The backing field of property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane._springAnimation">
             <summary>
             Indicates the spring animation.
@@ -13219,12 +13224,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane._puzzle">
-            <summary>
-            Indicates the backing field of property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.Puzzle"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.DisplayCandidatesProperty">
             <summary>

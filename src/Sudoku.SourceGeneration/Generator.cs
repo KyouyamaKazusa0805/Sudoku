@@ -15,7 +15,6 @@ public sealed class Generator : IIncrementalGenerator
 		TypeImpl(context);
 		WithProperty(context);
 		AddProperty(context);
-		ImplicitField(context);
 	}
 
 	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
@@ -29,20 +28,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			PrimaryConstructorMemberHandler.Output
-		);
-
-	private void ImplicitField(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute",
-					SyntaxNodeTypePredicate<PropertyDeclarationSyntax>,
-					ImplicitFieldHandler.Transform
-				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			ImplicitFieldHandler.Output
 		);
 
 	private void WithProperty(IncrementalGeneratorInitializationContext context)

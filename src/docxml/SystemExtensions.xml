@@ -1093,29 +1093,6 @@
             Indicates the marked member will participate hashing operation.
             </summary>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute">
-            <summary>
-            Indicates the source generator should generate its backing field without compiler controlling.
-            </summary>
-            <remarks>
-            You can use this attribute to create a field:
-            <code><![CDATA[
-            [ImplicitField]
-            public int Property
-            {
-                get => _property;
-                set => _property ??= value;
-            }
-            ]]></code>
-            You may not write code to create field <c>_property</c>. This attribute will make source generators generate it.
-            </remarks>
-        </member>
-        <member name="P:System.Diagnostics.CodeAnalysis.ImplicitFieldAttribute.RequiredReadOnlyModifier">
-            <summary>
-            Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
-            The value is <see langword="true"/> by default.
-            </summary>
-        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.NullabilityPrefer">
             <summary>
             Represents an enumeration type that tells source generators which case of nullability should be preferred.

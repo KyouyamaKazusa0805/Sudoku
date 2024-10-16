@@ -192,6 +192,11 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private readonly Compositor _compositor = CompositionTarget.GetCompositorForCurrentThread();
 
 	/// <summary>
+	/// The backing field of property <see cref="Puzzle"/>.
+	/// </summary>
+	private Grid _puzzle;
+
+	/// <summary>
 	/// Indicates the spring animation.
 	/// </summary>
 	private SpringVector3NaturalMotionAnimation? _springAnimation;
@@ -374,7 +379,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the core-operating sudoku puzzle.
 	/// </summary>
-	[ImplicitField]
 	public Grid Puzzle
 	{
 		get => _puzzle;

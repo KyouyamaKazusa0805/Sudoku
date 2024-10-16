@@ -91,26 +91,6 @@
             <param name="_"/>
             <returns>The value.</returns>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler">
-            <summary>
-            The generator handler for implicit fields.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,Microsoft.CodeAnalysis.IPropertySymbol,System.Boolean)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.ImplicitFieldHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler">
             <summary>
             The generator handler for primary constructor member parameters.

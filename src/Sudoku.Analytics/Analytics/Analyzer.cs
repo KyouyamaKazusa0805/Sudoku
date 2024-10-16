@@ -53,13 +53,12 @@ public sealed partial class Analyzer : AnalyzerBase
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
-		get => _stepSearchers;
+		get => field;
 
-		set => ResultStepSearchers = AnalyzerBase.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Searching);
+		set => ResultStepSearchers = AnalyzerBase.FilterStepSearchers(field = value, StepSearcherRunningArea.Searching);
 	}
 
 	/// <inheritdoc/>

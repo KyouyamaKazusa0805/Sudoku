@@ -7310,11 +7310,6 @@
             Provides with a data structure that displays a view for basic information.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.View._backingComparer">
-            <summary>
-            Indicates the backing comparer.
-            </summary>
-        </member>
         <member name="P:Sudoku.Drawing.View.Empty">
             <summary>
             Indicates an empty <see cref="T:Sudoku.Drawing.View"/> instance. You can use this property to create a new instance.
@@ -7797,11 +7792,6 @@
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
             A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._rng">
-            <summary>
-            Indicates the shared <see cref="T:System.Random"/> instance.
             </summary>
         </member>
         <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._solver">

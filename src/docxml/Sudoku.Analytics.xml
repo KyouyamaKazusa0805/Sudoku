@@ -665,12 +665,6 @@
             Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Analyzer._stepSearchers">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/>
-        </member>
         <member name="T:Sudoku.Analytics.AnalyzerContext">
             <summary>
             Represents a context consumed by <see cref="T:Sudoku.Analytics.Analyzer"/> to analyze a puzzle.
@@ -718,21 +712,6 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
             <seealso cref="T:System.Collections.Generic.IComparer`1"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.ChainingComparers._chainComparer">
-            <summary>
-            Indicates the backing field of chain pattern comparer instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.ChainingComparers._multipleForcingChainsComparer">
-            <summary>
-            Indicates the backing field of multiple forcing chains comparer instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Caching.ChainingComparers._nodeComparer">
-            <summary>
-            Indicates the backing field of node map comparer instance.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Caching.ChainingComparers.ChainComparer">
             <summary>
@@ -1197,12 +1176,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Analytics.CollectorContext@)">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Analytics.Collector._stepSearchers">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Analytics.Collector.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Collector.StepSearchers"/>
         </member>
         <member name="T:Sudoku.Analytics.CollectorContext">
             <summary>

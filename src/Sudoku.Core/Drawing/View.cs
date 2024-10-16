@@ -16,12 +16,6 @@ public sealed partial class View :
 	IWhereMethod<View, ViewNode>
 {
 	/// <summary>
-	/// Indicates the backing comparer.
-	/// </summary>
-	private static IEqualityComparer<View>? _backingComparer;
-
-
-	/// <summary>
 	/// Indicates an empty <see cref="View"/> instance. You can use this property to create a new instance.
 	/// </summary>
 	public static View Empty => [];
@@ -32,7 +26,8 @@ public sealed partial class View :
 	/// </summary>
 	/// <seealso cref="IEqualityComparer{T}"/>
 	/// <seealso cref="ViewNode"/>
-	public static IEqualityComparer<View> SetComparer => _backingComparer ??= CreateSetComparer();
+	[field: MaybeNull]
+	public static IEqualityComparer<View> SetComparer => field ??= CreateSetComparer();
 
 
 	/// <summary>

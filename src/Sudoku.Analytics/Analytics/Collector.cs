@@ -19,12 +19,11 @@ public sealed partial class Collector : CollectorBase
 
 	/// <inheritdoc/>
 	[WithProperty(ParameterType = typeof(StepSearcher[]), ParameterModifiers = "params")]
-	[ImplicitField(RequiredReadOnlyModifier = false)]
 	public ReadOnlyMemory<StepSearcher> StepSearchers
 	{
-		get => _stepSearchers;
+		get => field;
 
-		set => ResultStepSearchers = CollectorBase.FilterStepSearchers(_stepSearchers = value, StepSearcherRunningArea.Collecting);
+		set => ResultStepSearchers = CollectorBase.FilterStepSearchers(field = value, StepSearcherRunningArea.Collecting);
 	}
 
 	/// <inheritdoc/>

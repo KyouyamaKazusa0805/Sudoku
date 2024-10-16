@@ -7,12 +7,6 @@ namespace Sudoku.Generating;
 public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 {
 	/// <summary>
-	/// Indicates the shared <see cref="Random"/> instance.
-	/// </summary>
-	private static Random? _rng;
-
-
-	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
 	/// of a puzzle being generated.
 	/// </summary>
@@ -32,7 +26,8 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Indicates the backing random.
 	/// </summary>
-	private static Random Rng => _rng ??= Random.Shared;
+	[field: MaybeNull]
+	private static Random Rng => field ??= Random.Shared;
 
 
 	/// <inheritdoc/>
