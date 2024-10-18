@@ -806,6 +806,14 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
+		var handle = WindowNative.GetWindowHandle(App.GetMainWindow(this));
+		var isSupportedTaskbarProgressChanging = TaskbarProgress.IsTaskbarSupported;
+		if (isSupportedTaskbarProgressChanging)
+		{
+			TaskbarProgress.SetState(handle, TBPFLAG.TBPF_INDETERMINATE);
+			TaskbarProgress.SetValue(handle, 0, 100);
+		}
+
 		AnalyzeButton.IsEnabled = false;
 		ClearAnalyzeTabsData();
 		IsAnalyzerLaunched = true;
@@ -833,6 +841,11 @@ public sealed partial class AnalyzePage : Page
 										ProgressPercent = progress.Percent * 100;
 										AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
 										AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+
+										if (isSupportedTaskbarProgressChanging)
+										{
+											TaskbarProgress.SetValue(handle, ProgressPercent, 100);
+										}
 									}
 								)
 							)
@@ -893,6 +906,12 @@ public sealed partial class AnalyzePage : Page
 			_ctsForAnalyzingRelatedOperations = null;
 			AnalyzeButton.IsEnabled = true;
 			IsAnalyzerLaunched = false;
+
+			if (isSupportedTaskbarProgressChanging)
+			{
+				TaskbarProgress.SetValue(handle, 0, 100);
+				TaskbarProgress.SetState(handle, TBPFLAG.TBPF_NORMAL);
+			}
 		}
 	}
 

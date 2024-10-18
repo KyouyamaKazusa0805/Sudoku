@@ -125,6 +125,14 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			return;
 		}
 
+		var handle = WindowNative.GetWindowHandle(App.GetMainWindow(this));
+		var isSupportedTaskbarProgressChanging = TaskbarProgress.IsTaskbarSupported;
+		if (isSupportedTaskbarProgressChanging)
+		{
+			TaskbarProgress.SetState(handle, TBPFLAG.TBPF_INDETERMINATE);
+			TaskbarProgress.SetValue(handle, 0, 100);
+		}
+
 		CollectButton.IsEnabled = false;
 		BasePage.IsGathererLaunched = true;
 		TreeViewItemsSource = null;
@@ -159,6 +167,12 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			BasePage.IsGathererLaunched = false;
 
 			PageSelector.SelectedIndex = 0;
+
+			if (isSupportedTaskbarProgressChanging)
+			{
+				TaskbarProgress.SetValue(handle, 0, 100);
+				TaskbarProgress.SetState(handle, TBPFLAG.TBPF_NORMAL);
+			}
 		}
 
 
@@ -178,6 +192,11 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 									BasePage.ProgressPercent = percent * 100;
 									BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
 									BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+
+									if (isSupportedTaskbarProgressChanging)
+									{
+										TaskbarProgress.SetValue(handle, BasePage.ProgressPercent, 100);
+									}
 								}
 							)
 						)
