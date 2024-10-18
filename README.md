@@ -50,7 +50,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Locked Candidates (*LC*)
     * Law of Leftover (*LoL*)
     * Almost Locked Candidates (*ALC*)
-    * Firework Subsets (Hanabi)
+    * Firework Subsets
   * Subsets
     * Naked Subsets
       * Locked Subsets
