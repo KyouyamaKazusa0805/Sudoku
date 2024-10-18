@@ -4599,6 +4599,140 @@
         <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="T:System.Text.RegularExpressions.StringRegexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.String"/> instances, with regular expression handling.
+            </summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.SatisfyPattern(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance is satisfied
+            the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <param name="pattern">
+            The regular expression pattern. If the value is <see langword="null"/>,
+            the return value is always <see langword="false"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.IsMatch(System.String,System.String)">
+            <summary>
+            Check whether the specified string instance can match the value
+            using the specified regular expression pattern or not.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.Match(System.String,System.String)">
+            <summary>
+            Searches the specified input string for the first occurrence of
+            the specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The value after matching. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
+            </remarks>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the input string for the first occurrence of the specified regular
+            expression, using the specified matching options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The matched string value. If failed to match,
+            the value will be <see langword="null"/>.
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.MatchAll(System.String,System.String)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            Searches the specified input string for all occurrences of a
+            specified regular expression pattern, using the specified matching
+            options.
+            </summary>
+            <param name="this">The value to match.</param>
+            <param name="pattern">The regular expression pattern.</param>
+            <param name="regexOption">The matching options.</param>
+            <returns>
+            The result after matching. If failed to match,
+            the returning array will be an empty string array (has no elements).
+            </returns>
+            <remarks>
+            This method is a syntactic sugar of the calling
+            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
+            </remarks>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the specified <paramref name="pattern"/> is not a valid regular
+            expression pattern.
+            </exception>
+            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.StringRegexExtensions.IsRegexPattern(System.String)">
+            <summary>
+            To check if the current string value is a valid regular
+            expression pattern or not.
+            </summary>
+            <param name="this">The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
+        </member>
         <member name="T:System.Text.RegularExpressions.ValueMatchExtensions">
             <summary>
             Provides with extension methdos on <see cref="T:System.Text.RegularExpressions.ValueMatch"/>.
@@ -4612,33 +4746,6 @@
             <param name="this">Indicates the instance.</param>
             <param name="originalString">The original string.</param>
             <returns>The target string.</returns>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.Instance">
-            <summary>Cached, thread-safe singleton instance.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.#ctor">
-            <summary>Initializes the instance.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory">
-            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.CreateInstance">
-            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner">
-            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
-            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
-            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
         <member name="T:System.Text.Json.CultureInfoConverter">
             <summary>
@@ -6378,65 +6485,6 @@
             </summary>
             <seealso cref="T:System.String"/>
         </member>
-        <member name="F:System.StringExtensions.MatchingTimeSpan">
-            <summary>
-            Indicates the time span that is used for matching.
-            </summary>
-        </member>
-        <member name="P:System.StringExtensions.NullLinesOrHeaderSpacesPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(^\\s*|(?&lt;=\\r\\n)\\s+)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions, atomically.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match if at the beginning of the string.<br/>
-                        ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Zero-width positive lookbehind.<br/>
-                            ○ Match the string "\r\n" right-to-left.<br/>
-                        ○ Match a whitespace character atomically at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance is satisfied
-            the specified regular expression pattern or not.
-            </summary>
-            <param name="this">The value to check.</param>
-            <param name="pattern">
-            The regular expression pattern. If the value is <see langword="null"/>,
-            the return value is always <see langword="false"/>.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-        </member>
-        <member name="M:System.StringExtensions.IsMatch(System.String,System.String)">
-            <summary>
-            Check whether the specified string instance can match the value
-            using the specified regular expression pattern or not.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.IsMatch(System.String,System.String)"/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-        </member>
         <member name="M:System.StringExtensions.RemoveAll(System.String,System.Char)">
             <summary>
             Removes all specified characters.
@@ -6444,49 +6492,6 @@
             <param name="this">The string value.</param>
             <param name="character">The character to be removed from the base string.</param>
             <returns>The result string value after removal.</returns>
-        </member>
-        <member name="M:System.StringExtensions.Match(System.String,System.String)">
-            <summary>
-            Searches the specified input string for the first occurrence of
-            the specified regular expression pattern.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The value after matching. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>.
-            </remarks>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String)"/>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-        </member>
-        <member name="M:System.StringExtensions.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the input string for the first occurrence of the specified regular
-            expression, using the specified matching options.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The matched string value. If failed to match,
-            the value will be <see langword="null"/>.
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Match(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
         </member>
         <member name="M:System.StringExtensions.ExpandCharacters(System.String)">
             <summary>
@@ -6504,83 +6509,10 @@
             <param name="length">The desired length.</param>
             <returns>A list of <see cref="T:System.String"/> values.</returns>
         </member>
-        <member name="M:System.StringExtensions.MatchAll(System.String,System.String)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String)"/>
-        </member>
-        <member name="M:System.StringExtensions.MatchAll(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
-            <summary>
-            Searches the specified input string for all occurrences of a
-            specified regular expression pattern, using the specified matching
-            options.
-            </summary>
-            <param name="this">The value to match.</param>
-            <param name="pattern">The regular expression pattern.</param>
-            <param name="regexOption">The matching options.</param>
-            <returns>
-            The result after matching. If failed to match,
-            the returning array will be an empty string array (has no elements).
-            </returns>
-            <remarks>
-            This method is a syntactic sugar of the calling
-            method <see cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>.
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the specified <paramref name="pattern"/> is not a valid regular
-            expression pattern.
-            </exception>
-            <seealso cref="M:System.Text.RegularExpressions.Regex.Matches(System.String,System.String,System.Text.RegularExpressions.RegexOptions)"/>
-        </member>
         <member name="M:System.StringExtensions.SplitBy(System.String,System.Char[])">
             <inheritdoc cref="M:System.String.Split(System.Char[],System.StringSplitOptions)"/>
             <param name="this">The array itself.</param>
             <param name="separator">The separator characters.</param>
-        </member>
-        <member name="M:System.StringExtensions.RemoveLineEndings(System.String)">
-            <summary>
-            Remove all new-line sequences in the current string.
-            </summary>
-            <param name="this">The current string.</param>
-            <returns>
-            A string whose contents match the current string, but with all new-line sequences replaced with <see cref="F:System.String.Empty"/>.
-            </returns>
-        </member>
-        <member name="M:System.StringExtensions.ReplaceRegex(System.String,System.String,System.Text.RegularExpressions.MatchEvaluator)">
-            <summary>
-            Replace the string by using the specified regular expression.
-            </summary>
-            <param name="this">The base string.</param>
-            <param name="pattern">A valid regular expression pattern to be used.</param>
-            <param name="evaluator">
-            The evaluator method that replace all strings inside <paramref name="this"/>
-            satisfying the specified <paramref name="pattern"/>, with the target string which this method will return.
-            </param>
-            <returns>The final replaced string.</returns>
-        </member>
-        <member name="M:System.StringExtensions.IsRegexPattern(System.String)">
-            <summary>
-            To check if the current string value is a valid regular
-            expression pattern or not.
-            </summary>
-            <param name="this">The value to check.</param>
-            <returns>A <see cref="T:System.Boolean"/> indicating that.</returns>
         </member>
         <member name="T:System.Threading.Tasks.TimeSpanAwaitable">
             <summary>

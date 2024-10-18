@@ -53,7 +53,6 @@ public sealed class CsvGridFormatInfo : GridFormatInfo
 				sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 			}
 		}
-
 		return Grid.Parse(sb.ToString());
 	}
 }
