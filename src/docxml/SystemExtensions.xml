@@ -1220,6 +1220,42 @@
             Indicates the target emit property style. By default the value is <see cref="F:System.Diagnostics.CodeAnalysis.EmitPropertyStyle.AssignToProperty"/>.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.PropertySetters">
+            <summary>
+            Provides an easy way to control property value <see cref="P:System.Diagnostics.CodeAnalysis.PropertyAttribute.Setter"/>.
+            </summary>
+            <seealso cref="P:System.Diagnostics.CodeAnalysis.PropertyAttribute.Setter"/>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.Init">
+            <summary>
+            Represents <see langword="init"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.Set">
+            <summary>
+            Represents <see langword="set"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.InternalSet">
+            <summary>
+            Represents <see langword="internal set"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.ProtectedInternalSet">
+            <summary>
+            Represents <see langword="protected internal set"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.ProtectedSet">
+            <summary>
+            Represents <see langword="protected set"/>.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.PropertySetters.PrivateSet">
+            <summary>
+            Represents <see langword="private set"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.StringMemberAttribute">
             <summary>
             Indicates the marked member will participate to-string operation.

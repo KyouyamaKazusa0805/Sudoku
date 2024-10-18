@@ -1,4 +1,4 @@
-﻿namespace System.Diagnostics.CodeAnalysis;
+namespace System.Diagnostics.CodeAnalysis;
 
 /// <summary>
 /// Indicates the backing generated member of this primary constructor is a property.

@@ -21,7 +21,7 @@ public sealed partial class Node(
 	[Field, HashCodeMember] ref readonly CandidateMap map,
 	[Property, HashCodeMember] bool isOn,
 	[Property] bool isAdvanced,
-	[Property(Setter = "set")] Node? parent = null
+	[Property(Setter = PropertySetters.Set)] Node? parent = null
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,

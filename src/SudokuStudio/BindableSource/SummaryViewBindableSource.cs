@@ -12,11 +12,11 @@ namespace SudokuStudio.BindableSource;
 /// <seealso cref="AnalysisResult"/>
 [method: SetsRequiredMembers]
 internal sealed partial class SummaryViewBindableSource(
-	[Property(Accessibility = "public required", Setter = "set")] string techniqueName,
-	[Property(Accessibility = "public required", Setter = "set")] DifficultyLevel difficultyLevel,
-	[Property(Accessibility = "public required", Setter = "set")] decimal totalDifficulty,
-	[Property(Accessibility = "public required", Setter = "set")] decimal maximumDifficulty,
-	[Property(Accessibility = "public required", Setter = "set")] int countOfSteps
+	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] string techniqueName,
+	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] DifficultyLevel difficultyLevel,
+	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] decimal totalDifficulty,
+	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] decimal maximumDifficulty,
+	[Property(Accessibility = "public required", Setter = PropertySetters.Set)] int countOfSteps
 )
 {
 	/// <summary>

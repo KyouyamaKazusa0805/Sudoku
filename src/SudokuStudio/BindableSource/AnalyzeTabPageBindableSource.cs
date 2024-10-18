@@ -8,7 +8,7 @@ namespace SudokuStudio.BindableSource;
 /// <param name="page">Indicates the tab page.</param>
 /// <seealso cref="IAnalyzerTab"/>
 internal sealed partial class AnalyzeTabPageBindableSource(
-	[Property(Setter = "init")] string header,
-	[Property(Setter = "init")] IconSource iconSource,
-	[Property(Setter = "init")] IAnalyzerTab page
+	[Property(Setter = PropertySetters.Init)] string header,
+	[Property(Setter = PropertySetters.Init)] IconSource iconSource,
+	[Property(Setter = PropertySetters.Init)] IAnalyzerTab page
 );

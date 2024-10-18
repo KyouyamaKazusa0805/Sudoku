@@ -30,7 +30,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators)]
-public sealed partial class MultipleForcingChains([Property(Setter = "internal set")] params Conclusion[] conclusions) :
+public sealed partial class MultipleForcingChains([Property(Setter = PropertySetters.InternalSet)] params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, Chain>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, Chain>>,
 	IComparable<MultipleForcingChains>,
