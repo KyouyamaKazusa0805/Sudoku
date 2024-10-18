@@ -358,6 +358,11 @@
             Indicates the color that draws for an assignment.
             </summary>
         </member>
+        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.OverlappedAssignmentColor">
+            <summary>
+            Indicates the color that draws for an overlapped assignment.
+            </summary>
+        </member>
         <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.EliminationColor">
             <summary>
             Indicates the elimination color.

@@ -142,7 +142,8 @@ public sealed partial class GridCanvas : IDisposable
 	/// <exception cref="ArgumentException">Throws when the specified value is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private Color GetColor(ColorIdentifier id)
-		=> id switch
+	{
+		return id switch
 		{
 			ColorColorIdentifier(var a, var r, var g, var b) => Color.FromArgb(a, r, g, b),
 			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
@@ -150,6 +151,7 @@ public sealed partial class GridCanvas : IDisposable
 			{
 				WellKnownColorIdentifierKind.Normal => Settings.NormalColor,
 				WellKnownColorIdentifierKind.Assignment => Settings.AssignmentColor,
+				WellKnownColorIdentifierKind.OverlappedAssignment => Settings.OverlappedAssignmentColor,
 				WellKnownColorIdentifierKind.Elimination => Settings.EliminationColor,
 				WellKnownColorIdentifierKind.Cannibalism => Settings.CannibalismColor,
 				WellKnownColorIdentifierKind.Exofin => Settings.ExofinColor,
@@ -163,10 +165,15 @@ public sealed partial class GridCanvas : IDisposable
 				WellKnownColorIdentifierKind.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
 				WellKnownColorIdentifierKind.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
 				WellKnownColorIdentifierKind.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
-				_ => throw new ArgumentException("The specified identifier paletteColorIndex is invalid.", nameof(id))
+				_ => unconditionalThrows(id)
 			},
-			_ => throw new ArgumentException("The specified identifier paletteColorIndex is invalid.", nameof(id))
+			_ => unconditionalThrows(id)
 		};
+
+
+		[DoesNotReturn]
+		static Color unconditionalThrows(ColorIdentifier id) => throw new ArgumentException("The specified kind is invalid.", nameof(id));
+	}
 
 
 	/// <summary>

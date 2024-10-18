@@ -129,6 +129,11 @@ public sealed class GridCanvasSettings
 	public Color AssignmentColor { set; get; } = Color.FromArgb(63, 218, 101); // Green
 
 	/// <summary>
+	/// Indicates the color that draws for an overlapped assignment.
+	/// </summary>
+	public Color OverlappedAssignmentColor { set; get; } = Color.FromArgb(63, 218, 101); // Green
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
 	public Color EliminationColor { get; set; } = Color.FromArgb(255, 118, 132); // Red
