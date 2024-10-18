@@ -10788,6 +10788,108 @@
             it switches to a yellow determinate display of a generic percentage not indicative of actual progress.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTON">
+            <summary>
+            Used by methods of the <see cref="T:SudokuStudio.Runtime.InteropServices.ITaskbarList3"/> interface to define buttons used in a toolbar
+            embedded in a window's thumbnail representation.
+            </summary>
+            <seealso cref="T:SudokuStudio.Runtime.InteropServices.ITaskbarList3"/>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.dwMask">
+            <summary>
+            A combination of <see cref="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK"/> values that specify which members of this structure contain valid data;
+            other members are ignored, with the exception of <see cref="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.iId"/>, which is always required.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.iId">
+            <summary>
+            The application-defined identifier of the button, unique within the toolbar.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.iBitmap">
+            <summary>
+            The zero-based index of the button image within the image list set through
+            <see cref="M:SudokuStudio.Runtime.InteropServices.ITaskbarList3.ThumbBarSetImageList(System.IntPtr,System.IntPtr)"/>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.hIcon">
+            <summary>
+            The handle of an icon to use as the button image.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.szTip">
+            <summary>
+            A wide character array that contains the text of the button's tooltip,
+            displayed when the mouse pointer hovers over the button.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.dwFlags">
+            <summary>
+            A combination of <see cref="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS"/> values that control specific states and behaviors of the button.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS">
+            <summary>
+            Used by <see cref="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTON"/> to control specific states and behaviors of the button.
+            </summary>
+            <seealso cref="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTON"/>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_ENABLED">
+            <summary>
+            The button is active and available to the user.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_DISABLED">
+            <summary>
+            The button is disabled. It is present, but has a visual state that indicates that it will not respond to user action.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_DISMISSONCLICK">
+            <summary>
+            When the button is clicked, the taskbar button's flyout closes immediately.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_NOBACKGROUND">
+            <summary>
+            Do not draw a button border, use only the image.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_HIDDEN">
+            <summary>
+            The button is not shown to the user.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONFLAGS.THBF_NONINTERACTIVE">
+            <summary>
+            The button is enabled but not interactive; no pressed button state is drawn.
+            This value is intended for instances where the button is used in a notification.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK">
+            <summary>
+            Used by the <see cref="T:SudokuStudio.Runtime.InteropServices.THUMBBUTTON"/> structure to specify which members of that structure contain valid data.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK.THB_BITMAP">
+            <summary>
+            The <see cref="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.iBitmap"/> member contains valid information.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK.THB_ICON">
+            <summary>
+            The <see cref="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.hIcon"/> member contains valid information.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK.THB_TOOLTIP">
+            <summary>
+            The <see cref="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.szTip"/> member contains valid information.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTONMASK.THB_FLAGS">
+            <summary>
+            The <see cref="F:SudokuStudio.Runtime.InteropServices.THUMBBUTTON.dwFlags"/> member contains valid information.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Storage.CommonPaths">
             <summary>
             Provides with some paths that is used for the whole program.
