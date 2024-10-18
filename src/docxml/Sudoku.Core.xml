@@ -7724,6 +7724,9 @@
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
         </member>
+        <member name="M:Sudoku.Generating.Generator.Sudoku#Generating#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Generating.Generator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>

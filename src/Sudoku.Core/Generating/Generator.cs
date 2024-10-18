@@ -17,7 +17,7 @@ namespace Sudoku.Generating;
 /// Represents a puzzle generator, implemented by HoDoKu.
 /// </summary>
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public ref partial struct Generator()
+public ref partial struct Generator() : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates the auto clues count.
@@ -341,4 +341,8 @@ public ref partial struct Generator()
 			return true;
 		}
 	}
+
+	/// <inheritdoc/>
+	Grid IGenerator<Grid>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+		=> Generate(cancellationToken: cancellationToken);
 }
