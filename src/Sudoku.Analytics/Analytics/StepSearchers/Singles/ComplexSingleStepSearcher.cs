@@ -87,7 +87,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		// and the corresponding step type doesn't override method 'Equals'.
 		if (context.OnlyFindOne && stepsFiltered.Count != 0)
 		{
-			return stepsFiltered.First();
+			return stepsFiltered.Min;
 		}
 		if (!context.OnlyFindOne && stepsFiltered.Count != 0)
 		{

@@ -78,7 +78,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		if (context.OnlyFindOne && tempAccumulator.Count != 0)
 		{
-			return tempAccumulator.First();
+			return tempAccumulator.Min;
 		}
 		else if (!context.OnlyFindOne)
 		{

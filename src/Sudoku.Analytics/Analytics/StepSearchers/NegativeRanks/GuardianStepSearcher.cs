@@ -95,7 +95,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		if (context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
-			return resultAccumulator.First();
+			return resultAccumulator.Min;
 		}
 		if (!context.OnlyFindOne && resultAccumulator.Count != 0)
 		{
