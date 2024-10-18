@@ -7,7 +7,9 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Collector"/>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct CollectorContext([Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid puzzle) : IContext
+public readonly ref partial struct CollectorContext(
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid puzzle
+) : IContext
 {
 	/// <summary>
 	/// The cancellation token that can cancel the current analyzing operation.

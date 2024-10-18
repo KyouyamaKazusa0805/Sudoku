@@ -10,8 +10,8 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods, IsLargeStructure = true)]
 public ref partial struct StepAnalysisContext(
-	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
-	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid initialGrid
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid initialGrid
 ) : IContext
 {
 	/// <summary>

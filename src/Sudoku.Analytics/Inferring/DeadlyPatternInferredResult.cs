@@ -14,7 +14,7 @@ namespace Sudoku.Inferring;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct DeadlyPatternInferredResult(
-	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
 	[Property] bool isDeadlyPattern,
 	[Property] ReadOnlySpan<Grid> failedCases,
 	[Property(RefKind = null)] scoped ref readonly CandidateMap patternCandidates

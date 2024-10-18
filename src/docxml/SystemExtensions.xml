@@ -1093,6 +1093,21 @@
             Indicates the marked member will participate hashing operation.
             </summary>
         </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NamingRules">
+            <summary>
+            Represents a list of naming rules.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.NamingRules.Field">
+            <summary>
+            Indicates the naming rule is field.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.NamingRules.Property">
+            <summary>
+            Indicates the naming rule is property.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.NullabilityPrefer">
             <summary>
             Represents an enumeration type that tells source generators which case of nullability should be preferred.

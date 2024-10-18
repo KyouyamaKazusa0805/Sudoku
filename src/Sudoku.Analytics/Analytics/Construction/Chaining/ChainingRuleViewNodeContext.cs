@@ -9,9 +9,9 @@ namespace Sudoku.Analytics.Construction.Chaining;
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct ChainingRuleViewNodeContext(
-	[Field(Accessibility = "public", NamingRule = ">@")] ref readonly Grid grid,
-	[Field(Accessibility = "public", NamingRule = ">@")] Chain pattern,
-	[Field(Accessibility = "public", NamingRule = ">@")] View view
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] ref readonly Grid grid,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] Chain pattern,
+	[Field(Accessibility = "public", NamingRule = NamingRules.Property)] View view
 ) : IContext
 {
 	/// <summary>
