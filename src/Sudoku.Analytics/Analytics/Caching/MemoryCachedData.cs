@@ -50,12 +50,12 @@ internal static class MemoryCachedData
 	/// <summary>
 	/// The backing field storing on strong links, grouped by link type.
 	/// </summary>
-	public static LinkType StrongLinkTypesEntried { get; private set; }
+	public static LinkType StrongLinkTypesCollected { get; private set; }
 
 	/// <summary>
 	/// The backing field storing on weak links, grouped by link type.
 	/// </summary>
-	public static LinkType WeakLinkTypesEntried { get; private set; }
+	public static LinkType WeakLinkTypesCollected { get; private set; }
 
 	/// <summary>
 	/// Indicates the number of candidates appeared in the puzzle.
@@ -127,7 +127,7 @@ internal static class MemoryCachedData
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
-		(CandidatesCount, StrongLinkTypesEntried, WeakLinkTypesEntried) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);
+		(CandidatesCount, StrongLinkTypesCollected, WeakLinkTypesCollected) = (g.CandidatesCount, LinkType.Unknown, LinkType.Unknown);
 		(_cachedEmptyCells, _cachedBivalueCells, _cachedSolution) = (g.EmptyCells, g.BivalueCells, s);
 		(_cachedCandidatesMap, _cachedDigitsMap, _cachedValuesMap) = ([.. g.CandidatesMap], [.. g.DigitsMap], [.. g.ValuesMap]);
 
@@ -147,7 +147,7 @@ internal static class MemoryCachedData
 	public static void InitializeLinks(ref readonly Grid grid, LinkType linkTypes, StepGathererOptions options, out ChainingRuleCollection rules)
 	{
 		rules = from linkType in linkTypes select ChainingRulePool.TryCreate(linkType)!;
-		if (!StrongLinkTypesEntried.HasFlag(linkTypes) || !WeakLinkTypesEntried.HasFlag(linkTypes))
+		if (!StrongLinkTypesCollected.HasFlag(linkTypes) || !WeakLinkTypesCollected.HasFlag(linkTypes))
 		{
 			var (strongDic, weakDic) = (new LinkDictionary(), new LinkDictionary());
 			var context = new ChainingRuleLinkContext(in grid, strongDic, weakDic, options);
@@ -158,12 +158,12 @@ internal static class MemoryCachedData
 
 			if (strongDic.Count != 0)
 			{
-				StrongLinkTypesEntried |= linkTypes;
+				StrongLinkTypesCollected |= linkTypes;
 				StrongLinkDictionary.Merge(strongDic);
 			}
 			if (weakDic.Count != 0)
 			{
-				WeakLinkTypesEntried |= linkTypes;
+				WeakLinkTypesCollected |= linkTypes;
 				WeakLinkDictionary.Merge(weakDic);
 			}
 		}

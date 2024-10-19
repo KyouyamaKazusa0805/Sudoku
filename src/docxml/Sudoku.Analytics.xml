@@ -901,12 +901,12 @@
             Backing field of <see cref="P:Sudoku.Analytics.Caching.MemoryCachedData.Solution"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkTypesEntried">
+        <member name="P:Sudoku.Analytics.Caching.MemoryCachedData.StrongLinkTypesCollected">
             <summary>
             The backing field storing on strong links, grouped by link type.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkTypesEntried">
+        <member name="P:Sudoku.Analytics.Caching.MemoryCachedData.WeakLinkTypesCollected">
             <summary>
             The backing field storing on weak links, grouped by link type.
             </summary>
