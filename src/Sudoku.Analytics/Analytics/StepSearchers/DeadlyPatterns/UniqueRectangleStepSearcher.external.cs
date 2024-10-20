@@ -190,7 +190,7 @@ public partial class UniqueRectangleStepSearcher
 					{
 						foreach (ref readonly var otherCells in houseCells & size - 1)
 						{
-							var subsetDigitsMask = (Mask)(grid[in otherCells] | comparer);
+							var subsetDigitsMask = (Mask)(grid[otherCells] | comparer);
 							if (Mask.PopCount(subsetDigitsMask) != size)
 							{
 								// The subset cannot formed.
@@ -354,7 +354,7 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var possibleConjugatePairDigitsMask = (Mask)(grid[in guardianCellPair] & ~comparer);
+				var possibleConjugatePairDigitsMask = (Mask)(grid[guardianCellPair] & ~comparer);
 				foreach (var house in houses)
 				{
 					foreach (var conjugatePairDigit in possibleConjugatePairDigitsMask)

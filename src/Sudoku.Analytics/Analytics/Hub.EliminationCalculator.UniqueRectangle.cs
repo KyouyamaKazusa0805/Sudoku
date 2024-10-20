@@ -61,7 +61,7 @@ public partial class Hub
 			public static ReadOnlySpan<Conclusion> GetConclusions(ref readonly CellMap cells, Mask comparer, ref readonly Grid grid)
 			{
 				var candidatesMap = grid.CandidatesMap;
-				var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
+				var extraDigitsMask = (Mask)(grid[cells] & ~comparer);
 				if (Mask.PopCount(extraDigitsMask) != 2)
 				{
 					return [];

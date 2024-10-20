@@ -60,7 +60,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					var b1 = c1.ToHouse(HouseType.Block);
 					var b2 = c2.ToHouse(HouseType.Block);
 					var erMap = unionMap & houseMap & ~interMap & (CandidatesMap[d1] | CandidatesMap[d2]);
-					var m = grid[in erMap];
+					var m = grid[erMap];
 					if ((m & mask) != mask)
 					{
 						continue;

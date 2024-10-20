@@ -296,7 +296,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						[[.. candidateOffsets]],
 						context.Options,
 						in cellsMap,
-						grid[in cellsMap],
+						grid[cellsMap],
 						[.. lockedCombinations]
 					);
 					if (context.OnlyFindOne)

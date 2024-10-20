@@ -36,7 +36,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 			foreach (ref readonly var rbCurrentMap in rbList.AsReadOnlySpan())
 			{
-				var rbSelectedInterMask = grid[in rbCurrentMap];
+				var rbSelectedInterMask = grid[rbCurrentMap];
 				if (Mask.PopCount(rbSelectedInterMask) <= rbCurrentMap.Count + 1)
 				{
 					continue;
@@ -44,7 +44,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 				foreach (ref readonly var cbCurrentMap in cbList.AsReadOnlySpan())
 				{
-					var cbSelectedInterMask = grid[in cbCurrentMap];
+					var cbSelectedInterMask = grid[cbCurrentMap];
 					if (Mask.PopCount(cbSelectedInterMask) <= cbCurrentMap.Count + 1)
 					{
 						continue;
@@ -65,7 +65,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					{
 						foreach (ref readonly var selectedBlockCells in blockMap & i)
 						{
-							var blockMask = grid[in selectedBlockCells];
+							var blockMask = grid[selectedBlockCells];
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
@@ -79,7 +79,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 							{
 								foreach (ref readonly var selectedRowCells in rowMap & j)
 								{
-									var rowMask = grid[in selectedRowCells];
+									var rowMask = grid[selectedRowCells];
 									var elimMapRow = CellMap.Empty;
 
 									foreach (var digit in rowMask)
@@ -92,7 +92,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 									{
 										foreach (ref readonly var selectedColumnCells in columnMap & k)
 										{
-											var columnMask = grid[in selectedColumnCells];
+											var columnMask = grid[selectedColumnCells];
 											var elimMapColumn = CellMap.Empty;
 
 											foreach (var digit in columnMask)
@@ -109,14 +109,14 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
 											var otherMap_row = fullMap & ~(selectedRowCells | rbCurrentMap);
 											var otherMap_column = fullMap & ~(selectedColumnCells | cbCurrentMap);
-											var mask = grid[in otherMap_row];
+											var mask = grid[otherMap_row];
 											if ((mask & rowMask) != 0)
 											{
 												// At least one digit spanned two houses.
 												continue;
 											}
 
-											mask = grid[in otherMap_column];
+											mask = grid[otherMap_column];
 											if ((mask & columnMask) != 0)
 											{
 												continue;

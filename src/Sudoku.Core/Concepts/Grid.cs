@@ -379,7 +379,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 
 
 	/// <inheritdoc/>
-	public readonly Mask this[ref readonly CellMap cells]
+	public readonly Mask this[in CellMap cells]
 	{
 		get
 		{
@@ -393,11 +393,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	}
 
 	/// <inheritdoc/>
-	public readonly unsafe Mask this[
-		ref readonly CellMap cells,
-		bool withValueCells,
-		[ConstantExpected] char mergingMethod = MaskAggregator.Or
-	]
+	public readonly unsafe Mask this[in CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = MaskAggregator.Or]
 	{
 		get
 		{

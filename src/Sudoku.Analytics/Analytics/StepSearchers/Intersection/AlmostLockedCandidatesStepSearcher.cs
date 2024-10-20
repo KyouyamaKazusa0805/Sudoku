@@ -127,7 +127,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		foreach (ref readonly var alsCells in (checkValueCells ? a : a & EmptyCells) & size - 1)
 		{
 			// Collect the mask. The cell combination must contain the specified number of digits.
-			var mask = grid[in alsCells, checkValueCells];
+			var mask = grid[alsCells, checkValueCells];
 			if (Mask.PopCount(mask) != size)
 			{
 				continue;

@@ -297,7 +297,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			// Iterate on each size.
 			foreach (ref readonly var cells in otherCellsMap | otherCellsMap.Count - 1)
 			{
-				var mask = (Mask)(digitsMask | grid[in cells]);
+				var mask = (Mask)(digitsMask | grid[cells]);
 				if (Mask.PopCount(mask) != cells.Count + 1)
 				{
 					continue;

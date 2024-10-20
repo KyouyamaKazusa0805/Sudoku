@@ -122,7 +122,7 @@ public sealed class BlockFirst : IBehaviorMetric
 					continue;
 				}
 
-				foreach (var digit in playground[in emptyCellsInHouse])
+				foreach (var digit in playground[emptyCellsInHouse])
 				{
 					foreach (var cell in emptyCellsInHouse)
 					{

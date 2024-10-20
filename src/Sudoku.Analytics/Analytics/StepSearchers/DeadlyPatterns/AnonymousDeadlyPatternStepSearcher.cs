@@ -176,7 +176,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			// Check the number of digits appeared in the pattern, and determine which type it would be.
-			var digitsMask = grid[in pattern];
+			var digitsMask = grid[pattern];
 
 			// The pattern may be very complex to be checked, so we should append an extra check here:
 			// determine which digits can be used as a deadly pattern, and which are not.
@@ -331,7 +331,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				}
 
 				// Check the number of digits appeared in the pattern, and determine which type it would be.
-				var digitsMask = grid[in pattern];
+				var digitsMask = grid[pattern];
 
 				// Adds an filter nearly same as anonymous deadly pattern, but with 4 different digits.
 				var possiblePatternDigitsMask = (Mask)0;
@@ -583,7 +583,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			// Iterate each combination.
 			foreach (ref readonly var subsetCells in availableCells | availableCells.Count - 1)
 			{
-				var subsetDigitsMask = (Mask)(grid[in subsetCells] | extraDigitsMask);
+				var subsetDigitsMask = (Mask)(grid[subsetCells] | extraDigitsMask);
 				if (Mask.PopCount(subsetDigitsMask) != subsetCells.Count + 1)
 				{
 					// The (n) digits should be inside (n - 1) cells.
@@ -679,7 +679,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 
 		// Check whether at least one digit hold a conjugate pair inside the extra cells.
 		var (conclusions, conjugatePairDigitsMask) = (new List<Conclusion>(), (Mask)0);
-		foreach (var digit in (Mask)(grid[in extraCells] & digitsMask))
+		foreach (var digit in (Mask)(grid[extraCells] & digitsMask))
 		{
 			var conjugatePairCells = extraCells & CandidatesMap[digit];
 			if (conjugatePairCells == (CandidatesMap[digit] & HousesMap[house]))

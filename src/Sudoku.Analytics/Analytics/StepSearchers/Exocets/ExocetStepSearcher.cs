@@ -158,7 +158,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var chuteEmptyCells = chuteCells & EmptyCells;
 									var targetCells = chuteEmptyCells & housesEmptyCells & ~baseCells.PeerIntersection;
-									var (baseCellsDigitsMask, targetCellsDigitsMask) = (grid[in baseCells], grid[in targetCells]);
+									var (baseCellsDigitsMask, targetCellsDigitsMask) = (grid[baseCells], grid[targetCells]);
 
 									// Check whether all cross-line lines contains at least one digit appeared in base cells.
 									var crossline = housesCells & ~chuteCells;
@@ -936,7 +936,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								case { Count: > 2 } endoTargetCellsGroup when !endoTargetCellsGroup.PeerIntersection.Contains(targetCell):
 								{
 									// This will include an AHS.
-									var disappearedDigitsMask = (Mask)(grid[in endoTargetCellsGroup] & ~baseCellsDigitsMask);
+									var disappearedDigitsMask = (Mask)(grid[endoTargetCellsGroup] & ~baseCellsDigitsMask);
 									if (Mask.PopCount(disappearedDigitsMask) < endoTargetCellsGroup.Count - 1)
 									{
 										// Endo-target cells are not enough to form an AHS.
@@ -1414,7 +1414,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var theOtherBaseCellsDigitsMask = grid[in theOtherBaseCells];
+			var theOtherBaseCellsDigitsMask = grid[theOtherBaseCells];
 			if (theOtherBaseCellsDigitsMask != baseCellsDigitsMask)
 			{
 				// The other side of base cells should hold same digits.
@@ -1423,7 +1423,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			// Try to calculate the target cells.
 			var theOtherTargetCells = Chutes[chuteIndex].Cells & housesEmptyCells & EmptyCells & ~theOtherBaseCells.PeerIntersection;
-			var theOtherTargetCellsDigitsMask = grid[in theOtherTargetCells];
+			var theOtherTargetCellsDigitsMask = grid[theOtherTargetCells];
 
 			// Check whether all digits appeared in base cells can be filled in target empty cells.
 			if ((theOtherTargetCellsDigitsMask & baseCellsDigitsMask) != baseCellsDigitsMask)
@@ -1507,7 +1507,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case ({ Count: 1 }, { Count: 2 }, -1):
 			{
-				var digitsMask = (Mask)(grid[in targetCells, false, MaskAggregator.And] & ~baseCellsDigitsMask);
+				var digitsMask = (Mask)(grid[targetCells, false, MaskAggregator.And] & ~baseCellsDigitsMask);
 				if (digitsMask == 0)
 				{
 					break;
@@ -1578,7 +1578,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						case 2:
 						{
-							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, MaskAggregator.And] & ~baseCellsDigitsMask);
+							var digitsMask = (Mask)(grid[cellsInThisBlock, false, MaskAggregator.And] & ~baseCellsDigitsMask);
 							if (digitsMask == 0)
 							{
 								break;
@@ -1818,7 +1818,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var otherCellsDigitsMask = grid[in theOtherEmptyCells];
+				var otherCellsDigitsMask = grid[theOtherEmptyCells];
 				foreach (var house in theOtherEmptyCells.SharedHouses)
 				{
 					// Check whether the current house has a conjugate pair in the current cells.
@@ -2138,7 +2138,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Now check for eliminations.
 		var incompatibleCandidates = CandidateMap.Empty;
 		var conclusions = new List<Conclusion>();
-		var targetCellsDigitsMask = grid[in targetCells];
+		var targetCellsDigitsMask = grid[targetCells];
 		foreach (var (elimCell, theOtherCell) in ((base1, base2), (base2, base1)))
 		{
 			var allDigits = grid.GetCandidates(theOtherCell);
@@ -2481,7 +2481,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					foreach (ref readonly var extraCells in otherCells & size - 1)
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
-						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
+						foreach (var digitsMaskGroup in ((Mask)(grid[ahsCells] & ~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
 						{
 							var extraDigitsMask = MaskOperations.Create(digitsMaskGroup);
 							var lastHoldingMap = CellMap.Empty;
@@ -4003,7 +4003,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				houseOffsets.Add(new(ColorIdentifier.Auxiliary1, lockedBlock));
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
-				inferredBaseDigitsMask |= (Mask)((grid[in endoTargetCells] | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
+				inferredBaseDigitsMask |= (Mask)((grid[endoTargetCells] | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
 			}
 		}
 		if (conclusions.Count == 0)
@@ -4488,7 +4488,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					continue;
 				}
 
-				var otherCellsDigitsMask = grid[in theOtherEmptyCells];
+				var otherCellsDigitsMask = grid[theOtherEmptyCells];
 				foreach (var house in theOtherEmptyCells.SharedHouses)
 				{
 					// Check whether the current house has a conjugate pair in the current cells.

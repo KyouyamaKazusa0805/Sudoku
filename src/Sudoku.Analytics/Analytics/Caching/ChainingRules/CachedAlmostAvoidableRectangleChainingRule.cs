@@ -72,7 +72,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 			else if (digit1 == digit2)
 			{
 				var digitsOtherCellsContained = (Mask)0;
-				foreach (var digit in grid[in emptyCellsInPattern])
+				foreach (var digit in grid[emptyCellsInPattern])
 				{
 					if ((grid.GetCandidates(emptyCellsInPattern[0]) >> digit & 1) != 0
 						&& (grid.GetCandidates(emptyCellsInPattern[1]) >> digit & 1) != 0)

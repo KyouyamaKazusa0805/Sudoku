@@ -33,7 +33,7 @@ public partial class Hub
 				return false;
 			}
 
-			var (maskA, maskB, maskC) = (grid[in a], grid[in b], grid[in c]);
+			var (maskA, maskB, maskC) = (grid[a], grid[b], grid[c]);
 			return (digitsMask = (Mask)(maskC & (maskA ^ maskB))) != 0;
 		}
 	}

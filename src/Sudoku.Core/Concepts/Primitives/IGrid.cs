@@ -282,12 +282,12 @@ public interface IGrid<TSelf> :
 	/// </summary>
 	/// <param name="cells">A list of desired cells.</param>
 	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public abstract Mask this[ref readonly CellMap cells] { get; }
+	public abstract Mask this[in CellMap cells] { get; }
 
 	/// <summary>
-	/// <inheritdoc cref="this[ref readonly CellMap]" path="/summary"/>
+	/// <inheritdoc cref="this[in CellMap]" path="/summary"/>
 	/// </summary>
-	/// <param name="cells"><inheritdoc cref="this[ref readonly CellMap]" path="/param[@name='cells']"/></param>
+	/// <param name="cells"><inheritdoc cref="this[in CellMap]" path="/param[@name='cells']"/></param>
 	/// <param name="withValueCells">
 	/// Indicates whether the value cells (given or modifiable ones) will be included to be checked.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
@@ -301,16 +301,9 @@ public interface IGrid<TSelf> :
 	/// </list>
 	/// By default, the value is <c>'<![CDATA[|]]>'</c>. You can reference <see cref="MaskAggregator"/> constants to set values.
 	/// </param>
-	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
+	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public abstract Mask this[
-		ref readonly CellMap cells,
-		bool withValueCells,
-		[ConstantExpected] char mergingMethod = MaskAggregator.Or
-	]
-	{
-		get;
-	}
+	public abstract Mask this[in CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = MaskAggregator.Or] { get; }
 
 
 	/// <summary>

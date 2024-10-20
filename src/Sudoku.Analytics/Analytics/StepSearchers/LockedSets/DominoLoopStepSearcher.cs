@@ -254,7 +254,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 					[[.. candidateOffsets]],
 					context.Options,
 					in cellsMap,
-					grid[in cellsMap]
+					grid[cellsMap]
 				);
 				if (context.OnlyFindOne)
 				{

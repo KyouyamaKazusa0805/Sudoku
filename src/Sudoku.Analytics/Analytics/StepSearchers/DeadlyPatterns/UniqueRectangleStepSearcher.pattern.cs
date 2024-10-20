@@ -77,7 +77,7 @@ public partial class UniqueRectangleStepSearcher
 					foreach (ref readonly var subsetCells in extraCells & size)
 					{
 						// Determine whether the 'size' cells contain 'size + 1' digits.
-						var subsetDigitsMask = grid[in subsetCells];
+						var subsetDigitsMask = grid[subsetCells];
 						if (Mask.PopCount(subsetDigitsMask) != size + 1)
 						{
 							continue;
@@ -290,7 +290,7 @@ public partial class UniqueRectangleStepSearcher
 				// Here we should check for pivot digit for case 'pivotDigit == -1'.
 				if (pivotDigit == -1)
 				{
-					var mergedMask = grid[in combination, false, MaskAggregator.And];
+					var mergedMask = grid[combination, false, MaskAggregator.And];
 					if (!Mask.IsPow2(mergedMask))
 					{
 						// No pivot digit can be found, meaning no eliminations can be found.
@@ -300,7 +300,7 @@ public partial class UniqueRectangleStepSearcher
 					finalPivotDigit = Mask.TrailingZeroCount(mergedMask);
 				}
 
-				var maskToCompare = pivotDigit == -1 ? grid[in combination] & ~(1 << finalPivotDigit) : grid[in combination];
+				var maskToCompare = pivotDigit == -1 ? grid[combination] & ~(1 << finalPivotDigit) : grid[combination];
 				if (((otherCell1Mask | otherCell2Mask) & ~comparer) != maskToCompare)
 				{
 					// Digits are not matched.
@@ -635,7 +635,7 @@ public partial class UniqueRectangleStepSearcher
 				// Iterate on each intersection combination.
 				foreach (var currentInterMap in list)
 				{
-					var selectedInterMask = grid[in currentInterMap];
+					var selectedInterMask = grid[currentInterMap];
 					if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset,
@@ -672,7 +672,7 @@ public partial class UniqueRectangleStepSearcher
 							var (currentBlockMap, elimMapBlock, elimMapLine) = (selectedCellsInBlock, CellMap.Empty, CellMap.Empty);
 
 							// Get the links of the block.
-							var blockMask = grid[in selectedCellsInBlock];
+							var blockMask = grid[selectedCellsInBlock];
 
 							// Get the elimination map in the block.
 							foreach (var digit in blockMask)
@@ -925,7 +925,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Check whether there're only 2 extra digit.
-		var extraDigitsMask = (Mask)(grid[in cells] & ~comparer);
+		var extraDigitsMask = (Mask)(grid[cells] & ~comparer);
 		if (Mask.PopCount(extraDigitsMask) != 2)
 		{
 			return;

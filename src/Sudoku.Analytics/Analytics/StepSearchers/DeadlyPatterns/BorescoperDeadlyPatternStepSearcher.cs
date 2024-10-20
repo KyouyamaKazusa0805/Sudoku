@@ -391,7 +391,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		{
 			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map & ~currentMap;
-			var otherMask = grid[in otherCellsMap];
+			var otherMask = grid[otherCellsMap];
 			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
 				var tempMask = MaskOperations.Create(digits);
@@ -407,7 +407,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (ref readonly var combination in iterationCellsMap & size)
 					{
-						var comparer = grid[in combination];
+						var comparer = grid[combination];
 						if ((tempMask & comparer) != 0 || Mask.PopCount(tempMask) - 1 != size
 							|| (tempMask & otherDigitsMask) != otherDigitsMask)
 						{
@@ -505,7 +505,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		{
 			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map & ~currentMap;
-			var otherMask = grid[in otherCellsMap];
+			var otherMask = grid[otherCellsMap];
 
 			// Iterate on each possible digit combination.
 			// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values

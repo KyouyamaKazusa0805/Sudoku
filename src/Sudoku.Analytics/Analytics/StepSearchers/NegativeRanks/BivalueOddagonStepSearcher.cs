@@ -228,7 +228,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		var mask = (Mask)(grid[in extraCellsMap] & ~comparer);
+		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
 		if (!Mask.IsPow2(mask))
 		{
 			goto ReturnNull;
@@ -304,7 +304,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var m = grid[in extraCellsMap];
+		var m = grid[extraCellsMap];
 		if ((m & comparer) != comparer)
 		{
 			goto ReturnNull;
@@ -323,7 +323,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			{
 				foreach (ref readonly var cells in otherCells & size)
 				{
-					var mask = grid[in cells];
+					var mask = grid[cells];
 					if (Mask.PopCount(mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;

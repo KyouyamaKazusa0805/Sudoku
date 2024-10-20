@@ -149,7 +149,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				continue;
 			}
 
-			var lastDigitMask = (Mask)(grid[in emptyCellsInHouse] & ~(1 << digit));
+			var lastDigitMask = (Mask)(grid[emptyCellsInHouse] & ~(1 << digit));
 			if (!Mask.IsPow2(lastDigitMask))
 			{
 				continue;

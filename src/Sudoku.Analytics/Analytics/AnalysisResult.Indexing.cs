@@ -20,7 +20,7 @@ public partial record AnalysisResult
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
 	/// </exception>
-	public Step this[ref readonly Grid grid]
+	public Step this[in Grid grid]
 	{
 		get
 		{

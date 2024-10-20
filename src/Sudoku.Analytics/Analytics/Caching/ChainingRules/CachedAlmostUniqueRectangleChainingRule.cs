@@ -42,7 +42,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 			// cannot.
 			// Just check for spanned rows and columns, determining whether both the numbers of spanned rows and columns are 2.
 			var validDigitsMask = (Mask)0;
-			var allDigitsMask = grid[in urCells];
+			var allDigitsMask = grid[urCells];
 			foreach (var digit in allDigitsMask)
 			{
 				var cellsToFillDigit = CandidatesMap[digit] & urCells;

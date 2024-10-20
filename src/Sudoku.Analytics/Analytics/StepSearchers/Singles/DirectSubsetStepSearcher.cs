@@ -161,7 +161,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			ref readonly var currentHouseCells = ref HousesMap[house];
 			var traversingMap = currentHouseCells & emptyCells;
-			var mask = grid[in traversingMap];
+			var mask = grid[traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
 			{
 				var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
@@ -295,7 +295,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			// Iterate on each combination.
 			foreach (ref readonly var cells in currentEmptyMap & size)
 			{
-				var digitsMask = grid[in cells];
+				var digitsMask = grid[cells];
 				if (Mask.PopCount(digitsMask) != size)
 				{
 					continue;

@@ -119,7 +119,7 @@ public partial class UniqueRectangleStepSearcher
 				& mapOfDigit1And2; // and must contain either digit 1 or digit 2
 			foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
 			{
-				var outsideCellDigitsMask = grid[in outsideCells];
+				var outsideCellDigitsMask = grid[outsideCells];
 				var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
 				if (extraDigitsMaskInOutsideCell == 0)
 				{
@@ -535,7 +535,7 @@ public partial class UniqueRectangleStepSearcher
 					& mapOfDigit1And2; // and must contain either digit 1 or digit 2
 				foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
 				{
-					var outsideCellDigitsMask = grid[in outsideCells];
+					var outsideCellDigitsMask = grid[outsideCells];
 					var extraDigitsMaskInOutsideCell = (Mask)(outsideCellDigitsMask & ~comparer);
 					if (extraDigitsMaskInOutsideCell == 0)
 					{

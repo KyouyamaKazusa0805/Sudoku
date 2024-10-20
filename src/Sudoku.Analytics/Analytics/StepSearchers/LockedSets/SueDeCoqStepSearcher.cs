@@ -58,7 +58,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				// Iterate on each intersection combination.
 				foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
 				{
-					var selectedInterMask = grid[in currentInterMap];
+					var selectedInterMask = grid[currentInterMap];
 					if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
 					{
 						// The intersection combination is an ALS or a normal subset, which is invalid in SdCs.
@@ -74,7 +74,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						// Iterate on each combination in block.
 						foreach (ref readonly var currentBlockMap in blockMap & i)
 						{
-							var blockMask = grid[in currentBlockMap];
+							var blockMask = grid[currentBlockMap];
 							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
@@ -90,7 +90,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 								// Iterate on each combination in line.
 								foreach (ref readonly var currentLineMap in lineMap & j)
 								{
-									var lineMask = grid[in currentLineMap];
+									var lineMask = grid[currentLineMap];
 									var elimMapLine = CellMap.Empty;
 
 									// Get the elimination map in the line.

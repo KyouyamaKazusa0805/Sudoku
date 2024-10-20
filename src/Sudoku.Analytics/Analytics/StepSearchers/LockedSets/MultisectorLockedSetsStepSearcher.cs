@@ -207,7 +207,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					in map,
 					rows,
 					columns,
-					grid[in map]
+					grid[map]
 				);
 				if (context.OnlyFindOne)
 				{

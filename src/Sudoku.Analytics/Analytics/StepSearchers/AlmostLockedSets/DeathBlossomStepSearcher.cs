@@ -723,7 +723,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			nTimesAlsDigitsMask,
 			in nTimesAlsCells,
 			branches,
-			Mask.PopCount(grid[in nTimesAlsCells]) - nTimesAlsCells.Count
+			Mask.PopCount(grid[nTimesAlsCells]) - nTimesAlsCells.Count
 		);
 		if (context.OnlyFindOne)
 		{

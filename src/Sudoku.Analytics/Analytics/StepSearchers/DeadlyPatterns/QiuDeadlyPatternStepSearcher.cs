@@ -242,7 +242,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Check whether the number of locked digits appeared in cross-line is at least 2.
 		var block = crossline.FirstSharedHouse;
 		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] & ~crossline];
-		var allDigitsMaskAppearedInCrossline = grid[in crossline];
+		var allDigitsMaskAppearedInCrossline = grid[crossline];
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
 		if (Mask.PopCount(cornerLockedDigitsMask) < 2)
 		{
@@ -255,14 +255,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// This is necessary because we should guarantee the target eliminations should cover at least one digit.
 		// For example, digits [1, 2, 3] and [1, 4] intersect with digit [1]. If the cross-line locks the digit [1, 2],
 		// then we can conclude that if 1 is set in [1, 4] and 2 is set in [1, 2, 3], the target pattern will form a deadly pattern.
-		var cornerDigitsMaskIntersected = grid[in corner, false, MaskAggregator.And];
+		var cornerDigitsMaskIntersected = grid[corner, false, MaskAggregator.And];
 		if (cornerDigitsMaskIntersected == 0)
 		{
 			return null;
 		}
 
 		// Check whether cross-line cells contain the base digits.
-		var cornerDigitsMask = grid[in corner];
+		var cornerDigitsMask = grid[corner];
 		if ((grid[crossline & ~EmptyCells, true] & cornerDigitsMask) != 0)
 		{
 			return null;
@@ -345,7 +345,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		//
 		// Part II - Guardian Types (External Type 1-2)
 		//
-		if ((grid[in crossline] & cornerDigitsMask) == cornerDigitsMask)
+		if ((grid[crossline] & cornerDigitsMask) == cornerDigitsMask)
 		{
 			// Check whether the number of empty cross-line cells are same as the number of locked digits.
 			// Counter-example:
@@ -598,7 +598,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 			foreach (ref readonly var extraCells in emptyCellsInCurrentHouse & size)
 			{
-				var currentDigitsMask = grid[in extraCells];
+				var currentDigitsMask = grid[extraCells];
 				if (currentDigitsMask != extraDigitsMask)
 				{
 					continue;
@@ -794,7 +794,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
 		// .+7+6.84+932+9.27.+68+5+4+4.8.+29..16.........87+26.34+9+3.......68..6+9+31+2+7+7+63..24+9.29+147...+3:542 543 144 544 145 546 846 748 462 164 564 165 584
 
-		var currentDigitsMask = grid[in corner];
+		var currentDigitsMask = grid[corner];
 		if (Mask.PopCount(currentDigitsMask) > 4)
 		{
 			// Corner cells hold at least 5 digits, which is disallowed in the pattern.
@@ -991,7 +991,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Test examples:
 		// ...45....+6+58...+43...+46+8..+5.....7+6+9+4+5....+4178+646+7+8+9+5.+1......+4.2....9+3.5.4.+43..8...:224 129 171 871 172 872 173 177 677 179 779 979 191 991 194 294 195
 
-		var elimDigits = (Mask)(grid[in mirror] & externalDigitsMaskToBeChecked);
+		var elimDigits = (Mask)(grid[mirror] & externalDigitsMaskToBeChecked);
 		if (!Mask.IsPow2(elimDigits))
 		{
 			return null;

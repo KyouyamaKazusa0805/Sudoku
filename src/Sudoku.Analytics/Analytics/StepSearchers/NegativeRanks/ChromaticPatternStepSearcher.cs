@@ -216,7 +216,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		foreach (var extraCell in pattern)
 		{
 			var otherCells = pattern - extraCell;
-			var digitsMask = grid[in otherCells];
+			var digitsMask = grid[otherCells];
 			if (Mask.PopCount(digitsMask) != 3)
 			{
 				continue;
@@ -272,7 +272,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	private ChromaticPatternXzStep? CheckXz(ref StepAnalysisContext context, ref readonly CellMap pattern, House[] blocks)
 	{
 		ref readonly var grid = ref context.Grid;
-		var allDigitsMask = grid[in pattern];
+		var allDigitsMask = grid[pattern];
 		if (Mask.PopCount(allDigitsMask) != 5)
 		{
 			// The pattern cannot find any possible eliminations because the number of extra digits

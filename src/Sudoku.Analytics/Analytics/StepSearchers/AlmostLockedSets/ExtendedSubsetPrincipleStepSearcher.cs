@@ -38,7 +38,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 			// Iterate on each intersection combination.
 			foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
 			{
-				var selectedInterMask = grid[in currentInterMap];
+				var selectedInterMask = grid[currentInterMap];
 				if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
 				{
 					// The intersection combination is an ALS or a normal subset, which is invalid in ESPs.
@@ -55,13 +55,13 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 					foreach (ref readonly var currentBlockMap in blockMap & i)
 					{
 						// Iterate on the number of the cells that should be selected in line.
-						var blockMask = grid[in currentBlockMap];
+						var blockMask = grid[currentBlockMap];
 						for (var j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 						{
 							// Iterate on each combination in line.
 							foreach (ref readonly var currentLineMap in lineMap & j)
 							{
-								var lineMask = grid[in currentLineMap];
+								var lineMask = grid[currentLineMap];
 								var zDigitsMask = (Mask)(blockMask & lineMask);
 								if (!Mask.IsPow2(zDigitsMask))
 								{

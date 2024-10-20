@@ -256,7 +256,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		ref readonly CellMap cellsChosen
 	)
 	{
-		var lastDigitsMask = (Mask)(context.Grid[in cellsChosen] & ~comparer);
+		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
 		if (!Mask.IsPow2(lastDigitsMask))
 		{
 			return null;
@@ -352,7 +352,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 			foreach (ref readonly var cells in otherEmptyCells & numbersOfOtherDigits - 1)
 			{
-				if (grid[in cells] != otherDigitsMask)
+				if (grid[cells] != otherDigitsMask)
 				{
 					// The subset is not matched.
 					continue;

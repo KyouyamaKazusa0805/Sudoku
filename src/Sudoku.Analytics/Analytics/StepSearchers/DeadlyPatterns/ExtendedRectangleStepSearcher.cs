@@ -316,7 +316,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					// Iterate on each combination of the pattern.
 					foreach (ref readonly var cells in otherCells & size)
 					{
-						var mask = grid[in cells];
+						var mask = grid[cells];
 						if ((mask & extraDigits) != extraDigits || Mask.PopCount(mask) != size + 1)
 						{
 							// The extra cells must contain all possible digits appeared in extended rectangle pattern.

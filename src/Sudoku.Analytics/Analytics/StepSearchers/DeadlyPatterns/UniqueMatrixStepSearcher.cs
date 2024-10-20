@@ -79,7 +79,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			var mask = grid[in pattern];
+			var mask = grid[pattern];
 			if (CheckType1(in grid, ref context, in pattern, mask) is { } type1Step)
 			{
 				return type1Step;
@@ -232,7 +232,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				{
 					foreach (ref readonly var cells in allCells & size)
 					{
-						var tempMask = grid[in cells];
+						var tempMask = grid[cells];
 						if (Mask.PopCount(tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;

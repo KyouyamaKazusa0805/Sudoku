@@ -25,7 +25,7 @@ internal static class AlmostHiddenSetsModule
 
 			// Collect subview masks to determine whether AHSes of such digits can be formed.
 			tempPosMask.Clear();
-			var digits = grid[in emptyCells].GetAllSets();
+			var digits = grid[emptyCells].GetAllSets();
 			foreach (var digit in digits)
 			{
 				tempPosMask[digit] = (HousesMap[house] & CandidatesMap[digit]) / house;
@@ -50,7 +50,7 @@ internal static class AlmostHiddenSetsModule
 
 					var cells = (from p in pos select HousesCells[house][p]).AsCellMap();
 					var subsetDigitsMask = MaskOperations.Create(digitCombination);
-					var allDigitsMask = grid[in cells];
+					var allDigitsMask = grid[cells];
 					var candidatesCanFormWeakLink = CandidateMap.Empty;
 					foreach (var cell in cells)
 					{

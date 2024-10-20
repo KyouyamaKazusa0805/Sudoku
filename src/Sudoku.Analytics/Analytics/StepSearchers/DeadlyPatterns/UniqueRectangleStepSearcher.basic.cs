@@ -27,7 +27,7 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckType1(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
-		var mask = grid[in otherCellsMap];
+		var mask = grid[otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -109,7 +109,7 @@ public partial class UniqueRectangleStepSearcher
 	private partial void CheckType2(SortedSet<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref StepAnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index)
 	{
 		// Get the summary mask.
-		var mask = grid[in otherCellsMap];
+		var mask = grid[otherCellsMap];
 		if (mask != comparer)
 		{
 			return;
@@ -231,7 +231,7 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var mask = grid[in otherCellsMap];
+		var mask = grid[otherCellsMap];
 		if ((mask & comparer) != comparer)
 		{
 			return;
@@ -250,7 +250,7 @@ public partial class UniqueRectangleStepSearcher
 			{
 				foreach (ref readonly var iteratedCells in iterationMap & size)
 				{
-					var tempMask = grid[in iteratedCells];
+					var tempMask = grid[iteratedCells];
 					if ((tempMask & comparer) != 0 || Mask.PopCount(tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -456,7 +456,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Get the summary mask.
-		var otherCellsMask = grid[in otherCellsMap];
+		var otherCellsMask = grid[otherCellsMap];
 
 		// Degenerate to type 1.
 		var extraMask = (Mask)(otherCellsMask ^ comparer);

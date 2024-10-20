@@ -276,7 +276,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			return null;
 		}
 
-		var digitsMask = grid[in map];
+		var digitsMask = grid[map];
 		if (Mask.PopCount(digitsMask) < 4)
 		{
 			return null;
