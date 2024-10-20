@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Primitives;
 
 /// <summary>
 /// Represents a list of extension methods that operates with house instances, as <see cref="House"/> representation.

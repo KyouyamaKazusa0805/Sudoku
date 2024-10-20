@@ -60,6 +60,7 @@ global using Sudoku.Categorization;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Coordinates.Formatting;
+global using Sudoku.Concepts.Primitives;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Drawing2D;
 global using Sudoku.Drawing.Nodes;

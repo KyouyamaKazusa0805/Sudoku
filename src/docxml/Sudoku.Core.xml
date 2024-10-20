@@ -1073,83 +1073,6 @@
         <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CellMarshal">
-            <summary>
-            Represents a list of extension methods that operates with cell instances, as <see cref="T:System.Int32"/> representation.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.CopyHouseInfo(System.Int32,System.Int32@)">
-            <summary>
-            Gets the row, column and block value and copies to the specified array that represents by a pointer
-            of 3 elements, where the first element stores the block index, second element stores the row index
-            and the third element stores the column index.
-            </summary>
-            <param name="this">The cell. The available values must be between 0 and 80.</param>
-            <param name="reference">
-            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
-            only if the sequence can store at least 3 values.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)">
-            <summary>
-            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
-            for the specified cell and the house type.
-            </summary>
-            <param name="this">The cell. The available values must be between 0 and 80.</param>
-            <param name="houseType">The house type.</param>
-            <returns>The house index. The return value must be between 0 and 26.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="houseType"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToHouseIndices(System.Int32)">
-            <summary>
-            Get the house indices for the specified cell.
-            </summary>
-            <param name="this">The cell.</param>
-            <returns>A <see cref="T:System.Int32"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToBand(System.Int32)">
-            <summary>
-            Try to get the band index (mega-row) of the specified cell.
-            </summary>
-            <param name="this">The cell.</param>
-            <returns>The chute index.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.ToTower(System.Int32)">
-            <summary>
-            Try to get the tower index (mega-column) of the specified cell.
-            </summary>
-            <param name="this">The cell.</param>
-            <returns>The chute index.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32)">
-            <summary>
-            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="this">The cell to be converted.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})">
-            <summary>
-            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="this">The cells to be converted.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
-        </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
             Represents a cell state.
@@ -4431,39 +4354,6 @@
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.CandidatesMap``1(``0@,System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.HouseMarshal">
-            <summary>
-            Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseMarshal.ToHouseType(System.Int32)">
-            <summary>
-            Get the house type for the specified house index.
-            </summary>
-            <param name="houseIndex">The house index.</param>
-            <returns>
-            The house type. The possible return values are:
-            <list type="table">
-            <listheader>
-            <term>House indices</term>
-            <description>Return value</description>
-            </listheader>
-            <item>
-            <term><paramref name="houseIndex"/> is <![CDATA[>= 0 and < 9]]></term>
-            <description><see cref="F:Sudoku.Concepts.HouseType.Block"/></description>
-            </item>
-            <item>
-            <term><paramref name="houseIndex"/> is <![CDATA[>= 9 and < 18]]></term>
-            <description><see cref="F:Sudoku.Concepts.HouseType.Row"/></description>
-            </item>
-            <item>
-            <term><paramref name="houseIndex"/> is <![CDATA[>= 18 and < 27]]></term>
-            <description><see cref="F:Sudoku.Concepts.HouseType.Column"/></description>
-            </item>
-            </list>
-            </returns>
-        </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/House.html">house type</see>.
@@ -4696,6 +4586,116 @@
             <param name="offset">The <typeparamref name="TElement" /> offset value to be checked.</param>
             <param name="grid">The grid as candidate reference.</param>
             <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Primitives.CellMarshal">
+            <summary>
+            Represents a list of extension methods that operates with cell instances, as <see cref="T:System.Int32"/> representation.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.CopyHouseInfo(System.Int32,System.Int32@)">
+            <summary>
+            Gets the row, column and block value and copies to the specified array that represents by a pointer
+            of 3 elements, where the first element stores the block index, second element stores the row index
+            and the third element stores the column index.
+            </summary>
+            <param name="this">The cell. The available values must be between 0 and 80.</param>
+            <param name="reference">
+            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
+            only if the sequence can store at least 3 values.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)">
+            <summary>
+            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9)
+            for the specified cell and the house type.
+            </summary>
+            <param name="this">The cell. The available values must be between 0 and 80.</param>
+            <param name="houseType">The house type.</param>
+            <returns>The house index. The return value must be between 0 and 26.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="houseType"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.CellMarshal.ToHouse(System.Byte,Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.ToHouseIndices(System.Int32)">
+            <summary>
+            Get the house indices for the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>A <see cref="T:System.Int32"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.ToBand(System.Int32)">
+            <summary>
+            Try to get the band index (mega-row) of the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>The chute index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.ToTower(System.Int32)">
+            <summary>
+            Try to get the tower index (mega-column) of the specified cell.
+            </summary>
+            <param name="this">The cell.</param>
+            <returns>The chute index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.Int32)">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="this">The cell to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.Span{System.Int32})">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="this">The cells to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.Primitives.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Primitives.HouseMarshal">
+            <summary>
+            Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.HouseMarshal.ToHouseType(System.Int32)">
+            <summary>
+            Get the house type for the specified house index.
+            </summary>
+            <param name="houseIndex">The house index.</param>
+            <returns>
+            The house type. The possible return values are:
+            <list type="table">
+            <listheader>
+            <term>House indices</term>
+            <description>Return value</description>
+            </listheader>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 0 and < 9]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Block"/></description>
+            </item>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 9 and < 18]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Row"/></description>
+            </item>
+            <item>
+            <term><paramref name="houseIndex"/> is <![CDATA[>= 18 and < 27]]></term>
+            <description><see cref="F:Sudoku.Concepts.HouseType.Column"/></description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:Sudoku.Concepts.Primitives.HouseMaskOperations">
             <summary>
