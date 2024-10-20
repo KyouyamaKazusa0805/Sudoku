@@ -312,6 +312,7 @@ public partial class App : Application
 	/// <returns>A <see cref="StepGathererOptions"/> instance whose internal values referenced the preferences configured by user.</returns>
 	internal static StepGathererOptions CreateStepSearcherOptions()
 	{
+		const string at = " = ", et = " <> ";
 		var uiPref = Current.AsApp().Preference.UIPreferences;
 		var analysisPref = Current.AsApp().Preference.AnalysisPreferences;
 		return StepGathererOptions.Default with
@@ -321,6 +322,8 @@ public partial class App : Application
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					at,
+					et,
 					CurrentCulture
 				),
 				CoordinateType.RxCy => new RxCyConverter(
@@ -330,6 +333,8 @@ public partial class App : Application
 					uiPref.HouseNotationOnlyDisplayCapitalsInRxCyNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					at,
+					et,
 					NotationBracket.None,
 					NotationBracket.None,
 					CurrentCulture
@@ -341,6 +346,8 @@ public partial class App : Application
 					uiPref.FinalRowLetterInK9Notation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					at,
+					et,
 					NotationBracket.None,
 					NotationBracket.None,
 					CurrentCulture
@@ -349,6 +356,8 @@ public partial class App : Application
 					uiPref.MakeLettersUpperCaseInExcelNotation,
 					uiPref.DefaultSeparatorInNotation,
 					uiPref.DigitsSeparatorInNotation,
+					at,
+					et,
 					NotationBracket.None,
 					CurrentCulture
 				)

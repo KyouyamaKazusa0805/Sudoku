@@ -9,15 +9,19 @@ namespace Sudoku.Concepts.Coordinates;
 /// </param>
 /// <param name="DefaultSeparator"><inheritdoc/></param>
 /// <param name="DigitsSeparator"><inheritdoc/></param>
+/// <param name="AssignmentToken"><inheritdoc/></param>
+/// <param name="EliminationToken"><inheritdoc/></param>
 /// <param name="NotationBracket"><inheritdoc/></param>
 /// <param name="CurrentCulture"><inheritdoc/></param>
 public sealed record ExcelCoordinateConverter(
 	bool MakeLettersUpperCase = false,
 	string DefaultSeparator = ", ",
 	string? DigitsSeparator = null,
+	string AssignmentToken = " = ",
+	string EliminationToken = " <> ",
 	NotationBracket NotationBracket = NotationBracket.None,
 	CultureInfo? CurrentCulture = null
-) : CoordinateConverter(DefaultSeparator, DigitsSeparator, NotationBracket, CurrentCulture)
+) : CoordinateConverter(DefaultSeparator, DigitsSeparator, AssignmentToken, EliminationToken, NotationBracket, CurrentCulture)
 {
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<CellMap, string> CellConverter
@@ -90,8 +94,9 @@ public sealed record ExcelCoordinateConverter(
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter(in c.AsCellMap())}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] when (t == Assignment ? AssignmentToken : EliminationToken) is var token
+					=> $"{CellConverter(in c.AsCellMap())}{token}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -112,11 +117,11 @@ public sealed record ExcelCoordinateConverter(
 				var hasOnlyOneType = selection.Length == 1;
 				foreach (var typeGroup in selection)
 				{
-					var op = typeGroup.Key.GetNotation();
+					var token = typeGroup.Key == Assignment ? AssignmentToken : EliminationToken;
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
-						sb.Append(op);
+						sb.Append(token);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
 					}

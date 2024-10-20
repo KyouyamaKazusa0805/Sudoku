@@ -2031,22 +2031,6 @@
             Indicates the conclusion is a candidate being remove from a cell.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ConclusionTypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
-            <summary>
-            Gets the notation of the conclusion type.
-            </summary>
-            <param name="this">The conclusion type kind.</param>
-            <returns>The string representation of the conclusion kind.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined in enumeration type.
-            </exception>
-        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -2169,6 +2153,14 @@
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
             </param>
+            <param name="AssignmentToken">
+            <para>Indicates the token that describes an assignment conclusion, connected with cell and digit.</para>
+            <para>The value is <c>" = "</c> by default.</para>
+            </param>
+            <param name="EliminationToken">
+            <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
+            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
+            </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
             <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
@@ -2187,7 +2179,7 @@
             <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
             <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.#ctor(System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.#ctor(System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents an option provider for coordinates.
             </summary>
@@ -2198,6 +2190,14 @@
             <param name="DigitsSeparator">
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+            <param name="AssignmentToken">
+            <para>Indicates the token that describes an assignment conclusion, connected with cell and digit.</para>
+            <para>The value is <c>" = "</c> by default.</para>
+            </param>
+            <param name="EliminationToken">
+            <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
+            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
             </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
@@ -2227,6 +2227,18 @@
             <summary>
             <para>Indicates the digits separator.</para>
             <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.AssignmentToken">
+            <summary>
+            <para>Indicates the token that describes an assignment conclusion, connected with cell and digit.</para>
+            <para>The value is <c>" = "</c> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.EliminationToken">
+            <summary>
+            <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
+            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket">
@@ -2463,10 +2475,12 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents for Excel coordinate-based converter.
             </summary>
@@ -2476,6 +2490,8 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
@@ -3208,6 +3224,8 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
@@ -3215,7 +3233,7 @@
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Char,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Char,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using K9 notation.
             </summary>
@@ -3241,6 +3259,8 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
@@ -3431,14 +3451,18 @@
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.#ctor(System.String,System.String,System.String,System.String,System.Globalization.CultureInfo)">
             <summary>
             Represents a converter that outputs coordinates as literally-speaking representation.
             </summary>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.CellConverter">
@@ -3490,6 +3514,8 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
@@ -3497,7 +3523,7 @@
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using RxCy notation.
             </summary>
@@ -3519,6 +3545,8 @@
             </param>
             <param name="DefaultSeparator"><inheritdoc/></param>
             <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="AssignmentToken"><inheritdoc/></param>
+            <param name="EliminationToken"><inheritdoc/></param>
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
