@@ -7,7 +7,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// This type only supports for Windows now because the relied type <see cref="LibraryInfo"/> is limited in Windows.
 /// </i></remarks>
 /// <seealso cref="LibraryInfo"/>
-[SupportedOSPlatform(PlatformNames.Windows)]
+[SupportedOSPlatform("windows")]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable | TypeImplFlags.AllDisposable)]
 public sealed partial class TextPointer(LibraryInfo library) :
 	IAdditionOperators<TextPointer, int, TextPointer>,

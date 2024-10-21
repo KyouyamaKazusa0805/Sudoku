@@ -11,7 +11,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 [DebuggerStepThrough]
 [StructLayout(LayoutKind.Auto)]
-[SupportedOSPlatform(PlatformNames.Windows)]
+[SupportedOSPlatform("windows")]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly partial struct LibraryInfo(
 	[Field(Accessibility = "internal"), HashCodeMember, StringMember] string directory,

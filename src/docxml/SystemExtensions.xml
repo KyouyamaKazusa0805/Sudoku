@@ -6501,16 +6501,6 @@
         <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator``1(``0)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="T:System.Runtime.Versioning.PlatformNames">
-            <summary>
-            Represents platform names.
-            </summary>
-        </member>
-        <member name="F:System.Runtime.Versioning.PlatformNames.Windows">
-            <summary>
-            Indicates the Windows system.
-            </summary>
-        </member>
         <member name="T:System.SingleExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Single"/>.

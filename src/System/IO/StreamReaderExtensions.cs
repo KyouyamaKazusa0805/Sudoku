@@ -16,7 +16,7 @@ public static class StreamReaderExtensions
 	/// because I have already forgotten them...
 	/// </i></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[SupportedOSPlatform(PlatformNames.Windows)]
+	[SupportedOSPlatform("windows")]
 	public static bool EndsWithNewLine(this StreamReader @this)
 	{
 		// If the length are not enough to get two characters, just return false.
