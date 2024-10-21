@@ -29,38 +29,45 @@ public partial struct CellMap : CellMapBase
 	public static readonly CellMap Full = ~default(CellMap);
 
 	/// <summary>
+	/// Indicates the constant that will be used on bitwise not operation.
+	/// </summary>
+	private static readonly Vector128<ulong> BitwiseNotConstant = CV(0xFF_FFFF_FFFFUL, 0x1FF_FFFF_FFFFUL);
+
+#pragma warning disable format
+	/// <summary>
 	/// Indicates the <see cref="Vector128{T}"/> instances to be used for checking shared houses.
 	/// </summary>
 	/// <seealso cref="Vector128{T}"/>
-	private static readonly ReadOnlyMemory<Vector128<long>> SharedHouseConstants = (Vector128<long>[])[
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_000000111_000000111_000000111L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_000111000_000111000_000111000L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_111000000_111000000_111000000L),
-		CV(~0b_000000000_000000000_000000000_000000111_0000L, ~0b_00111_000000111_000000000_000000000_000000000L),
-		CV(~0b_000000000_000000000_000000000_000111000_0001L, ~0b_11000_000111000_000000000_000000000_000000000L),
-		CV(~0b_000000000_000000000_000000000_111000000_1110L, ~0b_00000_111000000_000000000_000000000_000000000L),
-		CV(~0b_000000111_000000111_000000111_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_000111000_000111000_000111000_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_111000000_111000000_111000000_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_000000000_000000000_111111111L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_000000000_111111111_000000000L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_000000000_111111111_000000000_000000000L),
-		CV(-0b_000000000_000000000_000000000_000000000_0001L, ~0b_00000_111111111_000000000_000000000_000000000L),
-		CV(~0b_000000000_000000000_000000000_000000000_1111L, ~0b_11111_000000000_000000000_000000000_000000000L),
-		CV(~0b_000000000_000000000_000000000_111111111_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_000000000_000000000_111111111_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_000000000_111111111_000000000_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_111111111_000000000_000000000_000000000_0000L, -0b_00000_000000000_000000000_000000000_000000001L),
-		CV(~0b_000000001_000000001_000000001_000000001_0000L, ~0b_00001_000000001_000000001_000000001_000000001L),
-		CV(~0b_000000010_000000010_000000010_000000010_0000L, ~0b_00010_000000010_000000010_000000010_000000010L),
-		CV(~0b_000000100_000000100_000000100_000000100_0000L, ~0b_00100_000000100_000000100_000000100_000000100L),
-		CV(~0b_000001000_000001000_000001000_000001000_0000L, ~0b_01000_000001000_000001000_000001000_000001000L),
-		CV(~0b_000010000_000010000_000010000_000010000_0000L, ~0b_10000_000010000_000010000_000010000_000010000L),
-		CV(~0b_000100000_000100000_000100000_000100000_0001L, ~0b_00000_000100000_000100000_000100000_000100000L),
-		CV(~0b_001000000_001000000_001000000_001000000_0010L, ~0b_00000_001000000_001000000_001000000_001000000L),
-		CV(~0b_010000000_010000000_010000000_010000000_0100L, ~0b_00000_010000000_010000000_010000000_010000000L),
-		CV(~0b_100000000_100000000_100000000_100000000_1000L, ~0b_00000_100000000_100000000_100000000_100000000L)
+	private static readonly ReadOnlyMemory<Vector128<ulong>> SharedHouseConstants = (Vector128<ulong>[])[
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_000000111_000000111_000000111UL),
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_000111000_000111000_000111000UL),
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_111000000_111000000_111000000UL),
+		CV(~0b_000000000_000000000_000000000_000000111_0000UL, ~0b_00111_000000111_000000000_000000000_000000000UL),
+		CV(~0b_000000000_000000000_000000000_000111000_0001UL, ~0b_11000_000111000_000000000_000000000_000000000UL),
+		CV(~0b_000000000_000000000_000000000_111000000_1110UL, ~0b_00000_111000000_000000000_000000000_000000000UL),
+		CV(~0b_000000111_000000111_000000111_000000000_0000UL,                                      ulong.MaxValue),
+		CV(~0b_000111000_000111000_000111000_000000000_0000UL,                                      ulong.MaxValue),
+		CV(~0b_111000000_111000000_111000000_000000000_0000UL,                                      ulong.MaxValue),
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_000000000_000000000_111111111UL),
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_000000000_111111111_000000000UL),
+		CV(                                    ulong.MaxValue, ~0b_00000_000000000_111111111_000000000_000000000UL),
+		CV(                                    ulong.MaxValue, ~0b_00000_111111111_000000000_000000000_000000000UL),
+		CV(~0b_000000000_000000000_000000000_000000000_1111UL, ~0b_11111_000000000_000000000_000000000_000000000UL),
+		CV(~0b_000000000_000000000_000000000_111111111_0000UL,                                      ulong.MaxValue),
+		CV(~0b_000000000_000000000_111111111_000000000_0000UL,                                      ulong.MaxValue),
+		CV(~0b_000000000_111111111_000000000_000000000_0000UL,                                      ulong.MaxValue),
+		CV(~0b_111111111_000000000_000000000_000000000_0000UL,                                      ulong.MaxValue),
+		CV(~0b_000000001_000000001_000000001_000000001_0000UL, ~0b_00001_000000001_000000001_000000001_000000001UL),
+		CV(~0b_000000010_000000010_000000010_000000010_0000UL, ~0b_00010_000000010_000000010_000000010_000000010UL),
+		CV(~0b_000000100_000000100_000000100_000000100_0000UL, ~0b_00100_000000100_000000100_000000100_000000100UL),
+		CV(~0b_000001000_000001000_000001000_000001000_0000UL, ~0b_01000_000001000_000001000_000001000_000001000UL),
+		CV(~0b_000010000_000010000_000010000_000010000_0000UL, ~0b_10000_000010000_000010000_000010000_000010000UL),
+		CV(~0b_000100000_000100000_000100000_000100000_0001UL, ~0b_00000_000100000_000100000_000100000_000100000UL),
+		CV(~0b_001000000_001000000_001000000_001000000_0010UL, ~0b_00000_001000000_001000000_001000000_001000000UL),
+		CV(~0b_010000000_010000000_010000000_010000000_0100UL, ~0b_00000_010000000_010000000_010000000_010000000UL),
+		CV(~0b_100000000_100000000_100000000_100000000_1000UL, ~0b_00000_100000000_100000000_100000000_100000000UL)
 	];
+#pragma warning restore format
 
 	/// <summary>
 	/// Indicates the factor values for property <see cref="SharedHouses"/>.
@@ -75,8 +82,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
-	/// which represents 81 bits. <see cref="_high"/> represent the higher
-	/// 40 bits and <see cref="_low"/> represents the lower 41 bits, where each bit is:
+	/// which represents 81 bits. Higher 40 bits and lower 41 bits, where each bit is:
 	/// <list type="table">
 	/// <item>
 	/// <term><see langword="true"/> bit (1)</term>
@@ -90,7 +96,7 @@ public partial struct CellMap : CellMapBase
 	/// </summary>
 	[HashCodeMember]
 	[EquatableMember]
-	private long _high, _low;
+	private Vector128<ulong> _vector;
 
 
 	/// <summary>
@@ -147,7 +153,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public readonly int Count => BitOperations.PopCount((ulong)_low) + BitOperations.PopCount((ulong)_high);
+	public readonly int Count => BitOperations.PopCount(_vector[1]) + BitOperations.PopCount(_vector[0]);
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -279,10 +285,9 @@ public partial struct CellMap : CellMapBase
 		{
 			var result = 0;
 			var tempSpan = SharedHouseConstants.Span;
-			var bits = Vector128.Create(_low, _high);
 			for (var i = 0; i < 27; i++)
 			{
-				if ((bits & tempSpan[i]) == Vector128<long>.Zero)
+				if ((_vector & tempSpan[i]) == Vector128<ulong>.Zero)
 				{
 					result |= SharedHouseFactorValues[i];
 				}
@@ -360,13 +365,13 @@ public partial struct CellMap : CellMapBase
 	{
 		get
 		{
-			var (lowerBits, higherBits, i) = (0L, 0L, 0);
+			var (lowerBits, higherBits, i) = (0UL, 0UL, 0);
 			foreach (var offset in Offsets)
 			{
-				var (low, high) = (0L, 0L);
+				var (low, high) = (0UL, 0UL);
 				foreach (var peer in PeersMap[offset])
 				{
-					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
+					(peer / Shifting == 0 ? ref low : ref high) |= 1UL << peer % Shifting;
 				}
 
 				if (i++ == 0)
@@ -399,8 +404,16 @@ public partial struct CellMap : CellMapBase
 			}
 
 			var (pos, arr) = (0, new Cell[Count]);
-			for (var value = _low; value != 0; arr[pos++] = BitOperations.TrailingZeroCount((ulong)value), value &= value - 1) ;
-			for (var value = _high; value != 0; arr[pos++] = Shifting + BitOperations.TrailingZeroCount((ulong)value), value &= value - 1) ;
+			for (
+				var value = _vector[0];
+				value != 0;
+				arr[pos++] = BitOperations.TrailingZeroCount(value), value &= value - 1
+			) ;
+			for (
+				var value = _vector[1];
+				value != 0;
+				arr[pos++] = Shifting + BitOperations.TrailingZeroCount(value), value &= value - 1
+			) ;
 			return arr;
 		}
 	}
@@ -439,26 +452,26 @@ public partial struct CellMap : CellMapBase
 				return -1;
 			}
 
+			var (low, high) = (_vector[0], _vector[1]);
 			if (Bmi2.X64.IsSupported)
 			{
 				// https://stackoverflow.com/questions/7669057/find-nth-set-bit-in-an-int
-
-				return BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index, (ulong)_low)) switch
+				return BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index, low)) switch
 				{
-					var low and not 64 => low,
-					_ => BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - BitOperations.PopCount((ulong)_low), (ulong)_high)) switch
+					var l and not 64 => l,
+					_ => BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - BitOperations.PopCount(low), high)) switch
 					{
-						var high and not 64 => high + Shifting,
+						var h and not 64 => h + Shifting,
 						_ => -1
 					}
 				};
 			}
 
-			return BitOperations.PopCount((ulong)_low) is var popCountLow && popCountLow == index
-				? 63 - BitOperations.LeadingZeroCount((ulong)_low)
+			return BitOperations.PopCount(low) is var popCountLow && popCountLow == index
+				? 63 - BitOperations.LeadingZeroCount(low)
 				: popCountLow > index
-					? _low.SetAt(index)
-					: _high.SetAt(index - popCountLow) is var z and not 64 ? z + Shifting : -1;
+					? low.SetAt(index)
+					: high.SetAt(index - popCountLow) is var z and not 64 ? z + Shifting : -1;
 		}
 	}
 
@@ -483,7 +496,7 @@ public partial struct CellMap : CellMapBase
 	/// <param name="item">The offset.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(Cell item) => ((item < Shifting ? _low : _high) >> item % Shifting & 1) != 0;
+	public readonly bool Contains(Cell item) => (_vector[item < Shifting ? 0 : 1] >> item % Shifting & 1) != 0;
 
 	/// <inheritdoc cref="ISpanFormattable.TryFormat(CharSequence, out int, ReadOnlyCharSequence, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -587,10 +600,13 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Cell item)
 	{
-		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(item);
-		v |= 1L << item % Shifting;
-		return !older;
+		if (Contains(item))
+		{
+			return false;
+		}
+
+		_vector = _vector.WithElement(item / Shifting, _vector[item / Shifting] | 1UL << item % Shifting);
+		return true;
 	}
 
 	/// <inheritdoc/>
@@ -615,10 +631,13 @@ public partial struct CellMap : CellMapBase
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Cell item)
 	{
-		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(item);
-		v &= ~(1L << item % Shifting);
-		return older;
+		if (!Contains(item))
+		{
+			return false;
+		}
+
+		_vector = _vector.WithElement(item / Shifting, _vector[item / Shifting] & ~(1UL << item % Shifting));
+		return true;
 	}
 
 	/// <inheritdoc/>
@@ -758,10 +777,10 @@ public partial struct CellMap : CellMapBase
 	/// <param name="low">Lower 41 bits.</param>
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByBits(long high, long low)
+	public static CellMap CreateByBits(ulong high, ulong low)
 	{
-		Unsafe.SkipInit<CellMap>(out var result);
-		(result._high, result._low) = (high, low);
+		CellMap result;
+		result._vector = CV(high, low);
 		return result;
 	}
 
@@ -774,19 +793,21 @@ public partial struct CellMap : CellMapBase
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap CreateByBits(int high, int mid, int low)
-		=> CreateByBits((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL);
+		=> CreateByBits(
+			((ulong)high & 0x7FFFFFFUL) << 13 | (ulong)mid >> 14 & 0x1FFFUL,
+			((ulong)mid & 0x3FFFL) << 27 | (ulong)low & 0x7FFFFFFUL
+		);
 
 	/// <summary>
 	/// Initializes an instance with a <see cref="Vector128{T}"/> of <see cref="long"/>.
 	/// </summary>
-	/// <param name="twoBits">Two bits, represented as high 41 and low 40 bits.</param>
+	/// <param name="vector">Two bits, represented as high 41 and low 40 bits.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByVector(Vector128<long> twoBits)
+	public static CellMap CreateByVector(Vector128<ulong> vector)
 	{
-		Unsafe.SkipInit<CellMap>(out var result);
-		result._high = twoBits.GetElement(1);
-		result._low = twoBits.GetElement(0);
+		CellMap result;
+		result._vector = vector;
 		return result;
 	}
 
@@ -825,27 +846,23 @@ public partial struct CellMap : CellMapBase
 	public static CellMap Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 	/// <summary>
-	/// Creates a <see cref="Vector128{T}"/> of <see cref="long"/> instance.
+	/// Creates a <see cref="Vector128{T}"/> of <see cref="ulong"/> instance.
 	/// </summary>
 	/// <param name="e1">The higher 64 bits.</param>
 	/// <param name="e0">The lower 64 bits.</param>
-	/// <returns>A <see cref="Vector128{T}"/> of <see cref="long"/> instance.</returns>
+	/// <returns>A <see cref="Vector128{T}"/> of <see cref="ulong"/> instance.</returns>
 	/// <remarks><b>
 	/// This method will only be used in constant creation, just for readability on binary integers' positions.
 	/// </b></remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static Vector128<long> CV(long e1, long e0) => Vector128.Create(e0, e1);
+	private static Vector128<ulong> CV(ulong e1, ulong e0) => Vector128.Create(e0, e1);
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator ~(in CellMap offsets)
-	{
-		var vector = CV(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
-		return CreateByVector(vector);
-	}
+	public static CellMap operator ~(in CellMap offsets) => CreateByVector(~offsets._vector & BitwiseNotConstant);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -871,27 +888,15 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator &(in CellMap left, in CellMap right)
-	{
-		var vector = CV(left._high & right._high, left._low & right._low);
-		return CreateByVector(vector);
-	}
+	public static CellMap operator &(in CellMap left, in CellMap right) => CreateByVector(left._vector & right._vector);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator |(in CellMap left, in CellMap right)
-	{
-		var vector = CV(left._high | right._high, left._low | right._low);
-		return CreateByVector(vector);
-	}
+	public static CellMap operator |(in CellMap left, in CellMap right) => CreateByVector(left._vector | right._vector);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator ^(in CellMap left, in CellMap right)
-	{
-		var vector = CV(left._high ^ right._high, left._low ^ right._low);
-		return CreateByVector(vector);
-	}
+	public static CellMap operator ^(in CellMap left, in CellMap right) => CreateByVector(left._vector ^ right._vector);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

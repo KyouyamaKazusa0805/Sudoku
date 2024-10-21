@@ -590,6 +590,11 @@
         <member name="F:Sudoku.Concepts.CellMap.Full">
             <inheritdoc cref="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Full"/>
         </member>
+        <member name="F:Sudoku.Concepts.CellMap.BitwiseNotConstant">
+            <summary>
+            Indicates the constant that will be used on bitwise not operation.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.CellMap.SharedHouseConstants">
             <summary>
             Indicates the <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> instances to be used for checking shared houses.
@@ -602,28 +607,10 @@
             </summary>
             <seealso cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap._high">
+        <member name="F:Sudoku.Concepts.CellMap._vector">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits. <see cref="F:Sudoku.Concepts.CellMap._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.CellMap._low"/> represents the lower 41 bits, where each bit is:
-            <list type="table">
-            <item>
-            <term><see langword="true"/> bit (1)</term>
-            <description>The corresponding cell is contained in this collection</description>
-            </item>
-            <item>
-            <term><see langword="false"/> bit (0)</term>
-            <description>The corresponding cell is not contained in this collection</description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CellMap._low">
-            <summary>
-            Indicates the internal two <see cref="T:System.Int64"/> values,
-            which represents 81 bits. <see cref="F:Sudoku.Concepts.CellMap._high"/> represent the higher
-            40 bits and <see cref="F:Sudoku.Concepts.CellMap._low"/> represents the lower 41 bits, where each bit is:
+            which represents 81 bits. Higher 40 bits and lower 41 bits, where each bit is:
             <list type="table">
             <item>
             <term><see langword="true"/> bit (1)</term>
@@ -889,7 +876,7 @@
             <param name="cells">The cells.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CreateByBits(System.Int64,System.Int64)">
+        <member name="M:Sudoku.Concepts.CellMap.CreateByBits(System.UInt64,System.UInt64)">
             <summary>
             Initializes an instance with two binary values.
             </summary>
@@ -906,11 +893,11 @@
             <param name="low">Lower 27 bits.</param>
             <returns>The result instance created.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CreateByVector(System.Runtime.Intrinsics.Vector128{System.Int64})">
+        <member name="M:Sudoku.Concepts.CellMap.CreateByVector(System.Runtime.Intrinsics.Vector128{System.UInt64})">
             <summary>
             Initializes an instance with a <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.Int64"/>.
             </summary>
-            <param name="twoBits">Two bits, represented as high 41 and low 40 bits.</param>
+            <param name="vector">Two bits, represented as high 41 and low 40 bits.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
@@ -925,13 +912,13 @@
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.CV(System.Int64,System.Int64)">
+        <member name="M:Sudoku.Concepts.CellMap.CV(System.UInt64,System.UInt64)">
             <summary>
-            Creates a <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.Int64"/> instance.
+            Creates a <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.UInt64"/> instance.
             </summary>
             <param name="e1">The higher 64 bits.</param>
             <param name="e0">The lower 64 bits.</param>
-            <returns>A <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.Int64"/> instance.</returns>
+            <returns>A <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.UInt64"/> instance.</returns>
             <remarks><b>
             This method will only be used in constant creation, just for readability on binary integers' positions.
             </b></remarks>
