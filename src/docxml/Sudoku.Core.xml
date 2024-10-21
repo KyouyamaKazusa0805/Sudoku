@@ -8050,8 +8050,7 @@
             </summary>
             <param name="this">Indicates the current instance.</param>
             <param name="match">The condition to be used.</param>
-            <returns>The first found candidate.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+            <returns>The first found candidate or -1 if none found.</returns>
         </member>
         <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
@@ -8060,25 +8059,7 @@
             <param name="this">Indicates the current instance.</param>
             <param name="grid">The grid to be used.</param>
             <param name="match">The condition to be used.</param>
-            <returns>The first found candidate.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
-        </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Finds the first candidate that satisfies the specified condition.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="match">The condition to be used.</param>
-            <returns>The first found candidate.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
-            <summary>
-            Finds the first candidate that satisfies the specified condition.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="grid">The grid to be used.</param>
-            <param name="match">The condition to be used.</param>
-            <returns>The first found candidate.</returns>
+            <returns>The first found candidate or -1 if none found.</returns>
         </member>
         <member name="M:Sudoku.Linq.CandidateMapEnumerable.Select``1(Sudoku.Concepts.CandidateMap@,System.Func{System.Int32,``0})">
             <inheritdoc cref="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})"/>
@@ -8139,8 +8120,7 @@
             </summary>
             <param name="this">Indicates the current instance.</param>
             <param name="match">The condition to be used.</param>
-            <returns>The first found cell.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
+            <returns>The first found cell or -1 if none found.</returns>
         </member>
         <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
@@ -8149,25 +8129,7 @@
             <param name="this">Indicates the current instance.</param>
             <param name="grid">The grid to be used.</param>
             <param name="match">The condition to be used.</param>
-            <returns>The first found cell.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
-        </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Boolean})">
-            <summary>
-            Finds the first cell that satisfies the specified condition.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="match">The condition to be used.</param>
-            <returns>The first found cell.</returns>
-        </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitives.CellMapOrCandidateMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
-            <summary>
-            Finds the first cell that satisfies the specified condition.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="grid">The grid to be used.</param>
-            <param name="match">The condition to be used.</param>
-            <returns>The first found cell.</returns>
+            <returns>The first found cell or -1 if none found.</returns>
         </member>
         <member name="M:Sudoku.Linq.CellMapEnumerable.Select``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,``0})">
             <summary>

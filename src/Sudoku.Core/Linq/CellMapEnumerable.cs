@@ -13,30 +13,8 @@ public static class CellMapEnumerable
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(this ref readonly CellMap @this, Func<Cell, bool> match) => @this.FirstOrNull(match)!.Value;
-
-	/// <summary>
-	/// Finds the first cell that satisfies the specified condition.
-	/// </summary>
-	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="grid">The grid to be used.</param>
-	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(this ref readonly CellMap @this, ref readonly Grid grid, CellMapPredicate match)
-		=> @this.FirstOrNull(in grid, match)!.Value;
-
-	/// <summary>
-	/// Finds the first cell that satisfies the specified condition.
-	/// </summary>
-	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	public static Cell? FirstOrNull(this ref readonly CellMap @this, Func<Cell, bool> match)
+	/// <returns>The first found cell or -1 if none found.</returns>
+	public static Cell First(this ref readonly CellMap @this, Func<Cell, bool> match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
@@ -45,7 +23,7 @@ public static class CellMapEnumerable
 				return cell;
 			}
 		}
-		return null;
+		return -1;
 	}
 
 	/// <summary>
@@ -54,8 +32,8 @@ public static class CellMapEnumerable
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found cell.</returns>
-	public static Cell? FirstOrNull(this ref readonly CellMap @this, ref readonly Grid grid, CellMapPredicate match)
+	/// <returns>The first found cell or -1 if none found.</returns>
+	public static Cell First(this ref readonly CellMap @this, ref readonly Grid grid, CellMapPredicate match)
 	{
 		foreach (var cell in @this.Offsets)
 		{
@@ -64,7 +42,7 @@ public static class CellMapEnumerable
 				return cell;
 			}
 		}
-		return null;
+		return -1;
 	}
 
 	/// <summary>

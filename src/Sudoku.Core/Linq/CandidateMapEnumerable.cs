@@ -13,31 +13,8 @@ public static class CandidateMapEnumerable
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found candidate.</returns>
-	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <returns>The first found candidate or -1 if none found.</returns>
 	public static Candidate First(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
-		=> @this.FirstOrNull(match)!.Value;
-
-	/// <summary>
-	/// Finds the first candidate that satisfies the specified condition.
-	/// </summary>
-	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="grid">The grid to be used.</param>
-	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found candidate.</returns>
-	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate First(this ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
-		=> @this.FirstOrNull(in grid, match)!.Value;
-
-	/// <summary>
-	/// Finds the first candidate that satisfies the specified condition.
-	/// </summary>
-	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found candidate.</returns>
-	public static Candidate? FirstOrNull(this ref readonly CandidateMap @this, Func<Candidate, bool> match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
@@ -46,7 +23,7 @@ public static class CandidateMapEnumerable
 				return candidate;
 			}
 		}
-		return null;
+		return -1;
 	}
 
 	/// <summary>
@@ -55,8 +32,8 @@ public static class CandidateMapEnumerable
 	/// <param name="this">Indicates the current instance.</param>
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
-	/// <returns>The first found candidate.</returns>
-	public static Candidate? FirstOrNull(this ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
+	/// <returns>The first found candidate or -1 if none found.</returns>
+	public static Candidate First(this ref readonly CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
@@ -65,7 +42,7 @@ public static class CandidateMapEnumerable
 				return candidate;
 			}
 		}
-		return null;
+		return -1;
 	}
 
 	/// <inheritdoc cref="CellMapEnumerable.Select{TResult}(ref readonly CellMap, Func{int, TResult})"/>
