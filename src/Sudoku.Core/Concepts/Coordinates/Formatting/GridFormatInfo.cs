@@ -10,6 +10,7 @@ public abstract class GridFormatInfo : FormatInfo<Grid>
 	/// <summary>
 	/// Indicates the table of format and creator.
 	/// </summary>
+	[EditorBrowsable(EditorBrowsableState.Advanced)]
 	private static readonly (string?[] FormatChecker, Func<GridFormatInfo> Creator)[] ValuesRouter = [
 		([null, "."], static () => new SusserGridFormatInfo()),
 		(["0"], static () => new SusserGridFormatInfo { Placeholder = '0' }),
@@ -138,14 +139,54 @@ public abstract class GridFormatInfo : FormatInfo<Grid>
 
 
 	/// <summary>
-	/// Gets a read-only System.Globalization.NumberFormatInfo object that is culture-independent (invariant).
+	/// Gets a read-only <see cref="IFormatProvider"/> object that is culture-independent (invariant).
 	/// </summary>
-	public static GridFormatInfo InvariantInfo => GetInstance(CultureInfo.InvariantCulture)!;
+	public static IFormatProvider InvariantCulture => GetInstance(CultureInfo.InvariantCulture)!;
 
 	/// <summary>
-	/// Gets a <see cref="GridFormatInfo"/> that formats values based on the current culture.
+	/// Gets a <see cref="IFormatProvider"/> that formats values based on the current culture.
 	/// </summary>
-	public static GridFormatInfo? CurrentInfo => GetInstance(CultureInfo.CurrentCulture);
+	public static IFormatProvider? CurrentCulture => GetInstance(CultureInfo.CurrentCulture);
+
+	/// <summary>
+	/// Represents CSV format rule.
+	/// </summary>
+	public static IFormatProvider CsvFormat => new CsvGridFormatInfo();
+
+	/// <summary>
+	/// Represents inline Susser format rule.
+	/// </summary>
+	public static IFormatProvider InlineSusserFormat => new InlineSusserGridFormatInfo();
+
+	/// <summary>
+	/// Represents mask format rule.
+	/// </summary>
+	public static IFormatProvider MaskFormat => new MaskGridFormatInfo();
+
+	/// <summary>
+	/// Represents multiple line format rule.
+	/// </summary>
+	public static IFormatProvider MultipleLineFormat => new MultipleLineGridFormatInfo();
+
+	/// <summary>
+	/// Represents open sudoku format rule.
+	/// </summary>
+	public static IFormatProvider OpenSudokuFormat => new OpenSudokuGridFormatInfo();
+
+	/// <summary>
+	/// Represents pencilmark format rule.
+	/// </summary>
+	public static IFormatProvider PencilmarkFormat => new PencilmarkGridFormatInfo();
+
+	/// <summary>
+	/// Represents Sukaku format rule.
+	/// </summary>
+	public static IFormatProvider SukakuFormat => new SukakuGridFormatInfo();
+
+	/// <summary>
+	/// Represents standard format tule (Susser rule).
+	/// </summary>
+	public static IFormatProvider SusserFormat => new SusserGridFormatInfo();
 
 
 	/// <summary>

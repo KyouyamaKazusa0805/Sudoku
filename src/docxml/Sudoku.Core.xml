@@ -2724,14 +2724,54 @@
             Indicates the separator used. By default it's comma <c>", "</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InvariantInfo">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InvariantCulture">
             <summary>
-            Gets a read-only System.Globalization.NumberFormatInfo object that is culture-independent (invariant).
+            Gets a read-only <see cref="T:System.IFormatProvider"/> object that is culture-independent (invariant).
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.CurrentInfo">
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.CurrentCulture">
             <summary>
-            Gets a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo"/> that formats values based on the current culture.
+            Gets a <see cref="T:System.IFormatProvider"/> that formats values based on the current culture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.CsvFormat">
+            <summary>
+            Represents CSV format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.InlineSusserFormat">
+            <summary>
+            Represents inline Susser format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.MaskFormat">
+            <summary>
+            Represents mask format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.MultipleLineFormat">
+            <summary>
+            Represents multiple line format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.OpenSudokuFormat">
+            <summary>
+            Represents open sudoku format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.PencilmarkFormat">
+            <summary>
+            Represents pencilmark format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.SukakuFormat">
+            <summary>
+            Represents Sukaku format rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.SusserFormat">
+            <summary>
+            Represents standard format tule (Susser rule).
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo.GetInstance(System.IFormatProvider)">
