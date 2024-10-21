@@ -7,12 +7,12 @@ namespace Sudoku.Concepts;
 /// The field uses the mask table of length 81 to indicate the state and all possible candidates
 /// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 /// <code>
-/// | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-/// |-----------------------|---|---------------------------------------|
-/// |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-/// '-----------------------|---|---------------------------------------'
-///                          \_/ \_____________________________________/
-///                          (2)                   (1)
+/// | 15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+/// |-------------------|---|---------------------------------------|
+/// |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+/// '-------------------|---|---------------------------------------'
+///                      \_/ \_____________________________________/
+///                      (2)                   (1)
 /// </code>
 /// Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
 /// Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),

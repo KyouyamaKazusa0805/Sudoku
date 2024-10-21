@@ -20,6 +20,17 @@ public interface IGrid<TSelf> :
 	where TSelf : unmanaged, IGrid<TSelf>
 {
 	/// <summary>
+	/// Indicates the shifting bits count for header bits.
+	/// </summary>
+	protected internal const int HeaderShift = 9 + 3;
+
+	/// <summary>
+	/// Indicates ths header bits describing the sudoku type is a Sukaku.
+	/// </summary>
+	protected internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
+
+
+	/// <summary>
 	/// Determines whether the current grid contains any missing candidates.
 	/// </summary>
 	public abstract bool IsMissingCandidates { get; }
@@ -168,12 +179,12 @@ public interface IGrid<TSelf> :
 	/// The field uses the mask table of length 81 to indicate the state and all possible candidates
 	/// holding for each cell. Each mask uses a <see cref="Mask"/> value, but only uses 11 of 16 bits.
 	/// <code>
-	/// | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
-	/// |-------------------|-----------|-----------------------------------|
-	/// |    unused bits    | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
-	/// '-------------------|-----------|-----------------------------------'
-	///                      \_________/ \_________________________________/
-	///                          (2)                     (1)
+	/// | 15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+	/// |---------------|-----------|-----------------------------------|
+	/// |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+	/// '---------------|-----------|-----------------------------------'
+	///  \_____________/ \_________/ \_________________________________/
+	///        (3)           (2)                     (1)
 	/// </code>
 	/// Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
 	/// and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
@@ -183,20 +194,38 @@ public interface IGrid<TSelf> :
 	/// <description>Description</description>
 	/// </listheader>
 	/// <item>
-	/// <term>Empty cell (i.e. <see cref="CellState.Empty"/>)</term>
+	/// <term>Empty cell (flag: <see cref="CellState.Empty"/>)</term>
 	/// <description>The cell is currently empty, and wait for being filled.</description>
 	/// </item>
 	/// <item>
-	/// <term>Modifiable cell (i.e. <see cref="CellState.Modifiable"/>)</term>
+	/// <term>Modifiable cell (flag: <see cref="CellState.Modifiable"/>)</term>
 	/// <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
 	/// </item>
 	/// <item>
-	/// <term>Given cell (i.e. <see cref="CellState.Given"/>)</term>
+	/// <term>Given cell (flag: <see cref="CellState.Given"/>)</term>
 	/// <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
 	/// </item>
 	/// </list>
+	/// Part (3) is for the reserved bits. Such bits won't be used expect for the array element at index 0 -
+	/// The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term>0b0000</term>
+	/// <description>Represents standard sudoku type (flag: <see cref="SudokuType.Standard"/>)</description>
+	/// </item>
+	/// <item>
+	/// <term>0b0010</term>
+	/// <description>Represents Sukaku (flag: <see cref="SudokuType.Sukaku"/>)</description>
+	/// </item>
+	/// </list>
+	/// Other values won't be supported for now, even if the flags are defined in type <see cref="SudokuType"/>.
 	/// </remarks>
 	/// <seealso cref="CellState"/>
+	/// <seealso cref="SudokuType"/>
 	[UnscopedRef]
 	protected abstract ref readonly Mask FirstMaskRef { get; }
 

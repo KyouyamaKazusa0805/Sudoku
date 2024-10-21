@@ -1540,12 +1540,12 @@
             The field uses the mask table of length 81 to indicate the state and all possible candidates
             holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
             <code>
-            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-            |-----------------------|---|---------------------------------------|
-            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-            '-----------------------|---|---------------------------------------'
-                                     \_/ \_____________________________________/
-                                     (2)                   (1)
+            | 15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-------------------|---|---------------------------------------|
+            |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-------------------|---|---------------------------------------'
+                                 \_/ \_____________________________________/
+                                 (2)                   (1)
             </code>
             Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
             Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),
@@ -1582,12 +1582,12 @@
             The field uses the mask table of length 81 to indicate the state and all possible candidates
             holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
             <code>
-            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-            |-----------------------|---|---------------------------------------|
-            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-            '-----------------------|---|---------------------------------------'
-                                     \_/ \_____________________________________/
-                                     (2)                   (1)
+            | 15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-------------------|---|---------------------------------------|
+            |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-------------------|---|---------------------------------------'
+                                 \_/ \_____________________________________/
+                                 (2)                   (1)
             </code>
             Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
             Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1),
@@ -3875,16 +3875,6 @@
         <member name="F:Sudoku.Concepts.Grid.GivenMask">
             <inheritdoc cref="P:Sudoku.Concepts.Primitives.IGrid`1.GivenMask"/>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.HeaderShift">
-            <summary>
-            Indicates the shifting bits count for header bits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
-            <summary>
-            Indicates ths header bits describing the sudoku type is a Sukaku.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.EmptyString">
             <inheritdoc cref="P:Sudoku.Concepts.Primitives.IGrid`1.EmptyString"/>
         </member>
@@ -5351,6 +5341,16 @@
 		</para>
 	</self-type-constraint></typeparam>
         </member>
+        <member name="F:Sudoku.Concepts.Primitives.IGrid`1.HeaderShift">
+            <summary>
+            Indicates the shifting bits count for header bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Primitives.IGrid`1.SukakuHeader">
+            <summary>
+            Indicates ths header bits describing the sudoku type is a Sukaku.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.IsMissingCandidates">
             <summary>
             Determines whether the current grid contains any missing candidates.
@@ -5501,12 +5501,12 @@
             The field uses the mask table of length 81 to indicate the state and all possible candidates
             holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
             <code>
-            | 16  15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
-            |-------------------|-----------|-----------------------------------|
-            |    unused bits    | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
-            '-------------------|-----------|-----------------------------------'
-                                 \_________/ \_________________________________/
-                                     (2)                     (1)
+            | 15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+            |---------------|-----------|-----------------------------------|
+            |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+            '---------------|-----------|-----------------------------------'
+             \_____________/ \_________/ \_________________________________/
+                   (3)           (2)                     (1)
             </code>
             Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
             and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
@@ -5516,20 +5516,38 @@
             <description>Description</description>
             </listheader>
             <item>
-            <term>Empty cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
+            <term>Empty cell (flag: <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
             <description>The cell is currently empty, and wait for being filled.</description>
             </item>
             <item>
-            <term>Modifiable cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
+            <term>Modifiable cell (flag: <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
             <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
             </item>
             <item>
-            <term>Given cell (i.e. <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
+            <term>Given cell (flag: <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
             <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
             </item>
             </list>
+            Part (3) is for the reserved bits. Such bits won't be used expect for the array element at index 0 -
+            The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>0b0000</term>
+            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.SudokuType.Standard"/>)</description>
+            </item>
+            <item>
+            <term>0b0010</term>
+            <description>Represents Sukaku (flag: <see cref="F:Sudoku.SudokuType.Sukaku"/>)</description>
+            </item>
+            </list>
+            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.SudokuType"/>.
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellState"/>
+            <seealso cref="T:Sudoku.SudokuType"/>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.EmptyString">
             <summary>

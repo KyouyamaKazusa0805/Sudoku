@@ -40,16 +40,6 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
 
-	/// <summary>
-	/// Indicates the shifting bits count for header bits.
-	/// </summary>
-	internal const int HeaderShift = 9 + 3;
-
-	/// <summary>
-	/// Indicates ths header bits describing the sudoku type is a Sukaku.
-	/// </summary>
-	private const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
-
 
 #if !EMPTY_GRID_STRING_CONSTANT
 	/// <inheritdoc cref="IGrid{TSelf}.EmptyString"/>
@@ -169,7 +159,8 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// </remarks>
 	/// <seealso cref="SudokuType.Standard"/>
 	/// <seealso cref="SudokuType.Sukaku"/>
-	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
+	public readonly SudokuType PuzzleType
+		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
 	public readonly Cell GivensCount
@@ -817,7 +808,7 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << HeaderShift) - 1));
+	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << GridBase.HeaderShift) - 1));
 
 	/// <summary>
 	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
@@ -826,19 +817,19 @@ public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMet
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> HeaderShift);
+	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> GridBase.HeaderShift);
 
 	/// <summary>
 	/// Appends for Sukaku puzzle header.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void AddSukakuHeader() => this[0] |= SukakuHeader;
+	private void AddSukakuHeader() => this[0] |= GridBase.SukakuHeader;
 
 	/// <summary>
 	/// Removes for Sukaku puzzle header.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RemoveSukakuHeader() => this[0] &= (1 << HeaderShift) - 1;
+	private void RemoveSukakuHeader() => this[0] &= (1 << GridBase.HeaderShift) - 1;
 
 
 	/// <inheritdoc/>
