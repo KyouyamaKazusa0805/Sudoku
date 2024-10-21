@@ -906,6 +906,13 @@
             <param name="low">Lower 27 bits.</param>
             <returns>The result instance created.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.CreateByVector(System.Runtime.Intrinsics.Vector128{System.Int64})">
+            <summary>
+            Initializes an instance with a <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="twoBits">Two bits, represented as high 41 and low 40 bits.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>

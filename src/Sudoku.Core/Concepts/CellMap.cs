@@ -380,7 +380,9 @@ public partial struct CellMap : CellMapBase
 					higherBits &= high;
 				}
 			}
-			return CreateByBits(higherBits, lowerBits);
+
+			var vector = CV(higherBits, lowerBits);
+			return CreateByVector(vector);
 		}
 	}
 
@@ -774,6 +776,20 @@ public partial struct CellMap : CellMapBase
 	public static CellMap CreateByBits(int high, int mid, int low)
 		=> CreateByBits((high & 0x7FFFFFFL) << 13 | mid >> 14 & 0x1FFFL, (mid & 0x3FFFL) << 27 | low & 0x7FFFFFFL);
 
+	/// <summary>
+	/// Initializes an instance with a <see cref="Vector128{T}"/> of <see cref="long"/>.
+	/// </summary>
+	/// <param name="twoBits">Two bits, represented as high 41 and low 40 bits.</param>
+	/// <returns>A <see cref="CellMap"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap CreateByVector(Vector128<long> twoBits)
+	{
+		Unsafe.SkipInit<CellMap>(out var result);
+		result._high = twoBits.GetElement(1);
+		result._low = twoBits.GetElement(0);
+		return result;
+	}
+
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CellMap Parse(string str)
 	{
@@ -826,7 +842,10 @@ public partial struct CellMap : CellMapBase
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ~(in CellMap offsets)
-		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
+	{
+		var vector = CV(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
+		return CreateByVector(vector);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -853,17 +872,26 @@ public partial struct CellMap : CellMapBase
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator &(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high & right._high, left._low & right._low);
+	{
+		var vector = CV(left._high & right._high, left._low & right._low);
+		return CreateByVector(vector);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator |(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high | right._high, left._low | right._low);
+	{
+		var vector = CV(left._high | right._high, left._low | right._low);
+		return CreateByVector(vector);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator ^(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
+	{
+		var vector = CV(left._high ^ right._high, left._low ^ right._low);
+		return CreateByVector(vector);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
