@@ -5000,9 +5000,13 @@
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.ToArray">
             <summary>
-            Get all offsets whose bits are set <see langword="true"/>.
+            Returns an array of <typeparamref name="TElement"/> offsets having stored in the current collection.
             </summary>
             <returns>An array of offsets.</returns>
+            <remarks><b><i>
+            Although the return value is an array, you cannot modify them to keep data-safety (read-only array).
+            Returning other types of such value will raise extra conversion, which is slower.
+            </i></b></remarks>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Slice(System.Int32,System.Int32)">
             <summary>
