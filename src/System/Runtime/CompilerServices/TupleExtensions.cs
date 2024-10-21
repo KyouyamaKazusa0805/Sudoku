@@ -9,9 +9,10 @@ public static class TupleExtensions
 	/// <summary>
 	/// Converts the <see cref="ITuple"/> instance into an array of objects.
 	/// </summary>
+	/// <typeparam name="TTuple">The type of target tuple.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>The array of elements.</returns>
-	public static object?[] ToArray(this ITuple @this)
+	public static object?[] ToArray<TTuple>(this TTuple @this) where TTuple : ITuple, allows ref struct
 	{
 		var result = new object?[@this.Length];
 		var i = 0;
@@ -41,5 +42,6 @@ public static class TupleExtensions
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TupleEnumerator GetEnumerator(this ITuple @this) => new(@this);
+	public static TupleEnumerator<TTuple> GetEnumerator<TTuple>(this TTuple @this) where TTuple : ITuple, allows ref struct
+		=> new(@this);
 }

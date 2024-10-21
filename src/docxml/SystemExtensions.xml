@@ -6432,42 +6432,47 @@
             Indicates the name is <c>"value"</c>.
             </summary>
         </member>
-        <member name="T:System.Runtime.CompilerServices.TupleEnumerator">
+        <member name="T:System.Runtime.CompilerServices.TupleEnumerator`1">
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
             </summary>
-            <param name="_tuple">A tuple instance.</param>
+            <param name="tuple">A tuple instance.</param>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.#ctor(System.Runtime.CompilerServices.ITuple)">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.#ctor(`0)">
             <summary>
             Represents for an enumerator that iterates on each elements stored in a <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
             </summary>
-            <param name="_tuple">A tuple instance.</param>
+            <param name="tuple">A tuple instance.</param>
         </member>
-        <member name="F:System.Runtime.CompilerServices.TupleEnumerator._index">
+        <member name="F:System.Runtime.CompilerServices.TupleEnumerator`1._index">
             <summary>
             The current index.
             </summary>
         </member>
-        <member name="P:System.Runtime.CompilerServices.TupleEnumerator.Current">
+        <member name="P:System.Runtime.CompilerServices.TupleEnumerator`1.Current">
             <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.MoveNext">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#Collections#IEnumerator#Reset">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.Equals(System.Object)">
+        <member name="F:System.Runtime.CompilerServices.TupleEnumerator`1._tuple">
+            <summary>
+            The generated field declaration for parameter <c>tuple</c>.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.GetHashCode">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.ToString">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleEnumerator.System#IDisposable#Dispose">
+        <member name="M:System.Runtime.CompilerServices.TupleEnumerator`1.System#IDisposable#Dispose">
             <inheritdoc/>
             <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
@@ -6477,10 +6482,11 @@
             </summary>
             <seealso cref="T:System.Runtime.CompilerServices.ITuple"/>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleExtensions.ToArray(System.Runtime.CompilerServices.ITuple)">
+        <member name="M:System.Runtime.CompilerServices.TupleExtensions.ToArray``1(``0)">
             <summary>
             Converts the <see cref="T:System.Runtime.CompilerServices.ITuple"/> instance into an array of objects.
             </summary>
+            <typeparam name="TTuple">The type of target tuple.</typeparam>
             <param name="this">The instance.</param>
             <returns>The array of elements.</returns>
         </member>
@@ -6492,7 +6498,7 @@
             <param name="this">The tuple instance.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
         </member>
-        <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator(System.Runtime.CompilerServices.ITuple)">
+        <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator``1(``0)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
         <member name="T:System.Runtime.Versioning.PlatformNames">

@@ -15,8 +15,5 @@ namespace System.Runtime.CompilerServices;
 /// <param name="line">The line.</param>
 /// <param name="character">The character position.</param>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-public sealed partial class InterceptsLocationAttribute(
-	[Property] string filePath,
-	[Property] int line,
-	[Property] int character
-) : Attribute;
+public sealed partial class InterceptsLocationAttribute([Property] string filePath, [Property] int line, [Property] int character) :
+	Attribute;
