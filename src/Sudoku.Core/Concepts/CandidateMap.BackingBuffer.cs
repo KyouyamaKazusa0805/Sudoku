@@ -8,11 +8,12 @@ public partial struct CandidateMap
 	[InlineArray(12)]
 	private struct BackingBuffer : IEquatable<BackingBuffer>, IEqualityOperators<BackingBuffer, BackingBuffer, bool>
 	{
+#pragma warning disable IDE0044
 		/// <summary>
 		/// Indicates the first element of the whole buffer.
 		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		private long _firstElement;
+		private ulong _firstElement;
+#pragma warning restore IDE0044
 
 
 		/// <inheritdoc cref="object.ToString"/>

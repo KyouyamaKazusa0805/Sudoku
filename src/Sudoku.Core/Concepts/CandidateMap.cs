@@ -79,7 +79,21 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 
 	/// <inheritdoc/>
-	public int Count { get; private set; }
+	public readonly int Count
+	{
+		get
+		{
+			var result = 0;
+			foreach (ref readonly var vector in Vectors)
+			{
+				for (var i = 0; i < 4; i++)
+				{
+					result += BitOperations.PopCount(vector[i]);
+				}
+			}
+			return result;
+		}
+	}
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -237,6 +251,12 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	readonly Candidate[] CandidateMapBase.Offsets => Offsets;
+
+	/// <summary>
+	/// Returns a sequence of <see cref="Vector256{T}"/> of <see cref="ulong"/> values that can be used in SIMD scenarios.
+	/// </summary>
+	private readonly ReadOnlySpan<Vector256<ulong>> Vectors
+		=> (Vector256<ulong>[])[Vector256.Create(_bits[..4]), Vector256.Create(_bits[4..8]), Vector256.Create(_bits[8..])];
 
 
 	/// <inheritdoc/>
@@ -449,15 +469,13 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Candidate item)
 	{
-		ref var v = ref _bits[item >> 6];
-		var older = Contains(item);
-		v |= 1L << (item & 63);
-		if (!older)
+		if (Contains(item))
 		{
-			Count++;
-			return true;
+			return false;
 		}
-		return false;
+
+		_bits[item >> 6] |= 1UL << (item & 63);
+		return true;
 	}
 
 	/// <inheritdoc/>
@@ -482,15 +500,13 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Candidate item)
 	{
-		ref var v = ref _bits[item >> 6];
-		var older = Contains(item);
-		v &= ~(1L << (item & 63));
-		if (older)
+		if (!Contains(item))
 		{
-			Count--;
-			return true;
+			return false;
 		}
-		return false;
+
+		_bits[item >> 6] &= ~(1UL << (item & 63));
+		return true;
 	}
 
 	/// <summary>
@@ -674,26 +690,30 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap Parse(ReadOnlyCharSequence s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
+	/// <summary>
+	/// Creates a <see cref="CandidateMap"/> via a triplet of <see cref="Vector256{T}"/> of <see cref="ulong"/> values.
+	/// </summary>
+	/// <param name="e0">The lower 256 bits.</param>
+	/// <param name="e1">The middle 256 bits.</param>
+	/// <param name="e2">The higher 256 bits.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap CreateByVectors(Vector256<ulong> e0, Vector256<ulong> e1, Vector256<ulong> e2)
+	{
+		Unsafe.SkipInit(out CandidateMap result);
+		e0.CopyTo(result._bits[..4]);
+		e1.CopyTo(result._bits[4..8]);
+		e2.CopyTo(result._bits[8..]);
+		return result;
+	}
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ~(in CandidateMap offsets)
 	{
-		var result = offsets;
-		result._bits[0] = ~result._bits[0];
-		result._bits[1] = ~result._bits[1];
-		result._bits[2] = ~result._bits[2];
-		result._bits[3] = ~result._bits[3];
-		result._bits[4] = ~result._bits[4];
-		result._bits[5] = ~result._bits[5];
-		result._bits[6] = ~result._bits[6];
-		result._bits[7] = ~result._bits[7];
-		result._bits[8] = ~result._bits[8];
-		result._bits[9] = ~result._bits[9];
-		result._bits[10] = ~result._bits[10];
-		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
-		result.Count = 729 - offsets.Count;
-		return result;
+		var vectors = offsets.Vectors;
+		return CreateByVectors(~vectors[0], ~vectors[1], ~vectors[2]);
 	}
 
 	/// <inheritdoc/>
@@ -723,66 +743,27 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator &(in CandidateMap left, in CandidateMap right)
 	{
-		var finalCount = 0;
-		var result = left;
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] &= right._bits[0]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] &= right._bits[1]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] &= right._bits[2]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] &= right._bits[3]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] &= right._bits[4]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] &= right._bits[5]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] &= right._bits[6]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] &= right._bits[7]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] &= right._bits[8]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] &= right._bits[9]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] &= right._bits[10]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] &= right._bits[11]));
-		result.Count = finalCount;
-		return result;
+		var l = left.Vectors;
+		var r = right.Vectors;
+		return CreateByVectors(l[0] & r[0], l[1] & r[1], l[2] & r[2]);
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator |(in CandidateMap left, in CandidateMap right)
 	{
-		var finalCount = 0;
-		var result = left;
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] |= right._bits[0]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] |= right._bits[1]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] |= right._bits[2]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] |= right._bits[3]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] |= right._bits[4]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] |= right._bits[5]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] |= right._bits[6]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] |= right._bits[7]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] |= right._bits[8]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] |= right._bits[9]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] |= right._bits[10]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] |= right._bits[11]));
-		result.Count = finalCount;
-		return result;
+		var l = left.Vectors;
+		var r = right.Vectors;
+		return CreateByVectors(l[0] | r[0], l[1] | r[1], l[2] | r[2]);
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ^(in CandidateMap left, in CandidateMap right)
 	{
-		var finalCount = 0;
-		var result = left;
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[0] ^= right._bits[0]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[1] ^= right._bits[1]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[2] ^= right._bits[2]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[3] ^= right._bits[3]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[4] ^= right._bits[4]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[5] ^= right._bits[5]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[6] ^= right._bits[6]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[7] ^= right._bits[7]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[8] ^= right._bits[8]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[9] ^= right._bits[9]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[10] ^= right._bits[10]));
-		finalCount += (int)ulong.PopCount((ulong)(result._bits[11] ^= right._bits[11]));
-		result.Count = finalCount;
-		return result;
+		var l = left.Vectors;
+		var r = right.Vectors;
+		return CreateByVectors(l[0] ^ r[0], l[1] ^ r[1], l[2] ^ r[2]);
 	}
 
 	/// <inheritdoc/>
