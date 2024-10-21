@@ -128,11 +128,6 @@ internal static class ChainModule
 					context.Options,
 					chain
 				);
-				if (!mfcStep.IsAdvancedAllowed(allowsAdvancedLinks))
-				{
-					continue;
-				}
-
 				if (context.OnlyFindOne)
 				{
 					return mfcStep;
@@ -232,18 +227,17 @@ file static class Extensions
 	{
 		switch (@this)
 		{
-			case NormalChainStep { IsGrouped: var g, Pattern.Links: var l }
-				when allowsAdvancedLinks ^ (g || l.Any(lp)):
+			case NormalChainStep { IsGrouped: var g, Pattern.Links: var l } when allowsAdvancedLinks ^ (g || l.Any(lp)):
 			{
 				goto default;
 			}
 			case MultipleForcingChainsStep { IsGrouped: var g, Pattern: var p }
-				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
+			when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
 			{
 				goto default;
 			}
 			case BlossomLoopStep { IsGrouped: var g, Pattern: var p }
-				when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
+			when p.AnyValue(b => allowsAdvancedLinks ^ (g || b.Links.Any(lp))):
 			{
 				goto default;
 			}
