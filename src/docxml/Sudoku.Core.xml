@@ -30,6 +30,11 @@
             Indicates the first element of the whole buffer.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.BackingBuffer.Vectors">
+            <summary>
+            Returns a sequence of <see cref="T:System.Runtime.Intrinsics.Vector256`1"/> of <see cref="T:System.UInt64"/> values that can be used in SIMD scenarios.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
@@ -218,11 +223,6 @@
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Vectors">
-            <summary>
-            Returns a sequence of <see cref="T:System.Runtime.Intrinsics.Vector256`1"/> of <see cref="T:System.UInt64"/> values that can be used in SIMD scenarios.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitives#ICellMapOrCandidateMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>

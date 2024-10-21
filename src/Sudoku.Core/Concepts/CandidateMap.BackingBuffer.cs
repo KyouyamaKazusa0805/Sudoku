@@ -16,20 +16,22 @@ public partial struct CandidateMap
 #pragma warning restore IDE0044
 
 
+		/// <summary>
+		/// Returns a sequence of <see cref="Vector256{T}"/> of <see cref="ulong"/> values that can be used in SIMD scenarios.
+		/// </summary>
+		public readonly ReadOnlySpan<Vector256<ulong>> Vectors
+			=> (Vector256<ulong>[])[Vector256.Create(this[..4]), Vector256.Create(this[4..8]), Vector256.Create(this[8..])];
+
+
 		/// <inheritdoc cref="object.ToString"/>
 		public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is BackingBuffer comparer && Equals(in comparer);
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public readonly bool Equals(ref readonly BackingBuffer other)
 		{
-			for (var i = 0; i < Length; i++)
-			{
-				if (this[i] != other[i])
-				{
-					return false;
-				}
-			}
-			return true;
+			var thisVectors = Vectors;
+			var otherVectors = other.Vectors;
+			return thisVectors[0] == otherVectors[0] && thisVectors[1] == otherVectors[1] && thisVectors[2] == otherVectors[2];
 		}
 
 		/// <inheritdoc/>

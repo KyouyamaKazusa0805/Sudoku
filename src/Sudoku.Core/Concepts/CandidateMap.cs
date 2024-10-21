@@ -84,7 +84,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		get
 		{
 			var result = 0;
-			foreach (ref readonly var vector in Vectors)
+			foreach (ref readonly var vector in _bits.Vectors)
 			{
 				for (var i = 0; i < 4; i++)
 				{
@@ -251,12 +251,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	readonly Candidate[] CandidateMapBase.Offsets => Offsets;
-
-	/// <summary>
-	/// Returns a sequence of <see cref="Vector256{T}"/> of <see cref="ulong"/> values that can be used in SIMD scenarios.
-	/// </summary>
-	private readonly ReadOnlySpan<Vector256<ulong>> Vectors
-		=> (Vector256<ulong>[])[Vector256.Create(_bits[..4]), Vector256.Create(_bits[4..8]), Vector256.Create(_bits[8..])];
 
 
 	/// <inheritdoc/>
@@ -712,7 +706,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ~(in CandidateMap offsets)
 	{
-		var vectors = offsets.Vectors;
+		var vectors = offsets._bits.Vectors;
 		return CreateByVectors(~vectors[0], ~vectors[1], ~vectors[2]);
 	}
 
@@ -743,8 +737,8 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator &(in CandidateMap left, in CandidateMap right)
 	{
-		var l = left.Vectors;
-		var r = right.Vectors;
+		var l = left._bits.Vectors;
+		var r = right._bits.Vectors;
 		return CreateByVectors(l[0] & r[0], l[1] & r[1], l[2] & r[2]);
 	}
 
@@ -752,8 +746,8 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator |(in CandidateMap left, in CandidateMap right)
 	{
-		var l = left.Vectors;
-		var r = right.Vectors;
+		var l = left._bits.Vectors;
+		var r = right._bits.Vectors;
 		return CreateByVectors(l[0] | r[0], l[1] | r[1], l[2] | r[2]);
 	}
 
@@ -761,8 +755,8 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator ^(in CandidateMap left, in CandidateMap right)
 	{
-		var l = left.Vectors;
-		var r = right.Vectors;
+		var l = left._bits.Vectors;
+		var r = right._bits.Vectors;
 		return CreateByVectors(l[0] ^ r[0], l[1] ^ r[1], l[2] ^ r[2]);
 	}
 
