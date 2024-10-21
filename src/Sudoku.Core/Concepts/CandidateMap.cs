@@ -239,7 +239,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 				for (
 					var value = _bits[i];
 					value != 0;
-					arr[pos++] = (i << 6) + BitOperations.TrailingZeroCount((ulong)value), value &= value - 1
+					arr[pos++] = (i << 6) + BitOperations.TrailingZeroCount(value), value &= value - 1
 				) ;
 			}
 			return arr;
@@ -289,7 +289,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 			var popCountSum = 0;
 			for (var i = 0; i < Length; i++)
 			{
-				var bits = (ulong)_bits[i];
+				var bits = _bits[i];
 				var z = bmi2IsSupported
 					? BitOperations.TrailingZeroCount(Bmi2.X64.ParallelBitDeposit(1UL << index - popCountSum, bits))
 					: bits.SetAt(index - popCountSum);
