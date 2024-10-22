@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 using GridBase = IGrid<Grid>;
 
 /// <summary>
-/// Represents a sudoku grid that uses the mask list to construct the data structure.
+/// Represents a sudoku grid.
 /// </summary>
 /// <remarks>
 /// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
@@ -18,7 +18,7 @@ using GridBase = IGrid<Grid>;
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
 	IsLargeStructure = true)]
-public partial struct Grid : GridBase, ISelectMethod<Grid, Candidate>, IWhereMethod<Grid, Candidate>
+public partial struct Grid : GridBase
 {
 	/// <inheritdoc cref="IGrid{TSelf}.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;

@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts.Primitives;
 
 /// <summary>
-/// Represents a sudoku grid.
+/// Represents a type that supports all basic functions that operates with a sudoku puzzle.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 public interface IGrid<TSelf> :
@@ -14,9 +14,11 @@ public interface IGrid<TSelf> :
 	IMinMaxValue<TSelf>,
 	IParsable<TSelf>,
 	IReadOnlyCollection<Digit>,
+	ISelectMethod<TSelf, Candidate>,
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
-	IToArrayMethod<TSelf, Digit>
+	IToArrayMethod<TSelf, Digit>,
+	IWhereMethod<TSelf, Candidate>
 	where TSelf : unmanaged, IGrid<TSelf>
 {
 	/// <summary>
@@ -341,12 +343,12 @@ public interface IGrid<TSelf> :
 	public abstract void Reset();
 
 	/// <summary>
-	/// To fix the current grid (all modifiable values will be changed to given ones).
+	/// Fix the current grid, making all modifiable values will be changed to given ones.
 	/// </summary>
 	public abstract void Fix();
 
 	/// <summary>
-	/// To unfix the current grid (all given values will be changed to modifiable ones).
+	/// Unfix the current grid, making all given values will be changed to modifiable ones.
 	/// </summary>
 	public abstract void Unfix();
 

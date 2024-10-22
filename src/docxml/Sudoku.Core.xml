@@ -3840,7 +3840,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
-            Represents a sudoku grid that uses the mask list to construct the data structure.
+            Represents a sudoku grid.
             </summary>
             <remarks>
             <para><large-structure>
@@ -5340,7 +5340,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Primitives.IGrid`1">
             <summary>
-            Represents a sudoku grid.
+            Represents a type that supports all basic functions that operates with a sudoku puzzle.
             </summary>
             <typeparam name="TSelf"><self-type-constraint>
 		<para>Indicates the type implementing this interface.</para>
@@ -5670,12 +5670,12 @@
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.Fix">
             <summary>
-            To fix the current grid (all modifiable values will be changed to given ones).
+            Fix the current grid, making all modifiable values will be changed to given ones.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.Unfix">
             <summary>
-            To unfix the current grid (all given values will be changed to modifiable ones).
+            Unfix the current grid, making all given values will be changed to modifiable ones.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.IGrid`1.Apply(Sudoku.Concepts.Conclusion)">
