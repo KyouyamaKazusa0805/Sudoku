@@ -65,7 +65,17 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 	/// Indicates whether the chain is ALS-W-Wing or grouped ALS-W-Wing.
 	/// </summary>
 	public bool IsAlmostLockedSetWWing
-		=> IsWoodsWing && Links is [{ GroupedLinkPattern: AlmostLockedSetPattern }, .., { GroupedLinkPattern: AlmostLockedSetPattern }];
+		=> IsWoodsWing
+		&& (
+			Links is [{ GroupedLinkPattern: AlmostLockedSetPattern }, .., { GroupedLinkPattern: AlmostLockedSetPattern }]
+#pragma warning disable format
+			|| Links is [
+				{ FirstNode.Map.Cells: [var c1], SecondNode.Map.Cells: [var c2] },
+				..,
+				{ FirstNode.Map.Cells: [var c3], SecondNode.Map.Cells: [var c4] }
+			] && c1 == c2 && c3 == c4
+		);
+#pragma warning restore format
 
 	/// <summary>
 	/// Indicates whether the chain is an implicit loop,

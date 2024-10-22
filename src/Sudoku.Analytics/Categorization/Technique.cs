@@ -5561,7 +5561,7 @@ public enum Technique
 	[Hodoku(Rating = 320, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0902")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlsXyWing, RatingAdvanced = [8.0])]
 	[TechniqueMetadata(
-		Rating = 60,
+		Rating = 69,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		StepType = typeof(AlmostLockedSetsXyWingStep),
@@ -5574,7 +5574,7 @@ public enum Technique
 	/// Indicates ALS-W-Wing.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 62,
+		Rating = 68,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		StepType = typeof(AlmostLockedSetsWWingStep),
@@ -5587,9 +5587,11 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 340, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0903")]
 	[TechniqueMetadata(
+		Rating = 70,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		Features = TechniqueFeatures.NotImplemented,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html"])]
 	AlmostLockedSetsChain,
 
@@ -5597,7 +5599,7 @@ public enum Technique
 	/// Indicates grouped ALS-W-Wing.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 64,
+		Rating = 69,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		StepType = typeof(NormalChainStep),

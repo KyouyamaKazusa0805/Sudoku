@@ -43,7 +43,7 @@ public partial class NormalChainStep(
 	public bool IsLoop => Pattern is ContinuousNiceLoop;
 
 	/// <inheritdoc/>
-	public override int BaseDifficulty => Code == Technique.GroupedAlmostLockedSetsWWing ? 64 : 60;
+	public override int BaseDifficulty => 60;
 
 	/// <inheritdoc/>
 	public sealed override int Complexity => Pattern.Length;

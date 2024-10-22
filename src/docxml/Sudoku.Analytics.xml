@@ -3315,6 +3315,11 @@
             Indicates the weak link connector.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Link.IsBivalueCellLink">
+            <summary>
+            Indicates whether the link is inside a cell.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(Sudoku.Analytics.Construction.Components.Link)">
             <inheritdoc/>
         </member>

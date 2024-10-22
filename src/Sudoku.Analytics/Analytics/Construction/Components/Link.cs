@@ -34,6 +34,14 @@ public sealed partial class Link(
 	private const string WeakLinkConnector = " -- ";
 
 
+	/// <summary>
+	/// Indicates whether the link is inside a cell.
+	/// </summary>
+	public bool IsBivalueCellLink
+		=> this is { FirstNode.Map: { Cells: [var c1], Digits: var d1 }, SecondNode.Map: { Cells: [var c2], Digits: var d2 } }
+		&& c1 == c2 && d1 != d2 && Mask.IsPow2(d1) && Mask.IsPow2(d2);
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Link? other) => other is not null && Equals(other, LinkComparison.Undirected);

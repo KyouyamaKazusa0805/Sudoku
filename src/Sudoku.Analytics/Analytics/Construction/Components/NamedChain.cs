@@ -23,13 +23,17 @@ public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, i
 	{
 		get
 		{
-			// A valid ALS chain-like pattern should consider two conditions:
+			// A valid ALS chain-like pattern must satisfy two conditions:
 			//   1) All strong links use ALS
 			//   2) All weak links use RCC (a weak link to connect two same digit)
 			foreach (var link in Links)
 			{
 				switch (link)
 				{
+					case { IsStrong: true, IsBivalueCellLink: true }:
+					{
+						continue;
+					}
 					case { IsStrong: true, GroupedLinkPattern: not AlmostLockedSetPattern }:
 					case { IsStrong: false, GroupedLinkPattern: not null }:
 					case { IsStrong: false, FirstNode.Map.Digits: var d1, SecondNode.Map.Digits: var d2 }
@@ -53,12 +57,16 @@ public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, i
 			var result = new Dictionary<PatternType, int>();
 			foreach (var link in Links)
 			{
-				if (link.GroupedLinkPattern is { } pattern)
+				if (link.GroupedLinkPattern is { } pattern && !result.TryAdd(pattern.Type, 1))
 				{
-					if (!result.TryAdd(pattern.Type, 1))
-					{
-						result[pattern.Type]++;
-					}
+					result[pattern.Type]++;
+				}
+
+				// Special case: If the link only uses a bi-value cell, and indeed is a strong link,
+				// we should treat it as a special ALS.
+				if (link is { IsStrong: true, IsBivalueCellLink: true } && !result.TryAdd(PatternType.AlmostLockedSet, 1))
+				{
+					result[PatternType.AlmostLockedSet]++;
 				}
 			}
 			return result.ToFrozenDictionary();
