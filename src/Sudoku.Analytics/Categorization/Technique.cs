@@ -5534,8 +5534,8 @@ public enum Technique
 		Rating = 66,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		StepType = typeof(AlmostLockedSetsXzStep),
-		StepSearcherType = typeof(AlmostLockedSetsXzStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher),
 		Abbreviation = "ALS-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XZ.html"])]
 	SinglyLinkedAlmostLockedSetsXzRule,
@@ -5549,8 +5549,8 @@ public enum Technique
 		Rating = 67,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		StepType = typeof(AlmostLockedSetsXzStep),
-		StepSearcherType = typeof(AlmostLockedSetsXzStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher),
 		Abbreviation = "ALS-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XZ.html"])]
 	DoublyLinkedAlmostLockedSetsXzRule,
@@ -5564,8 +5564,8 @@ public enum Technique
 		Rating = 69,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		StepType = typeof(AlmostLockedSetsXyWingStep),
-		StepSearcherType = typeof(AlmostLockedSetsXyWingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher),
 		Abbreviation = "ALS-XY-Wing",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Wing.html"])]
 	AlmostLockedSetsXyWing,
@@ -5577,8 +5577,8 @@ public enum Technique
 		Rating = 68,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		StepType = typeof(AlmostLockedSetsWWingStep),
-		StepSearcherType = typeof(AlmostLockedSetsWWingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher),
 		Abbreviation = "ALS-W-Wing")]
 	AlmostLockedSetsWWing,
 

@@ -18,6 +18,7 @@ namespace Sudoku.Analytics.Steps;
 /// otherwise, an Extended Subset Principle technique.
 /// </para>
 /// </param>
+[Obsolete(ObsoletionMessages.StepsAreHiddenOnPurpose, false, UrlFormat = "https://github.com/KyouyamaKazusa0805/Sudoku/issues/735")]
 public sealed partial class AlmostLockedSetsXzStep(
 	StepConclusions conclusions,
 	View[]? views,

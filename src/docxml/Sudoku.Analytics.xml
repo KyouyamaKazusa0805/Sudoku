@@ -32709,6 +32709,11 @@
             Indicates message "The current step searcher is disabled by author on purpose".
             </summary>
         </member>
+        <member name="F:Sudoku.Resources.ObsoletionMessages.StepsAreHiddenOnPurpose">
+            <summary>
+            Indicates message "The current step is disabled by author on purpose".
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.TechniqueNaming">
             <summary>
             Represents the naming of techniques.
