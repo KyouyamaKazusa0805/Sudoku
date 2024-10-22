@@ -18,6 +18,36 @@
             <param name="array">The array.</param>
             <param name="initializer">The initializer callback method.</param>
         </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[])">
+            <summary>
+            Converts an array into a <see cref="T:System.String"/>.
+            </summary>
+            <typeparam name="T">The type of each element inside array.</typeparam>
+            <param name="this">The array.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[],System.Func{``0,System.String})">
+            <summary>
+            Converts an array into a <see cref="T:System.String"/>, using the specified formatter method
+            that can convert an instance of type <typeparamref name="T"/> into a <see cref="T:System.String"/> representation.
+            </summary>
+            <typeparam name="T">The type of each element inside array.</typeparam>
+            <param name="this">The array.</param>
+            <param name="valueConverter">The value converter method.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[][])">
+            <inheritdoc cref="M:System.ArrayExtensions.ToArrayString``1(``0[])"/>
+        </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[][],System.Func{``0,System.String})">
+            <inheritdoc cref="M:System.ArrayExtensions.ToArrayString``1(``0[],System.Func{``0,System.String})"/>
+        </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[0:,0:])">
+            <inheritdoc cref="M:System.ArrayExtensions.ToArrayString``1(``0[])"/>
+        </member>
+        <member name="M:System.ArrayExtensions.ToArrayString``1(``0[0:,0:],System.Func{``0,System.String})">
+            <inheritdoc cref="M:System.ArrayExtensions.ToArrayString``1(``0[],System.Func{``0,System.String})"/>
+        </member>
         <member name="T:System.ArrayInitializer`1">
             <summary>
             Represents a method that initializes for an element of type <typeparamref name="T"/>?,
