@@ -5531,7 +5531,7 @@ public enum Technique
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
 	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlsXz, RatingAdvanced = [7.5])]
 	[TechniqueMetadata(
-		Rating = 55,
+		Rating = 66,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		StepType = typeof(AlmostLockedSetsXzStep),
@@ -5546,7 +5546,7 @@ public enum Technique
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
 	[SudokuExplainer(RatingAdvanced = [7.5])]
 	[TechniqueMetadata(
-		Rating = 57,
+		Rating = 67,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		StepType = typeof(AlmostLockedSetsXzStep),
