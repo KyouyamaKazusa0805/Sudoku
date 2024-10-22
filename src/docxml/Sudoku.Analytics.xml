@@ -32699,6 +32699,16 @@
         <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Resources.ObsoletionMessages">
+            <summary>
+            Represents obsoletion messages.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Resources.ObsoletionMessages.StepSearchersAreHiddenOnPurpose">
+            <summary>
+            Indicates message "The current step searcher is disabled by author on purpose".
+            </summary>
+        </member>
         <member name="T:Sudoku.Resources.TechniqueNaming">
             <summary>
             Represents the naming of techniques.
