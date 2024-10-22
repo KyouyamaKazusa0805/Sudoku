@@ -88,15 +88,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
-        /// </summary>
-        public static string AbsurdChains {
-            get {
-                return ResourceManager.GetString("AbsurdChains", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Advanced Franken Senior Exocet.
         /// </summary>
         public static string AdvancedFrankenSeniorExocet {
@@ -147,15 +138,6 @@ namespace Sudoku.Resources {
         public static string AlignedTripleExclusion {
             get {
                 return ResourceManager.GetString("AlignedTripleExclusion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Almost Hidden Sets Chain.
-        /// </summary>
-        public static string AlmostHiddenSetsChain {
-            get {
-                return ResourceManager.GetString("AlmostHiddenSetsChain", resourceCulture);
             }
         }
         

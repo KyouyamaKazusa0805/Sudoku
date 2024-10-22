@@ -1281,9 +1281,6 @@
   <data name="AlmostLockedSetsChain" xml:space="preserve">
     <value>Almost Locked Sets Chain</value>
   </data>
-  <data name="AlmostHiddenSetsChain" xml:space="preserve">
-    <value>Almost Hidden Sets Chain</value>
-  </data>
   <data name="RemotePair" xml:space="preserve">
     <value>Remote Pair</value>
   </data>
@@ -1445,9 +1442,6 @@
   </data>
   <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
     <value>Unique Rectangle External Turbot Fish</value>
-  </data>
-  <data name="AbsurdChains" xml:space="preserve">
-    <value>Dynamic Contradiction Forcing Chains</value>
   </data>
   <data name="CellChains" xml:space="preserve">
     <value>Cell Forcing Chains</value>

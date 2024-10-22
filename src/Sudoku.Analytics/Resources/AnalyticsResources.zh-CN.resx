@@ -1545,10 +1545,6 @@
     <value>待定数组・链</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="AlmostHiddenSetsChain" xml:space="preserve">
-    <value>隐性待定数组・链</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="RemotePair" xml:space="preserve">
     <value>远程数对</value>
     <comment>Technique Name</comment>
@@ -1738,9 +1734,6 @@
   <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
     <value>唯一矩形・外部多宝鱼</value>
     <comment>Technique Name</comment>
-  </data>
-  <data name="AbsurdChains" xml:space="preserve">
-    <value>动态矛盾强制链</value>
   </data>
   <data name="CellChains" xml:space="preserve">
     <value>单元格强制链</value>

@@ -27028,11 +27028,6 @@
               Looks up a localized string similar to , .
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.AbsurdChains">
-            <summary>
-              Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AdvancedFrankenSeniorExocet">
             <summary>
               Looks up a localized string similar to Advanced Franken Senior Exocet.
@@ -27061,11 +27056,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.AlignedTripleExclusion">
             <summary>
               Looks up a localized string similar to Aligned Triple Exclusion.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.AlmostHiddenSetsChain">
-            <summary>
-              Looks up a localized string similar to Almost Hidden Sets Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AlmostLockedPair">
