@@ -1878,7 +1878,7 @@
             <param name="predicate">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.FuncRefReadOnly{``0,System.Boolean})">
+        <member name="M:System.Linq.ArrayEnumerable.CountUnsafe``1(``0[],)">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Sum``1(``0[])">
@@ -3246,6 +3246,9 @@
             <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
         <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.CountUnsafe``1(System.Collections.Generic.List{``0},)">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
@@ -5881,16 +5884,6 @@
         </member>
         <member name="M:System.ReadOnlySpanExtensions.FindIndex``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <inheritdoc cref="M:System.Collections.Generic.List`1.FindIndex(System.Predicate{`0})"/>
-        </member>
-        <member name="M:System.ReadOnlySpanExtensions.ForEach``1(System.ReadOnlySpan{``0},System.ActionRefReadOnly{``0})">
-            <summary>
-            Performs the specified action on each element of the <see cref="T:System.ReadOnlySpan`1"/>.
-            </summary>
-            <typeparam name="T">The type of elements in the span.</typeparam>
-            <param name="this">The current collection.</param>
-            <param name="action">
-            The <see cref="T:System.ActionRefReadOnly`1"/> delegate to perform on each element of the <see cref="T:System.ReadOnlySpan`1"/>.
-            </param>
         </member>
         <member name="M:System.ReadOnlySpanExtensions.Reverse``1(System.ReadOnlySpan{``0})">
             <summary>

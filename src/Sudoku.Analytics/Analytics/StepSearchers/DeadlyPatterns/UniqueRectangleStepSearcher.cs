@@ -481,9 +481,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// colored with normal one, the pattern will be complete.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool IsIncompleteValid(bool arMode, bool allowIncomplete, List<CandidateViewNode> list, out bool isIncomplete)
+	private static unsafe bool IsIncompleteValid(bool arMode, bool allowIncomplete, List<CandidateViewNode> list, out bool isIncomplete)
 	{
-		isIncomplete = !allowIncomplete && list.Count(nodeChecker) != 8 || allowIncomplete;
+		isIncomplete = !allowIncomplete && list.CountUnsafe(&nodeChecker) != 8 || allowIncomplete;
 		return !arMode && isIncomplete || arMode;
 
 

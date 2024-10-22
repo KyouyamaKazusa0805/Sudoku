@@ -20,6 +20,20 @@ public static class ListEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+	public static unsafe int CountUnsafe<T>(this List<T> @this, delegate*<T, bool> predicate)
+	{
+		var result = 0;
+		foreach (var element in @this)
+		{
+			if (predicate(element))
+			{
+				result++;
+			}
+		}
+		return result;
+	}
+
 	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static ReadOnlySpan<TSource> Where<TSource>(this List<TSource> source, Func<TSource, bool> condition)
 	{

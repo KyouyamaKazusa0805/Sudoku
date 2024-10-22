@@ -47,12 +47,12 @@ public static class ArrayEnumerable
 	}
 
 	/// <inheritdoc cref="Count{T}(T[], Func{T, bool})"/>
-	public static int Count<T>(this T[] @this, FuncRefReadOnly<T, bool> predicate) where T : struct
+	public static unsafe int CountUnsafe<T>(this T[] @this, delegate*<T, bool> predicate)
 	{
 		var result = 0;
-		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		foreach (var element in @this)
 		{
-			if (predicate(in element))
+			if (predicate(element))
 			{
 				result++;
 			}
