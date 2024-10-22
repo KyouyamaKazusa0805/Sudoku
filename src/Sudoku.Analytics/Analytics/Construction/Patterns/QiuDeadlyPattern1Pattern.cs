@@ -33,6 +33,9 @@ public sealed partial class QiuDeadlyPattern1Pattern([Property] ref readonly Cel
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.QiuDeadlyPattern1;
+
 	/// <summary>
 	/// Indicates the crossline cells.
 	/// </summary>

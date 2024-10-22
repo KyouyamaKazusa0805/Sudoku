@@ -10,6 +10,9 @@ public sealed partial class DominoLoopPattern([Property] Cell[] cells) : Pattern
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.DominoLoop;
+
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>

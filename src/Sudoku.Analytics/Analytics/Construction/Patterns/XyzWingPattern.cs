@@ -26,6 +26,9 @@ public sealed partial class XyzWingPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.XyzWing;
+
 	/// <summary>
 	/// Indicates the full pattern of cells.
 	/// </summary>

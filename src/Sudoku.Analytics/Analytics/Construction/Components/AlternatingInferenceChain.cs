@@ -62,8 +62,14 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 		);
 
 	/// <summary>
+	/// Indicates whether the chain is ALS-W-Wing or grouped ALS-W-Wing.
+	/// </summary>
+	public bool IsAlmostLockedSetWWing
+		=> IsWoodsWing && Links is [{ GroupedLinkPattern: AlmostLockedSetPattern }, .., { GroupedLinkPattern: AlmostLockedSetPattern }];
+
+	/// <summary>
 	/// Indicates whether the chain is an implicit loop,
-	/// which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+	/// which means the start and end nodes are in a same house using a same digit, or just in a same cell with different digits.
 	/// </summary>
 	public bool IsImplicitLoop
 		=> WeakStart && ValidNodes is [{ Map: [var first] }, .., { Map: [var last] }]
@@ -89,6 +95,7 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 	/// <summary>
 	/// Split mask for 6 nodes.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private (bool, Mask, Mask, Mask, Mask, Mask, Mask)? SplitMask
 #pragma warning disable format
 		=> this switch

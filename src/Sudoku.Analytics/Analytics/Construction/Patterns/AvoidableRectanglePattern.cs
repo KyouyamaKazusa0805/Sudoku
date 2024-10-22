@@ -16,6 +16,9 @@ public sealed partial class AvoidableRectanglePattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.AvoidableRectangle;
+
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)

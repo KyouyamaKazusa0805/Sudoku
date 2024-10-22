@@ -17,6 +17,11 @@ public abstract partial class Pattern : ICloneable, IEquatable<Pattern>, IEquali
 	/// <seealso cref="Link.GroupedLinkPattern"/>
 	public abstract bool IsChainingCompatible { get; }
 
+	/// <summary>
+	/// Indicates the pattern type.
+	/// </summary>
+	public abstract PatternType Type { get; }
+
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Pattern? other);

@@ -16,6 +16,9 @@ public sealed partial class MultisectorLockedSetPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.MultisectorLockedSet;
+
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

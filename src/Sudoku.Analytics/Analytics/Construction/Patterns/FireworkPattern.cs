@@ -29,6 +29,9 @@ public sealed partial class FireworkPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.Firework;
+
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)

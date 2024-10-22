@@ -32,6 +32,9 @@ public sealed partial class QiuDeadlyPattern2Pattern([Property] HouseMask Lines1
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.QiuDeadlyPattern2;
+
 	/// <summary>
 	/// Indicates the crossline cells.
 	/// </summary>

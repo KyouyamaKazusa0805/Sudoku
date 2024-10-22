@@ -16,6 +16,9 @@ public sealed partial class UniqueLoopPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.UniqueLoop;
+
 	[HashCodeMember]
 	private int LoopHashCode => Loop.GetHashCode();
 

@@ -3542,4 +3542,8 @@
   <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
     <value>致命结构里的数组规格</value>
   </data>
+  <data name="GroupedAlmostLockedSetsWWing" xml:space="preserve">
+    <value>区块待定数组・W-Wing</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

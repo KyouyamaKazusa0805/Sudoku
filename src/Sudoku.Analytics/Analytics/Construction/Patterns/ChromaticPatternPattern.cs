@@ -18,6 +18,9 @@ public sealed partial class ChromaticPatternPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.ChromaticPattern;
+
 	/// <summary>
 	/// Indicates all cells used.
 	/// </summary>

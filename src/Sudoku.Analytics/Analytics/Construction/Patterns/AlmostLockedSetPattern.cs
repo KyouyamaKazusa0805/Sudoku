@@ -48,6 +48,9 @@ public sealed partial class AlmostLockedSetPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.AlmostLockedSet;
+
 	/// <summary>
 	/// Indicates the house used.
 	/// </summary>

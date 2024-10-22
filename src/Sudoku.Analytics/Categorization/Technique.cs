@@ -5592,6 +5592,17 @@ public enum Technique
 		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html"])]
 	AlmostLockedSetsChain,
+
+	/// <summary>
+	/// Indicates grouped ALS-W-Wing.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 64,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(GroupedChainStepSearcher))]
+	GroupedAlmostLockedSetsWWing,
 	#endregion
 
 	//

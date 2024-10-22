@@ -2060,10 +2060,15 @@
             A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
             </remarks>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsAlmostLockedSetWWing">
+            <summary>
+            Indicates whether the chain is ALS-W-Wing or grouped ALS-W-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsImplicitLoop">
             <summary>
             Indicates whether the chain is an implicit loop,
-            which means the start and end nodes are in a same house, of a same digit; or in a same cell.
+            which means the start and end nodes are in a same house using a same digit, or just in a same cell with different digits.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.Complexity">
@@ -2359,6 +2364,13 @@
             Indicates whether the chain pattern uses grouped logic.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsStrictlyGrouped">
+            <summary>
+            Indicates whether the chain pattern contains grouped nodes,
+            ignoring all links containing <see cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.SatisfyXRule">
             <summary>
             Indicates whether the pattern only uses same digits.
@@ -2422,6 +2434,18 @@
             Indicates the tail node.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsStrongLinksStrictlyGrouped">
+            <summary>
+            Indicates whether at least one link in strong links contains grouped nodes,
+            and is not advanced node (i.e. contains grouped pattern).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsWeakLinksStrictlyGrouped">
+            <summary>
+            Indicates whether at least one link in weak links contains grouped nodes,
+            and is not advanced node (i.e. contains grouped pattern).
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStartIdentity">
             <summary>
             Indicates the value as the start index of the chain link is from whether strong and weak.
@@ -2436,6 +2460,9 @@
             <summary>
             Indicates the value on loop checking for link construction usages.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.LinksCore">
+            <inheritdoc cref="P:Sudoku.Analytics.Construction.Components.Chain.Links"/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
             <inheritdoc/>
@@ -3785,6 +3812,21 @@
         <member name="P:Sudoku.Analytics.Construction.Components.NamedChain.IsNamed">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NamedChain.IsAlmostLockedSetSequence">
+            <summary>
+            Indicates whether the chain is ALS-XZ, ALS-XY-Wing or ALS-XY-Chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NamedChain.GroupedPatternsCount">
+            <summary>
+            Indicates the number of grouped pattern used in chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.NamedChain.AlmostLockedSetsCount">
+            <summary>
+            Indicates the number of ALSes used in chain.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NamedChain.GetConclusions(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
@@ -4320,6 +4362,11 @@
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern"/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Pattern.Type">
+            <summary>
+            Indicates the pattern type.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
         </member>
@@ -4370,6 +4417,9 @@
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.AlmostHiddenSetPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.AlmostHiddenSetPattern.Type">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.AlmostHiddenSetPattern.Equals(Sudoku.Analytics.Construction.Pattern)">
@@ -4474,6 +4524,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.House">
@@ -4609,6 +4662,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.AvoidableRectanglePattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.AvoidableRectanglePattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.AvoidableRectanglePattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
         </member>
@@ -4650,6 +4706,9 @@
             <param name="digitsMask">Indicates the mask of digits that the loop used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagonPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.BivalueOddagonPattern.Type">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.BivalueOddagonPattern.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
@@ -4792,6 +4851,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPatternPattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPatternPattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.BorescoperDeadlyPatternPattern.Pair1Map">
             <summary>
             Indicates the map of pair 1 cells.
@@ -4873,6 +4935,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPatternPattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPatternPattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.ChromaticPatternPattern.Map">
             <summary>
             Indicates all cells used.
@@ -4928,6 +4993,9 @@
             <param name="cells">Indicates the cells used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoopPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoopPattern.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.DominoLoopPattern.Map">
@@ -5045,6 +5113,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.ExtendedRectanglePattern.Deconstruct(System.Boolean@,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32,System.Int32}[]@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -5129,6 +5200,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.FireworkPattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.FireworkPattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.FireworkPattern.Equals(Sudoku.Analytics.Construction.Pattern)">
             <inheritdoc/>
         </member>
@@ -5176,14 +5250,17 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.FishPattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Patterns.FishPattern.Fins">
-            <summary>
-            Indicates all fins.
-            </summary>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.FishPattern.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.FishPattern.ShapeKind">
             <summary>
             Indicates the shape kind of the current fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.FishPattern.Fins">
+            <summary>
+            Indicates all fins.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.FishPattern.Equals(Sudoku.Analytics.Construction.Pattern)">
@@ -5255,6 +5332,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.GuardianPattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.GuardianPattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.GuardianPattern.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -5304,6 +5384,9 @@
             <param name="columnCount">The number of columns used.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSetPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSetPattern.Type">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.MultisectorLockedSetPattern.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@,System.Int32@)">
@@ -5397,6 +5480,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern1Pattern.Crossline">
             <summary>
             Indicates the crossline cells.
@@ -5483,6 +5569,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.QiuDeadlyPattern2Pattern.Crossline">
             <summary>
             Indicates the crossline cells.
@@ -5524,6 +5613,9 @@
             <param name="digitsMask">Indicates the digits used, represented as a mask.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.Type">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueLoopPattern.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32[]@,System.Int16@)">
@@ -5609,6 +5701,9 @@
         <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.IsChainingCompatible">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.Type">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.UniqueRectanglePattern.Deconstruct(Sudoku.Concepts.CellMap@,System.Int16@)">
             <target name="method">
 				<summary>
@@ -5681,6 +5776,9 @@
             <param name="zDigit">Indicates the digit Z.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.IsChainingCompatible">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.Cells">
@@ -5756,6 +5854,101 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.XyzWingPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Construction.PatternType">
+            <summary>
+            Represents a pattern type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.None">
+            <summary>
+            Represents none.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.AlmostHiddenSet">
+            <summary>
+            Indicates almost hidden set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.AlmostLockedSet">
+            <summary>
+            Indicates almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.AvoidableRectangle">
+            <summary>
+            Indicates avoidable rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.BivalueOddagon">
+            <summary>
+            Indicates bi-value oddagon.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.BorescoperDeadlyPattern">
+            <summary>
+            Indicates Borescoper's deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.ChromaticPattern">
+            <summary>
+            Indicates chromatic pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.DominoLoop">
+            <summary>
+            Indicates domino loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.ExtendedRectangle">
+            <summary>
+            Indicates extended rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.Firework">
+            <summary>
+            Indicates firework.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.Fish">
+            <summary>
+            Indicates fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.Guardian">
+            <summary>
+            Indicates guardian.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.MultisectorLockedSet">
+            <summary>
+            Indicates multi-sector locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.QiuDeadlyPattern1">
+            <summary>
+            Indicates Qiu's deadly pattern 1.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.QiuDeadlyPattern2">
+            <summary>
+            Indicates Qiu's deadly pattern 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.UniqueLoop">
+            <summary>
+            Indicates unique loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.UniqueRectangle">
+            <summary>
+            Indicates unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.PatternType.XyzWing">
+            <summary>
+            Indicates XYZ-Wing.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Hub">
             <summary>
@@ -23374,6 +23567,11 @@
             Indicates ALS chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.GroupedAlmostLockedSetsWWing">
+            <summary>
+            Indicates grouped ALS-W-Wing.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.EmptyRectangleIntersectionPair">
             <summary>
             Indicates empty rectangle intersection pair.
@@ -28503,6 +28701,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.GivenCell">
             <summary>
               Looks up a localized string similar to Number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedAlmostLockedSetsWWing">
+            <summary>
+              Looks up a localized string similar to Grouped Almost Locked Sets W-Wing.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedAlternatingInferenceChain">

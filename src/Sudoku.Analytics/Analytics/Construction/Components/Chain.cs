@@ -92,6 +92,13 @@ public abstract partial class Chain :
 	public bool IsGrouped => ValidNodes.Any(static node => node.IsAdvanced || node.IsGroupedNode);
 
 	/// <summary>
+	/// Indicates whether the chain pattern contains grouped nodes,
+	/// ignoring all links containing <see cref="Link.GroupedLinkPattern"/>.
+	/// </summary>
+	/// <seealso cref="Link.GroupedLinkPattern"/>
+	public bool IsStrictlyGrouped => IsStrongLinksStrictlyGrouped || IsWeakLinksStrictlyGrouped;
+
+	/// <summary>
 	/// Indicates whether the pattern only uses same digits.
 	/// </summary>
 	public bool SatisfyXRule
@@ -182,23 +189,7 @@ public abstract partial class Chain :
 	/// <summary>
 	/// Indicates the links used.
 	/// </summary>
-	public ReadOnlySpan<Link> Links
-	{
-		get
-		{
-			var span = ValidNodes;
-			var resultLength = Length - LoopIdentity;
-			var result = new Link[resultLength];
-			for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
-			{
-				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
-				var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
-				pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
-				result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
-			}
-			return result;
-		}
-	}
+	public ReadOnlySpan<Link> Links => LinksCore;
 
 	/// <summary>
 	/// Indicates the strong links.
@@ -249,6 +240,46 @@ public abstract partial class Chain :
 	public Node Last => ValidNodes[^1];
 
 	/// <summary>
+	/// Indicates whether at least one link in strong links contains grouped nodes,
+	/// and is not advanced node (i.e. contains grouped pattern).
+	/// </summary>
+	internal bool IsStrongLinksStrictlyGrouped
+	{
+		get
+		{
+			foreach (var link in StrongLinks)
+			{
+				if (link is { GroupedLinkPattern: null, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
+					&& (d1 != 1 || d2 != 1))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether at least one link in weak links contains grouped nodes,
+	/// and is not advanced node (i.e. contains grouped pattern).
+	/// </summary>
+	internal bool IsWeakLinksStrictlyGrouped
+	{
+		get
+		{
+			foreach (var link in WeakLinks)
+			{
+				if (link is { GroupedLinkPattern: null, FirstNode.Map.Count: var d1, SecondNode.Map.Count: var d2 }
+					&& (d1 != 1 || d2 != 1))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the value as the start index of the chain link is from whether strong and weak.
 	/// </summary>
 	protected internal abstract int WeakStartIdentity { get; }
@@ -262,6 +293,30 @@ public abstract partial class Chain :
 	/// Indicates the value on loop checking for link construction usages.
 	/// </summary>
 	protected abstract int LoopIdentity { get; }
+
+	/// <inheritdoc cref="Links"/>
+	[field: MaybeNull]
+	private Link[] LinksCore
+	{
+		get
+		{
+			if (field is null)
+			{
+				var span = ValidNodes;
+				var resultLength = Length - LoopIdentity;
+				var result = new Link[resultLength];
+				for (var (linkIndex, i) = (WeakStartIdentity, 0); i < resultLength; linkIndex++, i++)
+				{
+					var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+					var pool = (isStrong ? StrongLinkDictionary : WeakLinkDictionary).GroupedLinkPool;
+					pool.TryGetValue(new(span[i], span[(i + 1) % Length], isStrong), out var pattern);
+					result[i] = new(span[i], span[(i + 1) % Length], isStrong, pattern);
+				}
+				field = result;
+			}
+			return field;
+		}
+	}
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Node>.Count => Length;

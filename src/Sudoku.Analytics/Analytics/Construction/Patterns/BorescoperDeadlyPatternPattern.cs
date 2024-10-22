@@ -59,6 +59,9 @@ public sealed partial class BorescoperDeadlyPatternPattern([Field, HashCodeMembe
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.BorescoperDeadlyPattern;
+
 	/// <summary>
 	/// Indicates the map of pair 1 cells.
 	/// </summary>

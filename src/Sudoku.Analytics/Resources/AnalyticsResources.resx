@@ -3426,4 +3426,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_AnonymousDeadlyPatternSubsetSizeFactor" xml:space="preserve">
     <value>Subset size of anonymous deadly pattern</value>
   </data>
+  <data name="GroupedAlmostLockedSetsWWing" xml:space="preserve">
+    <value>Grouped Almost Locked Sets W-Wing</value>
+  </data>
 </root>

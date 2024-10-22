@@ -16,6 +16,60 @@ public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, i
 	/// <inheritdoc/>
 	public sealed override bool IsNamed => true;
 
+	/// <summary>
+	/// Indicates whether the chain is ALS-XZ, ALS-XY-Wing or ALS-XY-Chain.
+	/// </summary>
+	public bool IsAlmostLockedSetSequence
+	{
+		get
+		{
+			// A valid ALS chain-like pattern should consider two conditions:
+			//   1) All strong links use ALS
+			//   2) All weak links use RCC (a weak link to connect two same digit)
+			foreach (var link in Links)
+			{
+				switch (link)
+				{
+					case { IsStrong: true, GroupedLinkPattern: not AlmostLockedSetPattern }:
+					case { IsStrong: false, GroupedLinkPattern: not null }:
+					case { IsStrong: false, FirstNode.Map.Digits: var d1, SecondNode.Map.Digits: var d2 }
+					when d1 != d2 || !Mask.IsPow2(d1):
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	/// <summary>
+	/// Indicates the number of grouped pattern used in chain.
+	/// </summary>
+	public FrozenDictionary<PatternType, int> GroupedPatternsCount
+	{
+		get
+		{
+			var result = new Dictionary<PatternType, int>();
+			foreach (var link in Links)
+			{
+				if (link.GroupedLinkPattern is { } pattern)
+				{
+					if (!result.TryAdd(pattern.Type, 1))
+					{
+						result[pattern.Type]++;
+					}
+				}
+			}
+			return result.ToFrozenDictionary();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the number of ALSes used in chain.
+	/// </summary>
+	internal int AlmostLockedSetsCount => GroupedPatternsCount.TryGetValue(PatternType.AlmostLockedSet, out var r) ? r : 0;
+
 
 	/// <summary>
 	/// Try to get a <see cref="ConclusionSet"/> instance that contains all conclusions created by using the current chain.

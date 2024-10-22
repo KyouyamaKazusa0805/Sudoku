@@ -3112,6 +3112,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped Almost Locked Sets W-Wing.
+        /// </summary>
+        public static string GroupedAlmostLockedSetsWWing {
+            get {
+                return ResourceManager.GetString("GroupedAlmostLockedSetsWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped Alternating Inference Chain.
         /// </summary>
         public static string GroupedAlternatingInferenceChain {

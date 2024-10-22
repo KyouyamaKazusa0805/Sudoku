@@ -77,6 +77,9 @@ public sealed partial class UniqueRectanglePattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.UniqueRectangle;
+
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

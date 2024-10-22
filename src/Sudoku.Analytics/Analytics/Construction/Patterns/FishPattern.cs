@@ -27,10 +27,8 @@ public sealed partial class FishPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
-	/// <summary>
-	/// Indicates all fins.
-	/// </summary>
-	public CellMap Fins => Exofins | Endofins;
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.Fish;
 
 	/// <summary>
 	/// Indicates the shape kind of the current fish.
@@ -57,6 +55,11 @@ public sealed partial class FishPattern(
 			}
 		}
 	}
+
+	/// <summary>
+	/// Indicates all fins.
+	/// </summary>
+	public CellMap Fins => Exofins | Endofins;
 
 
 	/// <inheritdoc/>

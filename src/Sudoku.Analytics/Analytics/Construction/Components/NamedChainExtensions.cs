@@ -29,6 +29,14 @@ public static class NamedChainExtensions
 			{
 				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
 					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
+				{ IsAlmostLockedSetWWing: true, IsStrongLinksStrictlyGrouped: var isStrictlyGrouped }
+					=> isStrictlyGrouped ? Technique.GroupedAlmostLockedSetsWWing : Technique.AlmostLockedSetsWWing,
+				{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: var count and >= 2 } => count switch
+				{
+					2 => Technique.SinglyLinkedAlmostLockedSetsXzRule,
+					3 => Technique.AlmostLockedSetsXyWing,
+					_ => Technique.AlmostLockedSetsChain
+				},
 				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
 				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
@@ -74,11 +82,15 @@ public static class NamedChainExtensions
 					}
 				}
 			},
-			ContinuousNiceLoop { SatisfyXRule: var isX, SatisfyYRule: var isY, IsGrouped: var isGrouped } => (isX, isY) switch
+			ContinuousNiceLoop { SatisfyXRule: var isX, SatisfyYRule: var isY, IsGrouped: var isGrouped } instance => instance switch
 			{
-				(true, false) => isGrouped ? Technique.GroupedFishyCycle : Technique.FishyCycle,
-				(false, true) => isGrouped ? Technique.GroupedXyCycle : Technique.XyCycle,
-				_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
+				{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: 2 } => Technique.DoublyLinkedAlmostLockedSetsXzRule,
+				_ => (isX, isY) switch
+				{
+					(true, false) => isGrouped ? Technique.GroupedFishyCycle : Technique.FishyCycle,
+					(false, true) => isGrouped ? Technique.GroupedXyCycle : Technique.XyCycle,
+					_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
+				}
 			}
 		};
 }

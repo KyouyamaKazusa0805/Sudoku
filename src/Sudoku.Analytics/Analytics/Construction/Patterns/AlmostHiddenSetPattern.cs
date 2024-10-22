@@ -27,6 +27,9 @@ public sealed partial class AlmostHiddenSetPattern(
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
 
+	/// <inheritdoc/>
+	public override PatternType Type => PatternType.AlmostHiddenSet;
+
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
