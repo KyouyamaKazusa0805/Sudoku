@@ -305,13 +305,13 @@ public sealed partial class Analyzer : AnalyzerBase
 					case (_, { IsUndefined: true }, { Metadata.SupportAnalyzingMultipleSolutionsPuzzle: false }, _):
 					{
 						// Skips on those two cases:
-						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
-						// 2. If the searcher is currently disabled.
-						// 3. If the searcher is configured as slow.
-						// 4. If the searcher is configured as high-allocation.
-						// 5. If the searcher is only run for direct view, and the current is indirect view.
-						// 6. If the searcher is only run for indirect view, and the current is direct view.
-						// 7. If the searcher doesn't support for analyzing puzzles with multiple solutions, but we enable it.
+						//   1) Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
+						//   2) If the searcher is currently disabled.
+						//   3) If the searcher is configured as slow.
+						//   4) If the searcher is configured as high-allocation.
+						//   5) If the searcher is only run for direct view, and the current is indirect view.
+						//   6) If the searcher is only run for indirect view, and the current is direct view.
+						//   7) If the searcher doesn't support for analyzing puzzles with multiple solutions, but we enable it.
 						continue;
 					}
 #pragma warning disable format

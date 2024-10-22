@@ -215,8 +215,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					if (!withFin)
 					{
 						// If the current searcher doesn't check fins, we'll just get the pure check:
-						// 1. Base set contain more cells than cover sets.
-						// 2. Elimination cells set isn't empty.
+						//   1) Base set contain more cells than cover sets.
+						//   2) Elimination cells set isn't empty.
 						if (baseLine & ~coverLine)
 						{
 							continue;
