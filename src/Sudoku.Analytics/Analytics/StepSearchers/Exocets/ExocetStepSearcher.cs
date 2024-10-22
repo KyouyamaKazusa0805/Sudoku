@@ -1623,7 +1623,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Try to get conjugate pairs in target cells.
-		inferredTargetConjugatePairs = conjugatePairs.AsReadOnlySpan();
+		inferredTargetConjugatePairs = conjugatePairs.AsSpan();
 
 		if (conclusions.Count == 0)
 		{
@@ -1633,7 +1633,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var crosslineFinal = endoTargetCell == -1 ? crossline : crosslineIncludingTarget;
 		var step = new NormalExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -1852,7 +1852,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ExocetMirrorConjugatePairStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -1975,7 +1975,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new JuniorExocetAdjacentTargetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2178,7 +2178,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new JuniorExocetIncompatiblePairStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2297,7 +2297,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new JuniorExocetTargetPairStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2383,7 +2383,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new JuniorExocetGeneralizedFishStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2512,7 +2512,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							}
 
 							var step = new JuniorExocetMirrorAlmostHiddenSetStep(
-								conclusions.AsReadOnlyMemory(),
+								conclusions.AsMemory(),
 								[
 									[
 										.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2691,7 +2691,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var ld = lockedDigitsMask;
 		var step = new ExocetLockedMemberStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2774,7 +2774,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new JuniorExocetMirrorSyncStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -2913,7 +2913,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new SeniorExocetTrueBaseStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3032,7 +3032,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var ld = lockedDigitsMask;
 		var step = new ExocetLockedMemberStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3111,7 +3111,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new WeakExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3198,7 +3198,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new WeakExocetAdjacentTargetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3302,7 +3302,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var targetCells = from @group in groupsOfTargetCells select @group[0];
 		var step = new WeakExocetSlashStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3383,7 +3383,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var targetCells = from @group in groupsOfTargetCells select @group[0];
 		var step = new WeakExocetBzRectangleStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3456,7 +3456,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new NormalDoubleExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3539,7 +3539,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new DoubleExocetGeneralizedFishStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3700,7 +3700,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ComplexExocetLockedMemberStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -3881,7 +3881,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ComplexExocetLockedMemberStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4012,7 +4012,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ComplexExocetLockedMemberStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4108,7 +4108,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new NormalComplexExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4194,7 +4194,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new NormalComplexExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4270,7 +4270,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new AdvancedComplexSeniorExocetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4402,7 +4402,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ComplexJuniorExocetAdjacentTargetStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
@@ -4522,7 +4522,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var step = new ComplexJuniorExocetMirrorConjugatePairStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[
 				[
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),

@@ -182,7 +182,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsSpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -314,7 +314,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsSpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 3;
@@ -649,7 +649,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			}
 		}
 
-		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsReadOnlySpan());
+		var singleDigitsMask = MaskOperations.Create(singleDigitList.AsSpan());
 
 		// Now check for diagonal line cells, determining whether the solution grid may not be a symmetrical placement.
 		var isSolutionAsymmetry = singleDigitList.Count > 1 || (Mask)(grid.GetCandidates(40) & singleDigitsMask) == 0;

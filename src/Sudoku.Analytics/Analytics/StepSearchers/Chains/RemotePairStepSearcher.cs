@@ -122,7 +122,7 @@ public sealed partial class RemotePairStepSearcher : StepSearcher
 					}
 
 					var step = new RemotePairStep(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[[.. candidateOffsets], [.. cellOffsets, .. babaGroupingOffsets]],
 						context.Options,
 						in component.Map,

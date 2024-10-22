@@ -628,7 +628,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				}
 
 				var step = new AnonymousDeadlyPatternType3Step(
-					eliminations.AsReadOnlyMemory(),
+					eliminations.AsMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					in p,
@@ -727,7 +727,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var step = new AnonymousDeadlyPatternType4Step(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. candidateOffsets, .. conjugatePairs]],
 			context.Options,
 			in p,

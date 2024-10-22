@@ -36,7 +36,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 			list.AddRangeRef(emptyCellsInInterMap | emptyCellsInInterMap.Count);
 
 			// Iterate on each intersection combination.
-			foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
+			foreach (ref readonly var currentInterMap in list.AsSpan())
 			{
 				var selectedInterMask = grid[currentInterMap];
 				if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)

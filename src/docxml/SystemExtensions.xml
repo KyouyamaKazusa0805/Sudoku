@@ -619,18 +619,14 @@
             <inheritdoc cref="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Int32})"/>
         </member>
         <member name="M:System.Collections.Generic.ListExtensions.AsSpan``1(System.Collections.Generic.List{``0})">
-            <inheritdoc cref="M:System.Runtime.InteropServices.CollectionsMarshal.AsSpan``1(System.Collections.Generic.List{``0})"/>
-            <param name="this">The instance to be transformed.</param>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlySpan``1(System.Collections.Generic.List{``0})">
             <summary>
-            Gets a <see cref="T:System.ReadOnlySpan`1"/> view over the data in a list. Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/>
-            while the <see cref="T:System.ReadOnlySpan`1"/> is in use.
+            Gets a <see cref="T:System.ReadOnlySpan`1"/> view over the data in a list.
+            Items should not be added or removed from the <see cref="T:System.Collections.Generic.List`1"/> while the <see cref="T:System.ReadOnlySpan`1"/> is in use.
             </summary>
             <param name="this">The instance to be transformed.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance over the <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
-        <member name="M:System.Collections.Generic.ListExtensions.AsReadOnlyMemory``1(System.Collections.Generic.List{``0})">
+        <member name="M:System.Collections.Generic.ListExtensions.AsMemory``1(System.Collections.Generic.List{``0})">
             <summary>
             Try to create a <see cref="T:System.ReadOnlyMemory`1"/> with values from the current <see cref="T:System.Collections.Generic.List`1"/> object,
             without any copy operation.

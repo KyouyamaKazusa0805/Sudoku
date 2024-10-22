@@ -250,7 +250,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				// Collect the result.
 				var cellsMap = cells.AsCellMap();
 				var step = new DominoLoopStep(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
 					in cellsMap,

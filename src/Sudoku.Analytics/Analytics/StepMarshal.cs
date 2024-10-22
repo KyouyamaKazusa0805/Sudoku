@@ -49,6 +49,6 @@ public static class StepMarshal
 			kvp.ValueRef() = interimSteps[i];
 			result.AddRef(in kvp);
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

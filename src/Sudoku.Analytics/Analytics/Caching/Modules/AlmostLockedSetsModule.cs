@@ -74,7 +74,7 @@ internal static class AlmostLockedSetsModule
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

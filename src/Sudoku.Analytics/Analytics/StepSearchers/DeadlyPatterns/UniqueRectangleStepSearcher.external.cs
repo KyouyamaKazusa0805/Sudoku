@@ -260,7 +260,7 @@ public partial class UniqueRectangleStepSearcher
 
 							accumulator.Add(
 								new UniqueRectangleExternalType3Step(
-									conclusions.AsReadOnlyMemory(),
+									conclusions.AsMemory(),
 									[
 										[
 											.. cellOffsets,
@@ -426,7 +426,7 @@ public partial class UniqueRectangleStepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleExternalType4Step(
-								conclusions.AsReadOnlyMemory(),
+								conclusions.AsMemory(),
 								[
 									[
 										.. cellOffsets,

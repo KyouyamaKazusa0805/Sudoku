@@ -112,7 +112,7 @@ public partial class Hub
 						result.Add(new(Elimination, elimCell, digit));
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 		}
 	}

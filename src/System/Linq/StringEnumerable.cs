@@ -75,6 +75,6 @@ public static class StringEnumerable
 				result.Add(resultSelector(element, subElement));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

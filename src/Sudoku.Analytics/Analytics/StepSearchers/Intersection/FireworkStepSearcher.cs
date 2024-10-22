@@ -214,7 +214,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			}
 
 			var step = new FireworkTripleStep(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[
 					[
 						..
@@ -409,7 +409,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					}
 
 					var step = new FireworkQuadrupleStep(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[[.. candidateOffsets], [.. cellOffsets1, .. candidateOffsetsView2], [.. cellOffsets2, .. candidateOffsetsView3]],
 						context.Options,
 						in map,

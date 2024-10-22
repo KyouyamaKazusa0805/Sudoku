@@ -64,6 +64,6 @@ internal sealed class CachedXyzWingPatternSearcher : PatternSearcher<XyzWingPatt
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

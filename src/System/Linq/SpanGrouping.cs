@@ -70,7 +70,7 @@ public readonly partial struct SpanGrouping<TSource, TKey>([Field] TSource[] ele
 		{
 			result.AddRef(selector(element));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -88,7 +88,7 @@ public readonly partial struct SpanGrouping<TSource, TKey>([Field] TSource[] ele
 				result.AddRef(in element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

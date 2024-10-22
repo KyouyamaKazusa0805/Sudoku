@@ -195,7 +195,7 @@ public abstract partial class Chain :
 					result.Add(link);
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 
@@ -214,7 +214,7 @@ public abstract partial class Chain :
 					result.Add(link);
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 
@@ -497,7 +497,7 @@ public abstract partial class Chain :
 					result.Add(new(id, candidate));
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 

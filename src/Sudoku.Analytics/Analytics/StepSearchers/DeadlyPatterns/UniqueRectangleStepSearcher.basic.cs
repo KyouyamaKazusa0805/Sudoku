@@ -71,7 +71,7 @@ public partial class UniqueRectangleStepSearcher
 
 		accumulator.Add(
 			new UniqueRectangleType1Step(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
 				context.Options,
 				d1,
@@ -304,7 +304,7 @@ public partial class UniqueRectangleStepSearcher
 
 					accumulator.Add(
 						new UniqueRectangleType3Step(
-							conclusions.AsReadOnlyMemory(),
+							conclusions.AsMemory(),
 							[[.. arMode ? cellOffsets : [], .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 							context.Options,
 							d1,

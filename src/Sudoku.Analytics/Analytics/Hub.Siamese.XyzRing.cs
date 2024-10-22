@@ -31,7 +31,7 @@ public partial class Hub
 						}
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 
 
 				static bool check(ref readonly Grid grid, XyzRingStep xyz1, XyzRingStep xyz2, [NotNullWhen(true)] out XyzRingStep? siameseStep)

@@ -25,7 +25,7 @@ internal sealed class GroupedNodeCreator(SudokuPane pane, SudokuPanePositionConv
 				result.Add(drawRectangle(n, in node));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 
 
 		Rectangle drawRectangle(GroupedNodeInfo n, ref readonly CandidateMap nodeCandidates)

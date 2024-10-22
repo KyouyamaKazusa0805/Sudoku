@@ -63,6 +63,6 @@ internal static class AlmostHiddenSetsModule
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

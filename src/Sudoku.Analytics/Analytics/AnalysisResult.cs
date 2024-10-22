@@ -661,7 +661,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						result.Add(s);
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Find single-only steps on same difficulty level.
@@ -682,7 +682,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						result.Add(s);
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Find elimination group steps.
@@ -705,7 +705,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						}
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Find sequential-inverted steps.
@@ -720,7 +720,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						result.Add(previous);
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Find the hardest steps.
@@ -734,7 +734,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						result.Add(element);
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Find the hardest level steps.
@@ -749,7 +749,7 @@ public sealed partial record AnalysisResult([property: EquatableMember] ref read
 						result.Add(element);
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 
 			// Invalid configuration.

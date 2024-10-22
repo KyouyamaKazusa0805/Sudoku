@@ -42,6 +42,6 @@ public readonly record struct Parity(bool ParityFlag, ref readonly CellMap Cells
 				break;
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

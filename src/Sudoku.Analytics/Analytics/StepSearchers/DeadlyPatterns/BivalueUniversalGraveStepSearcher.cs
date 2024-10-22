@@ -338,7 +338,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				}
 
 				var step = new BivalueUniversalGraveType3Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					in trueCandidates,
@@ -443,7 +443,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 				// BUG type 4.
 				var step = new BivalueUniversalGraveType4Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[
 						[
 							.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate),
@@ -532,7 +532,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		// BUG + n.
 		var step = new BivalueUniversalGraveMultipleStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
 			context.Options,
 			in trueCandidates
@@ -584,7 +584,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			}
 
 			var step = new BivalueUniversalGraveXzStep(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[
 					[
 						new CellViewNode(ColorIdentifier.Normal, cell),

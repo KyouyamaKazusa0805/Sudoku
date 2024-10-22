@@ -134,7 +134,7 @@ public static class CandidateMapEnumerable
 				result.AddRef(resultSelector(candidate, digit));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

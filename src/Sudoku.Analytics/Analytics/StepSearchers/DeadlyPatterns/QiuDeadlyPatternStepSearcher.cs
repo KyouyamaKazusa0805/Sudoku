@@ -647,7 +647,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				}
 
 				var step = new QiuDeadlyPatternType3Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[
 						[
 							.. candidateOffsets,
@@ -737,7 +737,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var step = new QiuDeadlyPatternType4Step(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[
 							[
 								.. candidateOffsets,

@@ -796,7 +796,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 			}
 			var result = new List<CandidateMap>();
 			e(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCandidateMap()));
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 
 
@@ -843,7 +843,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		{
 			result.AddRangeRef(map & i);
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc/>
@@ -860,7 +860,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		{
 			result.AddRangeRef(map & i);
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

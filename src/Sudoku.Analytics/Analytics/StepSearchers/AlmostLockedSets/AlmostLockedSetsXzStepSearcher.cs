@@ -236,7 +236,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				}
 
 				var step = new AlmostLockedSetsXzStep(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. cellOffsets, .. candidateOffsets]],
 					context.Options,
 					als1,

@@ -73,7 +73,7 @@ public static class AnalysisResultEnumerable
 				result.Add(step);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -122,6 +122,6 @@ public static class AnalysisResultEnumerable
 				list.Add(current);
 			}
 		}
-		return list.AsReadOnlySpan();
+		return list.AsSpan();
 	}
 }

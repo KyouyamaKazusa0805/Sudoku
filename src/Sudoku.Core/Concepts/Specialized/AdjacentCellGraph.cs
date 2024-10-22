@@ -92,7 +92,7 @@ public readonly ref partial struct AdjacentCellGraph :
 			{
 				result.Add((cell, dictionary[cell]));
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 

@@ -30,8 +30,8 @@ public sealed class BlockFirst : IBehaviorMetric
 			playground.Apply(new(Assignment, lastStep.Cell, solution.GetDigit(lastStep.Cell)));
 		}
 
-		steps = tempSteps.AsReadOnlySpan();
-		return result.AsReadOnlySpan();
+		steps = tempSteps.AsSpan();
+		return result.AsSpan();
 
 
 		(SingleStep Step, int Score) findNearestStep(

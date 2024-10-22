@@ -18,7 +18,7 @@ public partial class Hub
 			public static ReadOnlySpan<FishStep> GetSiamese(List<FishStep> accumulator, ref readonly Grid grid)
 			{
 				var result = new List<FishStep>();
-				var stepsSpan = accumulator.AsReadOnlySpan();
+				var stepsSpan = accumulator.AsSpan();
 				for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
 				{
 					var fish1 = stepsSpan[index1];
@@ -32,7 +32,7 @@ public partial class Hub
 						}
 					}
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 
 
 				static bool check(ref readonly Grid puzzle, FishStep fish1, FishStep fish2, [NotNullWhen(true)] out FishStep? siameseStep)
@@ -180,7 +180,7 @@ public partial class Hub
 							);
 						}
 
-						return result.AsReadOnlySpan();
+						return result.AsSpan();
 					}
 				}
 			}

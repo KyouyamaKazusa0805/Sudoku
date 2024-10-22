@@ -68,7 +68,7 @@ public static class Combinatorial
 
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 
 
 		static void g(int last, int count, int index, Span<int> tempArray, ReadOnlySpan<T> @this, List<T[]> resultList)
@@ -113,7 +113,7 @@ public static class Combinatorial
 				result.Add(element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

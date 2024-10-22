@@ -334,7 +334,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				}
 
 				var step = new ChromaticPatternXzStep(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[
 						[
 							.. candidateOffsets,

@@ -145,7 +145,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		}
 
 		context.CurrentAlmostLockedSetIndex = alsIndex;
-		context.ProducedViewNodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsSpan();
 	}
 
 	/// <inheritdoc/>

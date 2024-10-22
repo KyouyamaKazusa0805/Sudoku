@@ -461,7 +461,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						}
 
 						var step = new BorescoperDeadlyPatternType3Step(
-							conclusions.AsReadOnlyMemory(),
+							conclusions.AsMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 							context.Options,
 							in map,
@@ -591,7 +591,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					}
 
 					var step = new BorescoperDeadlyPatternType4Step(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
 						context.Options,
 						in map,

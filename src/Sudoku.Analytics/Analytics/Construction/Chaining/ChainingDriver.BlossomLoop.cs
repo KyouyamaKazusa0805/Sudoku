@@ -62,7 +62,7 @@ internal partial class ChainingDriver
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -93,7 +93,7 @@ internal partial class ChainingDriver
 			}
 
 			// Collect on patterns (like ALSes).
-			var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsReadOnlySpan());
+			var context = new ChainingRuleLoopConclusionContext(in grid, patternLinks.AsSpan());
 			foreach (var rule in supportedRules)
 			{
 				rule.GetLoopConclusions(ref context);

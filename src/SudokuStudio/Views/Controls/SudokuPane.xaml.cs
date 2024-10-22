@@ -1345,7 +1345,7 @@ file static class Extensions
 					}
 					break;
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 			case HouseType.Column:
 			{
@@ -1370,7 +1370,7 @@ file static class Extensions
 					}
 					break;
 				}
-				return result.AsReadOnlySpan();
+				return result.AsSpan();
 			}
 			case HouseType.Block:
 			{

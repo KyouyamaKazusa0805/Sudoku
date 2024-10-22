@@ -79,7 +79,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		}
 
 		accumulator.AddRange(
-			from info in tempAccumulator.AsReadOnlySpan()
+			from info in tempAccumulator.AsSpan()
 			orderby info.ContradictionLinks.Length, info.ContradictionLinks[0]
 			select (Step)info
 		);

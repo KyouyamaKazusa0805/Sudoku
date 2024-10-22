@@ -229,7 +229,7 @@ internal sealed partial class PathCreator(
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 
 
 		static void rotate(Point pt1, ref Point pt2, double angle)

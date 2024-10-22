@@ -166,7 +166,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
 			for (var applyingSize = 1; applyingSize <= MaxApplyingStepsInOneInterimStep; applyingSize++)
 			{
-				foreach (var indirectSteps in indirectFoundSteps.AsReadOnlySpan().GetSubsets(applyingSize))
+				foreach (var indirectSteps in indirectFoundSteps.AsSpan().GetSubsets(applyingSize))
 				{
 					// A step will be valid if it has new conclusions that recorded steps don't have.
 					var isValid = true;

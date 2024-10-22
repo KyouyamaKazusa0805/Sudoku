@@ -155,7 +155,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		{
 			result.Add(new(ColorIdentifier.Normal, path[i], path[i + 1 == path.Length ? 0 : i + 1]));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 

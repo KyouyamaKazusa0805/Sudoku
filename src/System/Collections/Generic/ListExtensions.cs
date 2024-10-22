@@ -90,32 +90,28 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SequenceEqual<TEquatable>(this List<TEquatable> @this, List<TEquatable> other)
 		where TEquatable : IEquatable<TEquatable>
-		=> @this.AsReadOnlySpan().SequenceEqual(other.AsReadOnlySpan());
+		=> @this.AsSpan().SequenceEqual(other.AsSpan());
 
 	/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>
 	public static T Sum<T>(this List<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
 	{
 		var result = T.AdditiveIdentity;
-		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		foreach (ref readonly var element in @this.AsSpan())
 		{
 			result += element;
 		}
 		return result;
 	}
 
-	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
-	/// <param name="this">The instance to be transformed.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Span<T> AsSpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
-
 	/// <summary>
-	/// Gets a <see cref="ReadOnlySpan{T}"/> view over the data in a list. Items should not be added or removed from the <see cref="List{T}"/>
-	/// while the <see cref="ReadOnlySpan{T}"/> is in use.
+	/// Gets a <see cref="ReadOnlySpan{T}"/> view over the data in a list.
+	/// Items should not be added or removed from the <see cref="List{T}"/> while the <see cref="ReadOnlySpan{T}"/> is in use.
 	/// </summary>
 	/// <param name="this">The instance to be transformed.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance over the <see cref="List{T}"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<T> AsReadOnlySpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
+	[OverloadResolutionPriority(1)]
+	public static ReadOnlySpan<T> AsSpan<T>(this List<T> @this) => CollectionsMarshal.AsSpan(@this);
 
 	/// <summary>
 	/// Try to create a <see cref="ReadOnlyMemory{T}"/> with values from the current <see cref="List{T}"/> object,
@@ -125,7 +121,8 @@ public static class ListExtensions
 	/// <param name="this">The list to create.</param>
 	/// <returns>The created <see cref="ReadOnlyMemory{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlyMemory<T> AsReadOnlyMemory<T>(this List<T> @this) => new(Entry<T>.GetItems(@this), 0, @this.Count);
+	[OverloadResolutionPriority(1)]
+	public static ReadOnlyMemory<T> AsMemory<T>(this List<T> @this) => new(Entry<T>.GetItems(@this), 0, @this.Count);
 
 	/// <summary>
 	/// Add an item and resize the <see cref="List{T}"/> of <typeparamref name="T"/>.

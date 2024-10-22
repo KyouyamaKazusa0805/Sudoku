@@ -76,7 +76,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 			}
 
 			var step = new UniquenessClueCoverStep(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[
 					[
 						new ChuteViewNode(ColorIdentifier.Normal, chuteIndex),

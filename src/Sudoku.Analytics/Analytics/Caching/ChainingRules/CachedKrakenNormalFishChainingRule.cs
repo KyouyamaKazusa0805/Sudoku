@@ -179,7 +179,7 @@ internal sealed class CachedKrakenNormalFishChainingRule : ChainingRule
 				}
 			}
 		}
-		context.ProducedViewNodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsSpan();
 	}
 
 	/// <inheritdoc/>

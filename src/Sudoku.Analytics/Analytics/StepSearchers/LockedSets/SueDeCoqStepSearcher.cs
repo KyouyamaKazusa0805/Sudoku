@@ -56,7 +56,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 				}
 
 				// Iterate on each intersection combination.
-				foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
+				foreach (ref readonly var currentInterMap in list.AsSpan())
 				{
 					var selectedInterMask = grid[currentInterMap];
 					if (Mask.PopCount(selectedInterMask) <= currentInterMap.Count + 1)
@@ -201,7 +201,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									}
 
 									var step = new SueDeCoqStep(
-										conclusions.AsReadOnlyMemory(),
+										conclusions.AsMemory(),
 										[
 											[
 												.. candidateOffsets,

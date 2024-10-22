@@ -124,7 +124,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 				}
 			}
 		}
-		context.ProducedViewNodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsSpan();
 	}
 
 	/// <inheritdoc/>

@@ -171,6 +171,6 @@ public sealed partial record K9Parser : CoordinateParser
 				result.Add(new(CellParser(cell1)[0], CellParser(cell2)[0], digitChar - '1'));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

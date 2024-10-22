@@ -45,7 +45,7 @@ public static class ListEnumerable
 				result.AddRef(in element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
@@ -75,7 +75,7 @@ public static class ListEnumerable
 				result.AddRef(resultSelector(element, collectionElement));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
@@ -93,6 +93,6 @@ public static class ListEnumerable
 				result.AddRef(resultSelector(element, collectionElement));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

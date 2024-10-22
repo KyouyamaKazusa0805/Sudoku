@@ -218,7 +218,7 @@ public sealed partial class AlmostLockedSetPattern(
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>

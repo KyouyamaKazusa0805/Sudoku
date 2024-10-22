@@ -411,7 +411,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		var step = new NormalDeathBlossomStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
 			context.Options,
 			pivot,
@@ -540,7 +540,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			}
 
 			var step = new HouseDeathBlossomStep(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[[.. cellOffsets, .. candidateOffsets, houseOffset], .. detailViews],
 				context.Options,
 				house,
@@ -717,7 +717,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		}
 
 		var step = new NTimesAlmostLockedSetsDeathBlossomStep(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
 			context.Options,
 			nTimesAlsDigitsMask,

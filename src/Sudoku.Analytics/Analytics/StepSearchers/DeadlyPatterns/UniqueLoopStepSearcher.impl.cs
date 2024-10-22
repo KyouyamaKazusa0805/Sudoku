@@ -44,7 +44,7 @@ public partial class UniqueLoopStepSearcher
 		}
 
 		var step = new UniqueLoopType1Step(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
 			context.Options,
 			d1,
@@ -229,7 +229,7 @@ public partial class UniqueLoopStepSearcher
 						}
 
 						var step = new UniqueLoopType3Step(
-							conclusions.AsReadOnlyMemory(),
+							conclusions.AsMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
 							context.Options,
 							d1,
@@ -309,7 +309,7 @@ public partial class UniqueLoopStepSearcher
 				}
 
 				var step = new UniqueLoopType3Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. candidateOffsets, .. GetLoopLinks(path)]],
 					context.Options,
 					d1,
@@ -389,7 +389,7 @@ public partial class UniqueLoopStepSearcher
 				}
 
 				var step = new UniqueLoopType4Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[
 						[
 							.. candidateOffsets,

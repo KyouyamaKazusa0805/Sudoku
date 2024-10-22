@@ -153,7 +153,7 @@ public static class CellMapEnumerable
 				result.AddRef(resultSelector(cell, digit));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

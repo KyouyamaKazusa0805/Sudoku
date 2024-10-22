@@ -928,7 +928,7 @@ public partial struct CellMap : CellMapBase
 			}
 			var result = new List<CellMap>();
 			e(result, subsetSize, n, subsetSize, map.Offsets, static (r, c) => r.AddRef(c.AsCellMap()));
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 
 
@@ -975,7 +975,7 @@ public partial struct CellMap : CellMapBase
 		{
 			result.AddRangeRef(map & i);
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc/>
@@ -992,7 +992,7 @@ public partial struct CellMap : CellMapBase
 		{
 			result.AddRangeRef(map & i);
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

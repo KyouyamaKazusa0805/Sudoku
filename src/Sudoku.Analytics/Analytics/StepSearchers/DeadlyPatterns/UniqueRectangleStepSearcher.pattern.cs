@@ -825,7 +825,7 @@ public partial class UniqueRectangleStepSearcher
 
 				accumulator.Add(
 					new UniqueRectangleSueDeCoqStep(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[
 							[
 								.. arMode ? GetHighlightCells(urCells) : [],

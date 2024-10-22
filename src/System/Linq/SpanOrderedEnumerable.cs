@@ -84,7 +84,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		{
 			result.AddRef(selector(element));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -102,7 +102,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 				result.AddRef(in element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -181,7 +181,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			var tempValues = tempDictionary[key];
 			result.AddRef(new([.. tempValues], key));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="SpanEnumerable.GroupBy{TSource, TKey, TElement}(ReadOnlySpan{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
@@ -205,7 +205,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			var valuesConverted = from value in tempValues select elementSelector(value);
 			result.AddRef(new(valuesConverted.ToArray(), key));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>

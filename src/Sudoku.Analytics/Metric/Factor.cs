@@ -77,7 +77,7 @@ public readonly partial struct Factor(
 					throw new FactorResourceMismatchedException();
 				}
 			}
-			return matchPropertyInfoList.AsReadOnlySpan();
+			return matchPropertyInfoList.AsSpan();
 
 
 			// Here a property may be explicitly implemented, the name may starts with interface name.

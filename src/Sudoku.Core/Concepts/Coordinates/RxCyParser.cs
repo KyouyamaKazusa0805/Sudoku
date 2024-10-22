@@ -238,7 +238,7 @@ public sealed partial record RxCyParser : CoordinateParser
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	private ReadOnlySpan<Conjugate> OnConjugateParsing(string str)
@@ -264,7 +264,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			var digit = rightCellAndDigit % 9;
 			result.Add(new(leftCell, rightCell, digit));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	private static ReadOnlySpan<Miniline> OnIntersectionParsing(string str)
@@ -299,6 +299,6 @@ public sealed partial record RxCyParser : CoordinateParser
 				}
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

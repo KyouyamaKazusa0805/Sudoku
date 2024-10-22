@@ -103,6 +103,6 @@ internal sealed class CachedXyzWingChainingRule : ChainingRule
 				result.Add(node);
 			}
 		}
-		context.ProducedViewNodes = result.AsReadOnlySpan();
+		context.ProducedViewNodes = result.AsSpan();
 	}
 }

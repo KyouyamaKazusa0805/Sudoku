@@ -283,7 +283,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								}
 
 								var step = new MultiBranchWWingStep(
-									conclusions.AsReadOnlyMemory(),
+									conclusions.AsMemory(),
 									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
 									context.Options,
 									in cells,

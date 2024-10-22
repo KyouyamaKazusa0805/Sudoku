@@ -441,7 +441,7 @@ public static class SpanEnumerable
 				result.AddRef(in element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -464,7 +464,7 @@ public static class SpanEnumerable
 				result.AddRef(in element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -582,7 +582,7 @@ public static class SpanEnumerable
 			var tempValues = tempDictionary[key];
 			result.AddRef(new([.. tempValues], key));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
@@ -609,7 +609,7 @@ public static class SpanEnumerable
 			var valuesConverted = from value in tempValues select elementSelector(value);
 			result.AddRef(new(valuesConverted.ToArray(), key));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
@@ -658,7 +658,7 @@ public static class SpanEnumerable
 				result.AddRef(resultSelector(outerItem, innerItem));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
@@ -709,9 +709,9 @@ public static class SpanEnumerable
 
 				satisfiedInnerKvps.AddRef(in innerItem);
 			}
-			result.AddRef(resultSelector(outerItem, satisfiedInnerKvps.AsReadOnlySpan()));
+			result.AddRef(resultSelector(outerItem, satisfiedInnerKvps.AsSpan()));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
@@ -798,7 +798,7 @@ public static class SpanEnumerable
 	{
 		var result = new List<TSource>(count);
 		result.AddRangeRef(@this[..Math.Min(count, @this.Length)]);
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, Range)"/>
@@ -814,7 +814,7 @@ public static class SpanEnumerable
 
 		var result = new List<TSource>(maxIndex - minIndex);
 		result.AddRangeRef(@this[Math.Min(minIndex, @this.Length)..Math.Min(maxIndex, @this.Length)]);
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>

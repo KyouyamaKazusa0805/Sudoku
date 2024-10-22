@@ -191,7 +191,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 
 		var step = new ExtendedRectangleType1Step(
-			conclusions.AsReadOnlyMemory(),
+			conclusions.AsMemory(),
 			[[.. candidateOffsets]],
 			context.Options,
 			in patternCells,
@@ -348,7 +348,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
 
 							var step = new ExtendedRectangleType3Step(
-								conclusions.AsReadOnlyMemory(),
+								conclusions.AsMemory(),
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
 								context.Options,
 								in patternCells,
@@ -526,7 +526,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				}
 
 				var step = new ExtendedRectangleType1Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
 					in patternCells,
@@ -589,7 +589,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					}
 
 					var step = new ExtendedRectangleType4Step(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[
 							[
 								.. candidateOffsets,

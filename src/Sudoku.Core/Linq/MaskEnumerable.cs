@@ -51,7 +51,7 @@ public static class MaskEnumerable
 				result.AddRef(resultSelector(digit, cell));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>

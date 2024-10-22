@@ -402,7 +402,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				}
 
 				var step = new ReverseBivalueUniversalGraveType3Step(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 					context.Options,
 					d1,

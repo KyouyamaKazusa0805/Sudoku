@@ -217,7 +217,7 @@ internal static class AnalyzeConversion
 					result.Add(new LineBreak());
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 }

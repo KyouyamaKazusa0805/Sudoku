@@ -20,7 +20,7 @@ public static class ViewEnumerable
 		{
 			result.AddRef(selector(element));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -39,7 +39,7 @@ public static class ViewEnumerable
 				result.Add(element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -57,7 +57,7 @@ public static class ViewEnumerable
 				result.Add(casted);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <returns>
@@ -105,6 +105,6 @@ public static class ViewEnumerable
 				result.Add(resultSelector(element, subElement));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

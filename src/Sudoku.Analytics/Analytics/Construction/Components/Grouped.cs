@@ -40,7 +40,7 @@ public static class Grouped
 
 				if (list.Count != 0)
 				{
-					spannedHousesList = list.AsReadOnlySpan();
+					spannedHousesList = list.AsSpan();
 					return true;
 				}
 

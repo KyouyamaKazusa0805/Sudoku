@@ -547,7 +547,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 		return conclusions.Count == 0
 			? null
 			: new(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[[.. cellOffsets, .. candidateOffsets]],
 				options,
 				SymmetricType.Diagonal,
@@ -626,7 +626,7 @@ public sealed unsafe class SymmetryInferrer : IInferrable<SymmetryInferredResult
 
 		return conclusions.Count == 0
 			? null
-			: new(conclusions.AsReadOnlyMemory(), [[.. cellOffsets, .. candidateOffsets]], options, SymmetricType.AntiDiagonal, [.. mapping]);
+			: new(conclusions.AsMemory(), [[.. cellOffsets, .. candidateOffsets]], options, SymmetricType.AntiDiagonal, [.. mapping]);
 	}
 
 	/// <summary>

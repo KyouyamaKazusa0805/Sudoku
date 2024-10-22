@@ -34,7 +34,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 			reinitializeList(rbList, in rbEmptyMap);
 			reinitializeList(cbList, in cbEmptyMap);
 
-			foreach (ref readonly var rbCurrentMap in rbList.AsReadOnlySpan())
+			foreach (ref readonly var rbCurrentMap in rbList.AsSpan())
 			{
 				var rbSelectedInterMask = grid[rbCurrentMap];
 				if (Mask.PopCount(rbSelectedInterMask) <= rbCurrentMap.Count + 1)
@@ -42,7 +42,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (ref readonly var cbCurrentMap in cbList.AsReadOnlySpan())
+				foreach (ref readonly var cbCurrentMap in cbList.AsSpan())
 				{
 					var cbSelectedInterMask = grid[cbCurrentMap];
 					if (Mask.PopCount(cbSelectedInterMask) <= cbCurrentMap.Count + 1)
@@ -186,7 +186,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												}
 
 												var step = new SueDeCoq3DimensionStep(
-													conclusions.AsReadOnlyMemory(),
+													conclusions.AsMemory(),
 													[
 														[
 															.. candidateOffsets,

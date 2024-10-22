@@ -294,7 +294,7 @@ public partial struct Grid : GridBase
 					}
 				}
 			}
-			return conjugatePairs.AsReadOnlySpan();
+			return conjugatePairs.AsSpan();
 		}
 	}
 

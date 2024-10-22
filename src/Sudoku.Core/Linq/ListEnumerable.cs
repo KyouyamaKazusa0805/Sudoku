@@ -34,7 +34,7 @@ public static class ListEnumerable
 				result.AddRef(resultSelector(element, cell));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -65,6 +65,6 @@ public static class ListEnumerable
 				result.AddRef(resultSelector(element, cell));
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 }

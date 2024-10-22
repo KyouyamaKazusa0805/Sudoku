@@ -154,7 +154,7 @@ internal static partial class DrawableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(context, links.AsReadOnlySpan(), view.OfType<CandidateViewNode>(), conclusions);
+		ForLinkNodes(context, links.AsSpan(), view.OfType<CandidateViewNode>(), conclusions);
 		ForGroupedNodes(context, groupedNodes);
 		controlAddingActions.ForEach(static p => (p.Animating + p.Adding)());
 	}

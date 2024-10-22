@@ -369,7 +369,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					}
 
 					var step = new BivalueOddagonType3Step(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 						context.Options,
 						in loop,

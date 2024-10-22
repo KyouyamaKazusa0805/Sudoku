@@ -141,7 +141,7 @@ public sealed partial class Collector : CollectorBase
 			}
 
 			// Return the result.
-			return bag.AsReadOnlySpan();
+			return bag.AsSpan();
 		}
 	}
 }

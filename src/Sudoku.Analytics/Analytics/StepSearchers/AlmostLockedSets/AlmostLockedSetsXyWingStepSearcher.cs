@@ -191,7 +191,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						}
 
 						var step = new AlmostLockedSetsXyWingStep(
-							conclusions.AsReadOnlyMemory(),
+							conclusions.AsMemory(),
 							[[.. cellOffsets, .. candidateOffsets]],
 							context.Options,
 							a,

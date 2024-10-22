@@ -117,7 +117,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 					break;
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 	}
 
@@ -224,7 +224,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 			currentGraph |= coveredCells;
 		}
 
-		depths = depthValues.AsReadOnlySpan();
+		depths = depthValues.AsSpan();
 		return new(in currentGraph, in _invalidCells);
 	}
 

@@ -87,13 +87,13 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 		}
 
 		var failedCases = new List<Grid>();
-		foreach (ref readonly var solution in solutions.AsReadOnlySpan())
+		foreach (ref readonly var solution in solutions.AsSpan())
 		{
 			// Step 2: Iterate on all the other solutions,
 			// and find whether each solution contains at least one possible corresponding solution
 			// whose digits used in *all* houses are completely same.
 			var tempSolutions = new List<Grid>();
-			foreach (ref readonly var tempGrid in solutions.AsReadOnlySpan()[..])
+			foreach (ref readonly var tempGrid in solutions.AsSpan()[..])
 			{
 				if (tempGrid == solution)
 				{
@@ -128,7 +128,7 @@ public sealed class DeadlyPatternInferrer : IInferrable<DeadlyPatternInferredRes
 
 		// If all possible solutions has exchangable patterns, the pattern will be a real deadly pattern;
 		// otherwise, not a deadly pattern.
-		result = new(in grid, failedCases.Count == 0, failedCases.AsReadOnlySpan(), in patternCandidates);
+		result = new(in grid, failedCases.Count == 0, failedCases.AsSpan(), in patternCandidates);
 		return true;
 
 	FastFail:

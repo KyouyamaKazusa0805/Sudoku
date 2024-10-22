@@ -89,7 +89,7 @@ public sealed class ConstraintCollection :
 				result.Add(constraint);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -118,7 +118,7 @@ public sealed class ConstraintCollection :
 		{
 			result.AddRef(selector(element));
 		}
-		return result.AsReadOnlySpan();
+		return result.AsSpan();
 	}
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>

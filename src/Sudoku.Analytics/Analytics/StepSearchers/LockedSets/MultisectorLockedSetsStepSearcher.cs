@@ -201,7 +201,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 				}
 
 				var step = new MultisectorLockedSetsStep(
-					conclusions.AsReadOnlyMemory(),
+					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,
 					in map,

@@ -292,7 +292,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					// Create hint.
 					var cellsMap = cells.AsCellMap();
 					var step = new AlignedExclusionStep(
-						conclusions.AsReadOnlyMemory(),
+						conclusions.AsMemory(),
 						[[.. candidateOffsets]],
 						context.Options,
 						in cellsMap,

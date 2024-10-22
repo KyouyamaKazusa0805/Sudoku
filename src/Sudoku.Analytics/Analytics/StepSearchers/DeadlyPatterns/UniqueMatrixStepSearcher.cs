@@ -142,7 +142,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 			}
 
-			var step = new UniqueMatrixType1Step(conclusions.AsReadOnlyMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, elimCell * 9 + extraDigit);
+			var step = new UniqueMatrixType1Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, elimCell * 9 + extraDigit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -193,7 +193,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + extraDigit));
 			}
 
-			var step = new UniqueMatrixType2Step(conclusions.AsReadOnlyMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, extraDigit);
+			var step = new UniqueMatrixType2Step(conclusions.AsMemory(), [[.. candidateOffsets]], context.Options, in pattern, digitsMask, extraDigit);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -273,7 +273,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 						}
 
 						var step = new UniqueMatrixType3Step(
-							conclusions.AsReadOnlyMemory(),
+							conclusions.AsMemory(),
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 							context.Options,
 							in pattern,
@@ -369,7 +369,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			}
 
 			var step = new UniqueMatrixType4Step(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 				context.Options,
 				in pattern,

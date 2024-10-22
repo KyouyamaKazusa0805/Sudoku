@@ -82,7 +82,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 			}
 
 			var step = new LawOfLeftoverStep(
-				conclusions.AsReadOnlyMemory(),
+				conclusions.AsMemory(),
 				[
 					[
 						.. from cell in a select new CircleViewNode(ColorIdentifier.Normal, cell),

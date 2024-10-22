@@ -98,7 +98,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 					result.Add(new GroupedNodeInfo(in e));
 				}
 			}
-			return result.AsReadOnlySpan();
+			return result.AsSpan();
 		}
 
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
@@ -118,7 +118,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
 			negatives.AddRange(from node in negativeGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
 			positives.AddRange(from node in positiveGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
-			return new() { Negatives = negatives.AsReadOnlySpan(), Positives = positives.AsReadOnlySpan() };
+			return new() { Negatives = negatives.AsSpan(), Positives = positives.AsSpan() };
 		}
 
 		static void getDeltaConclusions(
@@ -139,8 +139,8 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			handleConclusions();
 			handlePassedThroughDiffers();
 			handleGroupedNodes(out negativeGroupedNodes, out positiveGroupedNodes);
-			negativeConclusions = negatives.AsReadOnlySpan();
-			positiveConclusions = positives.AsReadOnlySpan();
+			negativeConclusions = negatives.AsSpan();
+			positiveConclusions = positives.AsSpan();
 
 
 			void handleConclusions()

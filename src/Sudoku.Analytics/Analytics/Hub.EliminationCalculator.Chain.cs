@@ -68,7 +68,7 @@ public partial class Hub
 							{
 								result.Add(new(Elimination, cell2, digit1));
 							}
-							return result.AsReadOnlySpan();
+							return result.AsSpan();
 						}
 					}
 					case var _ when Mask.IsPow2(p) && Mask.IsPow2(q) && p == q:
