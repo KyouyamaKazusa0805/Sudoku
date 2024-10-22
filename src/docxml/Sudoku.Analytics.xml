@@ -2312,16 +2312,6 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.Chain.StrongLinkConnector">
-            <summary>
-            Indicates the strong link connector.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.Chain.WeakLinkConnector">
-            <summary>
-            Indicates the weak link connector.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Construction.Components.Chain.Inferences">
             <summary>
             Indicates the possible inferences to be used.
@@ -2434,6 +2424,16 @@
             Indicates the tail node.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStartIdentity">
+            <summary>
+            Indicates the value as the start index of the chain link is from whether strong and weak.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ValidNodes">
+            <summary>
+            Indicates the valid nodes to be used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.IsStrongLinksStrictlyGrouped">
             <summary>
             Indicates whether at least one link in strong links contains grouped nodes,
@@ -2446,26 +2446,16 @@
             and is not advanced node (i.e. contains grouped pattern).
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.WeakStartIdentity">
-            <summary>
-            Indicates the value as the start index of the chain link is from whether strong and weak.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.ValidNodes">
-            <summary>
-            Indicates the valid nodes to be used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.LoopIdentity">
             <summary>
             Indicates the value on loop checking for link construction usages.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.Chain.LinksCore">
-            <inheritdoc cref="P:Sudoku.Analytics.Construction.Components.Chain.Links"/>
-        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Construction#Components#Node}#Count">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.Chain.LinksCore">
+            <inheritdoc cref="P:Sudoku.Analytics.Construction.Components.Chain.Links"/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Chain.Item(System.Int32)">
             <summary>
@@ -3314,6 +3304,16 @@
             The default value is <see langword="null"/>.
             </param>
             <seealso cref="T:Sudoku.Analytics.Construction.Components.Node"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.Link.StrongLinkConnector">
+            <summary>
+            Indicates the strong link connector.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.Link.WeakLinkConnector">
+            <summary>
+            Indicates the weak link connector.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(Sudoku.Analytics.Construction.Components.Link)">
             <inheritdoc/>

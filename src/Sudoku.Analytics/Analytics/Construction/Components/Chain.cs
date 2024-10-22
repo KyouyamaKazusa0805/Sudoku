@@ -20,17 +20,6 @@ public abstract partial class Chain :
 	IReadOnlyCollection<Node>
 {
 	/// <summary>
-	/// Indicates the strong link connector.
-	/// </summary>
-	public const string StrongLinkConnector = " == ";
-
-	/// <summary>
-	/// Indicates the weak link connector.
-	/// </summary>
-	public const string WeakLinkConnector = " -- ";
-
-
-	/// <summary>
 	/// Indicates the possible inferences to be used.
 	/// </summary>
 	protected internal static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
@@ -240,6 +229,16 @@ public abstract partial class Chain :
 	public Node Last => ValidNodes[^1];
 
 	/// <summary>
+	/// Indicates the value as the start index of the chain link is from whether strong and weak.
+	/// </summary>
+	protected internal abstract int WeakStartIdentity { get; }
+
+	/// <summary>
+	/// Indicates the valid nodes to be used.
+	/// </summary>
+	protected internal abstract ReadOnlySpan<Node> ValidNodes { get; }
+
+	/// <summary>
 	/// Indicates whether at least one link in strong links contains grouped nodes,
 	/// and is not advanced node (i.e. contains grouped pattern).
 	/// </summary>
@@ -280,19 +279,12 @@ public abstract partial class Chain :
 	}
 
 	/// <summary>
-	/// Indicates the value as the start index of the chain link is from whether strong and weak.
-	/// </summary>
-	protected internal abstract int WeakStartIdentity { get; }
-
-	/// <summary>
-	/// Indicates the valid nodes to be used.
-	/// </summary>
-	protected internal abstract ReadOnlySpan<Node> ValidNodes { get; }
-
-	/// <summary>
 	/// Indicates the value on loop checking for link construction usages.
 	/// </summary>
 	protected abstract int LoopIdentity { get; }
+
+	/// <inheritdoc/>
+	int IReadOnlyCollection<Node>.Count => Length;
 
 	/// <inheritdoc cref="Links"/>
 	[field: MaybeNull]
@@ -317,9 +309,6 @@ public abstract partial class Chain :
 			return field;
 		}
 	}
-
-	/// <inheritdoc/>
-	int IReadOnlyCollection<Node>.Count => Length;
 
 
 	/// <summary>

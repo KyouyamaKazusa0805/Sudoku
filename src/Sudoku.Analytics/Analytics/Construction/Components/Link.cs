@@ -23,6 +23,17 @@ public sealed partial class Link(
 	[Property] Pattern? groupedLinkPattern = null
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
+	/// <summary>
+	/// Indicates the strong link connector.
+	/// </summary>
+	private const string StrongLinkConnector = " == ";
+
+	/// <summary>
+	/// Indicates the weak link connector.
+	/// </summary>
+	private const string WeakLinkConnector = " -- ";
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Link? other) => other is not null && Equals(other, LinkComparison.Undirected);
@@ -66,6 +77,5 @@ public sealed partial class Link(
 			: throw new ArgumentOutOfRangeException(nameof(comparison));
 
 	/// <inheritdoc/>
-	public override string ToString()
-		=> $"{FirstNode}{(IsStrong ? Chain.StrongLinkConnector : Chain.WeakLinkConnector)}{SecondNode}";
+	public override string ToString() => $"{FirstNode}{(IsStrong ? StrongLinkConnector : WeakLinkConnector)}{SecondNode}";
 }
