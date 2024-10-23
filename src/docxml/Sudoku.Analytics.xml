@@ -7641,6 +7641,18 @@
         <member name="M:Sudoku.Analytics.StepSearchers.RemotePairStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.WhipStepSearcher">
+            <summary>
+            Provides with a <b>Whip</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Whip</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher">
             <summary>
             Provides with an <b>Anonymous Deadly Pattern</b> step searcher.
@@ -12203,7 +12215,8 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainStep.IsDynamic">
             <summary>
-            Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm.
+            Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm;
+            also, dynamic chains always contain internal branches.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainStep.Complexity">
@@ -12464,6 +12477,74 @@
         <member name="P:Sudoku.Analytics.Steps.RemotePairStep.DigitsMask">
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.WhipStep">
+            <summary>
+            Provides with a step that is a <b>Whip</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="truths">Indicates all truths.</param>
+            <param name="links">Indicates all links.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Collections.ICollection,System.Collections.ICollection)">
+            <summary>
+            Provides with a step that is a <b>Whip</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="truths">Indicates all truths.</param>
+            <param name="links">Indicates all links.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.IsMultiple">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.IsDynamic">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Rank">
+            <summary>
+            Indicates the rank of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.GetName(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Truths">
+            <summary>
+            The generated property declaration for parameter <c>truths</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.WhipStep.Links">
+            <summary>
+            The generated property declaration for parameter <c>links</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ConditionalDeadlyPatternStep">
@@ -23432,6 +23513,11 @@
             Indicates finned grouped chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Categorization.Technique.BlossomLoop">
+            <summary>
+            Indicates blossom loop.
+            </summary>
+        </member>
         <member name="F:Sudoku.Categorization.Technique.NishioForcingChains">
             <summary>
             Indicates nishio forcing chains.
@@ -23482,9 +23568,9 @@
             Indicates dynamic forcing chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.BlossomLoop">
+        <member name="F:Sudoku.Categorization.Technique.Whip">
             <summary>
-            Indicates blossom loop.
+            Indicates whip.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.AlignedPairExclusion">
@@ -24192,6 +24278,11 @@
         <member name="F:Sudoku.Categorization.TechniqueGroup.BlossomLoop">
             <summary>
             Indicates the blossom loop technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.TechniqueGroup.WhipAndBraid">
+            <summary>
+            Indicates whip and braid technique.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.UniqueRectangle">
@@ -28488,6 +28579,11 @@
               Looks up a localized string similar to Wing size in unique rectangle.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_WhipComplexityFactor">
+            <summary>
+              Looks up a localized string similar to Whip complexity.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">
             <summary>
               Looks up a localized string similar to false.
@@ -30451,6 +30547,11 @@
               Looks up a localized string similar to Unique Rectangle.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_WhipStepSearcher">
+            <summary>
+              Looks up a localized string similar to Whip.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_XyzRingStepSearcher">
             <summary>
               Looks up a localized string similar to XYZ-Ring.
@@ -31886,6 +31987,11 @@
               Looks up a localized string similar to Digits {0} and {1} in {2}, with a W-Wing, connectors are {3}, end cells are {4}, w = {5}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_WhipStep">
+            <summary>
+              Looks up a localized string similar to Truths: {0}, links: {1}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_WWingStep">
             <summary>
               Looks up a localized string similar to {0} to {1}, with {2} as connection.
@@ -32124,6 +32230,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_UniqueRectangle">
             <summary>
               Looks up a localized string similar to Unique Rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_WhipAndBraid">
+            <summary>
+              Looks up a localized string similar to Whip &amp; Braid.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_XyzRing">
@@ -32449,6 +32560,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Whale">
             <summary>
               Looks up a localized string similar to Whale.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Whip">
+            <summary>
+              Looks up a localized string similar to Whip.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.WWing">

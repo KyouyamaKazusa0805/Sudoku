@@ -15,7 +15,8 @@ public abstract class ChainStep(StepConclusions conclusions, View[]? views, Step
 	public abstract bool IsMultiple { get; }
 
 	/// <summary>
-	/// Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm.
+	/// Indicates whether the chain pattern is dynamic, which means it should be checked dynamically inside searching algorithm;
+	/// also, dynamic chains always contain internal branches.
 	/// </summary>
 	public abstract bool IsDynamic { get; }
 

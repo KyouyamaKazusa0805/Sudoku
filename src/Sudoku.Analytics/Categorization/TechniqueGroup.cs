@@ -115,6 +115,11 @@ public enum TechniqueGroup
 	BlossomLoop,
 
 	/// <summary>
+	/// Indicates whip and braid technique.
+	/// </summary>
+	WhipAndBraid,
+
+	/// <summary>
 	/// Indicates the unique rectangle (UR) technique.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "UR")]

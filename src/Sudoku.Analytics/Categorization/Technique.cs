@@ -5223,6 +5223,21 @@ public enum Technique
 	#endregion
 
 	//
+	// Blossom Loop
+	//
+	#region Blossom Loop
+	/// <summary>
+	/// Indicates blossom loop.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 65,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.BlossomLoop,
+		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
+	BlossomLoop,
+	#endregion
+
+	//
 	// Forcing Chains
 	//
 	#region Forcing Chains
@@ -5340,18 +5355,18 @@ public enum Technique
 	#endregion
 
 	//
-	// Blossom Loop
+	// Whips & Braids
 	//
-	#region Blossom Loop
+	#region Whips & Braids
 	/// <summary>
-	/// Indicates blossom loop.
+	/// Indicates whip.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 65,
+		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.BlossomLoop,
-		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
-	BlossomLoop,
+		ContainingGroup = TechniqueGroup.WhipAndBraid,
+		Links = ["http://forum.enjoysudoku.com/fully-supersymmetric-chains-t5591-195.html"])]
+	Whip,
 	#endregion
 
 	//

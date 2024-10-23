@@ -3539,4 +3539,21 @@
     <value>区块待定数组・W-Wing</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="Whip" xml:space="preserve">
+    <value>试数</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueGroup_WhipAndBraid" xml:space="preserve">
+    <value>动态链</value>
+  </data>
+  <data name="Factor_WhipComplexityFactor" xml:space="preserve">
+    <value>试数的复杂度</value>
+  </data>
+  <data name="TechniqueFormat_WhipStep" xml:space="preserve">
+    <value>强区域：{0}，弱区域：{1}</value>
+  </data>
+  <data name="StepSearcherName_WhipStepSearcher" xml:space="preserve">
+    <value>线性动态链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

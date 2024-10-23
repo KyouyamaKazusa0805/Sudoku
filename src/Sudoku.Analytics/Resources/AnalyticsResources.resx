@@ -3423,4 +3423,19 @@ Error grid: '{0:#}'</value>
   <data name="GroupedAlmostLockedSetsWWing" xml:space="preserve">
     <value>Grouped Almost Locked Sets W-Wing</value>
   </data>
+  <data name="Whip" xml:space="preserve">
+    <value>Whip</value>
+  </data>
+  <data name="TechniqueGroup_WhipAndBraid" xml:space="preserve">
+    <value>Whip &amp; Braid</value>
+  </data>
+  <data name="Factor_WhipComplexityFactor" xml:space="preserve">
+    <value>Whip complexity</value>
+  </data>
+  <data name="TechniqueFormat_WhipStep" xml:space="preserve">
+    <value>Truths: {0}, links: {1}</value>
+  </data>
+  <data name="StepSearcherName_WhipStepSearcher" xml:space="preserve">
+    <value>Whip</value>
+  </data>
 </root>

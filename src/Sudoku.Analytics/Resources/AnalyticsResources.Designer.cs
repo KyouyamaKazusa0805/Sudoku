@@ -2716,6 +2716,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Whip complexity.
+        /// </summary>
+        public static string Factor_WhipComplexityFactor {
+            get {
+                return ResourceManager.GetString("Factor_WhipComplexityFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to false.
         /// </summary>
         public static string FalseKeyword {
@@ -6247,6 +6256,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Whip.
+        /// </summary>
+        public static string StepSearcherName_WhipStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_WhipStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XYZ-Ring.
         /// </summary>
         public static string StepSearcherName_XyzRingStepSearcher {
@@ -8830,6 +8848,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Truths: {0}, links: {1}.
+        /// </summary>
+        public static string TechniqueFormat_WhipStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_WhipStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} to {1}, with {2} as connection.
         /// </summary>
         public static string TechniqueFormat_WWingStep {
@@ -9258,6 +9285,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_UniqueRectangle {
             get {
                 return ResourceManager.GetString("TechniqueGroup_UniqueRectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whip &amp; Braid.
+        /// </summary>
+        public static string TechniqueGroup_WhipAndBraid {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_WhipAndBraid", resourceCulture);
             }
         }
         
@@ -9843,6 +9879,15 @@ namespace Sudoku.Resources {
         public static string Whale {
             get {
                 return ResourceManager.GetString("Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whip.
+        /// </summary>
+        public static string Whip {
+            get {
+                return ResourceManager.GetString("Whip", resourceCulture);
             }
         }
         
