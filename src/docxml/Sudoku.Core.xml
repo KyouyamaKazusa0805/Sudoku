@@ -4843,14 +4843,14 @@
             For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Offsets">
-            <summary>
-            Indicates the offsets in this collection.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Shifting">
             <summary>
             Indicates the size of each unit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Offsets">
+            <summary>
+            Indicates the offsets in this collection.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.System#Collections#Generic#ICollection{TElement}#IsReadOnly">

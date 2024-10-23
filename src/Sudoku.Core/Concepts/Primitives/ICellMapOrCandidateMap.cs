@@ -66,14 +66,14 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	public abstract TSelf PeerIntersection { get; }
 
 	/// <summary>
-	/// Indicates the offsets in this collection.
-	/// </summary>
-	protected internal abstract TElement[] Offsets { get; }
-
-	/// <summary>
 	/// Indicates the size of each unit.
 	/// </summary>
 	protected abstract int Shifting { get; }
+
+	/// <summary>
+	/// Indicates the offsets in this collection.
+	/// </summary>
+	protected abstract TElement[] Offsets { get; }
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
