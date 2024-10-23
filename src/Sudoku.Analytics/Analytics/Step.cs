@@ -13,6 +13,7 @@ namespace Sudoku.Analytics;
 [TypeImpl(
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
 	OtherModifiersOnEquals = "sealed",
+	OtherModifiersOnGetHashCode = "sealed",
 	OtherModifiersOnToString = "sealed",
 	OtherModifiersOnEquatableEquals = "virtual")]
 public abstract partial class Step([Property] StepConclusions conclusions, [Property] View[]? views, [Property] StepGathererOptions options) :
