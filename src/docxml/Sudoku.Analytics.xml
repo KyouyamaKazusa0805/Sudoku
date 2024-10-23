@@ -7653,6 +7653,21 @@
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.ExistsContradiction(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space@)">
+            <summary>
+            Determine whether the specified grid state contains any contradiction.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="failedSpace">The failed space.</param>
+            <returns>A <see cref="T:System.Boolean"/> result whether any contradiction is found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find all possible conclusions inside the grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All conclusions.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher">
             <summary>
             Provides with an <b>Anonymous Deadly Pattern</b> step searcher.
