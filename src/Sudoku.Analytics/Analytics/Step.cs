@@ -177,7 +177,7 @@ public abstract partial class Step([Property] StepConclusions conclusions, [Prop
 	/// <returns>
 	/// An <see cref="int"/> value indicating the result. The comparison rule is:
 	/// <list type="number">
-	/// <item>If the argument <paramref name="other"/> is <see langword="null"/>, return 1.</item>
+	/// <item>If the argument <paramref name="other"/> is <see langword="null"/>, return -1.</item>
 	/// <item>
 	/// If the argument <paramref name="other"/> isn't <see langword="null"/>, compare the technique used.
 	/// If the code is greater, the instance will be greater.

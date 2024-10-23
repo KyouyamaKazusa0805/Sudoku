@@ -6215,6 +6215,174 @@
         <member name="M:Sudoku.Concepts.Specialized.AdjacentCellGraph.Equals(Sudoku.Concepts.Specialized.AdjacentCellGraph)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.Space">
+            <summary>
+            Represents a supersymmetric space. This type can also be used as representation for truth or link concept
+            defined in another project called <see href="https://sudoku.allanbarker.com/index.html">XSudo</see>.
+            </summary>
+            <param name="mask">Indicates the backing mask.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.#ctor(System.Int16)">
+            <summary>
+            Represents a supersymmetric space. This type can also be used as representation for truth or link concept
+            defined in another project called <see href="https://sudoku.allanbarker.com/index.html">XSudo</see>.
+            </summary>
+            <param name="mask">Indicates the backing mask.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.IsHouseRelated">
+            <summary>
+            Indicates whether the space is house-related.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.IsCellRelated">
+            <summary>
+            Indicates whether the space is cell-related.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Type">
+            <summary>
+            Indicates the space type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Row">
+            <summary>
+            Indicates the row value,
+            or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is not <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/> or <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowNumber"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Column">
+            <summary>
+            Indicates the column value,
+            or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is not <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/> or <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.ColumnNumber"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Block">
+            <summary>
+            Indicates the block value, or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is not <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.BlockNumber"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Cell">
+            <summary>
+            Indicates the target cell, or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is not <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Digit">
+            <summary>
+            Indicates the target digit, or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.House">
+            <summary>
+            Indicates the target house, or -1 if <see cref="P:Sudoku.Concepts.Supersymmetry.Space.Type"/> is <see cref="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Letter">
+            <summary>
+            Indicates the represented letter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Primary">
+            <summary>
+            Indicates the primary value, written after letter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.Space.Secondary">
+            <summary>
+            Indicates the secondary value, written before letter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.Deconstruct(System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.RowNumber(System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for row-number space.
+            </summary>
+            <param name="row">Indicates the row index.</param>
+            <param name="digit">Indicates the number.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instance created.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is greater than 9.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.ColumnNumber(System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for column-number space.
+            </summary>
+            <param name="column">Indicates the column index.</param>
+            <param name="digit">Indicates the number.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instance created.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is greater than 9.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.BlockNumber(System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for block-number space.
+            </summary>
+            <param name="block">Indicates the block index.</param>
+            <param name="digit">Indicates the number.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instance created.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is greater than 9.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.RowColumn(System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for row-column space.
+            </summary>
+            <param name="row">Indicates the row index.</param>
+            <param name="column">Indicates the number.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> instance created.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when argument is greater than 9.</exception>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.Space._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_Equality(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_Inequality(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.Equals(Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.SpaceType">
+            <summary>
+            Represents a type of space.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn">
+            <summary>
+            Indicates row-column space (RC space).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowNumber">
+            <summary>
+            Indicates row-number space (RN space).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.ColumnNumber">
+            <summary>
+            Indicates column-number space (CN space).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.BlockNumber">
+            <summary>
+            Indicates block-number space (BN space).
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.SymmetricType"/>.

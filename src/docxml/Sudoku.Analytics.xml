@@ -6864,7 +6864,7 @@
             <returns>
             An <see cref="T:System.Int32"/> value indicating the result. The comparison rule is:
             <list type="number">
-            <item>If the argument <paramref name="other"/> is <see langword="null"/>, return 1.</item>
+            <item>If the argument <paramref name="other"/> is <see langword="null"/>, return -1.</item>
             <item>
             If the argument <paramref name="other"/> isn't <see langword="null"/>, compare the technique used.
             If the code is greater, the instance will be greater.
@@ -12489,7 +12489,7 @@
             <param name="truths">Indicates all truths.</param>
             <param name="links">Indicates all links.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WhipStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Collections.ICollection,System.Collections.ICollection)">
+        <member name="M:Sudoku.Analytics.Steps.WhipStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
             <summary>
             Provides with a step that is a <b>Whip</b> technique.
             </summary>

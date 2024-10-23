@@ -12,8 +12,8 @@ public sealed partial class WhipStep(
 	StepConclusions conclusions,
 	View[]? views,
 	StepGathererOptions options,
-	[Property] ICollection truths,
-	[Property] ICollection links
+	[Property] ReadOnlyMemory<Space> truths,
+	[Property] ReadOnlyMemory<Space> links
 ) : ChainStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
@@ -23,7 +23,7 @@ public sealed partial class WhipStep(
 	public override bool IsDynamic => true;
 
 	/// <inheritdoc/>
-	public override int Complexity => throw new NotImplementedException("Will be implemented later.");
+	public override int Complexity => Views![0].OfType<CandidateViewNode>().Length; // A tricky way to check number of nodes used.
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 80;
@@ -31,13 +31,17 @@ public sealed partial class WhipStep(
 	/// <summary>
 	/// Indicates the rank of the pattern.
 	/// </summary>
-	public int Rank => Links.Count - Truths.Count;
+	public int Rank => Links.Length - Truths.Length;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.Whip;
 
 	/// <inheritdoc/>
-	public override Mask DigitsUsed => throw new NotImplementedException("Will be implemented later.");
+	public override Mask DigitsUsed
+		=> (Mask)(
+			MaskOperations.Create((from t in Truths select t.Digit).Span)
+				| MaskOperations.Create((from l in Links select l.Digit).Span)
+		);
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
@@ -54,32 +58,14 @@ public sealed partial class WhipStep(
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [TruthsStr, LinksStr]), new(SR.ChineseLanguage, [TruthsStr, LinksStr])];
 
-	private string TruthsStr => throw new NotImplementedException("Will be implemented later.");
+	private string TruthsStr => string.Join(' ', from t in Truths select t.ToString());
 
-	private string LinksStr => throw new NotImplementedException("Will be implemented later.");
+	private string LinksStr => string.Join(' ', from l in Links select l.ToString());
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-	{
-		if (other is not WhipStep comparer)
-		{
-			return false;
-		}
-
-		if (Rank != comparer.Rank)
-		{
-			return false;
-		}
-
-		if (Conclusions.Span[0] != comparer.Conclusions.Span[0])
-		{
-			return false;
-		}
-
-		// TODO: Compares with truths and links.
-		throw new NotImplementedException("Will be implemented later.");
-	}
+		=> other is WhipStep comparer && Rank == comparer.Rank && Conclusions.Span[0] == comparer.Conclusions.Span[0];
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
@@ -88,10 +74,9 @@ public sealed partial class WhipStep(
 				? rankComparisonResult
 				: Conclusions.Span[0].CompareTo(comparer.Conclusions.Span[0]) is var conclusionComparisonResult and not 0
 					? conclusionComparisonResult
-					// TODO: Compares with truths and links.
-					: throw new NotImplementedException("Will be implemented later.")
+					: 0
 			: -1;
 
 	/// <inheritdoc/>
-	public override string GetName(IFormatProvider? formatProvider) => $"{base.GetName(formatProvider)}[{Truths.Count}]";
+	public override string GetName(IFormatProvider? formatProvider) => $"{base.GetName(formatProvider)}[{Truths.Length}]";
 }

@@ -40,6 +40,7 @@ global using Sudoku.Concepts.Coloring;
 global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Coordinates.Formatting;
 global using Sudoku.Concepts.Primitives;
+global using Sudoku.Concepts.Supersymmetry;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Generating.Filtering;
