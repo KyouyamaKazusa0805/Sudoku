@@ -562,7 +562,7 @@ public partial struct CellMap : CellMapBase
 		return -1;
 	}
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IFormatProvider? formatProvider)
 		=> formatProvider switch

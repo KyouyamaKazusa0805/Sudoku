@@ -97,46 +97,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get
-		{
-			return this switch
-			{
-				{ Count: 0 } => [],
-				[var a] => [CoordinateConverter.InvariantCultureInstance.CandidateConverter([a])],
-				_ => f(Offsets)
-			};
-
-
-			static string[] f(Candidate[] offsets)
-			{
-				var list = new List<string>();
-				foreach (var digitGroup in
-					from candidate in offsets
-					group candidate by candidate % 9 into digitGroups
-					orderby digitGroups.Key
-					select digitGroups)
-				{
-					var sb = new StringBuilder(50);
-					var cells = CellMap.Empty;
-					foreach (var candidate in digitGroup)
-					{
-						cells.Add(candidate / 9);
-					}
-
-					list.Add(
-						sb
-							.Append(CoordinateConverter.InvariantCultureInstance.CellConverter(in cells))
-							.Append($"({digitGroup.Key + 1})")
-							.ToString()
-					);
-				}
-				return [.. list];
-			}
-		}
-	}
+	public readonly string[] StringChunks => this ? ToString().SplitBy(',', ' ').ToArray() : [];
 
 	/// <summary>
 	/// Indicates the digits used in this pattern.
@@ -396,6 +357,15 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			CandidateMapFormatInfo i => i.FormatCore(in this),
+			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(in this)
+		};
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Candidate[] ToArray() => Offsets;
 
 	/// <summary>
@@ -415,15 +385,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		}
 		return result;
 	}
-
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(IFormatProvider? formatProvider)
-		=> formatProvider switch
-		{
-			CandidateMapFormatInfo i => i.FormatCore(in this),
-			_ => CoordinateConverter.GetInstance(formatProvider).CandidateConverter(in this)
-		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

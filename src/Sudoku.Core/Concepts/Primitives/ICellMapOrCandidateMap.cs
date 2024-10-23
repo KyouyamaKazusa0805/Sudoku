@@ -54,7 +54,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
 	/// all offset values (cell indices and candidate indices), grouped with same row/column.
 	/// </summary>
-	public abstract string[] StringChunks { get; }
+	public virtual string[] StringChunks => (TSelf)this ? ToString().SplitBy(',', ' ').ToArray() : [];
 
 	/// <summary>
 	/// Indicates the peer intersection of the current instance.
@@ -204,6 +204,12 @@ public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public abstract bool Equals(ref readonly TSelf other);
+
+	/// <inheritdoc cref="object.ToString"/>
+	public virtual string ToString() => ToString(null);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public abstract string ToString(IFormatProvider? formatProvider);
 
 	/// <summary>
 	/// Returns an array of <typeparamref name="TElement"/> offsets having stored in the current collection.

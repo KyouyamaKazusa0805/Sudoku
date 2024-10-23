@@ -270,6 +270,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.ToArray">
             <inheritdoc/>
         </member>
@@ -279,9 +282,6 @@
             </summary>
             <param name="cell">The desired cell.</param>
             <returns>The digits.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>
@@ -804,7 +804,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <inheritdoc/>
@@ -4997,6 +4997,12 @@
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.Equals(`0@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Primitives.ICellMapOrCandidateMap`3.ToArray">
             <summary>
