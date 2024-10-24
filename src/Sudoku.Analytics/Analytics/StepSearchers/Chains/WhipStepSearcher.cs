@@ -41,7 +41,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				{
 					// Deconstruct the object and apply digit into playground.
 					var currentNode = pendingNodes.RemoveFirstNode();
-					var currentCandidate = currentNode.Candidate;
+					var currentCandidate = currentNode.Assignment.Candidate;
 					ref var playground = ref currentNode.Grid;
 					playground.Apply(new(Assignment, currentCandidate));
 
@@ -63,8 +63,8 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					}
 
 					// And then collect all possible singles in the grid.
-					var nextConclusions = GetNextConclusions(in playground);
-					if (!nextConclusions)
+					var nextAssignments = GetNextAssignments(in playground);
+					if (nextAssignments.Length == 0)
 					{
 						// The current branch is failed. Just continue.
 						continue;
@@ -72,9 +72,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
-					foreach (var nextConclusion in nextConclusions)
+					foreach (var assignment in nextAssignments)
 					{
-						pendingNodes.AddLast(new WhipNode(nextConclusion, in playground) >> currentNode);
+						pendingNodes.AddLast(new WhipNode(assignment, in playground) >> currentNode);
 					}
 				}
 			}
@@ -133,13 +133,13 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// Try to find all possible conclusions inside the grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <returns>All conclusions.</returns>
-	private static CandidateMap GetNextConclusions(ref readonly Grid grid)
+	/// <returns>All conclusions and reason why the assignment raised.</returns>
+	private static ReadOnlySpan<WhipAssignment> GetNextAssignments(ref readonly Grid grid)
 	{
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
 
-		var result = CandidateMap.Empty;
+		var result = new List<WhipAssignment>();
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for full houses.
@@ -154,8 +154,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						appearedDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
 					}
 				}
-
-				result.Add(fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask)));
+				result.Add(new(fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask)), Technique.FullHouse));
 			}
 
 			// Check hidden singles.
@@ -163,7 +162,17 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			{
 				if ((candidatesMap[digit] & HousesMap[house]) is [var hiddenSingleCell])
 				{
-					result.Add(hiddenSingleCell * 9 + digit);
+					result.Add(
+						new(
+							hiddenSingleCell * 9 + digit,
+							house switch
+							{
+								< 9 => Technique.CrosshatchingBlock,
+								< 18 => Technique.CrosshatchingRow,
+								_ => Technique.CrosshatchingColumn
+							}
+						)
+					);
 				}
 			}
 		}
@@ -175,11 +184,10 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			if (Mask.IsPow2(digitsMask))
 			{
 				var digit = Mask.Log2(digitsMask);
-				result.Add(nakedSingleCell * 9 + digit);
+				result.Add(new(nakedSingleCell * 9 + digit, Technique.NakedSingle));
 			}
 		}
-
-		return result;
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -203,11 +211,22 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		var linkOffsets = new List<ChainLinkViewNode>();
 		for (var node = contradictionNode; node is not null; node = node.Parent)
 		{
-			candidateOffsets.Add(new(ColorIdentifier.Normal, node.Candidate));
-
-			if (node.Parent is { Candidate: var parentCandidate })
+			if (node.Assignment.Candidate != startCandidate)
 			{
-				linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidate.AsCandidateMap(), node.Candidate.AsCandidateMap(), false));
+				// Skip for the start candidate on purpose.
+				candidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
+			}
+
+			if (node.Parent is { Assignment.Candidate: var parentCandidate })
+			{
+				linkOffsets.Add(
+					new(
+						ColorIdentifier.Normal,
+						parentCandidate.AsCandidateMap(),
+						node.Assignment.Candidate.AsCandidateMap(),
+						false
+					)
+				);
 			}
 		}
 

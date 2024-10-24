@@ -3,13 +3,13 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a whip node.
 /// </summary>
-/// <param name="candidate">Indicates the candidates currently set.</param>
+/// <param name="assignment">Indicates the assignment conclusion.</param>
 /// <param name="grid">The currently grid state.</param>
 /// <param name="parent">Indicates the parent node.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class WhipNode(
-	[Property, HashCodeMember] Candidate candidate,
+	[Property, HashCodeMember] WhipAssignment assignment,
 	ref readonly Grid grid,
 	[Property] WhipNode? parent
 ) :
@@ -27,9 +27,18 @@ public sealed partial class WhipNode(
 	/// <summary>
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
 	/// </summary>
-	/// <param name="candidate">The candidate.</param>
+	/// <param name="candidate">The assignment.</param>
 	/// <param name="grid">The grid.</param>
-	public WhipNode(Candidate candidate, ref readonly Grid grid) : this(candidate, in grid, null)
+	public WhipNode(Candidate candidate, ref readonly Grid grid) : this(new(candidate, Technique.None), in grid, null)
+	{
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
+	/// </summary>
+	/// <param name="assignment">The assignment.</param>
+	/// <param name="grid">The grid.</param>
+	public WhipNode(WhipAssignment assignment, ref readonly Grid grid) : this(assignment, in grid, null)
 	{
 	}
 
@@ -56,16 +65,15 @@ public sealed partial class WhipNode(
 	public ref Grid Grid => ref _grid;
 
 	[EquatableMember]
-	private Candidate CandidateEntry => Candidate;
+	private WhipAssignment AssignmentEntry => Assignment;
 
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		var candidateString = converter.CandidateConverter([Candidate]);
-		var parentCandidateString = Parent is null ? "<null>" : converter.CandidateConverter([Parent.Candidate]);
-		return $$"""{{nameof(WhipNode)}} { {{nameof(Candidate)}} = {{candidateString}}, {{nameof(Parent)}} = {{parentCandidateString}} }""";
+		var parentString = Parent?.ToString(converter) ?? "<null>";
+		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
 	}
 
 	/// <inheritdoc/>
@@ -83,7 +91,7 @@ public sealed partial class WhipNode(
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Candidate, in current.Grid, parent);
+	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Assignment, in current.Grid, parent);
 
 	/// <inheritdoc/>
 	static WhipNode IShiftOperators<WhipNode, WhipNode, WhipNode>.operator >>>(WhipNode value, WhipNode shiftAmount)

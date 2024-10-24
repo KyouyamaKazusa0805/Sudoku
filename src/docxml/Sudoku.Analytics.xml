@@ -4354,19 +4354,78 @@
         <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.WhipAssignment">
+            <summary>
+            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            </summary>
+            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Reason">Indicates the reason why the target candidate becomes available.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.#ctor(System.Int32,Sudoku.Categorization.Technique)">
+            <summary>
+            Represents a type that is used by whip chaining, describing the target candidate, and why it can become available.
+            </summary>
+            <param name="Candidate">Indicates the target candidate.</param>
+            <param name="Reason">Indicates the reason why the target candidate becomes available.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipAssignment.Reason">
+            <summary>Indicates the reason why the target candidate becomes available.</summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipAssignment.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Analytics.Construction.Components.WhipAssignment.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <see cref="M:Sudoku.Analytics.Construction.Components.WhipAssignment.ToString" />.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.WhipNode">
             <summary>
             Represents a whip node.
             </summary>
-            <param name="candidate">Indicates the candidates currently set.</param>
+            <param name="assignment">Indicates the assignment conclusion.</param>
             <param name="grid">The currently grid state.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.WhipNode)">
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
             Represents a whip node.
             </summary>
-            <param name="candidate">Indicates the candidates currently set.</param>
+            <param name="assignment">Indicates the assignment conclusion.</param>
             <param name="grid">The currently grid state.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
@@ -4379,7 +4438,14 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
             </summary>
-            <param name="candidate">The candidate.</param>
+            <param name="candidate">The assignment.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(Sudoku.Analytics.Construction.Components.WhipAssignment,Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
+            </summary>
+            <param name="assignment">The assignment.</param>
             <param name="grid">The grid.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
@@ -4412,9 +4478,9 @@
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Candidate">
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Assignment">
             <summary>
-            The generated property declaration for parameter <c>candidate</c>.
+            The generated property declaration for parameter <c>assignment</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Parent">
@@ -7747,12 +7813,12 @@
             <param name="failedSpace">The failed space.</param>
             <returns>A <see cref="T:System.Boolean"/> result whether any contradiction is found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextConclusions(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.GetNextAssignments(Sudoku.Concepts.Grid@)">
             <summary>
             Try to find all possible conclusions inside the grid.
             </summary>
             <param name="grid">The grid.</param>
-            <returns>All conclusions.</returns>
+            <returns>All conclusions and reason why the assignment raised.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space)">
             <summary>
