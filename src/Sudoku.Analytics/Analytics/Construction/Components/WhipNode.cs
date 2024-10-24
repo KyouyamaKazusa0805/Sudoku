@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Construction.Components;
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class WhipNode(
 	[Property, HashCodeMember] WhipAssignment assignment,
-	ref readonly Grid grid,
+	[Field, HashCodeMember] ref readonly Grid grid,
 	[Property] WhipNode? parent
 ) :
 	IEquatable<WhipNode>,
@@ -18,12 +18,6 @@ public sealed partial class WhipNode(
 	IEqualityOperators<WhipNode, WhipNode, bool>,
 	IShiftOperators<WhipNode, WhipNode, WhipNode>
 {
-	/// <summary>
-	/// Indicates the backing grid.
-	/// </summary>
-	private Grid _grid = grid;
-
-
 	/// <summary>
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
 	/// </summary>
@@ -62,6 +56,7 @@ public sealed partial class WhipNode(
 	/// <summary>
 	/// Indicates the current grid.
 	/// </summary>
+	[EquatableMember]
 	public ref Grid Grid => ref _grid;
 
 	[EquatableMember]

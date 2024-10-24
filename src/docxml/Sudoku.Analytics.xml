@@ -4429,11 +4429,6 @@
             <param name="grid">The currently grid state.</param>
             <param name="parent">Indicates the parent node.</param>
         </member>
-        <member name="F:Sudoku.Analytics.Construction.Components.WhipNode._grid">
-            <summary>
-            Indicates the backing grid.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32,Sudoku.Concepts.Grid@)">
             <summary>
             Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
@@ -4477,6 +4472,11 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.WhipNode._grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Assignment">
             <summary>

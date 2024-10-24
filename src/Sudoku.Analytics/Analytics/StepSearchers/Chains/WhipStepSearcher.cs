@@ -207,51 +207,162 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		Space failedSpace
 	)
 	{
-		var candidateOffsets = new List<CandidateViewNode>();
-		var linkOffsets = new List<ChainLinkViewNode>();
-		for (var node = contradictionNode; node is not null; node = node.Parent)
-		{
-			if (node.Assignment.Candidate != startCandidate)
-			{
-				// Skip for the start candidate on purpose.
-				candidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
-			}
-
-			if (node.Parent is { Assignment.Candidate: var parentCandidate })
-			{
-				linkOffsets.Add(
-					new(
-						ColorIdentifier.Normal,
-						parentCandidate.AsCandidateMap(),
-						node.Assignment.Candidate.AsCandidateMap(),
-						false
-					)
-				);
-			}
-		}
-
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, startCandidate)),
-			[
-				[
-					.. candidateOffsets,
-					.. linkOffsets,
-					.. failedSpace.Type == SpaceType.RowColumn
-						? [new CellViewNode(ColorIdentifier.Normal, failedSpace.Row * 9 + failedSpace.Column)]
-						: ReadOnlySpan<ViewNode>.Empty,
-					.. failedSpace.Type != SpaceType.RowColumn
-						? [
-							new HouseViewNode(ColorIdentifier.Normal, failedSpace.House),
-							..
-							from cell in HousesMap[failedSpace.House] & CandidatesMap[failedSpace.Digit]
-							select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + failedSpace.Digit)
-						]
-						: ReadOnlySpan<ViewNode>.Empty
-				]
-			],
+			getViews(in initialGrid),
 			context.Options,
 			ReadOnlyMemory<Space>.Empty,
 			ReadOnlyMemory<Space>.Empty
 		);
+
+
+		View[] getViews(ref readonly Grid initialGrid)
+		{
+			var candidateOffsets = new HashSet<CandidateViewNode>();
+			var linkOffsets = new List<ChainLinkViewNode>();
+			for (var node = contradictionNode; node is not null; node = node.Parent)
+			{
+				var currentCandidate = node.Assignment.Candidate;
+				var reason = node.Assignment.Reason;
+				candidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
+
+				// Due to design of this algorithm, we should append extra strong and weak links between two assignments.
+				// Please note that the links are reversed, we should make a reversion
+				// in order to keep the chain and node states correct.
+				if (node.Parent is { Assignment.Candidate: var parentCandidate } && reason != Technique.None)
+				{
+					switch (reason)
+					{
+						case Technique.FullHouse or Technique.NakedSingle:
+						{
+							var interimCandidate = currentCandidate / 9 * 9 + parentCandidate % 9;
+							candidateOffsets.Add(new(ColorIdentifier.Normal, parentCandidate));
+							candidateOffsets.Add(new(ColorIdentifier.Normal, currentCandidate));
+							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
+
+							linkOffsets.Add(
+								new(
+									ColorIdentifier.Normal,
+									parentCandidate.AsCandidateMap(),
+									interimCandidate.AsCandidateMap(),
+									false
+								)
+							);
+							linkOffsets.Add(
+								new(
+									ColorIdentifier.Normal,
+									interimCandidate.AsCandidateMap(),
+									currentCandidate.AsCandidateMap(),
+									true
+								)
+							);
+							break;
+						}
+						case var type and (Technique.CrosshatchingBlock or Technique.CrosshatchingRow or Technique.CrosshatchingColumn):
+						{
+							candidateOffsets.Add(new(ColorIdentifier.Normal, parentCandidate));
+							candidateOffsets.Add(new(ColorIdentifier.Normal, currentCandidate));
+
+							var currentCell = currentCandidate / 9;
+							var currentDigit = currentCandidate % 9;
+							var houseType = type switch
+							{
+								Technique.CrosshatchingBlock => HouseType.Block,
+								Technique.CrosshatchingRow => HouseType.Row,
+								_ => HouseType.Column
+							};
+
+							if (!PeersMap[parentCandidate / 9].Contains(currentCell))
+							{
+								var groupedCells = ((parentCandidate / 9).AsCellMap() + currentCell).PeerIntersection
+									& HousesMap[currentCell.ToHouse(houseType)]
+									& CandidatesMap[currentDigit];
+								foreach (var cell in groupedCells)
+								{
+									candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + currentDigit));
+								}
+
+								var interimMap = (from cell in groupedCells select cell * 9 + currentDigit).AsCandidateMap();
+								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidate.AsCandidateMap(), interimMap, false));
+								linkOffsets.Add(new(ColorIdentifier.Normal, interimMap, currentCandidate.AsCandidateMap(), true));
+							}
+							else
+							{
+								var interimCandidate = parentCandidate / 9 * 9 + currentDigit;
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
+								linkOffsets.Add(
+									new(
+										ColorIdentifier.Normal,
+										parentCandidate.AsCandidateMap(),
+										interimCandidate.AsCandidateMap(),
+										false
+									)
+								);
+								linkOffsets.Add(
+									new(
+										ColorIdentifier.Normal,
+										interimCandidate.AsCandidateMap(),
+										currentCandidate.AsCandidateMap(),
+										true
+									)
+								);
+							}
+							break;
+						}
+					}
+				}
+			}
+
+			// Remove the node that is start.
+			candidateOffsets.RemoveWhere(node => node.Candidate == startCandidate);
+
+			var tryAndErrorCandidateOffsets = new List<CandidateViewNode>();
+			var tryAndErrorLinkOffsets = new List<ChainLinkViewNode>();
+			for (var node = contradictionNode; node is not null; node = node.Parent)
+			{
+				if (node.Assignment.Candidate != startCandidate)
+				{
+					// Skip for the start candidate on purpose.
+					tryAndErrorCandidateOffsets.Add(new(ColorIdentifier.Normal, node.Assignment.Candidate));
+				}
+
+				if (node.Parent is { Assignment.Candidate: var parentCandidate })
+				{
+					tryAndErrorLinkOffsets.Add(
+						new(
+							ColorIdentifier.Normal,
+							parentCandidate.AsCandidateMap(),
+							node.Assignment.Candidate.AsCandidateMap(),
+							false
+						)
+					);
+				}
+			}
+
+			// Contradiction-related view nodes.
+			ReadOnlySpan<ViewNode> contradictionViewNodes = [
+				.. failedSpace.Type == SpaceType.RowColumn
+					? [
+						new CellViewNode(ColorIdentifier.Auxiliary1, failedSpace.Cell),
+						..
+						from digit in initialGrid.GetCandidates(failedSpace.Cell)
+						select new CandidateViewNode(ColorIdentifier.Auxiliary1, failedSpace.Cell * 9 + digit)
+					]
+					: ReadOnlySpan<ViewNode>.Empty,
+				.. failedSpace.Type != SpaceType.RowColumn
+					? [
+						new HouseViewNode(ColorIdentifier.Auxiliary1, failedSpace.House),
+						..
+						from cell in HousesMap[failedSpace.House] & CandidatesMap[failedSpace.Digit]
+						select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + failedSpace.Digit)
+					]
+					: ReadOnlySpan<ViewNode>.Empty
+			];
+
+			return [
+				[.. candidateOffsets, .. linkOffsets, .. contradictionViewNodes],
+				[.. tryAndErrorCandidateOffsets, .. tryAndErrorLinkOffsets, .. contradictionViewNodes]
+			];
+		}
 	}
 }

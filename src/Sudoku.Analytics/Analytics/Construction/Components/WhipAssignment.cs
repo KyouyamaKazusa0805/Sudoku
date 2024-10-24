@@ -16,7 +16,7 @@ public readonly record struct WhipAssignment(Candidate Candidate, Technique Reas
 		builder.Append($"{nameof(Candidate)} = ");
 		builder.Append(converter.CandidateConverter([Candidate]));
 		builder.Append($", {nameof(Reason)} = ");
-		builder.Append(Reason.GetName(null));
+		builder.Append(Reason == Technique.None ? "<none>" : Reason.GetName(null));
 		return true;
 	}
 }
