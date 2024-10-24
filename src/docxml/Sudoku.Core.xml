@@ -6299,9 +6299,6 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Concepts.Supersymmetry.Space.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.RowNumber(System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for row-number space.
@@ -6349,6 +6346,9 @@
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_Equality(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
@@ -6365,22 +6365,23 @@
         </member>
         <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowColumn">
             <summary>
-            Indicates row-column space (RC space).
+            Indicates row-column space (RC space). The notation will be <c>XnY</c>, meaning cell at row X and column Y
+            (equivalent to <c>rXcY</c>).
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.RowNumber">
             <summary>
-            Indicates row-number space (RN space).
+            Indicates row-number space (RN space). The notation will be <c>XrY</c>, meaning digit X in row Y.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.ColumnNumber">
             <summary>
-            Indicates column-number space (CN space).
+            Indicates column-number space (CN space). The notation will be <c>XcY</c>, meaning digit X in column Y.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Supersymmetry.SpaceType.BlockNumber">
             <summary>
-            Indicates block-number space (BN space).
+            Indicates block-number space (BN space). The notation will be <c>XbY</c>, meaning digit X in block Y.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">

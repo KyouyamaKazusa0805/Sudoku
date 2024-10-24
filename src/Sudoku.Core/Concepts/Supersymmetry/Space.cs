@@ -5,7 +5,7 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// defined in another project called <see href="https://sudoku.allanbarker.com/index.html">XSudo</see>.
 /// </summary>
 /// <param name="mask">Indicates the backing mask.</param>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquatable<Space>, IEqualityOperators<Space, Space, bool>
 {
 	/// <summary>
@@ -84,6 +84,9 @@ public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquat
 	/// </summary>
 	private Digit Secondary => _mask >> 4 & 15;
 
+	[StringMember]
+	private string FinalText => $"{Secondary}{Letter}{Primary}";
+
 	[EquatableMember]
 	private Mask MaskEntry => _mask;
 
@@ -91,9 +94,6 @@ public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquat
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out int primary, out int secondary) => (primary, secondary) = (Primary, Secondary);
-
-	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => $"{Secondary}{Letter}{Primary}";
 
 
 	/// <summary>
