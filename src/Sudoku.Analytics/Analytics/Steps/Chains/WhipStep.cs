@@ -76,7 +76,4 @@ public sealed partial class WhipStep(
 					? conclusionComparisonResult
 					: 0
 			: -1;
-
-	/// <inheritdoc/>
-	public override string GetName(IFormatProvider? formatProvider) => $"{base.GetName(formatProvider)}[{Truths.Length}]";
 }

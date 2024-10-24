@@ -4354,6 +4354,92 @@
         <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.WhipNode">
+            <summary>
+            Represents a whip node.
+            </summary>
+            <param name="candidate">Indicates the candidates currently set.</param>
+            <param name="grid">The currently grid state.</param>
+            <param name="parent">Indicates the parent node.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32,Sudoku.Concepts.Grid@,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <summary>
+            Represents a whip node.
+            </summary>
+            <param name="candidate">Indicates the candidates currently set.</param>
+            <param name="grid">The currently grid state.</param>
+            <param name="parent">Indicates the parent node.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Construction.Components.WhipNode._grid">
+            <summary>
+            Indicates the backing grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.#ctor(System.Int32,Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance via the candidate set and its corresponding grid.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
+            <summary>
+            Indicates the root node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Grid">
+            <summary>
+            Indicates the current grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_LeftShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.WhipNode.op_RightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_RightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance with parent node.
+            </summary>
+            <param name="current">The current node.</param>
+            <param name="parent">The parent node.</param>
+            <returns>The new node created.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Candidate">
+            <summary>
+            The generated property declaration for parameter <c>candidate</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Parent">
+            <summary>
+            The generated property declaration for parameter <c>parent</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_Equality(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_Inequality(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(Sudoku.Analytics.Construction.Components.WhipNode)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Pattern">
             <summary>
             Represents a pattern that describes a technique, describing cells and digits used in a puzzle.
@@ -7667,6 +7753,17 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.WhipStepSearcher.CreateStep(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Analytics.Construction.Components.WhipNode,System.Int32,Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Create a <see cref="T:Sudoku.Analytics.Steps.WhipStep"/> instance via the current confliction rule.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="contradictionNode">The node that makes such contradiction.</param>
+            <param name="startCandidate">Indicates the start candidate.</param>
+            <param name="initialGrid">Indicates the initial grid.</param>
+            <param name="failedSpace">Indicates the space indicating where such contradiction is raised.</param>
+            <returns>The final <see cref="T:Sudoku.Analytics.Steps.WhipStep"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AnonymousDeadlyPatternStepSearcher">
             <summary>
@@ -12547,9 +12644,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.WhipStep.CompareTo(Sudoku.Analytics.Step)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.WhipStep.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WhipStep.Truths">

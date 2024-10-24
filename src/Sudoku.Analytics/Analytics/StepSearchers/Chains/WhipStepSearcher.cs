@@ -30,20 +30,37 @@ public sealed partial class WhipStepSearcher : StepSearcher
 				// If the digit is not correct in solution, we can try to suppose it can be eliminated, and find any contradictions.
 				// The basic algorithm is simply find try & error - just suppose it is true,
 				// and then find the next true digit, and continue.
-				var startNode = new Node((cell * 9 + digit).AsCandidateMap(), true, false);
+				var startCandidate = cell * 9 + digit;
 
 				// Create a pending queue to record all interim cases, and a collection recording visited nodes.
-				var pendingNodes = new LinkedList<(Node Node, Grid Grid)>();
-				pendingNodes.AddLast((startNode, grid));
+				var pendingNodes = new LinkedList<WhipNode>();
+				pendingNodes.AddLast(new WhipNode(startCandidate, in grid));
 
 				// Iterate the pending queue and never stops, until all nodes are tried.
 				while (pendingNodes.Count != 0)
 				{
 					// Deconstruct the object and apply digit into playground.
-					var pair = pendingNodes.RemoveFirstNode();
-					var currentNode = pair.Node;
-					ref var playground = ref pair.Grid;
-					playground.Apply(new(Assignment, currentNode.Map[0]));
+					var currentNode = pendingNodes.RemoveFirstNode();
+					var currentCandidate = currentNode.Candidate;
+					ref var playground = ref currentNode.Grid;
+					playground.Apply(new(Assignment, currentCandidate));
+
+					// Here we should check for 2 kinds of contradictions:
+					//   1) No candidates in one empty cell
+					//   2) No possible positions of a digit in one house
+					// If we can find out such contradiction, we can conclude that the start assertion is failed.
+					if (ExistsContradiction(in playground, out var failedSpace))
+					{
+						// Contradiction is found. Now we can construct a step instance and return.
+						var step = CreateStep(in context, currentNode, startCandidate, in grid, failedSpace);
+						if (context.OnlyFindOne)
+						{
+							return step;
+						}
+
+						context.Accumulator.Add(step);
+						break;
+					}
 
 					// And then collect all possible singles in the grid.
 					var nextConclusions = GetNextConclusions(in playground);
@@ -53,24 +70,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Here we should check for 2 kinds of contradictions:
-					//   1) No candidates in one empty cell
-					//   2) No possible positions of a digit in one house
-					// If we can find out such contradiction, we can conclude that the start assertion is failed.
-					if (ExistsContradiction(in playground, out var failedSpace))
-					{
-						// Contradiction is found. Now we can construct a step instance and return.
-						; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;
-						// TODO: Implement later.
-						; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ; ;
-					}
-
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
 					foreach (var nextConclusion in nextConclusions)
 					{
-						var nextNode = new Node(nextConclusion.AsCandidateMap(), true, false) >> currentNode;
-						pendingNodes.AddLast((nextNode, playground));
+						pendingNodes.AddLast(new WhipNode(nextConclusion, in playground) >> currentNode);
 					}
 				}
 			}
@@ -100,13 +104,13 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		}
 
 		// Check for house.
-		var housesMap = HousesMap;
+		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
 		for (var house = 0; house < 27; house++)
 		{
-			for (var digit = 0; digit < 9; digit++)
+			foreach (var digit in grid[HousesMap[house] & emptyCells])
 			{
-				if (!(candidatesMap[digit] & housesMap[house]))
+				if (!(candidatesMap[digit] & HousesMap[house]))
 				{
 					delegate*<int, int, Space> spaceCreator = house switch
 					{
@@ -176,5 +180,59 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		}
 
 		return result;
+	}
+
+	/// <summary>
+	/// Create a <see cref="WhipStep"/> instance via the current confliction rule.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="contradictionNode">The node that makes such contradiction.</param>
+	/// <param name="startCandidate">Indicates the start candidate.</param>
+	/// <param name="initialGrid">Indicates the initial grid.</param>
+	/// <param name="failedSpace">Indicates the space indicating where such contradiction is raised.</param>
+	/// <returns>The final <see cref="WhipStep"/> instance.</returns>
+	private static WhipStep CreateStep(
+		ref readonly StepAnalysisContext context,
+		WhipNode contradictionNode,
+		Candidate startCandidate,
+		ref readonly Grid initialGrid,
+		Space failedSpace
+	)
+	{
+		var candidateOffsets = new List<CandidateViewNode>();
+		var linkOffsets = new List<ChainLinkViewNode>();
+		for (var node = contradictionNode; node is not null; node = node.Parent)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Normal, node.Candidate));
+
+			if (node.Parent is { Candidate: var parentCandidate })
+			{
+				linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidate.AsCandidateMap(), node.Candidate.AsCandidateMap(), false));
+			}
+		}
+
+		return new(
+			new SingletonArray<Conclusion>(new(Elimination, startCandidate)),
+			[
+				[
+					.. candidateOffsets,
+					.. linkOffsets,
+					.. failedSpace.Type == SpaceType.RowColumn
+						? [new CellViewNode(ColorIdentifier.Normal, failedSpace.Row * 9 + failedSpace.Column)]
+						: ReadOnlySpan<ViewNode>.Empty,
+					.. failedSpace.Type != SpaceType.RowColumn
+						? [
+							new HouseViewNode(ColorIdentifier.Normal, failedSpace.House),
+							..
+							from cell in HousesMap[failedSpace.House] & CandidatesMap[failedSpace.Digit]
+							select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + failedSpace.Digit)
+						]
+						: ReadOnlySpan<ViewNode>.Empty
+				]
+			],
+			context.Options,
+			ReadOnlyMemory<Space>.Empty,
+			ReadOnlyMemory<Space>.Empty
+		);
 	}
 }

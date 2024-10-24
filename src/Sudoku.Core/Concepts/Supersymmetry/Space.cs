@@ -85,7 +85,7 @@ public readonly partial struct Space([Field, HashCodeMember] Mask mask) : IEquat
 	private Digit Secondary => _mask >> 4 & 15;
 
 	[StringMember]
-	private string FinalText => $"{Secondary}{Letter}{Primary}";
+	private string FinalText => $"{Secondary + 1}{Letter}{Primary + 1}";
 
 	[EquatableMember]
 	private Mask MaskEntry => _mask;
