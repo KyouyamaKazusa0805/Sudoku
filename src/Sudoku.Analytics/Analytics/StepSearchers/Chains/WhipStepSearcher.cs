@@ -100,7 +100,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		}
 
 		// Check for house.
-		var housesMap = HousesMap.AsReadOnlySpan();
+		var housesMap = HousesMap;
 		var candidatesMap = grid.CandidatesMap;
 		for (var house = 0; house < 27; house++)
 		{
@@ -132,7 +132,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <returns>All conclusions.</returns>
 	private static CandidateMap GetNextConclusions(ref readonly Grid grid)
 	{
-		var housesMap = HousesMap.AsReadOnlySpan();
+		var housesMap = HousesMap;
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
 

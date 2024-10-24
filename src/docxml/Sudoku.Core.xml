@@ -742,9 +742,9 @@
             An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
             appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
             this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
-            where the member <c>PeersMap</c> corresponds to the array <see cref="F:Sudoku.SolutionFields.PeersMap"/>.
+            where the member <c>PeersMap</c> corresponds to the array <see cref="P:Sudoku.SolutionFields.PeersMap"/>.
             </remarks>
-            <seealso cref="F:Sudoku.SolutionFields.PeersMap"/>
+            <seealso cref="P:Sudoku.SolutionFields.PeersMap"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
@@ -10643,26 +10643,6 @@
             '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
             </example>
         </member>
-        <member name="F:Sudoku.SolutionFields.HousesMap">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.PeersMap">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.ChuteMaps">
-            <summary>
-            Indicates the chute maps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.Chutes">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
-            </summary>
-        </member>
         <member name="F:Sudoku.SolutionFields.BlockTable">
             <summary>
             Indicates a block list that each cell belongs to.
@@ -10684,9 +10664,49 @@
             For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
             </summary>
         </member>
+        <member name="F:Sudoku.SolutionFields.HousesMapBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.SolutionFields.HousesMap"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionFields.PeersMapBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.SolutionFields.PeersMap"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionFields.ChuteMapsBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.SolutionFields.ChuteMaps"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionFields.ChutesBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.SolutionFields.Chutes"/>.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.ChuteHouses">
             <summary>
             Indicates the chute house triplets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SolutionFields.HousesMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SolutionFields.PeersMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SolutionFields.ChuteMaps">
+            <summary>
+            Indicates the chute maps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SolutionFields.Chutes">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
         <member name="M:Sudoku.SolutionFields.#cctor">

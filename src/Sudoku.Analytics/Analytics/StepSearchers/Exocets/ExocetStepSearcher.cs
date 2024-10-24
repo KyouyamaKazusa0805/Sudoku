@@ -1172,7 +1172,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
 		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
 		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
-		foreach (ref readonly var chuteCells in ChuteMaps[isRow ? ..3 : 3..].AsReadOnlySpan())
+		foreach (ref readonly var chuteCells in ChuteMaps[isRow ? ..3 : 3..])
 		{
 			if (chuteCells & baseCells)
 			{
@@ -2039,7 +2039,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Now try to fetch the defining cells. First, try to get uncovered 4 blocks that the final cells should be located in.
 		var cellsDoNotCover = CellMap.Empty;
-		foreach (ref readonly var chuteCells in ChuteMaps.AsReadOnlySpan())
+		foreach (ref readonly var chuteCells in ChuteMaps)
 		{
 			if (chuteCells & baseCells)
 			{

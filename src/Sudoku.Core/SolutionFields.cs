@@ -67,26 +67,6 @@ public static class SolutionFields
 	];
 
 	/// <summary>
-	/// Indicates a list of <see cref="CellMap"/> instances representing the cells belong to a house at the specified index.
-	/// </summary>
-	public static readonly CellMap[] HousesMap;
-
-	/// <summary>
-	/// Indicates a list of <see cref="CellMap"/> instances representing the peer cells of a cell at the specified index.
-	/// </summary>
-	public static readonly CellMap[] PeersMap;
-
-	/// <summary>
-	/// Indicates the chute maps.
-	/// </summary>
-	public static readonly CellMap[] ChuteMaps;
-
-	/// <summary>
-	/// Indicates a list of <see cref="Chute"/> instances representing chutes.
-	/// </summary>
-	public static readonly Chute[] Chutes;
-
-	/// <summary>
 	/// Indicates a block list that each cell belongs to.
 	/// </summary>
 	internal static readonly BlockIndex[] BlockTable = [
@@ -146,9 +126,50 @@ public static class SolutionFields
 #endif
 
 	/// <summary>
+	/// Backing field of <see cref="HousesMap"/>.
+	/// </summary>
+	private static readonly CellMap[] HousesMapBackingField;
+
+	/// <summary>
+	/// Backing field of <see cref="PeersMap"/>.
+	/// </summary>
+	private static readonly CellMap[] PeersMapBackingField;
+
+	/// <summary>
+	/// Backing field of <see cref="ChuteMaps"/>.
+	/// </summary>
+	private static readonly CellMap[] ChuteMapsBackingField;
+
+	/// <summary>
+	/// Backing field of <see cref="Chutes"/>.
+	/// </summary>
+	private static readonly Chute[] ChutesBackingField;
+
+	/// <summary>
 	/// Indicates the chute house triplets.
 	/// </summary>
 	private static readonly (House, House, House)[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
+
+
+	/// <summary>
+	/// Indicates a list of <see cref="CellMap"/> instances representing the cells belong to a house at the specified index.
+	/// </summary>
+	public static ReadOnlySpan<CellMap> HousesMap => HousesMapBackingField;
+
+	/// <summary>
+	/// Indicates a list of <see cref="CellMap"/> instances representing the peer cells of a cell at the specified index.
+	/// </summary>
+	public static ReadOnlySpan<CellMap> PeersMap => PeersMapBackingField;
+
+	/// <summary>
+	/// Indicates the chute maps.
+	/// </summary>
+	public static ReadOnlySpan<CellMap> ChuteMaps => ChuteMapsBackingField;
+
+	/// <summary>
+	/// Indicates a list of <see cref="Chute"/> instances representing chutes.
+	/// </summary>
+	public static ReadOnlySpan<Chute> Chutes => ChutesBackingField;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -158,10 +179,10 @@ public static class SolutionFields
 		// HousesMap
 		//
 		{
-			HousesMap = new CellMap[27];
+			HousesMapBackingField = new CellMap[27];
 			for (var house = 0; house < 27; house++)
 			{
-				HousesMap[house] = HousesCells[house].AsCellMap();
+				HousesMapBackingField[house] = HousesCells[house].AsCellMap();
 			}
 		}
 
@@ -182,7 +203,7 @@ public static class SolutionFields
 		// PeersMap
 		//
 		{
-			PeersMap = new CellMap[81];
+			PeersMapBackingField = new CellMap[81];
 			for (var cell = 0; cell < 81; cell++)
 			{
 				var map = CellMap.Empty;
@@ -204,7 +225,7 @@ public static class SolutionFields
 						break;
 					}
 				}
-				PeersMap[cell] = map;
+				PeersMapBackingField[cell] = map;
 			}
 		}
 
@@ -227,11 +248,11 @@ public static class SolutionFields
 		// ChuteMaps
 		//
 		{
-			ChuteMaps = new CellMap[6];
+			ChuteMapsBackingField = new CellMap[6];
 			for (var chute = 0; chute < 3; chute++)
 			{
 				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
-				(ChuteMaps[chute], ChuteMaps[chute + 3]) = (HousesMap[r1] | HousesMap[r2] | HousesMap[r3], HousesMap[c1] | HousesMap[c2] | HousesMap[c3]);
+				(ChuteMapsBackingField[chute], ChuteMapsBackingField[chute + 3]) = (HousesMap[r1] | HousesMap[r2] | HousesMap[r3], HousesMap[c1] | HousesMap[c2] | HousesMap[c3]);
 			}
 		}
 
@@ -239,11 +260,11 @@ public static class SolutionFields
 		// Chutes
 		//
 		{
-			Chutes = new Chute[6];
+			ChutesBackingField = new Chute[6];
 			for (var chute = 0; chute < 3; chute++)
 			{
 				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
-				(Chutes[chute], Chutes[chute + 3]) = (
+				(ChutesBackingField[chute], ChutesBackingField[chute + 3]) = (
 					new(chute, true, 1 << r1 | 1 << r2 | 1 << r3),
 					new(chute + 3, false, 1 << c1 | 1 << c2 | 1 << c3)
 				);
