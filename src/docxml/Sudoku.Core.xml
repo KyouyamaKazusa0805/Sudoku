@@ -10598,6 +10598,11 @@
             Indicates the number of each cell's peer cells. The value is a constant.
             </summary>
         </member>
+        <member name="F:Sudoku.SolutionFields.HouseTypes">
+            <summary>
+            Indicates the possible house types to be iterated.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.Digits">
             <summary>
             Indicates the digits used. The value can be also used for ordered houses by rows.
@@ -10648,24 +10653,14 @@
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.Chutes">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
-            </summary>
-        </member>
         <member name="F:Sudoku.SolutionFields.ChuteMaps">
             <summary>
             Indicates the chute maps.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.ChuteHouses">
+        <member name="F:Sudoku.SolutionFields.Chutes">
             <summary>
-            Indicates the chute house triplets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.HouseTypes">
-            <summary>
-            Indicates the possible house types to be iterated.
+            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.BlockTable">
@@ -10687,6 +10682,11 @@
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
             For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionFields.ChuteHouses">
+            <summary>
+            Indicates the chute house triplets.
             </summary>
         </member>
         <member name="M:Sudoku.SolutionFields.#cctor">
