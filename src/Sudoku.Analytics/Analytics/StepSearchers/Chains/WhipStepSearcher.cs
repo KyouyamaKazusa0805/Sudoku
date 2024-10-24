@@ -132,7 +132,6 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <returns>All conclusions.</returns>
 	private static CandidateMap GetNextConclusions(ref readonly Grid grid)
 	{
-		var housesMap = HousesMap;
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
 
@@ -140,11 +139,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for full houses.
-			if ((housesMap[house] & emptyCells) is [var fullHouseCell])
+			if ((HousesMap[house] & emptyCells) is [var fullHouseCell])
 			{
 				// Check for the missing digit.
 				var appearedDigitsMask = (Mask)0;
-				foreach (var cell in housesMap[house])
+				foreach (var cell in HousesMap[house])
 				{
 					if (!emptyCells.Contains(cell))
 					{
@@ -152,13 +151,13 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					}
 				}
 
-				result.Add(fullHouseCell * 9 + Mask.Log2((Mask)(511 & ~appearedDigitsMask)));
+				result.Add(fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask)));
 			}
 
 			// Check hidden singles.
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if ((candidatesMap[digit] & housesMap[house]) is [var hiddenSingleCell])
+				if ((candidatesMap[digit] & HousesMap[house]) is [var hiddenSingleCell])
 				{
 					result.Add(hiddenSingleCell * 9 + digit);
 				}
