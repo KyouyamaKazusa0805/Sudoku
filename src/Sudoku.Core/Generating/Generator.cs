@@ -197,7 +197,7 @@ public ref partial struct Generator() : IGenerator<Grid>
 		while (true)
 		{
 			// Get the next unsolved cell according to _generateIndices.
-			if (_stack[level].SudokuGrid.EmptiesCount == 0)
+			if (_stack[level].SudokuGrid.EmptyCellsCount == 0)
 			{
 				// Generation is complete.
 				_newFullSudoku = _stack[level].SudokuGrid;

@@ -10,5 +10,5 @@ public sealed partial class PuzzleCompletedEventArgs([Property] ref readonly Gri
 	/// <summary>
 	/// Indicates whether the puzzle is fully fixed.
 	/// </summary>
-	public bool IsFullyFixed => FinishedPuzzle.ModifiablesCount == 0;
+	public bool IsFullyFixed => FinishedPuzzle.ModifiableCellsCount == 0;
 }

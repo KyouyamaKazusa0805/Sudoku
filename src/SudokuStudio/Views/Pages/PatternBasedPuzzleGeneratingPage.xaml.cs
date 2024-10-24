@@ -271,7 +271,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e)
 	{
-		if (SudokuPane.Puzzle is { ModifiablesCount: 0 })
+		if (SudokuPane.Puzzle is { ModifiableCellsCount: 0 })
 		{
 			SudokuPane.Puzzle = Grid.Empty;
 			SudokuPane.ViewUnit = null;

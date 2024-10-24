@@ -11,16 +11,16 @@ internal static class SudokuGridConversion
 	private static readonly ThreadLocal<BitwiseSolver> Solver = new(static () => new());
 
 
-	public static bool GetFixedButtonAvailability(Grid grid) => grid.ModifiablesCount != 0;
+	public static bool GetFixedButtonAvailability(Grid grid) => grid.ModifiableCellsCount != 0;
 
-	public static bool GetUnfixedButtonAvailability(Grid grid) => grid.GivensCount != 0;
+	public static bool GetUnfixedButtonAvailability(Grid grid) => grid.GivenCellsCount != 0;
 
 	public static string GetPuzzleHintsCount(Grid grid)
 		=> grid switch
 		{
 			{ IsUndefined: true } => SR.Get("AnalyzePage_UndefinedGrid", App.CurrentCulture),
 			{ IsEmpty: true } => SR.Get("AnalyzePage_EmptyGrid", App.CurrentCulture),
-			{ GivensCount: var givens } => givens.ToString()
+			{ GivenCellsCount: var givens } => givens.ToString()
 		};
 
 	public static string GetPuzzleCode(Grid grid)
@@ -47,7 +47,7 @@ internal static class SudokuGridConversion
 		}
 
 		var character = Application.Current.AsApp().Preference.UIPreferences.EmptyCellCharacter;
-		var hasNoGivenCells = grid.GivensCount == 0;
+		var hasNoGivenCells = grid.GivenCellsCount == 0;
 		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
 		return SR.Get(
 			Solver.Value!.SolveString(str, null, 2) switch

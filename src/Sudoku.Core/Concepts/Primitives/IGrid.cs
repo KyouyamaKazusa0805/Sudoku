@@ -58,22 +58,22 @@ public interface IGrid<TSelf> :
 	/// <summary>
 	/// Try to get the symmetry of the puzzle.
 	/// </summary>
-	public abstract SymmetricType Symmetry { get; }
+	public virtual SymmetricType Symmetry => GivenCells.Symmetry;
 
 	/// <summary>
 	/// Indicates the total number of given cells.
 	/// </summary>
-	public abstract Cell GivensCount { get; }
+	public virtual Cell GivenCellsCount => GivenCells.Count;
 
 	/// <summary>
 	/// Indicates the total number of modifiable cells.
 	/// </summary>
-	public abstract Cell ModifiablesCount { get; }
+	public virtual Cell ModifiableCellsCount => ModifiableCells.Count;
 
 	/// <summary>
 	/// Indicates the total number of empty cells.
 	/// </summary>
-	public abstract Cell EmptiesCount { get; }
+	public virtual Cell EmptyCellsCount => EmptyCells.Count;
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -91,14 +91,14 @@ public interface IGrid<TSelf> :
 	public abstract CellMap EmptyCells { get; }
 
 	/// <summary>
-	/// Indicates the number of total candidates.
-	/// </summary>
-	public abstract Candidate CandidatesCount { get; }
-
-	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
 	/// </summary>
 	public abstract CellMap BivalueCells { get; }
+
+	/// <summary>
+	/// Indicates the number of total candidates.
+	/// </summary>
+	public abstract Candidate CandidatesCount { get; }
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.

@@ -3931,13 +3931,13 @@
             <seealso cref="F:Sudoku.SudokuType.Standard"/>
             <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.GivensCount">
+        <member name="P:Sudoku.Concepts.Grid.GivenCellsCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.ModifiablesCount">
+        <member name="P:Sudoku.Concepts.Grid.ModifiableCellsCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.EmptiesCount">
+        <member name="P:Sudoku.Concepts.Grid.EmptyCellsCount">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
@@ -5397,17 +5397,17 @@
             Try to get the symmetry of the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.GivensCount">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.GivenCellsCount">
             <summary>
             Indicates the total number of given cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.ModifiablesCount">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.ModifiableCellsCount">
             <summary>
             Indicates the total number of modifiable cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.EmptiesCount">
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.EmptyCellsCount">
             <summary>
             Indicates the total number of empty cells.
             </summary>
@@ -5427,14 +5427,14 @@
             Indicates a cell list whose corresponding position in this grid is empty.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.BivalueCells">
             <summary>
             Indicates a cell list whose corresponding position in this grid contain two candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Primitives.IGrid`1.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Primitives.IGrid`1.CandidatesMap">

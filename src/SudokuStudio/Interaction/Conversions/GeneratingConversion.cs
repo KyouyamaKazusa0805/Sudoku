@@ -9,7 +9,7 @@ internal static class GeneratingConversion
 
 	public static bool GetProgressRingIsIntermediate_GeneratingPage(bool isGeneratorLaunched) => isGeneratorLaunched;
 
-	public static bool GetIsEnabledForGoToAnalyzePage(Grid puzzle) => !puzzle.IsEmpty && puzzle.ModifiablesCount == 0;
+	public static bool GetIsEnabledForGoToAnalyzePage(Grid puzzle) => !puzzle.IsEmpty && puzzle.ModifiableCellsCount == 0;
 
 	public static Visibility GetProgressRingVisibility_GeneratingPage(bool isGeneratorLaunched)
 		=> isGeneratorLaunched ? Visibility.Visible : Visibility.Collapsed;

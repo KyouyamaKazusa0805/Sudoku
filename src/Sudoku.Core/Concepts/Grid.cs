@@ -163,21 +163,21 @@ public partial struct Grid : GridBase
 		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly Cell GivensCount
+	public readonly Cell GivenCellsCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => GivenCells.Count;
 	}
 
 	/// <inheritdoc/>
-	public readonly Cell ModifiablesCount
+	public readonly Cell ModifiableCellsCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => ModifiableCells.Count;
 	}
 
 	/// <inheritdoc/>
-	public readonly Cell EmptiesCount
+	public readonly Cell EmptyCellsCount
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => EmptyCells.Count;
@@ -952,7 +952,7 @@ public partial struct Grid : GridBase
 		// This is a bug fix for pencilmark grid parser, which cannot determine whether a puzzle is a Sukaku.
 		// I define that a Sukaku must contain 0 given cells, meaning all values should be candidates or modifiable values.
 		// If so, we should treat it as a Sukaku instead of a standard sudoku puzzle.
-		if (grid.GivensCount < 17)
+		if (grid.GivenCellsCount < 17)
 		{
 			reduceGivenCells(ref grid);
 			grid.AddSukakuHeader();
