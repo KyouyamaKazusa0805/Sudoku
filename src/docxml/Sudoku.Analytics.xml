@@ -7809,7 +7809,7 @@
             <summary>
             Determine whether the specified grid state contains any contradiction.
             </summary>
-            <param name="grid">The grid.</param>
+            <param name="playground">The grid.</param>
             <param name="failedSpace">The failed space.</param>
             <returns>A <see cref="T:System.Boolean"/> result whether any contradiction is found.</returns>
         </member>
@@ -12688,11 +12688,6 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.WhipStep.BaseDifficulty">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WhipStep.Rank">
-            <summary>
-            Indicates the rank of the pattern.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WhipStep.Code">
             <inheritdoc/>

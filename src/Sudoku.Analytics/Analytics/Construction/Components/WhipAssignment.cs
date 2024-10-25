@@ -13,10 +13,18 @@ public readonly record struct WhipAssignment(Candidate Candidate, Technique Reas
 	private bool PrintMembers(StringBuilder builder)
 	{
 		var converter = CoordinateConverter.InvariantCultureInstance;
-		builder.Append($"{nameof(Candidate)} = ");
-		builder.Append(converter.CandidateConverter([Candidate]));
-		builder.Append($", {nameof(Reason)} = ");
-		builder.Append(Reason == Technique.None ? "<none>" : Reason.GetName(null));
+		var map = Candidate.AsCandidateMap();
+		if (Reason == Technique.None)
+		{
+			builder.Append(converter.CandidateConverter(in map));
+		}
+		else
+		{
+			builder.Append($"{nameof(Candidate)} = ");
+			builder.Append(converter.CandidateConverter(in map));
+			builder.Append($", {nameof(Reason)} = ");
+			builder.Append(Reason == Technique.None ? "<none>" : Reason.GetName(null));
+		}
 		return true;
 	}
 }

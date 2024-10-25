@@ -67,7 +67,9 @@ public sealed partial class WhipNode(
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		var parentString = Parent?.ToString(converter) ?? "<null>";
+		var parentString = Parent is { Assignment.Candidate: var candidate }
+			? converter.CandidateConverter(candidate.AsCandidateMap())
+			: "<null>";
 		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
 	}
 

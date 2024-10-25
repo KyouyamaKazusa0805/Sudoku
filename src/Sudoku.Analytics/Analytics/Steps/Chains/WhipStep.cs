@@ -28,11 +28,6 @@ public sealed partial class WhipStep(
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 80;
 
-	/// <summary>
-	/// Indicates the rank of the pattern.
-	/// </summary>
-	public int Rank => Links.Length - Truths.Length;
-
 	/// <inheritdoc/>
 	public override Technique Code => Technique.Whip;
 
@@ -58,22 +53,20 @@ public sealed partial class WhipStep(
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [TruthsStr, LinksStr]), new(SR.ChineseLanguage, [TruthsStr, LinksStr])];
 
-	private string TruthsStr => string.Join(' ', from t in Truths select t.ToString());
+	private string TruthsStr => string.Join(' ', from t in Truths.Span select t.ToString());
 
-	private string LinksStr => string.Join(' ', from l in Links select l.ToString());
+	private string LinksStr => string.Join(' ', from l in Links.Span select l.ToString());
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is WhipStep comparer && Rank == comparer.Rank && Conclusions.Span[0] == comparer.Conclusions.Span[0];
+		=> other is WhipStep comparer && Conclusions.Span[0] == comparer.Conclusions.Span[0];
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
 		=> other is WhipStep comparer
-			? Rank.CompareTo(comparer.Rank) is var rankComparisonResult and not 0
-				? rankComparisonResult
-				: Conclusions.Span[0].CompareTo(comparer.Conclusions.Span[0]) is var conclusionComparisonResult and not 0
-					? conclusionComparisonResult
-					: 0
+			? Conclusions.Span[0].CompareTo(comparer.Conclusions.Span[0]) is var conclusionComparisonResult and not 0
+				? conclusionComparisonResult
+				: 0
 			: -1;
 }

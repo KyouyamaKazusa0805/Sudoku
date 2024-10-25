@@ -62,17 +62,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						break;
 					}
 
-					// And then collect all possible singles in the grid.
-					var nextAssignments = GetNextAssignments(in playground);
-					if (nextAssignments.Length == 0)
-					{
-						// The current branch is failed. Just continue.
-						continue;
-					}
-
 					// If here, we will know that such conclusions are based on the previous conclusion applied.
 					// Now we should append a parent relation. Here, I'll use a chain node to connect them.
-					foreach (var assignment in nextAssignments)
+					foreach (var assignment in GetNextAssignments(in playground))
 					{
 						pendingNodes.AddLast(new WhipNode(assignment, in playground) >> currentNode);
 					}
@@ -88,15 +80,15 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <summary>
 	/// Determine whether the specified grid state contains any contradiction.
 	/// </summary>
-	/// <param name="grid">The grid.</param>
+	/// <param name="playground">The grid.</param>
 	/// <param name="failedSpace">The failed space.</param>
 	/// <returns>A <see cref="bool"/> result whether any contradiction is found.</returns>
-	private static unsafe bool ExistsContradiction(ref readonly Grid grid, out Space failedSpace)
+	private static bool ExistsContradiction(ref readonly Grid playground, out Space failedSpace)
 	{
 		// Check for cell.
-		foreach (var cell in grid.EmptyCells)
+		foreach (var cell in playground.EmptyCells)
 		{
-			if (grid.GetCandidates(cell) == 0)
+			if (playground.GetCandidates(cell) == 0)
 			{
 				failedSpace = Space.RowColumn(cell / 9, cell % 9);
 				return true;
@@ -104,21 +96,19 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		}
 
 		// Check for house.
-		var emptyCells = grid.EmptyCells;
-		var candidatesMap = grid.CandidatesMap;
+		var candidatesMap = playground.CandidatesMap;
 		for (var house = 0; house < 27; house++)
 		{
-			foreach (var digit in grid[HousesMap[house] & emptyCells])
+			foreach (var digit in playground[HousesMap[house], false])
 			{
 				if (!(candidatesMap[digit] & HousesMap[house]))
 				{
-					delegate*<int, int, Space> spaceCreator = house switch
+					failedSpace = house switch
 					{
-						< 9 => &Space.BlockNumber,
-						< 18 => &Space.RowNumber,
-						_ => &Space.ColumnNumber
+						< 9 => Space.BlockNumber(house, digit),
+						< 18 => Space.RowNumber(house - 9, digit),
+						_ => Space.ColumnNumber(house - 18, digit)
 					};
-					failedSpace = spaceCreator(house, digit);
 					return true;
 				}
 			}
@@ -140,6 +130,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		var candidatesMap = grid.CandidatesMap;
 
 		var result = new List<WhipAssignment>();
+		var concludedCells = CellMap.Empty;
 		for (var house = 0; house < 27; house++)
 		{
 			// Check for full houses.
@@ -154,7 +145,12 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						appearedDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
 					}
 				}
-				result.Add(new(fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask)), Technique.FullHouse));
+
+				var targetCell = fullHouseCell * 9 + Mask.Log2((Mask)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
+				if (concludedCells.Add(fullHouseCell))
+				{
+					result.Add(new(targetCell, Technique.FullHouse));
+				}
 			}
 
 			// Check hidden singles.
@@ -162,17 +158,21 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			{
 				if ((candidatesMap[digit] & HousesMap[house]) is [var hiddenSingleCell])
 				{
-					result.Add(
-						new(
-							hiddenSingleCell * 9 + digit,
-							house switch
-							{
-								< 9 => Technique.CrosshatchingBlock,
-								< 18 => Technique.CrosshatchingRow,
-								_ => Technique.CrosshatchingColumn
-							}
-						)
-					);
+					var targetCell = hiddenSingleCell * 9 + digit;
+					if (concludedCells.Add(hiddenSingleCell))
+					{
+						result.Add(
+							new(
+								targetCell,
+								house switch
+								{
+									< 9 => Technique.CrosshatchingBlock,
+									< 18 => Technique.CrosshatchingRow,
+									_ => Technique.CrosshatchingColumn
+								}
+							)
+						);
+					}
 				}
 			}
 		}
@@ -184,7 +184,11 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			if (Mask.IsPow2(digitsMask))
 			{
 				var digit = Mask.Log2(digitsMask);
-				result.Add(new(nakedSingleCell * 9 + digit, Technique.NakedSingle));
+				var targetCell = nakedSingleCell * 9 + digit;
+				if (concludedCells.Add(nakedSingleCell))
+				{
+					result.Add(new(targetCell, Technique.NakedSingle));
+				}
 			}
 		}
 		return result.AsSpan();
@@ -209,14 +213,19 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	{
 		return new(
 			new SingletonArray<Conclusion>(new(Elimination, startCandidate)),
-			getViews(in initialGrid),
+			getViews(in initialGrid, out var burredCandidates, out var truths, out var links),
 			context.Options,
-			ReadOnlyMemory<Space>.Empty,
-			ReadOnlyMemory<Space>.Empty
+			truths,
+			links
 		);
 
 
-		View[] getViews(ref readonly Grid initialGrid)
+		View[] getViews(
+			ref readonly Grid initialGrid,
+			out CandidateMap burredCandidates,
+			out ReadOnlyMemory<Space> truths,
+			out ReadOnlyMemory<Space> links
+		)
 		{
 			var candidateOffsets = new HashSet<CandidateViewNode>();
 			var linkOffsets = new List<ChainLinkViewNode>();
@@ -359,10 +368,73 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					: ReadOnlySpan<ViewNode>.Empty
 			];
 
+			burredCandidates = analyzeBurredCandidates(linkOffsets, in initialGrid, out truths, out links);
+			var missingCandidateOffsets = new List<CandidateViewNode>();
+			foreach (var candidate in burredCandidates)
+			{
+				missingCandidateOffsets.Add(new(ColorIdentifier.Auxiliary2, candidate));
+			}
+
 			return [
-				[.. candidateOffsets, .. linkOffsets, .. contradictionViewNodes],
+				[.. candidateOffsets, .. linkOffsets, .. contradictionViewNodes, .. missingCandidateOffsets],
 				[.. tryAndErrorCandidateOffsets, .. tryAndErrorLinkOffsets, .. contradictionViewNodes]
 			];
+		}
+
+		static CandidateMap analyzeBurredCandidates(
+			List<ChainLinkViewNode> linkOffsets,
+			ref readonly Grid initialGrid,
+			out ReadOnlyMemory<Space> truths,
+			out ReadOnlyMemory<Space> links
+		)
+		{
+			var truthsList = new List<Space>();
+			var linksList = new List<Space>();
+			var result = CandidateMap.Empty;
+			foreach (var link in linkOffsets)
+			{
+				// Analyzes the link type.
+				// Because of design of algorithm, there're only 4 kinds of links used,
+				// and can exactly corresponds to 4 kinds of spaces.
+				var space = (link.Start, link.End) switch
+				{
+					({ Digits: var d1, Cells: [var c1] }, { Digits: var d2, Cells: [var c2] }) when d1 != d2 && c1 == c2
+						=> Space.RowColumn(c1 / 9, c1 % 9),
+					({ Digits: var d1, Cells: var c1 }, { Digits: var d2, Cells: var c2 })
+					when d1 == d2 && Mask.IsPow2(d1) && Mask.Log2(d1) is var digit && (c1 | c2).FirstSharedHouse is var house
+						=> house switch
+						{
+							< 9 => Space.BlockNumber(house, digit),
+							< 18 => Space.RowNumber(house - 9, digit),
+							_ => Space.ColumnNumber(house - 18, digit)
+						}
+				};
+				(link.IsStrongLink ? truthsList : linksList).Add(space);
+
+				if (link.IsStrongLink)
+				{
+					// If the link is strong, we should check which candidates are not hold for the link in the target space.
+					if (space.Type == SpaceType.RowColumn)
+					{
+						var missingDigits = initialGrid.GetCandidates(space.Cell) & ~link.Start.Digits & ~link.End.Digits;
+						foreach (var digit in missingDigits)
+						{
+							result.Add(space.Cell * 9 + digit);
+						}
+					}
+					else
+					{
+						var missingCells = HousesMap[space.House] & CandidatesMap[space.Digit] & ~link.Start.Cells & ~link.End.Cells;
+						foreach (var cell in missingCells)
+						{
+							result.Add(cell * 9 + space.Digit);
+						}
+					}
+				}
+			}
+
+			(truths, links) = (truthsList.AsMemory(), linksList.AsMemory());
+			return result;
 		}
 	}
 }
