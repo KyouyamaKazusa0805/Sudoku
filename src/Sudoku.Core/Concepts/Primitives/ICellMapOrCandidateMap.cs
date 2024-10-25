@@ -6,7 +6,7 @@ namespace Sudoku.Concepts.Primitives;
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
-public interface ICellMapOrCandidateMap<TSelf, TElement, TEnumerator> :
+public interface ICellMapOrCandidateMap<TSelf, TElement, out TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IAnyAllMethod<TSelf, TElement>,

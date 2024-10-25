@@ -1015,9 +1015,8 @@ public partial struct Grid : GridBase
 
 		bool parseAll(string str, out Grid result)
 		{
-			for (var trial = 0; trial < parsers.Length; trial++)
+			foreach (var currentParser in parsers)
 			{
-				var currentParser = parsers[trial];
 				if (currentParser.ParseCore(str) is { IsUndefined: false } g)
 				{
 					result = g;
