@@ -25,10 +25,8 @@ public sealed partial class Node(
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
-	IEquatable<Node>,
-	IEqualityOperators<Node, Node, bool>,
-	IFormattable,
-	IShiftOperators<Node, Node, Node>
+	ICloneable,
+	ILinkedNode<Node>
 {
 	/// <summary>
 	/// Indicates the map format string.
@@ -67,9 +65,7 @@ public sealed partial class Node(
 	/// </summary>
 	public ref readonly CandidateMap Map => ref _map;
 
-	/// <summary>
-	/// Indicates the root node.
-	/// </summary>
+	/// <inheritdoc/>
 	public Node Root
 	{
 		get
@@ -100,7 +96,6 @@ public sealed partial class Node(
 		=> ((isGroupedNode, map), parent) = (this, Parent);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Node? other) => Equals(other, NodeComparison.IncludeIsOn);
 
 	/// <summary>
@@ -179,8 +174,7 @@ public sealed partial class Node(
 				_ => throw new ArgumentOutOfRangeException(nameof(comparison))
 			};
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
@@ -221,6 +215,9 @@ public sealed partial class Node(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Node Clone() => new(in _map, IsOn, IsAdvanced) { Parent = Parent };
 
+	/// <inheritdoc/>
+	object ICloneable.Clone() => Clone();
+
 
 	/// <summary>
 	/// Negates the node with <see cref="IsOn"/> property value.
@@ -238,19 +235,4 @@ public sealed partial class Node(
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Node operator >>(Node current, Node? parent) => new(in current._map, current.IsOn, current.IsAdvanced, parent);
-
-	/// <summary>
-	/// Creates a <see cref="Node"/> instance with parent node.
-	/// </summary>
-	/// <param name="parent">The parent node.</param>
-	/// <param name="current">The current node.</param>
-	/// <returns>The new node created.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Node operator <<(Node? parent, Node current) => current >> parent;
-
-	/// <inheritdoc/>
-	static Node IShiftOperators<Node, Node, Node>.operator <<(Node value, Node shiftAmount) => shiftAmount >> value;
-
-	/// <inheritdoc/>
-	static Node IShiftOperators<Node, Node, Node>.operator >>>(Node value, Node shiftAmount) => value >> shiftAmount;
 }

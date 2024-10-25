@@ -7,11 +7,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="parent">Indicates the parent node.</param>
 [StructLayout(LayoutKind.Auto)]
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) :
-	IEquatable<WhipNode>,
-	IFormattable,
-	IEqualityOperators<WhipNode, WhipNode, bool>,
-	IShiftOperators<WhipNode, WhipNode, WhipNode>
+public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment assignment, [Property] WhipNode? parent) : ILinkedNode<WhipNode>
 {
 	/// <summary>
 	/// Initializes a <see cref="WhipNode"/> instance via the candidate set and its corresponding grid.
@@ -30,9 +26,7 @@ public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment a
 	}
 
 
-	/// <summary>
-	/// Indicates the root node.
-	/// </summary>
+	/// <inheritdoc/>
 	public WhipNode Root
 	{
 		get
@@ -50,7 +44,7 @@ public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment a
 	private WhipAssignment AssignmentEntry => Assignment;
 
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
@@ -60,13 +54,6 @@ public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment a
 		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
 	}
 
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
-
-
-	/// <inheritdoc cref="op_RightShift(WhipNode, WhipNode?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static WhipNode operator <<(WhipNode? parent, WhipNode current) => current >> parent;
 
 	/// <summary>
 	/// Creates a <see cref="WhipNode"/> instance with parent node.
@@ -76,8 +63,4 @@ public sealed partial class WhipNode([Property, HashCodeMember] WhipAssignment a
 	/// <returns>The new node created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static WhipNode operator >>(WhipNode current, WhipNode? parent) => new(current.Assignment, parent);
-
-	/// <inheritdoc/>
-	static WhipNode IShiftOperators<WhipNode, WhipNode, WhipNode>.operator >>>(WhipNode value, WhipNode shiftAmount)
-		=> value >> shiftAmount;
 }

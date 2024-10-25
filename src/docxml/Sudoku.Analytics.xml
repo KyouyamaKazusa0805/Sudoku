@@ -3271,6 +3271,56 @@
             A list of cells as the other pair of target cells.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.ILinkedNode`1">
+            <summary>
+            Represents a node that supports parent linking.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.AncestorsLength">
+            <summary>
+            Indicates the length of ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.Parent">
+            <summary>
+            Indicates the parent node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ILinkedNode`1.Root">
+            <summary>
+            Indicates the root node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.op_RightShift(`0,`0)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.WhipNode"/> instance with parent node.
+            </summary>
+            <param name="current">The current node.</param>
+            <param name="parent">The parent node.</param>
+            <returns>The new node created.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_LeftShift(`0,`0)">
+            <inheritdoc cref="M:System.Numerics.IShiftOperators`3.op_LeftShift(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.ILinkedNode`1.System#Numerics#IShiftOperators{TSelf,TSelf,TSelf}#op_UnsignedRightShift(`0,`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.Link">
             <summary>
             <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instances.</para>
@@ -3923,9 +3973,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.Root">
-            <summary>
-            Indicates the root node.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Node.IsOnPropertyValue">
             <summary>
@@ -3990,7 +4038,7 @@
             </exception>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -4022,6 +4070,9 @@
             </summary>
             <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Node.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Node.op_OnesComplement(Sudoku.Analytics.Construction.Components.Node)">
             <summary>
             Negates the node with <see cref="P:Sudoku.Analytics.Construction.Components.Node.IsOn"/> property value.
@@ -4036,20 +4087,6 @@
             <param name="current">The current node.</param>
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.op_LeftShift(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Construction.Components.Node"/> instance with parent node.
-            </summary>
-            <param name="parent">The parent node.</param>
-            <param name="current">The current node.</param>
-            <returns>The new node created.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#Node,Sudoku#Analytics#Construction#Components#Node,Sudoku#Analytics#Construction#Components#Node}#op_LeftShift(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Node.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#Node,Sudoku#Analytics#Construction#Components#Node,Sudoku#Analytics#Construction#Components#Node}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.Node,Sudoku.Analytics.Construction.Components.Node)">
-            <inheritdoc/>
         </member>
         <member name="F:Sudoku.Analytics.Construction.Components.Node._map">
             <summary>
@@ -4440,18 +4477,10 @@
             <param name="assignment">The assignment.</param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Root">
-            <summary>
-            Indicates the root node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_LeftShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.WhipNode.op_RightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_RightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
             <summary>
@@ -4460,9 +4489,6 @@
             <param name="current">The current node.</param>
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.System#Numerics#IShiftOperators{Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode,Sudoku#Analytics#Construction#Components#WhipNode}#op_UnsignedRightShift(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Assignment">
             <summary>
